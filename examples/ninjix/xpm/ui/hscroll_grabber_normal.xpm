@@ -1,0 +1,14 @@
+/* XPM */
+static const char *const hscroll_grabber_normal[] = {
+"6 5 5 1",
+"  c None",
+". c #1b1b1b",
+"+ c #8a4836",
+"@ c #bf6f4a",
+"# c #e69c69",
+" .... ",
+".##@+.",
+".#@@+.",
+".#@++.",
+" .... "
+};

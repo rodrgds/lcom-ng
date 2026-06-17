@@ -93,12 +93,9 @@ static void test_mouse_scheduler_coalesces_motion() {
 
   auto packet = scheduler.nextPacket(false);
   CHECK(packet.has_value());
-  CHECK(packet->dx == 255);
-  CHECK(packet->dy == -255);
-
-  int emitted = 1;
-  while ((packet = scheduler.nextPacket(false)).has_value()) emitted++;
-  CHECK(emitted <= 5);
+  CHECK(packet->dx == 96);
+  CHECK(packet->dy == -96);
+  CHECK(!scheduler.nextPacket(false).has_value());
 }
 
 static void test_mouse_scheduler_clamps_and_flips_y() {
@@ -106,8 +103,8 @@ static void test_mouse_scheduler_clamps_and_flips_y() {
   scheduler.addMotion(-400, 300);
   auto packet = scheduler.nextPacket(false);
   CHECK(packet.has_value());
-  CHECK(packet->dx == -255);
-  CHECK(packet->dy == -255);
+  CHECK(packet->dx == -96);
+  CHECK(packet->dy == -96);
 }
 
 static void test_mouse_scheduler_button_change_emits_zero_delta() {
@@ -125,20 +122,15 @@ static void test_mouse_scheduler_button_change_emits_zero_delta() {
 static void test_mouse_scheduler_bounds_backlog() {
   lcom::MousePacketScheduler scheduler;
   scheduler.addMotion(50000, -50000);
-  CHECK(scheduler.pendingDx() == 1024);
-  CHECK(scheduler.pendingScreenDy() == -1024);
+  CHECK(scheduler.pendingDx() == 96);
+  CHECK(scheduler.pendingScreenDy() == -96);
   auto packet = scheduler.nextPacket(false);
   CHECK(packet.has_value());
-  CHECK(packet->dx == 255);
-  CHECK(packet->dy == 255);
-  CHECK(scheduler.pendingDx() == 769);
-  CHECK(scheduler.pendingScreenDy() == -769);
-
-  int emitted = 1;
-  while ((packet = scheduler.nextPacket(false)).has_value()) emitted++;
-  CHECK(emitted == 5);
+  CHECK(packet->dx == 96);
+  CHECK(packet->dy == 96);
   CHECK(scheduler.pendingDx() == 0);
   CHECK(scheduler.pendingScreenDy() == 0);
+  CHECK(!scheduler.nextPacket(false).has_value());
 }
 
 static void test_i8042_command_byte_and_mouse_packet() {

@@ -18,6 +18,27 @@ grep -q "lcom bundle" "$OUT_DIR/cli-docs.md"
 "$BIN_DIR/lcom" completion bash > "$OUT_DIR/lcom.bash"
 grep -q "_lcom_complete" "$OUT_DIR/lcom.bash"
 
+if "$BIN_DIR/lcom" run > "$OUT_DIR/run-missing.txt" 2>&1; then
+  echo "lcom run without a program should fail" >&2
+  exit 1
+fi
+grep -q "run requires <program>" "$OUT_DIR/run-missing.txt"
+grep -Fq "run [OPTIONS]" "$OUT_DIR/run-missing.txt"
+
+if "$BIN_DIR/lcom" bundle > "$OUT_DIR/bundle-missing.txt" 2>&1; then
+  echo "lcom bundle without a project dir should fail" >&2
+  exit 1
+fi
+grep -q "bundle requires <project-dir>" "$OUT_DIR/bundle-missing.txt"
+grep -Fq "bundle [OPTIONS] project-dir" "$OUT_DIR/bundle-missing.txt"
+
+if "$BIN_DIR/lcom" completion > "$OUT_DIR/completion-missing.txt" 2>&1; then
+  echo "lcom completion without a shell should fail" >&2
+  exit 1
+fi
+grep -q "completion requires <shell>" "$OUT_DIR/completion-missing.txt"
+grep -Fq "completion [OPTIONS] shell" "$OUT_DIR/completion-missing.txt"
+
 "$BIN_DIR/lcom" run --headless -- "$EX_DIR/hello" > "$OUT_DIR/hello.txt"
 grep -q "hello from liblcom-ng" "$OUT_DIR/hello.txt"
 
@@ -81,15 +102,28 @@ rm -rf "$OUT_DIR/flappy_space_frames"
 grep -q "Program exited with status 0" "$OUT_DIR/flappy_space_stress.txt"
 test "$(find "$OUT_DIR/flappy_space_frames" -name 'frame_*.ppm' | wc -l | tr -d ' ')" -ge 45
 
+"$BIN_DIR/lcom" run --headless --script scripts/ninjix_menu_exit.lcomscript --dump-frame "$OUT_DIR/ninjix_menu.ppm" -- "$EX_DIR/ninjix" > "$OUT_DIR/ninjix_menu.txt"
+grep -q "Program exited with status 0" "$OUT_DIR/ninjix_menu.txt"
+! grep -q "serial .* failed" "$OUT_DIR/ninjix_menu.txt"
+test -s "$OUT_DIR/ninjix_menu.ppm"
+
+"$BIN_DIR/lcom" run --headless --script scripts/pvz_menu_exit.lcomscript --dump-frame "$OUT_DIR/pvz_menu.ppm" --max-ticks 240 -- "$EX_DIR/pvz" > "$OUT_DIR/pvz_menu.txt"
+grep -q "Program exited with status 0" "$OUT_DIR/pvz_menu.txt"
+test -s "$OUT_DIR/pvz_menu.ppm"
+
 "$BIN_DIR/lcom" replay scripts/flappy_mouse_demo.lcomscript --headless --video "$OUT_DIR/flappy_replay.mp4" --video-fps 30 -- "$EX_DIR/flappy_bird" > "$OUT_DIR/flappy_replay.txt"
 grep -q "Rendered video" "$OUT_DIR/flappy_replay.txt"
 test -s "$OUT_DIR/flappy_replay.mp4"
 
 rm -rf "$OUT_DIR/flappy-headless.lcom"
 "$BIN_DIR/lcom" bundle . --program "$EX_DIR/flappy_bird" --name flappy-headless --output "$OUT_DIR/flappy-headless.lcom" --script scripts/flappy_mouse_demo.lcomscript --headless > "$OUT_DIR/bundle.txt"
-test -x "$OUT_DIR/flappy-headless.lcom/run.sh"
-test -f "$OUT_DIR/flappy-headless.lcom/sdk/include/lcom/lcom.h"
-"$OUT_DIR/flappy-headless.lcom/run.sh" > "$OUT_DIR/bundle-run.txt"
+test -x "$OUT_DIR/flappy-headless.lcom"
+"$OUT_DIR/flappy-headless.lcom" > "$OUT_DIR/bundle-run.txt"
 grep -q "Program exited with status 0" "$OUT_DIR/bundle-run.txt"
+
+rm -rf "$OUT_DIR/flappy-headless-dir.lcom"
+"$BIN_DIR/lcom" bundle . --format dir --program "$EX_DIR/flappy_bird" --name flappy-headless-dir --output "$OUT_DIR/flappy-headless-dir.lcom" --script scripts/flappy_mouse_demo.lcomscript --headless > "$OUT_DIR/bundle-dir.txt"
+test -x "$OUT_DIR/flappy-headless-dir.lcom/run.sh"
+test -f "$OUT_DIR/flappy-headless-dir.lcom/sdk/include/lcom/lcom.h"
 
 echo "integration tests passed"

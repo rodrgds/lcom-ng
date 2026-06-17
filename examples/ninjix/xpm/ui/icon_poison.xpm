@@ -1,0 +1,13 @@
+/* XPM */
+static const char *const icon_poison[] = {
+"5 5 4 1",
+"  c None",
+". c #622461",
+"+ c #db3ffd",
+"@ c #f389f5",
+"  .  ",
+" .+. ",
+".++@.",
+".+@@.",
+" ... "
+};

@@ -45,8 +45,8 @@ public:
     int screen_dy = clamp(pending_screen_dy_, -kPacketLimit, kPacketLimit);
     if (dx == 0 && screen_dy == 0 && !button_changed_) return std::nullopt;
 
-    pending_dx_ -= dx;
-    pending_screen_dy_ -= screen_dy;
+    pending_dx_ = 0;
+    pending_screen_dy_ = 0;
     button_changed_ = false;
 
     return MousePacket{dx, -screen_dy, buttons_};
@@ -56,8 +56,8 @@ public:
   int pendingScreenDy() const { return pending_screen_dy_; }
 
 private:
-  static constexpr int kPacketLimit = 255;
-  static constexpr int kBacklogLimit = 1024;
+  static constexpr int kPacketLimit = 96;
+  static constexpr int kBacklogLimit = 96;
 
   static int clamp(int value, int lo, int hi) {
     return std::max(lo, std::min(hi, value));

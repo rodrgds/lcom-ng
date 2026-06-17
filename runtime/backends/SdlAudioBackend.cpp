@@ -45,7 +45,8 @@ public:
     }
 
     int bytes = static_cast<int>(frame_count * channels * sizeof(int16_t));
-    if (SDL_GetAudioStreamQueued(stream_) > static_cast<int>(sample_rate * channels * sizeof(int16_t) / 3u)) {
+    if (SDL_GetAudioStreamQueued(stream_) >
+        static_cast<int>(sample_rate * channels * sizeof(int16_t) / 20u)) {
       SDL_ClearAudioStream(stream_);
     }
     if (!SDL_PutAudioStreamData(stream_, samples, bytes)) {
@@ -58,13 +59,16 @@ public:
 
   void stop() override {
     if (stream_ != nullptr) {
-      SDL_DestroyAudioStream(stream_);
-      stream_ = nullptr;
+      SDL_ClearAudioStream(stream_);
+      SDL_PauseAudioStreamDevice(stream_);
     }
   }
 
   ~SdlAudioBackend() override {
-    stop();
+    if (stream_ != nullptr) {
+      SDL_DestroyAudioStream(stream_);
+      stream_ = nullptr;
+    }
   }
 
 private:

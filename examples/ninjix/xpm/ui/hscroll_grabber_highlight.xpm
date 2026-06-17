@@ -1,0 +1,14 @@
+/* XPM */
+static const char *const hscroll_grabber_highlight[] = {
+"6 5 5 1",
+"  c None",
+". c #1b1b1b",
+"+ c #bf6f4a",
+"@ c #e69c69",
+"# c #f6ca9f",
+" .... ",
+".##@+.",
+".#@@+.",
+".#@++.",
+" .... "
+};

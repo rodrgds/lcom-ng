@@ -53,6 +53,7 @@ SDL_Color rgba(uint8_t r, uint8_t g, uint8_t b, uint8_t a = 255) {
 
 constexpr uint64_t kMouseSampleIntervalNs = 1000000000ull / 60ull;
 constexpr int kMaxSdlEventsPerPump = 256;
+constexpr uint64_t kStartupHintNs = 5000000000ull;
 
 } // namespace
 
@@ -114,6 +115,7 @@ public:
     terminal_lines_.push_back("Press F3 for device state.");
     observed_machine_ = &machine;
     machine.setInputObserver(this);
+    startup_hint_until_ns_ = SDL_GetTicksNS() + kStartupHintNs;
     SDL_FlushEvent(SDL_EVENT_MOUSE_MOTION);
     return ensureTexture(machine);
   }
@@ -162,6 +164,7 @@ public:
         break;
       case SDL_EVENT_WINDOW_FOCUS_LOST:
       case SDL_EVENT_WINDOW_MOUSE_LEAVE:
+        mouse_capture_suppressed_ = false;
         setMouseCaptured(false);
         break;
       case SDL_EVENT_WINDOW_FOCUS_GAINED:
@@ -180,6 +183,12 @@ public:
         int lx = 0;
         int ly = 0;
         logicalPoint(ev.button.x, ev.button.y, lx, ly);
+        if (mouse_capture_suppressed_ && ev.button.down && machine.i8042().mouseReporting() &&
+            !debug_visible_ && !isChromePoint(lx, ly)) {
+          mouse_capture_suppressed_ = false;
+          setMouseCaptured(true);
+          break;
+        }
         if (canInjectGuestMouse(machine) ||
             (!isChromePoint(lx, ly) && machine.i8042().mouseReporting() && !debug_visible_)) {
           updateMouseCapture(machine);
@@ -270,6 +279,11 @@ private:
 
   void handleKey(Machine &machine, const SDL_KeyboardEvent &key) {
     bool down = key.down;
+    if (down && isHostMouseReleaseKey(key.scancode)) {
+      mouse_capture_suppressed_ = true;
+      setMouseCaptured(false);
+      return;
+    }
     if (down && key.scancode == SDL_SCANCODE_F3) {
       debug_visible_ = !debug_visible_;
       updateMouseCapture(machine);
@@ -374,22 +388,35 @@ private:
 
   void renderChrome(Machine &machine) {
     SDL_SetRenderDrawBlendMode(renderer_, SDL_BLENDMODE_BLEND);
-    SDL_FRect top{0.0f, 0.0f, static_cast<float>(logical_width_), 32.0f};
-    SDL_SetRenderDrawColor(renderer_, 24, 29, 36, 230);
-    SDL_RenderFillRect(renderer_, &top);
-    SDL_SetRenderDrawColor(renderer_, 76, 86, 99, 255);
-    SDL_RenderLine(renderer_, 0.0f, 31.0f, static_cast<float>(logical_width_), 31.0f);
-
-    const char *mode = machine.vbe().graphicsMode() ? "LCOM Display" : "LCOM Terminal";
-    drawText(12, 7, mode, rgba(246, 248, 250), title_font_);
-
-    drawText(logical_width_ - 98, 7, debug_visible_ ? "F3 debug on" : "F3 debug",
-             rgba(192, 205, 218), title_font_);
-
     if (debug_visible_) {
       renderInputPanel();
       renderDebugPanel(machine);
+    } else {
+      renderStartupHint();
     }
+  }
+
+  void renderStartupHint() {
+    uint64_t now = SDL_GetTicksNS();
+    if (startup_hint_until_ns_ == 0 || now >= startup_hint_until_ns_) return;
+
+    float remaining = static_cast<float>(startup_hint_until_ns_ - now) /
+                      static_cast<float>(kStartupHintNs);
+    uint8_t alpha = remaining < 0.35f
+                        ? static_cast<uint8_t>(220.0f * (remaining / 0.35f))
+                        : 220u;
+    const char *label = "F3 to debug";
+    int w = 124;
+    int h = 30;
+    int x = logical_width_ - w - 14;
+    int y = 14;
+    SDL_FRect box{static_cast<float>(x), static_cast<float>(y),
+                  static_cast<float>(w), static_cast<float>(h)};
+    SDL_SetRenderDrawColor(renderer_, 19, 23, 29, alpha);
+    SDL_RenderFillRect(renderer_, &box);
+    SDL_SetRenderDrawColor(renderer_, 113, 221, 237, alpha);
+    SDL_RenderRect(renderer_, &box);
+    drawText(x + 12, y + 7, label, rgba(228, 233, 239, alpha), title_font_);
   }
 
   void renderInputPanel() {
@@ -581,7 +608,18 @@ private:
   }
 
   bool isChromePoint(int x, int y) const {
-    return y < 32 || (debug_visible_ && x > logical_width_ - 440 && y > 40);
+    if (!debug_visible_) return false;
+    int left_w = std::min(310, logical_width_ / 2 - 28);
+    int right_w = std::min(420, logical_width_ - 32);
+    bool in_left = x >= 14 && x < 14 + left_w && y >= 44 && y < logical_height_ - 14;
+    bool in_right = x >= logical_width_ - right_w - 14 && y >= 44 && y < logical_height_ - 14;
+    return in_left || in_right;
+  }
+
+  static bool isHostMouseReleaseKey(SDL_Scancode scancode) {
+    return scancode == SDL_SCANCODE_LGUI ||
+           scancode == SDL_SCANCODE_RGUI ||
+           scancode == SDL_SCANCODE_RCTRL;
   }
 
   void logicalPoint(float window_x, float window_y, int &x, int &y) const {
@@ -655,7 +693,8 @@ private:
     if (window_ == nullptr) return;
     SDL_WindowFlags flags = SDL_GetWindowFlags(window_);
     bool focused = (flags & SDL_WINDOW_INPUT_FOCUS) != 0;
-    bool should_capture = focused && machine.i8042().mouseReporting() && !debug_visible_;
+    bool should_capture = focused && machine.i8042().mouseReporting() && !debug_visible_ &&
+                          !mouse_capture_suppressed_;
     setMouseCaptured(should_capture);
   }
 
@@ -689,9 +728,11 @@ private:
   bool fullscreen_ = false;
   bool should_quit_ = false;
   bool mouse_captured_ = false;
+  bool mouse_capture_suppressed_ = false;
   uint8_t host_mouse_buttons_ = 0;
   MousePacketScheduler mouse_scheduler_;
   uint64_t last_mouse_sample_ns_ = 0;
+  uint64_t startup_hint_until_ns_ = 0;
   uint64_t last_present_ns_ = 0;
   float current_frame_ms_ = 0.0f;
   float current_fps_ = 0.0f;

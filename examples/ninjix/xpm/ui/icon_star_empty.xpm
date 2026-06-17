@@ -1,0 +1,14 @@
+/* XPM */
+static const char *const icon_star_empty[] = {
+"8 7 3 1",
+"  c None",
+". c #1b1b1b",
+"+ c #e69c69",
+"    .   ",
+"  .. .. ",
+" .+ ++ .",
+"+ .   . ",
+" +. .+. ",
+" + . .  ",
+"  + +   "
+};

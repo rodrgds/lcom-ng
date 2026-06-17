@@ -1,0 +1,9 @@
+/* XPM */
+static const char *const progressbar_armor_alternate_fill[] = {
+"12 3 2 1",
+"  c None",
+". c #92a1b9",
+"            ",
+" .......... ",
+"            "
+};

@@ -1,0 +1,9 @@
+/* XPM */
+static const char *const progressbar_health_alternate_fill[] = {
+"12 3 2 1",
+"  c None",
+". c #5ac54f",
+"            ",
+" .......... ",
+"            "
+};

@@ -11,15 +11,21 @@ typedef enum {
 } app_input_result_t;
 
 typedef struct {
-  int state;
-  int bird_y;
-  int bird_vy;
-  int pipe_x;
+  int x_fp;
   int gap_y;
+  int passed;
+} pipe_pair_t;
+
+typedef struct {
+  int state;
+  int bird_y_fp;
+  int bird_vy_fp;
+  pipe_pair_t pipes[3];
   int score;
   int frame;
   int running;
   int best_score;
+  int ground_scroll;
   menu_t menu;
 } app_t;
 

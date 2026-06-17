@@ -1,0 +1,9 @@
+/* XPM */
+static const char *const progressbar_armor_alternate_bg[] = {
+"12 3 2 1",
+"  c #131313",
+". c #3d3d3d",
+"            ",
+" .......... ",
+"            "
+};

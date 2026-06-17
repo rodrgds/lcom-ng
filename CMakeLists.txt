@@ -112,6 +112,28 @@ set_target_properties(flappy_bird PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/examples
 )
 
+file(GLOB NINJIX_SOURCES CONFIGURE_DEPENDS
+  examples/ninjix/*.c
+)
+add_executable(ninjix ${NINJIX_SOURCES})
+target_include_directories(ninjix PRIVATE examples/ninjix)
+target_link_libraries(ninjix PRIVATE lcom-ng)
+target_compile_options(ninjix PRIVATE -Wall -Wextra -Wpedantic)
+set_target_properties(ninjix PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/examples
+)
+
+file(GLOB_RECURSE PVZ_SOURCES CONFIGURE_DEPENDS
+  examples/pvz/src/*.c
+)
+add_executable(pvz ${PVZ_SOURCES})
+target_include_directories(pvz PRIVATE examples/pvz/include)
+target_link_libraries(pvz PRIVATE lcom-ng)
+target_compile_options(pvz PRIVATE -Wall -Wextra -Wpedantic -Wno-strict-prototypes)
+set_target_properties(pvz PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/examples
+)
+
 add_executable(unit_tests
   tests/unit_tests.cpp
 )

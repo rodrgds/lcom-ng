@@ -1,0 +1,12 @@
+/* XPM */
+static const char *const bullet[] = {
+"4 4 4 1",
+"  c None",
+". c #8e251d",
+"+ c #e07438",
+"@ c #edab50",
+" .. ",
+".@+.",
+".++.",
+" .. "
+};

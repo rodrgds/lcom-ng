@@ -1,0 +1,13 @@
+/* XPM */
+static const char *const icon_playff_white[] = {
+"9 6 3 1",
+"  c None",
+". c #e69c69",
+"+ c #ffffff",
+" ++  ++  ",
+".+++.+++ ",
+".++++++++",
+".+++.+++ ",
+".++ .++  ",
+"..  ..   "
+};

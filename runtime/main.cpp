@@ -49,13 +49,16 @@ static void configureCliApp(CLI::App &app) {
   bundle->add_option("project-dir", "Project directory")->required();
   bundle->add_option("--program", "Student binary to bundle")->required();
   bundle->add_option("--name", "Bundle/app name");
-  bundle->add_option("--output", "Output bundle directory");
+  bundle->add_option("--output", "Output bundle executable or directory");
+  bundle->add_option("--format", "Bundle format: single or dir");
   bundle->add_option("--script", "Script to include and run with the app");
   bundle->add_option("--display", "Display backend in generated launcher");
   bundle->add_option("--audio", "Audio backend in generated launcher");
   bundle->add_flag("--headless", "Generate a headless launcher");
   bundle->add_flag("--realtime", "Generate a realtime launcher");
   bundle->add_flag("--no-realtime", "Generate a non-realtime launcher");
+  bundle->add_flag("--dir", "Shortcut for --format dir");
+  bundle->add_flag("--single-file", "Shortcut for --format single");
 
   auto *lab = app.add_subcommand("lab", "Inspect lab function requests");
   lab->add_subcommand("list", "List labs");
@@ -75,14 +78,25 @@ static void usage() {
   std::cout << app.help();
 }
 
+static void subcommandUsage(const std::string &name) {
+  CLI::App app;
+  configureCliApp(app);
+  try {
+    std::cout << app.get_subcommand(name)->help();
+  } catch (const CLI::OptionNotFound &) {
+    std::cout << app.help();
+  }
+}
+
 struct BundleOptions {
   std::filesystem::path project_dir;
   std::filesystem::path program;
-  std::filesystem::path output_dir;
+  std::filesystem::path output_path;
   std::filesystem::path script;
   std::string name;
   std::string display = "sdl";
   std::string audio = "sdl";
+  std::string format = "single";
   bool realtime = true;
 };
 
@@ -157,7 +171,8 @@ static int completionScript(const std::string &shell) {
       "--scale --integer-scale --script --trace --dump-frame --frame-dir --video --video-fps "
       "--rtc --max-ticks";
   const char *bundle_opts =
-      "--program --name --output --script --display --audio --headless --realtime --no-realtime";
+      "--program --name --output --format --script --display --audio --headless --realtime "
+      "--no-realtime --dir --single-file";
 
   if (shell == "bash") {
     std::cout
@@ -185,7 +200,7 @@ static int completionScript(const std::string &shell) {
         << "  if (( CURRENT == 2 )); then _describe 'command' commands; return; fi\n"
         << "  case $words[2] in\n"
         << "    run|replay) _arguments '--headless' '--display[backend]:' '--audio[backend]:' '--audio-wav[file]:file:_files' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--script[file]:file:_files' '--trace[file]:file:_files' '--dump-frame[file]:file:_files' '--frame-dir[dir]:dir:_files -/' '--video[file]:file:_files' '--video-fps[n]:' '--rtc[iso-time]:' '--max-ticks[n]:' '*::program:_files' ;;\n"
-        << "    bundle) _arguments '--program[student binary]:file:_files' '--name[name]:' '--output[dir]:dir:_files -/' '--script[script]:file:_files' '--display[backend]:' '--audio[backend]:' '--headless' '--realtime' '--no-realtime' ;;\n"
+        << "    bundle) _arguments '--program[student binary]:file:_files' '--name[name]:' '--output[path]:file:_files' '--format[format]:(single dir)' '--script[script]:file:_files' '--display[backend]:' '--audio[backend]:' '--headless' '--realtime' '--no-realtime' '--dir' '--single-file' ;;\n"
         << "    lab) _arguments '1:action:(list show)' '2:lab:(lab1 lab2 lab3 lab4 lab5 lab6 lab7)' ;;\n"
         << "    completion) _arguments '1:shell:(bash zsh fish)' ;;\n"
         << "  esac\n"
@@ -203,6 +218,7 @@ static int completionScript(const std::string &shell) {
         << "complete -c lcom -n '__fish_seen_subcommand_from run replay' -l video -r\n"
         << "complete -c lcom -n '__fish_seen_subcommand_from bundle' -l program -r\n"
         << "complete -c lcom -n '__fish_seen_subcommand_from bundle' -l output -r\n"
+        << "complete -c lcom -n '__fish_seen_subcommand_from bundle' -l format -a 'single dir'\n"
         << "complete -c lcom -n '__fish_seen_subcommand_from completion' -a 'bash zsh fish'\n";
     return 0;
   }
@@ -290,7 +306,10 @@ static RuntimeOptions defaultRuntimeOptions() {
 }
 
 static bool parseBundle(int argc, char **argv, int start, BundleOptions &opts) {
-  if (start >= argc) return false;
+  if (start >= argc) {
+    std::cerr << "lcom: bundle requires <project-dir>\n";
+    return false;
+  }
   opts.project_dir = argv[start++];
 
   for (int i = start; i < argc; i++) {
@@ -300,7 +319,9 @@ static bool parseBundle(int argc, char **argv, int start, BundleOptions &opts) {
     } else if (arg == "--name" && i + 1 < argc) {
       opts.name = argv[++i];
     } else if (arg == "--output" && i + 1 < argc) {
-      opts.output_dir = argv[++i];
+      opts.output_path = argv[++i];
+    } else if (arg == "--format" && i + 1 < argc) {
+      opts.format = argv[++i];
     } else if (arg == "--script" && i + 1 < argc) {
       opts.script = argv[++i];
     } else if (arg == "--display" && i + 1 < argc) {
@@ -315,6 +336,10 @@ static bool parseBundle(int argc, char **argv, int start, BundleOptions &opts) {
       opts.realtime = true;
     } else if (arg == "--no-realtime") {
       opts.realtime = false;
+    } else if (arg == "--dir") {
+      opts.format = "dir";
+    } else if (arg == "--single-file") {
+      opts.format = "single";
     } else {
       std::cerr << "lcom: unknown bundle option " << arg << "\n";
       return false;
@@ -325,9 +350,13 @@ static bool parseBundle(int argc, char **argv, int start, BundleOptions &opts) {
     std::cerr << "lcom: bundle requires --program <binary>\n";
     return false;
   }
+  if (opts.format != "single" && opts.format != "dir") {
+    std::cerr << "lcom: bundle --format must be 'single' or 'dir'\n";
+    return false;
+  }
   if (opts.name.empty()) opts.name = opts.program.filename().string();
-  if (opts.output_dir.empty()) {
-    opts.output_dir = opts.project_dir / "dist" / (opts.name + ".lcom");
+  if (opts.output_path.empty()) {
+    opts.output_path = opts.project_dir / "dist" / (opts.name + ".lcom");
   }
   return true;
 }
@@ -381,13 +410,84 @@ static void makeExecutable(const std::filesystem::path &path) {
                                ec);
 }
 
-static int bundleProject(const BundleOptions &opts, const char *argv0) {
+static std::string shellQuote(const std::filesystem::path &path) {
+  std::string s = path.string();
+  std::string out = "'";
+  for (char c : s) {
+    if (c == '\'') {
+      out += "'\\''";
+    } else {
+      out.push_back(c);
+    }
+  }
+  out.push_back('\'');
+  return out;
+}
+
+static bool writeSingleFileBundle(const std::filesystem::path &stage,
+                                  const std::filesystem::path &output,
+                                  std::string &error) {
+  namespace fs = std::filesystem;
+  std::error_code ec;
+  fs::create_directories(output.parent_path(), ec);
+  if (ec) {
+    error = ec.message();
+    return false;
+  }
+  if (fs::exists(output, ec) && fs::is_directory(output, ec)) {
+    error = "output path is a directory";
+    return false;
+  }
+
+  fs::path archive = output;
+  archive += ".payload.tar.gz";
+  fs::remove(archive, ec);
+  std::string command = "tar -czf " + shellQuote(archive) + " -C " + shellQuote(stage) + " .";
+  if (std::system(command.c_str()) != 0) {
+    error = "tar failed while creating payload";
+    fs::remove(archive, ec);
+    return false;
+  }
+
+  std::ofstream out(output, std::ios::binary);
+  if (!out.is_open()) {
+    error = "could not open output file";
+    fs::remove(archive, ec);
+    return false;
+  }
+  out << "#!/usr/bin/env sh\n"
+      << "set -eu\n"
+      << "tmp=${TMPDIR:-/tmp}\n"
+      << "dir=$(mktemp -d \"${tmp%/}/lcom-bundle.XXXXXX\")\n"
+      << "cleanup() { rm -rf \"$dir\"; }\n"
+      << "trap cleanup EXIT INT TERM\n"
+      << "line=$(awk '/^__LCOM_BUNDLE_PAYLOAD__$/ { print NR + 1; exit }' \"$0\")\n"
+      << "tail -n +\"$line\" \"$0\" | tar -xzf - -C \"$dir\"\n"
+      << "exec \"$dir/run.sh\" \"$@\"\n"
+      << "exit 0\n"
+      << "__LCOM_BUNDLE_PAYLOAD__\n";
+
+  std::ifstream in(archive, std::ios::binary);
+  if (!in.is_open()) {
+    error = "could not reopen payload archive";
+    fs::remove(archive, ec);
+    return false;
+  }
+  out << in.rdbuf();
+  out.close();
+  fs::remove(archive, ec);
+  makeExecutable(output);
+  return true;
+}
+
+static int createBundleDirectory(const BundleOptions &opts,
+                                 const char *argv0,
+                                 const std::filesystem::path &output) {
   namespace fs = std::filesystem;
   std::error_code ec;
 
   fs::path project = fs::absolute(opts.project_dir);
   fs::path program = fs::absolute(opts.program);
-  fs::path output = fs::absolute(opts.output_dir);
   if (!fs::exists(project, ec) || !fs::is_directory(project, ec)) {
     std::cerr << "lcom: project directory does not exist: " << project << "\n";
     return 1;
@@ -487,7 +587,42 @@ static int bundleProject(const BundleOptions &opts, const char *argv0) {
         << "The `sdk/` directory contains the public headers and `liblcom-ng.a` when the bundle command can find it.\n";
   }
 
-  std::cout << "Created lcom bundle at " << output << "\n";
+  return 0;
+}
+
+static int bundleProject(const BundleOptions &opts, const char *argv0) {
+  namespace fs = std::filesystem;
+  std::error_code ec;
+  fs::path output = fs::absolute(opts.output_path);
+
+  if (opts.format == "dir") {
+    int rc = createBundleDirectory(opts, argv0, output);
+    if (rc == 0) std::cout << "Created lcom bundle directory at " << output << "\n";
+    return rc;
+  }
+
+  fs::path stage = output.parent_path() / ("." + output.filename().string() + ".staging");
+  fs::remove_all(stage, ec);
+  fs::create_directories(stage, ec);
+  if (ec) {
+    std::cerr << "lcom: could not create staging directory: " << ec.message() << "\n";
+    return 1;
+  }
+
+  int rc = createBundleDirectory(opts, argv0, stage);
+  if (rc != 0) {
+    fs::remove_all(stage, ec);
+    return rc;
+  }
+
+  std::string error;
+  if (!writeSingleFileBundle(stage, output, error)) {
+    std::cerr << "lcom: could not create single-file bundle: " << error << "\n";
+    fs::remove_all(stage, ec);
+    return 1;
+  }
+  fs::remove_all(stage, ec);
+  std::cout << "Created lcom bundle executable at " << output << "\n";
   return 0;
 }
 
@@ -502,7 +637,8 @@ int main(int argc, char **argv) {
 
   if (cmd == "run") {
     if (!parseRun(argc, argv, 2, opts)) {
-      usage();
+      std::cerr << "lcom: run requires <program> [args...]\n";
+      subcommandUsage("run");
       return 1;
     }
     applyRunDefaults(opts);
@@ -513,24 +649,27 @@ int main(int argc, char **argv) {
     }
     opts.script_path = argv[2];
     if (!parseRun(argc, argv, 3, opts)) {
-      usage();
+      std::cerr << "lcom: replay requires <script> <program> [args...]\n";
+      subcommandUsage("replay");
       return 1;
     }
     applyRunDefaults(opts);
   } else if (cmd == "bundle") {
     BundleOptions bundle;
     if (!parseBundle(argc, argv, 2, bundle)) {
-      usage();
+      subcommandUsage("bundle");
       return 1;
     }
     return bundleProject(bundle, argv[0]);
   } else if (cmd == "docs") {
     if (argc >= 3 && std::string(argv[2]) == "cli") return cliDocs();
-    usage();
+    std::cerr << "lcom: docs requires a subcommand, e.g. 'cli'\n";
+    subcommandUsage("docs");
     return 1;
   } else if (cmd == "completion") {
     if (argc >= 3) return completionScript(argv[2]);
-    usage();
+    std::cerr << "lcom: completion requires <shell> (bash, zsh, or fish)\n";
+    subcommandUsage("completion");
     return 1;
   } else if (cmd == "help" || cmd == "--help" || cmd == "-h") {
     usage();
@@ -538,7 +677,8 @@ int main(int argc, char **argv) {
   } else if (cmd == "lab") {
     if (argc >= 3 && std::string(argv[2]) == "list") return labList();
     if (argc >= 4 && std::string(argv[2]) == "show") return labShow(argv[3]);
-    usage();
+    std::cerr << "lcom: lab requires 'list' or 'show <lab>'\n";
+    subcommandUsage("lab");
     return 1;
   } else {
     std::cerr << "lcom: unknown command " << cmd << "\n";

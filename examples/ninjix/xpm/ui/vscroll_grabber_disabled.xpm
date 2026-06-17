@@ -1,0 +1,15 @@
+/* XPM */
+static const char *const vscroll_grabber_disabled[] = {
+"5 6 5 1",
+"  c None",
+". c #1b1b1b",
+"+ c #5d2c28",
+"@ c #8a4836",
+"# c #bf6f4a",
+" ... ",
+".###.",
+".#@@.",
+".@@+.",
+".+++.",
+" ... "
+};

@@ -1,0 +1,12 @@
+/* XPM */
+static const char *const blowdart[] = {
+"5 3 5 1",
+"  c None",
+". c #99e65f",
+"+ c #c42430",
+"@ c #d3fc7e",
+"# c #ea323c",
+"...+ ",
+".@@#+",
+"...+ "
+};

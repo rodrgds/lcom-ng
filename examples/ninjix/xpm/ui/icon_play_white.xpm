@@ -1,0 +1,13 @@
+/* XPM */
+static const char *const icon_play_white[] = {
+"5 6 3 1",
+"  c None",
+". c #e69c69",
+"+ c #ffffff",
+" ++  ",
+".+++ ",
+".++++",
+".+++ ",
+".++  ",
+"..   "
+};

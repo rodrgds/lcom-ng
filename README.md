@@ -15,16 +15,17 @@ The current implementation includes:
   optional SDL backend selection.
 - `lcom replay`: deterministic script replay with optional frame-sequence and
   MP4 rendering through ffmpeg.
-- `lcom bundle`: create a runnable app directory containing the runtime,
-  student binary, optional replay script, SDK headers, static lib, manifest, and
-  launcher scripts.
+- `lcom bundle`: create a single-file runnable bundle by default, or an
+  exploded app directory with the runtime, student binary, optional replay
+  script, SDK headers, static lib, manifest, and launcher scripts.
 - CLI11-backed command registry for help/docs plus `lcom completion` scripts for
   bash, zsh, and fish.
 - Virtual devices: i8254 PIT, i8042 keyboard/mouse path, RTC/CMOS, VBE
   framebuffer, AC97-lite audio, and paired 16550-style COM1/COM2 UARTs with
   explicit local loopback.
 - Examples for console, timer interrupts, keyboard scancode scanning, RTC, VBE
-  rectangles, mouse packets, audio, UART, SDL, and Flappy Bird.
+  rectangles, mouse packets, audio, UART, SDL, Flappy Bird, Ninjix, and Plants
+  vs Zombies.
 - Unit, lab solution, and integration tests.
 
 ## Build And Test
@@ -61,12 +62,27 @@ build/lcom run --headless --script scripts/mouse_move.lcomscript -- build/exampl
 build/lcom run --headless --dump-frame build/rectangle.ppm -- build/examples/vbe_rectangle
 build/lcom run --headless --audio-wav build/tone.wav -- build/examples/audio_tone
 build/lcom run --headless -- build/examples/uart_pair
+build/lcom run --headless --script scripts/ninjix_menu_exit.lcomscript --dump-frame build/ninjix.ppm -- build/examples/ninjix
 build/lcom replay scripts/flappy_mouse_demo.lcomscript --headless --video build/flappy.mp4 -- build/examples/flappy_bird
 build/lcom bundle . --program build/examples/flappy_bird --name flappy-bird
 build/lcom completion zsh > _lcom
 build/lcom run --display sdl -- build/examples/sdl_demo
 build/lcom run --display sdl build/examples/flappy_bird
+build/lcom run --display sdl build/examples/ninjix
+build/lcom run --display sdl build/examples/pvz
 ```
+
+Bundle an example as one executable file for the current platform:
+
+```sh
+build/lcom bundle . --program build/examples/flappy_bird --name flappy-bird
+./dist/flappy-bird.lcom
+```
+
+Pass `--format dir` when you want the exploded bundle layout with the SDK,
+manifest, and launcher scripts. Cross-building a Windows `.exe` or Linux binary
+from macOS is not built in yet; `lcom bundle` packages an already-built program,
+so cross-platform bundles need a matching cross-compiled program/runtime first.
 
 ## Script Format
 
@@ -140,3 +156,21 @@ lcom-run-sdl
 
 SDL remains a runtime host backend. Student code still talks to virtual PS/2,
 VBE, PIT, RTC, and UART devices through the `lcom-ng` C API.
+
+## Ninjix Multiplayer
+
+The Ninjix port uses the native `lcom_event_wait()` IRQ loop and the lcom-ng
+UART API path instead of Minix `driver_receive()`. You can smoke-test the menu
+and serial initialization with:
+
+```sh
+build/lcom run --headless --script scripts/ninjix_menu_exit.lcomscript --dump-frame build/ninjix.ppm -- build/examples/ninjix
+build/lcom run --display sdl build/examples/ninjix
+```
+
+The runtime currently exposes the virtual COM1/COM2 pair inside one hosted
+program. That is enough for UART labs and protocol testing, but a true
+two-process Ninjix multiplayer run still needs a paired-runtime serial bridge or
+a dedicated `lcom run-pair` command. Until that exists, multiplayer code can be
+built and initialized, but not played as two connected Ninjix clients from one
+CLI command.

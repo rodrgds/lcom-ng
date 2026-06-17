@@ -1,0 +1,13 @@
+/* XPM */
+static const char *const progressbar_fill[] = {
+"7 5 4 1",
+"  c None",
+". c #1b1b1b",
+"+ c #33984b",
+"@ c #5ac54f",
+"       ",
+" @@.@@ ",
+" ++.++ ",
+"       ",
+"       "
+};

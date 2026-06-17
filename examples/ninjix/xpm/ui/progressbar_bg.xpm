@@ -1,0 +1,12 @@
+/* XPM */
+static const char *const progressbar_bg[] = {
+"7 5 3 1",
+"  c None",
+". c #1b1b1b",
+"+ c #e69c69",
+" ..... ",
+".  .  .",
+".  .  .",
+"+.....+",
+" +++++ "
+};
