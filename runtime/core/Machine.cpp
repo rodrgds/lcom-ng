@@ -49,6 +49,8 @@ uint32_t Machine::pendingIrqs() const {
 
 void Machine::refreshDeviceIrqs() {
   i8042_.refreshIrq();
+  com1_.refreshIrq();
+  com2_.refreshIrq();
 }
 
 void Machine::advanceTick() {
@@ -84,6 +86,16 @@ void Machine::injectMouse(int dx, int dy, uint8_t buttons) {
   if (trace_ != nullptr && pendingIrqs() != 0) {
     trace_->log("input", "mouse");
   }
+}
+
+void Machine::connectSerialPeer(Machine *peer) {
+  if (peer == nullptr) {
+    com1_.connectPeer(&com2_);
+    com2_.connectPeer(&com1_);
+    return;
+  }
+  com1_.connectPeer(&peer->com1_);
+  com2_.connectPeer(&peer->com2_);
 }
 
 } // namespace lcom

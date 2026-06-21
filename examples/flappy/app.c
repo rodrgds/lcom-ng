@@ -112,22 +112,6 @@ app_input_result_t app_key(app_t *app, uint8_t scancode) {
   return APP_INPUT_NONE;
 }
 
-app_input_result_t app_mouse(app_t *app, int x, int y, int left_down) {
-  if (app->state == STATE_MENU || app->state == STATE_GAME_OVER) {
-    return handle_menu_action(app, menu_mouse(&app->menu, x, y, left_down));
-  }
-
-  app->menu.pointer_x = x;
-  app->menu.pointer_y = y;
-  int pressed = left_down && !app->menu.pointer_down;
-  app->menu.pointer_down = left_down;
-  if (pressed) {
-    app->bird_vy_fp = FLAP_VELOCITY_FP;
-    return APP_INPUT_FLAP;
-  }
-  return APP_INPUT_NONE;
-}
-
 void app_update(app_t *app) {
   app->frame++;
   app->ground_scroll = (app->ground_scroll + 3) % 48;

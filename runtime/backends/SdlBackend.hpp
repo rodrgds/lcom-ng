@@ -11,6 +11,7 @@ namespace lcom {
 struct SdlBackendOptions {
   bool fullscreen = false;
   bool integer_scale = false;
+  bool guest_input = true;
   int scale = 1;
   std::string title = "LCOM Display";
 };

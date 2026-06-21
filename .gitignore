@@ -1,6 +1,7 @@
 .devenv/
 build/
 dist/
+/student/
 CMakeFiles/
 CMakeCache.txt
 cmake_install.cmake

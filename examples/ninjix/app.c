@@ -22,6 +22,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 #include "utils.h"
@@ -67,6 +68,8 @@ typedef struct {
   bool mouse_reporting;
   multiplayer_t multiplayer;
   uint16_t multiplayer_level_id;
+  multiplayer_role_t pair_auto_role;
+  uint32_t pair_auto_exit_tick;
   uint32_t physics_ticks;
   uint32_t render_ticks;
   uint32_t last_physics_tick;
@@ -251,11 +254,15 @@ static int app_switch_to_multiplayer_game(app_t *app, uint32_t current_tick, uin
   scene_set_multiplayer_role(app_scene(app), role);
   multiplayer_mark_game_started(&app->multiplayer);
   app->multiplayer_level_id = level_id;
+  if (app->pair_auto_role != MULTIPLAYER_ROLE_NONE)
+    printf("ninjix pair started as %s\n", multiplayer_role_name(role));
   app_set_screen(app, APP_SCREEN_PLAYING);
   app->last_physics_tick     = current_tick;
   app->last_render_tick      = current_tick;
   app->fps_window_start_tick = current_tick;
   app->frames_in_window      = 0;
+  if (app->pair_auto_role != MULTIPLAYER_ROLE_NONE)
+    app->pair_auto_exit_tick = current_tick + APP_TIMER_HZ * 2U;
   return 0;
 }
 
@@ -802,6 +809,11 @@ static int app_handle_timer_event(app_t *app, uint32_t current_tick)
     if (app->tag == APP_SCREEN_MULTIPLAYER_WAIT && app->multiplayer.peer_connected)
       app_switch_to_multiplayer_role(app, current_tick);
 
+    if (app->tag == APP_SCREEN_MULTIPLAYER_ROLE &&
+        app->pair_auto_role != MULTIPLAYER_ROLE_NONE &&
+        app->multiplayer.local_role == MULTIPLAYER_ROLE_NONE)
+      multiplayer_select_role(&app->multiplayer, app->pair_auto_role);
+
     if (app->tag == APP_SCREEN_MULTIPLAYER_ROLE && multiplayer_roles_ready(&app->multiplayer))
     {
       if (app_switch_to_multiplayer_game(app, current_tick, app->multiplayer_level_id) != 0)
@@ -949,6 +961,12 @@ static int app_handle_timer_event(app_t *app, uint32_t current_tick)
 
   app->frames_in_window++;
   app_advance_render_ticks(app, current_tick);
+
+  if (app->pair_auto_exit_tick != 0 && current_tick >= app->pair_auto_exit_tick)
+  {
+    printf("ninjix pair smoke complete\n");
+    app_switch_to_exit(app);
+  }
 
   return 0;
 }
@@ -1365,6 +1383,15 @@ static int app_init(app_t *app)
   app->tag = APP_SCREEN_EXIT;
   multiplayer_init(&app->multiplayer);
   app->multiplayer_level_id = LEVEL_FIRST_ID;
+  const char *pair_auto = getenv("LCOM_PAIR_AUTO");
+  const char *pair_side = getenv("LCOM_PAIR_SIDE");
+  if (pair_auto != NULL && pair_auto[0] != '\0' && strcmp(pair_auto, "0") != 0)
+  {
+    if (pair_side != NULL && strcmp(pair_side, "left") == 0)
+      app->pair_auto_role = MULTIPLAYER_ROLE_ATTACKER;
+    else if (pair_side != NULL && strcmp(pair_side, "right") == 0)
+      app->pair_auto_role = MULTIPLAYER_ROLE_DEFENDER;
+  }
 
   if (vg_init(APP_VIDEO_MODE) == NULL)
   {
@@ -1459,7 +1486,23 @@ static int app_init(app_t *app)
   app->fps_window_start_tick = app->last_physics_tick;
   app->frames_in_window      = 0;
 
-  if (menu_render(app_menu(app)) != 0)
+  if (app->pair_auto_role != MULTIPLAYER_ROLE_NONE)
+  {
+    if (app_switch_to_multiplayer_wait(app, app->last_physics_tick) != 0)
+    {
+      app_cleanup(app);
+      return 1;
+    }
+  }
+
+  int initial_render_result = 0;
+  if (app->tag == APP_SCREEN_MULTIPLAYER_WAIT)
+    initial_render_result = menu_render_multiplayer_wait(app_multiplayer_menu(app),
+                                                         "WAITING FOR CONNECTION...");
+  else
+    initial_render_result = menu_render(app_menu(app));
+
+  if (initial_render_result != 0)
   {
     printf("app_init(): initial menu render failed\n");
     app_cleanup(app);

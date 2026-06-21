@@ -33,7 +33,8 @@ public:
   std::vector<uint8_t> &framebuffer() { return framebuffer_; }
   const std::vector<uint8_t> &framebuffer() const { return framebuffer_; }
   bool ownsRange(uint64_t phys, uint64_t length) const;
-  bool dumpPpm(const std::string &path) const;
+  bool dumpPpm(const std::string &path, const std::string &caption = "",
+               const std::string &caption_position = "bottom") const;
 
 private:
   uint64_t framebuffer_phys_ = 0xE0000000ull;

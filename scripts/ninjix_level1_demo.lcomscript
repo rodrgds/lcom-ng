@@ -1,0 +1,53 @@
+# Ninjix authored demo timeline.
+# Times can be written as seconds; the runtime converts them to 60 Hz ticks.
+# `move dx dy during t` emits smooth relative PS/2 mouse packets.
+
+at 0.2s caption top 3s NINJIX LEVEL 1
+at 0.8s key ENTER down
+at 0.9s key ENTER up
+
+at 1.5s caption 3s PLACE A BASIC TOWER NEAR THE FIRST TURN
+at 1.8s key 1 down
+at 1.9s key 1 up
+at 2.0s move -192 220 during 1.2s
+at 3.4s mouse 0 0 1
+at 3.5s mouse 0 0 0
+
+at 4.5s caption 3s ADD SLOWING SUPPORT FOR THE LONG LANE
+at 4.8s key 3 down
+at 4.9s key 3 up
+at 5.0s move 128 -96 during 1.1s
+at 6.3s mouse 0 0 1
+at 6.4s mouse 0 0 0
+
+at 7.4s caption 3s START THE FIRST WAVE
+at 7.6s move 314 -390 during 1.8s
+at 9.6s mouse 0 0 1
+at 9.7s mouse 0 0 0
+
+at 12s caption 4s LET THE TOWERS WORK
+at 18s mouse 0 0 1
+at 18.1s mouse 0 0 0
+
+at 24s caption 2s CUTTING A QUIET WAIT
+at 26s capture out
+at 26.2s key N down
+at 26.3s key N up
+at 30s capture in
+at 30.2s caption bottom 4s LEVEL 2 STARTS AFTER THE CAPTURE CUT
+
+at 35s key 1 down
+at 35.1s key 1 up
+at 35.2s move -250 170 during 1.8s
+at 37.2s mouse 0 0 1
+at 37.3s mouse 0 0 0
+
+at 45s caption 5s RECORDED SCRIPTS CAN BECOME BUG REPORTS
+at 58s key ESC down
+at 58.1s key ESC up
+at 58.3s key DOWN down
+at 58.4s key DOWN up
+at 58.6s key ENTER down
+at 58.7s key ENTER up
+at 59s key ESC down
+at 59.1s key ESC up

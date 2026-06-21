@@ -44,6 +44,7 @@ target_compile_options(lcom-ng PRIVATE -Wall -Wextra -Wpedantic)
 set(LCOM_RUNTIME_SOURCES
   runtime/main.cpp
   runtime/core/RuntimeServer.cpp
+  runtime/core/PairRuntimeServer.cpp
 )
 
 if(LCOM_WITH_SDL)
@@ -86,6 +87,8 @@ set(LCOM_EXAMPLES
   sdl_demo
   uart_loopback
   uart_pair
+  uart_peer_sender
+  uart_peer_receiver
   vbe_rectangle
 )
 

@@ -4,6 +4,10 @@
 
 namespace lcom {
 
+namespace {
+static constexpr size_t kVirtualWireCapacity = 4096;
+}
+
 Uart16550::Uart16550(uint16_t base, uint8_t irq, IrqController &irqs)
     : base_(base), irq_(irq), irqs_(irqs) {}
 
@@ -34,9 +38,11 @@ uint8_t Uart16550::readReg(uint8_t reg) {
 
   switch (reg) {
   case SER_RBR: {
+    pumpRx();
     if (rx_.empty()) return 0;
     uint8_t value = rx_.front();
     rx_.pop_front();
+    pumpRx();
     updateIrq();
     return value;
   }
@@ -55,6 +61,7 @@ uint8_t Uart16550::readReg(uint8_t reg) {
   case SER_MCR:
     return mcr_;
   case SER_LSR: {
+    pumpRx();
     uint8_t value = static_cast<uint8_t>(LSR_THRE | LSR_TEMT |
                                          (rx_.empty() ? 0 : LSR_RX_RDY) |
                                          lsr_errors_);
@@ -100,8 +107,12 @@ void Uart16550::writeReg(uint8_t reg, uint8_t value) {
     break;
   case SER_FCR:
     fifo_enabled_ = (value & FCR_ENABLE_FIFO) != 0;
-    if (value & BIT(1)) rx_.clear();
+    if (value & BIT(1)) {
+      rx_.clear();
+      wire_rx_.clear();
+    }
     if (value & BIT(2)) tx_.clear();
+    pumpRx();
     updateIrq();
     break;
   case SER_LCR:
@@ -119,13 +130,13 @@ void Uart16550::writeReg(uint8_t reg, uint8_t value) {
 }
 
 void Uart16550::injectRx(uint8_t value) {
-  size_t capacity = fifo_enabled_ ? 16u : 1u;
-  if (rx_.size() >= capacity) {
+  if (wire_rx_.size() >= kVirtualWireCapacity) {
     lsr_errors_ |= LSR_OE;
     updateIrq();
     return;
   }
-  rx_.push_back(value);
+  wire_rx_.push_back(value);
+  pumpRx();
   updateIrq();
 }
 
@@ -137,6 +148,7 @@ bool Uart16550::popTx(uint8_t &value) {
 }
 
 void Uart16550::updateIrq() {
+  pumpRx();
   if (lsr_errors_ != 0 && (ier_ & IER_RLS)) {
     iir_ = 0x06u;
     irqs_.raise(irq_);
@@ -149,6 +161,18 @@ void Uart16550::updateIrq() {
   } else {
     iir_ = IIR_NO_INT;
   }
+}
+
+void Uart16550::pumpRx() {
+  size_t capacity = fifo_enabled_ ? 16u : 1u;
+  while (rx_.size() < capacity && !wire_rx_.empty()) {
+    rx_.push_back(wire_rx_.front());
+    wire_rx_.pop_front();
+  }
+}
+
+void Uart16550::refreshIrq() {
+  updateIrq();
 }
 
 } // namespace lcom

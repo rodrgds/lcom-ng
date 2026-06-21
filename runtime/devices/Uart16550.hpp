@@ -21,10 +21,12 @@ public:
   void injectRx(uint8_t value);
   bool popTx(uint8_t &value);
   uint16_t divisor() const { return divisor_; }
+  void refreshIrq();
 
 private:
   uint8_t readReg(uint8_t reg);
   void writeReg(uint8_t reg, uint8_t value);
+  void pumpRx();
   void updateIrq();
 
   uint16_t base_;
@@ -43,6 +45,7 @@ private:
   bool thre_interrupt_pending_ = false;
   Uart16550 *peer_ = nullptr;
   std::deque<uint8_t> rx_;
+  std::deque<uint8_t> wire_rx_;
   std::deque<uint8_t> tx_;
 };
 

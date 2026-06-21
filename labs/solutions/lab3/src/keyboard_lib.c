@@ -19,16 +19,17 @@ int kbc_write_command(uint8_t command) {
 
 int kbd_process_byte(uint8_t byte) {
   g_ready = 0;
-  if (g_size == 0 && byte == KBD_TWO_BYTE_PFX) {
+  if (byte == KBD_TWO_BYTE_PFX) {
     g_bytes[0] = byte;
     g_size = 1;
     return 0;
   }
-  if (g_size == 1) {
+  if (g_size == 1 && g_bytes[0] == KBD_TWO_BYTE_PFX) {
     g_bytes[1] = byte;
     g_size = 2;
   } else {
     g_bytes[0] = byte;
+    g_bytes[1] = 0;
     g_size = 1;
   }
   g_make = (byte & KBD_BREAK_BIT) == 0;

@@ -12,6 +12,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <filesystem>
 #include <fstream>
 #include <sstream>
 #include <string>
@@ -55,13 +56,10 @@ constexpr uint64_t kMouseSampleIntervalNs = 1000000000ull / 60ull;
 constexpr int kMaxSdlEventsPerPump = 256;
 constexpr uint64_t kStartupHintNs = 5000000000ull;
 
-} // namespace
+int g_sdl_backend_users = 0;
 
-class SdlBackend final : public DisplayBackend, public InputObserver {
-public:
-  explicit SdlBackend(SdlBackendOptions options) : options_(std::move(options)) {}
-
-  bool start(Machine &machine) override {
+bool acquireSdl() {
+  if (g_sdl_backend_users == 0) {
     SDL_SetHint(SDL_HINT_MOUSE_EMULATE_WARP_WITH_RELATIVE, "0");
     if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_EVENTS | SDL_INIT_AUDIO)) {
       std::fprintf(stderr, "SDL_Init failed: %s\n", SDL_GetError());
@@ -69,8 +67,34 @@ public:
     }
     if (!TTF_Init()) {
       std::fprintf(stderr, "TTF_Init failed: %s\n", SDL_GetError());
+      SDL_Quit();
       return false;
     }
+    SDL_SetEventEnabled(SDL_EVENT_MOUSE_MOTION, false);
+  }
+  g_sdl_backend_users++;
+  return true;
+}
+
+void releaseSdl() {
+  if (g_sdl_backend_users <= 0) return;
+  g_sdl_backend_users--;
+  if (g_sdl_backend_users == 0) {
+    SDL_SetEventEnabled(SDL_EVENT_MOUSE_MOTION, true);
+    TTF_Quit();
+    SDL_Quit();
+  }
+}
+
+} // namespace
+
+class SdlBackend final : public DisplayBackend, public InputObserver {
+public:
+  explicit SdlBackend(SdlBackendOptions options) : options_(std::move(options)) {}
+
+  bool start(Machine &machine) override {
+    if (!acquireSdl()) return false;
+    sdl_acquired_ = true;
 
     const VbeModeInfo &mode = machine.vbe().currentMode();
     logical_width_ = mode.width;
@@ -87,6 +111,7 @@ public:
       std::fprintf(stderr, "SDL_CreateWindow failed: %s\n", SDL_GetError());
       return false;
     }
+    window_id_ = SDL_GetWindowID(window_);
 
     renderer_ = SDL_CreateRenderer(window_, nullptr);
     if (renderer_ == nullptr) {
@@ -116,7 +141,6 @@ public:
     observed_machine_ = &machine;
     machine.setInputObserver(this);
     startup_hint_until_ns_ = SDL_GetTicksNS() + kStartupHintNs;
-    SDL_FlushEvent(SDL_EVENT_MOUSE_MOTION);
     return ensureTexture(machine);
   }
 
@@ -149,23 +173,32 @@ public:
 
   void pump(Machine &machine) override {
     SDL_Event ev;
+    std::vector<SDL_Event> foreign_events;
 
+    if (isHostMouseReleaseHeld()) {
+      mouse_capture_suppressed_ = true;
+      setMouseCaptured(false, true);
+    }
     updateMouseCapture(machine);
-    sampleRelativeMouse(machine, false);
-    SDL_FlushEvent(SDL_EVENT_MOUSE_MOTION);
-    int processed = 0;
-    while (processed < kMaxSdlEventsPerPump && SDL_PollEvent(&ev)) {
-      processed++;
+    if (options_.guest_input) sampleRelativeMouse(machine, false);
+    int polled = 0;
+    while (polled < kMaxSdlEventsPerPump && SDL_PollEvent(&ev)) {
+      polled++;
+      if (!eventBelongsToThisWindow(ev)) {
+        foreign_events.push_back(ev);
+        continue;
+      }
       switch (ev.type) {
       case SDL_EVENT_QUIT:
+      case SDL_EVENT_WINDOW_CLOSE_REQUESTED:
         should_quit_ = true;
         machine.injectKey("ESC", true);
         machine.injectKey("ESC", false);
         break;
       case SDL_EVENT_WINDOW_FOCUS_LOST:
       case SDL_EVENT_WINDOW_MOUSE_LEAVE:
-        mouse_capture_suppressed_ = false;
-        setMouseCaptured(false);
+        mouse_capture_suppressed_ = true;
+        setMouseCaptured(false, true);
         break;
       case SDL_EVENT_WINDOW_FOCUS_GAINED:
       case SDL_EVENT_WINDOW_MOUSE_ENTER:
@@ -173,7 +206,7 @@ public:
         break;
       case SDL_EVENT_KEY_DOWN:
       case SDL_EVENT_KEY_UP:
-        flushMousePacket(machine, true);
+        if (options_.guest_input) flushMousePacket(machine, true);
         handleKey(machine, ev.key);
         break;
       case SDL_EVENT_MOUSE_MOTION:
@@ -183,6 +216,10 @@ public:
         int lx = 0;
         int ly = 0;
         logicalPoint(ev.button.x, ev.button.y, lx, ly);
+        if (debug_visible_ && ev.button.down && handleDebugClick(machine, lx, ly)) {
+          break;
+        }
+        if (!options_.guest_input) break;
         if (mouse_capture_suppressed_ && ev.button.down && machine.i8042().mouseReporting() &&
             !debug_visible_ && !isChromePoint(lx, ly)) {
           mouse_capture_suppressed_ = false;
@@ -202,10 +239,16 @@ public:
         break;
       }
     }
+    for (SDL_Event &foreign : foreign_events) {
+      SDL_PushEvent(&foreign);
+    }
+    if (isHostMouseReleaseHeld()) {
+      mouse_capture_suppressed_ = true;
+      setMouseCaptured(false, true);
+    }
     updateMouseCapture(machine);
-    sampleRelativeMouse(machine, false);
-    SDL_FlushEvent(SDL_EVENT_MOUSE_MOTION);
-    flushMousePacket(machine, false);
+    if (options_.guest_input) sampleRelativeMouse(machine, false);
+    if (options_.guest_input) flushMousePacket(machine, false);
   }
 
   void consoleWrite(const char *data, size_t size) override {
@@ -242,8 +285,7 @@ public:
     if (title_font_ != nullptr) TTF_CloseFont(title_font_);
     if (renderer_ != nullptr) SDL_DestroyRenderer(renderer_);
     if (window_ != nullptr) SDL_DestroyWindow(window_);
-    TTF_Quit();
-    SDL_Quit();
+    if (sdl_acquired_) releaseSdl();
   }
 
 private:
@@ -279,9 +321,25 @@ private:
 
   void handleKey(Machine &machine, const SDL_KeyboardEvent &key) {
     bool down = key.down;
-    if (down && isHostMouseReleaseKey(key.scancode)) {
+    if (save_modal_visible_) {
+      if (down && !key.repeat) handleSaveModalKey(key);
+      return;
+    }
+    if (isHostMouseReleaseKey(key.scancode)) {
       mouse_capture_suppressed_ = true;
-      setMouseCaptured(false);
+      setMouseCaptured(false, true);
+      return;
+    }
+    if (down && key.scancode == SDL_SCANCODE_F9) {
+      beginRecording(machine);
+      return;
+    }
+    if (down && key.scancode == SDL_SCANCODE_F8) {
+      toggleRecordingPause(machine);
+      return;
+    }
+    if (down && key.scancode == SDL_SCANCODE_F10) {
+      finishRecording(machine);
       return;
     }
     if (down && key.scancode == SDL_SCANCODE_F3) {
@@ -294,39 +352,13 @@ private:
       SDL_SetWindowFullscreen(window_, fullscreen_);
       return;
     }
+    if (!options_.guest_input) return;
     if (key.repeat) return;
 
-    switch (key.scancode) {
-    case SDL_SCANCODE_ESCAPE:
-      machine.injectKey("ESC", down);
-      break;
-    case SDL_SCANCODE_SPACE:
-      machine.injectKey("SPACE", down);
-      break;
-    case SDL_SCANCODE_RETURN:
-      machine.injectKey("ENTER", down);
-      break;
-    case SDL_SCANCODE_UP:
-      machine.injectKey("UP", down);
-      break;
-    case SDL_SCANCODE_DOWN:
-      machine.injectKey("DOWN", down);
-      break;
-    case SDL_SCANCODE_LEFT:
-      machine.injectKey("LEFT", down);
-      break;
-    case SDL_SCANCODE_RIGHT:
-      machine.injectKey("RIGHT", down);
-      break;
-    default:
-      if (key.key >= SDLK_A && key.key <= SDLK_Z) {
-        char name[2] = {static_cast<char>('A' + (key.key - SDLK_A)), 0};
-        machine.injectKey(name, down);
-      } else if (key.key >= SDLK_0 && key.key <= SDLK_9) {
-        char name[2] = {static_cast<char>('0' + (key.key - SDLK_0)), 0};
-        machine.injectKey(name, down);
-      }
-      break;
+    std::string guest_key = guestKeyName(key);
+    if (!guest_key.empty()) {
+      recordKey(machine, guest_key, down);
+      machine.injectKey(guest_key, down);
     }
   }
 
@@ -394,6 +426,8 @@ private:
     } else {
       renderStartupHint();
     }
+    renderRecordingStatus();
+    if (save_modal_visible_) renderSaveModal();
   }
 
   void renderStartupHint() {
@@ -521,8 +555,83 @@ private:
     drawFrameChart(x, y, w - 28, 124);
     y += 136;
 
-    y += 4;
-    line("Keys: F3 debug, F11 fullscreen", rgba(172, 184, 196));
+    y += 8;
+    line("Record", rgba(153, 221, 255));
+    int button_y = y;
+    int button_w = recording_active_ ? 118 : 144;
+    drawDebugButton(record_button_, x, button_y, button_w,
+                    recording_active_ ? "Recording" : "F9 Record",
+                    recording_active_ ? rgba(252, 211, 77) : rgba(228, 233, 239));
+    if (recording_active_) {
+      drawDebugButton(pause_button_, x + 126, button_y, 118,
+                      recording_paused_ ? "F8 In" : "F8 Out",
+                      recording_paused_ ? rgba(113, 221, 237) : rgba(228, 233, 239));
+      drawDebugButton(stop_button_, x + 252, button_y, 118, "F10 Save",
+                      rgba(228, 233, 239));
+    } else {
+      pause_button_ = SDL_FRect{0.0f, 0.0f, 0.0f, 0.0f};
+      stop_button_ = SDL_FRect{0.0f, 0.0f, 0.0f, 0.0f};
+    }
+
+    y += 40;
+    line("Keys: F3 debug, F8 out/in, F9 record, F10 save, F11 fullscreen", rgba(172, 184, 196));
+  }
+
+  void drawDebugButton(SDL_FRect &rect, int x, int y, int w, const char *label, SDL_Color color) {
+    int h = 28;
+    rect = SDL_FRect{static_cast<float>(x), static_cast<float>(y),
+                     static_cast<float>(w), static_cast<float>(h)};
+    SDL_SetRenderDrawColor(renderer_, 35, 44, 55, 245);
+    SDL_RenderFillRect(renderer_, &rect);
+    SDL_SetRenderDrawColor(renderer_, 92, 108, 123, 255);
+    SDL_RenderRect(renderer_, &rect);
+    drawText(static_cast<int>(rect.x) + 10, static_cast<int>(rect.y) + 6, label, color, font_);
+  }
+
+  void renderRecordingStatus() {
+    if (!recording_active_ && !recording_paused_ && record_status_until_ns_ <= SDL_GetTicksNS()) return;
+    const char *label = recording_paused_ ? "Paused" : (recording_active_ ? "Recording" : record_status_.c_str());
+    if (label == nullptr || label[0] == '\0') return;
+    int w = recording_paused_ ? 96 : 150;
+    int h = 30;
+    int x = logical_width_ - w - 14;
+    int y = logical_height_ - h - 14;
+    SDL_FRect box{static_cast<float>(x), static_cast<float>(y),
+                  static_cast<float>(w), static_cast<float>(h)};
+    SDL_SetRenderDrawColor(renderer_, recording_paused_ ? 92 : 80,
+                           recording_paused_ ? 55 : 24,
+                           recording_paused_ ? 20 : 34, 220);
+    SDL_RenderFillRect(renderer_, &box);
+    SDL_SetRenderDrawColor(renderer_, recording_paused_ ? 252 : 248,
+                           recording_paused_ ? 211 : 113,
+                           recording_paused_ ? 77 : 113, 255);
+    SDL_RenderRect(renderer_, &box);
+    drawText(x + 12, y + 7, label, rgba(248, 250, 252), title_font_);
+  }
+
+  void renderSaveModal() {
+    int w = std::min(560, logical_width_ - 64);
+    int h = 148;
+    int x = (logical_width_ - w) / 2;
+    int y = (logical_height_ - h) / 2;
+    SDL_FRect shade{0.0f, 0.0f, static_cast<float>(logical_width_), static_cast<float>(logical_height_)};
+    SDL_SetRenderDrawColor(renderer_, 0, 0, 0, 145);
+    SDL_RenderFillRect(renderer_, &shade);
+    SDL_FRect box{static_cast<float>(x), static_cast<float>(y),
+                  static_cast<float>(w), static_cast<float>(h)};
+    SDL_SetRenderDrawColor(renderer_, 20, 26, 34, 250);
+    SDL_RenderFillRect(renderer_, &box);
+    SDL_SetRenderDrawColor(renderer_, 113, 221, 237, 255);
+    SDL_RenderRect(renderer_, &box);
+    drawText(x + 18, y + 18, "Save recording script", rgba(228, 233, 239), title_font_);
+    SDL_FRect input{static_cast<float>(x + 18), static_cast<float>(y + 58),
+                    static_cast<float>(w - 36), 34.0f};
+    SDL_SetRenderDrawColor(renderer_, 9, 14, 21, 255);
+    SDL_RenderFillRect(renderer_, &input);
+    SDL_SetRenderDrawColor(renderer_, 92, 108, 123, 255);
+    SDL_RenderRect(renderer_, &input);
+    drawText(x + 28, y + 66, save_path_input_ + "_", rgba(246, 248, 250), font_);
+    drawText(x + 18, y + 108, "Enter saves, Esc cancels", rgba(172, 184, 196), font_);
   }
 
   void recordFrameTiming() {
@@ -622,6 +731,44 @@ private:
            scancode == SDL_SCANCODE_RCTRL;
   }
 
+  static bool isHostMouseReleaseHeld() {
+    if ((SDL_GetModState() & SDL_KMOD_GUI) != 0) return true;
+    int key_count = 0;
+    const bool *keys = SDL_GetKeyboardState(&key_count);
+    return keys != nullptr && SDL_SCANCODE_RCTRL < key_count && keys[SDL_SCANCODE_RCTRL];
+  }
+
+  bool eventBelongsToThisWindow(const SDL_Event &ev) const {
+    if (window_id_ == 0) return true;
+    uint32_t event_window = 0;
+    switch (ev.type) {
+    case SDL_EVENT_WINDOW_CLOSE_REQUESTED:
+    case SDL_EVENT_WINDOW_FOCUS_LOST:
+    case SDL_EVENT_WINDOW_FOCUS_GAINED:
+    case SDL_EVENT_WINDOW_MOUSE_LEAVE:
+    case SDL_EVENT_WINDOW_MOUSE_ENTER:
+      event_window = ev.window.windowID;
+      break;
+    case SDL_EVENT_KEY_DOWN:
+    case SDL_EVENT_KEY_UP:
+      event_window = ev.key.windowID;
+      break;
+    case SDL_EVENT_MOUSE_MOTION:
+      event_window = ev.motion.windowID;
+      break;
+    case SDL_EVENT_MOUSE_BUTTON_DOWN:
+    case SDL_EVENT_MOUSE_BUTTON_UP:
+      event_window = ev.button.windowID;
+      break;
+    case SDL_EVENT_MOUSE_WHEEL:
+      event_window = ev.wheel.windowID;
+      break;
+    default:
+      return true;
+    }
+    return event_window == 0 || event_window == window_id_;
+  }
+
   void logicalPoint(float window_x, float window_y, int &x, int &y) const {
     float rx = window_x;
     float ry = window_y;
@@ -652,7 +799,7 @@ private:
   }
 
   bool canInjectGuestMouse(Machine &machine) const {
-    return mouse_captured_ && machine.i8042().mouseReporting() && !debug_visible_;
+    return options_.guest_input && mouse_captured_ && machine.i8042().mouseReporting() && !debug_visible_;
   }
 
   void queueMouseMotion(int dx, int screen_dy) {
@@ -664,6 +811,11 @@ private:
     float rel_x = 0.0f;
     float rel_y = 0.0f;
     SDL_MouseButtonFlags state = SDL_GetRelativeMouseState(&rel_x, &rel_y);
+    if (drop_next_relative_sample_) {
+      drop_next_relative_sample_ = false;
+      rel_x = 0.0f;
+      rel_y = 0.0f;
+    }
     uint8_t buttons = buttonsFromState(state);
     if (buttons != host_mouse_buttons_) {
       host_mouse_buttons_ = buttons;
@@ -686,6 +838,7 @@ private:
     auto packet = mouse_scheduler_.nextPacket(force);
     if (!packet) return;
     machine.injectMouse(packet->dx, packet->dy, packet->buttons);
+    recordMouse(machine, packet->dx, packet->dy, packet->buttons);
     last_mouse_sample_ns_ = now;
   }
 
@@ -693,27 +846,252 @@ private:
     if (window_ == nullptr) return;
     SDL_WindowFlags flags = SDL_GetWindowFlags(window_);
     bool focused = (flags & SDL_WINDOW_INPUT_FOCUS) != 0;
-    bool should_capture = focused && machine.i8042().mouseReporting() && !debug_visible_ &&
+    bool should_capture = options_.guest_input && focused && machine.i8042().mouseReporting() && !debug_visible_ &&
                           !mouse_capture_suppressed_;
     setMouseCaptured(should_capture);
   }
 
-  void setMouseCaptured(bool captured) {
-    if (window_ == nullptr || mouse_captured_ == captured) return;
+  void setMouseCaptured(bool captured, bool force = false) {
+    if (window_ == nullptr || (!force && mouse_captured_ == captured)) return;
     if (captured) {
+      SDL_CaptureMouse(true);
+      SDL_SetWindowMouseGrab(window_, true);
       SDL_SetWindowRelativeMouseMode(window_, true);
-      SDL_FlushEvent(SDL_EVENT_MOUSE_MOTION);
       SDL_GetRelativeMouseState(nullptr, nullptr);
       mouse_scheduler_.reset();
       last_mouse_sample_ns_ = SDL_GetTicksNS();
+      drop_next_relative_sample_ = true;
     } else {
       SDL_SetWindowRelativeMouseMode(window_, false);
+      SDL_SetWindowMouseGrab(window_, false);
+      SDL_SetWindowKeyboardGrab(window_, false);
+      SDL_SetWindowMouseRect(window_, nullptr);
+      SDL_CaptureMouse(false);
       SDL_ShowCursor();
-      SDL_FlushEvent(SDL_EVENT_MOUSE_MOTION);
       SDL_GetRelativeMouseState(nullptr, nullptr);
       mouse_scheduler_.reset();
+      host_mouse_buttons_ = 0;
     }
     mouse_captured_ = captured;
+  }
+
+  bool handleDebugClick(Machine &machine, int x, int y) {
+    auto hit = [&](const SDL_FRect &r) {
+      return x >= static_cast<int>(r.x) && x < static_cast<int>(r.x + r.w) &&
+             y >= static_cast<int>(r.y) && y < static_cast<int>(r.y + r.h);
+    };
+    if (hit(record_button_)) {
+      beginRecording(machine);
+      return true;
+    }
+    if (recording_active_ && hit(pause_button_)) {
+      toggleRecordingPause(machine);
+      return true;
+    }
+    if (recording_active_ && hit(stop_button_)) {
+      finishRecording(machine);
+      return true;
+    }
+    return false;
+  }
+
+  static std::string guestKeyName(const SDL_KeyboardEvent &key) {
+    switch (key.scancode) {
+    case SDL_SCANCODE_ESCAPE: return "ESC";
+    case SDL_SCANCODE_1: return "1";
+    case SDL_SCANCODE_2: return "2";
+    case SDL_SCANCODE_3: return "3";
+    case SDL_SCANCODE_4: return "4";
+    case SDL_SCANCODE_5: return "5";
+    case SDL_SCANCODE_6: return "6";
+    case SDL_SCANCODE_7: return "7";
+    case SDL_SCANCODE_8: return "8";
+    case SDL_SCANCODE_9: return "9";
+    case SDL_SCANCODE_0: return "0";
+    case SDL_SCANCODE_MINUS: return "MINUS";
+    case SDL_SCANCODE_EQUALS: return "EQUALS";
+    case SDL_SCANCODE_BACKSPACE: return "BACKSPACE";
+    case SDL_SCANCODE_TAB: return "TAB";
+    case SDL_SCANCODE_Q: return "Q";
+    case SDL_SCANCODE_W: return "W";
+    case SDL_SCANCODE_E: return "E";
+    case SDL_SCANCODE_R: return "R";
+    case SDL_SCANCODE_T: return "T";
+    case SDL_SCANCODE_Y: return "Y";
+    case SDL_SCANCODE_U: return "U";
+    case SDL_SCANCODE_I: return "I";
+    case SDL_SCANCODE_O: return "O";
+    case SDL_SCANCODE_P: return "P";
+    case SDL_SCANCODE_LEFTBRACKET: return "LEFTBRACKET";
+    case SDL_SCANCODE_RIGHTBRACKET: return "RIGHTBRACKET";
+    case SDL_SCANCODE_RETURN: return "ENTER";
+    case SDL_SCANCODE_LCTRL: return "LCTRL";
+    case SDL_SCANCODE_A: return "A";
+    case SDL_SCANCODE_S: return "S";
+    case SDL_SCANCODE_D: return "D";
+    case SDL_SCANCODE_F: return "F";
+    case SDL_SCANCODE_G: return "G";
+    case SDL_SCANCODE_H: return "H";
+    case SDL_SCANCODE_J: return "J";
+    case SDL_SCANCODE_K: return "K";
+    case SDL_SCANCODE_L: return "L";
+    case SDL_SCANCODE_SEMICOLON: return "SEMICOLON";
+    case SDL_SCANCODE_APOSTROPHE: return "APOSTROPHE";
+    case SDL_SCANCODE_GRAVE: return "GRAVE";
+    case SDL_SCANCODE_LSHIFT: return "LSHIFT";
+    case SDL_SCANCODE_BACKSLASH: return "BACKSLASH";
+    case SDL_SCANCODE_Z: return "Z";
+    case SDL_SCANCODE_X: return "X";
+    case SDL_SCANCODE_C: return "C";
+    case SDL_SCANCODE_V: return "V";
+    case SDL_SCANCODE_B: return "B";
+    case SDL_SCANCODE_N: return "N";
+    case SDL_SCANCODE_M: return "M";
+    case SDL_SCANCODE_COMMA: return "COMMA";
+    case SDL_SCANCODE_PERIOD: return "PERIOD";
+    case SDL_SCANCODE_SLASH: return "SLASH";
+    case SDL_SCANCODE_RSHIFT: return "RSHIFT";
+    case SDL_SCANCODE_SPACE: return "SPACE";
+    case SDL_SCANCODE_CAPSLOCK: return "CAPSLOCK";
+    case SDL_SCANCODE_F1: return "F1";
+    case SDL_SCANCODE_F2: return "F2";
+    case SDL_SCANCODE_F4: return "F4";
+    case SDL_SCANCODE_F5: return "F5";
+    case SDL_SCANCODE_F6: return "F6";
+    case SDL_SCANCODE_F7: return "F7";
+    case SDL_SCANCODE_F12: return "F12";
+    case SDL_SCANCODE_SCROLLLOCK: return "SCROLLLOCK";
+    case SDL_SCANCODE_NUMLOCKCLEAR: return "NUMLOCK";
+    case SDL_SCANCODE_INSERT: return "INSERT";
+    case SDL_SCANCODE_HOME: return "HOME";
+    case SDL_SCANCODE_PAGEUP: return "PAGEUP";
+    case SDL_SCANCODE_DELETE: return "DELETE";
+    case SDL_SCANCODE_END: return "END";
+    case SDL_SCANCODE_PAGEDOWN: return "PAGEDOWN";
+    case SDL_SCANCODE_RCTRL: return "RCTRL";
+    case SDL_SCANCODE_LALT: return "LALT";
+    case SDL_SCANCODE_RALT: return "RALT";
+    case SDL_SCANCODE_APPLICATION: return "MENU";
+    case SDL_SCANCODE_UP: return "UP";
+    case SDL_SCANCODE_DOWN: return "DOWN";
+    case SDL_SCANCODE_LEFT: return "LEFT";
+    case SDL_SCANCODE_RIGHT: return "RIGHT";
+    case SDL_SCANCODE_KP_DIVIDE: return "KP_DIVIDE";
+    case SDL_SCANCODE_KP_MULTIPLY: return "KP_MULTIPLY";
+    case SDL_SCANCODE_KP_MINUS: return "KP_MINUS";
+    case SDL_SCANCODE_KP_PLUS: return "KP_PLUS";
+    case SDL_SCANCODE_KP_ENTER: return "KP_ENTER";
+    case SDL_SCANCODE_KP_1: return "KP_1";
+    case SDL_SCANCODE_KP_2: return "KP_2";
+    case SDL_SCANCODE_KP_3: return "KP_3";
+    case SDL_SCANCODE_KP_4: return "KP_4";
+    case SDL_SCANCODE_KP_5: return "KP_5";
+    case SDL_SCANCODE_KP_6: return "KP_6";
+    case SDL_SCANCODE_KP_7: return "KP_7";
+    case SDL_SCANCODE_KP_8: return "KP_8";
+    case SDL_SCANCODE_KP_9: return "KP_9";
+    case SDL_SCANCODE_KP_0: return "KP_0";
+    case SDL_SCANCODE_KP_PERIOD: return "KP_PERIOD";
+    default:
+      return "";
+    }
+  }
+
+  uint64_t recordingTick(Machine &machine) const {
+    return machine.tick() >= recording_start_tick_ ? machine.tick() - recording_start_tick_ : 0;
+  }
+
+  void recordLine(Machine &machine, const std::string &line, bool even_when_paused = false) {
+    if (!recording_active_ || (recording_paused_ && !even_when_paused)) return;
+    std::ostringstream out;
+    out << "at " << recordingTick(machine) << " " << line;
+    recording_lines_.push_back(out.str());
+  }
+
+  void recordKey(Machine &machine, const std::string &key, bool down) {
+    recordLine(machine, "key " + key + (down ? " down" : " up"));
+  }
+
+  void recordMouse(Machine &machine, int dx, int dy, uint8_t buttons) {
+    std::ostringstream out;
+    out << "mouse " << dx << " " << dy << " " << static_cast<unsigned>(buttons);
+    recordLine(machine, out.str());
+  }
+
+  void beginRecording(Machine &machine) {
+    recording_active_ = true;
+    recording_paused_ = false;
+    recording_start_tick_ = machine.tick();
+    recording_lines_.clear();
+    record_status_ = "Recording";
+    record_status_until_ns_ = SDL_GetTicksNS() + 1800000000ull;
+  }
+
+  void toggleRecordingPause(Machine &machine) {
+    if (!recording_active_) return;
+    recording_paused_ = !recording_paused_;
+    recordLine(machine, recording_paused_ ? "capture out" : "capture in", true);
+    record_status_ = recording_paused_ ? "Paused" : "Recording";
+    record_status_until_ns_ = SDL_GetTicksNS() + 1800000000ull;
+  }
+
+  void finishRecording(Machine &machine) {
+    if (!recording_active_) return;
+    if (recording_paused_) {
+      recording_paused_ = false;
+      recordLine(machine, "capture in", true);
+    }
+    recording_active_ = false;
+    save_modal_visible_ = true;
+    mouse_capture_suppressed_ = true;
+    setMouseCaptured(false);
+    if (save_path_input_.empty()) {
+      std::ostringstream path;
+      path << "build/test-output/recording-" << machine.tick() << ".lcomscript";
+      save_path_input_ = path.str();
+    }
+  }
+
+  void handleSaveModalKey(const SDL_KeyboardEvent &key) {
+    if (key.scancode == SDL_SCANCODE_ESCAPE) {
+      save_modal_visible_ = false;
+      record_status_ = "Recording discarded";
+      record_status_until_ns_ = SDL_GetTicksNS() + 2200000000ull;
+      return;
+    }
+    if (key.scancode == SDL_SCANCODE_RETURN) {
+      saveRecording();
+      return;
+    }
+    if (key.scancode == SDL_SCANCODE_BACKSPACE) {
+      if (!save_path_input_.empty()) save_path_input_.pop_back();
+      return;
+    }
+    SDL_Keycode sym = key.key;
+    if (sym >= 32 && sym <= 126) {
+      save_path_input_.push_back(static_cast<char>(sym));
+    }
+  }
+
+  void saveRecording() {
+    std::filesystem::path path = save_path_input_.empty()
+                                     ? std::filesystem::path("lcom-recording.lcomscript")
+                                     : std::filesystem::path(save_path_input_);
+    std::error_code ec;
+    if (path.has_parent_path()) std::filesystem::create_directories(path.parent_path(), ec);
+    std::ofstream out(path);
+    if (out.is_open()) {
+      out << "# lcom-ng recording\n";
+      out << "# F8 writes capture out/in markers; skipped frames are intentionally absent from videos.\n";
+      out << "# Ticks are virtual timer ticks; use `caption top 2s Text` or `caption bottom 2s Text`.\n";
+      for (const auto &line : recording_lines_) out << line << "\n";
+      save_modal_visible_ = false;
+      record_status_ = "Saved script";
+      record_status_until_ns_ = SDL_GetTicksNS() + 2600000000ull;
+    } else {
+      record_status_ = "Save failed";
+      record_status_until_ns_ = SDL_GetTicksNS() + 2600000000ull;
+    }
   }
 
   SDL_Window *window_ = nullptr;
@@ -722,13 +1100,16 @@ private:
   TTF_Font *font_ = nullptr;
   TTF_Font *title_font_ = nullptr;
   Machine *observed_machine_ = nullptr;
+  uint32_t window_id_ = 0;
 
   SdlBackendOptions options_{};
+  bool sdl_acquired_ = false;
   bool debug_visible_ = false;
   bool fullscreen_ = false;
   bool should_quit_ = false;
   bool mouse_captured_ = false;
   bool mouse_capture_suppressed_ = false;
+  bool drop_next_relative_sample_ = false;
   uint8_t host_mouse_buttons_ = 0;
   MousePacketScheduler mouse_scheduler_;
   uint64_t last_mouse_sample_ns_ = 0;
@@ -748,6 +1129,17 @@ private:
   std::vector<float> frame_ms_samples_;
   std::vector<std::string> scancode_history_;
   std::vector<std::string> mouse_packet_history_;
+  SDL_FRect record_button_{};
+  SDL_FRect pause_button_{};
+  SDL_FRect stop_button_{};
+  bool recording_active_ = false;
+  bool recording_paused_ = false;
+  bool save_modal_visible_ = false;
+  uint64_t recording_start_tick_ = 0;
+  uint64_t record_status_until_ns_ = 0;
+  std::string record_status_;
+  std::string save_path_input_;
+  std::vector<std::string> recording_lines_;
 };
 
 std::unique_ptr<DisplayBackend> createSdlBackend(const SdlBackendOptions &options) {

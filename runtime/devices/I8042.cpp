@@ -166,19 +166,53 @@ static std::string upperKey(std::string key) {
 
 std::vector<uint8_t> ps2Set1ForKey(const std::string &key_in, bool pressed) {
   static const std::map<std::string, uint8_t> one_byte = {
-      {"ESC", 0x01},   {"1", 0x02},     {"2", 0x03},     {"3", 0x04},
-      {"4", 0x05},     {"5", 0x06},     {"6", 0x07},     {"7", 0x08},
-      {"8", 0x09},     {"9", 0x0A},     {"0", 0x0B},     {"ENTER", 0x1C},
-      {"SPACE", 0x39}, {"A", 0x1E},     {"B", 0x30},     {"C", 0x2E},
-      {"D", 0x20},     {"E", 0x12},     {"F", 0x21},     {"G", 0x22},
-      {"H", 0x23},     {"I", 0x17},     {"J", 0x24},     {"K", 0x25},
-      {"L", 0x26},     {"M", 0x32},     {"N", 0x31},     {"O", 0x18},
-      {"P", 0x19},     {"Q", 0x10},     {"R", 0x13},     {"S", 0x1F},
-      {"T", 0x14},     {"U", 0x16},     {"V", 0x2F},     {"W", 0x11},
-      {"X", 0x2D},     {"Y", 0x15},     {"Z", 0x2C}};
+      {"ESC", 0x01},       {"ESCAPE", 0x01},   {"1", 0x02},
+      {"2", 0x03},         {"3", 0x04},        {"4", 0x05},
+      {"5", 0x06},         {"6", 0x07},        {"7", 0x08},
+      {"8", 0x09},         {"9", 0x0A},        {"0", 0x0B},
+      {"MINUS", 0x0C},     {"EQUALS", 0x0D},   {"EQUAL", 0x0D},
+      {"BACKSPACE", 0x0E}, {"BS", 0x0E},       {"TAB", 0x0F},
+      {"Q", 0x10},         {"W", 0x11},        {"E", 0x12},
+      {"R", 0x13},         {"T", 0x14},        {"Y", 0x15},
+      {"U", 0x16},         {"I", 0x17},        {"O", 0x18},
+      {"P", 0x19},         {"LEFTBRACKET", 0x1A}, {"LBRACKET", 0x1A},
+      {"RIGHTBRACKET", 0x1B}, {"RBRACKET", 0x1B},
+      {"ENTER", 0x1C},     {"RETURN", 0x1C},   {"LCTRL", 0x1D},
+      {"LEFTCTRL", 0x1D},  {"CTRL", 0x1D},     {"A", 0x1E},
+      {"S", 0x1F},         {"D", 0x20},        {"F", 0x21},
+      {"G", 0x22},         {"H", 0x23},        {"J", 0x24},
+      {"K", 0x25},         {"L", 0x26},        {"SEMICOLON", 0x27},
+      {"APOSTROPHE", 0x28}, {"QUOTE", 0x28},   {"GRAVE", 0x29},
+      {"BACKQUOTE", 0x29}, {"LSHIFT", 0x2A},   {"LEFTSHIFT", 0x2A},
+      {"BACKSLASH", 0x2B}, {"Z", 0x2C},        {"X", 0x2D},
+      {"C", 0x2E},         {"V", 0x2F},        {"B", 0x30},
+      {"N", 0x31},         {"M", 0x32},        {"COMMA", 0x33},
+      {"PERIOD", 0x34},    {"DOT", 0x34},      {"SLASH", 0x35},
+      {"RSHIFT", 0x36},    {"RIGHTSHIFT", 0x36},
+      {"KP_MULTIPLY", 0x37}, {"LALT", 0x38},   {"LEFTALT", 0x38},
+      {"ALT", 0x38},       {"SPACE", 0x39},    {"CAPSLOCK", 0x3A},
+      {"CAPS", 0x3A},      {"F1", 0x3B},       {"F2", 0x3C},
+      {"F3", 0x3D},        {"F4", 0x3E},       {"F5", 0x3F},
+      {"F6", 0x40},        {"F7", 0x41},       {"F8", 0x42},
+      {"F9", 0x43},        {"F10", 0x44},      {"NUMLOCK", 0x45},
+      {"SCROLLLOCK", 0x46}, {"KP_7", 0x47},    {"KP7", 0x47},
+      {"KP_8", 0x48},      {"KP8", 0x48},      {"KP_9", 0x49},
+      {"KP9", 0x49},       {"KP_MINUS", 0x4A}, {"KP_4", 0x4B},
+      {"KP4", 0x4B},       {"KP_5", 0x4C},     {"KP5", 0x4C},
+      {"KP_6", 0x4D},      {"KP6", 0x4D},      {"KP_PLUS", 0x4E},
+      {"KP_1", 0x4F},      {"KP1", 0x4F},      {"KP_2", 0x50},
+      {"KP2", 0x50},       {"KP_3", 0x51},     {"KP3", 0x51},
+      {"KP_0", 0x52},      {"KP0", 0x52},      {"KP_PERIOD", 0x53},
+      {"F11", 0x57},       {"F12", 0x58}};
 
   static const std::map<std::string, uint8_t> e0 = {
-      {"UP", 0x48}, {"DOWN", 0x50}, {"LEFT", 0x4B}, {"RIGHT", 0x4D}};
+      {"KP_DIVIDE", 0x35}, {"KP_ENTER", 0x1C}, {"RCTRL", 0x1D},
+      {"RIGHTCTRL", 0x1D}, {"RALT", 0x38},     {"RIGHTALT", 0x38},
+      {"HOME", 0x47},      {"UP", 0x48},       {"PAGEUP", 0x49},
+      {"PGUP", 0x49},      {"LEFT", 0x4B},     {"RIGHT", 0x4D},
+      {"END", 0x4F},       {"DOWN", 0x50},     {"PAGEDOWN", 0x51},
+      {"PGDOWN", 0x51},    {"INSERT", 0x52},   {"INS", 0x52},
+      {"DELETE", 0x53},    {"DEL", 0x53},      {"MENU", 0x5D}};
 
   std::string key = upperKey(key_in);
   auto it = one_byte.find(key);

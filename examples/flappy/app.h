@@ -31,7 +31,6 @@ typedef struct {
 
 void app_init(app_t *app);
 app_input_result_t app_key(app_t *app, uint8_t scancode);
-app_input_result_t app_mouse(app_t *app, int x, int y, int left_down);
 void app_update(app_t *app);
 void app_render(app_t *app, draw_context_t *ctx);
 

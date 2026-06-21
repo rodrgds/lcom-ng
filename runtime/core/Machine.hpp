@@ -43,6 +43,7 @@ public:
   void injectKey(const std::string &key, bool pressed);
   void injectKeyBytes(const std::vector<uint8_t> &bytes);
   void injectMouse(int dx, int dy, uint8_t buttons);
+  void connectSerialPeer(Machine *peer);
 
   Pit8254 &pit() { return pit_; }
   I8042 &i8042() { return i8042_; }

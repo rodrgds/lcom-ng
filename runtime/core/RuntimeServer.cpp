@@ -13,6 +13,7 @@
 #include <cerrno>
 #include <chrono>
 #include <csignal>
+#include <cctype>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
@@ -154,7 +155,7 @@ int RuntimeServer::run() {
     pumpDisplayIfDue();
     maybeSatisfyEventWait();
 
-    if (waiting_event_ && options_.headless) {
+    if (waiting_event_ && !options_.realtime) {
       advanceVirtualTimeOnce();
       maybeSatisfyEventWait();
       if (!childExited()) continue;
@@ -200,10 +201,10 @@ int RuntimeServer::run() {
 
   if (!options_.dump_frame_path.empty()) {
     syncFramebufferFromSharedMemory();
-    machine_.vbe().dumpPpm(options_.dump_frame_path);
+    machine_.vbe().dumpPpm(options_.dump_frame_path, caption_text_, caption_position_);
   }
 
-  return renderVideo() ? 0 : 1;
+  return renderVideo() ? child_exit_status_ : 1;
 }
 
 bool RuntimeServer::setup() {
@@ -247,6 +248,7 @@ bool RuntimeServer::setupDisplay() {
     SdlBackendOptions sdl_options;
     sdl_options.fullscreen = options_.fullscreen;
     sdl_options.integer_scale = options_.integer_scale;
+    sdl_options.guest_input = options_.guest_input;
     sdl_options.scale = options_.scale;
     display_ = createSdlBackend(sdl_options);
 #else
@@ -543,7 +545,9 @@ bool RuntimeServer::handleClientMessage() {
   }
   case LCOM_MSG_VBE_PRESENT:
     syncFramebufferFromSharedMemory();
-    if (!options_.dump_frame_path.empty()) machine_.vbe().dumpPpm(options_.dump_frame_path);
+    if (!options_.dump_frame_path.empty()) {
+      machine_.vbe().dumpPpm(options_.dump_frame_path, caption_text_, caption_position_);
+    }
     dumpVideoFrame();
     if (display_ != nullptr) display_->present(machine_);
     sendStatus(hdr.request_id, 0);
@@ -623,11 +627,54 @@ void RuntimeServer::maybeSatisfyEventWait() {
 void RuntimeServer::advanceVirtualTimeOnce() {
   if (machine_.tick() >= options_.max_ticks) {
     std::cerr << "lcom: max virtual ticks reached (" << options_.max_ticks << ")\n";
+    child_exit_status_ = 1;
     cleanupChild();
     return;
   }
   machine_.advanceTick();
-  script_.injectDue(machine_, machine_.tick());
+  applyScriptEvents(script_.takeDue(machine_.tick()));
+}
+
+void RuntimeServer::applyScriptEvents(const std::vector<ScriptEvent> &events) {
+  for (const ScriptEvent &ev : events) {
+    switch (ev.kind) {
+    case ScriptEvent::Kind::Key:
+      machine_.injectKey(ev.key, ev.pressed);
+      break;
+    case ScriptEvent::Kind::Mouse:
+      machine_.injectMouse(ev.dx, ev.dy, ev.buttons);
+      break;
+    case ScriptEvent::Kind::Text:
+      for (char c : ev.text) {
+        if (c >= 'a' && c <= 'z') {
+          std::string key(1, static_cast<char>(std::toupper(static_cast<unsigned char>(c))));
+          machine_.injectKey(key, true);
+          machine_.injectKey(key, false);
+        } else if (c >= 'A' && c <= 'Z') {
+          std::string key(1, c);
+          machine_.injectKey(key, true);
+          machine_.injectKey(key, false);
+        } else if (c == ' ') {
+          machine_.injectKey("SPACE", true);
+          machine_.injectKey("SPACE", false);
+        }
+      }
+      break;
+    case ScriptEvent::Kind::Rtc:
+      machine_.rtc().setIsoTime(ev.text);
+      break;
+    case ScriptEvent::Kind::Caption:
+      caption_text_ = ev.text;
+      caption_position_ = ev.caption_position;
+      caption_until_tick_ = machine_.tick() + ev.duration;
+      break;
+    case ScriptEvent::Kind::Capture:
+      video_capture_enabled_ = ev.capture_enabled;
+      break;
+    case ScriptEvent::Kind::Tick:
+      break;
+    }
+  }
 }
 
 void RuntimeServer::syncFramebufferFromSharedMemory() {
@@ -660,6 +707,10 @@ static bool isFramePpmName(const std::filesystem::path &path) {
 
 bool RuntimeServer::setupVideoCapture() {
   if (options_.frame_dir_path.empty() && options_.video_path.empty()) return true;
+  capture_frame_stride_ = 1;
+  if (!options_.video_path.empty() && options_.video_fps > 0 && options_.video_fps < 60) {
+    capture_frame_stride_ = std::max<uint32_t>(1, 60 / options_.video_fps);
+  }
 
   if (!options_.frame_dir_path.empty()) {
     active_frame_dir_ = options_.frame_dir_path;
@@ -701,12 +752,21 @@ bool RuntimeServer::setupVideoCapture() {
 }
 
 void RuntimeServer::dumpVideoFrame() {
-  if (active_frame_dir_.empty()) return;
+  if (active_frame_dir_.empty() || !video_capture_enabled_) return;
+  presented_frame_index_++;
+  if (capture_frame_stride_ > 1 &&
+      ((presented_frame_index_ - 1) % capture_frame_stride_) != 0) {
+    return;
+  }
+  if (caption_until_tick_ != 0 && machine_.tick() >= caption_until_tick_) {
+    caption_text_.clear();
+    caption_until_tick_ = 0;
+  }
   frame_index_++;
   char filename[64];
   std::snprintf(filename, sizeof(filename), "frame_%06u.ppm", frame_index_);
   std::filesystem::path path = std::filesystem::path(active_frame_dir_) / filename;
-  machine_.vbe().dumpPpm(path.string());
+  machine_.vbe().dumpPpm(path.string(), caption_text_, caption_position_);
 }
 
 bool RuntimeServer::renderVideo() {
@@ -792,9 +852,15 @@ bool RuntimeServer::childExited() {
     child_running_ = false;
     child_pid_ = -1;
     if (WIFEXITED(status)) {
+      child_exit_status_ = WEXITSTATUS(status);
       std::cout << "Program exited with status " << WEXITSTATUS(status) << "\n";
     } else if (WIFSIGNALED(status)) {
+      child_exit_status_ = 128 + WTERMSIG(status);
       std::cout << "Program terminated by signal " << WTERMSIG(status) << "\n";
+    }
+    if (client_fd_ >= 0) {
+      close(client_fd_);
+      client_fd_ = -1;
     }
     return true;
   }

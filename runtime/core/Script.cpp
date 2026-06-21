@@ -2,8 +2,10 @@
 
 #include <algorithm>
 #include <cctype>
+#include <cmath>
 #include <fstream>
 #include <sstream>
+#include <cstdlib>
 
 namespace lcom {
 
@@ -27,6 +29,38 @@ static bool parseBoolAction(const std::string &word, bool &pressed) {
   return false;
 }
 
+static bool parseTickToken(const std::string &token, uint64_t &tick) {
+  if (token.empty()) return false;
+  char *end = nullptr;
+  double value = std::strtod(token.c_str(), &end);
+  if (end == token.c_str() || value < 0.0) return false;
+  std::string suffix(end);
+  if (suffix.empty()) {
+    tick = static_cast<uint64_t>(value);
+    return true;
+  }
+  if (suffix == "s" || suffix == "sec" || suffix == "secs") {
+    tick = static_cast<uint64_t>(std::llround(value * 60.0));
+    return true;
+  }
+  if (suffix == "ms") {
+    tick = static_cast<uint64_t>(std::llround(value * 60.0 / 1000.0));
+    return true;
+  }
+  return false;
+}
+
+static std::string upper(std::string value) {
+  std::transform(value.begin(), value.end(), value.begin(), [](unsigned char c) {
+    return static_cast<char>(std::toupper(c));
+  });
+  return value;
+}
+
+static bool isCaptionPosition(const std::string &word) {
+  return word == "top" || word == "bottom";
+}
+
 bool Script::load(const std::string &path, std::string &error) {
   std::ifstream in(path);
   if (!in.is_open()) {
@@ -46,9 +80,11 @@ bool Script::load(const std::string &path, std::string &error) {
 
     std::istringstream iss(line);
     std::string at_word;
+    std::string at_token;
     uint64_t at = 0;
     std::string kind;
-    if (!(iss >> at_word >> at >> kind) || at_word != "at") {
+    if (!(iss >> at_word >> at_token >> kind) || at_word != "at" ||
+        !parseTickToken(at_token, at)) {
       error = "script line " + std::to_string(line_no) + ": expected 'at <tick> <event>'";
       return false;
     }
@@ -70,11 +106,96 @@ bool Script::load(const std::string &path, std::string &error) {
       }
       ev.buttons = static_cast<uint8_t>(buttons & 0x07u);
       ev.kind = ScriptEvent::Kind::Mouse;
+    } else if (kind == "move") {
+      std::string during;
+      std::string duration_token;
+      unsigned buttons = 0;
+      if (!(iss >> ev.dx >> ev.dy >> during >> duration_token) ||
+          (during != "during" && during != "over") ||
+          !parseTickToken(duration_token, ev.duration)) {
+        error = "script line " + std::to_string(line_no) + ": expected move <dx> <dy> during <duration> [buttons]";
+        return false;
+      }
+      if (iss >> buttons) ev.buttons = static_cast<uint8_t>(buttons & 0x07u);
+      ev.kind = ScriptEvent::Kind::Mouse;
+      uint64_t steps = ev.duration == 0 ? 1 : ev.duration;
+      int emitted_x = 0;
+      int emitted_y = 0;
+      for (uint64_t i = 0; i < steps; i++) {
+        int64_t step_index = static_cast<int64_t>(i + 1);
+        int64_t step_count = static_cast<int64_t>(steps);
+        int target_x = static_cast<int>((step_index * static_cast<int64_t>(ev.dx)) / step_count);
+        int target_y = static_cast<int>((step_index * static_cast<int64_t>(ev.dy)) / step_count);
+        ScriptEvent step = ev;
+        step.at = at + i;
+        step.dx = target_x - emitted_x;
+        step.dy = target_y - emitted_y;
+        emitted_x = target_x;
+        emitted_y = target_y;
+        events_.push_back(step);
+      }
+      continue;
     } else if (kind == "text") {
       std::string rest;
       std::getline(iss, rest);
       ev.text = trim(rest);
       ev.kind = ScriptEvent::Kind::Text;
+    } else if (kind == "caption" || kind == "note" || kind == "annotate") {
+      std::string first_token;
+      std::string duration_token;
+      if (!(iss >> first_token)) {
+        error = "script line " + std::to_string(line_no) + ": expected caption [top|bottom] <duration> <text>";
+        return false;
+      }
+      if (isCaptionPosition(first_token)) {
+        ev.caption_position = first_token;
+        if (!(iss >> duration_token) || !parseTickToken(duration_token, ev.duration)) {
+          error = "script line " + std::to_string(line_no) + ": expected caption [top|bottom] <duration> <text>";
+          return false;
+        }
+      } else {
+        duration_token = first_token;
+        if (!parseTickToken(duration_token, ev.duration)) {
+          error = "script line " + std::to_string(line_no) + ": expected caption [top|bottom] <duration> <text>";
+          return false;
+        }
+      }
+      std::string rest;
+      std::getline(iss, rest);
+      rest = trim(rest);
+      if (!rest.empty()) {
+        size_t split = rest.find(' ');
+        std::string maybe_position = split == std::string::npos ? rest : rest.substr(0, split);
+        if (isCaptionPosition(maybe_position)) {
+          ev.caption_position = maybe_position;
+          rest = split == std::string::npos ? "" : trim(rest.substr(split + 1));
+        }
+      }
+      if (rest.empty()) {
+        error = "script line " + std::to_string(line_no) + ": expected caption text";
+        return false;
+      }
+      ev.text = rest;
+      ev.kind = ScriptEvent::Kind::Caption;
+    } else if (kind == "capture") {
+      std::string state;
+      if (!(iss >> state)) {
+        error = "script line " + std::to_string(line_no) + ": expected capture <in|out>";
+        return false;
+      }
+      state = upper(state);
+      if (state == "IN" || state == "ON") {
+        ev.capture_enabled = true;
+      } else if (state == "OUT" || state == "OFF") {
+        ev.capture_enabled = false;
+      } else {
+        error = "script line " + std::to_string(line_no) + ": expected capture <in|out>";
+        return false;
+      }
+      ev.kind = ScriptEvent::Kind::Capture;
+    } else if (kind == "in" || kind == "out") {
+      ev.capture_enabled = kind == "in";
+      ev.kind = ScriptEvent::Kind::Capture;
     } else if (kind == "rtc") {
       std::string rest;
       std::getline(iss, rest);
@@ -96,9 +217,16 @@ bool Script::load(const std::string &path, std::string &error) {
   return true;
 }
 
-void Script::injectDue(Machine &machine, uint64_t tick) {
+std::vector<ScriptEvent> Script::takeDue(uint64_t tick) {
+  std::vector<ScriptEvent> due;
   while (cursor_ < events_.size() && events_[cursor_].at <= tick) {
-    const ScriptEvent &ev = events_[cursor_++];
+    due.push_back(events_[cursor_++]);
+  }
+  return due;
+}
+
+void Script::injectDue(Machine &machine, uint64_t tick) {
+  for (const ScriptEvent &ev : takeDue(tick)) {
     switch (ev.kind) {
     case ScriptEvent::Kind::Key:
       machine.injectKey(ev.key, ev.pressed);
@@ -126,6 +254,9 @@ void Script::injectDue(Machine &machine, uint64_t tick) {
       machine.rtc().setIsoTime(ev.text);
       break;
     case ScriptEvent::Kind::Tick:
+      break;
+    case ScriptEvent::Kind::Caption:
+    case ScriptEvent::Kind::Capture:
       break;
     }
   }

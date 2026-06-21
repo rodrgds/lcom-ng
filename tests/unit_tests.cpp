@@ -1,5 +1,6 @@
 #include "../runtime/core/Machine.hpp"
 #include "../runtime/core/MousePacketScheduler.hpp"
+#include "../runtime/core/Script.hpp"
 
 #include <lcom/i8042.h>
 #include <lcom/i8254.h>
@@ -9,6 +10,7 @@
 #include <lcom/vbe.h>
 
 #include <cstdlib>
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -85,6 +87,39 @@ static void test_i8042_reasserts_buffered_irq_on_subscribe() {
   uint8_t data = 0;
   CHECK(machine.readPort8(KBC_OUT_BUF, data));
   CHECK(data == 0x1E);
+}
+
+static void test_i8042_keyboard_common_scancodes() {
+  lcom::Machine machine;
+  lcom::IrqSubscription sub;
+  CHECK(machine.subscribeIrq(KBC_IRQ, sub));
+
+  auto expect_byte = [&](uint8_t expected) {
+    uint8_t data = 0;
+    CHECK(machine.readPort8(KBC_OUT_BUF, data));
+    CHECK(data == expected);
+  };
+
+  machine.injectKey("ENTER", true);
+  expect_byte(0x1C);
+  machine.injectKey("ENTER", false);
+  expect_byte(0x9C);
+  machine.injectKey("BACKSPACE", true);
+  expect_byte(0x0E);
+  machine.injectKey("MINUS", true);
+  expect_byte(0x0C);
+  machine.injectKey("F12", true);
+  expect_byte(0x58);
+
+  machine.injectKey("LEFT", true);
+  expect_byte(0xE0);
+  expect_byte(0x4B);
+  machine.injectKey("DELETE", false);
+  expect_byte(0xE0);
+  expect_byte(0xD3);
+  machine.injectKey("RCTRL", true);
+  expect_byte(0xE0);
+  expect_byte(0x1D);
 }
 
 static void test_mouse_scheduler_coalesces_motion() {
@@ -240,6 +275,29 @@ static void test_uart_pair_virtual_cable() {
   CHECK(data == 'P');
 }
 
+static void test_uart_virtual_wire_preserves_bursts() {
+  lcom::Machine machine;
+  CHECK(machine.writePort8(COM2_BASE + SER_FCR, FCR_ENABLE_FIFO | FCR_CLEAR_RX | FCR_CLEAR_TX));
+  CHECK(machine.writePort8(COM2_BASE + SER_IER, IER_RDA));
+
+  for (uint8_t i = 0; i < 64; i++) {
+    CHECK(machine.writePort8(COM1_BASE + SER_THR, static_cast<uint8_t>('A' + (i % 26))));
+  }
+
+  lcom::IrqSubscription sub;
+  CHECK(machine.subscribeIrq(COM2_IRQ, sub));
+  CHECK((machine.pendingIrqs() & BIT(COM2_IRQ)) != 0);
+
+  for (uint8_t i = 0; i < 64; i++) {
+    uint8_t lsr = 0;
+    CHECK(machine.readPort8(COM2_BASE + SER_LSR, lsr));
+    CHECK((lsr & LSR_RX_RDY) != 0);
+    uint8_t data = 0;
+    CHECK(machine.readPort8(COM2_BASE + SER_RBR, data));
+    CHECK(data == static_cast<uint8_t>('A' + (i % 26)));
+  }
+}
+
 static void test_ac97_registers_and_buffer() {
   lcom::Machine machine;
   CHECK(machine.ac97().bufferPhys() == 0xD0000000ull);
@@ -259,11 +317,65 @@ static void test_ac97_registers_and_buffer() {
   CHECK(!machine.ac97().playing());
 }
 
+static void test_script_time_and_demo_events() {
+  const char *path = "/tmp/lcom-ng-script-unit.lcomscript";
+  {
+    std::ofstream out(path);
+    out << "at 1s caption top 2s HELLO LEVEL 1\n";
+    out << "at 2s out\n";
+    out << "at 2.5s in\n";
+    out << "at 2.75s caption 1s bottom SECOND LINE\n";
+    out << "at 3s move 10 -5 during 5\n";
+  }
+
+  lcom::Script script;
+  std::string error;
+  CHECK(script.load(path, error));
+
+  auto due60 = script.takeDue(60);
+  CHECK(due60.size() == 1);
+  CHECK(due60[0].kind == lcom::ScriptEvent::Kind::Caption);
+  CHECK(due60[0].duration == 120);
+  CHECK(due60[0].caption_position == "top");
+
+  auto due120 = script.takeDue(120);
+  CHECK(due120.size() == 1);
+  CHECK(due120[0].kind == lcom::ScriptEvent::Kind::Capture);
+  CHECK(!due120[0].capture_enabled);
+
+  auto due150 = script.takeDue(150);
+  CHECK(due150.size() == 1);
+  CHECK(due150[0].kind == lcom::ScriptEvent::Kind::Capture);
+  CHECK(due150[0].capture_enabled);
+
+  auto due165 = script.takeDue(165);
+  CHECK(due165.size() == 1);
+  CHECK(due165[0].kind == lcom::ScriptEvent::Kind::Caption);
+  CHECK(due165[0].caption_position == "bottom");
+
+  int total_dx = 0;
+  int total_dy = 0;
+  int move_events = 0;
+  for (uint64_t tick = 180; tick < 185; tick++) {
+    for (const auto &ev : script.takeDue(tick)) {
+      if (ev.kind == lcom::ScriptEvent::Kind::Mouse) {
+        total_dx += ev.dx;
+        total_dy += ev.dy;
+        move_events++;
+      }
+    }
+  }
+  CHECK(move_events == 5);
+  CHECK(total_dx == 10);
+  CHECK(total_dy == -5);
+}
+
 int main() {
   test_irq_controller_shape();
   test_pit_programming_and_readback();
   test_i8042_keyboard_irq_and_ports();
   test_i8042_reasserts_buffered_irq_on_subscribe();
+  test_i8042_keyboard_common_scancodes();
   test_mouse_scheduler_coalesces_motion();
   test_mouse_scheduler_clamps_and_flips_y();
   test_mouse_scheduler_button_change_emits_zero_delta();
@@ -273,7 +385,9 @@ int main() {
   test_vbe_mode_and_framebuffer();
   test_uart_loopback_registers();
   test_uart_pair_virtual_cable();
+  test_uart_virtual_wire_preserves_bursts();
   test_ac97_registers_and_buffer();
+  test_script_time_and_demo_events();
 
   if (g_failures != 0) {
     std::cerr << g_failures << " unit checks failed\n";

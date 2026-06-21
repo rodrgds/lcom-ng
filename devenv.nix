@@ -35,21 +35,30 @@
     ctest --test-dir build --output-on-failure
   '';
 
+  scripts.lcom.exec = ''
+    if [ ! -x ./build/lcom ]; then
+      cmake -S . -B build -G Ninja -DLCOM_WITH_SDL=ON -DCMAKE_BUILD_TYPE=Debug
+      cmake --build build --target lcom
+    fi
+    exec ./build/lcom "$@"
+  '';
+
   scripts.lcom-run-sdl.exec = ''
     cmake -S . -B build -G Ninja -DLCOM_WITH_SDL=ON -DCMAKE_BUILD_TYPE=Debug
     cmake --build build
-    build/lcom run --display sdl -- build/examples/sdl_demo
+    build/lcom run build/examples/sdl_demo
   '';
 
   scripts.lcom-replay-flappy-video.exec = ''
     cmake -S . -B build -G Ninja -DLCOM_WITH_SDL=ON -DCMAKE_BUILD_TYPE=Debug
     cmake --build build
     mkdir -p build/replays
-    build/lcom replay scripts/flappy_mouse_demo.lcomscript --headless --video build/replays/flappy.mp4 -- build/examples/flappy_bird
+    build/lcom replay scripts/flappy_demo.lcomscript --headless --video build/replays/flappy.mp4 -- build/examples/flappy_bird
   '';
 
   enterShell = ''
     echo "lcom-ng dev shell"
+    echo "  lcom           run ./build/lcom, building it first when needed"
     echo "  lcom-build     configure and build with SDL"
     echo "  lcom-test      build and run tests"
     echo "  lcom-run-sdl   run the interactive SDL demo"

@@ -18,22 +18,6 @@ enum {
   BUTTON_SECONDARY_Y = 352
 };
 
-static int point_in_rect(int px, int py, int x, int y, int w, int h) {
-  return px >= x && py >= y && px < x + w && py < y + h;
-}
-
-static int hovered_button(menu_t *menu) {
-  if (point_in_rect(menu->pointer_x, menu->pointer_y, BUTTON_X, BUTTON_PRIMARY_Y,
-                    BUTTON_W, BUTTON_H)) {
-    return 0;
-  }
-  if (point_in_rect(menu->pointer_x, menu->pointer_y, BUTTON_X, BUTTON_SECONDARY_Y,
-                    BUTTON_W, BUTTON_H)) {
-    return 1;
-  }
-  return -1;
-}
-
 static void draw_button(draw_context_t *ctx, int y, const char *label, int selected) {
   uint32_t bg = selected ? 0xF2C94Cu : 0x313A46u;
   uint32_t shadow = selected ? 0xB98323u : 0x18202Au;
@@ -52,9 +36,6 @@ void menu_init(menu_t *menu) {
   menu->primary_label = "PLAY";
   menu->secondary_label = "QUIT";
   menu->selected = 0;
-  menu->pointer_x = 400;
-  menu->pointer_y = 312;
-  menu->pointer_down = 0;
 }
 
 void menu_set(menu_t *menu, const char *title, const char *primary, const char *secondary) {
@@ -78,20 +59,6 @@ menu_action_t menu_key(menu_t *menu, uint8_t scancode) {
   return MENU_ACTION_NONE;
 }
 
-menu_action_t menu_mouse(menu_t *menu, int x, int y, int left_down) {
-  menu->pointer_x = x;
-  menu->pointer_y = y;
-  int hovered = hovered_button(menu);
-  if (hovered >= 0) menu->selected = hovered;
-
-  menu_action_t action = MENU_ACTION_NONE;
-  if (left_down && !menu->pointer_down && hovered >= 0) {
-    action = hovered == 0 ? MENU_ACTION_PRIMARY : MENU_ACTION_QUIT;
-  }
-  menu->pointer_down = left_down;
-  return action;
-}
-
 void menu_render(menu_t *menu, draw_context_t *ctx, int score) {
   int title_x = (ctx->info.width - (int)font_text_width(menu->title, 6)) / 2;
   draw_text(ctx, title_x, 176, menu->title, 0x4CC9F0u, 6);
@@ -105,8 +72,4 @@ void menu_render(menu_t *menu, draw_context_t *ctx, int score) {
 
   draw_button(ctx, BUTTON_PRIMARY_Y, menu->primary_label, menu->selected == 0);
   draw_button(ctx, BUTTON_SECONDARY_Y, menu->secondary_label, menu->selected == 1);
-
-  fill_rect(ctx, menu->pointer_x, menu->pointer_y, 13, 4, 0xFFFFFFu);
-  fill_rect(ctx, menu->pointer_x, menu->pointer_y, 4, 13, 0xFFFFFFu);
-  fill_rect(ctx, menu->pointer_x + 2, menu->pointer_y + 2, 7, 2, 0x101820u);
 }

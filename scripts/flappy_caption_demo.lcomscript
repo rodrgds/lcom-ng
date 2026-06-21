@@ -1,0 +1,12 @@
+at 0.1s caption top 2s SPACE TO FLAP
+at 2s key SPACE down
+at 2.1s key SPACE up
+at 3s capture out
+at 4s key SPACE down
+at 4.1s key SPACE up
+at 5s capture in
+at 5.1s caption bottom 2s CAPTURE OUT IN REMOVES QUIET SECTIONS
+at 6s key SPACE down
+at 6.1s key SPACE up
+at 8s key ESC down
+at 8.1s key ESC up

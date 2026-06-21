@@ -1,12 +1,34 @@
 # Lab 6: AC97-lite PCM Audio
 
-Goal: map the virtual AC97-lite PCM buffer, write signed 16-bit stereo samples,
-program the PCM output sample rate and byte count registers, and start/stop
-playback through the bus-master control register. In headless mode, use
-`--audio-wav` to write the PCM stream to a `.wav` file for testing.
+Generated folder: `labs/audio/`
 
-Reference:
+Lab 6 adds audio as a new lcom-ng device area. Students map a PCM buffer, write
+signed 16-bit stereo samples, configure sample-rate/playback registers, and use
+headless `.wav` capture to test audio deterministically.
+
+## Student Files
+
+- `labs/audio/include/audio_lib.h`
+- `labs/audio/audio_lab.c`
+
+## Requested Functions
+
+- `int audio_map_buffer(void)`
+- `int audio_fill_square_wave(uint32_t hz, uint32_t ms)`
+- `int audio_play(size_t byte_count)`
+- `int audio_stop(void)`
+
+## What Students Learn
+
+- Memory-mapped audio buffers and sample layout.
+- Signed PCM sample generation and simple wave synthesis.
+- Sample rate, byte count, and playback control registers.
+- Start/stop behavior that students implement themselves.
+- Testing audio by rendering a deterministic `.wav` file.
+
+## Test And Reference
 
 ```sh
-build/lcom run --headless --audio-wav build/tone.wav -- build/examples/audio_tone
+lcom test audio
+lcom run --headless --audio-wav build/tone.wav -- build/examples/audio_tone
 ```

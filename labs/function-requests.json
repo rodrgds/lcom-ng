@@ -1,6 +1,18 @@
 {
   "lab1": {
-    "title": "Bitwise Helpers And RTC",
+    "device": "rtc",
+    "aliases": ["rtc", "bitwise"],
+    "title": "Bitwise Helpers And RTC/CMOS",
+    "doc": "labs/docs/lab1-bitwise-rtc.md",
+    "student_headers": [
+      "labs/rtc/include/bitwise.h",
+      "labs/rtc/include/rtc_lib.h"
+    ],
+    "student_sources": [
+      "labs/rtc/bitwise.c",
+      "labs/rtc/rtc_lab.c"
+    ],
+    "test_command": "lcom test rtc",
     "functions": [
       "uint8_t bit_clear(uint8_t value, uint8_t bit)",
       "uint8_t bit_set(uint8_t value, uint8_t bit)",
@@ -13,7 +25,13 @@
     ]
   },
   "lab2": {
+    "device": "timer",
+    "aliases": ["timer", "pit"],
     "title": "PIT And Timer IRQs",
+    "doc": "labs/docs/lab2-timer.md",
+    "student_headers": ["labs/timer/include/timer_lib.h"],
+    "student_sources": ["labs/timer/timer_lab.c"],
+    "test_command": "lcom test timer",
     "functions": [
       "int timer_set_frequency(uint8_t timer, uint32_t freq)",
       "int timer_get_conf(uint8_t timer, uint8_t *status)",
@@ -24,7 +42,13 @@
     ]
   },
   "lab3": {
+    "device": "kbd",
+    "aliases": ["kbd", "keyboard", "kbc"],
     "title": "Keyboard And i8042",
+    "doc": "labs/docs/lab3-keyboard.md",
+    "student_headers": ["labs/kbd/include/keyboard_lib.h"],
+    "student_sources": ["labs/kbd/keyboard_lab.c"],
+    "test_command": "lcom test kbd",
     "functions": [
       "int kbc_read_status(uint8_t *status)",
       "int kbc_read_output(uint8_t *byte)",
@@ -34,7 +58,13 @@
     ]
   },
   "lab4": {
+    "device": "mouse",
+    "aliases": ["mouse"],
     "title": "Mouse Packets",
+    "doc": "labs/docs/lab4-mouse.md",
+    "student_headers": ["labs/mouse/include/mouse_lib.h"],
+    "student_sources": ["labs/mouse/mouse_lab.c"],
+    "test_command": "lcom test mouse",
     "functions": [
       "int mouse_enable_data_reporting(void)",
       "int mouse_disable_data_reporting(void)",
@@ -43,7 +73,13 @@
     ]
   },
   "lab5": {
+    "device": "graphics",
+    "aliases": ["graphics", "video", "vbe"],
     "title": "VBE Graphics And XPM",
+    "doc": "labs/docs/lab5-video.md",
+    "student_headers": ["labs/graphics/include/video_lib.h"],
+    "student_sources": ["labs/graphics/graphics_lab.c"],
+    "test_command": "lcom test graphics",
     "functions": [
       "int video_set_mode(uint16_t mode)",
       "int video_map_framebuffer(void)",
@@ -53,7 +89,13 @@
     ]
   },
   "lab6": {
+    "device": "audio",
+    "aliases": ["audio", "sound"],
     "title": "AC97-lite Audio",
+    "doc": "labs/docs/lab6-audio.md",
+    "student_headers": ["labs/audio/include/audio_lib.h"],
+    "student_sources": ["labs/audio/audio_lab.c"],
+    "test_command": "lcom test audio",
     "functions": [
       "int audio_map_buffer(void)",
       "int audio_fill_square_wave(uint32_t hz, uint32_t ms)",
@@ -62,7 +104,13 @@
     ]
   },
   "lab7": {
+    "device": "uart",
+    "aliases": ["uart", "serial"],
     "title": "UART And Serial Ports",
+    "doc": "labs/docs/lab7-uart.md",
+    "student_headers": ["labs/uart/include/uart_lib.h"],
+    "student_sources": ["labs/uart/uart_lab.c"],
+    "test_command": "lcom test uart",
     "functions": [
       "int uart_config(uint16_t base, uint32_t baud, uint8_t line_control)",
       "int uart_enable_fifo(uint16_t base)",

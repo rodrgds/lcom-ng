@@ -23,6 +23,7 @@ struct RuntimeOptions {
   std::string audio_wav_path;
   bool fullscreen = false;
   bool integer_scale = false;
+  bool guest_input = true;
   int scale = 1;
   uint64_t max_ticks = 100000;
   std::string script_path;
@@ -55,6 +56,7 @@ private:
   void sendEventReply(uint32_t request_id, uint32_t irq_mask);
   void maybeSatisfyEventWait();
   void advanceVirtualTimeOnce();
+  void applyScriptEvents(const std::vector<ScriptEvent> &events);
   void syncFramebufferFromSharedMemory();
   void syncAudioFromSharedMemory();
   void zeroSharedFramebuffer();
@@ -80,6 +82,7 @@ private:
   int child_stdout_ = -1;
   int child_stderr_ = -1;
   int child_pid_ = -1;
+  int child_exit_status_ = 0;
   bool child_running_ = false;
 
   bool waiting_event_ = false;
@@ -93,6 +96,12 @@ private:
   std::string active_frame_dir_;
   bool remove_frame_dir_ = false;
   uint32_t frame_index_ = 0;
+  uint32_t presented_frame_index_ = 0;
+  uint32_t capture_frame_stride_ = 1;
+  bool video_capture_enabled_ = true;
+  std::string caption_text_;
+  std::string caption_position_ = "bottom";
+  uint64_t caption_until_tick_ = 0;
 };
 
 } // namespace lcom
