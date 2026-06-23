@@ -10,3 +10,4 @@ compile_commands.json
 *.o
 *.a
 *.dSYM/
+.vscode/c_cpp_properties.json
