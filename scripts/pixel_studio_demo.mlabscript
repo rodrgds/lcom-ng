@@ -1,0 +1,47 @@
+# Pixel Studio authored demo.
+# The replay paints two gap-free drag strokes, fills the background, exercises
+# undo/redo, exports a reusable C header under build/, and exits cleanly.
+
+at 0 rtc 2026-08-12T14:35:42
+
+# Draw a coral diagonal across the seeded mascot.
+at 0.8s move -119 89 during 0.8s
+at 1.7s mouse 0 0 1
+at 1.8s move 220 -198 during 1.2s 1
+at 3.1s mouse 0 0 0
+
+# Pick a fresh palette color with the mouse; palette selection returns to pencil.
+at 3.5s move 182 120 during 0.8s
+at 4.4s mouse 0 0 1
+at 4.5s mouse 0 0 0
+
+# Paint a green baseline with continuous button-held motion.
+at 4.8s move -380 -120 during 1s
+at 5.9s mouse 0 0 1
+at 6.0s move 198 0 during 1s 1
+at 7.1s mouse 0 0 0
+
+# Flood-fill the transparent background, then prove the edit is reversible.
+at 7.4s key F down
+at 7.5s key F up
+at 7.7s move -264 264 during 1s
+at 8.8s mouse 0 0 1
+at 8.9s mouse 0 0 0
+
+at 9.2s key LCTRL down
+at 9.3s key Z down
+at 9.4s key Z up
+at 9.5s key LCTRL up
+at 9.8s key LCTRL down
+at 9.9s key Y down
+at 10.0s key Y up
+at 10.1s key LCTRL up
+
+# Zoom in and export build/pixel_studio_sprite.h.
+at 10.4s key 3 down
+at 10.5s key 3 up
+at 11.0s key S down
+at 11.1s key S up
+
+at 11.8s key ESC down
+at 11.9s key ESC up

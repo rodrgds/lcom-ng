@@ -90,7 +90,8 @@ machinelab run-pair build/examples/ninjix --right build/examples/ninjix
 The left and right programs have separate machines, processes, input, display,
 and IRQ state. The runtime bridges matching ports: left COM1 to right COM1 and
 left COM2 to right COM2. Use `--left-script` and `--right-script` for separate
-deterministic input streams.
+deterministic input streams. Headless paired runs can preserve both final
+framebuffers with `--left-dump-frame` and `--right-dump-frame`.
 
 ## Bundles
 

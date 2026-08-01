@@ -18,6 +18,7 @@ test -f docs-site/developers/docs-site.md
 test -f docs-site/developers/releases.md
 test -f docs-site/developers/from-minix.md
 test -f docs-site/examples/index.md
+test -f docs-site/examples/showcase-studios.md
 test -f docs-site/examples/ninjix.md
 test -f docs-site/labs/index.md
 test -f media/remotion/package.json
@@ -26,6 +27,8 @@ test -f media/remotion/src/Root.tsx
 test -f media/remotion/.agents/skills/remotion-best-practices/SKILL.md
 test -f media/remotion/.agents/skills/remotion-video-director/SKILL.md
 test -f media/remotion/skills-lock.json
+test -x scripts/capture_showcase_examples.sh
+sh -n scripts/capture_showcase_examples.sh
 test ! -e .agents
 test ! -e skills-lock.json
 
@@ -82,7 +85,26 @@ test -f docs-site/labs/lab7/protocols.md
 
 grep -q "Machine Lab" docs-site/index.md
 grep -q "computer architecture" docs-site/index.md
+grep -q "machine-lab-demo.mp4" README.md
+grep -q "machine-lab-demo.mp4" docs/video-demo.md
+grep -q "machine-lab-demo.mp4" docs-site/index.md
+grep -q "machine-lab-demo.mp4" scripts/sync_docs_site_assets.sh
+if grep -q "machine-lab-90s.mp4" \
+  README.md docs/video-demo.md docs-site/index.md scripts/sync_docs_site_assets.sh; then
+  echo "public surfaces still reference the retired 90-second demo" >&2
+  exit 1
+fi
 grep -q "Ninjix" docs-site/examples/ninjix.md
+grep -q "Showcase Studios" docs-site/examples/showcase-studios.md
+grep -q "/assets/screenshots/pixel-studio.png" docs-site/examples/showcase-studios.md
+grep -q "/assets/screenshots/serial-whiteboard-left.png" docs-site/examples/showcase-studios.md
+grep -q "/assets/screenshots/serial-whiteboard-right.png" docs-site/examples/showcase-studios.md
+grep -q "/assets/screenshots/pomodoro-clock.png" docs-site/examples/showcase-studios.md
+grep -q "/assets/screenshots/interrupt-scope.png" docs-site/examples/showcase-studios.md
+grep -q "/assets/screenshots/tilemap-editor.png" docs-site/examples/showcase-studios.md
+grep -q "/assets/screenshots/serial-transfer-sender.png" docs-site/examples/showcase-studios.md
+grep -q "/assets/screenshots/serial-transfer-receiver.png" docs-site/examples/showcase-studios.md
+grep -q "/assets/screenshots/ambient-aquarium.png" docs-site/examples/showcase-studios.md
 grep -q "/assets/screenshots/word-processor.png" docs-site/examples/index.md
 grep -q "/assets/screenshots/music-maker.png" docs-site/examples/index.md
 grep -q "/assets/screenshots/breakout.png" docs-site/examples/index.md
@@ -105,17 +127,36 @@ test -f docs-site/.vitepress/dist/index.html
 test -f docs-site/.vitepress/dist/labs/lab1/index.html
 test -f docs-site/.vitepress/dist/labs/lab7/check.html
 test -f docs-site/.vitepress/dist/developers/architecture.html
+test -f docs-site/.vitepress/dist/examples/showcase-studios.html
 test -f docs-site/.vitepress/dist/examples/ninjix.html
 test -f docs-site/public/assets/screenshots/word-processor.png
 test -f docs-site/public/assets/screenshots/music-maker.png
 test -f docs-site/public/assets/screenshots/breakout.png
 test -f docs-site/public/assets/screenshots/flappy.png
 test -f docs-site/public/assets/screenshots/ninjix.png
+test -f docs-site/public/assets/screenshots/pixel-studio.png
+test -f docs-site/public/assets/screenshots/serial-whiteboard-left.png
+test -f docs-site/public/assets/screenshots/serial-whiteboard-right.png
+test -f docs-site/public/assets/screenshots/pomodoro-clock.png
+test -f docs-site/public/assets/screenshots/interrupt-scope.png
+test -f docs-site/public/assets/screenshots/tilemap-editor.png
+test -f docs-site/public/assets/screenshots/serial-transfer-sender.png
+test -f docs-site/public/assets/screenshots/serial-transfer-receiver.png
+test -f docs-site/public/assets/screenshots/ambient-aquarium.png
 test -f docs-site/.vitepress/dist/assets/screenshots/word-processor.png
 test -f docs-site/.vitepress/dist/assets/screenshots/music-maker.png
 test -f docs-site/.vitepress/dist/assets/screenshots/breakout.png
 test -f docs-site/.vitepress/dist/assets/screenshots/flappy.png
 test -f docs-site/.vitepress/dist/assets/screenshots/ninjix.png
-test -f docs-site/.vitepress/dist/assets/demo/machine-lab-90s.mp4
+test -f docs-site/.vitepress/dist/assets/screenshots/pixel-studio.png
+test -f docs-site/.vitepress/dist/assets/screenshots/serial-whiteboard-left.png
+test -f docs-site/.vitepress/dist/assets/screenshots/serial-whiteboard-right.png
+test -f docs-site/.vitepress/dist/assets/screenshots/pomodoro-clock.png
+test -f docs-site/.vitepress/dist/assets/screenshots/interrupt-scope.png
+test -f docs-site/.vitepress/dist/assets/screenshots/tilemap-editor.png
+test -f docs-site/.vitepress/dist/assets/screenshots/serial-transfer-sender.png
+test -f docs-site/.vitepress/dist/assets/screenshots/serial-transfer-receiver.png
+test -f docs-site/.vitepress/dist/assets/screenshots/ambient-aquarium.png
+test -f docs-site/.vitepress/dist/assets/demo/machine-lab-demo.mp4
 
 echo "docs site checks passed"

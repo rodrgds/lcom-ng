@@ -1,0 +1,55 @@
+# Tile Forge authored demo.
+# It paints with the mouse, exercises edit history and serialization, then
+# enters the isolated playtest and solves the bundled tiny Sokoban map.
+
+at 0 rtc 2026-08-12T15:10:05
+
+# Explicitly select the wall brush and drag a short obstacle row.
+at 0.7s key 2 down
+at 0.8s key 2 up
+at 1.0s move -102 112 during 0.8s
+at 1.9s mouse 0 0 1
+at 2.0s move 120 0 during 1s 1
+at 3.1s mouse 0 0 0
+
+# One drag is one history entry. Undo and redo restore the whole gesture.
+at 3.5s key LCTRL down
+at 3.6s key Z down
+at 3.7s key Z up
+at 3.8s key LCTRL up
+at 4.1s key LCTRL down
+at 4.2s key Y down
+at 4.3s key Y up
+at 4.4s key LCTRL up
+
+# Save the validated editor map under build/tilemap_demo.mlmap.
+at 4.7s key V down
+at 4.8s key V up
+at 5.0s key S down
+at 5.1s key S up
+
+# Enter play mode. Push down, undo that move, then solve deliberately.
+at 5.5s key ENTER down
+at 5.6s key ENTER up
+at 6.0s key S down
+at 6.1s key S up
+at 6.3s key U down
+at 6.4s key U up
+
+at 6.7s key S down
+at 6.8s key S up
+at 7.0s key W down
+at 7.1s key W up
+at 7.3s key A down
+at 7.4s key A up
+at 7.6s key S down
+at 7.7s key S up
+at 7.9s key S down
+at 8.0s key S up
+at 8.2s key D down
+at 8.3s key D up
+at 8.5s key D down
+at 8.6s key D up
+
+at 9.2s key ESC down
+at 9.3s key ESC up

@@ -57,6 +57,7 @@ private:
   void maybeSatisfyEventWait();
   void advanceVirtualTimeOnce();
   void applyScriptEvents(const std::vector<ScriptEvent> &events);
+  void expireCaptionIfNeeded();
   void syncFramebufferFromSharedMemory();
   void syncAudioFromSharedMemory();
   void zeroSharedFramebuffer();

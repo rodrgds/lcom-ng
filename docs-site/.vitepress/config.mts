@@ -118,6 +118,7 @@ const examplesSidebar = [
     text: "Examples",
     items: [
       { text: "Overview", link: "/examples/" },
+      { text: "Showcase Studios", link: "/examples/showcase-studios" },
       { text: "Ninjix", link: "/examples/ninjix" },
     ],
   },

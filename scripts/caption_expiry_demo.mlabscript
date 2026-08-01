@@ -1,0 +1,5 @@
+# Match demo_exit.mlabscript, but prove an earlier caption is absent from the
+# final direct framebuffer dump once its duration has elapsed.
+at 1 caption bottom 1 EXPIRED CAPTION
+at 5 key ESC down
+at 6 key ESC up

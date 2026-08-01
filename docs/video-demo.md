@@ -5,7 +5,7 @@ learning, deterministic testing, a complete project, and a student workspace.
 Run it once before recording so Nix, the build, and ffmpeg are warm.
 
 For a short public-facing version, use
-[docs/assets/demo/machine-lab-90s.mp4](assets/demo/machine-lab-90s.mp4). It can
+[docs/assets/demo/machine-lab-demo.mp4](assets/demo/machine-lab-demo.mp4). It can
 be regenerated with:
 
 ```sh

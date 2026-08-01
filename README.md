@@ -20,7 +20,7 @@ remain easy to port.
   <img src="docs/assets/screenshots/flappy.png" width="49%" alt="Machine Lab Flappy Bird replay">
 </p>
 
-[Watch the 90-second demo](docs/assets/demo/machine-lab-90s.mp4): setup, a
+[Watch the 54-second demo](docs/assets/demo/machine-lab-demo.mp4): setup, a
 failing lab test, the word processor, the music maker, and a captured project
 artifact.
 
@@ -46,15 +46,18 @@ that boundary intact.
 
 ```sh
 devenv shell
-machinelab-test
+machinelab-install
+machinelab-verify
 machinelab run build/examples/flappy_bird
 ```
 
 Inside the dev shell:
 
 - `machinelab` runs `./build/machinelab`, building it first if needed.
+- `machinelab-install` installs the locked docs and Remotion dependencies.
 - `machinelab-build` configures and builds with SDL enabled.
 - `machinelab-test` builds everything and runs unit, lab, and integration tests.
+- `machinelab-verify` adds docs, Remotion, and diff checks to the full test gate.
 - `lcom`, `lowlab`, and `mlab` are compatibility aliases for `machinelab`.
 
 Without `devenv`, install CMake 3.20+, Ninja, a C/C++ toolchain, and optionally

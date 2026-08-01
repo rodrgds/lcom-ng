@@ -106,9 +106,7 @@ convenient for one example.
 ## Test Gate
 
 ```sh
-devenv shell -- machinelab-test
-npm run docs:check
-git diff --check
+devenv shell -- machinelab-verify
 ```
 
 Useful narrower checks:

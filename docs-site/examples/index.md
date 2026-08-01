@@ -27,6 +27,16 @@ larger ports.
 | `flappy_bird` | compact game loop, audio, replay, capture |
 | [Ninjix](/examples/ninjix) | larger port with input, graphics, audio, profiling, UART multiplayer |
 
+## Showcase Studios
+
+[Explore the seven Showcase Studios](/examples/showcase-studios) for complete
+project-scale tools and demonstrations: sprite and level editors, paired UART
+collaboration and transfer, a Pomodoro clock, an interrupt monitor, and an
+RTC-aware aquarium.
+
+Each studio includes a polished 800×600 interface, exact controls, a canonical
+command, deterministic evidence, and reusable final-project infrastructure.
+
 ## Screenshots
 
 These are real captured frames from the included examples. They are meant to

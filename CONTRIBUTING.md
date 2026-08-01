@@ -68,8 +68,7 @@ desktop session.
 Run the full gate before opening a pull request:
 
 ```sh
-devenv shell -- machinelab-test
-git diff --check
+devenv shell -- machinelab-verify
 ```
 
 Useful narrower checks:

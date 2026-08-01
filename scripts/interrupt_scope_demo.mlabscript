@@ -1,0 +1,27 @@
+# Exercise every observable stream: keyboard bytes, PS/2 packets, UART loopback,
+# rate-window controls, and RTC polling after a deterministic clock jump.
+at 0.2s caption top 3s IRQ RATES AND RAW DEVICE BYTES IN ONE LIVE DASHBOARD
+at 10 key A down
+at 12 key A up
+at 16 key RIGHT down
+at 18 key RIGHT up
+
+at 0.5s mouse 18 -12 0
+at 0.7s mouse -7 9 1
+at 0.8s mouse 0 0 0
+
+at 1s key SPACE down
+at 1.1s key SPACE up
+at 1.4s caption bottom 2s COUNTERS STAY LIVE WHILE RATE HISTORY IS FROZEN
+at 1.8s key SPACE down
+at 1.9s key SPACE up
+
+at 2s rtc 2031-12-24T23:59:58
+at 2.1s key L down
+at 2.2s key L up
+at 2.6s key L down
+at 2.7s key L up
+at 3s mouse 42 20 0
+
+at 4.4s key ESC down
+at 4.5s key ESC up

@@ -29,7 +29,7 @@ features:
 ---
 
 <div class="demo-video">
-  <video controls preload="metadata" src="/assets/demo/machine-lab-90s.mp4"></video>
+  <video controls preload="metadata" src="/assets/demo/machine-lab-demo.mp4"></video>
 </div>
 
 Machine Lab is public courseware for computer architecture, operating systems,

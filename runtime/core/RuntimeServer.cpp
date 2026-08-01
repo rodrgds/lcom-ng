@@ -160,6 +160,7 @@ int RuntimeServer::run() {
 
   if (!options_.dump_frame_path.empty()) {
     syncFramebufferFromSharedMemory();
+    expireCaptionIfNeeded();
     if (!machine_.vbe().dumpPpm(options_.dump_frame_path,
                                 caption_text_, caption_position_)) {
       std::cerr << "machinelab: could not write frame dump "
@@ -519,6 +520,7 @@ bool RuntimeServer::handleClientMessage() {
   }
   case LCOM_MSG_VBE_PRESENT:
     syncFramebufferFromSharedMemory();
+    expireCaptionIfNeeded();
     if (!options_.dump_frame_path.empty()) {
       if (!machine_.vbe().dumpPpm(options_.dump_frame_path,
                                   caption_text_, caption_position_)) {
@@ -649,6 +651,13 @@ void RuntimeServer::applyScriptEvents(const std::vector<ScriptEvent> &events) {
   }
 }
 
+void RuntimeServer::expireCaptionIfNeeded() {
+  if (caption_until_tick_ != 0 && machine_.tick() >= caption_until_tick_) {
+    caption_text_.clear();
+    caption_until_tick_ = 0;
+  }
+}
+
 void RuntimeServer::syncFramebufferFromSharedMemory() {
   Vbe &vbe = machine_.vbe();
   size_t n = std::min(vbe.framebuffer().size(), kFramebufferShmBytes);
@@ -730,10 +739,7 @@ bool RuntimeServer::dumpVideoFrame() {
       ((presented_frame_index_ - 1) % capture_frame_stride_) != 0) {
     return true;
   }
-  if (caption_until_tick_ != 0 && machine_.tick() >= caption_until_tick_) {
-    caption_text_.clear();
-    caption_until_tick_ = 0;
-  }
+  expireCaptionIfNeeded();
   frame_index_++;
   char filename[64];
   std::snprintf(filename, sizeof(filename), "frame_%06u.ppm", frame_index_);

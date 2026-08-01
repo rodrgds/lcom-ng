@@ -8,6 +8,9 @@
 - i8254, i8042, RTC/CMOS, VBE, AC97-lite, and UART16550 models;
 - two-process UART bridging through `run-pair`;
 - generated Makefile student workspaces and seven tested labs;
+- seven showcase studios: Pixel Studio, Paired Serial Whiteboard, Desk Clock /
+  Pomodoro, Interrupt Scope, Tile Forge, Reliable Serial Transfer, and Ambient
+  Aquarium;
 - focused device examples, three project seed apps, and three complete project ports;
 - single-file and exploded application bundles;
 - Bash, Zsh, and Fish completion plus generated CLI Markdown;
@@ -19,7 +22,8 @@
 
 - generate browsable API/lab documentation from headers and lab metadata;
 - report lab failures as structured grading output with linked traces/artifacts;
-- add UART latency, loss, framing-error, and retransmission scenarios;
+- add runtime UART latency, loss, framing-error, and retransmission
+  fault-injection scenarios;
 - expand RTC alarm/periodic interrupt behavior;
 - add keyboard LED/command and richer mouse gesture exercises;
 - add a browsable static course site generated from the lab handouts.

@@ -1,0 +1,23 @@
+# The RTC is deliberately jumped while the PIT-backed session keeps its progress.
+at 0.2s caption top 3s RTC WALL TIME CAN JUMP - PIT SESSION TIME CANNOT
+at 2 key D down
+at 3 key D up
+at 5 key SPACE down
+at 6 key SPACE up
+
+at 1s rtc 2026-07-30T09:41:10
+at 1.2s caption bottom 2s WALL CLOCK JUMPS FORWARD
+
+# Pause and resume through the visible mouse button.
+at 1.5s move -60 -180 during 0.2s
+at 1.8s mouse 0 0 1
+at 1.9s mouse 0 0 0
+at 2.3s mouse 0 0 1
+at 2.4s mouse 0 0 0
+
+at 3s rtc 2026-07-30T08:05:00
+at 3.2s caption bottom 2s WALL CLOCK JUMPS BACK - COUNTDOWN STAYS MONOTONIC
+
+# Five active seconds complete the demo focus interval and produce a chime.
+at 7.2s key ESC down
+at 7.3s key ESC up

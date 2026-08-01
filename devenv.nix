@@ -16,6 +16,7 @@
     pkgs.harfbuzz
     pkgs.freetype
     pkgs.dejavu_fonts
+    pkgs.nodejs_22
   ];
 
   env.MACHINE_LAB_FONT = "${pkgs.dejavu_fonts}/share/fonts/truetype/DejaVuSansMono.ttf";
@@ -33,6 +34,19 @@
     cmake -S . -B build -G Ninja -DMACHINE_LAB_WITH_SDL=ON -DCMAKE_BUILD_TYPE=Debug
     cmake --build build
     ctest --test-dir build --output-on-failure
+  '';
+
+  scripts.machinelab-install.exec = ''
+    npm ci
+    npm --prefix media/remotion ci
+  '';
+
+  scripts.machinelab-verify.exec = ''
+    exec sh scripts/verify.sh
+  '';
+
+  scripts.agent-preflight.exec = ''
+    exec sh scripts/agent_preflight.sh
   '';
 
   scripts.machinelab.exec = ''
@@ -71,8 +85,11 @@
   enterShell = ''
     echo "Machine Lab dev shell"
     echo "  machinelab           run ./build/machinelab, building it first when needed"
+    echo "  machinelab-install   install locked docs and Remotion dependencies"
     echo "  machinelab-build     configure and build with SDL"
     echo "  machinelab-test      build and run tests"
+    echo "  machinelab-verify    run the full code, docs, media, and diff gate"
+    echo "  agent-preflight      show the read-only agent/worktree snapshot"
     echo "  machinelab-run-sdl   run the interactive SDL demo"
     echo "  machinelab-replay-flappy-video render a deterministic Flappy replay MP4"
     echo "  mlab/lowlab/lcom     compatibility aliases for machinelab"

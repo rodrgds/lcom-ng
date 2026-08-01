@@ -65,6 +65,8 @@ static void configureCliApp(CLI::App &app) {
   run_pair->add_flag("--integer-scale", "Use integer SDL scaling");
   run_pair->add_option("--left-script", "Inject script into the left program");
   run_pair->add_option("--right-script", "Inject script into the right program");
+  run_pair->add_option("--left-dump-frame", "Dump the left framebuffer as PPM");
+  run_pair->add_option("--right-dump-frame", "Dump the right framebuffer as PPM");
   run_pair->add_option("--max-ticks", "Guard against hung paired programs");
   run_pair->add_flag("--right", "Separate the right program from the left program");
 
@@ -246,7 +248,7 @@ static int completionScript(const std::string &shell) {
         << "  case \"$cmd\" in\n"
         << "    run) COMPREPLY=( $(compgen -W \"" << run_opts << "\" -- \"$cur\") ) ;;\n"
         << "    replay) COMPREPLY=( $(compgen -W \"" << replay_opts << "\" -- \"$cur\") ) ;;\n"
-        << "    run-pair) COMPREPLY=( $(compgen -W \"--headless --display --realtime --no-realtime --fullscreen --scale --integer-scale --left-script --right-script --max-ticks --right\" -- \"$cur\") ) ;;\n"
+        << "    run-pair) COMPREPLY=( $(compgen -W \"--headless --display --realtime --no-realtime --fullscreen --scale --integer-scale --left-script --right-script --left-dump-frame --right-dump-frame --max-ticks --right\" -- \"$cur\") ) ;;\n"
         << "    setup) COMPREPLY=( $(compgen -W \"" << setup_opts << "\" -- \"$cur\") ) ;;\n"
         << "    test) COMPREPLY=( $(compgen -W \"" << lab_names << " " << test_opts << "\" -- \"$cur\") ) ;;\n"
         << "    bundle) COMPREPLY=( $(compgen -W \"" << bundle_opts << "\" -- \"$cur\") ) ;;\n"
@@ -266,7 +268,7 @@ static int completionScript(const std::string &shell) {
         << "  case $words[2] in\n"
         << "    run) _arguments '--headless' '--display[backend]:' '--audio[backend]:' '--audio-wav[file]:file:_files' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--script[file]:file:_files' '--trace[file]:file:_files' '--dump-frame[file]:file:_files' '--frame-dir[dir]:dir:_files -/' '--video[file]:file:_files' '--video-fps[n]:' '--rtc[iso-time]:' '--max-ticks[n]:' '*::program:_files' ;;\n"
         << "    replay) _arguments '--headless' '--display[backend]:' '--audio[backend]:' '--audio-wav[file]:file:_files' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--trace[file]:file:_files' '--dump-frame[file]:file:_files' '--frame-dir[dir]:dir:_files -/' '--video[file]:file:_files' '--video-fps[n]:' '--rtc[iso-time]:' '--max-ticks[n]:' '1:script:_files' '*::program:_files' ;;\n"
-        << "    run-pair) _arguments '--headless' '--display[backend]:' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--left-script[file]:file:_files' '--right-script[file]:file:_files' '--max-ticks[n]:' '--right' '*::program:_files' ;;\n"
+        << "    run-pair) _arguments '--headless' '--display[backend]:' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--left-script[file]:file:_files' '--right-script[file]:file:_files' '--left-dump-frame[file]:file:_files' '--right-dump-frame[file]:file:_files' '--max-ticks[n]:' '--right' '*::program:_files' ;;\n"
         << "    setup) _arguments '--force' '1:project-dir:_files -/' ;;\n"
         << "    test) _arguments '--project[dir]:dir:_files -/' '--keep-build' '1:lab:(rtc timer kbd mouse graphics audio uart lab1 lab2 lab3 lab4 lab5 lab6 lab7)' ;;\n"
         << "    bundle) _arguments '--program[student binary]:file:_files' '--name[name]:' '--output[path]:file:_files' '--format[format]:(single dir)' '--script[script]:file:_files' '--display[backend]:' '--audio[backend]:' '--headless' '--realtime' '--no-realtime' '--dir' '--single-file' ;;\n"
@@ -287,6 +289,8 @@ static int completionScript(const std::string &shell) {
         << "complete -c machinelab -n '__fish_seen_subcommand_from run replay' -l video -r\n"
         << "complete -c machinelab -n '__fish_seen_subcommand_from run-pair' -l left-script -r\n"
         << "complete -c machinelab -n '__fish_seen_subcommand_from run-pair' -l right-script -r\n"
+        << "complete -c machinelab -n '__fish_seen_subcommand_from run-pair' -l left-dump-frame -r\n"
+        << "complete -c machinelab -n '__fish_seen_subcommand_from run-pair' -l right-dump-frame -r\n"
         << "complete -c machinelab -n '__fish_seen_subcommand_from run-pair' -l max-ticks -r\n"
         << "complete -c machinelab -n '__fish_seen_subcommand_from run-pair' -l headless\n"
         << "complete -c machinelab -n '__fish_seen_subcommand_from run-pair' -l display -r\n"
@@ -469,6 +473,10 @@ static bool parseRunPair(int argc, char **argv, int start, PairRuntimeOptions &o
       opts.left_script_path = argv[++i];
     } else if (arg == "--right-script" && i + 1 < argc) {
       opts.right_script_path = argv[++i];
+    } else if (arg == "--left-dump-frame" && i + 1 < argc) {
+      opts.left_dump_frame_path = argv[++i];
+    } else if (arg == "--right-dump-frame" && i + 1 < argc) {
+      opts.right_dump_frame_path = argv[++i];
     } else if (arg == "--max-ticks" && i + 1 < argc) {
       opts.max_ticks = std::strtoull(argv[++i], nullptr, 10);
     } else if (!arg.empty() && arg[0] == '-') {

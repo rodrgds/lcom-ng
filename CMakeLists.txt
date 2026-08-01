@@ -135,15 +135,22 @@ add_custom_command(TARGET machinelab POST_BUILD
 )
 
 set(MACHINE_LAB_EXAMPLES
+  ambient_aquarium
   hello
   audio_tone
   breakout_demo
+  interrupt_scope
   timer_int
   keyboard_scan
   music_maker
   mouse_packet
+  pixel_studio
+  pomodoro_clock
   rtc_date
   sdl_demo
+  serial_transfer
+  serial_whiteboard
+  tilemap_editor
   uart_loopback
   uart_pair
   uart_peer_sender
@@ -210,6 +217,13 @@ add_executable(client_protocol_tests tests/client_protocol_tests.c)
 target_link_libraries(client_protocol_tests PRIVATE machinelab_c)
 target_compile_options(client_protocol_tests PRIVATE -Wall -Wextra -Wpedantic)
 set_target_properties(client_protocol_tests PROPERTIES
+  RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/tests
+)
+
+add_executable(framebuffer_dirty_client tests/framebuffer_dirty_client.c)
+target_link_libraries(framebuffer_dirty_client PRIVATE machinelab_c)
+target_compile_options(framebuffer_dirty_client PRIVATE -Wall -Wextra -Wpedantic)
+set_target_properties(framebuffer_dirty_client PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/tests
 )
 

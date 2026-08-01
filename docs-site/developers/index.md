@@ -28,9 +28,7 @@ scaffolding, docs, tests, examples, and releases.
 ## Test Gate
 
 ```sh
-devenv shell -- machinelab-test
-npm run docs:check
-git diff --check
+devenv shell -- machinelab-verify
 ```
 
 ## Docs Site

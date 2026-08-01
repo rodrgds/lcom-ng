@@ -195,6 +195,7 @@ int PairRuntimeServer::run() {
     }
   }
 
+  if (!dumpFrameArtifacts()) return 1;
   if (runtime_status != 0) return runtime_status;
   if (left_.exit_status != 0) return left_.exit_status;
   return right_.exit_status;
@@ -538,6 +539,15 @@ void PairRuntimeServer::advanceAllOnce() {
     std::cerr << "machinelab: run-pair max virtual ticks reached (" << options_.max_ticks << ")\n";
     left_.exit_status = 1;
     right_.exit_status = 1;
+    // cleanupSlot() unmaps guest framebuffer memory. Preserve the latest guest
+    // writes first so requested failure artifacts remain diagnostically useful
+    // even when a program wrote after its most recent VBE present.
+    if (!options_.left_dump_frame_path.empty()) {
+      syncFramebufferFromSharedMemory(left_);
+    }
+    if (!options_.right_dump_frame_path.empty()) {
+      syncFramebufferFromSharedMemory(right_);
+    }
     cleanupSlot(left_);
     cleanupSlot(right_);
     return;
@@ -577,6 +587,20 @@ void PairRuntimeServer::syncFramebufferFromSharedMemory(Slot &slot) {
   if (slot.shm_data != nullptr && n != 0) {
     std::copy(slot.shm_data, slot.shm_data + n, vbe.framebuffer().begin());
   }
+}
+
+bool PairRuntimeServer::dumpFrameArtifacts() {
+  auto dump = [&](Slot &slot, const std::string &path) {
+    if (path.empty()) return true;
+    syncFramebufferFromSharedMemory(slot);
+    if (slot.machine.vbe().dumpPpm(path)) return true;
+    std::cerr << "machinelab: could not write " << slot.name
+              << " frame dump " << path << "\n";
+    return false;
+  };
+  bool left_ok = dump(left_, options_.left_dump_frame_path);
+  bool right_ok = dump(right_, options_.right_dump_frame_path);
+  return left_ok && right_ok;
 }
 
 void PairRuntimeServer::zeroSharedMemory(Slot &slot) {

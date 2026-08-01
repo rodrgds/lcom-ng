@@ -65,7 +65,9 @@ machinelab run-pair build/examples/ninjix --right build/examples/ninjix
 
 The left and right programs have separate machines, processes, input streams,
 display state, and IRQ state. The runtime bridges matching serial ports:
-left COM1 to right COM1 and left COM2 to right COM2.
+left COM1 to right COM1 and left COM2 to right COM2. Use
+`--left-dump-frame` and `--right-dump-frame` to keep both final PPM frames from
+a headless paired run.
 
 This replaces the old two-VM/null-modem setup with one reproducible command.
 

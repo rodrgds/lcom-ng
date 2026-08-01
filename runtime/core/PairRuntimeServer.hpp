@@ -17,6 +17,8 @@ struct PairRuntimeOptions {
   std::vector<std::string> right_program;
   std::string left_script_path;
   std::string right_script_path;
+  std::string left_dump_frame_path;
+  std::string right_dump_frame_path;
   uint64_t max_ticks = 100000;
   bool headless = false;
   bool realtime = true;
@@ -69,6 +71,7 @@ private:
   void advanceAllOnce();
   void applyScriptEvents(Slot &slot, const std::vector<ScriptEvent> &events);
   void syncFramebufferFromSharedMemory(Slot &slot);
+  bool dumpFrameArtifacts();
   void zeroSharedMemory(Slot &slot);
   void drainPipe(Slot &slot, int fd, const char *label);
   bool childExited(Slot &slot);

@@ -11,7 +11,8 @@ SDL3, SDL3_ttf, and ffmpeg used by the complete test and demo workflow.
 
 ```sh
 devenv shell
-machinelab-test
+machinelab-install
+machinelab-verify
 ```
 
 Available shell helpers:
@@ -19,8 +20,10 @@ Available shell helpers:
 | Command | Action |
 | --- | --- |
 | `machinelab` | run `build/machinelab`, building the CLI first if it is missing |
+| `machinelab-install` | install locked VitePress and Remotion dependencies |
 | `machinelab-build` | configure and compile an SDL-enabled debug build |
 | `machinelab-test` | build and run the complete CTest suite |
+| `machinelab-verify` | run CTest, docs checks, Remotion typecheck, and `git diff --check` |
 | `machinelab-run-sdl` | build and open the focused SDL demo |
 | `machinelab-replay-flappy-video` | render `build/replays/flappy.mp4` |
 | `lcom` | compatibility alias for `machinelab` |
