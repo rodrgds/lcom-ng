@@ -119,6 +119,7 @@ typedef struct {
   bool peer_hello;
   bool peer_activity;
   bool hello_acked;
+  bool hello_sent;
   bool metadata_acked;
   bool done_acked;
   bool metadata_received;
@@ -832,7 +833,7 @@ static void xfer_render(xfer_app_t *app) {
   example_fill_rect(canvas, 0, 0, 800, 600, background);
   example_fill_rect(canvas, 0, 0, 800, 76, example_rgb(16, 28, 46));
   example_fill_rect(canvas, 0, 72, 800, 4, accent);
-  example_draw_text(canvas, 28, 19, "RELIABLE SERIAL TRANSFER",
+  example_draw_text(canvas, 28, 19, "SERIAL TRANSFER",
                     example_rgb(248, 250, 252), 4);
   example_draw_text(canvas, 595, 18,
                     app->is_sender ? "SENDER" : "RECEIVER", accent, 2);
@@ -1002,7 +1003,6 @@ int main(int argc, char **argv) {
   app.timer_subscribed = true;
   if (xfer_uart_start(&app.uart) != LCOM_OK) goto cleanup;
 
-  xfer_send_hello(&app);
   xfer_render(&app);
   (void)lcom_vbe_present();
 
@@ -1015,6 +1015,15 @@ int main(int argc, char **argv) {
     if ((event.irq_mask & app.uart.irq.mask) != 0u) xfer_uart_service(&app);
     if ((event.irq_mask & app.timer_irq.mask) != 0u) {
       app.tick = (uint32_t)event.tick;
+      // Wait for the first timer tick before transmitting. Virtual ticks only
+      // advance once BOTH paired guests have finished initializing and entered
+      // their event loops, so the peer's UART is guaranteed configured here.
+      // Sending earlier can race the peer's FIFO setup and drop the HELLO,
+      // which made retry counters depend on host scheduling.
+      if (!app.hello_sent) {
+        xfer_send_hello(&app);
+        app.hello_sent = true;
+      }
       xfer_tick(&app);
       xfer_render(&app);
       (void)lcom_vbe_present();
