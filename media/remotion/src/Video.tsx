@@ -196,7 +196,7 @@ const HookScene: React.FC = () => {
         <div style={{transform: `scale(${0.94 + pop * 0.06})`, transformOrigin: 'left center'}}>
           <Heading size={126} width={1260}>Learn systems by building things that move.</Heading>
         </div>
-        <Copy width={1100}>Portable C labs, virtual devices, deterministic feedback—and projects you can see and hear.</Copy>
+        <Copy width={1100}>Portable C labs, virtual devices, deterministic feedback, and projects you can see and hear.</Copy>
         <div style={{display: 'flex', gap: 16, marginTop: 12}}>
           <Pill color={palette.blue}>C</Pill>
           <Pill color={palette.mint}>interrupts</Pill>
@@ -363,7 +363,7 @@ const MusicScene: React.FC = () => {
       </div>
       <div style={{position: 'absolute', right: 112, top: 145, width: 520, display: 'flex', flexDirection: 'column', gap: 26}}>
         <Eyebrow color={palette.violet}>Hear every step, on time</Eyebrow>
-        <Heading size={78} width={540}>A pocket composer—not a sound dump.</Heading>
+        <Heading size={78} width={540}>A pocket composer, not a sound dump.</Heading>
         <Copy width={510}>Four instruments, a chromatic piano roll, mute and tempo controls, looping transport, and real PCM output.</Copy>
         <div style={{height: 120, display: 'flex', gap: 12, alignItems: 'flex-end', marginTop: 8}}>
           {bars.map((height, index) => {
