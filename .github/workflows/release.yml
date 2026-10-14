@@ -137,20 +137,33 @@ jobs:
           prefix="$(cygpath -u "$RUNNER_TEMP")/lcom-sdl"
           mkdir -p "$prefix/include" "$prefix/lib/pkgconfig"
           cp -R /mingw64/include/SDL3 /mingw64/include/SDL3_ttf "$prefix/include/"
+          cp /mingw64/lib/libSDL3.dll.a /mingw64/lib/libSDL3_ttf.dll.a "$prefix/lib/"
           # Do not put the entire mingw include directory before MSYS libc.
           for library in sdl3 sdl3-ttf; do
             sed "s|^includedir=.*|includedir=$prefix/include|" "/mingw64/lib/pkgconfig/$library.pc" > "$prefix/lib/pkgconfig/$library.pc"
           done
           echo "PKG_CONFIG_PATH=$prefix/lib/pkgconfig" >> "$GITHUB_ENV"
-          cat > /usr/bin/ffmpeg <<'EOF'
+          for program in ffmpeg ffprobe; do
+            cat > "/usr/bin/$program" <<EOF
           #!/usr/bin/env sh
-          PATH="/mingw64/bin:$PATH" exec /mingw64/bin/ffmpeg.exe "$@"
+          PATH="/mingw64/bin:\$PATH" exec /mingw64/bin/$program.exe "\$@"
           EOF
-          chmod +x /usr/bin/ffmpeg
+            chmod +x "/usr/bin/$program"
+          done
+
+      - name: Verify media test tools
+        run: |
+          ffmpeg -version
+          ffprobe -version
 
       - name: Configure desktop runtime
         run: |
-          if [ "$RUNNER_OS" = Windows ]; then export PATH="/usr/bin:/mingw64/bin:$PATH"; fi
+          if [ "$RUNNER_OS" = Windows ]; then
+            export PATH="/usr/bin:/mingw64/bin:$PATH"
+            # MSYS /etc/profile resets this variable at every shell startup.
+            export PKG_CONFIG_PATH="$(cygpath -u "$RUNNER_TEMP")/lcom-sdl/lib/pkgconfig"
+            pkg-config --modversion --cflags --libs sdl3 sdl3-ttf
+          fi
           cmake -S . -B build -G Ninja -DMACHINE_LAB_WITH_SDL=ON -DCMAKE_BUILD_TYPE=Release
       - name: Build
         run: |

@@ -12,3 +12,7 @@ ts	phase	decision	why	evidence	result
 2026-10-14	deploy	Publish the verified site to the existing Pages resource	User requested website and domain migration	build/release-work/deploy.log; https://abd268cf.machine-lab-docs.pages.dev; https://lcom.rgo.pt	DEPLOYED AND LIVE VERIFIED
 2026-10-14	verify	Pass actionlint and ShellCheck for both workflows	Validate executable workflow syntax without claiming remote runner execution	build/release-work/actionlint.log	VERIFIED
 2026-10-14	live	Confirm Pages domain verification and certificate active, browser download guide and search work	DNS alone does not prove the deployed site	Cloudflare domains API; build/release-work/website-proof.jpg	VERIFIED
+2026-10-14	ci	Expose ffprobe alongside ffmpeg and verify both before tests	Previous Windows integration run could not find ffprobe	.github/workflows/release.yml; build/release-work/previous-ci-failed.log	FIXED PENDING WINDOWS CI
+2026-10-14	ci	Export SDL pkg-config path inside the MSYS configure shell	MSYS /etc/profile overwrites inherited package search paths on startup	.github/workflows/release.yml; build/release-work/ci-windows.log	FIXED PENDING WINDOWS CI
+2026-10-14	ci	Create real archive members in importer fixtures	Apple ar rejects GNU ar's empty-archive extension	tests/compat_import_tests.py; build/release-work/mac-fixture/	VERIFIED RED AND GREEN
+2026-10-14	ci	Linux ARM and x86 student packages pass remote tests and relocated smoke	First complete platform runs establish Linux evidence	https://github.com/rodrgds/lcom-ng/actions/runs/38627993501	VERIFIED LINUX

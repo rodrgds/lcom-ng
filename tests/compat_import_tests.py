@@ -26,9 +26,14 @@ class ImportTests(unittest.TestCase):
         (self.sdk / "include").mkdir()
         self.runtime = self.root / "runtime"
         self.runtime.mkdir()
-        # These tests cover build inputs and linking, not emulated APIs.
+        # These tests cover build inputs and linking, not emulated APIs. Apple ar
+        # requires an archive member, unlike GNU ar's empty-archive extension.
+        member_source = self.runtime / "placeholder.c"
+        member_source.write_text("void lcom_fixture_placeholder(void) {}\n")
+        member_object = self.runtime / "placeholder.o"
+        subprocess.run([shutil.which("cc"), "-c", str(member_source), "-o", str(member_object)], check=True)
         for name in ("liblcom_minix.a", "libmachinelab.a"):
-            subprocess.run(["ar", "rcs", str(self.runtime / name)], check=True)
+            subprocess.run(["ar", "rcs", str(self.runtime / name), str(member_object)], check=True)
         self.output = self.root / "output"
 
     def write(self, path, text):
