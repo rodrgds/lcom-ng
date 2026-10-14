@@ -140,7 +140,11 @@ jobs:
           cp /mingw64/lib/libSDL3.dll.a /mingw64/lib/libSDL3_ttf.dll.a "$prefix/lib/"
           # Do not put the entire mingw include directory before MSYS libc.
           for library in sdl3 sdl3-ttf; do
-            sed "s|^includedir=.*|includedir=$prefix/include|" "/mingw64/lib/pkgconfig/$library.pc" > "$prefix/lib/pkgconfig/$library.pc"
+            # Only the public SDL C headers and shared DLL imports cross ABIs.
+            # FreeType/HarfBuzz remain private dependencies of the mingw DLL.
+            sed -e "s|^includedir=.*|includedir=$prefix/include|" \
+              -e '/^Requires.private:/d' -e '/^Libs.private:/d' \
+              "/mingw64/lib/pkgconfig/$library.pc" > "$prefix/lib/pkgconfig/$library.pc"
           done
           echo "PKG_CONFIG_PATH=$prefix/lib/pkgconfig" >> "$GITHUB_ENV"
           for program in ffmpeg ffprobe; do
