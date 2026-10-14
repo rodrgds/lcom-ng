@@ -2,7 +2,7 @@
 set -eu
 
 test -f package.json
-test -f package-lock.json
+test -f bun.lock
 test -f wrangler.toml
 test -f .github/workflows/docs.yml
 test -f docs-site/.vitepress/config.mts
@@ -83,7 +83,7 @@ test -f docs-site/labs/lab5/reactive-apps.md
 test -f docs-site/labs/lab6/pcm.md
 test -f docs-site/labs/lab7/protocols.md
 
-grep -q "Machine Lab" docs-site/index.md
+grep -q "lcom-ng" docs-site/index.md
 grep -q "computer architecture" docs-site/index.md
 grep -q "machine-lab-demo.mp4" README.md
 grep -q "machine-lab-demo.mp4" docs/video-demo.md

@@ -18,3 +18,7 @@ docs-site/.vitepress/dist/
 docs-site/public/assets/
 media/remotion/out/
 media/remotion/public/
+
+# Python-generated cache files
+__pycache__/
+*.py[cod]

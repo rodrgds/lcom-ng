@@ -67,7 +67,7 @@ Use this checklist to ensure your Remotion walkthrough video composition is comp
 
 ## ✅ Preview & Testing
 
-- [ ] Preview in Remotion Studio (`npm run dev`)
+- [ ] Preview in Remotion Studio (`bun run dev`)
 - [ ] Scrub through timeline to check all frames
 - [ ] Verify smooth playback
 - [ ] Check for any rendering errors
@@ -113,7 +113,7 @@ Use this checklist to ensure your Remotion walkthrough video composition is comp
 - [ ] No misaligned text (verify positioning)
 - [ ] No choppy animations (check spring configs)
 - [ ] No missing assets (verify all paths)
-- [ ] No build errors (run `npm run build` test)
+- [ ] No build errors (run `bun run build` test)
 
 ---
 

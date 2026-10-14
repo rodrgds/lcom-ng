@@ -203,7 +203,7 @@ Present the complete scenario.
 
 **Goal**: Create the Remotion project and render the first version.
 
-**CRITICAL**: Never run any command that launches an interactive CLI wizard or prompts for input. This includes `npx create-video`, `npx remotion init`, `npm init`, or bare `npx remotion render` without arguments. Always create files manually and pass all arguments explicitly to CLI commands.
+**CRITICAL**: Never run any command that launches an interactive CLI wizard or prompts for input. This includes `bunx create-video`, `bunx remotion init`, `bun init`, or bare `bunx remotion render` without arguments. Always create files manually and pass all arguments explicitly to CLI commands.
 
 #### Step 9 - Scaffold Project
 
@@ -233,7 +233,7 @@ Create the Remotion project structure manually (do NOT use scaffolding wizards -
 └── remotion.config.ts
 ```
 
-Install dependencies: `pnpm install`
+Install dependencies: `bun install`
 
 #### Step 10 - Build Scenes
 
@@ -278,14 +278,14 @@ If user skips audio: render with `--muted` flag.
 
 #### Step 12 - Render and Preview
 
-**CRITICAL: Always pass the entry point file to avoid interactive prompts.** Never run bare `npx remotion render` - it may launch an interactive composition picker. Always specify the entry file and composition ID explicitly:
+**CRITICAL: Always pass the entry point file to avoid interactive prompts.** Never run bare `bunx remotion render` - it may launch an interactive composition picker. Always specify the entry file and composition ID explicitly:
 
 ```bash
 # Render final MP4 - always specify entry point + composition ID
-npx remotion render src/Root.tsx <CompositionId> out/<name>.mp4 --codec=h264 --crf=18
+bunx remotion render src/Root.tsx <CompositionId> out/<name>.mp4 --codec=h264 --crf=18
 
 # If no audio:
-npx remotion render src/Root.tsx <CompositionId> out/<name>.mp4 --codec=h264 --crf=18 --muted
+bunx remotion render src/Root.tsx <CompositionId> out/<name>.mp4 --codec=h264 --crf=18 --muted
 ```
 
 Open the video for the user to review.

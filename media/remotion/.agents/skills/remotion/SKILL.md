@@ -23,7 +23,7 @@ This skill enables you to create walkthrough videos that showcase app screens wi
 **Required:**
 - Access to the Stitch MCP Server
 - Access to the Remotion MCP Server (or Remotion CLI)
-- Node.js and npm installed
+- Node.js and Bun installed
 - A Stitch project with designed screens
 
 **Recommended:**
@@ -72,7 +72,7 @@ Run `list_tools` to identify available MCP servers and their prefixes:
 
 2. **Create new Remotion project** (if needed):
    ```bash
-   npm create video@latest -- --blank
+   bunx create-video@latest --yes --blank
    ```
    - Choose TypeScript template
    - Set up in a dedicated `video/` directory
@@ -80,7 +80,7 @@ Run `list_tools` to identify available MCP servers and their prefixes:
 3. **Install dependencies**:
    ```bash
    cd video
-   npm install @remotion/transitions @remotion/animated-emoji
+   bun add @remotion/transitions @remotion/animated-emoji
    ```
 
 ## Video Composition Strategy
@@ -196,7 +196,7 @@ Create the video components following Remotion best practices:
 
 1. **Start Remotion Studio**:
    ```bash
-   npm run dev
+   bun run dev
    ```
    - Opens browser-based preview
    - Allows real-time editing and refinement
@@ -215,7 +215,7 @@ Create the video components following Remotion best practices:
 
 1. **Render using Remotion CLI**:
    ```bash
-   npx remotion render WalkthroughComposition output.mp4
+   bunx remotion render WalkthroughComposition output.mp4
    ```
 
 2. **Alternative: Use Remotion MCP** (if available):
@@ -304,7 +304,7 @@ project/
 Remotion maintains its own Agent Skills that define best practices. Review these for advanced techniques:
 
 - **Repository**: https://github.com/remotion-dev/remotion/tree/main/packages/skills
-- **Installation**: `npx skills add remotion-dev/skills`
+- **Installation**: `bunx skills add remotion-dev/skills`
 
 Key Remotion skills to leverage:
 - Animation timing and easing

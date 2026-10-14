@@ -17,7 +17,7 @@ Children are absolutely positioned.
 ## Prerequisites
 
 ```bash
-npx remotion add @remotion/transitions
+bunx remotion add @remotion/transitions
 ```
 
 ## Transition example

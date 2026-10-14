@@ -10,7 +10,7 @@ metadata:
 ## Prerequisites
 
 ```bash
-npx remotion add @remotion/media-utils
+bunx remotion add @remotion/media-utils
 ```
 
 ## Loading Audio Data

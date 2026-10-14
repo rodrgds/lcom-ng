@@ -9,30 +9,10 @@ To make a video parametrizable, a Zod schema can be added to a composition.
 
 First, `zod` must be installed .
 
-Search the project for lockfiles and run the correct command depending on the package manager:
-
-If `package-lock.json` is found, use the following command:
+Install it with Bun:
 
 ```bash
-npm i zod
-```
-
-If `bun.lockb` is found, use the following command:
-
-```bash
-bun i zod
-```
-
-If `yarn.lock` is found, use the following command:
-
-```bash
-yarn add zod
-```
-
-If `pnpm-lock.yaml` is found, use the following command:
-
-```bash
-pnpm i zod
+bun add zod
 ```
 
 Then, a Zod schema can be defined alongside the component:
@@ -88,10 +68,7 @@ For adding a color picker, use `zColor()` from `@remotion/zod-types`.
 If it is not installed, use the following command:
 
 ```bash
-npx remotion add @remotion/zod-types # If project uses npm
 bunx remotion add @remotion/zod-types # If project uses bun
-yarn remotion add @remotion/zod-types # If project uses yarn
-pnpm exec remotion add @remotion/zod-types # If project uses pnpm
 ```
 
 Then import `zColor` from `@remotion/zod-types`:

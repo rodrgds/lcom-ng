@@ -6,26 +6,25 @@ cd "$ROOT"
 
 if [ ! -x node_modules/.bin/vitepress ] ||
    [ ! -x media/remotion/node_modules/.bin/tsc ]; then
-  echo "Machine Lab JS dependencies are missing; run machinelab-install." >&2
+  echo "lcom-ng JS dependencies are missing; run lcom-ng-install." >&2
   exit 1
 fi
 
-echo "==> Machine Lab build and CTest"
+echo "==> lcom-ng build and CTest"
 cmake -S . -B build -G Ninja -DMACHINE_LAB_WITH_SDL=ON -DCMAKE_BUILD_TYPE=Debug
 cmake --build build
 ctest --test-dir build --output-on-failure
 
 echo "==> Public docs and asset checks"
-npm run docs:check
+bun run docs:check
 
 echo "==> Remotion typecheck"
 (
   cd media/remotion
-  npm exec -- tsc --noEmit
+  bunx tsc --noEmit
 )
 
 echo "==> Git whitespace check"
 git diff --check
 
-echo "Machine Lab verification passed"
-
+echo "lcom-ng verification passed"

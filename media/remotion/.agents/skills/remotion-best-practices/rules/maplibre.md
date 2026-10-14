@@ -27,22 +27,10 @@ const newYork: [number, number] = [-74.006, 40.7128];
 
 ## Prerequisites
 
-Install MapLibre and Turf with the project's package manager.
+Install MapLibre and Turf with Bun.
 
 ```bash
-npm i maplibre-gl @turf/turf
-```
-
-```bash
-bun i maplibre-gl @turf/turf
-```
-
-```bash
-yarn add maplibre-gl @turf/turf
-```
-
-```bash
-pnpm i maplibre-gl @turf/turf
+bun add maplibre-gl @turf/turf
 ```
 
 Import the MapLibre CSS once in the component or an app-level stylesheet:
@@ -455,4 +443,4 @@ For WebGL map renders, prefer single concurrency and ANGLE:
 bunx remotion render [composition-id] out/video.mp4 --gl=angle --concurrency=1
 ```
 
-Use the equivalent package runner for the project. In npm projects, use `npx`; in Bun projects, use `bunx`.
+Use `bunx` as the package runner for this project.

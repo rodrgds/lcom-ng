@@ -15,10 +15,10 @@ Custom effect docs: https://www.remotion.dev/docs/create-effect
 Install the package that provides the chosen effect:
 
 ```bash
-npx remotion add @remotion/effects
+bunx remotion add @remotion/effects
 ```
 
-Use `npx remotion add @remotion/light-leaks` for `lightLeak()` and `npx remotion add @remotion/starburst` for `starburst()`.
+Use `bunx remotion add @remotion/light-leaks` for `lightLeak()` and `bunx remotion add @remotion/starburst` for `starburst()`.
 
 Effects are functions passed to the `effects` prop of canvas-based components such as `<Video>` from `@remotion/media`, `<Solid>`, `<CanvasImage>`, and `<HtmlInCanvas>`.
 

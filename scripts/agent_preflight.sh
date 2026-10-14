@@ -4,15 +4,15 @@ set -eu
 ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)"
 cd "$ROOT"
 
-echo "Machine Lab agent preflight"
+echo "lcom-ng agent preflight"
 printf "root: %s\n" "$ROOT"
 git status --short --branch
 
-cmake_version=$(sed -n 's/^project(machine-lab VERSION \([^ ]*\).*/\1/p' CMakeLists.txt)
+cmake_version=$(sed -n 's/^project(lcom-ng VERSION \([^ ]*\).*/\1/p' CMakeLists.txt)
 package_version=$(sed -n 's/^[[:space:]]*"version": "\([^"]*\)".*/\1/p' package.json | head -n 1)
 printf "version: CMake=%s package=%s\n" "$cmake_version" "$package_version"
 
-for command in cmake ninja ffmpeg node npm; do
+for command in cmake ninja ffmpeg node bun; do
   if command -v "$command" >/dev/null 2>&1; then
     printf "tool: %-6s available\n" "$command"
   else
@@ -38,4 +38,3 @@ test -f docs/assets/demo/machine-lab-demo.mp4
 echo "lab truth: course/labs/function-requests.json"
 echo "public demo: docs/assets/demo/machine-lab-demo.mp4"
 echo "full gate: devenv shell -- machinelab-verify"
-
