@@ -2,7 +2,7 @@
 #include <sys/resource.h>
 #include <signal.h>
 
-#define CHECK(condition) do { if (!(condition)) { fprintf(stderr, "Output log check failed at line %d: %s\n", __LINE__, #condition); return 1; } } while (0)
+#define CHECK(condition) do { if (!(condition)) { fprintf(stderr, "Output log check failed at line %d: %s (errno %d: %s)\n", __LINE__, #condition, errno, strerror(errno)); return 1; } } while (0)
 
 int main(int argc, char **argv) {
   CHECK(argc >= 2);
@@ -16,6 +16,11 @@ int main(int argc, char **argv) {
     CHECK(lcf_log_output(first)); printf("flushed automatically on exit"); return 0;
   }
   if (argc > 2 && !strcmp(argv[2], "--write-failure")) {
+    // Linux and MSYS provide a real failing device. Apple uses file limits.
+    if (access("/dev/full", F_OK) == 0) {
+      CHECK(lcf_log_output("/dev/full")); puts("console survives log write failure");
+      CHECK(lcf_cleanup_fast() == ENOSPC); return 0;
+    }
     CHECK(lcf_log_output(first));
     struct rlimit original, limited; CHECK(getrlimit(RLIMIT_FSIZE, &original) == 0);
     limited = original; limited.rlim_cur = 0; CHECK(signal(SIGXFSZ, SIG_IGN) != SIG_ERR);

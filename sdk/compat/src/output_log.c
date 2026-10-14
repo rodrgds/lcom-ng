@@ -77,9 +77,11 @@ static int close_log(struct output_log *log, bool restore) {
       break;
     }
   }
-  if (log->writer >= 0) close(log->writer);
   int stopped = write_all(log->stop_writer, "x", 1);
   int joined = pthread_join(log->thread, NULL);
+  // Keep one writer alive until the bounded drain finishes. MSYS pipe queries
+  // fail with EPIPE after the last writer closes, even during normal cleanup.
+  if (log->writer >= 0) close(log->writer);
   if (!error) error = stopped;
   if (!error) error = joined;
   if (!error) error = log->error;
@@ -160,7 +162,7 @@ bool lcf_log_output(const char *path) {
     if (!error && dup2(next->writer, STDOUT_FILENO) < 0) error = errno;
     funlockfile(stdout);
   }
-  if (!error) { close(next->writer); next->writer = -1; active = next; }
+  if (!error) active = next;
   else (void)close_log(next, false);
   funlockfile(stdout);
   pthread_mutex_unlock(&configuration);

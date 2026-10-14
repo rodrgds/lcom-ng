@@ -88,6 +88,10 @@ Replace `YOUR_NAME` with your Windows account directory. Add the export line to
 `~/.bashrc`. Build and run inside this same MSYS terminal. SDL and runtime DLLs are
 included in the archive. Windows ARM is not a release target yet.
 
+Use `lcom-ng compat build . --debug` for debug symbols. MSYS GCC does not include
+AddressSanitizer, so `--sanitize address` reports that the host compiler cannot
+build with it.
+
 ## Run your code
 
 For an existing Minix project, enter the folder containing its original Makefile:

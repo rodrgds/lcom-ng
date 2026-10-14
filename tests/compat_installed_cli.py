@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 import tempfile
 import unittest
 
@@ -44,7 +45,18 @@ class InstalledCliTests(unittest.TestCase):
                 links = root / "links"
                 links.mkdir()
                 alias = links / "student-runtime"
-                alias.symlink_to(binary)
+                # MSYS2 defaults to deepcopy for symlink creation. Configure the
+                # child at startup to create a real Cygwin/MSYS symbolic link,
+                # requiring neither Windows Developer Mode nor admin privileges.
+                link_env = env.copy()
+                for variable in ("MSYS", "CYGWIN"):
+                    options = [word for word in link_env.get(variable, "").split()
+                               if not word.startswith("winsymlinks:")]
+                    link_env[variable] = " ".join([*options, "winsymlinks:sys"])
+                subprocess.run([sys.executable, "-c",
+                                "from pathlib import Path; import sys; Path(sys.argv[1]).symlink_to(sys.argv[2])",
+                                str(alias), str(binary)], env=link_env, check=True)
+                self.assertTrue(alias.is_symlink(), "Fixture must create a symbolic link, not a copied executable")
                 invocations.append(("symlink", str(alias)))
             for name, command in invocations:
                 with self.subTest(invocation=name):

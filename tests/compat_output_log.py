@@ -37,5 +37,6 @@ with tempfile.TemporaryDirectory(prefix="lcom-ng output log ") as temporary:
     result = subprocess.run([runtime, "run", "--headless", "--", client, failure, "--write-failure"], capture_output=True, text=True, timeout=15)
     assert result.returncode == 0, result.stdout + result.stderr
     assert "console survives log write failure" in result.stdout
-    assert (failure / "lab/a.log").read_bytes() == b""
+    if (failure / "lab/a.log").exists():
+        assert (failure / "lab/a.log").read_bytes() == b""
 print("LCF stdout logs and console tee verified through single and paired runtimes")

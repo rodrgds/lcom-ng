@@ -249,7 +249,7 @@ lib: libmouse.a
         self.assertEqual(report["status"], "failed")
         self.assertIn("compiling main.c", report["error"])
 
-    def test_sanitizer_reports_original_student_memory_error(self):
+    def test_sanitizer_reports_memory_error_or_missing_host_runtime(self):
         self.write(self.project / "Makefile", "PROG=proj\nSRCS=main.c\nCFLAGS=-O2\n")
         source = self.project / "main.c"
         sanitizer = "undefined" if sys.platform == "darwin" else "address"
@@ -268,7 +268,22 @@ int main(void) {
         original = source.read_bytes()
         compiler = "/usr/bin/clang" if sys.platform == "darwin" else shutil.which("cc")
         env = {"PATH": "/usr/bin:/bin:/usr/sbin:/sbin", "LC_ALL": "C"} if sys.platform == "darwin" else None
+        # Probe the host compiler independently. MSYS GCC currently has no ASan
+        # runtime, so its public contract is an explicit failed build, not a skip.
+        probe_source = self.root / "healthy.c"
+        probe_source.write_text("int main(void) { return 0; }\n")
+        capability = subprocess.run([compiler, "-fsanitize=" + sanitizer,
+                                     str(probe_source), "-o", str(self.root / "healthy")],
+                                    capture_output=True, text=True, env=env, timeout=30)
         result = self.invoke("--cc", compiler, "--debug", "--sanitize", sanitizer, env=env)
+        if capability.returncode:
+            self.assertNotEqual(result.returncode, 0)
+            self.assertIn("checking compiler sanitizer support", result.stderr)
+            self.assertFalse((self.output / "proj").exists())
+            self.assertEqual(source.read_bytes(), original)
+            report = json.loads((self.output / "build.json").read_text())
+            self.assertEqual(report["status"], "failed")
+            return
         self.assertEqual(result.returncode, 0, result.stderr)
         crashed = subprocess.run([str(self.output / "proj")], capture_output=True, text=True, timeout=30, env=env)
         self.assertNotEqual(crashed.returncode, 0)
