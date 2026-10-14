@@ -16,6 +16,14 @@
 
 static int g_fd = -1;
 static uint32_t g_next_request = 1;
+struct phys_mapping {
+  void *user;
+  void *base;
+  size_t length;
+  size_t mapped_length;
+  struct phys_mapping *next;
+};
+static struct phys_mapping *g_mappings;
 
 static int write_all(int fd, const void *buf, size_t len) {
   const uint8_t *p = (const uint8_t *)buf;
@@ -125,6 +133,12 @@ int lcom_init(void) {
 }
 
 void lcom_exit(void) {
+  while (g_mappings != NULL) {
+    struct phys_mapping *mapping = g_mappings;
+    g_mappings = mapping->next;
+    munmap(mapping->base, mapping->mapped_length);
+    free(mapping);
+  }
   if (g_fd >= 0) {
     send_msg(LCOM_MSG_EXIT, g_next_request++, NULL, 0);
     close(g_fd);
@@ -264,6 +278,17 @@ int lcom_event_wait(lcom_event_t *event) {
   return LCOM_OK;
 }
 
+int lcom_delay_ticks(uint64_t ticks, lcom_event_t *event) {
+  if (event == NULL) return LCOM_ERR;
+  lcom_delay_ticks_t req = {ticks};
+  lcom_event_reply_t reply;
+  if (request_reply(LCOM_MSG_DELAY_TICKS, &req, sizeof(req), LCOM_MSG_EVENT_REPLY,
+                    &reply, sizeof(reply), NULL) != 0 || reply.status != 0) return LCOM_ERR;
+  event->irq_mask = reply.irq_mask;
+  event->tick = reply.tick;
+  return LCOM_OK;
+}
+
 int lcom_phys_map(uintptr_t phys, size_t len, void **out) {
   if (out == NULL || len == 0) return LCOM_ERR;
 
@@ -276,23 +301,39 @@ int lcom_phys_map(uintptr_t phys, size_t len, void **out) {
                     &reply, sizeof(reply), NULL) != 0) {
     return LCOM_ERR;
   }
-  if (reply.status != 0) return LCOM_ERR;
-
+  if (reply.status != 0 || reply.length != len ||
+      memchr(reply.shm_name, '\0', sizeof(reply.shm_name)) == NULL) return LCOM_ERR;
+  long page_size = sysconf(_SC_PAGESIZE);
+  if (page_size <= 0) return LCOM_ERR;
+  uint64_t aligned_offset = reply.offset - reply.offset % (uint64_t)page_size;
+  size_t prefix = (size_t)(reply.offset - aligned_offset);
+  if (len > SIZE_MAX - prefix || aligned_offset > INT64_MAX) return LCOM_ERR;
+  struct phys_mapping *mapping = malloc(sizeof(*mapping));
+  if (mapping == NULL) return LCOM_ERR;
   int fd = shm_open(reply.shm_name, O_RDWR, 0600);
-  if (fd < 0) return LCOM_ERR;
+  if (fd < 0) { free(mapping); return LCOM_ERR; }
 
-  void *mapped = mmap(NULL, (size_t)reply.length, PROT_READ | PROT_WRITE, MAP_SHARED,
-                      fd, (off_t)reply.offset);
+  void *mapped = mmap(NULL, len + prefix, PROT_READ | PROT_WRITE, MAP_SHARED,
+                      fd, (off_t)aligned_offset);
   close(fd);
-  if (mapped == MAP_FAILED) return LCOM_ERR;
+  if (mapped == MAP_FAILED) { free(mapping); return LCOM_ERR; }
 
-  *out = mapped;
+  *out = (uint8_t *)mapped + prefix;
+  *mapping = (struct phys_mapping){*out, mapped, len, len + prefix, g_mappings};
+  g_mappings = mapping;
   return LCOM_OK;
 }
 
 int lcom_phys_unmap(void *ptr, size_t len) {
   if (ptr == NULL || len == 0) return LCOM_ERR;
-  return munmap(ptr, len) == 0 ? LCOM_OK : LCOM_ERR;
+  struct phys_mapping **link = &g_mappings;
+  while (*link != NULL && (*link)->user != ptr) link = &(*link)->next;
+  if (*link == NULL || (*link)->length != len) return LCOM_ERR;
+  struct phys_mapping *mapping = *link;
+  if (munmap(mapping->base, mapping->mapped_length) != 0) return LCOM_ERR;
+  *link = mapping->next;
+  free(mapping);
+  return LCOM_OK;
 }
 
 int lcom_vbe_get_mode_info(uint16_t mode, lcom_vbe_mode_info_t *out) {
@@ -330,6 +371,14 @@ int lcom_vbe_set_mode(uint16_t mode) {
                     &reply, sizeof(reply), NULL) != 0) {
     return LCOM_ERR;
   }
+  return reply.status == 0 ? LCOM_OK : LCOM_ERR;
+}
+
+int lcom_vbe_set_display_start(uint16_t x, uint16_t y) {
+  lcom_vbe_display_start_t req = {x, y};
+  lcom_status_reply_t reply;
+  if (request_reply(LCOM_MSG_VBE_SET_DISPLAY_START, &req, sizeof(req), LCOM_MSG_STATUS,
+                    &reply, sizeof(reply), NULL) != 0) return LCOM_ERR;
   return reply.status == 0 ? LCOM_OK : LCOM_ERR;
 }
 

@@ -1,0 +1,11 @@
+# Source menu/game use extended keypad Enter; gameplay moves with Left/Right.
+at 120 key KP_ENTER down
+at 121 key KP_ENTER up
+at 150 key RIGHT down
+at 151 key RIGHT up
+at 155 key RIGHT down
+at 156 key RIGHT up
+at 180 key KP_ENTER down
+at 181 key KP_ENTER up
+at 220 key LEFT down
+at 221 key LEFT up

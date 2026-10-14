@@ -60,6 +60,8 @@ int lcom_port_write32(uint16_t port, uint32_t value);
 int lcom_irq_subscribe(uint8_t irq, uint32_t flags, lcom_irq_t *out);
 int lcom_irq_unsubscribe(lcom_irq_t *irq);
 int lcom_event_wait(lcom_event_t *event);
+/* Delay in 60 Hz system ticks, retaining coalesced device notifications. */
+int lcom_delay_ticks(uint64_t ticks, lcom_event_t *event);
 
 int lcom_phys_map(uintptr_t phys, size_t len, void **out);
 int lcom_phys_unmap(void *ptr, size_t len);
@@ -67,6 +69,7 @@ int lcom_phys_unmap(void *ptr, size_t len);
 int lcom_vbe_get_mode_info(uint16_t mode, lcom_vbe_mode_info_t *out);
 int lcom_vbe_set_mode(uint16_t mode);
 int lcom_vbe_present(void);
+int lcom_vbe_set_display_start(uint16_t x, uint16_t y);
 
 #ifdef __cplusplus
 }

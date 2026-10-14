@@ -20,6 +20,7 @@ struct PairRuntimeOptions {
   std::string left_dump_frame_path;
   std::string right_dump_frame_path;
   uint64_t max_ticks = 100000;
+  double timeout_seconds = 0;
   bool headless = false;
   bool realtime = true;
   bool no_realtime = false;
@@ -51,6 +52,8 @@ private:
     int exit_status = 0;
     bool child_running = false;
     bool waiting_event = false;
+    bool waiting_delay = false;
+    uint64_t waiting_until_tick = 0;
     uint32_t waiting_request_id = 0;
     std::string shm_name;
     int shm_fd = -1;

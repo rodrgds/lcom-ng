@@ -26,6 +26,7 @@ struct RuntimeOptions {
   bool guest_input = true;
   int scale = 1;
   uint64_t max_ticks = 100000;
+  double timeout_seconds = 0;
   std::string script_path;
   std::string trace_path;
   std::string dump_frame_path;
@@ -87,6 +88,8 @@ private:
   bool child_running_ = false;
 
   bool waiting_event_ = false;
+  bool waiting_delay_ = false;
+  uint64_t waiting_until_tick_ = 0;
   uint32_t waiting_request_id_ = 0;
 
   std::string shm_name_;

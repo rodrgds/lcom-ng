@@ -1,0 +1,18 @@
+This bundle uses SDL 3 and SDL_ttf for desktop display, input and fonts.
+It includes the dependency libraries listed in bundle.json. Their notices
+and licenses are in this directory; source locations are in SOURCES.txt.
+
+Portions of this software are copyright 2026 The FreeType Project
+(https://freetype.org). All rights reserved.
+
+The GNU LGPL libraries are dynamically linked. Bundled copies may be replaced
+with compatible builds; no bundled runtime restriction prevents replacing or
+modifying those libraries. Their upstream source is available through the
+source links in SOURCES.txt and the upstream projects:
+GLib: https://gitlab.gnome.org/GNOME/glib
+GNU gettext: https://www.gnu.org/software/gettext/
+GNU libiconv: https://www.gnu.org/software/libiconv/
+Graphite2: https://github.com/silnrsi/graphite
+
+The libraries' macOS load paths and ad-hoc signatures were adjusted during
+packaging. The library implementations were not modified by lcom-ng.

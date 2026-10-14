@@ -12,6 +12,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
+#include <deque>
 #include <filesystem>
 #include <fstream>
 #include <sstream>
@@ -36,6 +37,10 @@ std::string findFontPath() {
   env = std::getenv("LCOM_FONT");
   if (fileExists(env)) return env;
 
+  if (const char *base = SDL_GetBasePath()) {
+    const auto bundled = std::filesystem::path(base) / "../share/fonts/DejaVuSansMono.ttf";
+    if (std::filesystem::exists(bundled)) return bundled.string();
+  }
   const char *candidates[] = {
       "/System/Library/Fonts/Menlo.ttc",
       "/System/Library/Fonts/Supplemental/Menlo.ttc",
@@ -56,6 +61,7 @@ SDL_Color rgba(uint8_t r, uint8_t g, uint8_t b, uint8_t a = 255) {
 }
 
 constexpr uint64_t kMouseSampleIntervalNs = 1000000000ull / 60ull;
+constexpr uint64_t kTerminalFrameIntervalNs = 1000000000ull / 60ull;
 constexpr int kMaxSdlEventsPerPump = 256;
 constexpr uint64_t kStartupHintNs = 5000000000ull;
 
@@ -137,10 +143,10 @@ public:
     }
     if (font_ == nullptr || title_font_ == nullptr) {
       std::fprintf(stderr,
-                   "machinelab: could not load a TTF font; set MACHINE_LAB_FONT for SDL text\n");
+                   "lcom-ng: could not load a TTF font; set MACHINE_LAB_FONT for SDL text\n");
     }
 
-    terminal_lines_.push_back("Machine Lab Terminal");
+    terminal_lines_.push_back("lcom-ng Terminal");
     terminal_lines_.push_back("Press F3 for device state.");
     observed_machine_ = &machine;
     machine.setInputObserver(this);
@@ -266,11 +272,21 @@ public:
         current_line_.push_back(c);
       }
     }
-    while (terminal_lines_.size() > 1000) terminal_lines_.erase(terminal_lines_.begin());
+    while (terminal_lines_.size() > 1000) terminal_lines_.pop_front();
   }
 
   void present(Machine &machine) override {
     if (renderer_ == nullptr) return;
+    // Port I/O can service thousands of requests per second. Terminal redraws
+    // follow the display clock without delaying the guest or skipping its frames.
+    if (!machine.vbe().graphicsMode()) {
+      uint64_t now = SDL_GetTicksNS();
+      if (now < next_terminal_present_ns_) return;
+      next_terminal_present_ns_ = now + kTerminalFrameIntervalNs;
+    } else {
+      next_terminal_present_ns_ = 0;
+    }
+    text_draw_index_ = 0;
     recordFrameTiming();
     if (machine.vbe().graphicsMode()) {
       renderFramebuffer(machine);
@@ -279,11 +295,15 @@ public:
     }
     renderChrome(machine);
     SDL_RenderPresent(renderer_);
+    // Retain only this frame's text slots, so history and changing debug values
+    // cannot accumulate textures. Destroy them after the render queue is flushed.
+    text_cache_.resize(text_draw_index_);
   }
 
   ~SdlBackend() override {
     if (observed_machine_ != nullptr) observed_machine_->setInputObserver(nullptr);
     setMouseCaptured(false);
+    text_cache_.clear();
     if (texture_ != nullptr) SDL_DestroyTexture(texture_);
     if (font_ != nullptr) TTF_CloseFont(font_);
     if (title_font_ != nullptr) TTF_CloseFont(title_font_);
@@ -295,8 +315,9 @@ public:
 private:
   bool ensureTexture(Machine &machine) {
     const VbeModeInfo &mode = machine.vbe().currentMode();
-    SDL_PixelFormat desired_format =
-        mode.bytes_per_pixel == 3 ? SDL_PIXELFORMAT_BGR24 : SDL_PIXELFORMAT_RGB24;
+    SDL_PixelFormat desired_format = mode.bytes_per_pixel == 4 ? SDL_PIXELFORMAT_BGRX32 :
+                                    mode.bytes_per_pixel == 3 ? SDL_PIXELFORMAT_BGR24 :
+                                    SDL_PIXELFORMAT_RGB24;
     if (texture_ != nullptr && texture_width_ == mode.width && texture_height_ == mode.height &&
         texture_format_ == desired_format) {
       return true;
@@ -370,31 +391,15 @@ private:
     if (!ensureTexture(machine)) return;
     const VbeModeInfo &mode = machine.vbe().currentMode();
     const std::vector<uint8_t> &fb = machine.vbe().framebuffer();
-    if (mode.bytes_per_pixel == 3) {
+    if (mode.bytes_per_pixel >= 3) {
       SDL_UpdateTexture(texture_, nullptr, fb.data(), static_cast<int>(mode.pitch));
     } else {
       size_t needed = static_cast<size_t>(mode.width) * mode.height * 3u;
       if (rgb_buffer_.size() != needed) rgb_buffer_.assign(needed, 0);
 
       for (uint16_t y = 0; y < mode.height; y++) {
-        const uint8_t *src = fb.data() + static_cast<size_t>(y) * mode.pitch;
         uint8_t *dst = rgb_buffer_.data() + static_cast<size_t>(y) * mode.width * 3u;
-        for (uint16_t x = 0; x < mode.width; x++) {
-          const uint8_t *px = src + static_cast<size_t>(x) * mode.bytes_per_pixel;
-          uint8_t *out = dst + static_cast<size_t>(x) * 3u;
-          if (mode.bytes_per_pixel == 1) {
-            out[0] = out[1] = out[2] = px[0];
-          } else if (mode.bytes_per_pixel == 2) {
-            uint16_t v = static_cast<uint16_t>(px[0] | (px[1] << 8));
-            out[0] = static_cast<uint8_t>(((v >> 10) & 0x1F) * 255 / 31);
-            out[1] = static_cast<uint8_t>(((v >> 5) & 0x1F) * 255 / 31);
-            out[2] = static_cast<uint8_t>((v & 0x1F) * 255 / 31);
-          } else {
-            out[0] = px[2];
-            out[1] = px[1];
-            out[2] = px[0];
-          }
-        }
+        machine.vbe().copyRgbRow(y, dst);
       }
 
       SDL_UpdateTexture(texture_, nullptr, rgb_buffer_.data(), static_cast<int>(mode.width) * 3);
@@ -517,7 +522,7 @@ private:
     };
 
     char buf[256];
-    line("Machine Lab Debug", rgba(113, 221, 237));
+    line("lcom-ng Debug", rgba(113, 221, 237));
     std::snprintf(buf, sizeof(buf), "tick: %llu", static_cast<unsigned long long>(machine.tick()));
     line(buf);
     std::snprintf(buf, sizeof(buf), "pending IRQ mask: 0x%08x", machine.pendingIrqs());
@@ -705,16 +710,25 @@ private:
 
   void drawText(int x, int y, const std::string &text, SDL_Color color, TTF_Font *font) {
     if (renderer_ == nullptr || font == nullptr || text.empty()) return;
-    SDL_Surface *surface = TTF_RenderText_Blended(font, text.c_str(), text.size(), color);
-    if (surface == nullptr) return;
-    SDL_Texture *texture = SDL_CreateTextureFromSurface(renderer_, surface);
-    if (texture != nullptr) {
-      SDL_FRect dst{static_cast<float>(x), static_cast<float>(y),
-                    static_cast<float>(surface->w), static_cast<float>(surface->h)};
-      SDL_RenderTexture(renderer_, texture, nullptr, &dst);
-      SDL_DestroyTexture(texture);
+    if (text_draw_index_ == text_cache_.size()) text_cache_.emplace_back();
+    CachedText &cached = text_cache_[text_draw_index_++];
+    if (cached.texture == nullptr || cached.text != text || cached.font != font) {
+      SDL_Surface *surface = TTF_RenderText_Blended(font, text.c_str(), text.size(),
+                                                  rgba(255, 255, 255));
+      if (surface == nullptr) return;
+      cached.texture.reset(SDL_CreateTextureFromSurface(renderer_, surface));
+      cached.width = surface->w;
+      cached.height = surface->h;
+      cached.text = text;
+      cached.font = font;
+      SDL_DestroySurface(surface);
     }
-    SDL_DestroySurface(surface);
+    if (cached.texture == nullptr) return;
+    SDL_SetTextureColorMod(cached.texture.get(), color.r, color.g, color.b);
+    SDL_SetTextureAlphaMod(cached.texture.get(), color.a);
+    SDL_FRect dst{static_cast<float>(x), static_cast<float>(y),
+                  static_cast<float>(cached.width), static_cast<float>(cached.height)};
+    SDL_RenderTexture(renderer_, cached.texture.get(), nullptr, &dst);
   }
 
   bool isChromePoint(int x, int y) const {
@@ -1082,7 +1096,7 @@ private:
     if (path.has_parent_path()) std::filesystem::create_directories(path.parent_path(), ec);
     std::ofstream out(path);
     if (out.is_open()) {
-      out << "# Machine Lab recording\n";
+      out << "# lcom-ng recording\n";
       out << "# F8 writes capture out/in markers; skipped frames are intentionally absent from videos.\n";
       out << "# Ticks are virtual timer ticks; use `caption top 2s Text` or `caption bottom 2s Text`.\n";
       for (const auto &line : recording_lines_) out << line << "\n";
@@ -1096,6 +1110,15 @@ private:
   }
 
   SDL_Window *window_ = nullptr;
+  struct CachedText {
+    std::unique_ptr<SDL_Texture, decltype(&SDL_DestroyTexture)> texture{nullptr, SDL_DestroyTexture};
+    std::string text;
+    TTF_Font *font = nullptr;
+    int width = 0;
+    int height = 0;
+  };
+  std::vector<CachedText> text_cache_;
+  size_t text_draw_index_ = 0;
   SDL_Renderer *renderer_ = nullptr;
   SDL_Texture *texture_ = nullptr;
   TTF_Font *font_ = nullptr;
@@ -1116,6 +1139,7 @@ private:
   uint64_t last_mouse_sample_ns_ = 0;
   uint64_t startup_hint_until_ns_ = 0;
   uint64_t last_present_ns_ = 0;
+  uint64_t next_terminal_present_ns_ = 0;
   float current_frame_ms_ = 0.0f;
   float current_fps_ = 0.0f;
   int logical_width_ = 800;
@@ -1124,7 +1148,7 @@ private:
   int texture_height_ = 0;
   SDL_PixelFormat texture_format_ = SDL_PIXELFORMAT_UNKNOWN;
 
-  std::vector<std::string> terminal_lines_;
+  std::deque<std::string> terminal_lines_;
   std::string current_line_;
   std::vector<uint8_t> rgb_buffer_;
   std::vector<float> frame_ms_samples_;

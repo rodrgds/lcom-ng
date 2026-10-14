@@ -1,5 +1,6 @@
 #include "RuntimeServer.hpp"
 #include "ProtocolIO.hpp"
+#include "ChildStatus.hpp"
 
 #include "lcom_protocol.h"
 #include "../backends/HeadlessDisplay.hpp"
@@ -32,7 +33,7 @@
 
 namespace lcom {
 
-static constexpr size_t kFramebufferShmBytes = 1280u * 1024u * 4u;
+static constexpr size_t kFramebufferShmBytes = LCOM_VRAM_BYTES;
 static constexpr size_t kAudioShmOffset = kFramebufferShmBytes;
 static constexpr int kMaxRealtimeTicksPerLoop = 4;
 static constexpr auto kDisplayPumpInterval = std::chrono::nanoseconds(1000000000ull / 120ull);
@@ -55,6 +56,8 @@ int RuntimeServer::run() {
   if (!startChild()) return 1;
 
   using Clock = std::chrono::steady_clock;
+  const auto host_start = Clock::now();
+  bool timed_out = false;
   auto realtimeTickInterval = [&]() {
     uint32_t hz = machine_.pit().channelFrequency(0);
     if (hz == 0) hz = 60;
@@ -110,6 +113,18 @@ int RuntimeServer::run() {
   };
 
   while (child_running_ || client_fd_ >= 0) {
+    if (options_.timeout_seconds > 0 &&
+        std::chrono::duration<double>(Clock::now() - host_start).count() >= options_.timeout_seconds) {
+      if (childExited()) continue;
+      std::cerr << "lcom-ng: host timeout reached (" << options_.timeout_seconds
+                << " seconds), stopping student program\n";
+      timed_out = true;
+      stopChildForHostTimeout(child_pid_, child_running_);
+      if (child_stdout_ >= 0) drainPipe(child_stdout_, "stdout");
+      if (child_stderr_ >= 0) drainPipe(child_stderr_, "stderr");
+      cleanupChild();
+      break;
+    }
     advanceRealtimeIfDue();
     pumpDisplayIfDue();
     maybeSatisfyEventWait();
@@ -163,19 +178,21 @@ int RuntimeServer::run() {
     expireCaptionIfNeeded();
     if (!machine_.vbe().dumpPpm(options_.dump_frame_path,
                                 caption_text_, caption_position_)) {
-      std::cerr << "machinelab: could not write frame dump "
+      std::cerr << "lcom-ng: could not write frame dump "
                 << options_.dump_frame_path << "\n";
-      return 1;
+      artifact_failed_ = true;
     }
   }
 
-  return !artifact_failed_ && renderVideo() ? child_exit_status_ : 1;
+  bool video_ok = renderVideo();
+  if (timed_out) return 124;
+  return !artifact_failed_ && video_ok ? child_exit_status_ : 1;
 }
 
 bool RuntimeServer::setup() {
   if (!options_.trace_path.empty()) {
     if (!trace_.open(options_.trace_path)) {
-      std::cerr << "machinelab: could not open trace file " << options_.trace_path << "\n";
+      std::cerr << "lcom-ng: could not open trace file " << options_.trace_path << "\n";
       return false;
     }
     machine_.setTrace(&trace_);
@@ -184,14 +201,14 @@ bool RuntimeServer::setup() {
   if (!options_.script_path.empty()) {
     std::string error;
     if (!script_.load(options_.script_path, error)) {
-      std::cerr << "machinelab: " << error << "\n";
+      std::cerr << "lcom-ng: " << error << "\n";
       return false;
     }
   }
 
   if (!options_.rtc_time.empty()) {
     if (!machine_.rtc().setIsoTime(options_.rtc_time)) {
-      std::cerr << "machinelab: invalid RTC time '" << options_.rtc_time << "'\n";
+      std::cerr << "lcom-ng: invalid RTC time '" << options_.rtc_time << "'\n";
       return false;
     }
   }
@@ -217,16 +234,16 @@ bool RuntimeServer::setupDisplay() {
     sdl_options.scale = options_.scale;
     display_ = createSdlBackend(sdl_options);
 #else
-    std::cerr << "machinelab: SDL backend requested but this build was compiled without SDL3\n";
+    std::cerr << "lcom-ng: SDL backend requested but this build was compiled without SDL3\n";
     return false;
 #endif
   } else {
-    std::cerr << "machinelab: unknown display backend '" << options_.display << "'\n";
+    std::cerr << "lcom-ng: unknown display backend '" << options_.display << "'\n";
     return false;
   }
 
   if (display_ != nullptr && !display_->start(machine_)) {
-    std::cerr << "machinelab: display backend failed to start\n";
+    std::cerr << "lcom-ng: display backend failed to start\n";
     return false;
   }
 
@@ -242,19 +259,19 @@ bool RuntimeServer::setupAudio() {
 #if defined(MACHINE_LAB_WITH_SDL)
     audio_ = createSdlAudioBackend();
 #else
-    std::cerr << "machinelab: SDL audio requested but this build was compiled without SDL3\n";
+    std::cerr << "lcom-ng: SDL audio requested but this build was compiled without SDL3\n";
     return false;
 #endif
   } else if (options_.audio.rfind("wav:", 0) == 0) {
     audio_.reset(new WavAudioBackend(options_.audio.substr(4)));
   } else {
-    std::cerr << "machinelab: unknown audio backend '" << options_.audio << "'\n";
+    std::cerr << "lcom-ng: unknown audio backend '" << options_.audio << "'\n";
     return false;
   }
 
   std::string error;
   if (audio_ != nullptr && !audio_->start(error)) {
-    std::cerr << "machinelab: audio backend failed to start";
+    std::cerr << "lcom-ng: audio backend failed to start";
     if (!error.empty()) std::cerr << ": " << error;
     std::cerr << "\n";
     return false;
@@ -289,7 +306,7 @@ bool RuntimeServer::setupSharedMemory() {
 
 bool RuntimeServer::startChild() {
   if (options_.program.empty()) {
-    std::cerr << "machinelab: no program specified\n";
+    std::cerr << "lcom-ng: no program specified\n";
     return false;
   }
 
@@ -349,7 +366,7 @@ bool RuntimeServer::startChild() {
   child_pid_ = static_cast<int>(pid);
   child_running_ = true;
 
-  std::cout << "Starting Machine Lab bus instance...\n"
+  std::cout << "Starting lcom-ng bus instance...\n"
             << "  PIT8254    ports 0x40-0x43  irq 0\n"
             << "  i8042      ports 0x60/0x64  irq 1/12\n"
             << "  RTC-CMOS   ports 0x70/0x71  irq 8\n"
@@ -464,10 +481,26 @@ bool RuntimeServer::handleClientMessage() {
     return true;
   }
   case LCOM_MSG_EVENT_WAIT:
+    if (hdr.size != 0) return false;
     waiting_event_ = true;
+    waiting_delay_ = false;
     waiting_request_id_ = hdr.request_id;
     maybeSatisfyEventWait();
     return true;
+  case LCOM_MSG_DELAY_TICKS: {
+    lcom_delay_ticks_t req{};
+    if (!protocol::decodePayload(payload, hdr.size, req)) return false;
+    if (!machine_.delayTargetTick(req.ticks, waiting_until_tick_)) {
+      lcom_event_reply_t reply{};
+      reply.status = -1;
+      protocol::sendMessage(client_fd_, LCOM_MSG_EVENT_REPLY, hdr.request_id, &reply, sizeof(reply));
+      return true;
+    }
+    waiting_event_ = waiting_delay_ = true;
+    waiting_request_id_ = hdr.request_id;
+    maybeSatisfyEventWait();
+    return true;
+  }
   case LCOM_MSG_PHYS_MAP: {
     if (hdr.size != sizeof(lcom_phys_map_t)) return false;
     lcom_phys_map_t req{};
@@ -514,8 +547,14 @@ bool RuntimeServer::handleClientMessage() {
     lcom_vbe_mode_request_t req{};
     if (!protocol::decodePayload(payload, hdr.size, req)) return false;
     bool ok = machine_.vbe().setMode(req.mode);
-    zeroSharedFramebuffer();
+    if (ok && req.mode != 3) zeroSharedFramebuffer();
     sendStatus(hdr.request_id, ok ? 0 : -1);
+    return true;
+  }
+  case LCOM_MSG_VBE_SET_DISPLAY_START: {
+    lcom_vbe_display_start_t req{};
+    if (!protocol::decodePayload(payload, hdr.size, req)) return false;
+    sendStatus(hdr.request_id, machine_.vbe().setDisplayStart(req.x, req.y) ? 0 : -1);
     return true;
   }
   case LCOM_MSG_VBE_PRESENT:
@@ -524,7 +563,7 @@ bool RuntimeServer::handleClientMessage() {
     if (!options_.dump_frame_path.empty()) {
       if (!machine_.vbe().dumpPpm(options_.dump_frame_path,
                                   caption_text_, caption_position_)) {
-        std::cerr << "machinelab: could not write frame dump "
+        std::cerr << "lcom-ng: could not write frame dump "
                   << options_.dump_frame_path << "\n";
         artifact_failed_ = true;
         sendStatus(hdr.request_id, -1);
@@ -577,7 +616,7 @@ bool RuntimeServer::updateAudioBackendFromDevice(bool was_playing, bool force_pl
                               machine_.ac97().channels(),
                               error);
   audio_backend_playing_ = ok;
-  if (!ok && !error.empty()) std::cerr << "machinelab: audio play failed: " << error << "\n";
+  if (!ok && !error.empty()) std::cerr << "lcom-ng: audio play failed: " << error << "\n";
   return ok;
 }
 
@@ -603,17 +642,19 @@ void RuntimeServer::sendEventReply(uint32_t request_id, uint32_t irq_mask) {
 
 void RuntimeServer::maybeSatisfyEventWait() {
   if (!waiting_event_) return;
+  if (waiting_delay_ && machine_.tick() < waiting_until_tick_) return;
   machine_.refreshDeviceIrqs();
   uint32_t pending = machine_.pendingIrqs();
-  if (pending == 0) return;
+  if (pending == 0 && !waiting_delay_) return;
   uint32_t mask = machine_.consumePendingIrqs();
   waiting_event_ = false;
+  waiting_delay_ = false;
   sendEventReply(waiting_request_id_, mask);
 }
 
 void RuntimeServer::advanceVirtualTimeOnce() {
   if (machine_.tick() >= options_.max_ticks) {
-    std::cerr << "machinelab: max virtual ticks reached (" << options_.max_ticks << ")\n";
+    std::cerr << "lcom-ng: max virtual ticks reached (" << options_.max_ticks << ")\n";
     child_exit_status_ = 1;
     cleanupChild();
     return;
@@ -630,6 +671,9 @@ void RuntimeServer::applyScriptEvents(const std::vector<ScriptEvent> &events) {
       break;
     case ScriptEvent::Kind::Mouse:
       machine_.injectMouse(ev.dx, ev.dy, ev.buttons);
+      break;
+    case ScriptEvent::Kind::Ps2:
+      machine_.i8042().injectOutputByte(ev.ps2_byte, ev.ps2_aux, ev.ps2_errors);
       break;
     case ScriptEvent::Kind::Text:
       injectText(machine_, ev.text);
@@ -662,7 +706,8 @@ void RuntimeServer::syncFramebufferFromSharedMemory() {
   Vbe &vbe = machine_.vbe();
   size_t n = std::min(vbe.framebuffer().size(), kFramebufferShmBytes);
   if (shm_data_ != nullptr && n != 0) {
-    std::copy(shm_data_, shm_data_ + n, vbe.framebuffer().begin());
+    std::copy(shm_data_ + vbe.displayOffset(), shm_data_ + vbe.displayOffset() + n,
+              vbe.framebuffer().begin());
   }
 }
 
@@ -677,7 +722,7 @@ void RuntimeServer::syncAudioFromSharedMemory() {
 
 void RuntimeServer::zeroSharedFramebuffer() {
   if (shm_data_ != nullptr && shm_size_ != 0) {
-    std::memset(shm_data_, 0, shm_size_);
+    std::memset(shm_data_, 0, kFramebufferShmBytes);
   }
 }
 
@@ -706,7 +751,7 @@ bool RuntimeServer::setupVideoCapture() {
   std::error_code ec;
   std::filesystem::create_directories(active_frame_dir_, ec);
   if (ec) {
-    std::cerr << "machinelab: could not create frame directory " << active_frame_dir_
+    std::cerr << "lcom-ng: could not create frame directory " << active_frame_dir_
               << ": " << ec.message() << "\n";
     return false;
   }
@@ -722,7 +767,7 @@ bool RuntimeServer::setupVideoCapture() {
     if (video.has_parent_path()) {
       std::filesystem::create_directories(video.parent_path(), ec);
       if (ec) {
-        std::cerr << "machinelab: could not create video directory "
+        std::cerr << "lcom-ng: could not create video directory "
                   << video.parent_path().string() << ": " << ec.message() << "\n";
         return false;
       }
@@ -745,7 +790,7 @@ bool RuntimeServer::dumpVideoFrame() {
   std::snprintf(filename, sizeof(filename), "frame_%06u.ppm", frame_index_);
   std::filesystem::path path = std::filesystem::path(active_frame_dir_) / filename;
   if (!machine_.vbe().dumpPpm(path.string(), caption_text_, caption_position_)) {
-    std::cerr << "machinelab: could not write video frame " << path.string() << "\n";
+    std::cerr << "lcom-ng: could not write video frame " << path.string() << "\n";
     return false;
   }
   return true;
@@ -754,7 +799,7 @@ bool RuntimeServer::dumpVideoFrame() {
 bool RuntimeServer::renderVideo() {
   if (options_.video_path.empty()) return true;
   if (frame_index_ == 0) {
-    std::cerr << "machinelab: no frames were presented; cannot render video\n";
+    std::cerr << "lcom-ng: no frames were presented; cannot render video\n";
     return false;
   }
 
@@ -782,7 +827,7 @@ bool RuntimeServer::renderVideo() {
     return false;
   }
   if (!WIFEXITED(status) || WEXITSTATUS(status) != 0) {
-    std::cerr << "machinelab: ffmpeg failed while rendering " << options_.video_path << "\n";
+    std::cerr << "lcom-ng: ffmpeg failed while rendering " << options_.video_path << "\n";
     return false;
   }
 
@@ -835,13 +880,7 @@ bool RuntimeServer::childExited() {
   if (ret == child_pid_) {
     child_running_ = false;
     child_pid_ = -1;
-    if (WIFEXITED(status)) {
-      child_exit_status_ = WEXITSTATUS(status);
-      std::cout << "Program exited with status " << WEXITSTATUS(status) << "\n";
-    } else if (WIFSIGNALED(status)) {
-      child_exit_status_ = 128 + WTERMSIG(status);
-      std::cout << "Program terminated by signal " << WTERMSIG(status) << "\n";
-    }
+    child_exit_status_ = reportChildStatus(std::cout, status);
     if (client_fd_ >= 0) {
       close(client_fd_);
       client_fd_ = -1;

@@ -1,0 +1,603 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-13",
+  "cases": [
+    {
+      "id": "mariajvieira__feup-lcom-gameplay",
+      "repo": "mariajvieira/feup-lcom",
+      "sha": "e364f4d91606371c5660f28bcd11048d02f8a57e",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/snake-gameplay.mlabscript",
+          "max_ticks": 300,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded populated capture; clean application exit is checked separately",
+          "trace_last_tick": 300
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/snake-gameplay.mlabscript",
+          "max_ticks": 800,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Clean application exit after original input and cleanup"
+        }
+      ]
+    },
+    {
+      "id": "Vasco888888__feup-leic-lcom-gameplay",
+      "repo": "Vasco888888/feup-leic-lcom",
+      "sha": "cdf1668915aaebb900a9ef8eca3252e2414324cb",
+      "project": "src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/rhythm-gameplay.mlabscript",
+          "max_ticks": 380,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded populated capture; clean application exit is checked separately",
+          "trace_last_tick": 380
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/rhythm-gameplay.mlabscript",
+          "max_ticks": 1000,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Clean application exit after original input and cleanup"
+        }
+      ]
+    },
+    {
+      "id": "RodriguesS2__LCOM-HangMan-gameplay",
+      "repo": "RodriguesS2/LCOM-HangMan",
+      "sha": "6c76df070f321dd20349a6e6429bee2797223b9c",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/hangman-gameplay.mlabscript",
+          "max_ticks": 280,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded populated capture; clean application exit is checked separately",
+          "trace_last_tick": 280
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/hangman-gameplay.mlabscript",
+          "max_ticks": 900,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Clean application exit after original input and cleanup"
+        }
+      ]
+    },
+    {
+      "id": "Cast-10__LCOMProject-gameplay",
+      "repo": "Cast-10/LCOMProject",
+      "sha": "e895b1dfe6aa0269cafc73010da990a195ab1ffd",
+      "project": "proj",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/league-gameplay.mlabscript",
+          "max_ticks": 300,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded populated capture; clean application exit is checked separately",
+          "trace_last_tick": 300
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/league-gameplay.mlabscript",
+          "max_ticks": 800,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Clean application exit after original input and cleanup"
+        }
+      ]
+    },
+    {
+      "id": "Yuka-Sky__LCOM-gameplay",
+      "repo": "Yuka-Sky/LCOM",
+      "sha": "e333e84a361140f7ba410bf219133d7b2fd92860",
+      "project": "Project/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/skess-gameplay.mlabscript",
+          "max_ticks": 650,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded populated capture; clean application exit is checked separately",
+          "trace_last_tick": 650
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/skess-gameplay.mlabscript",
+          "max_ticks": 1100,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Clean application exit after original input and cleanup"
+        }
+      ]
+    },
+    {
+      "id": "pedroRibas372__MINIX-SpaceInvaders-gameplay",
+      "repo": "pedroRibas372/MINIX-SpaceInvaders",
+      "sha": "b34d4cf932aa50fca013b5b70676f615ebcc91af",
+      "project": ".",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/pedro-invaders-gameplay.mlabscript",
+          "max_ticks": 300,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded populated capture; clean application exit is checked separately",
+          "trace_last_tick": 300
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/pedro-invaders-gameplay.mlabscript",
+          "max_ticks": 900,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Clean application exit after original input and cleanup"
+        }
+      ]
+    },
+    {
+      "id": "simaopsbarbosa__feup-lcom-gameplay",
+      "repo": "simaopsbarbosa/feup-lcom",
+      "sha": "b2489e2420eeea858df8d9164df267a52e12e8fa",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/reaction-gameplay.mlabscript",
+          "max_ticks": 300,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded populated capture; clean application exit is checked separately",
+          "trace_last_tick": 300
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/reaction-gameplay.mlabscript",
+          "max_ticks": 800,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Clean application exit after original input and cleanup"
+        }
+      ]
+    },
+    {
+      "id": "luanalima27__LCOM-FEUP-menu",
+      "repo": "luanalima27/LCOM-FEUP",
+      "sha": "8a51f4788f459f16e832668dd988ec4f42552fdf",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "menu-exit",
+          "script": "scripts/compat-corpus/recent/luana-exit.mlabscript",
+          "max_ticks": 800,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Clean exit using original menu controls; no gameplay claim"
+        }
+      ]
+    },
+    {
+      "id": "guystavo7__feup-lcom-project-menu",
+      "repo": "guystavo7/feup-lcom-project",
+      "sha": "ad0703bebf8ab8fd00ede7f690667e2034ca682d",
+      "project": "project/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "menu-exit",
+          "script": "scripts/compat-corpus/recent/fruit-exit.mlabscript",
+          "max_ticks": 800,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Clean exit using original menu controls; no gameplay claim"
+        }
+      ]
+    },
+    {
+      "id": "MiguelMirandaRocha__FEUP-LEIC-LCOM-interactive",
+      "repo": "MiguelMirandaRocha/FEUP-LEIC-LCOM",
+      "sha": "78fa8fdf30638554416dd1e7d96cc747c93c5217",
+      "project": "proj/code",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "interactive-capture",
+          "script": "scripts/compat-corpus/recent/editor-typing.mlabscript",
+          "max_ticks": 300,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded capture: typed editor buffer",
+          "trace_last_tick": 300
+        },
+        {
+          "id": "interactive-exit",
+          "script": "scripts/compat-corpus/recent/editor-typing.mlabscript",
+          "max_ticks": 900,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Original cleanup and clean exit"
+        }
+      ]
+    },
+    {
+      "id": "DGoiana__feup-lcom-interactive",
+      "repo": "DGoiana/feup-lcom",
+      "sha": "74f0bdacb955639ee774963aba6969e7beba3d57",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "interactive-capture",
+          "script": "scripts/compat-corpus/recent/escape.mlabscript",
+          "max_ticks": 80,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded capture: rendered chat menu",
+          "trace_last_tick": 80
+        },
+        {
+          "id": "interactive-exit",
+          "script": "scripts/compat-corpus/recent/escape.mlabscript",
+          "max_ticks": 900,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Original cleanup and clean exit"
+        }
+      ]
+    },
+    {
+      "id": "filipecruz06__FEUP-LCOM-proj-gameplay",
+      "repo": "filipecruz06/FEUP-LCOM-proj",
+      "sha": "b9981f12376b9dc5d2b95f066b9cacdb171ceb88",
+      "project": "Pacocalypse",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/pacocalypse-gameplay.mlabscript",
+          "max_ticks": 330,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded game board after click and D direction",
+          "trace_last_tick": 330
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/pacocalypse-gameplay.mlabscript",
+          "max_ticks": 900,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Pause return to menu then clean quit"
+        }
+      ]
+    },
+    {
+      "id": "gomesidk__Survive-The-Blast-gameplay",
+      "repo": "gomesidk/Survive-The-Blast",
+      "sha": "b73f072fdcd4d189002e1d376f0fbafa95d25c1e",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/blast-gameplay.mlabscript",
+          "max_ticks": 320,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded single player board after original mouse selection",
+          "trace_last_tick": 320
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/blast-gameplay.mlabscript",
+          "max_ticks": 1000,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Original Escape return and menu exit"
+        }
+      ]
+    },
+    {
+      "id": "antoniocrego__lcom-t01-g3-gameplay",
+      "repo": "antoniocrego/lcom-t01-g3",
+      "sha": "77307d413bd8ed873575ef7a8edc6523460f6401",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/knight-gameplay.mlabscript",
+          "max_ticks": 300,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded gameplay capture after original start and input controls",
+          "trace_last_tick": 300
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/knight-gameplay.mlabscript",
+          "max_ticks": 1000,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Original game/menu cleanup exit"
+        }
+      ]
+    },
+    {
+      "id": "RiquiFeup__LCOMBAT-gameplay",
+      "repo": "RiquiFeup/LCOMBAT",
+      "sha": "6981e4295329ff2f8dfd9e32e51ceaa45a6b2bf4",
+      "project": "worms",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/lcombat-gameplay.mlabscript",
+          "max_ticks": 350,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded gameplay capture after original start and input controls",
+          "trace_last_tick": 350
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/lcombat-gameplay.mlabscript",
+          "max_ticks": 1700,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Original game/menu cleanup exit"
+        }
+      ]
+    },
+    {
+      "id": "Hugo-mgs__LCOM-Space-Invaders-gameplay",
+      "repo": "Hugo-mgs/LCOM-Space-Invaders",
+      "sha": "7b554e113754ffdd5b26b269a0efafea3227468e",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/hugo-gameplay.mlabscript",
+          "max_ticks": 330,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded gameplay only; original gameplay cleanup aborts; menu exit checked separately",
+          "trace_last_tick": 330
+        },
+        {
+          "id": "menu-exit",
+          "script": "scripts/compat-corpus/recent/hugo-exit.mlabscript",
+          "max_ticks": 800,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Clean exit using original menu controls; no gameplay claim"
+        }
+      ]
+    },
+    {
+      "id": "gsilva00__LCOM-Project-guarded",
+      "repo": "gsilva00/LCOM-Project",
+      "sha": "4e793123ae3cd5ad486e1472fa715cff6567c66e",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "guarded-gameplay",
+          "script": "scripts/compat-corpus/recent/football-gameplay.mlabscript",
+          "max_ticks": 350,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded football board; original quit frees mapped VRAM and aborts",
+          "trace_last_tick": 350
+        }
+      ]
+    },
+    {
+      "id": "TM-1-3__WombatMaze-guarded",
+      "repo": "TM-1-3/WombatMaze",
+      "sha": "34c66b392c0c692b7430b5982fb6324e9864c322",
+      "project": "proj/src",
+      "builder_args": [
+        "--include",
+        "../assets/maze"
+      ],
+      "runs": [
+        {
+          "id": "guarded-gameplay",
+          "script": "scripts/compat-corpus/recent/wombat-gameplay.mlabscript",
+          "max_ticks": 140,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded populated maze level; original cleanup double frees shared sprites",
+          "trace_last_tick": 140
+        }
+      ]
+    },
+    {
+      "id": "leticia-003__2ndYear_FEUP_LCom-guarded",
+      "repo": "leticia-003/2ndYear_FEUP_LCom",
+      "sha": "fd08be7ee796e28742bb07ed2a0171319a0de5e3",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "guarded-gameplay",
+          "script": "scripts/compat-corpus/recent/bounce-gameplay.mlabscript",
+          "max_ticks": 320,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded brick board, launched ball, points; original nested receive loop has no clean exit",
+          "trace_last_tick": 320
+        }
+      ]
+    },
+    {
+      "id": "scrr-az__skess-lcom-mirror",
+      "repo": "scrr-az/skess-lcom",
+      "sha": "08626275da972c82291efcab0fbed8a57b0eb854",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "mirror-exit",
+          "script": "scripts/compat-corpus/recent/escape.mlabscript",
+          "max_ticks": 900,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Separate repository build and clean exit; source family duplicates another pin"
+        }
+      ]
+    },
+    {
+      "id": "T0m2sT__LCode-mirror",
+      "repo": "T0m2sT/LCode",
+      "sha": "862ec4aa8a2d361f304b78beb3815c4a3ae8d4f1",
+      "project": "proj/code",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "mirror-exit",
+          "script": "scripts/compat-corpus/recent/editor-typing.mlabscript",
+          "max_ticks": 900,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Separate repository build and clean exit; source family duplicates another pin"
+        }
+      ]
+    },
+    {
+      "id": "diogopmac__LCOM-Minix_Invaders-mirror",
+      "repo": "diogopmac/LCOM-Minix_Invaders",
+      "sha": "c68c985ac877eddb0bfb75ecbb28bedcb1c1230a",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "mirror-exit",
+          "script": "scripts/compat-corpus/recent/hugo-exit.mlabscript",
+          "max_ticks": 900,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Separate repository build and clean exit; source family duplicates another pin"
+        }
+      ]
+    }
+  ]
+}

@@ -419,7 +419,7 @@ static void draw_inspector(example_canvas_t *ctx, const editor_state_t *ed) {
   example_fill_rect(ctx, 664, 104, 116, 390, example_rgb(34, 40, 51));
   example_stroke_rect(ctx, 664, 104, 116, 390, 1, example_rgb(60, 70, 86));
   example_draw_text(ctx, 680, 124, "DOCUMENT", example_rgb(185, 195, 212), 1);
-  example_draw_text(ctx, 680, 154, "MACHINE", example_rgb(239, 241, 246), 2);
+  example_draw_text(ctx, 680, 154, "LCOM-NG", example_rgb(239, 241, 246), 2);
   example_draw_text(ctx, 680, 174, "NOTES", example_rgb(239, 241, 246), 2);
   example_fill_rect(ctx, 680, 210, 84, 1, example_rgb(69, 79, 95));
   example_draw_text(ctx, 680, 232, "MODE", example_rgb(132, 145, 164), 1);
@@ -458,8 +458,8 @@ static void draw_word_processor(example_canvas_t *ctx, const editor_state_t *ed,
   example_fill_rect(ctx, 0, 0, ctx->info.width, ctx->info.height, example_rgb(24, 28, 37));
   example_fill_rect(ctx, 0, 0, ctx->info.width, 70, example_rgb(37, 44, 58));
   example_fill_rect(ctx, 0, 68, ctx->info.width, 2, example_rgb(103, 144, 226));
-  example_draw_text(ctx, 28, 21, "ML", example_rgb(119, 157, 232), 4);
-  example_draw_text(ctx, 92, 19, "MACHINE NOTES", example_rgb(240, 243, 248), 3);
+  example_draw_text(ctx, 28, 21, "LC", example_rgb(119, 157, 232), 4);
+  example_draw_text(ctx, 92, 19, "LCOM NOTES", example_rgb(240, 243, 248), 3);
   example_draw_text(ctx, 92, 47, "UNTITLED.MLTXT", example_rgb(139, 151, 170), 1);
   example_fill_rect(ctx, 570, 18, 88, 32,
                     ed->dirty ? example_rgb(109, 67, 72) : example_rgb(48, 104, 83));

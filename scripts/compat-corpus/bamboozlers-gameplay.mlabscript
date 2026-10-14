@@ -1,0 +1,14 @@
+# menu_state ENTER -> level select, level1 rectangle at237,100; cursor starts300,400.
+at 100 key ENTER down
+at 101 key ENTER up
+at 130 mouse 0 120 0
+at 145 mouse 0 120 0
+at 160 mouse 0 50 0
+at 180 mouse 0 0 1
+at 181 mouse 0 0 0
+at 220 key RIGHT down
+at 250 key RIGHT up
+at 270 key UP down
+at 271 key UP up
+at 550 key ESC down
+at 551 key ESC up

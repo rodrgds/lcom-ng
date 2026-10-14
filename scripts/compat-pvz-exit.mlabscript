@@ -1,0 +1,3 @@
+# Allow the original project's mouse-command initialization to finish.
+at 30 key ESC down
+at 31 key ESC up

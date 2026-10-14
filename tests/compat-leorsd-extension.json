@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "leorsd__FEUP-LCOM-survive-gameplay",
+      "repo": "leorsd/FEUP-LCOM",
+      "sha": "b73f072fdcd4d189002e1d376f0fbafa95d25c1e",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/blast-gameplay.mlabscript",
+          "max_ticks": 320,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded single player board after original mouse selection"
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/blast-gameplay.mlabscript",
+          "max_ticks": 1000,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Original Escape return and menu exit"
+        }
+      ]
+    }
+  ]
+}

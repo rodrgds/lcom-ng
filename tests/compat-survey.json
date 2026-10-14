@@ -1,0 +1,1640 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-13",
+  "host": "macOS arm64",
+  "scope": "32 additional pinned repositories. The positive replay gate includes 28 cases from 19 of these repositories plus four peucastro lab cases. Complete game progression and universal Minix compatibility are not claimed.",
+  "positive_manifest": "tests/compat-expanded.json",
+  "positive_gate": "devenv shell -- python3 scripts/check_lcom_corpus.py --fetch",
+  "counts": {
+    "surveyed_additional_repositories": 32,
+    "positive_additional_repositories": 19,
+    "positive_cases": 28,
+    "current_positive_results_passed": 28,
+    "positive_repositories_including_supplementary": 20
+  },
+  "classification_labels": {
+    "positive_gameplay_clean_exit": "Gameplay and clean exit",
+    "positive_guarded_gameplay": "Guarded gameplay",
+    "positive_menu_only": "Menu and clean exit",
+    "positive_labs": "Positive labs",
+    "build_only": "Build only",
+    "original_source_defect": "Original source defect",
+    "invalid_lcf_contract": "Invalid current LCF contract",
+    "older_api_type_collision": "Older API/type contract",
+    "host_architecture_limit": "Host architecture limit",
+    "host_filesystem_limit": "Host filesystem limit",
+    "compatibility_gap": "Unresolved compatibility gap",
+    "positive_project": "Supplementary project replay"
+  },
+  "repositories": [
+    {
+      "repo": "literallysofia/feup-lcom",
+      "sha": "1eeba23e4f48bd7fc96501f5f09dce03a0f882f5",
+      "checkout": "build/compat-expanded/corpus/literallysofia__feup-lcom",
+      "project": "Proj/src",
+      "builder_args": [],
+      "categories": [
+        "older_api_type_collision"
+      ],
+      "summary": "Project uses older VBE/low memory declarations and struct reg86u. It needs a separate older SDK contract.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/literallysofia__feup-lcom/build.log"
+      },
+      "positive_case_ids": [],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [],
+      "case_evidence": [],
+      "historical_lab2_observation": {
+        "build_exit": 1,
+        "timer_exit": null,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/literallysofia__feup-lcom"
+      }
+    },
+    {
+      "repo": "biromiro/feup-lcom",
+      "sha": "256b46081a43be783ad77b7b167fd8d301a3d83e",
+      "checkout": "build/compat-expanded/corpus/biromiro__feup-lcom",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "host_filesystem_limit",
+        "positive_labs"
+      ],
+      "summary": "Git contains distinct A.xpm and a.xpm files, and equivalent pairs for other letters. Default case-insensitive macOS volumes collapse those paths. The source symbols are valid in the Git tree. Lab 2 passes.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/biromiro__feup-lcom/build.log"
+      },
+      "positive_case_ids": [
+        "biromiro__feup-lcom-lab2"
+      ],
+      "positive_lab_case_ids": [
+        "biromiro__feup-lcom-lab2"
+      ],
+      "positive_project_case_ids": [],
+      "case_evidence": [
+        {
+          "case_id": "biromiro__feup-lcom-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/biromiro__feup-lcom-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/biromiro__feup-lcom-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/biromiro__feup-lcom-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/biromiro__feup-lcom"
+      }
+    },
+    {
+      "repo": "joaomalheiro/FEUP-LCOM",
+      "sha": "4ecd190ee35d26308e48fc7d3be3469b302c52a5",
+      "checkout": "build/compat-expanded/corpus/joaomalheiro__FEUP-LCOM",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "host_architecture_limit"
+      ],
+      "summary": "Final project includes x86 rtc_assembly.S. The arm64 C importer does not translate assembly. No unchanged project run is claimed.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/joaomalheiro__FEUP-LCOM/build.log"
+      },
+      "positive_case_ids": [],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [],
+      "case_evidence": [],
+      "historical_lab2_observation": {
+        "build_exit": 1,
+        "timer_exit": null,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/joaomalheiro__FEUP-LCOM"
+      }
+    },
+    {
+      "repo": "bdmendes/feup-lcom",
+      "sha": "c62b7ffe669602024eed3697d69ec3272a48bbe8",
+      "checkout": "build/compat-expanded/corpus/bdmendes__feup-lcom",
+      "project": "2020_og/proj/src",
+      "builder_args": [],
+      "categories": [
+        "original_source_defect",
+        "positive_labs"
+      ],
+      "summary": "Project RTC code allocates current_time[17], then sprintf writes 21 bytes. Correct update-ended IRQ delivery exposes SIGTRAP at tick 60. Earlier gameplay and menu claims are withdrawn. Lab 2 passes.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/bdmendes__feup-lcom/build.log"
+      },
+      "positive_case_ids": [
+        "bdmendes__feup-lcom-lab2"
+      ],
+      "positive_lab_case_ids": [
+        "bdmendes__feup-lcom-lab2"
+      ],
+      "positive_project_case_ids": [],
+      "case_evidence": [
+        {
+          "case_id": "bdmendes__feup-lcom-lab2",
+          "project": "2020_og/lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/bdmendes__feup-lcom-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/bdmendes__feup-lcom-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/bdmendes__feup-lcom-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/bdmendes__feup-lcom"
+      }
+    },
+    {
+      "repo": "nm-marques/FEUP-LCOM",
+      "sha": "f2f8e08e8a55a5d6d4e35bf9612907b6693fd6ec",
+      "checkout": "build/compat-expanded/corpus/nm-marques__FEUP-LCOM",
+      "project": "Project - Asteroids/src",
+      "builder_args": [],
+      "categories": [
+        "older_api_type_collision"
+      ],
+      "summary": "Bare liblm.h now resolves. The next failure is obsolete struct reg86u in vcard.c. The old Lab 2 callback also unconditionally returns 1 after two elapsed seconds.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Fresh public CLI rejection of struct reg86u",
+        "evidence": "build/compat-expanded/report-final/evidence/nm-marques-build.log"
+      },
+      "positive_case_ids": [],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [],
+      "case_evidence": [],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 1,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/nm-marques__FEUP-LCOM"
+      }
+    },
+    {
+      "repo": "joaooliveira-11/feup-lcom",
+      "sha": "a85d28cfdb6b7260b081a6fad1a28eede1364f84",
+      "checkout": "build/compat-expanded/corpus/joaooliveira-11__feup-lcom",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "original_source_defect"
+      ],
+      "summary": "mouse.c declares mouse_answer without initialization and reads it in the loop condition. Clang emits a trap before gameplay starts.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/joaooliveira-11__feup-lcom/build.log"
+      },
+      "positive_case_ids": [],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [],
+      "case_evidence": [],
+      "historical_lab2_observation": null
+    },
+    {
+      "repo": "RodolfoF31/FEUP_LCOM",
+      "sha": "07bef179a624ab19df05092006bd87d3980dd966",
+      "checkout": "build/compat-expanded/corpus/RodolfoF31__FEUP_LCOM",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "original_source_defect"
+      ],
+      "summary": "The original Makefile lists vg.c, which is absent from the pinned repository.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/RodolfoF31__FEUP_LCOM/build.log"
+      },
+      "positive_case_ids": [],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [],
+      "case_evidence": [],
+      "historical_lab2_observation": null
+    },
+    {
+      "repo": "xico2001pt/feup-lcom",
+      "sha": "ee3eadfe89ce470a35c0ad20c9f9e6b233f84844",
+      "checkout": "build/compat-expanded/corpus/xico2001pt__feup-lcom",
+      "project": "lab5",
+      "builder_args": [],
+      "categories": [
+        "compatibility_gap",
+        "positive_labs"
+      ],
+      "summary": "Lab 2 passes. Lab 5 uses sys_readbios to read real-mode BIOS data, which the compatibility SDK does not implement.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/xico2001pt__feup-lcom/build.log"
+      },
+      "positive_case_ids": [
+        "xico2001pt__feup-lcom-lab2"
+      ],
+      "positive_lab_case_ids": [
+        "xico2001pt__feup-lcom-lab2"
+      ],
+      "positive_project_case_ids": [],
+      "case_evidence": [
+        {
+          "case_id": "xico2001pt__feup-lcom-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/xico2001pt__feup-lcom-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/xico2001pt__feup-lcom-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/xico2001pt__feup-lcom-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/xico2001pt__feup-lcom"
+      }
+    },
+    {
+      "repo": "diogoalves12/feup-lcom",
+      "sha": "14cf5aaefacf17cde4e309f5c6dc18d6195bb49a",
+      "checkout": "build/compat-expanded/corpus/diogoalves12__feup-lcom",
+      "project": "project",
+      "builder_args": [],
+      "categories": [
+        "positive_menu_only"
+      ],
+      "summary": "The Bomberman menu renders and Escape exits normally. Its startup sample-rate command passes after the PS/2 F3 fix. Full gameplay is not in the current replay gate.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Current positive replay gate",
+        "evidence": "build/compat-expanded/verification/diogoalves12__feup-lcom-project/build.log"
+      },
+      "positive_case_ids": [
+        "diogoalves12__feup-lcom-project"
+      ],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [
+        "diogoalves12__feup-lcom-project"
+      ],
+      "case_evidence": [
+        {
+          "case_id": "diogoalves12__feup-lcom-project",
+          "project": "project",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/diogoalves12__feup-lcom-project/build.log",
+          "runs": [
+            {
+              "id": "menu-exit",
+              "args": [],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/diogoalves12__feup-lcom-project/menu-exit.log",
+              "trace": "build/compat-expanded/verification/diogoalves12__feup-lcom-project/menu-exit.jsonl",
+              "frame": "build/compat-expanded/verification/diogoalves12__feup-lcom-project/menu-exit.ppm",
+              "populated_pixels": true,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 1,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/diogoalves12__feup-lcom"
+      }
+    },
+    {
+      "repo": "Adriano-7/feup-lcom",
+      "sha": "e0b46670ed2122e2ad303a7d5ed83e51b517d215",
+      "checkout": "build/compat-expanded/corpus/Adriano-7__feup-lcom",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "positive_gameplay_clean_exit",
+        "positive_labs"
+      ],
+      "summary": "Space Invaders enters gameplay, moves, fires and exits normally. A separate guarded capture checks the populated frame. The standard 256-color VGA palette and DAC now replace the earlier grayscale limitation.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Current positive replay gate",
+        "evidence": "build/compat-expanded/verification/Adriano-7__feup-lcom-project/build.log"
+      },
+      "positive_case_ids": [
+        "Adriano-7__feup-lcom-lab2",
+        "Adriano-7__feup-lcom-project"
+      ],
+      "positive_lab_case_ids": [
+        "Adriano-7__feup-lcom-lab2"
+      ],
+      "positive_project_case_ids": [
+        "Adriano-7__feup-lcom-project"
+      ],
+      "case_evidence": [
+        {
+          "case_id": "Adriano-7__feup-lcom-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/Adriano-7__feup-lcom-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/Adriano-7__feup-lcom-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/Adriano-7__feup-lcom-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        },
+        {
+          "case_id": "Adriano-7__feup-lcom-project",
+          "project": "proj/src",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/Adriano-7__feup-lcom-project/build.log",
+          "runs": [
+            {
+              "id": "populated-gameplay",
+              "args": [],
+              "exit": 1,
+              "guard": true,
+              "passed": true,
+              "log": "build/compat-expanded/verification/Adriano-7__feup-lcom-project/populated-gameplay.log",
+              "trace": "build/compat-expanded/verification/Adriano-7__feup-lcom-project/populated-gameplay.jsonl",
+              "frame": "build/compat-expanded/verification/Adriano-7__feup-lcom-project/populated-gameplay.ppm",
+              "populated_pixels": true,
+              "scope": "Bounded populated frame capture; guard is expected, normal exit is a separate run"
+            },
+            {
+              "id": "gameplay-exit",
+              "args": [],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/Adriano-7__feup-lcom-project/gameplay-exit.log",
+              "trace": "build/compat-expanded/verification/Adriano-7__feup-lcom-project/gameplay-exit.jsonl",
+              "frame": "build/compat-expanded/verification/Adriano-7__feup-lcom-project/gameplay-exit.ppm",
+              "populated_pixels": false,
+              "scope": "Normal gameplay exit after original student cleanup clears VRAM; populated capture checked separately"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/Adriano-7__feup-lcom"
+      }
+    },
+    {
+      "repo": "leorsd/FEUP-LCOM",
+      "sha": "b73f072fdcd4d189002e1d376f0fbafa95d25c1e",
+      "checkout": "build/compat-expanded/corpus/leorsd__FEUP-LCOM",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "positive_project",
+        "positive_labs"
+      ],
+      "summary": "Lab 2 passes. Fresh default project build, populated single-player board and original Escape/menu exit pass with unchanged sources. Minix NONE and VBE 0x11B gaps are resolved. This is the same full commit as gomesidk/Survive-The-Blast.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Fresh default public CLI build, followed by declared runtime evidence",
+        "evidence": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/leorsd__FEUP-LCOM-survive-gameplay/build.log"
+      },
+      "positive_case_ids": [
+        "leorsd__FEUP-LCOM-lab2",
+        "leorsd__FEUP-LCOM-survive-gameplay"
+      ],
+      "positive_lab_case_ids": [
+        "leorsd__FEUP-LCOM-lab2"
+      ],
+      "positive_project_case_ids": [
+        "leorsd__FEUP-LCOM-survive-gameplay"
+      ],
+      "case_evidence": [
+        {
+          "case_id": "leorsd__FEUP-LCOM-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/leorsd__FEUP-LCOM-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/leorsd__FEUP-LCOM-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/leorsd__FEUP-LCOM-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        },
+        {
+          "repo": "leorsd/FEUP-LCOM",
+          "sha": "b73f072fdcd4d189002e1d376f0fbafa95d25c1e",
+          "build_exit": 0,
+          "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/leorsd__FEUP-LCOM-survive-gameplay/build.log",
+          "runs": [
+            {
+              "id": "populated-gameplay",
+              "args": [],
+              "exit": 1,
+              "guard": true,
+              "passed": true,
+              "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/leorsd__FEUP-LCOM-survive-gameplay/populated-gameplay.log",
+              "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/leorsd__FEUP-LCOM-survive-gameplay/populated-gameplay.jsonl",
+              "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/leorsd__FEUP-LCOM-survive-gameplay/populated-gameplay.ppm",
+              "populated_pixels": true,
+              "scope": "Guarded single player board after original mouse selection"
+            },
+            {
+              "id": "gameplay-exit",
+              "args": [],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/leorsd__FEUP-LCOM-survive-gameplay/gameplay-exit.log",
+              "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/leorsd__FEUP-LCOM-survive-gameplay/gameplay-exit.jsonl",
+              "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/leorsd__FEUP-LCOM-survive-gameplay/gameplay-exit.ppm",
+              "populated_pixels": true,
+              "scope": "Original Escape return and menu exit"
+            }
+          ],
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "case_id": "leorsd__FEUP-LCOM-survive-gameplay",
+          "project": "proj/src"
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/leorsd__FEUP-LCOM"
+      }
+    },
+    {
+      "repo": "afonsojramos/feup-lcom",
+      "sha": "5200ee9db709971f9d9ca15ab344413f3e45ab4a",
+      "checkout": "build/compat-expanded/corpus/afonsojramos__feup-lcom",
+      "project": "brickbreaker/src",
+      "builder_args": [],
+      "categories": [
+        "older_api_type_collision"
+      ],
+      "summary": "Local VBE declarations use an older type contract and collide with the current SDK. The host clock-name collision was resolved separately.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/afonsojramos__feup-lcom/build.log"
+      },
+      "positive_case_ids": [],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [],
+      "case_evidence": [],
+      "historical_lab2_observation": {
+        "build_exit": 1,
+        "timer_exit": null,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/afonsojramos__feup-lcom"
+      }
+    },
+    {
+      "repo": "RicardoSilvaBW/FEUP--LCOM",
+      "sha": "b9b0bec2a8c39005e7a673d8d3a36fad71671f38",
+      "checkout": "build/compat-expanded/corpus/RicardoSilvaBW__FEUP--LCOM",
+      "project": "proj",
+      "builder_args": [],
+      "categories": [
+        "original_source_defect",
+        "positive_labs"
+      ],
+      "summary": "Pom Power renders its menu. menu.c frees menu_bg_buf, then delete_static_background frees the same pointer again on exit. Lab 2 passes.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/RicardoSilvaBW__FEUP--LCOM/build.log"
+      },
+      "positive_case_ids": [
+        "RicardoSilvaBW__FEUP--LCOM-lab2"
+      ],
+      "positive_lab_case_ids": [
+        "RicardoSilvaBW__FEUP--LCOM-lab2"
+      ],
+      "positive_project_case_ids": [],
+      "case_evidence": [
+        {
+          "case_id": "RicardoSilvaBW__FEUP--LCOM-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/RicardoSilvaBW__FEUP--LCOM-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/RicardoSilvaBW__FEUP--LCOM-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/RicardoSilvaBW__FEUP--LCOM-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/RicardoSilvaBW__FEUP--LCOM"
+      }
+    },
+    {
+      "repo": "bernardobelchior/feup-lcom",
+      "sha": "14a410320637918a4b3df90177c5d319802da501",
+      "checkout": "build/compat-expanded/corpus/bernardobelchior__feup-lcom",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "host_architecture_limit"
+      ],
+      "summary": "Project contains x86 set_pixel.S. The arm64 compatibility builder rejects architecture-specific assembly.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/bernardobelchior__feup-lcom/build.log"
+      },
+      "positive_case_ids": [],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [],
+      "case_evidence": [],
+      "historical_lab2_observation": null
+    },
+    {
+      "repo": "manuelcralves/FEUP-LCOM",
+      "sha": "b1269689b1eb2dab1626c64d684bc7d204073494",
+      "checkout": "build/compat-expanded/corpus/manuelcralves__FEUP-LCOM",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "invalid_lcf_contract",
+        "positive_labs"
+      ],
+      "summary": "Original proj_main_loop(void) conflicts with the current LCF callback int proj_main_loop(int argc, char **argv). Lab 2 passes.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/manuelcralves__FEUP-LCOM/build.log"
+      },
+      "positive_case_ids": [
+        "manuelcralves__FEUP-LCOM-lab2"
+      ],
+      "positive_lab_case_ids": [
+        "manuelcralves__FEUP-LCOM-lab2"
+      ],
+      "positive_project_case_ids": [],
+      "case_evidence": [
+        {
+          "case_id": "manuelcralves__FEUP-LCOM-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/manuelcralves__FEUP-LCOM-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/manuelcralves__FEUP-LCOM-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/manuelcralves__FEUP-LCOM-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/manuelcralves__FEUP-LCOM"
+      }
+    },
+    {
+      "repo": "andreiasilva66/FEUP-LCOM",
+      "sha": "4d1afd00d67bf2023e2fc2c4cf15ba03726605ea",
+      "checkout": "build/compat-expanded/corpus/andreiasilva66__FEUP-LCOM",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "invalid_lcf_contract"
+      ],
+      "summary": "Project declares void proj_main_loop instead of the current int callback. Lab 2 has unresolved version-control conflict markers.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/andreiasilva66__FEUP-LCOM/build.log"
+      },
+      "positive_case_ids": [],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [],
+      "case_evidence": [],
+      "historical_lab2_observation": {
+        "build_exit": 1,
+        "timer_exit": null,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/andreiasilva66__FEUP-LCOM"
+      }
+    },
+    {
+      "repo": "DSV8/FEUP-LCom",
+      "sha": "ca0515a861cc7c9b21d86f97290945cea1f7a487",
+      "checkout": "build/compat-expanded/corpus/DSV8__FEUP-LCom",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "positive_gameplay_clean_exit",
+        "positive_labs"
+      ],
+      "summary": "Cosmic Garden starts with key 1, handles movement and mouse shooting, returns to its menu and exits normally. Lab 2 passes.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Current positive replay gate",
+        "evidence": "build/compat-expanded/verification/DSV8__FEUP-LCom-project/build.log"
+      },
+      "positive_case_ids": [
+        "DSV8__FEUP-LCom-lab2",
+        "DSV8__FEUP-LCom-project"
+      ],
+      "positive_lab_case_ids": [
+        "DSV8__FEUP-LCom-lab2"
+      ],
+      "positive_project_case_ids": [
+        "DSV8__FEUP-LCom-project"
+      ],
+      "case_evidence": [
+        {
+          "case_id": "DSV8__FEUP-LCom-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/DSV8__FEUP-LCom-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/DSV8__FEUP-LCom-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/DSV8__FEUP-LCom-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        },
+        {
+          "case_id": "DSV8__FEUP-LCom-project",
+          "project": "proj/src",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/DSV8__FEUP-LCom-project/build.log",
+          "runs": [
+            {
+              "id": "scripted-exit",
+              "args": [],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/DSV8__FEUP-LCom-project/scripted-exit.log",
+              "trace": "build/compat-expanded/verification/DSV8__FEUP-LCom-project/scripted-exit.jsonl",
+              "frame": "build/compat-expanded/verification/DSV8__FEUP-LCom-project/scripted-exit.ppm",
+              "populated_pixels": true,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/DSV8__FEUP-LCom"
+      }
+    },
+    {
+      "repo": "josesereno/Bamboozlers",
+      "sha": "8492b6ae42767efee595e3265c2852bba595268a",
+      "checkout": "build/compat-expanded/corpus/josesereno__Bamboozlers",
+      "project": "src",
+      "builder_args": [],
+      "categories": [
+        "positive_gameplay_clean_exit"
+      ],
+      "summary": "Enter opens level selection. Mouse selection enters level 1, arrow movement/jumping runs, and Escape exits normally.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Current positive replay gate",
+        "evidence": "build/compat-expanded/verification/josesereno__Bamboozlers-project/build.log"
+      },
+      "positive_case_ids": [
+        "josesereno__Bamboozlers-project"
+      ],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [
+        "josesereno__Bamboozlers-project"
+      ],
+      "case_evidence": [
+        {
+          "case_id": "josesereno__Bamboozlers-project",
+          "project": "src",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/josesereno__Bamboozlers-project/build.log",
+          "runs": [
+            {
+              "id": "scripted-exit",
+              "args": [],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/josesereno__Bamboozlers-project/scripted-exit.log",
+              "trace": "build/compat-expanded/verification/josesereno__Bamboozlers-project/scripted-exit.jsonl",
+              "frame": "build/compat-expanded/verification/josesereno__Bamboozlers-project/scripted-exit.ppm",
+              "populated_pixels": true,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": null
+    },
+    {
+      "repo": "bersanots/FEUP-LCOM",
+      "sha": "04e6ad63181e05a801c8f71eedf440c6bda04fc0",
+      "checkout": "build/compat-expanded/corpus/bersanots__FEUP-LCOM",
+      "project": "src",
+      "builder_args": [],
+      "categories": [
+        "positive_menu_only"
+      ],
+      "summary": "StickyBall menu renders and exits through its mouse control. Earlier guarded match captures exist, but the current replay gate checks the menu exit only.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Current positive replay gate",
+        "evidence": "build/compat-expanded/verification/bersanots__FEUP-LCOM-project/build.log"
+      },
+      "positive_case_ids": [
+        "bersanots__FEUP-LCOM-project"
+      ],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [
+        "bersanots__FEUP-LCOM-project"
+      ],
+      "case_evidence": [
+        {
+          "case_id": "bersanots__FEUP-LCOM-project",
+          "project": "src",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/bersanots__FEUP-LCOM-project/build.log",
+          "runs": [
+            {
+              "id": "scripted-exit",
+              "args": [],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/bersanots__FEUP-LCOM-project/scripted-exit.log",
+              "trace": "build/compat-expanded/verification/bersanots__FEUP-LCOM-project/scripted-exit.jsonl",
+              "frame": "build/compat-expanded/verification/bersanots__FEUP-LCOM-project/scripted-exit.ppm",
+              "populated_pixels": true,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": null
+    },
+    {
+      "repo": "iamaccosta/FEUP-LCOM",
+      "sha": "977a5cee882ba8016f0c6535512611a44bb64e12",
+      "checkout": "build/compat-expanded/corpus/iamaccosta__FEUP-LCOM",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "positive_project"
+      ],
+      "summary": "Fresh default project build passes. Guarded populated 4x4 memory board and timer transition, then original pause/E cleanup exit 0 pass with unchanged sources. A mouse card flip is not verified. Its old Lab 2 test uses IRQ_SETPOLICY as an interrupt mask.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Fresh default public CLI build, followed by declared runtime evidence",
+        "evidence": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/iamaccosta__FEUP-LCOM-memory-gameplay/build.log"
+      },
+      "positive_case_ids": [
+        "iamaccosta__FEUP-LCOM-memory-gameplay"
+      ],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [
+        "iamaccosta__FEUP-LCOM-memory-gameplay"
+      ],
+      "case_evidence": [
+        {
+          "repo": "iamaccosta/FEUP-LCOM",
+          "sha": "977a5cee882ba8016f0c6535512611a44bb64e12",
+          "build_exit": 0,
+          "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/iamaccosta__FEUP-LCOM-memory-gameplay/build.log",
+          "runs": [
+            {
+              "id": "populated-gameplay",
+              "args": [],
+              "exit": 1,
+              "guard": true,
+              "passed": true,
+              "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/iamaccosta__FEUP-LCOM-memory-gameplay/populated-gameplay.log",
+              "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/iamaccosta__FEUP-LCOM-memory-gameplay/populated-gameplay.jsonl",
+              "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/iamaccosta__FEUP-LCOM-memory-gameplay/populated-gameplay.ppm",
+              "populated_pixels": true,
+              "scope": "Guarded4x4 board and timer transition; mouse card flip not verified"
+            },
+            {
+              "id": "gameplay-exit",
+              "args": [],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/iamaccosta__FEUP-LCOM-memory-gameplay/gameplay-exit.log",
+              "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/iamaccosta__FEUP-LCOM-memory-gameplay/gameplay-exit.jsonl",
+              "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/iamaccosta__FEUP-LCOM-memory-gameplay/gameplay-exit.ppm",
+              "populated_pixels": true,
+              "scope": "Original pause and E break exits after gameplay"
+            }
+          ],
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "case_id": "iamaccosta__FEUP-LCOM-memory-gameplay",
+          "project": "proj/src"
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 1,
+        "timer_exit": null,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/iamaccosta__FEUP-LCOM"
+      }
+    },
+    {
+      "repo": "nunoMeloCastro/FEUP-LCOM",
+      "sha": "88fb5ee000b99b51014ec06cf8420ecdbf65a7cd",
+      "checkout": "build/compat-expanded/corpus/nunoMeloCastro__FEUP-LCOM",
+      "project": ".",
+      "builder_args": [],
+      "categories": [
+        "host_architecture_limit"
+      ],
+      "summary": "Sudoku casts video_mem and allocated buffer pointers to 32-bit unsigned int before memcpy. The casts truncate 64-bit host addresses and cause SIGSEGV.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/nunoMeloCastro__FEUP-LCOM/build.log"
+      },
+      "positive_case_ids": [],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [],
+      "case_evidence": [],
+      "historical_lab2_observation": null
+    },
+    {
+      "repo": "andrenasx/FEUP-LCOM",
+      "sha": "4c34535b3ed40a3f60dba1d2c63fbe6aec946883",
+      "checkout": "build/compat-expanded/corpus/andrenasx__FEUP-LCOM",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "positive_menu_only",
+        "positive_labs"
+      ],
+      "summary": "Asteroids reaches its populated menu and exits with Escape. Lab 2 passes. Gameplay is outside the current gate.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Current positive replay gate",
+        "evidence": "build/compat-expanded/verification/andrenasx__FEUP-LCOM-project/build.log"
+      },
+      "positive_case_ids": [
+        "andrenasx__FEUP-LCOM-lab2",
+        "andrenasx__FEUP-LCOM-project"
+      ],
+      "positive_lab_case_ids": [
+        "andrenasx__FEUP-LCOM-lab2"
+      ],
+      "positive_project_case_ids": [
+        "andrenasx__FEUP-LCOM-project"
+      ],
+      "case_evidence": [
+        {
+          "case_id": "andrenasx__FEUP-LCOM-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/andrenasx__FEUP-LCOM-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/andrenasx__FEUP-LCOM-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/andrenasx__FEUP-LCOM-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        },
+        {
+          "case_id": "andrenasx__FEUP-LCOM-project",
+          "project": "proj/src",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/andrenasx__FEUP-LCOM-project/build.log",
+          "runs": [
+            {
+              "id": "scripted-menu-exit",
+              "args": [],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/andrenasx__FEUP-LCOM-project/scripted-menu-exit.log",
+              "trace": "build/compat-expanded/verification/andrenasx__FEUP-LCOM-project/scripted-menu-exit.jsonl",
+              "frame": "build/compat-expanded/verification/andrenasx__FEUP-LCOM-project/scripted-menu-exit.ppm",
+              "populated_pixels": true,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/andrenasx__FEUP-LCOM"
+      }
+    },
+    {
+      "repo": "FrozenHart/LCOM_2025",
+      "sha": "f1879939f7a9a8e9610b9dcfc228b6aee1723e66",
+      "checkout": "build/compat-expanded/corpus/FrozenHart__LCOM_2025",
+      "project": "proj",
+      "builder_args": [],
+      "categories": [
+        "positive_menu_only"
+      ],
+      "summary": "Blackjack menu renders and exits normally. Starting a single-player deal fails because player 1 has zero hands, an original game-state defect.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Current positive replay gate",
+        "evidence": "build/compat-expanded/verification/FrozenHart__LCOM_2025-project/build.log"
+      },
+      "positive_case_ids": [
+        "FrozenHart__LCOM_2025-project"
+      ],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [
+        "FrozenHart__LCOM_2025-project"
+      ],
+      "case_evidence": [
+        {
+          "case_id": "FrozenHart__LCOM_2025-project",
+          "project": "proj",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/FrozenHart__LCOM_2025-project/build.log",
+          "runs": [
+            {
+              "id": "scripted-menu-exit",
+              "args": [],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/FrozenHart__LCOM_2025-project/scripted-menu-exit.log",
+              "trace": "build/compat-expanded/verification/FrozenHart__LCOM_2025-project/scripted-menu-exit.jsonl",
+              "frame": "build/compat-expanded/verification/FrozenHart__LCOM_2025-project/scripted-menu-exit.ppm",
+              "populated_pixels": true,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": null
+    },
+    {
+      "repo": "raulnasoliveira/FEUP-LCOM-2025",
+      "sha": "a94d7998e4a0ed234aa0e13f8444195ffc9d332a",
+      "checkout": "build/compat-expanded/corpus/raulnasoliveira__FEUP-LCOM-2025",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "positive_guarded_gameplay",
+        "positive_labs"
+      ],
+      "summary": "The verbal memory game reaches its word, New/Seen controls and lives display. Its original while (1) loop has no application exit, so the replay ends at the declared guard. Lab 2 passes.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Current positive replay gate",
+        "evidence": "build/compat-expanded/verification/raulnasoliveira__FEUP-LCOM-2025-project/build.log"
+      },
+      "positive_case_ids": [
+        "raulnasoliveira__FEUP-LCOM-2025-lab2",
+        "raulnasoliveira__FEUP-LCOM-2025-project"
+      ],
+      "positive_lab_case_ids": [
+        "raulnasoliveira__FEUP-LCOM-2025-lab2"
+      ],
+      "positive_project_case_ids": [
+        "raulnasoliveira__FEUP-LCOM-2025-project"
+      ],
+      "case_evidence": [
+        {
+          "case_id": "raulnasoliveira__FEUP-LCOM-2025-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/raulnasoliveira__FEUP-LCOM-2025-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/raulnasoliveira__FEUP-LCOM-2025-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/raulnasoliveira__FEUP-LCOM-2025-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        },
+        {
+          "case_id": "raulnasoliveira__FEUP-LCOM-2025-project",
+          "project": "proj/src",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/raulnasoliveira__FEUP-LCOM-2025-project/build.log",
+          "runs": [
+            {
+              "id": "verbal-memory-gameplay",
+              "args": [],
+              "exit": 1,
+              "guard": true,
+              "passed": true,
+              "log": "build/compat-expanded/verification/raulnasoliveira__FEUP-LCOM-2025-project/verbal-memory-gameplay.log",
+              "trace": "build/compat-expanded/verification/raulnasoliveira__FEUP-LCOM-2025-project/verbal-memory-gameplay.jsonl",
+              "frame": "build/compat-expanded/verification/raulnasoliveira__FEUP-LCOM-2025-project/verbal-memory-gameplay.ppm",
+              "populated_pixels": true,
+              "scope": "Bounded populated frame capture; guard is expected, normal exit is a separate run"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/raulnasoliveira__FEUP-LCOM-2025"
+      }
+    },
+    {
+      "repo": "IMS-up2021/Star-Wars-Defend-the-Republic-LCOM-2025-",
+      "sha": "c2a8b571335769d971fa1128c2374834b299208d",
+      "checkout": "build/compat-expanded/corpus/IMS-up2021__Star-Wars-Defend-the-Republic-LCOM-2025-",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "positive_menu_only"
+      ],
+      "summary": "Star Wars renders its menu and exits with Escape. Gameplay and multiplayer are outside the current gate.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Current positive replay gate",
+        "evidence": "build/compat-expanded/verification/IMS-up2021__Star-Wars-Defend-the-Republic-LCOM-2025--project/build.log"
+      },
+      "positive_case_ids": [
+        "IMS-up2021__Star-Wars-Defend-the-Republic-LCOM-2025--project"
+      ],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [
+        "IMS-up2021__Star-Wars-Defend-the-Republic-LCOM-2025--project"
+      ],
+      "case_evidence": [
+        {
+          "case_id": "IMS-up2021__Star-Wars-Defend-the-Republic-LCOM-2025--project",
+          "project": "proj/src",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/IMS-up2021__Star-Wars-Defend-the-Republic-LCOM-2025--project/build.log",
+          "runs": [
+            {
+              "id": "menu-exit",
+              "args": [],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/IMS-up2021__Star-Wars-Defend-the-Republic-LCOM-2025--project/menu-exit.log",
+              "trace": "build/compat-expanded/verification/IMS-up2021__Star-Wars-Defend-the-Republic-LCOM-2025--project/menu-exit.jsonl",
+              "frame": "build/compat-expanded/verification/IMS-up2021__Star-Wars-Defend-the-Republic-LCOM-2025--project/menu-exit.ppm",
+              "populated_pixels": true,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": null
+    },
+    {
+      "repo": "pedrojfs17/FEUP-LCOM",
+      "sha": "a4f91d0021bcf8cc863a5f3df37aa681db01fd07",
+      "checkout": "build/compat-expanded/corpus/pedrojfs17__FEUP-LCOM",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "compatibility_gap",
+        "positive_labs"
+      ],
+      "summary": "Lab 2 passes. The project does not provide timer_get_conf and the compatibility SDK has no fallback implementation for that symbol.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/pedrojfs17__FEUP-LCOM/build.log"
+      },
+      "positive_case_ids": [
+        "pedrojfs17__FEUP-LCOM-lab2"
+      ],
+      "positive_lab_case_ids": [
+        "pedrojfs17__FEUP-LCOM-lab2"
+      ],
+      "positive_project_case_ids": [],
+      "case_evidence": [
+        {
+          "case_id": "pedrojfs17__FEUP-LCOM-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/pedrojfs17__FEUP-LCOM-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/pedrojfs17__FEUP-LCOM-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/pedrojfs17__FEUP-LCOM-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/pedrojfs17__FEUP-LCOM"
+      }
+    },
+    {
+      "repo": "Telmo465/FEUP-LCOM",
+      "sha": "d6988cce28502d874a5233a08da7f1c87483665b",
+      "checkout": "build/compat-expanded/corpus/Telmo465__FEUP-LCOM",
+      "project": "proj",
+      "builder_args": [],
+      "categories": [
+        "older_api_type_collision",
+        "positive_labs"
+      ],
+      "summary": "Lab 2 passes. Project code calls the older LCF proj_demo helper, which the compatibility SDK does not provide.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/Telmo465__FEUP-LCOM/build.log"
+      },
+      "positive_case_ids": [
+        "Telmo465__FEUP-LCOM-lab2"
+      ],
+      "positive_lab_case_ids": [
+        "Telmo465__FEUP-LCOM-lab2"
+      ],
+      "positive_project_case_ids": [],
+      "case_evidence": [
+        {
+          "case_id": "Telmo465__FEUP-LCOM-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/Telmo465__FEUP-LCOM-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/Telmo465__FEUP-LCOM-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/Telmo465__FEUP-LCOM-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/Telmo465__FEUP-LCOM"
+      }
+    },
+    {
+      "repo": "JozePRamos/FEUP_LCOM",
+      "sha": "2cba5ed392d91bc0a7fae8abb2171f193b88a6a2",
+      "checkout": "build/compat-expanded/corpus/JozePRamos__FEUP_LCOM",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "invalid_lcf_contract"
+      ],
+      "summary": "Local kbd_ih returns int instead of the current LCF void prototype. Lab 2 timer.c has an incomplete expression.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/JozePRamos__FEUP_LCOM/build.log"
+      },
+      "positive_case_ids": [],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [],
+      "case_evidence": [],
+      "historical_lab2_observation": {
+        "build_exit": 1,
+        "timer_exit": null,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/JozePRamos__FEUP_LCOM"
+      }
+    },
+    {
+      "repo": "liac1983/FEUP-LCOM",
+      "sha": "fd05d251af20b5325a6958c8d6ab030d3a1e94ad",
+      "checkout": "build/compat-expanded/corpus/liac1983__FEUP-LCOM",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "invalid_lcf_contract",
+        "positive_labs"
+      ],
+      "summary": "Original proj_main_loop(void) conflicts with the current LCF argc/argv callback. Lab 2 passes.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/liac1983__FEUP-LCOM/build.log"
+      },
+      "positive_case_ids": [
+        "liac1983__FEUP-LCOM-lab2"
+      ],
+      "positive_lab_case_ids": [
+        "liac1983__FEUP-LCOM-lab2"
+      ],
+      "positive_project_case_ids": [],
+      "case_evidence": [
+        {
+          "case_id": "liac1983__FEUP-LCOM-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/liac1983__FEUP-LCOM-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/liac1983__FEUP-LCOM-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/liac1983__FEUP-LCOM-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/liac1983__FEUP-LCOM"
+      }
+    },
+    {
+      "repo": "sirkotal/feup-lcom",
+      "sha": "8bff6e77a89f9c209b24762208575ee7c60994cc",
+      "checkout": "build/compat-expanded/corpus/sirkotal__feup-lcom",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "original_source_defect"
+      ],
+      "summary": "Keyboard and timer drivers write 32 bits through addresses of 8-bit stack variables. macOS reports stack buffer overflow in kbc_write_command or timer_set_frequency.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/sirkotal__feup-lcom/build.log"
+      },
+      "positive_case_ids": [],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [],
+      "case_evidence": [],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 134,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/sirkotal__feup-lcom"
+      }
+    },
+    {
+      "repo": "zefluxo/feup-lcom",
+      "sha": "e65ab1042229cd99acc5d21a69efbba9d6f53792",
+      "checkout": "build/compat-expanded/corpus/zefluxo__feup-lcom",
+      "project": "proj/src",
+      "builder_args": [],
+      "categories": [
+        "positive_guarded_gameplay",
+        "positive_labs"
+      ],
+      "summary": "Tetris handles piece movement/rotation in a guarded gameplay capture. A separate mouse menu exit finishes normally. Lab 2 passes.",
+      "project_build": {
+        "exit": 0,
+        "scope": "Current positive replay gate",
+        "evidence": "build/compat-expanded/verification/zefluxo__feup-lcom-project/build.log"
+      },
+      "positive_case_ids": [
+        "zefluxo__feup-lcom-lab2",
+        "zefluxo__feup-lcom-project"
+      ],
+      "positive_lab_case_ids": [
+        "zefluxo__feup-lcom-lab2"
+      ],
+      "positive_project_case_ids": [
+        "zefluxo__feup-lcom-project"
+      ],
+      "case_evidence": [
+        {
+          "case_id": "zefluxo__feup-lcom-lab2",
+          "project": "lab2",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/zefluxo__feup-lcom-lab2/build.log",
+          "runs": [
+            {
+              "id": "two-second-timer",
+              "args": [
+                "timer_test_int",
+                "2"
+              ],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/zefluxo__feup-lcom-lab2/two-second-timer.log",
+              "trace": "build/compat-expanded/verification/zefluxo__feup-lcom-lab2/two-second-timer.jsonl",
+              "frame": null,
+              "populated_pixels": null,
+              "scope": "normal callback exit"
+            }
+          ]
+        },
+        {
+          "case_id": "zefluxo__feup-lcom-project",
+          "project": "proj/src",
+          "passed": true,
+          "source_hashes_unchanged": true,
+          "build_log": "build/compat-expanded/verification/zefluxo__feup-lcom-project/build.log",
+          "runs": [
+            {
+              "id": "tetris-gameplay",
+              "args": [],
+              "exit": 1,
+              "guard": true,
+              "passed": true,
+              "log": "build/compat-expanded/verification/zefluxo__feup-lcom-project/tetris-gameplay.log",
+              "trace": "build/compat-expanded/verification/zefluxo__feup-lcom-project/tetris-gameplay.jsonl",
+              "frame": "build/compat-expanded/verification/zefluxo__feup-lcom-project/tetris-gameplay.ppm",
+              "populated_pixels": true,
+              "scope": "Bounded populated frame capture; guard is expected, normal exit is a separate run"
+            },
+            {
+              "id": "menu-exit",
+              "args": [],
+              "exit": 0,
+              "guard": false,
+              "passed": true,
+              "log": "build/compat-expanded/verification/zefluxo__feup-lcom-project/menu-exit.log",
+              "trace": "build/compat-expanded/verification/zefluxo__feup-lcom-project/menu-exit.jsonl",
+              "frame": "build/compat-expanded/verification/zefluxo__feup-lcom-project/menu-exit.ppm",
+              "populated_pixels": true,
+              "scope": "normal callback exit"
+            }
+          ]
+        }
+      ],
+      "historical_lab2_observation": {
+        "build_exit": 0,
+        "timer_exit": 0,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/zefluxo__feup-lcom"
+      }
+    },
+    {
+      "repo": "tomasnr13/FEUP-LCOM",
+      "sha": "6c600d791b13bf15c57575822e17625f7dd70757",
+      "checkout": "build/compat-expanded/corpus/tomasnr13__FEUP-LCOM",
+      "project": "lab5",
+      "builder_args": [],
+      "categories": [
+        "original_source_defect"
+      ],
+      "summary": "The pinned Lab 5 source omits graphic_consts.h and Lab 2 omits i8254.h.",
+      "project_build": {
+        "exit": 1,
+        "scope": "Last surveyed project build, not runtime proof",
+        "evidence": "build/compat-expanded/evidence/tomasnr13__FEUP-LCOM/build.log"
+      },
+      "positive_case_ids": [],
+      "positive_lab_case_ids": [],
+      "positive_project_case_ids": [],
+      "case_evidence": [],
+      "historical_lab2_observation": {
+        "build_exit": 1,
+        "timer_exit": null,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/tomasnr13__FEUP-LCOM"
+      }
+    }
+  ],
+  "supplementary_lab_cases": [
+    {
+      "id": "peucastro__lcom-lab2",
+      "repo": "peucastro/lcom",
+      "sha": "f8fd47bcfdd76c5eb4e94e5e929e63a888259b2b",
+      "project": "lab2",
+      "runs": [
+        "timer_test_read_config",
+        "timer_test_time_base",
+        "timer_test_int"
+      ],
+      "evidence": "build/compat-expanded/verification/peucastro__lcom-lab2"
+    },
+    {
+      "id": "peucastro__lcom-lab3",
+      "repo": "peucastro/lcom",
+      "sha": "f8fd47bcfdd76c5eb4e94e5e929e63a888259b2b",
+      "project": "lab3",
+      "runs": [
+        "kbd_test_scan",
+        "kbd_test_poll",
+        "kbd_test_timed_scan"
+      ],
+      "evidence": "build/compat-expanded/verification/peucastro__lcom-lab3"
+    },
+    {
+      "id": "peucastro__lcom-lab4",
+      "repo": "peucastro/lcom",
+      "sha": "f8fd47bcfdd76c5eb4e94e5e929e63a888259b2b",
+      "project": "lab4",
+      "runs": [
+        "mouse_test_packet",
+        "mouse_test_async",
+        "mouse_test_gesture",
+        "mouse_test_remote"
+      ],
+      "evidence": "build/compat-expanded/verification/peucastro__lcom-lab4"
+    },
+    {
+      "id": "peucastro__lcom-lab5",
+      "repo": "peucastro/lcom",
+      "sha": "f8fd47bcfdd76c5eb4e94e5e929e63a888259b2b",
+      "project": "lab5",
+      "runs": [
+        "video_test_init",
+        "video_test_rectangle",
+        "video_test_pattern",
+        "video_test_xpm",
+        "video_test_move"
+      ],
+      "evidence": "build/compat-expanded/verification/peucastro__lcom-lab5"
+    }
+  ],
+  "withdrawn_cases": [
+    {
+      "id": "bdmendes__feup-lcom-project",
+      "repo": "bdmendes/feup-lcom",
+      "sha": "c62b7ffe669602024eed3697d69ec3272a48bbe8",
+      "project": "2020_og/proj/src",
+      "reason": "Original rtc.c:5 allocates current_time[17], but sprintf at line 274 requires 21 bytes. Correct RTC updates now expose SIGTRAP from fortified sprintf at tick 60. Gameplay and menu claims withdrawn; lab2 passes.",
+      "evidence": "build/compat-expanded/verification/bdmendes__feup-lcom-project/upstream-rtc-overflow.json"
+    }
+  ],
+  "supplementary_project_manifests": [
+    "tests/compat-leorsd-extension.json",
+    "tests/compat-iam-extension.json"
+  ]
+}

@@ -1,0 +1,15 @@
+# Select Start, move, drop a bomb, pause, return to the menu, and exit.
+at 180 key LEFT down
+at 181 key LEFT up
+at 200 key ENTER down
+at 201 key ENTER up
+at 300 key RIGHT down
+at 301 key RIGHT up
+at 350 key SPACE down
+at 351 key SPACE up
+at 700 key ESC down
+at 701 key ESC up
+at 730 key ESC down
+at 731 key ESC up
+at 760 key ESC down
+at 761 key ESC up

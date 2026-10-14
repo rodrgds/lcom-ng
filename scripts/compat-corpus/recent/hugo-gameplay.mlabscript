@@ -1,0 +1,9 @@
+at 100 mouse 120 90 0
+at 130 mouse 0 0 1
+at 131 mouse 0 0 0
+at 200 key D down
+at 220 key D up
+at 240 key SPACE down
+at 241 key SPACE up
+at 500 key ESC down
+at 501 key ESC up

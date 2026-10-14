@@ -1,0 +1,12 @@
+# Type HELLO locally, command sync broadcasts original buffer, then add one local character.
+at 100 text HELLO
+at 200 key LSHIFT down
+at 201 key PERIOD down
+at 202 key PERIOD up
+at 203 key LSHIFT up
+at 210 text sync
+at 240 key ENTER down
+at 241 key ENTER up
+at 500 text A
+at 1400 key ESC down
+at 1401 key ESC up

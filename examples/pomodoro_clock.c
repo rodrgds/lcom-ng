@@ -434,7 +434,7 @@ static void draw_clock(example_canvas_t *canvas, const clock_state_t *state,
 
   example_fill_rect(canvas, 0, 0, 800, 76, example_rgb(24, 29, 42));
   example_fill_rect(canvas, 0, 74, 800, 2, accent);
-  example_draw_text(canvas, 28, 20, "MACHINE LAB", example_rgb(239, 242, 247), 3);
+  example_draw_text(canvas, 28, 20, "LCOM-NG", example_rgb(239, 242, 247), 3);
   example_draw_text(canvas, 30, 50, "RTC WALL TIME + PIT SESSION TIME",
                     example_rgb(143, 154, 177), 1);
   example_fill_rect(canvas, 596, 18, 174, 38, panel);

@@ -1,0 +1,7 @@
+# Source input parser translates PS/2 key makes into editor text; ESC sets quit.
+at 100 text HELLO
+at 160 key ENTER down
+at 161 key ENTER up
+at 190 text LCOM
+at 500 key ESC down
+at 501 key ESC up

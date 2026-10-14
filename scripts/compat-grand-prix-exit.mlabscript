@@ -1,0 +1,5 @@
+# Cursor starts at (400,300). Move to the menu's Exit button at (400,375).
+at 200 mouse 0 0 0
+at 210 mouse 0 -75 0
+at 220 mouse 0 0 1
+at 221 mouse 0 0 0

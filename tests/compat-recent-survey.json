@@ -1,0 +1,1987 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-13",
+  "repository_count": 23,
+  "source_family_count": 20,
+  "default_builds": 21,
+  "builds_with_explicit_include": 22,
+  "normal_exit_repositories": 19,
+  "normal_exit_source_families": 16,
+  "gameplay_with_clean_game_exit_source_families": 11,
+  "guarded_gameplay_with_original_exit_defect_families": 4,
+  "excluded": [
+    {
+      "repo": "FrozenHart/LCOM_2024",
+      "reason": "Empty repository, no HEAD, not counted"
+    }
+  ],
+  "mirrors": {
+    "scrr-az/skess-lcom": [
+      "Yuka-Sky/LCOM",
+      9
+    ],
+    "T0m2sT/LCode": [
+      "MiguelMirandaRocha/FEUP-LEIC-LCOM",
+      19
+    ],
+    "diogopmac/LCOM-Minix_Invaders": [
+      "Hugo-mgs/LCOM-Space-Invaders",
+      16
+    ]
+  },
+  "source_defects": [
+    {
+      "repo": "gsilva00/LCOM-Project",
+      "class_": "original source cleanup defect",
+      "crash_report": "/Users/rgo/Library/Logs/DiagnosticReports/proj-2026-10-13-225321.ips",
+      "stack": [
+        "free_buffers",
+        "proj_main_loop"
+      ],
+      "source": "proj/src/devices/gpu/gpu.c",
+      "evidence": [
+        "line57 maps video_mem with vm_map_phys",
+        "line81 free(video_mem), which is not malloc allocated"
+      ],
+      "observed_exit": 134
+    },
+    {
+      "repo": "TM-1-3/WombatMaze",
+      "class_": "original source cleanup defect",
+      "crash_report": "/Users/rgo/Library/Logs/DiagnosticReports/proj-2026-10-13-225445.ips",
+      "stack": [
+        "destroyWombat",
+        "proj_main_loop"
+      ],
+      "source": "proj/src/main.c and proj/src/game/wombat.c",
+      "evidence": [
+        "main.c:592-595 destroys four wombat sprites",
+        "main.c:600 calls destroyWombat(currentWombat)",
+        "wombat.c:170 destroys current wombatSprite again"
+      ],
+      "observed_exit": 133
+    },
+    {
+      "repo": "Hugo-mgs/LCOM-Space-Invaders",
+      "class_": "original shared sprite cleanup defect",
+      "crash_report": "/Users/rgo/Library/Logs/DiagnosticReports/proj-2026-10-13-230026.ips",
+      "stack": [
+        "destroy_sprite",
+        "destroyBarrier",
+        "exit_game"
+      ],
+      "source": "proj/src/model/barrier/barrier.c and proj/src/model/game.c",
+      "evidence": [
+        "barrier.c:12 assigns shared barrier_st0 to each barrier",
+        "barrier.c:19 destroys shared barrier sprite",
+        "game.c:42-44 destroys all four barriers and frees same sprite repeatedly"
+      ],
+      "observed_exit": 134,
+      "mirror_note": "diogopmac/LCOM-Minix_Invaders has identical16 Cfiles; reproduced gameplay cleanup here only"
+    },
+    {
+      "repo": "leticia-003/2ndYear_FEUP_LCom",
+      "classification": "original nested event-loop exit defect",
+      "source": "proj/src/Game/game.c:61",
+      "evidence": "Inner while(driver_receive(ANY,&msg,&ipc_status)==0) does not test running; STATE_EXIT sets running=false inside without breaking receive loop.",
+      "observed_exit": 1,
+      "guard": true
+    },
+    {
+      "repo": "Eduarda34/FEUP-LCOM",
+      "classification": "original callback contract compile error",
+      "source": "proj/src/proj.c:24",
+      "evidence": "int(proj_main_loop)() conflicts with current int proj_main_loop(int argc,char**argv).",
+      "observed_build_exit": 1
+    }
+  ],
+  "resolved_runtime_and_importer_gaps": [
+    {
+      "gap": "Minix MIN/MAX umbrella macros",
+      "affected": "DGoiana/feup-lcom",
+      "resolution": "Default build now passes"
+    },
+    {
+      "gap": "Direct object dependencies from framework Makefile/.PATH",
+      "affected": "MiguelMirandaRocha/FEUP-LEIC-LCOM and T0m2sT/LCode",
+      "resolution": "Default build now passes, original sources unchanged"
+    },
+    {
+      "gap": "Absolute /home/lcom/labs library paths",
+      "affected": "filipecruz06/FEUP-LCOM-proj",
+      "resolution": "Default build now passes and gameplay exits0"
+    },
+    {
+      "gap": "VBE0x11B 1280x1024 RGB888",
+      "affected": "Leticia and Gomes projects",
+      "resolution": "Populated gameplay verified; Gomes normal exit verified"
+    }
+  ],
+  "repositories": [
+    {
+      "repo": "Yuka-Sky/LCOM",
+      "sha": "e333e84a361140f7ba410bf219133d7b2fd92860",
+      "github_url": "https://github.com/Yuka-Sky/LCOM/tree/e333e84a361140f7ba410bf219133d7b2fd92860",
+      "checkout": "build/compat-recent/corpus/Yuka-Sky__LCOM",
+      "project": "Project/src",
+      "github_metadata": {
+        "createdAt": "2025-02-20T16:10:52Z",
+        "description": "Feup Computer Laboraory Class - Notes, projects and codes",
+        "fullName": "Yuka-Sky/LCOM",
+        "updatedAt": "2025-09-30T16:04:28Z"
+      },
+      "classification": "gameplay and clean exit",
+      "verified_scope": "Canvas with drawn stroke, TABLE guess and countdown; Escape cleanup.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/Yuka-Sky__LCOM-gameplay/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/Yuka-Sky__LCOM/build.log",
+      "case": {
+        "id": "Yuka-Sky__LCOM-gameplay",
+        "repo": "Yuka-Sky/LCOM",
+        "sha": "e333e84a361140f7ba410bf219133d7b2fd92860",
+        "project": "Project/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "script": "build/compat-recent/scripts/skess-gameplay.mlabscript",
+            "max_ticks": 650,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded populated capture; clean application exit is checked separately",
+            "trace_last_tick": 650
+          },
+          {
+            "id": "gameplay-exit",
+            "script": "build/compat-recent/scripts/skess-gameplay.mlabscript",
+            "max_ticks": 1100,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "Yuka-Sky__LCOM-gameplay",
+        "repo": "Yuka-Sky/LCOM",
+        "sha": "e333e84a361140f7ba410bf219133d7b2fd92860",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Yuka-Sky__LCOM-gameplay/build.log",
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Yuka-Sky__LCOM-gameplay/populated-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Yuka-Sky__LCOM-gameplay/populated-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Yuka-Sky__LCOM-gameplay/populated-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded populated capture; clean application exit is checked separately"
+          },
+          {
+            "id": "gameplay-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Yuka-Sky__LCOM-gameplay/gameplay-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Yuka-Sky__LCOM-gameplay/gameplay-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Yuka-Sky__LCOM-gameplay/gameplay-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "luanalima27/LCOM-FEUP",
+      "sha": "8a51f4788f459f16e832668dd988ec4f42552fdf",
+      "github_url": "https://github.com/luanalima27/LCOM-FEUP/tree/8a51f4788f459f16e832668dd988ec4f42552fdf",
+      "checkout": "build/compat-recent/corpus/luanalima27__LCOM-FEUP",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2025-05-10T14:01:23Z",
+        "description": "LEIC - 2nd Year - 2nd Semester,  L.EIC018 - Computer Laboratory",
+        "fullName": "luanalima27/LCOM-FEUP",
+        "updatedAt": "2025-05-10T16:42:31Z"
+      },
+      "classification": "menu and clean exit",
+      "verified_scope": "City background and Start/Quit menu; S then Enter Quit cleanup.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/luanalima27__LCOM-FEUP-menu/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/luanalima27__LCOM-FEUP/build.log",
+      "case": {
+        "id": "luanalima27__LCOM-FEUP-menu",
+        "repo": "luanalima27/LCOM-FEUP",
+        "sha": "8a51f4788f459f16e832668dd988ec4f42552fdf",
+        "project": "proj/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "menu-exit",
+            "script": "build/compat-recent/scripts/luana-exit.mlabscript",
+            "max_ticks": 800,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Clean exit using original menu controls; no gameplay claim"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "luanalima27__LCOM-FEUP-menu",
+        "repo": "luanalima27/LCOM-FEUP",
+        "sha": "8a51f4788f459f16e832668dd988ec4f42552fdf",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/luanalima27__LCOM-FEUP-menu/build.log",
+        "runs": [
+          {
+            "id": "menu-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/luanalima27__LCOM-FEUP-menu/menu-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/luanalima27__LCOM-FEUP-menu/menu-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/luanalima27__LCOM-FEUP-menu/menu-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Clean exit using original menu controls; no gameplay claim"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "Eduarda34/FEUP-LCOM",
+      "sha": "0534e832b7fe199763e65218688ea093881830c4",
+      "github_url": "https://github.com/Eduarda34/FEUP-LCOM/tree/0534e832b7fe199763e65218688ea093881830c4",
+      "checkout": "build/compat-recent/corpus/Eduarda34__FEUP-LCOM",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2025-07-15T18:58:55Z",
+        "description": "",
+        "fullName": "Eduarda34/FEUP-LCOM",
+        "updatedAt": "2025-07-15T18:59:51Z"
+      },
+      "classification": "original callback contract compile error",
+      "verified_scope": "proj/src/proj.c:24 defines int(proj_main_loop)() with zero parameters; current LCF declares int(int,char**). No runtime verdict.",
+      "default_build_exit": 1,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/Eduarda34__FEUP-LCOM/build.log",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/Eduarda34__FEUP-LCOM/build.log",
+      "case": null,
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": null
+    },
+    {
+      "repo": "DGoiana/feup-lcom",
+      "sha": "74f0bdacb955639ee774963aba6969e7beba3d57",
+      "github_url": "https://github.com/DGoiana/feup-lcom/tree/74f0bdacb955639ee774963aba6969e7beba3d57",
+      "checkout": "build/compat-recent/corpus/DGoiana__feup-lcom",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2024-02-22T22:15:32Z",
+        "description": "",
+        "fullName": "DGoiana/feup-lcom",
+        "updatedAt": "2025-06-02T08:33:40Z"
+      },
+      "classification": "menu and clean exit",
+      "verified_scope": "Chat menu renders; Escape cleanup. Paired UART chat not verified.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/DGoiana__feup-lcom-interactive/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/DGoiana__feup-lcom/build.log",
+      "case": {
+        "id": "DGoiana__feup-lcom-interactive",
+        "repo": "DGoiana/feup-lcom",
+        "sha": "74f0bdacb955639ee774963aba6969e7beba3d57",
+        "project": "proj/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "interactive-capture",
+            "script": "build/compat-recent/scripts/escape.mlabscript",
+            "max_ticks": 80,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded capture: rendered chat menu",
+            "trace_last_tick": 80
+          },
+          {
+            "id": "interactive-exit",
+            "script": "build/compat-recent/scripts/escape.mlabscript",
+            "max_ticks": 900,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Original cleanup and clean exit"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "DGoiana__feup-lcom-interactive",
+        "repo": "DGoiana/feup-lcom",
+        "sha": "74f0bdacb955639ee774963aba6969e7beba3d57",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/DGoiana__feup-lcom-interactive/build.log",
+        "runs": [
+          {
+            "id": "interactive-capture",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/DGoiana__feup-lcom-interactive/interactive-capture.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/DGoiana__feup-lcom-interactive/interactive-capture.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/DGoiana__feup-lcom-interactive/interactive-capture.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded capture: rendered chat menu"
+          },
+          {
+            "id": "interactive-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/DGoiana__feup-lcom-interactive/interactive-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/DGoiana__feup-lcom-interactive/interactive-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/DGoiana__feup-lcom-interactive/interactive-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Original cleanup and clean exit"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "mariajvieira/feup-lcom",
+      "sha": "e364f4d91606371c5660f28bcd11048d02f8a57e",
+      "github_url": "https://github.com/mariajvieira/feup-lcom/tree/e364f4d91606371c5660f28bcd11048d02f8a57e",
+      "checkout": "build/compat-recent/corpus/mariajvieira__feup-lcom",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2025-07-01T11:05:51Z",
+        "description": "",
+        "fullName": "mariajvieira/feup-lcom",
+        "updatedAt": "2026-01-16T11:24:29Z"
+      },
+      "classification": "gameplay and clean exit",
+      "verified_scope": "Snake board, player and food; directional inputs and Escape cleanup.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/mariajvieira__feup-lcom-gameplay/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/mariajvieira__feup-lcom/build.log",
+      "case": {
+        "id": "mariajvieira__feup-lcom-gameplay",
+        "repo": "mariajvieira/feup-lcom",
+        "sha": "e364f4d91606371c5660f28bcd11048d02f8a57e",
+        "project": "proj/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "script": "build/compat-recent/scripts/snake-gameplay.mlabscript",
+            "max_ticks": 300,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded populated capture; clean application exit is checked separately",
+            "trace_last_tick": 300
+          },
+          {
+            "id": "gameplay-exit",
+            "script": "build/compat-recent/scripts/snake-gameplay.mlabscript",
+            "max_ticks": 800,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "mariajvieira__feup-lcom-gameplay",
+        "repo": "mariajvieira/feup-lcom",
+        "sha": "e364f4d91606371c5660f28bcd11048d02f8a57e",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/mariajvieira__feup-lcom-gameplay/build.log",
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/mariajvieira__feup-lcom-gameplay/populated-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/mariajvieira__feup-lcom-gameplay/populated-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/mariajvieira__feup-lcom-gameplay/populated-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded populated capture; clean application exit is checked separately"
+          },
+          {
+            "id": "gameplay-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/mariajvieira__feup-lcom-gameplay/gameplay-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/mariajvieira__feup-lcom-gameplay/gameplay-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/mariajvieira__feup-lcom-gameplay/gameplay-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "simaopsbarbosa/feup-lcom",
+      "sha": "b2489e2420eeea858df8d9164df267a52e12e8fa",
+      "github_url": "https://github.com/simaopsbarbosa/feup-lcom/tree/b2489e2420eeea858df8d9164df267a52e12e8fa",
+      "checkout": "build/compat-recent/corpus/simaopsbarbosa__feup-lcom",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2026-02-27T11:41:40Z",
+        "description": "",
+        "fullName": "simaopsbarbosa/feup-lcom",
+        "updatedAt": "2026-03-28T12:42:20Z"
+      },
+      "classification": "gameplay and clean exit",
+      "verified_scope": "Single player reaction mode red waiting screen; Space and Escape cleanup. Reaction score not verified.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/simaopsbarbosa__feup-lcom-gameplay/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/simaopsbarbosa__feup-lcom/build.log",
+      "case": {
+        "id": "simaopsbarbosa__feup-lcom-gameplay",
+        "repo": "simaopsbarbosa/feup-lcom",
+        "sha": "b2489e2420eeea858df8d9164df267a52e12e8fa",
+        "project": "proj/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "script": "build/compat-recent/scripts/reaction-gameplay.mlabscript",
+            "max_ticks": 300,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded populated capture; clean application exit is checked separately",
+            "trace_last_tick": 300
+          },
+          {
+            "id": "gameplay-exit",
+            "script": "build/compat-recent/scripts/reaction-gameplay.mlabscript",
+            "max_ticks": 800,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "simaopsbarbosa__feup-lcom-gameplay",
+        "repo": "simaopsbarbosa/feup-lcom",
+        "sha": "b2489e2420eeea858df8d9164df267a52e12e8fa",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/simaopsbarbosa__feup-lcom-gameplay/build.log",
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/simaopsbarbosa__feup-lcom-gameplay/populated-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/simaopsbarbosa__feup-lcom-gameplay/populated-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/simaopsbarbosa__feup-lcom-gameplay/populated-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded populated capture; clean application exit is checked separately"
+          },
+          {
+            "id": "gameplay-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/simaopsbarbosa__feup-lcom-gameplay/gameplay-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/simaopsbarbosa__feup-lcom-gameplay/gameplay-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/simaopsbarbosa__feup-lcom-gameplay/gameplay-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "MiguelMirandaRocha/FEUP-LEIC-LCOM",
+      "sha": "78fa8fdf30638554416dd1e7d96cc747c93c5217",
+      "github_url": "https://github.com/MiguelMirandaRocha/FEUP-LEIC-LCOM/tree/78fa8fdf30638554416dd1e7d96cc747c93c5217",
+      "checkout": "build/compat-recent/corpus/MiguelMirandaRocha__FEUP-LEIC-LCOM",
+      "project": "proj/code",
+      "github_metadata": {
+        "createdAt": "2026-08-25T16:04:20Z",
+        "description": "Minix code editor built from scratch on a custom driver framework",
+        "fullName": "MiguelMirandaRocha/FEUP-LEIC-LCOM",
+        "updatedAt": "2026-08-26T14:28:19Z"
+      },
+      "classification": "editor typing and clean exit",
+      "verified_scope": "HELLO and LCOM on separate lines, file tree, virtual clock; Escape cleanup. Save and collaboration not verified.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/MiguelMirandaRocha__FEUP-LEIC-LCOM-interactive/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/MiguelMirandaRocha__FEUP-LEIC-LCOM/build.log",
+      "case": {
+        "id": "MiguelMirandaRocha__FEUP-LEIC-LCOM-interactive",
+        "repo": "MiguelMirandaRocha/FEUP-LEIC-LCOM",
+        "sha": "78fa8fdf30638554416dd1e7d96cc747c93c5217",
+        "project": "proj/code",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "interactive-capture",
+            "script": "build/compat-recent/scripts/editor-typing.mlabscript",
+            "max_ticks": 300,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded capture: typed editor buffer",
+            "trace_last_tick": 300
+          },
+          {
+            "id": "interactive-exit",
+            "script": "build/compat-recent/scripts/editor-typing.mlabscript",
+            "max_ticks": 900,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Original cleanup and clean exit"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "MiguelMirandaRocha__FEUP-LEIC-LCOM-interactive",
+        "repo": "MiguelMirandaRocha/FEUP-LEIC-LCOM",
+        "sha": "78fa8fdf30638554416dd1e7d96cc747c93c5217",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/MiguelMirandaRocha__FEUP-LEIC-LCOM-interactive/build.log",
+        "runs": [
+          {
+            "id": "interactive-capture",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/MiguelMirandaRocha__FEUP-LEIC-LCOM-interactive/interactive-capture.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/MiguelMirandaRocha__FEUP-LEIC-LCOM-interactive/interactive-capture.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/MiguelMirandaRocha__FEUP-LEIC-LCOM-interactive/interactive-capture.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded capture: typed editor buffer"
+          },
+          {
+            "id": "interactive-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/MiguelMirandaRocha__FEUP-LEIC-LCOM-interactive/interactive-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/MiguelMirandaRocha__FEUP-LEIC-LCOM-interactive/interactive-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/MiguelMirandaRocha__FEUP-LEIC-LCOM-interactive/interactive-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Original cleanup and clean exit"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "filipecruz06/FEUP-LCOM-proj",
+      "sha": "b9981f12376b9dc5d2b95f066b9cacdb171ceb88",
+      "github_url": "https://github.com/filipecruz06/FEUP-LCOM-proj/tree/b9981f12376b9dc5d2b95f066b9cacdb171ceb88",
+      "checkout": "build/compat-recent/corpus/filipecruz06__FEUP-LCOM-proj",
+      "project": "Pacocalypse",
+      "github_metadata": {
+        "createdAt": "2026-09-22T17:41:35Z",
+        "description": "",
+        "fullName": "filipecruz06/FEUP-LCOM-proj",
+        "updatedAt": "2026-09-22T17:42:47Z"
+      },
+      "classification": "gameplay and clean exit",
+      "verified_scope": "Pacman board, ghosts, score30, lives3; D direction, pause, return to menu and Quit cleanup.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/filipecruz06__FEUP-LCOM-proj-gameplay/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/filipecruz06__FEUP-LCOM-proj/build.log",
+      "case": {
+        "id": "filipecruz06__FEUP-LCOM-proj-gameplay",
+        "repo": "filipecruz06/FEUP-LCOM-proj",
+        "sha": "b9981f12376b9dc5d2b95f066b9cacdb171ceb88",
+        "project": "Pacocalypse",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "script": "build/compat-recent/scripts/pacocalypse-gameplay.mlabscript",
+            "max_ticks": 330,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded game board after click and D direction",
+            "trace_last_tick": 330
+          },
+          {
+            "id": "gameplay-exit",
+            "script": "build/compat-recent/scripts/pacocalypse-gameplay.mlabscript",
+            "max_ticks": 900,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Pause return to menu then clean quit"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "filipecruz06__FEUP-LCOM-proj-gameplay",
+        "repo": "filipecruz06/FEUP-LCOM-proj",
+        "sha": "b9981f12376b9dc5d2b95f066b9cacdb171ceb88",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/filipecruz06__FEUP-LCOM-proj-gameplay/build.log",
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/filipecruz06__FEUP-LCOM-proj-gameplay/populated-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/filipecruz06__FEUP-LCOM-proj-gameplay/populated-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/filipecruz06__FEUP-LCOM-proj-gameplay/populated-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded game board after click and D direction"
+          },
+          {
+            "id": "gameplay-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/filipecruz06__FEUP-LCOM-proj-gameplay/gameplay-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/filipecruz06__FEUP-LCOM-proj-gameplay/gameplay-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/filipecruz06__FEUP-LCOM-proj-gameplay/gameplay-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Pause return to menu then clean quit"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "Vasco888888/feup-leic-lcom",
+      "sha": "cdf1668915aaebb900a9ef8eca3252e2414324cb",
+      "github_url": "https://github.com/Vasco888888/feup-leic-lcom/tree/cdf1668915aaebb900a9ef8eca3252e2414324cb",
+      "checkout": "build/compat-recent/corpus/Vasco888888__feup-leic-lcom",
+      "project": "src",
+      "github_metadata": {
+        "createdAt": "2026-01-23T14:14:54Z",
+        "description": "Dr. Minix - Tiles LAB - Graphical rhythm-based game for MINIX focused on low-level programming. | Laborat\u00f3rio de Computadores (LCOM) - FEUP - L.EIC",
+        "fullName": "Vasco888888/feup-leic-lcom",
+        "updatedAt": "2026-06-05T16:00:53Z"
+      },
+      "classification": "gameplay and clean exit",
+      "verified_scope": "Falling blue note, piano lanes and advancing timer; Escape game and menu cleanup.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/Vasco888888__feup-leic-lcom-gameplay/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/Vasco888888__feup-leic-lcom/build.log",
+      "case": {
+        "id": "Vasco888888__feup-leic-lcom-gameplay",
+        "repo": "Vasco888888/feup-leic-lcom",
+        "sha": "cdf1668915aaebb900a9ef8eca3252e2414324cb",
+        "project": "src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "script": "build/compat-recent/scripts/rhythm-gameplay.mlabscript",
+            "max_ticks": 380,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded populated capture; clean application exit is checked separately",
+            "trace_last_tick": 380
+          },
+          {
+            "id": "gameplay-exit",
+            "script": "build/compat-recent/scripts/rhythm-gameplay.mlabscript",
+            "max_ticks": 1000,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "Vasco888888__feup-leic-lcom-gameplay",
+        "repo": "Vasco888888/feup-leic-lcom",
+        "sha": "cdf1668915aaebb900a9ef8eca3252e2414324cb",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Vasco888888__feup-leic-lcom-gameplay/build.log",
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Vasco888888__feup-leic-lcom-gameplay/populated-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Vasco888888__feup-leic-lcom-gameplay/populated-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Vasco888888__feup-leic-lcom-gameplay/populated-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded populated capture; clean application exit is checked separately"
+          },
+          {
+            "id": "gameplay-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Vasco888888__feup-leic-lcom-gameplay/gameplay-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Vasco888888__feup-leic-lcom-gameplay/gameplay-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Vasco888888__feup-leic-lcom-gameplay/gameplay-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "guystavo7/feup-lcom-project",
+      "sha": "ad0703bebf8ab8fd00ede7f690667e2034ca682d",
+      "github_url": "https://github.com/guystavo7/feup-lcom-project/tree/ad0703bebf8ab8fd00ede7f690667e2034ca682d",
+      "checkout": "build/compat-recent/corpus/guystavo7__feup-lcom-project",
+      "project": "project/src",
+      "github_metadata": {
+        "createdAt": "2026-09-26T20:35:28Z",
+        "description": "",
+        "fullName": "guystavo7/feup-lcom-project",
+        "updatedAt": "2026-09-26T20:56:33Z"
+      },
+      "classification": "menu and clean exit",
+      "verified_scope": "Fruit Towers background and NewGame/Exit buttons; source-derived mouse Exit cleanup. Tower gameplay not verified.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/guystavo7__feup-lcom-project-menu/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/guystavo7__feup-lcom-project/build.log",
+      "case": {
+        "id": "guystavo7__feup-lcom-project-menu",
+        "repo": "guystavo7/feup-lcom-project",
+        "sha": "ad0703bebf8ab8fd00ede7f690667e2034ca682d",
+        "project": "project/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "menu-exit",
+            "script": "build/compat-recent/scripts/fruit-exit.mlabscript",
+            "max_ticks": 800,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Clean exit using original menu controls; no gameplay claim"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "guystavo7__feup-lcom-project-menu",
+        "repo": "guystavo7/feup-lcom-project",
+        "sha": "ad0703bebf8ab8fd00ede7f690667e2034ca682d",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/guystavo7__feup-lcom-project-menu/build.log",
+        "runs": [
+          {
+            "id": "menu-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/guystavo7__feup-lcom-project-menu/menu-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/guystavo7__feup-lcom-project-menu/menu-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/guystavo7__feup-lcom-project-menu/menu-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Clean exit using original menu controls; no gameplay claim"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "RodriguesS2/LCOM-HangMan",
+      "sha": "6c76df070f321dd20349a6e6429bee2797223b9c",
+      "github_url": "https://github.com/RodriguesS2/LCOM-HangMan/tree/6c76df070f321dd20349a6e6429bee2797223b9c",
+      "checkout": "build/compat-recent/corpus/RodriguesS2__LCOM-HangMan",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2025-12-31T13:57:14Z",
+        "description": "Hangman game - developed for LCOM course at FEUP",
+        "fullName": "RodriguesS2/LCOM-HangMan",
+        "updatedAt": "2025-12-31T14:03:44Z"
+      },
+      "classification": "gameplay and clean exit",
+      "verified_scope": "Gallows, letter guesses and countdown; Escape game/menu cleanup.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/RodriguesS2__LCOM-HangMan-gameplay/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/RodriguesS2__LCOM-HangMan/build.log",
+      "case": {
+        "id": "RodriguesS2__LCOM-HangMan-gameplay",
+        "repo": "RodriguesS2/LCOM-HangMan",
+        "sha": "6c76df070f321dd20349a6e6429bee2797223b9c",
+        "project": "proj/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "script": "build/compat-recent/scripts/hangman-gameplay.mlabscript",
+            "max_ticks": 280,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded populated capture; clean application exit is checked separately",
+            "trace_last_tick": 280
+          },
+          {
+            "id": "gameplay-exit",
+            "script": "build/compat-recent/scripts/hangman-gameplay.mlabscript",
+            "max_ticks": 900,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "RodriguesS2__LCOM-HangMan-gameplay",
+        "repo": "RodriguesS2/LCOM-HangMan",
+        "sha": "6c76df070f321dd20349a6e6429bee2797223b9c",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RodriguesS2__LCOM-HangMan-gameplay/build.log",
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RodriguesS2__LCOM-HangMan-gameplay/populated-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RodriguesS2__LCOM-HangMan-gameplay/populated-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RodriguesS2__LCOM-HangMan-gameplay/populated-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded populated capture; clean application exit is checked separately"
+          },
+          {
+            "id": "gameplay-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RodriguesS2__LCOM-HangMan-gameplay/gameplay-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RodriguesS2__LCOM-HangMan-gameplay/gameplay-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RodriguesS2__LCOM-HangMan-gameplay/gameplay-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "leticia-003/2ndYear_FEUP_LCom",
+      "sha": "fd08be7ee796e28742bb07ed2a0171319a0de5e3",
+      "github_url": "https://github.com/leticia-003/2ndYear_FEUP_LCom/tree/fd08be7ee796e28742bb07ed2a0171319a0de5e3",
+      "checkout": "build/compat-recent/corpus/leticia-003__2ndYear_FEUP_LCom",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2025-06-05T16:11:01Z",
+        "description": "This project involved developing a Bounce Ball game as a visual application running in the LCOM/Minix environment. The game integrates multiple hardware components studied throughout the semester, including the keyboard, mouse, timer, and graphics card, to create a responsive and interactive experience.",
+        "fullName": "leticia-003/2ndYear_FEUP_LCom",
+        "updatedAt": "2025-06-05T16:35:48Z"
+      },
+      "classification": "guarded gameplay, original exit defect",
+      "verified_scope": "Brick board, launched ball, paddle, points5 and removed brick. Original nested receive loop continues after running=false; no clean exit claim.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/leticia-003__2ndYear_FEUP_LCom-guarded/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/leticia-003__2ndYear_FEUP_LCom/build.log",
+      "case": {
+        "id": "leticia-003__2ndYear_FEUP_LCom-guarded",
+        "repo": "leticia-003/2ndYear_FEUP_LCom",
+        "sha": "fd08be7ee796e28742bb07ed2a0171319a0de5e3",
+        "project": "proj/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "guarded-gameplay",
+            "script": "build/compat-recent/scripts/bounce-gameplay.mlabscript",
+            "max_ticks": 320,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded brick board, launched ball, points; original nested receive loop has no clean exit",
+            "trace_last_tick": 320
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "leticia-003__2ndYear_FEUP_LCom-guarded",
+        "repo": "leticia-003/2ndYear_FEUP_LCom",
+        "sha": "fd08be7ee796e28742bb07ed2a0171319a0de5e3",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/leticia-003__2ndYear_FEUP_LCom-guarded/build.log",
+        "runs": [
+          {
+            "id": "guarded-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/leticia-003__2ndYear_FEUP_LCom-guarded/guarded-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/leticia-003__2ndYear_FEUP_LCom-guarded/guarded-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/leticia-003__2ndYear_FEUP_LCom-guarded/guarded-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded brick board, launched ball, points; original nested receive loop has no clean exit"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "gsilva00/LCOM-Project",
+      "sha": "4e793123ae3cd5ad486e1472fa715cff6567c66e",
+      "github_url": "https://github.com/gsilva00/LCOM-Project/tree/4e793123ae3cd5ad486e1472fa715cff6567c66e",
+      "checkout": "build/compat-recent/corpus/gsilva00__LCOM-Project",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2025-01-31T10:17:16Z",
+        "description": "FEUP L.EIC 2023/24 - 2nd Year, 2nd Semester - Project developed in the Computer Laboratory curricular unit",
+        "fullName": "gsilva00/LCOM-Project",
+        "updatedAt": "2025-06-08T21:08:09Z"
+      },
+      "classification": "guarded gameplay, original exit defect",
+      "verified_scope": "Football pitch, player, ball, scoreboard and countdown. Menu Quit aborts134 because original free_buffers frees mapped VRAM.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/gsilva00__LCOM-Project-guarded/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/gsilva00__LCOM-Project/build.log",
+      "case": {
+        "id": "gsilva00__LCOM-Project-guarded",
+        "repo": "gsilva00/LCOM-Project",
+        "sha": "4e793123ae3cd5ad486e1472fa715cff6567c66e",
+        "project": "proj/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "guarded-gameplay",
+            "script": "build/compat-recent/scripts/football-gameplay.mlabscript",
+            "max_ticks": 350,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded football board; original quit frees mapped VRAM and aborts",
+            "trace_last_tick": 350
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "gsilva00__LCOM-Project-guarded",
+        "repo": "gsilva00/LCOM-Project",
+        "sha": "4e793123ae3cd5ad486e1472fa715cff6567c66e",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/gsilva00__LCOM-Project-guarded/build.log",
+        "runs": [
+          {
+            "id": "guarded-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/gsilva00__LCOM-Project-guarded/guarded-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/gsilva00__LCOM-Project-guarded/guarded-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/gsilva00__LCOM-Project-guarded/guarded-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded football board; original quit frees mapped VRAM and aborts"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "Cast-10/LCOMProject",
+      "sha": "e895b1dfe6aa0269cafc73010da990a195ab1ffd",
+      "github_url": "https://github.com/Cast-10/LCOMProject/tree/e895b1dfe6aa0269cafc73010da990a195ab1ffd",
+      "checkout": "build/compat-recent/corpus/Cast-10__LCOMProject",
+      "project": "proj",
+      "github_metadata": {
+        "createdAt": "2026-09-25T21:43:21Z",
+        "description": "Device Driver Implementation/League of Legends Version in Minix OS - Project developed regarding Computer Laboratories course from the FEUP-LEIC.",
+        "fullName": "Cast-10/LCOMProject",
+        "updatedAt": "2026-09-25T21:47:10Z"
+      },
+      "classification": "gameplay and clean exit",
+      "verified_scope": "Populated map with champions, towers and minions; movement input and Escape cleanup.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/Cast-10__LCOMProject-gameplay/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/Cast-10__LCOMProject/build.log",
+      "case": {
+        "id": "Cast-10__LCOMProject-gameplay",
+        "repo": "Cast-10/LCOMProject",
+        "sha": "e895b1dfe6aa0269cafc73010da990a195ab1ffd",
+        "project": "proj",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "script": "build/compat-recent/scripts/league-gameplay.mlabscript",
+            "max_ticks": 300,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded populated capture; clean application exit is checked separately",
+            "trace_last_tick": 300
+          },
+          {
+            "id": "gameplay-exit",
+            "script": "build/compat-recent/scripts/league-gameplay.mlabscript",
+            "max_ticks": 800,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "Cast-10__LCOMProject-gameplay",
+        "repo": "Cast-10/LCOMProject",
+        "sha": "e895b1dfe6aa0269cafc73010da990a195ab1ffd",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Cast-10__LCOMProject-gameplay/build.log",
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Cast-10__LCOMProject-gameplay/populated-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Cast-10__LCOMProject-gameplay/populated-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Cast-10__LCOMProject-gameplay/populated-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded populated capture; clean application exit is checked separately"
+          },
+          {
+            "id": "gameplay-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Cast-10__LCOMProject-gameplay/gameplay-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Cast-10__LCOMProject-gameplay/gameplay-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Cast-10__LCOMProject-gameplay/gameplay-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "antoniocrego/lcom-t01-g3",
+      "sha": "77307d413bd8ed873575ef7a8edc6523460f6401",
+      "github_url": "https://github.com/antoniocrego/lcom-t01-g3/tree/77307d413bd8ed873575ef7a8edc6523460f6401",
+      "checkout": "build/compat-recent/corpus/antoniocrego__lcom-t01-g3",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2025-06-04T16:10:59Z",
+        "description": "Labs regarding low-level driver implementations and LCOM Knight game utilizing them in the Minix operating system for the 2022/2023 FEUP LCOM class.",
+        "fullName": "antoniocrego/lcom-t01-g3",
+        "updatedAt": "2025-06-05T11:35:26Z"
+      },
+      "classification": "gameplay and clean exit",
+      "verified_scope": "Platformer level, character, movement/jump input; paused Quit cleanup.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/antoniocrego__lcom-t01-g3-gameplay/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/antoniocrego__lcom-t01-g3/build.log",
+      "case": {
+        "id": "antoniocrego__lcom-t01-g3-gameplay",
+        "repo": "antoniocrego/lcom-t01-g3",
+        "sha": "77307d413bd8ed873575ef7a8edc6523460f6401",
+        "project": "proj/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "script": "build/compat-recent/scripts/knight-gameplay.mlabscript",
+            "max_ticks": 300,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded gameplay capture after original start and input controls",
+            "trace_last_tick": 300
+          },
+          {
+            "id": "gameplay-exit",
+            "script": "build/compat-recent/scripts/knight-gameplay.mlabscript",
+            "max_ticks": 1000,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Original game/menu cleanup exit"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "antoniocrego__lcom-t01-g3-gameplay",
+        "repo": "antoniocrego/lcom-t01-g3",
+        "sha": "77307d413bd8ed873575ef7a8edc6523460f6401",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/antoniocrego__lcom-t01-g3-gameplay/build.log",
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/antoniocrego__lcom-t01-g3-gameplay/populated-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/antoniocrego__lcom-t01-g3-gameplay/populated-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/antoniocrego__lcom-t01-g3-gameplay/populated-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded gameplay capture after original start and input controls"
+          },
+          {
+            "id": "gameplay-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/antoniocrego__lcom-t01-g3-gameplay/gameplay-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/antoniocrego__lcom-t01-g3-gameplay/gameplay-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/antoniocrego__lcom-t01-g3-gameplay/gameplay-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Original game/menu cleanup exit"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "pedroRibas372/MINIX-SpaceInvaders",
+      "sha": "b34d4cf932aa50fca013b5b70676f615ebcc91af",
+      "github_url": "https://github.com/pedroRibas372/MINIX-SpaceInvaders/tree/b34d4cf932aa50fca013b5b70676f615ebcc91af",
+      "checkout": "build/compat-recent/corpus/pedroRibas372__MINIX-SpaceInvaders",
+      "project": ".",
+      "github_metadata": {
+        "createdAt": "2025-10-08T13:27:55Z",
+        "description": "Low level SpaceInvaders ran on MINIX OS (LCOM Project - https://sigarra.up.pt/feup/pt/ucurr_geral.ficha_uc_view?pv_ocorrencia_id=436435). ",
+        "fullName": "pedroRibas372/MINIX-SpaceInvaders",
+        "updatedAt": "2025-10-08T14:09:25Z"
+      },
+      "classification": "gameplay and clean exit",
+      "verified_scope": "Enemy rows, ship and projectile after direction/Space; Escape cleanup.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/pedroRibas372__MINIX-SpaceInvaders-gameplay/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/pedroRibas372__MINIX-SpaceInvaders/build.log",
+      "case": {
+        "id": "pedroRibas372__MINIX-SpaceInvaders-gameplay",
+        "repo": "pedroRibas372/MINIX-SpaceInvaders",
+        "sha": "b34d4cf932aa50fca013b5b70676f615ebcc91af",
+        "project": ".",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "script": "build/compat-recent/scripts/pedro-invaders-gameplay.mlabscript",
+            "max_ticks": 300,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded populated capture; clean application exit is checked separately",
+            "trace_last_tick": 300
+          },
+          {
+            "id": "gameplay-exit",
+            "script": "build/compat-recent/scripts/pedro-invaders-gameplay.mlabscript",
+            "max_ticks": 900,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "pedroRibas372__MINIX-SpaceInvaders-gameplay",
+        "repo": "pedroRibas372/MINIX-SpaceInvaders",
+        "sha": "b34d4cf932aa50fca013b5b70676f615ebcc91af",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/pedroRibas372__MINIX-SpaceInvaders-gameplay/build.log",
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/pedroRibas372__MINIX-SpaceInvaders-gameplay/populated-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/pedroRibas372__MINIX-SpaceInvaders-gameplay/populated-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/pedroRibas372__MINIX-SpaceInvaders-gameplay/populated-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded populated capture; clean application exit is checked separately"
+          },
+          {
+            "id": "gameplay-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/pedroRibas372__MINIX-SpaceInvaders-gameplay/gameplay-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/pedroRibas372__MINIX-SpaceInvaders-gameplay/gameplay-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/pedroRibas372__MINIX-SpaceInvaders-gameplay/gameplay-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Clean application exit after original input and cleanup"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "TM-1-3/WombatMaze",
+      "sha": "34c66b392c0c692b7430b5982fb6324e9864c322",
+      "github_url": "https://github.com/TM-1-3/WombatMaze/tree/34c66b392c0c692b7430b5982fb6324e9864c322",
+      "checkout": "build/compat-recent/corpus/TM-1-3__WombatMaze",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2025-09-22T20:46:25Z",
+        "description": "Maze Game Implemented Using Interrupt-Driven I/O Device Drivers, Developed for the L.EIC018 \u2013 Computer Laboratory Course",
+        "fullName": "TM-1-3/WombatMaze",
+        "updatedAt": "2025-09-24T21:02:35Z"
+      },
+      "classification": "guarded gameplay, original exit defect",
+      "verified_scope": "Maze, wombat, dingo, obstacles and timer. Requires include override for original wrong asset path. Cleanup traps133 due original shared sprite double free.",
+      "default_build_exit": 1,
+      "builder_args": [
+        "--include",
+        "../assets/maze"
+      ],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/TM-1-3__WombatMaze-guarded/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/TM-1-3__WombatMaze/build.log",
+      "case": {
+        "id": "TM-1-3__WombatMaze-guarded",
+        "repo": "TM-1-3/WombatMaze",
+        "sha": "34c66b392c0c692b7430b5982fb6324e9864c322",
+        "project": "proj/src",
+        "builder_args": [
+          "--include",
+          "../assets/maze"
+        ],
+        "runs": [
+          {
+            "id": "guarded-gameplay",
+            "script": "build/compat-recent/scripts/wombat-gameplay.mlabscript",
+            "max_ticks": 140,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded populated maze level; original cleanup double frees shared sprites",
+            "trace_last_tick": 140
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "TM-1-3__WombatMaze-guarded",
+        "repo": "TM-1-3/WombatMaze",
+        "sha": "34c66b392c0c692b7430b5982fb6324e9864c322",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/TM-1-3__WombatMaze-guarded/build.log",
+        "runs": [
+          {
+            "id": "guarded-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/TM-1-3__WombatMaze-guarded/guarded-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/TM-1-3__WombatMaze-guarded/guarded-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/TM-1-3__WombatMaze-guarded/guarded-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded populated maze level; original cleanup double frees shared sprites"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "RiquiFeup/LCOMBAT",
+      "sha": "6981e4295329ff2f8dfd9e32e51ceaa45a6b2bf4",
+      "github_url": "https://github.com/RiquiFeup/LCOMBAT/tree/6981e4295329ff2f8dfd9e32e51ceaa45a6b2bf4",
+      "checkout": "build/compat-recent/corpus/RiquiFeup__LCOMBAT",
+      "project": "worms",
+      "github_metadata": {
+        "createdAt": "2026-07-23T15:03:13Z",
+        "description": "Worms-style 2-player turn-based artillery game running bare-metal on MINIX 3 via liblcf",
+        "fullName": "RiquiFeup/LCOMBAT",
+        "updatedAt": "2026-07-23T15:06:03Z"
+      },
+      "classification": "gameplay and clean exit",
+      "verified_scope": "Populated terrain, two teams of worms, health and turn timer; pause/menu/quit cleanup. Cursor moved outside menu hover before keyboard navigation.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/RiquiFeup__LCOMBAT-gameplay/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/RiquiFeup__LCOMBAT/build.log",
+      "case": {
+        "id": "RiquiFeup__LCOMBAT-gameplay",
+        "repo": "RiquiFeup/LCOMBAT",
+        "sha": "6981e4295329ff2f8dfd9e32e51ceaa45a6b2bf4",
+        "project": "worms",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "script": "build/compat-recent/scripts/lcombat-gameplay.mlabscript",
+            "max_ticks": 350,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded gameplay capture after original start and input controls",
+            "trace_last_tick": 350
+          },
+          {
+            "id": "gameplay-exit",
+            "script": "build/compat-recent/scripts/lcombat-gameplay.mlabscript",
+            "max_ticks": 1700,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Original game/menu cleanup exit"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "RiquiFeup__LCOMBAT-gameplay",
+        "repo": "RiquiFeup/LCOMBAT",
+        "sha": "6981e4295329ff2f8dfd9e32e51ceaa45a6b2bf4",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RiquiFeup__LCOMBAT-gameplay/build.log",
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RiquiFeup__LCOMBAT-gameplay/populated-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RiquiFeup__LCOMBAT-gameplay/populated-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RiquiFeup__LCOMBAT-gameplay/populated-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded gameplay capture after original start and input controls"
+          },
+          {
+            "id": "gameplay-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RiquiFeup__LCOMBAT-gameplay/gameplay-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RiquiFeup__LCOMBAT-gameplay/gameplay-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/RiquiFeup__LCOMBAT-gameplay/gameplay-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Original game/menu cleanup exit"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "Hugo-mgs/LCOM-Space-Invaders",
+      "sha": "7b554e113754ffdd5b26b269a0efafea3227468e",
+      "github_url": "https://github.com/Hugo-mgs/LCOM-Space-Invaders/tree/7b554e113754ffdd5b26b269a0efafea3227468e",
+      "checkout": "build/compat-recent/corpus/Hugo-mgs__LCOM-Space-Invaders",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2026-02-23T09:24:56Z",
+        "description": "Project developed in the Computer Lab class.  A game based on space invaders created in C for an adapted Minix operating system and the necessary drivers for the devices used.",
+        "fullName": "Hugo-mgs/LCOM-Space-Invaders",
+        "updatedAt": "2026-03-25T10:58:57Z"
+      },
+      "classification": "guarded gameplay and clean menu exit",
+      "verified_scope": "Enemy wave, ship, barriers, score10 and lives3. Menu Quit exits0; gameplay Escape aborts134 due original shared sprite double free.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/Hugo-mgs__LCOM-Space-Invaders-gameplay/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/Hugo-mgs__LCOM-Space-Invaders/build.log",
+      "case": {
+        "id": "Hugo-mgs__LCOM-Space-Invaders-gameplay",
+        "repo": "Hugo-mgs/LCOM-Space-Invaders",
+        "sha": "7b554e113754ffdd5b26b269a0efafea3227468e",
+        "project": "proj/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "script": "build/compat-recent/scripts/hugo-gameplay.mlabscript",
+            "max_ticks": 330,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded gameplay only; original gameplay cleanup aborts; menu exit checked separately",
+            "trace_last_tick": 330
+          },
+          {
+            "id": "menu-exit",
+            "script": "build/compat-recent/scripts/hugo-exit.mlabscript",
+            "max_ticks": 800,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Clean exit using original menu controls; no gameplay claim"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "Hugo-mgs__LCOM-Space-Invaders-gameplay",
+        "repo": "Hugo-mgs/LCOM-Space-Invaders",
+        "sha": "7b554e113754ffdd5b26b269a0efafea3227468e",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Hugo-mgs__LCOM-Space-Invaders-gameplay/build.log",
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Hugo-mgs__LCOM-Space-Invaders-gameplay/populated-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Hugo-mgs__LCOM-Space-Invaders-gameplay/populated-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Hugo-mgs__LCOM-Space-Invaders-gameplay/populated-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded gameplay only; original gameplay cleanup aborts; menu exit checked separately"
+          },
+          {
+            "id": "menu-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Hugo-mgs__LCOM-Space-Invaders-gameplay/menu-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Hugo-mgs__LCOM-Space-Invaders-gameplay/menu-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/Hugo-mgs__LCOM-Space-Invaders-gameplay/menu-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Clean exit using original menu controls; no gameplay claim"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "scrr-az/skess-lcom",
+      "sha": "08626275da972c82291efcab0fbed8a57b0eb854",
+      "github_url": "https://github.com/scrr-az/skess-lcom/tree/08626275da972c82291efcab0fbed8a57b0eb854",
+      "checkout": "build/compat-recent/corpus/scrr-az__skess-lcom",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2026-04-28T09:37:53Z",
+        "description": "A skribbl.io inspired game developed for LCOM class in C. Works only on Minix LCOM environments.",
+        "fullName": "scrr-az/skess-lcom",
+        "updatedAt": "2026-04-28T09:38:55Z"
+      },
+      "classification": "mirror repository",
+      "verified_scope": "Separate pin and importer path; identical C source family. Family mirror of Yuka-Sky/LCOM.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/scrr-az__skess-lcom-mirror/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/scrr-az__skess-lcom/build.log",
+      "case": {
+        "id": "scrr-az__skess-lcom-mirror",
+        "repo": "scrr-az/skess-lcom",
+        "sha": "08626275da972c82291efcab0fbed8a57b0eb854",
+        "project": "proj/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "mirror-exit",
+            "script": "build/compat-recent/scripts/escape.mlabscript",
+            "max_ticks": 900,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Separate repository build and clean exit; source family duplicates another pin"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "mirror_of": "Yuka-Sky/LCOM",
+      "identical_c_files": 9,
+      "replay_result": {
+        "id": "scrr-az__skess-lcom-mirror",
+        "repo": "scrr-az/skess-lcom",
+        "sha": "08626275da972c82291efcab0fbed8a57b0eb854",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/scrr-az__skess-lcom-mirror/build.log",
+        "runs": [
+          {
+            "id": "mirror-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/scrr-az__skess-lcom-mirror/mirror-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/scrr-az__skess-lcom-mirror/mirror-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/scrr-az__skess-lcom-mirror/mirror-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Separate repository build and clean exit; source family duplicates another pin"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "diogopmac/LCOM-Minix_Invaders",
+      "sha": "c68c985ac877eddb0bfb75ecbb28bedcb1c1230a",
+      "github_url": "https://github.com/diogopmac/LCOM-Minix_Invaders/tree/c68c985ac877eddb0bfb75ecbb28bedcb1c1230a",
+      "checkout": "build/compat-recent/corpus/diogopmac__LCOM-Minix_Invaders",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2025-06-02T15:16:35Z",
+        "description": "Project Developed in Computer Laboratory class. Recreation of the classic game \"Space Invaders\" using Minix3 operative system.",
+        "fullName": "diogopmac/LCOM-Minix_Invaders",
+        "updatedAt": "2025-06-06T15:01:06Z"
+      },
+      "classification": "mirror repository",
+      "verified_scope": "Separate pin and importer path; identical C source family. Family mirror of Hugo-mgs/LCOM-Space-Invaders.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/diogopmac__LCOM-Minix_Invaders-mirror/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/diogopmac__LCOM-Minix_Invaders/build.log",
+      "case": {
+        "id": "diogopmac__LCOM-Minix_Invaders-mirror",
+        "repo": "diogopmac/LCOM-Minix_Invaders",
+        "sha": "c68c985ac877eddb0bfb75ecbb28bedcb1c1230a",
+        "project": "proj/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "mirror-exit",
+            "script": "build/compat-recent/scripts/hugo-exit.mlabscript",
+            "max_ticks": 900,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Separate repository build and clean exit; source family duplicates another pin"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "mirror_of": "Hugo-mgs/LCOM-Space-Invaders",
+      "identical_c_files": 16,
+      "replay_result": {
+        "id": "diogopmac__LCOM-Minix_Invaders-mirror",
+        "repo": "diogopmac/LCOM-Minix_Invaders",
+        "sha": "c68c985ac877eddb0bfb75ecbb28bedcb1c1230a",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/diogopmac__LCOM-Minix_Invaders-mirror/build.log",
+        "runs": [
+          {
+            "id": "mirror-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/diogopmac__LCOM-Minix_Invaders-mirror/mirror-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/diogopmac__LCOM-Minix_Invaders-mirror/mirror-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/diogopmac__LCOM-Minix_Invaders-mirror/mirror-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Separate repository build and clean exit; source family duplicates another pin"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "gomesidk/Survive-The-Blast",
+      "sha": "b73f072fdcd4d189002e1d376f0fbafa95d25c1e",
+      "github_url": "https://github.com/gomesidk/Survive-The-Blast/tree/b73f072fdcd4d189002e1d376f0fbafa95d25c1e",
+      "checkout": "build/compat-recent/corpus/gomesidk__Survive-The-Blast",
+      "project": "proj/src",
+      "github_metadata": {
+        "createdAt": "2025-09-28T15:34:05Z",
+        "description": "Game developed in C using MINIX OS for LCOM, and taking advantage of IO devices manipulation such as: Timer, Keyboard, Mouse, Graphics Card and Serial Port",
+        "fullName": "gomesidk/Survive-The-Blast",
+        "updatedAt": "2025-09-28T16:13:42Z"
+      },
+      "classification": "gameplay and clean exit",
+      "verified_scope": "Bomb board, player, bomb, red blast lines and score4; Escape return and menu Quit cleanup.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/gomesidk__Survive-The-Blast-gameplay/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/gomesidk__Survive-The-Blast/build.log",
+      "case": {
+        "id": "gomesidk__Survive-The-Blast-gameplay",
+        "repo": "gomesidk/Survive-The-Blast",
+        "sha": "b73f072fdcd4d189002e1d376f0fbafa95d25c1e",
+        "project": "proj/src",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "script": "build/compat-recent/scripts/blast-gameplay.mlabscript",
+            "max_ticks": 320,
+            "exit": 1,
+            "guard": true,
+            "frame": true,
+            "timeout": 120,
+            "scope": "Guarded single player board after original mouse selection",
+            "trace_last_tick": 320
+          },
+          {
+            "id": "gameplay-exit",
+            "script": "build/compat-recent/scripts/blast-gameplay.mlabscript",
+            "max_ticks": 1000,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Original Escape return and menu exit"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "replay_result": {
+        "id": "gomesidk__Survive-The-Blast-gameplay",
+        "repo": "gomesidk/Survive-The-Blast",
+        "sha": "b73f072fdcd4d189002e1d376f0fbafa95d25c1e",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/gomesidk__Survive-The-Blast-gameplay/build.log",
+        "runs": [
+          {
+            "id": "populated-gameplay",
+            "args": [],
+            "exit": 1,
+            "guard": true,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/gomesidk__Survive-The-Blast-gameplay/populated-gameplay.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/gomesidk__Survive-The-Blast-gameplay/populated-gameplay.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/gomesidk__Survive-The-Blast-gameplay/populated-gameplay.ppm",
+            "populated_pixels": true,
+            "scope": "Guarded single player board after original mouse selection"
+          },
+          {
+            "id": "gameplay-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/gomesidk__Survive-The-Blast-gameplay/gameplay-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/gomesidk__Survive-The-Blast-gameplay/gameplay-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/gomesidk__Survive-The-Blast-gameplay/gameplay-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Original Escape return and menu exit"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    },
+    {
+      "repo": "T0m2sT/LCode",
+      "sha": "862ec4aa8a2d361f304b78beb3815c4a3ae8d4f1",
+      "github_url": "https://github.com/T0m2sT/LCode/tree/862ec4aa8a2d361f304b78beb3815c4a3ae8d4f1",
+      "checkout": "build/compat-recent/corpus/T0m2sT__LCode",
+      "project": "proj/code",
+      "github_metadata": {
+        "createdAt": "2026-07-11T18:50:12Z",
+        "description": "LCode is a code editor built for Minix, providing an interactive environment for navigating the file tree and editing files. Developed from the LCOM labs, it grew into a framework that enables testing of each hardware driver (timer, keyboard, mouse, video, serial port) based on parameters selected at runtime.",
+        "fullName": "T0m2sT/LCode",
+        "updatedAt": "2026-07-14T09:15:53Z"
+      },
+      "classification": "mirror repository",
+      "verified_scope": "Separate pin and importer path; identical C source family. Family mirror of MiguelMirandaRocha/FEUP-LEIC-LCOM.",
+      "default_build_exit": 0,
+      "builder_args": [],
+      "compiler_options": [
+        "-std=gnu11",
+        "-fcommon"
+      ],
+      "compiler_commands_evidence": "build/compat-recent/verification/T0m2sT__LCode-mirror/build/build.json",
+      "default_build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/evidence/T0m2sT__LCode/build.log",
+      "case": {
+        "id": "T0m2sT__LCode-mirror",
+        "repo": "T0m2sT/LCode",
+        "sha": "862ec4aa8a2d361f304b78beb3815c4a3ae8d4f1",
+        "project": "proj/code",
+        "builder_args": [],
+        "runs": [
+          {
+            "id": "mirror-exit",
+            "script": "build/compat-recent/scripts/editor-typing.mlabscript",
+            "max_ticks": 900,
+            "exit": 0,
+            "guard": false,
+            "frame": true,
+            "nonblank": false,
+            "timeout": 120,
+            "scope": "Separate repository build and clean exit; source family duplicates another pin"
+          }
+        ]
+      },
+      "original_tracked_sources_pristine": true,
+      "limitation": "No full game completion, multiplayer, every hardware path, file save or real SDL interaction claimed by this headless corpus.",
+      "mirror_of": "MiguelMirandaRocha/FEUP-LEIC-LCOM",
+      "identical_c_files": 19,
+      "replay_result": {
+        "id": "T0m2sT__LCode-mirror",
+        "repo": "T0m2sT/LCode",
+        "sha": "862ec4aa8a2d361f304b78beb3815c4a3ae8d4f1",
+        "build_exit": 0,
+        "build_log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/T0m2sT__LCode-mirror/build.log",
+        "runs": [
+          {
+            "id": "mirror-exit",
+            "args": [],
+            "exit": 0,
+            "guard": false,
+            "passed": true,
+            "log": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/T0m2sT__LCode-mirror/mirror-exit.log",
+            "trace": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/T0m2sT__LCode-mirror/mirror-exit.jsonl",
+            "frame": "/Users/rgo/dev/lcom-ng/build/compat-recent/verification/T0m2sT__LCode-mirror/mirror-exit.ppm",
+            "populated_pixels": true,
+            "scope": "Separate repository build and clean exit; source family duplicates another pin"
+          }
+        ],
+        "passed": true,
+        "source_hashes_unchanged": true
+      }
+    }
+  ],
+  "aggregate_gate": {
+    "cases": 22,
+    "passed": 22,
+    "runs": 36,
+    "source_hashes_unchanged": true,
+    "evidence": "build/compat-recent/recent-results.json"
+  },
+  "runtime_output_note": "Original LCF logging overwrites requested output.txt files in WombatMaze, BounceBall and Head Football. Code, Makefiles and XPM source bytes remain unchanged."
+}

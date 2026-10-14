@@ -1,17 +1,20 @@
 #include "Machine.hpp"
 
 #include <lcom/uart16550.h>
+#include <cmath>
+#include <limits>
 
 namespace lcom {
 
 Machine::Machine()
-    : pit_(irqs_), i8042_(irqs_), rtc_(), vbe_(),
+    : pit_(irqs_), i8042_(irqs_), rtc_(irqs_), vbe_(),
       com1_(COM1_BASE, COM1_IRQ, irqs_), com2_(COM2_BASE, COM2_IRQ, irqs_) {
   com1_.connectPeer(&com2_);
   com2_.connectPeer(&com1_);
   bus_.attach(&pit_);
   bus_.attach(&i8042_);
   bus_.attach(&rtc_);
+  bus_.attach(&vbe_);
   bus_.attach(&ac97_);
   bus_.attach(&com1_);
   bus_.attach(&com2_);
@@ -49,6 +52,7 @@ uint32_t Machine::pendingIrqs() const {
 
 void Machine::refreshDeviceIrqs() {
   i8042_.refreshIrq();
+  rtc_.refreshIrq();
   com1_.refreshIrq();
   com2_.refreshIrq();
 }
@@ -56,12 +60,25 @@ void Machine::refreshDeviceIrqs() {
 void Machine::advanceTick() {
   tick_++;
   pit_.advanceTick();
+  rtc_.advanceTick(pit_.channelFrequency(0));
+  com1_.advanceTick(pit_.channelFrequency(0));
+  com2_.advanceTick(pit_.channelFrequency(0));
   if (trace_ != nullptr && pendingIrqs() != 0) {
     for (uint8_t irq = 0; irq < 32; irq++) {
       uint32_t mask = (1u << irq);
       if ((pendingIrqs() & mask) != 0) trace_->logIrq(tick_, irq, mask);
     }
   }
+}
+
+bool Machine::delayTargetTick(uint64_t system_ticks, uint64_t &target) const {
+  // Minix delays use a 60 Hz system clock even when the student changes PIT0.
+  long double elapsed = std::ceil(static_cast<long double>(system_ticks) *
+                                  pit_.channelFrequency(0) / 60.0L);
+  if (elapsed > static_cast<long double>(std::numeric_limits<uint64_t>::max() - tick_))
+    return false;
+  target = tick_ + static_cast<uint64_t>(elapsed);
+  return true;
 }
 
 void Machine::injectKey(const std::string &key, bool pressed) {

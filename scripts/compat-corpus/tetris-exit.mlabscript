@@ -1,0 +1,5 @@
+# Cursor400,300; check_mouse_clicks exitboundsx161..438 y452..487.
+at 100 mouse -100 -120 0
+at 120 mouse 0 -45 0
+at 140 mouse 0 0 1
+at 141 mouse 0 0 0

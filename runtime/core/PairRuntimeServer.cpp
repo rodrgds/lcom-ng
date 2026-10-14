@@ -1,4 +1,5 @@
 #include "PairRuntimeServer.hpp"
+#include "ChildStatus.hpp"
 #include "ProtocolIO.hpp"
 
 #include "lcom_protocol.h"
@@ -33,7 +34,7 @@ namespace lcom {
 
 namespace {
 
-static constexpr size_t kFramebufferShmBytes = 1280u * 1024u * 4u;
+static constexpr size_t kFramebufferShmBytes = LCOM_VRAM_BYTES;
 static constexpr size_t kAudioShmOffset = kFramebufferShmBytes;
 static constexpr int kMaxRealtimeTicksPerLoop = 4;
 static constexpr auto kDisplayPumpInterval = std::chrono::nanoseconds(1000000000ull / 120ull);
@@ -64,11 +65,12 @@ int PairRuntimeServer::run() {
   if (!setup()) return 1;
   int runtime_status = 0;
 
-  std::cout << "Starting paired Machine Lab bus instances...\n"
+  std::cout << "Starting paired lcom-ng bus instances...\n"
             << "  left  COM1/COM2 bridged to right COM1/COM2\n"
             << "  right COM1/COM2 bridged to left COM1/COM2\n";
 
   using Clock = std::chrono::steady_clock;
+  const auto host_start = Clock::now();
   auto realtimeTickInterval = [&]() {
     uint32_t hz = left_.machine.pit().channelFrequency(0);
     if (hz == 0) hz = 60;
@@ -131,6 +133,21 @@ int PairRuntimeServer::run() {
   };
 
   while (anyAlive()) {
+    if (options_.timeout_seconds > 0 &&
+        std::chrono::duration<double>(Clock::now() - host_start).count() >= options_.timeout_seconds) {
+      childExited(left_);
+      childExited(right_);
+      if (!anyAlive()) continue;
+      std::cerr << "lcom-ng: run-pair host timeout reached (" << options_.timeout_seconds
+                << " seconds), stopping student programs\n";
+      runtime_status = 124;
+      for (Slot *slot : {&left_, &right_}) {
+        stopChildForHostTimeout(slot->child_pid, slot->child_running);
+        if (slot->child_stdout >= 0) drainPipe(*slot, slot->child_stdout, "stdout");
+        if (slot->child_stderr >= 0) drainPipe(*slot, slot->child_stderr, "stderr");
+      }
+      break;
+    }
     advanceRealtimeIfDue();
     pumpDisplaysIfDue();
     maybeSatisfyEventWait(left_);
@@ -195,7 +212,9 @@ int PairRuntimeServer::run() {
     }
   }
 
-  if (!dumpFrameArtifacts()) return 1;
+  bool artifacts_ok = dumpFrameArtifacts();
+  if (runtime_status == 124) return 124;
+  if (!artifacts_ok) return 1;
   if (runtime_status != 0) return runtime_status;
   if (left_.exit_status != 0) return left_.exit_status;
   return right_.exit_status;
@@ -209,13 +228,13 @@ bool PairRuntimeServer::setup() {
 
 bool PairRuntimeServer::setupSlot(Slot &slot) {
   if (slot.program.empty()) {
-    std::cerr << "machinelab: run-pair missing " << slot.name << " program\n";
+    std::cerr << "lcom-ng: run-pair missing " << slot.name << " program\n";
     return false;
   }
   if (!slot.script_path.empty()) {
     std::string error;
     if (!slot.script.load(slot.script_path, error)) {
-      std::cerr << "machinelab: " << slot.name << ": " << error << "\n";
+      std::cerr << "lcom-ng: " << slot.name << ": " << error << "\n";
       return false;
     }
   }
@@ -232,19 +251,19 @@ bool PairRuntimeServer::setupDisplay(Slot &slot) {
     sdl_options.integer_scale = options_.integer_scale;
     sdl_options.scale = options_.scale;
     sdl_options.guest_input = true;
-    sdl_options.title = "LCOM Pair - " + slot.name;
+    sdl_options.title = "lcom-ng pair: " + slot.name;
     slot.display = createSdlBackend(sdl_options);
 #else
-    std::cerr << "machinelab: SDL backend requested but this build was compiled without SDL3\n";
+    std::cerr << "lcom-ng: SDL backend requested but this build was compiled without SDL3\n";
     return false;
 #endif
   } else {
-    std::cerr << "machinelab: unknown display backend '" << options_.display << "'\n";
+    std::cerr << "lcom-ng: unknown display backend '" << options_.display << "'\n";
     return false;
   }
 
   if (slot.display != nullptr && !slot.display->start(slot.machine)) {
-    std::cerr << "machinelab: " << slot.name << " display backend failed to start\n";
+    std::cerr << "lcom-ng: " << slot.name << " display backend failed to start\n";
     return false;
   }
   return true;
@@ -434,10 +453,26 @@ bool PairRuntimeServer::handleClientMessage(Slot &slot) {
     return true;
   }
   case LCOM_MSG_EVENT_WAIT:
+    if (hdr.size != 0) return false;
     slot.waiting_event = true;
+    slot.waiting_delay = false;
     slot.waiting_request_id = hdr.request_id;
     maybeSatisfyEventWait(slot);
     return true;
+  case LCOM_MSG_DELAY_TICKS: {
+    lcom_delay_ticks_t req{};
+    if (!protocol::decodePayload(payload, hdr.size, req)) return false;
+    if (!slot.machine.delayTargetTick(req.ticks, slot.waiting_until_tick)) {
+      lcom_event_reply_t reply{};
+      reply.status = -1;
+      protocol::sendMessage(slot.client_fd, LCOM_MSG_EVENT_REPLY, hdr.request_id, &reply, sizeof(reply));
+      return true;
+    }
+    slot.waiting_event = slot.waiting_delay = true;
+    slot.waiting_request_id = hdr.request_id;
+    maybeSatisfyEventWait(slot);
+    return true;
+  }
   case LCOM_MSG_PHYS_MAP: {
     if (hdr.size != sizeof(lcom_phys_map_t)) return false;
     lcom_phys_map_t req{};
@@ -485,8 +520,15 @@ bool PairRuntimeServer::handleClientMessage(Slot &slot) {
     lcom_vbe_mode_request_t req{};
     if (!protocol::decodePayload(payload, hdr.size, req)) return false;
     bool ok = slot.machine.vbe().setMode(req.mode);
-    zeroSharedMemory(slot);
+    if (ok && req.mode != 3 && slot.shm_data != nullptr)
+      std::memset(slot.shm_data, 0, kFramebufferShmBytes);
     sendStatus(slot, hdr.request_id, ok ? 0 : -1);
+    return true;
+  }
+  case LCOM_MSG_VBE_SET_DISPLAY_START: {
+    lcom_vbe_display_start_t req{};
+    if (!protocol::decodePayload(payload, hdr.size, req)) return false;
+    sendStatus(slot, hdr.request_id, slot.machine.vbe().setDisplayStart(req.x, req.y) ? 0 : -1);
     return true;
   }
   case LCOM_MSG_VBE_PRESENT:
@@ -526,17 +568,19 @@ void PairRuntimeServer::sendEventReply(Slot &slot, uint32_t request_id, uint32_t
 
 void PairRuntimeServer::maybeSatisfyEventWait(Slot &slot) {
   if (!slot.waiting_event || slot.client_fd < 0) return;
+  if (slot.waiting_delay && slot.machine.tick() < slot.waiting_until_tick) return;
   slot.machine.refreshDeviceIrqs();
   uint32_t pending = slot.machine.pendingIrqs();
-  if (pending == 0) return;
+  if (pending == 0 && !slot.waiting_delay) return;
   uint32_t mask = slot.machine.consumePendingIrqs();
   slot.waiting_event = false;
+  slot.waiting_delay = false;
   sendEventReply(slot, slot.waiting_request_id, mask);
 }
 
 void PairRuntimeServer::advanceAllOnce() {
   if (left_.machine.tick() >= options_.max_ticks || right_.machine.tick() >= options_.max_ticks) {
-    std::cerr << "machinelab: run-pair max virtual ticks reached (" << options_.max_ticks << ")\n";
+    std::cerr << "lcom-ng: run-pair max virtual ticks reached (" << options_.max_ticks << ")\n";
     left_.exit_status = 1;
     right_.exit_status = 1;
     // cleanupSlot() unmaps guest framebuffer memory. Preserve the latest guest
@@ -567,6 +611,9 @@ void PairRuntimeServer::applyScriptEvents(Slot &slot, const std::vector<ScriptEv
     case ScriptEvent::Kind::Mouse:
       slot.machine.injectMouse(ev.dx, ev.dy, ev.buttons);
       break;
+    case ScriptEvent::Kind::Ps2:
+      slot.machine.i8042().injectOutputByte(ev.ps2_byte, ev.ps2_aux, ev.ps2_errors);
+      break;
     case ScriptEvent::Kind::Text:
       injectText(slot.machine, ev.text);
       break;
@@ -585,7 +632,8 @@ void PairRuntimeServer::syncFramebufferFromSharedMemory(Slot &slot) {
   Vbe &vbe = slot.machine.vbe();
   size_t n = std::min(vbe.framebuffer().size(), kFramebufferShmBytes);
   if (slot.shm_data != nullptr && n != 0) {
-    std::copy(slot.shm_data, slot.shm_data + n, vbe.framebuffer().begin());
+    std::copy(slot.shm_data + vbe.displayOffset(), slot.shm_data + vbe.displayOffset() + n,
+              vbe.framebuffer().begin());
   }
 }
 
@@ -594,7 +642,7 @@ bool PairRuntimeServer::dumpFrameArtifacts() {
     if (path.empty()) return true;
     syncFramebufferFromSharedMemory(slot);
     if (slot.machine.vbe().dumpPpm(path)) return true;
-    std::cerr << "machinelab: could not write " << slot.name
+    std::cerr << "lcom-ng: could not write " << slot.name
               << " frame dump " << path << "\n";
     return false;
   };
@@ -646,17 +694,7 @@ bool PairRuntimeServer::childExited(Slot &slot) {
   if (ret == slot.child_pid) {
     slot.child_running = false;
     slot.child_pid = -1;
-    if (WIFEXITED(status)) {
-      slot.exit_status = WEXITSTATUS(status);
-      std::cout << "[" << slot.name << "] Program exited with status "
-                << WEXITSTATUS(status) << "\n";
-    } else if (WIFSIGNALED(status)) {
-      slot.exit_status = 128 + WTERMSIG(status);
-      std::cout << "[" << slot.name << "] Program terminated by signal "
-                << WTERMSIG(status) << "\n";
-    } else {
-      slot.exit_status = 1;
-    }
+    slot.exit_status = reportChildStatus(std::cout, status, "[" + slot.name + "] ");
     if (slot.client_fd >= 0) {
       close(slot.client_fd);
       slot.client_fd = -1;

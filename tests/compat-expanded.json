@@ -1,0 +1,1093 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-13",
+  "checkouts_directory": "build/compat-expanded/corpus",
+  "scope": "Original public student sources pinned unchanged. Timer labs assert two elapsed messages, clean exit and hardware trace. Games include inspected menu/gameplay captures and clean exits when original source exposes one.",
+  "cases": [
+    {
+      "id": "biromiro__feup-lcom-lab2",
+      "repo": "biromiro/feup-lcom",
+      "sha": "256b46081a43be783ad77b7b167fd8d301a3d83e",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/biromiro__feup-lcom"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "bdmendes__feup-lcom-lab2",
+      "repo": "bdmendes/feup-lcom",
+      "sha": "c62b7ffe669602024eed3697d69ec3272a48bbe8",
+      "project": "2020_og/lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/bdmendes__feup-lcom"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "xico2001pt__feup-lcom-lab2",
+      "repo": "xico2001pt/feup-lcom",
+      "sha": "ee3eadfe89ce470a35c0ad20c9f9e6b233f84844",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/xico2001pt__feup-lcom"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "Adriano-7__feup-lcom-lab2",
+      "repo": "Adriano-7/feup-lcom",
+      "sha": "e0b46670ed2122e2ad303a7d5ed83e51b517d215",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/Adriano-7__feup-lcom"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "leorsd__FEUP-LCOM-lab2",
+      "repo": "leorsd/FEUP-LCOM",
+      "sha": "b73f072fdcd4d189002e1d376f0fbafa95d25c1e",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/leorsd__FEUP-LCOM"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "RicardoSilvaBW__FEUP--LCOM-lab2",
+      "repo": "RicardoSilvaBW/FEUP--LCOM",
+      "sha": "b9b0bec2a8c39005e7a673d8d3a36fad71671f38",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/RicardoSilvaBW__FEUP--LCOM"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "manuelcralves__FEUP-LCOM-lab2",
+      "repo": "manuelcralves/FEUP-LCOM",
+      "sha": "b1269689b1eb2dab1626c64d684bc7d204073494",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/manuelcralves__FEUP-LCOM"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "DSV8__FEUP-LCom-lab2",
+      "repo": "DSV8/FEUP-LCom",
+      "sha": "ca0515a861cc7c9b21d86f97290945cea1f7a487",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/DSV8__FEUP-LCom"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "andrenasx__FEUP-LCOM-lab2",
+      "repo": "andrenasx/FEUP-LCOM",
+      "sha": "4c34535b3ed40a3f60dba1d2c63fbe6aec946883",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/andrenasx__FEUP-LCOM"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "raulnasoliveira__FEUP-LCOM-2025-lab2",
+      "repo": "raulnasoliveira/FEUP-LCOM-2025",
+      "sha": "a94d7998e4a0ed234aa0e13f8444195ffc9d332a",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/raulnasoliveira__FEUP-LCOM-2025"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "pedrojfs17__FEUP-LCOM-lab2",
+      "repo": "pedrojfs17/FEUP-LCOM",
+      "sha": "a4f91d0021bcf8cc863a5f3df37aa681db01fd07",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/pedrojfs17__FEUP-LCOM"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "Telmo465__FEUP-LCOM-lab2",
+      "repo": "Telmo465/FEUP-LCOM",
+      "sha": "d6988cce28502d874a5233a08da7f1c87483665b",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/Telmo465__FEUP-LCOM"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "liac1983__FEUP-LCOM-lab2",
+      "repo": "liac1983/FEUP-LCOM",
+      "sha": "fd05d251af20b5325a6958c8d6ab030d3a1e94ad",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/liac1983__FEUP-LCOM"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "zefluxo__feup-lcom-lab2",
+      "repo": "zefluxo/feup-lcom",
+      "sha": "e65ab1042229cd99acc5d21a69efbba9d6f53792",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "elapsed_messages": 2,
+        "last_trace_tick": 120,
+        "evidence": "build/compat-expanded/lab-corpus-evidence/zefluxo__feup-lcom"
+      },
+      "runs": [
+        {
+          "id": "two-second-timer",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 240,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "exit": 0,
+          "guard": false,
+          "trace_last_tick": 120
+        }
+      ]
+    },
+    {
+      "id": "DSV8__FEUP-LCom-project",
+      "repo": "DSV8/FEUP-LCom",
+      "sha": "ca0515a861cc7c9b21d86f97290945cea1f7a487",
+      "project": "proj/src",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "menu_visually_inspected": true,
+        "gameplay_visually_inspected": true,
+        "actions": "Startkey1, moveW/D, shootmouseLB, EscapeMenu/Escapeexit",
+        "evidence": "build/compat-expanded/evidence/DSV8__FEUP-LCom"
+      },
+      "runs": [
+        {
+          "id": "scripted-exit",
+          "script": "scripts/compat-corpus/dsv8-gameplay.mlabscript",
+          "max_ticks": 850,
+          "frame": true,
+          "exit": 0,
+          "guard": false,
+          "timeout": 120
+        }
+      ]
+    },
+    {
+      "id": "josesereno__Bamboozlers-project",
+      "repo": "josesereno/Bamboozlers",
+      "sha": "8492b6ae42767efee595e3265c2852bba595268a",
+      "project": "src",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "menu_visually_inspected": true,
+        "gameplay_visually_inspected": true,
+        "actions": "Enterlevelselection, clicklevel1, arrowmove/jump, Escapeexit",
+        "evidence": "build/compat-expanded/evidence/josesereno__Bamboozlers"
+      },
+      "runs": [
+        {
+          "id": "scripted-exit",
+          "script": "scripts/compat-corpus/bamboozlers-gameplay.mlabscript",
+          "max_ticks": 850,
+          "frame": true,
+          "exit": 0,
+          "guard": false,
+          "timeout": 120
+        }
+      ]
+    },
+    {
+      "id": "bersanots__FEUP-LCOM-project",
+      "repo": "bersanots/FEUP-LCOM",
+      "sha": "04e6ad63181e05a801c8f71eedf440c6bda04fc0",
+      "project": "src",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "menu_visually_inspected": true,
+        "gameplay_visually_inspected": true,
+        "actions": "Mousemove toexiticon, leftclick exitsoriginalmenu",
+        "evidence": "build/compat-expanded/evidence/bersanots__FEUP-LCOM"
+      },
+      "runs": [
+        {
+          "id": "scripted-exit",
+          "script": "scripts/compat-corpus/stickyball-exit.mlabscript",
+          "max_ticks": 650,
+          "frame": true,
+          "exit": 0,
+          "guard": false,
+          "timeout": 120
+        }
+      ]
+    },
+    {
+      "id": "Adriano-7__feup-lcom-project",
+      "repo": "Adriano-7/feup-lcom",
+      "sha": "e0b46670ed2122e2ad303a7d5ed83e51b517d215",
+      "project": "proj/src",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "menu_visually_inspected": true,
+        "evidence": "build/compat-expanded/evidence/Adriano-7__feup-lcom",
+        "limitation": "Indexed VGA palette above16 differs fromMinix, titlegrayinsteadbright.",
+        "gameplay_visually_inspected": true
+      },
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/space-invaders-gameplay.mlabscript",
+          "max_ticks": 260,
+          "frame": true,
+          "exit": 1,
+          "guard": true,
+          "timeout": 120,
+          "scope": "Bounded populated frame capture; guard is expected, normal exit is a separate run"
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/space-invaders-gameplay.mlabscript",
+          "max_ticks": 850,
+          "frame": true,
+          "exit": 0,
+          "guard": false,
+          "timeout": 120,
+          "nonblank": false,
+          "scope": "Normal gameplay exit after original student cleanup clears VRAM; populated capture checked separately"
+        }
+      ]
+    },
+    {
+      "id": "andrenasx__FEUP-LCOM-project",
+      "repo": "andrenasx/FEUP-LCOM",
+      "sha": "4c34535b3ed40a3f60dba1d2c63fbe6aec946883",
+      "project": "proj/src",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "menu_visually_inspected": false,
+        "evidence": "build/compat-expanded/evidence/andrenasx__FEUP-LCOM"
+      },
+      "runs": [
+        {
+          "id": "scripted-menu-exit",
+          "script": "scripts/compat-corpus/escape.mlabscript",
+          "max_ticks": 700,
+          "frame": true,
+          "exit": 0,
+          "guard": false,
+          "timeout": 120
+        }
+      ]
+    },
+    {
+      "id": "FrozenHart__LCOM_2025-project",
+      "repo": "FrozenHart/LCOM_2025",
+      "sha": "f1879939f7a9a8e9610b9dcfc228b6aee1723e66",
+      "project": "proj",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "menu_visually_inspected": false,
+        "evidence": "build/compat-expanded/evidence/FrozenHart__LCOM_2025",
+        "limitation": "OriginalSinglePlayer S/Pdeal path failsplayer1hands_count0; menuonly verified."
+      },
+      "runs": [
+        {
+          "id": "scripted-menu-exit",
+          "script": "scripts/compat-corpus/escape.mlabscript",
+          "max_ticks": 700,
+          "frame": true,
+          "exit": 0,
+          "guard": false,
+          "timeout": 120
+        }
+      ]
+    },
+    {
+      "id": "raulnasoliveira__FEUP-LCOM-2025-project",
+      "repo": "raulnasoliveira/FEUP-LCOM-2025",
+      "sha": "a94d7998e4a0ed234aa0e13f8444195ffc9d332a",
+      "project": "proj/src",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "gameplay_visually_inspected": true,
+        "evidence": "build/compat-expanded/evidence/raulnasoliveira__FEUP-LCOM-2025",
+        "limitation": "Original app loopwhile1 neverexits; expectedguard exercisesverbalgameword/lives."
+      },
+      "runs": [
+        {
+          "id": "verbal-memory-gameplay",
+          "script": "scripts/compat-corpus/brain-training-gameplay.mlabscript",
+          "max_ticks": 350,
+          "frame": true,
+          "exit": 1,
+          "guard": true,
+          "timeout": 120,
+          "scope": "Bounded populated frame capture; guard is expected, normal exit is a separate run"
+        }
+      ]
+    },
+    {
+      "id": "diogoalves12__feup-lcom-project",
+      "repo": "diogoalves12/feup-lcom",
+      "sha": "14cf5aaefacf17cde4e309f5c6dc18d6195bb49a",
+      "project": "project",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "menu_visually_inspected": true,
+        "evidence": "build/compat-expanded/evidence/diogoalves12__feup-lcom"
+      },
+      "runs": [
+        {
+          "id": "menu-exit",
+          "script": "scripts/compat-corpus/escape.mlabscript",
+          "max_ticks": 700,
+          "frame": true,
+          "exit": 0,
+          "guard": false,
+          "timeout": 120
+        }
+      ]
+    },
+    {
+      "id": "IMS-up2021__Star-Wars-Defend-the-Republic-LCOM-2025--project",
+      "repo": "IMS-up2021/Star-Wars-Defend-the-Republic-LCOM-2025-",
+      "sha": "c2a8b571335769d971fa1128c2374834b299208d",
+      "project": "proj/src",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "menu_visually_inspected": true,
+        "evidence": "build/compat-expanded/evidence/IMS-up2021__Star-Wars-Defend-the-Republic-LCOM-2025-"
+      },
+      "runs": [
+        {
+          "id": "menu-exit",
+          "script": "scripts/compat-corpus/escape.mlabscript",
+          "max_ticks": 700,
+          "frame": true,
+          "exit": 0,
+          "guard": false,
+          "timeout": 120
+        }
+      ]
+    },
+    {
+      "id": "peucastro__lcom-lab2",
+      "repo": "peucastro/lcom",
+      "sha": "f8fd47bcfdd76c5eb4e94e5e929e63a888259b2b",
+      "project": "lab2",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "evidence": "build/compat-expanded/lab-evidence"
+      },
+      "runs": [
+        {
+          "id": "timer_test_read_config",
+          "args": [
+            "timer_test_read_config",
+            "0",
+            "0"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "stdout_contains": [
+            "Timer 0 field 0: 182"
+          ],
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        },
+        {
+          "id": "timer_test_time_base",
+          "args": [
+            "timer_test_time_base",
+            "0",
+            "120"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        },
+        {
+          "id": "timer_test_int",
+          "args": [
+            "timer_test_int",
+            "2"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "stdout_contains": [
+            "Elapsed time: 1 seconds",
+            "Elapsed time: 2 seconds"
+          ],
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        }
+      ]
+    },
+    {
+      "id": "peucastro__lcom-lab3",
+      "repo": "peucastro/lcom",
+      "sha": "f8fd47bcfdd76c5eb4e94e5e929e63a888259b2b",
+      "project": "lab3",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "evidence": "build/compat-expanded/lab-evidence"
+      },
+      "runs": [
+        {
+          "id": "kbd_test_scan",
+          "args": [
+            "kbd_test_scan"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "script": "scripts/compat-corpus/lab-escape.mlabscript",
+          "stdout_contains": [
+            "Make code: 0x01",
+            "Break code: 0x81"
+          ],
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        },
+        {
+          "id": "kbd_test_poll",
+          "args": [
+            "kbd_test_poll"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "script": "scripts/compat-corpus/lab-escape.mlabscript",
+          "stdout_contains": [
+            "Make code: 0x01",
+            "Break code: 0x81"
+          ],
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        },
+        {
+          "id": "kbd_test_timed_scan",
+          "args": [
+            "kbd_test_timed_scan",
+            "2"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        },
+        {
+          "id": "poll-reject-controller-faults",
+          "args": [
+            "kbd_test_poll"
+          ],
+          "max_ticks": 30,
+          "exit": 0,
+          "guard": false,
+          "script": "tests/compat_ps2_poll.mlabscript",
+          "stdout_contains": [
+            "Make code: 0x1E",
+            "Break code: 0x81",
+            "sys_inb calls: 14"
+          ],
+          "scope": "Original poll callback discards parity ESC and timeout B; independent checked trace in ps2-original-evidence.json."
+        }
+      ]
+    },
+    {
+      "id": "peucastro__lcom-lab4",
+      "repo": "peucastro/lcom",
+      "sha": "f8fd47bcfdd76c5eb4e94e5e929e63a888259b2b",
+      "project": "lab4",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "evidence": "build/compat-expanded/lab-evidence"
+      },
+      "runs": [
+        {
+          "id": "mouse_test_packet",
+          "args": [
+            "mouse_test_packet",
+            "3"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "script": "scripts/compat-corpus/lab-packets.mlabscript",
+          "stdout_contains": [
+            "X=20 Y=30",
+            "X=-10 Y=15",
+            "X=3 Y=-4"
+          ],
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        },
+        {
+          "id": "mouse_test_async",
+          "args": [
+            "mouse_test_async",
+            "2"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        },
+        {
+          "id": "mouse_test_gesture",
+          "args": [
+            "mouse_test_gesture",
+            "30",
+            "2"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "script": "scripts/compat-corpus/lab-gesture.mlabscript",
+          "stdout_contains": [
+            "LB=1",
+            "RB=1",
+            "X=20 Y=-30"
+          ],
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        },
+        {
+          "id": "mouse_test_remote",
+          "args": [
+            "mouse_test_remote",
+            "20",
+            "3"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "stdout_contains": [
+            "B1=0x08 B2=0x00 B3=0x00"
+          ],
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        }
+      ]
+    },
+    {
+      "id": "peucastro__lcom-lab5",
+      "repo": "peucastro/lcom",
+      "sha": "f8fd47bcfdd76c5eb4e94e5e929e63a888259b2b",
+      "project": "lab5",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "evidence": "build/compat-expanded/lab-evidence"
+      },
+      "runs": [
+        {
+          "id": "video_test_init",
+          "args": [
+            "video_test_init",
+            "0x115",
+            "1"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        },
+        {
+          "id": "video_test_rectangle",
+          "args": [
+            "video_test_rectangle",
+            "0x115",
+            "10",
+            "20",
+            "30",
+            "40",
+            "0xff0000"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "script": "scripts/compat-corpus/lab-escape.mlabscript",
+          "frame": true,
+          "nonblank": true,
+          "pixel_checks": [
+            {
+              "x": 10,
+              "y": 20,
+              "rgb": [
+                255,
+                0,
+                0
+              ]
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "rgb": [
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "scope": "Original lab callback runs its own device implementation and exits normally; frame colors match independent lab arguments"
+        },
+        {
+          "id": "video_test_pattern",
+          "args": [
+            "video_test_pattern",
+            "0x105",
+            "4",
+            "1",
+            "2"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "script": "scripts/compat-corpus/lab-escape.mlabscript",
+          "frame": true,
+          "nonblank": true,
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        },
+        {
+          "id": "video_test_xpm",
+          "args": [
+            "video_test_xpm",
+            "pic1",
+            "10",
+            "20"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "script": "scripts/compat-corpus/lab-escape.mlabscript",
+          "frame": true,
+          "nonblank": true,
+          "pixel_checks": [
+            {
+              "x": 24,
+              "y": 21,
+              "rgb": [
+                0,
+                170,
+                0
+              ]
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "rgb": [
+                0,
+                0,
+                0
+              ]
+            }
+          ],
+          "scope": "Original lab callback runs its own device implementation and exits normally; frame colors match independent lab arguments"
+        },
+        {
+          "id": "video_test_move",
+          "args": [
+            "video_test_move",
+            "penguin",
+            "10",
+            "20",
+            "50",
+            "20",
+            "-3",
+            "60"
+          ],
+          "max_ticks": 600,
+          "exit": 0,
+          "guard": false,
+          "script": "scripts/compat-corpus/lab-escape.mlabscript",
+          "frame": true,
+          "nonblank": true,
+          "scope": "Original lab callback runs its own device implementation and exits normally; expected interrupt/print behavior where applicable"
+        }
+      ]
+    },
+    {
+      "id": "zefluxo__feup-lcom-project",
+      "repo": "zefluxo/feup-lcom",
+      "sha": "e65ab1042229cd99acc5d21a69efbba9d6f53792",
+      "project": "proj/src",
+      "builder_args": [],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "menu_visually_inspected": true,
+        "source_hashes_unchanged": true,
+        "evidence": "build/compat-expanded/evidence/zefluxo__feup-lcom"
+      },
+      "runs": [
+        {
+          "id": "tetris-gameplay",
+          "script": "scripts/compat-corpus/tetris-gameplay.mlabscript",
+          "max_ticks": 300,
+          "frame": true,
+          "exit": 1,
+          "guard": true,
+          "timeout": 120,
+          "scope": "Bounded populated frame capture; guard is expected, normal exit is a separate run"
+        },
+        {
+          "id": "menu-exit",
+          "script": "scripts/compat-corpus/tetris-exit.mlabscript",
+          "max_ticks": 700,
+          "frame": true,
+          "exit": 0,
+          "guard": false,
+          "timeout": 120
+        }
+      ]
+    }
+  ],
+  "known_failures": [
+    {
+      "id": "bdmendes__feup-lcom-project",
+      "repo": "bdmendes/feup-lcom",
+      "sha": "c62b7ffe669602024eed3697d69ec3272a48bbe8",
+      "project": "2020_og/proj/src",
+      "reason": "Original rtc.c:5 allocates current_time[17], but sprintf at line 274 requires 21 bytes. Correct RTC updates now expose SIGTRAP from fortified sprintf at tick 60. Gameplay and menu claims withdrawn; lab2 passes.",
+      "evidence": "build/compat-expanded/verification/bdmendes__feup-lcom-project/upstream-rtc-overflow.json"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+# resources.c cursor500,500, menu first button center576,290.
+at 100 mouse 75 120 0
+at 120 mouse 0 90 0
+at 140 mouse 0 0 1
+at 141 mouse 0 0 0
+at 180 key D down
+at 210 key D up
+at 220 key W down
+at 240 key W up
+at 500 key ESC down
+at 501 key ESC up
+at 550 key ESC down
+at 551 key ESC up

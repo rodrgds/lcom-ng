@@ -1,0 +1,6 @@
+# Release first to clear the menu's input gate, then move from (400,300) to Exit.
+at 200 mouse 0 0 0
+at 210 mouse 0 -100 0
+at 220 mouse 0 -55 0
+at 230 mouse 0 0 1
+at 231 mouse 0 0 0

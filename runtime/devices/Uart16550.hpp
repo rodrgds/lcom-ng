@@ -22,6 +22,7 @@ public:
   bool popTx(uint8_t &value);
   uint16_t divisor() const { return divisor_; }
   void refreshIrq();
+  void advanceTick(uint32_t timer_frequency);
 
 private:
   uint8_t readReg(uint8_t reg);
@@ -42,6 +43,9 @@ private:
   uint8_t lsr_errors_ = 0;
   uint16_t divisor_ = 1;
   bool fifo_enabled_ = false;
+  uint8_t receive_trigger_ = 1;
+  long double receive_idle_seconds_ = 0;
+  bool receive_timeout_ = false;
   bool thre_interrupt_pending_ = false;
   Uart16550 *peer_ = nullptr;
   std::deque<uint8_t> rx_;

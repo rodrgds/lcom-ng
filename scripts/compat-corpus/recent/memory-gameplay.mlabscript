@@ -1,0 +1,11 @@
+# iamaccosta proj.c: P break starts, initial cards turn after240 timer ticks, ESC pause/E break exits.
+at 100 key P down
+at 101 key P up
+at 350 mouse 120 -120 0
+at 360 mouse 120 0 0
+at 390 mouse 0 0 1
+at 391 mouse 0 0 0
+at 600 key ESC down
+at 601 key ESC up
+at 630 key E down
+at 631 key E up

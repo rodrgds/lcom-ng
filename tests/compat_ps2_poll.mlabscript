@@ -1,0 +1,4 @@
+at 1 ps2 keyboard 0x81 parity
+at 2 ps2 keyboard 0x1e ok
+at 3 ps2 keyboard 0x30 timeout
+at 4 ps2 keyboard 0x81 ok

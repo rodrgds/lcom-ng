@@ -13,7 +13,7 @@ struct SdlBackendOptions {
   bool integer_scale = false;
   bool guest_input = true;
   int scale = 1;
-  std::string title = "LCOM Display";
+  std::string title = "lcom-ng";
 };
 
 #if defined(MACHINE_LAB_WITH_SDL)

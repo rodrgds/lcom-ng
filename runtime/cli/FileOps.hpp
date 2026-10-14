@@ -6,6 +6,11 @@
 
 namespace lcom::cli {
 
+// Resolve the executable selected by a direct invocation or PATH, following
+// symlinks so installed resources are found beside the actual binary.
+std::filesystem::path resolveExecutablePath(const std::filesystem::path &program,
+                                            std::error_code &error);
+
 bool copyIfExists(const std::filesystem::path &from,
                   const std::filesystem::path &to,
                   std::string &error);

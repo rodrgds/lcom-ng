@@ -1,0 +1,5 @@
+# Escape opens the quit confirmation. Enter activates the focused Yes button.
+at 200 key ESC down
+at 201 key ESC up
+at 230 key ENTER down
+at 231 key ENTER up

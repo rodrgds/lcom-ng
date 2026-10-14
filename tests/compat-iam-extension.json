@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "iamaccosta__FEUP-LCOM-memory-gameplay",
+      "repo": "iamaccosta/FEUP-LCOM",
+      "sha": "977a5cee882ba8016f0c6535512611a44bb64e12",
+      "project": "proj/src",
+      "builder_args": [],
+      "runs": [
+        {
+          "id": "populated-gameplay",
+          "script": "scripts/compat-corpus/recent/memory-gameplay.mlabscript",
+          "max_ticks": 450,
+          "exit": 1,
+          "guard": true,
+          "frame": true,
+          "timeout": 120,
+          "scope": "Guarded 4x4 board and timer transition; mouse card flip not verified"
+        },
+        {
+          "id": "gameplay-exit",
+          "script": "scripts/compat-corpus/recent/memory-gameplay.mlabscript",
+          "max_ticks": 1000,
+          "exit": 0,
+          "guard": false,
+          "frame": true,
+          "nonblank": false,
+          "timeout": 120,
+          "scope": "Original pause and E break exits after gameplay"
+        }
+      ]
+    }
+  ]
+}

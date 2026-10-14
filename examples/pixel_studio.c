@@ -434,6 +434,7 @@ static void pick_color(pixel_studio_t *studio, int cell_x, int cell_y) {
 }
 
 static bool export_sprite(pixel_studio_t *studio, const char *path) {
+  read_wall_clock(&studio->clock);
   FILE *out = fopen(path, "w");
   if (out == NULL) {
     set_status(studio, "EXPORT FAILED - CHECK OUTPUT PATH");
@@ -1043,6 +1044,7 @@ int main(int argc, char **argv) {
   lcom_printf("Pixel Studio: mouse draws, P/E/F/I select tools, "
               "Ctrl-Z/Y undo/redo, S exports, ESC exits.\n");
   bool event_failed = false;
+  uint64_t last_clock_tick = 0;
   while (running) {
     lcom_event_t event = {0};
     if (lcom_event_wait(&event) != LCOM_OK) {
@@ -1051,9 +1053,13 @@ int main(int argc, char **argv) {
       break;
     }
     bool redraw = false;
+    // Delivered interrupts can coalesce. Poll the RTC using elapsed bus ticks.
+    if (event.tick - last_clock_tick >= 60u) {
+      read_wall_clock(&studio.clock);
+      last_clock_tick = event.tick;
+    }
     if ((event.irq_mask & timer_irq.mask) != 0) {
       studio.frame++;
-      if (studio.frame % 60u == 0) read_wall_clock(&studio.clock);
       redraw = true;
     }
     if ((event.irq_mask & keyboard_irq.mask) != 0) {
@@ -1089,6 +1095,7 @@ int main(int argc, char **argv) {
     }
   }
   finish_canvas_action(&studio);
+  read_wall_clock(&studio.clock);
   draw_pixel_studio(&canvas, &studio);
   lcom_vbe_present();
   char clock[24];

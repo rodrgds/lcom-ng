@@ -1,0 +1,2 @@
+# Preserve verbatim upstream license formatting.
+third-party/licenses/** whitespace=-blank-at-eol,-blank-at-eof

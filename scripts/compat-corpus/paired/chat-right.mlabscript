@@ -1,0 +1,41 @@
+# chat.c leaves cursor locals uninitialized. Saturate to790,590 then navigate to blue Enter pill160,210.
+at 80 mouse 120 -120 0
+at 90 mouse 120 -120 0
+at 100 mouse 120 -120 0
+at 110 mouse 120 -120 0
+at 120 mouse 120 -120 0
+at 130 mouse 120 -120 0
+at 140 mouse 120 -120 0
+at 150 mouse 120 -120 0
+at 180 mouse -120 120 0
+at 190 mouse -120 120 0
+at 200 mouse -120 120 0
+at 220 mouse -120 20 0
+at 230 mouse -120 0 0
+at 240 mouse -30 0 0
+at 280 mouse 0 0 1
+at 285 mouse 0 0 0
+at 600 key B down
+at 601 key B up
+at 608 key E down
+at 609 key E up
+at 616 key T down
+at 617 key T up
+at 624 key A down
+at 625 key A up
+at 640 key ENTER down
+at 641 key ENTER up
+at 1000 key W down
+at 1001 key W up
+at 1008 key O down
+at 1009 key O up
+at 1016 key R down
+at 1017 key R up
+at 1024 key L down
+at 1025 key L up
+at 1032 key D down
+at 1033 key D up
+at 1048 key ENTER down
+at 1049 key ENTER up
+at 1500 key ESC down
+at 1501 key ESC up

@@ -1,0 +1,26 @@
+# Enter singleplayer, supply a name, move, place a bomb, and quit through menus.
+at 200 key ENTER down
+at 201 key ENTER up
+at 220 text TEST
+at 250 key TAB down
+at 251 key TAB up
+at 270 key ENTER down
+at 271 key ENTER up
+at 300 key D down
+at 330 key D up
+at 450 key SPACE down
+at 451 key SPACE up
+at 600 key ESC down
+at 601 key ESC up
+at 620 key TAB down
+at 621 key TAB up
+at 640 key TAB down
+at 641 key TAB up
+at 660 key ENTER down
+at 661 key ENTER up
+at 680 key ENTER down
+at 681 key ENTER up
+at 720 key ESC down
+at 721 key ESC up
+at 740 key ENTER down
+at 741 key ENTER up

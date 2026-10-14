@@ -1,0 +1,22 @@
+# Intro/menu Enter starts; escape pauses, navigation waits for original cooldown.
+at 100 key ENTER down
+at 105 key ENTER up
+at 200 key ENTER down
+at 205 key ENTER up
+at 280 key D down
+at 300 key D up
+at 450 mouse 120 0 0
+at 500 key ESC down
+at 505 key ESC up
+at 600 key DOWN down
+at 605 key DOWN up
+at 750 key DOWN down
+at 755 key DOWN up
+at 900 key ENTER down
+at 905 key ENTER up
+at 1100 key DOWN down
+at 1105 key DOWN up
+at 1250 key DOWN down
+at 1255 key DOWN up
+at 1400 key ENTER down
+at 1405 key ENTER up

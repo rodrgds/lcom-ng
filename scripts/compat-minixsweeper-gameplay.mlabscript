@@ -1,0 +1,21 @@
+# Start Easy, uncover a safe first tile, return through the upper-right button, and exit.
+at 180 mouse 0 0 0
+at 190 mouse 0 55 0
+at 200 mouse 0 0 1
+at 201 mouse 0 0 0
+at 250 mouse 0 -100 0
+at 260 mouse 0 0 1
+at 261 mouse 0 0 0
+at 600 mouse 125 100 0
+at 620 mouse 125 100 0
+at 640 mouse 125 100 0
+at 650 mouse 0 20 0
+at 670 mouse 0 0 1
+at 671 mouse 0 0 0
+at 700 mouse -125 -100 0
+at 710 mouse -125 -100 0
+at 720 mouse -125 -100 0
+at 730 mouse 0 -100 0
+at 740 mouse 0 -30 0
+at 760 mouse 0 0 1
+at 761 mouse 0 0 0

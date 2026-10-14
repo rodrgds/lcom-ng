@@ -1,0 +1,13 @@
+# main menu source arrowDown,Enter selects; third verbal game promptsnew/seen.
+at 100 key DOWN down
+at 101 key DOWN up
+at 120 key DOWN down
+at 121 key DOWN up
+at 140 key ENTER down
+at 141 key ENTER up
+at 200 key ENTER down
+at 201 key ENTER up
+at 300 key DOWN down
+at 301 key DOWN up
+at 320 key ENTER down
+at 321 key ENTER up

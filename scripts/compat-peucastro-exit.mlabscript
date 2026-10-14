@@ -1,0 +1,3 @@
+# Escape exits from the initial Bomberman menu.
+at 200 key ESC down
+at 201 key ESC up

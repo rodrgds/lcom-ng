@@ -1,0 +1,15 @@
+# Requires LCOM_COMPAT_MOUSE_REPORTING=1, matching this project's existing VM state.
+# Click Play, move the ship, observe timer-driven bullets, and exit with Escape.
+at 190 mouse 120 -100 0
+at 200 mouse 120 -100 0
+at 210 mouse 120 -100 0
+at 220 mouse 120 -100 0
+at 230 mouse 96 -56 0
+at 250 mouse 0 0 1
+at 251 mouse 0 0 0
+at 300 key D down
+at 340 key D up
+at 400 key SPACE down
+at 401 key SPACE up
+at 700 key ESC down
+at 701 key ESC up

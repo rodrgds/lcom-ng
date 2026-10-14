@@ -10,6 +10,7 @@ extern "C" {
 #define LCOM_PROTOCOL_VERSION 1u
 #define LCOM_MAX_PAYLOAD 4096u
 #define LCOM_MAX_SHM_NAME 128u
+#define LCOM_VRAM_BYTES (16u * 1024u * 1024u)
 
 typedef enum {
   LCOM_MSG_HELLO = 1,
@@ -25,6 +26,7 @@ typedef enum {
   LCOM_MSG_IRQ_UNSUBSCRIBE = 22,
   LCOM_MSG_EVENT_WAIT = 30,
   LCOM_MSG_EVENT_REPLY = 31,
+  LCOM_MSG_DELAY_TICKS = 32,
   LCOM_MSG_PHYS_MAP = 40,
   LCOM_MSG_PHYS_MAP_REPLY = 41,
   LCOM_MSG_PHYS_UNMAP = 42,
@@ -32,6 +34,7 @@ typedef enum {
   LCOM_MSG_VBE_MODE_INFO_REPLY = 51,
   LCOM_MSG_VBE_SET_MODE = 52,
   LCOM_MSG_VBE_PRESENT = 53,
+  LCOM_MSG_VBE_SET_DISPLAY_START = 54,
   LCOM_MSG_AC97_GET_BUFFER = 60,
   LCOM_MSG_AC97_BUFFER_REPLY = 61
 } lcom_msg_type_t;
@@ -98,6 +101,15 @@ typedef struct {
   uint32_t irq_mask;
   uint64_t tick;
 } lcom_event_reply_t;
+
+typedef struct {
+  uint64_t ticks;
+} lcom_delay_ticks_t;
+
+typedef struct {
+  uint16_t x;
+  uint16_t y;
+} lcom_vbe_display_start_t;
 
 typedef struct {
   uint64_t phys;

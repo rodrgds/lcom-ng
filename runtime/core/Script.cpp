@@ -1,6 +1,8 @@
 #include "Script.hpp"
 
 #include <algorithm>
+#include <charconv>
+#include <lcom/i8042.h>
 #include <cctype>
 #include <cmath>
 #include <fstream>
@@ -27,6 +29,18 @@ static bool parseBoolAction(const std::string &word, bool &pressed) {
     return true;
   }
   return false;
+}
+
+static bool parsePs2Byte(const std::string &token, uint8_t &byte) {
+  const char *first = token.data(), *last = first + token.size();
+  int base = 10;
+  if (token.size() >= 2 && token[0] == '0' && (token[1] == 'x' || token[1] == 'X')) {
+    first += 2; base = 16;
+  }
+  unsigned value = 0;
+  auto parsed = std::from_chars(first, last, value, base);
+  if (parsed.ec != std::errc() || parsed.ptr != last || value > 255) return false;
+  byte = static_cast<uint8_t>(value); return true;
 }
 
 static bool parseTickToken(const std::string &token, uint64_t &tick) {
@@ -145,6 +159,22 @@ bool Script::load(const std::string &path, std::string &error) {
         return false;
       }
       ev.kind = ScriptEvent::Kind::Key;
+    } else if (kind == "ps2") {
+      std::string source, byte, flags, extra;
+      if (!(iss >> source >> byte >> flags) || (iss >> extra) ||
+          (source != "keyboard" && source != "mouse") || !parsePs2Byte(byte, ev.ps2_byte)) {
+        error = "script line " + std::to_string(line_no) + ": expected ps2 <keyboard|mouse> <byte 0..255> <ok|parity|timeout|parity,timeout>";
+        return false;
+      }
+      if (flags == "ok") ev.ps2_errors = 0;
+      else if (flags == "parity") ev.ps2_errors = KBC_ST_PARITY;
+      else if (flags == "timeout") ev.ps2_errors = KBC_ST_TIMEOUT;
+      else if (flags == "parity,timeout" || flags == "timeout,parity") ev.ps2_errors = KBC_ST_ERR;
+      else {
+        error = "script line " + std::to_string(line_no) + ": invalid ps2 error flags";
+        return false;
+      }
+      ev.ps2_aux = source == "mouse"; ev.kind = ScriptEvent::Kind::Ps2;
     } else if (kind == "mouse") {
       unsigned buttons = 0;
       if (!(iss >> ev.dx >> ev.dy >> buttons)) {
@@ -280,6 +310,9 @@ void Script::injectDue(Machine &machine, uint64_t tick) {
       break;
     case ScriptEvent::Kind::Mouse:
       machine.injectMouse(ev.dx, ev.dy, ev.buttons);
+      break;
+    case ScriptEvent::Kind::Ps2:
+      machine.i8042().injectOutputByte(ev.ps2_byte, ev.ps2_aux, ev.ps2_errors);
       break;
     case ScriptEvent::Kind::Text:
       injectText(machine, ev.text);

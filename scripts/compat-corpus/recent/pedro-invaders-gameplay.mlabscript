@@ -1,0 +1,11 @@
+# Menu Enter starts, main gameplay arrows and space, Escape closes.
+at 100 key ENTER down
+at 101 key ENTER up
+at 160 key RIGHT down
+at 180 key RIGHT up
+at 210 key SPACE down
+at 211 key SPACE up
+at 500 key ESC down
+at 501 key ESC up
+at 600 key ESC down
+at 601 key ESC up

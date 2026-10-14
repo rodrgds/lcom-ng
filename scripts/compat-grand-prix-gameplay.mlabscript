@@ -1,0 +1,15 @@
+# Start a race, begin its countdown, drive, pause, return to the menu, and exit.
+at 190 mouse 0 40 0
+at 200 mouse 0 0 1
+at 201 mouse 0 0 0
+at 300 key ENTER down
+at 301 key ENTER up
+at 500 key W down
+at 550 key W up
+at 700 key ESC down
+at 701 key ESC up
+at 720 mouse 0 -115 0
+at 740 mouse 0 0 1
+at 741 mouse 0 0 0
+at 780 mouse 0 0 1
+at 781 mouse 0 0 0

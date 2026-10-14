@@ -1,0 +1,77 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "bernardobelchior__feup-lcom-lab7",
+      "repo": "bernardobelchior/feup-lcom",
+      "sha": "14a410320637918a4b3df90177c5d319802da501",
+      "project": "lab7",
+      "builder_args": [
+        "--cc",
+        "clang -include lcom/compat.h"
+      ],
+      "verification": {
+        "build_exit": 0,
+        "run_exit": 0,
+        "source_hashes_unchanged": true,
+        "evidence": "build/compat-expanded/lab-evidence",
+        "scope": "Original custom CLI configuration callbacks only; source truncates displayed default bitrate and leaves DLAB set."
+      },
+      "runs": [
+        {
+          "id": "serial-config",
+          "args": [
+            "conf",
+            "1"
+          ],
+          "max_ticks": 100,
+          "exit": 0,
+          "guard": false,
+          "stdout_contains": [
+            "Word length: 8",
+            "Parity: None",
+            "DLL: 0x01",
+            "DLAB: Data"
+          ]
+        },
+        {
+          "id": "serial-set-9600",
+          "args": [
+            "set",
+            "1",
+            "8",
+            "1",
+            "none",
+            "9600"
+          ],
+          "max_ticks": 100,
+          "exit": 0,
+          "guard": false,
+          "stdout_contains": [
+            "lab7::set(1, 8, 1, 0, 9600)"
+          ],
+          "trace_sequence": [
+            {
+              "event": "port_write8",
+              "port": "0x03fb",
+              "value": "0x83",
+              "ok": true
+            },
+            {
+              "event": "port_write8",
+              "port": "0x03f8",
+              "value": "0x0c",
+              "ok": true
+            },
+            {
+              "event": "port_write8",
+              "port": "0x03f9",
+              "value": "0x00",
+              "ok": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

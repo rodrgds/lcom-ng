@@ -1,0 +1,15 @@
+# ENTER release selects level; arrows move; ESC release returns to menu; S twice selects exit.
+at 100 key ENTER down
+at 101 key ENTER up
+at 150 key RIGHT down
+at 200 key RIGHT up
+at 240 key DOWN down
+at 260 key DOWN up
+at 500 key ESC down
+at 501 key ESC up
+at 550 key S down
+at 551 key S up
+at 580 key S down
+at 581 key S up
+at 610 key ENTER down
+at 611 key ENTER up

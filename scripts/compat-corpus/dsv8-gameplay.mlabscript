@@ -1,0 +1,13 @@
+# Source event_handlers.c: key 1 starts, W/D move, LB shoots, Escape returns/menu exits.
+at 100 key 1 down
+at 101 key 1 up
+at 150 key D down
+at 180 key D up
+at 200 mouse 0 0 1
+at 201 mouse 0 0 0
+at 220 key W down
+at 250 key W up
+at 550 key ESC down
+at 551 key ESC up
+at 600 key ESC down
+at 601 key ESC up

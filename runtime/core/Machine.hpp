@@ -39,6 +39,7 @@ public:
 
   void advanceTick();
   uint64_t tick() const { return tick_; }
+  bool delayTargetTick(uint64_t system_ticks, uint64_t &target) const;
 
   void injectKey(const std::string &key, bool pressed);
   void injectKeyBytes(const std::vector<uint8_t> &bytes);

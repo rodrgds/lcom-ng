@@ -1,0 +1,3 @@
+# Original menu handles E break as Exit.
+at 100 key E down
+at 101 key E up

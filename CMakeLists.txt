@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(machine-lab VERSION 0.2.0 LANGUAGES C CXX)
+project(lcom-ng VERSION 0.2.0 LANGUAGES C CXX)
 
 file(READ ${CMAKE_CURRENT_SOURCE_DIR}/package.json MACHINE_LAB_PACKAGE_JSON)
 string(JSON MACHINE_LAB_PACKAGE_VERSION GET "${MACHINE_LAB_PACKAGE_JSON}" version)
@@ -60,6 +60,19 @@ target_include_directories(machinelab_c PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/common
 )
 target_compile_options(machinelab_c PRIVATE -Wall -Wextra -Wpedantic)
+find_package(Threads REQUIRED)
+add_library(lcom_minix STATIC
+  sdk/compat/src/compat.c
+  sdk/compat/src/output_log.c
+  sdk/compat/src/lcf.c
+  sdk/compat/src/xpm.c
+)
+target_include_directories(lcom_minix PUBLIC
+  ${CMAKE_CURRENT_SOURCE_DIR}/sdk/compat/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/sdk/include
+)
+target_link_libraries(lcom_minix PUBLIC machinelab_c Threads::Threads)
+target_compile_options(lcom_minix PRIVATE -Wall -Wextra -Wpedantic)
 add_custom_command(TARGET machinelab_c POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
     $<TARGET_FILE:machinelab_c>
@@ -105,6 +118,7 @@ if(MACHINE_LAB_WITH_SDL)
 endif()
 
 add_executable(machinelab ${MACHINE_LAB_RUNTIME_SOURCES})
+add_dependencies(machinelab lcom_minix)
 target_link_libraries(machinelab PRIVATE machinelab_core)
 target_compile_options(machinelab PRIVATE -Wall -Wextra -Wpedantic)
 target_link_libraries(machinelab PRIVATE CLI11::CLI11)
@@ -123,6 +137,9 @@ else()
 endif()
 
 add_custom_command(TARGET machinelab POST_BUILD
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different
+    $<TARGET_FILE:machinelab>
+    $<TARGET_FILE_DIR:machinelab>/lcom-ng${CMAKE_EXECUTABLE_SUFFIX}
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
     $<TARGET_FILE:machinelab>
     $<TARGET_FILE_DIR:machinelab>/lowlab${CMAKE_EXECUTABLE_SUFFIX}
@@ -204,6 +221,13 @@ set_target_properties(pvz PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/examples
 )
 
+set(STUDENT_EXAMPLE_PATHS "")
+foreach(example IN LISTS MACHINE_LAB_EXAMPLES ITEMS flappy_bird ninjix pvz)
+  string(APPEND STUDENT_EXAMPLE_PATHS "$<TARGET_FILE:${example}>\n")
+endforeach()
+file(GENERATE OUTPUT "${CMAKE_BINARY_DIR}/student-examples.txt"
+  CONTENT "${STUDENT_EXAMPLE_PATHS}")
+
 add_executable(unit_tests
   tests/unit_tests.cpp
 )
@@ -267,6 +291,90 @@ add_lab_solution_test(lab7
 )
 
 if(BUILD_TESTING)
+  find_package(Python3 COMPONENTS Interpreter REQUIRED)
+  add_test(NAME package_example_inventory
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/package_example_inventory.py)
+  if(MACHINE_LAB_WITH_SDL)
+    add_executable(sdl_render_tests tests/sdl_render_tests.cpp runtime/backends/SdlBackend.cpp)
+    target_compile_definitions(sdl_render_tests PRIVATE MACHINE_LAB_WITH_SDL)
+    target_compile_options(sdl_render_tests PRIVATE -Wall -Wextra -Wpedantic)
+    target_link_libraries(sdl_render_tests PRIVATE machinelab_core PkgConfig::SDL3 PkgConfig::SDL3_TTF)
+    set_target_properties(sdl_render_tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/tests)
+    add_test(NAME sdl_render COMMAND sdl_render_tests)
+    set_tests_properties(sdl_render PROPERTIES
+      TIMEOUT 30 ENVIRONMENT "SDL_VIDEODRIVER=dummy;SDL_RENDER_DRIVER=software")
+  endif()
+  add_executable(compat_xpm_tests tests/compat_xpm_tests.c)
+  target_link_libraries(compat_xpm_tests PRIVATE lcom_minix)
+  add_test(NAME compat_xpm COMMAND compat_xpm_tests)
+  add_executable(compat_lcf tests/compat_lcf.c)
+  target_link_libraries(compat_lcf PRIVATE lcom_minix)
+  add_test(NAME compat_lcf
+    COMMAND $<TARGET_FILE:machinelab> run --headless --max-ticks 600 -- $<TARGET_FILE:compat_lcf>)
+  set_tests_properties(compat_lcf PROPERTIES TIMEOUT 15)
+  add_executable(compat_ps2_faults tests/compat_ps2_faults.c)
+  target_link_libraries(compat_ps2_faults PRIVATE lcom_minix)
+  add_test(NAME compat_ps2_faults
+    COMMAND $<TARGET_FILE:machinelab> run --headless --max-ticks 30
+      --script ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_ps2_faults.mlabscript
+      -- $<TARGET_FILE:compat_ps2_faults>)
+  add_test(NAME compat_ps2_faults_pair
+    COMMAND $<TARGET_FILE:machinelab> run-pair --headless --max-ticks 30
+      --left-script ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_ps2_faults.mlabscript
+      --right-script ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_ps2_faults.mlabscript
+      $<TARGET_FILE:compat_ps2_faults> --right $<TARGET_FILE:compat_ps2_faults>)
+  set_tests_properties(compat_ps2_faults compat_ps2_faults_pair PROPERTIES TIMEOUT 15)
+  add_executable(compat_output_log tests/compat_output_log.c)
+  target_link_libraries(compat_output_log PRIVATE lcom_minix)
+  add_test(NAME compat_output_log
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_output_log.py
+      $<TARGET_FILE:machinelab> $<TARGET_FILE:compat_output_log>)
+  set_tests_properties(compat_output_log PROPERTIES TIMEOUT 30)
+  add_executable(compat_client tests/compat_client.c)
+  target_link_libraries(compat_client PRIVATE lcom_minix)
+  add_test(NAME compat_client
+    COMMAND $<TARGET_FILE:machinelab> run --headless --max-ticks 100
+      --dump-frame ${CMAKE_BINARY_DIR}/test-output/compat-client.ppm -- $<TARGET_FILE:compat_client>)
+  add_test(NAME compat_client_pair
+    COMMAND $<TARGET_FILE:machinelab> run-pair --headless --max-ticks 100
+      --left-dump-frame ${CMAKE_BINARY_DIR}/test-output/compat-left.ppm
+      --right-dump-frame ${CMAKE_BINARY_DIR}/test-output/compat-right.ppm
+      $<TARGET_FILE:compat_client> --right $<TARGET_FILE:compat_client>)
+  add_test(NAME compat_import
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_import_tests.py)
+  foreach(mouse_boot IN ITEMS 0 1)
+    add_test(NAME compat_mouse_boot_${mouse_boot}
+      COMMAND $<TARGET_FILE:machinelab> run --headless --max-ticks 30
+        --script ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_mouse.mlabscript
+        -- $<TARGET_FILE:compat_client> --mouse-bootstrap)
+    set_tests_properties(compat_mouse_boot_${mouse_boot} PROPERTIES
+      TIMEOUT 15 ENVIRONMENT "LCOM_COMPAT_MOUSE_REPORTING=${mouse_boot}")
+  endforeach()
+  add_test(NAME compat_console
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_console.py $<TARGET_FILE:machinelab>)
+  set_tests_properties(compat_console PROPERTIES TIMEOUT 30)
+  add_test(NAME runtime_child_errors
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/runtime_child_errors.py $<TARGET_FILE:machinelab>)
+  set_tests_properties(runtime_child_errors PROPERTIES TIMEOUT 40)
+  add_test(NAME native_uart_handshake
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/native_uart_handshake.py
+      $<TARGET_FILE:machinelab> $<TARGET_FILE:uart_peer_sender> $<TARGET_FILE:uart_peer_receiver>)
+  set_tests_properties(native_uart_handshake PROPERTIES TIMEOUT 30)
+  add_test(NAME runtime_timeout
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/runtime_timeout.py $<TARGET_FILE:machinelab>)
+  set_tests_properties(runtime_timeout PROPERTIES TIMEOUT 40)
+  add_test(NAME compat_installed_cli
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_installed_cli.py
+      $<TARGET_FILE:machinelab> ${CMAKE_CURRENT_SOURCE_DIR}/sdk $<TARGET_FILE_DIR:lcom_minix>)
+  set_tests_properties(compat_installed_cli PROPERTIES TIMEOUT 45)
+  set_tests_properties(compat_client compat_client_pair PROPERTIES
+    TIMEOUT 15 FIXTURES_SETUP compat_frames)
+  add_test(NAME compat_frame_pixels
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_frame_pixels.py
+      ${CMAKE_BINARY_DIR}/test-output/compat-client.ppm
+      ${CMAKE_BINARY_DIR}/test-output/compat-left.ppm
+      ${CMAKE_BINARY_DIR}/test-output/compat-right.ppm)
+  set_tests_properties(compat_frame_pixels PROPERTIES FIXTURES_REQUIRED compat_frames)
   file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test-output)
 
   add_test(NAME unit COMMAND unit_tests)

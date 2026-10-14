@@ -1,0 +1,3 @@
+# The Escape break code exits from the initial menu.
+at 200 key ESC down
+at 201 key ESC up

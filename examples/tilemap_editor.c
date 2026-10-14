@@ -721,6 +721,7 @@ static char serialized_cell(uint8_t base, uint8_t object) {
 }
 
 static bool export_map(tilemap_editor_t *editor, const char *path) {
+  read_wall_clock(&editor->clock);
   map_validation_t validation =
       validate_map(editor->base, editor->objects);
   FILE *out = fopen(path, "w");
@@ -757,7 +758,7 @@ static bool export_map(tilemap_editor_t *editor, const char *path) {
          sizeof(editor->objects));
   editor->export_count++;
   set_status(editor, validation.valid
-                         ? "SAVED VALID MACHINE LAB TILEMAP"
+                         ? "SAVED VALID TILEMAP"
                          : "SAVED DRAFT WITH VALIDATION WARNING");
   return true;
 }
@@ -1410,6 +1411,7 @@ int main(int argc, char **argv) {
   lcom_printf("Tile Forge: paint with mouse, 1-5 choose tiles, "
               "Enter playtests, S saves, ESC exits.\n");
   bool event_failed = false;
+  uint64_t last_clock_tick = 0;
   while (running) {
     lcom_event_t event = {0};
     if (lcom_event_wait(&event) != LCOM_OK) {
@@ -1418,9 +1420,13 @@ int main(int argc, char **argv) {
       break;
     }
     bool redraw = false;
+    // Delivered interrupts can coalesce. Poll the RTC using elapsed bus ticks.
+    if (event.tick - last_clock_tick >= 60u) {
+      read_wall_clock(&editor.clock);
+      last_clock_tick = event.tick;
+    }
     if ((event.irq_mask & timer_irq.mask) != 0) {
       editor.frame++;
-      if (editor.frame % 60u == 0) read_wall_clock(&editor.clock);
       redraw = true;
     }
     if ((event.irq_mask & keyboard_irq.mask) != 0) {
@@ -1456,6 +1462,7 @@ int main(int argc, char **argv) {
     }
   }
   finish_edit_gesture(&editor);
+  read_wall_clock(&editor.clock);
   draw_tilemap_editor(&canvas, &editor);
   lcom_vbe_present();
   map_validation_t validation =

@@ -20,6 +20,7 @@ uint8_t I8042::status() const {
   if (!output_.empty()) {
     st |= KBC_ST_OBF;
     if (output_.front().aux) st |= KBC_ST_AUX;
+    st |= output_.front().errors;
   }
   return st;
 }
@@ -88,8 +89,8 @@ bool I8042::write8(uint16_t port, uint8_t value) {
   return false;
 }
 
-void I8042::queueOutput(uint8_t value, bool aux) {
-  output_.push_back(OutputByte{value, aux});
+void I8042::queueOutput(uint8_t value, bool aux, uint8_t errors) {
+  output_.push_back(OutputByte{value, aux, static_cast<uint8_t>(errors & KBC_ST_ERR)});
   if (output_.size() == 1) raiseForFront();
 }
 
@@ -106,6 +107,10 @@ void I8042::refreshIrq() {
   raiseForFront();
 }
 
+void I8042::injectOutputByte(uint8_t byte, bool aux, uint8_t errors) {
+  queueOutput(byte, aux, errors);
+}
+
 void I8042::injectKeyScancode(uint8_t byte) {
   if (!keyboard_enabled_) return;
   queueOutput(byte, false);
@@ -115,41 +120,98 @@ void I8042::injectKeySequence(const std::vector<uint8_t> &bytes) {
   for (uint8_t byte : bytes) injectKeyScancode(byte);
 }
 
+void I8042::resetMouseCounters() {
+  mouse_dx_ = mouse_dy_ = 0;
+  mouse_x_overflow_ = mouse_y_overflow_ = false;
+}
+
 void I8042::injectMousePacket(int dx, int dy, uint8_t buttons) {
-  if (!mouse_reporting_) return;
-  if (dx > 255) dx = 255;
-  if (dx < -255) dx = -255;
-  if (dy > 255) dy = 255;
-  if (dy < -255) dy = -255;
+  // Disabled stream reporting and remote mode still sample movement. The host
+  // retrieves the accumulated counters with EB, without requiring F4 first.
+  int64_t x = static_cast<int64_t>(mouse_dx_) + dx;
+  int64_t y = static_cast<int64_t>(mouse_dy_) + dy;
+  mouse_x_overflow_ |= x < -255 || x > 255;
+  mouse_y_overflow_ |= y < -255 || y > 255;
+  mouse_dx_ = static_cast<int>(std::clamp<int64_t>(x, -255, 255));
+  mouse_dy_ = static_cast<int>(std::clamp<int64_t>(y, -255, 255));
+  mouse_buttons_ = buttons & 7u;
+  if (mouse_reporting_ && !mouse_remote_) queueMousePacket();
+}
 
-  uint8_t b0 = MOUSE_SYNC_BIT;
-  if (buttons & 0x01u) b0 |= BIT(0);
-  if (buttons & 0x02u) b0 |= BIT(1);
-  if (buttons & 0x04u) b0 |= BIT(2);
-  if (dx < 0) b0 |= BIT(4);
-  if (dy < 0) b0 |= BIT(5);
-
-  queueOutput(b0, true);
-  queueOutput(static_cast<uint8_t>(dx & 0xFF), true);
-  queueOutput(static_cast<uint8_t>(dy & 0xFF), true);
+void I8042::queueMousePacket() {
+  uint8_t first = MOUSE_SYNC_BIT | mouse_buttons_;
+  if (mouse_dx_ < 0) first |= BIT(4);
+  if (mouse_dy_ < 0) first |= BIT(5);
+  if (mouse_x_overflow_) first |= BIT(6);
+  if (mouse_y_overflow_) first |= BIT(7);
+  queueOutput(first, true);
+  queueOutput(static_cast<uint8_t>(mouse_dx_ & 0xff), true);
+  queueOutput(static_cast<uint8_t>(mouse_dy_ & 0xff), true);
+  resetMouseCounters();
 }
 
 void I8042::handleMouseCommand(uint8_t command) {
+  if (mouse_parameter_) {
+    bool valid = mouse_parameter_ == 0xe8 ? command <= 3 :
+      command == 10 || command == 20 || command == 40 || command == 60 ||
+      command == 80 || command == 100 || command == 200;
+    if (!valid) { queueOutput(MOUSE_NACK, true); return; }
+    if (mouse_parameter_ == 0xe8) mouse_resolution_ = command;
+    else mouse_sample_rate_ = command;
+    mouse_parameter_ = 0;
+    resetMouseCounters();
+    queueOutput(MOUSE_ACK, true);
+    return;
+  }
   switch (command) {
   case MOUSE_CMD_ENABLE_DR:
     mouse_reporting_ = true;
+    resetMouseCounters();
     queueOutput(MOUSE_ACK, true);
     break;
   case MOUSE_CMD_DISABLE_DR:
+    mouse_reporting_ = false;
+    resetMouseCounters();
+    queueOutput(MOUSE_ACK, true);
+    break;
   case MOUSE_CMD_SET_DEFAULT:
   case MOUSE_CMD_RESET:
-    mouse_reporting_ = false;
+    mouse_reporting_ = mouse_remote_ = false;
+    mouse_sample_rate_ = 100; mouse_resolution_ = 2;
+    resetMouseCounters();
     queueOutput(MOUSE_ACK, true);
+    if (command == MOUSE_CMD_RESET) {
+      queueOutput(0xaa, true);
+      queueOutput(0x00, true);
+    }
     break;
   case MOUSE_CMD_SET_STREAM:
   case MOUSE_CMD_SET_REMOTE:
+    mouse_remote_ = command == MOUSE_CMD_SET_REMOTE;
+    resetMouseCounters();
+    queueOutput(MOUSE_ACK, true);
+    break;
+  case 0xf3: // Set sample rate, followed by another D4 data byte.
+  case 0xe8: // Set resolution.
+    mouse_parameter_ = command;
+    resetMouseCounters();
+    queueOutput(MOUSE_ACK, true);
+    break;
+  case 0xe9: // Status request: mode/reporting/buttons, resolution, sample rate.
+    queueOutput(MOUSE_ACK, true);
+    queueOutput((mouse_remote_ ? BIT(6) : 0) | (mouse_reporting_ ? BIT(5) : 0) | mouse_buttons_, true);
+    queueOutput(mouse_resolution_, true);
+    queueOutput(mouse_sample_rate_, true);
+    resetMouseCounters();
+    break;
+  case 0xf2: // Standard three-button device ID.
+    queueOutput(MOUSE_ACK, true);
+    queueOutput(0, true);
+    resetMouseCounters();
+    break;
   case MOUSE_CMD_READ_DATA:
     queueOutput(MOUSE_ACK, true);
+    queueMousePacket();
     break;
   default:
     queueOutput(MOUSE_NACK, true);

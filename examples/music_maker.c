@@ -292,7 +292,7 @@ static void handle_keyboard_byte(sequencer_state_t *st, uint8_t data, bool *runn
 static void draw_transport(example_canvas_t *ctx, const sequencer_state_t *st) {
   example_fill_rect(ctx, 0, 0, 800, 82, example_rgb(31, 35, 47));
   example_fill_rect(ctx, 0, 80, 800, 2, example_rgb(169, 139, 255));
-  example_draw_text(ctx, 28, 20, "ML", example_rgb(178, 148, 255), 4);
+  example_draw_text(ctx, 28, 20, "LC", example_rgb(178, 148, 255), 4);
   example_draw_text(ctx, 91, 18, "POCKET COMPOSER", example_rgb(241, 241, 247), 3);
   example_draw_text(ctx, 92, 47, "PATTERN 01", example_rgb(139, 147, 166), 1);
   char tempo[24];

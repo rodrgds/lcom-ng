@@ -1,0 +1,15 @@
+# Menu multi target640,723; stagger connection avoids simultaneous original HELLO role race.
+at 300 mouse 0 -120 0
+at 310 mouse 0 -91 0
+at 330 mouse 0 0 1
+at 336 mouse 0 0 0
+at 440 key A down
+at 460 key A up
+at 480 key SPACE down
+at 481 key SPACE up
+at 650 key ESC down
+at 651 key ESC up
+at 700 mouse 0 -120 0
+at 710 mouse 0 -30 0
+at 750 mouse 0 0 1
+at 756 mouse 0 0 0

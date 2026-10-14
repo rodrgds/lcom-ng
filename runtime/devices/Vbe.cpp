@@ -11,6 +11,23 @@ namespace lcom {
 
 namespace {
 
+template <unsigned Bits>
+void copyDirectRgb(const uint8_t *pixels, size_t count, uint8_t *rgb) {
+  for (size_t i = 0; i < count; ++i, pixels += (Bits + 7) / 8, rgb += 3) {
+    if constexpr (Bits == 15 || Bits == 16) {
+      const uint16_t value = static_cast<uint16_t>(pixels[0] | (pixels[1] << 8));
+      rgb[0] = static_cast<uint8_t>(((value >> (Bits == 16 ? 11 : 10)) & 0x1f) * 255 / 31);
+      rgb[1] = static_cast<uint8_t>(((value >> 5) & (Bits == 16 ? 0x3f : 0x1f)) * 255 /
+                                    (Bits == 16 ? 63 : 31));
+      rgb[2] = static_cast<uint8_t>((value & 0x1f) * 255 / 31);
+    } else {
+      rgb[0] = pixels[2];
+      rgb[1] = pixels[1];
+      rgb[2] = pixels[0];
+    }
+  }
+}
+
 const char *glyphRows(char c) {
   switch (std::toupper(static_cast<unsigned char>(c))) {
   case 'A': return "01110100011000111111100011000110001";
@@ -59,10 +76,9 @@ const char *glyphRows(char c) {
   }
 }
 
-bool captionPixel(const std::string &caption, const std::string &position,
-                  uint16_t width, uint16_t height,
-                  uint16_t x, uint16_t y, uint8_t rgb[3]) {
-  if (caption.empty() || width < 160 || height < 96) return false;
+void drawCaptionRow(const std::string &caption, const std::string &position,
+                    uint16_t width, uint16_t height, uint16_t y, uint8_t *row) {
+  if (caption.empty() || width < 160 || height < 96) return;
   const int scale = 3;
   const int char_w = 6 * scale;
   const int text_h = 7 * scale;
@@ -73,31 +89,26 @@ bool captionPixel(const std::string &caption, const std::string &position,
   int box_x = (static_cast<int>(width) - box_w) / 2;
   int box_y = position == "top" ? 24 : static_cast<int>(height) - box_h - 24;
 
-  if (x < box_x || x >= box_x + box_w || y < box_y || y >= box_y + box_h) return false;
-
-  rgb[0] = 18;
-  rgb[1] = 24;
-  rgb[2] = 32;
-
-  int text_x = box_x + 24;
-  int text_y = box_y + 14;
-  int lx = static_cast<int>(x) - text_x;
-  int ly = static_cast<int>(y) - text_y;
-  if (lx < 0 || ly < 0 || ly >= text_h) return true;
-  int char_index = lx / char_w;
-  if (char_index < 0 || char_index >= text_len) return true;
-  char c = caption[static_cast<size_t>(char_index)];
-  if (c == ' ') return true;
-  int in_char_x = (lx % char_w) / scale;
-  int in_char_y = ly / scale;
-  if (in_char_x >= 5) return true;
-  const char *rows = glyphRows(c);
-  if (rows[in_char_y * 5 + in_char_x] == '1') {
-    rgb[0] = 236;
-    rgb[1] = 246;
-    rgb[2] = 255;
+  if (y < box_y || y >= box_y + box_h) return;
+  for (int x = box_x; x < box_x + box_w; ++x) {
+    row[x * 3] = 18;
+    row[x * 3 + 1] = 24;
+    row[x * 3 + 2] = 32;
   }
-  return true;
+  const int ly = static_cast<int>(y) - box_y - 14;
+  if (ly < 0 || ly >= text_h) return;
+  for (int i = 0; i < text_len; ++i) {
+    const char *glyph = glyphRows(caption[static_cast<size_t>(i)]) + (ly / scale) * 5;
+    for (int column = 0; column < 5; ++column) {
+      if (glyph[column] != '1') continue;
+      const int x = box_x + 24 + i * char_w + column * scale;
+      for (int dx = 0; dx < scale; ++dx) {
+        row[(x + dx) * 3] = 236;
+        row[(x + dx) * 3 + 1] = 246;
+        row[(x + dx) * 3 + 2] = 255;
+      }
+    }
+  }
 }
 
 } // namespace
@@ -105,6 +116,102 @@ bool captionPixel(const std::string &caption, const std::string &position,
 Vbe::Vbe() {
   setMode(LCOM_VBE_MODE_800_600_24);
   graphics_mode_ = false;
+  has_graphics_frame_ = false;
+}
+
+void Vbe::resetPalette() {
+  // The standard VGA BIOS 256-color palette: 16 EGA colors, 16 grays,
+  // nine 24-color hue rings, then eight black entries. Channel values match
+  // SeaBIOS rel-1.16.1 vgasrc/stdvgamodes.c palette3; generate the rings rather
+  // than storing a second 768-byte table.
+  static constexpr uint8_t ega[16][3] = {
+    {0, 0, 0}, {0, 0, 42}, {0, 42, 0}, {0, 42, 42},
+    {42, 0, 0}, {42, 0, 42}, {42, 21, 0}, {42, 42, 42},
+    {21, 21, 21}, {21, 21, 63}, {21, 63, 21}, {21, 63, 63},
+    {63, 21, 21}, {63, 21, 63}, {63, 63, 21}, {63, 63, 63}
+  };
+  static constexpr uint8_t gray[16] = {
+    0, 5, 8, 11, 14, 17, 20, 24, 28, 32, 36, 40, 45, 50, 56, 63
+  };
+  static constexpr uint8_t levels[9][5] = {
+    {0, 16, 31, 47, 63}, {31, 39, 47, 55, 63}, {45, 49, 54, 58, 63},
+    {0, 7, 14, 21, 28}, {14, 17, 21, 24, 28}, {20, 22, 24, 26, 28},
+    {0, 4, 8, 12, 16}, {8, 10, 12, 14, 16}, {11, 12, 13, 15, 16}
+  };
+  palette_ = {};
+  for (size_t i = 0; i < 16; ++i) {
+    std::copy_n(ega[i], 3, palette_[i].begin());
+    palette_[16 + i].fill(gray[i]);
+  }
+  for (size_t ring = 0; ring < 9; ++ring) {
+    const uint8_t *shade = levels[ring];
+    for (size_t step = 0; step < 24; ++step) {
+      const uint8_t ascending = shade[step % 4];
+      const uint8_t descending = shade[4 - step % 4];
+      auto &color = palette_[32 + ring * 24 + step];
+      switch (step / 4) {
+      case 0: color = {ascending, shade[0], shade[4]}; break;
+      case 1: color = {shade[4], shade[0], descending}; break;
+      case 2: color = {shade[4], ascending, shade[0]}; break;
+      case 3: color = {descending, shade[4], shade[0]}; break;
+      case 4: color = {shade[0], shade[4], ascending}; break;
+      case 5: color = {shade[0], descending, shade[4]}; break;
+      }
+    }
+  }
+  for (size_t i = 0; i < palette_.size(); ++i)
+    for (size_t component = 0; component < 3; ++component)
+      rgb_palette_[i][component] = static_cast<uint8_t>(palette_[i][component] * 255 / 63);
+  pixel_mask_ = 0xff;
+  dac_read_index_ = dac_write_index_ = 0;
+  dac_read_component_ = dac_write_component_ = 0;
+  dac_state_ = 0;
+}
+
+bool Vbe::handles(uint16_t port) const {
+  return port >= 0x3c6 && port <= 0x3c9;
+}
+
+bool Vbe::read8(uint16_t port, uint8_t &value) {
+  switch (port) {
+  case 0x3c6: value = pixel_mask_; return true;
+  case 0x3c7: value = dac_state_; return true;
+  case 0x3c8: value = dac_write_index_; return true;
+  case 0x3c9:
+    value = palette_[dac_read_index_][dac_read_component_];
+    if (++dac_read_component_ == 3) {
+      dac_read_component_ = 0;
+      ++dac_read_index_;
+    }
+    return true;
+  default: return false;
+  }
+}
+
+bool Vbe::write8(uint16_t port, uint8_t value) {
+  switch (port) {
+  case 0x3c6: pixel_mask_ = value; return true;
+  case 0x3c7:
+    dac_read_index_ = value;
+    dac_read_component_ = 0;
+    dac_state_ = 3;
+    return true;
+  case 0x3c8:
+    dac_write_index_ = value;
+    dac_write_component_ = 0;
+    dac_state_ = 0;
+    return true;
+  case 0x3c9:
+    palette_[dac_write_index_][dac_write_component_] = value & 0x3f;
+    rgb_palette_[dac_write_index_][dac_write_component_] =
+        static_cast<uint8_t>((value & 0x3f) * 255 / 63);
+    if (++dac_write_component_ == 3) {
+      dac_write_component_ = 0;
+      ++dac_write_index_;
+    }
+    return true;
+  default: return false;
+  }
 }
 
 bool Vbe::modeInfo(uint16_t mode, VbeModeInfo &out) const {
@@ -113,33 +220,13 @@ bool Vbe::modeInfo(uint16_t mode, VbeModeInfo &out) const {
   out.framebuffer_phys = framebuffer_phys_;
 
   switch (mode) {
-  case LCOM_VBE_MODE_1024_768_8:
-    out.width = 1024;
-    out.height = 768;
-    out.bpp = 8;
-    out.bytes_per_pixel = 1;
-    break;
-  case LCOM_VBE_MODE_640_480_15:
-    out.width = 640;
-    out.height = 480;
-    out.bpp = 15;
-    out.bytes_per_pixel = 2;
-    break;
-  case LCOM_VBE_MODE_800_600_24:
-    out.width = 800;
-    out.height = 600;
-    out.bpp = 24;
-    out.bytes_per_pixel = 3;
-    break;
-  case LCOM_VBE_MODE_1280_1024_32:
-    out.width = 1280;
-    out.height = 1024;
-    out.bpp = 32;
-    out.bytes_per_pixel = 4;
-    break;
-  default:
-    return false;
+#define LCOM_VBE_MODE_CASE(code, w, h, depth) \
+  case code: out.width = w; out.height = h; out.bpp = depth; break;
+    LCOM_VBE_GRAPHICS_MODES(LCOM_VBE_MODE_CASE)
+#undef LCOM_VBE_MODE_CASE
+  default: return false;
   }
+  out.bytes_per_pixel = static_cast<uint8_t>((out.bpp + 7) / 8);
 
   out.pitch = static_cast<uint32_t>(out.width * out.bytes_per_pixel);
   out.framebuffer_size = static_cast<uint64_t>(out.pitch) * out.height;
@@ -147,52 +234,84 @@ bool Vbe::modeInfo(uint16_t mode, VbeModeInfo &out) const {
 }
 
 bool Vbe::setMode(uint16_t mode) {
+  if (mode == 3) {
+    graphics_mode_ = false;
+    return true;
+  }
   VbeModeInfo info;
   if (!modeInfo(mode, info)) return false;
   current_ = info;
+  resetPalette();
   framebuffer_.assign(static_cast<size_t>(info.framebuffer_size), 0);
   graphics_mode_ = true;
+  has_graphics_frame_ = true;
+  display_offset_ = 0;
+  return true;
+}
+
+bool Vbe::setDisplayStart(uint16_t x, uint16_t y) {
+  // Linear page flipping starts on a scanline. Horizontal panning would need
+  // a separate virtual scanline-width BIOS interface.
+  if (!graphics_mode_ || x != 0) return false;
+  size_t offset = static_cast<size_t>(y) * current_.pitch;
+  if (offset > vramSize() || framebuffer_.size() > vramSize() - offset) return false;
+  display_offset_ = offset;
   return true;
 }
 
 bool Vbe::ownsRange(uint64_t phys, uint64_t length) const {
   if (length == 0) return false;
   uint64_t start = framebuffer_phys_;
-  uint64_t end = start + framebuffer_.size();
+  uint64_t end = start + vramSize();
   return phys >= start && phys <= end && length <= end - phys;
+}
+
+void Vbe::pixelRgb(const uint8_t *pixel, uint8_t rgb[3]) const {
+  copyRgb(pixel, 1, rgb);
+}
+
+void Vbe::copyRgbRow(uint16_t y, uint8_t *rgb) const {
+  copyRgb(framebuffer_.data() + static_cast<size_t>(y) * current_.pitch, current_.width, rgb);
+}
+
+void Vbe::copyRgb(const uint8_t *pixels, size_t count, uint8_t *rgb) const {
+  switch (current_.bpp) {
+  case 8:
+    for (size_t i = 0; i < count; ++i, rgb += 3) {
+      const auto &color = rgb_palette_[pixels[i] & pixel_mask_];
+      std::copy(color.begin(), color.end(), rgb);
+    }
+    break;
+  case 15: copyDirectRgb<15>(pixels, count, rgb); break;
+  case 16: copyDirectRgb<16>(pixels, count, rgb); break;
+  case 24: copyDirectRgb<24>(pixels, count, rgb); break;
+  case 32: copyDirectRgb<32>(pixels, count, rgb); break;
+  }
 }
 
 bool Vbe::dumpPpm(const std::string &path, const std::string &caption,
                   const std::string &caption_position) const {
-  if (!graphics_mode_ || framebuffer_.empty()) return false;
+  if (!has_graphics_frame_ || framebuffer_.empty()) return false;
   FILE *f = std::fopen(path.c_str(), "wb");
   if (f == nullptr) return false;
+  // A large frame has hundreds of rows. Combine their writes before entering
+  // the filesystem; the buffer remains alive until fclose flushes the tail.
+  std::array<char, 64 * 1024> file_buffer;
+  if (std::setvbuf(f, file_buffer.data(), _IOFBF, file_buffer.size()) != 0) {
+    std::fclose(f);
+    return false;
+  }
   if (std::fprintf(f, "P6\n%u %u\n255\n", current_.width, current_.height) < 0) {
     std::fclose(f);
     return false;
   }
+  std::vector<uint8_t> rgb_row(static_cast<size_t>(current_.width) * 3);
   for (uint16_t y = 0; y < current_.height; y++) {
-    const uint8_t *row = framebuffer_.data() + static_cast<size_t>(y) * current_.pitch;
-    for (uint16_t x = 0; x < current_.width; x++) {
-      const uint8_t *px = row + static_cast<size_t>(x) * current_.bytes_per_pixel;
-      uint8_t rgb[3] = {0, 0, 0};
-      if (current_.bytes_per_pixel == 1) {
-        rgb[0] = rgb[1] = rgb[2] = px[0];
-      } else if (current_.bytes_per_pixel == 2) {
-        uint16_t v = static_cast<uint16_t>(px[0] | (px[1] << 8));
-        rgb[0] = static_cast<uint8_t>(((v >> 10) & 0x1F) * 255 / 31);
-        rgb[1] = static_cast<uint8_t>(((v >> 5) & 0x1F) * 255 / 31);
-        rgb[2] = static_cast<uint8_t>((v & 0x1F) * 255 / 31);
-      } else {
-        rgb[0] = px[2];
-        rgb[1] = px[1];
-        rgb[2] = px[0];
-      }
-      captionPixel(caption, caption_position, current_.width, current_.height, x, y, rgb);
-      if (std::fwrite(rgb, 1, sizeof(rgb), f) != sizeof(rgb)) {
-        std::fclose(f);
-        return false;
-      }
+    copyRgbRow(y, rgb_row.data());
+    drawCaptionRow(caption, caption_position, current_.width, current_.height, y, rgb_row.data());
+    if (std::fwrite(rgb_row.data(), 1, rgb_row.size(), f) != rgb_row.size()) {
+      std::fclose(f);
+      return false;
     }
   }
   return std::fclose(f) == 0;

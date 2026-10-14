@@ -1,0 +1,4 @@
+# No text input before sync; a received HELLO would therefore prove transport.
+at 800 text B
+at 1400 key ESC down
+at 1401 key ESC up

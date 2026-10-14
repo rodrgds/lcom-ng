@@ -1,0 +1,29 @@
+# Enter a name, choose the first beatmap, press its lanes, pause, return, and exit.
+# This exercises visuals and input. The project's external UART audio helper is separate.
+at 200 key ENTER down
+at 201 key ENTER up
+at 220 text TEST
+at 250 key ENTER down
+at 251 key ENTER up
+at 300 key ENTER down
+at 301 key ENTER up
+at 420 key A down
+at 422 key A up
+at 440 key S down
+at 442 key S up
+at 460 key D down
+at 462 key D up
+at 480 key F down
+at 482 key F up
+at 500 key G down
+at 502 key G up
+at 600 key ESC down
+at 601 key ESC up
+at 640 key DOWN down
+at 641 key DOWN up
+at 660 key ENTER down
+at 661 key ENTER up
+at 700 key ESC down
+at 701 key ESC up
+at 740 key ESC down
+at 741 key ESC up

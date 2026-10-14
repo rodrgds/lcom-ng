@@ -15,6 +15,7 @@ struct ScriptEvent {
   enum class Kind {
     Key,
     Mouse,
+    Ps2,
     Text,
     Rtc,
     Tick,
@@ -26,6 +27,9 @@ struct ScriptEvent {
   int dx = 0;
   int dy = 0;
   uint8_t buttons = 0;
+  uint8_t ps2_byte = 0;
+  uint8_t ps2_errors = 0;
+  bool ps2_aux = false;
   std::string text;
   std::string caption_position = "bottom";
   bool capture_enabled = true;

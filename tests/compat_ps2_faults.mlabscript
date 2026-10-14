@@ -1,0 +1,5 @@
+at 1 ps2 keyboard 0x1e parity
+at 2 ps2 keyboard 0x30 ok
+at 3 ps2 mouse 8 timeout
+at 4 ps2 mouse 250 parity,timeout
+at 5 ps2 mouse 9 ok

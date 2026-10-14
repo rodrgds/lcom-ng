@@ -1,0 +1,5 @@
+# Initial selection singleplayer; Enter starts its original intro then controls move.
+at 100 key ENTER down
+at 101 key ENTER up
+at 270 key RIGHT down
+at 300 key RIGHT up

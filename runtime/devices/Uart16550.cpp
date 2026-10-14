@@ -42,6 +42,8 @@ uint8_t Uart16550::readReg(uint8_t reg) {
     if (rx_.empty()) return 0;
     uint8_t value = rx_.front();
     rx_.pop_front();
+    receive_idle_seconds_ = 0;
+    receive_timeout_ = false;
     pumpRx();
     updateIrq();
     return value;
@@ -49,7 +51,7 @@ uint8_t Uart16550::readReg(uint8_t reg) {
   case SER_IER:
     return ier_;
   case SER_IIR: {
-    uint8_t value = iir_;
+    uint8_t value = static_cast<uint8_t>(iir_ | (fifo_enabled_ ? 0xC0u : 0u));
     if ((value & 0x0Fu) == IIR_THRE) {
       thre_interrupt_pending_ = false;
       updateIrq();
@@ -105,16 +107,22 @@ void Uart16550::writeReg(uint8_t reg, uint8_t value) {
     if ((ier_ & IER_THRE) != 0) thre_interrupt_pending_ = true;
     updateIrq();
     break;
-  case SER_FCR:
+  case SER_FCR: {
+    bool previously_enabled = fifo_enabled_;
     fifo_enabled_ = (value & FCR_ENABLE_FIFO) != 0;
-    if (value & BIT(1)) {
+    const uint8_t triggers[] = {1, 4, 8, 14};
+    receive_trigger_ = fifo_enabled_ ? triggers[value >> 6] : 1;
+    if (previously_enabled != fifo_enabled_ || (value & FCR_CLEAR_RX)) {
       rx_.clear();
       wire_rx_.clear();
+      receive_idle_seconds_ = 0;
+      receive_timeout_ = false;
     }
-    if (value & BIT(2)) tx_.clear();
+    if (previously_enabled != fifo_enabled_ || (value & FCR_CLEAR_TX)) tx_.clear();
     pumpRx();
     updateIrq();
     break;
+  }
   case SER_LCR:
     lcr_ = value;
     break;
@@ -152,8 +160,11 @@ void Uart16550::updateIrq() {
   if (lsr_errors_ != 0 && (ier_ & IER_RLS)) {
     iir_ = 0x06u;
     irqs_.raise(irq_);
-  } else if (!rx_.empty() && (ier_ & IER_RDA)) {
+  } else if (rx_.size() >= receive_trigger_ && (ier_ & IER_RDA)) {
     iir_ = IIR_RDA;
+    irqs_.raise(irq_);
+  } else if (receive_timeout_ && !rx_.empty() && (ier_ & IER_RDA)) {
+    iir_ = 0x0cu;
     irqs_.raise(irq_);
   } else if (thre_interrupt_pending_ && (ier_ & IER_THRE)) {
     iir_ = IIR_THRE;
@@ -168,10 +179,24 @@ void Uart16550::pumpRx() {
   while (rx_.size() < capacity && !wire_rx_.empty()) {
     rx_.push_back(wire_rx_.front());
     wire_rx_.pop_front();
+    receive_idle_seconds_ = 0;
+    receive_timeout_ = false;
   }
 }
 
 void Uart16550::refreshIrq() {
+  updateIrq();
+}
+
+void Uart16550::advanceTick(uint32_t timer_frequency) {
+  if (!timer_frequency || !fifo_enabled_ || rx_.empty() || !divisor_) return;
+  receive_idle_seconds_ += 1.0L / timer_frequency;
+  unsigned data_bits = 5 + (lcr_ & 3);
+  unsigned half_bits = 2 + 2 * data_bits + ((lcr_ & BIT(3)) ? 2 : 0);
+  half_bits += (lcr_ & BIT(2)) ? (data_bits == 5 ? 3 : 4) : 2;
+  // Four complete characters, including parity and 1/1.5/2 stop bits.
+  long double timeout = 2.0L * half_bits * divisor_ / 115200.0L;
+  if (receive_idle_seconds_ >= timeout) receive_timeout_ = true;
   updateIrq();
 }
 

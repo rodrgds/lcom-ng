@@ -1,0 +1,47 @@
+at 0 capture out
+at 30 key ENTER down
+at 31 key ENTER up
+at 40 key ENTER down
+at 41 key ENTER up
+at 45 capture in
+at 46 capture out
+at 50 key 1 down
+at 51 key 1 up
+at 55 key RIGHT down
+at 56 key RIGHT up
+at 60 key 2 down
+at 61 key 2 up
+at 65 key RIGHT down
+at 66 key RIGHT up
+at 70 key 3 down
+at 71 key 3 up
+at 75 key RIGHT down
+at 76 key RIGHT up
+at 80 key 4 down
+at 81 key 4 up
+at 85 key DOWN down
+at 86 key DOWN up
+at 90 key LEFT down
+at 91 key LEFT up
+at 95 key 5 down
+at 96 key 5 up
+at 100 key LEFT down
+at 101 key LEFT up
+at 105 key 6 down
+at 106 key 6 up
+at 110 capture in
+at 111 capture out
+at 120 key SPACE down
+at 121 key SPACE up
+at 150 capture in
+at 151 capture out
+at 160 key 1 down
+at 161 key 1 up
+at 165 key SPACE down
+at 166 key SPACE up
+at 180 capture in
+at 181 capture out
+at 200 key ESC down
+at 201 key ESC up
+at 210 key ESC down
+at 211 key ESC up

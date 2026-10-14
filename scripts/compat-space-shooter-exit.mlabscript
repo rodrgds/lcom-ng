@@ -1,0 +1,3 @@
+# The Escape break code ends the application loop.
+at 200 key ESC down
+at 201 key ESC up

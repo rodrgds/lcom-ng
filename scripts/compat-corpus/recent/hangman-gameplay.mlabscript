@@ -1,0 +1,15 @@
+# Main MENU Enter, CATEGORIES Enter, letter guesses, ESC resets and MENU ESC quits.
+at 100 key ENTER down
+at 101 key ENTER up
+at 130 key ENTER down
+at 131 key ENTER up
+at 170 key A down
+at 171 key A up
+at 200 key E down
+at 201 key E up
+at 230 key S down
+at 231 key S up
+at 500 key ESC down
+at 501 key ESC up
+at 600 key ESC down
+at 601 key ESC up
