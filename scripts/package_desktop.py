@@ -84,7 +84,10 @@ def package(source, build, output, windows=False):
                        Path("/mingw64/share/licenses/ttf-dejavu/LICENSE")):
             if notice.is_file():
                 shutil.copy2(notice, root / "licenses/DejaVu-copyright")
-        runtime_target = root / "bin" / ("lcom-ng.exe" if windows else "lcom-ng")
+        # MSYS open("lcom-ng", O_CREAT | O_TRUNC) also searches lcom-ng.exe.
+        # Keep the PE under a different stem so writing the shell launcher cannot
+        # overwrite it through MSYS's implicit executable-suffix lookup.
+        runtime_target = root / "bin" / ("lcom-ng-runtime.exe" if windows else "lcom-ng")
         shutil.copy2(runtime, runtime_target)
         pending = [runtime]
         originals = {runtime: runtime_target}
@@ -113,7 +116,7 @@ def package(source, build, output, windows=False):
                 '#!/usr/bin/env sh\nset -eu\n'
                 'directory=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)\n'
                 'export PATH="$directory:$PATH"\n'
-                'exec "$directory/lcom-ng.exe" "$@"\n')
+                'exec "$directory/lcom-ng-runtime.exe" "$@"\n')
             (root / "bin/lcom-ng").chmod(0o755)
             for alias in ("machinelab", "lcom", "lowlab", "mlab"):
                 shutil.copy2(root / "bin/lcom-ng", root / "bin" / alias)
@@ -129,6 +132,7 @@ def package(source, build, output, windows=False):
         if not windows:
             metadata["minimum_glibc"] = "2.39"
         else:
+            metadata["runtime"] = "bin/lcom-ng-runtime.exe"
             metadata["requires"] = "MSYS2 MSYS shell, gcc, make, python"
         (root / "bundle.json").write_text(json.dumps(metadata, indent=2) + "\n")
         (root / "README.txt").write_text(
@@ -162,6 +166,10 @@ def package(source, build, output, windows=False):
                 copyright_file = Path("/usr/share/doc") / package_name / "copyright"
                 if copyright_file.is_file():
                     shutil.copy2(copyright_file, root / "licenses" / (package_name + "-copyright"))
+        if windows:
+            with runtime_target.open("rb") as binary:
+                if binary.read(2) != b"MZ":
+                    raise ValueError("Packaged Windows runtime is not a PE executable: " + str(runtime_target))
         with tarfile.open(archive, "w:gz") as tar:
             tar.add(root, arcname=root.name)
     write_checksum(archive)

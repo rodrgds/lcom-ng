@@ -15,7 +15,8 @@ def run(args, env, cwd=None, status=0):
     completed = subprocess.run([str(a) for a in args], env=env, cwd=cwd,
                                capture_output=True, text=True, timeout=60)
     if completed.returncode != status:
-        raise AssertionError("Command failed: " + repr(args) + "\n" + completed.stdout + completed.stderr)
+        raise AssertionError("Command failed (status " + str(completed.returncode) + "): "
+                             + repr(args) + "\n" + completed.stdout + completed.stderr)
     return completed
 
 
@@ -46,7 +47,17 @@ def exercise(bundle, root, env, desktop=False):
     if metadata.get("platform") in ("linux", "windows-msys2"):
         assert (bundle / "share/fonts/DejaVuSansMono.ttf").is_file(), "Missing bundled desktop font"
     env = dict(env, PATH=str(bundle / "bin") + ":" + env["PATH"])
-    run([runtime, "--help"], env)
+    try:
+        run([runtime, "--help"], env)
+    except AssertionError:
+        if metadata.get("platform") == "windows-msys2":
+            executable = bundle / metadata.get("runtime", "bin/lcom-ng.exe")
+            print("Packaged PE header:", executable.read_bytes()[:16], flush=True)
+            print("Bundled DLLs:", metadata["dependencies"], flush=True)
+            diagnostic = subprocess.run(["ldd", str(executable)], env=env,
+                                        capture_output=True, text=True, timeout=30)
+            print(diagnostic.stdout + diagnostic.stderr, flush=True)
+        raise
     # Invoke through PATH too, exercising installed resource lookup and aliases.
     run(["lcom", "--help"], env)
     project = root / "original legacy lab"
