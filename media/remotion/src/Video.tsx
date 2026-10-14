@@ -191,7 +191,7 @@ const HookScene: React.FC = () => {
     <Scene duration={150} accent={palette.mint}>
       <div style={{position: 'absolute', left: 148, top: 150, display: 'flex', flexDirection: 'column', gap: 30}}>
         <div style={{opacity: fade(frame, 0, 18), transform: `translateY(${rise(frame)}px)`}}>
-          <Eyebrow>Machine Lab</Eyebrow>
+          <Eyebrow>lcom-ng</Eyebrow>
         </div>
         <div style={{transform: `scale(${0.94 + pop * 0.06})`, transformOrigin: 'left center'}}>
           <Heading size={126} width={1260}>Learn systems by building things that move.</Heading>
@@ -222,7 +222,7 @@ const HookScene: React.FC = () => {
           opacity: fade(frame, 16, 38),
         }}
       >
-        <div style={{color: palette.muted}}>$ machinelab run project</div>
+        <div style={{color: palette.muted}}>$ lcom-ng run project</div>
         <div style={{color: palette.green}}>devices ready</div>
         <div style={{color: palette.blue}}>framebuffer 800x600</div>
         <div style={{color: palette.violet}}>audio 48000 Hz stereo</div>
@@ -335,7 +335,7 @@ const WordScene: React.FC = () => {
         </div>
       </div>
       <div style={{position: 'absolute', right: 94, top: 130, transform: `translateX(${interpolate(frame, [0, 28], [100, 0], {...clamp, easing: ease})}px)`, opacity: fade(frame, 0, 20)}}>
-        <WindowFrame title="machinelab run word_processor" accent={palette.blue} width={1140}>
+        <WindowFrame title="lcom-ng run word_processor" accent={palette.blue} width={1140}>
           <OffthreadVideo
             src={staticFile('clips/word-processor.mp4')}
             muted
@@ -353,7 +353,7 @@ const MusicScene: React.FC = () => {
   return (
     <Scene duration={270} accent={palette.violet}>
       <div style={{position: 'absolute', left: 92, top: 126}}>
-        <WindowFrame title="machinelab run music_maker" accent={palette.violet} width={1180}>
+        <WindowFrame title="lcom-ng run music_maker" accent={palette.violet} width={1180}>
           <OffthreadVideo
             src={staticFile('clips/music-maker.mp4')}
             muted
@@ -494,7 +494,7 @@ const ClosingScene: React.FC = () => {
   return (
     <Scene duration={150} accent={palette.mint}>
       <div style={{position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: 30}}>
-        <Eyebrow>Machine Lab</Eyebrow>
+        <Eyebrow>lcom-ng</Eyebrow>
         <Heading size={112} width={1380}>Teach the machine-facing parts. Keep the joy of making.</Heading>
         <div
           style={{
@@ -510,7 +510,7 @@ const ClosingScene: React.FC = () => {
             transform: `translateY(${rise(frame, 24, 32)}px)`,
           }}
         >
-          machine-lab-docs.pages.dev
+          lcom.rgo.pt
         </div>
       </div>
     </Scene>

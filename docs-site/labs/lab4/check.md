@@ -6,8 +6,8 @@ so it is better to confirm byte assembly, synchronization, and sign conversion
 with fixed input first.
 
 ```sh
-machinelab test mouse
-machinelab run --headless --script scripts/mouse_move.mlabscript -- build/examples/mouse_packet
+lcom-ng test mouse
+lcom-ng run --headless --script scripts/mouse_move.mlabscript -- build/examples/mouse_packet
 ```
 
 ## Discussion Prompts

@@ -1,15 +1,15 @@
 # Adoption Guide
 
 This guide is for instructors, teaching assistants, club organizers, and
-curriculum leads who want to use Machine Lab quickly without turning the first
+curriculum leads who want to use lcom-ng quickly without turning the first
 week into infrastructure work.
 
 The public website is the canonical version of this guide:
-<https://machine-lab-docs.pages.dev/instructors/adoption>
+<https://lcom.rgo.pt/instructors/adoption>
 
 ## Course Profile
 
-Machine Lab works best as practical courseware. Students learn C by interacting
+lcom-ng works best as practical courseware. Students learn C by interacting
 with device-shaped interfaces, then combine those interfaces into a final
 reactive project. The model is inspired by computer-laboratory courses such as
 LCOM, but it removes the VirtualBox/Minix setup from the critical path.
@@ -24,10 +24,10 @@ Architecture, and Operating Systems. The teaching method should be learning by
 doing: short theory sessions explain the device model, then lab sessions leave
 implementation gaps for students to fill, test, debug, and reuse.
 
-## Use Machine Lab In One Week
+## Use lcom-ng In One Week
 
-Minimum viable adoption means students install or receive `machinelab`, generate
-a workspace with `machinelab setup`, compile one starter lab, run one starter
+Minimum viable adoption means students install or receive `lcom-ng`, generate
+a workspace with `lcom-ng setup`, compile one starter lab, run one starter
 test that fails in the expected way, and receive the first handout plus grading
 expectations.
 
@@ -43,10 +43,10 @@ expectations.
 ### Day 2: Verify The Toolchain
 
 ```sh
-machinelab --help
-machinelab setup student-smoke --force
+lcom-ng --help
+lcom-ng setup student-smoke --force
 make -C student-smoke
-machinelab test rtc --project student-smoke
+lcom-ng test rtc --project student-smoke
 ```
 
 The last command should fail for a fresh workspace because the TODO stubs are
@@ -54,7 +54,7 @@ incomplete. That is a good sign: students will see the same initial state.
 
 > [!IMPORTANT]
 > Do not distribute the upstream repository as the normal student workspace.
-> Generate workspaces with `machinelab setup` so students see the course surface
+> Generate workspaces with `lcom-ng setup` so students see the course surface
 > rather than runtime internals.
 
 ### Day 3: Pilot One Lab
@@ -81,7 +81,7 @@ solving the whole lab.
 
 ## Marketing Position
 
-Machine Lab should be marketed as reusable courseware, not as a flashy emulator.
+lcom-ng should be marketed as reusable courseware, not as a flashy emulator.
 Lead with the adoption value: free course kit, portable setup, C labs with
 deterministic tests, and final projects that produce visible artifacts.
 
@@ -143,4 +143,4 @@ without a clear reason.
 
 Code is MIT licensed. Course docs, lab handouts, screenshots, and demo media are
 CC BY 4.0 licensed. Universities may copy and adapt the material as long as they
-credit Machine Lab and contributors. See [course/LICENSE.md](../course/LICENSE.md).
+credit lcom-ng and contributors. See [course/LICENSE.md](../course/LICENSE.md).

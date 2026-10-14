@@ -125,33 +125,40 @@ const examplesSidebar = [
 ];
 
 export default defineConfig({
-  title: "Machine Lab",
-  description: "Portable C courseware for machine-facing programming.",
+  title: "lcom-ng",
+  description: "Run LCOM labs and C projects without a Minix VM.",
   lang: "en-US",
   cleanUrls: true,
+  sitemap: { hostname: "https://lcom.rgo.pt" },
+  transformHead({ pageData }) {
+    const path = pageData.relativePath.replace(/(^|\/)index\.md$/, "$1").replace(/\.md$/, "");
+    const url = `https://lcom.rgo.pt/${path}`;
+    return [["link", { rel: "canonical", href: url }], ["meta", { property: "og:url", content: url }]];
+  },
   lastUpdated: true,
   head: [
     ["meta", { name: "theme-color", content: "#101820" }],
-    ["meta", { property: "og:title", content: "Machine Lab" }],
-    ["meta", { property: "og:description", content: "Portable C labs for teaching device-shaped systems programming." }],
+    ["meta", { property: "og:title", content: "lcom-ng" }],
+    ["meta", { property: "og:description", content: "Run LCOM labs and C projects without a Minix VM." }],
     ["meta", { property: "og:type", content: "website" }],
   ],
   themeConfig: {
-    siteTitle: "Machine Lab",
+    siteTitle: "lcom-ng",
     search: {
       provider: "local",
     },
     nav: [
+      { text: "Download", link: "/students/install" },
       { text: "Labs", link: "/labs/" },
       { text: "Adopt", link: "/instructors/adoption" },
       { text: "Examples", link: "/examples/" },
       { text: "Developers", link: "/developers/" },
-      { text: "GitHub", link: "https://github.com/rodrgds/machine-lab" },
+      { text: "GitHub", link: "https://github.com/rodrgds/lcom-ng" },
     ],
     sidebar: {
       "/labs/": labSidebar,
       "/students/": [
-        { text: "Students", items: [{ text: "Start Here", link: "/students/" }] },
+        { text: "Students", items: [{ text: "Download and install", link: "/students/install" }, { text: "Existing Minix project", link: "/students/compatibility" }, { text: "Native labs", link: "/students/" }, { text: "macOS details", link: "/students/macos" }] },
       ],
       "/instructors/": [
         {
@@ -172,11 +179,11 @@ export default defineConfig({
       ],
     },
     socialLinks: [
-      { icon: "github", link: "https://github.com/rodrgds/machine-lab" },
+      { icon: "github", link: "https://github.com/rodrgds/lcom-ng" },
     ],
     footer: {
       message: "Course/docs licensed CC BY 4.0. Code licensed MIT.",
-      copyright: "Machine Lab contributors",
+      copyright: "lcom-ng contributors",
     },
   },
 });

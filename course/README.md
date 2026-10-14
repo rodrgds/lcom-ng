@@ -1,8 +1,8 @@
-# Machine Lab Course
+# lcom-ng Course
 
 These labs teach machine-facing C ideas through device-shaped exercises. They are
 inspired by older PC/Minix lab work, but the student workflow is portable:
-write C, run `machinelab`, inspect deterministic artifacts, iterate.
+write C, run `lcom-ng`, inspect deterministic artifacts, iterate.
 
 ## Audience Split
 
@@ -10,7 +10,7 @@ write C, run `machinelab`, inspect deterministic artifacts, iterate.
 | --- | --- | --- |
 | Students | [student guide](../docs/student-guide.md), lab handouts below | generated workspace |
 | Instructors | [instructor guide](../docs/instructor-guide.md), this page | lab sequence and project brief |
-| Machine Lab developers | [developer guide](../docs/developer-guide.md) | upstream repo |
+| lcom-ng developers | [developer guide](../docs/developer-guide.md) | upstream repo |
 
 The handouts are intentionally incomplete. They introduce the controller model,
 show the first pieces of reasoning, and leave guided gaps that students must
@@ -20,13 +20,13 @@ fill in their own code.
 
 | order | folder | theme | check |
 | --- | --- | --- | --- |
-| `lab1` | `rtc/` | bit masks, bytes, CMOS/RTC reads | `machinelab test rtc` |
-| `lab2` | `timer/` | i8254 PIT programming and IRQ0 | `machinelab test timer` |
-| `lab3` | `kbd/` | i8042 keyboard and scancodes | `machinelab test kbd` |
-| `lab4` | `mouse/` | PS/2 mouse commands and packets | `machinelab test mouse` |
-| `lab5` | `graphics/` | VBE modes, framebuffer, XPM sprites | `machinelab test graphics` |
-| `lab6` | `audio/` | AC97-lite PCM buffers and playback | `machinelab test audio` |
-| `lab7` | `uart/` | 16550 UARTs and serial protocols | `machinelab test uart` |
+| `lab1` | `rtc/` | bit masks, bytes, CMOS/RTC reads | `lcom-ng test rtc` |
+| `lab2` | `timer/` | i8254 PIT programming and IRQ0 | `lcom-ng test timer` |
+| `lab3` | `kbd/` | i8042 keyboard and scancodes | `lcom-ng test kbd` |
+| `lab4` | `mouse/` | PS/2 mouse commands and packets | `lcom-ng test mouse` |
+| `lab5` | `graphics/` | VBE modes, framebuffer, XPM sprites | `lcom-ng test graphics` |
+| `lab6` | `audio/` | AC97-lite PCM buffers and playback | `lcom-ng test audio` |
+| `lab7` | `uart/` | 16550 UARTs and serial protocols | `lcom-ng test uart` |
 
 ## Method
 
@@ -42,7 +42,7 @@ fill in their own code.
 Generate a workspace with:
 
 ```sh
-machinelab setup student
+lcom-ng setup student
 ```
 
 The generated project contains:
@@ -59,8 +59,8 @@ Typical loop:
 ```sh
 cd student
 make
-machinelab test rtc
-machinelab test uart
+lcom-ng test rtc
+lcom-ng test uart
 ```
 
 Fresh TODO stubs should compile and fail their predefined checks.
@@ -98,11 +98,11 @@ Suggested project checkpoints:
 ## Instructor Notes
 
 - `course/labs/function-requests.json` is the structured lab index.
-- `course/labs/templates/labN/include/` contains contracts copied by `machinelab setup`.
+- `course/labs/templates/labN/include/` contains contracts copied by `lcom-ng setup`.
 - `dev/lab-solutions/labN/` contains reference implementations for tests/review.
 - `dev/lab-tests/` contains predefined checks copied into generated workspaces.
 - The C API still uses `lcom_*` names for compatibility with existing examples;
-  the public product and CLI are Machine Lab / `machinelab`.
+  the public product and CLI are lcom-ng / `lcom-ng`.
 - Reuse terms for handouts and course docs are in [LICENSE.md](LICENSE.md).
 
 ## Public Adoption

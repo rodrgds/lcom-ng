@@ -44,7 +44,7 @@ program. Both matter:
 | Polling | simple control flow | wastes cycles when no key arrived |
 | Interrupts | responsive and efficient for sporadic input | requires event-loop structure |
 
-Machine Lab tests focus on correct byte handling. Your final projects should
+lcom-ng tests focus on correct byte handling. Your final projects should
 prefer interrupt/event-loop style where practical.
 
 > [!IMPORTANT]
@@ -90,8 +90,8 @@ prefer interrupt/event-loop style where practical.
 ## Check
 
 ```sh
-machinelab test kbd
-machinelab run --headless --script scripts/type_a_esc.mlabscript -- build/examples/keyboard_scan
+lcom-ng test kbd
+lcom-ng run --headless --script scripts/type_a_esc.mlabscript -- build/examples/keyboard_scan
 ```
 
 ## External Reading

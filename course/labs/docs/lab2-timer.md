@@ -91,8 +91,8 @@ programs count ticks and make timing decisions.
 ## Check
 
 ```sh
-machinelab test timer
-machinelab run --headless -- build/examples/timer_int 3
+lcom-ng test timer
+lcom-ng run --headless -- build/examples/timer_int 3
 ```
 
 ## External Reading

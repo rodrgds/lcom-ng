@@ -1,6 +1,6 @@
 # Ninjix
 
-Ninjix is the larger game port included with Machine Lab. It came from a
+Ninjix is the larger game port included with lcom-ng. It came from a
 previous Minix-style final project and is useful because it shows that the labs
 lead to real application structure, not only isolated device functions.
 
@@ -31,13 +31,13 @@ can support a full reactive program:
 ## Run It
 
 ```sh
-machinelab run build/examples/ninjix
+lcom-ng run build/examples/ninjix
 ```
 
 For multiplayer:
 
 ```sh
-machinelab run-pair build/examples/ninjix --right build/examples/ninjix
+lcom-ng run-pair build/examples/ninjix --right build/examples/ninjix
 ```
 
 In interactive multiplayer, select Multiplayer in both windows, then choose
@@ -46,14 +46,14 @@ opposite ATTACK and DEFEND roles.
 For a fast deterministic smoke test:
 
 ```sh
-machinelab run-pair --headless build/examples/ninjix \
+lcom-ng run-pair --headless build/examples/ninjix \
   --right build/examples/ninjix --max-ticks 900
 ```
 
 For a longer authored demo:
 
 ```sh
-machinelab run --headless --script scripts/ninjix_level1_demo.mlabscript \
+lcom-ng run --headless --script scripts/ninjix_level1_demo.mlabscript \
   --dump-frame build/ninjix.ppm -- build/examples/ninjix
 ```
 

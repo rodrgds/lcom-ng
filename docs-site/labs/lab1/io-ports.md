@@ -24,7 +24,7 @@ and writing bytes. If another piece of code selected a different register
 between the address write and the data read, the second operation would no
 longer mean what you think it means. Real drivers protect these critical
 sections with ownership rules, locks, interrupt discipline, or a single service
-responsible for the device. In Machine Lab the runtime keeps the environment
+responsible for the device. In lcom-ng the runtime keeps the environment
 small, but you should still learn to think in ordered protocol steps.
 
 ## Read Before You Trust

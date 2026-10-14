@@ -1,17 +1,75 @@
-name: Build And Release
+name: Build student releases
 
 on:
   pull_request:
-  workflow_dispatch:
   push:
     branches: [main]
     tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Existing version tag to build, leave empty to test the selected branch
+        required: false
+        type: string
+      publish:
+        description: Create a draft GitHub Release for the existing tag
+        required: false
+        default: false
+        type: boolean
 
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: student-release-${{ github.ref }}-${{ inputs.tag }}
+  cancel-in-progress: false
 
 jobs:
+  validate:
+    runs-on: ubuntu-24.04
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+      - name: Validate release version
+        id: version
+        env:
+          REQUESTED_TAG: ${{ inputs.tag }}
+          PUSH_TAG: ${{ startsWith(github.ref, 'refs/tags/') && github.ref_name || '' }}
+          PUBLISH: ${{ inputs.publish }}
+        run: |
+          python3 - <<'PY'
+          import json, os, re, subprocess
+          from pathlib import Path
+          tag = os.environ['REQUESTED_TAG'] or os.environ['PUSH_TAG']
+          if os.environ['PUBLISH'] == 'true' and not tag:
+              raise SystemExit('Publishing requires an existing version tag')
+          if tag:
+              version = json.loads(Path('package.json').read_text())['version']
+              identifier = r'(?:0|[1-9]\d*|\d*[A-Za-z-][0-9A-Za-z-]*)'
+              semantic = r'v(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)'
+              semantic += r'(?:-' + identifier + r'(?:\.' + identifier + r')*)?'
+              semantic += r'(?:\+[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?'
+              if not re.fullmatch(semantic, tag):
+                  raise SystemExit('Use a semantic version tag, such as v0.2.0')
+              if tag != 'v' + version:
+                  raise SystemExit(f'Tag {tag} differs from package.json version {version}')
+              # A branch named v0.2.0 is not a release tag. Fetch and compare the
+              # exact remote tag, including peeling an annotated tag to its commit.
+              reference = 'refs/tags/' + tag
+              subprocess.check_call(['git', 'fetch', '--no-tags', 'origin', reference + ':' + reference])
+              head = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+              tagged = subprocess.check_output(['git', 'rev-parse', reference + '^{commit}'], text=True).strip()
+              if head != tagged:
+                  raise SystemExit('The checked-out commit differs from the requested release tag')
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('tag=' + tag + '\n')
+          PY
+
   build:
+    needs: validate
     name: ${{ matrix.asset }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -19,134 +77,157 @@ jobs:
       matrix:
         include:
           - os: ubuntu-24.04
-            asset: machinelab-linux-x86_64
+            asset: lcom-ng-linux-x86_64
+            shell: bash
+          - os: ubuntu-24.04-arm
+            asset: lcom-ng-linux-arm64
             shell: bash
           - os: macos-15-intel
-            asset: machinelab-macos-x86_64
+            asset: lcom-ng-macos-x86_64
             shell: bash
           - os: macos-14
-            asset: machinelab-macos-arm64
+            asset: lcom-ng-macos-arm64
             shell: bash
           - os: windows-2025
-            asset: machinelab-windows-msys2-x86_64
+            asset: lcom-ng-windows-msys2-x86_64
             shell: msys2 {0}
-
     defaults:
       run:
         shell: ${{ matrix.shell }}
-
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag || github.ref }}
 
-      - name: Install Linux dependencies
+      - name: Install Linux build and desktop dependencies
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential cmake ninja-build tar gzip ffmpeg
+          sudo apt-get install -y build-essential cmake ninja-build pkg-config patchelf \
+            curl tar gzip ffmpeg python3 libfreetype6-dev fonts-dejavu-core \
+            libasound2-dev libpulse-dev libx11-dev libxext-dev libxrandr-dev \
+            libxcursor-dev libxi-dev libxfixes-dev libxss-dev libxtst-dev \
+            libwayland-dev libxkbcommon-dev libegl1-mesa-dev libgl1-mesa-dev
+          scripts/build_release_sdl.sh "$RUNNER_TEMP/lcom-sdl" "$RUNNER_TEMP/sdl-build"
+          echo "PKG_CONFIG_PATH=$RUNNER_TEMP/lcom-sdl/lib/pkgconfig:$RUNNER_TEMP/lcom-sdl/lib64/pkgconfig" >> "$GITHUB_ENV"
+          echo "LD_LIBRARY_PATH=$RUNNER_TEMP/lcom-sdl/lib:$RUNNER_TEMP/lcom-sdl/lib64" >> "$GITHUB_ENV"
 
       - name: Install macOS dependencies
         if: runner.os == 'macOS'
-        run: |
-          brew update
-          brew install cmake ninja ffmpeg
+        run: brew install cmake ninja ffmpeg python pkgconf sdl3 sdl3_ttf
 
-      - name: Set up MSYS2
+      - name: Set up Windows POSIX build environment
         if: runner.os == 'Windows'
         uses: msys2/setup-msys2@v2
         with:
           msystem: MSYS
           update: true
           install: >-
-            base-devel
-            gcc
-            cmake
-            ninja
+            base-devel gcc python cmake ninja pkgconf tar gzip
             mingw-w64-x86_64-ffmpeg
-            tar
-            gzip
-            zip
+            mingw-w64-x86_64-sdl3
+            mingw-w64-x86_64-sdl3-ttf
+            mingw-w64-x86_64-ttf-dejavu
 
-      - name: Expose MSYS2 FFmpeg
+      - name: Configure Windows SDL C libraries and FFmpeg
         if: runner.os == 'Windows'
         run: |
+          # Keep the POSIX gcc ABI for fork and UNIX sockets. SDL exposes C DLL
+          # entry points; no FILE*, allocators or C++ objects cross that boundary.
+          prefix="$(cygpath -u "$RUNNER_TEMP")/lcom-sdl"
+          mkdir -p "$prefix/include" "$prefix/lib/pkgconfig"
+          cp -R /mingw64/include/SDL3 /mingw64/include/SDL3_ttf "$prefix/include/"
+          # Do not put the entire mingw include directory before MSYS libc.
+          for library in sdl3 sdl3-ttf; do
+            sed "s|^includedir=.*|includedir=$prefix/include|" "/mingw64/lib/pkgconfig/$library.pc" > "$prefix/lib/pkgconfig/$library.pc"
+          done
+          echo "PKG_CONFIG_PATH=$prefix/lib/pkgconfig" >> "$GITHUB_ENV"
           cat > /usr/bin/ffmpeg <<'EOF'
           #!/usr/bin/env sh
           PATH="/mingw64/bin:$PATH" exec /mingw64/bin/ffmpeg.exe "$@"
           EOF
           chmod +x /usr/bin/ffmpeg
 
-      - name: Verify FFmpeg
-        run: ffmpeg -version
-
-      - name: Configure
-        run: cmake -S . -B build -G Ninja -DMACHINE_LAB_WITH_SDL=OFF -DCMAKE_BUILD_TYPE=Release
-
-      - name: Build
-        run: cmake --build build
-
-      - name: Test
-        run: ctest --test-dir build --output-on-failure
-
-      - name: Package POSIX artifact
-        if: runner.os != 'Windows'
+      - name: Configure desktop runtime
         run: |
-          set -eu
-          package="${{ matrix.asset }}"
-          rm -rf "$package"
-          mkdir -p "$package/bin" "$package/examples" "$package/sdk" "$package/docs" "$package/scripts"
-          cp build/machinelab build/lowlab build/lcom "$package/bin/"
-          cp build/libmachinelab.a "$package/sdk/"
-          cp -R sdk/include "$package/sdk/include"
-          cp -R docs "$package/docs/project-docs"
-          cp -R course "$package/course"
-          cp -R scripts "$package/scripts"
-          find build/examples -maxdepth 1 -type f -perm -111 -exec cp {} "$package/examples/" \;
-          cp README.md "$package/"
-          tar -czf "$package.tar.gz" "$package"
+          if [ "$RUNNER_OS" = Windows ]; then export PATH="/usr/bin:/mingw64/bin:$PATH"; fi
+          cmake -S . -B build -G Ninja -DMACHINE_LAB_WITH_SDL=ON -DCMAKE_BUILD_TYPE=Release
+      - name: Build
+        run: |
+          if [ "$RUNNER_OS" = Windows ]; then export PATH="/usr/bin:/mingw64/bin:$PATH"; fi
+          cmake --build build --parallel 4
+      - name: Test runtime and labs
+        run: |
+          if [ "$RUNNER_OS" = Windows ]; then export PATH="/usr/bin:/mingw64/bin:$PATH"; fi
+          ctest --test-dir build --output-on-failure
 
-      - name: Package Windows artifact
+      - name: Package Linux student archive
+        if: runner.os == 'Linux'
+        run: python3 scripts/package_desktop.py --build build --output dist
+      - name: Package macOS student archive
+        if: runner.os == 'macOS'
+        run: python3 scripts/package_macos.py --build build --output dist
+      - name: Package Windows MSYS2 student archive
         if: runner.os == 'Windows'
         run: |
-          set -eu
-          package="${{ matrix.asset }}"
-          rm -rf "$package"
-          mkdir -p "$package/bin" "$package/examples" "$package/sdk" "$package/docs" "$package/scripts"
-          cp build/machinelab.exe build/lowlab.exe build/lcom.exe "$package/bin/"
-          cp build/libmachinelab.a "$package/sdk/"
-          cp -R sdk/include "$package/sdk/include"
-          cp -R docs "$package/docs/project-docs"
-          cp -R course "$package/course"
-          cp -R scripts "$package/scripts"
-          find build/examples -maxdepth 1 -type f -name "*.exe" -exec cp {} "$package/examples/" \;
-          for exe in "$package/bin/machinelab.exe" "$package"/examples/*.exe; do
-            ldd "$exe" | awk '/\/usr\/bin\// { print $3 }' | while read -r dll; do
-              [ -n "$dll" ] && cp -n "$dll" "$package/bin/"
-            done
-          done
-          cp README.md "$package/"
-          tar -czf "$package.tar.gz" "$package"
+          export PATH="/usr/bin:/mingw64/bin:$PATH"
+          python3 scripts/package_desktop.py --build build --output dist --windows-msys2
 
-      - name: Upload artifact
+      - name: Smoke relocated macOS SDK with Apple host tools
+        if: runner.os == 'macOS'
+        run: /usr/bin/python3 tests/macos_bundle_smoke.py "dist/${{ matrix.asset }}.tar.gz"
+      - name: Smoke relocated Linux or Windows desktop SDK
+        if: runner.os != 'macOS'
+        run: python3 tests/student_bundle_smoke.py "dist/${{ matrix.asset }}.tar.gz" --desktop
+
+      - name: Upload verified archive and checksum
         uses: actions/upload-artifact@v4
         with:
           name: ${{ matrix.asset }}
-          path: ${{ matrix.asset }}.tar.gz
+          path: |
+            dist/${{ matrix.asset }}.tar.gz
+            dist/${{ matrix.asset }}.tar.gz.sha256
           if-no-files-found: error
 
   release:
-    name: Publish GitHub Release
-    if: startsWith(github.ref, 'refs/tags/')
-    needs: build
+    name: Create draft GitHub Release
+    if: startsWith(github.ref, 'refs/tags/') || (github.event_name == 'workflow_dispatch' && inputs.publish)
+    needs: [validate, build]
     runs-on: ubuntu-24.04
+    permissions:
+      contents: write
     steps:
-      - name: Download artifacts
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
           path: dist
           merge-multiple: true
+      - name: Verify checksums and prepare release notes
+        env:
+          TAG: ${{ needs.validate.outputs.tag }}
+        run: |
+          cd dist
+          cat ./*.tar.gz.sha256 > SHA256SUMS
+          sha256sum --check SHA256SUMS
+          cat > release-notes.md <<'EOF'
+          Download the archive for your machine and keep its directory intact. Each archive includes the desktop runtime, native SDK, Minix compatibility SDK and labs.
 
-      - name: Publish release
-        uses: softprops/action-gh-release@v2
-        with:
-          files: dist/machinelab-*.tar.gz
-          generate_release_notes: true
+          Start here: https://lcom.rgo.pt/students/install
+
+          Linux archives target Ubuntu 24.04 or newer compatible desktops. Windows uses the MSYS2 MSYS terminal. A host C compiler, make and Python are needed to compile student projects. SDL is included.
+
+          These macOS archives are ad-hoc signed, not notarized. Intel and ARM archives are separate. See the installation guide for first-launch instructions.
+          EOF
+      - name: Create or refresh a draft release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          TAG: ${{ needs.validate.outputs.tag }}
+        run: |
+          if gh release view "$TAG" --json isDraft > release-state.json 2>/dev/null; then
+            python3 -c 'import json; assert json.load(open("release-state.json"))["isDraft"], "Published releases are immutable; use a new version tag"'
+            gh release upload "$TAG" dist/*.tar.gz dist/*.sha256 dist/SHA256SUMS --clobber
+          else
+            gh release create "$TAG" dist/*.tar.gz dist/*.sha256 dist/SHA256SUMS \
+              --draft --verify-tag --title "lcom-ng $TAG" \
+              --notes-file dist/release-notes.md --generate-notes
+          fi

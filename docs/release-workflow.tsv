@@ -1,0 +1,14 @@
+ts	phase	decision	why	evidence	result
+2026-10-14	frame	Automate student archives and simplify public setup	Download then build/run must work independently of developer checkout	.github/workflows/release.yml; docs/from-minix.md	IN PROGRESS
+2026-10-14	plan	Package first, then quick starts, identity/domain, rendered verification	Cross-platform SDL and relocation are the primary uncertainties	tests/macos_bundle_smoke.py	IN PROGRESS
+2026-10-14	identity	Use rodrgds/lcom-ng GitHub links	GitHub API confirms repository already renamed	gh repo view --json nameWithOwner,url	VERIFIED
+2026-10-14	identity	Retain aliases and canonical asset filenames	Public names change without breaking existing scripts and imports	README.md; media/remotion/src/Video.tsx	VERIFIED
+2026-10-14	domain	Associate lcom.rgo.pt with the existing Pages resource	Keep deployments and fallback URLs stable	Cloudflare Pages domains API; docs-site/developers/docs-site.md	ASSOCIATED
+2026-10-14	verification	Use relocated packages plus full suite and rendered desktop/mobile review	A build alone does not prove student installation or readable setup	build/release-work/	IN PROGRESS
+2026-10-14	package	Require SDK files in relocated smoke before running	Embedded developer fallback otherwise masked a missing compatibility archive	tests/student_bundle_smoke.py; tests/macos_bundle_smoke.py	VERIFIED RED AND GREEN
+2026-10-14	verify	Pass all 28 CTests, docs/assets and Remotion typecheck	Required cross-surface final gate	build/release-work/verify-final.log	VERIFIED
+2026-10-14	package	Pass current-source relocated macOS SDK and SDL startup with Apple tools	Student installation must work outside Devenv	build/release-work/student-final.log	VERIFIED ARM64
+2026-10-14	platform	Await Linux, Intel macOS and Windows runner execution	This machine cannot prove those platforms; workflow remains local and unpublished	.github/workflows/release.yml	NOT VERIFIED
+2026-10-14	deploy	Publish the verified site to the existing Pages resource	User requested website and domain migration	build/release-work/deploy.log; https://abd268cf.machine-lab-docs.pages.dev; https://lcom.rgo.pt	DEPLOYED AND LIVE VERIFIED
+2026-10-14	verify	Pass actionlint and ShellCheck for both workflows	Validate executable workflow syntax without claiming remote runner execution	build/release-work/actionlint.log	VERIFIED
+2026-10-14	live	Confirm Pages domain verification and certificate active, browser download guide and search work	DNS alone does not prove the deployed site	Cloudflare domains API; build/release-work/website-proof.jpg	VERIFIED

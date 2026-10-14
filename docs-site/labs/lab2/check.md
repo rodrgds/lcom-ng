@@ -7,8 +7,8 @@ headless example to confirm that the timer behaves correctly in an application
 loop.
 
 ```sh
-machinelab test timer
-machinelab run --headless -- build/examples/timer_int 3
+lcom-ng test timer
+lcom-ng run --headless -- build/examples/timer_int 3
 ```
 
 ## Discussion Prompts

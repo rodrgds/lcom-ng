@@ -23,9 +23,7 @@ ppm_rgb_at() {
 test -x "$CLI"
 test -x "$COMPAT_CLI"
 test -x "$LOWLAB_CLI"
-grep -q "# Machine Lab" README.md
-grep -q "## Choose Your Lane" README.md
-grep -q "Machine Lab developers" README.md
+grep -q "# lcom-ng" README.md
 grep -q "MIT" README.md
 grep -q "CC BY 4.0" README.md
 test -f LICENSE
@@ -42,7 +40,7 @@ test -f docs-site/index.md
 test -f docs-site/.vitepress/config.mts
 test -f docs-site/labs/lab1/tasks.md
 test -f docs-site/labs/lab7/check.md
-grep -q "Machine Lab" docs-site/index.md
+grep -q "lcom-ng" docs-site/index.md
 grep -q "pages_build_output_dir" wrangler.toml
 grep -q "deploy_pages" .github/workflows/docs.yml
 test -f docs/student-guide.md
@@ -59,7 +57,7 @@ test -d course/labs/templates
 test -d dev/lab-solutions
 test -d dev/lab-tests
 test ! -e labs
-grep -q "# Machine Lab Course" course/README.md
+grep -q "# lcom-ng Course" course/README.md
 grep -q "Audience Split" course/README.md
 grep -q "Final Project Studio" course/README.md
 grep -q "guided gaps" course/labs/docs/lab1-bitwise-rtc.md
@@ -106,18 +104,17 @@ for lab_doc in course/labs/docs/lab*.md; do
   grep -q "External Reading" "$lab_doc"
 done
 "$CLI" --help > "$OUT_DIR/top-help.txt" 2>&1 || true
-grep -q "Machine Lab" "$OUT_DIR/top-help.txt"
+grep -q "lcom-ng" "$OUT_DIR/top-help.txt"
 "$COMPAT_CLI" --help > "$OUT_DIR/lcom-help.txt" 2>&1 || true
-grep -q "Machine Lab" "$OUT_DIR/lcom-help.txt"
+grep -q "lcom-ng" "$OUT_DIR/lcom-help.txt"
 "$LOWLAB_CLI" --help > "$OUT_DIR/lowlab-help.txt" 2>&1 || true
-grep -q "Machine Lab" "$OUT_DIR/lowlab-help.txt"
+grep -q "lcom-ng" "$OUT_DIR/lowlab-help.txt"
 
 test -f ".github/workflows/release.yml"
 grep -q "ubuntu-24.04" ".github/workflows/release.yml"
 grep -q "macos-14" ".github/workflows/release.yml"
 grep -q "windows-2025" ".github/workflows/release.yml"
-grep -q "machinelab-" ".github/workflows/release.yml"
-grep -q "softprops/action-gh-release" ".github/workflows/release.yml"
+grep -q "lcom-ng-" ".github/workflows/release.yml"
 
 "$CLI" lab list > "$OUT_DIR/labs.txt"
 grep -q "lab7" "$OUT_DIR/labs.txt"
@@ -128,8 +125,8 @@ grep -q "video_set_mode" "$OUT_DIR/lab5.txt"
 grep -q "lab7 (uart)" "$OUT_DIR/lab7.txt"
 grep -q "uart_config" "$OUT_DIR/lab7.txt"
 "$CLI" docs cli > "$OUT_DIR/cli-docs.md"
-grep -q "# machinelab CLI" "$OUT_DIR/cli-docs.md"
-grep -q "machinelab bundle" "$OUT_DIR/cli-docs.md"
+grep -q "# lcom-ng CLI" "$OUT_DIR/cli-docs.md"
+grep -q "lcom-ng bundle" "$OUT_DIR/cli-docs.md"
 "$CLI" completion bash > "$OUT_DIR/machinelab.bash"
 grep -q "_machinelab_complete" "$OUT_DIR/machinelab.bash"
 grep -q -- "--left-dump-frame" "$OUT_DIR/machinelab.bash"
@@ -144,7 +141,7 @@ grep -q -- "right-dump-frame" "$OUT_DIR/machinelab.fish"
 for command in run run-pair replay setup test bundle lab docs completion; do
   "$CLI" "$command" --help > "$OUT_DIR/help-$command.txt" 2>&1
   grep -Fq "$command [OPTIONS]" "$OUT_DIR/help-$command.txt"
-  ! grep -q "machinelab: .*requires\|machinelab: unknown" "$OUT_DIR/help-$command.txt"
+  ! grep -q "lcom-ng: .*requires\|lcom-ng: unknown" "$OUT_DIR/help-$command.txt"
 done
 grep -q -- "--left-dump-frame" "$OUT_DIR/help-run-pair.txt"
 grep -q -- "--right-dump-frame" "$OUT_DIR/help-run-pair.txt"
@@ -272,7 +269,7 @@ test -f "$OUT_DIR/student_workspace/labs/uart/include/uart_lib.h"
 test -f "$OUT_DIR/student_workspace/lib/kbc/kbc.h"
 grep -q "## Edit These" "$OUT_DIR/student_workspace/README.md"
 grep -q "## Usually Ignore These" "$OUT_DIR/student_workspace/README.md"
-grep -q "Machine Lab developer internals" "$OUT_DIR/student_workspace/README.md"
+grep -q "lcom-ng developer internals" "$OUT_DIR/student_workspace/README.md"
 make -C "$OUT_DIR/student_workspace" labs > "$OUT_DIR/student_make_labs.txt"
 if "$CLI" test rtc --project "$OUT_DIR/student_workspace" > "$OUT_DIR/student_rtc.txt" 2>&1; then
   echo "fresh student rtc TODO stubs should fail predefined tests" >&2
@@ -299,7 +296,7 @@ if "$CLI" run --headless --dump-frame "$OUT_DIR" -- "$EX_DIR/vbe_rectangle" \
 fi
 
 "$CLI" run --headless --script scripts/write_note.mlabscript --dump-frame "$OUT_DIR/word_processor.ppm" -- "$EX_DIR/word_processor" > "$OUT_DIR/word_processor.txt"
-grep -q "word processor text Machine Lab notes" "$OUT_DIR/word_processor.txt"
+grep -q "word processor text lcom-ng notes" "$OUT_DIR/word_processor.txt"
 grep -q "Portable C, visible results." "$OUT_DIR/word_processor.txt"
 grep -q "Tests, traces, screenshots, sound." "$OUT_DIR/word_processor.txt"
 test -s "$OUT_DIR/word_processor.ppm"
@@ -324,11 +321,13 @@ test -s "$OUT_DIR/breakout_demo.ppm"
     > "$OUT_DIR/pixel_studio.txt"
 grep -q "pixel studio summary pixels=256" "$OUT_DIR/pixel_studio.txt"
 grep -q "exports=1" "$OUT_DIR/pixel_studio.txt"
-grep -q "rtc=14:35:42" "$OUT_DIR/pixel_studio.txt"
+# The script seeds RTC on the first tick. At export tick 660, 659 ticks
+# have elapsed since that seed (10 whole seconds); exit is later in second 11.
+grep -q "rtc=14:35:53" "$OUT_DIR/pixel_studio.txt"
 grep -q "PIXEL_STUDIO_SPRITE_WIDTH 16u" "$OUT_DIR/pixel_studio_sprite.h"
 grep -q "PIXEL_STUDIO_SPRITE_HEIGHT 16u" "$OUT_DIR/pixel_studio_sprite.h"
 grep -q "pixel_studio_sprite\\[256\\]" "$OUT_DIR/pixel_studio_sprite.h"
-grep -q "Pixel Studio export: 2026-08-12 14:35:42" \
+grep -q "Pixel Studio export: 2026-08-12 14:35:52" \
     "$OUT_DIR/pixel_studio_sprite.h"
 test "$(grep -Eo '0x[0-9A-F]{8}u' "$OUT_DIR/pixel_studio_sprite.h" | wc -l | tr -d ' ')" -eq 256
 "${CC:-cc}" -std=c11 -pedantic-errors -fsyntax-only \
@@ -344,7 +343,8 @@ grep -q "tilemap editor summary mode=play valid=1" "$OUT_DIR/tilemap_editor.txt"
 grep -q "solved=1" "$OUT_DIR/tilemap_editor.txt"
 grep -q "exports=1" "$OUT_DIR/tilemap_editor.txt"
 grep -q "^# Machine Lab tilemap v1$" "$OUT_DIR/tilemap_demo.mlmap"
-grep -q "^# saved 2026-08-12T15:10:05$" "$OUT_DIR/tilemap_demo.mlmap"
+# Save tick 300 is 299 ticks after the script seed, or four whole seconds.
+grep -q "^# saved 2026-08-12T15:10:09$" "$OUT_DIR/tilemap_demo.mlmap"
 grep -q "^# validation valid$" "$OUT_DIR/tilemap_demo.mlmap"
 grep -q "^size 10 8$" "$OUT_DIR/tilemap_demo.mlmap"
 awk '

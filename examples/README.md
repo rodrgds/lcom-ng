@@ -4,7 +4,7 @@ Build once before running examples:
 
 ```sh
 devenv shell
-machinelab-build
+lcom-ng-build
 ```
 
 Use the focused examples in the order below when explaining the platform. They
@@ -15,17 +15,17 @@ audio, and serial communication.
 
 | Program | Demonstrates | Canonical command |
 | --- | --- | --- |
-| `hello` | initialization, runtime console, process boundary | `machinelab run --headless -- build/examples/hello` |
-| `timer_int` | IRQ0 subscription and event waits | `machinelab run --headless -- build/examples/timer_int 3` |
-| `rtc_date` | CMOS ports, UIP, BCD conversion, fixed RTC | `machinelab run --headless --rtc 2026-06-16T12:34:56 -- build/examples/rtc_date` |
-| `keyboard_scan` | IRQ1 and make/break scancodes | `machinelab run --headless --script scripts/type_a_esc.mlabscript -- build/examples/keyboard_scan` |
-| `mouse_packet` | IRQ12, PS/2 enable/ACK, signed packet deltas | `machinelab run --headless --script scripts/mouse_move.mlabscript -- build/examples/mouse_packet` |
-| `vbe_rectangle` | VBE mode, framebuffer map, pitch, present | `machinelab run --headless --dump-frame build/rectangle.ppm -- build/examples/vbe_rectangle` |
-| `audio_tone` | PCM mapping, synthesis, AC97-lite playback | `machinelab run --headless --audio-wav build/tone.wav -- build/examples/audio_tone` |
-| `uart_loopback` | one UART's MCR loopback and RX interrupt | `machinelab run --headless -- build/examples/uart_loopback` |
-| `uart_pair` | COM1-to-COM2 cable inside one machine | `machinelab run --headless -- build/examples/uart_pair` |
-| `uart_peer_sender` + `receiver` | cable between two runtime processes | `machinelab run-pair --headless build/examples/uart_peer_sender --right build/examples/uart_peer_receiver --max-ticks 800` |
-| `sdl_demo` | PIT-driven VBE animation and live keyboard input | `machinelab run build/examples/sdl_demo` |
+| `hello` | initialization, runtime console, process boundary | `lcom-ng run --headless -- build/examples/hello` |
+| `timer_int` | IRQ0 subscription and event waits | `lcom-ng run --headless -- build/examples/timer_int 3` |
+| `rtc_date` | CMOS ports, UIP, BCD conversion, fixed RTC | `lcom-ng run --headless --rtc 2026-06-16T12:34:56 -- build/examples/rtc_date` |
+| `keyboard_scan` | IRQ1 and make/break scancodes | `lcom-ng run --headless --script scripts/type_a_esc.mlabscript -- build/examples/keyboard_scan` |
+| `mouse_packet` | IRQ12, PS/2 enable/ACK, signed packet deltas | `lcom-ng run --headless --script scripts/mouse_move.mlabscript -- build/examples/mouse_packet` |
+| `vbe_rectangle` | VBE mode, framebuffer map, pitch, present | `lcom-ng run --headless --dump-frame build/rectangle.ppm -- build/examples/vbe_rectangle` |
+| `audio_tone` | PCM mapping, synthesis, AC97-lite playback | `lcom-ng run --headless --audio-wav build/tone.wav -- build/examples/audio_tone` |
+| `uart_loopback` | one UART's MCR loopback and RX interrupt | `lcom-ng run --headless -- build/examples/uart_loopback` |
+| `uart_pair` | COM1-to-COM2 cable inside one machine | `lcom-ng run --headless -- build/examples/uart_pair` |
+| `uart_peer_sender` + `receiver` | cable between two runtime processes | `lcom-ng run-pair --headless build/examples/uart_peer_sender --right build/examples/uart_peer_receiver --max-ticks 800` |
+| `sdl_demo` | PIT-driven VBE animation and live keyboard input | `lcom-ng run build/examples/sdl_demo` |
 
 `uart_pair` and `run-pair` are deliberately different. The former tests two
 ports owned by one guest machine; the latter creates two independent machines
@@ -57,24 +57,24 @@ peers after the receiver verifies the final CRC32.
 Run the single-window studios:
 
 ```sh
-machinelab run -- build/examples/pixel_studio build/pixel_studio_sprite.h
-machinelab run --rtc 2026-07-30T09:30:00 -- build/examples/pomodoro_clock
-machinelab run --rtc 2026-07-30T09:30:00 -- build/examples/interrupt_scope
-machinelab run -- build/examples/tilemap_editor build/tilemap_demo.mlmap
-machinelab run --rtc 2026-07-30T18:30:00 -- build/examples/ambient_aquarium
+lcom-ng run -- build/examples/pixel_studio build/pixel_studio_sprite.h
+lcom-ng run --rtc 2026-07-30T09:30:00 -- build/examples/pomodoro_clock
+lcom-ng run --rtc 2026-07-30T09:30:00 -- build/examples/interrupt_scope
+lcom-ng run -- build/examples/tilemap_editor build/tilemap_demo.mlmap
+lcom-ng run --rtc 2026-07-30T18:30:00 -- build/examples/ambient_aquarium
 ```
 
 Run the paired studios:
 
 ```sh
-machinelab run-pair build/examples/serial_whiteboard left \
+lcom-ng run-pair build/examples/serial_whiteboard left \
   --right build/examples/serial_whiteboard right
 
-machinelab run-pair build/examples/serial_transfer send \
+lcom-ng run-pair build/examples/serial_transfer send \
   --right build/examples/serial_transfer receive
 
 # The sender deliberately drops one block, then recovers by timeout/retry.
-machinelab run-pair --headless --max-ticks 1400 \
+lcom-ng run-pair --headless --max-ticks 1400 \
   build/examples/serial_transfer send fault \
   --right build/examples/serial_transfer receive
 ```
@@ -82,26 +82,26 @@ machinelab run-pair --headless --max-ticks 1400 \
 Capture the authored single-window demonstrations:
 
 ```sh
-machinelab run --headless --script scripts/pixel_studio_demo.mlabscript \
+lcom-ng run --headless --script scripts/pixel_studio_demo.mlabscript \
   --dump-frame build/pixel-studio.ppm --max-ticks 900 -- \
   build/examples/pixel_studio build/pixel_studio_sprite.h
 
-machinelab run --headless --rtc 2026-07-30T09:40:00 \
+lcom-ng run --headless --rtc 2026-07-30T09:40:00 \
   --script scripts/pomodoro_clock_demo.mlabscript \
   --audio-wav build/pomodoro-clock.wav \
   --dump-frame build/pomodoro-clock.ppm --max-ticks 500 -- \
   build/examples/pomodoro_clock
 
-machinelab run --headless --rtc 2026-07-30T09:40:00 \
+lcom-ng run --headless --rtc 2026-07-30T09:40:00 \
   --script scripts/interrupt_scope_demo.mlabscript \
   --dump-frame build/interrupt-scope.ppm --max-ticks 360 -- \
   build/examples/interrupt_scope
 
-machinelab run --headless --script scripts/tilemap_editor_demo.mlabscript \
+lcom-ng run --headless --script scripts/tilemap_editor_demo.mlabscript \
   --dump-frame build/tilemap-editor.ppm --max-ticks 700 -- \
   build/examples/tilemap_editor build/tilemap_demo.mlmap
 
-machinelab run --headless --rtc 2026-07-30T08:15:00 \
+lcom-ng run --headless --rtc 2026-07-30T08:15:00 \
   --script scripts/ambient_aquarium_demo.mlabscript \
   --audio-wav build/ambient-aquarium.wav \
   --dump-frame build/ambient-aquarium.ppm --max-ticks 520 -- \
@@ -111,7 +111,7 @@ machinelab run --headless --rtc 2026-07-30T08:15:00 \
 Capture the paired whiteboard and both transfer roles:
 
 ```sh
-machinelab run-pair --headless \
+lcom-ng run-pair --headless \
   --left-script scripts/serial_whiteboard_left.mlabscript \
   --right-script scripts/serial_whiteboard_right.mlabscript \
   --left-dump-frame build/serial-whiteboard-left.ppm \
@@ -120,7 +120,7 @@ machinelab run-pair --headless \
   build/examples/serial_whiteboard left \
   --right build/examples/serial_whiteboard right
 
-machinelab run-pair --headless \
+lcom-ng run-pair --headless \
   --left-dump-frame build/serial-transfer-sender.ppm \
   --right-dump-frame build/serial-transfer-receiver.ppm \
   --max-ticks 1200 \
@@ -144,9 +144,9 @@ framebuffer drawing, and device-buffer output.
 
 | Program | Demonstrates | Canonical command |
 | --- | --- | --- |
-| `word_processor` | cursor editing, wrap/scroll, insert/delete, document stats, VBE UI | `machinelab run --headless --script scripts/write_note.mlabscript --dump-frame build/write.ppm -- build/examples/word_processor` |
-| `music_maker` | 3-track tracker, playhead, tempo, mixer bars, AC97 PCM synthesis | `machinelab run --headless --script scripts/music_maker_demo.mlabscript --audio-wav build/music.wav --dump-frame build/music.ppm -- build/examples/music_maker` |
-| `breakout_demo` | timer-driven physics, keyboard state, collision, game HUD | `machinelab run --headless --script scripts/breakout_demo.mlabscript --dump-frame build/breakout.ppm -- build/examples/breakout_demo` |
+| `word_processor` | cursor editing, wrap/scroll, insert/delete, document stats, VBE UI | `lcom-ng run --headless --script scripts/write_note.mlabscript --dump-frame build/write.ppm -- build/examples/word_processor` |
+| `music_maker` | 3-track tracker, playhead, tempo, mixer bars, AC97 PCM synthesis | `lcom-ng run --headless --script scripts/music_maker_demo.mlabscript --audio-wav build/music.wav --dump-frame build/music.ppm -- build/examples/music_maker` |
+| `breakout_demo` | timer-driven physics, keyboard state, collision, game HUD | `lcom-ng run --headless --script scripts/breakout_demo.mlabscript --dump-frame build/breakout.ppm -- build/examples/breakout_demo` |
 
 ### Flappy Bird
 
@@ -154,8 +154,8 @@ A compact example of timer-driven animation, keyboard input, VBE rendering,
 audio, and replay-friendly behavior.
 
 ```sh
-machinelab run build/examples/flappy_bird
-machinelab replay scripts/flappy_caption_demo.mlabscript --headless \
+lcom-ng run build/examples/flappy_bird
+lcom-ng replay scripts/flappy_caption_demo.mlabscript --headless \
   --video build/flappy.mp4 -- build/examples/flappy_bird
 ```
 
@@ -166,9 +166,9 @@ machine, mouse/keyboard input, framebuffer rendering, audio, profiling hooks,
 and a UART multiplayer protocol.
 
 ```sh
-machinelab run build/examples/ninjix
-machinelab run-pair build/examples/ninjix --right build/examples/ninjix
-machinelab run-pair --headless build/examples/ninjix \
+lcom-ng run build/examples/ninjix
+lcom-ng run-pair build/examples/ninjix --right build/examples/ninjix
+lcom-ng run-pair --headless build/examples/ninjix \
   --right build/examples/ninjix --max-ticks 900
 ```
 
@@ -182,8 +182,8 @@ A second larger project port that is useful for showing compatibility with a
 different codebase and project layout.
 
 ```sh
-machinelab run build/examples/pvz
-machinelab run --headless --script scripts/pvz_menu_exit.mlabscript \
+lcom-ng run build/examples/pvz
+lcom-ng run --headless --script scripts/pvz_menu_exit.mlabscript \
   --dump-frame build/pvz.ppm --max-ticks 240 -- build/examples/pvz
 ```
 

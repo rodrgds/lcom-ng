@@ -1,6 +1,6 @@
 # Architecture
 
-Machine Lab has one central boundary: student C code is a normal process, while
+lcom-ng has one central boundary: student C code is a normal process, while
 the host runtime owns the virtual devices.
 
 ```text
@@ -8,7 +8,7 @@ student C process
   libmachinelab client
         | local protocol
         v
-  machinelab runtime server
+  lcom-ng runtime server
         |
         +-- bus and IRQ controller
         +-- virtual devices
@@ -74,5 +74,5 @@ program still talks to the same virtual devices.
    replay encoding, bundles, and docs-site contracts.
 
 ```sh
-devenv shell -- machinelab-test
+devenv shell -- lcom-ng-test
 ```

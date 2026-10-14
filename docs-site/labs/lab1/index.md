@@ -15,7 +15,7 @@ configuration bit, returning errors separately from output values, and writing C
 helpers that are small enough to inspect.
 
 In the original Minix setting, a lab like this also taught how a user-space
-service could receive permission to perform privileged I/O. Machine Lab keeps
+service could receive permission to perform privileged I/O. lcom-ng keeps
 the same controller-facing work, but moves the hardware behind a safe runtime so
 that the first exercise can focus on the protocol itself.
 

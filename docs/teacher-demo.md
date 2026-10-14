@@ -12,7 +12,7 @@ mkdir -p build/teacher-demo
 ```
 
 Keep this shell open for every command below. `lcom` is the supported compatibility
-command for Machine Lab. Student code uses the C device API, not SDL directly.
+command for lcom-ng. Student code uses the C device API, not SDL directly.
 
 In interactive windows, `Esc` exits, `F3` toggles the runtime debug overlay and
 `F11` toggles fullscreen. On macOS, Command releases the captured mouse. Use
@@ -48,11 +48,11 @@ the runtime overlay. Explain that the program reads ports and handles IRQs.
 
 Run these one at a time, exiting each before starting the next.
 
-| Command | What to do |
-| --- | --- |
-| `lcom run build/examples/word_processor` | Type a sentence, move with arrows, use Backspace and `Ctrl-Z`. |
-| `lcom run build/examples/music_maker` | `P` plays/pauses, arrows move, `Space` toggles a note, `Tab` changes track, `-/+` changes tempo. |
-| `lcom run build/examples/flappy_bird` | `Space` starts and flaps. Show the timer-driven game, graphics and sound. |
+| Command                                  | What to do                                                                                       |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------ |
+| `lcom run build/examples/word_processor` | Type a sentence, move with arrows, use Backspace and `Ctrl-Z`.                                   |
+| `lcom run build/examples/music_maker`    | `P` plays/pauses, arrows move, `Space` toggles a note, `Tab` changes track, `-/+` changes tempo. |
+| `lcom run build/examples/flappy_bird`    | `Space` starts and flaps. Show the timer-driven game, graphics and sound.                        |
 
 ## 4. Connect two programs over UART
 

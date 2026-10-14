@@ -1,40 +1,46 @@
 # Runtime And CLI
 
-`machinelab` is the supported entry point for running, testing, recording, and
+`lcom-ng` is the supported entry point for running, testing, recording, and
 packaging student programs.
 
 ## Commands
 
 | Command | Purpose |
 | --- | --- |
-| `machinelab run` | host one student program |
-| `machinelab run-pair` | host two programs with bridged UARTs |
-| `machinelab replay` | run one program with an authored input timeline |
-| `machinelab setup` | generate a student workspace |
-| `machinelab test` | compile and run one predefined lab test |
-| `machinelab lab` | list labs or inspect requested functions |
-| `machinelab bundle` | package a runtime and program for this platform |
-| `machinelab docs cli` | print a Markdown CLI reference |
-| `machinelab completion` | emit shell completion |
+| `lcom-ng run` | host one student program |
+| `lcom-ng run-pair` | host two programs with bridged UARTs |
+| `lcom-ng replay` | run one program with an authored input timeline |
+| `lcom-ng setup` | generate a student workspace |
+| `lcom-ng test` | compile and run one predefined lab test |
+| `lcom-ng lab` | list labs or inspect requested functions |
+| `lcom-ng bundle` | package a runtime and program for this platform |
+| `lcom-ng docs cli` | print a Markdown CLI reference |
+| `lcom-ng completion` | emit shell completion |
 
-Use `machinelab <command> --help` for the exact option list.
+Use `lcom-ng <command> --help` for the exact option list.
 
 ## Interactive And Headless
 
 ```sh
-machinelab run build/examples/flappy_bird
-machinelab run --headless --max-ticks 300 -- build/examples/timer_int 3
+lcom-ng run build/examples/flappy_bird
+lcom-ng run --headless --max-ticks 300 -- build/examples/timer_int 3
 ```
 
 Headless runs are deterministic and suitable for tests. SDL runs are for live
 teaching, demos, and student exploration.
 
+Use `--max-ticks` to bound virtual time and `--timeout 30` to stop a run after
+30 host seconds, including busy loops. The host deadline is disabled by default.
+It stops and reaps the direct student processes, preserves diagnostic artifacts,
+and exits with code 124. `run`, `replay`, and `run-pair` accept positive finite
+seconds, including fractions.
+
 Useful artifacts:
 
 ```sh
-machinelab run --headless --trace build/run.jsonl -- build/examples/timer_int 3
-machinelab run --headless --dump-frame build/frame.ppm -- build/examples/vbe_rectangle
-machinelab run --headless --audio-wav build/audio.wav -- build/examples/audio_tone
+lcom-ng run --headless --trace build/run.jsonl -- build/examples/timer_int 3
+lcom-ng run --headless --dump-frame build/frame.ppm -- build/examples/vbe_rectangle
+lcom-ng run --headless --audio-wav build/audio.wav -- build/examples/audio_tone
 ```
 
 ## Replay Scripts
@@ -60,7 +66,7 @@ They are useful for:
 ## Paired Runtimes
 
 ```sh
-machinelab run-pair build/examples/ninjix --right build/examples/ninjix
+lcom-ng run-pair build/examples/ninjix --right build/examples/ninjix
 ```
 
 The left and right programs have separate machines, processes, input streams,
@@ -74,7 +80,7 @@ This replaces the old two-VM/null-modem setup with one reproducible command.
 ## Bundles
 
 ```sh
-machinelab bundle . --program build/examples/flappy_bird --name flappy-bird
+lcom-ng bundle . --program build/examples/flappy_bird --name flappy-bird
 ./dist/flappy-bird.mlab
 ```
 

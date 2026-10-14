@@ -7,14 +7,14 @@ student C process
   libmachinelab client
         | local protocol
         v
-  machinelab runtime server
+  lcom-ng runtime server
         |
         +-- bus and IRQ controller
         +-- virtual devices
         +-- headless or SDL/audio backend
 ```
 
-The student binary is a normal process linked with `libmachinelab`. `machinelab run`
+The student binary is a normal process linked with `libmachinelab`. `lcom-ng run`
 starts it with a local runtime channel and owns the virtual machine. Port reads,
 port writes, IRQ subscriptions, event waits, physical mappings, and VBE calls
 cross that boundary through a small protocol.
@@ -76,5 +76,5 @@ otherwise unchanged.
 The complete gate is:
 
 ```sh
-machinelab-test
+lcom-ng-test
 ```

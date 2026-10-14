@@ -11,13 +11,13 @@ Each lab is split into:
 
 | Lab | Device idea | Check |
 | --- | --- | --- |
-| [Lab 1](/labs/lab1/) | bit masks, CMOS/RTC, BCD | `machinelab test rtc` |
-| [Lab 2](/labs/lab2/) | PIT divisors and timer IRQs | `machinelab test timer` |
-| [Lab 3](/labs/lab3/) | i8042 keyboard and scancodes | `machinelab test kbd` |
-| [Lab 4](/labs/lab4/) | PS/2 mouse packets | `machinelab test mouse` |
-| [Lab 5](/labs/lab5/) | VBE framebuffer and sprites | `machinelab test graphics` |
-| [Lab 6](/labs/lab6/) | AC97-lite PCM audio | `machinelab test audio` |
-| [Lab 7](/labs/lab7/) | 16550 UART and serial protocols | `machinelab test uart` |
+| [Lab 1](/labs/lab1/) | bit masks, CMOS/RTC, BCD | `lcom-ng test rtc` |
+| [Lab 2](/labs/lab2/) | PIT divisors and timer IRQs | `lcom-ng test timer` |
+| [Lab 3](/labs/lab3/) | i8042 keyboard and scancodes | `lcom-ng test kbd` |
+| [Lab 4](/labs/lab4/) | PS/2 mouse packets | `lcom-ng test mouse` |
+| [Lab 5](/labs/lab5/) | VBE framebuffer and sprites | `lcom-ng test graphics` |
+| [Lab 6](/labs/lab6/) | AC97-lite PCM audio | `lcom-ng test audio` |
+| [Lab 7](/labs/lab7/) | 16550 UART and serial protocols | `lcom-ng test uart` |
 
 ## Guide Style
 

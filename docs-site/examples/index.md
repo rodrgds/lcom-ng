@@ -69,12 +69,12 @@ larger ports.
 ## Canonical Commands
 
 ```sh
-machinelab run --headless --script scripts/write_note.mlabscript \
+lcom-ng run --headless --script scripts/write_note.mlabscript \
   --dump-frame build/write.ppm -- build/examples/word_processor
 
-machinelab run --headless --script scripts/music_maker_demo.mlabscript \
+lcom-ng run --headless --script scripts/music_maker_demo.mlabscript \
   --audio-wav build/music.wav --dump-frame build/music.ppm -- build/examples/music_maker
 
-machinelab run-pair --headless build/examples/uart_peer_sender \
+lcom-ng run-pair --headless build/examples/uart_peer_sender \
   --right build/examples/uart_peer_receiver --max-ticks 800
 ```

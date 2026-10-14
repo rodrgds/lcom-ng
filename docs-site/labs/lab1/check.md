@@ -6,8 +6,8 @@ contracts. Once that passes, run the headless example with a fixed virtual RTC
 time so that your output is deterministic.
 
 ```sh
-machinelab test rtc
-machinelab run --headless --rtc 2026-06-16T12:34:56 -- build/examples/rtc_date
+lcom-ng test rtc
+lcom-ng run --headless --rtc 2026-06-16T12:34:56 -- build/examples/rtc_date
 ```
 
 ## Discussion Prompts

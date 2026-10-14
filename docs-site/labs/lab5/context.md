@@ -6,7 +6,7 @@ job becomes writing the right bytes for the right pixels.
 
 Older PC graphics APIs exposed mode numbers and framebuffers. The VBE interface
 standardized enough of that behavior for software to select higher-resolution
-modes and access linear video memory. Machine Lab keeps that shape because it is
+modes and access linear video memory. lcom-ng keeps that shape because it is
 small enough to understand directly: choose a mode, map memory, compute
 addresses, write colors, and present the result.
 

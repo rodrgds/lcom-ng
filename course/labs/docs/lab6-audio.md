@@ -85,8 +85,8 @@ correctly and that playback length matches the requested duration.
 ## Check
 
 ```sh
-machinelab test audio
-machinelab run --headless --audio-wav build/tone.wav -- build/examples/audio_tone
+lcom-ng test audio
+lcom-ng run --headless --audio-wav build/tone.wav -- build/examples/audio_tone
 ```
 
 ## External Reading

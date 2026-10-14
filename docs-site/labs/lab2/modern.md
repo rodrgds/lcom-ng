@@ -26,7 +26,7 @@ from a simple "interrupt every N milliseconds" mental model.
 
 The event-loop lesson remains. Time arrives as events, handlers should be
 small, application state should advance predictably, and tests need deterministic
-time. Machine Lab keeps the older PIT-shaped interface because it is small
+time. lcom-ng keeps the older PIT-shaped interface because it is small
 enough to program directly and clear enough to teach.
 
 Once you understand this older shape, modern APIs such as `timerfd`, browser

@@ -1,10 +1,10 @@
-# Adopt Machine Lab
+# Adopt lcom-ng
 
 This guide is for instructors, teaching assistants, club organizers, and
-curriculum leads who want to use Machine Lab quickly without turning the first
+curriculum leads who want to use lcom-ng quickly without turning the first
 week into infrastructure work.
 
-Machine Lab works best when it is presented as a practical course kit: students
+lcom-ng works best when it is presented as a practical course kit: students
 learn C by interacting with device-shaped interfaces, then combine those
 interfaces into a final reactive project. The model is inspired by
 computer-laboratory courses such as LCOM, but it removes the VirtualBox/Minix
@@ -58,7 +58,7 @@ staff to grade a full project.
 
 ## LCOM-Style Project Model
 
-If you are adopting Machine Lab for a full semester, the final project should
+If you are adopting lcom-ng for a full semester, the final project should
 feel like the reason the labs existed. Students should not be asked to bolt a
 random interface onto isolated exercises. They should build a visual,
 interactive C application that uses the device areas studied during the term:
@@ -131,7 +131,7 @@ technical structure. It should not replace the source submission.
 
 If your course still uses an LCF-compatible shape, students can keep the same
 mental model: one project entry point, a configured build file, and a command
-that launches the application. In Machine Lab, the names can be simpler, but
+that launches the application. In lcom-ng, the names can be simpler, but
 the expectation is the same: staff should not need to reverse-engineer how to
 start the program.
 
@@ -144,13 +144,13 @@ int proj_main_loop(int argc, char *argv[]) {
 }
 ```
 
-In a Machine Lab workspace, the exact wrapper may differ from an LCOM/Minix
+In a lcom-ng workspace, the exact wrapper may differ from an LCOM/Minix
 service, but the project should still have a single obvious run path, a
 Makefile target, and a short smoke script when possible.
 
 ### AI Use Policy
 
-Machine Lab is a learning exercise, so AI policy should focus on
+lcom-ng is a learning exercise, so AI policy should focus on
 responsibility rather than pretending the tools do not exist. A workable policy
 is:
 
@@ -203,7 +203,7 @@ protocol visualizer, or a paired controller.
 
 ### Day 1: Pick The Course Shape
 
-Decide whether Machine Lab is a workshop, a module, a semester lab track, or a
+Decide whether lcom-ng is a workshop, a module, a semester lab track, or a
 replacement for an existing practical sequence. Publish that scope early so
 students understand whether the labs are practice, graded assignments, or
 building blocks for a final project.
@@ -218,10 +218,10 @@ run the same command and observe the same result.
 On an instructor machine, run:
 
 ```sh
-machinelab --help
-machinelab setup student-smoke --force
+lcom-ng --help
+lcom-ng setup student-smoke --force
 make -C student-smoke
-machinelab test rtc --project student-smoke
+lcom-ng test rtc --project student-smoke
 ```
 
 The last command should fail for a fresh workspace because the TODO stubs are
@@ -229,7 +229,7 @@ incomplete. That is a good sign: students will see the same initial state.
 
 > [!IMPORTANT]
 > Do not distribute the upstream repository as the normal student workspace.
-> Generate workspaces with `machinelab setup` so students see the course surface
+> Generate workspaces with `lcom-ng setup` so students see the course surface
 > rather than runtime internals.
 
 ### Day 3: Pilot One Lab
@@ -276,13 +276,13 @@ within the first session.
 
 ## Mapping To A Traditional Computer Laboratory Course
 
-Machine Lab can cover the same teaching territory as a peripheral-programming
+lcom-ng can cover the same teaching territory as a peripheral-programming
 laboratory course without requiring a microkernel VM. The old setup is still
 valuable context: Minix, privileged services, and direct I/O permissions show
-how operating systems mediate hardware access. Machine Lab keeps the device
+how operating systems mediate hardware access. lcom-ng keeps the device
 contracts and makes them easier to run on modern student machines.
 
-| Traditional objective | Machine Lab equivalent |
+| Traditional objective | lcom-ng equivalent |
 | --- | --- |
 | Use hardware interfaces of common peripherals | Use RTC, PIT, i8042, VBE, audio, and UART-shaped APIs |
 | Develop low-level C software | Implement small libraries with explicit error handling |
@@ -305,7 +305,7 @@ architecture and deterministic replay.
 
 ## Public Marketing
 
-Machine Lab should be marketed as reusable courseware, not as a flashy
+lcom-ng should be marketed as reusable courseware, not as a flashy
 emulator. Lead with the adoption value: free course kit, portable setup, C labs
 with deterministic tests, and final projects that produce visible artifacts.
 
@@ -314,12 +314,12 @@ Good first channels are Hacker News, `r/C_Programming`, `r/learnprogramming`,
 lists for computer architecture or operating systems instructors.
 
 Do not lead with compatibility history. Mention it only after the value is
-clear: Machine Lab keeps the useful device-facing ideas from older PC lab work
+clear: lcom-ng keeps the useful device-facing ideas from older PC lab work
 and makes them portable.
 
 ## One-Week Checklist
 
-- `machinelab` runs on every supported student platform.
+- `lcom-ng` runs on every supported student platform.
 - A generated workspace compiles with `make`.
 - Staff can explain generated workspace versus upstream repository.
 - First lab handout is published.
@@ -332,4 +332,4 @@ and makes them portable.
 
 Code is MIT licensed. Course docs, lab handouts, screenshots, and demo media are
 CC BY 4.0 licensed. Universities may copy and adapt the material as long as they
-credit Machine Lab and contributors.
+credit lcom-ng and contributors.

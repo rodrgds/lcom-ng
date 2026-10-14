@@ -1,40 +1,48 @@
 # Runtime And CLI
 
 The CLI is the supported entry point for running, testing, recording, and
-packaging student programs. Use `machinelab <command> --help` for the authoritative
+packaging student programs. Use `lcom-ng <command> --help` for the authoritative
 option list; this guide explains when to use each command.
 
 ## Commands
 
 | Command | Purpose |
 | --- | --- |
-| `machinelab run` | host one student program |
-| `machinelab run-pair` | host two programs with bridged UARTs |
-| `machinelab replay` | run one program with an authored input timeline |
-| `machinelab setup` | generate a student workspace |
-| `machinelab test` | compile and execute one predefined student lab test |
-| `machinelab lab` | list labs or inspect requested functions |
-| `machinelab bundle` | package a runtime and program for the current platform |
-| `machinelab docs cli` | print a Markdown CLI summary |
-| `machinelab completion` | emit Bash, Zsh, or Fish completion |
+| `lcom-ng run` | host one student program |
+| `lcom-ng run-pair` | host two programs with bridged UARTs |
+| `lcom-ng replay` | run one program with an authored input timeline |
+| `lcom-ng setup` | generate a student workspace |
+| `lcom-ng compat build` | build unchanged Minix/LCF project sources |
+| `lcom-ng test` | compile and execute one predefined student lab test |
+| `lcom-ng lab` | list labs or inspect requested functions |
+| `lcom-ng bundle` | package a runtime and program for the current platform |
+| `lcom-ng docs cli` | print a Markdown CLI summary |
+| `lcom-ng completion` | emit Bash, Zsh, or Fish completion |
 
 ## Interactive And Headless Runs
 
 ```sh
-machinelab run build/examples/flappy_bird
-machinelab run --headless --max-ticks 300 -- build/examples/timer_int 3
+lcom-ng run build/examples/flappy_bird
+lcom-ng run --headless --max-ticks 300 -- build/examples/timer_int 3
 ```
 
 SDL runs advance virtual time from host time by default. Headless runs advance
-deterministically as the guest waits for events. `--max-ticks` is a guard for
-headless programs that do not terminate.
+deterministically as the guest waits for events. `--max-ticks` limits virtual
+steps. A busy loop that never waits does not advance virtual time. Add
+`--timeout 30` to `run`, `replay`, or `run-pair` to stop students after 30 host
+seconds, including busy loops. The timeout is disabled by default. It stops
+both students in a paired run, preserves requested captures, and returns exit
+code 124. `--timeout` accepts positive finite seconds, including fractions.
+`--max-ticks`, `--scale`, and `--video-fps` require positive integers.
+
+`--rtc` sets the initial RTC date and time. The RTC advances with virtual time.
 
 Useful output options:
 
 ```sh
-machinelab run --headless --trace build/run.jsonl -- build/examples/timer_int 3
-machinelab run --headless --dump-frame build/frame.ppm -- build/examples/vbe_rectangle
-machinelab run --headless --audio-wav build/audio.wav -- build/examples/audio_tone
+lcom-ng run --headless --trace build/run.jsonl -- build/examples/timer_int 3
+lcom-ng run --headless --dump-frame build/frame.ppm -- build/examples/vbe_rectangle
+lcom-ng run --headless --audio-wav build/audio.wav -- build/examples/audio_tone
 ```
 
 ## SDL Controls
@@ -73,7 +81,7 @@ captured frames. Capture markers omit quiet sections from videos without
 changing the guest timeline; `out` and `in` are accepted short aliases.
 
 ```sh
-machinelab replay scripts/flappy_caption_demo.mlabscript --headless \
+lcom-ng replay scripts/flappy_caption_demo.mlabscript --headless \
   --video build/flappy.mp4 --video-fps 30 -- build/examples/flappy_bird
 ```
 
@@ -84,7 +92,7 @@ timelines.
 ## Paired Runtimes
 
 ```sh
-machinelab run-pair build/examples/ninjix --right build/examples/ninjix
+lcom-ng run-pair build/examples/ninjix --right build/examples/ninjix
 ```
 
 The left and right programs have separate machines, processes, input, display,
@@ -96,7 +104,7 @@ framebuffers with `--left-dump-frame` and `--right-dump-frame`.
 ## Bundles
 
 ```sh
-machinelab bundle . --program build/examples/flappy_bird --name flappy-bird
+lcom-ng bundle . --program build/examples/flappy_bird --name flappy-bird
 ./dist/flappy-bird.mlab
 ```
 
@@ -108,7 +116,7 @@ cross-compiler.
 ## Shell Completion
 
 ```sh
-machinelab completion bash > machinelab.bash
-machinelab completion zsh > _machinelab
-machinelab completion fish > machinelab.fish
+lcom-ng completion bash > lcom-ng.bash
+lcom-ng completion zsh > _lcom-ng
+lcom-ng completion fish > lcom-ng.fish
 ```

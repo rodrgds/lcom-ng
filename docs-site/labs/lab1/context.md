@@ -6,7 +6,7 @@ registers. Software selected a register, read a byte, checked a status bit, and
 repeated the protocol until the device was ready.
 
 The original LCOM/Minix path used privileged services because ordinary programs
-should not freely touch hardware ports. Machine Lab keeps the same controller
+should not freely touch hardware ports. lcom-ng keeps the same controller
 shape, but the runtime safely virtualizes the port reads and writes.
 
 ## The Transferable Idea
@@ -25,9 +25,9 @@ tells you how to move from one state to the next. That pattern reappears in
 every later lab, even when the device becomes a timer, keyboard, mouse, video
 card, audio buffer, or serial port.
 
-## What Machine Lab Removes
+## What lcom-ng Removes
 
-Machine Lab does not ask you to configure VirtualBox, register a Minix service,
+lcom-ng does not ask you to configure VirtualBox, register a Minix service,
 request I/O privileges from the microkernel, or restore the VM's own device
 drivers after experiments. Those are real operating-system topics, and they are
 worth studying in the right setting. They are not necessary before you learn how

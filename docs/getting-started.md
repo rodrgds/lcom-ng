@@ -1,6 +1,6 @@
 # Getting Started
 
-This page is for building and testing the Machine Lab repository itself. If you
+This page is for building and testing the lcom-ng repository itself. If you
 are working inside a generated course workspace, use the
 [student guide](student-guide.md) instead.
 
@@ -11,22 +11,22 @@ SDL3, SDL3_ttf, and ffmpeg used by the complete test and demo workflow.
 
 ```sh
 devenv shell
-machinelab-install
-machinelab-verify
+lcom-ng-install
+lcom-ng-verify
 ```
 
 Available shell helpers:
 
 | Command | Action |
 | --- | --- |
-| `machinelab` | run `build/machinelab`, building the CLI first if it is missing |
-| `machinelab-install` | install locked VitePress and Remotion dependencies |
-| `machinelab-build` | configure and compile an SDL-enabled debug build |
-| `machinelab-test` | build and run the complete CTest suite |
-| `machinelab-verify` | run CTest, docs checks, Remotion typecheck, and `git diff --check` |
-| `machinelab-run-sdl` | build and open the focused SDL demo |
-| `machinelab-replay-flappy-video` | render `build/replays/flappy.mp4` |
-| `lcom` | compatibility alias for `machinelab` |
+| `lcom-ng` | run `build/machinelab`, building the CLI first if it is missing |
+| `lcom-ng-install` | install locked VitePress and Remotion dependencies |
+| `lcom-ng-build` | configure and compile an SDL-enabled debug build |
+| `lcom-ng-test` | build and run the complete CTest suite |
+| `lcom-ng-verify` | run CTest, docs checks, Remotion typecheck, and `git diff --check` |
+| `lcom-ng-run-sdl` | build and open the focused SDL demo |
+| `lcom-ng-replay-flappy-video` | render `build/replays/flappy.mp4` |
+| `lcom` | compatibility alias for `lcom-ng` |
 
 The first `devenv shell` may take time while Nix resolves dependencies.
 Subsequent runs reuse them.
@@ -50,7 +50,7 @@ For interactive windows, also install SDL3 and SDL3_ttf and configure with
 Always start a student binary through the runtime:
 
 ```sh
-machinelab run build/examples/hello
+lcom-ng run build/examples/hello
 ```
 
 An SDL-enabled build selects SDL by default. A headless-only build selects the
@@ -58,7 +58,7 @@ deterministic backend. Use `--headless` explicitly in tests, scripts, and
 documentation so the result does not depend on build configuration:
 
 ```sh
-machinelab run --headless -- build/examples/timer_int 3
+lcom-ng run --headless -- build/examples/timer_int 3
 ```
 
 The `--` separator ends runtime options. Use it whenever the student program
@@ -67,9 +67,9 @@ has arguments or when a command should be unambiguous.
 ## Daily Development Loop
 
 ```sh
-machinelab-build
+lcom-ng-build
 ctest --test-dir build --output-on-failure
-machinelab run build/examples/sdl_demo
+lcom-ng run build/examples/sdl_demo
 ```
 
 For a single check:
@@ -87,18 +87,18 @@ Developers and instructors can generate a sample workspace outside this
 repository, or use the ignored `student/` directory for a local demonstration:
 
 ```sh
-machinelab setup student
+lcom-ng setup student
 make -C student
-machinelab test timer --project student
+lcom-ng test timer --project student
 ```
 
-`machinelab setup` does not overwrite existing starter files unless passed `--force`.
+`lcom-ng setup` does not overwrite existing starter files unless passed `--force`.
 See the [student guide](student-guide.md) for the generated layout and
 [the lab guide](../course/README.md) for the course progression.
 
 ## Troubleshooting
 
-- `machinelab: command not found`: enter `devenv shell`, or use `build/machinelab` directly.
+- `lcom-ng: command not found`: enter `devenv shell`, or use `build/machinelab` directly.
 - SDL package/configuration errors: use the dev shell or configure a headless
   build with `-DMACHINE_LAB_WITH_SDL=OFF`.
 - A graphical program appears hung under `--headless`: supply an exit script

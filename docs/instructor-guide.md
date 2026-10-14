@@ -1,13 +1,13 @@
 # Instructor Guide
 
-This guide is for adopting Machine Lab in a course, workshop, independent study
+This guide is for adopting lcom-ng in a course, workshop, independent study
 track, or university lab section. It assumes you want students to learn
 machine-facing C ideas without spending the first weeks debugging VM images,
 kernel service setup, or platform-specific display/audio tooling.
 
 ## Course Promise
 
-Machine Lab gives students:
+lcom-ng gives students:
 
 - C APIs that resemble device-driver work;
 - deterministic tests for small lab functions;
@@ -24,13 +24,13 @@ It gives instructors:
 
 ## What To Give Students
 
-- the release binary for their platform, or setup instructions for `machinelab`;
-- a generated workspace from `machinelab setup`;
+- the release binary for their platform, or setup instructions for `lcom-ng`;
+- a generated workspace from `lcom-ng setup`;
 - selected handouts from [course/labs/docs](../course/labs/docs);
 - your project brief, collaboration policy, and grading rubric.
 
 Avoid giving students the upstream repository as their primary workspace unless
-they are also contributing to Machine Lab itself.
+they are also contributing to lcom-ng itself.
 
 ## Syllabus Map
 
@@ -57,13 +57,13 @@ graphics-focused unit.
 
 | Lab | Device idea | Typical check |
 | --- | --- | --- |
-| 1 | bit masks, CMOS/RTC reads, BCD conversion | `machinelab test rtc` |
-| 2 | i8254 PIT divisors and IRQ0 event loops | `machinelab test timer` |
-| 3 | i8042 keyboard status and scancodes | `machinelab test kbd` |
-| 4 | PS/2 mouse commands and packet parsing | `machinelab test mouse` |
-| 5 | VBE modes, mapped framebuffers, sprites | `machinelab test graphics` |
-| 6 | AC97-style PCM buffers and playback | `machinelab test audio` |
-| 7 | 16550 UART setup, FIFOs, loopback, protocols | `machinelab test uart` |
+| 1 | bit masks, CMOS/RTC reads, BCD conversion | `lcom-ng test rtc` |
+| 2 | i8254 PIT divisors and IRQ0 event loops | `lcom-ng test timer` |
+| 3 | i8042 keyboard status and scancodes | `lcom-ng test kbd` |
+| 4 | PS/2 mouse commands and packet parsing | `lcom-ng test mouse` |
+| 5 | VBE modes, mapped framebuffers, sprites | `lcom-ng test graphics` |
+| 6 | AC97-style PCM buffers and playback | `lcom-ng test audio` |
+| 7 | 16550 UART setup, FIFOs, loopback, protocols | `lcom-ng test uart` |
 
 ## Working Methodology
 
@@ -160,8 +160,8 @@ reference implementations private until the course is over.
 
 ## Adoption Checklist
 
-- Run `machinelab-test` on one instructor machine.
-- Generate a fresh workspace with `machinelab setup student`.
+- Run `lcom-ng-test` on one instructor machine.
+- Generate a fresh workspace with `lcom-ng setup student`.
 - Confirm `make -C student` works.
 - Confirm one TODO lab fails as expected.
 - Pick the labs you will assign and hide the rest if the course is shorter.
@@ -184,10 +184,10 @@ Prefer artifacts students can reproduce:
 Useful commands:
 
 ```sh
-machinelab run --headless --script scripts/write_note.mlabscript \
+lcom-ng run --headless --script scripts/write_note.mlabscript \
   --dump-frame build/write.ppm -- build/examples/word_processor
 
-machinelab run --headless --script scripts/music_maker_demo.mlabscript \
+lcom-ng run --headless --script scripts/music_maker_demo.mlabscript \
   --audio-wav build/music.wav --dump-frame build/music.ppm -- build/examples/music_maker
 ```
 

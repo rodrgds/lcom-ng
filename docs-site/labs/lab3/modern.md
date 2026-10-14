@@ -18,7 +18,7 @@ responses must not be confused with data, and low-level input should be
 separated from UI behavior. These ideas apply whether the report came from PS/2,
 USB HID, Bluetooth, a terminal emulator, or a virtual input backend.
 
-Machine Lab uses the older keyboard shape because it is visible enough to teach.
+lcom-ng uses the older keyboard shape because it is visible enough to teach.
 Modern stacks are more capable, especially for international text and
 accessibility, but they are also harder to inspect end to end in a first systems
 course.

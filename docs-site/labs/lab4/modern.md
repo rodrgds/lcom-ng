@@ -21,7 +21,7 @@ be lost, relative movement differs from absolute position, and low-level parsing
 should be separated from UI policy. These lessons apply to modern gamepad input,
 tablet reports, network messages, and recorded replay streams.
 
-Machine Lab keeps the PS/2-shaped mouse because it is small enough to inspect
+lcom-ng keeps the PS/2-shaped mouse because it is small enough to inspect
 while still being rich enough to teach synchronization and signed deltas. Modern
 input stacks add comfort and capability, but they do not remove the need for
 careful parsing at the layer that receives device reports.

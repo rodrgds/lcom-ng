@@ -1,83 +1,99 @@
 ---
 layout: home
-
 hero:
-  name: Machine Lab
-  text: Portable C labs for machine-facing programming
-  tagline: Teach device-shaped systems work without making students fight a VM first.
+  name: lcom-ng
+  text: Run your LCOM project. Skip the VM.
+  tagline: Build the same C sources on your computer, or start fresh with the native SDK. Labs, games, keyboard, mouse and audio.
   image:
     src: /assets/screenshots/word-processor.png
-    alt: Machine Lab word processor example
+    alt: Word processor running in lcom-ng
   actions:
     - theme: brand
-      text: Start the labs
-      link: /labs/
+      text: Download and install
+      link: /students/install
     - theme: alt
-      text: Adopt in a class
-      link: /instructors/adoption
+      text: Run an existing project
+      link: /students/compatibility
     - theme: alt
-      text: GitHub
-      link: https://github.com/rodrgds/machine-lab
-
-features:
-  - title: Device-shaped C
-    details: Ports, IRQs, RTC, timers, keyboard, mouse, framebuffers, audio buffers, and UART.
-  - title: Student-first workflow
-    details: Generate a workspace, run make, run machinelab test, inspect deterministic artifacts.
-  - title: Course-ready
-    details: Lab guides, instructor notes, rubrics, examples, release builds, and Cloudflare-hosted docs.
+      text: Start native labs
+      link: /students/
 ---
 
-<div class="demo-video">
-  <video controls preload="metadata" src="/assets/demo/machine-lab-demo.mp4"></video>
+## From source to a running window
+
+Install a release archive, then choose your starting point. lcom-ng brings the
+course's ports, interrupts, framebuffers and serial links to your own computer.
+
+<div class="quickstart-grid">
+<section>
+
+### Your existing Minix project
+
+Keep the original source tree and imports. In the folder containing the Makefile:
+
+```sh
+lcom-ng compat build .
+lcom-ng run -- .lcom-ng/proj
+```
+
+Use the binary path printed by the builder, named after `PROG` in your Makefile.
+The same workflow runs original labs with their usual test arguments.
+
+[Run your project or lab →](/students/compatibility)
+
+</section>
+<section>
+
+### A new native project
+
+Generate the native course workspace and build it:
+
+```sh
+lcom-ng setup student
+cd student && make
+lcom-ng run -- build/student_project
+```
+
+Write your app in `proj/`, implement the labs in `labs/`, and run `lcom-ng test rtc`.
+Fresh TODO labs fail checks until you implement them.
+
+[Start the native lab track →](/students/)
+
+</section>
 </div>
 
-Machine Lab is public courseware for computer architecture, operating systems,
-and systems programming classes that want low-level ideas without requiring a
-full OS lab setup.
-
-It keeps the useful part of older PC lab work:
-
-- bytes, masks, registers, and status bits;
-- interrupt-shaped event loops;
-- keyboard and mouse packet parsing;
-- framebuffers and PCM audio;
-- serial protocols and paired programs;
-- final projects that produce visible artifacts.
-
-It removes the part that usually burns the first week:
-
-- fragile VM images;
-- service-management ceremony;
-- platform-specific display/audio setup;
-- undocumented grading paths.
-
-<div class="role-grid">
-  <div class="role-card">
-    <h3>Students</h3>
-    <p>Use a generated workspace, follow the lab guides, and build a final C project.</p>
-    <p><a href="/students/">Student guide</a></p>
-  </div>
-  <div class="role-card">
-    <h3>Instructors</h3>
-    <p>Adopt the material in one week, choose labs, publish a rubric, and run project studio.</p>
-    <p><a href="/instructors/">Instructor guide</a></p>
-  </div>
-  <div class="role-card">
-    <h3>Maintainers</h3>
-    <p>Work on the runtime, SDK, lab templates, release artifacts, and docs site.</p>
-    <p><a href="/developers/">Developer guide</a></p>
-  </div>
-</div>
+## Built for the programs you make in class
 
 <div class="demo-grid">
-  <img src="/assets/screenshots/music-maker.png" alt="Machine Lab music maker example">
-  <img src="/assets/screenshots/breakout.png" alt="Machine Lab breakout example">
+  <figure>
+    <img src="/assets/screenshots/music-maker.png" alt="A three-track music sequencer running in lcom-ng" loading="lazy">
+    <figcaption>Timers, keyboard input and PCM audio.</figcaption>
+  </figure>
+  <figure>
+    <img src="/assets/screenshots/breakout.png" alt="Breakout with a paddle, bricks and score running in lcom-ng" loading="lazy">
+    <figcaption>Graphics, interrupts and an interactive game loop.</figcaption>
+  </figure>
 </div>
 
-## What You Can Send People
+<div class="demo-video">
+  <video controls preload="none" poster="/assets/screenshots/word-processor.png" aria-label="lcom-ng demonstration" src="/assets/demo/machine-lab-demo.mp4"></video>
+</div>
 
-- Lab track: [start here](/labs/).
-- One-week adoption: [instructor adoption guide](/instructors/adoption).
-- Project examples: [examples](/examples/).
-- Source and releases: [GitHub](https://github.com/rodrgds/machine-lab).
+## Learn the devices, then build a project
+
+The seven native labs cover RTC, timers, keyboard, mouse, graphics, audio and UART.
+Existing Minix labs use the compatibility builder. Pinned student repositories
+provide practical compatibility evidence, including documented source defects and limits.
+
+| What you need | Where to start |
+| --- | --- |
+| A working installation | [Download and install](/students/install) |
+| An existing game or original lab | [Compatibility quick start](/students/compatibility) |
+| Native exercises and checks | [Lab track](/labs/) |
+| Ideas for a final project | [Examples](/examples/) |
+| Material for a class | [Instructor adoption guide](/instructors/adoption) |
+| Runtime and release development | [Developer guide](/developers/) |
+
+lcom-ng is courseware for computer architecture and systems programming.
+Its native SDK is the path for new code; the separate compatibility SDK preserves
+Minix/LCF conventions for existing projects.

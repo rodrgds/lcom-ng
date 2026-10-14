@@ -25,7 +25,7 @@ stride exist in modern textures and buffers, clipping and coordinate systems
 still matter, double-buffering and presentation are still core ideas, and
 rendering should be separated from application state.
 
-Machine Lab uses VBE-shaped graphics because it exposes those ideas without
+lcom-ng uses VBE-shaped graphics because it exposes those ideas without
 requiring a full GPU stack. Once you understand this smaller model, modern
 graphics APIs become less mysterious: they are larger systems for producing,
 transforming, and presenting image buffers.

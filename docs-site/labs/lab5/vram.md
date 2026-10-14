@@ -18,7 +18,7 @@ instead of drawing.
 
 A pixel is not always a `uint32_t` in the layout you would like. Some modes use
 15, 16, 24, or 32 bits per pixel. Some store color channels in different
-positions. In Machine Lab the supported modes are intentionally limited, but the
+positions. In lcom-ng the supported modes are intentionally limited, but the
 habit should be the same as in a real driver: read the mode information and pack
 colors according to that format.
 

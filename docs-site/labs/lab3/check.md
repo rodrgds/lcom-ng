@@ -5,8 +5,8 @@ interactive example. They verify the scancode parser, error handling, interrupt
 path, polling path, and timed-scan behavior with deterministic input.
 
 ```sh
-machinelab test kbd
-machinelab run --headless --script scripts/type_a_esc.mlabscript -- build/examples/keyboard_scan
+lcom-ng test kbd
+lcom-ng run --headless --script scripts/type_a_esc.mlabscript -- build/examples/keyboard_scan
 ```
 
 ## Discussion Prompts

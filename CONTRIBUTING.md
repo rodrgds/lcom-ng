@@ -1,6 +1,6 @@
 # Contributing
 
-Machine Lab is both a teaching project and a runtime project. Contributions are
+lcom-ng is both a teaching project and a runtime project. Contributions are
 welcome, but changes need to preserve the separation between student-facing
 course material, instructor material, and developer internals.
 
@@ -8,7 +8,7 @@ course material, instructor material, and developer internals.
 
 | Audience | Stable surface | Keep out |
 | --- | --- | --- |
-| Students | generated workspace, public SDK headers, lab handouts, `machinelab test` | reference solutions, CMake, CI, runtime protocol internals |
+| Students | generated workspace, public SDK headers, lab handouts, `lcom-ng test` | reference solutions, CMake, CI, runtime protocol internals |
 | Instructors | adoption guide, instructor guide, lab map, examples, replay scripts, selected grading checks | accidental spoilers that solve the whole lab |
 | Developers | this repository, runtime code, release workflow, test fixtures | unclear public copy or duplicated course truth |
 
@@ -23,7 +23,7 @@ Preferred path:
 
 ```sh
 devenv shell
-machinelab-test
+lcom-ng-test
 ```
 
 Fallback path:
@@ -41,7 +41,7 @@ desktop session.
 ## Change Checklist
 
 - Keep generated student workspaces simple: plain `make`, C files, headers, and
-  `machinelab test`.
+  `lcom-ng test`.
 - Keep public C headers in `sdk/include/lcom/` C-only and free of runtime C++
   types.
 - Keep lab contracts aligned across `course/labs/function-requests.json`,
@@ -68,16 +68,16 @@ desktop session.
 Run the full gate before opening a pull request:
 
 ```sh
-devenv shell -- machinelab-verify
+devenv shell -- lcom-ng-verify
 ```
 
 Useful narrower checks:
 
 ```sh
 devenv shell -- ctest --test-dir build -R integration --output-on-failure
-devenv shell -- machinelab setup build/student-smoke --force
-devenv shell -- machinelab test rtc --project build/student-smoke
-devenv shell -- machinelab docs cli
+devenv shell -- lcom-ng setup build/student-smoke --force
+devenv shell -- lcom-ng test rtc --project build/student-smoke
+devenv shell -- lcom-ng docs cli
 ```
 
 Fresh generated lab stubs should compile and fail the predefined tests until a

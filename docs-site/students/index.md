@@ -1,15 +1,17 @@
-# Student Guide
+# Native labs and projects
 
-This page is for people using a generated Machine Lab workspace. You do not
-need to work inside the upstream Machine Lab repository.
+[Install lcom-ng](/students/install), then generate a workspace with the native SDK.
+You do not need the upstream repository. For original Minix labs or an existing
+game, use the [compatibility quick start](/students/compatibility).
 
 ## Start Here
 
 ```sh
-machinelab setup student
+lcom-ng setup student
 cd student
 make
-machinelab test rtc
+lcom-ng run -- build/student_project
+lcom-ng test rtc
 ```
 
 Fresh lab stubs compile but fail checks until you implement the requested
@@ -32,7 +34,7 @@ functions. A failing first test is expected.
 | `include/lcom/` | copied SDK headers; treat as read-only |
 | `.mlab/` | generated tests and build artifacts |
 | `build/` | generated object files and binaries |
-| upstream `runtime/`, `common/`, `.github/` | Machine Lab developer internals |
+| upstream `runtime/`, `common/`, `.github/` | lcom-ng developer internals |
 
 ## Lab Loop
 

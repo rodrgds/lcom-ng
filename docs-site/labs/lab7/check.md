@@ -6,9 +6,9 @@ the runtime. After that, `run-pair` checks whether two independent machines can
 communicate through a bridged serial link.
 
 ```sh
-machinelab test uart
-machinelab run --headless -- build/examples/uart_loopback
-machinelab run-pair --headless build/examples/uart_peer_sender --right build/examples/uart_peer_receiver
+lcom-ng test uart
+lcom-ng run --headless -- build/examples/uart_loopback
+lcom-ng run-pair --headless build/examples/uart_peer_sender --right build/examples/uart_peer_receiver
 ```
 
 ## Discussion Prompts

@@ -1,4 +1,4 @@
-# Machine Lab Agent Guide
+# lcom-ng Agent Guide
 
 Treat this as a concise operating map for recurring work. Prefer the named
 commands and source-of-truth rules below over rediscovering the repo on every
@@ -18,19 +18,32 @@ change as user-owned and do not rerun the preflight unless the environment
 changes.
 
 Use the Devenv shell for project commands. Do not diagnose missing CMake, SDL,
-FFmpeg, Node, or npm from the host shell until the same command has been tried
+FFmpeg, Node, or Bun from the host shell until the same command has been tried
 through `devenv shell -- ...`.
 
 ## Stable Sources Of Truth
 
-- Public product/course name: **Machine Lab**. New docs and scripts use
-  `machinelab`; `lcom`, `lowlab`, `mlab`, and `lcom_*` remain compatibility
-  names where already required.
+- Public product/course name and CLI: **lcom-ng**. New public docs use
+  `lcom-ng`. Keep `machinelab`, `lcom`, `lowlab`, and `mlab` aliases, existing
+  canonical asset filenames and C API identifiers compatible. The canonical public
+  website is `https://lcom.rgo.pt`; the existing Cloudflare Pages resource keeps
+  its internal `machine-lab-docs` project ID.
 - Lab catalog and generated-workspace metadata:
   `course/labs/function-requests.json`. CMake generates the runtime lab catalog
   from it. Do not restore a second hand-maintained catalog.
 - Public C API: `sdk/include/lcom/`; host implementation:
   `runtime/`; C client/protocol boundary: `sdk/client/`.
+- Minix/LCF compatibility SDK: `sdk/compat/include/` and `sdk/compat/src/`,
+  linked through the separate `lcom_minix` library. Keep its legacy declarations
+  separate from the native SDK. For legacy project work, read
+  `docs/from-minix.md` and the compatibility corpus report before claiming support.
+  The expanded pinned corpus is `tests/compat-expanded.json`; its replay gate is
+  `devenv shell -- python3 scripts/check_lcom_corpus.py --fetch`. Report normal
+  exits, guarded captures and source defects separately. For macOS student
+  distribution, use `scripts/package_macos.py` and `tests/macos_bundle_smoke.py`
+  to verify the relocated archive outside Devenv.
+  The legacy project builder is `sdk/compat/build_project.py`; the CLI dispatches
+  it through `lcom-ng compat build`. Keep original project sources unchanged.
 - Student starter contracts: `course/labs/templates/`; reference solutions and
   predefined checks: `dev/lab-solutions/` and `dev/lab-tests/`.
 - Public website source: `docs-site/`. `docs-site/public/assets/` and the
@@ -38,6 +51,9 @@ through `devenv shell -- ...`.
 - Canonical public video: `docs/assets/demo/machine-lab-demo.mp4`. Its source is
   `media/remotion/`, and its deterministic inputs are produced by
   `scripts/capture_marketing_examples.sh`.
+- Student release work: read `docs-site/developers/releases.md`. Package the
+  whole installed SDK and SDL dependencies, verify after relocation with a system
+  tool PATH, and report platform CI evidence separately from the local macOS trial.
 - Version: keep `project(... VERSION ...)` in `CMakeLists.txt` aligned with the
   root `package.json`; CMake enforces this.
 - Audience boundaries and public/internal ownership: `CONTRIBUTING.md`.
@@ -45,17 +61,17 @@ through `devenv shell -- ...`.
 ## Named Workflows
 
 - First checkout or missing JS dependencies:
-  `devenv shell -- machinelab-install`.
-- Focused C/C++ iteration: `devenv shell -- machinelab-build`, then a targeted
+  `devenv shell -- lcom-ng-install`.
+- Focused C/C++ iteration: `devenv shell -- lcom-ng-build`, then a targeted
   `ctest --test-dir build -R <name> --output-on-failure`.
 - Complete runtime/lab/integration suite:
-  `devenv shell -- machinelab-test`.
+  `devenv shell -- lcom-ng-test`.
 - Cross-surface final gate:
-  `devenv shell -- machinelab-verify`. This builds and tests Machine Lab, checks
+  `devenv shell -- lcom-ng-verify`. This builds and tests lcom-ng, checks
   the docs site and canonical assets, typechecks the Remotion project, and runs
   `git diff --check`.
 - CLI/docs behavior: inspect the real `build/machinelab --help`, subcommand
-  help, and `machinelab docs cli` before changing prose.
+  help, and `lcom-ng docs cli` before changing prose.
 - Public demo regeneration:
   `devenv shell -- sh scripts/render_public_demo.sh`. Inspect the resulting MP4
   and relevant stills/audio; a successful render alone is not visual QA.
@@ -93,7 +109,9 @@ render quality.
   above, not doing a blind repo-wide rewrite.
 - Preserve dirty work. Inspect overlapping diffs before editing, and never
   stage unrelated generated or user-owned files.
+- Generate isolated-work patches against an immutable starting snapshot.
+  Diffing an older copy against the changing main workspace can erase other
+  work. Review every deletion before integrating a patch.
 - Commit, push, release, or deploy only when requested. If asked to commit a
   mixed worktree, inspect the full diff and split it by cohesive behavior
   (runtime/fix, showcase/docs, tests) rather than file count.
-

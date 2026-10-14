@@ -2,7 +2,7 @@
 
 Generated folder: `labs/rtc/`
 
-Welcome to the first Machine Lab. This lab starts with the C tools used
+Welcome to the first lcom-ng. This lab starts with the C tools used
 throughout the course: masks, shifts, fixed-width integers, output pointers,
 status codes, and small helpers that can be tested without a physical device.
 
@@ -19,7 +19,7 @@ framebuffers, audio, or serial links, you need to be comfortable isolating,
 setting, clearing, and combining bits.
 
 > [!NOTE]
-> The Machine Lab RTC is virtual, but the interface is shaped after the PC
+> The lcom-ng RTC is virtual, but the interface is shaped after the PC
 > CMOS/RTC convention. The point is not the date itself. The point is learning
 > how software talks to a controller through register selection and data ports.
 
@@ -106,8 +106,8 @@ flow is yours.
 ## Check
 
 ```sh
-machinelab test rtc
-machinelab run --headless --rtc 2026-06-16T12:34:56 -- build/examples/rtc_date
+lcom-ng test rtc
+lcom-ng run --headless --rtc 2026-06-16T12:34:56 -- build/examples/rtc_date
 ```
 
 ## External Reading

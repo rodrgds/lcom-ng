@@ -1,6 +1,6 @@
 # Developer Guide
 
-This guide is for people maintaining Machine Lab itself: runtime code, lab
+This guide is for people maintaining lcom-ng itself: runtime code, lab
 scaffolding, docs, tests, examples, and releases.
 
 The project has two jobs:
@@ -16,7 +16,7 @@ are not complete either.
 
 | Audience | Stable surface | Do not leak |
 | --- | --- | --- |
-| Students | generated workspace, `include/lcom/`, lab handouts, `machinelab test` | CMake, runtime C++, CI, reference solutions |
+| Students | generated workspace, `include/lcom/`, lab handouts, `lcom-ng test` | CMake, runtime C++, CI, reference solutions |
 | Instructors | labs, examples, scripts, adoption docs, selected tests | accidental internal protocol details |
 | Developers | whole repository | unclear student-facing copy |
 
@@ -58,7 +58,7 @@ patch.
 
 At a high level:
 
-1. A student C program links against the Machine Lab C client.
+1. A student C program links against the lcom-ng C client.
 2. The client speaks a small protocol to the host runtime.
 3. The runtime exposes virtual devices: PIT, RTC, keyboard/mouse, VBE, audio,
    UART, IRQ controller, and related support.
@@ -106,42 +106,35 @@ convenient for one example.
 ## Test Gate
 
 ```sh
-devenv shell -- machinelab-verify
+devenv shell -- lcom-ng-verify
 ```
 
 Useful narrower checks:
 
 ```sh
 devenv shell -- ctest --test-dir build -R integration --output-on-failure
-devenv shell -- machinelab docs cli
-devenv shell -- machinelab setup student --force
-devenv shell -- machinelab test rtc --project student
+devenv shell -- lcom-ng docs cli
+devenv shell -- lcom-ng setup student --force
+devenv shell -- lcom-ng test rtc --project student
 ```
 
 For visual/audio changes, also capture artifacts:
 
 ```sh
-devenv shell -- machinelab run --headless \
+devenv shell -- lcom-ng run --headless \
   --script scripts/music_maker_demo.mlabscript \
   --audio-wav build/music.wav \
   --dump-frame build/music.ppm \
   -- build/examples/music_maker
 ```
 
-## Release Surface
+## Release workflow
 
-Release archives should contain:
-
-- `machinelab` primary CLI;
-- `lcom` and `lowlab` compatibility CLIs;
-- `libmachinelab.a` and compatibility static libraries;
-- public headers;
-- examples and scripts useful for demos;
-- docs or links that explain student setup.
-
-GitHub Actions should build Linux, macOS, and Windows artifacts. Release testing
-should prove that generated student workspaces compile and that the primary
-examples run headlessly.
+GitHub Actions builds SDL-enabled Linux x86_64/arm64, macOS x86_64/arm64 and
+Windows MSYS2 x86_64 student archives. Each contains the SDK, desktop dependencies,
+lab assets and checksums. All platform checks must pass before a matching version
+tag creates a draft release. See the [release guide](../docs-site/developers/releases.md)
+for tagging, manual candidates, packaging owners and platform constraints.
 
 ## Documentation Discipline
 
@@ -171,12 +164,12 @@ files aligned with that split unless there is a specific reason to do otherwise.
 The public website is built with VitePress and deployed to Cloudflare Pages:
 
 ```sh
-npm run docs:dev
-npm run docs:check
-npm run deploy:docs
+bun run docs:dev
+bun run docs:check
+bun run deploy:docs
 ```
 
-Production URL: <https://machine-lab-docs.pages.dev/>
+Production URL: <https://lcom.rgo.pt/>
 
 Assets are copied from `docs/assets/` into `docs-site/public/assets/` during the
 build. Push-to-deploy is configured in `.github/workflows/docs.yml` and requires

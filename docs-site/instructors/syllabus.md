@@ -6,7 +6,7 @@ computer-laboratory course: device labs first, project studio second.
 
 ## Course Summary
 
-Machine Lab teaches students to write structured C code that interacts with
+lcom-ng teaches students to write structured C code that interacts with
 machine-like device interfaces. Students learn bit-level protocols, polling,
 interrupt-style events, mapped buffers, byte streams, systematic debugging, and
 state-machine design. The practical outcome is a final interactive program that
@@ -80,7 +80,7 @@ Derek Molloy's *Exploring Raspberry Pi* is useful when instructors want a bridge
 to Linux-based hardware interfacing. Selected chapters from *Operating Systems:
 Three Easy Pieces* can support the process, virtualization, and I/O context.
 
-The Machine Lab guides also link to focused external references for CMOS/RTC,
+The lcom-ng guides also link to focused external references for CMOS/RTC,
 PIT timers, PS/2 input, VBE graphics, PCM audio, and UART programming.
 
 ## Assessment Shape

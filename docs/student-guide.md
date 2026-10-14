@@ -1,9 +1,11 @@
 # Student Guide
 
-This guide is for people using a generated Machine Lab workspace. You do not
-need to work inside the upstream Machine Lab repository.
+On a Mac, start with the [student installation guide](macos-student.md). It covers the bundled runtime, unchanged Minix labs and projects, and native course exercises.
 
-Machine Lab asks you to write C code that talks to machine-like devices:
+This guide is for people using a generated lcom-ng workspace. You do not
+need to work inside the upstream lcom-ng repository.
+
+lcom-ng asks you to write C code that talks to machine-like devices:
 registers, ports, interrupts, framebuffers, audio buffers, and serial links. The
 runtime is portable, but the habits are the same ones used when reading real
 hardware manuals: inspect bits, respect status flags, handle partial data, and
@@ -12,10 +14,10 @@ keep event loops predictable.
 ## Start Here
 
 ```sh
-machinelab setup student
+lcom-ng setup student
 cd student
 make
-machinelab test rtc
+lcom-ng test rtc
 ```
 
 Fresh lab stubs compile but fail checks until you implement the requested
@@ -44,7 +46,7 @@ functions. A failing first test is expected.
 | `include/lcom/` | copied SDK headers; treat as read-only |
 | `.mlab/` | generated tests and build artifacts |
 | `build/` | generated object files and binaries |
-| upstream `runtime/`, `common/`, `.github/` | Machine Lab developer internals |
+| upstream `runtime/`, `common/`, `.github/` | lcom-ng developer internals |
 | `dev/lab-solutions/` in the upstream repo | instructor/developer reference code, not starter work |
 
 ## Lab Loop
@@ -53,7 +55,7 @@ Use the same loop for every lab:
 
 ```sh
 make
-machinelab test rtc
+lcom-ng test rtc
 ```
 
 1. Read the handout.
@@ -89,9 +91,9 @@ Useful commands:
 ```sh
 make clean
 make
-machinelab test graphics
-machinelab run --headless --dump-frame build/frame.ppm -- build/student_project
-machinelab run --headless --audio-wav build/out.wav -- build/student_project
+lcom-ng test graphics
+lcom-ng run --headless --dump-frame build/frame.ppm -- build/student_project
+lcom-ng run --headless --audio-wav build/out.wav -- build/student_project
 ```
 
 When a test fails:
@@ -110,7 +112,7 @@ application:
 
 ```sh
 make run
-machinelab run build/student_project
+lcom-ng run build/student_project
 ```
 
 Good projects combine at least three areas:
@@ -130,7 +132,7 @@ Your project should have:
 ## Public API Boundary
 
 Student code should include headers from `include/lcom/` and lab headers. It
-should not include SDL, runtime C++ headers, Machine Lab internal protocol
+should not include SDL, runtime C++ headers, lcom-ng internal protocol
 files, or files from `dev/lab-solutions/`.
 
 ## Help Requests

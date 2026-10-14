@@ -1,7 +1,7 @@
 # VESA BIOS Extensions
 
 VBE is a compatibility interface for discovering and setting graphics modes.
-Machine Lab exposes a VBE-shaped API so you can practice the same flow without
+lcom-ng exposes a VBE-shaped API so you can practice the same flow without
 needing BIOS calls from a VM.
 
 A typical graphics setup asks for mode information, chooses a supported mode,
@@ -26,3 +26,10 @@ clipping.
 > [!IMPORTANT]
 > Do not hardcode mode dimensions in drawing helpers. Use the mode information
 > returned by the runtime.
+
+## Indexed colors
+
+Mode `0x105` uses the course's default 16 VGA colors at indices 0 through 15.
+Index 4 is dark red and index 14 is yellow. Indices 16 through 255 currently
+render as grayscale. Custom VGA DAC palette programming is not supported.
+Use a direct color mode for sprites that need a full RGB palette.

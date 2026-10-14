@@ -1,13 +1,13 @@
 # Developer Guide
 
-This page is for people building Machine Lab itself: runtime code, lab
+This page is for people building lcom-ng itself: runtime code, lab
 scaffolding, docs, tests, examples, and releases.
 
 ## Audience Boundaries
 
 | Audience | Stable surface | Keep out |
 | --- | --- | --- |
-| Students | generated workspace, SDK headers, lab handouts, `machinelab test` | CMake, runtime C++, CI, reference solutions |
+| Students | generated workspace, SDK headers, lab handouts, `lcom-ng test` | CMake, runtime C++, CI, reference solutions |
 | Instructors | labs, examples, scripts, adoption docs, selected tests | accidental protocol internals |
 | Developers | whole repository | unclear student-facing copy |
 
@@ -28,7 +28,7 @@ scaffolding, docs, tests, examples, and releases.
 ## Test Gate
 
 ```sh
-devenv shell -- machinelab-verify
+devenv shell -- lcom-ng-verify
 ```
 
 ## Docs Site
@@ -36,10 +36,10 @@ devenv shell -- machinelab-verify
 The public site uses VitePress:
 
 ```sh
-npm install
-npm run docs:dev
-npm run docs:build
-npm run deploy:docs
+bun install
+bun run docs:dev
+bun run docs:build
+bun run deploy:docs
 ```
 
 Cloudflare Pages deploys from `docs-site/.vitepress/dist`. Push-to-deploy uses

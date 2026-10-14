@@ -15,7 +15,7 @@ receive buffer can be empty, transmit hardware can be busy, and protocols need
 framing and error handling.
 
 > [!NOTE]
-> The `run-pair` command can connect two Machine Lab programs through virtual
+> The `run-pair` command can connect two lcom-ng programs through virtual
 > UARTs. That makes final projects possible where two programs negotiate, send
 > moves, transfer data, or implement a small protocol.
 
@@ -91,9 +91,9 @@ bits. This makes careful sequencing important.
 ## Check
 
 ```sh
-machinelab test uart
-machinelab run --headless -- build/examples/uart_loopback
-machinelab run-pair --headless build/examples/uart_peer_sender --right build/examples/uart_peer_receiver
+lcom-ng test uart
+lcom-ng run --headless -- build/examples/uart_loopback
+lcom-ng run-pair --headless build/examples/uart_peer_sender --right build/examples/uart_peer_receiver
 ```
 
 ## External Reading

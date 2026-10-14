@@ -5,8 +5,8 @@ can look like a drawing-design mistake, but the tests can check mode setup,
 address calculation, clipping, and dumped frame contents directly.
 
 ```sh
-machinelab test graphics
-machinelab run --headless --dump-frame build/rectangle.ppm -- build/examples/vbe_rectangle
+lcom-ng test graphics
+lcom-ng run --headless --dump-frame build/rectangle.ppm -- build/examples/vbe_rectangle
 ```
 
 ## Discussion Prompts

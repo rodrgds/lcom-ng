@@ -1,8 +1,10 @@
-# Machine Lab Docs
+# lcom-ng Docs
 
-Machine Lab is organized as a public course kit. The canonical public docs are
+On a Mac, start with the [student installation guide](macos-student.md). It covers the bundled runtime, unchanged Minix labs and projects, and native course exercises.
+
+lcom-ng is organized as a public course kit. The canonical public docs are
 the VitePress website in [../docs-site](../docs-site), deployed at
-<https://machine-lab-docs.pages.dev/>.
+<https://lcom.rgo.pt/>.
 
 This folder remains useful as package-local reference material, but new
 student, instructor, and developer documentation should be added to the website
@@ -31,7 +33,7 @@ Use this path when you are taking the course or following it independently.
 Use this path when you want to run the material in a class, club, workshop, or
 university lab.
 
-- [Adoption guide](adoption.md): how to use Machine Lab in one week.
+- [Adoption guide](adoption.md): how to use lcom-ng in one week.
 - [Instructor guide](instructor-guide.md): syllabus map, lab operations,
   grading, project rubric, and staff workflow.
 - [Video demo script](video-demo.md): short sequence for a class presentation.
@@ -39,14 +41,14 @@ university lab.
 
 ## Developer-facing
 
-Use this path when you are building Machine Lab itself.
+Use this path when you are building lcom-ng itself.
 
 - [Docs site source](../docs-site): canonical public VitePress site deployed to Cloudflare Pages.
 - [Developer guide](developer-guide.md): architecture boundaries, tests, release
   workflow, docs conventions, and change rules.
 - [Architecture](architecture.md): runtime process model and virtual devices.
 - [Runtime and CLI](runtime-and-cli.md): execution, replay, capture, bundles.
-- [From Minix to Machine Lab](from-minix.md): what was retained and what was
+- [From Minix to lcom-ng](from-minix.md): what was retained and what was
   made portable.
 - [Roadmap](roadmap.md): implemented scope and future work.
 - [Contributing](../CONTRIBUTING.md): contribution rules and review checklist.

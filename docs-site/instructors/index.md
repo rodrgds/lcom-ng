@@ -1,6 +1,6 @@
 # Instructor Guide
 
-Machine Lab is designed to be adopted as a course module, workshop, independent
+lcom-ng is designed to be adopted as a course module, workshop, independent
 study track, or semester lab section. Students get a generated workspace;
 instructors get lab guides, reference tests, examples, project rubrics, and a
 portable runtime that avoids a VM setup bottleneck.
@@ -13,7 +13,7 @@ the lab work rather than replacing it.
 
 ## Course Promise
 
-Machine Lab gives students direct practice with bit fields, status registers,
+lcom-ng gives students direct practice with bit fields, status registers,
 polling, interrupt-style events, mapped framebuffers, audio buffers, byte
 streams, static libraries, and state-machine design. It gives instructors a
 course surface that can be used in a classroom, in a short module, or as
@@ -53,7 +53,7 @@ screenshots, WAV captures, replay scripts, videos, or bundles.
 | `dev/lab-tests/` | can reveal expected behavior |
 | upstream CMake/runtime internals | not part of normal student work |
 
-Students should normally start from `machinelab setup`, not from the upstream
+Students should normally start from `lcom-ng setup`, not from the upstream
 repository. The upstream repository is for maintainers and contributors.
 
 ## First Class Flow
@@ -63,4 +63,4 @@ test, and implement one tiny bit helper together. Stop before solving the whole
 lab. The first class should prove that the environment works and that tests are
 feedback for missing student code, not mysterious infrastructure failures.
 
-Next: [adopt Machine Lab in one week](/instructors/adoption).
+Next: [adopt lcom-ng in one week](/instructors/adoption).

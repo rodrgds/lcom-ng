@@ -83,8 +83,8 @@ to regain synchronization if parsing starts in the middle of a stream.
 ## Check
 
 ```sh
-machinelab test mouse
-machinelab run --headless --script scripts/mouse_move.mlabscript -- build/examples/mouse_packet
+lcom-ng test mouse
+lcom-ng run --headless --script scripts/mouse_move.mlabscript -- build/examples/mouse_packet
 ```
 
 ## External Reading

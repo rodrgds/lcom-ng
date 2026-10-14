@@ -34,14 +34,14 @@ produces a reusable RTC-stamped C header.
   argument.
 
 ```sh
-machinelab run -- build/examples/pixel_studio \
+lcom-ng run -- build/examples/pixel_studio \
   build/pixel_studio_sprite.h
 ```
 
 The authored replay paints, fills, undoes, redoes, exports, and exits:
 
 ```sh
-machinelab run --headless --script scripts/pixel_studio_demo.mlabscript \
+lcom-ng run --headless --script scripts/pixel_studio_demo.mlabscript \
   --dump-frame build/pixel-studio.ppm --max-ticks 900 -- \
   build/examples/pixel_studio build/pixel_studio_sprite.h
 ```
@@ -72,7 +72,7 @@ visible instead of hiding it behind a networking library.
   peers; `R` rotates the local session; `H` help; `Esc` exit.
 
 ```sh
-machinelab run-pair build/examples/serial_whiteboard left \
+lcom-ng run-pair build/examples/serial_whiteboard left \
   --right build/examples/serial_whiteboard right
 ```
 
@@ -80,7 +80,7 @@ The deterministic pair replay draws from both sides, rotates the left session,
 resynchronizes both stroke histories, and exits cleanly:
 
 ```sh
-machinelab run-pair --headless \
+lcom-ng run-pair --headless \
   --left-script scripts/serial_whiteboard_left.mlabscript \
   --right-script scripts/serial_whiteboard_right.mlabscript \
   --left-dump-frame build/serial-whiteboard-left.ppm \
@@ -110,12 +110,12 @@ changing elapsed session time.
   lengths; `M` sound; mouse Start/Reset/Switch buttons; `Esc`.
 
 ```sh
-machinelab run --rtc 2026-07-30T09:30:00 -- \
+lcom-ng run --rtc 2026-07-30T09:30:00 -- \
   build/examples/pomodoro_clock
 ```
 
 ```sh
-machinelab run --headless --rtc 2026-07-30T09:40:00 \
+lcom-ng run --headless --rtc 2026-07-30T09:40:00 \
   --script scripts/pomodoro_clock_demo.mlabscript \
   --audio-wav build/pomodoro-clock.wav \
   --dump-frame build/pomodoro-clock.ppm --max-ticks 500 -- \
@@ -138,12 +138,12 @@ one framebuffer.
   the rate history; `C` clears counters; `L` toggles COM1 loopback; `Esc`.
 
 ```sh
-machinelab run --rtc 2026-07-30T08:40:00 -- \
+lcom-ng run --rtc 2026-07-30T08:40:00 -- \
   build/examples/interrupt_scope
 ```
 
 ```sh
-machinelab run --headless --rtc 2026-07-30T09:40:00 \
+lcom-ng run --headless --rtc 2026-07-30T09:40:00 \
   --script scripts/interrupt_scope_demo.mlabscript \
   --dump-frame build/interrupt-scope.ppm --max-ticks 360 -- \
   build/examples/interrupt_scope
@@ -165,11 +165,11 @@ playtest uses an isolated copy, so moving crates never damages the authored map.
   validation result.
 
 ```sh
-machinelab run -- build/examples/tilemap_editor build/tilemap_demo.mlmap
+lcom-ng run -- build/examples/tilemap_editor build/tilemap_demo.mlmap
 ```
 
 ```sh
-machinelab run --headless --script scripts/tilemap_editor_demo.mlabscript \
+lcom-ng run --headless --script scripts/tilemap_editor_demo.mlabscript \
   --dump-frame build/tilemap-editor.ppm --max-ticks 700 -- \
   build/examples/tilemap_editor build/tilemap_demo.mlmap
 ```
@@ -198,7 +198,7 @@ delivery; the completed image must also match its advertised CRC32.
   then exit automatically.
 
 ```sh
-machinelab run-pair build/examples/serial_transfer send \
+lcom-ng run-pair build/examples/serial_transfer send \
   --right build/examples/serial_transfer receive
 ```
 
@@ -206,7 +206,7 @@ Add the sender's local `fault` argument to suppress one block on its first
 attempt. The timeout retransmits it and the final CRC32 still matches:
 
 ```sh
-machinelab run-pair --headless --max-ticks 1400 \
+lcom-ng run-pair --headless --max-ticks 1400 \
   build/examples/serial_transfer send fault \
   --right build/examples/serial_transfer receive
 ```
@@ -234,12 +234,12 @@ mouse interaction and generated tones turn it into a small desktop habitat.
   `S` sound; `R` reset; `Esc`.
 
 ```sh
-machinelab run --rtc 2026-07-30T18:30:00 -- \
+lcom-ng run --rtc 2026-07-30T18:30:00 -- \
   build/examples/ambient_aquarium
 ```
 
 ```sh
-machinelab run --headless --rtc 2026-07-30T08:15:00 \
+lcom-ng run --headless --rtc 2026-07-30T08:15:00 \
   --script scripts/ambient_aquarium_demo.mlabscript \
   --audio-wav build/ambient-aquarium.wav \
   --dump-frame build/ambient-aquarium.ppm --max-ticks 520 -- \

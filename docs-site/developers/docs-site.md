@@ -2,15 +2,15 @@
 
 The public website is built with VitePress and deployed to Cloudflare Pages.
 
-Production URL: <https://machine-lab-docs.pages.dev/>
+Production URL: <https://lcom.rgo.pt/>
 
 ## Commands
 
 ```sh
-npm install
-npm run docs:dev
-npm run docs:check
-npm run deploy:docs
+bun install
+bun run docs:dev
+bun run docs:check
+bun run deploy:docs
 ```
 
 `docs:check` builds the site and runs `scripts/check_docs_site.sh`.
@@ -34,14 +34,16 @@ Images and videos are source-controlled under `docs/assets/`. The site build
 copies them into `docs-site/public/assets/`:
 
 ```sh
-npm run docs:assets
+bun run docs:assets
 ```
 
 Do not edit generated files under `docs-site/public/assets/` directly.
 
 ## Cloudflare Pages
 
-The project is `machine-lab-docs`.
+The canonical public domain is `lcom.rgo.pt`. The existing Cloudflare Pages resource
+keeps the internal project ID `machine-lab-docs` so deployments and old URLs continue
+to work. This is an infrastructure identifier, not the public product name.
 
 `wrangler.toml` sets:
 
@@ -55,5 +57,14 @@ Push-to-deploy is configured in `.github/workflows/docs.yml`. It needs:
 - `CLOUDFLARE_ACCOUNT_ID`
 - `CLOUDFLARE_API_TOKEN`
 
-The account ID secret is already set. The API token must be created with Pages
-deployment permission and added as a repository secret.
+Use a token with Pages deployment permission. Keep its value in GitHub secrets.
+
+To connect the public domain, associate `lcom.rgo.pt` with the existing project's
+Custom domains tab, then set its DNS CNAME to `machine-lab-docs.pages.dev`.
+Adding DNS alone does not associate the domain with Pages. See
+[Cloudflare's custom-domain guide](https://developers.cloudflare.com/pages/configuration/custom-domains/).
+
+The VitePress config generates canonical page URLs and a sitemap under `https://lcom.rgo.pt`.
+Both `workflow_dispatch` with `deploy=true` and a main-branch push can deploy the
+verified build. `CLOUDFLARE_PAGES_PROJECT` may override the existing project ID as a
+repository variable if the infrastructure is intentionally moved later.

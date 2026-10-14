@@ -16,7 +16,7 @@ idea underneath: a screen can be represented as rows of pixels in memory, and a
 program can draw by writing bytes at the right offsets.
 
 > [!NOTE]
-> Machine Lab does not ask you to write a GPU driver. It gives you a VBE-shaped
+> lcom-ng does not ask you to write a GPU driver. It gives you a VBE-shaped
 > interface so you can practice mode setup, mapping, pitch calculation, clipping,
 > and pixel writes in portable C.
 
@@ -86,8 +86,8 @@ the pitch reported by mode information.
 ## Check
 
 ```sh
-machinelab test graphics
-machinelab run --headless --dump-frame build/rectangle.ppm -- build/examples/vbe_rectangle
+lcom-ng test graphics
+lcom-ng run --headless --dump-frame build/rectangle.ppm -- build/examples/vbe_rectangle
 ```
 
 ## External Reading
