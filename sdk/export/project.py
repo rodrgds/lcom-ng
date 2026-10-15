@@ -5,6 +5,7 @@ import importlib.util
 import json
 from pathlib import Path
 import re
+import shlex
 import shutil
 import config as project_config
 
@@ -192,7 +193,9 @@ def write_native_project(args, output, target_prefix=""):
                 lines.append(f'target_include_directories({key} PRIVATE "{relocated(flags[i])}")')
             else: opts.append(flags[i])
             i += 1
-        lines.append(f'target_compile_options({key} PRIVATE ' + ' '.join(cmake_quote(v) for v in opts) + ')')
+        # CMake de-duplicates individual options, breaking repeated split flags
+        # such as "-D FIRST -D SECOND". Parse the authored sequence as one group.
+        lines.append(f'target_compile_options({key} PRIVATE ' + cmake_quote('SHELL:' + shlex.join(opts)) + ')')
     for key, members in plan.groups.items():
         lines.append(f'add_library({target(key)} STATIC ' + ' '.join(f'$<TARGET_OBJECTS:{target(m)}>' for m in members) + ')')
     # The original Makefile links these objects directly. Wrapping them in an

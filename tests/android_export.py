@@ -73,13 +73,15 @@ def main():
         assert (protected / 'keep.txt').read_text() == 'keep me'
         # A creator profile supplies identity and controls, while CLI values win.
         (project / 'icon.png').write_bytes(icon.read_bytes())
-        (project / 'lcom.json').write_text(json.dumps({'name':'Configured title 🎮','icon':'icon.png','mobile':{'orientation':'portrait','fullscreen':True,'controls':{'keyboard':False,'mouseButtons':False,'quickKeys':[],'joystick':{'mode':'wasd','side':'left'},'look':{'side':'right'},'layout':'overlay'},'theme':{'font':'mono','accent':'#ff8844'}},'build':{'assets':[]}}))
+        (project / 'lcom.json').write_text(json.dumps({'name':'Configured title 🎮','icon':'icon.png','preview':'icon.png','description':'A native game with portable artwork.','mobile':{'orientation':'portrait','fullscreen':True,'controls':{'keyboard':False,'mouseButtons':False,'quickKeys':[],'joystick':{'mode':'wasd','side':'left'},'look':{'side':'right'},'layout':'overlay'},'theme':{'font':'mono','accent':'#ff8844'}},'build':{'assets':[]}}))
         configured=work / 'configured Android'
         run([cli,'export','android',project,'--project-only','--output',configured,'--name','CLI title 🎮','--orientation','landscape'])
         assert json.loads((configured/'lcom-android.json').read_text())['name']=='CLI title 🎮'
         assert ET.parse(configured/'app/src/main/AndroidManifest.xml').find('application/activity').get('{http://schemas.android.com/apk/res/android}screenOrientation')=='sensorLandscape'
         resolved=json.loads((configured/'project.json').read_text())
         assert (configured/resolved['icon']).read_bytes()==icon.read_bytes()
+        assert resolved['description']=='A native game with portable artwork.'
+        assert (configured/resolved['preview']).read_bytes()==icon.read_bytes()
         assert not (configured/'game-assets/assets').exists()
         assert resolved['mobile']['controls']['keyboard'] is False and resolved['mobile']['theme']['font']=='mono'
         run(['cmake','-S',configured/'native','-B',work/'configured-build','-G','Ninja','-DCMAKE_BUILD_TYPE=Release'])
@@ -136,8 +138,8 @@ def main():
         (scoped / 'constants.c').write_text('#include "constants.h"\nconst int rows[3]={100,200,300};\n')
         with (scoped / 'one.c').open('a') as source:
             source.write('#include "constants.h"\nint row_value(void) { return rows[1]; }\n')
-        (scoped / 'main.c').write_text('#include <stdio.h>\nint one(void); int two(void); int row_value(void);\nint main(void) { int row=row_value(); printf("student row=%d\\n",row); return one()+two()==3 && row==200 ? 0 : 9; }\n')
-        (scoped / 'Makefile').write_text('PROG=scope\nSRCS=main.c one.c two.c constants.c\none.o: one.c\none.o: CFLAGS += -Ione\ntwo.o: two.c\ntwo.o: CFLAGS += -Itwo\n')
+        (scoped / 'main.c').write_text('#include <stdio.h>\n#ifndef FIRST_OPTION\n#error missing first split define\n#endif\n#ifndef SECOND_OPTION\n#error missing second split define\n#endif\nint one(void); int two(void); int row_value(void);\nint main(void) { int row=row_value(); printf("student row=%d\\n",row); return one()+two()==3 && row==200 && FIRST_OPTION+SECOND_OPTION==42 ? 0 : 9; }\n')
+        (scoped / 'Makefile').write_text('PROG=scope\nSRCS=main.c one.c two.c constants.c\nCFLAGS += -D FIRST_OPTION=19 -D SECOND_OPTION=23\none.o: one.c\none.o: CFLAGS += -Ione\ntwo.o: two.c\ntwo.o: CFLAGS += -Itwo\n')
         scoped_export = work / 'scoped export'
         run([cli,'export','android',scoped,'--project-only','--output',scoped_export])
         shutil.rmtree(scoped)

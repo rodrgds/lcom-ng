@@ -150,6 +150,8 @@ def build(args):
         (assets / 'lcom-assets.txt').write_text('\n'.join(names) + ('\n' if names else ''))
         (assets / 'lcom-assets-version.txt').write_text(version.hexdigest())
         (work / 'gradlew').chmod(0o755)
+        if settings['preview']:
+            shutil.copy2(settings['preview'], work / 'preview.png')
         (work / 'project.json').write_text(json.dumps(source_project.project_config.public(settings), indent=2) + '\n')
         metadata = {'format': 1, 'runtime': 'native-sdl3', 'applicationId': app_id,
                     'abis': args.abi or ['arm64-v8a'], **info, 'apk': None, 'orientation': args.orientation,
