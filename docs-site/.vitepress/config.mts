@@ -176,7 +176,7 @@ export default defineConfig({
     sidebar: {
       "/labs/": labSidebar,
       "/students/": [
-        { text: "Students", items: [{ text: "Download and install", link: "/students/install" }, { text: "Existing Minix project", link: "/students/compatibility" }, { text: "Native labs", link: "/students/" }, { text: "Browser export", link: "/students/browser" }, { text: "macOS details", link: "/students/macos" }] },
+        { text: "Students", items: [{ text: "Download and install", link: "/students/install" }, { text: "Existing Minix project", link: "/students/compatibility" }, { text: "Native labs", link: "/students/" }, { text: "Browser export", link: "/students/browser" }, { text: "Android export", link: "/students/android" }, { text: "Project configuration", link: "/students/project-config" }, { text: "macOS details", link: "/students/macos" }] },
       ],
       "/instructors/": [
         {
@@ -186,6 +186,7 @@ export default defineConfig({
             { text: "Adoption", link: "/instructors/adoption" },
             { text: "Syllabus", link: "/instructors/syllabus" },
             { text: "Project Rubric", link: "/instructors/rubric" },
+            { text: "Game collections", link: "/instructors/game-collections" },
           ],
         },
       ],

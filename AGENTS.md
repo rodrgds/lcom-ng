@@ -36,6 +36,35 @@ through `devenv shell -- ...`.
 - Browser exports: read `docs-site/students/browser.md`. Keep the web SDK source
   payload relocatable through `scripts/package_student.py`; browser regressions
   run through `lcom-ng-web-test`, including real multi-touch keyboard input.
+- Optional project identity and mobile controls: `lcom.json`, loaded by
+  `sdk/export/config.py` for both exporters and desktop bundles. CLI options
+  override file values. Read `docs-site/students/project-config.md`; keep
+  `sdk/export/lcom.schema.json` aligned with validation. Native control glyphs
+  in `runtime/embedded/ControlFont.hpp` regenerate with the example font tables. Mobile settings do not
+  change the normal desktop runtime. Example profiles live beside their source
+  folders, including wrapper folders for the flat C examples.
+- Game collections: `lcom.collection.json` lists project folders relative to its
+  directory. `sdk/collection/` owns validation and native Android/responsive web
+  launchers; `collections/arcade/` is the example manifest. Per-game settings stay
+  in each game's `lcom.json`. Pinned student sources under `examples/community/`
+  retain `UPSTREAM.json` hashes and separately recorded source-defect patches.
+  Keep Android game libraries in the isolated `:game` process, with fresh globals
+  on each launch and private saved files preserved. Collection exporters ship in
+  the installed SDK via `scripts/package_student.py`.
+- Embedded app exports: `runtime/embedded/` owns the in-process C SDK; browser
+  and SDL hosts supply time, event pumping, graphics and audio. Keep device logic
+  in `Machine`. Android export lives in `sdk/android/`, shared source discovery
+  in `sdk/export/`, and installed runtime sources in `sdk/runtime/`. Read
+  `docs/embedded-runtime.md` when changing hosts and `docs-site/students/android.md`
+  when changing packaging; verify with `python3 tests/android_export.py`
+  inside Devenv, adding `--build-apk` when Android tools are available.
+- Direct touch presets require verified guest cursor initialization, unit deltas
+  and clamp bounds. Read `docs-site/students/project-config.md#direct-touch` before
+  enabling one. Keep packet scheduling and cursor tracking shared in
+  `runtime/embedded/Pointer.hpp`; preserve original game sources.
+- Native exports link selected student source objects directly into the app.
+  Keep data-only units in that link, including when legacy headers contain
+  tentative globals. An intermediate archive can silently drop initialized tables.
 - Minix/LCF compatibility SDK: `sdk/compat/include/` and `sdk/compat/src/`,
   linked through the separate `lcom_minix` library. Keep its legacy declarations
   separate from the native SDK. For legacy project work, read
@@ -55,7 +84,8 @@ through `devenv shell -- ...`.
   baked type tables in `examples/example_font.h` keep apps self-contained;
   regenerate with `scripts/generate_example_font.py` (Pillow and DejaVu fonts).
   Help overlays must consume editing input while maintaining button/modifier
-  releases. Command is guest input, Right Ctrl is host mouse release. Keep
+  releases. Command is guest input. Right Option on macOS and Right Ctrl release the mouse.
+  Browser input uses no Pointer Lock, so Escape remains game input. Keep
   shortcuts, hit targets, authored replays and screenshots aligned. See
   `docs/showcase-ui.md` before changing shared UI or help/input behavior.
 - Example galleries: `scripts/showcase-gallery.json` owns the real replay states,

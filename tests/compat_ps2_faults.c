@@ -18,7 +18,7 @@ int main(void) {
     CHECK(byte == ((status & 0x20) ? 9 : 0x30)); accepted++;
   }
   CHECK(dropped == 3 && accepted == 2);
-  uint32_t status; CHECK(sys_inb(0x64, &status) == OK && status == 0);
+  uint32_t status; CHECK(sys_inb(0x64, &status) == OK && status == 0x10);
   CHECK(sys_irqrmpolicy(&keyboard) == OK && sys_irqrmpolicy(&mouse) == OK);
   puts("PS/2 faulty bytes discarded, healthy keyboard and mouse bytes accepted");
   return lcf_cleanup();

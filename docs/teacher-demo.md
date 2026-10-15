@@ -15,7 +15,8 @@ Keep this shell open for every command below. `lcom` is the supported compatibil
 command for lcom-ng. Student code uses the C device API, not SDL directly.
 
 In interactive windows, `Esc` exits, `F3` toggles the runtime debug overlay and
-`F11` toggles fullscreen. Right Ctrl releases the captured mouse; `F3` also releases it by opening the
+`F11` toggles fullscreen. Right Option on Mac, or Right Ctrl, releases the captured
+mouse. `F3` also releases it by opening the
 debug overlay. Command remains available for app shortcuts on macOS. You may
 need `Fn` for function keys on a laptop.
 

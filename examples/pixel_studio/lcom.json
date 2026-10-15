@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "name": "Pixel Studio",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "joystick": false,
+      "quickKeys": [
+        "ESC",
+        "S",
+        "Z"
+      ],
+      "keyboard": true,
+      "mouseButtons": true
+    },
+    "theme": {
+      "accent": "#f5b865",
+      "font": "sans"
+    }
+  },
+  "build": {
+    "sources": [
+      "../pixel_studio.c"
+    ]
+  }
+}

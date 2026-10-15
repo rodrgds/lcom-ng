@@ -1,5 +1,6 @@
 /* Exercise the unchanged Minix API against the real runtime connection. */
 #include <lcom/lcf.h>
+#include <malloc.h>
 #include <minix/syslib.h>
 #include <minix/vm.h>
 #include <machine/int86.h>
@@ -58,7 +59,7 @@ int main(int argc, char **argv) {
   CHECK(is_ipc_asynch(16) && !is_ipc_asynch(1));
   CHECK(IPC_STATUS_FLAGS_TEST(0x10004, IPC_FLG_MSG_FROM_KERNEL));
   unsigned long legacy_port_value = ULONG_MAX;
-  CHECK(sys_inb(0x64, &legacy_port_value) == OK && legacy_port_value == 0);
+  CHECK(sys_inb(0x64, &legacy_port_value) == OK && legacy_port_value == 0x10);
   CHECK(sys_outb(0x70, 256) == EINVAL);
   CHECK(sys_privctl(SELF, 999, NULL) == ENOSYS);
   /* Numeric operands come from the FEUP Minix 3.4 headers, not shim macros. */

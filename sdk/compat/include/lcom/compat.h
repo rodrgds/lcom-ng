@@ -4,6 +4,7 @@
 #include <lcom/lcom.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <lcom/paths.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
@@ -83,6 +84,8 @@ size_t strftime(char *buffer, size_t size, const char *format, const struct tm *
 
 typedef uint8_t u8_t;
 typedef uint16_t u16_t;
+/* Exposed by the Minix system headers used in older lab sources. */
+typedef uint16_t __uint16_t;
 typedef uint32_t u32_t;
 typedef uint64_t u64_t;
 typedef int8_t i8_t;
@@ -199,16 +202,12 @@ int mouse_print_packet(struct packet *packet);
 struct mouse_ev *mouse_detect_event(struct packet *packet);
 unsigned int lcom_compat_sleep(unsigned int seconds);
 int lcom_compat_usleep(unsigned int micros);
-FILE *lcom_compat_fopen(const char *path, const char *mode);
-FILE *lcom_compat_freopen(const char *path, const char *mode, FILE *stream);
 #ifndef LCOM_COMPAT_IMPLEMENTATION
 /* Minix's 32-bit unsigned long becomes 64-bit on current host machines.
  * Preserve the original value semantics without leaving stale upper bytes. */
 #ifndef __cplusplus
 #define sys_inb(port, value) _Generic((value), unsigned long *: lcom_compat_sys_inb_ulong, default: sys_inb)((port), (value))
 #endif
-#define fopen lcom_compat_fopen
-#define freopen lcom_compat_freopen
 #define sleep lcom_compat_sleep
 #define usleep lcom_compat_usleep
 #endif

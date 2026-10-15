@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark">
   <title>lcom-ng game</title>
+  <link rel="manifest" href="./manifest.webmanifest">
   <link rel="stylesheet" href="./player.css">
 </head>
 <body>
@@ -12,14 +13,16 @@
     <canvas id="game" width="800" height="600" tabindex="0" aria-label="Game screen"></canvas>
     <p id="status" role="status" class="visually-hidden">Loading game…</p>
     <div id="error" hidden role="alert"><p id="error-message"></p><button id="reload">Reload</button></div>
+    <button type="button" id="fullscreen" aria-label="Enter fullscreen" title="Fullscreen" hidden></button>
   </main>
+  <p id="rotation-hint" role="status" hidden></p>
   <button type="button" id="controls-toggle" aria-expanded="true" aria-controls="touch-controls" hidden>Hide controls</button>
   <section id="touch-controls" aria-label="Touch controls" hidden>
     <div class="control-bar">
-      <button type="button" data-mouse="1" aria-pressed="false">Left click</button>
-      <button type="button" data-mouse="2" aria-pressed="false">Right click</button>
-      <button type="button" id="joystick-toggle" aria-expanded="false" aria-controls="joystick-controls">Joystick</button>
-      <button type="button" id="keyboard-toggle" aria-expanded="false" aria-controls="keyboard">Keyboard</button>
+      <button type="button" data-mouse="1" aria-label="Left click" title="Left click" data-icon="mouse-left" aria-pressed="false">Left click</button>
+      <button type="button" data-mouse="2" aria-label="Right click" title="Right click" data-icon="mouse-right" aria-pressed="false">Right click</button>
+      <button type="button" aria-label="Joystick" title="Joystick" data-icon="stick" id="joystick-toggle" aria-expanded="false" aria-controls="joystick-controls">Joystick</button>
+      <button type="button" aria-label="Keyboard" title="Keyboard" data-icon="keyboard" id="keyboard-toggle" aria-expanded="false" aria-controls="keyboard">Keyboard</button>
     </div>
     <div class="compact-controls">
       <div id="joystick-controls" hidden>
@@ -30,6 +33,7 @@
         <label class="visually-hidden" for="joystick-mapping">Joystick mode</label>
         <select id="joystick-mapping"><option value="mouse">Mouse</option><option value="arrows">Arrow keys</option><option value="wasd">WASD</option><option value="mouse-arrows">Mouse + arrows</option><option value="mouse-wasd">Mouse + WASD</option></select>
       </div>
+      <div id="dpad" role="group" aria-label="Directional pad" hidden></div>
       <div class="quick-controls"><p id="touch-hint">Tap to click. Drag to hold left click.</p><div id="quick-keys"></div></div>
     </div>
     <section id="keyboard" aria-label="On-screen keyboard" hidden><div id="keys"></div></section>

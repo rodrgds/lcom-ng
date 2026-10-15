@@ -84,8 +84,8 @@ In the window:
 3. Press F11 if fullscreen helps the recording.
 4. Press Escape to exit.
 
-Right Ctrl releases the captured mouse. On keyboards without Right Ctrl, use
-`F3` to open the debug overlay and release the pointer. Command remains available
+Right Option on Mac, or Right Ctrl, releases the captured mouse.
+`F3` also opens the debug overlay and releases the pointer. Command remains available
 for app shortcuts on macOS.
 
 ## 4. Show a Complete Existing Project

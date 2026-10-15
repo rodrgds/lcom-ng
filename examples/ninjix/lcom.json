@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "name": "Ninjix",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "drag",
+      "layout": "overlay"
+    },
+    "theme": {
+      "accent": "#f8cb59",
+      "font": "sans"
+    }
+  }
+}

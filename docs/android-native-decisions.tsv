@@ -1,0 +1,7 @@
+ts	phase	decision	why	evidence	result
+2026-10-15T13:14:35.687543+00:00	frame	Embed native game and device core in one process	Reuse device behavior and avoid desktop fork/exec transport on Android	runtime/core/RuntimeServer.cpp; runtime/web/BrowserClient.cpp	SELECTED
+2026-10-15T13:31:46.245658+00:00	shared	Extract platform-neutral embedded SDK	Reuse device/timing contracts in browser and native apps	runtime/embedded/Host.hpp; tests/embedded_tests.cpp	VERIFIED
+2026-10-15T13:31:46.245743+00:00	native	Use SDL app host with direct BGR framebuffer uploads	Avoid a browser and avoid per-pixel conversion for 24/32-bit frames	runtime/embedded/SdlHost.cpp; tests/embedded_sdl_tests.cpp	VERIFIED
+2026-10-15T13:31:46.245745+00:00	export	Use standard SDL activity, NDK/CMake and Gradle	Keep Android packaging conventional and source exports relocatable	tests/android_export.py; sdk/android/template	VERIFIED
+2026-10-15T13:31:46.245746+00:00	device	Local emulator cannot start	Emulator rejects host free disk space under 2 GB; no physical device connected	build/android-qa/emulator.log; .github/workflows/android.yml	NOT VERIFIED
+2026-10-15T13:47:38.892165+00:00	final	Cross-surface verification and native APK	Prove desktop/browser compatibility and inspect the actual package	build/android-qa/final-verify.log; dist/flappy-android/game.apk; build/android-qa/final-real-sdl.log	VERIFIED

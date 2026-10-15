@@ -256,3 +256,23 @@ devenv shell -- python3 scripts/capture_gallery.py
 
 Use `--app pixel-studio` for one app or `--list` for all available states.
 `--check` reports changed sources or images that need regeneration.
+
+## Project profiles
+
+Optional `lcom.json` files in each example folder configure exported names and
+mobile controls for web and Android. For single-file examples, the profile's
+`build.sources` selects the sibling C source, preserving existing desktop builds.
+For example, run `lcom-ng web examples/word_processor` or
+`lcom-ng export android examples/breakout_demo`.
+
+See [the configuration guide](../docs-site/students/project-config.md). The
+Sushi Slash folder contains a preset to copy into the separate original Minix
+project; it does not vendor the game's source. Paired UART examples still need
+paired desktop runtimes for peer communication.
+
+## Student game collection
+
+[`community/`](./community/) contains pinned LCOM student game projects,
+original artwork and per-game mobile profiles. [`collections/arcade`](../collections/arcade/)
+combines their folders into one native Android APK or a responsive web library.
+Each imported project's provenance and license status are recorded separately.

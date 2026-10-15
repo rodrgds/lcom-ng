@@ -14,6 +14,7 @@ option list; this guide explains when to use each command.
 | `lcom-ng setup` | generate a student workspace |
 | `lcom-ng compat build` | build unchanged Minix/LCF project sources |
 | `lcom-ng export web` | rebuild sources and assets for browser play |
+| `lcom-ng export android` | rebuild sources and assets into a native SDL3 APK |
 | `lcom-ng web` | build and open a game in a browser |
 | `lcom-ng test` | compile and execute one predefined student lab test |
 | `lcom-ng lab` | list labs or inspect requested functions |
@@ -56,12 +57,14 @@ lcom-ng run --headless --audio-wav build/audio.wav -- build/examples/audio_tone
 | F9 | start replay recording |
 | F10 | stop recording and choose a save path |
 | F11 | toggle fullscreen |
-| Right Ctrl | release the captured mouse |
+| Right Option (macOS), Right Ctrl | release the captured mouse |
 | Command (macOS) | delivered to the app for desktop shortcuts |
 
-Function-key runtime controls and Right Ctrl are intercepted by the host.
+Function-key runtime controls, Right Ctrl and macOS Right Option are intercepted
+by the host.
 Command reaches the app as PS/2 `LGUI`/`RGUI`, including in recordings.
-Use `F3` to release the mouse on keyboards without Right Ctrl.
+Right Option releases the mouse on Mac keyboards without opening an overlay.
+`F3` also releases it by opening debug. Right Alt remains app input on other hosts.
 
 ## Replay Scripts
 

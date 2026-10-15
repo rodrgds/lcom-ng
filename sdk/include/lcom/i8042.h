@@ -13,6 +13,7 @@
 
 #define KBC_ST_OBF BIT(0)
 #define KBC_ST_IBF BIT(1)
+#define KBC_ST_NOT_INHIBITED BIT(4)
 #define KBC_ST_AUX BIT(5)
 #define KBC_ST_TIMEOUT BIT(6)
 #define KBC_ST_PARITY BIT(7)

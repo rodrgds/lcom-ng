@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "name": "Music Maker",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "joystick": false,
+      "quickKeys": [
+        "SPACE",
+        "ESC"
+      ],
+      "keyboard": true,
+      "mouseButtons": true
+    },
+    "theme": {
+      "accent": "#b8a1ff",
+      "font": "sans"
+    }
+  },
+  "build": {
+    "sources": [
+      "../music_maker.c"
+    ]
+  }
+}

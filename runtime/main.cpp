@@ -33,15 +33,18 @@ using lcom::cli::studentLabSpec;
 using lcom::cli::studentLabSpecs;
 using lcom::cli::writeTextFile;
 
-static void configureWebOptions(CLI::App *command) {
+static void configureSourceExportOptions(CLI::App *command) {
   command->add_option("project", "Project directory, default: .");
-  command->add_option("--output", "Browser export directory");
+  command->add_option("--output", "Export directory");
   command->add_option("--source", "Native C source, relative to project; repeatable");
   command->add_option("--include", "Include directory relative to project; repeatable");
   command->add_option("--library", "Minix archive sources as name=file.c,other.c; repeatable");
   command->add_option("--asset", "File/directory to package relative to asset root; repeatable");
   command->add_option("--asset-root", "Minix asset root relative to project");
-  command->add_option("--name", "Game title");
+  command->add_option("--config", "Optional lcom.json path");
+  command->add_option("--icon", "Square PNG launcher artwork");
+  command->add_option("--orientation", "Mobile orientation: auto, landscape, or portrait");
+  command->add_option("--name", "Game title, overriding lcom.json");
   command->add_option("--arg", "Game argument; repeatable");
 }
 
@@ -136,7 +139,9 @@ static void configureCliApp(CLI::App &app) {
   auto *bundle = app.add_subcommand("bundle", "Create a runnable lcom-ng app bundle");
   bundle->add_option("project-dir", "Project directory")->required();
   bundle->add_option("--program", "Student binary to bundle")->required();
-  bundle->add_option("--name", "Bundle/app name");
+  bundle->add_option("--name", "Bundle/app name, overriding lcom.json");
+  bundle->add_option("--config", "Optional lcom.json path");
+  bundle->add_option("--icon", "Square PNG project icon");
   bundle->add_option("--output", "Output bundle executable or directory");
   bundle->add_option("--format", "Bundle format: single or dir");
   bundle->add_option("--script", "Script to include and run with the app");
@@ -150,10 +155,15 @@ static void configureCliApp(CLI::App &app) {
 
   auto *export_command = app.add_subcommand("export", "Export a game from C sources");
   auto *web = export_command->add_subcommand("web", "Build a standalone browser game with Emscripten");
-  configureWebOptions(web);
+  configureSourceExportOptions(web);
+  auto *android = export_command->add_subcommand("android", "Build a native SDL3 Android game and signed debug APK");
+  configureSourceExportOptions(android);
+  android->add_option("--app-id", "Android application ID");
+  android->add_option("--abi", "Native ABI: arm64-v8a (default), x86_64, armeabi-v7a; repeatable");
+  android->add_flag("--project-only", "Generate an Android project without building its APK");
 
   auto *browser = app.add_subcommand("web", "Build a game and open it in a browser");
-  configureWebOptions(browser);
+  configureSourceExportOptions(browser);
   browser->add_option("--port", "HTTP port, default: choose a free port");
   browser->add_option("--host", "Listen address, default: 127.0.0.1");
   browser->add_flag("--no-open", "Serve without opening a browser");
@@ -186,7 +196,11 @@ static void subcommandUsage(const std::string &name) {
   }
 }
 
+static int runSdkTool(std::vector<std::string> args);
+static std::filesystem::path studentResourceRoot(const char *argv0);
+
 struct BundleOptions {
+  std::filesystem::path config, icon;
   std::filesystem::path project_dir;
   std::filesystem::path program;
   std::filesystem::path output_path;
@@ -264,6 +278,7 @@ static int cliDocs() {
   std::cout << "lcom-ng bundle . --program build/examples/flappy_bird --name flappy-bird\n";
   std::cout << "lcom-ng web path/to/my-game\n";
   std::cout << "lcom-ng export web examples/flappy --output dist/flappy --name 'LCOM Bird'\n";
+  std::cout << "lcom-ng export android examples/flappy --output dist/flappy-android\n";
   std::cout << "lcom-ng completion zsh > _machinelab\n";
   std::cout << "```\n";
   std::cout << "\n`--timeout` limits host seconds for run, replay, and run-pair, returning 124. "
@@ -283,7 +298,7 @@ static int completionScript(const std::string &shell) {
       "--scale --integer-scale --trace --dump-frame --frame-dir --video --video-fps "
       "--rtc --dump-presented --max-ticks --timeout";
   const char *bundle_opts =
-      "--program --name --output --format --script --display --audio --headless --realtime "
+      "--program --name --config --icon --output --format --script --display --audio --headless --realtime "
       "--no-realtime --dir --single-file";
   const char *setup_opts = "--force";
   const char *test_opts = "--project --keep-build";
@@ -304,8 +319,8 @@ static int completionScript(const std::string &shell) {
         << "    setup) COMPREPLY=( $(compgen -W \"" << setup_opts << "\" -- \"$cur\") ) ;;\n"
         << "    test) COMPREPLY=( $(compgen -W \"" << lab_names << " " << test_opts << "\" -- \"$cur\") ) ;;\n"
         << "    bundle) COMPREPLY=( $(compgen -W \"" << bundle_opts << "\" -- \"$cur\") ) ;;\n"
-        << "    web) COMPREPLY=( $(compgen -W \"--output --source --include --library --asset --asset-root --name --arg --port --host --no-open\" -- \"$cur\") ) ;;\n"
-        << "    export) COMPREPLY=( $(compgen -W \"web --output --source --include --library --asset --asset-root --name --arg\" -- \"$cur\") ) ;;\n"
+        << "    web) COMPREPLY=( $(compgen -W \"--output --source --include --library --asset --asset-root --name --arg --config --icon --orientation --port --host --no-open\" -- \"$cur\") ) ;;\n"
+        << "    export) COMPREPLY=( $(compgen -W \"web android --output --source --include --library --asset --asset-root --name --arg --config --orientation --icon --app-id --abi --project-only\" -- \"$cur\") ) ;;\n"
         << "    compat) COMPREPLY=( $(compgen -W \"build --output --cc --library --include --asset-root --debug --sanitize\" -- \"$cur\") ) ;;\n"
         << "    lab) COMPREPLY=( $(compgen -W \"list show " << lab_names << "\" -- \"$cur\") ) ;;\n"
         << "    completion) COMPREPLY=( $(compgen -W \"bash zsh fish\" -- \"$cur\") ) ;;\n"
@@ -326,11 +341,11 @@ static int completionScript(const std::string &shell) {
         << "    run-pair) _arguments '--headless' '--display[backend]:' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--left-script[file]:file:_files' '--right-script[file]:file:_files' '--left-dump-frame[file]:file:_files' '--right-dump-frame[file]:file:_files' '--dump-presented' '--max-ticks[n]:' '--timeout[host seconds]:' '--right' '*::program:_files' ;;\n"
         << "    setup) _arguments '--force' '1:project-dir:_files -/' ;;\n"
         << "    test) _arguments '--project[dir]:dir:_files -/' '--keep-build' '1:lab:(rtc timer kbd mouse graphics audio uart lab1 lab2 lab3 lab4 lab5 lab6 lab7)' ;;\n"
-        << "    bundle) _arguments '--program[student binary]:file:_files' '--name[name]:' '--output[path]:file:_files' '--format[format]:(single dir)' '--script[script]:file:_files' '--display[backend]:' '--audio[backend]:' '--headless' '--realtime' '--no-realtime' '--dir' '--single-file' ;;\n"
+        << "    bundle) _arguments '--config[project configuration]:file:_files' '--icon[project icon]:file:_files' '--program[student binary]:file:_files' '--name[name]:' '--output[path]:file:_files' '--format[format]:(single dir)' '--script[script]:file:_files' '--display[backend]:' '--audio[backend]:' '--headless' '--realtime' '--no-realtime' '--dir' '--single-file' ;;\n"
         << "    lab) _arguments '1:action:(list show)' '2:lab:(rtc timer kbd mouse graphics audio uart lab1 lab2 lab3 lab4 lab5 lab6 lab7)' ;;\n"
         << "    completion) _arguments '1:shell:(bash zsh fish)' ;;\n"
-        << "    web) _arguments '1:project directory:_files -/' '--port[HTTP port]:' '--host[listen address]:' '--no-open' '--output[directory]:dir:_files -/' '*--source[C source]:file:_files' '*--include[include directory]:dir:_files -/' '*--library[archive sources]:' '*--asset[asset]:file:_files' '--asset-root[asset directory]:dir:_files -/' '--name[game title]:' '*--arg[game argument]:' ;;\n"
-        << "    export) _arguments '1:target:(web)' '2:project-dir:_files -/' '--output[directory]:dir:_files -/' '*--source[C source]:file:_files' '*--include[include directory]:dir:_files -/' '*--library[archive sources]:' '*--asset[asset]:file:_files' '--asset-root[asset directory]:dir:_files -/' '--name[game title]:' '*--arg[game argument]:' ;;\n"
+        << "    web) _arguments '1:project directory:_files -/' '--port[HTTP port]:' '--host[listen address]:' '--no-open' '--output[directory]:dir:_files -/' '*--source[C source]:file:_files' '*--include[include directory]:dir:_files -/' '*--library[archive sources]:' '*--asset[asset]:file:_files' '--asset-root[asset directory]:dir:_files -/' '--name[game title]:' '*--arg[game argument]:' '--config[project configuration]:file:_files' '--icon[launcher PNG]:file:_files' '--orientation[mobile orientation]:(auto landscape portrait)' ;;\n"
+        << "    export) _arguments '1:target:(web android)' '2:project-dir:_files -/' '--output[directory]:dir:_files -/' '*--source[C source]:file:_files' '*--include[include directory]:dir:_files -/' '*--library[archive sources]:' '*--asset[asset]:file:_files' '--asset-root[asset directory]:dir:_files -/' '--name[game title]:' '*--arg[game argument]:' '--config[project configuration]:file:_files' '--orientation[screen orientation]:(auto landscape portrait)' '--icon[launcher PNG]:file:_files' '--app-id[Android application ID]:' '*--abi[native ABI]:(arm64-v8a x86_64 armeabi-v7a)' '--project-only[generate project without APK]' ;;\n"
         << "    compat) _arguments '1:action:(build)' '2:project-dir:_files -/' '--output[build dir]:dir:_files -/' '--cc[compiler]:' '--library[archive sources]:' '--include[include dir]:dir:_files -/' '--asset-root[workspace]:dir:_files -/' '--debug[student debug symbols]' '--sanitize[diagnostics]:(address undefined address,undefined)' ;;\n"
         << "  esac\n"
         << "}\n_machinelab \"$@\"\n";
@@ -368,23 +383,30 @@ static int completionScript(const std::string &shell) {
         << "complete -c lcom-ng -n '__fish_seen_subcommand_from bundle' -l output -r\n"
         << "complete -c lcom-ng -n '__fish_seen_subcommand_from bundle' -l format -a 'single dir'\n"
         << "complete -c lcom-ng -n '__fish_seen_subcommand_from completion' -a 'bash zsh fish'\n";
-    std::cout << "complete -c lcom-ng -n '__fish_seen_subcommand_from export' -a 'web'\n"
+    std::cout << "complete -c lcom-ng -n '__fish_seen_subcommand_from export' -a 'web android'\n"
               << "complete -c lcom-ng -n '__fish_seen_subcommand_from web; and not __fish_seen_subcommand_from export' -l port -r\n"
               << "complete -c lcom-ng -n '__fish_seen_subcommand_from web; and not __fish_seen_subcommand_from export' -l host -r\n"
               << "complete -c lcom-ng -n '__fish_seen_subcommand_from web; and not __fish_seen_subcommand_from export' -l no-open\n"
-              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l output -r\n"
-              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l source -r\n"
-              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l include -r\n"
-              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l library -r\n"
-              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l asset -r\n"
-              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l asset-root -r\n"
-              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l name -r\n"
-              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l arg -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web android' -l output -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web android' -l source -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web android' -l include -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web android' -l library -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web android' -l asset -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web android' -l asset-root -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web android' -l name -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web android' -l arg -r\n"
               << "complete -c lcom-ng -n '__fish_seen_subcommand_from compat' -a 'build'\n"
               << "complete -c lcom-ng -n '__fish_seen_subcommand_from build' -l output -r\n"
               << "complete -c lcom-ng -n '__fish_seen_subcommand_from build' -l cc -r\n"
               << "complete -c lcom-ng -n '__fish_seen_subcommand_from build' -l library -r\n"
               << "complete -c lcom-ng -n '__fish_seen_subcommand_from build' -l include -r\n";
+    std::cout << "complete -c lcom-ng -n '__fish_seen_subcommand_from web android bundle' -l config -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from bundle' -l name -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web android' -l orientation -r -a 'auto landscape portrait'\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web android bundle' -l icon -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from android' -l app-id -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from android' -l abi -r -a 'arm64-v8a x86_64 armeabi-v7a'\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from android' -l project-only\n";
     return 0;
   }
   std::cerr << "lcom-ng: unknown completion shell " << shell << "\n";
@@ -711,6 +733,10 @@ static bool parseBundle(int argc, char **argv, int start, BundleOptions &opts) {
     std::string arg = argv[i];
     if (arg == "--program" && i + 1 < argc) {
       opts.program = argv[++i];
+    } else if (arg == "--config" && i + 1 < argc) {
+      opts.config = argv[++i];
+    } else if (arg == "--icon" && i + 1 < argc) {
+      opts.icon = argv[++i];
     } else if (arg == "--name" && i + 1 < argc) {
       opts.name = argv[++i];
     } else if (arg == "--output" && i + 1 < argc) {
@@ -748,6 +774,27 @@ static bool parseBundle(int argc, char **argv, int start, BundleOptions &opts) {
   if (opts.format != "single" && opts.format != "dir") {
     std::cerr << "lcom-ng: bundle --format must be 'single' or 'dir'\n";
     return false;
+  }
+  if (!opts.config.empty() || !opts.icon.empty() || std::filesystem::exists(opts.project_dir / "lcom.json")) {
+    std::string temporary = (std::filesystem::temp_directory_path() / "lcom-identity-XXXXXX").string();
+    std::vector<char> pattern(temporary.begin(),temporary.end()); pattern.push_back(0);
+    int fd = mkstemp(pattern.data());
+    if (fd < 0) { perror("lcom-ng bundle identity"); return false; }
+    close(fd);
+    std::filesystem::path identity = pattern.data();
+    std::vector<std::string> command = {"python3", (studentResourceRoot(argv[0]) / "sdk/export/config.py").string(),
+      opts.project_dir.string(), "--identity-output", identity.string()};
+    if (!opts.config.empty()) { command.push_back("--config"); command.push_back(opts.config.string()); }
+    if (!opts.name.empty()) { command.push_back("--name"); command.push_back(opts.name); }
+    if (!opts.icon.empty()) { command.push_back("--icon"); command.push_back(opts.icon.string()); }
+    int rc = runSdkTool(std::move(command));
+    if (rc == 0) {
+      std::ifstream input(identity, std::ios::binary);
+      std::string icon;
+      std::getline(input, opts.name, '\0'); std::getline(input, icon, '\0'); opts.icon = icon;
+    }
+    std::error_code ec; std::filesystem::remove(identity, ec);
+    if (rc != 0) return false;
   }
   if (opts.name.empty()) opts.name = opts.program.filename().string();
   if (opts.output_path.empty()) {
@@ -916,10 +963,15 @@ static int createBundleDirectory(const BundleOptions &opts,
     out << " -- \"%DIR%app\\" << bundled_program.filename().string() << "\" %*\r\n";
   }
 
+  if (!opts.icon.empty() && !copyIfExists(opts.icon, output / "icon.png", error)) {
+    std::cerr << "lcom-ng: bundle icon copy failed: " << error << "\n";
+    return 1;
+  }
   {
     std::ofstream out(output / "bundle.json");
     out << "{\n"
         << "  \"name\": \"" << jsonEscape(opts.name) << "\",\n"
+        << "  \"icon\": \"" << (opts.icon.empty() ? "" : "icon.png") << "\",\n"
         << "  \"runtime\": \"bin/" << jsonEscape(bundled_runtime.filename().string()) << "\",\n"
         << "  \"program\": \"app/" << jsonEscape(bundled_program.filename().string()) << "\",\n"
         << "  \"display\": \"" << jsonEscape(opts.display) << "\",\n"
@@ -1622,12 +1674,12 @@ static int buildMinixProject(int argc, char **argv) {
   return runSdkTool(std::move(args));
 }
 
-static int exportWeb(int argc, char **argv) {
-  if (argc < 3 || std::string(argv[2]) != "web") {
+static int exportGame(int argc, char **argv) {
+  if (argc < 3 || (std::string(argv[2]) != "web" && std::string(argv[2]) != "android")) {
     subcommandUsage("export");
     return 1;
   }
-  auto script = studentResourceRoot(argv[0]) / "sdk/web/export.py";
+  auto script = studentResourceRoot(argv[0]) / "sdk" / argv[2] / "export.py";
   std::vector<std::string> args = {"python3", script.string()};
   for (int i = 3; i < argc; ++i) args.emplace_back(argv[i]);
   return runSdkTool(std::move(args));
@@ -1658,7 +1710,7 @@ int main(int argc, char **argv) {
     for (int i = 2; i < argc; ++i) args.emplace_back(argv[i]);
     return runSdkTool(std::move(args));
   } else if (cmd == "export") {
-    return exportWeb(argc, argv);
+    return exportGame(argc, argv);
   } else if (cmd == "compat") {
     return buildMinixProject(argc, argv);
   } else if (cmd == "run") {

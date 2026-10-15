@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "name": "Ambient Aquarium",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "joystick": false,
+      "quickKeys": [
+        "ESC",
+        "SPACE"
+      ],
+      "keyboard": false,
+      "mouseButtons": false,
+      "layout": "overlay"
+    },
+    "theme": {
+      "accent": "#74d9df",
+      "font": "sans"
+    }
+  },
+  "build": {
+    "sources": [
+      "../ambient_aquarium.c"
+    ]
+  }
+}

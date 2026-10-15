@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "name": "Breakout",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "joystick": false,
+      "quickKeys": [
+        "SPACE",
+        "ESC"
+      ],
+      "keyboard": false,
+      "mouseButtons": false,
+      "dpad": {
+        "side": "left",
+        "keys": "arrows"
+      },
+      "layout": "overlay",
+      "pointer": "move"
+    },
+    "theme": {
+      "accent": "#7ecbff",
+      "font": "sans"
+    }
+  },
+  "build": {
+    "sources": [
+      "../breakout_demo.c"
+    ]
+  }
+}

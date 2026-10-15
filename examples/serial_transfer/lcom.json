@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "name": "Serial Transfer",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "joystick": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "keyboard": true,
+      "mouseButtons": true
+    },
+    "theme": {
+      "accent": "#9ab8ff",
+      "font": "mono"
+    }
+  },
+  "build": {
+    "sources": [
+      "../serial_transfer.c"
+    ]
+  }
+}

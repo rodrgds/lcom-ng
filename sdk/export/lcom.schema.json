@@ -1,0 +1,602 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "lcom-ng project configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "const": 1
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1
+    },
+    "icon": {
+      "type": "string",
+      "minLength": 1
+    },
+    "mobile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "orientation": {
+          "enum": [
+            "auto",
+            "landscape",
+            "portrait"
+          ]
+        },
+        "fullscreen": {
+          "type": "boolean"
+        },
+        "controls": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "keyboard": {
+              "type": "boolean"
+            },
+            "mouseButtons": {
+              "type": "boolean"
+            },
+            "quickKeys": {
+              "type": "array",
+              "maxItems": 16,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/key"
+              }
+            },
+            "joystick": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "side": {
+                      "enum": [
+                        "left",
+                        "right"
+                      ]
+                    },
+                    "mode": {
+                      "enum": [
+                        "arrows",
+                        "wasd",
+                        "mouse"
+                      ]
+                    },
+                    "axes": {
+                      "enum": [
+                        "both",
+                        "horizontal",
+                        "vertical"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "look": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "side": {
+                      "enum": [
+                        "left",
+                        "right"
+                      ]
+                    },
+                    "sensitivity": {
+                      "type": "number",
+                      "minimum": 0.1,
+                      "maximum": 5
+                    }
+                  }
+                }
+              ]
+            },
+            "dpad": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "side": {
+                      "enum": [
+                        "left",
+                        "right"
+                      ]
+                    },
+                    "keys": {
+                      "enum": [
+                        "arrows",
+                        "wasd"
+                      ]
+                    },
+                    "axes": {
+                      "enum": [
+                        "both",
+                        "horizontal",
+                        "vertical"
+                      ]
+                    }
+                  }
+                }
+              ]
+            },
+            "layout": {
+              "enum": [
+                "panel",
+                "overlay"
+              ]
+            },
+            "pointer": {
+              "enum": [
+                "drag",
+                "move",
+                "direct",
+                "off"
+              ]
+            },
+            "cursor": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Guest cursor initial position and inclusive bounds. Direct mapping requires unit deltas and no independent cursor warps. bounds describes whether an out-of-bounds delta clamps or is rejected per axis.",
+              "properties": {
+                "x": {
+                  "type": "integer",
+                  "minimum": -1,
+                  "maximum": 16384
+                },
+                "y": {
+                  "type": "integer",
+                  "minimum": -1,
+                  "maximum": 16384
+                },
+                "maxX": {
+                  "type": "integer",
+                  "minimum": -1,
+                  "maximum": 16384
+                },
+                "maxY": {
+                  "type": "integer",
+                  "minimum": -1,
+                  "maximum": 16384
+                },
+                "minX": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 16384
+                },
+                "minY": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 16384
+                },
+                "bounds": {
+                  "enum": [
+                    "clamp",
+                    "reject"
+                  ]
+                }
+              }
+            },
+            "touch": {
+              "enum": [
+                "auto",
+                "press",
+                "tap",
+                "tap-hold",
+                "move",
+                "hold-drag"
+              ],
+              "description": "auto follows pointer defaults; press holds during contact; tap clicks on an unmoved release; hold-drag starts a drag after a stationary180ms hold; tap-hold alternates held press and release on taps; move only hovers."
+            },
+            "pads": {
+              "type": "array",
+              "maxItems": 2,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "side": {
+                    "enum": [
+                      "left",
+                      "right"
+                    ]
+                  },
+                  "mode": {
+                    "enum": [
+                      "arrows",
+                      "wasd",
+                      "keypad",
+                      "mouse"
+                    ]
+                  },
+                  "style": {
+                    "enum": [
+                      "dpad",
+                      "stick"
+                    ]
+                  },
+                  "sensitivity": {
+                    "type": "number",
+                    "minimum": 0.1,
+                    "maximum": 5
+                  },
+                  "keys": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "left",
+                      "up",
+                      "right",
+                      "down"
+                    ],
+                    "properties": {
+                      "left": {
+                        "$ref": "#/$defs/key"
+                      },
+                      "up": {
+                        "$ref": "#/$defs/key"
+                      },
+                      "right": {
+                        "$ref": "#/$defs/key"
+                      },
+                      "down": {
+                        "$ref": "#/$defs/key"
+                      }
+                    }
+                  },
+                  "axes": {
+                    "enum": [
+                      "both",
+                      "horizontal",
+                      "vertical"
+                    ]
+                  }
+                },
+                "allOf": [
+                  {
+                    "if": {
+                      "properties": {
+                        "mode": {
+                          "const": "mouse"
+                        }
+                      },
+                      "required": [
+                        "mode"
+                      ]
+                    },
+                    "then": {
+                      "required": [
+                        "style"
+                      ],
+                      "properties": {
+                        "style": {
+                          "const": "stick"
+                        }
+                      },
+                      "not": {
+                        "required": [
+                          "keys"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "actions": {
+              "type": "array",
+              "maxItems": 8,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "label"
+                ],
+                "properties": {
+                  "side": {
+                    "enum": [
+                      "left",
+                      "right"
+                    ]
+                  },
+                  "label": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 16
+                  },
+                  "key": {
+                    "$ref": "#/$defs/key"
+                  },
+                  "mouseButton": {
+                    "enum": [
+                      "left",
+                      "right",
+                      "middle"
+                    ]
+                  },
+                  "position": {
+                    "enum": [
+                      "top-left",
+                      "top-right",
+                      "bottom-left",
+                      "bottom-right"
+                    ]
+                  }
+                },
+                "oneOf": [
+                  {
+                    "required": [
+                      "key"
+                    ],
+                    "not": {
+                      "required": [
+                        "mouseButton"
+                      ]
+                    }
+                  },
+                  {
+                    "required": [
+                      "mouseButton"
+                    ],
+                    "not": {
+                      "required": [
+                        "key"
+                      ]
+                    }
+                  }
+                ],
+                "allOf": [
+                  {
+                    "anyOf": [
+                      {
+                        "required": [
+                          "side"
+                        ]
+                      },
+                      {
+                        "required": [
+                          "position"
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            "repeatKeys": {
+              "type": "array",
+              "maxItems": 16,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/key"
+              },
+              "description": "Guest keys to repeat while held, after350ms then at10Hz. Empty preserves ordinary held-key input."
+            },
+            "toolbar": {
+              "enum": [
+                "auto",
+                "top-left",
+                "top-right",
+                "bottom-left",
+                "bottom-right"
+              ]
+            },
+            "keyboardPosition": {
+              "enum": [
+                "auto",
+                "bottom",
+                "left",
+                "right"
+              ]
+            },
+            "tapDuration": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 250,
+              "description": "Synthetic stationary tap press duration in milliseconds, for games sampling held buttons in a timer. Zero preserves packet-only taps."
+            }
+          }
+        },
+        "theme": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "accent": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "keyboardAccent": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "button": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "text": {
+              "type": "string",
+              "pattern": "^#[0-9a-fA-F]{6}$"
+            },
+            "font": {
+              "enum": [
+                "sans",
+                "mono"
+              ]
+            }
+          }
+        }
+      }
+    },
+    "build": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "include": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "assets": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "arguments": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "libraries": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "assetRoot": {
+          "type": "string",
+          "minLength": 1
+        },
+        "environment": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[A-Za-z_][A-Za-z0-9_]*$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[^\\u0000]*$"
+          }
+        },
+        "pathAliases": {
+          "type": "object",
+          "maxProperties": 64,
+          "description": "Map legacy absolute directory roots to relative locations inside the exported asset root. Longest matching root wins.",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^/(?!/+$)(?!\\.\\.(?:/|$))(?!.*?/\\.\\.(?:/|$))[^\\\\\\u0000-\\u001f]+$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\\\\\u0000-\\u001f]+$"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "key": {
+      "enum": [
+        "0",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "A",
+        "B",
+        "BACKSPACE",
+        "C",
+        "D",
+        "DELETE",
+        "DOWN",
+        "E",
+        "END",
+        "ENTER",
+        "ESC",
+        "F",
+        "F1",
+        "F10",
+        "F11",
+        "F12",
+        "F2",
+        "F3",
+        "F4",
+        "F5",
+        "F6",
+        "F7",
+        "F8",
+        "F9",
+        "G",
+        "H",
+        "HOME",
+        "I",
+        "INSERT",
+        "J",
+        "K",
+        "KP0",
+        "KP1",
+        "KP2",
+        "KP3",
+        "KP4",
+        "KP5",
+        "KP6",
+        "KP7",
+        "KP8",
+        "KP9",
+        "KP_ENTER",
+        "L",
+        "LALT",
+        "LCTRL",
+        "LEFT",
+        "LSHIFT",
+        "M",
+        "N",
+        "O",
+        "P",
+        "PAGEDOWN",
+        "PAGEUP",
+        "Q",
+        "R",
+        "RIGHT",
+        "S",
+        "SPACE",
+        "T",
+        "TAB",
+        "U",
+        "UP",
+        "V",
+        "W",
+        "X",
+        "Y",
+        "Z"
+      ]
+    }
+  }
+}

@@ -4,9 +4,10 @@
 #include <lcom/vbe.h>
 #include <lcom/ac97.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
-int main(void) {
+int main(int argc, char **argv) {
   if (lcom_init()) return 1;
   FILE *file = fopen("assets/message.txt", "r");
   char text[32] = {0};
@@ -34,6 +35,7 @@ int main(void) {
   int16_t *samples;
   if (lcom_ac97_get_buffer(&sound) || lcom_phys_map(sound.pcm_phys, sound.pcm_bytes, (void **)&samples)) return 6;
   for (int i = 0; i < 256; ++i) samples[i] = i % 2 ? -4096 : 4096;
+  if (getenv("LCOM_COLLECTION_TEST")) printf("environment:%s\n", getenv("LCOM_COLLECTION_TEST"));
   puts("ready");
   int timer_reported = 0;
   for (;;) {
@@ -51,7 +53,12 @@ int main(void) {
         lcom_port_write16(AC97_BM_BASE + AC97_PO_PICB, 512);
         lcom_port_write8(AC97_BM_BASE + AC97_PO_CR, AC97_PO_CR_RUN);
       }
-      if (!(status & KBC_ST_AUX) && byte == 1) { lcom_exit(); return 0; }
+      if (!(status & KBC_ST_AUX) && byte == 1) {
+        if (argc > 1 && !strcmp(argv[1], "--keep-open")) {
+          pixels[0] = 255; pixels[1] = 0; pixels[2] = 0;
+          lcom_vbe_present();
+        } else { lcom_exit(); return 0; }
+      }
     }
   }
 }

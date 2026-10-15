@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "name": "UART Peer Sender",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "off",
+      "layout": "overlay"
+    },
+    "theme": {
+      "accent": "#72d6b0",
+      "font": "sans"
+    }
+  },
+  "build": {
+    "sources": [
+      "../uart_peer_sender.c"
+    ]
+  }
+}

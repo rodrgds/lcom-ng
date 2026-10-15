@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "name": "Serial Whiteboard",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "keyboard": true,
+      "mouseButtons": true
+    },
+    "theme": {
+      "accent": "#82c9ff",
+      "font": "sans"
+    }
+  },
+  "build": {
+    "sources": [
+      "../serial_whiteboard.c"
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "version": 1,
+  "name": "Interrupt Scope",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "joystick": false,
+      "quickKeys": [
+        "SPACE",
+        "ESC"
+      ],
+      "keyboard": true,
+      "mouseButtons": false
+    },
+    "theme": {
+      "accent": "#a5e19a",
+      "font": "mono"
+    }
+  },
+  "build": {
+    "sources": [
+      "../interrupt_scope.c"
+    ]
+  }
+}

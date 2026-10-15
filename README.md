@@ -43,6 +43,19 @@ Use `lcom-ng web .` for your own project. To publish static files, use
 for project layouts, hosting and current limits. Earlier release archives do not
 include this command.
 
+### Android apps
+
+Export supported C sources as a native SDL3 APK:
+
+```sh
+devenv shell -- lcom-ng export android examples/flappy --output dist/flappy-android
+adb install -r dist/flappy-android/game.apk
+```
+
+The [Android guide](docs-site/students/android.md) covers build tools, touch
+controls, architecture options and verification limits. Source builds include
+this command; earlier release archives do not.
+
 ### Native lcom-ng project
 
 Start a workspace using the native SDK and course labs:
@@ -102,3 +115,6 @@ The [developer guide](docs/developer-guide.md) covers source builds and reposito
 ## License
 
 Code: [MIT](LICENSE). Course material, docs and media: [CC BY 4.0](course/LICENSE.md).
+
+Project creators can optionally add [`lcom.json`](docs-site/students/project-config.md)
+for app names, icons and mobile control profiles shared by web and Android exports.

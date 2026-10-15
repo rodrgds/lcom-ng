@@ -1,7 +1,7 @@
 # Architecture
 
-lcom-ng has one central boundary: student C code is a normal process, while
-the host runtime owns the virtual devices.
+Desktop lcom-ng runs student C code as a normal process, while the host runtime
+owns the virtual devices.
 
 ```text
 student C process
@@ -76,3 +76,22 @@ program still talks to the same virtual devices.
 ```sh
 devenv shell -- lcom-ng-test
 ```
+
+## Embedded app exports
+
+Browser and native Android exports link student code and the shared device core
+inside one process. `runtime/embedded/Client.cpp` implements the C SDK;
+`runtime/embedded/Host.hpp` separates time, input, rendering, audio and clipboard
+from device behavior. Browser and SDL hosts implement that interface.
+
+Android uses the NDK and SDL3, with a small Java activity for lifecycle and asset
+preparation. The desktop process-isolated path remains available. Embedded games
+share their process with the runtime, so student crashes terminate the app.
+
+Shared source discovery lives in `sdk/export/`; Android packaging lives in
+`sdk/android/`. See [Android export](../students/android) for building and limits,
+and `docs/embedded-runtime.md` for the host execution contract and extension points.
+
+Optional [`lcom.json`](../students/project-config) is resolved by
+`sdk/export/config.py` for web, Android and desktop bundle identity. Exported
+profiles are self-contained; normal desktop runtime input stays unchanged.

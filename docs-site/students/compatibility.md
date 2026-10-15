@@ -16,6 +16,7 @@ original Makefile, so replace `proj` if your project uses another name. Run from
 the project directory so relative asset paths continue to work.
 
 A window opens for graphical programs. Click inside it to capture the mouse.
+Press Right Option on Mac, or Right Ctrl, to release it without opening debug.
 Keyboard, mouse and timers produce the virtual device interrupts your program expects.
 Edit your C code, run `compat build` again, and restart the program.
 

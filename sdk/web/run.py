@@ -35,7 +35,7 @@ def main():
         with ThreadingHTTPServer((args.host, args.port), partial(GameHandler, directory=str(output))) as server:
             host = "127.0.0.1" if args.host == "0.0.0.0" else args.host
             url = f"http://{host}:{server.server_port}/"
-            print(f"\nPlay: {url}\nClick the game to capture the mouse. Right Ctrl releases it.\nPress Ctrl+C here to stop.", flush=True)
+            print(f"\nPlay: {url}\nChoose a game or click the player to begin.\nPress Ctrl+C here to stop.", flush=True)
             if not args.no_open:
                 webbrowser.open(url)
             try:

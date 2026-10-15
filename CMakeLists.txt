@@ -41,6 +41,11 @@ target_include_directories(machinelab_core PUBLIC
 )
 target_compile_options(machinelab_core PRIVATE -Wall -Wextra -Wpedantic)
 
+# App hosts embed the device core instead of launching a separate student process.
+add_library(lcom_embedded STATIC runtime/embedded/Client.cpp sdk/client/src/port_widths.c)
+target_link_libraries(lcom_embedded PUBLIC machinelab_core)
+target_compile_options(lcom_embedded PRIVATE -Wall -Wextra -Wpedantic)
+
 add_library(machinelab_c STATIC sdk/client/src/lcom.c sdk/client/src/port_widths.c)
 set_target_properties(machinelab_c PROPERTIES OUTPUT_NAME machinelab)
 target_include_directories(machinelab_c PUBLIC
@@ -60,7 +65,7 @@ target_include_directories(lcom_minix PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/sdk/include
 )
 target_link_libraries(lcom_minix PUBLIC machinelab_c Threads::Threads)
-target_compile_options(lcom_minix PRIVATE -Wall -Wextra -Wpedantic)
+target_compile_options(lcom_minix PRIVATE -fsigned-char -Wall -Wextra -Wpedantic)
 add_custom_command(TARGET machinelab_c POST_BUILD
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
     $<TARGET_FILE:machinelab_c>
@@ -304,6 +309,14 @@ if(BUILD_TESTING)
     target_compile_definitions(sdl_render_tests PRIVATE MACHINE_LAB_WITH_SDL)
     target_compile_options(sdl_render_tests PRIVATE -Wall -Wextra -Wpedantic)
     target_link_libraries(sdl_render_tests PRIVATE machinelab_core PkgConfig::SDL3 PkgConfig::SDL3_TTF)
+    add_executable(embedded_sdl_tests tests/embedded_sdl_tests.cpp
+      runtime/embedded/SdlHost.cpp runtime/backends/SdlAudioBackend.cpp)
+    target_compile_definitions(embedded_sdl_tests PRIVATE MACHINE_LAB_WITH_SDL)
+    target_link_libraries(embedded_sdl_tests PRIVATE lcom_embedded PkgConfig::SDL3)
+    add_test(NAME embedded_sdl COMMAND embedded_sdl_tests)
+    set_tests_properties(embedded_sdl PROPERTIES TIMEOUT 15
+      ENVIRONMENT "SDL_VIDEODRIVER=dummy;SDL_AUDIODRIVER=dummy;SDL_RENDER_DRIVER=software"
+      WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
     set_target_properties(sdl_render_tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/tests)
     add_test(NAME sdl_render COMMAND sdl_render_tests)
     set_tests_properties(sdl_render PROPERTIES
@@ -335,6 +348,9 @@ if(BUILD_TESTING)
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_output_log.py
       $<TARGET_FILE:machinelab> $<TARGET_FILE:compat_output_log>)
   set_tests_properties(compat_output_log PROPERTIES TIMEOUT 30)
+  add_executable(compat_paths tests/compat_paths.c)
+  target_link_libraries(compat_paths PRIVATE lcom_minix)
+  add_test(NAME compat_paths COMMAND $<TARGET_FILE:compat_paths>)
   add_executable(compat_client tests/compat_client.c)
   target_link_libraries(compat_client PRIVATE lcom_minix)
   add_test(NAME compat_client
@@ -391,6 +407,9 @@ if(BUILD_TESTING)
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/studio_shortcuts.py
             $<TARGET_FILE:machinelab> ${CMAKE_BINARY_DIR}/examples)
   set_tests_properties(studio_shortcuts PROPERTIES TIMEOUT 30)
+  add_executable(embedded_tests tests/embedded_tests.cpp)
+  target_link_libraries(embedded_tests PRIVATE lcom_embedded)
+  add_test(NAME embedded_sdk COMMAND embedded_tests)
   add_test(NAME unit COMMAND unit_tests)
   add_test(NAME client_protocol COMMAND client_protocol_tests)
   add_test(NAME host_clipboard COMMAND $<TARGET_FILE:machinelab> run --headless -- $<TARGET_FILE:clipboard_client>)

@@ -17,6 +17,7 @@ public:
   bool subscribe(uint8_t irq, IrqSubscription &out);
   bool unsubscribe(uint8_t irq);
   void raise(uint8_t irq);
+  void clear(uint8_t irq);
   uint32_t consumePending();
   uint32_t pendingMask() const { return pending_mask_; }
   bool isSubscribed(uint8_t irq) const;

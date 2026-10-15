@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "name": "Pomodoro Clock",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "joystick": false,
+      "quickKeys": [
+        "SPACE",
+        "ESC"
+      ],
+      "keyboard": false,
+      "mouseButtons": false,
+      "layout": "overlay"
+    },
+    "theme": {
+      "accent": "#f69a8b",
+      "font": "sans"
+    }
+  },
+  "build": {
+    "sources": [
+      "../pomodoro_clock.c"
+    ]
+  }
+}

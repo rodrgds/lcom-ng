@@ -46,6 +46,29 @@ int main(int argc, char **argv) {
       require(SDL_PushEvent(&event), "queue host key");
       display->pump(machine);
     };
+    send_key(SDL_SCANCODE_RCTRL, true);
+    send_key(SDL_SCANCODE_RCTRL, false);
+#if defined(__APPLE__)
+    send_key(SDL_SCANCODE_RALT, true);
+    send_key(SDL_SCANCODE_RALT, false);
+#endif
+    uint8_t host_key_status = 0;
+    require(machine.readPort8(0x64, host_key_status) && !(host_key_status & 1),
+            "mouse-release modifiers must not reach the guest");
+    send_key(SDL_SCANCODE_LALT, true);
+    send_key(SDL_SCANCODE_LALT, false);
+    for (uint8_t expected : {0x38, 0xB8}) {
+      uint8_t byte = 0;
+      require(machine.readPort8(0x60, byte) && byte == expected, "left Option remains guest input");
+    }
+#if !defined(__APPLE__)
+    send_key(SDL_SCANCODE_RALT, true);
+    send_key(SDL_SCANCODE_RALT, false);
+    for (uint8_t expected : {0xE0, 0x38, 0xE0, 0xB8}) {
+      uint8_t byte = 0;
+      require(machine.readPort8(0x60, byte) && byte == expected, "AltGr remains guest input");
+    }
+#endif
     send_key(SDL_SCANCODE_LGUI, true);
     send_key(SDL_SCANCODE_S, true);
     send_key(SDL_SCANCODE_S, false);

@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "name": "Mouse Packets",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "drag",
+      "layout": "overlay"
+    },
+    "theme": {
+      "accent": "#72d6b0",
+      "font": "sans"
+    }
+  },
+  "build": {
+    "sources": [
+      "../mouse_packet.c"
+    ]
+  }
+}

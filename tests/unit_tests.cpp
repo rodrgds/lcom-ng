@@ -126,6 +126,12 @@ static void test_pit_counter_latches_and_one_shot() {
 
 static void test_i8042_keyboard_irq_and_ports() {
   lcom::Machine machine;
+  uint8_t flags=0;
+  CHECK(machine.readPort8(0x64,flags) && (flags&0x10));
+  CHECK(machine.writePort8(0x64,0xad));
+  CHECK(machine.readPort8(0x64,flags) && !(flags&0x10));
+  CHECK(machine.writePort8(0x64,0xae));
+  CHECK(machine.readPort8(0x64,flags) && (flags&0x10));
   lcom::IrqSubscription sub;
   CHECK(machine.subscribeIrq(KBC_IRQ, sub));
   machine.injectKey("A", true);
@@ -249,6 +255,9 @@ static void test_i8042_command_byte_and_mouse_packet() {
   uint8_t ack = 0;
   CHECK(machine.readPort8(KBC_OUT_BUF, ack));
   CHECK(ack == MOUSE_ACK);
+  // Polling a command ACK consumes its only byte. An empty notification would
+  // send legacy interrupt handlers into a read loop before their first frame.
+  CHECK((machine.pendingIrqs() & BIT(MOUSE_IRQ)) == 0);
 
   machine.injectMouse(5, -2, 1);
   CHECK(machine.pendingIrqs() == BIT(MOUSE_IRQ));
@@ -728,15 +737,15 @@ static void test_ps2_fault_replay_and_status() {
   CHECK(machine.subscribeIrq(1, keyboard) && machine.subscribeIrq(12, mouse));
   script.injectDue(machine, 0);
   auto read = [&](uint16_t port) { uint8_t byte = 0; CHECK(machine.readPort8(port, byte)); return byte; };
-  const struct { uint8_t status, byte, irq; } sequence[] = {{0x81, 0x1e, 1}, {0x61, 250, 12}, {0x01, 48, 1}, {0xe1, 8, 12}};
+  const struct { uint8_t status, byte, irq; } sequence[] = {{0x91, 0x1e, 1}, {0x71, 250, 12}, {0x11, 48, 1}, {0xf1, 8, 12}};
   for (const auto &expected : sequence) {
     CHECK(read(0x64) == expected.status);
     CHECK(read(0x64) == expected.status); // Reading status does not consume or clear the byte's errors.
     CHECK(machine.consumePendingIrqs() == (1u << expected.irq));
     CHECK(read(0x60) == expected.byte);
   }
-  CHECK(read(0x64) == 0 && machine.consumePendingIrqs() == 0);
-  machine.injectKey("A", true); CHECK(read(0x64) == 1 && read(0x60) == 0x1e);
+  CHECK(read(0x64) == 0x10 && machine.consumePendingIrqs() == 0);
+  machine.injectKey("A", true); CHECK(read(0x64) == 0x11 && read(0x60) == 0x1e);
   std::remove(path);
 }
 

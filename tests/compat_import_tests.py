@@ -5,6 +5,7 @@ import hashlib
 import json
 from pathlib import Path
 import shutil
+import shlex
 import subprocess
 import sys
 import tempfile
@@ -24,12 +25,16 @@ class ImportTests(unittest.TestCase):
         self.sdk = self.root / "sdk"
         (self.sdk / "compat/include").mkdir(parents=True)
         (self.sdk / "include").mkdir()
+        (self.sdk / "compat/include/lcom").mkdir()
+        shutil.copy2(IMPORTER.parent / "include/lcom/paths.h", self.sdk / "compat/include/lcom/paths.h")
         self.runtime = self.root / "runtime"
         self.runtime.mkdir()
         # These tests cover build inputs and linking, not emulated APIs. Apple ar
         # requires an archive member, unlike GNU ar's empty-archive extension.
         member_source = self.runtime / "placeholder.c"
-        member_source.write_text("void lcom_fixture_placeholder(void) {}\n")
+        member_source.write_text('#include <stdio.h>\nvoid lcom_fixture_placeholder(void) {}\n'
+                                 'FILE *lcom_compat_fopen(const char *path,const char *mode) { return fopen(path,mode); }\n'
+                                 'FILE *lcom_compat_freopen(const char *path,const char *mode,FILE *stream) { return freopen(path,mode,stream); }\n')
         member_object = self.runtime / "placeholder.o"
         subprocess.run([shutil.which("cc"), "-c", str(member_source), "-o", str(member_object)], check=True)
         for name in ("liblcom_minix.a", "libmachinelab.a"):
@@ -51,6 +56,24 @@ class ImportTests(unittest.TestCase):
         result = subprocess.run([str(self.output / "proj")], capture_output=True, text=True)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual(result.stdout.strip(), "42")
+
+    def test_minix_signed_char_default_and_authored_override(self):
+        # ARM Android defaults to unsigned char. Simulate that toolchain on any
+        # host, then compile and run the actual imported program.
+        wrapper = self.root / "unsigned-default-cc"
+        compiler = shutil.which("cc")
+        wrapper.write_text("#!/usr/bin/env python3\nimport os,sys\nos.execv(" + repr(compiler) +
+                           ",[" + repr(compiler) + ",'-funsigned-char',*sys.argv[1:]])\n")
+        wrapper.chmod(0o755)
+        self.write(self.project / "main.c", '#include <stdio.h>\nint main(void) { volatile char missing=-1; printf("%d\\n",(int)missing); return 0; }\n')
+        for flags, expected in (("", "-1"), ("-funsigned-char", "255")):
+            with self.subTest(flags=flags):
+                self.write(self.project / "Makefile", "PROG=proj\nSRCS=main.c\nCFLAGS=" + flags + "\n")
+                result = self.invoke("--cc", shlex.quote(str(wrapper)))
+                self.assertEqual(result.returncode, 0, result.stderr)
+                result = subprocess.run([str(self.output / "proj")], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stderr)
+                self.assertEqual(result.stdout.strip(), expected)
 
     def test_macro_arguments_include_paths_and_no_recipe_execution(self):
         self.write(self.project / "inc/config.h", "#define OFFSET 2\n")
@@ -85,6 +108,14 @@ all:
         source = self.project / "source/main.c"
         self.assertEqual(manifest["sources"][str(source)], hashlib.sha256(before[source]).hexdigest())
 
+    def test_wildcard_source_lists_use_project_directory_without_shell(self):
+        self.write(self.project / 'main.c', '#include <stdio.h>\nint answer(void);\nint main(void) { printf("%d\\n",answer()); return 0; }\n')
+        self.write(self.project / 'nested/answer.c', 'int answer(void) { return 42; }\n')
+        self.write(self.project / 'makefile', 'PROG=proj\nSUBDIR=nested\nSRCS=$(wildcard *.c $(SUBDIR)/*.c)\n')
+        result=self.invoke()
+        self.assertEqual(result.returncode,0,result.stderr)
+        self.run_binary()
+
     def test_explicit_object_rules_and_per_source_flags(self):
         self.write(self.project / "main.c", """
 #include <stdio.h>
@@ -102,11 +133,14 @@ int answer(void) { return TARGET_VALUE; }
 """)
         self.write(self.project / "Makefile", """
 PROG = proj
+SRCS = main.c answer.c
+unused.o: stale/missing.c
+unused.o: CFLAGS += -DBROKEN_UNUSED_RULE
 CFLAGS += -O2
 main.o: main.c
 \t${CC} ${CFLAGS} -c $< -o $@
-nested/answer.o: nested/answer.c
-nested/answer.o: CFLAGS += -D TARGET_VALUE=42
+answer.o: nested/answer.c
+answer.o: CFLAGS += -D TARGET_VALUE=42
 \t${CC} ${CFLAGS} -O0 -fno-inline -c $< -o $@
 .include <minix.lcom.mk>
 """)

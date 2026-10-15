@@ -16,7 +16,7 @@ bool I8042::handles(uint16_t port) const {
 }
 
 uint8_t I8042::status() const {
-  uint8_t st = 0;
+  uint8_t st = keyboard_enabled_ ? KBC_ST_NOT_INHIBITED : 0;
   if (!output_.empty()) {
     st |= KBC_ST_OBF;
     if (output_.front().aux) st |= KBC_ST_AUX;
@@ -37,6 +37,9 @@ bool I8042::read8(uint16_t port, uint8_t &value) {
       return true;
     }
     value = output_.front().value;
+    // Polling consumes the device condition too. Do not notify a guest of a
+    // byte it has already drained; a queued next byte raises its own IRQ below.
+    irqs_.clear(output_.front().aux ? MOUSE_IRQ : KBC_IRQ);
     output_.pop_front();
     raiseForFront();
     return true;

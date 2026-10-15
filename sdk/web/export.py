@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 """Rebuild a C game as a standalone, static browser export."""
 
-import argparse
 import hashlib
-import importlib.util
+import html
 import json
 import os
-import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -15,9 +13,9 @@ import tempfile
 
 WEB = Path(__file__).resolve().parent
 SDK = WEB.parent
-spec = importlib.util.spec_from_file_location("lcom_compat_builder", SDK / "compat/build_project.py")
-compat = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(compat)
+sys.path.insert(0, str(SDK / "export"))
+import project as source_project
+compat = source_project.compat
 
 
 def run(command, **kwargs):
@@ -29,7 +27,7 @@ def link(objects, archives, runtime, output, project, assets, compiler="em++"):
                "-sASYNCIFY", "-sASYNCIFY_STACK_SIZE=131072", "-sALLOW_MEMORY_GROWTH",
                "-sSTACK_SIZE=2097152", "-sMODULARIZE", "-sEXPORT_ES6", "-sINVOKE_RUN=0",
                "-sEXIT_RUNTIME", "-sENVIRONMENT=web", "-sFORCE_FILESYSTEM",
-               "-sEXPORTED_RUNTIME_METHODS=callMain,ccall,FS",
+               "-sEXPORTED_RUNTIME_METHODS=callMain,ccall,FS,ENV",
                "--js-library", WEB / "library.js", "-o", output]
     # An explicit list keeps source, build artifacts and private files out of exports.
     for item in assets:
@@ -68,40 +66,53 @@ class WebBuilder(compat.Builder):
         # actual conflicting definitions. llvm-link preserves C common semantics.
         merged = self.output / "student.bc"
         run([llvm_link, *objects, "-o", merged])
-        for archive in archives:
-            next_module = self.output / "next.bc"
-            run([llvm_link, "--only-needed", merged, archive, "-o", next_module])
-            next_module.replace(merged)
+        if archives:
+            llvm_nm = llvm_root / ("llvm-nm.exe" if os.name == "nt" else "llvm-nm")
+            if not llvm_nm.is_file():
+                raise compat.BuildError("Minix archives need llvm-nm beside Emscripten's clang.")
+
+            def unresolved_symbols():
+                symbols = subprocess.check_output(
+                    [llvm_nm, "--undefined-only", "--format=posix", merged], text=True)
+                return frozenset(line.split()[0] for line in symbols.splitlines() if line.strip())
+
+            # A later archive can introduce references to an earlier one. Repeat
+            # until no unresolved symbols change, as a native archive group does.
+            # Two archives can alternate across arbitrarily many object members.
+            unresolved = unresolved_symbols()
+            while True:
+                for archive in archives:
+                    next_module = self.output / "next.bc"
+                    run([llvm_link, "--only-needed", merged, archive, "-o", next_module])
+                    next_module.replace(merged)
+                remaining = unresolved_symbols()
+                if remaining == unresolved:
+                    break
+                unresolved = remaining
         self.binary = self.output / "game.js"
         link([merged], [], runtime, self.binary, self.asset_root, self.web_assets)
 
 
 def argument_parser():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("project", nargs="?", default=Path("."), type=Path, help="project directory (default: .)")
-    parser.add_argument("--output", type=Path, help="export directory (default: PROJECT/.lcom-ng/web)")
-    parser.add_argument("--source", action="append", default=[], help="native C source relative to project; repeatable")
-    parser.add_argument("--include", action="append", default=[], help="include directory relative to project; repeatable")
-    parser.add_argument("--library", action="append", default=[], metavar="NAME=SOURCES", help="rebuild a Minix library from C sources")
-    parser.add_argument("--asset", action="append", default=[], help="file/directory to package relative to asset root; repeatable")
-    parser.add_argument("--asset-root", type=Path, help="Minix asset root relative to project (default: project)")
-    parser.add_argument("--name", help="title displayed by the browser player")
-    parser.add_argument("--arg", action="append", default=[], help="argument passed to the game; repeatable")
+    parser = source_project.argument_parser(__doc__)
     return parser
 
 
 def build(args):
+    if (args.project / 'lcom.collection.json').is_file():
+        sys.path.insert(0, str(SDK))
+        from collection import manifest
+        return manifest.build(args, 'web')
+    settings = source_project.project_config.resolve(args)
     project = args.project.resolve(strict=True)
     if not project.is_dir():
         raise compat.BuildError("Project must be a source directory, not a compiled executable")
     cache = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "lcom-ng/web"
     output = (args.output or project / ".lcom-ng/web").resolve()
-    workspace = (project / ".mlab/sdk/libmachinelab.a").is_file() and (project / "proj").is_dir()
-    makefile = project / "Makefile"
-    minix = makefile.is_file() and not workspace and bool(
-        re.search(r"(?m)^\s*(?:PROG\s*[?+:]?=|\.include.*minix)", makefile.read_text()))
+    workspace = source_project.workspace(project)
+    minix = source_project.minix(project)
     asset_root = (project / (args.asset_root or Path("."))).resolve()
-    if not args.asset and (project / "assets").is_dir() and project.is_relative_to(asset_root):
+    if not args.assets_configured and (project / "assets").is_dir() and project.is_relative_to(asset_root):
         args.asset = [(project / "assets").relative_to(asset_root).as_posix()]
     if output == project or project.is_relative_to(output):
         raise compat.BuildError("Output must be a separate directory, not the project or its parent")
@@ -136,23 +147,13 @@ def build(args):
             if args.library or args.asset_root:
                 raise compat.BuildError("--library and --asset-root require a Minix Makefile project")
             sources = {}
-            if args.source:
-                files = [(project / name).resolve(strict=True) for name in args.source]
-            elif workspace:
-                files = sorted(path for folder in ("proj", "lib", "labs") for path in (project / folder).rglob("*.c"))
-            else:
-                files = sorted([*project.glob("*.c"), *(project / "src").rglob("*.c")])
-            default_includes = [project / "include", project / "lib", project / "src"]
-            if workspace:
-                default_includes += sorted((project / "labs").glob("*/include"))
-            if not files:
-                raise compat.BuildError("No C sources found. Provide --source for each source or a Minix Makefile.")
+            files, default_includes = source_project.native_sources(args, project)
             objects = []
             for index, source in enumerate(files):
                 if source.suffix != ".c":
                     raise compat.BuildError(f"Expected a C source: {source}")
                 target = work / f"source-{index}.o"
-                includes = [value for directory in [*default_includes, *(project / value for value in args.include)] for value in ("-I", directory)]
+                includes = [value for directory in default_includes for value in ("-I", directory)]
                 run(["emcc", "-std=gnu11", "-O2", "-I", SDK / "include", "-I", project,
                      *includes, "-c", source, "-o", target])
                 sources[str(source)] = hashlib.sha256(source.read_bytes()).hexdigest()
@@ -161,11 +162,23 @@ def build(args):
         for source, digest in sources.items():
             if Path(source).is_file() and hashlib.sha256(Path(source).read_bytes()).hexdigest() != digest:
                 raise compat.BuildError(f"Source changed during export: {source}")
-        config = {"name": args.name or project.name, "arguments": args.arg,
+        config = {**source_project.project_config.public(settings), "arguments": args.arg,
                   "workingDirectory": working_directory}
         (work / "game.json").write_text(json.dumps(config, ensure_ascii=False) + "\n")
+        if settings['icon']:
+            shutil.copy2(settings['icon'], work / 'icon.png')
+        manifest = {'name': args.name, 'short_name': args.name, 'start_url': './', 'scope': './',
+                    'display': 'fullscreen' if settings['mobile']['fullscreen'] else 'standalone',
+                    'background_color': '#000000', 'theme_color': settings['mobile']['theme']['accent']}
+        if args.orientation != 'auto': manifest['orientation'] = args.orientation
+        if settings['icon']:
+            icon_data = settings['icon'].read_bytes()
+            size = int.from_bytes(icon_data[16:20],'big')
+            manifest['icons'] = [{'src':'icon.png','sizes':f'{size}x{size}','type':'image/png','purpose':'any'}]
+        (work / 'manifest.webmanifest').write_text(json.dumps(manifest, ensure_ascii=False) + '\n')
         output.mkdir(parents=True, exist_ok=True)
-        names = ["game.js", "game.wasm", "game.json"]
+        names = ["game.js", "game.wasm", "game.json", "manifest.webmanifest"]
+        if settings["icon"]: names.append("icon.png")
         if (work / "game.data").is_file():
             names.append("game.data")
         for name in names:
@@ -173,6 +186,11 @@ def build(args):
         for source, name in (("shell.html", "index.html"), ("player.js", "player.js"), ("player.css", "player.css")):
             shutil.copy2(WEB / source, output / name)
             names.append(name)
+        shell = (output / 'index.html').read_text().replace('<title>lcom-ng game</title>', '<title>' + html.escape(args.name) + ' · lcom-ng</title>')
+        if settings['icon']: shell = shell.replace('</head>', '<link rel="icon" href="./icon.png"><link rel="apple-touch-icon" href="./icon.png"></head>')
+        (output / 'index.html').write_text(shell)
+        # Remove stale identity assets when re-exporting without a configured icon.
+        if not settings['icon']: (output / 'icon.png').unlink(missing_ok=True)
         (output / "lcom-web.json").write_text(json.dumps({"format": 1, "files": names,
             "sources": {name: digest for name, digest in sources.items() if not name.startswith(str(work))}}, indent=2) + "\n")
     return output

@@ -1,0 +1,44 @@
+cmake_minimum_required(VERSION 3.22)
+project(lcom_ng_app LANGUAGES C CXX)
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+get_filename_component(LCOM_SDK "${CMAKE_CURRENT_LIST_DIR}/../sdk" ABSOLUTE)
+set(LCOM_RUNTIME "${LCOM_SDK}/runtime")
+include("${LCOM_RUNTIME}/core/sources.cmake")
+# Keep sideloadable debug-signed APKs optimized, with their debug symbols.
+if(ANDROID)
+  add_compile_options(-O2)
+  find_package(SDL3 REQUIRED CONFIG)
+else()
+  find_package(PkgConfig REQUIRED)
+  pkg_check_modules(SDL3 REQUIRED IMPORTED_TARGET sdl3)
+  add_library(SDL3::SDL3 ALIAS PkgConfig::SDL3)
+endif()
+add_library(embedded STATIC ${MACHINE_LAB_CORE_SOURCES}
+  "${LCOM_RUNTIME}/embedded/Client.cpp"
+  "${LCOM_RUNTIME}/embedded/SdlHost.cpp"
+  "${LCOM_RUNTIME}/backends/SdlAudioBackend.cpp"
+  "${LCOM_SDK}/client/src/port_widths.c")
+target_compile_definitions(embedded PRIVATE MACHINE_LAB_WITH_SDL)
+target_include_directories(embedded PUBLIC "${LCOM_SDK}/include" "${LCOM_RUNTIME}")
+target_link_libraries(embedded PUBLIC SDL3::SDL3)
+add_library(compat STATIC
+  "${LCOM_SDK}/compat/src/compat.c"
+  "${LCOM_SDK}/compat/src/lcf.c"
+  "${LCOM_SDK}/compat/src/xpm.c"
+  "${LCOM_SDK}/compat/src/output_log.c")
+target_compile_options(compat PRIVATE -fsigned-char)
+target_include_directories(compat PUBLIC "${LCOM_SDK}/compat/include" "${LCOM_SDK}/include")
+find_package(Threads REQUIRED)
+target_link_libraries(compat PUBLIC embedded Threads::Threads)
+include(student.cmake)
+if(ANDROID)
+  add_library(main SHARED "${LCOM_RUNTIME}/embedded/Player.cpp")
+  target_link_options(main PRIVATE "-Wl,-z,max-page-size=16384" "-Wl,--no-undefined")
+  target_link_libraries(main PRIVATE log)
+else()
+  add_executable(main "${LCOM_RUNTIME}/embedded/Player.cpp")
+endif()
+target_include_directories(main PRIVATE "${CMAKE_CURRENT_LIST_DIR}")
+target_link_libraries(main PRIVATE student compat m)

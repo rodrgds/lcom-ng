@@ -22,16 +22,20 @@ devenv shell -- lcom-ng web examples/ninjix
 ```
 
 The game starts automatically. Desktop players see the game with black bars
-where needed. Click the game to capture and hide the system mouse. **Right Ctrl**
-releases capture. **Escape** reaches the game and also releases capture, so going
-back or pausing takes one press. Sound starts on the first keypress or tap.
+where needed. The system cursor hides over the game while the game draws its own
+cursor. The browser mouse stays free to leave the game; clicking never locks it.
+**Escape** reaches the game for pausing or going back.
+
+Press **Right Option on Mac**, or **Right Ctrl** on other keyboards, to release
+game mouse input and show the system cursor. Click the game to resume. Command
+stays available for app shortcuts. Sound starts on the first keypress or tap.
 Refresh the page to restart, or press Enter after the game exits.
-Mouse capture requires Pointer Lock support. Embedded browsers without it hide
-the system cursor over the game but cannot keep it inside the window.
 
 On mobile, touch the area above the controls to press the left mouse button at
 the game cursor. Lift to finish the click, or hold and drag to move the cursor
-with the button down. A new touch never jumps the cursor to your finger.
+with the button down. These are the default relative controls. Projects can enable
+[direct touch](./project-config#direct-touch), where tapping moves to the finger
+before clicking and dragging follows it. The PvZ and Sushi presets enable this.
 Use the **Mouse** joystick to move without clicking. The separate **Left click**
 and **Right click** buttons can be held while using a stick. Holding **Right click**
 also makes a screen drag use that button instead of adding a left click.
@@ -60,6 +64,10 @@ and open your computer's network address with the printed port.
 - [Sushi Slash](https://sushi-slash.pages.dev/), built from the original upstream project.
 
 ## Your project
+
+Use an optional [`lcom.json`](./project-config) for the title, icon, mobile
+orientation, fullscreen, controls and theme. Web and Android share the file.
+
 
 The exporter discovers:
 
@@ -114,18 +122,17 @@ threads, `SharedArrayBuffer` or JavaScript Promise Integration.
 
 | Browser | Expected behavior | Verification |
 | --- | --- | --- |
-| Chrome and Edge | Game, audio, keyboard and desktop mouse capture | Chromium automated tests; native Chrome Escape checked |
-| Firefox on desktop | Same export, including mouse capture | Not yet tested |
-| Safari on macOS | Same export, including mouse capture | Not yet tested |
+| Chrome and Edge | Game, audio, keyboard and free desktop mouse input | Chromium automated tests |
+| Firefox on desktop | Same export, with free mouse input | Not yet tested |
+| Safari on macOS | Same export, with free mouse input | Not yet tested |
 | Safari on iPhone and iPad | Game, audio and custom touch keyboard; no Pointer Lock | Physical devices not yet tested |
 
-Desktop Firefox and Safari support mouse capture. Safari on iOS does not expose
-Pointer Lock. Embedded browsers may also omit it. See the
-[Pointer Lock compatibility data](https://developer.mozilla.org/en-US/docs/Web/API/Element/requestPointerLock#browser_compatibility).
-Browser API availability is separate from testing this player on each device.
+The player does not use Pointer Lock. It works with ordinary pointer events,
+including in embedded browsers. Browser API availability is separate from testing
+this player on each device.
 
 Chromium tests cover Flappy, Ninjix, native and Minix fixtures, installed SDK
-relocation, student workspaces, mouse capture, a single Escape after capture,
+relocation, student workspaces, Escape without cursor release, host release keys,
 multi-touch keyboard input, relative touch dragging, separate mouse buttons,
 and the optional joystick. Mobile tests use touch emulation. This does not
 certify every Minix project or every mobile browser.

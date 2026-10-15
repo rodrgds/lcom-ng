@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "name": "Word Processor",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "keyboard": true,
+      "mouseButtons": true
+    },
+    "theme": {
+      "accent": "#b6c9ff",
+      "font": "sans"
+    }
+  },
+  "build": {
+    "sources": [
+      "../word_processor.c"
+    ]
+  }
+}

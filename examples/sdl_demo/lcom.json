@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "name": "SDL Demo",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "keyboard": true,
+      "mouseButtons": true
+    },
+    "theme": {
+      "accent": "#72d6b0",
+      "font": "sans"
+    }
+  },
+  "build": {
+    "sources": [
+      "../sdl_demo.c"
+    ]
+  }
+}

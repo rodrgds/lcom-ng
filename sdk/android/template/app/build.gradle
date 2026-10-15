@@ -1,0 +1,23 @@
+plugins { id 'com.android.application' }
+android {
+    namespace 'pt.rgo.lcomng'
+    compileSdk 36
+    ndkVersion '@NDK_VERSION@'
+    defaultConfig {
+        applicationId '@APP_ID@'
+        minSdk 26
+        targetSdk 36
+        versionCode 1
+        versionName '1.0'
+        ndk { abiFilters @ABIS@ }
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_STL=c++_shared'
+            }
+        }
+    }
+    externalNativeBuild { cmake { path '../native/CMakeLists.txt'; version '3.22.1' } }
+    buildFeatures { prefab true }
+    sourceSets.main.assets.srcDirs = ['../game-assets']
+}
+dependencies { implementation files('libs/SDL3.aar') }

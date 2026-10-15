@@ -7,6 +7,7 @@ Minix system make includes are not host build commands.
 
 import argparse
 import hashlib
+import glob
 import json
 import os
 from pathlib import Path
@@ -24,6 +25,13 @@ def words(value):
     return shlex.split(value)
 
 
+def find_makefile(directory):
+    """Honor common make entry filenames, including on case-sensitive hosts."""
+    if not Path(directory).is_dir(): return None
+    files={path.name:path for path in Path(directory).iterdir() if path.is_file()}
+    return next((files[name] for name in ('GNUmakefile','makefile','Makefile') if name in files),None)
+
+
 class Makefile:
     def __init__(self, directory):
         self.directory = Path(directory).resolve()
@@ -33,8 +41,8 @@ class Makefile:
         self.archive_objects = {}
         self.target_flags = {}
         self.target_variables = {}
-        makefile = self.directory / "Makefile"
-        if not makefile.is_file():
+        makefile = find_makefile(self.directory)
+        if makefile is None:
             raise BuildError(f"No Makefile in {self.directory}")
         text = makefile.read_text().replace("\\\n", " ")
         targets = []
@@ -108,6 +116,13 @@ class Makefile:
             key = match.group(1) or match.group(2)
             if key in seen:
                 raise BuildError(f"Recursive Makefile variable: {key}")
+            # GNU wildcard is declarative source discovery, never a shell command.
+            if key.startswith('wildcard '):
+                patterns = words(self.expand(key[len('wildcard '):], seen, overrides))
+                return ' '.join(shlex.quote(name) for pattern in patterns
+                                for name in sorted(glob.glob(pattern, root_dir=self.directory)))
+            if re.match(r'\w+\s',key):
+                raise BuildError(f"Unsupported Makefile function: {key.split()[0]}")
             # Only the portable input subset is evaluated, never shell expressions.
             if ":" in key:
                 name, modifier = key.split(":", 1)
@@ -118,7 +133,10 @@ class Makefile:
                                     for w in words(original))
                 raise BuildError(f"Unsupported Makefile modifier: {key}")
             return self.expand(variables.get(key, ""), (*seen, key), overrides)
-        return re.sub(r"\$\{([^}]+)\}|\$\(([^)]+)\)", replace, value)
+        pattern = r"\$\{([^${}]+)\}|\$\(([^$()]+)\)"
+        while re.search(pattern, value):
+            value = re.sub(pattern, replace, value)
+        return value
 
     def get(self, key):
         return self.expand(self.variables.get(key, ""))
@@ -165,7 +183,12 @@ class Makefile:
 
     def project_sources(self):
         if self.get("SRCS"):
-            return self.sources(self.get("SRCS"))
+            names=[]
+            for source in words(self.get("SRCS")):
+                if source.endswith((".h",".hpp")): continue
+                target=str(Path(source).with_suffix('.o'))
+                names.extend(self.object_rules.get(target,[source]))
+            return self.sources(' '.join(shlex.quote(name) for name in names))
         sources = []
         for names in self.object_rules.values():
             for source in self.sources(" ".join(shlex.quote(name) for name in names)):
@@ -182,7 +205,13 @@ class Makefile:
         recipes = []
         if source is not None:
             for target, names in self.object_rules.items():
-                if source in self.sources(" ".join(shlex.quote(name) for name in names)):
+                # Selected inputs were validated by project_sources. Stale,
+                # unselected rules must not prevent a real target from building.
+                try:
+                    owners=self.sources(" ".join(shlex.quote(name) for name in names))
+                except BuildError:
+                    continue
+                if source in owners:
                     for key, op, setting in self.target_variables.get(target, []):
                         setting = self.expand(setting, overrides=values)
                         values[key] = values.get(key, "") + " " + setting if op == "+=" else setting
@@ -278,18 +307,22 @@ class Builder:
             raise BuildError(f"Failed while {purpose} (status {result.returncode}). "
                              "Review the compiler diagnostics above. Original sources were not changed.")
 
-    def compile(self, source, makefile):
-        self.manifest["sources"][str(source)] = hashlib.sha256(source.read_bytes()).hexdigest()
+    def compile_flags(self, source, makefile):
         flags = makefile.flags(source) + self.includes
         flags = [str(self.project_path(value)) if index and flags[index - 1] == "-I" else value
                  for index, value in enumerate(flags)]
-        identity = str(source) + "\0" + "\0".join(flags)
-        target = self.objects / (hashlib.sha256(identity.encode()).hexdigest()[:20] + ".o")
-        args = self.compiler + ["-std=gnu11", "-fcommon", "-Wno-deprecated-non-prototype",
+        return (["-std=gnu11", "-fsigned-char", "-fcommon", "-include", "lcom/paths.h", "-Wno-deprecated-non-prototype",
                                 "-Wno-incompatible-pointer-types-discards-qualifiers",
                                 "-I", str(self.sdk / "compat/include"),
                                 "-I", str(self.sdk / "include"), "-I", str(makefile.directory)]
-        args += flags + self.diagnostic_flags + ["-c", str(source), "-o", str(target)]
+                + flags + self.diagnostic_flags)
+
+    def compile(self, source, makefile):
+        self.manifest["sources"][str(source)] = hashlib.sha256(source.read_bytes()).hexdigest()
+        flags = self.compile_flags(source, makefile)
+        identity = str(source) + "\0" + "\0".join(flags)
+        target = self.objects / (hashlib.sha256(identity.encode()).hexdigest()[:20] + ".o")
+        args = self.compiler + flags + ["-c", str(source), "-o", str(target)]
         self.command(args, "compiling " + source.name)
         return target
 
@@ -317,7 +350,7 @@ class Builder:
         if name in self.library_overrides:
             return self.local_archive(Makefile(self.project), name)
         for directory in directories:
-            if not (directory / "Makefile").is_file():
+            if find_makefile(directory) is None:
                 continue
             makefile = Makefile(directory)
             if name in makefile.libraries():
@@ -335,7 +368,7 @@ class Builder:
         original = self.project_path(name)
         owner = project_makefile
         for directory in (original.parent, *original.parent.parents):
-            if (directory / "Makefile").is_file():
+            if find_makefile(directory) is not None:
                 owner = Makefile(directory)
                 break
         declarations = owner.object_rules.get(name) or owner.object_rules.get(original.name)
@@ -428,12 +461,7 @@ class Builder:
         context.write_text("const char *lcom_compat_project_root = " + json.dumps(str(self.asset_root)) + ";\n")
         objects.append(self.compile(context, makefile))
         binary = self.binary
-        compat = self.runtime_build / "liblcom_minix.a"
-        native = self.runtime_build / "libmachinelab.a"
-        for library in (compat, native):
-            if not library.is_file():
-                raise BuildError(f"Missing runtime library {library}. Build lcom-ng first.")
-        self.link(objects, archives, [compat, native], system_flags, binary)
+        self.link(objects, archives, self.runtime_libraries(), system_flags, binary)
         # Sources are never rewritten. The hashes make that property reviewable.
         for name, digest in self.manifest["sources"].items():
             if hashlib.sha256(Path(name).read_bytes()).hexdigest() != digest:
@@ -443,8 +471,18 @@ class Builder:
         self.write_report()
         return binary
 
+    def runtime_libraries(self):
+        libraries = [self.runtime_build / "liblcom_minix.a", self.runtime_build / "libmachinelab.a"]
+        for library in libraries:
+            if not library.is_file():
+                raise BuildError(f"Missing runtime library {library}. Build lcom-ng first.")
+        return libraries
+
     def link(self, objects, archives, runtime, system_flags, binary):
-        self.command(self.compiler + [str(o) for o in objects] + [str(a) for a in archives]
+        grouped = [str(a) for a in archives]
+        if archives and sys.platform.startswith('linux'):
+            grouped = ['-Wl,--start-group', *grouped, '-Wl,--end-group']
+        self.command(self.compiler + [str(o) for o in objects] + grouped
                      + [str(p) for p in runtime] + ["-lm", "-pthread"] + system_flags
                      + self.diagnostic_flags + ["-o", str(binary)], "linking " + binary.name)
 

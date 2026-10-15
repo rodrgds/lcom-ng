@@ -763,13 +763,23 @@ private:
   }
 
   static bool isHostMouseReleaseKey(SDL_Scancode scancode) {
-    return scancode == SDL_SCANCODE_RCTRL;
+    if (scancode == SDL_SCANCODE_RCTRL) return true;
+#if defined(__APPLE__)
+    return scancode == SDL_SCANCODE_RALT;
+#else
+    return false;
+#endif
   }
 
   static bool isHostMouseReleaseHeld() {
     int key_count = 0;
     const bool *keys = SDL_GetKeyboardState(&key_count);
-    return keys != nullptr && SDL_SCANCODE_RCTRL < key_count && keys[SDL_SCANCODE_RCTRL];
+    if (keys == nullptr) return false;
+    if (SDL_SCANCODE_RCTRL < key_count && keys[SDL_SCANCODE_RCTRL]) return true;
+#if defined(__APPLE__)
+    if (SDL_SCANCODE_RALT < key_count && keys[SDL_SCANCODE_RALT]) return true;
+#endif
+    return false;
   }
 
   bool eventBelongsToThisWindow(const SDL_Event &ev) const {

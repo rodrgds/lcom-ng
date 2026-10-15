@@ -67,8 +67,12 @@ some tools also use H. Escape closes help before a later Escape leaves the app.
 Check extended keys and undo/redo as well as printable keys beneath the overlay.
 
 `runtime/backends/SdlBackend.cpp` owns host input capture. Command reaches the
-guest. Right Ctrl releases the captured mouse; F3 also opens the host debug
-overlay and releases it. Do not reserve Command as a host escape key.
+guest. Right Option on macOS and Right Ctrl release the captured mouse without
+opening debug. F3 also opens the host debug overlay and releases it. Keep Right
+Alt available as AltGr on other platforms. Do not reserve Command as a host
+escape key. Browser input stays free of Pointer Lock, so Escape reaches the game
+without an implicit host release. The same release modifiers show the browser
+cursor and stop game mouse input until a click resumes it.
 
 ## Verification and captures
 

@@ -1,7 +1,7 @@
 import { test, expect } from '@playwright/test';
 import { execFileSync, spawn, spawnSync } from 'node:child_process';
 import { createServer } from 'node:http';
-import { mkdtempSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, copyFileSync, cpSync } from 'node:fs';
+import { mkdtempSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, copyFileSync, cpSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 
@@ -26,6 +26,15 @@ test.beforeAll(async () => {
     renameSync(original, relocated);
   };
   exportGame('tests/fixtures/web/native', 'fixture', cli, '--asset', 'assets');
+  const settings=path.join(directory,'lcom.json');
+  writeFileSync(settings,JSON.stringify({name:'Sushi config fixture',icon:path.join(root,'docs/assets/android-icons/sushi-slash.png'),mobile:{orientation:'landscape',fullscreen:true,controls:{keyboard:false,mouseButtons:false,quickKeys:[],joystick:false,layout:'overlay'}}}));
+  exportGame('tests/fixtures/web/native','configured',cli,'--config',settings);
+  writeFileSync(settings,JSON.stringify({mobile:{controls:{keyboard:false,mouseButtons:false,quickKeys:[],joystick:false,layout:'overlay',pointer:'direct',cursor:{x:400,y:300,maxX:799,maxY:599}}}}));
+  exportGame('tests/fixtures/web/native','configured-direct',cli,'--config',settings);
+  writeFileSync(settings,JSON.stringify({name:'Move and aim',mobile:{controls:{keyboard:true,mouseButtons:true,quickKeys:['ESC'],joystick:false,dpad:{side:'left',keys:'wasd'},look:{side:'right',sensitivity:1.5},layout:'overlay',pointer:'move'},theme:{accent:'#ff8844',keyboardAccent:'#77cc99',button:'#203040',font:'mono'}}}));
+  exportGame('tests/fixtures/web/native','configured-dual',cli,'--config',settings);
+
+  exportGame('tests/fixtures/web/native', 'pause', cli, '--asset', 'assets', '--arg=--keep-open');
   exportGame('tests/fixtures/web/minix', 'legacy', cli, '--asset-root', '..', '--asset', 'minix/assets');
   exportGame('examples/flappy', 'flappy', cli, '--name', 'LCOM Bird');
   exportGame('examples/ninjix', 'ninjix', cli, '--name', 'Ninjix');
@@ -40,6 +49,16 @@ test.beforeAll(async () => {
   const installedCli = path.join(installed, 'bin/lcom-ng');
   copyFileSync(cli, installedCli);
   exportGame(workspace, 'installed', installedCli, '--name', 'Installed Game');
+  const collection=path.join(directory,'classroom');
+  mkdirSync(collection);
+  const projects=[];
+  for (const [name,title] of [['one','First game'],['two','Second game']]) {
+    const project=path.join(directory,name); cpSync(path.join(root,'tests/fixtures/web/native'),project,{recursive:true});
+    writeFileSync(path.join(project,'lcom.json'),JSON.stringify({name:title,build:{assets:['assets'],environment:{LCOM_COLLECTION_TEST:'ready from profile'}},mobile:{fullscreen:true,controls:{quickKeys:['KP_ENTER','A','B','C','D','E','F','G','H','I'],keyboard:false,joystick:false,mouseButtons:false,layout:'overlay'}}}));
+    projects.push('../'+name);
+  }
+  writeFileSync(path.join(collection,'lcom.collection.json'),JSON.stringify({name:'Classroom Arcade',projects}));
+  execFileSync(installedCli,['export','web',collection,'--output',path.join(directory,'games','collection')],{stdio:'pipe'});
   const mime = { '.js': 'text/javascript', '.wasm': 'application/wasm', '.json': 'application/json', '.css': 'text/css', '.html': 'text/html' };
   server = createServer((request, response) => {
     const filename = path.join(directory, decodeURIComponent(new URL(request.url, 'http://localhost').pathname));
@@ -69,6 +88,264 @@ function mousePackets(page) {
   return Array.from({ length: Math.floor(bytes.length / 3) }, (_, i) => bytes.slice(i * 3, i * 3 + 3));
 }
 const pixel = page => page.locator('canvas').evaluate(canvas => [...canvas.getContext('2d').getImageData(0, 0, 1, 1).data]);
+
+test('two players hold their pads and action buttons independently', async ({browser})=>{
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-dual/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();
+    Object.assign(settings.mobile.controls,{keyboard:false,mouseButtons:false,look:false,dpad:false,quickKeys:[],pointer:'off',
+      pads:[{side:'left',mode:'wasd',style:'dpad'},{side:'right',mode:'keypad',style:'dpad'}],
+      actions:[{side:'left',label:'P1 Bomb',key:'SPACE'},{side:'right',label:'P2 Bomb',key:'KP0'}]});
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-dual');
+  const buttons=[page.locator('.thumb-controls[data-side="left"] [data-direction="up"]'),page.locator('.thumb-controls[data-side="right"] [data-direction="up"]'),
+    page.getByRole('button',{name:'P1 Bomb',exact:true}),page.getByRole('button',{name:'P2 Bomb',exact:true})];
+  const points=[];
+  for(const [i,button] of buttons.entries()) {
+    const box=await button.boundingBox();expect(box.width).toBeGreaterThanOrEqual(44);expect(box.height).toBeGreaterThanOrEqual(44);
+    points.push({x:box.x+box.width/2,y:box.y+box.height/2,id:i+1});
+  }
+  const cdp=await context.newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:points});
+  for(const code of ['11','48','39','52']) await expect.poll(()=>consoleText(page)).toContain('key:'+code);
+  expect(consoleText(page)).not.toContain('key:e0');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[points[0]]});
+  await expect.poll(()=>consoleText(page)).toContain('key:91');
+  expect(consoleText(page)).not.toContain('key:c8');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+  for(const code of ['c8','b9','d2']) await expect.poll(()=>consoleText(page)).toContain('key:'+code);
+  await context.close();
+});
+
+test('tap-to-click permits hover drags and cancels without selecting', async ({ browser }) => {
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-direct/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();
+    settings.mobile.controls.touch='tap';
+    settings.mobile.controls.tapDuration=200;
+    settings.mobile.controls.mouseButtons=true;
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-direct');
+  await expect.poll(()=>consoleText(page)).toContain('ready');
+  const box=await page.locator('canvas').boundingBox();
+  const point=(x,y)=>({x:box.x+x*box.width/800,y:box.y+y*box.height/600,id:1});
+  const cdp=await context.newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(100,200)]});
+  await expect.poll(()=>mousePackets(page).length).toBeGreaterThan(0);
+  expect(mousePackets(page).every(([flags])=>!(flags&1))).toBeTruthy();
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[point(600,350)]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  await page.waitForTimeout(100);
+  expect(mousePackets(page).every(([flags])=>!(flags&1))).toBeTruthy();
+  await page.locator('canvas').tap({position:{x:box.width/2,y:box.height/2}});
+  await expect(page.getByRole('button',{name:'Left click',exact:true})).toHaveAttribute('aria-pressed','true');
+  await expect(page.getByRole('button',{name:'Left click',exact:true})).toHaveAttribute('aria-pressed','false');
+  await expect.poll(()=>mousePackets(page).filter(([flags])=>flags&1).length).toBe(1);
+  expect(mousePackets(page).at(-1)[0]&1).toBe(0);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(300,350)]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+  await page.waitForTimeout(100);
+  expect(mousePackets(page).filter(([flags])=>flags&1)).toHaveLength(1);
+  await context.close();
+});
+
+test('hold-drag moves without selecting, then holds and releases in one gesture',async({browser})=>{
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-direct/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();settings.mobile.controls.touch='hold-drag';
+    settings.mobile.controls.quickKeys=['ESC'];
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-direct');
+  const mode=page.getByRole('button',{name:'Hold to drag',exact:true});
+  await expect(mode.locator('svg')).toBeVisible();
+  await expect(mode).toHaveText('');
+  await expect(mode).toHaveAttribute('aria-pressed','true');
+  expect((await mode.boundingBox()).width).toBe(44);
+  const box=await page.locator('canvas').boundingBox();
+  const point=(x,y)=>({x:box.x+x*box.width/800,y:box.y+y*box.height/600,id:1});
+  const cdp=await context.newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(100,200)]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[point(300,250)]});
+  await page.waitForTimeout(250);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  await expect.poll(()=>mousePackets(page).length).toBeGreaterThan(0);
+  expect(mousePackets(page).every(([flags])=>!(flags&1))).toBeTruthy();
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(100,200)]});
+  await expect.poll(()=>mousePackets(page).at(-1)?.[0]&1).toBe(1);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[point(600,350)]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  await expect.poll(()=>mousePackets(page).at(-1)?.[0]&1).toBe(0);
+  let x=400,y=300,selected=null,placed=null;
+  for(const [flags,dx,dy] of mousePackets(page)) {
+    x+=dx-((flags&16)?256:0);y-=dy-((flags&32)?256:0);
+    if((flags&1) && !selected) selected=[x,y];
+    if(!(flags&1) && selected) placed=[x,y];
+  }
+  expect(selected).toEqual([100,200]);expect(placed).toEqual([600,350]);
+  const presses=mousePackets(page).filter(([flags])=>flags&1).length;
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(100,200)]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+  await page.waitForTimeout(250);
+  expect(mousePackets(page).filter(([flags])=>flags&1)).toHaveLength(presses);
+  await mode.tap();
+  await expect(page.getByRole('button',{name:'Move only',exact:true})).toHaveAttribute('aria-pressed','false');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(100,200)]});
+  await page.waitForTimeout(250);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  expect(mousePackets(page).filter(([flags])=>flags&1)).toHaveLength(presses);
+  await context.close();
+});
+
+test('corner actions and horizontal WASD pad expose only useful large targets',async({browser})=>{
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-dual/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();
+    Object.assign(settings.mobile.controls,{look:false,mouseButtons:false,quickKeys:[],toolbar:'top-left',keyboardPosition:'left',
+      dpad:{side:'left',keys:'wasd',axes:'horizontal'},actions:[{position:'top-left',label:'Start',key:'ENTER'},{position:'top-right',label:'Menu',key:'ESC'},{position:'bottom-right',label:'Fire',key:'SPACE'}]});
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-dual');
+  await expect(page.locator('#dpad button')).toHaveCount(2);
+  await expect(page.locator('#dpad [data-direction="left"]')).toHaveText('A');
+  await expect(page.locator('#dpad [data-direction="right"]')).toHaveText('D');
+  const targets=await page.locator('#dpad button').evaluateAll(buttons=>buttons.map(b=>b.getBoundingClientRect().toJSON()));
+  expect(targets.every(r=>r.width>=52 && r.height>=52)).toBeTruthy();
+  const menu=await page.getByRole('button',{name:'Menu',exact:true}).boundingBox();
+  const fire=await page.getByRole('button',{name:'Fire',exact:true}).boundingBox();
+  expect(menu.width).toBeLessThanOrEqual(80);
+  expect(menu.width).toBeGreaterThanOrEqual(44);
+  expect(menu.x).toBeGreaterThan(600);expect(menu.y).toBeLessThan(100);
+  expect(fire.x).toBeGreaterThan(600);expect(fire.y+fire.height).toBeGreaterThan(330);
+  const startButton=page.getByRole('button',{name:'Start',exact:true});
+  const startRect=await startButton.boundingBox();
+  for(const selector of ['#controls-toggle','#fullscreen','#control-toolbar']) {
+    const rect=await page.locator(selector).boundingBox();
+    if(rect) expect(Math.min(startRect.x+startRect.width,rect.x+rect.width)<=Math.max(startRect.x,rect.x) ||
+      Math.min(startRect.y+startRect.height,rect.y+rect.height)<=Math.max(startRect.y,rect.y)).toBeTruthy();
+  }
+  await startButton.tap();
+  await expect.poll(()=>consoleText(page)).toContain('key:1c');
+  await page.getByRole('button',{name:'Fire',exact:true}).tap();
+  await expect.poll(()=>consoleText(page)).toContain('key:39');
+  await page.getByRole('button',{name:'Keyboard',exact:true}).tap();
+  const keys=await page.locator('#keyboard').boundingBox();
+  expect(keys.x).toBeLessThan(10);expect(keys.width).toBeLessThan(430);
+  await context.close();
+});
+
+test('configured step keys repeat while held and stop on cancellation',async({browser})=>{
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-dual/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();settings.mobile.controls.repeatKeys=['W'];
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-dual');
+  const box=await page.locator('#dpad [data-direction="up"]').boundingBox();
+  const cdp=await context.newCDPSession(page);
+  const makes=()=>[...consoleText(page).matchAll(/key:11\b/g)].length;
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x:box.x+box.width/2,y:box.y+box.height/2}]});
+  await expect.poll(makes).toBeGreaterThanOrEqual(3);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+  await expect.poll(()=>consoleText(page)).toContain('key:91');
+  const released=makes();await page.waitForTimeout(250);expect(makes()).toBe(released);
+  await context.close();
+});
+
+test('custom pad modifier directions release with the finger',async({browser})=>{
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-dual/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();
+    Object.assign(settings.mobile.controls,{dpad:false,look:false,pads:[{side:'left',mode:'arrows',style:'dpad',keys:{up:'LSHIFT',left:'LCTRL',right:'LALT',down:'S'}}]});
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-dual');
+  for(const [direction,make,release] of [['up','2a','aa'],['left','1d','9d'],['right','38','b8']]) {
+    const button=page.locator(`.custom-dpad [data-direction="${direction}"]`);
+    await button.tap();
+    await expect.poll(()=>consoleText(page)).toContain('key:'+make);
+    await expect.poll(()=>consoleText(page)).toContain('key:'+release);
+    await expect(button).not.toHaveClass(/held/);
+  }
+  await context.close();
+});
+
+test('tap-hold translates piece and destination taps into a mouse drag',async({browser})=>{
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-direct/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();settings.mobile.controls.touch='tap-hold';settings.mobile.controls.mouseButtons=true;
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-direct');
+  const box=await page.locator('canvas').boundingBox();
+  const point=(x,y)=>({x:box.x+x*box.width/800,y:box.y+y*box.height/600,id:1});
+  const cdp=await context.newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(100,200)]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[point(300,250)]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+  await expect.poll(()=>mousePackets(page).length).toBeGreaterThan(0);
+  expect(mousePackets(page).every(([flags])=>!(flags&1))).toBeTruthy();
+  await page.locator('canvas').tap({position:{x:box.width*100/800,y:box.height*200/600}});
+  await expect.poll(()=>mousePackets(page).at(-1)?.[0]&1).toBe(1);
+  await page.locator('canvas').tap({position:{x:box.width*600/800,y:box.height*350/600}});
+  await expect.poll(()=>mousePackets(page).at(-1)?.[0]&1).toBe(0);
+  let x=400,y=300,selected=null,moved=null;
+  for(const [flags,dx,dy] of mousePackets(page)) {
+    x+=dx-((flags&16)?256:0);y-=dy-((flags&32)?256:0);
+    if((flags&1) && !selected) selected=[x,y];
+    if(!(flags&1) && selected) moved=[x,y];
+  }
+  expect(selected).toEqual([100,200]);expect(moved).toEqual([600,350]);
+  await page.locator('canvas').tap({position:{x:box.width*100/800,y:box.height*200/600}});
+  await expect.poll(()=>mousePackets(page).at(-1)?.[0]&1).toBe(1);
+  await page.getByRole('button',{name:'Right click',exact:true}).tap();
+  await expect.poll(()=>mousePackets(page).at(-1)?.[0]&7).toBe(0);
+  await context.close();
+});
+
+test('direct touch lands before clicking, follows drags and ignores letterboxing', async ({ browser }) => {
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await start(page,'configured-direct');
+  await expect.poll(()=>consoleText(page)).toContain('ready');
+  const positions=()=>{
+    let x=400,y=300;
+    return mousePackets(page).map(([flags,dx,dy])=>{
+      x=Math.max(0,Math.min(799,x+dx-(flags&16?256:0)));
+      y=Math.max(0,Math.min(599,y-dy+(flags&32?256:0)));
+      return [x,y,flags&7];
+    });
+  };
+  const box=await page.locator('canvas').boundingBox();
+  const point=(x,y,id=1)=>({x:box.x+x*box.width/800,y:box.y+y*box.height/600,id});
+  const cdp=await context.newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[point(50,80)]});
+  await expect.poll(()=>positions().at(-1)).toEqual([50,80,1]);
+  expect(positions().filter(p=>p[2]===1)).toEqual([[50,80,1]]);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[point(650,480)]});
+  await expect.poll(()=>positions().at(-1)).toEqual([650,480,1]);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+  await expect.poll(()=>positions().at(-1)).toEqual([650,480,0]);
+  await page.locator('canvas').tap({position:{x:100*box.width/800,y:200*box.height/600}});
+  await expect.poll(()=>positions().at(-1)).toEqual([100,200,0]);
+  expect(positions().filter(p=>p[2]===1).at(-1)).toEqual([100,200,1]);
+  const before=positions().length;
+  await page.touchscreen.tap(10,195);
+  await page.locator('canvas').focus();
+  await page.keyboard.press('b');
+  await expect.poll(()=>consoleText(page)).toContain('key:b0');
+  expect(positions()).toHaveLength(before);
+  await context.close();
+});
 
 test('desktop starts directly in a game with only black letterboxing', async ({ page }) => {
   await start(page);
@@ -103,11 +380,11 @@ test('relocated export loads assets and renders, handles physical input, plays P
   await expect.poll(() => page.evaluate(() => window.playedAudio)).toEqual({ channels: 2, rate: 48000, sample: 0.125 });
   await page.locator('canvas').click({ position: { x: 40, y: 40 } });
   await expect.poll(() => consoleText(page)).toContain('mouse:09');
-  await expect.poll(() => page.evaluate(() => document.pointerLockElement?.id)).toBe('game');
+  expect(await page.evaluate(() => document.pointerLockElement)).toBeNull();
   await expect(page.locator('canvas')).toHaveCSS('cursor', 'none');
   await page.mouse.move(500, 300);
   await page.keyboard.press('ControlRight');
-  await expect.poll(() => page.evaluate(() => document.pointerLockElement)).toBeNull();
+  await expect(page.locator('canvas')).toHaveCSS('cursor', 'auto');
   await page.keyboard.down('ArrowLeft');
   await expect.poll(() => consoleText(page)).toContain('key:4b');
   await page.evaluate(() => window.dispatchEvent(new Event('blur')));
@@ -115,7 +392,7 @@ test('relocated export loads assets and renders, handles physical input, plays P
   await expect.poll(() => consoleText(page)).toContain('key:cb');
   await page.keyboard.up('ArrowLeft');
   await page.locator('canvas').click({ position: { x: 40, y: 40 } });
-  await expect.poll(() => page.evaluate(() => document.pointerLockElement?.id)).toBe('game');
+  expect(await page.evaluate(() => document.pointerLockElement)).toBeNull();
   await page.keyboard.press('Escape');
   await expect(page.locator('#status')).toContainText('Game finished.');
   expect(errors).toEqual([]);
@@ -127,6 +404,7 @@ test('relocated export loads assets and renders, handles physical input, plays P
 
 test('legacy polling loop yields for browser key input without source changes', async ({ page }) => {
   await start(page, 'legacy');
+  await expect.poll(() => consoleText(page)).toContain('legacy save:winner');
   await expect.poll(() => consoleText(page)).toContain('legacy polling ready');
   await expect.poll(() => consoleText(page)).toContain('legacy common:42');
   await expect.poll(() => consoleText(page)).toContain('legacy asset:legacy asset loaded');
@@ -137,27 +415,43 @@ test('legacy polling loop yields for browser key input without source changes', 
   await expect(page.locator('#status')).toContainText('Game finished.');
 });
 
-test('browser-consumed Escape reaches the game when it releases mouse capture', async ({ page }) => {
-  await start(page);
-  const capture = async () => {
-    const acquired = page.evaluate(() => new Promise(resolve => document.addEventListener('pointerlockchange', () => resolve(document.pointerLockElement?.id), { once: true })));
-    await page.locator('canvas').click();
-    expect(await acquired).toBe('game');
-  };
-  await capture();
-  await page.evaluate(() => new Promise(resolve => {
-    document.addEventListener('pointerlockchange', resolve, { once: true });
-    window.dispatchEvent(new Event('blur'));
-    document.exitPointerLock();
-  }));
+test('Escape stays in the game without locking or releasing the browser mouse', async ({ page }) => {
+  await start(page, 'pause');
+  await page.locator('canvas').click();
+  expect(await page.evaluate(() => document.pointerLockElement)).toBeNull();
+  await page.keyboard.press('Escape');
+  await expect.poll(() => pixel(page)).toEqual([0, 0, 255, 255]);
+  await expect.poll(() => consoleText(page)).toContain('key:81');
+  expect(consoleText(page).match(/key:01/g)).toHaveLength(1);
   await expect(page.locator('#status')).toHaveText('Game running.');
-  expect(consoleText(page)).not.toContain('key:01');
-  await page.evaluate(() => window.dispatchEvent(new Event('focus')));
-  await capture();
-  // Native Chrome consumes Escape before DOM keydown and releases pointer lock.
-  await page.evaluate(() => document.exitPointerLock());
-  await expect(page.locator('#status')).toContainText('Game finished.');
+  await expect(page.locator('canvas')).toHaveCSS('cursor', 'none');
+  const previous = consoleText(page).match(/mouse:/g)?.length || 0;
+  await page.mouse.move(500, 300);
+  await expect.poll(() => consoleText(page).match(/mouse:/g)?.length || 0).toBeGreaterThan(previous);
 });
+
+for (const [platform, release, guestModifier] of [['MacIntel', 'AltRight', 'MetaRight'], ['Win32', 'ControlRight', 'AltRight']]) {
+  test(`${platform} mouse release stops guest motion until a click, preserving app modifiers`, async ({ page }) => {
+    await page.addInitScript(platform => Object.defineProperty(navigator, 'platform', { get: () => platform }), platform);
+    await start(page);
+    await page.locator('canvas').click();
+    await page.keyboard.press(release);
+    await expect(page.locator('canvas')).toHaveCSS('cursor', 'auto');
+    await page.keyboard.press(guestModifier);
+    await expect.poll(() => consoleText(page)).toContain(guestModifier === 'MetaRight' ? 'key:dc' : 'key:b8');
+    // Wait for a real guest keyboard acknowledgement before sampling its mouse log.
+    const previous = consoleText(page).match(/mouse:/g)?.length || 0;
+    await page.mouse.move(500, 300);
+    await page.keyboard.press('b');
+    await expect.poll(() => consoleText(page)).toContain('key:b0');
+    expect(consoleText(page).match(/mouse:/g)?.length || 0).toBe(previous);
+    await page.locator('canvas').click();
+    await expect(page.locator('canvas')).toHaveCSS('cursor', 'none');
+    await page.mouse.move(520, 320);
+    await expect.poll(() => consoleText(page).match(/mouse:/g)?.length || 0).toBeGreaterThan(previous);
+    expect(await page.evaluate(() => document.pointerLockElement)).toBeNull();
+  });
+}
 
 test('installed CLI exports an external project after relocation', async ({ page }) => {
   await start(page, 'installed');
@@ -265,7 +559,7 @@ test('mobile controls stay compact, with a dismissible keyboard and optional map
   await page.getByRole('button', { name: 'Controls', exact: true }).tap();
   await expect(page.locator('#touch-controls')).toBeVisible();
   await page.setViewportSize({ width: 390, height: 844 });
-  await expect(page.locator('#controls-toggle')).toBeHidden();
+  await expect(page.locator('#controls-toggle')).toBeVisible();
   await expect(page.locator('#touch-controls')).toBeVisible();
   await context.close();
 });
@@ -361,15 +655,10 @@ test('Flappy renders and restarts on desktop and mobile', async ({ browser }) =>
     await expect.poll(() => page.locator('canvas').evaluate(canvas => new Set(canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data).size)).toBeGreaterThan(16);
     await page.screenshot({ path: path.join(root, `build/web-qa/${mobile ? 'mobile' : 'desktop'}.png`), fullPage: true });
     if (mobile) {
-      await page.getByRole('button', { name: 'Keyboard', exact: true }).tap();
-      await page.screenshot({ path: path.join(root, 'build/web-qa/mobile-keyboard.png'), fullPage: true });
-      await page.getByRole('button', { name: 'Keyboard', exact: true }).tap();
-      await page.getByRole('button', { name: 'Joystick', exact: true }).tap();
-      await page.screenshot({ path: path.join(root, 'build/web-qa/mobile-joystick.png'), fullPage: true });
-      await page.getByLabel('Joystick mode').selectOption('mouse-arrows');
-      await page.screenshot({ path: path.join(root, 'build/web-qa/mobile-dual-joysticks.png'), fullPage: true });
+      await expect(page.getByRole('button', { name: 'Keyboard', exact: true })).toBeHidden();
+      await expect(page.getByRole('button', { name: 'Joystick', exact: true })).toBeHidden();
+      await expect(page.getByRole('button', { name: 'SPACE', exact: true })).toBeVisible();
       await page.setViewportSize({ width: 844, height: 390 });
-      await expect(page.locator('#joystick')).toHaveCSS('width', '96px');
       await expect.poll(async () => {
         const game = await page.locator('canvas').boundingBox();
         const available = await page.locator('main').boundingBox();
@@ -422,4 +711,103 @@ test('one command builds and serves the current project with automatic assets', 
     process.kill(-child.pid, 'SIGINT');
     await new Promise(resolve => child.once('close', resolve));
   }
+});
+
+
+test('project identity, fullscreen orientation and minimal touch profile survive export relocation', async ({ browser }) => {
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage(); await start(page,'configured');
+  await expect(page).toHaveTitle('Sushi config fixture · lcom-ng');
+  await expect(page.locator('#touch-controls')).toBeHidden();
+  await expect(page.locator('#keyboard-toggle')).toBeHidden();
+  const area=await page.locator('main').boundingBox();
+  expect(area.width).toBe(844); expect(area.height).toBe(390);
+  const manifest=await (await page.request.get(`${base}/configured/manifest.webmanifest`)).json();
+  expect(manifest.name).toBe('Sushi config fixture'); expect(manifest.display).toBe('fullscreen'); expect(manifest.orientation).toBe('landscape');
+  expect((await page.request.get(`${base}/configured/${manifest.icons[0].src}`)).ok()).toBe(true);
+  await expect(page.locator('link[rel="icon"]')).toHaveAttribute('href','./icon.png');
+  await page.setViewportSize({width:390,height:844});
+  await expect(page.locator('#rotation-hint')).toBeVisible();
+  await expect(page.locator('#rotation-hint')).toHaveText('Rotate your device to landscape.');
+  await context.close();
+});
+
+test('configured overlay places movement left and mouse aim right with independent cancellation and theme', async ({ browser }) => {
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage(); await start(page,'configured-dual');
+  await expect(page.locator('#pointer-toggle')).toBeHidden();
+  const cdp=await context.newCDPSession(page);
+  const dpad=await page.getByRole('group',{name:'Directional pad'}).boundingBox();
+  const aim=await page.getByRole('group',{name:'Mouse joystick',exact:true}).boundingBox();
+  expect(dpad.x).toBeLessThan(80); expect(aim.x).toBeGreaterThan(650);
+  expect((await page.locator('main').boundingBox()).width).toBe(844);
+  await expect(page.getByRole('button',{name:'Keyboard',exact:true})).toHaveCSS('background-color','rgb(32, 48, 64)');
+  await expect(page.getByRole('button',{name:'Keyboard',exact:true})).toHaveCSS('font-family','ui-monospace, monospace');
+  const button=await page.locator('#dpad [data-direction="left"]').boundingBox();
+  const left={id:1,x:button.x+button.width/2,y:button.y+button.height/2};
+  const look={id:2,x:aim.x+aim.width*.8,y:aim.y+aim.height*.2};
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[left]});
+  await expect.poll(()=>consoleText(page)).toContain('key:1e');
+  const before=mousePackets(page).length;
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[left,look]});
+  await expect.poll(()=>mousePackets(page).length).toBeGreaterThan(before+2);
+  expect(mousePackets(page).slice(before).every(([flags,dx,dy])=>(flags&3)===0 && dx>0 && dy>0)).toBe(true);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+  await expect.poll(()=>consoleText(page)).toContain('key:9e');
+  const stopped=mousePackets(page).length;
+  await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
+  expect(mousePackets(page).length).toBe(stopped);
+  await page.getByRole('button',{name:'Keyboard',exact:true}).tap();
+  await expect(page.getByRole('region',{name:'On-screen keyboard'})).toBeVisible();
+  await page.screenshot({path:path.join(root,'build/project-config-qa/configured-keyboard.png')});
+  await page.getByRole('button',{name:'Keyboard',exact:true}).tap();
+  await expect(page.getByRole('region',{name:'On-screen keyboard'})).toBeHidden();
+  await expect(page.getByRole('group',{name:'Mouse joystick',exact:true})).toBeVisible();
+  await expect(page.getByRole('group',{name:'Directional pad'})).toBeVisible();
+  await context.close();
+});
+
+
+test('collection is responsive, forwards profiles, and discards game state on return', async ({ browser }) => {
+  const context=await browser.newContext({viewport:{width:390,height:844},hasTouch:true,isMobile:true});
+  const page=await context.newPage(); observe(page);
+  await page.goto(`${base}/collection/`);
+  await expect(page.getByRole('heading',{name:'Classroom Arcade'})).toBeVisible();
+  const columns=()=>page.locator('#games').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
+  expect(await columns()).toBe(3);
+  await page.setViewportSize({width:1280,height:800});
+  expect(await columns()).toBeGreaterThan(3);
+  await page.getByRole('searchbox').fill('Second');
+  await expect(page.getByRole('link',{name:'Play Second game'})).toBeVisible();
+  await expect(page.getByRole('link',{name:'Play First game'})).toHaveCount(0);
+  await page.getByRole('searchbox').fill('');
+  await page.getByRole('link',{name:'Play First game'}).click();
+  const frame=page.frameLocator('iframe');
+  await expect(frame.locator('#status')).toHaveText('Game running.');
+  await expect.poll(()=>consoleText(page)).toContain('environment:ready from profile');
+  const targets=await frame.locator('#quick-keys .key').evaluateAll(keys=>keys.map(key=>{const box=key.getBoundingClientRect();return {x:box.x,y:box.y,w:box.width,h:box.height};}));
+  expect(targets).toHaveLength(10);
+  expect(targets.every(box=>box.w>=44 && box.h>=44)).toBeTruthy();
+  expect(new Set(targets.map(box=>box.y)).size).toBeGreaterThan(1);
+  await frame.getByRole('button',{name:'Keypad Enter',exact:true}).click();
+  await expect.poll(()=>consoleText(page)).toContain('key:e0');
+  await expect.poll(()=>consoleText(page)).toContain('key:1c');
+  await expect(page.getByRole('button',{name:'Games',exact:true})).toBeVisible();
+  const toggleBox=await frame.locator('#controls-toggle').boundingBox();
+  const gameBox=await frame.locator('canvas').boundingBox();
+  const overlap=(a,b)=>Math.max(0,Math.min(a.x+a.width,b.x+b.width)-Math.max(a.x,b.x))*Math.max(0,Math.min(a.y+a.height,b.y+b.height)-Math.max(a.y,b.y));
+  await expect.poll(async()=>overlap(await page.locator('#back').boundingBox(),gameBox)).toBe(0);
+  expect(overlap(await page.locator('#back').boundingBox(),toggleBox)).toBe(0);
+  await frame.locator('#controls-toggle').click();
+  await expect(frame.locator('#touch-controls')).toBeHidden();
+  await expect(page.locator('iframe')).toHaveCount(1);
+  expect(await page.evaluate(()=>document.fullscreenElement?.tagName)).toBe('HTML');
+  expect(await page.locator('iframe').boundingBox()).toMatchObject({x:0,y:0,width:1280,height:800});
+  await page.getByRole('button',{name:'Games',exact:true}).click();
+  await expect(page.locator('iframe')).toHaveCount(0);
+  await page.getByRole('link',{name:'Play Second game'}).click();
+  await expect(frame.locator('#status')).toHaveText('Game running.');
+  await page.goBack();
+  await expect(page.getByRole('heading',{name:'Classroom Arcade'})).toBeVisible();
+  await context.close();
 });

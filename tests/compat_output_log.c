@@ -31,6 +31,18 @@ int main(int argc, char **argv) {
   errno = 0; CHECK(!lcf_log_output(NULL) && errno == EINVAL);
   errno = 0; CHECK(!lcf_log_output(missing) && errno == ENOENT);
   errno = 0; CHECK(!lcf_log_output(argv[1]) && errno == EISDIR);
+  // Legacy absolute paths must reach this export's private, writable asset root.
+  CHECK(setenv("LCOM_COMPAT_PATH_ALIAS_COUNT", "2", 1) == 0);
+  CHECK(setenv("LCOM_COMPAT_PATH_ALIAS_0_FROM", "/home/lcom/labs/legacy-team", 1) == 0);
+  CHECK(setenv("LCOM_COMPAT_PATH_ALIAS_0_TO", ".", 1) == 0);
+  CHECK(setenv("LCOM_COMPAT_PATH_ALIAS_1_FROM", "/home/lcom/labs/legacy-team/assets", 1) == 0);
+  CHECK(setenv("LCOM_COMPAT_PATH_ALIAS_1_TO", "lab", 1) == 0);
+  FILE *score = fopen("/home/lcom/labs/legacy-team/assets/score.txt", "w");
+  CHECK(score); CHECK(fputs("42", score) >= 0); CHECK(fclose(score) == 0);
+  score = fopen("/home/lcom/labs/legacy-team/save.txt", "w");
+  CHECK(score); CHECK(fputs("17", score) >= 0); CHECK(fclose(score) == 0);
+  errno = 0;
+  CHECK(!fopen("/home/lcom/labs/legacy-team-other/score.txt", "w") && errno == ENOENT);
   puts("before logging");
   CHECK(lcf_log_output("/home/lcom/labs/lab/a.log"));
   printf("printf first\n"); puts("puts first"); fprintf(stdout, "fprintf first\n");

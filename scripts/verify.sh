@@ -18,6 +18,15 @@ ctest --test-dir build --output-on-failure
 echo "==> WebAssembly export and browser input checks"
 bun run test:web
 
+echo "==> Project configuration contracts"
+python3 tests/project_config.py
+python3 tests/collection_export.py
+python3 scripts/check_collection_sources.py
+
+echo "==> Native Android source export and relocation checks"
+python3 tests/android_return_layout.py
+python3 tests/android_export.py
+
 echo "==> Public docs and asset checks"
 bun run docs:check
 

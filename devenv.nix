@@ -95,6 +95,10 @@
     machinelab-build
     exec bun run test:web
   '';
+  scripts.lcom-ng-android-test.exec = ''
+    machinelab-build
+    exec python3 tests/android_export.py "$@"
+  '';
   scripts.lcom-ng-run-sdl.exec = ''
     exec machinelab-run-sdl "$@"
   '';

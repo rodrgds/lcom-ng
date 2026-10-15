@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "name": "Flappy Bird",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "SPACE",
+        "ESC"
+      ],
+      "pointer": "drag",
+      "layout": "overlay"
+    },
+    "theme": {
+      "accent": "#66d9e8",
+      "font": "sans"
+    }
+  }
+}

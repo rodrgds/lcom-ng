@@ -2,6 +2,7 @@
 #include <lcom/compat.h>
 #include <lcom/vbe_modes.h>
 #include <stdarg.h>
+#include <sys/stat.h>
 #include "output_log.h"
 
 #define WEAK __attribute__((weak))
@@ -421,13 +422,49 @@ int lcf_cleanup(void) {
   return logging_error;
 }
 
-FILE *lcom_compat_fopen(const char *path, const char *mode) {
-  if (!path || !mode) { errno = EINVAL; return NULL; }
-  FILE *file = fopen(path, mode);
-  if (file || errno != ENOENT || path[0] != '/') return file;
+/* Exporters turn explicit lcom.json aliases into per-process environment
+ * entries, so the same resolver serves desktop, native Android and WASM. */
+static char *aliased_path(const char *path, const char *root) {
+  const char *setting = getenv("LCOM_COMPAT_PATH_ALIAS_COUNT");
+  if (!setting) return NULL;
+  char *end;
+  unsigned long count = strtoul(setting, &end, 10);
+  if (*end || count > 64) return NULL;
+  const char *destination = NULL;
+  size_t longest = 0;
+  for (unsigned long index = 0; index < count; ++index) {
+    char variable[64];
+    snprintf(variable, sizeof(variable), "LCOM_COMPAT_PATH_ALIAS_%lu_FROM", index);
+    const char *origin = getenv(variable);
+    if (!origin || origin[0] != '/') continue;
+    size_t length = strlen(origin);
+    if (length <= longest || strncmp(path, origin, length) || (path[length] && path[length] != '/')) continue;
+    snprintf(variable, sizeof(variable), "LCOM_COMPAT_PATH_ALIAS_%lu_TO", index);
+    const char *target = getenv(variable);
+    if (!target || !*target || target[0] == '/') continue;
+    destination = target;
+    longest = length;
+  }
+  if (!destination) return NULL;
+  if (!strcmp(destination, ".")) destination = "";
+  size_t root_size = strlen(root), target_size = strlen(destination), tail_size = strlen(path + longest);
+  if (root_size > SIZE_MAX - target_size - tail_size - 2) { errno = ENAMETOOLONG; return NULL; }
+  char *result = malloc(root_size + target_size + tail_size + 2);
+  if (!result) return NULL;
+  snprintf(result, root_size + target_size + tail_size + 2, "%s%s%s%s", root,
+           target_size ? "/" : "", destination, path + longest);
+  return result;
+}
+
+/* Return an owned fallback name, or NULL without changing errno when no
+ * project mapping applies. Callers preserve normal filesystem behavior first. */
+static char *project_path(const char *path) {
+  if (path[0] != '/') return NULL;
   const char *root = getenv("LCOM_COMPAT_PROJECT_ROOT");
   if (!root || !*root) root = lcom_compat_project_root;
   if (!root) return NULL;
+  char *alias = aliased_path(path, root);
+  if (alias || errno) return alias;
   const char *relative = NULL;
   const char *prefixes[] = {"/home/lcom/labs/", "/home/lcom/"};
   for (size_t i = 0; i < sizeof(prefixes) / sizeof(prefixes[0]); ++i) {
@@ -438,9 +475,55 @@ FILE *lcom_compat_fopen(const char *path, const char *mode) {
   size_t root_len = strlen(root), relative_len = strlen(relative);
   if (root_len > SIZE_MAX - relative_len - 2) { errno = ENAMETOOLONG; return NULL; }
   char *rebased = malloc(root_len + relative_len + 2);
-  if (!rebased) return NULL;
-  snprintf(rebased, root_len + relative_len + 2, "%s/%s", root, relative);
+  if (rebased) snprintf(rebased, root_len + relative_len + 2, "%s/%s", root, relative);
+  return rebased;
+}
+
+FILE *lcom_compat_fopen(const char *path, const char *mode) {
+  if (!path || !mode) { errno = EINVAL; return NULL; }
+  FILE *file = fopen(path, mode);
+  if (file || errno != ENOENT) return file;
+  errno = 0;
+  char *rebased = project_path(path);
+  if (!rebased) { if (!errno) errno = ENOENT; return NULL; }
   file = fopen(rebased, mode); free(rebased); return file;
+}
+
+int lcom_compat_remove(const char *path) {
+  if (!path) { errno = EINVAL; return -1; }
+  int result = remove(path);
+  if (result == 0 || errno != ENOENT) return result;
+  errno = 0;
+  char *rebased = project_path(path);
+  if (!rebased) { if (!errno) errno = ENOENT; return -1; }
+  result = remove(rebased); free(rebased); return result;
+}
+
+/* rename may fail because either operand is absent. Preserve each existing
+ * filesystem entry, including dangling symlinks, and map only missing names. */
+static int missing_project_path(const char *path, char **replacement) {
+  struct stat info;
+  *replacement = NULL;
+  if (lstat(path, &info) == 0 || errno != ENOENT) return 0;
+  errno = 0;
+  *replacement = project_path(path);
+  return *replacement || !errno ? 0 : -1;
+}
+
+int lcom_compat_rename(const char *old_path, const char *new_path) {
+  if (!old_path || !new_path) { errno = EINVAL; return -1; }
+  int result = rename(old_path, new_path);
+  if (result == 0 || errno != ENOENT) return result;
+  char *old_rebased = NULL, *new_rebased = NULL;
+  if (missing_project_path(old_path, &old_rebased) ||
+      missing_project_path(new_path, &new_rebased)) {
+    free(old_rebased); free(new_rebased); return -1;
+  }
+  if (old_rebased || new_rebased)
+    result = rename(old_rebased ? old_rebased : old_path,
+                    new_rebased ? new_rebased : new_path);
+  else errno = ENOENT;
+  free(old_rebased); free(new_rebased); return result;
 }
 
 FILE *lcom_compat_freopen(const char *path, const char *mode, FILE *stream) {

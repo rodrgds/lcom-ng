@@ -4,19 +4,22 @@
 body { margin: 0; width: 100%; height: 100dvh; display: flex; flex-direction: column; background: #000; overflow: hidden; }
 main { flex: 1; min-width: 0; min-height: 0; display: grid; place-items: center; position: relative; overflow: hidden; touch-action: none; }
 canvas { display: block; object-fit: contain; image-rendering: pixelated; touch-action: none; outline: none; cursor: none; }
+canvas.mouse-released { cursor: auto; }
 .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-button { font: inherit; color: inherit; background: #222; border: 1px solid #444; border-radius: 5px; touch-action: manipulation; cursor: pointer; }
+button { font: inherit; color: inherit; background: var(--button, #222); border: 1px solid #444; border-radius: 5px; touch-action: manipulation; cursor: pointer; }
 @media (hover: hover) { button:hover { background: #333; } }
-button:active, button[aria-pressed="true"], button[aria-expanded="true"], .key.held { color: #112c24; background: var(--accent); border-color: var(--accent); }
+button:active, button[aria-pressed="true"], button[aria-expanded="true"], .key.held { color: var(--accent-text, #112c24); background: var(--accent); border-color: var(--accent); }
 button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
 #touch-controls { flex-shrink: 0; background: #000; padding: 6px max(8px, env(safe-area-inset-right)) max(6px, env(safe-area-inset-bottom)) max(8px, env(safe-area-inset-left)); user-select: none; -webkit-user-select: none; }
 .control-bar, .compact-controls, #quick-keys { display: flex; gap: 6px; max-width: 920px; margin: auto; }
 .control-bar button { flex: 1; min-width: 0; min-height: 44px; padding: 6px; font-size: 13px; }
+.control-bar .labelled-icon { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 3px; font-size: 11px; }
 [data-mouse] { touch-action: none; }
 .compact-controls { align-items: center; margin-top: 6px; }
 .quick-controls { flex: 1; min-width: 0; }
 #touch-hint { color: #b8b8b8; font-size: 12px; text-align: center; margin: 0 0 6px; }
-#quick-keys .key { min-height: 44px; font-size: 13px; }
+#quick-keys { flex-wrap: wrap; }
+#quick-keys .key { flex: 1 0 52px; min-width: 44px; min-height: 44px; font-size: 13px; }
 #keyboard { margin-top: 8px; max-height: min(48dvh, 260px); overflow-y: auto; overscroll-behavior: contain; }
 #joystick-controls { display: flex; align-items: center; gap: 8px; }
 .joystick-pads { display: flex; gap: 12px; }
@@ -33,7 +36,7 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
 .joystick::before { width: 1px; height: 80px; left: 55px; top: 15px; }
 .joystick::after { height: 1px; width: 80px; top: 55px; left: 15px; }
 .joystick-knob { position: absolute; width: 44px; height: 44px; top: 33px; left: 33px; background: var(--accent); border-radius: 50%; }
-#joystick-mapping { width: 150px; min-height: 44px; font: inherit; font-size: 13px; color: inherit; background: #222; border: 1px solid #444; border-radius: 5px; }
+#joystick-mapping { width: 150px; min-height: 44px; font: inherit; font-size: 13px; color: inherit; background: var(--button, #222); border: 1px solid #444; border-radius: 5px; }
 @media (max-width: 600px) {
   #joystick-controls { flex-direction: column; gap: 6px; }
   .dual-joysticks .compact-controls { grid-template-columns: 150px minmax(0, 1fr); }
@@ -51,7 +54,7 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
 .key.space { flex: 4; }
 #error { position: absolute; max-width: min(40ch, 90%); padding: 24px; background: #151515; text-align: center; line-height: 1.5; }
 #error button { padding: 10px 20px; }
-::selection { color: #112c24; background: var(--accent); }
+::selection { color: var(--accent-text, #112c24); background: var(--accent); }
 @media (max-height: 500px) and (pointer: coarse) { #keys .key { min-height: 32px; } .joystick { width: 96px; height: 96px; } .joystick-knob { top: 25px; left: 25px; } .joystick::before { left: 47px; top: 7px; } .joystick::after { top: 47px; left: 7px; } }
 @media (pointer: coarse) and (orientation: landscape) {
   body { flex-direction: row; }
@@ -72,4 +75,83 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
   .joystick-knob { top: 19px; left: 19px; }
   .joystick::before { left: 41px; top: 1px; }
   .joystick::after { top: 41px; left: 1px; }
+}
+
+/* Project settings only affect mobile chrome. Physical desktop input stays game-only. */
+button { font-family: var(--control-font, system-ui, sans-serif); }
+#touch-controls { color: var(--text, #eeeeee); }
+#keyboard { --accent: var(--keyboard-accent, #72d6b0); --accent-text: var(--keyboard-accent-text, #101010); }
+button svg { width: 24px; height: 24px; vertical-align: middle; pointer-events: none; }
+#fullscreen { position: absolute; top: max(8px, env(safe-area-inset-top)); right: max(8px, env(safe-area-inset-right)); width: 44px; height: 44px; z-index: 4; opacity: .8; }
+#rotation-hint { position: fixed; top: max(8px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); padding: 10px 16px; background: #161616e8; border-radius: 6px; z-index: 5; font-size: 14px; }
+#controls-toggle { writing-mode: initial; min-height: 44px; }
+/* Direction targets form a cross; the transparent corners leave the game usable. */
+#dpad, .custom-dpad { display: grid; flex-shrink: 0; width: 156px; height: 156px; grid-template: repeat(3, 52px) / repeat(3, 52px); gap: 0; background: transparent; }
+#dpad .key, .custom-dpad .key { margin: 0; min-width: 52px; min-height: 52px; font-size: 28px; line-height: 1; border-radius: 4px; }
+.custom-dpad .key[data-code^="Numpad"] { font-size: 16px; }
+#custom-controls { display: flex; justify-content: space-between; gap: 12px; }
+.thumb-controls { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.game-actions { display: grid; grid-template-columns: repeat(2,minmax(56px,1fr)); gap: 6px; width: 156px; }
+.game-actions:empty { display: none; }
+.game-actions .key { min-height: 48px; padding: 6px; line-height: 1.15; font-size: 13px; overflow-wrap: anywhere; }
+.game-actions .key:only-child { grid-column: 1 / -1; }
+[data-direction="up"] { grid-area: 1 / 2; }
+[data-direction="left"] { grid-area: 2 / 1; }
+[data-direction="right"] { grid-area: 2 / 3; }
+[data-direction="down"] { grid-area: 3 / 2; }
+#dpad[data-axes="horizontal"], .custom-dpad[data-axes="horizontal"] { grid-template: 52px / 52px 52px; gap: 8px; width: 112px; height: 52px; }
+#dpad[data-axes="vertical"], .custom-dpad[data-axes="vertical"] { grid-template: 52px 52px / 52px; gap: 8px; width: 52px; height: 112px; }
+[data-axes="horizontal"] > [data-direction], [data-axes="vertical"] > [data-direction] { grid-area: auto; }
+[data-side="right"] { order: 3; }
+#control-toolbar { display: contents; }
+#pointer-toggle { width: 44px; min-width: 44px; height: 44px; display: grid; place-items: center; }
+@media (pointer: coarse) {
+  .configured-overlay#touch-controls { position: fixed; inset: auto 0 0; height: auto; width: 100%; background: transparent; pointer-events: none; overflow: visible; padding: 8px; }
+  .configured-overlay button, .configured-overlay .joystick, .configured-overlay select { pointer-events: auto; }
+  .configured-overlay .compact-controls, .configured-overlay #joystick-controls, .configured-overlay .joystick-pads { display: contents; }
+  .configured-overlay .joystick-control, .configured-overlay #dpad { position: fixed; bottom: max(12px, env(safe-area-inset-bottom)); left: max(6px, env(safe-area-inset-left)); }
+  .configured-overlay .joystick-control[data-side="right"], .configured-overlay #dpad[data-side="right"] { left: auto; right: max(6px, env(safe-area-inset-right)); }
+  .configured-overlay .joystick-control > span { display: none; }
+  .configured-overlay #joystick-mapping { display: none; }
+  .configured-overlay #custom-controls { display: contents; }
+  .configured-overlay .thumb-controls, .thumb-controls.corner-actions { position: fixed; bottom: max(12px, env(safe-area-inset-bottom)); left: max(6px, env(safe-area-inset-left)); pointer-events: none; }
+  .configured-overlay .thumb-controls[data-side="right"], .thumb-controls.corner-actions[data-side="right"] { left: auto; right: max(6px, env(safe-area-inset-right)); }
+  .configured-overlay .thumb-controls.above-legacy-pad { bottom: calc(max(12px, env(safe-area-inset-bottom)) + var(--legacy-pad-height) + 8px); }
+  .thumb-controls.corner-actions[data-position^="top"] { top: max(8px, env(safe-area-inset-top)); bottom: auto; }
+  .thumb-controls[data-position^="top"] .game-actions { width: max-content; max-width: 156px; grid-template-columns: minmax(52px, 1fr); }
+  .thumb-controls[data-position^="top"] .game-actions:has(> :nth-child(2)) { grid-template-columns: repeat(2, minmax(52px, 1fr)); }
+  .thumb-controls.corner-actions button { pointer-events: auto; }
+  #touch-controls:not([data-toolbar="panel"]) #control-toolbar { position: fixed; z-index: 2; top: max(8px, env(safe-area-inset-top)); right: max(8px, env(safe-area-inset-right)); display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 6px; max-width: min(296px, calc(100vw - var(--toolbar-reserve, 80px))); pointer-events: none; }
+  #touch-controls:not([data-toolbar="panel"]) #control-toolbar .control-bar, #touch-controls:not([data-toolbar="panel"]) #control-toolbar .quick-controls, #touch-controls:not([data-toolbar="panel"]) #quick-keys { display: contents; }
+  #touch-controls:not([data-toolbar="panel"]) #control-toolbar button { pointer-events: auto; flex: none; min-width: 44px; min-height: 44px; padding: 6px 8px; font-size: 13px; }
+  #touch-controls:not([data-toolbar="panel"]) #control-toolbar .labelled-icon { min-width: 64px; font-size: 11px; }
+  #touch-controls[data-toolbar$="left"] #control-toolbar { left: max(8px, env(safe-area-inset-left)); right: auto; justify-content: flex-start; }
+  #touch-controls[data-toolbar^="bottom"] #control-toolbar { top: auto; bottom: max(8px, env(safe-area-inset-bottom)); }
+  .keyboard-open .compact-controls, .keyboard-open #custom-controls { display: none; }
+  body:has(.keyboard-open) #touch-controls { position: fixed; inset: 0; width: 100%; height: 100%; background: transparent; pointer-events: none; overflow: visible; }
+  #touch-controls.keyboard-open #control-toolbar { position: fixed; z-index: 5; top: max(8px, env(safe-area-inset-top)); right: max(8px, env(safe-area-inset-right)); display: flex; gap: 6px; }
+  .keyboard-open #control-toolbar .control-bar { display: contents; }
+  .keyboard-open #control-toolbar .quick-controls { display: none !important; }
+  .keyboard-open #control-toolbar button { pointer-events: auto; min-height: 44px; }
+  .keyboard-open #keyboard { position: fixed; z-index: 4; bottom: 0; left: 0; width: 100%; padding: 64px 8px max(8px, env(safe-area-inset-bottom)); background: #111; pointer-events: auto; max-height: min(70dvh, 330px); overflow-y: auto; }
+  body[data-keyboard-dock="bottom"] main { margin-bottom: min(70dvh, 330px); }
+  body[data-keyboard-dock="left"], body[data-keyboard-dock="right"] { --keyboard-width: clamp(320px, 44vw, 420px); }
+  body[data-keyboard-dock="left"] main { margin-left: var(--keyboard-width); }
+  body[data-keyboard-dock="right"] main { margin-right: var(--keyboard-width); }
+  .keyboard-open[data-keyboard-position="left"] #keyboard, .keyboard-open[data-keyboard-position="right"] #keyboard { top: 0; bottom: 0; width: var(--keyboard-width); max-height: 100%; }
+  .keyboard-open[data-keyboard-position="right"] #keyboard { left: auto; right: 0; }
+  .keyboard-open[data-keyboard-position="left"] #control-toolbar { left: 8px; right: auto; }
+  .keyboard-open #control-toolbar .control-bar [data-mouse], .keyboard-open #pointer-toggle, .keyboard-open #joystick-toggle { display: none; }
+  body:has(.configured-overlay) #controls-toggle, body:has(.keyboard-open) #controls-toggle { position: fixed; top: max(8px, env(safe-area-inset-top)); left: max(8px, env(safe-area-inset-left)); width: 44px; height: 44px; min-height: 44px; z-index: 3; }
+}
+
+@media (pointer: coarse) {
+  body:has(#fullscreen:not([hidden])) #touch-controls[data-toolbar="top-right"] #control-toolbar,
+  body:has(#fullscreen:not([hidden])) .keyboard-open[data-keyboard-position="right"] #control-toolbar { right: calc(max(8px, env(safe-area-inset-right)) + 52px); }
+  body:has(.keyboard-open) #controls-toggle { display: none; }
+  @media (max-width: 600px) {
+    body[data-keyboard-dock="left"] main, body[data-keyboard-dock="right"] main { margin-inline: 0; margin-bottom: min(70dvh, 330px); }
+    .keyboard-open[data-keyboard-position] #keyboard { top: auto; bottom: 0; left: 0; right: 0; width: 100%; max-height: min(70dvh, 330px); }
+    .keyboard-open[data-keyboard-position] #control-toolbar { top: auto; bottom: calc(min(70dvh, 330px) - 56px); right: 8px; left: auto; }
+  }
 }

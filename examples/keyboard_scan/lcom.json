@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "name": "Keyboard Scan Codes",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "keyboard": true,
+      "mouseButtons": false
+    },
+    "theme": {
+      "accent": "#72d6b0",
+      "font": "mono"
+    }
+  },
+  "build": {
+    "sources": [
+      "../keyboard_scan.c"
+    ]
+  }
+}

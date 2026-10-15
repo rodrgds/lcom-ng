@@ -24,6 +24,10 @@ void IrqController::raise(uint8_t irq) {
   pending_mask_ |= (1u << irq);
 }
 
+void IrqController::clear(uint8_t irq) {
+  if (irq < 32) pending_mask_ &= ~(1u << irq);
+}
+
 uint32_t IrqController::consumePending() {
   uint32_t mask = pending_mask_;
   pending_mask_ = 0;

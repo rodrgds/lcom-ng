@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "name": "Tilemap Editor",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "joystick": false,
+      "quickKeys": [
+        "ESC",
+        "S",
+        "Z"
+      ],
+      "keyboard": true,
+      "mouseButtons": true
+    },
+    "theme": {
+      "accent": "#99d0ac",
+      "font": "sans"
+    }
+  },
+  "build": {
+    "sources": [
+      "../tilemap_editor.c"
+    ]
+  }
+}

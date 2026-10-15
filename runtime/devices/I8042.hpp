@@ -29,6 +29,7 @@ public:
   uint8_t status() const;
   uint8_t commandByte() const { return command_byte_; }
   bool mouseReporting() const { return mouse_reporting_; }
+  bool mouseStreaming() const { return mouse_reporting_ && !mouse_remote_; }
 
 private:
   struct OutputByte {

@@ -19,6 +19,8 @@ with tempfile.TemporaryDirectory(prefix="lcom-ng output log ") as temporary:
     assert result.returncode == 0, text
     assert (single / "lab/a.log").read_text() == first
     assert (single / "b.log").read_text() == "printf third\n"
+    assert (single / "lab/score.txt").read_text() == "42"
+    assert (single / "save.txt").read_text() == "17"
     assert not (single / "missing").exists() and not (single / "calls.log").exists()
     for line in ["before logging", "printf first", "puts first", "fprintf first", "Elapsed time: 1 seconds", "write first", "console first", "after failed configuration", "printf second", "printf third", "after cleanup", "stderr stays separate"]:
         assert line in text, (line, text)
@@ -29,6 +31,8 @@ with tempfile.TemporaryDirectory(prefix="lcom-ng output log ") as temporary:
     for path in [left, right]:
         assert (path / "lab/a.log").read_text() == first
         assert (path / "b.log").read_text() == "printf third\n"
+        assert (path / "lab/score.txt").read_text() == "42"
+        assert (path / "save.txt").read_text() == "17"
     automatic = directory("automatic")
     result = subprocess.run([runtime, "run", "--headless", "--", client, automatic, "--exit"], capture_output=True, text=True, timeout=15)
     assert result.returncode == 0, result.stdout + result.stderr
