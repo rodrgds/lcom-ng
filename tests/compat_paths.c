@@ -76,6 +76,8 @@ int main(void) {
 
   /* A dangling destination symlink is an existing name, not an alias miss. */
   CHECK(symlink("missing-target", "link.txt") == 0);
+  struct stat link_info;
+  CHECK(lstat("link.txt", &link_info) == 0 && S_ISLNK(link_info.st_mode));
   CHECK(write_text("records/link.txt", "mapped link\n") == 0);
   CHECK(setenv("LCOM_COMPAT_PATH_ALIAS_1_FROM", "/legacy/save", 1) == 0);
   CHECK(setenv("LCOM_COMPAT_PATH_ALIAS_1_TO", "records", 1) == 0);

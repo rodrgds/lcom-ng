@@ -353,6 +353,10 @@ if(BUILD_TESTING)
   add_executable(compat_paths tests/compat_paths.c)
   target_link_libraries(compat_paths PRIVATE lcom_minix)
   add_test(NAME compat_paths COMMAND $<TARGET_FILE:compat_paths>)
+  # MSYS defaults to copying symlink targets, which cannot represent the
+  # dangling-link save-path fixture. Its sys mode needs no Windows privilege.
+  set_tests_properties(compat_paths PROPERTIES
+    ENVIRONMENT "MSYS=winsymlinks:sys;CYGWIN=winsymlinks:sys")
   add_executable(compat_client tests/compat_client.c)
   target_link_libraries(compat_client PRIVATE lcom_minix)
   add_test(NAME compat_client

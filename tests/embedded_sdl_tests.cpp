@@ -95,9 +95,16 @@ static void positionedControls() {
   CHECK(lcom_phys_map(mode.framebuffer_phys,mode.framebuffer_size,reinterpret_cast<void **>(&pixels))==LCOM_OK);
   for(size_t i=0;i<mode.framebuffer_size;i+=3){pixels[i]=51;pixels[i+1]=34;pixels[i+2]=17;}
   windows=SDL_GetWindows(&count);CHECK(count==1);CHECK(SDL_SetWindowSize(windows[0],820,400));
+  CHECK(SDL_SyncWindow(windows[0]));
   lcom::embedded::host().pump();CHECK(lcom_vbe_present()==LCOM_OK);
   frame=SDL_RenderReadPixels(SDL_GetRenderer(windows[0]),nullptr);SDL_free(windows);CHECK(frame);
-  CHECK(SDL_ReadSurfacePixel(frame,660,30,&r,&g,&b,&a));CHECK(r==17 && g==34 && b==51);
+  if(frame->w!=820 || frame->h!=400)
+    std::fprintf(stderr,"Resized renderer output: %dx%d, expected 820x400\n",frame->w,frame->h);
+  CHECK(frame->w==820 && frame->h==400);
+  CHECK(SDL_ReadSurfacePixel(frame,660,30,&r,&g,&b,&a));
+  if(r!=17 || g!=34 || b!=51)
+    std::fprintf(stderr,"Resized game pixel: RGB(%u,%u,%u), expected RGB(17,34,51)\n",r,g,b);
+  CHECK(r==17 && g==34 && b==51);
   CHECK(SDL_ReadSurfacePixel(frame,700,30,&r,&g,&b,&a));CHECK(r==0 && g==0 && b==0);
   CHECK(SDL_ReadSurfacePixel(frame,750,222,&r,&g,&b,&a));CHECK(r==0 && g==0 && b==0);
   CHECK(SDL_ReadSurfacePixel(frame,780,205,&r,&g,&b,&a));CHECK(g>r && g>b);
@@ -430,7 +437,7 @@ int main() {
   CHECK(lcom_phys_map(mode.framebuffer_phys,mode.framebuffer_size,reinterpret_cast<void **>(&pixels))==LCOM_OK);
   for(size_t i=0;i<mode.framebuffer_size;i+=3) {pixels[i]=51;pixels[i+1]=34;pixels[i+2]=17;}
   windows=SDL_GetWindows(&count);CHECK(windows && count==1);window=windows[0];SDL_free(windows);
-  CHECK(SDL_SetWindowSize(window,960,400));lcom::embedded::host().pump();
+  CHECK(SDL_SetWindowSize(window,960,400));CHECK(SDL_SyncWindow(window));lcom::embedded::host().pump();
   CHECK(lcom_vbe_present()==LCOM_OK);
   frame=SDL_RenderReadPixels(SDL_GetRenderer(window),nullptr);CHECK(frame);
   // Independently fitted4:3guest:512x384within536x384remaining area.
@@ -438,7 +445,7 @@ int main() {
     CHECK(SDL_ReadSurfacePixel(frame,x,y,&r,&g,&b,&a));CHECK(r==17 && g==34 && b==51);
   }
   SDL_DestroySurface(frame);
-  CHECK(SDL_SetWindowSize(window,400,500));lcom::embedded::host().pump();
+  CHECK(SDL_SetWindowSize(window,400,500));CHECK(SDL_SyncWindow(window));lcom::embedded::host().pump();
   frame=SDL_RenderReadPixels(SDL_GetRenderer(window),nullptr);CHECK(frame);
   // A short portrait panel reserves its pads/actions below a336x252guest.
   for(int y=9;y<203;y+=3) for(int x=72;x<328;x+=3) {

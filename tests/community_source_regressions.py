@@ -25,14 +25,16 @@ class StudentSourceRegressions(unittest.TestCase):
             objects = []
             for index, source in enumerate(sources):
                 obj = folder / f'{index}.o'
-                subprocess.run([*compiler, *flags, *source_flags, '-c', str(project / source),
-                                '-o', str(obj)], check=True, capture_output=True, text=True)
+                result = subprocess.run([*compiler, *flags, *source_flags, '-c', str(project / source),
+                                         '-o', str(obj)], capture_output=True, text=True)
+                self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
                 objects.append(str(obj))
             main = folder / 'main.c'
             main.write_text(harness)
             binary = folder / 'regression'
-            subprocess.run([*compiler, *flags, str(main), *objects, linker, '-o', str(binary)],
-                           check=True, capture_output=True, text=True)
+            result = subprocess.run([*compiler, *flags, str(main), *objects, linker, '-o', str(binary)],
+                                    capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             result = subprocess.run([str(binary)], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
