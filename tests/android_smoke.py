@@ -183,7 +183,13 @@ def direct_touch():
     package=PACKAGE+'.direct'
     adb('install','-r',str(OUT/'direct/game.apk'))
     adb('logcat','-c')
+    confirmation='immersive_mode_confirmations'
+    previous=adb('shell','settings','get','secure',confirmation).strip()
     try:
+        # Android's first-use fullscreen tutorial owns focus and pauses SDL.
+        # Establish a confirmed test environment, restoring it after the probe.
+        adb('shell','settings','put','secure',confirmation,'confirmed')
+        assert adb('shell','settings','get','secure',confirmation).strip()=='confirmed'
         adb('shell','am','start','-W','-n',package+'/pt.rgo.lcomng.GameActivity')
         wait_for('ready')
         frame=wait_for_frame('android-direct-landscape.png',lambda frame:
@@ -239,6 +245,8 @@ def direct_touch():
     finally:
         (OUT/'android-direct-logcat.txt').write_text(adb('logcat','-d','-s','lcom-ng:I','*:S'))
         adb('shell','am','force-stop',package)
+        if previous=='null': adb('shell','settings','delete','secure',confirmation)
+        else: adb('shell','settings','put','secure',confirmation,previous)
 
 
 if __name__ == '__main__':
