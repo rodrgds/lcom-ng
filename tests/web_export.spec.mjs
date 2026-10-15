@@ -162,15 +162,95 @@ test('installed CLI exports an external project after relocation', async ({ page
 });
 
 
+test('mobile dragging moves the cursor without pressing a mouse button or jumping on contact', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  const page = await context.newPage();
+  await start(page);
+  await expect.poll(() => consoleText(page)).toContain('ready');
+  const cdp = await context.newCDPSession(page);
+  const box = await page.locator('canvas').boundingBox();
+  const contact = { x: box.x + box.width * 0.75, y: box.y + box.height * 0.75, id: 1 };
+  const packets = () => {
+    const bytes = [...consoleText(page).matchAll(/mouse:([0-9a-f]{2})/g)].map(match => parseInt(match[1], 16));
+    if (bytes[0] === 0xfa) bytes.shift(); // PS/2 enable acknowledgement, before the packets.
+    return Array.from({ length: Math.floor(bytes.length / 3) }, (_, i) => bytes.slice(i * 3, i * 3 + 3));
+  };
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [contact] });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ ...contact, x: contact.x + box.width / 10 }] });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await expect.poll(() => packets().length).toBeGreaterThan(0);
+  expect(packets().every(([flags]) => (flags & 3) === 0)).toBe(true);
+  // One tenth of the 800px framebuffer, regardless of where the finger landed.
+  expect(packets().reduce((sum, [flags, x]) => sum + x - (flags & 16 ? 256 : 0), 0)).toBe(80);
+  const left = await page.getByRole('button', { name: 'Left click', exact: true }).boundingBox();
+  const right = await page.getByRole('button', { name: 'Right click', exact: true }).boundingBox();
+  const fingers = [left, right].map((box, id) => ({ x: box.x + box.width / 2, y: box.y + box.height / 2, id: id + 2 }));
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [fingers[0]] });
+  await expect.poll(() => packets().at(-1)?.[0] & 3).toBe(1);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: fingers });
+  await expect.poll(() => packets().at(-1)?.[0] & 3).toBe(3);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [...fingers, contact] });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [...fingers, { ...contact, y: contact.y - 20 }] });
+  await expect.poll(() => packets().at(-1)?.[2]).toBeGreaterThan(0);
+  expect(packets().at(-1)[0] & 3).toBe(3);
+  expect(packets().reduce((sum, [flags, x]) => sum + x - (flags & 16 ? 256 : 0), 0)).toBe(80);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+  await expect.poll(() => packets().at(-1)?.[0] & 3).toBe(0);
+  await expect(page.getByRole('button', { name: 'Left click', exact: true })).toHaveAttribute('aria-pressed', 'false');
+  await context.close();
+});
+
+test('mobile controls stay compact, with a dismissible keyboard and optional mapped joystick', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  const page = await context.newPage();
+  await start(page);
+  const keyboard = page.getByRole('region', { name: 'On-screen keyboard' });
+  await expect(keyboard).toBeHidden();
+  await expect(page.locator('#joystick')).toBeHidden();
+  expect((await page.locator('#touch-controls').boundingBox()).height).toBeLessThan(130);
+  await page.getByRole('button', { name: 'Keyboard', exact: true }).tap();
+  await expect(keyboard).toBeVisible();
+  await page.locator('#keys [data-code="ShiftLeft"]').tap();
+  await page.getByRole('button', { name: 'Keyboard', exact: true }).tap();
+  await expect(keyboard).toBeHidden();
+  await expect.poll(() => consoleText(page)).toContain('key:aa');
+  await page.getByRole('button', { name: 'Joystick', exact: true }).tap();
+  const cdp = await context.newCDPSession(page);
+  const pad = await page.locator('#joystick').boundingBox();
+  const right = { x: pad.x + pad.width - 10, y: pad.y + pad.height / 2, id: 1 };
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [right] });
+  await expect.poll(() => consoleText(page)).toContain('key:4d');
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ ...right, x: pad.x + pad.width / 2, y: pad.y + pad.height / 2 }] });
+  await expect.poll(() => consoleText(page)).toContain('key:cd');
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await page.getByLabel('Joystick keys').selectOption('wasd');
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [right] });
+  await expect.poll(() => consoleText(page)).toContain('key:20');
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+  await expect.poll(() => consoleText(page)).toContain('key:a0');
+  await page.getByRole('button', { name: 'Joystick', exact: true }).tap();
+  // Both orientations must leave room for the game and avoid page overflow.
+  for (const viewport of [{ width: 390, height: 844 }, { width: 844, height: 390 }]) {
+    await page.setViewportSize(viewport);
+    const controlHeight = (await page.locator('#touch-controls').boundingBox()).height;
+    const expectedHeight = Math.min(viewport.width * 3 / 4, viewport.height - controlHeight);
+    expect(Math.abs((await page.locator('canvas').boundingBox()).height - expectedHeight)).toBeLessThan(1);
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth && document.documentElement.scrollHeight <= innerHeight)).toBe(true);
+  }
+  await context.close();
+});
+
 test('mobile keyboard supports held keys, modifiers, simultaneous touch and cancellation', async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   const page = await context.newPage();
   await start(page);
+  await page.getByRole('button', { name: 'Keyboard', exact: true }).tap();
   await expect(page.getByRole('region', { name: 'On-screen keyboard' })).toBeVisible();
-  const keyboardBounds = await page.locator('#keyboard').boundingBox();
+  const keyboardBounds = await page.locator('#touch-controls').boundingBox();
   expect(Math.abs(keyboardBounds.y + keyboardBounds.height - 844)).toBeLessThan(2);
   await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
-  const a = page.locator('[data-code="KeyA"]');
+  const keys = page.locator('#keys');
+  const a = keys.locator('[data-code="KeyA"]');
   await a.tap();
   await expect.poll(() => consoleText(page)).toContain('key:1e');
   await expect.poll(() => consoleText(page)).toContain('key:9e');
@@ -184,7 +264,7 @@ test('mobile keyboard supports held keys, modifiers, simultaneous touch and canc
   // Real simultaneous contacts, including cancellation, through the browser touch protocol.
   const cdp = await context.newCDPSession(page);
   const arrow = await page.locator('[data-code="ArrowLeft"]').boundingBox();
-  const space = await page.locator('[data-code="Space"]').boundingBox();
+  const space = await keys.locator('[data-code="Space"]').boundingBox();
   const points = [arrow, space].map((box, id) => ({ x: box.x + box.width / 2, y: box.y + box.height / 2, id }));
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: points });
   await expect.poll(() => consoleText(page)).toContain('key:4b');
@@ -196,7 +276,7 @@ test('mobile keyboard supports held keys, modifiers, simultaneous touch and canc
   await page.getByRole('button', { name: 'F1', exact: true }).tap();
   await expect.poll(() => consoleText(page)).toContain('key:3b');
   await page.getByRole('button', { name: 'Function keys' }).tap();
-  await page.getByRole('button', { name: 'ESC', exact: true }).tap();
+  await keys.getByRole('button', { name: 'ESC', exact: true }).tap();
   await expect(page.locator('#status')).toContainText('Game finished.');
   await context.close();
 });
@@ -211,6 +291,21 @@ test('Flappy renders and restarts on desktop and mobile', async ({ browser }) =>
     await start(page, 'flappy');
     await expect.poll(() => page.locator('canvas').evaluate(canvas => new Set(canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data).size)).toBeGreaterThan(16);
     await page.screenshot({ path: path.join(root, `build/web-qa/${mobile ? 'mobile' : 'desktop'}.png`), fullPage: true });
+    if (mobile) {
+      await page.getByRole('button', { name: 'Keyboard', exact: true }).tap();
+      await page.screenshot({ path: path.join(root, 'build/web-qa/mobile-keyboard.png'), fullPage: true });
+      await page.getByRole('button', { name: 'Keyboard', exact: true }).tap();
+      await page.getByRole('button', { name: 'Joystick', exact: true }).tap();
+      await page.screenshot({ path: path.join(root, 'build/web-qa/mobile-joystick.png'), fullPage: true });
+      await page.setViewportSize({ width: 844, height: 390 });
+      await expect(page.locator('#joystick')).toHaveCSS('width', '96px');
+      await expect.poll(async () => {
+        const game = await page.locator('canvas').boundingBox();
+        const controls = await page.locator('#touch-controls').boundingBox();
+        return Math.abs(game.height + controls.height - 390);
+      }).toBeLessThan(1);
+      await page.screenshot({ path: path.join(root, 'build/web-qa/mobile-landscape.png') });
+    }
     if (mobile) await page.getByRole('button', { name: 'ESC', exact: true }).tap();
     else await page.keyboard.press('Escape');
     await expect(page.locator('#status')).toContainText('Game finished.');

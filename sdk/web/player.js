@@ -5,6 +5,15 @@ const status = document.querySelector('#status');
 const area = document.querySelector('main');
 const touch = matchMedia('(pointer: coarse)');
 const keyboard = document.querySelector('#keyboard');
+const controls = document.querySelector('#touch-controls');
+const keyboardToggle = document.querySelector('#keyboard-toggle');
+const joystickToggle = document.querySelector('#joystick-toggle');
+const joystick = document.querySelector('#joystick');
+const joystickKnob = document.querySelector('#joystick-knob');
+const joystickMapping = document.querySelector('#joystick-mapping');
+let touchPointer = null;
+let joystickPointer = null;
+const mouseSources = new Map();
 const functionToggle = document.createElement('button');
 functionToggle.id = 'function-toggle';
 functionToggle.type = 'button';
@@ -45,6 +54,10 @@ const player = {
     if (this.buttons) this.module?.ccall('lcom_web_mouse', null, ['number', 'number', 'number'], [0, 0, 0]);
     this.buttons = 0;
     this.lastPointer = null;
+    mouseSources.clear();
+    touchPointer = null;
+    resetJoystick();
+    for (const button of controls.querySelectorAll('[data-mouse]')) button.setAttribute('aria-pressed', 'false');
   },
   present(bytes, width, height) {
     if (!this.image || canvas.width !== width || canvas.height !== height) {
@@ -137,6 +150,16 @@ window.addEventListener('blur', () => { if (mouseCaptured) releaseOnly = true; p
 window.addEventListener('focus', () => { player.paused = document.hidden; });
 document.addEventListener('visibilitychange', () => { if (mouseCaptured && document.hidden) releaseOnly = true; player.releaseAll(); player.paused = document.hidden; player.stopAudio(); });
 
+function sendMouse(dx = 0, dy = 0) {
+  player.module?.ccall('lcom_web_mouse', null, ['number', 'number', 'number'], [dx, dy, player.buttons]);
+}
+function setMouseButtons(source, buttons, dx = 0, dy = 0) {
+  if (buttons) mouseSources.set(source, buttons); else mouseSources.delete(source);
+  const previous = player.buttons;
+  player.buttons = [...mouseSources.values()].reduce((mask, value) => mask | value, 0);
+  if (previous !== player.buttons || dx || dy) sendMouse(dx, dy);
+  for (const button of controls.querySelectorAll('[data-mouse]')) button.setAttribute('aria-pressed', String(Boolean(player.buttons & Number(button.dataset.mouse))));
+}
 function mouse(event) {
   if (!player.module) return;
   const rect = canvas.getBoundingClientRect();
@@ -147,24 +170,99 @@ function mouse(event) {
   const dy = Math.round(locked ? -event.movementY * canvas.height / rect.height : previous[1] - point[1]);
   player.lastPointer = point;
   // Browser button bits are left/right/middle, just like a PS/2 packet.
-  player.buttons = event.buttons;
-  player.module.ccall('lcom_web_mouse', null, ['number', 'number', 'number'], [dx, dy, player.buttons]);
+  setMouseButtons('physical', event.buttons, dx, dy);
 }
 canvas.addEventListener('pointerdown', event => {
+  if (event.pointerType === 'touch') return;
   if (finished) { location.reload(); return; }
   canvas.focus({ preventScroll: true }); player.unlockAudio();
   if (!document.pointerLockElement) canvas.setPointerCapture(event.pointerId);
   captureMouse(); mouse(event);
 });
 canvas.addEventListener('pointermove', event => {
-  if (!document.pointerLockElement && (event.pointerType === 'mouse' || event.buttons)) mouse(event);
+  if (event.pointerType !== 'touch' && !document.pointerLockElement && (event.pointerType === 'mouse' || event.buttons)) mouse(event);
 });
 canvas.addEventListener('mousemove', event => { if (document.pointerLockElement === canvas) mouse(event); });
-canvas.addEventListener('pointerup', mouse);
-canvas.addEventListener('pointercancel', () => player.releaseAll());
-canvas.addEventListener('lostpointercapture', () => { if (player.buttons && !document.pointerLockElement) player.releaseAll(); });
+canvas.addEventListener('pointerup', event => { if (event.pointerType !== 'touch') mouse(event); });
+canvas.addEventListener('pointercancel', event => { if (event.pointerType !== 'touch') setMouseButtons('physical', 0); });
+canvas.addEventListener('lostpointercapture', event => { if (event.pointerType !== 'touch' && !document.pointerLockElement) setMouseButtons('physical', 0); });
 canvas.addEventListener('contextmenu', event => event.preventDefault());
-area.addEventListener('pointerdown', event => { if (event.target === area) canvas.focus({ preventScroll: true }); });
+area.addEventListener('pointerdown', event => {
+  if (event.target !== area && event.target !== canvas) return;
+  if (finished) { location.reload(); return; }
+  canvas.focus({ preventScroll: true }); player.unlockAudio();
+  if (event.pointerType !== 'touch' || touchPointer) return;
+  event.preventDefault();
+  // The game is a relative touchpad. Landing a finger never moves or clicks.
+  touchPointer = { id: event.pointerId, x: event.clientX, y: event.clientY, dx: 0, dy: 0 };
+  area.setPointerCapture(event.pointerId);
+});
+area.addEventListener('pointermove', event => {
+  if (event.pointerId !== touchPointer?.id) return;
+  const rect = canvas.getBoundingClientRect();
+  touchPointer.dx += (event.clientX - touchPointer.x) * canvas.width / rect.width;
+  touchPointer.dy += (touchPointer.y - event.clientY) * canvas.height / rect.height;
+  touchPointer.x = event.clientX; touchPointer.y = event.clientY;
+  const dx = Math.round(touchPointer.dx), dy = Math.round(touchPointer.dy);
+  touchPointer.dx -= dx; touchPointer.dy -= dy;
+  if (dx || dy) sendMouse(dx, dy);
+});
+for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) area.addEventListener(event, event => {
+  if (event.pointerId === touchPointer?.id) touchPointer = null;
+});
+
+for (const button of controls.querySelectorAll('[data-mouse]')) {
+  const mask = Number(button.dataset.mouse);
+  button.addEventListener('pointerdown', event => {
+    event.preventDefault(); button.setPointerCapture(event.pointerId); player.unlockAudio();
+    setMouseButtons(`button-${event.pointerId}`, mask);
+  });
+  for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) button.addEventListener(event, event => setMouseButtons(`button-${event.pointerId}`, 0));
+  button.addEventListener('click', event => {
+    if (event.detail !== 0) return;
+    player.unlockAudio(); setMouseButtons('activation', mask);
+    setTimeout(() => setMouseButtons('activation', 0), 80);
+  });
+  button.addEventListener('contextmenu', event => event.preventDefault());
+}
+
+function resetJoystick() {
+  joystickPointer = null;
+  for (const code of ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'KeyW', 'KeyA', 'KeyS', 'KeyD']) player.key(code, false, 'joystick');
+  joystickKnob.style.transform = '';
+}
+function moveJoystick(event) {
+  const rect = joystick.getBoundingClientRect();
+  let x = (event.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+  let y = (event.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+  const distance = Math.hypot(x, y);
+  if (distance > 1) { x /= distance; y /= distance; }
+  joystickKnob.style.transform = `translate(${x * (rect.width / 2 - 22)}px, ${y * (rect.height / 2 - 22)}px)`;
+  const codes = joystickMapping.value === 'wasd' ? ['KeyA', 'KeyD', 'KeyW', 'KeyS'] : ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+  [x < -0.3, x > 0.3, y < -0.3, y > 0.3].forEach((down, i) => player.key(codes[i], down, 'joystick'));
+}
+joystick.addEventListener('pointerdown', event => {
+  if (joystickPointer !== null) return;
+  event.preventDefault(); joystick.setPointerCapture(event.pointerId); player.unlockAudio();
+  joystickPointer = event.pointerId; moveJoystick(event);
+});
+joystick.addEventListener('pointermove', event => { if (event.pointerId === joystickPointer) moveJoystick(event); });
+for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) joystick.addEventListener(event, event => { if (event.pointerId === joystickPointer) resetJoystick(); });
+joystickMapping.addEventListener('change', () => { resetJoystick(); canvas.focus({ preventScroll: true }); });
+function togglePanel(button, panel) {
+  player.releaseAll();
+  panel.hidden = !panel.hidden;
+  button.setAttribute('aria-expanded', String(!panel.hidden));
+  if (!panel.hidden) {
+    const other = button === keyboardToggle ? joystickToggle : keyboardToggle;
+    document.getElementById(other.getAttribute('aria-controls')).hidden = true;
+    other.setAttribute('aria-expanded', 'false');
+  }
+  document.querySelector('.compact-controls').hidden = !keyboard.hidden;
+  canvas.focus({ preventScroll: true });
+}
+keyboardToggle.onclick = () => togglePanel(keyboardToggle, keyboard);
+joystickToggle.onclick = () => togglePanel(joystickToggle, document.querySelector('#joystick-controls'));
 
 const rows = [
   [['Esc', 'Escape'], ...'1234567890'.split('').map(n => [n, `Digit${n}`])],
@@ -180,6 +278,31 @@ const functionRows = [
   [['-', 'Minus'], ['=', 'Equal'], ['[', 'BracketLeft'], [']', 'BracketRight'], [';', 'Semicolon'], ["'", 'Quote'], [',', 'Comma'], ['.', 'Period'], ['/', 'Slash'], ['\\', 'Backslash'], ['`', 'Backquote']],
   rows[4],
 ];
+function keyButton([label, code, size = '']) {
+  const button = document.createElement('button');
+  button.type = 'button'; button.textContent = label; button.dataset.code = code; button.className = `key ${size}`;
+  button.setAttribute('aria-label', aliases[code] || label);
+  const modifier = ['ShiftLeft', 'ControlLeft', 'AltLeft'].includes(code);
+  if (modifier) button.setAttribute('aria-pressed', 'false');
+  button.addEventListener('pointerdown', event => {
+    event.preventDefault(); button.setPointerCapture(event.pointerId); player.unlockAudio();
+    if (modifier) {
+      const down = button.getAttribute('aria-pressed') !== 'true';
+      button.setAttribute('aria-pressed', String(down)); player.key(code, down, 'latch');
+    } else player.key(code, true, `touch-${event.pointerId}`);
+  });
+  const release = event => { if (!modifier) player.key(code, false, `touch-${event.pointerId}`); };
+  for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) button.addEventListener(event, release);
+  // Buttons also work with keyboard activation and assistive technology.
+  button.addEventListener('click', event => {
+    if (event.detail !== 0) return;
+    if (modifier) {
+      const down = button.getAttribute('aria-pressed') !== 'true';
+      button.setAttribute('aria-pressed', String(down)); player.key(code, down, 'latch');
+    } else { player.key(code, true, 'activation'); setTimeout(() => player.key(code, false, 'activation'), 80); }
+  });
+  return button;
+}
 function renderKeyboard() {
   player.releaseAll();
   const container = document.querySelector('#keys');
@@ -187,29 +310,7 @@ function renderKeyboard() {
   for (const keys of functionToggle.getAttribute('aria-pressed') === 'true' ? functionRows : rows) {
     const row = document.createElement('div'); row.className = 'key-row';
     for (const [label, code, size = ''] of keys) {
-      const button = document.createElement('button');
-      button.type = 'button'; button.textContent = label; button.dataset.code = code; button.className = `key ${size}`;
-      button.setAttribute('aria-label', aliases[code] || label);
-      const modifier = ['ShiftLeft', 'ControlLeft', 'AltLeft'].includes(code);
-      if (modifier) button.setAttribute('aria-pressed', 'false');
-      button.addEventListener('pointerdown', event => {
-        event.preventDefault(); button.setPointerCapture(event.pointerId); player.unlockAudio();
-        if (modifier) {
-          const down = button.getAttribute('aria-pressed') !== 'true';
-          button.setAttribute('aria-pressed', String(down)); player.key(code, down, 'latch');
-        } else player.key(code, true, `touch-${event.pointerId}`);
-      });
-      const release = event => { if (!modifier) player.key(code, false, `touch-${event.pointerId}`); };
-      for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) button.addEventListener(event, release);
-      // Buttons also work with keyboard activation and assistive technology.
-      button.addEventListener('click', event => {
-        if (event.detail !== 0) return;
-        if (modifier) {
-          const down = button.getAttribute('aria-pressed') !== 'true';
-          button.setAttribute('aria-pressed', String(down)); player.key(code, down, 'latch');
-        } else { player.key(code, true, 'activation'); setTimeout(() => player.key(code, false, 'activation'), 80); }
-      });
-      row.append(button);
+      row.append(keyButton([label, code, size]));
     }
     if (container.children.length === 4) row.prepend(functionToggle);
     container.append(row);
@@ -217,8 +318,17 @@ function renderKeyboard() {
 }
 function updateKeyboard() {
   player.releaseAll();
-  keyboard.hidden = !touch.matches;
-  if (touch.matches) renderKeyboard(); else document.querySelector('#keys').replaceChildren();
+  controls.hidden = !touch.matches;
+  keyboard.hidden = true;
+  document.querySelector('.compact-controls').hidden = false;
+  document.querySelector('#joystick-controls').hidden = true;
+  keyboardToggle.setAttribute('aria-expanded', 'false');
+  joystickToggle.setAttribute('aria-expanded', 'false');
+  document.querySelector('#quick-keys').replaceChildren();
+  if (touch.matches) {
+    renderKeyboard();
+    document.querySelector('#quick-keys').append(...[['Esc', 'Escape'], ['Space', 'Space', 'space'], ['Enter', 'Enter']].map(keyButton));
+  } else document.querySelector('#keys').replaceChildren();
 }
 functionToggle.onclick = () => { functionToggle.setAttribute('aria-pressed', String(functionToggle.getAttribute('aria-pressed') !== 'true')); renderKeyboard(); };
 updateKeyboard();

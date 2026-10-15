@@ -13,7 +13,23 @@
     <p id="status" role="status" class="visually-hidden">Loading game…</p>
     <div id="error" hidden role="alert"><p id="error-message"></p><button id="reload">Reload</button></div>
   </main>
-  <section id="keyboard" aria-label="On-screen keyboard" hidden><div id="keys"></div></section>
+  <section id="touch-controls" aria-label="Touch controls" hidden>
+    <div class="control-bar">
+      <button type="button" data-mouse="1" aria-pressed="false">Left click</button>
+      <button type="button" data-mouse="2" aria-pressed="false">Right click</button>
+      <button type="button" id="joystick-toggle" aria-expanded="false" aria-controls="joystick-controls">Joystick</button>
+      <button type="button" id="keyboard-toggle" aria-expanded="false" aria-controls="keyboard">Keyboard</button>
+    </div>
+    <div class="compact-controls">
+      <div id="joystick-controls" hidden>
+        <div id="joystick" role="group" aria-label="Movement joystick"><span id="joystick-knob"></span></div>
+        <label class="visually-hidden" for="joystick-mapping">Joystick keys</label>
+        <select id="joystick-mapping"><option value="arrows">Arrow keys</option><option value="wasd">WASD</option></select>
+      </div>
+      <div class="quick-controls"><p id="touch-hint">Drag above to move the cursor</p><div id="quick-keys"></div></div>
+    </div>
+    <section id="keyboard" aria-label="On-screen keyboard" hidden><div id="keys"></div></section>
+  </section>
   <script type="module" src="./player.js"></script>
 </body>
 </html>

@@ -29,9 +29,16 @@ Refresh the page to restart, or press Enter after the game exits.
 Mouse capture requires Pointer Lock support. Embedded browsers without it hide
 the system cursor over the game but cannot keep it inside the window.
 
-On mobile, the game fits above a custom keyboard at the bottom. Hold keys,
-combine touches, and tap Shift, Ctrl or Alt to latch modifiers. **Fn** switches
-to function keys, navigation and punctuation. Tapping the game sends mouse input.
+On mobile, drag anywhere above the controls to move the game cursor, like a
+touchpad. Lifting and placing your finger never clicks or jumps the cursor.
+Use **Left click** and **Right click** separately. Hold either button with one
+finger while dragging with another to drag objects or slash.
+
+**Esc**, **Space** and **Enter** stay within reach. Tap **Keyboard** to show or
+hide the full keyboard. Hold keys, combine touches, or tap Shift, Ctrl and Alt
+to latch modifiers. **Fn** switches to function keys, navigation and punctuation.
+The optional **Joystick** sends arrow keys or WASD, with diagonal movement.
+Both panels start closed to leave more room for the game. Desktop stays game-only.
 
 Press Ctrl+C in the terminal to stop the preview. Re-run the command after source
 changes. Use `--port 8080` to choose a port or `--no-open` to copy the printed URL
@@ -111,7 +118,8 @@ Browser API availability is separate from testing this player on each device.
 
 Chromium tests cover Flappy, Ninjix, native and Minix fixtures, installed SDK
 relocation, student workspaces, mouse capture, a single Escape after capture,
-and multi-touch keyboard input. Mobile tests use touch emulation. This does not
+multi-touch keyboard input, relative touch dragging, separate mouse buttons,
+and the optional joystick. Mobile tests use touch emulation. This does not
 certify every Minix project or every mobile browser.
 
 ## Tools and limits
