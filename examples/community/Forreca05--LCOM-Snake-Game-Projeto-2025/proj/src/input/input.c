@@ -13,7 +13,8 @@
 #include "../game/UTILS.h"
 
 extern uint8_t scancode, remote_scancode, received_byte;
-extern int mouse_x, mouse_y, byte_index, timer_count;
+extern int mouse_x, mouse_y, timer_count;
+extern uint8_t byte_index;
 int goldenAppleCounter = 0, whiteAppleCounter = 0, darkAppleCounter = 0;
 
 // ------------------------------------------------------------------------------------------------------------------------------

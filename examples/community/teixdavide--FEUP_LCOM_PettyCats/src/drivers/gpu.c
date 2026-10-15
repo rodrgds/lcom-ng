@@ -80,7 +80,7 @@ int (create_vram_buffer)(uint16_t mode) {
 }
 
 int (draw_pixel)(uint16_t mode, uint16_t x, uint16_t y, uint32_t color) {
-  if (x < 0 || y < 0 || x > vbe_mode_info.XResolution || y > vbe_mode_info.YResolution) {
+  if (x >= vbe_mode_info.XResolution || y >= vbe_mode_info.YResolution) {
     return 0;
   }
 

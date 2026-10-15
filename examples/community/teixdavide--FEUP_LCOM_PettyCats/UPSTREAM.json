@@ -3,7 +3,6 @@
   "revision": "678372ac889677fb6241a6daa100ec7d56dcd6b0",
   "sourceHashes": {
     "README.md": "78751b2c0b4befa4260de281f2996f620d234a62d45fc883ca7dee1b3e439517",
-    "src/.DS_Store": "3065d0ee725cb4dae1f68ca394053a69607239e9e1b02705b04b3b0ea3c5a84d",
     "src/.gitignore": "84db8ae0a9ca678669c018df85c201f8d44ca6158c54af3edb494f670760c1cf",
     "src/Makefile": "65ad1412be4f7a386b14c86bead596d5e4bd937dbdb0d4690461123bfe4165e0",
     "src/controller/controllerKeyboard.c": "06455bba8ad0114e457e03cb717a3396412dc90990aad8bb4b144bedf25ceac6",
@@ -26,8 +25,6 @@
     "src/drivers/utils_drivers.c": "df600491d164db16c0fe172972a31a7177ac4645494c577b17c94cd92ba9ed86",
     "src/drivers/utils_drivers.h": "43d32dd6cdeedf48ca4a3f51c8030cd9ef249986671a09e92773d28b86f76c57",
     "src/font/characters.xpm": "e6818c1264fe821c97737d86eb774eca5aad9749ee80d9b78130ac141802c2a2",
-    "src/images/.DS_Store": "8ddc62668a3a1e836a4ecd1368da7a9313fd1341d4e39afe8fc071783d91ad82",
-    "src/images/cats/.DS_Store": "0d4ef51ae409c186c2a29a3058365089d51c7c68a6b98435788e16f5d0294cc7",
     "src/images/cats/cat0.xpm": "786b777dc624c362b7510b3638b98731e5f16120fd7d64a484c56518726ab9d6",
     "src/images/cats/cat1.xpm": "2f0db77762fb7f8a943fab661a6e8a957d12a71a50c341a0ca2190b42aab90c7",
     "src/images/cats/cat2.xpm": "232b06659006427656d3086867ed0bdfd8e2efd71f18256c375570d0576646b2",
@@ -43,7 +40,6 @@
     "src/images/menu/quit.xpm": "d9129dcfcc0c4efe9c2d0ec5dd2e0c3955f4c8f640b356c37e1fe22515377761",
     "src/images/mouse/mouse.xpm": "e7fe0e58a05ba79243c431e481bcc80c9cbac63ca130f83cc7d4aabcbc4104e2",
     "src/images/scenery/cloud.xpm": "6d0ea19c2ad38e055f5468d5056eca7bf45c9c255bae1d277bd4907ac382c04f",
-    "src/images/state_machines/.DS_Store": "4093da35d03825a045152e692f18ba7bb6ff76cd8a33d958eb3c8f381aeb0461",
     "src/images/state_machines/state_machine0.xpm": "bf24de8eb45f4965c42857ecc6a5247497da1f182587009fd49a6af63388eac6",
     "src/images/state_machines/state_machine1.xpm": "944a2c93dda7a39db02d5417fed5a9d10b915d38c4818df9a5480981cc01eaac",
     "src/images/state_machines/state_machine2.xpm": "74c3b7713f99a99f6168ad4cf8cfaea651f573e99888e21f99806c6b53476327",
@@ -88,9 +84,15 @@
           "originalSha256": "d9c08a4c96a8e7f77c0aaea4d0f76931a77003fb953a10a3d9c4997341097679",
           "patchedSha256": "02d5f0592f2e9ae819cc99d92f8890ea7616b8da20e0a9d8a870a84fa7a03c04",
           "reason": "Original startup SIGSEGV while no cat is within selection radius. getSelectedCat returns and dereferences an uninitialized closestCat when all candidates are distant. Initialize NULL and mark selection only when a cat was found. Original deleteRoom also frees uninitialized walls pointers; the real gameplay exit reproduces SIGSEGV under MallocScribble=1. Initialize the four unused wall slots to NULL."
+        },
+        {
+          "path": "src/drivers/gpu.c",
+          "originalSha256": "60f7c4ef56cb00b1be54f63c3ee8f06d1ce15eef72aa5e83b14b33cda299d88b",
+          "patchedSha256": "ae07b2301abd08aa249f48c079000283569cb893592eed6dbbf51f7b5d5a1b4a",
+          "reason": "Clip coordinates at the exclusive screen width and height. x==width corrupts the following row and y==height writes past the allocated framebuffer, causing extended native gameplay crashes. Issue #12."
         }
       ],
-      "reproduction": "source-regressions/teixdavide--FEUP_LCOM_PettyCats/results.json"
+      "reproduction": "source-regressions/teixdavide--FEUP_LCOM_PettyCats/results.json; devenv shell -- python3 tests/community_source_regressions.py"
     }
   ],
   "derivedAssets": [],
@@ -196,5 +198,14 @@
       }
     ],
     "directTouch": []
+  },
+  "omittedMetadata": {
+    "reason": "Upstream operating-system and version-control metadata is excluded from the distributable source inventory.",
+    "sha256": {
+      "src/.DS_Store": "3065d0ee725cb4dae1f68ca394053a69607239e9e1b02705b04b3b0ea3c5a84d",
+      "src/images/.DS_Store": "8ddc62668a3a1e836a4ecd1368da7a9313fd1341d4e39afe8fc071783d91ad82",
+      "src/images/cats/.DS_Store": "0d4ef51ae409c186c2a29a3058365089d51c7c68a6b98435788e16f5d0294cc7",
+      "src/images/state_machines/.DS_Store": "4093da35d03825a045152e692f18ba7bb6ff76cd8a33d958eb3c8f381aeb0461"
+    }
   }
 }

@@ -304,6 +304,8 @@ if(BUILD_TESTING)
   find_package(Python3 COMPONENTS Interpreter REQUIRED)
   add_test(NAME package_example_inventory
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/package_example_inventory.py)
+  add_test(NAME community_source_regressions
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/community_source_regressions.py)
   if(MACHINE_LAB_WITH_SDL)
     add_executable(sdl_render_tests tests/sdl_render_tests.cpp runtime/backends/SdlBackend.cpp)
     target_compile_definitions(sdl_render_tests PRIVATE MACHINE_LAB_WITH_SDL)

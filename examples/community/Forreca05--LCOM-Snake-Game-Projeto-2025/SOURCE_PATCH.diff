@@ -1,0 +1,24 @@
+--- a/proj/src/input/input.c
++++ b/proj/src/input/input.c
+@@ -13,7 +13,8 @@
+ #include "../game/UTILS.h"
+ 
+ extern uint8_t scancode, remote_scancode, received_byte;
+-extern int mouse_x, mouse_y, byte_index, timer_count;
++extern int mouse_x, mouse_y, timer_count;
++extern uint8_t byte_index;
+ int goldenAppleCounter = 0, whiteAppleCounter = 0, darkAppleCounter = 0;
+ 
+ // ------------------------------------------------------------------------------------------------------------------------------
+--- a/proj/src/menu/local_or_remote.c
++++ b/proj/src/menu/local_or_remote.c
+@@ -6,7 +6,8 @@
+ extern struct packet mouse_packet;
+ 
+ extern uint8_t scancode;
+-extern int mouse_x, mouse_y, byte_index;
++extern int mouse_x, mouse_y;
++extern uint8_t byte_index;
+ extern uint8_t irq_set_keyboard, irq_set_mouse, irq_set_timer;
+ extern int timer_count;
+ 

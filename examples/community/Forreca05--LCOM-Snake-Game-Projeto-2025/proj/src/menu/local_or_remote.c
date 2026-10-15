@@ -6,7 +6,8 @@ int r;
 extern struct packet mouse_packet;
 
 extern uint8_t scancode;
-extern int mouse_x, mouse_y, byte_index;
+extern int mouse_x, mouse_y;
+extern uint8_t byte_index;
 extern uint8_t irq_set_keyboard, irq_set_mouse, irq_set_timer;
 extern int timer_count;
 

@@ -1,2 +1,4 @@
-# Preserve verbatim upstream license formatting.
-third-party/licenses/** whitespace=-blank-at-eol,-blank-at-eof
+# Pinned student sources and reversible patches retain upstream formatting.
+examples/community/** -whitespace
+# The vendored Windows Gradle launcher retains its original CRLF endings.
+sdk/android/template/gradlew.bat whitespace=cr-at-eol

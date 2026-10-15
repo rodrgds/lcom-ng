@@ -120,7 +120,26 @@
     "proj/src/menu/select_mode.h": "27bbae680ceb8e37c5e70daff4b7f8aa69f4a73fdb38b915127a3ce1442db147",
     "proj/src/proj.c": "1cbbea2fc3dc399e007cb524668e2e7c090ca97b775337d8d05f4b3a46ab300f"
   },
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "path": "examples/community/Forreca05--LCOM-Snake-Game-Projeto-2025/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "proj/src/input/input.c",
+          "originalSha256": "e454e79c9bfcda8c39740feb44d970943c09b0c29f7f16f24dfd4e2a52ef1a5d",
+          "patchedSha256": "27ccd7c8ed02ab39964d70f3f8346f8454f69c4fd56f7147b4fa8c8300f4648e",
+          "reason": "Match the mouse controller byte_index definition (uint8_t) in the gameplay input handler. Reading/writing it as int also consumes adjacent packet bytes and prevents pointer updates. Issue #11."
+        },
+        {
+          "path": "proj/src/menu/local_or_remote.c",
+          "originalSha256": "470f609d5a32b6be1e2a4dd162892c597cd42c2f403c685e6a6ad6e079c60b45",
+          "patchedSha256": "c322394146cd680f3c5cd506d2fb12848fcaaeeeb30db373969316ba32a419bf",
+          "reason": "Match the mouse controller byte_index definition (uint8_t) in the local/remote menu. The widened read prevents complete packet recognition and makes the local duel option unselectable. Issue #11."
+        }
+      ],
+      "reproduction": "devenv shell -- python3 tests/community_source_regressions.py"
+    }
+  ],
   "derivedAssets": [],
   "license": {
     "status": "missing",
