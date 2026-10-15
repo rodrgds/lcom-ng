@@ -73,14 +73,14 @@
 
 // --- Main Menu Button Constants ---
 #define MENU_START_X 220
-#define MENU_START_Y 300
+#define MENU_START_Y 260
 #define MENU_START_W 360
-#define MENU_START_H 54
+#define MENU_START_H 50
 
-#define MENU_EXIT_X 220
-#define MENU_EXIT_Y 370
-#define MENU_EXIT_W 360
-#define MENU_EXIT_H 44
+#define MENU_EXIT_X 280
+#define MENU_EXIT_Y 330
+#define MENU_EXIT_W 240
+#define MENU_EXIT_H 50
 
 // --- HUD Constants ---
 #define HUD_X 0
@@ -112,18 +112,18 @@
 #define SHOVEL_Y HUD_Y
 
 // --- Plant Selection Constants ---
-#define SEL_CARD_W    88
-#define SEL_CARD_H    90
-#define SEL_CARD_GAP  12
+#define SEL_CARD_W    75
+#define SEL_CARD_H    95
+#define SEL_CARD_GAP  20
 #define SEL_COLS       4
 #define SEL_ROWS       2
 #define SEL_GRID_X   ((SCREEN_W - (SEL_COLS * SEL_CARD_W + (SEL_COLS - 1) * SEL_CARD_GAP)) / 2)
-#define SEL_GRID_Y   114
+#define SEL_GRID_Y    95
 #define SEL_DECK_GAP  12
 #define SEL_DECK_X   ((SCREEN_W - (MAX_DECK_SIZE * SEL_CARD_W + (MAX_DECK_SIZE - 1) * SEL_DECK_GAP)) / 2)
-#define SEL_DECK_Y   366
+#define SEL_DECK_Y   358
 #define SEL_BTN_X    300
-#define SEL_BTN_Y    478
+#define SEL_BTN_Y    465
 #define SEL_BTN_W    200
 #define SEL_BTN_H     45
 #define DECK_FULL_FLASH_TICKS 12
@@ -347,9 +347,9 @@ extern const int cabbage_projectile_y_offsets[CABBAGE_PROJECTILE_FRAMES];
 /* Colours */
 #define CLR_BG      0x1A1A2E
 #define CLR_WHITE   0xFFFFFF
-#define CLR_GREEN   0x9AD671
+#define CLR_GREEN   0x27AE60
 #define CLR_RED     0xE74C3C
-#define CLR_GRAY    0xBDD0BD
+#define CLR_GRAY    0x888888
 #define CLR_OVERLAY 0x111122
 #define CLR_DKRED   0x4A0E0E
 #define CLR_DKGREEN 0x0E4A1A

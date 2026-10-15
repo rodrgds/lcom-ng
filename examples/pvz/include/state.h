@@ -6,15 +6,15 @@
 /* -------------------------------------------------------
  *  Game State Machine
  *
- *  MAIN_MENU --[ENTER]---> PLANT_SELECTION
+ *  MAIN_MENU --[ENTER]---> PLAYING
  *            --[ESC]-----> QUIT
  *
  *  PLAYING   --[ESC]-----> PAUSED
  *            --[zombie crosses without lawnmower]-> GAME_OVER
  *            --[waves=max] VICTORY
  *
- *  PAUSED    --[ENTER/ESC/P]---> PLAYING    (resume)
- *            --[X]-------> QUIT       (exit game)
+ *  PAUSED    --[ENTER]---> PLAYING    (resume)
+ *            --[ESC]-----> QUIT       (exit game)
  *            --[Q]-------> MAIN_MENU  (reset + menu)
  *
  *  GAME_OVER --[ENTER/ESC] MAIN_MENU  (reset)
@@ -27,7 +27,6 @@ typedef enum {
     STATE_PAUSED,
     STATE_GAME_OVER,
     STATE_VICTORY,
-    STATE_HELP,
     STATE_QUIT        /* sentinel: exits the interrupt loop */
 } GameState;
 

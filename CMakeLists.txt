@@ -230,14 +230,10 @@ set(NINJIX_TEST_SOURCES ${NINJIX_SOURCES})
 list(FILTER NINJIX_TEST_SOURCES EXCLUDE REGEX "/proj\\.c$")
 add_executable(ninjix_menu_tests tests/ninjix_menu_tests.c ${NINJIX_TEST_SOURCES})
 target_include_directories(ninjix_menu_tests PRIVATE examples/ninjix)
-set(PVZ_TEST_SOURCES ${PVZ_SOURCES})
-list(FILTER PVZ_TEST_SOURCES EXCLUDE REGEX "/main\\.c$")
-add_executable(pvz_input_tests tests/pvz_input_tests.c ${PVZ_TEST_SOURCES})
-target_include_directories(pvz_input_tests PRIVATE examples/pvz/include)
 add_executable(flappy_input_tests tests/flappy_input_tests.c
   examples/flappy/app.c examples/flappy/menu.c examples/flappy/font.c examples/flappy/renderer.c)
 target_include_directories(flappy_input_tests PRIVATE examples/flappy)
-foreach(test IN ITEMS ninjix_menu_tests pvz_input_tests flappy_input_tests)
+foreach(test IN ITEMS ninjix_menu_tests flappy_input_tests)
   target_link_libraries(${test} PRIVATE machinelab_c)
   set_target_properties(${test} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/tests)
 endforeach()
@@ -387,7 +383,6 @@ if(BUILD_TESTING)
   file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test-output)
 
   add_test(NAME ninjix_menu COMMAND ninjix_menu_tests)
-  add_test(NAME pvz_input COMMAND pvz_input_tests)
   add_test(NAME flappy_input COMMAND flappy_input_tests)
   add_test(NAME presented_capture
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/presented_capture.py

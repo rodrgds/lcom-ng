@@ -1,6 +1,5 @@
 #include "pvz_platform.h"
 #include <stdio.h>
-#include <string.h>
 
 #include "scene.h"
 #include "state.h"
@@ -138,71 +137,44 @@ static void draw_last_played(uint16_t right_x, uint16_t y, uint32_t color) {
     draw_text_right(right_x, y, buf, 2, color);
 }
 
-static void menu_button(int x, int y, int w, int h, const char *label, bool primary) {
-    bool hover = get_mouse_x() >= x && get_mouse_x() < x + w && get_mouse_y() >= y && get_mouse_y() < y + h;
-    uint32_t color = primary ? (hover ? 0x4F833A : 0x3B662C) : (hover ? 0x40543C : 0x293C2B);
-    vg_draw_rectangle(x, y, w, h, color);
-    vg_draw_rectangle(x, y, w, 2, primary ? 0xB9DA80 : 0x6A8065);
-    draw_string(x + (w - (int)strlen(label) * 12) / 2, y + (h - 14) / 2, label, 2, 0xFFF3D3);
-}
-
 static void render_main_menu(void) {
-    draw_map();
-    vg_draw_rectangle(104, 66, 592, 462, 0x152D21);
-    vg_draw_rectangle(104, 66, 592, 4, 0x9AD671);
-    draw_text_centered(108, "PLANTS VS", 4, 0xFFF3D3);
-    draw_text_centered(154, "ZOMBIES", 7, 0xB9DA80);
-    draw_text_centered(232, "GROW A DEFENCE FOR YOUR LAWN", 2, CLR_GRAY);
-    menu_button(MENU_START_X, MENU_START_Y, MENU_START_W, MENU_START_H, "PLAY  ENTER", true);
-    menu_button(MENU_EXIT_X, MENU_EXIT_Y, MENU_EXIT_W, MENU_EXIT_H, "QUIT  ESC", false);
-    draw_text_centered(454, "F1  HOW TO PLAY", 2, 0xFFF3D3);
-    draw_text_centered(490, "FIVE WAVES  SEVEN PLANTS  ONE LAWN", 1, CLR_GRAY);
-    vg_draw_rectangle(0, 566, 800, 34, 0x152D21);
-    draw_string(24, 578, "LAST PLAYED", 1, CLR_GRAY);
-    draw_last_played(776, 574, CLR_GRAY);
+    vg_draw_rectangle(0, 0, 800, 600, CLR_BG);
+    draw_text_centered(120, "PLANTS VS ZOMBIES", 5, CLR_GREEN);
+    draw_text_right(760, 20, "LAST PLAYED", 2, CLR_GRAY);
+    draw_last_played(760, 48, CLR_GRAY);
+
+    vg_draw_rectangle(MENU_START_X, MENU_START_Y, MENU_START_W, MENU_START_H, CLR_DKGREEN);
+    draw_text_centered(MENU_START_Y + 12, "START GAME", 3, CLR_WHITE);
+
+    vg_draw_rectangle(MENU_EXIT_X, MENU_EXIT_Y, MENU_EXIT_W, MENU_EXIT_H, CLR_DKRED);
+    draw_text_centered(MENU_EXIT_Y + 12, "EXIT", 3, CLR_WHITE);
+
+    draw_text_centered(430, "ENTER  START", 2, CLR_GRAY);
+    draw_text_centered(465, "ESC  EXIT", 2, CLR_GRAY);
 }
 
 static void render_playing(void) {
-    /* HUD is drawn in world.c before the units. */
+    /* HUD is drawn in loop.c before zombies so it stays in the background. */
 }
 
 static void render_paused(void) {
-    vg_draw_rectangle(180, 160, 440, 296, 0x152D21);
-    draw_text_centered(194, "PAUSED", 5, 0xFFF3D3);
-    menu_button(230, 266, 340, 48, "RESUME  ENTER", true);
-    menu_button(230, 328, 340, 42, "MAIN MENU  Q", false);
-    menu_button(230, 384, 340, 42, "QUIT  X", false);
+    vg_draw_rectangle(150, 150, 500, 300, CLR_OVERLAY);
+    draw_text_centered(180, "PAUSED", 5, CLR_WHITE);
+    draw_text_centered(280, "ENTER  RESUME", 3, CLR_GREEN);
+    draw_text_centered(330, "Q  MENU", 3, CLR_GRAY);
+    draw_text_centered(380, "ESC  QUIT", 3, CLR_RED);
 }
 
 static void render_game_over(void) {
-    draw_map();
-    vg_draw_rectangle(104, 160, 592, 278, 0x38231F);
-    draw_text_centered(204, "LAWN LOST", 6, 0xF6BB94);
-    draw_text_centered(292, "THE ZOMBIES BROKE THROUGH", 2, 0xFFF3D3);
-    draw_text_centered(366, "ENTER  BACK TO MENU", 2, 0xFFF3D3);
+    vg_draw_rectangle(0, 0, 800, 600, CLR_DKRED);
+    draw_text_centered(200, "GAME OVER", 6, CLR_RED);
+    draw_text_centered(350, "PRESS ENTER OR ESC", 3, CLR_WHITE);
 }
 
 static void render_victory(void) {
-    draw_map();
-    vg_draw_rectangle(104, 160, 592, 278, 0x152D21);
-    draw_text_centered(204, "LAWN SAVED", 6, 0xB9DA80);
-    draw_text_centered(292, "ALL FIVE WAVES DEFEATED", 2, 0xFFF3D3);
-    draw_text_centered(366, "ENTER  BACK TO MENU", 2, 0xFFF3D3);
-}
-
-static void render_help(void) {
-    draw_map();
-    vg_draw_rectangle(86, 58, 628, 488, 0x152D21);
-    draw_text_centered(88, "HOW TO PLAY", 4, 0xB9DA80);
-    draw_string(118, 154, "CHOOSE SIX PLANTS FOR YOUR DECK", 2, 0xFFF3D3);
-    draw_string(118, 184, "CLICK TO ADD OR DRAG TO REORDER", 2, CLR_GRAY);
-    draw_string(118, 232, "CLICK SUNS TO GROW YOUR BUDGET", 2, 0xFFF3D3);
-    draw_string(118, 262, "PLANT SUNFLOWERS TO MAKE MORE", 2, CLR_GRAY);
-    draw_string(118, 310, "1 TO 6  SELECT A SEED", 2, 0xFFF3D3);
-    draw_string(118, 340, "ARROWS  MOVE    ENTER  PLANT", 2, CLR_GRAY);
-    draw_string(118, 388, "S  SHOVEL    ESC  CANCEL OR PAUSE", 2, 0xFFF3D3);
-    draw_string(118, 418, "P  PAUSE    RIGHT CLICK  CANCEL", 2, CLR_GRAY);
-    draw_text_centered(496, "F1 OR ESC  BACK", 2, 0xB9DA80);
+    vg_draw_rectangle(0, 0, 800, 600, CLR_DKGREEN);
+    draw_text_centered(200, "YOU WIN", 6, CLR_GREEN);
+    draw_text_centered(350, "PRESS ENTER OR ESC", 3, CLR_WHITE);
 }
 
 void draw_wave_banner(WaveBannerType type, int ticks_remaining) {
@@ -257,78 +229,142 @@ static void draw_plant_sprite_in_cell(PlantType type, int cx, int cy, int cw, in
     vg_draw_pixmap(spr->pixmaps[0], spr->width, spr->height, dx, dy);
 }
 
-static const char *plant_name(PlantType type) {
-    switch (type) {
-        case SUNFLOWER: return "SUNFLOWER";
-        case PEASHOOTER: return "PEASHOOTER";
-        case REPEATER: return "REPEATER";
-        case CABBAGE: return "CABBAGE";
-        case WALL_NUT: return "WALL NUT";
-        case POTATO_MINE: return "POTATO";
-        case SPIKEWEED: return "SPIKEWEED";
-    }
-    return "";
-}
-
-static void selection_card(int x, int y, PlantType type, bool selected, bool focused, int slot) {
-    uint32_t border = focused ? 0xFFF3D3 : selected ? 0x9AD671 : 0x68835B;
-    vg_draw_rectangle(x, y, SEL_CARD_W, SEL_CARD_H, border);
-    vg_draw_rectangle(x + 2, y + 2, SEL_CARD_W - 4, SEL_CARD_H - 4, selected ? 0x315C32 : 0x253C29);
-    draw_plant_sprite_in_cell(type, x, y - 10, SEL_CARD_W, SEL_CARD_H);
-    vg_draw_rectangle(x + 2, y + 64, SEL_CARD_W - 4, 24, selected ? 0x315C32 : 0x253C29);
-    const char *name = plant_name(type);
-    draw_string(x + (SEL_CARD_W - strlen(name) * 6) / 2, y + 66, name, 1, 0xFFF3D3);
-    char cost[12];
-    snprintf(cost, sizeof(cost), "%d SUN", get_plant_cost(type));
-    draw_string(x + (SEL_CARD_W - strlen(cost) * 6) / 2, y + 78, cost, 1, CLR_GRAY);
-    if (slot >= 0) {
-        char number[2] = {'1' + slot, 0};
-        vg_draw_rectangle(x + 4, y + 4, 15, 19, 0x152D21);
-        draw_string(x + 6, y + 6, number, 2, 0xFFF3D3);
-    }
-}
-
 void render_plant_selection(void) {
     const PlantType *available = get_available_plants();
-    int deck_size = get_selected_deck_size();
+    int deck_size              = get_selected_deck_size();
+
+    /* Fundo: mapa do jogo com painéis escuros só na área da UI */
     draw_map();
-    vg_draw_rectangle(74, 16, 652, 550, 0x152D21);
-    draw_text_centered(38, "CHOOSE YOUR PLANTS", 3, 0xFFF3D3);
-    draw_text_centered(76, "CLICK TO ADD  DRAG TO CHOOSE A SLOT", 2, CLR_GRAY);
-    for (int idx = 0; idx < TOTAL_AVAILABLE_PLANTS; idx++) {
-        int x = SEL_GRID_X + (idx % SEL_COLS) * (SEL_CARD_W + SEL_CARD_GAP);
-        int y = SEL_GRID_Y + (idx / SEL_COLS) * (SEL_CARD_H + SEL_CARD_GAP);
-        PlantType type = available[idx];
-        selection_card(x, y, type, is_plant_in_deck(type), idx == get_selection_cursor() && !is_cursor_on_button(), get_deck_slot_for_type(type));
-    }
-    char count[40];
-    snprintf(count, sizeof(count), "YOUR DECK   %d OF 6 SELECTED", deck_size);
-    draw_text_centered(336, count, 2, deck_size == 6 ? 0xB9DA80 : CLR_GRAY);
-    for (int i = 0; i < MAX_DECK_SIZE; i++) {
-        int x = SEL_DECK_X + i * (SEL_CARD_W + SEL_DECK_GAP);
-        int plant = get_deck_plant_at_slot(i);
-        if (plant >= 0) selection_card(x, SEL_DECK_Y, (PlantType)plant, true, false, i);
-        else {
-            vg_draw_rectangle(x, SEL_DECK_Y, SEL_CARD_W, SEL_CARD_H, 0x354A37);
-            char num[2] = {'1' + i, 0};
-            draw_string(x + 38, SEL_DECK_Y + 36, num, 2, CLR_GRAY);
+
+    /* Painel título */
+    vg_draw_rectangle(0, 0, 800, 80, 0x0D1F0D);
+
+    /* Painel inventário */
+    int inv_pad = 12;
+    int inv_x = SEL_GRID_X - inv_pad;
+    int inv_y = SEL_GRID_Y - inv_pad;
+    int inv_w = SEL_COLS * SEL_CARD_W + (SEL_COLS - 1) * SEL_CARD_GAP + inv_pad * 2;
+    int inv_h = SEL_ROWS * SEL_CARD_H + (SEL_ROWS - 1) * SEL_CARD_GAP + inv_pad * 2;
+    vg_draw_rectangle(inv_x, inv_y, inv_w, inv_h, 0x0D1F0D);
+
+    /* Painel deck */
+    int deck_pad = 12;
+    int deck_panel_x = SEL_DECK_X - deck_pad;
+    int deck_panel_y = SEL_DECK_Y - 50;
+    int deck_panel_w = MAX_DECK_SIZE * SEL_CARD_W + (MAX_DECK_SIZE - 1) * SEL_DECK_GAP + deck_pad * 2;
+    int deck_panel_h = SEL_CARD_H + 50 + deck_pad + 8;
+    vg_draw_rectangle(deck_panel_x, deck_panel_y, deck_panel_w, deck_panel_h, 0x0D1F0D);
+
+    /* Painel botão */
+    vg_draw_rectangle(SEL_BTN_X - 4, SEL_BTN_Y - 4, SEL_BTN_W + 8, SEL_BTN_H + 8, 0x0D1F0D);
+
+    /* Título */
+    draw_text_centered(20, "CHOOSE YOUR PLANTS", 4, CLR_GREEN);
+    draw_text_centered(58, "CLICK OR DRAG TO DECK SLOTS", 2, CLR_GRAY);
+
+    /* Inventário — grelha 3x2 */
+    for (int row = 0; row < SEL_ROWS; row++) {
+        for (int col = 0; col < SEL_COLS; col++) {
+            int idx = row * SEL_COLS + col;
+            int cx = SEL_GRID_X + col * (SEL_CARD_W + SEL_CARD_GAP);
+            int cy = SEL_GRID_Y + row * (SEL_CARD_H + SEL_CARD_GAP);
+            bool has_plant = idx < TOTAL_AVAILABLE_PLANTS;
+            PlantType type = has_plant ? available[idx] : PEASHOOTER;
+            bool selected = has_plant && is_plant_in_deck(type);
+
+            bool is_cursor  = (idx == get_selection_cursor());
+            bool flash      = is_cursor && is_deck_full_flash_active();
+            uint32_t bg     = selected ? 0x2E6B2E : 0x3A2A10;
+            uint32_t border = flash    ? CLR_RED  :
+                              is_cursor ? CLR_WHITE :
+                              selected  ? CLR_GREEN : 0x7A5A20;
+
+            vg_draw_rectangle(cx, cy, SEL_CARD_W, SEL_CARD_H, bg);
+            vg_draw_rectangle(cx,                   cy,                   SEL_CARD_W, 2, border);
+            vg_draw_rectangle(cx,                   cy + SEL_CARD_H - 2, SEL_CARD_W, 2, border);
+            vg_draw_rectangle(cx,                   cy,                   2, SEL_CARD_H, border);
+            vg_draw_rectangle(cx + SEL_CARD_W - 2, cy,                   2, SEL_CARD_H, border);
+
+            if (has_plant) {
+                draw_plant_sprite_in_cell(type, cx, cy, SEL_CARD_W, SEL_CARD_H);
+            }
+
+            if (selected) {
+                char num[2] = {'0' + get_deck_slot_for_type(type) + 1, '\0'};
+                draw_string(cx + 4, cy + 4, num, 2, CLR_WHITE);
+            }
         }
     }
-    if (deck_size == MAX_DECK_SIZE) menu_button(SEL_BTN_X, SEL_BTN_Y, SEL_BTN_W, SEL_BTN_H, "PLAY  SPACE", true);
-    else {
-        vg_draw_rectangle(SEL_BTN_X, SEL_BTN_Y, SEL_BTN_W, SEL_BTN_H, 0x354A37);
-        draw_text_centered(SEL_BTN_Y + 16, "CHOOSE SIX", 2, CLR_GRAY);
+
+    /* Deck — 6 slots fixos, livre ordering */
+    draw_text_centered(318, "YOUR DECK", 2, CLR_WHITE);
+
+    /* Contador "X/6 SELECTED" */
+    {
+        char buf[16];
+        uint32_t count_color = (deck_size == 6) ? CLR_GREEN : CLR_GRAY;
+        /* "X OF 6 SELECTED" — só A-Z e 0-9 são suportados pelo font */
+        buf[0] = '0' + deck_size;
+        buf[1] = ' '; buf[2] = 'O'; buf[3] = 'F'; buf[4] = ' ';
+        buf[5] = '6'; buf[6] = ' ';
+        buf[7] = 'S'; buf[8] = 'E'; buf[9] = 'L'; buf[10] = 'E';
+        buf[11] = 'C'; buf[12] = 'T'; buf[13] = 'E'; buf[14] = 'D';
+        buf[15] = '\0';
+        draw_text_centered(336, buf, 2, count_color);
     }
-    if (is_deck_full_flash_active()) draw_text_centered(542, "DECK FULL  REMOVE A PLANT FIRST", 1, 0xF6BB94);
-    else draw_text_centered(542, "ARROWS  MOVE   ENTER  ADD OR REMOVE   ESC  BACK   F1  HELP", 1, CLR_GRAY);
-    if (is_dragging_plant()) draw_plant_sprite_in_cell(get_dragged_plant_type(), get_mouse_x() - SEL_CARD_W / 2, get_mouse_y() - SEL_CARD_H / 2, SEL_CARD_W, SEL_CARD_H);
+    for (int i = 0; i < MAX_DECK_SIZE; i++) {
+        int sx    = SEL_DECK_X + i * (SEL_CARD_W + SEL_DECK_GAP);
+        int sy    = SEL_DECK_Y;
+        int plant = get_deck_plant_at_slot(i);
+        bool occupied = (plant >= 0);
+
+        uint32_t bg     = occupied ? 0x2E6B2E : 0x1A1A1A;
+        uint32_t border = occupied ? CLR_GREEN : CLR_GRAY;
+
+        vg_draw_rectangle(sx, sy, SEL_CARD_W, SEL_CARD_H, bg);
+        vg_draw_rectangle(sx,                  sy,                   SEL_CARD_W, 2, border);
+        vg_draw_rectangle(sx,                  sy + SEL_CARD_H - 2, SEL_CARD_W, 2, border);
+        vg_draw_rectangle(sx,                  sy,                   2, SEL_CARD_H, border);
+        vg_draw_rectangle(sx + SEL_CARD_W - 2, sy,                   2, SEL_CARD_H, border);
+
+        /* Número do slot */
+        char num[2] = {'1' + i, '\0'};
+        draw_string(sx + 4, sy + 4, num, 2, occupied ? CLR_WHITE : CLR_GRAY);
+
+        if (occupied) {
+            draw_plant_sprite_in_cell((PlantType)plant, sx, sy, SEL_CARD_W, SEL_CARD_H);
+        }
+    }
+
+    /* Botão Start */
+    bool can_start      = (deck_size == 6);
+    bool btn_focused    = is_cursor_on_button() && can_start;
+    uint32_t btn_col    = can_start ? CLR_DKGREEN : 0x333333;
+    uint32_t border_col = btn_focused ? CLR_WHITE : (can_start ? CLR_GREEN : 0x555555);
+    uint32_t txt_col    = can_start ? CLR_WHITE   : CLR_GRAY;
+    int bx = SEL_BTN_X, by = SEL_BTN_Y, bw = SEL_BTN_W, bh = SEL_BTN_H;
+    /* Borda verde escuro */
+    vg_draw_rectangle(bx, by, bw, bh, border_col);
+    /* Interior recuado 3px */
+    vg_draw_rectangle(bx + 3, by + 3, bw - 6, bh - 6, btn_col);
+    draw_text_centered(by + 14, "START GAME", 3, txt_col);
+
+    draw_text_centered(530, "ESC  BACK TO MENU", 2, CLR_WHITE);
+
+    /* Preview drag — planta a seguir o cursor */
+    if (is_dragging_plant()) {
+        PlantType dt = get_dragged_plant_type();
+        int mx = get_mouse_x();
+        int my = get_mouse_y();
+        draw_plant_sprite_in_cell(dt, mx - SEL_CARD_W / 2, my - SEL_CARD_H / 2,
+                                  SEL_CARD_W, SEL_CARD_H);
+    }
 }
 
 void render_scene(void) {
     GameState cur = get_game_state();
 
     switch (cur) {
-        case STATE_HELP:            render_help();            break;
         case STATE_MAIN_MENU:       render_main_menu();       break;
         case STATE_PLANT_SELECTION: render_plant_selection(); break;
         case STATE_PLAYING:         render_playing();         break;
