@@ -301,6 +301,16 @@ int main() {
       cx+=int(dx)-((flags&16)?256:0);cy-=int(dy)-((flags&32)?256:0);
     }
   };
+  // SDL_Delay is a minimum wait. Scheduler pauses and rendering can cross
+  // a gesture deadline, so bracket both its start and the observed packets.
+  auto timedButtons=[&](Uint64 startMin,Uint64 startMax,Uint64 duration,
+                        uint8_t initial,uint8_t elapsed) {
+    Uint64 before=SDL_GetTicks();
+    lcom::embedded::host().pump();heldTravel();
+    Uint64 after=SDL_GetTicks();
+    if(after-startMin<duration) CHECK(last_buttons==initial);
+    else if(before-startMax>=duration) CHECK(last_buttons==elapsed);
+  };
   touch(SDL_EVENT_FINGER_DOWN,27,0.5f,0.5f);heldTravel();CHECK(last_buttons==1 && cx==400 && cy==300);
   touch(SDL_EVENT_FINGER_UP,27,0.5f,0.5f);heldTravel();CHECK(last_buttons==0);
   touch(SDL_EVENT_FINGER_DOWN,28,0.5f,0.5f);CHECK(!drain(-1,-1));
@@ -323,8 +333,10 @@ int main() {
   CHECK(lcom_port_write8(KBC_CMD_REG,KBC_CMD_WRITE_MOUSE)==LCOM_OK);
   CHECK(lcom_port_write8(KBC_IN_BUF,0xf4)==LCOM_OK);CHECK(readKey()==0xfa);
   cx=400;cy=300;last_buttons=0;
-  touch(SDL_EVENT_FINGER_DOWN,300,0.5f,0.5f);heldTravel();CHECK(last_buttons==0);
-  SDL_Delay(90);lcom::embedded::host().pump();heldTravel();CHECK(last_buttons==0);
+  Uint64 dwellStartMin=SDL_GetTicks();
+  touch(SDL_EVENT_FINGER_DOWN,300,0.5f,0.5f);
+  Uint64 dwellStartMax=SDL_GetTicks();heldTravel();CHECK(last_buttons==0);
+  SDL_Delay(90);timedButtons(dwellStartMin,dwellStartMax,180,0,1);
   SDL_Delay(110);lcom::embedded::host().pump();heldTravel();CHECK(last_buttons==1);
   touch(SDL_EVENT_FINGER_MOTION,300,0.6f,0.5f);heldTravel();CHECK(last_buttons==1 && cx>400);
   touch(SDL_EVENT_FINGER_UP,300,0.6f,0.5f);heldTravel();CHECK(last_buttons==0);
@@ -348,8 +360,10 @@ int main() {
   CHECK(lcom_port_write8(KBC_IN_BUF,0xf4)==LCOM_OK);CHECK(readKey()==0xfa);
   cx=400;cy=300;last_buttons=0;
   touch(SDL_EVENT_FINGER_DOWN,310,0.5f,0.5f);heldTravel();CHECK(last_buttons==0);
-  touch(SDL_EVENT_FINGER_UP,310,0.5f,0.5f);heldTravel();CHECK(last_buttons==1);
-  SDL_Delay(20);lcom::embedded::host().pump();heldTravel();CHECK(last_buttons==1);
+  Uint64 tapStartMin=SDL_GetTicks();
+  touch(SDL_EVENT_FINGER_UP,310,0.5f,0.5f);
+  Uint64 tapStartMax=SDL_GetTicks();heldTravel();CHECK(last_buttons==1);
+  SDL_Delay(20);timedButtons(tapStartMin,tapStartMax,controls.tapDuration,1,0);
   SDL_Delay(60);lcom::embedded::host().pump();heldTravel();CHECK(last_buttons==0);
   touch(SDL_EVENT_FINGER_DOWN,312,0.5f,0.5f);heldTravel();
   touch(SDL_EVENT_FINGER_UP,312,0.5f,0.5f);heldTravel();CHECK(last_buttons==1);
