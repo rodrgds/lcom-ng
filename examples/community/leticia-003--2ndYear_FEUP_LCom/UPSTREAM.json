@@ -1,0 +1,124 @@
+{
+  "repository": "https://github.com/leticia-003/2ndYear_FEUP_LCom",
+  "revision": "fd08be7ee796e28742bb07ed2a0171319a0de5e3",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "7569a3ffc7ff7b5edbd848e344a5db784024961da5542a8f9e2aab6e50b2103f",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.vscode/c_cpp_properties.json": "c71710800f13d692b511e5a3d3544b6ecb779968e3e418fe801d35a2aff81af2",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/launch.json": "43f1e7b2688df119b82034b14fb09fea046661cc357f4064746c08c9d4f8e439",
+    "proj/src/.vscode/settings.json": "da2ec76af577f7417cc6bc9dbf71521b33b2bdb8b3b8002a7ccc85e0352df468",
+    "proj/src/Drivers/Keyboard/i8042.h": "86f6e73030e687c4ab81f1654dde6c9921374c15a4f311b9247647af08fdf6da",
+    "proj/src/Drivers/Keyboard/keyboard.c": "425d3c2fd9ebf1363ecae6157dee3d03878790542750339f2797d849e93413a8",
+    "proj/src/Drivers/Keyboard/keyboard.h": "c1d973931c037693c0f6d85962cad5046bdd8e2e1b94927f765f630f8c53dc07",
+    "proj/src/Drivers/Keyboard/scancodes_set1.h": "1142dd26929388560b18bd1cc7d8e2a5fa9a83e8ece849935b4bfbed3f9dff71",
+    "proj/src/Drivers/Keyboard/scancodes_set2.h": "d953c5a0be7acb2e6485897cc8b0ba1e7d2a184628e1578629cb7c50e2f4ab6d",
+    "proj/src/Drivers/Mouse/i8042.h": "136601b1847deb3410ba2e9e52089b6743c96488e924869a69c1a615e13b8463",
+    "proj/src/Drivers/Mouse/mouse.c": "185e334a2b0b7f9c80a58791f792ad6bc0a7d8948c85c63eb44a545b9361bc4f",
+    "proj/src/Drivers/Mouse/mouse.h": "c2b36b2e7e70747b94d0c744a9151de8f763ab8df93a0445947ca2d09ed092f0",
+    "proj/src/Drivers/Timer/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/Drivers/Timer/timer.c": "46d6a60770fcea0d4b6cadcac52b7151b886f879d91cfd4bc3ba1fd1b94dd41d",
+    "proj/src/Drivers/Timer/timer.h": "84f062a3fd6111d3fee4d63da39711829460c57572c0cd4aa4927eba78d33018",
+    "proj/src/Drivers/Utils/utils.c": "45bfee2cc30f77dac7044f71f08df4e3d538d6d412a040eb00a96b2888ae210e",
+    "proj/src/Drivers/Utils/utils.h": "8948755a956c7a02261167758973dac91ec3b8fa2f00b940c7c2c5088631a364",
+    "proj/src/Drivers/VBE/i8042.h": "c221ff83c6f769c7e7b41314cab07fb5bbf4aa87ba7c4bf9e5ed8d07fea5c250",
+    "proj/src/Drivers/VBE/i8254.h": "e4e0d525fc10a6472830b0570179fb5e9e3e36ef37be111e627504c9d337f160",
+    "proj/src/Drivers/VBE/vbe.c": "c8be1bfe67838370a4853534942dc9b733276bf2ebf23243c1ad636290ed12d5",
+    "proj/src/Drivers/VBE/vbe.h": "b8e2183dbe20ae544e1abf4b04b92062b11ad1f4dfa40afa1bf6909bcca9ab0e",
+    "proj/src/Game/game.c": "0bb5fb1d23235bfb24fb3f8d831ad956be998fe1a48731bc4d89853266ba55be",
+    "proj/src/Game/game.h": "53f11da73f61247205e22a429db7cdfd4da6bf087a2ddedcc2bf5da8f0e99c9d",
+    "proj/src/Game/game_logic.c": "ef2b23a4f7911fba7ee1310e28ddd8a21ea76be5be28aa2237e327c9ae2b9eb3",
+    "proj/src/Game/game_logic.h": "bf59b49b4f34f583b14ca5663e9b68d2ccd3d3b647b7916c705089a64d527bd7",
+    "proj/src/Game/game_state.c": "dc9fb40baa91be8b239900f91284d024e6c637db40135768d4d57dc1f9951ddd",
+    "proj/src/Game/game_state.h": "21435d3ea04c64b516791a7cfe53a9a67b63318b3b787796ed05a96e7cbea9ea",
+    "proj/src/Game/menu.c": "bedf35fcc7415c7fdb3b89ea4dc9c5dea1acc0c8cce41f71e99445e122f51cd7",
+    "proj/src/Game/menu.h": "0376c0c9e5ffa9204141be088a36500604d264732ddfbd3e38ba8f59e2082359",
+    "proj/src/Game/pause_menu.c": "5890dbf49dee865676632a8d623cbdc2d8bfdcf87bdac3f66a03cd6e4bcb1a2c",
+    "proj/src/Game/pause_menu.h": "a5954a16c3d6904a3bc627c8937b3b693aeef2e0559350ce0d9ea310c2563543",
+    "proj/src/Game/score.c": "429d82b644e68f23e85014bee1f06bae29522cef737bedb59d319cd2e71de9e0",
+    "proj/src/Game/score.h": "f8fa6b1d99b3c6f97838cdebf81b3d79b95aebfa4bcb3ff22abbc2d8cbfda6fc",
+    "proj/src/Makefile": "e603da4f14c5b5ae3b0954e27883195344221e6d1778c2df5f96597668ce1e31",
+    "proj/src/Sprites/back_button.xpm": "ce241fecaa81c6a9e619a991942e4308c5fc86fb8f2126bd185c485ada509c2c",
+    "proj/src/Sprites/ball.xpm": "a87014e9d15189d6a1627b24c8f83db55331bc106a31aac5b1c1c1943023118f",
+    "proj/src/Sprites/block.xpm": "c71e66786fcad461bf6f38fbd824762ccff254c37d3a45068b6ba6161ce61089",
+    "proj/src/Sprites/close_button.xpm": "fd312f91b70c395aa40164c29823a002b50f307461355e55e9d82b3c0a368375",
+    "proj/src/Sprites/digits.xpm": "bc16b5ada40691e7b7429443f516dd8627c469303f707a5a66ad7120ac671cc6",
+    "proj/src/Sprites/gameover.xpm": "bf9d5715665da5a41ea6f95ef70a7ce72add26ead1520cd38dd8f910c50a2397",
+    "proj/src/Sprites/instructions_button.xpm": "a7f61f95674af501a8c17259749630e4118046b5e5811eefe0acdb87067796bb",
+    "proj/src/Sprites/instructions_text.xpm": "9850448df4569d0d268b536e433095795d218b430791ef1e9949179552d82e9d",
+    "proj/src/Sprites/life.xpm": "257a4bad987d03438aa083649e0171e4f437e305ef6392ba873cbaca3d21cb55",
+    "proj/src/Sprites/logoff_button.xpm": "207c1653e48bff3475b79dbc854a6409bc0a763714aed272135d8d17b01dd0af",
+    "proj/src/Sprites/pause_button.xpm": "61ddded308affffd3f77ed7158aad2c383eaae6928b3a824923d6eab64038e34",
+    "proj/src/Sprites/pause_menu.xpm": "ba8e23ef41643a70c119f65e12f1efd8aa912785a9061cede034659ade39a70f",
+    "proj/src/Sprites/platform.xpm": "8ffecabff7cc93a1d50eef28cda5be181d93fd84497d2a21f0d3759a6b868e8b",
+    "proj/src/Sprites/play_button.xpm": "552ff65210e11eb9de3d4b3449bc306803426db2ffc28aced59686aadb32307a",
+    "proj/src/Sprites/points_text.xpm": "65e0f556073e730834dc8dc550c4876b968dddfde63a2aa72abedab8b5361082",
+    "proj/src/Sprites/quit_button.xpm": "6bfb866f80649362668bf9a077a294a47795fc53a7703204d8c71dd905c5b19b",
+    "proj/src/Sprites/resume_button.xpm": "cd09e6f3e1ca298b7e3f3ad8a6f0f722ae6f11eeac79b48af583bbc8d9d27e03",
+    "proj/src/Sprites/start_sprite.h": "6a124cff40b5aa980c1bdb71b014560cd09a7faa39a72809992efa5897ec4f27",
+    "proj/src/Sprites/title.xpm": "072a078f73ce2f1dbd08976c84f3b25bd1d19f63d63607069e07de723278a6c4",
+    "proj/src/Sprites/win_xpm.xpm": "032cd12f6496e518e678c7f8080fdbbb202fdcad837b64710ff15d95602113b7",
+    "proj/src/main.c": "ea5b2fa8bc8f435479d2b635b291cd6ec391f00a978196cc23e88e3a58ffac34"
+  },
+  "selection": "Pinned source, headers, required assets and upstream README; build products, documentation output and core dumps omitted.",
+  "icon": {
+    "kind": "original pinned game sprite on matching game palette",
+    "source": "proj/src/Sprites/ball.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "33c1b641c88d55a5c6428be2ea8b1c5937532a37b47cd2ea3c906a148f34e7d2",
+      "kind": "launcher icon derived from original pinned game artwork"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "2ce1e5b8b3bedcd8ad0ad63d5c391109582a1bd857ca287aeed081bee72ae2a9",
+      "kind": "real mobile browser gameplay raw canvas pixels, without overlay controls"
+    }
+  ],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/Game/game.c",
+          "originalSha256": "0bb5fb1d23235bfb24fb3f8d831ad956be998fe1a48731bc4d89853266ba55be",
+          "patchedSha256": "f00a183937d85df6be5110451cb4749dc640f04848ccae842548b3381afa7bde",
+          "reason": "Use the new shared state immediately after keyboard input. A coalesced timer notification previously repainted the old menu and consumed needs_redraw before the first game frame."
+        },
+        {
+          "file": "proj/src/Game/game_logic.c",
+          "originalSha256": "ef2b23a4f7911fba7ee1310e28ddd8a21ea76be5be28aa2237e327c9ae2b9eb3",
+          "patchedSha256": "284a69f15aa53c2c7d34856d9ffd6497bd3341b53d25c6880adcf51ccf5e7d5f",
+          "reason": "Accept the ordinary Enter make code as well as keypad Enter. The original handler rejected every one-byte key, making the displayed Enter launch instruction ineffective."
+        },
+        {
+          "file": "proj/src/Game/menu.c",
+          "originalSha256": "bedf35fcc7415c7fdb3b89ea4dc9c5dea1acc0c8cce41f71e99445e122f51cd7",
+          "patchedSha256": "87d716533e95f918beadfe57e4b739d765a42bd72ad8ae1098f775793df9a8d7",
+          "reason": "Reset a newly opened game for normal Enter just as the existing keypad Enter start path does, preserving fresh lives and cleared bricks on replay."
+        }
+      ],
+      "reproduction": "Normal Enter leaves the menu background over gameplay and cannot launch. Native bounded Enter replay independently checks expected game background pixel (1000,500)=(222,239,245); before was menu blue (178,218,250)."
+    }
+  ],
+  "controlsRationale": "Enter starts and launches, left/right arrows move once per make so repeatKeys gives held movement; P pauses. NormalEnter source fixes verified with failing then passing native playfield regression, then mobile browser scored5 and destroyed a brick.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "mobileViewport": [
+      960,
+      500
+    ],
+    "evidence": "build/arcade-expansion/import-a/evidence/leticia-003--2ndYear_FEUP_LCom",
+    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim."
+  }
+}

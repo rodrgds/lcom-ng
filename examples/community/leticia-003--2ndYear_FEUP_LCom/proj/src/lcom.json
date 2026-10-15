@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "Bounce Ball",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "UP",
+        "DOWN"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Launch",
+          "key": "ENTER",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Pause",
+          "key": "P",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "LEFT",
+        "RIGHT"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "description": "Launch the bouncing ball and clear colourful bricks while protecting three lives.",
+  "preview": "preview.png"
+}

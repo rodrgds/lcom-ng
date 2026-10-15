@@ -1,0 +1,87 @@
+{
+  "repository": "https://github.com/rodeso/lcom.brick-blitz",
+  "revision": "e2fa0770017aa1c8f94e8a521b8c67b96a4b8cc3",
+  "project": "src",
+  "sourceHashes": {
+    "README.md": "b4cdb86acfb90507df16a762c622272822aed6bf9a9aa102c75bedbdf3619218",
+    "src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "src/.vscode/settings.json": "80d37ad062e9906512ed715b8c10c870138770e349a43477c20ce0c228d73152",
+    "src/Makefile": "f75a0574f569801f036f6e4745ab501db1f9d6527b1a9207d1c93b522685ab42",
+    "src/dvcs/graphics/graphics.c": "6f137637e3024dfdc64360f52fe94af94ee526a37e4f5712365fa73db777a927",
+    "src/dvcs/graphics/vbe.h": "1308c3ccb07a353fefa5d42aa3a9938105d66098f11e25376d0134a42513821d",
+    "src/dvcs/keyboard/kbc.h": "c604eb32e541429873c5bdd6b5ee047f253530c4b481f2e1ad5be4744d81e3fb",
+    "src/dvcs/keyboard/keyboard.c": "946c5aa29c7725e70e8eb24bb3729de93db8f84dc7391b5acbbb091b1ad073ed",
+    "src/dvcs/mouse/mouse.c": "4a2f0c90fd7d7530da6d8d9ca34cca81567d0fb631e4ee582b8ae08b657defbc",
+    "src/dvcs/mouse/ps2.h": "351731474beab0eed80a2428c7bfbddca48cbc509e62acd5286eea65dc66a252",
+    "src/dvcs/timer/pit.h": "b137ab5168d67ef9ff3d1cbd2e69fec30be870bb7792593969101290d84a5179",
+    "src/dvcs/timer/timer.c": "22fbea29f692235d1e94ff1e275feee9b63cd210ab644da5dc31b70ed212545f",
+    "src/dvcs/utils.c": "d56ec63ff676e7314bd3bef5a39b088f88fd6b0e678fc8402ad9b6cfa1af0693",
+    "src/game/draw.c": "8d92608de58e917939b7687b9f86cd0d18269243e877e6363eb6a71bf5de88df",
+    "src/game/draw.h": "ba6a587dbb2c24e0f949113a9b253c721e65bc609cd384cecefe79aa60ee67aa",
+    "src/game/game.c": "2b9955ee20333b821b069653e4f09027e7289e4ed08c176556a6f89b294236e1",
+    "src/game/game.h": "afd925cb17e519769d16b3fee814e93a3bb3d2ce5b28123d9d73db504e5bfb18",
+    "src/game/objects.c": "d2d50fdfaf93c6dac9cbb5c831f32508e954a9682c982fa8aa98f777f21e1dd7",
+    "src/game/objects.h": "f6b0a2c797847337d4102570c081093878b7d66dc5ac04d4b6dd8b00c5b3e5cc",
+    "src/game/sprite/sprite.c": "340710b83194c4d43f211184884267fe27434b9713ee15373ece042673f39e85",
+    "src/game/sprite/sprite.h": "0e6e159eccf2b767fc1e1c5918ee3c1ba45df4b2c17b64d8a54df6c3402e897b",
+    "src/game/sprite/xpm/background.xpm": "f88a879a50e914797e53afcd1e90f0c8f2a20f055d9c0adcdc2a496d0c2eaced",
+    "src/game/sprite/xpm/ball.xpm": "aadb586ac92d7a18062f861cd21431fbaf47949d6c7463cbaea39fa9d33f35a4",
+    "src/game/sprite/xpm/ball2.xpm": "6d0e9164ee7b2cffe125fbb034894e1cfd3698509b99c519ee3d97d53e0ed349",
+    "src/game/sprite/xpm/brick.xpm": "ad3a2fae33f9d9c1bc69ba7dbcce778e314b95bbdfa6c8c762261bd23d6f15ef",
+    "src/game/sprite/xpm/explosion.xpm": "d661c091b55e89fbf519dd47f6d3e1ce9514bc189861177684b5c98c05ab741b",
+    "src/game/sprite/xpm/life.xpm": "30b4bff45932b34f57155f4ec5f5bb2b0305c17dd0bbe2b7d069365f8598e0a5",
+    "src/game/sprite/xpm/lost.xpm": "8fcb816aa538331758ea8923843ff485b13c10ec084d0d838a4983dd501cadcb",
+    "src/game/sprite/xpm/marker.xpm": "7f69ac8ff55cec9e51947ad5ef71e586ea1b1ed49f10ba9147e2b9260f308798",
+    "src/game/sprite/xpm/menu.xpm": "70c20fa5aa06632577ae43b1fb04541f2c35f6f8acd8b0bc0e76aa95b8bb8c3a",
+    "src/game/sprite/xpm/missile.xpm": "99fbfb797ec5ca53b74ed99eb228d994f8ffc9d9e1ca38e66e3c8a989c3e225b",
+    "src/game/sprite/xpm/missileIcon.xpm": "dd7895ac502b69e1bd024aa73eb6bba945fc229c91c581eb1712cd13c18f3624",
+    "src/game/sprite/xpm/paddle.xpm": "03581b4b1d04b8d9abefdae0a47ef53b988cb394f12d19e08a39cb2ebf0224c3",
+    "src/game/sprite/xpm/won.xpm": "42ef16cd7eaf2e6e55aefe1ccaa46803ecf26b013fd8b17906a54d87135fc13d",
+    "src/proj.c": "b0f4d904d6a51fa66a047ca3228897be3e218ec4d2ca5ce55e35146007b31ac9",
+    "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+  },
+  "selection": "Pinned source, headers, required assets and upstream README; build products, documentation output and core dumps omitted.",
+  "icon": {
+    "kind": "original authored title cropped from rendered menu",
+    "source": "src/game/sprite/xpm/menu.xpm",
+    "capture": "evidence/rodeso--lcom.brick-blitz/initial.ppm",
+    "crop": [
+      30,
+      110,
+      780,
+      345
+    ]
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "f066dfc676c63ae748fad8a77dc2a17b91ea21da5e66346e88cddb80b65c248d",
+      "kind": "launcher icon derived from original pinned game artwork"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "0f007b90ce6386929dba2d4f8a2c0b3f2103fe8b1cef0aafe78209f7dd169720",
+      "kind": "raw game canvas pixels from actual mobile touch gameplay, no player overlays"
+    }
+  ],
+  "license": {
+    "status": "licensed",
+    "files": [
+      "LICENSE"
+    ]
+  },
+  "controlsRationale": "A/D moves once per make, so repeatKeys enables held movement. Enter starts and launches; Space fires missiles. Relative screen hover adjusts initial launch angle.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "mobileViewport": [
+      960,
+      500
+    ],
+    "evidence": "build/arcade-expansion/import-a/evidence/rodeso--lcom.brick-blitz",
+    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim."
+  }
+}

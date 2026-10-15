@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "name": "Castle Clash",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "label": "Fire",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Play",
+          "key": "P",
+          "position": "top-right"
+        },
+        {
+          "label": "Menu",
+          "key": "M",
+          "position": "top-right"
+        },
+        {
+          "label": "Pause",
+          "key": "ESC",
+          "position": "top-right"
+        },
+        {
+          "label": "Quit",
+          "key": "Q",
+          "position": "top-right"
+        }
+      ],
+      "touch": "move",
+      "cursor": {
+        "x": 100,
+        "y": 100,
+        "maxX": 800,
+        "maxY": 600,
+        "bounds": "reject"
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  },
+  "description": "Time the angle, charge your cannon and duel a rival castle.",
+  "preview": "preview.png"
+}

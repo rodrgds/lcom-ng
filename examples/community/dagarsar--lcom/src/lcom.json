@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "name": "Block Destroyer",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "UP",
+        "DOWN",
+        "ENTER",
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "label": "Start ball",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        }
+      ],
+      "touch": "press",
+      "pads": []
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  },
+  "description": "Drag the paddle, break glowing blocks and catch bonuses before time runs out.",
+  "preview": "preview.png"
+}

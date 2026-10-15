@@ -1,0 +1,84 @@
+{
+  "repository": "https://github.com/RodrigoPombo1/projeto-lcom",
+  "revision": "f0ad2ebadeed4a6c6cfb94610fc01758a2e5663a",
+  "sourceHashes": {
+    "README.md": "671c37043b0c2643368cec06dd007da8494a0ae49524ed1fe30b9d3da601d1be",
+    "proj/src/.clang-format": "740a37ee9082d226dd0ad80069f6016f1983bc50a5ee46fa9b2616e1304d49a2",
+    "proj/src/.gitignore": "cf0e6443d2c9c75f346503687fffd6fb3fcbc68afc1cb17c78341f3cb6322b19",
+    "proj/src/.vscode/c_cpp_properties.json": "1bccfd4557a682b224872f1e3783720563f59dc7baf10cfdc1be6d6d0c91d488",
+    "proj/src/.vscode/extensions.json": "4c0e4e67d5430dd53d204e3f0cf56eb836c3b823bd8a025495283556d91c2c7a",
+    "proj/src/.vscode/settings.json": "b1aa00ae4ff4f50c0141aedd5a3e7fe672ab7a83f36d33acae9f35249484a9e3",
+    "proj/src/Makefile": "8119657ebed7bbcfba41b77b40501618dbc7e4558ff582f5e886e8c3f8bf799a",
+    "proj/src/controllers/i8042.h": "c4ee60a7a0db49140a283229d35f64d54986bd6cf16ad864117d66c9d8dbc485",
+    "proj/src/controllers/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/devices/common_keyboard_and_mouse/keyboard_and_mouse.c": "41bf86fd1c34e0c1fb181c7f64d35348a796840f905e69b5a46a1c7107e1b943",
+    "proj/src/devices/common_keyboard_and_mouse/keyboard_and_mouse.h": "351375980a9be33256066b1e0d7fc2838e8573c46cd9ad56e9c7416b156da74d",
+    "proj/src/devices/graphics/graphics.c": "c147e52be61c9cc275b87db500ffba3f646abebbdce7b8df04dd694d6ef14316",
+    "proj/src/devices/graphics/graphics.h": "988025c3057f566b2e96a4a502eeafdf00c30d039c37643063a3f80341831fc5",
+    "proj/src/devices/keyboard/KBC_keyboard.c": "b91ccc758b455574b2c8db803c43d583c748802cea55218a9a215ae85272a983",
+    "proj/src/devices/keyboard/KBC_keyboard.h": "798ad924688f585d47ffe32c2394eb355dd17b22cd5879185fd82b57fd4fed71",
+    "proj/src/devices/mouse/KBC_mouse.c": "c3e1fd9a8ff758af598c7bf1df3a737b63093f619ed82bf8edecafb114126ee6",
+    "proj/src/devices/mouse/KBC_mouse.h": "acdb2bb5c25fdb56542700f5bbb9f9cd3a98e8014c5b520011fce87d314ac493",
+    "proj/src/devices/rtc/rtc.c": "a785492f5fcfa4e101f7ac4cdd1482410b27c0f0b6f59a60fe7bf763fd5948e0",
+    "proj/src/devices/rtc/rtc.h": "41eb5b077019020fead705b2103bfd5c9e0f6d2e8a1ba92747864078ceeb547f",
+    "proj/src/devices/timer/timer.c": "4fa9dc46b0f0c7f6a94ccf0fee3276d680ff64bbeb961761f5cee2da65a2d8de",
+    "proj/src/game_state/game_state.c": "d43cf05b1e21ba773562ea5bca3aa7e13f8e01459af52fdb0cc2e6fa5be0b9b9",
+    "proj/src/game_state/game_state.h": "947c360bbc49acc56efc6c9c9f7ad331247640466de2bc6e705f9f7f2da216d3",
+    "proj/src/main.c": "ddf6495a223c11de6b70564a7ae79f383d3598f871ff7432abf8ac8192d1cb84",
+    "proj/src/utils/utils.c": "7aa867be675dd245efc379b4867ddf52dfd46445673199ac4b7dda2fba907953",
+    "proj/src/xpm_files/LCOM_-.xpm": "6b50e4b92411013fc37c1ca39e237730883beedae3a50f4ee1f6fcd0ca705156",
+    "proj/src/xpm_files/LCOM_0.xpm": "81d133837beedd3904bd54613878e87ca25c0e6f7f0f605d027ab54c53060a00",
+    "proj/src/xpm_files/LCOM_1.xpm": "64d2379e1d84d7c798fd7867b1422c33674357fdc1cb4bbd512e0334c545602c",
+    "proj/src/xpm_files/LCOM_2.xpm": "3209fde69c74b7b128f07e3f5297ca951b51b897cde788ef2682f10d3ea0b57b",
+    "proj/src/xpm_files/LCOM_2_pontos.xpm": "8a3257ad2b7262e0b16f7a0327ca808e7d2c8ed64982f20a60a116588c43e263",
+    "proj/src/xpm_files/LCOM_3.xpm": "d1fcaf581020819798ed09b5769b564afea71b7e80ee8bf9fd16c6016014a3b7",
+    "proj/src/xpm_files/LCOM_4.xpm": "0ebef498a394ee91eefa6415ddf49a0135c267a4d43bb630852286831778ecd6",
+    "proj/src/xpm_files/LCOM_5.xpm": "05826d810cac1c5b6446d339d86e228a53d15ff52d236cd496e0f29188e2c2f9",
+    "proj/src/xpm_files/LCOM_6.xpm": "5c879e2540a0fbf2b00a7025f813ed346a73b462ecab9eb8f57cac6e1827a9c5",
+    "proj/src/xpm_files/LCOM_7.xpm": "500470ccbc7330401b7944b5463bded70557a55a4b65f9ca9234dae28d4c3a00",
+    "proj/src/xpm_files/LCOM_8.xpm": "bd7acce71b17fb4e95cf6ab6d6e1a4930dc92361b01cdd02503aca36564665a6",
+    "proj/src/xpm_files/LCOM_9.xpm": "4152b292d13600d85de8bea6a6332f85c7934517adcd69880845b68187d2596b",
+    "proj/src/xpm_files/LCOM_character.xpm": "1d00c0eeff980d107cfec3408d84cade6942c52bdf0892277f2a06c51fd4805f",
+    "proj/src/xpm_files/LCOM_cursor.xpm": "42cc724655a6b626314b68ff1be985acae8afde9e0fa82e528e3f7f0be9a4ecc",
+    "proj/src/xpm_files/LCOM_game_over.xpm": "8bd5f44dec5b899cc32789f7c1beb48d920471e4ee345cea0a09c1e860973e12",
+    "proj/src/xpm_files/LCOM_high_scores.xpm": "89f46e1afc51db911ce5c3e5079c5f5d553e03546893b02b0a8d8454f1264a9b",
+    "proj/src/xpm_files/LCOM_mapa.xpm": "2c3629b49a0cd9871495148c829607d0ad8fe99802d78870496c87dcdd1e024a",
+    "proj/src/xpm_files/LCOM_menu.xpm": "d892d6e36feec95be13c09f1b770ab0777b0838755aeff89ad12280cc79e7b08",
+    "proj/src/xpm_files/LCOM_monster.xpm": "f1aa5b3ece3c27b8a02b5be5c423a4fd9792fd4eea0d31af7919d264499c12d8"
+  },
+  "sourcePatches": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "d2da8ad168bd87182d346b922f3f13cf01b1d910976080469a7511ced19ad3a3",
+      "kind": "original source sprite composition or game menu crop"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "be88e4e89b4524f760b089abec4d125598214db7de1da1ba3bba381f43b4600d",
+      "kind": "actual raw game canvas capture"
+    },
+    {
+      "path": "proj/src/high_scores.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "kind": "empty runtime data file"
+    }
+  ],
+  "verification": {
+    "browser": {
+      "viewport": [
+        900,
+        430
+      ],
+      "hasTouch": true,
+      "gameplay": "Direct tap Play (400,176), hold up >2sec, observed character travel/timer02 and advancing monsters; loss reached GAME OVER with mapped highscore data; Exit clean.",
+      "errors": [],
+      "rawCanvas": "build/arcade-expansion/evidence-b/leiria-gameplay.png"
+    }
+  },
+  "controlsRationale": "Direct tap Play (400,176), hold up >2sec, observed character travel/timer02 and advancing monsters; loss reached GAME OVER with mapped highscore data; Exit clean."
+}

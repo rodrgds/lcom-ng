@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Euler's Way",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "dpad": {
+        "side": "left",
+        "keys": "arrows",
+        "axes": "horizontal"
+      },
+      "look": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "label": "Select / Fly",
+          "key": "ENTER",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Retry",
+          "key": "R",
+          "position": "top-right"
+        },
+        {
+          "label": "Menu",
+          "key": "M",
+          "position": "top-right"
+        },
+        {
+          "label": "Back",
+          "key": "ESC",
+          "position": "top-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  },
+  "description": "Trace every route once across a galaxy of puzzle missions.",
+  "preview": "preview.png"
+}

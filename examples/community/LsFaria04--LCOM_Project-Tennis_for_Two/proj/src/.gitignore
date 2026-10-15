@@ -1,0 +1,7 @@
+.clang-format
+.gdbinit
+*.o
+*.txt
+proj
+output.txt
+trace.txt

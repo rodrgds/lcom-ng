@@ -1,0 +1,11 @@
+--- a/proj/Src/game.c
++++ b/proj/Src/game.c
+@@ -89,7 +89,7 @@
+   // read the next level
+ 
+   current_level++;
+-  char file[4];
++  char file[16];
+   char suffix[] = ".txt";
+   int level = current_level;
+   sprintf(file, "%d", level);

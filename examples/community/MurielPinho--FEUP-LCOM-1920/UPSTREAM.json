@@ -1,0 +1,57 @@
+{
+  "repository": "https://github.com/MurielPinho/FEUP-LCOM-1920",
+  "revision": "d36662bb5a5e0e88c36bb65a27ecc0e137d6e949",
+  "sourceHashes": {
+    "LICENSE": "605e9047a563c5c8396ffb18232aa4304ec56586aee537c45064c6fb425e44ad",
+    "README.md": "8969e704eddcf818e907a2ffe4413ff10f239e149bfdf53fea7b9142927a7ac4",
+    "proj/assets/game.h": "23d8f1c14035d6a9a5b1295bba98e2b2e7f4a88d1afaaf3f62eaf3992645dc8a",
+    "proj/assets/menu.h": "011fcc04dfaafa4422b1b73fc3af4f704e9d4a7bbc2a82984a120a606ecf10fc",
+    "proj/assets/xpm.h": "ab1ec46e72f80d7d2fc742fa6a67d2441d72ebf2586ee842f20f4e03a0c80940",
+    "proj/src/Makefile": "44fd96b2d5b11cb819b58ab1f1642cb32b7de38109ab4804ba5f7d513a311525",
+    "proj/src/game.c": "71ded1058ea37793223446df6735bab691d86ea8317a1223240fb849299259c3",
+    "proj/src/game.h": "332fdb220ca9f1084de3a21b162634d61b2271eab2937d38807a57dade94c5f2",
+    "proj/src/graph.c": "5025a050441de4aca3d0694ea7b54b44cad1e435a7e15adb6994f611a7802432",
+    "proj/src/graphics.c": "28c4d3b7ba87ae9d9fcf6d65aa541a27721a28ae00f3eb372c43ebf58f491387",
+    "proj/src/graphics.h": "06bc1b72abdc2c5e61b6ee1036edcee022edcc7944ce5c88e85c78019c3d8aa5",
+    "proj/src/keyboard.c": "7c17f01e47d1d6de741cafbb619594a7168dbe8e715002563ebdb9702f524469",
+    "proj/src/keyboard.h": "5617bb611c18fb4a92a1d348370330ab4ea45166ef6464231cfad614c0f15fb7",
+    "proj/src/macros.h": "fa212b425078d797b2f1ecf918a47d755e0cadd752e54a41ddb2373d461ae061",
+    "proj/src/menu.c": "85c1f10e15b9a141fc646233e63ffbdd59d766b9dc3817668de5f5f0dca6fa4e",
+    "proj/src/menu.h": "45f81653418633dddce8af8ca2222a4339605a99a99889bcaef8734f10f802f6",
+    "proj/src/mission.c": "6c7d1a4b8048b149b7b3c9a0eae037d3448c800e0342d67ab569c485df60da1d",
+    "proj/src/mouse.c": "b3d68f9711163238269ccff988bd5a8328c2272b1db0d3b430e83d337f2d634d",
+    "proj/src/mouse.h": "3ab6719cb91206c2e2a86264a08b9c71766cd108b7f99ab5695b630b4da538f5",
+    "proj/src/proj.c": "9a720dd4fbc4058340b96e84b23cec14cfca309f7b68f8879a9aaa2456dd1fb7",
+    "proj/src/ps2.c": "d5490699406aef8c3b9d6f7d07b835fb1f858b98c7f8a2c48c06e4dbcf4af220",
+    "proj/src/ps2.h": "799f05e9b8f23d6a26cf0cf9e1403d403921c36613364fe4dcdb99964993af5b",
+    "proj/src/sprite.c": "7e0b46ba173a886b4f1e497412868df13c404c676cb320df2f8c30567ce0b202",
+    "proj/src/sprite.h": "427fcd1a422d080d6a086945ed9007e40ae4e8fa3ceca070fb0050095c9d6b2c",
+    "proj/src/timer.c": "894d0e555723fd46e053e265a3b87695e2657516dc93383441a14704c3f69ae8",
+    "proj/src/utils.c": "b866a69d3457479e7a2357ccff327ba9ca26075aef3577baa3bd0d29a72a2f00"
+  },
+  "sourcePatches": [],
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "77b2b7365d3c223054eb6c9c03202ad03530e6cb13d87ebee779ab01ba12cb9e",
+      "kind": "source sprite composition or source menu crop"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "8d952c66084c45560f21515220e6d230bdcab624b0706f1318dc9f0ff47e48ef",
+      "kind": "actual game canvas capture"
+    }
+  ],
+  "controlsRationale": "Mobile controls exercised in Chromium with a 900x430 touch viewport. Trace every route once across a galaxy of puzzle missions.",
+  "verification": {
+    "browser": {
+      "viewport": [
+        900,
+        430
+      ],
+      "hasTouch": true,
+      "gameplay": "First mission completed, next mission advanced, retry/menu and clean Back exit.",
+      "errors": []
+    }
+  }
+}

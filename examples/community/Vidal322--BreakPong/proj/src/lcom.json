@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "name": "BreakPong",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "1",
+        "3",
+        "4"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Launch",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        }
+      ],
+      "touch": "tap",
+      "tapDuration": 60,
+      "cursor": {
+        "x": 100,
+        "y": 100,
+        "maxX": 800,
+        "maxY": 600,
+        "bounds": "reject"
+      }
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "description": "Move the paddle and break bricks, collecting bonuses across three levels.",
+  "preview": "preview.png"
+}

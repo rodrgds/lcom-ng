@@ -1,0 +1,43 @@
+--- a/proj/src/Game/game.c
++++ b/proj/src/Game/game.c
+@@ -95,6 +95,10 @@
+                             }
+                         }
+ 
++                        /* Input can change the shared state within this notification.
++                         * Use it before mouse handling and the timer repaint. */
++                        state = game_get_state();
++
+                         if (msg.m_notify.interrupts & irq_mouse) {
+                             mouse_ih();                       
+                             if (pkt_index == 0) {    
+--- a/proj/src/Game/game_logic.c
++++ b/proj/src/Game/game_logic.c
+@@ -200,9 +200,10 @@
+ 
+ void game_handle_keyboard(uint8_t *scancode, size_t size) {
+ 
+-    if (size != 2 || scancode[0] != 0xE0) return;
+-
+-    switch (scancode[1]) {
++    if (size != 1 && !(size == 2 && scancode[0] == 0xE0)) return;
++    uint8_t code = scancode[size - 1];
++
++    switch (code) {
+ 
+         case 0x4B: {                    
+             platform_x -= PADDLE_SPEED;
+--- a/proj/src/Game/menu.c
++++ b/proj/src/Game/menu.c
+@@ -146,8 +146,10 @@
+         needs_redraw = true;
+         break;
+       case ENTER_MAKE_CODE:
+-        if (selected_option == MENU_OPTION_START)
++        if (selected_option == MENU_OPTION_START) {
+           game_set_state(STATE_PLAYING);
++          reset_game();
++        }
+         else if (selected_option == MENU_OPTION_INSTRUCTIONS) {
+           printf("Switching to instructions state\n");
+           game_set_state(STATE_INSTRUCTIONS);

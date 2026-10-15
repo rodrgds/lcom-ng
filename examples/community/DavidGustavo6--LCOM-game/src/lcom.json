@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "name": "Minix Tower Defense",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "P",
+        "O",
+        "L",
+        "Q"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Upgrade",
+          "key": "U",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Archer",
+          "key": "A",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Cannon",
+          "key": "C",
+          "position": "bottom-right"
+        }
+      ],
+      "touch": "tap",
+      "tapDuration": 60,
+      "cursor": {
+        "x": 5,
+        "y": 5,
+        "maxX": 800,
+        "maxY": 600
+      }
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "description": "Build and upgrade towers to stop waves of skeletons, orcs and golems.",
+  "preview": "preview.png"
+}

@@ -1,0 +1,75 @@
+{
+  "repository": "https://github.com/Ruben38Esteves/Project-LCOM-MinixSurfers",
+  "revision": "0e776e4911c9c0502a0db699e86b88ff5c973a06",
+  "project": "src",
+  "sourceHashes": {
+    "README.md": "a00b368c73656ece6a4805c8b51219a89a00e70512e5f4cc6c18468d131865c1",
+    "src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/i8254.h": "ddafbd17b9b15e335436ab9d05f4e01f7e639bad59f1a585ef416031706664cc",
+    "src/keyboard.c": "6fb24657e165922eb97a826db87cb4fd022af5cc4df6c6c69cf28ab92132e6f0",
+    "src/keyboard.h": "28e112854a0cc8d58098b92502e062006a72a1b5e3f936cc602f0196c4a8b494",
+    "src/main.c": "34995d2bebc306ff94d9d42ad49833216cb16d47b81b29d6db55a7fe9b3b5fc5",
+    "src/makefile": "c265899f452d885d5a979cc670d74cd4176bc711fc7f3ed88fdd62db435d8ffc",
+    "src/mouse.c": "8785eb39aab5bcda444a03e281dee916e347fb56cb2cb85db61a1c63e3b64544",
+    "src/mouse.h": "d2e7b9e484428751effbc586d73fce5caa32b2ad47083be972465d231b568ff4",
+    "src/output.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/rtc.c": "cb15b6d5abb42eb1a9c1a69e6a165cbee177d5c119ad61b9340764b884f0c2b5",
+    "src/rtc.h": "7149718f0853df84a1d40dcb4c0a6a51b308f4b8065df078c1098b47d10e1f74",
+    "src/timer.c": "36f408006f71dbff74c846a73a9c44fd942972bf715593ec3d625f1526e79366",
+    "src/timer.h": "36e5dc9befbe46359e2b2586ba659c03e3ac14aec80ac9aa9353dfaa56e079bd",
+    "src/trace.txt": "740b1b021e362abec32afa02bbf5d90a7a828f58b7bf937ecb6b9ed3a1173239",
+    "src/utils.c": "dbdb8ef80b7345e60656f70a14cc6d68463e6f2ebb4623bf52ddba57b461012a",
+    "src/utils.h": "d68b0646e2abebff01853e3754fcde8e9047f9802cc8520b4fb8f3e904a07507",
+    "src/vg.c": "942064cd46a32db659c6288175b791d105500f501984ffa486c1bd54b5cef855",
+    "src/vg.h": "3d764fc6b7dc5cb0a42f211b68d79b1e1d1961014891e6191b4101695cf740b5",
+    "src/xpm2.h": "566ddea652ecc76c740814dd65e1bdabd1276691da2f91f9eb77f6053d09c84a",
+    "src/xpmbig.h": "fea2c0ad159143e38715327425d67daaef3abc99a7e5e8e90657eeddf28a1e83"
+  },
+  "selection": "Pinned source, headers, required assets and upstream README; build products, documentation output and core dumps omitted.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "src/main.c",
+          "originalSha256": "34995d2bebc306ff94d9d42ad49833216cb16d47b81b29d6db55a7fe9b3b5fc5",
+          "patchedSha256": "538e01fbe1deb9f208d8be386efd6bf1152945b018a5aac4043360cdfbfae388",
+          "reason": "Use the required LCF application callback signature; original empty prototype conflicts with supported LCF declarations."
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "original pinned game sprite on matching game palette",
+    "source": "src/xpmbig.h",
+    "array": "minixSurfersXpm"
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "cf9f45b39a67c305071b432309b30a7184f6266d7c03122b5e7f09e9f5e34728",
+      "kind": "launcher icon derived from original pinned game artwork"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "e524a27e512e4f6383a501a8a27b9b346f352f28da35d10807f2ebf0c76ca308",
+      "kind": "real mobile browser gameplay raw canvas pixels, without overlay controls"
+    }
+  ],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "P1 WASD left pad; P2 right aiming stick plus Wide train/Train/Missile mouse buttons. Relative screen hover starts from guest(500,100), gain1, and ignores first five mouse packets in original game. Menu hover Play at guest(575,680), briefly hold Wide train to start. Verified score56, player movement and spawned train.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "mobileViewport": [
+      960,
+      500
+    ],
+    "evidence": "build/arcade-expansion/import-a/evidence/Ruben38Esteves--Project-LCOM-MinixSurfers",
+    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim."
+  }
+}

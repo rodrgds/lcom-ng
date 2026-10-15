@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "name": "Portal 2D",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "dpad": {
+        "side": "left",
+        "keys": "wasd",
+        "axes": "horizontal"
+      },
+      "look": {
+        "side": "right",
+        "sensitivity": 1
+      },
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "label": "Jump",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Purple",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Green",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Back",
+          "key": "ESC",
+          "position": "top-right"
+        }
+      ],
+      "touch": "move"
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/Src/Resources"
+    ],
+    "arguments": [
+      "Resources"
+    ]
+  },
+  "description": "Solve platform puzzles by linking two portals, moving and jumping past obstacles.",
+  "preview": "preview.png"
+}

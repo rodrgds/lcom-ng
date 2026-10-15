@@ -1,0 +1,75 @@
+{
+  "repository": "https://github.com/dagarsar/lcom",
+  "revision": "59f31f17959b0c68b6a16eb8d32e0c6051fb9e3f",
+  "sourceHashes": {
+    "src/Makefile": "6aee07502fc8709df37446eabf59234adb2c662a7a39800145eafe3ee8308a93",
+    "src/game.c": "44cb8222f9a819acab462dd05dd2b0438a129a093535fd82a141ffea74359d96",
+    "src/game.h": "cd8cd743295e2e74f452d5f9216fd87d5c715d6ccb129e0345c5db0cd06f7a97",
+    "src/kbd.c": "69aee3e07c7dffa5494e2024f4f3df791253cc53388f9815564ce33f0b19f56f",
+    "src/kbd.h": "58d020319403929180357e5a004c83b875b01536b6d520f17c388cb05db708bb",
+    "src/mouse.c": "2dfb7719af9c21a647012c4b7b75d6234e64badc11b75dca6bae4d7e9e1914a9",
+    "src/mouse.h": "4a30114af5fcb84aba6176de85f3f7313748c37e87491736c1eb4e1472acf402",
+    "src/proj.c": "9e0439157b407deeea161174c170416e0e281b159032cc75d5436e32654ee64c",
+    "src/timer.c": "35c6014f578ffb27af434388a4af97e3016b798c2feabcb85a1de85735a8536a",
+    "src/timer.h": "1e8ee520792f222465126087791c575ae5d1866d3421a751616f170124910f14",
+    "src/utils.c": "48410320a0d12e2627ff505a83e5dc2479e5c6de21c7e73f3ad47a8de731e35b",
+    "src/utils.h": "1eb29d987d5a7f92d8c06ff4aa66f219aa6ffcc502dd47bde32300d24e1fb4e7",
+    "src/video.c": "0039f58224f2f3c12e31a9b17f0d027f63b4a4495f9e42820aac21f44ba02658",
+    "src/video.h": "6aee656019914c77512fd72065e046906d6d2ebeaa5cafee1c1022fce70034ac",
+    "src/xpms/0.xpm": "acd9a6e5819a2d5b8e0d68e2b7cc91a3137d8ef07bfdb97ec641e2693d253b20",
+    "src/xpms/1.xpm": "d371f844d48706c79954afb4081f9b3506926d38303cf1a030dd2f51d5b4d941",
+    "src/xpms/2.xpm": "39dd5c66b22e44d0e46cca0efe44c46c3d26c79c965b7d28bd52a9b2029769bf",
+    "src/xpms/3.xpm": "ed39bbdfed6d28855826f7e174bd246b13ceacdd581d28afc4aced6c9bc309d4",
+    "src/xpms/4.xpm": "7477cb0cf8e6f688ebd9dc4a8e24e7083aaa3bc9e6fd30557d308af516d930c5",
+    "src/xpms/5.xpm": "b915135b79498e14be9650989c7995b1650a4be57f9da072a7c98686b8201507",
+    "src/xpms/6.xpm": "37b32bddf67b2ca1113104be291b83d07f81eed46c037795b258429e7a56be80",
+    "src/xpms/7.xpm": "6d03f6f455ed76f8dabb72c7eba19c1646630905c61e1f3d8cf2104352e63788",
+    "src/xpms/8.xpm": "ffcfab14dcc324712aca6e3e19be074586d23d9d42fae8910957dfa2b43b5fe5",
+    "src/xpms/9.xpm": "9a8dd57ea06fae686f62416123593710c81e32855a0f303585cbd93f7e1ac768",
+    "src/xpms/ARROW.xpm": "0d264144d2255c4677809417c4a7f1bbf0efc28e6aab50bb3a969a0f6d8e1d0b",
+    "src/xpms/BALL.xpm": "cc3a131e195022e0aba6888c919751686060a9da9c98be54753125e4bc525d70",
+    "src/xpms/BLOCK.xpm": "7ae07c4c4fdcf914824543fea291656c3a7ca1f13339cbfb874d79d296c0c866",
+    "src/xpms/BPLAYER.xpm": "3ae4ef6117b706f1996250551ce88d71b644124a1e49cab2a9b3c93217490516",
+    "src/xpms/CREDITS.xpm": "203d2860faf86d9777aa273417e662ef9609dc2a271c5f77366bfc7752c4c542",
+    "src/xpms/DOUBLE.xpm": "f8b17c1e303ee64b0271f8339e3996ca1b16594b61ae1cf3ff7ccb93831071e6",
+    "src/xpms/GBEGIN.xpm": "41ec65e3e5c55d01f77f8c11c3f272935e3e16fbef275b807631483e48cf00cb",
+    "src/xpms/GEND.xpm": "e7de5c89a5decb52611db84c55fd0c89dc0be49dc3dde18089b1d61ac016e790",
+    "src/xpms/GPAUSE.xpm": "a7d33ff634e07327f928ae46613ba397fe08078f99e7a111544429b4d4110f7b",
+    "src/xpms/MENU.xpm": "b1e045d24adf1027056d060ea0cd12b2fe9d9fc0fc10383b8650149168b476d4",
+    "src/xpms/NEXTLEVEL.xpm": "c1f5b07603c6e71a336d61a30bc3f26e728146193adf4b23fd70d1dc3de55e98",
+    "src/xpms/PBONUS.xpm": "c2999b3dabae4b18720e789ea6a9372aef12ccf361565560cf9b8f3f0f626d48",
+    "src/xpms/PLAYER.xpm": "6e77185a57de529121b90a53d97b5fc050027d7d9258aeed45159bc67433a2a3",
+    "src/xpms/SLASH.xpm": "ebd180ff7f402e8d6a370f531db2742439cb55e9b3220c5e722093c4f1dc024b",
+    "src/xpms/TBONUS.xpm": "78b089da4c0b43f333a2ff272dc6a2eb55d5e407c19b8a9989623980bdbb06f1"
+  },
+  "sourcePatches": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "d87af6b8e3b3c0cc42ece70f4295e6498a8bb4f1fb1b98ab11dd208f2ad5722a",
+      "kind": "original source sprite composition or game menu crop"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "7468f5172e0577d33b0b350441da91f39f1e2fd3ce800a143cab682e1f9b1642",
+      "kind": "actual raw game canvas capture"
+    }
+  ],
+  "verification": {
+    "browser": {
+      "viewport": [
+        900,
+        430
+      ],
+      "hasTouch": true,
+      "gameplay": "ENTER on START, Start ball (right mouse), drag canvas while holding left touch; observed paddle travel, removed brick and score005; menu Down twice, ENTER clean exit.",
+      "errors": [],
+      "rawCanvas": "build/arcade-expansion/evidence-b/block-gameplay.png"
+    }
+  },
+  "controlsRationale": "ENTER on START, Start ball (right mouse), drag canvas while holding left touch; observed paddle travel, removed brick and score005; menu Down twice, ENTER clean exit."
+}

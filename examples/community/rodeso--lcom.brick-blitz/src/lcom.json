@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Brick Blitz",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Launch",
+          "key": "ENTER",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Missile",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "A",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "description": "Aim and bounce through advancing bricks, then fire collected missile power-ups.",
+  "preview": "preview.png"
+}

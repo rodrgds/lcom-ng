@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Minix Surfers: Versus",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "R"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": {
+        "side": "right",
+        "sensitivity": 1.0
+      },
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Wide train",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Train",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Missile",
+          "mouseButton": "middle",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "description": "A local two-player chase: one dodges while the other sends trains and missiles.",
+  "preview": "preview.png"
+}

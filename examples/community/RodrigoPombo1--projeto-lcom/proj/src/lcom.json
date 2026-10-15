@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "name": "Leiria",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "dpad": {
+        "side": "left",
+        "keys": "wasd"
+      },
+      "look": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "label": "Exit",
+          "key": "ESC",
+          "position": "top-right"
+        }
+      ],
+      "touch": "tap",
+      "tapDuration": 60,
+      "cursor": {
+        "x": 0,
+        "y": 0,
+        "maxX": 799,
+        "maxY": 599
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/high_scores.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/g5": "."
+    }
+  },
+  "description": "Navigate a dungeon and tap adjacent monsters to survive the growing horde.",
+  "preview": "preview.png"
+}

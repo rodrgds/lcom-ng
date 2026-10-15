@@ -9144,6 +9144,996 @@
         "assets": []
       },
       "derivedAssets": []
+    },
+    {
+      "id": "DavidGustavo6--LCOM-game",
+      "name": "Minix Tower Defense",
+      "path": "examples/community/DavidGustavo6--LCOM-game/src",
+      "projectPath": "examples/community/DavidGustavo6--LCOM-game/src",
+      "root": "examples/community/DavidGustavo6--LCOM-game",
+      "repository": "https://github.com/DavidGustavo6/LCOM-game",
+      "revision": "de9b4106a1d1aaec60027be5a73a6f35c4da6dd3",
+      "provenance": "examples/community/DavidGustavo6--LCOM-game/UPSTREAM.json",
+      "description": "Build and upgrade towers to stop waves of skeletons, orcs and golems.",
+      "icon": "examples/community/DavidGustavo6--LCOM-game/src/icon.png",
+      "preview": "examples/community/DavidGustavo6--LCOM-game/src/preview.png",
+      "config": "examples/community/DavidGustavo6--LCOM-game/src/lcom.json",
+      "controls": {
+        "keyboard": false,
+        "mouseButtons": false,
+        "quickKeys": [
+          "ESC",
+          "P",
+          "O",
+          "L",
+          "Q"
+        ],
+        "joystick": false,
+        "dpad": false,
+        "look": false,
+        "layout": "panel",
+        "pointer": "direct",
+        "toolbar": "top-right",
+        "pads": [],
+        "actions": [
+          {
+            "label": "Upgrade",
+            "key": "U",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Archer",
+            "key": "A",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Cannon",
+            "key": "C",
+            "position": "bottom-right"
+          }
+        ],
+        "touch": "tap",
+        "tapDuration": 60,
+        "cursor": {
+          "x": 5,
+          "y": 5,
+          "maxX": 800,
+          "maxY": 600
+        }
+      },
+      "build": {
+        "assetRoot": ".",
+        "assets": []
+      },
+      "controlsRationale": "Direct tap matches original cursor (5,5), unit deltas and clamp bounds 800x600. P starts, A/C builds, U upgrades. A tower was built and enemy wave visually verified.",
+      "sourcePatches": [],
+      "license": {
+        "status": "missing",
+        "files": []
+      },
+      "verification": {
+        "desktopBuild": {
+          "status": "passed",
+          "scope": "Legacy original-source host compatibility build"
+        },
+        "webBuild": {
+          "status": "passed"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Chrome mobile touch emulation",
+          "demonstrated": "Direct tap matches original cursor (5,5), unit deltas and clamp bounds 800x600. P starts, A/C builds, U upgrades. A tower was built and enemy wave visually verified.",
+          "evidence": [
+            "/Users/rgo/dev/lcom-ng/build/arcade-expansion/import-a/evidence/DavidGustavo6--LCOM-game"
+          ],
+          "limitations": [
+            "Representative gameplay only; no complete campaign or physical-phone performance claim."
+          ]
+        },
+        "android": {
+          "status": "pending-final-collection-build"
+        }
+      },
+      "collectionId": "davidgustavo6-lcom-game-7f0cc9b9f5ba"
+    },
+    {
+      "id": "LsFaria04--LCOM_Project-Tennis_for_Two",
+      "name": "Tennis for Two",
+      "path": "examples/community/LsFaria04--LCOM_Project-Tennis_for_Two/proj/src",
+      "projectPath": "examples/community/LsFaria04--LCOM_Project-Tennis_for_Two/proj/src",
+      "root": "examples/community/LsFaria04--LCOM_Project-Tennis_for_Two",
+      "repository": "https://github.com/LsFaria04/LCOM_Project-Tennis_for_Two",
+      "revision": "4e812f9969b5dae60334bd855ac0f3c2d6342bb4",
+      "provenance": "examples/community/LsFaria04--LCOM_Project-Tennis_for_Two/UPSTREAM.json",
+      "description": "Serve and rally against a computer opponent on a pixel-art tennis court.",
+      "icon": "examples/community/LsFaria04--LCOM_Project-Tennis_for_Two/proj/src/icon.png",
+      "preview": "examples/community/LsFaria04--LCOM_Project-Tennis_for_Two/proj/src/preview.png",
+      "config": "examples/community/LsFaria04--LCOM_Project-Tennis_for_Two/proj/src/lcom.json",
+      "controls": {
+        "keyboard": false,
+        "mouseButtons": false,
+        "quickKeys": [
+          "ESC",
+          "ENTER",
+          "UP",
+          "DOWN"
+        ],
+        "joystick": false,
+        "dpad": false,
+        "look": false,
+        "layout": "overlay",
+        "pointer": "move",
+        "toolbar": "top-right",
+        "pads": [
+          {
+            "mode": "wasd",
+            "side": "left",
+            "style": "dpad"
+          }
+        ],
+        "actions": [
+          {
+            "label": "Hit / Serve",
+            "mouseButton": "left",
+            "position": "bottom-right"
+          }
+        ]
+      },
+      "build": {
+        "assetRoot": ".",
+        "assets": []
+      },
+      "controlsRationale": "WASD movement, left mouse serve/hit, Down selects Start then Enter opens the court. Mouse cursor uses acceleration so relative screen hover is retained.",
+      "sourcePatches": [],
+      "license": {
+        "status": "missing",
+        "files": []
+      },
+      "verification": {
+        "desktopBuild": {
+          "status": "passed",
+          "scope": "Legacy original-source host compatibility build"
+        },
+        "webBuild": {
+          "status": "passed"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Chrome mobile touch emulation",
+          "demonstrated": "WASD movement, left mouse serve/hit, Down selects Start then Enter opens the court. Mouse cursor uses acceleration so relative screen hover is retained.",
+          "evidence": [
+            "/Users/rgo/dev/lcom-ng/build/arcade-expansion/import-a/evidence/LsFaria04--LCOM_Project-Tennis_for_Two"
+          ],
+          "limitations": [
+            "Representative gameplay only; no complete campaign or physical-phone performance claim."
+          ]
+        },
+        "android": {
+          "status": "pending-final-collection-build"
+        }
+      },
+      "collectionId": "lsfaria04-lcom-project-tennis-for-two-2e48173786f1"
+    },
+    {
+      "id": "rodeso--lcom.brick-blitz",
+      "name": "Brick Blitz",
+      "path": "examples/community/rodeso--lcom.brick-blitz/src",
+      "projectPath": "examples/community/rodeso--lcom.brick-blitz/src",
+      "root": "examples/community/rodeso--lcom.brick-blitz",
+      "repository": "https://github.com/rodeso/lcom.brick-blitz",
+      "revision": "e2fa0770017aa1c8f94e8a521b8c67b96a4b8cc3",
+      "provenance": "examples/community/rodeso--lcom.brick-blitz/UPSTREAM.json",
+      "description": "Aim and bounce through advancing bricks, then fire collected missile power-ups.",
+      "icon": "examples/community/rodeso--lcom.brick-blitz/src/icon.png",
+      "preview": "examples/community/rodeso--lcom.brick-blitz/src/preview.png",
+      "config": "examples/community/rodeso--lcom.brick-blitz/src/lcom.json",
+      "controls": {
+        "keyboard": false,
+        "mouseButtons": false,
+        "quickKeys": [
+          "ESC"
+        ],
+        "joystick": false,
+        "dpad": false,
+        "look": false,
+        "layout": "overlay",
+        "pointer": "move",
+        "toolbar": "top-right",
+        "pads": [
+          {
+            "mode": "wasd",
+            "side": "left",
+            "style": "dpad",
+            "axes": "horizontal"
+          }
+        ],
+        "actions": [
+          {
+            "label": "Launch",
+            "key": "ENTER",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Missile",
+            "key": "SPACE",
+            "position": "bottom-right"
+          }
+        ],
+        "repeatKeys": [
+          "A",
+          "D"
+        ]
+      },
+      "build": {
+        "assetRoot": ".",
+        "assets": []
+      },
+      "controlsRationale": "A/D moves once per make, so repeatKeys enables held movement. Enter starts and launches; Space fires missiles. Relative screen hover adjusts initial launch angle.",
+      "sourcePatches": [],
+      "license": {
+        "status": "licensed",
+        "files": [
+          "LICENSE"
+        ]
+      },
+      "verification": {
+        "desktopBuild": {
+          "status": "passed",
+          "scope": "Legacy original-source host compatibility build"
+        },
+        "webBuild": {
+          "status": "passed"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Chrome mobile touch emulation",
+          "demonstrated": "A/D moves once per make, so repeatKeys enables held movement. Enter starts and launches; Space fires missiles. Relative screen hover adjusts initial launch angle.",
+          "evidence": [
+            "/Users/rgo/dev/lcom-ng/build/arcade-expansion/import-a/evidence/rodeso--lcom.brick-blitz"
+          ],
+          "limitations": [
+            "Representative gameplay only; no complete campaign or physical-phone performance claim."
+          ]
+        },
+        "android": {
+          "status": "pending-final-collection-build"
+        }
+      },
+      "collectionId": "rodeso-lcom-brick-blitz-3014442d8fa6"
+    },
+    {
+      "id": "MurielPinho--FEUP-LCOM-1920",
+      "name": "Euler's Way",
+      "path": "examples/community/MurielPinho--FEUP-LCOM-1920/proj/src",
+      "projectPath": "examples/community/MurielPinho--FEUP-LCOM-1920/proj/src",
+      "root": "examples/community/MurielPinho--FEUP-LCOM-1920",
+      "repository": "https://github.com/MurielPinho/FEUP-LCOM-1920",
+      "revision": "d36662bb5a5e0e88c36bb65a27ecc0e137d6e949",
+      "provenance": "examples/community/MurielPinho--FEUP-LCOM-1920/UPSTREAM.json",
+      "description": "Trace every route once across a galaxy of puzzle missions.",
+      "icon": "examples/community/MurielPinho--FEUP-LCOM-1920/proj/src/icon.png",
+      "preview": "examples/community/MurielPinho--FEUP-LCOM-1920/proj/src/preview.png",
+      "config": "examples/community/MurielPinho--FEUP-LCOM-1920/proj/src/lcom.json",
+      "controls": {
+        "keyboard": false,
+        "mouseButtons": false,
+        "quickKeys": [],
+        "joystick": false,
+        "dpad": {
+          "side": "left",
+          "keys": "arrows",
+          "axes": "horizontal"
+        },
+        "look": false,
+        "layout": "overlay",
+        "pointer": "off",
+        "toolbar": "top-left",
+        "actions": [
+          {
+            "label": "Select / Fly",
+            "key": "ENTER",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Retry",
+            "key": "R",
+            "position": "top-right"
+          },
+          {
+            "label": "Menu",
+            "key": "M",
+            "position": "top-right"
+          },
+          {
+            "label": "Back",
+            "key": "ESC",
+            "position": "top-right"
+          }
+        ]
+      },
+      "build": {
+        "assetRoot": "../..",
+        "assets": []
+      },
+      "controlsRationale": "Mobile controls exercised in Chromium with a 900x430 touch viewport. Trace every route once across a galaxy of puzzle missions.",
+      "sourcePatches": [],
+      "license": {
+        "status": "not established",
+        "files": []
+      },
+      "verification": {
+        "desktopBuild": {
+          "status": "passed",
+          "scope": "Legacy original-source host compatibility build"
+        },
+        "webBuild": {
+          "status": "passed"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Chrome mobile touch emulation",
+          "demonstrated": "First mission completed, next mission advanced, retry/menu and clean Back exit.",
+          "evidence": [
+            "/Users/rgo/dev/lcom-ng/build/arcade-expansion/scout-b/web-evidence/MurielPinho--FEUP-LCOM-1920"
+          ],
+          "limitations": [
+            "Representative gameplay only; no complete campaign or physical-phone performance claim."
+          ]
+        },
+        "android": {
+          "status": "pending-final-collection-build"
+        }
+      },
+      "collectionId": "murielpinho-feup-lcom-1920-bc475165f123"
+    },
+    {
+      "id": "francis802--Tower-Clash",
+      "name": "Castle Clash",
+      "path": "examples/community/francis802--Tower-Clash/src",
+      "projectPath": "examples/community/francis802--Tower-Clash/src",
+      "root": "examples/community/francis802--Tower-Clash",
+      "repository": "https://github.com/francis802/Tower-Clash",
+      "revision": "649e7149aba983fb12f53096b015b236c7f4d31c",
+      "provenance": "examples/community/francis802--Tower-Clash/UPSTREAM.json",
+      "description": "Time the angle, charge your cannon and duel a rival castle.",
+      "icon": "examples/community/francis802--Tower-Clash/src/icon.png",
+      "preview": "examples/community/francis802--Tower-Clash/src/preview.png",
+      "config": "examples/community/francis802--Tower-Clash/src/lcom.json",
+      "controls": {
+        "keyboard": false,
+        "mouseButtons": false,
+        "quickKeys": [],
+        "joystick": false,
+        "dpad": false,
+        "look": false,
+        "layout": "overlay",
+        "pointer": "direct",
+        "toolbar": "top-left",
+        "actions": [
+          {
+            "label": "Fire",
+            "key": "SPACE",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Play",
+            "key": "P",
+            "position": "top-right"
+          },
+          {
+            "label": "Menu",
+            "key": "M",
+            "position": "top-right"
+          },
+          {
+            "label": "Pause",
+            "key": "ESC",
+            "position": "top-right"
+          },
+          {
+            "label": "Quit",
+            "key": "Q",
+            "position": "top-right"
+          }
+        ],
+        "touch": "move",
+        "cursor": {
+          "x": 100,
+          "y": 100,
+          "maxX": 800,
+          "maxY": 600,
+          "bounds": "reject"
+        }
+      },
+      "build": {
+        "assetRoot": "..",
+        "assets": []
+      },
+      "controlsRationale": "Mobile controls exercised in Chromium with a 900x430 touch viewport. Time the angle, charge your cannon and duel a rival castle.",
+      "sourcePatches": [],
+      "license": {
+        "status": "not established",
+        "files": []
+      },
+      "verification": {
+        "desktopBuild": {
+          "status": "passed",
+          "scope": "Legacy original-source host compatibility build"
+        },
+        "webBuild": {
+          "status": "passed"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Chrome mobile touch emulation",
+          "demonstrated": "Play, hold Fire for one second, projectile release, Pause, Menu and clean Quit.",
+          "evidence": [
+            "/Users/rgo/dev/lcom-ng/build/arcade-expansion/scout-b/web-evidence/francis802--Tower-Clash"
+          ],
+          "limitations": [
+            "Representative gameplay only; no complete campaign or physical-phone performance claim."
+          ]
+        },
+        "android": {
+          "status": "pending-final-collection-build"
+        }
+      },
+      "collectionId": "francis802-tower-clash-21525d616a06"
+    },
+    {
+      "id": "Ruben38Esteves--Project-LCOM-MinixSurfers",
+      "name": "Minix Surfers: Versus",
+      "path": "examples/community/Ruben38Esteves--Project-LCOM-MinixSurfers/src",
+      "projectPath": "examples/community/Ruben38Esteves--Project-LCOM-MinixSurfers/src",
+      "root": "examples/community/Ruben38Esteves--Project-LCOM-MinixSurfers",
+      "repository": "https://github.com/Ruben38Esteves/Project-LCOM-MinixSurfers",
+      "revision": "0e776e4911c9c0502a0db699e86b88ff5c973a06",
+      "provenance": "examples/community/Ruben38Esteves--Project-LCOM-MinixSurfers/UPSTREAM.json",
+      "description": "A local two-player chase: one dodges while the other sends trains and missiles.",
+      "icon": "examples/community/Ruben38Esteves--Project-LCOM-MinixSurfers/src/icon.png",
+      "preview": "examples/community/Ruben38Esteves--Project-LCOM-MinixSurfers/src/preview.png",
+      "config": "examples/community/Ruben38Esteves--Project-LCOM-MinixSurfers/src/lcom.json",
+      "controls": {
+        "keyboard": false,
+        "mouseButtons": false,
+        "quickKeys": [
+          "ESC",
+          "R"
+        ],
+        "joystick": false,
+        "dpad": false,
+        "look": {
+          "side": "right",
+          "sensitivity": 1.0
+        },
+        "layout": "overlay",
+        "pointer": "move",
+        "toolbar": "top-right",
+        "pads": [
+          {
+            "mode": "wasd",
+            "side": "left",
+            "style": "dpad"
+          }
+        ],
+        "actions": [
+          {
+            "label": "Wide train",
+            "mouseButton": "left",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Train",
+            "mouseButton": "right",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Missile",
+            "mouseButton": "middle",
+            "position": "bottom-right"
+          }
+        ]
+      },
+      "build": {
+        "assetRoot": ".",
+        "assets": []
+      },
+      "controlsRationale": "P1 WASD left pad; P2 right aiming stick plus Wide train/Train/Missile mouse buttons. Relative screen hover starts from guest(500,100), gain1, and ignores first five mouse packets in original game. Menu hover Play at guest(575,680), briefly hold Wide train to start. Verified score56, player movement and spawned train.",
+      "sourcePatches": [
+        {
+          "path": "SOURCE_PATCH.diff",
+          "files": [
+            {
+              "file": "src/main.c",
+              "originalSha256": "34995d2bebc306ff94d9d42ad49833216cb16d47b81b29d6db55a7fe9b3b5fc5",
+              "patchedSha256": "538e01fbe1deb9f208d8be386efd6bf1152945b018a5aac4043360cdfbfae388",
+              "reason": "Use the required LCF application callback signature; original empty prototype conflicts with supported LCF declarations."
+            }
+          ]
+        }
+      ],
+      "license": {
+        "status": "missing",
+        "files": []
+      },
+      "verification": {
+        "desktopBuild": {
+          "status": "passed",
+          "scope": "Legacy original-source host compatibility build"
+        },
+        "webBuild": {
+          "status": "passed"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Chrome mobile touch emulation",
+          "demonstrated": "P1 WASD left pad; P2 right aiming stick plus Wide train/Train/Missile mouse buttons. Relative screen hover starts from guest(500,100), gain1, and ignores first five mouse packets in original game. Menu hover Play at guest(575,680), briefly hold Wide train to start. Verified score56, player movement and spawned train.",
+          "evidence": [
+            "/Users/rgo/dev/lcom-ng/build/arcade-expansion/import-a/evidence/Ruben38Esteves--Project-LCOM-MinixSurfers"
+          ],
+          "limitations": [
+            "Representative gameplay only; no complete campaign or physical-phone performance claim."
+          ]
+        },
+        "android": {
+          "status": "pending-final-collection-build"
+        }
+      },
+      "collectionId": "ruben38esteves-project-lcom-minixsurfers-f64f6c1da3a9"
+    },
+    {
+      "id": "Vidal322--BreakPong",
+      "name": "BreakPong",
+      "path": "examples/community/Vidal322--BreakPong/proj/src",
+      "projectPath": "examples/community/Vidal322--BreakPong/proj/src",
+      "root": "examples/community/Vidal322--BreakPong",
+      "repository": "https://github.com/Vidal322/BreakPong",
+      "revision": "f3891f5f475eae32c01ad25d1997f0c5b9f44834",
+      "provenance": "examples/community/Vidal322--BreakPong/UPSTREAM.json",
+      "description": "Move the paddle and break bricks, collecting bonuses across three levels.",
+      "icon": "examples/community/Vidal322--BreakPong/proj/src/icon.png",
+      "preview": "examples/community/Vidal322--BreakPong/proj/src/preview.png",
+      "config": "examples/community/Vidal322--BreakPong/proj/src/lcom.json",
+      "controls": {
+        "keyboard": false,
+        "mouseButtons": false,
+        "quickKeys": [
+          "ESC",
+          "1",
+          "3",
+          "4"
+        ],
+        "joystick": false,
+        "dpad": false,
+        "look": false,
+        "layout": "overlay",
+        "pointer": "direct",
+        "toolbar": "top-right",
+        "pads": [],
+        "actions": [
+          {
+            "label": "Launch",
+            "mouseButton": "right",
+            "position": "bottom-right"
+          }
+        ],
+        "touch": "tap",
+        "tapDuration": 60,
+        "cursor": {
+          "x": 100,
+          "y": 100,
+          "maxX": 800,
+          "maxY": 600,
+          "bounds": "reject"
+        }
+      },
+      "build": {
+        "assetRoot": ".",
+        "assets": []
+      },
+      "controlsRationale": "1 starts single-player. Direct tap/hover matches cursor(100,100), unit delta and reject bounds0..800,0..600; right mouse Launch should be held briefly because original game samples once per timer frame. Verified paddle moved, brick damage and score1.",
+      "sourcePatches": [],
+      "license": {
+        "status": "missing",
+        "files": []
+      },
+      "verification": {
+        "desktopBuild": {
+          "status": "passed",
+          "scope": "Legacy original-source host compatibility build"
+        },
+        "webBuild": {
+          "status": "passed"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Chrome mobile touch emulation",
+          "demonstrated": "1 starts single-player. Direct tap/hover matches cursor(100,100), unit delta and reject bounds0..800,0..600; right mouse Launch should be held briefly because original game samples once per timer frame. Verified paddle moved, brick damage and score1.",
+          "evidence": [
+            "/Users/rgo/dev/lcom-ng/build/arcade-expansion/import-a/evidence/Vidal322--BreakPong"
+          ],
+          "limitations": [
+            "Representative gameplay only; no complete campaign or physical-phone performance claim."
+          ]
+        },
+        "android": {
+          "status": "pending-final-collection-build"
+        }
+      },
+      "collectionId": "vidal322-breakpong-df233c2d2a2c"
+    },
+    {
+      "id": "leticia-003--2ndYear_FEUP_LCom",
+      "name": "Bounce Ball",
+      "path": "examples/community/leticia-003--2ndYear_FEUP_LCom/proj/src",
+      "projectPath": "examples/community/leticia-003--2ndYear_FEUP_LCom/proj/src",
+      "root": "examples/community/leticia-003--2ndYear_FEUP_LCom",
+      "repository": "https://github.com/leticia-003/2ndYear_FEUP_LCom",
+      "revision": "fd08be7ee796e28742bb07ed2a0171319a0de5e3",
+      "provenance": "examples/community/leticia-003--2ndYear_FEUP_LCom/UPSTREAM.json",
+      "description": "Launch the bouncing ball and clear colourful bricks while protecting three lives.",
+      "icon": "examples/community/leticia-003--2ndYear_FEUP_LCom/proj/src/icon.png",
+      "preview": "examples/community/leticia-003--2ndYear_FEUP_LCom/proj/src/preview.png",
+      "config": "examples/community/leticia-003--2ndYear_FEUP_LCom/proj/src/lcom.json",
+      "controls": {
+        "keyboard": false,
+        "mouseButtons": false,
+        "quickKeys": [
+          "ESC",
+          "UP",
+          "DOWN"
+        ],
+        "joystick": false,
+        "dpad": false,
+        "look": false,
+        "layout": "overlay",
+        "pointer": "move",
+        "toolbar": "top-right",
+        "pads": [
+          {
+            "mode": "arrows",
+            "side": "left",
+            "style": "dpad",
+            "axes": "horizontal"
+          }
+        ],
+        "actions": [
+          {
+            "label": "Launch",
+            "key": "ENTER",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Pause",
+            "key": "P",
+            "position": "bottom-right"
+          }
+        ],
+        "repeatKeys": [
+          "LEFT",
+          "RIGHT"
+        ]
+      },
+      "build": {
+        "assetRoot": ".",
+        "assets": []
+      },
+      "controlsRationale": "Enter starts and launches, left/right arrows move once per make so repeatKeys gives held movement; P pauses. NormalEnter source fixes verified with failing then passing native playfield regression, then mobile browser scored5 and destroyed a brick.",
+      "sourcePatches": [
+        {
+          "path": "SOURCE_PATCH.diff",
+          "files": [
+            {
+              "file": "proj/src/Game/game.c",
+              "originalSha256": "0bb5fb1d23235bfb24fb3f8d831ad956be998fe1a48731bc4d89853266ba55be",
+              "patchedSha256": "f00a183937d85df6be5110451cb4749dc640f04848ccae842548b3381afa7bde",
+              "reason": "Use the new shared state immediately after keyboard input. A coalesced timer notification previously repainted the old menu and consumed needs_redraw before the first game frame."
+            },
+            {
+              "file": "proj/src/Game/game_logic.c",
+              "originalSha256": "ef2b23a4f7911fba7ee1310e28ddd8a21ea76be5be28aa2237e327c9ae2b9eb3",
+              "patchedSha256": "284a69f15aa53c2c7d34856d9ffd6497bd3341b53d25c6880adcf51ccf5e7d5f",
+              "reason": "Accept the ordinary Enter make code as well as keypad Enter. The original handler rejected every one-byte key, making the displayed Enter launch instruction ineffective."
+            },
+            {
+              "file": "proj/src/Game/menu.c",
+              "originalSha256": "bedf35fcc7415c7fdb3b89ea4dc9c5dea1acc0c8cce41f71e99445e122f51cd7",
+              "patchedSha256": "87d716533e95f918beadfe57e4b739d765a42bd72ad8ae1098f775793df9a8d7",
+              "reason": "Reset a newly opened game for normal Enter just as the existing keypad Enter start path does, preserving fresh lives and cleared bricks on replay."
+            }
+          ],
+          "reproduction": "Normal Enter leaves the menu background over gameplay and cannot launch. Native bounded Enter replay independently checks expected game background pixel (1000,500)=(222,239,245); before was menu blue (178,218,250)."
+        }
+      ],
+      "license": {
+        "status": "missing",
+        "files": []
+      },
+      "verification": {
+        "desktopBuild": {
+          "status": "passed",
+          "scope": "Legacy original-source host compatibility build"
+        },
+        "webBuild": {
+          "status": "passed"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Chrome mobile touch emulation",
+          "demonstrated": "Enter starts and launches, left/right arrows move once per make so repeatKeys gives held movement; P pauses. NormalEnter source fixes verified with failing then passing native playfield regression, then mobile browser scored5 and destroyed a brick.",
+          "evidence": [
+            "/Users/rgo/dev/lcom-ng/build/arcade-expansion/import-a/evidence/leticia-003--2ndYear_FEUP_LCom"
+          ],
+          "limitations": [
+            "Representative gameplay only; no complete campaign or physical-phone performance claim."
+          ]
+        },
+        "android": {
+          "status": "pending-final-collection-build"
+        }
+      },
+      "collectionId": "leticia-003-2ndyear-feup-lcom-ab9c644ba6fb"
+    },
+    {
+      "id": "BrunoRosendo--Portal2D",
+      "name": "Portal 2D",
+      "path": "examples/community/BrunoRosendo--Portal2D/proj/Src",
+      "projectPath": "examples/community/BrunoRosendo--Portal2D/proj/Src",
+      "root": "examples/community/BrunoRosendo--Portal2D",
+      "repository": "https://github.com/BrunoRosendo/Portal2D",
+      "revision": "67df1e2ba019d438cecea716fa2d4ec16f7aa46f",
+      "provenance": "examples/community/BrunoRosendo--Portal2D/UPSTREAM.json",
+      "description": "Solve platform puzzles by linking two portals, moving and jumping past obstacles.",
+      "icon": "examples/community/BrunoRosendo--Portal2D/proj/Src/icon.png",
+      "preview": "examples/community/BrunoRosendo--Portal2D/proj/Src/preview.png",
+      "config": "examples/community/BrunoRosendo--Portal2D/proj/Src/lcom.json",
+      "controls": {
+        "keyboard": false,
+        "mouseButtons": false,
+        "quickKeys": [],
+        "joystick": false,
+        "dpad": {
+          "side": "left",
+          "keys": "wasd",
+          "axes": "horizontal"
+        },
+        "look": {
+          "side": "right",
+          "sensitivity": 1
+        },
+        "layout": "overlay",
+        "pointer": "move",
+        "toolbar": "top-left",
+        "actions": [
+          {
+            "label": "Jump",
+            "key": "SPACE",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Purple",
+            "mouseButton": "left",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Green",
+            "mouseButton": "right",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Back",
+            "key": "ESC",
+            "position": "top-right"
+          }
+        ],
+        "touch": "move"
+      },
+      "build": {
+        "assetRoot": "../..",
+        "assets": [
+          "proj/Src/Resources"
+        ],
+        "arguments": [
+          "Resources"
+        ]
+      },
+      "controlsRationale": "Swipe cursor from (600,500) to Play, Purple click; hold right, Jump, Purple portal, move cursor, Green portal; Back then original Exit menu clean.",
+      "sourcePatches": [
+        {
+          "path": "SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "proj/Src/game.c",
+              "originalSha256": "98ac3d24d05918e53c8a7400b2290fa497610abb9f9580c0a97f77f86fe94f31",
+              "patchedSha256": "536ea4a302221a4d9579f72a8f7a39572867cc4a96267f65f9ace79028b1e19c",
+              "reason": "Original four-byte level filename buffer overflows while appending .txt, corrupting the level path and trapping in browser. Enlarged only the filename buffer after reproducing failed level load."
+            }
+          ]
+        }
+      ],
+      "license": {
+        "status": "missing",
+        "files": []
+      },
+      "verification": {
+        "desktopBuild": {
+          "status": "passed",
+          "scope": "Legacy original-source host compatibility build"
+        },
+        "webBuild": {
+          "status": "passed"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Chrome mobile touch emulation",
+          "demonstrated": "Swipe cursor from (600,500) to Play, Purple click; hold right, Jump, Purple portal, move cursor, Green portal; Back then original Exit menu clean.",
+          "evidence": [
+            "build/arcade-expansion/evidence-b/portal-gameplay.png"
+          ],
+          "limitations": [
+            "Representative gameplay only; no complete campaign or physical-phone performance claim."
+          ]
+        },
+        "android": {
+          "status": "pending-final-collection-build"
+        }
+      },
+      "collectionId": "brunorosendo-portal2d-efb0e7bceb35"
+    },
+    {
+      "id": "dagarsar--lcom",
+      "name": "Block Destroyer",
+      "path": "examples/community/dagarsar--lcom/src",
+      "projectPath": "examples/community/dagarsar--lcom/src",
+      "root": "examples/community/dagarsar--lcom",
+      "repository": "https://github.com/dagarsar/lcom",
+      "revision": "59f31f17959b0c68b6a16eb8d32e0c6051fb9e3f",
+      "provenance": "examples/community/dagarsar--lcom/UPSTREAM.json",
+      "description": "Drag the paddle, break glowing blocks and catch bonuses before time runs out.",
+      "icon": "examples/community/dagarsar--lcom/src/icon.png",
+      "preview": "examples/community/dagarsar--lcom/src/preview.png",
+      "config": "examples/community/dagarsar--lcom/src/lcom.json",
+      "controls": {
+        "keyboard": false,
+        "mouseButtons": false,
+        "quickKeys": [
+          "UP",
+          "DOWN",
+          "ENTER",
+          "ESC"
+        ],
+        "joystick": false,
+        "dpad": false,
+        "look": false,
+        "layout": "overlay",
+        "pointer": "drag",
+        "toolbar": "top-left",
+        "actions": [
+          {
+            "label": "Start ball",
+            "mouseButton": "right",
+            "position": "bottom-right"
+          }
+        ],
+        "touch": "press",
+        "pads": []
+      },
+      "build": {
+        "assetRoot": "..",
+        "assets": []
+      },
+      "controlsRationale": "ENTER on START, Start ball (right mouse), drag canvas while holding left touch; observed paddle travel, removed brick and score005; menu Down twice, ENTER clean exit.",
+      "sourcePatches": [],
+      "license": {
+        "status": "missing",
+        "files": []
+      },
+      "verification": {
+        "desktopBuild": {
+          "status": "passed",
+          "scope": "Legacy original-source host compatibility build"
+        },
+        "webBuild": {
+          "status": "passed"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Chrome mobile touch emulation",
+          "demonstrated": "ENTER on START, Start ball (right mouse), drag canvas while holding left touch; observed paddle travel, removed brick and score005; menu Down twice, ENTER clean exit.",
+          "evidence": [
+            "build/arcade-expansion/evidence-b/block-gameplay.png"
+          ],
+          "limitations": [
+            "Representative gameplay only; no complete campaign or physical-phone performance claim."
+          ]
+        },
+        "android": {
+          "status": "pending-final-collection-build"
+        }
+      },
+      "collectionId": "dagarsar-lcom-4a069f7a0061"
+    },
+    {
+      "id": "RodrigoPombo1--projeto-lcom",
+      "name": "Leiria",
+      "path": "examples/community/RodrigoPombo1--projeto-lcom/proj/src",
+      "projectPath": "examples/community/RodrigoPombo1--projeto-lcom/proj/src",
+      "root": "examples/community/RodrigoPombo1--projeto-lcom",
+      "repository": "https://github.com/RodrigoPombo1/projeto-lcom",
+      "revision": "f0ad2ebadeed4a6c6cfb94610fc01758a2e5663a",
+      "provenance": "examples/community/RodrigoPombo1--projeto-lcom/UPSTREAM.json",
+      "description": "Navigate a dungeon and tap adjacent monsters to survive the growing horde.",
+      "icon": "examples/community/RodrigoPombo1--projeto-lcom/proj/src/icon.png",
+      "preview": "examples/community/RodrigoPombo1--projeto-lcom/proj/src/preview.png",
+      "config": "examples/community/RodrigoPombo1--projeto-lcom/proj/src/lcom.json",
+      "controls": {
+        "keyboard": false,
+        "mouseButtons": false,
+        "quickKeys": [],
+        "joystick": false,
+        "dpad": {
+          "side": "left",
+          "keys": "wasd"
+        },
+        "look": false,
+        "layout": "overlay",
+        "pointer": "direct",
+        "toolbar": "top-left",
+        "actions": [
+          {
+            "label": "Exit",
+            "key": "ESC",
+            "position": "top-right"
+          }
+        ],
+        "touch": "tap",
+        "tapDuration": 60,
+        "cursor": {
+          "x": 0,
+          "y": 0,
+          "maxX": 799,
+          "maxY": 599
+        }
+      },
+      "build": {
+        "assetRoot": "../..",
+        "assets": [
+          "proj/src/high_scores.txt"
+        ],
+        "pathAliases": {
+          "/home/lcom/labs/g5": "."
+        }
+      },
+      "controlsRationale": "Direct tap Play (400,176), hold up >2sec, observed character travel/timer02 and advancing monsters; loss reached GAME OVER with mapped highscore data; Exit clean.",
+      "sourcePatches": [],
+      "license": {
+        "status": "missing",
+        "files": []
+      },
+      "verification": {
+        "desktopBuild": {
+          "status": "passed",
+          "scope": "Legacy original-source host compatibility build"
+        },
+        "webBuild": {
+          "status": "passed"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Chrome mobile touch emulation",
+          "demonstrated": "Direct tap Play (400,176), hold up >2sec, observed character travel/timer02 and advancing monsters; loss reached GAME OVER with mapped highscore data; Exit clean.",
+          "evidence": [
+            "build/arcade-expansion/evidence-b/leiria-gameplay.png"
+          ],
+          "limitations": [
+            "Representative gameplay only; no complete campaign or physical-phone performance claim."
+          ]
+        },
+        "android": {
+          "status": "pending-final-collection-build"
+        }
+      },
+      "collectionId": "rodrigopombo1-projeto-lcom-571c4f64fa76"
     }
   ]
 }
