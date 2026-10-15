@@ -52,6 +52,8 @@ int main(int argc, char **argv) {
   CHECK(micros_to_ticks(1) == 1 && micros_to_ticks(16667) == 2);
   CHECK(sys_inb(-1, NULL) == EINVAL);
   CHECK(MIN(7, 3) == 3 && MAX(7, 3) == 7);
+  /* Integer constants exported by the original Minix driver headers. */
+  CHECK(TRUE == 1 && FALSE == 0 && IRQ_ENABLE == 3);
   int macro_argument = 0;
   CHECK(MIN(++macro_argument, 9) == 2 && macro_argument == 2);
   CHECK(_ENDPOINT(2, 7) == 65543 && _ENDPOINT_G(65543) == 2);

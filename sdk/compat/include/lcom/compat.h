@@ -44,6 +44,14 @@ size_t strftime(char *buffer, size_t size, const char *format, const struct tm *
 #define _ENDPOINT_P(endpoint) ((((endpoint) + MAX_NR_TASKS) & (_ENDPOINT_GENERATION_SIZE - 1)) - MAX_NR_TASKS)
 #define IRQ_REENABLE 0x001
 #define IRQ_EXCLUSIVE 0x002
+#define IRQ_ENABLE 3
+/* Legacy Minix headers expose integer booleans alongside stdbool.h. */
+#ifndef TRUE
+#define TRUE 1
+#endif
+#ifndef FALSE
+#define FALSE 0
+#endif
 #define SYS_PRIV_ADD_MEM 6
 #define NOTIFY_MESSAGE 0x1000
 #define is_notify(type) ((unsigned)((type) - NOTIFY_MESSAGE) < 0x100u)
