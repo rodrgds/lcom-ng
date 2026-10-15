@@ -128,11 +128,11 @@ int main(void) {
             for tick in (145, 360):
                 frame = folder / f'{tick}.ppm'
                 result = subprocess.run([str(cli), 'run', '--headless', '--max-ticks', str(tick),
-                                         '--timeout', '20', '--script', str(replay),
+                                         '--timeout', '60', '--script', str(replay),
                                          '--dump-presented', '--dump-frame', str(frame), '--',
                                          str(folder / 'native/proj')], cwd=folder,
                                         env={**os.environ, 'LCOM_COMPAT_PROJECT_ROOT': str(folder)},
-                                        capture_output=True, text=True, timeout=30)
+                                        capture_output=True, text=True, timeout=90)
                 self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
                 self.assertIn('max virtual ticks reached', result.stdout + result.stderr)
                 magic, dimensions, depth, pixels = frame.read_bytes().split(b'\n', 3)

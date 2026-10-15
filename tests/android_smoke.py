@@ -246,8 +246,8 @@ def direct_touch():
     finally:
         (OUT/'android-direct-logcat.txt').write_text(adb('logcat','-d','-s','lcom-ng:I','*:S'))
         adb('shell','am','force-stop',package)
-        if previous=='null': adb('shell','settings','delete','secure',confirmation)
         # adb joins remote shell arguments, so an empty value needs quotes.
+        if previous=='null': adb('shell','settings','delete','secure',confirmation)
         else: adb('shell','settings','put','secure',confirmation,shlex.quote(previous))
 
 
