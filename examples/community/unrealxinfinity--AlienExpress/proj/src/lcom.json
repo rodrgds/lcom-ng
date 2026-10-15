@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "name": "Alien Express",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "1",
+        "2",
+        "3"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Pick up",
+          "key": "P",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Use",
+          "key": "I",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Attack",
+          "key": "L",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Drop",
+          "key": "O",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  },
+  "description": "Gather deliveries, manage your inventory and survive alien pursuers.",
+  "preview": "preview.png"
+}

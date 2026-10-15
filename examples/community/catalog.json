@@ -10134,6 +10134,118 @@
         }
       },
       "collectionId": "rodrigopombo1-projeto-lcom-571c4f64fa76"
+    },
+    {
+      "id": "unrealxinfinity--AlienExpress",
+      "name": "Alien Express",
+      "path": "examples/community/unrealxinfinity--AlienExpress/proj/src",
+      "projectPath": "examples/community/unrealxinfinity--AlienExpress/proj/src",
+      "root": "examples/community/unrealxinfinity--AlienExpress",
+      "repository": "https://github.com/unrealxinfinity/AlienExpress",
+      "revision": "5342f6571eb9701311bbe17d6a14834bb90a4376",
+      "provenance": "examples/community/unrealxinfinity--AlienExpress/UPSTREAM.json",
+      "description": "Gather deliveries, manage your inventory and survive alien pursuers.",
+      "icon": "examples/community/unrealxinfinity--AlienExpress/proj/src/icon.png",
+      "preview": "examples/community/unrealxinfinity--AlienExpress/proj/src/preview.png",
+      "config": "examples/community/unrealxinfinity--AlienExpress/proj/src/lcom.json",
+      "controls": {
+        "keyboard": false,
+        "mouseButtons": false,
+        "quickKeys": [
+          "ESC",
+          "ENTER",
+          "1",
+          "2",
+          "3"
+        ],
+        "joystick": false,
+        "dpad": false,
+        "look": false,
+        "layout": "overlay",
+        "pointer": "drag",
+        "toolbar": "top-right",
+        "pads": [
+          {
+            "side": "left",
+            "mode": "wasd",
+            "style": "dpad"
+          }
+        ],
+        "actions": [
+          {
+            "label": "Pick up",
+            "key": "P",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Use",
+            "key": "I",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Attack",
+            "key": "L",
+            "position": "bottom-right"
+          },
+          {
+            "label": "Drop",
+            "key": "O",
+            "position": "bottom-right"
+          }
+        ]
+      },
+      "build": {
+        "assetRoot": "..",
+        "assets": []
+      },
+      "controlsRationale": "WASD movement left pad; P pick up, I use, L attack, O drop via labelled actions; 1/2/3 inventory slots, Enter confirms, Escape pauses. Relative touch drag supports inventory interaction; direct mapping is avoided because original unsigned cursor starts wrapped at -20 and clamps on first movement. On mobile, S then Enter starts; right1500ms/down700ms/right3200ms/right100ms/up120ms reaches first deterministic package. Pick up then1 puts visible package into first inventory slot.",
+      "sourcePatches": [
+        {
+          "path": "SOURCE_PATCH.diff",
+          "files": [
+            {
+              "file": "proj/src/devices/rtc.c",
+              "originalSha256": "f10951aaeece0ff945896b7a069e7564febbdfaed25c9d3cfddcba76faf765b4",
+              "patchedSha256": "501172e15fcee5778289a3fcd4b1ab34e5de56c738d343fa889a6f550cfeabee",
+              "reason": "Rename a game-local RTC wait helper that conflicts with the POSIX process wait() API exposed by host and browser C library headers."
+            },
+            {
+              "file": "proj/src/devices/rtc.h",
+              "originalSha256": "806ab2b6a617a1235b247e1e03b99a0f0a8cba3db95656a1d1cadc0754294d84",
+              "patchedSha256": "67db79363e55398363927f3d46269ad9cd559020b3f6c7a4da78994d40f364c8",
+              "reason": "Rename a game-local RTC wait helper that conflicts with the POSIX process wait() API exposed by host and browser C library headers."
+            }
+          ]
+        }
+      ],
+      "license": {
+        "status": "missing",
+        "files": []
+      },
+      "verification": {
+        "desktopBuild": {
+          "status": "passed",
+          "scope": "Legacy original-source host compatibility build"
+        },
+        "webBuild": {
+          "status": "passed"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Chrome mobile touch emulation",
+          "demonstrated": "Moved from214100 to first spawned package and picked it into first inventory slot. Timer8s; source-complete mobile actions exposed.",
+          "evidence": [
+            "/Users/rgo/dev/lcom-ng/build/arcade-expansion/import-a/evidence/unrealxinfinity--AlienExpress"
+          ],
+          "limitations": [
+            "Representative gameplay only; no complete campaign or physical-phone performance claim."
+          ]
+        },
+        "android": {
+          "status": "pending-final-collection-build"
+        }
+      },
+      "collectionId": "unrealxinfinity-alienexpress-12fa5db8be9d"
     }
   ]
 }

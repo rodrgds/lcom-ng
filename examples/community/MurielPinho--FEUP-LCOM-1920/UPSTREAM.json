@@ -38,8 +38,8 @@
     },
     {
       "path": "proj/src/preview.png",
-      "sha256": "8d952c66084c45560f21515220e6d230bdcab624b0706f1318dc9f0ff47e48ef",
-      "kind": "actual game canvas capture"
+      "sha256": "e051dbc2fd1cf2b0c89cb1ea39bfdedeabae90127ac13bb14bda40c5c7b56639",
+      "kind": "raw game canvas pixels from actual mobile touch gameplay, no player overlays"
     }
   ],
   "controlsRationale": "Mobile controls exercised in Chromium with a 900x430 touch viewport. Trace every route once across a galaxy of puzzle missions.",
@@ -53,5 +53,9 @@
       "gameplay": "First mission completed, next mission advanced, retry/menu and clean Back exit.",
       "errors": []
     }
+  },
+  "license": {
+    "status": "missing",
+    "files": []
   }
 }

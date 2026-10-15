@@ -191,8 +191,8 @@
     },
     {
       "path": "src/preview.png",
-      "sha256": "77767cd06b6ff83cce8c41e432f4d0a9393cd5d2719768b88eff48d98e18c1bd",
-      "kind": "actual game canvas capture"
+      "sha256": "b55b04b9022d698dbd612109d34c62d0522871bdd5852126a848ca15c403f640",
+      "kind": "raw game canvas pixels from actual mobile touch gameplay, no player overlays"
     }
   ],
   "controlsRationale": "Mobile controls exercised in Chromium with a 900x430 touch viewport. Time the angle, charge your cannon and duel a rival castle.",

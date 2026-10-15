@@ -1,0 +1,33 @@
+{
+  "project": "/Users/rgo/dev/lcom-ng/build/arcade-expansion/scout-a/unrealxinfinity--AlienExpress/proj/src",
+  "sources": {
+    "/Users/rgo/dev/lcom-ng/build/arcade-expansion/scout-a/unrealxinfinity--AlienExpress/proj/src/proj.c": "e9f1cfa15cf1ad948bd223df90905f8806ffe244a0ddedc45ab8a919539e14e4"
+  },
+  "commands": [
+    [
+      "clang",
+      "-std=gnu11",
+      "-fsigned-char",
+      "-fcommon",
+      "-include",
+      "lcom/paths.h",
+      "-Wno-deprecated-non-prototype",
+      "-Wno-incompatible-pointer-types-discards-qualifiers",
+      "-I",
+      "/Users/rgo/dev/lcom-ng/sdk/compat/include",
+      "-I",
+      "/Users/rgo/dev/lcom-ng/sdk/include",
+      "-I",
+      "/Users/rgo/dev/lcom-ng/build/arcade-expansion/scout-a/unrealxinfinity--AlienExpress/proj/src",
+      "-D_LCOM_OPTIMIZED_",
+      "-c",
+      "/Users/rgo/dev/lcom-ng/build/arcade-expansion/scout-a/unrealxinfinity--AlienExpress/proj/src/proj.c",
+      "-o",
+      "/Users/rgo/dev/lcom-ng/build/arcade-expansion/scout-a/unrealxinfinity--AlienExpress/proj/src/arcade-scout/objects/fbac045abadd6ac4d4db.o"
+    ]
+  ],
+  "asset_root": "/Users/rgo/dev/lcom-ng/build/arcade-expansion/scout-a/unrealxinfinity--AlienExpress",
+  "binary": "/Users/rgo/dev/lcom-ng/build/arcade-expansion/scout-a/unrealxinfinity--AlienExpress/proj/src/arcade-scout/proj",
+  "status": "failed",
+  "error": "Failed while compiling proj.c (status 1). Review the compiler diagnostics above. Original sources were not changed."
+}
