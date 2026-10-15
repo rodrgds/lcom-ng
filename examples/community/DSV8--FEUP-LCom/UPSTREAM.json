@@ -6,10 +6,7 @@
   "licenseStatus": "No license found in upstream tree; attribution retained, redistribution permission not established.",
   "sourceChanges": [],
   "sha256": {
-    ".DS_Store": "f78c4aec0e33c4db43e3dcd8d191b76bbaf418be34b90d9a04ce184390f544ff",
     "README.md": "2a99963656d009c0ef33013b7f3e74f65b837af5f6cf49f81b3df55720fa2818",
-    "proj/.DS_Store": "c8a2e51bc84d2aa56487e71f1c81d2a2cf0d5d3d8495510b20367c6a8bec8136",
-    "proj/src/.DS_Store": "a03c2bdbe04cb5e3fc50706450b35cb47b6673bfd5a6e0a27ced74e814ee9a70",
     "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
     "proj/src/.gitignore": "0c93373cd691d68981ead8983a69872864f84023ebd7e370dc1959cfa1fb813a",
     "proj/src/Makefile": "7aea9edf03400baf20edc3ad13d1b6cc47d06ff972673f1527f36166afae2089",
@@ -36,10 +33,7 @@
     "proj/src/game/game_aux/game_aux.h": "3fb231ea8fb0eb10c77df0d3b4da737e20f4fe617cc955330c230489da5874cd",
     "proj/src/proj.c": "40901c0474133cef936fdb1bd4244641ccd8a6f2baee415f6cd95aa1167adb20",
     "proj/src/proj.h": "13beb6fc6187cb43dd85afa26ba28d351ea513856655567d5f9d7f52054d6d89",
-    "proj/src/sprites/.DS_Store": "b060ded882aa1291dcea2fc3b23ce68e9ea2e043acb67961c66903b35d68b4da",
-    "proj/src/sprites/pixelmaps/.DS_Store": "4c65e47ea345e098080461742016ea285998b561d41419ca3da7b5bf71ccf624",
     "proj/src/sprites/pixelmaps/pixelmaps.h": "0e537912eed363d2fa2e959f164a10e50d5c8aebdb230c039a99a7d94a58ca05",
-    "proj/src/sprites/pixelmaps/xpm_files/.DS_Store": "d65165279105ca6773180500688df4bdc69a2c7b771752f0a46ef120b7fd8ec3",
     "proj/src/sprites/pixelmaps/xpm_files/0.xpm": "dd5f0912f18abeb5fc4feed302269efb61ea6791f8d3df0884536acc66f74e91",
     "proj/src/sprites/pixelmaps/xpm_files/1.xpm": "1924a61b0683c86c0bd17a7805ce26c599f79777f37ec223449cab910bc4bb64",
     "proj/src/sprites/pixelmaps/xpm_files/2.xpm": "fc52b717d6fe00c47d59a734c16cb4572ba99c01dca00d99adb2ad25989f2864",
@@ -69,5 +63,16 @@
     "proj/src/sprites/sprite.c": "8f0984b1bdcc9e07afc8d9314a98bdd4d105a9a2c87252b698ecc2afb54c3d3b",
     "proj/src/sprites/sprite.h": "6a676ca9975fcc85ea3db88b25392f4f1dcbe38e16fe59a601bd9676ebc22918"
   },
-  "omitted": "Git metadata, generated documentation/build output, unrelated lab exercises and unreferenced authoring maps."
+  "omitted": "Git metadata, generated documentation/build output, unrelated lab exercises and unreferenced authoring maps.",
+  "omittedMetadata": {
+    "reason": "Upstream operating-system and version-control metadata is excluded from the distributable source inventory.",
+    "sha256": {
+      ".DS_Store": "f78c4aec0e33c4db43e3dcd8d191b76bbaf418be34b90d9a04ce184390f544ff",
+      "proj/.DS_Store": "c8a2e51bc84d2aa56487e71f1c81d2a2cf0d5d3d8495510b20367c6a8bec8136",
+      "proj/src/.DS_Store": "a03c2bdbe04cb5e3fc50706450b35cb47b6673bfd5a6e0a27ced74e814ee9a70",
+      "proj/src/sprites/.DS_Store": "b060ded882aa1291dcea2fc3b23ce68e9ea2e043acb67961c66903b35d68b4da",
+      "proj/src/sprites/pixelmaps/.DS_Store": "4c65e47ea345e098080461742016ea285998b561d41419ca3da7b5bf71ccf624",
+      "proj/src/sprites/pixelmaps/xpm_files/.DS_Store": "d65165279105ca6773180500688df4bdc69a2c7b771752f0a46ef120b7fd8ec3"
+    }
+  }
 }

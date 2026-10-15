@@ -18,8 +18,13 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def check(folder):
+def check(folder, require_tracked=False):
     entries = manifest.load(folder)['entries']
+    tracked = None
+    if require_tracked:
+        result = subprocess.run(['git', '-C', str(ROOT), 'ls-files', '-z'],
+                                check=True, capture_output=True)
+        tracked = set(result.stdout.decode().split('\0'))
     fingerprints = {}
     total_files = patched_files = patched_games = 0
     for entry in entries:
@@ -46,6 +51,8 @@ def check(folder):
             path = root / name
             if not path.resolve().is_relative_to(root.resolve()) or not path.is_file():
                 raise ValueError(f'{root}: missing or invalid pinned file: {name}')
+            if tracked is not None and path.relative_to(ROOT).as_posix() not in tracked:
+                raise ValueError(f'{root}: pinned file is not tracked in Git: {name}')
             expected = changes[name]['patchedSha256'] if name in changes else original
             if digest(path) != expected:
                 raise ValueError(f'{root}: unrecorded file change: {name}')
@@ -97,7 +104,10 @@ def check(folder):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('collection', type=Path, nargs='?', default=ROOT / 'collections/arcade')
+    parser.add_argument('--require-tracked', action='store_true',
+                        help='also reject pinned files missing from the Git index')
     try:
-        check(parser.parse_args().collection)
+        args = parser.parse_args()
+        check(args.collection, args.require_tracked)
     except (ValueError, OSError, KeyError) as error:
         sys.exit(str(error))

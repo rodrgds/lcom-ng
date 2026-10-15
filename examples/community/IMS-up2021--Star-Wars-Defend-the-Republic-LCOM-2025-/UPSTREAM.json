@@ -6,13 +6,10 @@
   "licenseStatus": "No license found in upstream tree; attribution retained, redistribution permission not established.",
   "sourceChanges": [],
   "sha256": {
-    ".DS_Store": "51fc84ecdb6619b697d05395fc6825dfb393e2cf9c8df3de829fecc5f5177ca8",
     "Doxyfile": "6e96a6c43918b57d5eebaea413fe2f92bcc9f57b66982e69cb9589a60625ac72",
     "README.md": "eaf32949e7f3c77b359218eb1adff7590af37e0d821b84cf66c7f63c6c6c6bd8",
-    "proj/.DS_Store": "4fd302a1e4aab1327fc0576b2329cb3fdf0f90fe04ce2c3c3020ea9dcc6a18ae",
     "proj/.gitignore": "f6ce0b2567e71663473ac3fe7d8435bc50b84aa07255ffb6048d22d87051d3a1",
     "proj/README.md": "68a8d86dcbcea5eb7ab482bb8ba3eb8e9aa53bde8093a4bf2dbda72f67753a68",
-    "proj/src/.DS_Store": "cf0a983477bda6797867c1f733034af9f9fb63818a8b7658328174439406cc93",
     "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
     "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "proj/src/.gitignore": "e12a2eec84ff15f635d3bdd46628bea20fb72148378c391786716d3c5201ca70",
@@ -114,5 +111,13 @@
     "proj/src/controllers/video/graphics.c": "a4a8daa2a77d68fc99c0275c8e934a489e3dc6829d8487d419f5f98aa17943fc",
     "proj/src/controllers/video/graphics.h": "cddb24c09597f2ec1b9c01c06fe96fc8cd00af4ea1a9e2eb1b36c05095746d9b"
   },
-  "omitted": "Git metadata, generated documentation/build output, unrelated lab exercises and unreferenced authoring maps."
+  "omitted": "Git metadata, generated documentation/build output, unrelated lab exercises and unreferenced authoring maps.",
+  "omittedMetadata": {
+    "reason": "Upstream operating-system and version-control metadata is excluded from the distributable source inventory.",
+    "sha256": {
+      ".DS_Store": "51fc84ecdb6619b697d05395fc6825dfb393e2cf9c8df3de829fecc5f5177ca8",
+      "proj/.DS_Store": "4fd302a1e4aab1327fc0576b2329cb3fdf0f90fe04ce2c3c3020ea9dcc6a18ae",
+      "proj/src/.DS_Store": "cf0a983477bda6797867c1f733034af9f9fb63818a8b7658328174439406cc93"
+    }
+  }
 }

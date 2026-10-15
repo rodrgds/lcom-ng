@@ -50,7 +50,6 @@
     "lab5/utils.c": "58466e112300881d25b503fe158ccef9c47e532bcc053e5a82169afc8e5dbd82",
     "lab5/utils.h": "ae0c01f3e78075130d8074b91217cf5fa793a582154f60d45e7e66f059cc13be",
     "lab5/vbe.h": "13d97a6fc0acd3e2de4fe5153500a2798367c564f93cd42ab9506a6bebbade10",
-    "proj/src/.DS_Store": "d65165279105ca6773180500688df4bdc69a2c7b771752f0a46ef120b7fd8ec3",
     "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
     "proj/src/Doxyfile": "41f2d590803aa4a49e0dd386642f959542416e22180983463298f84c29cc0960",
     "proj/src/devices/gpu.c": "94adde09ceb23a418815d5708a7e74e42df9405c43806c45d1581e91f901a4e8",
@@ -90,5 +89,11 @@
     "proj/src/sprites/pacman_death_anim.h": "65c6c480cd8c1562a245095f7204382df1d82a1e1327ae98e6bd9bc9a5791ce4",
     "proj/src/sprites/pinky.h": "28d5a2136bf2f5f14f0ed29fca76d451775da0a29a452a77d6aa8baeba9c7f3f",
     "proj/src/sprites/score.h": "bc560ac64e3907241ecb5ef8e4e8a544a4c41ab87a8c8604b04a1480b76838c9"
+  },
+  "omittedMetadata": {
+    "reason": "Upstream operating-system and version-control metadata is excluded from the distributable source inventory.",
+    "sha256": {
+      "proj/src/.DS_Store": "d65165279105ca6773180500688df4bdc69a2c7b771752f0a46ef120b7fd8ec3"
+    }
   }
 }

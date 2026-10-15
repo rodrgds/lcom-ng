@@ -51,6 +51,10 @@ through `devenv shell -- ...`.
   Keep Android game libraries in the isolated `:game` process, with fresh globals
   on each launch and private saved files preserved. Collection exporters ship in
   the installed SDK via `scripts/package_student.py`.
+  Stage imported source files hidden by upstream ignore rules explicitly. Run
+  `scripts/check_collection_sources.py --require-tracked` before publishing;
+  provenance must survive a fresh checkout. Exclude OS and VCS metadata from the
+  required source inventory and record those omissions in `UPSTREAM.json`.
 - Embedded app exports: `runtime/embedded/` owns the in-process C SDK; browser
   and SDL hosts supply time, event pumping, graphics and audio. Keep device logic
   in `Machine`. Android export lives in `sdk/android/`, shared source discovery
