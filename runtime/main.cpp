@@ -33,6 +33,18 @@ using lcom::cli::studentLabSpec;
 using lcom::cli::studentLabSpecs;
 using lcom::cli::writeTextFile;
 
+static void configureWebOptions(CLI::App *command) {
+  command->add_option("project", "Project directory, default: .");
+  command->add_option("--output", "Browser export directory");
+  command->add_option("--source", "Native C source, relative to project; repeatable");
+  command->add_option("--include", "Include directory relative to project; repeatable");
+  command->add_option("--library", "Minix archive sources as name=file.c,other.c; repeatable");
+  command->add_option("--asset", "File/directory to package relative to asset root; repeatable");
+  command->add_option("--asset-root", "Minix asset root relative to project");
+  command->add_option("--name", "Game title");
+  command->add_option("--arg", "Game argument; repeatable");
+}
+
 static void configureCliApp(CLI::App &app) {
   app.name("lcom-ng");
   app.description("lcom-ng userspace machine runtime");
@@ -135,6 +147,16 @@ static void configureCliApp(CLI::App &app) {
   bundle->add_flag("--no-realtime", "Generate a non-realtime launcher");
   bundle->add_flag("--dir", "Shortcut for --format dir");
   bundle->add_flag("--single-file", "Shortcut for --format single");
+
+  auto *export_command = app.add_subcommand("export", "Export a game from C sources");
+  auto *web = export_command->add_subcommand("web", "Build a standalone browser game with Emscripten");
+  configureWebOptions(web);
+
+  auto *browser = app.add_subcommand("web", "Build a game and open it in a browser");
+  configureWebOptions(browser);
+  browser->add_option("--port", "HTTP port, default: choose a free port");
+  browser->add_option("--host", "Listen address, default: 127.0.0.1");
+  browser->add_flag("--no-open", "Serve without opening a browser");
 
   auto *lab = app.add_subcommand("lab", "Inspect lab function requests");
   lab->add_subcommand("list", "List labs");
@@ -240,6 +262,8 @@ static int cliDocs() {
   std::cout << "lcom-ng run path/to/minix-project/.lcom-ng/proj\n";
   std::cout << "lcom-ng test rtc --project student\n";
   std::cout << "lcom-ng bundle . --program build/examples/flappy_bird --name flappy-bird\n";
+  std::cout << "lcom-ng web path/to/my-game\n";
+  std::cout << "lcom-ng export web examples/flappy --output dist/flappy --name 'LCOM Bird'\n";
   std::cout << "lcom-ng completion zsh > _machinelab\n";
   std::cout << "```\n";
   std::cout << "\n`--timeout` limits host seconds for run, replay, and run-pair, returning 124. "
@@ -249,7 +273,7 @@ static int cliDocs() {
 }
 
 static int completionScript(const std::string &shell) {
-  const char *commands = "run run-pair replay setup test bundle compat lab docs completion help";
+  const char *commands = "run run-pair replay setup test bundle export web compat lab docs completion help";
   const char *run_opts =
       "--headless --display --audio --audio-wav --realtime --no-realtime --fullscreen "
       "--scale --integer-scale --script --trace --dump-frame --frame-dir --video --video-fps "
@@ -280,6 +304,8 @@ static int completionScript(const std::string &shell) {
         << "    setup) COMPREPLY=( $(compgen -W \"" << setup_opts << "\" -- \"$cur\") ) ;;\n"
         << "    test) COMPREPLY=( $(compgen -W \"" << lab_names << " " << test_opts << "\" -- \"$cur\") ) ;;\n"
         << "    bundle) COMPREPLY=( $(compgen -W \"" << bundle_opts << "\" -- \"$cur\") ) ;;\n"
+        << "    web) COMPREPLY=( $(compgen -W \"--output --source --include --library --asset --asset-root --name --arg --port --host --no-open\" -- \"$cur\") ) ;;\n"
+        << "    export) COMPREPLY=( $(compgen -W \"web --output --source --include --library --asset --asset-root --name --arg\" -- \"$cur\") ) ;;\n"
         << "    compat) COMPREPLY=( $(compgen -W \"build --output --cc --library --include --asset-root --debug --sanitize\" -- \"$cur\") ) ;;\n"
         << "    lab) COMPREPLY=( $(compgen -W \"list show " << lab_names << "\" -- \"$cur\") ) ;;\n"
         << "    completion) COMPREPLY=( $(compgen -W \"bash zsh fish\" -- \"$cur\") ) ;;\n"
@@ -292,7 +318,7 @@ static int completionScript(const std::string &shell) {
         << "#compdef lcom-ng machinelab lowlab lcom\n"
         << "_machinelab() {\n"
         << "  local -a commands\n"
-        << "  commands=(run run-pair replay setup test bundle compat lab docs completion help)\n"
+        << "  commands=(run run-pair replay setup test bundle export web compat lab docs completion help)\n"
         << "  if (( CURRENT == 2 )); then _describe 'command' commands; return; fi\n"
         << "  case $words[2] in\n"
         << "    run) _arguments '--headless' '--display[backend]:' '--audio[backend]:' '--audio-wav[file]:file:_files' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--script[file]:file:_files' '--trace[file]:file:_files' '--dump-frame[file]:file:_files' '--frame-dir[dir]:dir:_files -/' '--video[file]:file:_files' '--video-fps[n]:' '--rtc[iso-time]:' '--dump-presented' '--max-ticks[n]:' '--timeout[host seconds]:' '*::program:_files' ;;\n"
@@ -303,6 +329,8 @@ static int completionScript(const std::string &shell) {
         << "    bundle) _arguments '--program[student binary]:file:_files' '--name[name]:' '--output[path]:file:_files' '--format[format]:(single dir)' '--script[script]:file:_files' '--display[backend]:' '--audio[backend]:' '--headless' '--realtime' '--no-realtime' '--dir' '--single-file' ;;\n"
         << "    lab) _arguments '1:action:(list show)' '2:lab:(rtc timer kbd mouse graphics audio uart lab1 lab2 lab3 lab4 lab5 lab6 lab7)' ;;\n"
         << "    completion) _arguments '1:shell:(bash zsh fish)' ;;\n"
+        << "    web) _arguments '1:project directory:_files -/' '--port[HTTP port]:' '--host[listen address]:' '--no-open' '--output[directory]:dir:_files -/' '*--source[C source]:file:_files' '*--include[include directory]:dir:_files -/' '*--library[archive sources]:' '*--asset[asset]:file:_files' '--asset-root[asset directory]:dir:_files -/' '--name[game title]:' '*--arg[game argument]:' ;;\n"
+        << "    export) _arguments '1:target:(web)' '2:project-dir:_files -/' '--output[directory]:dir:_files -/' '*--source[C source]:file:_files' '*--include[include directory]:dir:_files -/' '*--library[archive sources]:' '*--asset[asset]:file:_files' '--asset-root[asset directory]:dir:_files -/' '--name[game title]:' '*--arg[game argument]:' ;;\n"
         << "    compat) _arguments '1:action:(build)' '2:project-dir:_files -/' '--output[build dir]:dir:_files -/' '--cc[compiler]:' '--library[archive sources]:' '--include[include dir]:dir:_files -/' '--asset-root[workspace]:dir:_files -/' '--debug[student debug symbols]' '--sanitize[diagnostics]:(address undefined address,undefined)' ;;\n"
         << "  esac\n"
         << "}\n_machinelab \"$@\"\n";
@@ -340,7 +368,19 @@ static int completionScript(const std::string &shell) {
         << "complete -c lcom-ng -n '__fish_seen_subcommand_from bundle' -l output -r\n"
         << "complete -c lcom-ng -n '__fish_seen_subcommand_from bundle' -l format -a 'single dir'\n"
         << "complete -c lcom-ng -n '__fish_seen_subcommand_from completion' -a 'bash zsh fish'\n";
-    std::cout << "complete -c lcom-ng -n '__fish_seen_subcommand_from compat' -a 'build'\n"
+    std::cout << "complete -c lcom-ng -n '__fish_seen_subcommand_from export' -a 'web'\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web; and not __fish_seen_subcommand_from export' -l port -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web; and not __fish_seen_subcommand_from export' -l host -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web; and not __fish_seen_subcommand_from export' -l no-open\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l output -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l source -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l include -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l library -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l asset -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l asset-root -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l name -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from web' -l arg -r\n"
+              << "complete -c lcom-ng -n '__fish_seen_subcommand_from compat' -a 'build'\n"
               << "complete -c lcom-ng -n '__fish_seen_subcommand_from build' -l output -r\n"
               << "complete -c lcom-ng -n '__fish_seen_subcommand_from build' -l cc -r\n"
               << "complete -c lcom-ng -n '__fish_seen_subcommand_from build' -l library -r\n"
@@ -1540,6 +1580,24 @@ static int runStudentLabTest(const TestOptions &opts, const char *argv0) {
   return rc == 0 ? 0 : 1;
 }
 
+static int runSdkTool(std::vector<std::string> args) {
+  std::vector<char *> raw;
+  for (auto &arg : args) raw.push_back(arg.data());
+  raw.push_back(nullptr);
+  pid_t pid = fork();
+  if (pid < 0) { perror("fork"); return 1; }
+  if (pid == 0) {
+    execvp(raw[0], raw.data());
+    perror("lcom-ng: python3");
+    _exit(127);
+  }
+  int status = 0;
+  while (waitpid(pid, &status, 0) < 0) {
+    if (errno != EINTR) { perror("waitpid"); return 1; }
+  }
+  return WIFEXITED(status) ? WEXITSTATUS(status) : 1;
+}
+
 static int buildMinixProject(int argc, char **argv) {
   namespace fs = std::filesystem;
   if (argc < 4 || std::string(argv[2]) != "build") {
@@ -1561,21 +1619,18 @@ static int buildMinixProject(int argc, char **argv) {
     "--sdk", sdk.string(), "--runtime-build", libraries.string()
   };
   for (int i = 4; i < argc; ++i) args.emplace_back(argv[i]);
-  std::vector<char *> raw;
-  for (auto &arg : args) raw.push_back(arg.data());
-  raw.push_back(nullptr);
-  pid_t pid = fork();
-  if (pid < 0) { perror("fork"); return 1; }
-  if (pid == 0) {
-    execvp(raw[0], raw.data());
-    perror("lcom-ng compat: python3");
-    _exit(127);
+  return runSdkTool(std::move(args));
+}
+
+static int exportWeb(int argc, char **argv) {
+  if (argc < 3 || std::string(argv[2]) != "web") {
+    subcommandUsage("export");
+    return 1;
   }
-  int status = 0;
-  while (waitpid(pid, &status, 0) < 0) {
-    if (errno != EINTR) { perror("waitpid"); return 1; }
-  }
-  return WIFEXITED(status) ? WEXITSTATUS(status) : 1;
+  auto script = studentResourceRoot(argv[0]) / "sdk/web/export.py";
+  std::vector<std::string> args = {"python3", script.string()};
+  for (int i = 3; i < argc; ++i) args.emplace_back(argv[i]);
+  return runSdkTool(std::move(args));
 }
 
 int main(int argc, char **argv) {
@@ -1590,14 +1645,21 @@ int main(int argc, char **argv) {
   const bool known_subcommand =
       cmd == "run" || cmd == "run-pair" || cmd == "replay" || cmd == "setup" ||
       cmd == "test" || cmd == "bundle" || cmd == "lab" || cmd == "docs" ||
-      cmd == "completion" || cmd == "compat";
+      cmd == "completion" || cmd == "compat" || cmd == "export" || cmd == "web";
   if (known_subcommand && argc >= 3 &&
       (std::string(argv[2]) == "--help" || std::string(argv[2]) == "-h")) {
     subcommandUsage(cmd);
     return 0;
   }
 
-  if (cmd == "compat") {
+  if (cmd == "web") {
+    auto script = studentResourceRoot(argv[0]) / "sdk/web/run.py";
+    std::vector<std::string> args = {"python3", script.string()};
+    for (int i = 2; i < argc; ++i) args.emplace_back(argv[i]);
+    return runSdkTool(std::move(args));
+  } else if (cmd == "export") {
+    return exportWeb(argc, argv);
+  } else if (cmd == "compat") {
     return buildMinixProject(argc, argv);
   } else if (cmd == "run") {
     if (!parseRun(argc, argv, 2, opts)) {

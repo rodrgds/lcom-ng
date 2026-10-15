@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark">
+  <title>lcom-ng game</title>
+  <link rel="stylesheet" href="./player.css">
+</head>
+<body>
+  <main aria-label="Game">
+    <canvas id="game" width="800" height="600" tabindex="0" aria-label="Game screen"></canvas>
+    <p id="status" role="status" class="visually-hidden">Loading game…</p>
+    <div id="error" hidden role="alert"><p id="error-message"></p><button id="reload">Reload</button></div>
+  </main>
+  <section id="keyboard" aria-label="On-screen keyboard" hidden><div id="keys"></div></section>
+  <script type="module" src="./player.js"></script>
+</body>
+</html>

@@ -3,6 +3,10 @@
 
 #include <lcom/lcom.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #define AC97_NAM_BASE 0xC000u
 #define AC97_BM_BASE 0xC100u
 
@@ -39,5 +43,9 @@ typedef struct {
 } lcom_ac97_buffer_info_t;
 
 int lcom_ac97_get_buffer(lcom_ac97_buffer_info_t *out);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

@@ -218,6 +218,7 @@ class Builder:
         self.runtime_build = runtime_build.resolve()
         self.output = output.resolve()
         self.compiler = words(compiler)
+        self.archiver = "ar"
         self.binary = None
         self.diagnostic_flags = ["-g", "-O0", "-fno-omit-frame-pointer"] if debug or sanitize else []
         if sanitize:
@@ -307,7 +308,7 @@ class Builder:
         objects = [self.compile(s, makefile) for s in declared[archive]]
         # Recreate the archive so removed objects cannot remain after a rebuild.
         target.unlink(missing_ok=True)
-        self.command(["ar", "rcs", str(target)] + [str(o) for o in objects])
+        self.command([self.archiver, "rcs", str(target)] + [str(o) for o in objects])
         self.active.remove(key)
         self.archives[key] = target
         return target
@@ -432,9 +433,7 @@ class Builder:
         for library in (compat, native):
             if not library.is_file():
                 raise BuildError(f"Missing runtime library {library}. Build lcom-ng first.")
-        self.command(self.compiler + [str(o) for o in objects] + [str(a) for a in archives]
-                     + [str(compat), str(native), "-lm", "-pthread"] + system_flags + self.diagnostic_flags + ["-o", str(binary)],
-                     "linking " + program)
+        self.link(objects, archives, [compat, native], system_flags, binary)
         # Sources are never rewritten. The hashes make that property reviewable.
         for name, digest in self.manifest["sources"].items():
             if hashlib.sha256(Path(name).read_bytes()).hexdigest() != digest:
@@ -443,6 +442,11 @@ class Builder:
         self.manifest["status"] = "complete"
         self.write_report()
         return binary
+
+    def link(self, objects, archives, runtime, system_flags, binary):
+        self.command(self.compiler + [str(o) for o in objects] + [str(a) for a in archives]
+                     + [str(p) for p in runtime] + ["-lm", "-pthread"] + system_flags
+                     + self.diagnostic_flags + ["-o", str(binary)], "linking " + binary.name)
 
     def write_report(self):
         (self.output / "build.json").write_text(json.dumps(self.manifest, indent=2) + "\n")

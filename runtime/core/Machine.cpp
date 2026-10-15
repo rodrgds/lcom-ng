@@ -26,6 +26,14 @@ bool Machine::readPort8(uint16_t port, uint8_t &value) {
   return ok;
 }
 
+std::optional<Machine::PhysicalRange> Machine::physicalRange(uint64_t address, uint64_t length) const {
+  if (vbe_.ownsRange(address, length))
+    return PhysicalRange{PhysicalRange::Device::Video, static_cast<size_t>(address - vbe_.framebufferPhys())};
+  if (ac97_.ownsRange(address, length))
+    return PhysicalRange{PhysicalRange::Device::Audio, static_cast<size_t>(address - ac97_.bufferPhys())};
+  return std::nullopt;
+}
+
 bool Machine::writePort8(uint16_t port, uint8_t value) {
   bool ok = bus_.write8(port, value);
   if (trace_ != nullptr) trace_->logPortWrite(tick_, port, value, ok);

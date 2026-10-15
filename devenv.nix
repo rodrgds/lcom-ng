@@ -5,6 +5,7 @@
   languages.python.package = pkgs.python3.withPackages (ps: [ ps.pillow ]);
   packages = [
     pkgs.clang
+    pkgs.emscripten
     pkgs.cli11
     pkgs.cmake
     pkgs.ninja
@@ -89,6 +90,10 @@
   '';
   scripts.lcom-ng-configure.exec = ''
     exec machinelab-configure "$@"
+  '';
+  scripts.lcom-ng-web-test.exec = ''
+    machinelab-build
+    exec bun run test:web
   '';
   scripts.lcom-ng-run-sdl.exec = ''
     exec machinelab-run-sdl "$@"

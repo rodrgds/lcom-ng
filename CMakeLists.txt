@@ -32,20 +32,8 @@ if(NOT CLI11_FOUND)
   FetchContent_MakeAvailable(CLI11)
 endif()
 
-add_library(machinelab_core STATIC
-  runtime/core/Trace.cpp
-  runtime/core/IrqController.cpp
-  runtime/core/Bus.cpp
-  runtime/core/Machine.cpp
-  runtime/core/Script.cpp
-  runtime/backends/AudioBackend.cpp
-  runtime/devices/Ac97.cpp
-  runtime/devices/Pit8254.cpp
-  runtime/devices/I8042.cpp
-  runtime/devices/RtcCmos.cpp
-  runtime/devices/Vbe.cpp
-  runtime/devices/Uart16550.cpp
-)
+include(runtime/core/sources.cmake)
+add_library(machinelab_core STATIC ${MACHINE_LAB_CORE_SOURCES})
 target_include_directories(machinelab_core PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/sdk/include
   ${CMAKE_CURRENT_SOURCE_DIR}/common
@@ -53,7 +41,7 @@ target_include_directories(machinelab_core PUBLIC
 )
 target_compile_options(machinelab_core PRIVATE -Wall -Wextra -Wpedantic)
 
-add_library(machinelab_c STATIC sdk/client/src/lcom.c)
+add_library(machinelab_c STATIC sdk/client/src/lcom.c sdk/client/src/port_widths.c)
 set_target_properties(machinelab_c PROPERTIES OUTPUT_NAME machinelab)
 target_include_directories(machinelab_c PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/sdk/include

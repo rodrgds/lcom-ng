@@ -13,6 +13,7 @@
 
 #include <cstdint>
 #include <string>
+#include <optional>
 #include <vector>
 
 namespace lcom {
@@ -26,7 +27,12 @@ public:
 
 class Machine {
 public:
+  struct PhysicalRange {
+    enum class Device { Video, Audio } device;
+    size_t offset;
+  };
   Machine();
+  std::optional<PhysicalRange> physicalRange(uint64_t address, uint64_t length) const;
 
   bool readPort8(uint16_t port, uint8_t &value);
   bool writePort8(uint16_t port, uint8_t value);

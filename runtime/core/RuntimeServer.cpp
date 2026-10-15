@@ -528,16 +528,12 @@ bool RuntimeServer::handleClientMessage() {
     lcom_phys_map_t req{};
     if (!protocol::decodePayload(payload, hdr.size, req)) return false;
     lcom_phys_map_reply_t reply{};
-    if (machine_.vbe().ownsRange(req.phys, req.length) && req.length <= kFramebufferShmBytes) {
+    auto range = machine_.physicalRange(req.phys, req.length);
+    if (range) {
       reply.status = 0;
       std::snprintf(reply.shm_name, sizeof(reply.shm_name), "%s", shm_name_.c_str());
-      reply.offset = req.phys - machine_.vbe().framebufferPhys();
-      reply.length = req.length;
-    } else if (machine_.ac97().ownsRange(req.phys, req.length) &&
-               req.length <= shm_size_ - kAudioShmOffset) {
-      reply.status = 0;
-      std::snprintf(reply.shm_name, sizeof(reply.shm_name), "%s", shm_name_.c_str());
-      reply.offset = kAudioShmOffset + (req.phys - machine_.ac97().bufferPhys());
+      reply.offset = range->offset;
+      if (range->device == Machine::PhysicalRange::Device::Audio) reply.offset += kAudioShmOffset;
       reply.length = req.length;
     } else {
       reply.status = -1;

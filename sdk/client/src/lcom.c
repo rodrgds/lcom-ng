@@ -197,38 +197,6 @@ int lcom_port_write8(uint16_t port, uint8_t value) {
   return reply.status == 0 ? LCOM_OK : LCOM_ERR;
 }
 
-int lcom_port_read16(uint16_t port, uint16_t *value) {
-  if (value == NULL) return LCOM_ERR;
-  uint8_t lo = 0;
-  uint8_t hi = 0;
-  if (lcom_port_read8(port, &lo) != LCOM_OK) return LCOM_ERR;
-  if (lcom_port_read8((uint16_t)(port + 1u), &hi) != LCOM_OK) return LCOM_ERR;
-  *value = (uint16_t)(lo | ((uint16_t)hi << 8));
-  return LCOM_OK;
-}
-
-int lcom_port_write16(uint16_t port, uint16_t value) {
-  if (lcom_port_write8(port, (uint8_t)(value & 0xFFu)) != LCOM_OK) return LCOM_ERR;
-  if (lcom_port_write8((uint16_t)(port + 1u), (uint8_t)(value >> 8)) != LCOM_OK) return LCOM_ERR;
-  return LCOM_OK;
-}
-
-int lcom_port_read32(uint16_t port, uint32_t *value) {
-  if (value == NULL) return LCOM_ERR;
-  uint16_t lo = 0;
-  uint16_t hi = 0;
-  if (lcom_port_read16(port, &lo) != LCOM_OK) return LCOM_ERR;
-  if (lcom_port_read16((uint16_t)(port + 2u), &hi) != LCOM_OK) return LCOM_ERR;
-  *value = (uint32_t)lo | ((uint32_t)hi << 16);
-  return LCOM_OK;
-}
-
-int lcom_port_write32(uint16_t port, uint32_t value) {
-  if (lcom_port_write16(port, (uint16_t)(value & 0xFFFFu)) != LCOM_OK) return LCOM_ERR;
-  if (lcom_port_write16((uint16_t)(port + 2u), (uint16_t)(value >> 16)) != LCOM_OK) return LCOM_ERR;
-  return LCOM_OK;
-}
-
 int lcom_irq_subscribe(uint8_t irq, uint32_t flags, lcom_irq_t *out) {
   if (out == NULL) return LCOM_ERR;
   lcom_irq_subscribe_t req;

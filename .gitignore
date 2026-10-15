@@ -12,6 +12,7 @@ compile_commands.json
 *.dSYM/
 .vscode/c_cpp_properties.json
 .cache/
+.lcom-ng/
 node_modules/
 docs-site/.vitepress/cache/
 docs-site/.vitepress/dist/

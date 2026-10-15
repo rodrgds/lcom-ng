@@ -496,17 +496,12 @@ bool PairRuntimeServer::handleClientMessage(Slot &slot) {
     lcom_phys_map_t req{};
     if (!protocol::decodePayload(payload, hdr.size, req)) return false;
     lcom_phys_map_reply_t reply{};
-    if (slot.machine.vbe().ownsRange(req.phys, req.length) &&
-        req.length <= kFramebufferShmBytes) {
+    auto range = slot.machine.physicalRange(req.phys, req.length);
+    if (range) {
       reply.status = 0;
       std::snprintf(reply.shm_name, sizeof(reply.shm_name), "%s", slot.shm_name.c_str());
-      reply.offset = req.phys - slot.machine.vbe().framebufferPhys();
-      reply.length = req.length;
-    } else if (slot.machine.ac97().ownsRange(req.phys, req.length) &&
-               req.length <= slot.shm_size - kAudioShmOffset) {
-      reply.status = 0;
-      std::snprintf(reply.shm_name, sizeof(reply.shm_name), "%s", slot.shm_name.c_str());
-      reply.offset = kAudioShmOffset + (req.phys - slot.machine.ac97().bufferPhys());
+      reply.offset = range->offset;
+      if (range->device == Machine::PhysicalRange::Device::Audio) reply.offset += kAudioShmOffset;
       reply.length = req.length;
     } else {
       reply.status = -1;
