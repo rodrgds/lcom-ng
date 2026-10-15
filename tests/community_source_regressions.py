@@ -99,6 +99,7 @@ int main(void) {
         replay = ROOT / 'scripts/collection-replays/leticia-bounce-enter.mlabscript'
         with tempfile.TemporaryDirectory(prefix='lcom-bounce-regression-') as temporary:
             folder = Path(temporary)
+            (folder / 'proj').mkdir()
             subprocess.run([str(cli), 'compat', 'build', str(project), '--output', str(folder / 'native')],
                            check=True, capture_output=True, text=True, timeout=120)
             frames = []
@@ -108,6 +109,7 @@ int main(void) {
                                          '--timeout', '20', '--script', str(replay),
                                          '--dump-presented', '--dump-frame', str(frame), '--',
                                          str(folder / 'native/proj')], cwd=folder,
+                                        env={**os.environ, 'LCOM_COMPAT_PROJECT_ROOT': str(folder)},
                                         capture_output=True, text=True, timeout=30)
                 self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
                 self.assertIn('max virtual ticks reached', result.stdout + result.stderr)
