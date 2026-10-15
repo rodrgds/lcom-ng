@@ -2,6 +2,7 @@
 """Install and exercise the native fixture APK in an already running Android emulator."""
 import io
 import re
+import shlex
 from pathlib import Path
 import subprocess
 import time
@@ -246,7 +247,8 @@ def direct_touch():
         (OUT/'android-direct-logcat.txt').write_text(adb('logcat','-d','-s','lcom-ng:I','*:S'))
         adb('shell','am','force-stop',package)
         if previous=='null': adb('shell','settings','delete','secure',confirmation)
-        else: adb('shell','settings','put','secure',confirmation,previous)
+        # adb joins remote shell arguments, so an empty value needs quotes.
+        else: adb('shell','settings','put','secure',confirmation,shlex.quote(previous))
 
 
 if __name__ == '__main__':
