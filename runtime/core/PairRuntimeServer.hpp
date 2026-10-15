@@ -22,6 +22,7 @@ struct PairRuntimeOptions {
   uint64_t max_ticks = 100000;
   double timeout_seconds = 0;
   bool headless = false;
+  bool dump_presented = false;
   bool realtime = true;
   bool no_realtime = false;
   bool fullscreen = false;
@@ -51,6 +52,7 @@ private:
     int child_pid = -1;
     int exit_status = 0;
     bool child_running = false;
+    bool frame_presented = false;
     bool waiting_event = false;
     bool waiting_delay = false;
     uint64_t waiting_until_tick = 0;

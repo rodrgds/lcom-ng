@@ -67,7 +67,7 @@ void draw_seed_bank(PlantType selected_type) {
     int x = get_seed_slot_x(slot) + 1;
     int y = SEED_BANK_Y + SEED_PACKET_Y_OFFSET + SEED_PACKET_H + 1;
 
-    vg_draw_rectangle(x + 5, y, SEED_PACKET_W - 10, 3, 0x2B1A08);
+    vg_draw_rectangle(x + 3, y, SEED_PACKET_W - 6, 4, 0xFFF3D3);
 }
 
 static void draw_single_seed_card(int slot, PlantType type) {
@@ -109,7 +109,18 @@ static void draw_single_seed_card(int slot, PlantType type) {
 void draw_seed_cards(void) {
     for (int i = 0; i < SEED_BANK_SLOTS; i++) {
         draw_single_seed_card(i, get_seed_slot_type(i));
+        char number[2] = {'1' + i, 0};
+        int x = get_seed_slot_x(i) + 3;
+        vg_draw_rectangle(x, SEED_BANK_Y + 2, 11, 11, 0x152D21);
+        draw_string(x + 3, SEED_BANK_Y + 4, number, 1, 0xFFF3D3);
     }
+    char wave[20];
+    snprintf(wave, sizeof(wave), "WAVE %d OF 5", get_game_info()->wave);
+    vg_draw_rectangle(590, 12, 194, 66, 0x152D21);
+    draw_string(604, 24, wave, 2, 0xFFF3D3);
+    draw_string(604, 55, "P PAUSE  F1 HELP", 1, 0xBDD0BD);
+    vg_draw_rectangle(0, 574, 800, 26, 0x152D21);
+    draw_string(22, 584, "1 TO 6 SELECT  ARROWS MOVE  ENTER PLANT  S SHOVEL  ESC CANCEL OR PAUSE", 1, 0xFFF3D3);
 }
 
 void draw_shovel(int x, int y) {

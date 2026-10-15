@@ -2,6 +2,7 @@
 
 {
   languages.python.enable = true;
+  languages.python.package = pkgs.python3.withPackages (ps: [ ps.pillow ]);
   packages = [
     pkgs.clang
     pkgs.cli11

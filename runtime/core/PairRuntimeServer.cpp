@@ -410,6 +410,24 @@ bool PairRuntimeServer::handleClientMessage(Slot &slot) {
       slot.display->consoleWrite(reinterpret_cast<const char *>(payload), hdr.size);
     }
     return true;
+  case LCOM_MSG_CLIPBOARD_SET: {
+    if (hdr.size == 0 || hdr.size > sizeof(lcom_clipboard_reply_t::text) ||
+        payload[hdr.size - 1] != 0 || std::memchr(payload, 0, hdr.size - 1) != nullptr) return false;
+    bool ok = slot.display != nullptr && slot.display->setClipboardText(
+        std::string(reinterpret_cast<const char *>(payload), hdr.size - 1));
+    sendStatus(slot, hdr.request_id, ok ? 0 : -1);
+    return true;
+  }
+  case LCOM_MSG_CLIPBOARD_GET: {
+    if (hdr.size != 0) return false;
+    lcom_clipboard_reply_t reply{};
+    std::string text;
+    bool ok = slot.display != nullptr && slot.display->getClipboardText(text) && text.size() < sizeof(reply.text);
+    reply.status = ok ? 0 : -1;
+    if (ok) std::memcpy(reply.text, text.c_str(), text.size() + 1);
+    protocol::sendMessage(slot.client_fd, LCOM_MSG_CLIPBOARD_REPLY, hdr.request_id, &reply, sizeof(reply));
+    return true;
+  }
   case LCOM_MSG_PORT_READ8: {
     if (hdr.size != sizeof(lcom_port_read8_t)) return false;
     lcom_port_read8_t req{};
@@ -533,6 +551,7 @@ bool PairRuntimeServer::handleClientMessage(Slot &slot) {
   }
   case LCOM_MSG_VBE_PRESENT:
     syncFramebufferFromSharedMemory(slot);
+    slot.frame_presented = true;
     if (slot.display != nullptr) slot.display->present(slot.machine);
     sendStatus(slot, hdr.request_id, 0);
     return true;
@@ -586,10 +605,10 @@ void PairRuntimeServer::advanceAllOnce() {
     // cleanupSlot() unmaps guest framebuffer memory. Preserve the latest guest
     // writes first so requested failure artifacts remain diagnostically useful
     // even when a program wrote after its most recent VBE present.
-    if (!options_.left_dump_frame_path.empty()) {
+    if (!options_.dump_presented && !options_.left_dump_frame_path.empty()) {
       syncFramebufferFromSharedMemory(left_);
     }
-    if (!options_.right_dump_frame_path.empty()) {
+    if (!options_.dump_presented && !options_.right_dump_frame_path.empty()) {
       syncFramebufferFromSharedMemory(right_);
     }
     cleanupSlot(left_);
@@ -640,7 +659,11 @@ void PairRuntimeServer::syncFramebufferFromSharedMemory(Slot &slot) {
 bool PairRuntimeServer::dumpFrameArtifacts() {
   auto dump = [&](Slot &slot, const std::string &path) {
     if (path.empty()) return true;
-    syncFramebufferFromSharedMemory(slot);
+    if (options_.dump_presented && !slot.frame_presented) {
+      std::cerr << "lcom-ng: no presented frame for " << slot.name << "\n";
+      return false;
+    }
+    if (!options_.dump_presented) syncFramebufferFromSharedMemory(slot);
     if (slot.machine.vbe().dumpPpm(path)) return true;
     std::cerr << "lcom-ng: could not write " << slot.name
               << " frame dump " << path << "\n";

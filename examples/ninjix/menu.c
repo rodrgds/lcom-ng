@@ -24,6 +24,7 @@
 #define MENU_OPTION_SCALE 2
 #define MENU_SMALL_SCALE 2
 #define INSTRUCTIONS_TEXT_SCALE 2
+#define MENU_OPTION_WIDTH 380
 #define MENU_OPTION_HEIGHT 40
 #define MENU_OPTION_GAP 16
 #define MENU_OPTION_PADDING (MENU_OPTION_HEIGHT + MENU_OPTION_GAP)
@@ -180,7 +181,7 @@ static void menu_get_option_bounds(int16_t option_index, uint16_t *left, uint16_
   uint16_t y = menu_get_option_y(option_index);
   uint16_t height = MENU_OPTION_HEIGHT;
   uint16_t center_x = MENU_SCREEN_WIDTH / 2;
-  uint16_t width = 300;
+  uint16_t width = MENU_OPTION_WIDTH;
 
   *left = center_x - width / 2;
   *right = center_x + width / 2;
@@ -589,7 +590,7 @@ static int menu_render_instructions(menu_t *menu)
   /* Wave info */
   if (hud_font_draw_text_colored(&menu->resources->font, "WAVES START AUTOMATICALLY.",
                                  (int16_t)content_x, y,
-                                 INSTRUCTIONS_TEXT_SCALE, COLOR_GRASS_LIGHT) != 0)
+                                 INSTRUCTIONS_TEXT_SCALE, 0x3F5E24) != 0)
     return 1;
   y = (int16_t)(y + line_height);
   if (hud_font_draw_text_colored(&menu->resources->font, "Each wave gets progressively harder",
@@ -805,7 +806,7 @@ static int menu_render_main(menu_t *menu)
     const char *option_text = menu_get_option_text((menu_option_t)i);
     uint16_t y = menu_get_option_y(i);
 
-    uint16_t option_width = 380;
+    uint16_t option_width = MENU_OPTION_WIDTH;
     uint16_t option_height = MENU_OPTION_HEIGHT;
     uint16_t option_x = (MENU_SCREEN_WIDTH - option_width) / 2;
     uint16_t option_y = y;

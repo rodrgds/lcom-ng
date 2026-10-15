@@ -206,6 +206,12 @@ public:
         machine.injectKey("ESC", false);
         break;
       case SDL_EVENT_WINDOW_FOCUS_LOST:
+        for (const auto &name : guest_keys_down_) {
+          recordKey(machine, name, false);
+          machine.injectKey(name, false);
+        }
+        guest_keys_down_.clear();
+        [[fallthrough]];
       case SDL_EVENT_WINDOW_MOUSE_LEAVE:
         mouse_capture_suppressed_ = true;
         setMouseCaptured(false, true);
@@ -259,6 +265,19 @@ public:
     updateMouseCapture(machine);
     if (options_.guest_input) sampleRelativeMouse(machine, false);
     if (options_.guest_input) flushMousePacket(machine, false);
+  }
+
+  bool setClipboardText(const std::string &text) override {
+    return sdl_acquired_ && SDL_SetClipboardText(text.c_str());
+  }
+
+  bool getClipboardText(std::string &text) override {
+    if (!sdl_acquired_) return false;
+    char *value = SDL_GetClipboardText();
+    if (value == nullptr) return false;
+    text = value;
+    SDL_free(value);
+    return true;
   }
 
   void consoleWrite(const char *data, size_t size) override {
@@ -382,6 +401,9 @@ private:
 
     std::string guest_key = guestKeyName(key);
     if (!guest_key.empty()) {
+      auto held = std::find(guest_keys_down_.begin(), guest_keys_down_.end(), guest_key);
+      if (down && held == guest_keys_down_.end()) guest_keys_down_.push_back(guest_key);
+      else if (!down && held != guest_keys_down_.end()) guest_keys_down_.erase(held);
       recordKey(machine, guest_key, down);
       machine.injectKey(guest_key, down);
     }
@@ -741,13 +763,10 @@ private:
   }
 
   static bool isHostMouseReleaseKey(SDL_Scancode scancode) {
-    return scancode == SDL_SCANCODE_LGUI ||
-           scancode == SDL_SCANCODE_RGUI ||
-           scancode == SDL_SCANCODE_RCTRL;
+    return scancode == SDL_SCANCODE_RCTRL;
   }
 
   static bool isHostMouseReleaseHeld() {
-    if ((SDL_GetModState() & SDL_KMOD_GUI) != 0) return true;
     int key_count = 0;
     const bool *keys = SDL_GetKeyboardState(&key_count);
     return keys != nullptr && SDL_SCANCODE_RCTRL < key_count && keys[SDL_SCANCODE_RCTRL];
@@ -940,6 +959,8 @@ private:
     case SDL_SCANCODE_LEFTBRACKET: return "LEFTBRACKET";
     case SDL_SCANCODE_RIGHTBRACKET: return "RIGHTBRACKET";
     case SDL_SCANCODE_RETURN: return "ENTER";
+    case SDL_SCANCODE_LGUI: return "LGUI";
+    case SDL_SCANCODE_RGUI: return "RGUI";
     case SDL_SCANCODE_LCTRL: return "LCTRL";
     case SDL_SCANCODE_A: return "A";
     case SDL_SCANCODE_S: return "S";
@@ -1152,6 +1173,7 @@ private:
   std::string current_line_;
   std::vector<uint8_t> rgb_buffer_;
   std::vector<float> frame_ms_samples_;
+  std::vector<std::string> guest_keys_down_;
   std::vector<std::string> scancode_history_;
   std::vector<std::string> mouse_packet_history_;
   SDL_FRect record_button_{};

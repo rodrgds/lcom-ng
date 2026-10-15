@@ -17,12 +17,55 @@ int main(int argc, char **argv) {
     lcom::Machine machine;
     auto display = lcom::createSdlBackend({});
     require(display->start(machine), "SDL backend startup");
+    // Check interoperability with the real SDL clipboard in both directions.
+    char *saved_clipboard = SDL_GetClipboardText();
+    std::string clipboard;
+    require(SDL_SetClipboardText("host text"), "host clipboard write");
+    require(display->getClipboardText(clipboard) && clipboard == "host text", "guest reads host clipboard");
+    require(display->setClipboardText("guest café"), "guest clipboard write");
+    char *host_clipboard = SDL_GetClipboardText();
+    bool copied = host_clipboard != nullptr && std::strcmp(host_clipboard, "guest café") == 0;
+    SDL_free(host_clipboard);
+    SDL_SetClipboardText(saved_clipboard == nullptr ? "" : saved_clipboard);
+    SDL_free(saved_clipboard);
+    require(copied, "host reads guest clipboard");
     int count = 0;
     SDL_Window **windows = SDL_GetWindows(&count);
     require(count == 1, "one runtime window");
     SDL_Renderer *renderer = SDL_GetRenderer(windows[0]);
     SDL_free(windows);
     require(renderer != nullptr, "runtime renderer");
+
+    // Command must reach the guest for native desktop shortcuts.
+    // Exercise real SDL dispatch, not a duplicate of the key-name mapping.
+    auto send_key = [&](SDL_Scancode code, bool down) {
+      SDL_Event event{};
+      event.type = down ? SDL_EVENT_KEY_DOWN : SDL_EVENT_KEY_UP;
+      event.key.scancode = code;
+      event.key.down = down;
+      require(SDL_PushEvent(&event), "queue host key");
+      display->pump(machine);
+    };
+    send_key(SDL_SCANCODE_LGUI, true);
+    send_key(SDL_SCANCODE_S, true);
+    send_key(SDL_SCANCODE_S, false);
+    send_key(SDL_SCANCODE_LGUI, false);
+    for (uint8_t expected : {0xE0, 0x5B, 0x1F, 0x9F, 0xE0, 0xDB}) {
+      uint8_t status = 0, byte = 0;
+      require(machine.readPort8(0x64, status) && (status & 1), "Command-S guest byte available");
+      require(machine.readPort8(0x60, byte) && byte == expected, "Command-S guest scancode");
+    }
+
+    send_key(SDL_SCANCODE_RGUI, true);
+    SDL_Event focus{};
+    focus.type = SDL_EVENT_WINDOW_FOCUS_LOST;
+    require(SDL_PushEvent(&focus), "queue focus loss");
+    display->pump(machine);
+    for (uint8_t expected : {0xE0, 0x5C, 0xE0, 0xDC}) {
+      uint8_t status = 0, byte = 0;
+      require(machine.readPort8(0x64, status) && (status & 1), "focus-loss modifier byte available");
+      require(machine.readPort8(0x60, byte) && byte == expected, "focus loss releases held Command");
+    }
 
     // Literal expectations cover channel order, exact bitfield scaling, opaque
     // padding bytes, row pitch, and texture recreation when switching modes.

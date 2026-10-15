@@ -50,6 +50,12 @@ void lcom_exit(void);
 
 int lcom_printf(const char *fmt, ...);
 
+/* Host clipboard bridge. SDL uses the system clipboard; headless runs keep a
+ * private clipboard per guest. At most 4091 text bytes plus a terminator.
+ * Reads fail without modifying buffer when capacity is insufficient. */
+int lcom_clipboard_set_text(const char *text);
+int lcom_clipboard_get_text(char *buffer, size_t capacity);
+
 int lcom_port_read8(uint16_t port, uint8_t *value);
 int lcom_port_write8(uint16_t port, uint8_t value);
 int lcom_port_read16(uint16_t port, uint16_t *value);

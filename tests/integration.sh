@@ -137,6 +137,9 @@ grep -q -- "--right-dump-frame" "$OUT_DIR/_machinelab"
 "$CLI" completion fish > "$OUT_DIR/machinelab.fish"
 grep -q -- "left-dump-frame" "$OUT_DIR/machinelab.fish"
 grep -q -- "right-dump-frame" "$OUT_DIR/machinelab.fish"
+for completion in "$OUT_DIR/machinelab.bash" "$OUT_DIR/_machinelab" "$OUT_DIR/machinelab.fish"; do
+  grep -q -- "dump-presented" "$completion"
+done
 
 for command in run run-pair replay setup test bundle lab docs completion; do
   "$CLI" "$command" --help > "$OUT_DIR/help-$command.txt" 2>&1
@@ -295,13 +298,15 @@ if "$CLI" run --headless --dump-frame "$OUT_DIR" -- "$EX_DIR/vbe_rectangle" \
   exit 1
 fi
 
-"$CLI" run --headless --script scripts/write_note.mlabscript --dump-frame "$OUT_DIR/word_processor.ppm" -- "$EX_DIR/word_processor" > "$OUT_DIR/word_processor.txt"
+rm -f "$OUT_DIR/notes.txt"
+"$CLI" run --headless --script scripts/write_note.mlabscript --dump-frame "$OUT_DIR/word_processor.ppm" -- "$EX_DIR/word_processor" "$OUT_DIR/notes.txt" > "$OUT_DIR/word_processor.txt"
 grep -q "word processor text lcom-ng notes" "$OUT_DIR/word_processor.txt"
 grep -q "Portable C, visible results." "$OUT_DIR/word_processor.txt"
 grep -q "Tests, traces, screenshots, sound." "$OUT_DIR/word_processor.txt"
 test -s "$OUT_DIR/word_processor.ppm"
 
-"$CLI" run --headless --script scripts/music_maker_demo.mlabscript --audio-wav "$OUT_DIR/music_maker.wav" --dump-frame "$OUT_DIR/music_maker.ppm" -- "$EX_DIR/music_maker" > "$OUT_DIR/music_maker.txt"
+rm -f "$OUT_DIR/music-pattern.mlpat"
+"$CLI" run --headless --script scripts/music_maker_demo.mlabscript --audio-wav "$OUT_DIR/music_maker.wav" --dump-frame "$OUT_DIR/music_maker.ppm" -- "$EX_DIR/music_maker" "$OUT_DIR/music-pattern.mlpat" > "$OUT_DIR/music_maker.txt"
 grep -q "music maker pattern tracks=4 steps=16 active=" "$OUT_DIR/music_maker.txt"
 grep -Eq "submitted=([2-9]|[1-9][0-9]+)" "$OUT_DIR/music_maker.txt"
 test -s "$OUT_DIR/music_maker.wav"
@@ -334,6 +339,7 @@ test "$(grep -Eo '0x[0-9A-F]{8}u' "$OUT_DIR/pixel_studio_sprite.h" | wc -l | tr 
     -include "$OUT_DIR/pixel_studio_sprite.h" -x c /dev/null
 test -s "$OUT_DIR/pixel_studio.ppm"
 
+rm -f "$OUT_DIR/tilemap_demo.mlmap"
 "$CLI" run --headless --rtc 2026-08-12T15:10:05 \
     --script scripts/tilemap_editor_demo.mlabscript \
     --dump-frame "$OUT_DIR/tilemap_editor.ppm" --max-ticks 700 -- \

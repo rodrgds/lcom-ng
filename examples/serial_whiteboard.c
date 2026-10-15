@@ -184,8 +184,10 @@ typedef struct {
   bool local_is_left;
   bool simulate_same_session_restart;
   bool simulated_restart_used;
+  example_modifiers_t modifiers;
   bool extended_key;
   bool show_help;
+  bool hide_grid;
   bool running;
   bool event_error;
   bool render_dirty;
@@ -981,11 +983,13 @@ static int16_t wb_mouse_delta(uint8_t flags, uint8_t byte, uint8_t sign_bit) {
   return (int16_t)byte;
 }
 
+static bool wb_over(int x, int y, int left, int top, int width, int height) {
+  return x >= left && x < left + width && y >= top && y < top + height;
+}
+
 static void wb_select_palette_at(wb_app_t *app, int x, int y) {
-  if (x < 42 || x >= 138 || y < 218 || y >= 346) return;
   for (uint8_t i = 0; i < 5u; i++) {
-    int swatch_y = 224 + (int)i * 24;
-    if (y >= swatch_y && y < swatch_y + 18) {
+    if (wb_over(x, y, 28, 186 + i * 34, 126, 28)) {
       app->selected_color = i;
       wb_log(app, "INK COLOR CHANGED");
       return;
@@ -1005,6 +1009,10 @@ static void wb_handle_mouse_packet(wb_app_t *app, const uint8_t *packet) {
   app->left_button = (packet[0] & BIT(0)) != 0u;
   app->cursor_dirty = true;
   app->render_dirty = true;
+  if (app->show_help) {
+    if (app->left_button && !old_left && wb_over(app->cursor_x, app->cursor_y, 590, 154, 100, 32)) app->show_help = false;
+    return;
+  }
 
   if (app->left_button && wb_in_board(old_x, old_y) &&
       wb_in_board(app->cursor_x, app->cursor_y) &&
@@ -1016,6 +1024,12 @@ static void wb_handle_mouse_packet(wb_app_t *app, const uint8_t *packet) {
     if (app->cursor_x >= 40 && app->cursor_x < 142 &&
         app->cursor_y >= 374 && app->cursor_y < 408) {
       wb_clear_canvas(app, true);
+    } else if (wb_over(app->cursor_x, app->cursor_y, 28, 420, 126, 32)) {
+      app->hide_grid = !app->hide_grid;
+    } else if (wb_over(app->cursor_x, app->cursor_y, 28, 460, 126, 32)) {
+      wb_begin_snapshot_tx(app);
+    } else if (wb_over(app->cursor_x, app->cursor_y, 28, 500, 126, 32)) {
+      app->show_help = true;
     }
   }
 }
@@ -1030,6 +1044,7 @@ static void wb_feed_mouse_byte(wb_app_t *app, uint8_t byte) {
 }
 
 static void wb_handle_key(wb_app_t *app, uint8_t byte) {
+  if (example_modifier_byte(&app->modifiers, byte)) { app->extended_key = false; return; }
   if (byte == KBD_TWO_BYTE_PFX) {
     app->extended_key = true;
     return;
@@ -1038,21 +1053,42 @@ static void wb_handle_key(wb_app_t *app, uint8_t byte) {
   uint8_t code = (uint8_t)(byte & 0x7Fu);
   if (app->extended_key) {
     app->extended_key = false;
+    if (break_code || app->show_help || example_primary(&app->modifiers)) return;
+    int dx = code == 0x4Bu ? -8 : code == 0x4Du ? 8 : 0;
+    int dy = code == 0x48u ? -8 : code == 0x50u ? 8 : 0;
+    if (dx || dy) {
+      int old_x = wb_clamp(app->cursor_x, WB_BOARD_X + 4, WB_BOARD_X + WB_BOARD_W - 5);
+      int old_y = wb_clamp(app->cursor_y, WB_BOARD_Y + 4, WB_BOARD_Y + WB_BOARD_H - 5);
+      app->cursor_x = wb_clamp(old_x + dx, WB_BOARD_X + 4, WB_BOARD_X + WB_BOARD_W - 5);
+      app->cursor_y = wb_clamp(old_y + dy, WB_BOARD_Y + 4, WB_BOARD_Y + WB_BOARD_H - 5);
+      if (app->modifiers.shift) wb_add_local_segment(app, old_x, old_y, app->cursor_x, app->cursor_y);
+      app->cursor_dirty = true;
+      app->render_dirty = true;
+    }
     return;
   }
   if (byte == ESC_BREAK) {
+    if (app->show_help) { app->show_help = false; app->render_dirty = true; return; }
     app->running = false;
     return;
   }
   if (break_code) return;
+  if (example_primary(&app->modifiers)) { if (code == 0x11u) app->running = false; return; }
+  if (app->show_help && code != 0x23u && code != 0x3Bu) return;
 
   if (code >= 0x02u && code <= 0x06u) {
     app->selected_color = (uint8_t)(code - 0x02u);
     wb_log(app, "INK COLOR CHANGED");
   } else if (code == 0x2Eu) {
     wb_clear_canvas(app, true);
-  } else if (code == 0x23u) {
+  } else if (code == 0x23u || code == 0x3Bu) {
     app->show_help = !app->show_help;
+    app->render_dirty = true;
+  } else if (code == 0x22u) {
+    app->hide_grid = !app->hide_grid;
+    app->render_dirty = true;
+  } else if (code == 0x1Fu) {
+    wb_begin_snapshot_tx(app);
     app->render_dirty = true;
   } else if (code == 0x13u) {
     wb_protocol_restart(app, "MANUAL SESSION ROTATION", true);
@@ -1118,94 +1154,58 @@ static void wb_draw_cursor(example_canvas_t *canvas, int x, int y, uint32_t colo
   example_fill_rect(canvas, x - 1, y - 10, 3, 21, color);
   example_stroke_rect(canvas, x - 5, y - 5, 11, 11, pressed ? 3 : 1, color);
   int label_x = wb_clamp(x + 12, WB_BOARD_X + 4, WB_BOARD_X + WB_BOARD_W - 42);
-  int label_y = wb_clamp(y + 10, WB_BOARD_Y + 4, WB_BOARD_Y + WB_BOARD_H - 12);
-  example_draw_text(canvas, label_x, label_y, label, color, 1);
+  int label_y = wb_clamp(y + 10, WB_BOARD_Y + 4, WB_BOARD_Y + WB_BOARD_H - 22);
+  example_label(canvas, label_x, label_y, label, UI_INK, 1);
 }
 
 static void wb_draw_status_pill(example_canvas_t *canvas, int x, int y, int w,
                                 const char *text, uint32_t color) {
-  example_fill_rect(canvas, x, y, w, 24, color);
-  example_draw_text(canvas, x + 10, y + 8, text, example_rgb(248, 250, 252), 1);
+  example_round_rect(canvas, x, y, w, 24, 4, color);
+  example_label(canvas, x + 8, y + 3, text, UI_PAPER, 1);
 }
+
 
 static void wb_render_help(wb_app_t *app) {
   example_canvas_t *canvas = &app->canvas;
-  example_fill_rect(canvas, 210, 140, 430, 310, example_rgb(10, 19, 34));
-  example_stroke_rect(canvas, 210, 140, 430, 310, 3, example_rgb(91, 143, 249));
-  example_draw_text(canvas, 244, 168, "PAIRED WHITEBOARD HELP",
-                    example_rgb(241, 245, 249), 3);
-  example_draw_text(canvas, 244, 222, "DRAG         DRAW A SHARED STROKE",
-                    example_rgb(203, 213, 225), 2);
-  example_draw_text(canvas, 244, 254, "1-5          SELECT INK COLOR",
-                    example_rgb(203, 213, 225), 2);
-  example_draw_text(canvas, 244, 286, "C            CLEAR BOTH PEERS",
-                    example_rgb(203, 213, 225), 2);
-  example_draw_text(canvas, 244, 318, "R            ROTATE SESSION",
-                    example_rgb(203, 213, 225), 2);
-  example_draw_text(canvas, 244, 350, "H            CLOSE THIS HELP",
-                    example_rgb(203, 213, 225), 2);
-  example_draw_text(canvas, 244, 382, "ESC          LEAVE THE SESSION",
-                    example_rgb(203, 213, 225), 2);
-  example_draw_text(canvas, 244, 424, "ACK + RETRY + SNAPSHOT RESYNC",
-                    example_rgb(114, 221, 203), 1);
+  example_round_rect(canvas, 98, 140, 604, 348, 12, UI_DARK);
+  example_label(canvas, 122, 156, "Whiteboard shortcuts", UI_LIGHT, 2);
+  example_button(canvas, 590, 154, 100, 32, "Close  F1", false, wb_over(app->cursor_x, app->cursor_y, 590, 154, 100, 32), true);
+  const char *lines[] = {"Drag   Draw together in real time", "Arrow keys   Move your cursor. Shift + arrows draw.", "1-5   Select ink. G toggles the drawing grid.", "C   Clear both boards", "S   Resync your strokes. R reconnects the session.", "F1 / H / Esc   Close help. Esc again leaves."};
+  for (int i = 0; i < 6; i++) example_label(canvas, 124, 220 + i * 38, lines[i], UI_DIM, 1);
 }
+
 
 static void wb_render(wb_app_t *app) {
   example_canvas_t *canvas = &app->canvas;
-  uint32_t navy = example_rgb(13, 23, 38);
-  uint32_t panel = example_rgb(23, 37, 56);
-  uint32_t muted = example_rgb(148, 163, 184);
-  uint32_t local_accent =
-      app->local_is_left ? example_rgb(45, 127, 249) : example_rgb(155, 110, 243);
-  uint32_t peer_accent =
-      app->local_is_left ? example_rgb(155, 110, 243) : example_rgb(45, 127, 249);
-
-  example_fill_rect(canvas, 0, 0, WB_SCREEN_W, WB_SCREEN_H, navy);
-  example_fill_rect(canvas, 0, 0, WB_SCREEN_W, 72, example_rgb(18, 31, 49));
-  example_fill_rect(canvas, 0, 69, WB_SCREEN_W, 3, local_accent);
-  example_draw_text(canvas, 28, 20, "SERIAL WHITEBOARD",
-                    example_rgb(248, 250, 252), 4);
-  example_draw_text(canvas, 541, 20, "16 BYTE FRAMES", muted, 2);
-  example_draw_text(canvas, 541, 45, "CRC8  SEQ  ACK  RESYNC",
-                    example_rgb(105, 192, 180), 1);
-
-  example_fill_rect(canvas, 24, 92, 130, 444, panel);
-  example_stroke_rect(canvas, 24, 92, 130, 444, 2, example_rgb(43, 61, 83));
-  example_draw_text(canvas, 42, 112,
-                    app->local_is_left ? "LEFT DESK" : "RIGHT DESK",
-                    example_rgb(226, 232, 240), 2);
-  wb_draw_status_pill(canvas, 42, 146, 94,
-                      app->protocol.connected ? "ONLINE" : "SYNCING",
-                      app->protocol.connected ? example_rgb(18, 165, 148)
-                                              : example_rgb(217, 119, 6));
-  example_draw_text(canvas, 42, 188, "INK", muted, 1);
+  uint32_t muted = UI_MUTED;
+  uint32_t local_accent = app->local_is_left ? 0x2D7FF9 : 0x9B6EF3;
+  uint32_t peer_accent = app->local_is_left ? 0x9B6EF3 : 0x2D7FF9;
+  example_fill_rect(canvas, 0, 0, 800, 600, UI_BG);
+  example_heading(canvas, "Shared Whiteboard", "Two desks. One conversation.", local_accent, false);
+  example_label(canvas, 590, 16, app->local_is_left ? "Left desk" : "Right desk", UI_INK, 1);
+  example_label(canvas, 590, 42, app->protocol.connected ? "Peer connected" : "Connecting...", UI_MUTED, 1);
+  example_label(canvas, 28, 108, "Your ink", UI_INK, 1);
+  wb_draw_status_pill(canvas, 28, 142, 126, app->protocol.connected ? "Connected" : "Connecting", app->protocol.connected ? UI_ACCENT : 0x7A5620);
+  const char *colors[] = {"Blue", "Coral", "Teal", "Violet", "Amber"};
   for (uint8_t i = 0; i < 5u; i++) {
-    int y = 224 + (int)i * 24;
-    example_fill_rect(canvas, 42, y, 78, 18, wb_palette[i]);
-    if (i == app->selected_color) {
-      example_stroke_rect(canvas, 39, y - 3, 84, 24, 2,
-                          example_rgb(248, 250, 252));
-    }
-    char number[2] = {(char)('1' + i), '\0'};
-    example_draw_text(canvas, 128, y + 6, number, muted, 1);
+    int y = 186 + i * 34;
+    bool selected = i == app->selected_color;
+    example_round_rect(canvas, 28, y, 126, 28, 5, selected ? 0xD7E4EE : wb_over(app->cursor_x, app->cursor_y, 28, y, 126, 28) ? 0xE0E8EE : UI_BG);
+    example_round_rect(canvas, 36, y + 6, 16, 16, 3, wb_palette[i]);
+    example_label(canvas, 60, y + 5, colors[i], UI_INK, 1);
+    char number[2] = {(char)('1' + i), 0};
+    example_label(canvas, 137, y + 5, number, UI_MUTED, 1);
+    if (selected) example_fill_rect(canvas, 60, y + 24, 80, 1, UI_INK);
   }
-  example_fill_rect(canvas, 40, 374, 102, 34, example_rgb(153, 52, 68));
-  example_draw_text(canvas, 58, 386, "C  CLEAR", example_rgb(255, 241, 242), 1);
-  example_draw_text(canvas, 42, 430, "H  HELP", muted, 1);
-  example_draw_text(canvas, 42, 452, "R  RECONNECT", muted, 1);
-  example_draw_text(canvas, 42, 474, "ESC EXIT", muted, 1);
-
-  example_fill_rect(canvas, WB_BOARD_X + 7, WB_BOARD_Y + 8,
-                    WB_BOARD_W, WB_BOARD_H, example_rgb(5, 12, 23));
-  example_fill_rect(canvas, WB_BOARD_X, WB_BOARD_Y,
-                    WB_BOARD_W, WB_BOARD_H, example_rgb(245, 247, 250));
-  example_stroke_rect(canvas, WB_BOARD_X, WB_BOARD_Y,
-                      WB_BOARD_W, WB_BOARD_H, 3, example_rgb(70, 87, 109));
-  for (int y = WB_BOARD_Y + 24; y < WB_BOARD_Y + WB_BOARD_H; y += 24) {
-    for (int x = WB_BOARD_X + 24; x < WB_BOARD_X + WB_BOARD_W; x += 24) {
-      wb_draw_disc(canvas, x, y, 1, example_rgb(210, 217, 226));
-    }
-  }
+  example_button(canvas, 40, 374, 102, 34, "Clear  C", false, wb_over(app->cursor_x, app->cursor_y, 40, 374, 102, 34), true);
+  example_button(canvas, 28, 420, 126, 32, app->hide_grid ? "Grid off  G" : "Grid on  G", !app->hide_grid, wb_over(app->cursor_x, app->cursor_y, 28, 420, 126, 32), true);
+  example_button(canvas, 28, 460, 126, 32, "Resync  S", false, wb_over(app->cursor_x, app->cursor_y, 28, 460, 126, 32), app->protocol.connected);
+  example_button(canvas, 28, 500, 126, 32, "Help  F1", false, wb_over(app->cursor_x, app->cursor_y, 28, 500, 126, 32), true);
+  example_fill_rect(canvas, WB_BOARD_X, WB_BOARD_Y, WB_BOARD_W, WB_BOARD_H, UI_PAPER);
+  example_stroke_rect(canvas, WB_BOARD_X, WB_BOARD_Y, WB_BOARD_W, WB_BOARD_H, 1, UI_LINE);
+  if (!app->hide_grid) for (int y = WB_BOARD_Y + 24; y < WB_BOARD_Y + WB_BOARD_H; y += 24)
+    for (int x = WB_BOARD_X + 24; x < WB_BOARD_X + WB_BOARD_W; x += 24)
+      wb_draw_disc(canvas, x, y, 1, 0xDFE5EB);
 
   for (uint8_t i = 0; i < app->remote_count; i++) {
     wb_draw_line(canvas, &app->remote_segments[i],
@@ -1218,29 +1218,19 @@ static void wb_render(wb_app_t *app) {
 
   if (app->remote_cursor_visible) {
     wb_draw_cursor(canvas, app->remote_cursor_x, app->remote_cursor_y,
-                   peer_accent, "PEER", (app->remote_buttons & 1u) != 0u);
+                   peer_accent, "Peer", (app->remote_buttons & 1u) != 0u);
   }
   wb_draw_cursor(canvas, app->cursor_x, app->cursor_y,
-                 local_accent, "YOU", app->left_button);
+                 local_accent, "You", app->left_button);
 
-  example_fill_rect(canvas, 178, 530, 578, 50, panel);
+  example_fill_rect(canvas, 178, 530, 578, 62, UI_BG);
   char line[96];
-  snprintf(line, sizeof(line), "TX %u  RX %u  ACK %u  RETRY %u  QUEUE %u",
-           app->uart.frames_tx, app->uart.frames_rx,
-           app->protocol.acknowledgements, app->protocol.retries,
-           app->protocol.queue_count + (app->protocol.in_flight ? 1u : 0u));
-  example_draw_text(canvas, 194, 542, line, example_rgb(203, 213, 225), 1);
-  snprintf(line, sizeof(line), "LOCAL %u  PEER %u  GEN %u  RECON %u/%u  DROP %u",
-           app->local_count, app->remote_count, app->generation,
-           app->protocol.reconnects, app->protocol.peer_session_resets,
-           app->protocol.dropped);
-  example_draw_text(canvas, 194, 560, line, muted, 1);
-
-  for (uint8_t i = 0; i < 4u; i++) {
-    if (app->event_log[i][0] == '\0') continue;
-    example_draw_text(canvas, 610, 84 + (int)i * 12, app->event_log[i],
-                      example_rgb(71, 85, 105), 1);
-  }
+  snprintf(line, sizeof(line), "%u local segments   %u peer segments   %u queued", app->local_count, app->remote_count, app->protocol.queue_count + (app->protocol.in_flight ? 1u : 0u));
+  example_label(canvas, 180, 534, line, UI_INK, 1);
+  snprintf(line, sizeof(line), "TX %u   RX %u   ACK %u   retries %u   drops %u", app->uart.frames_tx, app->uart.frames_rx, app->protocol.acknowledgements, app->protocol.retries, app->protocol.dropped);
+  example_label(canvas, 180, 562, line, muted, 1);
+  const char *sync = !app->protocol.connected ? "Waiting for the other desk. R reconnects." : app->snapshot_rx.active || app->snapshot_tx.active ? "Synchronizing strokes with the other desk..." : "Drag to draw together. Shift + arrows also draws.";
+  example_label(canvas, 180, 80, sync, UI_MUTED, 1);
   if (app->show_help) wb_render_help(app);
   app->render_dirty = false;
 }

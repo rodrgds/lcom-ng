@@ -174,7 +174,11 @@ int RuntimeServer::run() {
   }
 
   if (!options_.dump_frame_path.empty()) {
-    syncFramebufferFromSharedMemory();
+    if (options_.dump_presented && !frame_presented_) {
+      std::cerr << "lcom-ng: no presented frame to capture\n";
+      artifact_failed_ = true;
+    }
+    if (!options_.dump_presented) syncFramebufferFromSharedMemory();
     expireCaptionIfNeeded();
     if (!machine_.vbe().dumpPpm(options_.dump_frame_path,
                                 caption_text_, caption_position_)) {
@@ -435,6 +439,24 @@ bool RuntimeServer::handleClientMessage() {
   case LCOM_MSG_CONSOLE_WRITE:
     handleConsoleWrite(reinterpret_cast<const char *>(payload), hdr.size);
     return true;
+  case LCOM_MSG_CLIPBOARD_SET: {
+    if (hdr.size == 0 || hdr.size > sizeof(lcom_clipboard_reply_t::text) ||
+        payload[hdr.size - 1] != 0 || std::memchr(payload, 0, hdr.size - 1) != nullptr) return false;
+    bool ok = display_ != nullptr && display_->setClipboardText(
+        std::string(reinterpret_cast<const char *>(payload), hdr.size - 1));
+    sendStatus(hdr.request_id, ok ? 0 : -1);
+    return true;
+  }
+  case LCOM_MSG_CLIPBOARD_GET: {
+    if (hdr.size != 0) return false;
+    lcom_clipboard_reply_t reply{};
+    std::string text;
+    bool ok = display_ != nullptr && display_->getClipboardText(text) && text.size() < sizeof(reply.text);
+    reply.status = ok ? 0 : -1;
+    if (ok) std::memcpy(reply.text, text.c_str(), text.size() + 1);
+    protocol::sendMessage(client_fd_, LCOM_MSG_CLIPBOARD_REPLY, hdr.request_id, &reply, sizeof(reply));
+    return true;
+  }
   case LCOM_MSG_PORT_READ8: {
     if (hdr.size != sizeof(lcom_port_read8_t)) return false;
     lcom_port_read8_t req{};
@@ -559,6 +581,7 @@ bool RuntimeServer::handleClientMessage() {
   }
   case LCOM_MSG_VBE_PRESENT:
     syncFramebufferFromSharedMemory();
+    frame_presented_ = true;
     expireCaptionIfNeeded();
     if (!options_.dump_frame_path.empty()) {
       if (!machine_.vbe().dumpPpm(options_.dump_frame_path,

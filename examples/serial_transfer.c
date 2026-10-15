@@ -1,6 +1,7 @@
 #include "example_ui.h"
 
 #include <lcom/i8254.h>
+#include <lcom/i8042.h>
 #include <lcom/lcom.h>
 #include <lcom/uart16550.h>
 #include <lcom/vbe.h>
@@ -105,6 +106,21 @@ typedef struct {
   lcom_vbe_mode_info_t mode_info;
   lcom_irq_t timer_irq;
   bool timer_subscribed;
+  lcom_irq_t keyboard_irq;
+  lcom_irq_t mouse_irq;
+  bool keyboard_subscribed;
+  bool mouse_subscribed;
+  bool mouse_reporting;
+  bool mouse_ack;
+  uint8_t mouse_bytes[3];
+  uint8_t mouse_index;
+  uint8_t mouse_buttons;
+  int mouse_x;
+  int mouse_y;
+  example_modifiers_t modifiers;
+  bool extended_key;
+  bool show_help;
+  bool keep_open;
   xfer_uart_t uart;
   bool is_sender;
   bool simulate_fault;
@@ -757,12 +773,12 @@ static void xfer_tick(xfer_app_t *app) {
 
   xfer_drive_sender(app);
   xfer_uart_tx_pump(&app->uart);
-  if (app->phase == XFER_PHASE_COMPLETE &&
+  if (!app->keep_open && !app->show_help && app->phase == XFER_PHASE_COMPLETE &&
       app->tick - app->complete_tick >= XFER_COMPLETE_GRACE_TICKS &&
       app->uart.tx_head == app->uart.tx_tail) {
     app->running = false;
   }
-  if (app->terminal_failure && !app->in_flight &&
+  if (!app->keep_open && !app->show_help && app->terminal_failure && !app->in_flight &&
       app->tick - app->failure_tick >= XFER_FAILURE_GRACE_TICKS &&
       app->uart.tx_head == app->uart.tx_tail) {
     app->running = false;
@@ -819,114 +835,123 @@ static void xfer_draw_block_ledger(xfer_app_t *app, int x, int y) {
   }
 }
 
+static bool xfer_over(const xfer_app_t *app, int x, int y, int w, int h) {
+  return app->mouse_x >= x && app->mouse_x < x + w && app->mouse_y >= y && app->mouse_y < y + h;
+}
+
 static void xfer_render(xfer_app_t *app) {
   example_canvas_t *canvas = &app->canvas;
-  uint32_t background = example_rgb(10, 18, 32);
-  uint32_t panel = example_rgb(21, 33, 51);
-  uint32_t border = example_rgb(49, 67, 91);
-  uint32_t muted = example_rgb(148, 163, 184);
-  uint32_t accent = app->is_sender ? example_rgb(95, 168, 255)
-                                   : example_rgb(18, 165, 148);
+  uint32_t accent = app->is_sender ? 0x77B8FF : 0x6BD4BB;
   uint32_t progress = xfer_progress_bytes(app);
-  uint32_t progress_width = progress * 438u / XFER_IMAGE_BYTES;
-
-  example_fill_rect(canvas, 0, 0, 800, 600, background);
-  example_fill_rect(canvas, 0, 0, 800, 76, example_rgb(16, 28, 46));
-  example_fill_rect(canvas, 0, 72, 800, 4, accent);
-  example_draw_text(canvas, 28, 19, "SERIAL TRANSFER",
-                    example_rgb(248, 250, 252), 4);
-  example_draw_text(canvas, 595, 18,
-                    app->is_sender ? "SENDER" : "RECEIVER", accent, 2);
-  example_draw_text(canvas, 595, 43, "COM1  115200  8N1", muted, 1);
-
-  example_fill_rect(canvas, 28, 102, 220, 304, panel);
-  example_stroke_rect(canvas, 28, 102, 220, 304, 2, border);
-  example_draw_text(canvas, 48, 122,
-                    app->is_sender ? "SOURCE SPRITE" : "INCOMING SPRITE",
-                    example_rgb(226, 232, 240), 2);
+  bool failed = app->phase == XFER_PHASE_FAILED;
+  bool complete = app->phase == XFER_PHASE_COMPLETE;
+  example_fill_rect(canvas, 0, 0, 800, 600, UI_DARK);
+  example_heading(canvas, "Serial Transfer", "A sprite, delivered one verified block at a time.", accent, true);
+  example_label(canvas, 544, 24, app->is_sender ? "Sender" : "Receiver", accent, 1);
+  example_dark_button(canvas, 680, 20, 96, 34, "Help  F1", false, xfer_over(app, 680, 20, 96, 34), true);
+  example_label(canvas, 28, 100, app->is_sender ? "Source sprite" : "Received sprite", UI_LIGHT, 1);
   xfer_draw_sprite(app, 58, 166, !app->is_sender);
-  example_draw_text(canvas, 58, 348, "16 X 16  INDEXED COLOR", muted, 1);
-  char crc_text[32];
-  uint32_t shown_crc = app->is_sender ? app->asset_crc32 : app->expected_crc32;
-  snprintf(crc_text, sizeof(crc_text), "CRC32 %08X", (unsigned)shown_crc);
-  example_draw_text(canvas, 58, 370, crc_text,
-                    app->metadata_received || app->is_sender ? accent : muted, 1);
-
-  example_fill_rect(canvas, 270, 102, 502, 304, panel);
-  example_stroke_rect(canvas, 270, 102, 502, 304, 2, border);
-  example_draw_text(canvas, 294, 124, "STOP-AND-WAIT ARQ",
-                    example_rgb(226, 232, 240), 2);
-  example_draw_text(canvas, 610, 128, "MAX FRAME 16 B", muted, 1);
-
-  example_fill_rect(canvas, 294, 164, 454, 48, example_rgb(14, 25, 41));
-  example_stroke_rect(canvas, 294, 164, 454, 48, 1, border);
-  example_draw_text(canvas, 312, 180, app->status,
-                    app->phase == XFER_PHASE_FAILED ? example_rgb(239, 100, 97)
-                                                    : accent, 2);
-
-  example_draw_text(canvas, 294, 236, "TRANSFER PROGRESS", muted, 1);
-  example_fill_rect(canvas, 294, 254, 454, 28, example_rgb(12, 22, 37));
-  example_fill_rect(canvas, 302, 262, (int)progress_width, 12, accent);
-  example_stroke_rect(canvas, 294, 254, 454, 28, 2, border);
-  char progress_text[48];
-  snprintf(progress_text, sizeof(progress_text), "%u / %u BYTES     %u%%",
-           (unsigned)progress, (unsigned)XFER_IMAGE_BYTES,
-           (unsigned)(progress * 100u / XFER_IMAGE_BYTES));
-  example_draw_text(canvas, 294, 294, progress_text,
-                    example_rgb(203, 213, 225), 1);
-
-  xfer_draw_block_ledger(app, 294, 324);
-  example_draw_text(canvas, 622, 330, "8 BYTE", muted, 1);
-  example_draw_text(canvas, 622, 346, "BLOCKS", muted, 1);
-  if (app->simulate_fault || app->simulate_bad_crc ||
-      app->simulate_payload_corruption ||
-      app->simulate_done_ack_loss || app->simulate_stall) {
-    const char *fault_label = app->simulate_fault
-                                  ? (app->fault_used ? "DROP USED" : "DROP ARMED")
-                              : app->simulate_bad_crc
-                                  ? "BAD CRC ARMED"
-                              : app->simulate_payload_corruption
-                                  ? (app->payload_corruption_used
-                                         ? "PAYLOAD FLIP USED"
-                                         : "PAYLOAD FLIP ARMED")
-                              : app->simulate_done_ack_loss
-                                  ? (app->done_ack_drop_used ? "ACK DROP USED"
-                                                             : "ACK DROP ARMED")
-                                  : "STALL ARMED";
-    example_draw_text(canvas, 622, 374,
-                      fault_label, example_rgb(244, 185, 66), 1);
+  example_label(canvas, 28, 348, "16 x 16 indexed color", UI_DIM, 1);
+  char line[128];
+  snprintf(line, sizeof(line), "CRC32  %08X", app->is_sender ? app->asset_crc32 : app->expected_crc32);
+  example_mono(canvas, 28, 380, line, UI_DIM);
+  const char *titles[] = {"Connecting to peer", "Preparing sprite", "Sending blocks", "Verifying delivery", "Transfer complete", "Transfer failed"};
+  example_label(canvas, 280, 100, (app->phase == XFER_PHASE_TRANSFERRING && !app->is_sender ? "Receiving blocks" : titles[app->phase]), failed ? 0xFFAB9A : UI_LIGHT, 2);
+  example_label(canvas, 282, 150, app->status, failed ? 0xFFAB9A : accent, 1);
+  const char *steps[] = {"Connect", "Prepare", "Transfer", "Verify"};
+  int stage = app->phase == XFER_PHASE_NEGOTIATING ? 0 : app->phase == XFER_PHASE_METADATA ? 1 : app->phase == XFER_PHASE_TRANSFERRING ? 2 : 3;
+  for (int step = 0; step < 4; step++) {
+    int x = 282 + step * 122;
+    example_fill_rect(canvas, x, 196, 108, 3, !failed && (step < stage || complete) ? accent : 0x34455A);
+    example_label(canvas, x, 208, steps[step], step == stage || complete ? UI_LIGHT : UI_DIM, 1);
   }
-
-  example_fill_rect(canvas, 28, 430, 744, 140, panel);
-  example_stroke_rect(canvas, 28, 430, 744, 140, 2, border);
-  example_draw_text(canvas, 48, 450, "PROTOCOL TELEMETRY",
-                    example_rgb(226, 232, 240), 2);
-
-  char telemetry[96];
-  snprintf(telemetry, sizeof(telemetry),
-           "SEQ TX %03u  EXPECT RX %03u    FRAMES TX %u  RX %u",
-           app->tx_sequence, app->rx_expected,
-           app->uart.frames_tx, app->uart.frames_rx);
-  example_draw_text(canvas, 48, 482, telemetry, muted, 1);
-  snprintf(telemetry, sizeof(telemetry),
-           "ACKED BLOCKS %02u    RETRIES %u    NACKS %u    DUPLICATES %u",
-           (unsigned)xfer_progress_blocks(app), app->retries,
-           app->nacks, app->duplicates);
-  example_draw_text(canvas, 48, 504, telemetry, muted, 1);
-  snprintf(telemetry, sizeof(telemetry),
-           "CRC8 ERRORS %u    LINE ERRORS %u    OUT OF ORDER %u",
-           app->uart.crc_errors, app->uart.line_errors, app->out_of_order);
-  example_draw_text(canvas, 48, 526, telemetry, muted, 1);
-
-  uint32_t pulse = (app->tick / 4u) % 16u;
-  int packet_x = 538 + (int)(pulse < 8u ? pulse : 15u - pulse) * 12;
-  example_fill_rect(canvas, 530, 548, 202, 3, border);
-  example_fill_rect(canvas, packet_x, 542, 12, 14,
-                    app->phase == XFER_PHASE_COMPLETE
-                        ? example_rgb(18, 165, 148)
-                        : example_rgb(244, 185, 66));
-  example_draw_text(canvas, 538, 520, "CRC8 FRAME", muted, 1);
+  example_round_rect(canvas, 282, 252, 490, 10, 5, 0x34455A);
+  if (progress) example_round_rect(canvas, 282, 252, (int)(progress * 490u / XFER_IMAGE_BYTES), 10, 5, failed ? 0xFFAB9A : accent);
+  snprintf(line, sizeof(line), "%u / %u bytes", progress, XFER_IMAGE_BYTES);
+  example_mono(canvas, 282, 276, line, UI_LIGHT);
+  snprintf(line, sizeof(line), "%u%%", progress * 100u / XFER_IMAGE_BYTES);
+  example_mono(canvas, 772 - (int)strlen(line) * 9, 276, line, accent);
+  snprintf(line, sizeof(line), "%s blocks  %u / %u", app->is_sender ? "Acknowledged" : "Received", xfer_progress_blocks(app), XFER_BLOCK_COUNT);
+  example_label(canvas, 282, 312, line, UI_LIGHT, 1);
+  xfer_draw_block_ledger(app, 282, 342);
+  snprintf(line, sizeof(line), "%u %s   %u NACKs", app->retries, app->retries == 1u ? "retry" : "retries", app->nacks);
+  example_label(canvas, 614, 342, line, UI_DIM, 1);
+  example_label(canvas, 614, 372, complete ? "CRC verified" : failed ? "Not verified" : "Checking each block", complete ? accent : UI_DIM, 1);
+  const char *notice = failed ? "Delivery failed. Restart the pair to try again." : complete ? "All bytes received and CRC32 matched." : app->retries ? "A block was retried. Delivery is continuing." : "Acknowledgements keep both peers in agreement.";
+  if (app->simulate_fault) notice = complete ? "Dropped frame recovered. All bytes verified." : app->retries ? "Dropped frame retried. Delivery is continuing." : app->fault_used ? "A frame was dropped. Waiting for a retry." : "Resilience demo: one data frame will be dropped.";
+  example_label(canvas, 282, 422, notice, failed ? 0xFFAB9A : UI_DIM, 1);
+  example_fill_rect(canvas, 28, 462, 744, 1, 0x354456);
+  snprintf(line, sizeof(line), "COM1  115200 baud  8N1     TX %u frames   RX %u frames", app->uart.frames_tx, app->uart.frames_rx);
+  example_label(canvas, 28, 480, line, UI_DIM, 1);
+  snprintf(line, sizeof(line), "CRC errors %u     Line errors %u     Duplicate blocks %u", app->uart.crc_errors, app->uart.line_errors, app->duplicates);
+  example_label(canvas, 28, 512, line, UI_DIM, 1);
+  example_dark_button(canvas, 28, 552, 184, 34, "Keep open  Space", app->keep_open, xfer_over(app, 28, 552, 184, 34), true);
+  example_label(canvas, 230, 560, app->keep_open ? "Stays open after delivery. Esc closes." : "Closes automatically after delivery.", UI_DIM, 1);
+  if (app->show_help) {
+    example_round_rect(canvas, 98, 140, 604, 322, 12, UI_PANEL);
+    example_label(canvas, 122, 156, "Transfer controls", UI_LIGHT, 2);
+    example_button(canvas, 588, 154, 100, 32, "Close  F1", false, xfer_over(app, 588, 154, 100, 32), true);
+    const char *lines[] = {"Transfer begins automatically when peers connect.", "Each block is acknowledged. Lost frames are retried.", "Space   Keep the result open after delivery", "Esc / Cmd or Ctrl + W   Close this peer", "F1 / Esc   Close help first", "Closing a peer before delivery cancels its transfer."};
+    for (int i = 0; i < 6; i++) example_label(canvas, 124, 218 + i * 34, lines[i], UI_DIM, 1);
+  }
+  if (app->mouse_ack) {
+    for (int row = 0; row < 14; row++) example_fill_rect(canvas, app->mouse_x, app->mouse_y + row, row < 10 ? row / 2 + 1 : 3, 1, UI_LIGHT);
+  }
 }
+
+static void xfer_handle_key(xfer_app_t *app, uint8_t byte) {
+  if (example_modifier_byte(&app->modifiers, byte)) { app->extended_key = false; return; }
+  if (byte == KBD_TWO_BYTE_PFX) { app->extended_key = true; return; }
+  if (app->extended_key) { app->extended_key = false; return; }
+  if (byte == ESC_BREAK) {
+    if (app->show_help) { app->show_help = false; return; }
+    if (app->phase != XFER_PHASE_COMPLETE) xfer_set_status(app, XFER_PHASE_FAILED, "TRANSFER CANCELLED ON THIS PEER");
+    app->running = false;
+    return;
+  }
+  if (byte & KBD_BREAK_BIT) return;
+  if (example_primary(&app->modifiers)) {
+    if (byte == 0x11u) {
+      if (app->phase != XFER_PHASE_COMPLETE) xfer_set_status(app, XFER_PHASE_FAILED, "TRANSFER CANCELLED ON THIS PEER");
+      app->running = false;
+    }
+    return;
+  }
+  if (byte == 0x3Bu) app->show_help = !app->show_help;
+  else if (!app->show_help && byte == 0x39u) app->keep_open = !app->keep_open;
+}
+
+static void xfer_service_input(xfer_app_t *app) {
+  for (int n = 0; n < 32; n++) {
+    uint8_t status = 0, byte = 0;
+    if (lcom_port_read8(KBC_ST_REG, &status) != LCOM_OK || !(status & KBC_ST_OBF)) return;
+    if (lcom_port_read8(KBC_OUT_BUF, &byte) != LCOM_OK) return;
+    if (status & KBC_ST_ERR) continue;
+    if (!(status & KBC_ST_AUX)) { xfer_handle_key(app, byte); continue; }
+    if (!app->mouse_ack && byte == MOUSE_ACK) { app->mouse_ack = true; continue; }
+    if (!app->mouse_index && !(byte & MOUSE_SYNC_BIT)) continue;
+    app->mouse_bytes[app->mouse_index++] = byte;
+    if (app->mouse_index < 3u) continue;
+    app->mouse_index = 0;
+    uint8_t flags = app->mouse_bytes[0];
+    if (flags & (BIT(6) | BIT(7))) continue;
+    int dx = (flags & BIT(4)) ? (int)app->mouse_bytes[1] - 256 : app->mouse_bytes[1];
+    int dy = (flags & BIT(5)) ? (int)app->mouse_bytes[2] - 256 : app->mouse_bytes[2];
+    app->mouse_x += dx; app->mouse_y -= dy;
+    if (app->mouse_x < 0) app->mouse_x = 0;
+    if (app->mouse_x > 799) app->mouse_x = 799;
+    if (app->mouse_y < 0) app->mouse_y = 0;
+    if (app->mouse_y > 599) app->mouse_y = 599;
+    bool pressed = (flags & BIT(0)) && !(app->mouse_buttons & BIT(0));
+    app->mouse_buttons = flags & 7u;
+    if (!pressed) continue;
+    if (app->show_help) {
+      if (xfer_over(app, 588, 154, 100, 32)) app->show_help = false;
+    } else if (xfer_over(app, 680, 20, 96, 34)) app->show_help = true;
+    else if (xfer_over(app, 28, 552, 184, 34)) app->keep_open = !app->keep_open;
+  }
+}
+
 
 static bool xfer_parse_role(int argc, char **argv, xfer_app_t *app) {
   const char *role = argc > 1 ? argv[1] : NULL;
@@ -985,6 +1010,7 @@ int main(int argc, char **argv) {
   }
   xfer_build_asset(&app);
   app.running = true;
+  app.mouse_x = 400; app.mouse_y = 300;
   xfer_set_status(&app, XFER_PHASE_NEGOTIATING, "SENDING HELLO");
 
   int result = 1;
@@ -1002,6 +1028,11 @@ int main(int argc, char **argv) {
   if (lcom_irq_subscribe(TIMER0_IRQ, 0, &app.timer_irq) != LCOM_OK) goto cleanup;
   app.timer_subscribed = true;
   if (xfer_uart_start(&app.uart) != LCOM_OK) goto cleanup;
+  if (lcom_irq_subscribe(KBC_IRQ, 0, &app.keyboard_irq) == LCOM_OK) app.keyboard_subscribed = true;
+  if (lcom_irq_subscribe(MOUSE_IRQ, 0, &app.mouse_irq) == LCOM_OK) {
+    app.mouse_subscribed = true;
+    app.mouse_reporting = lcom_port_write8(KBC_CMD_REG, KBC_CMD_WRITE_MOUSE) == LCOM_OK && lcom_port_write8(KBC_IN_BUF, MOUSE_CMD_ENABLE_DR) == LCOM_OK;
+  }
 
   xfer_render(&app);
   (void)lcom_vbe_present();
@@ -1011,6 +1042,11 @@ int main(int argc, char **argv) {
     if (lcom_event_wait(&event) != LCOM_OK) {
       xfer_set_status(&app, XFER_PHASE_FAILED, "EVENT WAIT FAILED");
       break;
+    }
+    if ((app.keyboard_subscribed && (event.irq_mask & app.keyboard_irq.mask)) || (app.mouse_subscribed && (event.irq_mask & app.mouse_irq.mask))) {
+      xfer_service_input(&app);
+      xfer_render(&app);
+      (void)lcom_vbe_present();
     }
     if ((event.irq_mask & app.uart.irq.mask) != 0u) xfer_uart_service(&app);
     if ((event.irq_mask & app.timer_irq.mask) != 0u) {
@@ -1056,6 +1092,12 @@ int main(int argc, char **argv) {
   }
 
 cleanup:
+  if (app.mouse_reporting) {
+    (void)lcom_port_write8(KBC_CMD_REG, KBC_CMD_WRITE_MOUSE);
+    (void)lcom_port_write8(KBC_IN_BUF, MOUSE_CMD_DISABLE_DR);
+  }
+  if (app.keyboard_subscribed) (void)lcom_irq_unsubscribe(&app.keyboard_irq);
+  if (app.mouse_subscribed) (void)lcom_irq_unsubscribe(&app.mouse_irq);
   xfer_uart_stop(&app.uart);
   if (app.timer_subscribed) (void)lcom_irq_unsubscribe(&app.timer_irq);
   if (app.framebuffer != NULL) {

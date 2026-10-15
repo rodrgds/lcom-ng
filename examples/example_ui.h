@@ -3,8 +3,11 @@
 
 #include <lcom/lcom.h>
 
+#include <stdbool.h>
 #include <stddef.h>
 #include <stdint.h>
+
+#include "example_font.h"
 
 typedef struct {
   uint8_t *fb;
@@ -165,6 +168,158 @@ static inline void example_draw_text(example_canvas_t *ctx, int x, int y, const 
       }
     }
   }
+}
+
+
+/* Shared UI primitives. Positions and hit targets stay in framebuffer pixels. */
+#define UI_BG 0xEEF0F2u
+#define UI_PAPER 0xFFFFFFu
+#define UI_INK 0x202C38u
+#define UI_MUTED 0x586878u
+#define UI_LINE 0xD3DCE2u
+#define UI_ACCENT 0x246B5Du
+#define UI_DARK 0x141D28u
+#define UI_PANEL 0x202C3Bu
+#define UI_LIGHT 0xEDF3F8u
+#define UI_DIM 0xABBDCEu
+
+static inline int example_label_width(const char *text, int scale) {
+  int width = 0;
+  for (; *text; text++) {
+    unsigned ch = (unsigned char)*text;
+    width += (scale == 2 ? example_bold_advance : example_ui_advance)[ch >= 32 && ch <= 126 ? ch - 32 : '?' - 32] * scale;
+  }
+  return width;
+}
+
+static inline void example_ink(example_canvas_t *ctx, int x, int y, uint32_t color, unsigned alpha) {
+  if (!alpha || !ctx->fb || x < 0 || y < 0 || x >= ctx->info.width || y >= ctx->info.height || ctx->info.bytes_per_pixel < 3) return;
+  uint8_t *px = ctx->fb + (uint32_t)y * ctx->info.pitch + (uint32_t)x * ctx->info.bytes_per_pixel;
+  for (unsigned channel = 0; channel < 3; channel++)
+    px[channel] = (uint8_t)((((color >> (channel * 8)) & 255) * alpha + px[channel] * (15 - alpha) + 7) / 15);
+  if (ctx->info.bytes_per_pixel >= 4) px[3] = 255;
+}
+
+static inline void example_label(example_canvas_t *ctx, int x, int y,
+                                  const char *text, uint32_t color, int scale) {
+  for (; *text; text++) {
+    unsigned ch = (unsigned char)*text;
+    unsigned index = ch >= 32 && ch <= 126 ? ch - 32 : '?' - 32;
+    if (scale == 2) {
+      for (int row = 0; row < 36; row++) for (int col = 0; col < 32; col++) {
+        unsigned packed = example_heading_pixels[index][row][col / 2];
+        unsigned alpha = (col & 1) ? packed & 15u : packed >> 4;
+        if (alpha) example_ink(ctx, x + col, y + row, color, alpha);
+      }
+      x += example_bold_advance[index] * 2;
+      continue;
+    }
+    for (int row = 0; row < 18; row++) {
+      uint64_t bits = example_ui_rows[index][row];
+      for (int col = 0; col < 16; col++) {
+        unsigned alpha = (unsigned)((bits >> ((15 - col) * 4)) & 15);
+        if (!alpha) continue;
+        for (int sy = 0; sy < scale; sy++) for (int sx = 0; sx < scale; sx++)
+          example_ink(ctx, x + col * scale + sx, y + row * scale + sy, color, alpha);
+      }
+    }
+    x += (scale == 2 ? example_bold_advance[index] : example_ui_advance[index]) * scale;
+  }
+}
+
+static inline void example_mono(example_canvas_t *ctx, int x, int y,
+                                 const char *text, uint32_t color) {
+  for (; *text; text++, x += 9) {
+    unsigned ch = (unsigned char)*text;
+    unsigned index = ch >= 32 && ch <= 126 ? ch - 32 : '?' - 32;
+    for (int row = 0; row < 18; row++) for (int col = 0; col < 9; col++)
+      example_ink(ctx, x + col, y + row, color,
+        (unsigned)((example_mono_rows[index][row] >> ((8 - col) * 4)) & 15));
+  }
+}
+
+static inline void example_round_rect(example_canvas_t *ctx, int x, int y,
+                                       int w, int h, int radius, uint32_t color) {
+  for (int row = 0; row < h; row++) {
+    int dy = row < radius ? radius - row - 1 : row >= h - radius ? row - (h - radius) : 0;
+    int inset = 0;
+    while (inset < radius && (radius - inset) * (radius - inset) + dy * dy > radius * radius) inset++;
+    example_fill_rect(ctx, x + inset, y + row, w - 2 * inset, 1, color);
+  }
+}
+
+static inline void example_button(example_canvas_t *ctx, int x, int y, int w, int h,
+                                   const char *label, bool active, bool hover, bool enabled) {
+  uint32_t fill = !enabled ? 0xDFE5E9 : active ? UI_ACCENT : hover ? 0xD2E5DF : 0xE5EBEF;
+  example_round_rect(ctx, x, y, w, h, 6, fill);
+  example_label(ctx, x + (w - example_label_width(label, 1)) / 2,
+                y + (h - 18) / 2, label, !enabled ? UI_MUTED : active ? UI_PAPER : UI_INK, 1);
+}
+
+static inline void example_heading(example_canvas_t *ctx, const char *title,
+                                    const char *subtitle, uint32_t accent, bool dark) {
+  example_fill_rect(ctx, 0, 0, 800, 76, dark ? UI_DARK : UI_PAPER);
+  example_fill_rect(ctx, 24, 74, 752, 1, dark ? 0x354456 : UI_LINE);
+  example_label(ctx, 24, 10, title, dark ? UI_LIGHT : UI_INK, 2);
+  example_label(ctx, 26, 46, subtitle, dark ? UI_DIM : UI_MUTED, 1);
+  example_round_rect(ctx, 752, 25, 16, 16, 4, accent);
+}
+
+static inline void example_dark_button(example_canvas_t *ctx, int x, int y, int w, int h,
+                                        const char *label, bool active, bool hover, bool enabled) {
+  uint32_t fill = !enabled ? 0x263340 : active ? 0x286D60 : hover ? 0x394E64 : UI_PANEL;
+  example_round_rect(ctx, x, y, w, h, 6, fill);
+  example_label(ctx, x + (w - example_label_width(label, 1)) / 2, y + (h - 18) / 2,
+                label, !enabled ? 0x8E9EAE : UI_LIGHT, 1);
+}
+
+static inline int example_number_width(const char *text) {
+  int width = 0;
+  while (*text++) width += 58;
+  return width;
+}
+
+static inline void example_number(example_canvas_t *ctx, int x, int y, const char *text,
+                                   uint32_t color) {
+  for (; *text; text++, x += 58) {
+    unsigned index = *text >= '0' && *text <= '9' ? (unsigned)(*text - '0')
+                   : *text == ':' ? 10 : *text == '.' ? 11 : *text == '-' ? 12 : 13;
+    for (int row = 0; row < 80; row++) for (int col = 0; col < 58; col++) {
+      unsigned packed = example_number_pixels[index][row][col / 2];
+      unsigned alpha = col % 2 ? packed & 15 : packed >> 4;
+      if (alpha) example_ink(ctx, x + col, y + row, color, alpha);
+    }
+  }
+}
+
+/* Preserve left/right modifiers independently, including PS/2 E0 Command keys. */
+typedef struct {
+  bool extended;
+  uint8_t ctrl;
+  uint8_t command;
+  uint8_t shift;
+} example_modifiers_t;
+
+static inline bool example_modifier_byte(example_modifiers_t *keys, uint8_t data) {
+  if (data == 0xE0) { keys->extended = true; return false; }
+  uint8_t code = data & 0x7F;
+  uint8_t *state = 0;
+  uint8_t bit = 1;
+  if (code == 0x1D) { state = &keys->ctrl; bit = keys->extended ? 2 : 1; }
+  else if (keys->extended && (code == 0x5B || code == 0x5C)) {
+    state = &keys->command; bit = code == 0x5B ? 1 : 2;
+  } else if (!keys->extended && (code == 0x2A || code == 0x36)) {
+    state = &keys->shift; bit = code == 0x2A ? 1 : 2;
+  }
+  keys->extended = false;
+  if (!state) return false;
+  if (data & 0x80) *state &= (uint8_t)~bit;
+  else *state |= bit;
+  return true;
+}
+
+static inline bool example_primary(const example_modifiers_t *keys) {
+  return keys->ctrl != 0 || keys->command != 0;
 }
 
 #endif

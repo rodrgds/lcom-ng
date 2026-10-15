@@ -21,6 +21,7 @@ typedef struct {
 void menu_init(menu_t *menu);
 void menu_set(menu_t *menu, const char *title, const char *primary, const char *secondary);
 menu_action_t menu_key(menu_t *menu, uint8_t scancode);
+menu_action_t menu_mouse(menu_t *menu, int x, int y, int clicked);
 void menu_render(menu_t *menu, draw_context_t *ctx, int score);
 
 #endif

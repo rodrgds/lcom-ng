@@ -30,6 +30,7 @@ struct RuntimeOptions {
   std::string script_path;
   std::string trace_path;
   std::string dump_frame_path;
+  bool dump_presented = false;
   std::string frame_dir_path;
   std::string video_path;
   uint32_t video_fps = 60;
@@ -104,6 +105,7 @@ private:
   uint32_t capture_frame_stride_ = 1;
   bool video_capture_enabled_ = true;
   bool artifact_failed_ = false;
+  bool frame_presented_ = false;
   std::string caption_text_;
   std::string caption_position_ = "bottom";
   uint64_t caption_until_tick_ = 0;

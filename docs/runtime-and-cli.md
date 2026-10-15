@@ -54,10 +54,12 @@ lcom-ng run --headless --audio-wav build/audio.wav -- build/examples/audio_tone
 | F9 | start replay recording |
 | F10 | stop recording and choose a save path |
 | F11 | toggle fullscreen |
-| Command / Right Ctrl | release captured mouse on macOS / other hosts |
+| Right Ctrl | release the captured mouse |
+| Command (macOS) | delivered to the app for desktop shortcuts |
 
-Runtime controls are intercepted by the host and are not delivered as guest
-PS/2 input.
+Function-key runtime controls and Right Ctrl are intercepted by the host.
+Command reaches the app as PS/2 `LGUI`/`RGUI`, including in recordings.
+Use `F3` to release the mouse on keyboards without Right Ctrl.
 
 ## Replay Scripts
 
@@ -120,3 +122,11 @@ lcom-ng completion bash > lcom-ng.bash
 lcom-ng completion zsh > _lcom-ng
 lcom-ng completion fish > lcom-ng.fish
 ```
+
+### Complete-frame screenshots
+
+`run`, `replay`, and `run-pair` accept `--dump-presented` alongside their frame
+dump options. This captures the last completed `lcom_vbe_present()` call,
+excluding guest writes made after it. It is useful when a finite tick guard
+stops an animation during its next repaint. Without this flag, frame dumps
+retain the current shared-memory contents for debugging unfinished rendering.

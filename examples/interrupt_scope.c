@@ -57,8 +57,10 @@ typedef struct {
   uint8_t rtc_second;
   bool rtc_valid;
   bool frozen;
+  bool show_help;
   bool uart_available;
   bool loopback_enabled;
+  example_modifiers_t modifiers;
   bool extended_key;
 } scope_state_t;
 
@@ -72,9 +74,7 @@ typedef struct {
   bool acknowledged;
 } scope_mouse_t;
 
-static const char *source_names[SOURCE_COUNT] = {
-    "PIT IRQ0", "KBD IRQ1", "MOUSE IRQ12", "UART IRQ4", "RTC POLL",
-};
+
 
 static const uint32_t source_colors[SOURCE_COUNT] = {
     0x6FD4FFu, 0xB69CFFu, 0xFFB866u, 0x61D9A9u, 0xFF7E9Du,
@@ -270,6 +270,12 @@ static void handle_mouse_action(scope_state_t *state, scope_mouse_t *mouse) {
   bool left_pressed = (mouse->buttons & BIT(0)) != 0 &&
                       (mouse->previous_buttons & BIT(0)) == 0;
   if (!left_pressed) return;
+  if (state->show_help) {
+    if (inside(mouse->x, mouse->y, 588, 154, 100, 32)) state->show_help = false;
+    return;
+  }
+  if (inside(mouse->x, mouse->y, 28, 202, 94, 28)) { clear_counters(state); return; }
+  if (inside(mouse->x, mouse->y, 664, 202, 106, 28)) { state->show_help = true; return; }
   if (inside(mouse->x, mouse->y, 572, 20, 90, 34)) {
     state->frozen = !state->frozen;
     log_event(state, state->frozen ? "RATE DISPLAY FROZEN" : "RATE DISPLAY LIVE");
@@ -285,6 +291,7 @@ static void handle_keyboard(scope_state_t *state, uint8_t data, bool *running) {
                           : ((data & KBD_BREAK_BIT) != 0 ? "KBD BREAK" : "KBD MAKE");
   log_event_hex(state, label, data);
 
+  if (example_modifier_byte(&state->modifiers, data)) { state->extended_key = false; return; }
   if (data == KBD_TWO_BYTE_PFX) {
     state->extended_key = true;
     return;
@@ -296,10 +303,14 @@ static void handle_keyboard(scope_state_t *state, uint8_t data, bool *running) {
     return;
   }
   if (data == ESC_BREAK) {
+    if (state->show_help) { state->show_help = false; return; }
     *running = false;
     return;
   }
   if (break_code) return;
+  if (example_primary(&state->modifiers)) { if (code == 0x11) *running = false; return; }
+  if (code == 0x3Bu) { state->show_help = !state->show_help; return; }
+  if (state->show_help) return;
   if (code == 0x39u) {
     state->frozen = !state->frozen;
     log_event(state, state->frozen ? "RATE DISPLAY FROZEN" : "RATE DISPLAY LIVE");
@@ -396,87 +407,48 @@ static void draw_cursor(example_canvas_t *canvas, const scope_mouse_t *mouse) {
   }
 }
 
-static void draw_header_button(example_canvas_t *canvas, int x, int width,
-                               const char *label, bool active, bool hover,
-                               uint32_t active_color) {
-  uint32_t fill = active ? active_color
-                         : (hover ? example_rgb(57, 67, 87)
-                                  : example_rgb(37, 44, 59));
-  example_fill_rect(canvas, x, 20, width, 34, fill);
-  example_stroke_rect(canvas, x, 20, width, 34, 1,
-                      hover ? example_rgb(143, 158, 187)
-                            : example_rgb(68, 78, 98));
-  uint32_t text_width = example_text_width(label, 1);
-  example_draw_text(canvas, x + (width - (int)text_width) / 2, 33, label,
-                    example_rgb(238, 241, 246), 1);
-}
-
 static void draw_source_card(example_canvas_t *canvas, const scope_state_t *state,
                              source_kind_t source, int x) {
-  const int width = 142;
-  uint32_t color = source_colors[source];
-  example_fill_rect(canvas, x, 88, width, 94, example_rgb(28, 35, 49));
-  example_stroke_rect(canvas, x, 88, width, 94, 1, example_rgb(57, 68, 88));
-  example_fill_rect(canvas, x + 12, 100, 10, 10, color);
-  example_draw_text(canvas, x + 30, 101, source_names[source],
-                    example_rgb(169, 181, 203), 1);
-  char rate[24];
-  char total[28];
-  uint32_t completed_rate = state->rate[source];
-  if (state->history_count != 0u) {
-    uint8_t latest = (uint8_t)((state->history_head + SCOPE_HISTORY - 1u) %
-                               SCOPE_HISTORY);
-    completed_rate = state->history[source][latest];
-  }
-  snprintf(rate, sizeof(rate), "%u / SEC", completed_rate);
-  snprintf(total, sizeof(total), "TOTAL %llu",
-           (unsigned long long)state->total[source]);
-  example_draw_text(canvas, x + 12, 127, rate, example_rgb(240, 243, 247), 2);
-  example_draw_text(canvas, x + 12, 158, total, color, 1);
+  uint32_t rate = state->rate[source];
+  if (state->history_count) rate = state->history[source][(state->history_head + SCOPE_HISTORY - 1u) % SCOPE_HISTORY];
+  example_round_rect(canvas, x, 92, 142, 94, 6, UI_PANEL);
+  const char *names[] = {"Timer", "Keyboard", "Mouse", "UART", "RTC"};
+  example_fill_rect(canvas, x + 12, 106, 8, 8, source_colors[source]);
+  example_label(canvas, x + 28, 100, names[source], UI_DIM, 1);
+  char value[32]; snprintf(value, sizeof(value), "%u / s", rate);
+  example_label(canvas, x + 12, 124, value, UI_LIGHT, 2);
+  snprintf(value, sizeof(value), "Total %llu", (unsigned long long)state->total[source]);
+  example_label(canvas, x + 12, 162, value, UI_DIM, 1);
 }
 
-static void draw_rate_graph(example_canvas_t *canvas, const scope_state_t *state) {
-  const int graph_x = 28;
-  const int graph_y = 214;
-  const int graph_w = 458;
-  const int graph_h = 136;
-  example_fill_rect(canvas, graph_x, graph_y, graph_w, graph_h,
-                    example_rgb(20, 27, 39));
-  example_stroke_rect(canvas, graph_x, graph_y, graph_w, graph_h, 1,
-                      example_rgb(55, 67, 87));
-  for (int row = 1; row < 4; row++) {
-    int y = graph_y + row * graph_h / 4;
-    example_fill_rect(canvas, graph_x + 1, y, graph_w - 2, 1,
-                      example_rgb(35, 45, 61));
-  }
-  example_draw_text(canvas, graph_x + 14, graph_y + 12,
-                    state->frozen ? "IRQ RATE HISTORY - DISPLAY FROZEN"
-                                  : "IRQ RATE HISTORY - 1 SECOND WINDOWS",
-                    state->frozen ? example_rgb(255, 184, 102)
-                                  : example_rgb(171, 184, 205),
-                    1);
 
+static void draw_rate_graph(example_canvas_t *canvas, const scope_state_t *state) {
+  const char *names[] = {"Timer", "Keyboard", "Mouse", "UART", "RTC"};
+  const int graph_x = 126, graph_y = 240, graph_w = 642;
+  example_label(canvas, 144, 206, state->frozen ? "History paused. Device counters remain live." : "60 seconds of activity. Each lane uses its own scale.", state->frozen ? 0xFFB866 : UI_DIM, 1);
   uint8_t count = state->history_count;
-  uint8_t oldest = count < SCOPE_HISTORY
-                       ? 0
-                       : state->history_head;
-  for (uint8_t sample = 0; sample < count; sample++) {
-    uint8_t index = (uint8_t)((oldest + sample) % SCOPE_HISTORY);
-    int x = graph_x + 16 + (SCOPE_HISTORY - count + sample) * 7;
-    for (uint8_t source = 0; source < SOURCE_COUNT; source++) {
-      uint32_t value = state->history[source][index];
-      uint32_t scale = source == SOURCE_TIMER ? 60u : 12u;
-      int height = (int)(value * 78u / scale);
-      if (height > 78) height = 78;
-      if (height < 1 && value != 0) height = 1;
-      example_fill_rect(canvas, x + source, graph_y + 119 - height, 1, height,
-                        source_colors[source]);
+  uint8_t oldest = count < SCOPE_HISTORY ? 0 : state->history_head;
+  for (uint8_t source = 0; source < SOURCE_COUNT; source++) {
+    int y = graph_y + source * 27;
+    example_label(canvas, 28, y + 2, names[source], source_colors[source], 1);
+    example_fill_rect(canvas, graph_x, y, graph_w, 24, 0x1A2533);
+    for (int second = 0; second < 60; second += 10)
+      example_fill_rect(canvas, graph_x + second * 10, y, 1, 24, 0x2B3A4B);
+    uint32_t maximum = source == SOURCE_TIMER ? 60u : 1u;
+    for (uint8_t sample = 0; sample < count; sample++) {
+      uint32_t value = state->history[source][(oldest + sample) % SCOPE_HISTORY];
+      if (value > maximum) maximum = value;
     }
+    for (uint8_t sample = 0; sample < count; sample++) {
+      uint32_t value = state->history[source][(oldest + sample) % SCOPE_HISTORY];
+      int height = value ? 2 + (int)(value * 19u / maximum) : 1;
+      example_fill_rect(canvas, graph_x + (SCOPE_HISTORY - count + sample) * 10 + 1, y + 23 - height, 8, height, value ? source_colors[source] : 0x455568);
+    }
+    char top[20]; snprintf(top, sizeof(top), "%u", maximum);
+    example_label(canvas, 766 - example_label_width(top, 1), y + 3, top, UI_DIM, 1);
   }
-  example_draw_text(canvas, graph_x + 14, graph_y + 119, "PAST",
-                    example_rgb(105, 119, 143), 1);
-  example_draw_text(canvas, graph_x + graph_w - 52, graph_y + 119, "NOW",
-                    example_rgb(105, 119, 143), 1);
+  example_label(canvas, graph_x, 378, "60s ago", UI_DIM, 1);
+  example_label(canvas, 738, 378, "now", UI_DIM, 1);
 }
 
 static void format_byte_ring(char *out, size_t out_size, const uint8_t *values,
@@ -484,7 +456,7 @@ static void format_byte_ring(char *out, size_t out_size, const uint8_t *values,
   size_t used = 0;
   out[0] = 0;
   uint8_t oldest = count < SCOPE_BYTE_HISTORY ? 0 : head;
-  uint8_t shown = count > 12u ? 12u : count;
+  uint8_t shown = count > 8u ? 8u : count;
   uint8_t skipped = (uint8_t)(count - shown);
   for (uint8_t i = 0; i < shown; i++) {
     uint8_t index = (uint8_t)((oldest + skipped + i) % SCOPE_BYTE_HISTORY);
@@ -496,121 +468,66 @@ static void format_byte_ring(char *out, size_t out_size, const uint8_t *values,
 }
 
 static void draw_raw_panel(example_canvas_t *canvas, const scope_state_t *state) {
-  const int x = 506;
-  const int y = 214;
-  const int width = 266;
-  const int height = 330;
-  example_fill_rect(canvas, x, y, width, height, example_rgb(24, 31, 44));
-  example_stroke_rect(canvas, x, y, width, height, 1, example_rgb(55, 67, 87));
-  example_draw_text(canvas, x + 16, y + 14, "RAW DEVICE BYTES",
-                    example_rgb(204, 211, 224), 2);
-
-  char bytes[96];
-  example_draw_text(canvas, x + 16, y + 50, "KEYBOARD SCANCODES",
-                    source_colors[SOURCE_KEYBOARD], 1);
-  format_byte_ring(bytes, sizeof(bytes), state->scancodes,
-                   state->scancode_head, state->scancode_count);
-  example_draw_text(canvas, x + 16, y + 70,
-                    bytes[0] == 0 ? "--" : bytes,
-                    example_rgb(220, 224, 232), 1);
-
-  example_draw_text(canvas, x + 16, y + 108, "PS/2 PACKET",
-                    source_colors[SOURCE_MOUSE], 1);
-  snprintf(bytes, sizeof(bytes), "%02X %02X %02X   PACKETS %u",
-           state->mouse_last[0], state->mouse_last[1], state->mouse_last[2],
-           state->mouse_packets);
-  example_draw_text(canvas, x + 16, y + 128, bytes,
-                    example_rgb(220, 224, 232), 1);
-
-  example_draw_text(canvas, x + 16, y + 166, "UART RX BYTES",
-                    source_colors[SOURCE_UART], 1);
-  format_byte_ring(bytes, sizeof(bytes), state->uart_last,
-                   state->uart_head, state->uart_count);
-  example_draw_text(canvas, x + 16, y + 186,
-                    bytes[0] == 0 ? "--" : bytes,
-                    example_rgb(220, 224, 232), 1);
-  snprintf(bytes, sizeof(bytes), "TX %u  RX %u  ERR %u",
-           state->uart_tx, state->uart_rx, state->uart_errors);
-  example_draw_text(canvas, x + 16, y + 212, bytes,
-                    example_rgb(145, 159, 183), 1);
-
-  example_draw_text(canvas, x + 16, y + 250, "RTC STATUS",
-                    source_colors[SOURCE_RTC], 1);
-  if (state->rtc_valid) {
-    snprintf(bytes, sizeof(bytes), "%02u:%02u:%02u  POLLS %u",
-             state->rtc_hour, state->rtc_minute, state->rtc_second,
-             state->rtc_polls);
-  } else {
-    snprintf(bytes, sizeof(bytes), "READ ERROR  POLLS %u", state->rtc_polls);
-  }
-  example_draw_text(canvas, x + 16, y + 270, bytes,
-                    example_rgb(220, 224, 232), 1);
-  example_draw_text(canvas, x + 16, y + 298, "IRQ8 SUBSCRIBED - POLL FALLBACK",
-                    example_rgb(125, 139, 163), 1);
+  example_fill_rect(canvas, 486, 412, 286, 142, UI_PANEL);
+  example_label(canvas, 500, 420, "Device bytes", UI_LIGHT, 1);
+  char bytes[96], line[96];
+  format_byte_ring(bytes, sizeof(bytes), state->scancodes, state->scancode_head, state->scancode_count);
+  snprintf(line, sizeof(line), "KBD  %s", bytes[0] ? bytes : "Waiting for a key");
+  example_draw_text(canvas, 500, 450, line, source_colors[SOURCE_KEYBOARD], 1);
+  snprintf(line, sizeof(line), "PS/2 %02X %02X %02X   %u packets", state->mouse_last[0], state->mouse_last[1], state->mouse_last[2], state->mouse_packets);
+  example_draw_text(canvas, 500, 472, line, source_colors[SOURCE_MOUSE], 1);
+  format_byte_ring(bytes, sizeof(bytes), state->uart_last, state->uart_head, state->uart_count);
+  snprintf(line, sizeof(line), "UART %s", state->uart_available ? (bytes[0] ? bytes : "Waiting for bytes") : "Unavailable");
+  example_draw_text(canvas, 500, 494, line, source_colors[SOURCE_UART], 1);
+  snprintf(line, sizeof(line), "TX %u  RX %u  errors %u", state->uart_tx, state->uart_rx, state->uart_errors);
+  example_draw_text(canvas, 500, 516, line, UI_DIM, 1);
+  if (state->rtc_valid) snprintf(line, sizeof(line), "RTC %02u:%02u:%02u  polls %u", state->rtc_hour, state->rtc_minute, state->rtc_second, state->rtc_polls);
+  else snprintf(line, sizeof(line), "RTC read failed. Polling each second.");
+  example_draw_text(canvas, 500, 538, line, source_colors[SOURCE_RTC], 1);
 }
 
 static void draw_event_log(example_canvas_t *canvas, const scope_state_t *state) {
-  const int x = 28;
-  const int y = 368;
-  const int width = 458;
-  const int height = 176;
-  example_fill_rect(canvas, x, y, width, height, example_rgb(20, 27, 39));
-  example_stroke_rect(canvas, x, y, width, height, 1, example_rgb(55, 67, 87));
-  example_draw_text(canvas, x + 14, y + 12, "RECENT INTERRUPT EVENTS",
-                    example_rgb(171, 184, 205), 1);
-  uint8_t oldest = state->event_count < SCOPE_EVENT_ROWS
-                       ? 0
-                       : state->event_head;
-  for (uint8_t row = 0; row < state->event_count; row++) {
-    uint8_t index = (uint8_t)((oldest + row) % SCOPE_EVENT_ROWS);
-    example_draw_text(canvas, x + 14, y + 34 + row * 13,
-                      state->events[index],
-                      row + 1u == state->event_count
-                          ? example_rgb(226, 231, 239)
-                          : example_rgb(128, 143, 167),
-                      1);
+  example_fill_rect(canvas, 28, 412, 442, 142, UI_PANEL);
+  example_label(canvas, 42, 420, "Recent events", UI_LIGHT, 1);
+  uint8_t oldest = state->event_count < SCOPE_EVENT_ROWS ? 0 : state->event_head;
+  uint8_t shown = state->event_count < 5 ? state->event_count : 5;
+  if (!shown) example_label(canvas, 42, 452, "Move the mouse or press a key to see activity.", UI_DIM, 1);
+  for (uint8_t row = 0; row < shown; row++) {
+    uint8_t index = (oldest + state->event_count - shown + row) % SCOPE_EVENT_ROWS;
+    example_label(canvas, 42, 448 + row * 20, state->events[index], row + 1 == shown ? UI_LIGHT : UI_DIM, 1);
   }
 }
+
 
 static void draw_scope(example_canvas_t *canvas, const scope_state_t *state,
                        const scope_mouse_t *mouse, bool uart_available,
                        bool rtc_irq_available) {
   example_fill_rect(canvas, 0, 0, 800, 600, example_rgb(14, 19, 28));
-  for (int x = 0; x < 800; x += 20) {
-    example_fill_rect(canvas, x, 0, 1, 600, example_rgb(18, 24, 34));
-  }
-  for (int y = 0; y < 600; y += 20) {
-    example_fill_rect(canvas, 0, y, 800, 1, example_rgb(18, 24, 34));
-  }
-  example_fill_rect(canvas, 0, 0, 800, 72, example_rgb(22, 29, 41));
-  example_fill_rect(canvas, 0, 70, 800, 2, example_rgb(111, 212, 255));
-  example_draw_text(canvas, 26, 16, "INTERRUPT SCOPE",
-                    example_rgb(238, 242, 248), 3);
-  char subtitle[96];
-  snprintf(subtitle, sizeof(subtitle), "LIVE DEVICE MONITOR  TICK %llu  UART %s  RTC IRQ8 %s",
-           (unsigned long long)state->ticks,
-           uart_available ? "ONLINE" : "OFFLINE",
-           rtc_irq_available ? "SUBSCRIBED" : "UNAVAILABLE");
-  example_draw_text(canvas, 28, 48, subtitle, example_rgb(133, 149, 175), 1);
-  draw_header_button(canvas, 572, 90, state->frozen ? "UNFREEZE" : "FREEZE",
-                     state->frozen,
-                     inside(mouse->x, mouse->y, 572, 20, 90, 34),
-                     example_rgb(159, 105, 61));
-  draw_header_button(canvas, 672, 98, state->loopback_enabled ? "LOOP ON" : "LOOP OFF",
-                     state->loopback_enabled,
-                     inside(mouse->x, mouse->y, 672, 20, 98, 34),
-                     example_rgb(45, 134, 105));
+  (void)rtc_irq_available;
+  example_heading(canvas, "Interrupt Scope", uart_available ? "Live devices. RTC time is polled each second." : "UART unavailable. Other devices remain active.", 0x6FD4FF, true);
+  example_dark_button(canvas, 572, 20, 90, 34, state->frozen ? "Resume" : "Freeze",
+                     state->frozen, inside(mouse->x, mouse->y, 572, 20, 90, 34), true);
+  example_dark_button(canvas, 672, 20, 98, 34, state->loopback_enabled ? "Loop on" : "Loop off",
+                     state->loopback_enabled, inside(mouse->x, mouse->y, 672, 20, 98, 34), uart_available);
 
   for (uint8_t source = 0; source < SOURCE_COUNT; source++) {
     draw_source_card(canvas, state, (source_kind_t)source, 28 + source * 150);
   }
+  /* Clear and help sit with the history rather than the live controls. */
+  example_dark_button(canvas, 28, 202, 94, 28, "Clear  C", false, inside(mouse->x, mouse->y, 28, 202, 94, 28), true);
+  example_dark_button(canvas, 664, 202, 106, 28, "Help  F1", false, inside(mouse->x, mouse->y, 664, 202, 106, 28), true);
   draw_rate_graph(canvas, state);
   draw_event_log(canvas, state);
   draw_raw_panel(canvas, state);
   example_fill_rect(canvas, 0, 566, 800, 34, example_rgb(10, 14, 21));
-  example_draw_text(canvas, 22, 578,
-                    "SPACE FREEZE  C CLEAR  L UART LOOPBACK  MOUSE BUTTONS  ESC EXIT",
-                    example_rgb(136, 151, 177), 1);
+  example_label(canvas, 24, 574, "Space  Pause history     C  Clear     L  Loopback     F1  Help     Esc  Close", UI_DIM, 1);
+  if (state->show_help) {
+    example_round_rect(canvas, 98, 140, 604, 320, 12, UI_DARK);
+    example_label(canvas, 122, 156, "Scope shortcuts", UI_LIGHT, 2);
+    example_dark_button(canvas, 588, 154, 100, 32, "Close  F1", false, inside(mouse->x, mouse->y, 588, 154, 100, 32), true);
+    const char *lines[] = {"Space   Freeze or resume the rate history", "C   Clear counters and rate history", "L   Toggle the COM1 internal loopback probe", "Move or type   Inspect PS/2 bytes and interrupts", "RTC is polled once a second. Counters stay live.", "F1 / Esc   Close help. Esc again leaves."};
+    for (int i = 0; i < 6; i++) example_label(canvas, 124, 218 + i * 34, lines[i], UI_DIM, 1);
+  }
   draw_cursor(canvas, mouse);
 }
 

@@ -86,3 +86,11 @@ lcom-ng bundle . --program build/examples/flappy_bird --name flappy-bird
 
 The default bundle is executable on the current host platform. Bundling packages
 existing binaries; it is not cross-compilation.
+
+### Complete-frame screenshots
+
+`run`, `replay`, and `run-pair` accept `--dump-presented` alongside their frame
+dump options. This captures the last completed `lcom_vbe_present()` call,
+excluding guest writes made after it. It is useful when a finite tick guard
+stops an animation during its next repaint. Without this flag, frame dumps
+retain the current shared-memory contents for debugging unfinished rendering.

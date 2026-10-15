@@ -406,3 +406,24 @@ int lcom_ac97_get_buffer(lcom_ac97_buffer_info_t *out) {
   out->bits_per_sample = reply.bits_per_sample;
   return LCOM_OK;
 }
+
+int lcom_clipboard_set_text(const char *text) {
+  if (text == NULL) return LCOM_ERR;
+  size_t length = strnlen(text, sizeof(((lcom_clipboard_reply_t *)0)->text));
+  if (length >= sizeof(((lcom_clipboard_reply_t *)0)->text)) return LCOM_ERR;
+  lcom_status_reply_t reply;
+  if (request_reply(LCOM_MSG_CLIPBOARD_SET, text, (uint32_t)length + 1,
+                    LCOM_MSG_STATUS, &reply, sizeof(reply), NULL) != 0) return LCOM_ERR;
+  return reply.status == 0 ? LCOM_OK : LCOM_ERR;
+}
+
+int lcom_clipboard_get_text(char *buffer, size_t capacity) {
+  if (buffer == NULL || capacity == 0) return LCOM_ERR;
+  lcom_clipboard_reply_t reply;
+  if (request_reply(LCOM_MSG_CLIPBOARD_GET, NULL, 0, LCOM_MSG_CLIPBOARD_REPLY,
+                    &reply, sizeof(reply), NULL) != 0 || reply.status != 0) return LCOM_ERR;
+  size_t length = strnlen(reply.text, sizeof(reply.text));
+  if (length >= sizeof(reply.text) || length >= capacity) return LCOM_ERR;
+  memcpy(buffer, reply.text, length + 1);
+  return LCOM_OK;
+}

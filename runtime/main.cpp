@@ -56,6 +56,7 @@ static void configureCliApp(CLI::App &app) {
   run->add_option("--video", "Render presented frames to MP4 with ffmpeg");
   run->add_option("--video-fps", "FPS for --video output");
   run->add_option("--rtc", "Initial RTC date/time, e.g. 2026-06-16T12:00:00");
+  run->add_flag("--dump-presented", "Dump the last presented frame, excluding unfinished guest writes");
   run->add_option("--max-ticks", "Stop after this many virtual ticks");
   run->add_option("--timeout", "Stop after positive host seconds, exit 124 (default: disabled)");
 
@@ -73,6 +74,7 @@ static void configureCliApp(CLI::App &app) {
   run_pair->add_option("--right-script", "Inject script into the right program");
   run_pair->add_option("--left-dump-frame", "Dump the left framebuffer as PPM");
   run_pair->add_option("--right-dump-frame", "Dump the right framebuffer as PPM");
+  run_pair->add_flag("--dump-presented", "Dump the last presented frame, excluding unfinished guest writes");
   run_pair->add_option("--max-ticks", "Stop after this many virtual ticks");
   run_pair->add_option("--timeout", "Stop after positive host seconds, exit 124 (default: disabled)");
   run_pair->add_flag("--right", "Separate the right program from the left program");
@@ -95,6 +97,7 @@ static void configureCliApp(CLI::App &app) {
   replay->add_option("--video", "Render presented frames to MP4 with ffmpeg");
   replay->add_option("--video-fps", "FPS for --video output");
   replay->add_option("--rtc", "Initial RTC date/time, e.g. 2026-06-16T12:00:00");
+  replay->add_flag("--dump-presented", "Dump the last presented frame, excluding unfinished guest writes");
   replay->add_option("--max-ticks", "Stop after this many virtual ticks");
   replay->add_option("--timeout", "Stop after positive host seconds, exit 124 (default: disabled)");
 
@@ -250,11 +253,11 @@ static int completionScript(const std::string &shell) {
   const char *run_opts =
       "--headless --display --audio --audio-wav --realtime --no-realtime --fullscreen "
       "--scale --integer-scale --script --trace --dump-frame --frame-dir --video --video-fps "
-      "--rtc --max-ticks --timeout";
+      "--rtc --dump-presented --max-ticks --timeout";
   const char *replay_opts =
       "--headless --display --audio --audio-wav --realtime --no-realtime --fullscreen "
       "--scale --integer-scale --trace --dump-frame --frame-dir --video --video-fps "
-      "--rtc --max-ticks --timeout";
+      "--rtc --dump-presented --max-ticks --timeout";
   const char *bundle_opts =
       "--program --name --output --format --script --display --audio --headless --realtime "
       "--no-realtime --dir --single-file";
@@ -273,7 +276,7 @@ static int completionScript(const std::string &shell) {
         << "  case \"$cmd\" in\n"
         << "    run) COMPREPLY=( $(compgen -W \"" << run_opts << "\" -- \"$cur\") ) ;;\n"
         << "    replay) COMPREPLY=( $(compgen -W \"" << replay_opts << "\" -- \"$cur\") ) ;;\n"
-        << "    run-pair) COMPREPLY=( $(compgen -W \"--headless --display --realtime --no-realtime --fullscreen --scale --integer-scale --left-script --right-script --left-dump-frame --right-dump-frame --max-ticks --timeout --right\" -- \"$cur\") ) ;;\n"
+        << "    run-pair) COMPREPLY=( $(compgen -W \"--headless --display --realtime --no-realtime --fullscreen --scale --integer-scale --left-script --right-script --left-dump-frame --right-dump-frame --dump-presented --max-ticks --timeout --right\" -- \"$cur\") ) ;;\n"
         << "    setup) COMPREPLY=( $(compgen -W \"" << setup_opts << "\" -- \"$cur\") ) ;;\n"
         << "    test) COMPREPLY=( $(compgen -W \"" << lab_names << " " << test_opts << "\" -- \"$cur\") ) ;;\n"
         << "    bundle) COMPREPLY=( $(compgen -W \"" << bundle_opts << "\" -- \"$cur\") ) ;;\n"
@@ -292,9 +295,9 @@ static int completionScript(const std::string &shell) {
         << "  commands=(run run-pair replay setup test bundle compat lab docs completion help)\n"
         << "  if (( CURRENT == 2 )); then _describe 'command' commands; return; fi\n"
         << "  case $words[2] in\n"
-        << "    run) _arguments '--headless' '--display[backend]:' '--audio[backend]:' '--audio-wav[file]:file:_files' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--script[file]:file:_files' '--trace[file]:file:_files' '--dump-frame[file]:file:_files' '--frame-dir[dir]:dir:_files -/' '--video[file]:file:_files' '--video-fps[n]:' '--rtc[iso-time]:' '--max-ticks[n]:' '--timeout[host seconds]:' '*::program:_files' ;;\n"
-        << "    replay) _arguments '--headless' '--display[backend]:' '--audio[backend]:' '--audio-wav[file]:file:_files' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--trace[file]:file:_files' '--dump-frame[file]:file:_files' '--frame-dir[dir]:dir:_files -/' '--video[file]:file:_files' '--video-fps[n]:' '--rtc[iso-time]:' '--max-ticks[n]:' '--timeout[host seconds]:' '1:script:_files' '*::program:_files' ;;\n"
-        << "    run-pair) _arguments '--headless' '--display[backend]:' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--left-script[file]:file:_files' '--right-script[file]:file:_files' '--left-dump-frame[file]:file:_files' '--right-dump-frame[file]:file:_files' '--max-ticks[n]:' '--timeout[host seconds]:' '--right' '*::program:_files' ;;\n"
+        << "    run) _arguments '--headless' '--display[backend]:' '--audio[backend]:' '--audio-wav[file]:file:_files' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--script[file]:file:_files' '--trace[file]:file:_files' '--dump-frame[file]:file:_files' '--frame-dir[dir]:dir:_files -/' '--video[file]:file:_files' '--video-fps[n]:' '--rtc[iso-time]:' '--dump-presented' '--max-ticks[n]:' '--timeout[host seconds]:' '*::program:_files' ;;\n"
+        << "    replay) _arguments '--headless' '--display[backend]:' '--audio[backend]:' '--audio-wav[file]:file:_files' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--trace[file]:file:_files' '--dump-frame[file]:file:_files' '--frame-dir[dir]:dir:_files -/' '--video[file]:file:_files' '--video-fps[n]:' '--rtc[iso-time]:' '--dump-presented' '--max-ticks[n]:' '--timeout[host seconds]:' '1:script:_files' '*::program:_files' ;;\n"
+        << "    run-pair) _arguments '--headless' '--display[backend]:' '--realtime' '--no-realtime' '--fullscreen' '--scale[n]:' '--integer-scale' '--left-script[file]:file:_files' '--right-script[file]:file:_files' '--left-dump-frame[file]:file:_files' '--right-dump-frame[file]:file:_files' '--dump-presented' '--max-ticks[n]:' '--timeout[host seconds]:' '--right' '*::program:_files' ;;\n"
         << "    setup) _arguments '--force' '1:project-dir:_files -/' ;;\n"
         << "    test) _arguments '--project[dir]:dir:_files -/' '--keep-build' '1:lab:(rtc timer kbd mouse graphics audio uart lab1 lab2 lab3 lab4 lab5 lab6 lab7)' ;;\n"
         << "    bundle) _arguments '--program[student binary]:file:_files' '--name[name]:' '--output[path]:file:_files' '--format[format]:(single dir)' '--script[script]:file:_files' '--display[backend]:' '--audio[backend]:' '--headless' '--realtime' '--no-realtime' '--dir' '--single-file' ;;\n"
@@ -308,6 +311,7 @@ static int completionScript(const std::string &shell) {
   if (shell == "fish") {
     std::cout
         << "complete -c lcom-ng -f -n '__fish_use_subcommand' -a '" << commands << "'\n"
+        << "complete -c lcom-ng -n '__fish_seen_subcommand_from run run-pair replay' -l dump-presented\n"
         << "complete -c lcom-ng -n '__fish_seen_subcommand_from run replay' -l display -r\n"
         << "complete -c lcom-ng -n '__fish_seen_subcommand_from run replay' -l audio -r\n"
         << "complete -c lcom-ng -n '__fish_seen_subcommand_from run replay' -l realtime\n"
@@ -438,6 +442,8 @@ static bool parseRun(int argc, char **argv, int start, RuntimeOptions &opts) {
       if (!parsePositiveInteger(argc, argv, i, arg, opts.video_fps)) return false;
     } else if (arg == "--rtc" && i + 1 < argc) {
       opts.rtc_time = argv[++i];
+    } else if (arg == "--dump-presented") {
+      opts.dump_presented = true;
     } else if (arg == "--max-ticks") {
       if (!parsePositiveInteger(argc, argv, i, arg, opts.max_ticks)) return false;
     } else if (arg == "--timeout") {
@@ -501,6 +507,8 @@ static bool parseReplay(int argc, char **argv, int start, RuntimeOptions &opts) 
       if (!parsePositiveInteger(argc, argv, i, arg, opts.video_fps)) return false;
     } else if (arg == "--rtc" && i + 1 < argc) {
       opts.rtc_time = argv[++i];
+    } else if (arg == "--dump-presented") {
+      opts.dump_presented = true;
     } else if (arg == "--max-ticks") {
       if (!parsePositiveInteger(argc, argv, i, arg, opts.max_ticks)) return false;
     } else if (arg == "--timeout") {
@@ -559,6 +567,8 @@ static bool parseRunPair(int argc, char **argv, int start, PairRuntimeOptions &o
       opts.left_dump_frame_path = argv[++i];
     } else if (arg == "--right-dump-frame" && i + 1 < argc) {
       opts.right_dump_frame_path = argv[++i];
+    } else if (arg == "--dump-presented") {
+      opts.dump_presented = true;
     } else if (arg == "--max-ticks") {
       if (!parsePositiveInteger(argc, argv, i, arg, opts.max_ticks)) return false;
     } else if (arg == "--timeout") {

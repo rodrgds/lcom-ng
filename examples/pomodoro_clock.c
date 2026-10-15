@@ -45,6 +45,7 @@ typedef struct {
   uint32_t packets;
   bool command_sent;
   bool acknowledged;
+  bool visible;
 } clock_mouse_t;
 
 typedef struct {
@@ -65,6 +66,8 @@ typedef struct {
   rtc_snapshot_t rtc;
   bool running;
   bool demo_lengths;
+  bool show_help;
+  example_modifiers_t modifiers;
   bool extended_key;
   char status[40];
 } clock_state_t;
@@ -207,18 +210,18 @@ static void set_status(clock_state_t *state, const char *status) {
 static void reset_session(clock_state_t *state) {
   state->active_ticks = 0;
   state->running = false;
-  set_status(state, "SESSION RESET");
+  set_status(state, "Session reset. Ready when you are.");
 }
 
 static void toggle_running(clock_state_t *state) {
   state->running = !state->running;
-  set_status(state, state->running ? "MONOTONIC TIMER RUNNING" : "MONOTONIC TIMER PAUSED");
+  set_status(state, state->running ? "Session in progress." : "Paused. Your time is saved.");
 }
 
 static void change_session(clock_state_t *state) {
   state->kind = state->kind == SESSION_FOCUS ? SESSION_BREAK : SESSION_FOCUS;
   reset_session(state);
-  set_status(state, state->kind == SESSION_FOCUS ? "FOCUS SELECTED" : "BREAK SELECTED");
+  set_status(state, state->kind == SESSION_FOCUS ? "Focus selected. Start when ready." : "Break selected. Time to recharge.");
 }
 
 static int audio_start(clock_audio_t *audio, size_t byte_count) {
@@ -297,6 +300,7 @@ static bool mouse_consume_byte(clock_mouse_t *mouse, uint8_t value) {
   if (mouse->x > 799) mouse->x = 799;
   if (mouse->y < 0) mouse->y = 0;
   if (mouse->y > 599) mouse->y = 599;
+  mouse->visible = true;
   mouse->previous_buttons = mouse->buttons;
   mouse->buttons = (uint8_t)(mouse->bytes[0] & 0x07u);
   mouse->packets++;
@@ -308,21 +312,36 @@ static bool inside(int x, int y, int left, int top, int width, int height) {
   return x >= left && x < left + width && y >= top && y < top + height;
 }
 
-static void handle_mouse_action(clock_state_t *state, clock_mouse_t *mouse) {
+static void handle_mouse_action(clock_state_t *state, clock_audio_t *audio, clock_mouse_t *mouse) {
   bool left_pressed = (mouse->buttons & BIT(0)) != 0 &&
                       (mouse->previous_buttons & BIT(0)) == 0;
   if (!left_pressed) return;
-  if (inside(mouse->x, mouse->y, 220, 476, 170, 54)) {
-    toggle_running(state);
-  } else if (inside(mouse->x, mouse->y, 405, 476, 130, 54)) {
+  if (state->show_help) {
+    if (inside(mouse->x, mouse->y, 586, 156, 100, 32)) state->show_help = false;
+    return;
+  }
+  if (inside(mouse->x, mouse->y, 680, 20, 96, 34)) { state->show_help = true; return; }
+  if (inside(mouse->x, mouse->y, 24, 96, 154, 34)) {
+    state->demo_lengths = !state->demo_lengths;
     reset_session(state);
-  } else if (inside(mouse->x, mouse->y, 550, 476, 130, 54)) {
+    set_status(state, state->demo_lengths ? "Quick demo: 5s focus, 3s break." : "Classic: 25m focus, 5m break.");
+  } else if (inside(mouse->x, mouse->y, 630, 96, 146, 34)) {
+    if (audio->available) audio->muted = !audio->muted;
+  } else if (inside(mouse->x, mouse->y, 282, 150, 114, 34) || inside(mouse->x, mouse->y, 404, 150, 114, 34)) {
+    session_kind_t selected = mouse->x < 400 ? SESSION_FOCUS : SESSION_BREAK;
+    if (state->kind != selected) change_session(state);
+  } else if (inside(mouse->x, mouse->y, 140, 476, 190, 54)) {
+    toggle_running(state);
+  } else if (inside(mouse->x, mouse->y, 345, 476, 140, 54)) {
+    reset_session(state);
+  } else if (inside(mouse->x, mouse->y, 500, 476, 160, 54)) {
     change_session(state);
   }
 }
 
 static void handle_keyboard(clock_state_t *state, clock_audio_t *audio,
                             uint8_t data, bool *running) {
+  if (example_modifier_byte(&state->modifiers, data)) { state->extended_key = false; return; }
   if (data == KBD_TWO_BYTE_PFX) {
     state->extended_key = true;
     return;
@@ -334,11 +353,18 @@ static void handle_keyboard(clock_state_t *state, clock_audio_t *audio,
     return;
   }
   if (data == ESC_BREAK) {
+    if (state->show_help) { state->show_help = false; return; }
     *running = false;
     return;
   }
   if (break_code) return;
-  if (code == 0x39u) {
+  if (example_primary(&state->modifiers)) { if (code == 0x11) *running = false; return; }
+  if (code == 0x3Bu) { state->show_help = !state->show_help; return; }
+  if (state->show_help) return;
+  if (code == 0x21u || code == 0x30u) {
+    session_kind_t selected = code == 0x21u ? SESSION_FOCUS : SESSION_BREAK;
+    if (state->kind != selected) change_session(state);
+  } else if (code == 0x39u) {
     toggle_running(state);
   } else if (code == 0x13u) {
     reset_session(state);
@@ -347,10 +373,10 @@ static void handle_keyboard(clock_state_t *state, clock_audio_t *audio,
   } else if (code == 0x20u) {
     state->demo_lengths = !state->demo_lengths;
     reset_session(state);
-    set_status(state, state->demo_lengths ? "DEMO LENGTHS 5S / 3S" : "CLASSIC 25M / 5M");
+    set_status(state, state->demo_lengths ? "Quick demo: 5s focus, 3s break." : "Classic: 25m focus, 5m break.");
   } else if (code == 0x32u) {
-    audio->muted = !audio->muted;
-    set_status(state, audio->muted ? "SIGNAL MUTED" : "SIGNAL ENABLED");
+    if (audio->available) audio->muted = !audio->muted;
+    set_status(state, !audio->available ? "No audio device is available." : audio->muted ? "Completion chime muted." : "Completion chime enabled.");
   }
 }
 
@@ -363,51 +389,26 @@ static int read_kbc_byte(bool want_mouse, uint8_t *value) {
   return lcom_port_read8(KBC_OUT_BUF, value);
 }
 
-static void fill_circle(example_canvas_t *canvas, int cx, int cy, int radius,
-                        uint32_t color) {
-  for (int y = -radius; y <= radius; y++) {
-    int span = 0;
-    while (span < radius && span * span + y * y <= radius * radius) span++;
-    example_fill_rect(canvas, cx - span, cy + y, span * 2 + 1, 1, color);
-  }
-}
+
+
 
 static void draw_button(example_canvas_t *canvas, int x, int y, int width,
                         const char *label, bool active, bool hover) {
-  uint32_t base = active ? example_rgb(45, 137, 111)
-                         : (hover ? example_rgb(61, 70, 91)
-                                  : example_rgb(43, 50, 67));
-  uint32_t border = active ? example_rgb(105, 226, 181)
-                           : (hover ? example_rgb(139, 158, 196)
-                                    : example_rgb(74, 84, 106));
-  example_fill_rect(canvas, x, y, width, 54, base);
-  example_stroke_rect(canvas, x, y, width, 54, 2, border);
-  uint32_t text_width = example_text_width(label, 2);
-  example_draw_text(canvas, x + (width - (int)text_width) / 2, y + 20, label,
-                    example_rgb(241, 244, 248), 2);
+  example_button(canvas, x, y, width, 54, label, active, hover, true);
 }
+
 
 static void draw_progress(example_canvas_t *canvas, const clock_state_t *state) {
-  const int x = 151;
-  const int y = 412;
-  const int width = 498;
-  const int height = 18;
   uint64_t duration = session_duration_ticks(state);
   uint64_t elapsed = state->active_ticks > duration ? duration : state->active_ticks;
-  int fill = duration == 0 ? 0 : (int)((uint64_t)(width - 4) * elapsed / duration);
-  uint32_t accent = state->kind == SESSION_FOCUS ? example_rgb(255, 120, 111)
-                                                 : example_rgb(102, 215, 174);
-  example_fill_rect(canvas, x, y, width, height, example_rgb(34, 41, 56));
-  example_stroke_rect(canvas, x, y, width, height, 1, example_rgb(74, 85, 109));
-  example_fill_rect(canvas, x + 2, y + 2, fill, height - 4, accent);
-  for (uint8_t marker = 1; marker < 4u; marker++) {
-    int marker_x = x + (width * marker) / 4;
-    example_fill_rect(canvas, marker_x, y + 3, 1, height - 6,
-                      example_rgb(113, 123, 143));
-  }
+  int fill = duration == 0 ? 0 : (int)(498u * elapsed / duration);
+  example_round_rect(canvas, 151, 412, 498, 6, 3, UI_LINE);
+  if (fill) example_round_rect(canvas, 151, 412, fill, 6, 3, UI_ACCENT);
 }
 
+
 static void draw_cursor(example_canvas_t *canvas, const clock_mouse_t *mouse) {
+  if (!mouse->visible) return;
   int x = mouse->x;
   int y = mouse->y;
   uint32_t shadow = example_rgb(9, 12, 18);
@@ -422,87 +423,42 @@ static void draw_cursor(example_canvas_t *canvas, const clock_mouse_t *mouse) {
 
 static void draw_clock(example_canvas_t *canvas, const clock_state_t *state,
                        const clock_mouse_t *mouse, const clock_audio_t *audio) {
-  uint32_t background = example_rgb(17, 21, 31);
-  uint32_t panel = example_rgb(28, 34, 48);
-  uint32_t panel_edge = example_rgb(52, 62, 82);
-  uint32_t accent = state->kind == SESSION_FOCUS ? example_rgb(255, 120, 111)
-                                                 : example_rgb(102, 215, 174);
-  example_fill_rect(canvas, 0, 0, 800, 600, background);
-  for (int y = 0; y < 600; y += 24) {
-    example_fill_rect(canvas, 0, y, 800, 1, example_rgb(20, 25, 36));
-  }
-
-  example_fill_rect(canvas, 0, 0, 800, 76, example_rgb(24, 29, 42));
-  example_fill_rect(canvas, 0, 74, 800, 2, accent);
-  example_draw_text(canvas, 28, 20, "LCOM-NG", example_rgb(239, 242, 247), 3);
-  example_draw_text(canvas, 30, 50, "RTC WALL TIME + PIT SESSION TIME",
-                    example_rgb(143, 154, 177), 1);
-  example_fill_rect(canvas, 596, 18, 174, 38, panel);
-  example_stroke_rect(canvas, 596, 18, 174, 38, 1, panel_edge);
-  example_draw_text(canvas, 616, 32,
-                    state->demo_lengths ? "DEMO 5S / 3S" : "CLASSIC 25M / 5M",
-                    accent, 1);
-
-  example_fill_rect(canvas, 30, 100, 740, 88, panel);
-  example_stroke_rect(canvas, 30, 100, 740, 88, 1, panel_edge);
-  fill_circle(canvas, 58, 144, 20, example_rgb(54, 91, 151));
-  example_stroke_rect(canvas, 49, 138, 18, 12, 1, example_rgb(151, 193, 255));
-  example_draw_text(canvas, 52, 141, "RTC", example_rgb(226, 238, 255), 1);
-  example_draw_text(canvas, 92, 116, "WALL CLOCK", example_rgb(139, 155, 185), 1);
-  example_draw_text(canvas, 92, 143, "RTC CMOS SNAPSHOT", example_rgb(231, 235, 242), 2);
-  char wall_time[32];
-  char wall_date[32];
-  if (state->rtc.valid) {
-    snprintf(wall_time, sizeof(wall_time), "%02u:%02u:%02u",
-             state->rtc.hour, state->rtc.minute, state->rtc.second);
-    snprintf(wall_date, sizeof(wall_date), "20%02u-%02u-%02u",
-             state->rtc.year, state->rtc.month, state->rtc.day);
-  } else {
-    snprintf(wall_time, sizeof(wall_time), "--:--:--");
-    snprintf(wall_date, sizeof(wall_date), "RTC READ ERROR");
-  }
-  example_draw_text(canvas, 456, 116, wall_time, example_rgb(241, 244, 249), 4);
-  example_draw_text(canvas, 630, 151, wall_date, example_rgb(141, 153, 176), 1);
-
-  example_fill_rect(canvas, 90, 212, 620, 238, panel);
-  example_stroke_rect(canvas, 90, 212, 620, 238, 2, panel_edge);
-  fill_circle(canvas, 125, 247, 10, accent);
-  example_draw_text(canvas, 150, 235,
-                    state->kind == SESSION_FOCUS ? "FOCUS SESSION" : "RECOVERY BREAK",
-                    example_rgb(241, 243, 248), 3);
-  example_draw_text(canvas, 151, 270, "MONOTONIC PIT IRQ0 - RTC JUMPS CANNOT CHANGE THIS",
-                    example_rgb(137, 151, 177), 1);
-
+  const uint32_t accent = state->kind == SESSION_FOCUS ? 0x246B5Du : 0x4665A0u;
+  example_fill_rect(canvas, 0, 0, 800, 600, 0xF7F5EF);
+  example_heading(canvas, "Focus Clock", "One session. One thing at a time.", accent, false);
+  example_button(canvas, 680, 20, 96, 34, "Help  F1", false, inside(mouse->x, mouse->y, 680, 20, 96, 34), true);
+  example_button(canvas, 24, 96, 154, 34, state->demo_lengths ? "Quick demo  D" : "25 / 5 min  D", state->demo_lengths, inside(mouse->x, mouse->y, 24, 96, 154, 34), true);
+  example_button(canvas, 630, 96, 146, 34, !audio->available ? "No audio device" : audio->muted ? "Sound off  M" : "Sound on  M", false, inside(mouse->x, mouse->y, 630, 96, 146, 34), audio->available);
+  example_button(canvas, 282, 150, 114, 34, "Focus  F", state->kind == SESSION_FOCUS, inside(mouse->x, mouse->y, 282, 150, 114, 34), true);
+  example_button(canvas, 404, 150, 114, 34, "Break  B", state->kind == SESSION_BREAK, inside(mouse->x, mouse->y, 404, 150, 114, 34), true);
+  const char *title = state->kind == SESSION_FOCUS ? "Time to focus" : "Take a breath";
+  example_label(canvas, 400 - example_label_width(title, 2) / 2, 208, title, UI_INK, 2);
   uint32_t seconds = remaining_seconds(state);
-  char timer_text[16];
-  snprintf(timer_text, sizeof(timer_text), "%02u:%02u", seconds / 60u, seconds % 60u);
-  uint32_t timer_width = example_text_width(timer_text, 9);
-  example_draw_text(canvas, 400 - (int)timer_width / 2, 310, timer_text,
-                    example_rgb(247, 248, 250), 9);
-  example_draw_text(canvas, 151, 382,
-                    state->running ? "RUNNING ON TIMER INTERRUPTS"
-                                   : "PAUSED - WALL CLOCK REMAINS INDEPENDENT",
-                    state->running ? accent : example_rgb(173, 184, 204), 1);
+  char timer[16]; snprintf(timer, sizeof(timer), "%02u:%02u", seconds / 60u, seconds % 60u);
+  example_number(canvas, 400 - example_number_width(timer) / 2, 274, timer, UI_INK);
+  const char *status = state->running ? "In progress" : state->active_ticks ? "Paused" : "Ready when you are";
+  example_label(canvas, 400 - example_label_width(status, 1) / 2, 366, status, UI_MUTED, 1);
   draw_progress(canvas, state);
-
-  bool start_hover = inside(mouse->x, mouse->y, 220, 476, 170, 54);
-  bool reset_hover = inside(mouse->x, mouse->y, 405, 476, 130, 54);
-  bool mode_hover = inside(mouse->x, mouse->y, 550, 476, 130, 54);
-  draw_button(canvas, 220, 476, 170, state->running ? "PAUSE" : "START",
-              state->running, start_hover);
-  draw_button(canvas, 405, 476, 130, "RESET", false, reset_hover);
-  draw_button(canvas, 550, 476, 130, "SWITCH", false, mode_hover);
-
-  example_fill_rect(canvas, 0, 556, 800, 44, example_rgb(12, 16, 24));
-  example_draw_text(canvas, 24, 570, "SPACE START  R RESET  TAB MODE  D DEMO  M SOUND  ESC EXIT",
-                    example_rgb(142, 155, 180), 1);
-  char telemetry[96];
-  snprintf(telemetry, sizeof(telemetry), "%s  DONE %u  RTC JUMPS %u  SOUND %s",
-           state->status, state->completions, state->rtc_jumps,
-           audio->available ? (audio->muted ? "MUTED" : "ON") : "N/A");
-  example_draw_text(canvas, 24, 541, telemetry, accent, 1);
+  example_label(canvas, 400 - example_label_width(state->status, 1) / 2, 438, state->status, accent, 1);
+  draw_button(canvas, 140, 476, 190, state->running ? "Pause  Space" : state->active_ticks ? "Resume  Space" : "Start  Space", true, inside(mouse->x, mouse->y, 140, 476, 190, 54));
+  draw_button(canvas, 345, 476, 140, "Reset  R", false, inside(mouse->x, mouse->y, 345, 476, 140, 54));
+  draw_button(canvas, 500, 476, 160, "Switch  Tab", false, inside(mouse->x, mouse->y, 500, 476, 160, 54));
+  char completed[48]; snprintf(completed, sizeof(completed), "%u session%s completed", state->completions, state->completions == 1u ? "" : "s");
+  example_label(canvas, 24, 566, completed, UI_MUTED, 1);
+  char wall[48];
+  if (state->rtc.valid) snprintf(wall, sizeof(wall), "%02u:%02u:%02u   20%02u-%02u-%02u", state->rtc.hour, state->rtc.minute, state->rtc.second, state->rtc.year, state->rtc.month, state->rtc.day);
+  else snprintf(wall, sizeof(wall), "Wall clock unavailable");
+  example_label(canvas, 776 - example_label_width(wall, 1), 566, wall, UI_MUTED, 1);
+  if (state->show_help) {
+    example_round_rect(canvas, 98, 140, 604, 322, 12, UI_DARK);
+    example_label(canvas, 122, 158, "Clock shortcuts", UI_LIGHT, 2);
+    example_button(canvas, 586, 156, 100, 32, "Close  F1", false, inside(mouse->x, mouse->y, 586, 156, 100, 32), true);
+    const char *lines[] = {"Space   Start, pause or resume", "F / B   Select focus or break. Tab switches.", "R   Reset the current session", "D   Switch between classic and quick demo", "M   Toggle the completion chime", "F1 / Esc   Close help. Esc again leaves."};
+    for (int i = 0; i < 6; i++) example_label(canvas, 124, 220 + i * 34, lines[i], UI_DIM, 1);
+  }
   draw_cursor(canvas, mouse);
 }
+
 
 static void update_session(clock_state_t *state, clock_audio_t *audio) {
   state->lifetime_ticks++;
@@ -515,8 +471,8 @@ static void update_session(clock_state_t *state, clock_audio_t *audio) {
       state->active_ticks = 0;
       state->running = false;
       set_status(state, completed == SESSION_FOCUS
-                            ? "FOCUS COMPLETE - TAKE A BREAK"
-                            : "BREAK COMPLETE - READY TO FOCUS");
+                            ? "Focus complete. Enjoy your break."
+                            : "Break complete. Ready to focus.");
       play_session_signal(audio, completed);
     }
   }
@@ -574,7 +530,7 @@ int main(void) {
 
   state.rtc.valid = false;
   if (rtc_read_stable(&state.rtc) == LCOM_OK) state.rtc_reads++;
-  set_status(&state, "READY - PRESS SPACE");
+  set_status(&state, "25 minutes for your next task.");
   example_canvas_t canvas = {framebuffer, video_info};
   bool running = true;
   bool event_failed = false;
@@ -598,7 +554,7 @@ int main(void) {
       uint8_t data = 0;
       if (read_kbc_byte(true, &data) == LCOM_OK &&
           mouse_consume_byte(&mouse, data)) {
-        handle_mouse_action(&state, &mouse);
+        handle_mouse_action(&state, &audio, &mouse);
       }
     }
     if ((event.irq_mask & timer_irq.mask) != 0) {

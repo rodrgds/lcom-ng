@@ -44,7 +44,7 @@ static PlantType selected_seed = PEASHOOTER;
 static PlantType selected_plant_type = PEASHOOTER;
 static bool dragging = false;
 static PlantType dragged_plant;
-static bool ignore_menu_enter_release = true;
+static GameState help_return_state = STATE_MAIN_MENU;
 
 bool is_dragging_plant(void)           { return dragging; }
 PlantType get_dragged_plant_type(void) { return dragged_plant; }
@@ -170,13 +170,19 @@ void handle_keyboard(uint8_t scancode) {
     }
 
 
+    if (scancode == 0x3B) {
+        if (state == STATE_HELP) set_game_state(help_return_state);
+        else { help_return_state = state; set_game_state(STATE_HELP); }
+        return;
+    }
+    if (state == STATE_HELP) {
+        if (scancode == ESC_BREAKCODE) set_game_state(help_return_state);
+        return;
+    }
+
     switch (state) {
         case STATE_MAIN_MENU:
             if (scancode == ENTER_BREAKCODE) {
-                if (ignore_menu_enter_release) {
-                    ignore_menu_enter_release = false;
-                    break;
-                }
                 init_plant_selection();
                 set_game_state(STATE_PLANT_SELECTION);
             }
@@ -188,7 +194,6 @@ void handle_keyboard(uint8_t scancode) {
 
         case STATE_PLANT_SELECTION:
             if (scancode == ESC_BREAKCODE) {
-                ignore_menu_enter_release = true;
                 set_game_state(STATE_MAIN_MENU);
             } else if (scancode == SPACE_BREAKCODE) {
                 if (get_selected_deck_size() == 6) {
@@ -235,6 +240,10 @@ void handle_keyboard(uint8_t scancode) {
             break;
 
         case STATE_PLAYING:
+            if (scancode == 0x99) {
+                set_game_state(STATE_PAUSED);
+                break;
+            }
             if (scancode == ESC_BREAKCODE) {
                 if (has_active_placement_action()) {
                     cancel_active_action();
@@ -249,17 +258,16 @@ void handle_keyboard(uint8_t scancode) {
             break;
 
         case STATE_PAUSED:
-            if (scancode == ENTER_BREAKCODE) {
+            if (scancode == ENTER_BREAKCODE || scancode == ESC_BREAKCODE || scancode == SPACE_BREAKCODE || scancode == 0x99) {
                 set_game_state(STATE_PLAYING);
             }
 
-            if (scancode == ESC_BREAKCODE) {
+            if (scancode == X_BREAKCODE) {
                 set_game_state(STATE_QUIT);
             }
 
             if (scancode == Q_BREAKCODE) {
                 reset_game();
-                ignore_menu_enter_release = true;
                 set_game_state(STATE_MAIN_MENU);
             }
             break;
@@ -268,7 +276,6 @@ void handle_keyboard(uint8_t scancode) {
         case STATE_VICTORY:
             if (scancode == ENTER_BREAKCODE || scancode == ESC_BREAKCODE) {
                 reset_game();
-                ignore_menu_enter_release = true;
                 set_game_state(STATE_MAIN_MENU);
             }
             break;
@@ -531,9 +538,22 @@ void handle_mouse(struct packet *p) {
                 int slot;
                 if (get_deck_slot_from_position(mouse_x, mouse_y, &slot)) {
                     assign_plant_to_slot(dragged_plant, slot);
+                } else {
+                    PlantType released_plant;
+                    if (get_plant_from_inventory_click(mouse_x, mouse_y, &released_plant) && released_plant == dragged_plant) {
+                        if (is_plant_in_deck(dragged_plant) || get_selected_deck_size() < MAX_DECK_SIZE)
+                            toggle_plant_in_deck(dragged_plant);
+                        else trigger_deck_full_flash();
+                    }
                 }
                 dragging = false;
             }
+            break;
+
+        case STATE_PAUSED:
+            if (is_lb_clicked && is_inside_rect(mouse_x, mouse_y, 230, 266, 340, 48)) set_game_state(STATE_PLAYING);
+            else if (is_lb_clicked && is_inside_rect(mouse_x, mouse_y, 230, 328, 340, 42)) { reset_game(); set_game_state(STATE_MAIN_MENU); }
+            else if (is_lb_clicked && is_inside_rect(mouse_x, mouse_y, 230, 384, 340, 42)) set_game_state(STATE_QUIT);
             break;
 
         case STATE_PLAYING:

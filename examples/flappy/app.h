@@ -3,6 +3,7 @@
 
 #include "font.h"
 #include "menu.h"
+#include "../example_ui.h"
 
 typedef enum {
   APP_INPUT_NONE = 0,
@@ -27,10 +28,14 @@ typedef struct {
   int best_score;
   int ground_scroll;
   menu_t menu;
+  bool paused, help, extended, mouse_down, mouse_visible;
+  int mouse_x, mouse_y;
+  example_modifiers_t modifiers;
 } app_t;
 
 void app_init(app_t *app);
 app_input_result_t app_key(app_t *app, uint8_t scancode);
+app_input_result_t app_mouse(app_t *app, int dx, int dy, bool down);
 void app_update(app_t *app);
 void app_render(app_t *app, draw_context_t *ctx);
 

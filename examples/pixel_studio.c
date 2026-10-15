@@ -55,6 +55,8 @@ typedef struct {
   uint8_t selected_color;
   uint8_t zoom_index;
   pixel_tool_t tool;
+  int key_x, key_y;
+  bool keyboard_cursor;
   int mouse_x;
   int mouse_y;
   int last_cell_x;
@@ -67,7 +69,7 @@ typedef struct {
   bool stroke_changed;
   bool grid_visible;
   bool help_visible;
-  bool ctrl_down;
+  example_modifiers_t modifiers;
   bool extended;
   wall_clock_t clock;
   char status[72];
@@ -81,11 +83,11 @@ static const uint32_t palette[PALETTE_SIZE] = {
 };
 
 static const char *tool_names[TOOL_COUNT] = {
-    "PENCIL", "ERASER", "FILL", "PICK",
+    "Pencil", "Eraser", "Fill", "Pick",
 };
 
 static const char *tool_keys[TOOL_COUNT] = {
-    "P", "E", "F", "I",
+    "B", "E", "F", "I",
 };
 
 static const uint8_t zoom_sizes[3] = {18, 22, 26};
@@ -183,15 +185,8 @@ static void format_clock(const wall_clock_t *clock, char *out, size_t size) {
            (unsigned)clock->second);
 }
 
-static void format_date(const wall_clock_t *clock, char *out, size_t size) {
-  if (!clock->valid) {
-    snprintf(out, size, "DATE UNAVAILABLE");
-    return;
-  }
-  snprintf(out, size, "%04u-%02u-%02u",
-           (unsigned)clock->year, (unsigned)clock->month,
-           (unsigned)clock->day);
-}
+
+
 
 static int configure_pit_60hz(void) {
   uint32_t divisor = TIMER_FREQ / 60u;
@@ -435,7 +430,10 @@ static void pick_color(pixel_studio_t *studio, int cell_x, int cell_y) {
 
 static bool export_sprite(pixel_studio_t *studio, const char *path) {
   read_wall_clock(&studio->clock);
-  FILE *out = fopen(path, "w");
+  char temporary[1024];
+  int path_length = snprintf(temporary, sizeof(temporary), "%s.tmp", path);
+  if (path_length < 0 || (size_t)path_length >= sizeof(temporary)) { set_status(studio, "Export path is too long. Choose a shorter path."); return false; }
+  FILE *out = fopen(temporary, "wx");
   if (out == NULL) {
     set_status(studio, "EXPORT FAILED - CHECK OUTPUT PATH");
     return false;
@@ -466,9 +464,10 @@ static bool export_sprite(pixel_studio_t *studio, const char *path) {
   fprintf(out, "};\n\n#endif\n");
   bool write_ok = ferror(out) == 0;
   bool close_ok = fclose(out) == 0;
-  bool ok = write_ok && close_ok;
+  bool ok = write_ok && close_ok && rename(temporary, path) == 0;
   if (!ok) {
-    set_status(studio, "EXPORT FAILED WHILE WRITING FILE");
+    remove(temporary);
+    set_status(studio, "Export failed. Original file preserved.");
     return false;
   }
   memcpy(studio->saved_pixels, studio->pixels, sizeof(studio->pixels));
@@ -520,7 +519,22 @@ static void finish_canvas_action(pixel_studio_t *studio) {
   studio->stroke_changed = false;
 }
 
+static void flip_sprite(pixel_studio_t *studio, bool vertical) {
+  finish_canvas_action(studio);
+  for (int y = 0; y < SPRITE_SIDE; y++) for (int x = 0; x < SPRITE_SIDE; x++) {
+    int ox = vertical ? x : SPRITE_SIDE - 1 - x;
+    int oy = vertical ? SPRITE_SIDE - 1 - y : y;
+    size_t i = (size_t)y * SPRITE_SIDE + x, other = (size_t)oy * SPRITE_SIDE + ox;
+    if (i < other) { uint8_t color = studio->pixels[i]; studio->pixels[i] = studio->pixels[other]; studio->pixels[other] = color; }
+  }
+  history_commit(studio);
+  set_status(studio, vertical ? "Flipped vertically. Undo is available." : "Flipped horizontally. Undo is available.");
+}
+
 static void handle_left_press(pixel_studio_t *studio, const char *export_path) {
+  studio->keyboard_cursor = false;
+  if (point_in_rect(studio->mouse_x, studio->mouse_y, 28, 450, 132, 32)) { flip_sprite(studio, false); return; }
+  if (point_in_rect(studio->mouse_x, studio->mouse_y, 28, 490, 132, 32)) { flip_sprite(studio, true); return; }
   for (uint8_t tool = 0; tool < TOOL_COUNT; tool++) {
     int y = 128 + tool * 58;
     if (point_in_rect(studio->mouse_x, studio->mouse_y, 28, y, 132, 46)) {
@@ -580,6 +594,7 @@ static void handle_mouse_packet(pixel_studio_t *studio, int dx, int dy,
                                 uint8_t buttons, const char *export_path) {
   studio->mouse_x = clamp_int(studio->mouse_x + dx, 0, SCREEN_WIDTH - 1);
   studio->mouse_y = clamp_int(studio->mouse_y - dy, 0, SCREEN_HEIGHT - 1);
+  if (studio->help_visible) { studio->previous_buttons = buttons; return; }
   bool left = (buttons & BIT(0)) != 0;
   bool previous_left = (studio->previous_buttons & BIT(0)) != 0;
   bool right = (buttons & BIT(1)) != 0;
@@ -651,6 +666,7 @@ static void clear_sprite(pixel_studio_t *studio) {
 
 static void handle_keyboard_byte(pixel_studio_t *studio, uint8_t data,
                                  bool *running, const char *export_path) {
+  if (example_modifier_byte(&studio->modifiers, data)) { studio->extended = false; return; }
   if (data == KBD_TWO_BYTE_PFX) {
     studio->extended = true;
     return;
@@ -659,21 +675,46 @@ static void handle_keyboard_byte(pixel_studio_t *studio, uint8_t data,
   uint8_t code = (uint8_t)(data & 0x7Fu);
   if (studio->extended) {
     studio->extended = false;
-    return;
-  }
-  if (code == 0x1D) {
-    studio->ctrl_down = !break_code;
+    if (break_code || studio->help_visible || example_primary(&studio->modifiers)) return;
+    finish_canvas_action(studio);
+    if (code == 0x4B) studio->key_x = clamp_int(studio->key_x - 1, 0, SPRITE_SIDE - 1);
+    else if (code == 0x4D) studio->key_x = clamp_int(studio->key_x + 1, 0, SPRITE_SIDE - 1);
+    else if (code == 0x48) studio->key_y = clamp_int(studio->key_y - 1, 0, SPRITE_SIDE - 1);
+    else if (code == 0x50) studio->key_y = clamp_int(studio->key_y + 1, 0, SPRITE_SIDE - 1);
+    else if (code == 0x53) { set_pixel(studio, studio->key_x, studio->key_y, 0); history_commit(studio); }
+    else return;
+    studio->keyboard_cursor = true;
     return;
   }
   if (code == 0x01 && break_code) {
+    if (studio->help_visible) { studio->help_visible = false; return; }
     *running = false;
     return;
   }
   if (break_code) return;
+  if (studio->help_visible && code != 0x3B && code != 0x23) return;
   // A keyboard action must never mutate history underneath an uncommitted
   // mouse stroke. Treat the pixels drawn so far as one complete gesture first.
   finish_canvas_action(studio);
+  if (example_primary(&studio->modifiers)) {
+    if (code == 0x11) { *running = false; return; }
+    if (code == 0x1F) { export_sprite(studio, export_path); }
+    else if (code == 0x2C && !studio->modifiers.shift) { history_undo(studio); }
+    else if (code == 0x15 || (code == 0x2C && studio->modifiers.shift)) { history_redo(studio); }
+    return;
+  }
   switch (code) {
+  case 0x1C:
+  case 0x39:
+    studio->keyboard_cursor = true;
+    begin_canvas_action(studio, studio->key_x, studio->key_y);
+    finish_canvas_action(studio);
+    break;
+  case 0x2D: flip_sprite(studio, false); break; /* X */
+  case 0x2F: flip_sprite(studio, true); break; /* V */
+  case 0x1A: studio->selected_color = (uint8_t)((studio->selected_color + PALETTE_SIZE - 1) % PALETTE_SIZE); break;
+  case 0x1B: studio->selected_color = (uint8_t)((studio->selected_color + 1) % PALETTE_SIZE); break;
+  case 0x30: /* B: brush */
   case 0x19:
     studio->tool = TOOL_PENCIL;
     set_status(studio, "PENCIL TOOL SELECTED");
@@ -705,12 +746,6 @@ static void handle_keyboard_byte(pixel_studio_t *studio, uint8_t data,
                                             : "PIXEL GRID HIDDEN");
     break;
   case 0x2E: clear_sprite(studio); break;
-  case 0x2C:
-    if (studio->ctrl_down) history_undo(studio);
-    break;
-  case 0x15:
-    if (studio->ctrl_down) history_redo(studio);
-    break;
   case 0x1F:
   case 0x3C:
     export_sprite(studio, export_path);
@@ -728,90 +763,41 @@ static void handle_keyboard_byte(pixel_studio_t *studio, uint8_t data,
 static void draw_button(example_canvas_t *canvas, int x, int y, int w, int h,
                         const char *label, const char *key, bool selected,
                         bool hovered) {
-  uint32_t fill = selected ? example_rgb(67, 83, 116)
-                           : hovered ? example_rgb(48, 58, 78)
-                                     : example_rgb(38, 46, 62);
-  uint32_t border = selected ? example_rgb(84, 183, 211)
-                             : example_rgb(61, 72, 93);
-  example_fill_rect(canvas, x, y, w, h, fill);
-  example_stroke_rect(canvas, x, y, w, h, selected ? 2 : 1, border);
-  example_draw_text(canvas, x + 12, y + 11, label,
-                    selected ? example_rgb(240, 247, 250)
-                             : example_rgb(205, 214, 229), 1);
-  example_fill_rect(canvas, x + w - 28, y + 9, 18, 18,
-                    selected ? example_rgb(84, 183, 211)
-                             : example_rgb(57, 68, 88));
-  example_draw_text(canvas, x + w - 22, y + 15, key,
-                    selected ? example_rgb(18, 35, 48)
-                             : example_rgb(205, 214, 229), 1);
+  example_button(canvas, x, y, w, h, "", selected, hovered, true);
+  example_label(canvas, x + 10, y + 13, label, selected ? UI_PAPER : UI_INK, 1);
+  example_label(canvas, x + w - 22, y + 13, key, selected ? UI_PAPER : UI_MUTED, 1);
 }
+
 
 static void draw_header(example_canvas_t *canvas, const pixel_studio_t *studio) {
-  example_fill_rect(canvas, 0, 0, SCREEN_WIDTH, 76, example_rgb(24, 30, 43));
-  example_fill_rect(canvas, 0, 74, SCREEN_WIDTH, 2, example_rgb(84, 183, 211));
-  example_fill_rect(canvas, 24, 18, 42, 42, example_rgb(84, 183, 211));
-  example_fill_rect(canvas, 31, 25, 10, 10, example_rgb(24, 30, 43));
-  example_fill_rect(canvas, 48, 25, 10, 10, example_rgb(231, 111, 81));
-  example_fill_rect(canvas, 31, 42, 10, 10, example_rgb(244, 184, 96));
-  example_fill_rect(canvas, 48, 42, 10, 10, example_rgb(97, 201, 141));
-  example_draw_text(canvas, 82, 17, "PIXEL STUDIO",
-                    example_rgb(239, 244, 249), 3);
-  example_draw_text(canvas, 84, 47, "SPRITE 01  /  16 X 16",
-                    example_rgb(143, 158, 182), 1);
-  char clock[24];
-  char date[24];
-  format_clock(&studio->clock, clock, sizeof(clock));
-  format_date(&studio->clock, date, sizeof(date));
-  example_draw_text(canvas, 626, 18, clock, example_rgb(239, 244, 249), 2);
-  example_draw_text(canvas, 672, 46, date, example_rgb(143, 158, 182), 1);
-  example_fill_rect(canvas, 570, 22, 36, 26,
-                    studio_is_dirty(studio) ? example_rgb(112, 61, 69)
-                                            : example_rgb(51, 104, 79));
-  example_draw_text(canvas, studio_is_dirty(studio) ? 577 : 580, 32,
-                    studio_is_dirty(studio) ? "EDIT" : "OK",
-                    example_rgb(246, 242, 239), 1);
+  example_heading(canvas, "Pixel Studio", "A tiny canvas. Every pixel counts.", UI_ACCENT, false);
+  example_label(canvas, 578, 18, studio_is_dirty(studio) ? "Unsaved changes" : studio->export_count ? "Sprite exported" : "Sample sprite", UI_INK, 1);
+  example_label(canvas, 578, 42, "Cmd/Ctrl+S  Export", UI_MUTED, 1);
 }
 
-static void draw_tool_panel(example_canvas_t *canvas,
-                            const pixel_studio_t *studio) {
-  example_fill_rect(canvas, 18, 96, 150, 432, example_rgb(29, 36, 50));
-  example_stroke_rect(canvas, 18, 96, 150, 432, 1, example_rgb(56, 67, 87));
-  example_draw_text(canvas, 30, 108, "TOOLS", example_rgb(143, 158, 182), 1);
+
+static void draw_tool_panel(example_canvas_t *canvas, const pixel_studio_t *studio) {
+  example_label(canvas, 28, 100, "Tools", UI_MUTED, 1);
   for (uint8_t tool = 0; tool < TOOL_COUNT; tool++) {
     int y = 128 + tool * 58;
     draw_button(canvas, 28, y, 132, 46, tool_names[tool], tool_keys[tool],
                 studio->tool == (pixel_tool_t)tool,
-                point_in_rect(studio->mouse_x, studio->mouse_y,
-                              28, y, 132, 46));
+                point_in_rect(studio->mouse_x, studio->mouse_y, 28, y, 132, 46));
   }
-  example_draw_text(canvas, 30, 370, "HISTORY", example_rgb(143, 158, 182), 1);
-  bool undo_hover = point_in_rect(studio->mouse_x, studio->mouse_y,
-                                  28, 394, 62, 36);
-  bool redo_hover = point_in_rect(studio->mouse_x, studio->mouse_y,
-                                  98, 394, 62, 36);
-  example_fill_rect(canvas, 28, 394, 62, 36,
-                    undo_hover ? example_rgb(52, 63, 84)
-                               : example_rgb(38, 46, 62));
-  example_fill_rect(canvas, 98, 394, 62, 36,
-                    redo_hover ? example_rgb(52, 63, 84)
-                               : example_rgb(38, 46, 62));
-  example_stroke_rect(canvas, 28, 394, 62, 36, 1, example_rgb(61, 72, 93));
-  example_stroke_rect(canvas, 98, 394, 62, 36, 1, example_rgb(61, 72, 93));
-  example_draw_text(canvas, 40, 408, "UNDO", example_rgb(205, 214, 229), 1);
-  example_draw_text(canvas, 110, 408, "REDO", example_rgb(205, 214, 229), 1);
-  char depth[40];
-  snprintf(depth, sizeof(depth), "%u / %u STATES",
-           (unsigned)(studio->history_cursor + 1u),
-           (unsigned)studio->history_length);
-  example_draw_text(canvas, 30, 446, depth, example_rgb(122, 138, 163), 1);
-  example_draw_text(canvas, 30, 482, "RIGHT CLICK", example_rgb(143, 158, 182), 1);
-  example_draw_text(canvas, 30, 500, "QUICK PICK", example_rgb(205, 214, 229), 1);
+  example_label(canvas, 28, 366, "History", UI_MUTED, 1);
+  example_button(canvas, 28, 394, 62, 36, "Undo", false,
+      point_in_rect(studio->mouse_x, studio->mouse_y, 28, 394, 62, 36), studio->history_cursor > 0);
+  example_button(canvas, 98, 394, 62, 36, "Redo", false,
+      point_in_rect(studio->mouse_x, studio->mouse_y, 98, 394, 62, 36), studio->history_cursor + 1 < studio->history_length);
+  example_button(canvas, 28, 450, 132, 32, "Flip horiz.  X", false, point_in_rect(studio->mouse_x,studio->mouse_y,28,450,132,32), true);
+  example_button(canvas, 28, 490, 132, 32, "Flip vert.  V", false, point_in_rect(studio->mouse_x,studio->mouse_y,28,490,132,32), true);
 }
+
 
 static void draw_sprite_canvas(example_canvas_t *canvas,
                                const pixel_studio_t *studio) {
-  example_fill_rect(canvas, 182, 96, 440, 432, example_rgb(20, 25, 36));
-  example_stroke_rect(canvas, 182, 96, 440, 432, 1, example_rgb(56, 67, 87));
+  example_fill_rect(canvas, 182, 96, 440, 432, 0xDFE5E9);
+  example_stroke_rect(canvas, 182, 96, 440, 432, 1, UI_LINE);
   int origin_x = 0;
   int origin_y = 0;
   int cell = 0;
@@ -836,8 +822,9 @@ static void draw_sprite_canvas(example_canvas_t *canvas,
                       2, example_rgb(111, 128, 153));
   int hover_x = 0;
   int hover_y = 0;
-  if (screen_to_cell(studio, studio->mouse_x, studio->mouse_y,
-                     &hover_x, &hover_y)) {
+  bool hover = screen_to_cell(studio, studio->mouse_x, studio->mouse_y, &hover_x, &hover_y);
+  if (studio->keyboard_cursor) { hover_x = studio->key_x; hover_y = studio->key_y; hover = true; }
+  if (hover) {
     example_stroke_rect(canvas, origin_x + hover_x * cell - 1,
                         origin_y + hover_y * cell - 1,
                         cell + 1, cell + 1, 2,
@@ -845,127 +832,65 @@ static void draw_sprite_canvas(example_canvas_t *canvas,
   }
 }
 
-static void draw_preview(example_canvas_t *canvas,
-                         const pixel_studio_t *studio) {
-  example_draw_text(canvas, 640, 108, "PREVIEW",
-                    example_rgb(143, 158, 182), 1);
-  example_fill_rect(canvas, 640, 126, 124, 42, example_rgb(18, 23, 33));
-  for (int y = 0; y < SPRITE_SIDE; y++) {
-    for (int x = 0; x < SPRITE_SIDE; x++) {
-      uint8_t color = studio->pixels[y * SPRITE_SIDE + x];
-      if (color == 0) continue;
-      example_put_pixel(canvas, 670 + x, 139 + y, palette[color]);
-      example_put_pixel(canvas, 686 + x, 139 + y, palette[color]);
-      example_put_pixel(canvas, 702 + x, 139 + y, palette[color]);
+static void draw_preview(example_canvas_t *canvas, const pixel_studio_t *studio) {
+  example_label(canvas, 640, 100, "Preview  1x / 2x", UI_MUTED, 1);
+  example_round_rect(canvas, 640, 124, 124, 40, 5, UI_PAPER);
+  for (int py = 0; py < 40; py++) for (int px = 0; px < 124; px++) {
+    if (((px / 6) + (py / 6)) % 2) example_put_pixel(canvas,640+px,124+py,0xE2E8EB);
+  }
+  for (int y = 0; y < SPRITE_SIDE; y++) for (int x = 0; x < SPRITE_SIDE; x++) {
+    uint8_t color = studio->pixels[y * SPRITE_SIDE + x];
+    if (color) {
+      example_put_pixel(canvas, 656 + x, 136 + y, palette[color]);
+      /* The 2x preview fits beside the native-size sprite. */
+      example_fill_rect(canvas,704+x*2,128+y*2,2,2,palette[color]);
     }
   }
 }
 
-static void draw_properties_panel(example_canvas_t *canvas,
-                                  const pixel_studio_t *studio) {
-  example_fill_rect(canvas, 632, 96, 150, 432, example_rgb(29, 36, 50));
-  example_stroke_rect(canvas, 632, 96, 150, 432, 1, example_rgb(56, 67, 87));
+static void draw_properties_panel(example_canvas_t *canvas, const pixel_studio_t *studio) {
   draw_preview(canvas, studio);
-  example_draw_text(canvas, 640, 170, "PALETTE",
-                    example_rgb(143, 158, 182), 1);
+  example_label(canvas, 640, 164, "Palette", UI_MUTED, 1);
   for (uint8_t color = 0; color < PALETTE_SIZE; color++) {
-    int x = 640 + (color % 4u) * 31;
-    int y = 184 + (color / 4u) * 31;
-    uint32_t fill = color == 0
-                        ? (((color / 4u) + (color % 4u)) % 2u == 0
-                               ? example_rgb(60, 68, 84)
-                               : example_rgb(78, 86, 102))
-                        : palette[color];
-    example_fill_rect(canvas, x, y, 25, 25, fill);
-    if (color == 0) {
-      for (int offset = 0; offset < 20; offset++) {
-        example_put_pixel(canvas, x + 2 + offset, y + 22 - offset,
-                          example_rgb(231, 111, 81));
-      }
-    }
-    if (studio->selected_color == color) {
-      example_stroke_rect(canvas, x - 2, y - 2, 29, 29, 2,
-                          example_rgb(255, 243, 214));
-    }
+    int x = 640 + (color % 4u) * 31, y = 184 + (color / 4u) * 31;
+    example_round_rect(canvas, x, y, 25, 25, 3, color ? palette[color] : UI_PAPER);
+    if (!color) for (int i = 0; i < 21; i++) example_put_pixel(canvas, x + 2 + i, y + 22 - i, 0xB34052);
+    if (studio->selected_color == color) example_stroke_rect(canvas, x - 3, y - 3, 31, 31, 2, UI_INK);
   }
-  example_draw_text(canvas, 640, 348, "ZOOM",
-                    example_rgb(143, 158, 182), 1);
+  char color_label[32];
+  snprintf(color_label, sizeof(color_label), studio->selected_color ? "#%06X" : "Transparent", (unsigned)palette[studio->selected_color]);
+  example_label(canvas, 640, 316, color_label, UI_INK, 1);
+  example_label(canvas, 640, 344, "Zoom", UI_MUTED, 1);
   for (uint8_t zoom = 0; zoom < 3; zoom++) {
     int x = 640 + zoom * 42;
-    uint32_t fill = studio->zoom_index == zoom
-                        ? example_rgb(67, 83, 116)
-                        : example_rgb(38, 46, 62);
-    example_fill_rect(canvas, x, 374, 36, 32, fill);
-    example_stroke_rect(canvas, x, 374, 36, 32,
-                        studio->zoom_index == zoom ? 2 : 1,
-                        studio->zoom_index == zoom
-                            ? example_rgb(84, 183, 211)
-                            : example_rgb(61, 72, 93));
-    char label[4];
-    snprintf(label, sizeof(label), "%u", (unsigned)(zoom + 1u));
-    example_draw_text(canvas, x + 15, 386, label,
-                      example_rgb(225, 232, 241), 1);
+    char label[4]; snprintf(label, sizeof(label), "%u", zoom + 1u);
+    example_button(canvas, x, 374, 36, 32, label, studio->zoom_index == zoom,
+      point_in_rect(studio->mouse_x, studio->mouse_y, x, 374, 36, 32), true);
   }
-  bool export_hover = point_in_rect(studio->mouse_x, studio->mouse_y,
-                                     640, 442, 124, 38);
-  example_fill_rect(canvas, 640, 442, 124, 38,
-                    export_hover ? example_rgb(78, 168, 194)
-                                 : example_rgb(65, 148, 174));
-  example_draw_text(canvas, 656, 456, "EXPORT  S",
-                    example_rgb(16, 31, 42), 1);
-  example_fill_rect(canvas, 640, 490, 124, 32, example_rgb(38, 46, 62));
-  example_stroke_rect(canvas, 640, 490, 124, 32, 1, example_rgb(61, 72, 93));
-  example_draw_text(canvas, 654, 502,
-                    studio->grid_visible ? "GRID ON  G" : "GRID OFF G",
-                    example_rgb(205, 214, 229), 1);
+  example_button(canvas, 640, 442, 124, 38, "Export  S", true,
+    point_in_rect(studio->mouse_x, studio->mouse_y, 640, 442, 124, 38), true);
+  example_button(canvas, 640, 490, 124, 32, studio->grid_visible ? "Grid on  G" : "Grid off  G", false,
+    point_in_rect(studio->mouse_x, studio->mouse_y, 640, 490, 124, 32), true);
 }
 
-static void draw_footer(example_canvas_t *canvas,
-                        const pixel_studio_t *studio) {
-  example_fill_rect(canvas, 0, 542, SCREEN_WIDTH, 58, example_rgb(18, 23, 33));
-  example_fill_rect(canvas, 0, 542, SCREEN_WIDTH, 1, example_rgb(56, 67, 87));
-  char coordinates[48];
-  int cell_x = 0;
-  int cell_y = 0;
-  if (screen_to_cell(studio, studio->mouse_x, studio->mouse_y,
-                     &cell_x, &cell_y)) {
-    snprintf(coordinates, sizeof(coordinates), "X %02d  Y %02d  COLOR %02u",
-             cell_x, cell_y, (unsigned)studio->selected_color);
-  } else {
-    snprintf(coordinates, sizeof(coordinates), "X --  Y --  COLOR %02u",
-             (unsigned)studio->selected_color);
-  }
-  example_draw_text(canvas, 24, 556, coordinates,
-                    example_rgb(183, 196, 214), 1);
-  example_draw_text(canvas, 252, 556, studio->status,
-                    example_rgb(84, 183, 211), 1);
-  char help[96];
-  snprintf(help, sizeof(help), "CTRL Z/Y UNDO/REDO   1/2/3 ZOOM   F1 HELP   ESC EXIT");
-  example_draw_text(canvas, 24, 578, help, example_rgb(120, 135, 158), 1);
+
+static void draw_footer(example_canvas_t *canvas, const pixel_studio_t *studio) {
+  example_fill_rect(canvas, 0, 542, 800, 58, UI_PAPER);
+  example_label(canvas, 24, 548, studio->status, UI_INK, 1);
+  char details[100]; int cx, cy;
+  bool cell = screen_to_cell(studio,studio->mouse_x,studio->mouse_y,&cx,&cy);
+  if (studio->keyboard_cursor) { cx=studio->key_x; cy=studio->key_y; cell=true; }
+  if (cell) snprintf(details,sizeof(details), "Pixel %d,%d   %s   16 x 16   %u opaque pixels",cx+1,cy+1,tool_names[studio->tool],painted_pixel_count(studio));
+  else snprintf(details,sizeof(details), "16 x 16   %u opaque pixels   Right-click to pick a color",painted_pixel_count(studio));
+  example_label(canvas, 24, 575, details, UI_MUTED, 1);
 }
+
 
 static void draw_help_overlay(example_canvas_t *canvas) {
-  example_fill_rect(canvas, 154, 116, 492, 352, example_rgb(20, 26, 38));
-  example_stroke_rect(canvas, 154, 116, 492, 352, 3,
-                      example_rgb(84, 183, 211));
-  example_draw_text(canvas, 188, 148, "PIXEL STUDIO SHORTCUTS",
-                    example_rgb(240, 245, 249), 3);
-  example_draw_text(canvas, 190, 202, "P / E       PENCIL / ERASER",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 190, 232, "F / I       FILL / EYEDROPPER",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 190, 262, "RIGHT CLICK QUICK EYEDROPPER",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 190, 292, "CTRL Z / Y  UNDO / REDO",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 190, 322, "1 / 2 / 3   ZOOM LEVEL",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 190, 352, "S OR F2     EXPORT C HEADER",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 190, 382, "C / G       CLEAR / GRID",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 190, 424, "F1 TO CLOSE",
-                    example_rgb(84, 183, 211), 2);
+  example_round_rect(canvas, 112, 90, 576, 420, 10, UI_DARK);
+  example_label(canvas, 142, 112, "Pixel Studio shortcuts", UI_LIGHT, 2);
+  const char *lines[] = {"B / P   Pencil     E   Eraser     F   Fill     I   Pick", "Drag   Paint       Right-click   Pick a canvas color", "Arrows   Move pixel cursor     Enter / Space   Apply tool", "Delete   Erase cursor pixel      [ / ]   Previous / next color", "Cmd/Ctrl+Z   Undo", "Cmd/Ctrl+Shift+Z or Ctrl+Y   Redo", "1 / 2 / 3 or - / +   Zoom       G   Grid", "X   Flip horizontally       V   Flip vertically", "S / F2 / Cmd/Ctrl+S   Export C header", "C   Clear canvas       F1 / Esc   Close help"};
+  for (int i = 0; i < 10; i++) example_label(canvas, 142, 174 + i * 31, lines[i], UI_DIM, 1);
 }
 
 static void draw_mouse_cursor(example_canvas_t *canvas,
@@ -986,7 +911,7 @@ static void draw_mouse_cursor(example_canvas_t *canvas,
 static void draw_pixel_studio(example_canvas_t *canvas,
                               const pixel_studio_t *studio) {
   example_fill_rect(canvas, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT,
-                    example_rgb(14, 19, 28));
+                    UI_BG);
   draw_header(canvas, studio);
   draw_tool_panel(canvas, studio);
   draw_sprite_canvas(canvas, studio);
@@ -1041,8 +966,8 @@ int main(int argc, char **argv) {
   bool running = true;
   draw_pixel_studio(&canvas, &studio);
   lcom_vbe_present();
-  lcom_printf("Pixel Studio: mouse draws, P/E/F/I select tools, "
-              "Ctrl-Z/Y undo/redo, S exports, ESC exits.\n");
+  lcom_printf("Pixel Studio: mouse draws, B/P/E/F/I select tools, "
+              "Cmd/Ctrl-Z undo, Shift-Z redo, S exports, ESC exits.\n");
   bool event_failed = false;
   uint64_t last_clock_tick = 0;
   while (running) {

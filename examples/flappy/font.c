@@ -48,6 +48,8 @@ static const uint8_t *glyph_for(char c) {
   if (c >= 'A' && c <= 'Z') return glyphs[10 + c - 'A'];
   if (c >= 'a' && c <= 'z') return glyphs[10 + c - 'a'];
   if (c == ' ') return glyphs[36];
+  static const uint8_t slash[7] = {0x01,0x02,0x02,0x04,0x08,0x08,0x10};
+  if (c == '/') return slash;
   return glyph_unknown;
 }
 

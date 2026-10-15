@@ -9,7 +9,7 @@ at 1s rtc 2026-07-30T09:41:10
 at 1.2s caption bottom 2s WALL CLOCK JUMPS FORWARD
 
 # Pause and resume through the visible mouse button.
-at 1.5s move -60 -180 during 0.2s
+at 1.5s move -150 -180 during 0.2s
 at 1.8s mouse 0 0 1
 at 1.9s mouse 0 0 0
 at 2.3s mouse 0 0 1

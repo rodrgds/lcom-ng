@@ -36,7 +36,10 @@ typedef enum {
   LCOM_MSG_VBE_PRESENT = 53,
   LCOM_MSG_VBE_SET_DISPLAY_START = 54,
   LCOM_MSG_AC97_GET_BUFFER = 60,
-  LCOM_MSG_AC97_BUFFER_REPLY = 61
+  LCOM_MSG_AC97_BUFFER_REPLY = 61,
+  LCOM_MSG_CLIPBOARD_SET = 70,
+  LCOM_MSG_CLIPBOARD_GET = 71,
+  LCOM_MSG_CLIPBOARD_REPLY = 72
 } lcom_msg_type_t;
 
 typedef struct {
@@ -59,6 +62,11 @@ typedef struct {
 typedef struct {
   int32_t status;
 } lcom_status_reply_t;
+
+typedef struct {
+  int32_t status;
+  char text[LCOM_MAX_PAYLOAD - sizeof(int32_t)];
+} lcom_clipboard_reply_t;
 
 typedef struct {
   uint16_t port;

@@ -7,6 +7,7 @@
 #include <lcom/vbe.h>
 
 #include <stdbool.h>
+#include <errno.h>
 #include <stddef.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -97,6 +98,9 @@ typedef struct {
   uint8_t play_history_length;
   map_brush_t brush;
   editor_mode_t mode;
+  int key_x, key_y;
+  bool keyboard_cursor;
+  bool save_blocked, loaded_from_disk;
   int mouse_x;
   int mouse_y;
   int last_cell_x;
@@ -112,14 +116,14 @@ typedef struct {
   bool solved;
   bool grid_visible;
   bool help_visible;
-  bool ctrl_down;
+  example_modifiers_t modifiers;
   bool extended;
   wall_clock_t clock;
   char status[80];
 } tilemap_editor_t;
 
 static const char *brush_names[BRUSH_COUNT] = {
-    "FLOOR", "WALL", "GOAL", "CRATE", "PLAYER",
+    "Floor", "Wall", "Goal", "Crate", "Player",
 };
 
 static const char *brush_keys[BRUSH_COUNT] = {
@@ -721,10 +725,14 @@ static char serialized_cell(uint8_t base, uint8_t object) {
 }
 
 static bool export_map(tilemap_editor_t *editor, const char *path) {
+  if (editor->save_blocked) { set_status(editor,"Cannot overwrite an unreadable map. Choose another output path."); return false; }
   read_wall_clock(&editor->clock);
   map_validation_t validation =
       validate_map(editor->base, editor->objects);
-  FILE *out = fopen(path, "w");
+  char temporary[1024];
+  int path_length = snprintf(temporary, sizeof(temporary), "%s.tmp", path);
+  if (path_length < 0 || (size_t)path_length >= sizeof(temporary)) { set_status(editor, "Save path is too long. Choose a shorter path."); return false; }
+  FILE *out = fopen(temporary, "wx");
   if (out == NULL) {
     set_status(editor, "SAVE FAILED - CHECK OUTPUT PATH");
     return false;
@@ -748,9 +756,10 @@ static bool export_map(tilemap_editor_t *editor, const char *path) {
   fprintf(out, "end\n");
   bool write_ok = ferror(out) == 0;
   bool close_ok = fclose(out) == 0;
-  bool ok = write_ok && close_ok;
+  bool ok = write_ok && close_ok && rename(temporary, path) == 0;
   if (!ok) {
-    set_status(editor, "SAVE FAILED WHILE WRITING MAP");
+    remove(temporary);
+    set_status(editor, "Save failed. Original map preserved.");
     return false;
   }
   memcpy(editor->saved_base, editor->base, sizeof(editor->base));
@@ -763,9 +772,53 @@ static bool export_map(tilemap_editor_t *editor, const char *path) {
   return true;
 }
 
+static void open_map(tilemap_editor_t *editor, const char *path) {
+  FILE *in = fopen(path, "rb");
+  if (!in) {
+    if (errno != ENOENT) { editor->save_blocked = true; set_status(editor, "Cannot read map. Choose a readable file."); }
+    return;
+  }
+  map_snapshot_t loaded = {0}; char line[128]; bool okay = false;
+  while (fgets(line, sizeof(line), in)) {
+    if (line[0] == '#') continue;
+    int width, height; char trailing;
+    okay = sscanf(line,"size %d %d %c",&width,&height,&trailing) == 2 && width == MAP_WIDTH && height == MAP_HEIGHT;
+    break;
+  }
+  for (int y=0; y<MAP_HEIGHT && okay; y++) {
+    if (!fgets(line,sizeof(line),in)) { okay=false; break; }
+    size_t len=strcspn(line,"\r\n");
+    if (len != MAP_WIDTH) { okay=false; break; }
+    for (int x=0; x<MAP_WIDTH; x++) {
+      size_t i=map_index(x,y); char c=line[x];
+      loaded.base[i] = c=='#' ? TILE_WALL : (c=='G' || c=='*' || c=='+') ? TILE_GOAL : TILE_FLOOR;
+      loaded.objects[i] = (c=='C' || c=='*') ? OBJECT_CRATE : (c=='P' || c=='+') ? OBJECT_PLAYER : OBJECT_NONE;
+      if (!strchr("#.GCP*+",c)) { okay=false; break; }
+    }
+  }
+  if (okay) {
+    okay=fgets(line,sizeof(line),in) && (!strcmp(line,"end\n") || !strcmp(line,"end\r\n") || !strcmp(line,"end"));
+    int extra; do { extra=fgetc(in); } while(extra==' ' || extra=='\r' || extra=='\n' || extra=='\t');
+    if (extra != EOF || ferror(in)) okay=false;
+  }
+  fclose(in);
+  if (!okay) { editor->save_blocked=true; set_status(editor,"Invalid map file. Choose another path; original is protected."); return; }
+  memcpy(editor->base,loaded.base,sizeof(editor->base)); memcpy(editor->objects,loaded.objects,sizeof(editor->objects));
+  memcpy(editor->saved_base,loaded.base,sizeof(editor->base)); memcpy(editor->saved_objects,loaded.objects,sizeof(editor->objects));
+  editor->edit_history[0]=loaded; editor->edit_history_cursor=0; editor->edit_history_length=1; editor->loaded_from_disk=true;
+  set_status(editor,"Map opened from disk. Continue editing or press Enter to play.");
+}
+
 static void handle_left_press(tilemap_editor_t *editor,
                               const char *export_path) {
+  editor->keyboard_cursor = false;
+  if (point_in_rect(editor->mouse_x, editor->mouse_y, 736, 16, 40, 40)) { editor->help_visible = true; return; }
+  if (editor->mode == MODE_PLAY) {
+    if (point_in_rect(editor->mouse_x,editor->mouse_y,28,234,132,36)) { play_undo(editor); return; }
+    if (point_in_rect(editor->mouse_x,editor->mouse_y,28,280,132,36)) { reset_play(editor); return; }
+  }
   if (editor->mode == MODE_EDITOR) {
+    if (point_in_rect(editor->mouse_x,editor->mouse_y,640,398,124,30)) { map_validation_t v=validate_map(editor->base,editor->objects); set_status(editor,v.message); return; }
     for (uint8_t brush = 0; brush < BRUSH_COUNT; brush++) {
       int y = 128 + brush * 52;
       if (point_in_rect(editor->mouse_x, editor->mouse_y,
@@ -820,6 +873,7 @@ static void handle_mouse_packet(tilemap_editor_t *editor, int dx, int dy,
                                 uint8_t buttons, const char *export_path) {
   editor->mouse_x = clamp_int(editor->mouse_x + dx, 0, SCREEN_WIDTH - 1);
   editor->mouse_y = clamp_int(editor->mouse_y - dy, 0, SCREEN_HEIGHT - 1);
+  if (editor->help_visible) { editor->previous_buttons = buttons; return; }
   bool left = (buttons & BIT(0)) != 0;
   bool previous_left = (editor->previous_buttons & BIT(0)) != 0;
   bool right = (buttons & BIT(1)) != 0;
@@ -887,20 +941,33 @@ static void select_brush(tilemap_editor_t *editor, map_brush_t brush) {
   set_status(editor, message);
 }
 
-static void handle_extended_key(tilemap_editor_t *editor,
-                                uint8_t code, bool break_code) {
-  if (break_code || editor->mode != MODE_PLAY) return;
-  switch (code) {
-  case 0x48: move_player(editor, 0, -1); break;
-  case 0x50: move_player(editor, 0, 1); break;
-  case 0x4B: move_player(editor, -1, 0); break;
-  case 0x4D: move_player(editor, 1, 0); break;
-  default: break;
+static void handle_extended_key(tilemap_editor_t *editor, uint8_t code, bool break_code) {
+  if (break_code || editor->help_visible || example_primary(&editor->modifiers)) return;
+  if (editor->mode == MODE_PLAY) {
+    switch (code) {
+    case 0x48: move_player(editor, 0, -1); break;
+    case 0x50: move_player(editor, 0, 1); break;
+    case 0x4B: move_player(editor, -1, 0); break;
+    case 0x4D: move_player(editor, 1, 0); break;
+    default: break;
+    }
+  } else {
+    finish_edit_gesture(editor);
+    if (code == 0x4B) editor->key_x = clamp_int(editor->key_x - 1, 0, MAP_WIDTH - 1);
+    else if (code == 0x4D) editor->key_x = clamp_int(editor->key_x + 1, 0, MAP_WIDTH - 1);
+    else if (code == 0x48) editor->key_y = clamp_int(editor->key_y - 1, 0, MAP_HEIGHT - 1);
+    else if (code == 0x50) editor->key_y = clamp_int(editor->key_y + 1, 0, MAP_HEIGHT - 1);
+    else if (code == 0x53) {
+      map_brush_t selected=editor->brush; editor->brush=BRUSH_FLOOR;
+      begin_edit_gesture(editor,editor->key_x,editor->key_y); finish_edit_gesture(editor); editor->brush=selected;
+    } else return;
+    editor->keyboard_cursor = true;
   }
 }
 
 static void handle_keyboard_byte(tilemap_editor_t *editor, uint8_t data,
                                  bool *running, const char *export_path) {
+  if (example_modifier_byte(&editor->modifiers, data)) { editor->extended = false; return; }
   if (data == KBD_TWO_BYTE_PFX) {
     editor->extended = true;
     return;
@@ -912,25 +979,35 @@ static void handle_keyboard_byte(tilemap_editor_t *editor, uint8_t data,
     editor->extended = false;
     return;
   }
-  if (code == 0x1D) {
-    editor->ctrl_down = !break_code;
-    return;
-  }
   if (code == 0x01 && break_code) {
+    if (editor->help_visible) { editor->help_visible = false; return; }
+    if (editor->mode == MODE_PLAY) { leave_play_mode(editor); return; }
     *running = false;
     return;
   }
   if (break_code) return;
+  if (editor->help_visible && code != 0x3B && code != 0x23) return;
   // Keep keyboard history operations atomic with respect to a held mouse drag.
   // The release packet becomes a no-op after this gesture is committed.
   if (editor->mode == MODE_EDITOR) finish_edit_gesture(editor);
+  if (example_primary(&editor->modifiers)) {
+    if (code == 0x11) { *running = false; return; }
+    if (code == 0x1F) { export_map(editor, export_path); }
+    else if (code == 0x2C && !editor->modifiers.shift) { if (editor->mode == MODE_PLAY) play_undo(editor); else edit_history_undo(editor); }
+    else if (code == 0x15 || (code == 0x2C && editor->modifiers.shift)) { if (editor->mode == MODE_EDITOR) edit_history_redo(editor); }
+    return;
+  }
   if (code == 0x3B || code == 0x23) {
     editor->help_visible = !editor->help_visible;
     set_status(editor, editor->help_visible ? "SHORTCUT HELP OPEN"
                                             : "SHORTCUT HELP CLOSED");
     return;
   }
-  if (code == 0x1C || code == 0x32) {
+  if (code == 0x22) { editor->grid_visible = !editor->grid_visible; return; }
+  if (code == 0x39 && editor->mode == MODE_EDITOR) {
+    editor->keyboard_cursor=true; begin_edit_gesture(editor,editor->key_x,editor->key_y); finish_edit_gesture(editor); return;
+  }
+  if (code == 0x1C || code == 0x32 || code == 0x3F) {
     if (editor->mode == MODE_EDITOR) enter_play_mode(editor);
     else leave_play_mode(editor);
     return;
@@ -953,12 +1030,6 @@ static void handle_keyboard_byte(tilemap_editor_t *editor, uint8_t data,
   case 0x04: select_brush(editor, BRUSH_GOAL); break;
   case 0x05: select_brush(editor, BRUSH_CRATE); break;
   case 0x06: select_brush(editor, BRUSH_PLAYER); break;
-  case 0x2C:
-    if (editor->ctrl_down) edit_history_undo(editor);
-    break;
-  case 0x15:
-    if (editor->ctrl_down) edit_history_redo(editor);
-    break;
   case 0x1F:
   case 0x3C: export_map(editor, export_path); break;
   case 0x2F: validate_and_report(editor); break;
@@ -1043,48 +1114,13 @@ static void draw_tile(example_canvas_t *canvas, int x, int y, int size,
   }
 }
 
-static void draw_header(example_canvas_t *canvas,
-                        const tilemap_editor_t *editor) {
-  example_fill_rect(canvas, 0, 0, SCREEN_WIDTH, 76, example_rgb(24, 30, 43));
-  example_fill_rect(canvas, 0, 74, SCREEN_WIDTH, 2,
-                    editor->mode == MODE_PLAY ? example_rgb(97, 201, 141)
-                                              : example_rgb(244, 184, 96));
-  example_fill_rect(canvas, 24, 17, 44, 44, example_rgb(244, 184, 96));
-  example_fill_rect(canvas, 30, 23, 14, 14, example_rgb(63, 83, 112));
-  example_fill_rect(canvas, 48, 23, 14, 14, example_rgb(37, 47, 65));
-  example_fill_rect(canvas, 30, 41, 14, 14, example_rgb(37, 47, 65));
-  example_fill_rect(canvas, 48, 41, 14, 14, example_rgb(190, 111, 65));
-  example_draw_text(canvas, 82, 17, "TILE FORGE",
-                    example_rgb(239, 244, 249), 3);
-  example_draw_text(canvas, 84, 47, "SOKOBAN WORKSHOP  /  MAP 01",
-                    example_rgb(143, 158, 182), 1);
-  example_fill_rect(canvas, 552, 20, 82, 32,
-                    editor->mode == MODE_PLAY ? example_rgb(51, 104, 79)
-                                              : example_rgb(83, 67, 48));
-  example_draw_text(canvas, editor->mode == MODE_PLAY ? 572 : 566, 32,
-                    editor->mode == MODE_PLAY ? "PLAY" : "EDITOR",
-                    example_rgb(244, 242, 237), 1);
-  char clock[24];
-  format_clock(&editor->clock, clock, sizeof(clock));
-  example_draw_text(canvas, 656, 18, clock,
-                    example_rgb(239, 244, 249), 2);
-  char date[24];
-  if (editor->clock.valid) {
-    snprintf(date, sizeof(date), "%04u-%02u-%02u",
-             (unsigned)editor->clock.year, (unsigned)editor->clock.month,
-             (unsigned)editor->clock.day);
-  } else {
-    snprintf(date, sizeof(date), "RTC UNAVAILABLE");
-  }
-  example_draw_text(canvas, 672, 46, date,
-                    example_rgb(143, 158, 182), 1);
-  example_fill_rect(canvas, 640, 42, 24, 18,
-                    editor_is_dirty(editor) ? example_rgb(184, 59, 94)
-                                            : example_rgb(61, 138, 102));
-  example_draw_text(canvas, editor_is_dirty(editor) ? 649 : 646, 48,
-                    editor_is_dirty(editor) ? "!" : "OK",
-                    example_rgb(244, 242, 237), 1);
+static void draw_header(example_canvas_t *canvas, const tilemap_editor_t *editor) {
+  example_heading(canvas, "Tile Forge", "Build a puzzle. Find its solution.", UI_ACCENT, false);
+  example_label(canvas, 552, 18, editor->mode == MODE_PLAY ? "Playtest" : "Map editor", UI_INK, 1);
+  example_label(canvas, 552, 42, editor_is_dirty(editor) ? "Unsaved changes" : editor->loaded_from_disk || editor->export_count ? "Map saved" : "Demo level", UI_MUTED, 1);
+  example_button(canvas,736,16,40,40,"?",false,point_in_rect(editor->mouse_x,editor->mouse_y,736,16,40,40),true);
 }
+
 
 static void draw_brush_swatch(example_canvas_t *canvas, int x, int y,
                               map_brush_t brush) {
@@ -1097,80 +1133,44 @@ static void draw_brush_swatch(example_canvas_t *canvas, int x, int y,
   draw_tile(canvas, x, y, 24, base, object, true);
 }
 
-static void draw_palette_panel(example_canvas_t *canvas,
-                               const tilemap_editor_t *editor) {
-  example_fill_rect(canvas, 18, 96, 150, 426, example_rgb(29, 36, 50));
-  example_stroke_rect(canvas, 18, 96, 150, 426, 1,
-                      example_rgb(56, 67, 87));
-  example_draw_text(canvas, 28, 108,
-                    editor->mode == MODE_PLAY ? "PLAYTEST" : "TILE PALETTE",
-                    example_rgb(143, 158, 182), 1);
+static void draw_palette_panel(example_canvas_t *canvas, const tilemap_editor_t *editor) {
+  example_label(canvas, 28, 100, editor->mode == MODE_PLAY ? "Playtest" : "Tile palette", UI_MUTED, 1);
   if (editor->mode == MODE_EDITOR) {
     for (uint8_t brush = 0; brush < BRUSH_COUNT; brush++) {
       int y = 128 + brush * 52;
       bool selected = editor->brush == (map_brush_t)brush;
-      bool hovered = point_in_rect(editor->mouse_x, editor->mouse_y,
-                                   28, y, 132, 40);
-      example_fill_rect(canvas, 28, y, 132, 40,
-                        selected ? example_rgb(76, 68, 55)
-                                 : hovered ? example_rgb(49, 59, 78)
-                                           : example_rgb(38, 46, 62));
-      example_stroke_rect(canvas, 28, y, 132, 40,
-                          selected ? 2 : 1,
-                          selected ? example_rgb(244, 184, 96)
-                                   : example_rgb(61, 72, 93));
-      draw_brush_swatch(canvas, 36, y + 8, (map_brush_t)brush);
-      example_draw_text(canvas, 70, y + 14, brush_names[brush],
-                        example_rgb(213, 220, 231), 1);
-      example_draw_text(canvas, 144, y + 14, brush_keys[brush],
-                        selected ? example_rgb(244, 184, 96)
-                                 : example_rgb(127, 142, 165), 1);
+      example_button(canvas, 28, y, 132, 40, "", selected,
+        point_in_rect(editor->mouse_x, editor->mouse_y, 28, y, 132, 40), true);
+      draw_brush_swatch(canvas, 34, y + 8, (map_brush_t)brush);
+      example_label(canvas, 64, y + 10, brush_names[brush], selected ? UI_PAPER : UI_INK, 1);
+      example_label(canvas, 146, y + 10, brush_keys[brush], selected ? UI_PAPER : UI_MUTED, 1);
     }
-    example_fill_rect(canvas, 28, 406, 62, 34, example_rgb(38, 46, 62));
-    example_fill_rect(canvas, 98, 406, 62, 34, example_rgb(38, 46, 62));
-    example_stroke_rect(canvas, 28, 406, 62, 34, 1,
-                        example_rgb(61, 72, 93));
-    example_stroke_rect(canvas, 98, 406, 62, 34, 1,
-                        example_rgb(61, 72, 93));
-    example_draw_text(canvas, 40, 419, "UNDO",
-                      example_rgb(205, 214, 229), 1);
-    example_draw_text(canvas, 110, 419, "REDO",
-                      example_rgb(205, 214, 229), 1);
+    example_button(canvas, 28, 406, 62, 34, "Undo", false,
+      point_in_rect(editor->mouse_x, editor->mouse_y, 28, 406, 62, 34), editor->edit_history_cursor > 0);
+    example_button(canvas, 98, 406, 62, 34, "Redo", false,
+      point_in_rect(editor->mouse_x, editor->mouse_y, 98, 406, 62, 34), editor->edit_history_cursor + 1 < editor->edit_history_length);
   } else {
-    example_draw_text(canvas, 32, 148, "MOVE", example_rgb(143, 158, 182), 1);
-    example_draw_text(canvas, 32, 174, "ARROWS / WASD",
-                      example_rgb(220, 226, 235), 1);
-    example_draw_text(canvas, 32, 218, "UNDO MOVE", example_rgb(143, 158, 182), 1);
-    example_draw_text(canvas, 32, 244, "U", example_rgb(220, 226, 235), 2);
-    example_draw_text(canvas, 32, 288, "RESET MAP", example_rgb(143, 158, 182), 1);
-    example_draw_text(canvas, 32, 314, "R", example_rgb(220, 226, 235), 2);
-    char play_stats[48];
-    snprintf(play_stats, sizeof(play_stats), "MOVES %u", (unsigned)editor->moves);
-    example_draw_text(canvas, 32, 360, play_stats,
-                      example_rgb(84, 183, 211), 1);
-    snprintf(play_stats, sizeof(play_stats), "PUSHES %u",
-             (unsigned)editor->pushes);
-    example_draw_text(canvas, 32, 382, play_stats,
-                      example_rgb(244, 184, 96), 1);
+    example_label(canvas,28,144,"Move your player",UI_MUTED,1);
+    example_label(canvas,28,170,"Arrows / WASD",UI_INK,1);
+    example_button(canvas,28,234,132,36,"Undo move  U",false,point_in_rect(editor->mouse_x,editor->mouse_y,28,234,132,36),editor->play_history_length>0);
+    example_button(canvas,28,280,132,36,"Reset puzzle  R",false,point_in_rect(editor->mouse_x,editor->mouse_y,28,280,132,36),editor->moves>0);
+    char stats[40];
+    snprintf(stats,sizeof(stats),"%u moves",editor->moves); example_label(canvas,28,364,stats,UI_ACCENT,1);
+    snprintf(stats,sizeof(stats),"%u pushes",editor->pushes); example_label(canvas,28,390,stats,UI_MUTED,1);
   }
-  example_fill_rect(canvas, 28, 464, 132, 42,
-                    editor->mode == MODE_PLAY ? example_rgb(66, 79, 102)
-                                              : example_rgb(61, 138, 102));
-  example_draw_text(canvas, editor->mode == MODE_PLAY ? 43 : 47, 479,
-                    editor->mode == MODE_PLAY ? "BACK TO EDIT" : "TEST MAP",
-                    example_rgb(241, 245, 248), 1);
+  example_button(canvas, 28, 464, 132, 42, editor->mode == MODE_PLAY ? "Back to edit" : "Play  Enter", true,
+    point_in_rect(editor->mouse_x, editor->mouse_y, 28, 464, 132, 42), true);
 }
+
 
 static void draw_map_canvas(example_canvas_t *canvas,
                             const tilemap_editor_t *editor) {
-  example_fill_rect(canvas, 178, 96, 442, 426, example_rgb(20, 25, 36));
+  example_fill_rect(canvas, 178, 96, 442, 426, 0xDFE5E9);
   example_stroke_rect(canvas, 178, 96, 442, 426, 1,
                       editor->mode == MODE_PLAY ? example_rgb(97, 201, 141)
-                                                : example_rgb(56, 67, 87));
-  example_draw_text(canvas, 198, 108,
-                    editor->mode == MODE_PLAY ? "LIVE PLAYTEST" : "MAP CANVAS",
-                    editor->mode == MODE_PLAY ? example_rgb(97, 201, 141)
-                                              : example_rgb(143, 158, 182), 1);
+                                                : UI_LINE);
+  example_label(canvas, 198, 102, editor->mode == MODE_PLAY ? "Live playtest" : "Map canvas",
+                editor->mode == MODE_PLAY ? UI_ACCENT : UI_MUTED, 1);
   const uint8_t *objects = editor->mode == MODE_PLAY
                                ? editor->play_objects
                                : editor->objects;
@@ -1194,23 +1194,23 @@ static void draw_map_canvas(example_canvas_t *canvas,
                       example_rgb(91, 105, 128));
   int hover_x = 0;
   int hover_y = 0;
-  if (editor->mode == MODE_EDITOR &&
-      screen_to_cell(editor->mouse_x, editor->mouse_y,
-                     &hover_x, &hover_y)) {
+  bool hovering = screen_to_cell(editor->mouse_x, editor->mouse_y, &hover_x, &hover_y);
+  if (editor->keyboard_cursor) { hover_x=editor->key_x; hover_y=editor->key_y; hovering=true; }
+  if (editor->mode == MODE_EDITOR && hovering) {
     example_stroke_rect(canvas,
                         MAP_ORIGIN_X + hover_x * MAP_CELL_SIZE - 1,
                         MAP_ORIGIN_Y + hover_y * MAP_CELL_SIZE - 1,
                         MAP_CELL_SIZE + 2, MAP_CELL_SIZE + 2, 2,
                         example_rgb(255, 235, 190));
   }
-  if (editor->mode == MODE_PLAY && editor->solved) {
-    example_fill_rect(canvas, 236, 260, 324, 74, example_rgb(20, 38, 36));
-    example_stroke_rect(canvas, 236, 260, 324, 74, 3,
-                        example_rgb(97, 201, 141));
-    example_draw_text(canvas, 278, 278, "PUZZLE SOLVED",
-                      example_rgb(227, 247, 236), 3);
-    example_draw_text(canvas, 308, 310, "U UNDO   R RESET",
-                      example_rgb(143, 211, 171), 1);
+  if (editor->mode == MODE_PLAY) {
+    example_round_rect(canvas,198,466,400,36,5,editor->solved ? 0xD6EBDF : 0xEAF0F1);
+    example_label(canvas,212,474,editor->solved ? "Puzzle solved!  Undo, reset, or return to edit." : "Push each crate onto a goal.",UI_ACCENT,1);
+  } else {
+    char location[80];
+    if (hovering) snprintf(location,sizeof(location),"Tile %d, %d    %s brush    Space to paint",hover_x+1,hover_y+1,brush_names[editor->brush]);
+    else snprintf(location,sizeof(location),"10 x 8 tiles    Two layers: terrain + objects");
+    example_label(canvas,198,474,location,UI_MUTED,1);
   }
 }
 
@@ -1229,108 +1229,43 @@ static void draw_mini_map(example_canvas_t *canvas,
   }
 }
 
-static void draw_inspector(example_canvas_t *canvas,
-                           const tilemap_editor_t *editor) {
-  example_fill_rect(canvas, 630, 96, 152, 426, example_rgb(29, 36, 50));
-  example_stroke_rect(canvas, 630, 96, 152, 426, 1,
-                      example_rgb(56, 67, 87));
-  example_draw_text(canvas, 640, 108, "VALIDATION",
-                    example_rgb(143, 158, 182), 1);
-  map_validation_t validation =
-      validate_map(editor->base, editor->objects);
-  example_fill_rect(canvas, 640, 128, 124, 32,
-                    validation.valid ? example_rgb(51, 104, 79)
-                                     : example_rgb(112, 61, 69));
-  example_draw_text(canvas, validation.valid ? 674 : 666, 140,
-                    validation.valid ? "VALID" : "CHECK MAP",
-                    example_rgb(245, 242, 237), 1);
-  char count[32];
-  snprintf(count, sizeof(count), "PLAYER  %u", validation.players);
-  example_draw_text(canvas, 640, 180, count,
-                    example_rgb(84, 183, 211), 1);
-  snprintf(count, sizeof(count), "CRATES  %u", validation.crates);
-  example_draw_text(canvas, 640, 202, count,
-                    example_rgb(231, 111, 81), 1);
-  snprintf(count, sizeof(count), "GOALS   %u", validation.goals);
-  example_draw_text(canvas, 640, 224, count,
-                    example_rgb(244, 184, 96), 1);
-  example_draw_text(canvas, 640, 254, "OVERVIEW",
-                    example_rgb(143, 158, 182), 1);
+static void draw_inspector(example_canvas_t *canvas, const tilemap_editor_t *editor) {
+  map_validation_t validation = validate_map(editor->base, editor->objects);
+  example_label(canvas, 640, 100, "Map check", UI_MUTED, 1);
+  example_round_rect(canvas, 640, 128, 124, 32, 5, validation.valid ? 0xD8EBE3 : 0xF8E1DC);
+  example_label(canvas, 650, 134, validation.valid ? "Ready to play" : "Needs a fix", validation.valid ? UI_ACCENT : 0xA13D34, 1);
+  char count[40];
+  snprintf(count, sizeof(count), "Players   %u", validation.players); example_label(canvas, 640, 178, count, UI_INK, 1);
+  snprintf(count, sizeof(count), "Crates     %u", validation.crates); example_label(canvas, 640, 204, count, UI_INK, 1);
+  snprintf(count, sizeof(count), "Goals      %u", validation.goals); example_label(canvas, 640, 230, count, UI_INK, 1);
+  example_label(canvas, 640, 254, "Overview", UI_MUTED, 1);
   draw_mini_map(canvas, editor);
   if (editor->mode == MODE_EDITOR) {
-    example_fill_rect(canvas, 640, 398, 124, 1,
-                      example_rgb(56, 67, 87));
-    example_draw_text(canvas, 640, 412, "V VALIDATE",
-                      example_rgb(143, 158, 182), 1);
-    example_fill_rect(canvas, 640, 438, 124, 38,
-                      example_rgb(167, 117, 55));
-    example_draw_text(canvas, 660, 452, "SAVE MAP S",
-                      example_rgb(28, 25, 20), 1);
+    example_button(canvas,640,398,124,30,"Validate  V",false,point_in_rect(editor->mouse_x,editor->mouse_y,640,398,124,30),true);
+    example_button(canvas, 640, 438, 124, 38, "Save map  S", true,
+      point_in_rect(editor->mouse_x, editor->mouse_y, 640, 438, 124, 38), true);
   } else {
-    example_fill_rect(canvas, 640, 410, 124, 56,
-                      editor->solved ? example_rgb(51, 104, 79)
-                                     : example_rgb(38, 46, 62));
-    example_draw_text(canvas, editor->solved ? 667 : 660, 430,
-                      editor->solved ? "SOLVED" : "IN PROGRESS",
-                      example_rgb(224, 233, 239), 1);
+    example_label(canvas, 640, 428, editor->solved ? "Puzzle solved!" : "Keep going", UI_ACCENT, 1);
   }
-  example_fill_rect(canvas, 640, 486, 124, 32, example_rgb(38, 46, 62));
-  example_stroke_rect(canvas, 640, 486, 124, 32, 1,
-                      example_rgb(61, 72, 93));
-  example_draw_text(canvas, 654, 498,
-                    editor->grid_visible ? "GRID ON  G" : "GRID OFF G",
-                    example_rgb(205, 214, 229), 1);
+  example_button(canvas, 640, 486, 124, 32, editor->grid_visible ? "Grid on  G" : "Grid off  G", false,
+    point_in_rect(editor->mouse_x, editor->mouse_y, 640, 486, 124, 32), true);
 }
 
-static void draw_footer(example_canvas_t *canvas,
-                        const tilemap_editor_t *editor) {
-  example_fill_rect(canvas, 0, 542, SCREEN_WIDTH, 58, example_rgb(18, 23, 33));
-  example_fill_rect(canvas, 0, 542, SCREEN_WIDTH, 1,
-                    example_rgb(56, 67, 87));
-  char coordinates[40];
-  int cell_x = 0;
-  int cell_y = 0;
-  if (screen_to_cell(editor->mouse_x, editor->mouse_y,
-                     &cell_x, &cell_y)) {
-    snprintf(coordinates, sizeof(coordinates), "CELL %02d,%02d",
-             cell_x, cell_y);
-  } else {
-    snprintf(coordinates, sizeof(coordinates), "CELL --,--");
-  }
-  example_draw_text(canvas, 24, 556, coordinates,
-                    example_rgb(183, 196, 214), 1);
-  example_draw_text(canvas, 132, 556, editor->status,
-                    editor->solved ? example_rgb(97, 201, 141)
-                                   : example_rgb(244, 184, 96), 1);
-  example_draw_text(canvas, 24, 578,
-                    editor->mode == MODE_PLAY
-                        ? "ARROWS/WASD MOVE   U UNDO   R RESET   ENTER EDIT   ESC EXIT"
-                        : "DRAG TO PAINT   RIGHT CLICK PICK   CTRL Z/Y   ENTER PLAY   F1 HELP",
-                    example_rgb(120, 135, 158), 1);
+
+static void draw_footer(example_canvas_t *canvas, const tilemap_editor_t *editor) {
+  example_fill_rect(canvas, 0, 542, 800, 58, UI_PAPER);
+  example_label(canvas, 24, 548, editor->status, UI_INK, 1);
+  example_label(canvas, 24, 575, editor->mode == MODE_PLAY
+    ? "Arrows / WASD Move   U Undo   R Reset   Enter Edit   Esc Edit"
+    : "1-5 Tiles   Arrows Cursor   Space Paint   Enter Play   Cmd/Ctrl+S Save   F1 Help", UI_MUTED, 1);
 }
+
 
 static void draw_help_overlay(example_canvas_t *canvas) {
-  example_fill_rect(canvas, 148, 112, 504, 360, example_rgb(20, 26, 38));
-  example_stroke_rect(canvas, 148, 112, 504, 360, 3,
-                      example_rgb(244, 184, 96));
-  example_draw_text(canvas, 182, 144, "TILE FORGE SHORTCUTS",
-                    example_rgb(240, 245, 249), 3);
-  example_draw_text(canvas, 184, 198, "1-5         SELECT TILE BRUSH",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 184, 228, "MOUSE DRAG  PAINT CONTINUOUSLY",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 184, 258, "RIGHT CLICK PICK TILE OR OBJECT",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 184, 288, "CTRL Z/Y    UNDO / REDO EDIT",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 184, 318, "S / F2      SAVE .MLMAP FILE",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 184, 348, "ENTER / M   PLAYTEST / EDIT",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 184, 378, "PLAY: WASD, U UNDO, R RESET",
-                    example_rgb(203, 214, 229), 2);
-  example_draw_text(canvas, 184, 424, "F1 TO CLOSE",
-                    example_rgb(244, 184, 96), 2);
+  example_round_rect(canvas,112,90,576,420,10,UI_DARK);
+  example_label(canvas,142,112,"Tile Forge shortcuts",UI_LIGHT,2);
+  const char *lines[]={"1-5   Choose tile     Drag   Paint     Right-click   Pick", "Arrows   Move tile cursor      Space   Paint tile", "Delete   Erase tile under cursor", "Cmd/Ctrl+Z   Undo edit or playtest move", "Cmd/Ctrl+Shift+Z or Ctrl+Y   Redo edit", "S / F2 / Cmd/Ctrl+S   Save map", "V   Validate map       G   Grid", "Enter / F5   Switch between edit and playtest", "Playtest: Arrows / WASD   Move     U   Undo     R   Reset", "Esc   Back to edit       F1 / Esc   Close help"};
+  for(int i=0;i<10;i++) example_label(canvas,142,174+i*31,lines[i],UI_DIM,1);
 }
 
 static void draw_mouse_cursor(example_canvas_t *canvas,
@@ -1353,7 +1288,7 @@ static void draw_mouse_cursor(example_canvas_t *canvas,
 static void draw_tilemap_editor(example_canvas_t *canvas,
                                 const tilemap_editor_t *editor) {
   example_fill_rect(canvas, 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT,
-                    example_rgb(14, 19, 28));
+                    UI_BG);
   draw_header(canvas, editor);
   draw_palette_panel(canvas, editor);
   draw_map_canvas(canvas, editor);
@@ -1381,6 +1316,7 @@ int main(int argc, char **argv) {
   mouse_parser_t mouse_parser = {{0, 0, 0}, 0};
   tilemap_editor_t editor;
   seed_map(&editor);
+  open_map(&editor, export_path);
 
   if (lcom_init() != LCOM_OK) goto cleanup;
   initialized = true;

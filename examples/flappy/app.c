@@ -60,12 +60,15 @@ static void reset_round(app_t *app) {
 
 static void finish_round(app_t *app) {
   if (app->score > app->best_score) app->best_score = app->score;
+  app->paused = false;
+  app->menu.selected = 0;
   app->state = STATE_GAME_OVER;
   menu_set(&app->menu, "GAME OVER", "RETRY", "QUIT");
 }
 
 static app_input_result_t start_round(app_t *app) {
   reset_round(app);
+  app->paused = false;
   app->state = STATE_PLAYING;
   app->bird_vy_fp = FLAP_VELOCITY_FP;
   return APP_INPUT_FLAP;
@@ -89,6 +92,7 @@ static const char *const *bird_sprite_for_vy(int vy) {
 }
 
 void app_init(app_t *app) {
+  *app = (app_t){.mouse_x = 400, .mouse_y = 300};
   reset_round(app);
   app->state = STATE_MENU;
   app->running = 1;
@@ -98,21 +102,61 @@ void app_init(app_t *app) {
 }
 
 app_input_result_t app_key(app_t *app, uint8_t scancode) {
+  bool extended = app->extended;
+  if (scancode == 0xE0) app->extended = true;
+  else app->extended = false;
+  if (example_modifier_byte(&app->modifiers, scancode) || scancode == 0xE0) return APP_INPUT_NONE;
+  if (scancode & KBD_BREAK_BIT) return APP_INPUT_NONE;
+  if (example_primary(&app->modifiers)) return APP_INPUT_NONE;
+  if (!extended && (scancode == 0x3B || scancode == 0x23)) {
+    app->help = !app->help;
+    return APP_INPUT_NONE;
+  }
+  if (app->help) {
+    if (scancode == 0x01) app->help = false;
+    return APP_INPUT_NONE;
+  }
+  if (scancode == 0x01 || scancode == 0x10) return APP_INPUT_QUIT;
   if (app->state == STATE_MENU || app->state == STATE_GAME_OVER) {
+    if (scancode == 0x13 && app->state == STATE_GAME_OVER) return start_round(app);
     return handle_menu_action(app, menu_key(&app->menu, scancode));
   }
-
-  int make = (scancode & KBD_BREAK_BIT) == 0;
-  uint8_t code = (uint8_t)(scancode & ~KBD_BREAK_BIT);
-  if (!make) return scancode == ESC_BREAK ? APP_INPUT_QUIT : APP_INPUT_NONE;
-  if (code == 0x39 || code == 0x48) {
+  if (scancode == 0x19) {
+    app->paused = !app->paused;
+    return APP_INPUT_NONE;
+  }
+  if (app->paused) {
+    if (scancode == 0x39 || scancode == 0x1C) app->paused = false;
+    return APP_INPUT_NONE;
+  }
+  if (scancode == 0x39 || (extended && scancode == 0x48)) {
     app->bird_vy_fp = FLAP_VELOCITY_FP;
     return APP_INPUT_FLAP;
   }
   return APP_INPUT_NONE;
 }
 
+app_input_result_t app_mouse(app_t *app, int dx, int dy, bool down) {
+  app->mouse_x += dx;
+  app->mouse_y -= dy;
+  if (app->mouse_x < 0) app->mouse_x = 0;
+  if (app->mouse_x > 799) app->mouse_x = 799;
+  if (app->mouse_y < 0) app->mouse_y = 0;
+  if (app->mouse_y > 599) app->mouse_y = 599;
+  bool clicked = down && !app->mouse_down;
+  app->mouse_down = down;
+  if (dx || dy) app->mouse_visible = true;
+  if (app->help) return APP_INPUT_NONE;
+  if (app->state != STATE_PLAYING)
+    return handle_menu_action(app, menu_mouse(&app->menu, app->mouse_x, app->mouse_y, clicked));
+  if (!clicked) return APP_INPUT_NONE;
+  if (app->paused) { app->paused = false; return APP_INPUT_NONE; }
+  app->bird_vy_fp = FLAP_VELOCITY_FP;
+  return APP_INPUT_FLAP;
+}
+
 void app_update(app_t *app) {
+  if (app->paused || app->help) return;
   app->frame++;
   app->ground_scroll = (app->ground_scroll + 3) % 48;
   if (app->state != STATE_PLAYING) return;
@@ -224,20 +268,47 @@ void app_render(app_t *app, draw_context_t *ctx) {
   int bird_y = app->bird_y_fp / FP_ONE;
   draw_xpm(ctx, bird_sprite_for_vy(app->bird_vy_fp), BIRD_X, bird_y, 3);
 
-  char score[32];
-  snprintf(score, sizeof(score), "SCORE %d", app->score);
-  text_shadow(ctx, 24, 24, score, 0xFFFFFFu, 3);
-  if (app->best_score > 0) {
+  if (app->state == STATE_PLAYING) {
+    char score[32];
+    snprintf(score, sizeof(score), "%d", app->score);
+    fill_rect(ctx, 24, 20, 118, 54, 0x203742u);
+    draw_text(ctx, 36, 30, score, 0xFFF3C4u, 4);
     char best[32];
     snprintf(best, sizeof(best), "BEST %d", app->best_score);
-    text_shadow(ctx, SCREEN_W - 24 - (int)font_text_width(best, 2), 28, best, 0xEFF6FFu, 2);
+    text_shadow(ctx, SCREEN_W - 24 - (int)font_text_width(best, 2), 30, best, 0xFFFFFFu, 2);
+  } else {
+    menu_set(&app->menu, app->state == STATE_GAME_OVER ? "GAME OVER" : "LCOM BIRD",
+             app->state == STATE_GAME_OVER ? "TRY AGAIN" : "PLAY", "QUIT");
+    menu_render(&app->menu, ctx, app->best_score);
+    if (app->state == STATE_GAME_OVER) {
+      char score[32];
+      snprintf(score, sizeof(score), "YOUR SCORE %d", app->score);
+      fill_rect(ctx, 270, 218, 270, 24, 0x203742u);
+      draw_text(ctx, (800 - (int)font_text_width(score, 2)) / 2, 224, score, 0xEAF7F0u, 2);
+    }
   }
-
-  if (app->state == STATE_MENU) {
-    menu_set(&app->menu, "LCOM BIRD", "PLAY", "QUIT");
-    menu_render(&app->menu, ctx, app->best_score);
-  } else if (app->state == STATE_GAME_OVER) {
-    menu_set(&app->menu, "GAME OVER", "RETRY", "QUIT");
-    menu_render(&app->menu, ctx, app->best_score);
+  fill_rect(ctx, 0, 556, 800, 44, 0x203742u);
+  draw_text(ctx, 26, 568, "SPACE / UP / CLICK  FLAP    P  PAUSE    F1  HELP    ESC  QUIT", 0xEAF7F0u, 1);
+  if (app->paused) {
+    fill_rect(ctx, 224, 210, 352, 172, 0x203742u);
+    draw_text(ctx, 292, 238, "PAUSED", 0xFFF3C4u, 5);
+    draw_text(ctx, 274, 308, "P / SPACE  RESUME", 0xEAF7F0u, 2);
+    draw_text(ctx, 298, 346, "ESC  QUIT", 0xBDD5DCu, 2);
+  }
+  if (app->help) {
+    fill_rect(ctx, 120, 114, 560, 372, 0x203742u);
+    draw_text(ctx, 174, 140, "HOW TO FLY", 0xFFF3C4u, 4);
+    draw_text(ctx, 154, 210, "SPACE / UP / CLICK  FLAP", 0xEAF7F0u, 2);
+    draw_text(ctx, 154, 250, "PASS THROUGH THE PIPE GAPS", 0xEAF7F0u, 2);
+    draw_text(ctx, 154, 290, "P  PAUSE OR RESUME", 0xEAF7F0u, 2);
+    draw_text(ctx, 154, 330, "R  RETRY AFTER A CRASH", 0xEAF7F0u, 2);
+    draw_text(ctx, 154, 370, "ARROWS / TAB  MENU OPTIONS", 0xBDD5DCu, 2);
+    draw_text(ctx, 154, 438, "F1 / ESC  BACK TO GAME", 0xFFF3C4u, 2);
+  }
+  if (app->mouse_visible) {
+    for (int row = 0; row < 12; row++) {
+      fill_rect(ctx, app->mouse_x, app->mouse_y + row, 1 + row / 2, 1, 0x203742u);
+      if (row < 10) fill_rect(ctx, app->mouse_x + 1, app->mouse_y + row + 1, 1 + row / 3, 1, 0xFFFFFFu);
+    }
   }
 }

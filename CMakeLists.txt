@@ -237,6 +237,27 @@ set_target_properties(unit_tests PROPERTIES
   RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/tests
 )
 
+# Exercise application input boundaries without a second copy of their logic.
+set(NINJIX_TEST_SOURCES ${NINJIX_SOURCES})
+list(FILTER NINJIX_TEST_SOURCES EXCLUDE REGEX "/proj\\.c$")
+add_executable(ninjix_menu_tests tests/ninjix_menu_tests.c ${NINJIX_TEST_SOURCES})
+target_include_directories(ninjix_menu_tests PRIVATE examples/ninjix)
+set(PVZ_TEST_SOURCES ${PVZ_SOURCES})
+list(FILTER PVZ_TEST_SOURCES EXCLUDE REGEX "/main\\.c$")
+add_executable(pvz_input_tests tests/pvz_input_tests.c ${PVZ_TEST_SOURCES})
+target_include_directories(pvz_input_tests PRIVATE examples/pvz/include)
+add_executable(flappy_input_tests tests/flappy_input_tests.c
+  examples/flappy/app.c examples/flappy/menu.c examples/flappy/font.c examples/flappy/renderer.c)
+target_include_directories(flappy_input_tests PRIVATE examples/flappy)
+foreach(test IN ITEMS ninjix_menu_tests pvz_input_tests flappy_input_tests)
+  target_link_libraries(${test} PRIVATE machinelab_c)
+  set_target_properties(${test} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/tests)
+endforeach()
+
+add_executable(clipboard_client tests/clipboard_client.c)
+target_link_libraries(clipboard_client PRIVATE machinelab_c)
+set_target_properties(clipboard_client PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/tests)
+
 add_executable(client_protocol_tests tests/client_protocol_tests.c)
 target_link_libraries(client_protocol_tests PRIVATE machinelab_c)
 target_compile_options(client_protocol_tests PRIVATE -Wall -Wextra -Wpedantic)
@@ -377,8 +398,21 @@ if(BUILD_TESTING)
   set_tests_properties(compat_frame_pixels PROPERTIES FIXTURES_REQUIRED compat_frames)
   file(MAKE_DIRECTORY ${CMAKE_BINARY_DIR}/test-output)
 
+  add_test(NAME ninjix_menu COMMAND ninjix_menu_tests)
+  add_test(NAME pvz_input COMMAND pvz_input_tests)
+  add_test(NAME flappy_input COMMAND flappy_input_tests)
+  add_test(NAME presented_capture
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/presented_capture.py
+      $<TARGET_FILE:machinelab> $<TARGET_FILE:framebuffer_dirty_client> $<TARGET_FILE:hello>)
+  add_test(NAME studio_shortcuts
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/studio_shortcuts.py
+            $<TARGET_FILE:machinelab> ${CMAKE_BINARY_DIR}/examples)
+  set_tests_properties(studio_shortcuts PROPERTIES TIMEOUT 30)
   add_test(NAME unit COMMAND unit_tests)
   add_test(NAME client_protocol COMMAND client_protocol_tests)
+  add_test(NAME host_clipboard COMMAND $<TARGET_FILE:machinelab> run --headless -- $<TARGET_FILE:clipboard_client>)
+  add_test(NAME host_clipboard_pair COMMAND $<TARGET_FILE:machinelab> run-pair --headless
+    $<TARGET_FILE:clipboard_client> --right $<TARGET_FILE:clipboard_client>)
   add_test(NAME lab1_solution
     COMMAND $<TARGET_FILE:machinelab> run --headless --rtc 2026-06-16T12:34:56 -- $<TARGET_FILE:lab1_solution_test>
   )

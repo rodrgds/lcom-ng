@@ -268,6 +268,7 @@ std::vector<uint8_t> ps2Set1ForKey(const std::string &key_in, bool pressed) {
       {"F11", 0x57},       {"F12", 0x58}};
 
   static const std::map<std::string, uint8_t> e0 = {
+      {"LGUI", 0x5B}, {"RGUI", 0x5C}, {"LCMD", 0x5B}, {"RCMD", 0x5C},
       {"KP_DIVIDE", 0x35}, {"KP_ENTER", 0x1C}, {"RCTRL", 0x1D},
       {"RIGHTCTRL", 0x1D}, {"RALT", 0x38},     {"RIGHTALT", 0x38},
       {"HOME", 0x47},      {"UP", 0x48},       {"PAGEUP", 0x49},

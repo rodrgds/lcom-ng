@@ -106,7 +106,9 @@ typedef struct {
   light_phase_t rtc_phase;
   bool rtc_valid;
   bool paused;
+  bool show_help;
   bool bubbles_enabled;
+  example_modifiers_t modifiers;
   bool extended_key;
   char status[48];
 } aquarium_state_t;
@@ -367,8 +369,8 @@ static bool consume_mouse_byte(aquarium_mouse_t *mouse, uint8_t value) {
   mouse->y -= dy;
   if (mouse->x < 8) mouse->x = 8;
   if (mouse->x > 791) mouse->x = 791;
-  if (mouse->y < 92) mouse->y = 92;
-  if (mouse->y > 548) mouse->y = 548;
+  if (mouse->y < 0) mouse->y = 0;
+  if (mouse->y > 599) mouse->y = 599;
   mouse->previous_buttons = mouse->buttons;
   mouse->buttons = (uint8_t)(mouse->bytes[0] & 0x07u);
   mouse->packets++;
@@ -376,13 +378,30 @@ static bool consume_mouse_byte(aquarium_mouse_t *mouse, uint8_t value) {
   return true;
 }
 
+static bool aquarium_over(const aquarium_mouse_t *mouse, int x, int y, int w, int h) {
+  return mouse->x >= x && mouse->x < x + w && mouse->y >= y && mouse->y < y + h;
+}
+
+static void cycle_lighting(aquarium_state_t *state, aquarium_audio_t *audio);
+
 static void handle_mouse(aquarium_state_t *state, aquarium_audio_t *audio,
                          aquarium_mouse_t *mouse) {
-  bool left_pressed = (mouse->buttons & BIT(0)) != 0 &&
-                      (mouse->previous_buttons & BIT(0)) == 0;
-  state->target_x = mouse->x;
-  state->target_y = mouse->y;
-  if (left_pressed) scatter_food(state, audio, mouse->x, mouse->y);
+  bool left_pressed = (mouse->buttons & BIT(0)) != 0 && (mouse->previous_buttons & BIT(0)) == 0;
+  if (state->show_help) {
+    if (left_pressed && aquarium_over(mouse, 588, 154, 100, 32)) state->show_help = false;
+    return;
+  }
+  if (mouse->y >= 88 && mouse->y < 516) {
+    if (left_pressed) scatter_food(state, audio, mouse->x, mouse->y);
+    return;
+  }
+  if (!left_pressed) return;
+  if (aquarium_over(mouse, 24, 550, 100, 34)) scatter_food(state, audio, 400, 230);
+  else if (aquarium_over(mouse, 132, 550, 116, 34)) state->paused = !state->paused;
+  else if (aquarium_over(mouse, 256, 550, 160, 34)) cycle_lighting(state, audio);
+  else if (aquarium_over(mouse, 424, 550, 118, 34)) state->bubbles_enabled = !state->bubbles_enabled;
+  else if (aquarium_over(mouse, 550, 550, 108, 34) && audio->available) audio->muted = !audio->muted;
+  else if (aquarium_over(mouse, 666, 550, 110, 34)) state->show_help = true;
 }
 
 static void cycle_lighting(aquarium_state_t *state,
@@ -409,6 +428,7 @@ static void cycle_lighting(aquarium_state_t *state,
 static void handle_keyboard(aquarium_state_t *state, aquarium_audio_t *audio,
                             aquarium_mouse_t *mouse, uint8_t data,
                             bool *running) {
+  if (example_modifier_byte(&state->modifiers, data)) { state->extended_key = false; return; }
   if (data == KBD_TWO_BYTE_PFX) {
     state->extended_key = true;
     return;
@@ -420,19 +440,31 @@ static void handle_keyboard(aquarium_state_t *state, aquarium_audio_t *audio,
     return;
   }
   if (data == ESC_BREAK) {
+    if (state->show_help) { state->show_help = false; return; }
     *running = false;
     return;
   }
   if (break_code) return;
-  if (code == 0x21u) {
-    scatter_food(state, audio, mouse->x, mouse->y);
+  if (example_primary(&state->modifiers)) { if (code == 0x11) *running = false; return; }
+  if (code == 0x3Bu) { state->show_help = !state->show_help; return; }
+  if (state->show_help) return;
+  if (code >= 0x02u && code <= 0x05u) {
+    state->light_override = (int)(code - 0x02u);
+    state->lighting_changes++;
+    set_status(state, "Manual lighting selected.");
+  } else if (code == 0x1Eu) {
+    state->light_override = -1;
+    state->lighting_changes++;
+    set_status(state, "Lighting follows the real clock.");
+  } else if (code == 0x21u) {
+    scatter_food(state, audio, mouse->y >= 88 && mouse->y < 516 ? mouse->x : state->target_x, mouse->y >= 88 && mouse->y < 516 ? mouse->y : state->target_y);
   } else if (code == 0x26u) {
     cycle_lighting(state, audio);
   } else if (code == 0x19u || code == 0x39u) {
     state->paused = !state->paused;
     set_status(state, state->paused ? "PIT MOTION PAUSED" : "PIT MOTION RESUMED");
-  } else if (code == 0x1Fu) {
-    audio->muted = !audio->muted;
+  } else if (code == 0x1Fu || code == 0x32u) {
+    if (audio->available) audio->muted = !audio->muted;
     set_status(state, audio->muted ? "EVENT TONES MUTED" : "EVENT TONES ENABLED");
   } else if (code == 0x30u) {
     state->bubbles_enabled = !state->bubbles_enabled;
@@ -620,6 +652,12 @@ static void draw_fish(example_canvas_t *canvas, const fish_t *fish,
     fill_ellipse(canvas, posed.x, posed.y + posed.radius_y / 2,
                  posed.radius_x / 2, 3, accent);
   }
+  /* The fins trail the body and inherit the species accent. */
+  for (int fin = 0; fin < 5; fin++) {
+    int width = 9 - fin;
+    example_fill_rect(canvas, posed.x - direction * 4 - width / 2, posed.y - posed.radius_y - fin, width, 1, accent);
+  }
+  example_fill_rect(canvas, posed.x - posed.radius_x / 2, posed.y - posed.radius_y + 3, posed.radius_x, 1, blend_color(body, 0xFFFFFFu, 1u, 3u));
   int eye_x = posed.x + direction * (posed.radius_x - 7);
   fill_circle(canvas, eye_x, posed.y - 3, 3, example_rgb(244, 248, 248));
   fill_circle(canvas, eye_x + direction, posed.y - 3, 1,
@@ -641,10 +679,10 @@ static void draw_plant(example_canvas_t *canvas, int x, int base_y,
 static void draw_water(example_canvas_t *canvas, light_phase_t phase,
                        uint64_t ticks) {
   static const uint32_t top_colors[LIGHT_COUNT] = {
-      0x547EA3u, 0x3B9FC2u, 0x806B91u, 0x172B52u,
+      0x638C9Cu, 0x398B9Cu, 0x7C718Du, 0x203953u,
   };
   static const uint32_t bottom_colors[LIGHT_COUNT] = {
-      0x174E6Bu, 0x12627Du, 0x353E68u, 0x0A203Bu,
+      0x1A4D60u, 0x164A5Au, 0x343D57u, 0x0C2538u,
   };
   const int top_y = 88;
   const int bottom_y = 540;
@@ -754,55 +792,36 @@ static void draw_aquarium(example_canvas_t *canvas,
   }
   draw_food(canvas, state);
 
-  example_fill_rect(canvas, 0, 0, 800, 88, example_rgb(20, 29, 42));
-  example_fill_rect(canvas, 0, 86, 800, 2,
-                    phase == LIGHT_NIGHT ? example_rgb(88, 140, 193)
-                                         : example_rgb(99, 210, 197));
-  example_draw_text(canvas, 25, 16, "AMBIENT AQUARIUM",
-                    example_rgb(239, 244, 247), 3);
-  example_draw_text(canvas, 27, 49, "A QUIET HARDWARE CLOCK HABITAT",
-                    example_rgb(141, 159, 181), 1);
-
-  example_fill_rect(canvas, 412, 15, 170, 56, example_rgb(31, 42, 58));
-  example_stroke_rect(canvas, 412, 15, 170, 56, 1, example_rgb(63, 80, 103));
-  draw_phase_icon(canvas, phase, 436, 43);
-  example_draw_text(canvas, 459, 25,
-                    state->light_override < 0 ? "RTC LIGHTING" : "MANUAL OVERRIDE",
-                    example_rgb(137, 156, 182), 1);
-  char rtc_text[32];
-  if (state->rtc_valid) {
-    snprintf(rtc_text, sizeof(rtc_text), "%02u:%02u:%02u  %s",
-             state->rtc_hour, state->rtc_minute, state->rtc_second,
-             phase_names[phase]);
-  } else {
-    snprintf(rtc_text, sizeof(rtc_text), "--:--:--  RTC ERROR");
+  example_fill_rect(canvas, 0, 0, 800, 88, 0x132D3B);
+  example_label(canvas, 24, 10, "Aquarium", 0xE5F3F3, 2);
+  char status[100];
+  snprintf(status, sizeof(status), "%s   %u feed%s", state->paused ? "A moment of stillness." : state->ticks < state->feed_until ? "Dinner is served." : "Click the water to feed the fish.", state->feeds, state->feeds == 1u ? "" : "s");
+  example_label(canvas, 26, 52, status, 0xB9D4DB, 1);
+  draw_phase_icon(canvas, phase, 520, 38);
+  char time[64];
+  if (state->rtc_valid) snprintf(time, sizeof(time), "%02u:%02u  %s", state->rtc_hour, state->rtc_minute, phase_names[phase]);
+  else snprintf(time, sizeof(time), "Clock unavailable");
+  example_label(canvas, 550, 18, time, 0xE5F3F3, 1);
+  example_label(canvas, 550, 46, state->light_override < 0 ? "Automatic lighting" : "Manual lighting", 0xB9D4DB, 1);
+  if (state->paused) {
+    example_round_rect(canvas, 274, 104, 252, 32, 5, 0x132D3B);
+    example_label(canvas, 292, 112, "Paused. Space to resume.", 0xE5F3F3, 1);
   }
-  example_draw_text(canvas, 459, 47, rtc_text,
-                    example_rgb(233, 238, 243), 1);
-
-  example_fill_rect(canvas, 594, 15, 178, 56, example_rgb(31, 42, 58));
-  example_stroke_rect(canvas, 594, 15, 178, 56, 1, example_rgb(63, 80, 103));
-  example_draw_text(canvas, 610, 25, "PIT MOTION",
-                    example_rgb(137, 156, 182), 1);
-  char motion_text[32];
-  snprintf(motion_text, sizeof(motion_text), "%s  %llu TICKS",
-           state->paused ? "PAUSED" : "FLOWING",
-           (unsigned long long)state->motion_ticks);
-  example_draw_text(canvas, 610, 47, motion_text,
-                    state->paused ? example_rgb(255, 183, 102)
-                                  : example_rgb(104, 218, 176),
-                    1);
-
-  example_fill_rect(canvas, 0, 560, 800, 40, example_rgb(13, 20, 29));
-  example_draw_text(canvas, 20, 572,
-                    "CLICK / F FEED   L LIGHT   P PAUSE   B BUBBLES   S SOUND   ESC EXIT",
-                    example_rgb(143, 160, 183), 1);
-  char status[96];
-  snprintf(status, sizeof(status), "%s  FEEDS %u  SOUND %s",
-           state->status, state->feeds,
-           audio->available ? (audio->muted ? "MUTED" : "ON") : "N/A");
-  example_draw_text(canvas, 20, 545, status,
-                    example_rgb(220, 234, 232), 1);
+  example_fill_rect(canvas, 0, 540, 800, 60, 0x132D3B);
+  example_dark_button(canvas, 24, 550, 100, 34, "Feed  F", false, aquarium_over(mouse, 24, 550, 100, 34), true);
+  example_dark_button(canvas, 132, 550, 116, 34, state->paused ? "Play  Space" : "Pause  Space", state->paused, aquarium_over(mouse, 132, 550, 116, 34), true);
+  const char *lights[] = {"Dawn  L", "Day  L", "Sunset  L", "Night  L"};
+  example_dark_button(canvas, 256, 550, 160, 34, state->light_override < 0 ? "Auto light  L" : lights[phase], state->light_override >= 0, aquarium_over(mouse, 256, 550, 160, 34), true);
+  example_dark_button(canvas, 424, 550, 118, 34, "Bubbles  B", state->bubbles_enabled, aquarium_over(mouse, 424, 550, 118, 34), true);
+  example_dark_button(canvas, 550, 550, 108, 34, !audio->available ? "No audio" : audio->muted ? "Muted  M" : "Sound  M", !audio->muted && audio->available, aquarium_over(mouse, 550, 550, 108, 34), audio->available);
+  example_dark_button(canvas, 666, 550, 110, 34, "Help  F1", false, aquarium_over(mouse, 666, 550, 110, 34), true);
+  if (state->show_help) {
+    example_round_rect(canvas, 98, 140, 604, 348, 12, 0x132D3B);
+    example_label(canvas, 122, 156, "A quiet little world", UI_LIGHT, 2);
+    example_button(canvas, 588, 154, 100, 32, "Close  F1", false, aquarium_over(mouse, 588, 154, 100, 32), true);
+    const char *lines[] = {"Click water / F   Feed the fish", "Space / P   Pause or resume motion", "L   Cycle lighting. A follows the real clock.", "1 Dawn    2 Day    3 Sunset    4 Night", "B   Show bubbles. M toggles sound. R resets fish.", "F1 / Esc   Close help. Esc again leaves."};
+    for (int i = 0; i < 6; i++) example_label(canvas, 124, 220 + i * 38, lines[i], UI_DIM, 1);
+  }
   draw_cursor(canvas, mouse, state->ticks < state->feed_until);
 }
 
