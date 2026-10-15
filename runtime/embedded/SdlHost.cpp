@@ -753,8 +753,10 @@ public:
         texture_ = nullptr; break;
       case SDL_EVENT_RENDER_TARGETS_RESET: case SDL_EVENT_WINDOW_SHOWN: case SDL_EVENT_WINDOW_RESTORED:
         frame_dirty_=true; break;
-      case SDL_EVENT_WINDOW_RESIZED: case SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED: case SDL_EVENT_WINDOW_EXPOSED:
+      case SDL_EVENT_WINDOW_RESIZED: case SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED:
         release(); draw(); break;
+      case SDL_EVENT_WINDOW_EXPOSED:
+        draw(); break;
       case SDL_EVENT_FINGER_DOWN: case SDL_EVENT_FINGER_MOTION: case SDL_EVENT_FINGER_UP: case SDL_EVENT_FINGER_CANCELED:
         if (!paused_) finger(e.tfinger); break;
       case SDL_EVENT_KEY_DOWN: case SDL_EVENT_KEY_UP:

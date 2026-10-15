@@ -444,6 +444,10 @@ int main() {
   lcom::embedded::configureControls(controls);
   CHECK(lcom_init()==LCOM_OK);CHECK(lcom_irq_subscribe(KBC_IRQ,0,&keyboard)==LCOM_OK);
   touch(SDL_EVENT_FINGER_DOWN,40,86.f/760,262.f/400);CHECK(expectedKey(0x11));
+  // Exposing an unchanged window repaints it without releasing held controls.
+  windows=SDL_GetWindows(&count);CHECK(count==1);
+  SDL_Event exposed{};exposed.type=SDL_EVENT_WINDOW_EXPOSED;exposed.window.windowID=SDL_GetWindowID(windows[0]);
+  SDL_free(windows);CHECK(SDL_PushEvent(&exposed));lcom::embedded::host().pump();CHECK(!keyReady());
   touch(SDL_EVENT_FINGER_DOWN,41,674.f/760,262.f/400);CHECK(expectedKey(0x48));CHECK(!keyReady());
   touch(SDL_EVENT_FINGER_DOWN,42,86.f/760,210.f/400);CHECK(expectedKey(0x39));
   touch(SDL_EVENT_FINGER_DOWN,43,674.f/760,210.f/400);CHECK(expectedKey(0x52));CHECK(!keyReady());
