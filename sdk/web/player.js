@@ -6,6 +6,9 @@ const area = document.querySelector('main');
 const touch = matchMedia('(pointer: coarse)');
 const keyboard = document.querySelector('#keyboard');
 const controls = document.querySelector('#touch-controls');
+const controlsToggle = document.querySelector('#controls-toggle');
+const landscape = matchMedia('(orientation: landscape)');
+let controlsCollapsed = false;
 const keyboardToggle = document.querySelector('#keyboard-toggle');
 const joystickToggle = document.querySelector('#joystick-toggle');
 const joystick = document.querySelector('#joystick');
@@ -363,7 +366,7 @@ function renderKeyboard() {
 }
 function updateKeyboard() {
   player.releaseAll();
-  controls.hidden = !touch.matches;
+  updateTouchControls();
   keyboard.hidden = true;
   document.querySelector('.compact-controls').hidden = false;
   document.querySelector('#joystick-controls').hidden = true;
@@ -379,6 +382,19 @@ function updateKeyboard() {
 functionToggle.onclick = () => { functionToggle.setAttribute('aria-pressed', String(functionToggle.getAttribute('aria-pressed') !== 'true')); renderKeyboard(); };
 updateKeyboard();
 touch.addEventListener('change', updateKeyboard);
+function updateTouchControls() {
+  controls.hidden = !touch.matches || (landscape.matches && controlsCollapsed);
+  controlsToggle.hidden = !touch.matches || !landscape.matches;
+  controlsToggle.setAttribute('aria-expanded', String(!controls.hidden));
+  controlsToggle.textContent = controls.hidden ? 'Controls' : 'Hide controls';
+}
+controlsToggle.onclick = () => {
+  player.releaseAll();
+  controlsCollapsed = !controlsCollapsed;
+  updateTouchControls();
+  canvas.focus({ preventScroll: true });
+};
+landscape.addEventListener('change', () => { player.releaseAll(); updateTouchControls(); });
 
 try {
   const response = await fetch('./game.json');

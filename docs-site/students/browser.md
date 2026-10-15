@@ -44,6 +44,9 @@ cursor, and push further to move faster. **Arrow keys** and **WASD** control
 keyboard movement instead. **Mouse + arrows** or **Mouse + WASD** shows two
 independent sticks, so you can move and aim together while holding a click button.
 Both panels start closed to leave more room for the game. Desktop stays game-only.
+Rotate to landscape to put the mobile controls beside the game on the right.
+**Hide controls** collapses that panel; tap **Controls** to bring it back.
+In portrait, the controls return to the bottom.
 
 Press Ctrl+C in the terminal to stop the preview. Re-run the command after source
 changes. Use `--port 8080` to choose a port or `--no-open` to copy the printed URL

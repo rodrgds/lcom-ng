@@ -249,11 +249,24 @@ test('mobile controls stay compact, with a dismissible keyboard and optional map
   // Both orientations must leave room for the game and avoid page overflow.
   for (const viewport of [{ width: 390, height: 844 }, { width: 844, height: 390 }]) {
     await page.setViewportSize(viewport);
-    const controlHeight = (await page.locator('#touch-controls').boundingBox()).height;
-    const expectedHeight = Math.min(viewport.width * 3 / 4, viewport.height - controlHeight);
-    expect(Math.abs((await page.locator('canvas').boundingBox()).height - expectedHeight)).toBeLessThan(1);
+    await expect.poll(async () => {
+      const area = await page.locator('main').boundingBox();
+      const expectedHeight = Math.min(area.width * 3 / 4, area.height);
+      return Math.abs((await page.locator('canvas').boundingBox()).height - expectedHeight);
+    }).toBeLessThan(1);
     await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth && document.documentElement.scrollHeight <= innerHeight)).toBe(true);
   }
+  const side = await page.locator('#touch-controls').boundingBox();
+  const gameArea = await page.locator('main').boundingBox();
+  expect(side.x).toBeGreaterThanOrEqual(gameArea.x + gameArea.width);
+  await page.getByRole('button', { name: 'Hide controls', exact: true }).tap();
+  await expect(page.locator('#touch-controls')).toBeHidden();
+  expect((await page.locator('main').boundingBox()).width).toBeGreaterThan(gameArea.width + 200);
+  await page.getByRole('button', { name: 'Controls', exact: true }).tap();
+  await expect(page.locator('#touch-controls')).toBeVisible();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(page.locator('#controls-toggle')).toBeHidden();
+  await expect(page.locator('#touch-controls')).toBeVisible();
   await context.close();
 });
 
@@ -359,12 +372,16 @@ test('Flappy renders and restarts on desktop and mobile', async ({ browser }) =>
       await expect(page.locator('#joystick')).toHaveCSS('width', '96px');
       await expect.poll(async () => {
         const game = await page.locator('canvas').boundingBox();
-        const controls = await page.locator('#touch-controls').boundingBox();
-        return Math.abs(game.height + controls.height - 390);
+        const available = await page.locator('main').boundingBox();
+        return Math.abs(game.height - Math.min(available.width * 3 / 4, available.height));
       }).toBeLessThan(1);
       // Let the mobile compositor paint the new orientation before capturing it.
       await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       await page.screenshot({ path: path.join(root, 'build/web-qa/mobile-landscape.png') });
+      await page.getByRole('button', { name: 'Hide controls', exact: true }).tap();
+      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
+      await page.screenshot({ path: path.join(root, 'build/web-qa/mobile-landscape-collapsed.png') });
+      await page.getByRole('button', { name: 'Controls', exact: true }).tap();
     }
     if (mobile) await page.getByRole('button', { name: 'ESC', exact: true }).tap();
     else await page.keyboard.press('Escape');
