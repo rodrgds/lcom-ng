@@ -2,7 +2,7 @@
   "version": 1,
   "collection": "collections/arcade/lcom.collection.json",
   "verificationSummary": {
-    "date": "2026-10-15",
+    "date": "2026-10-16",
     "sourceAudit": {
       "games": 65,
       "pinnedOriginalFiles": 7757,
@@ -12,8 +12,8 @@
       "command": "devenv shell -- python3 scripts/check_collection_sources.py --require-tracked"
     },
     "android": {
-      "apk": "dist/lcom-arcade-android/collection.apk",
-      "sha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+      "apk": "dist/lcom-arcade-android-20261016/collection.apk",
+      "sha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
       "bytes": 353556768,
       "abi": "arm64-v8a",
       "gameLibraries": 65,
@@ -25,21 +25,45 @@
       "coldLaunchRenderReturnPassed": 65,
       "processIsolationSavedFileForcedTerminationAndCrashContainment": "passed",
       "newGameGameplaySessions": 12,
-      "changedGameFinalAPKRechecks": [
-        "Portal 2D",
-        "BreakPong"
-      ],
       "repairedExistingGameSessions": [
         "Minhoca",
         "PettyCats"
       ],
-      "coverageNote": "New 12 representative native sessions: 10 on f068c304... and Portal/BreakPong on final 46447b5a...; only those 2 games changed between builds. All 65 cold launches, fresh processes, rendered guest pixels and Home returns use the exact final APK. Existing native gameplay remains separately recorded in previousReview.",
+      "coverageNote": "The 12 representative native game objectives were recorded on f068c304... and 46447b5a... packages. The final 8a152322... package fixes shared native input release on repaint, with unchanged game sources and profiles. All 65 fresh launches, rendered guest pixels, returns, search, saved-file and crash-containment checks were repeated on this exact final APK. Existing native gameplay remains separately recorded in previousReview.",
       "evidence": [
-        "build/arcade-expansion/final-apk-inventory.json",
+        "build/arcade-expansion/native-expose/inventory.json",
+        "build/arcade-expansion/native-expose/all65/results.json",
+        "build/arcade-expansion/native-expose/update-identity.json",
+        "build/arcade-expansion/native-expose/update-persistence.json",
+        "build/arcade-expansion/expose-cocoa/result.log",
         "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json",
-        "build/arcade-expansion/native-all65/native-sweep-results.json"
+        "build/arcade-expansion/native-expose/focused-final/results.json"
       ],
-      "physicalDevicePerformance": "not measured"
+      "physicalDevicePerformance": "not measured",
+      "previousExpansionPackage": {
+        "apk": "dist/lcom-arcade-android/collection.apk",
+        "sha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+        "bytes": 353556768,
+        "coverageNote": "New 12 representative native sessions: 10 on f068c304... and Portal/BreakPong on final 46447b5a...; only those 2 games changed between builds. All 65 cold launches, fresh processes, rendered guest pixels and Home returns use the exact final APK. Existing native gameplay remains separately recorded in previousReview.",
+        "changedGameFinalAPKRechecks": [
+          "Portal 2D",
+          "BreakPong"
+        ],
+        "evidence": [
+          "build/arcade-expansion/final-apk-inventory.json",
+          "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json",
+          "build/arcade-expansion/native-all65/native-sweep-results.json"
+        ],
+        "release": "https://github.com/rodrgds/lcom-ng/releases/tag/arcade-2026-10-15"
+      },
+      "sourceRevision": "04749a6241d63adcbd63ee7c3d30168521b0646b",
+      "freshProcessChecks": 66,
+      "oldToNewUpdatePreservesPrivateFile": true,
+      "nativeExposeRegression": "Explicit same-window expose preserves all held controls and exact releases; passed CTest and visible Cocoa SDL trial.",
+      "nativeHostFinalAPKRechecks": [
+        "Minix Surfers: Versus"
+      ],
+      "focusLossResume": "Actual two-player held controls, Home/Recents same-process resume, old contacts released and new contacts accepted; original score advanced to73."
     },
     "web": {
       "url": "https://arcade.rgo.pt",
@@ -96,7 +120,7 @@
     },
     "repositoryGate": {
       "status": "passed",
-      "command": "devenv shell -- env EMCC_CORES=4 lcom-ng-verify",
+      "command": "devenv shell -- lcom-ng-verify",
       "runtimeIntegrationTests": 38,
       "browserTests": 26,
       "projectConfigurationTests": 11,
@@ -104,7 +128,7 @@
       "installedSDKRelocation": "passed",
       "docsGalleryStates": 99,
       "docsAndRemotion": "passed",
-      "evidence": "build/arcade-expansion/final-fixed-verify.log"
+      "evidence": "build/arcade-expansion/native-expose-final-verify-green.log"
     },
     "mobileGameplay": {
       "gamesReviewed": 65,
@@ -288,9 +312,9 @@
         "scope": "Original-source native Android deck selection, board placement, resource spending, pause and exit previously verified; included collection reverified separately.",
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -410,9 +434,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -565,9 +589,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -739,9 +763,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -899,9 +923,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -1084,9 +1108,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -1252,9 +1276,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -1380,9 +1404,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -1537,9 +1561,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -1707,9 +1731,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -1868,9 +1892,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "derivedScoreData": "Pinned source score table copied unchanged to the literal relative path used by original source, validated independently by B: original get_scores RED0 entries then GREEN13.",
@@ -2096,9 +2120,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -2289,9 +2313,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -2461,9 +2485,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -2638,9 +2662,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -2811,9 +2835,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -2963,9 +2987,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -3176,9 +3200,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -3354,9 +3378,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -3499,9 +3523,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -3677,9 +3701,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -3829,9 +3853,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -4001,9 +4025,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -4154,9 +4178,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -4308,9 +4332,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -4473,9 +4497,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -4661,9 +4685,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -4852,9 +4876,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -5013,9 +5037,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -5182,9 +5206,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -5380,9 +5404,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -5643,9 +5667,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -5792,9 +5816,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -5949,9 +5973,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -6135,9 +6159,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -6320,9 +6344,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -6492,9 +6516,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -6631,9 +6655,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -6774,9 +6798,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -6904,9 +6928,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -7069,9 +7093,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -7228,9 +7252,9 @@
         ],
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -7424,9 +7448,9 @@
         ],
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -7624,9 +7648,9 @@
         ],
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -7833,9 +7857,9 @@
         ],
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -8060,9 +8084,9 @@
         ],
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -8269,9 +8293,9 @@
         ],
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -8474,9 +8498,9 @@
         ],
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -8680,9 +8704,9 @@
         ],
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -8882,9 +8906,9 @@
         ],
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -9104,9 +9128,9 @@
         ],
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -9301,9 +9325,9 @@
         ],
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -9533,9 +9557,9 @@
         ],
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -9726,9 +9750,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "productionWeb": {
           "status": "passed",
@@ -9822,9 +9846,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "productionWeb": {
           "status": "passed",
@@ -9927,9 +9951,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "productionWeb": {
           "status": "passed",
@@ -10030,9 +10054,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "productionWeb": {
           "status": "passed",
@@ -10142,9 +10166,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "productionWeb": {
           "status": "passed",
@@ -10261,9 +10285,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "productionWeb": {
           "status": "passed",
@@ -10361,9 +10385,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "productionWeb": {
           "status": "passed",
@@ -10491,9 +10515,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "productionWeb": {
           "status": "passed",
@@ -10629,9 +10653,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "productionWeb": {
           "status": "passed",
@@ -10720,9 +10744,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "productionWeb": {
           "status": "passed",
@@ -10820,9 +10844,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "productionWeb": {
           "status": "passed",
@@ -10950,9 +10974,9 @@
         },
         "android": {
           "status": "passed",
-          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
-          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
-          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+          "apkSha256": "8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b",
+          "scope": "Final uniform 65-game APK after native repaint correction: fresh process, rendered guest pixels, return and launcher isolation. Gameplay checkpoints are recorded separately.",
+          "evidence": "build/arcade-expansion/native-expose/all65/results.json"
         },
         "productionWeb": {
           "status": "passed",

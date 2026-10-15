@@ -1,4 +1,4 @@
-# Arcade expansion review, 15 October 2026
+# Arcade expansion review, 16 October 2026
 
 The expansion starts from the 53-game collection and its recorded representative
 browser touch gameplay. New imports require a distinct source fingerprint, pinned
@@ -64,7 +64,7 @@ do not count as different games.
 | Alien Express | Walked to a package and placed it in the first inventory slot. |
 
 All 12 additions passed representative browser and native Android touch sessions.
-Native sessions first used APK `f068c304...`; the final APK `46447b5a...` then
+Native sessions first used APK `f068c304...`; APK `46447b5a...` then
 retested both changed games, Portal 2D and BreakPong.
 
 Every new game has a source-derived icon, raw canvas preview, concise description
@@ -91,6 +91,27 @@ emulator checks caught and repaired the initial container-focus highlight issue;
 search, clearing, native launch/return, saved files and crash containment passed
 in a separate three-game export before the full collection build.
 
+## Native repaint correction
+
+Windows CI exposed a shared native-host bug: a repaint-only window expose event
+released player one's held key before player two touched their pad. Expose now
+redraws without releasing input. Actual resize and focus-loss events retain their
+release behavior. The explicit four-touch regression fails before the fix and
+passes afterward; a visible Cocoa SDL trial also passed held input, repaint and
+all four releases. The native fix is commit `04749a6`.
+
+The rebuilt APK repeats all 65 fresh launch/render/return checks. Its package,
+version and signing certificate match the previous release. Installing the old
+APK, writing a private marker and updating to the new APK preserved that file
+byte-for-byte, without uninstalling or clearing data. Student sources and control
+profiles are unchanged from the recorded gameplay sessions.
+
+Final Android gameplay in Minix Surfers: Versus held player one's left control
+and player two's Train together. Android Home and Recents resumed the same native
+process with old contacts released; new right/Train contacts worked and the score
+advanced to 73. This complements the deterministic SDL expose regression without
+claiming an Android hook for that exact window event.
+
 ## Final published artifacts
 
 The web library is live at [arcade.rgo.pt](https://arcade.rgo.pt), Worker version
@@ -104,10 +125,10 @@ Production checks use normal DNS and TLS:
 - All 65 decoded game modules and 526 shell/player/configuration/artwork files
   match the final export exactly.
 
-The final APK is `dist/lcom-arcade-android/collection.apk`, 353,556,768 bytes,
-SHA-256 `46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976`.
+The final APK is `dist/lcom-arcade-android-20261016/collection.apk`, 353,556,768 bytes,
+SHA-256 `8a15232210de4e392aedd531fb55dace8ce9b2ce3341141cc387f6ac72bad82b`.
 The downloadable build is attached to the
-[Arcade APK release](https://github.com/rodrgds/lcom-ng/releases/tag/arcade-2026-10-15).
+[Arcade APK release](https://github.com/rodrgds/lcom-ng/releases/tag/arcade-2026-10-16).
 Its 65 game libraries and three shared native libraries are ARM64; signature,
 16 KB ZIP/ELF alignment, 65 control profiles and 5,795 selected source hashes
 are verified. The exact final APK passed all 65 fresh native process launches,
@@ -121,7 +142,7 @@ relocation, 99 gallery states, documentation and Remotion checks.
 
 Detailed local evidence is under `build/arcade-expansion/`: `web-final/live/`,
 `web-final/targeted/`, `native-new/evidence/`, `native-existing-final/`,
-`native-all65/`, `final-fixed-verify.log`, `final-apk-inventory.json`,
+`native-all65/`, `native-expose/`, `native-expose-final-verify-green.log`,
 `live-hosting-65.log` and `live-assets-65.json`. The tracked catalog retains
 per-game checkpoints, original source provenance and the previous 53-game review.
 
