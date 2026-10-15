@@ -125,6 +125,13 @@ Detailed local evidence is under `build/arcade-expansion/`: `web-final/live/`,
 `live-hosting-65.log` and `live-assets-65.json`. The tracked catalog retains
 per-game checkpoints, original source provenance and the previous 53-game review.
 
+Fresh-checkout CI follow-ups on `main` also create Android resource directories
+explicitly, use the available Android tools package and preserve the host's
+`timespec` header initialization. Test portability fixes cover MSYS symlinks and
+linker dependencies, SDL presentation capture and timing, and Android input-window
+readiness. These follow-ups leave the published game modules and APK unchanged.
+Platform CI results are recorded in [issue 14](https://github.com/rodrgds/lcom-ng/issues/14).
+
 ## Coverage limits
 
 Gameplay sessions are representative checks, not completed campaigns or proof of
