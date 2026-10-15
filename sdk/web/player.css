@@ -19,13 +19,16 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
 #quick-keys .key { min-height: 44px; font-size: 13px; }
 #keyboard { margin-top: 8px; max-height: min(48dvh, 260px); overflow-y: auto; overscroll-behavior: contain; }
 #joystick-controls { display: flex; align-items: center; gap: 8px; }
-#joystick { width: 112px; height: 112px; flex-shrink: 0; border: 1px solid #555; border-radius: 50%; position: relative; background: #171717; touch-action: none; }
-#joystick::before, #joystick::after { content: ''; position: absolute; background: #444; }
-#joystick::before { width: 1px; height: 80px; left: 55px; top: 15px; }
-#joystick::after { height: 1px; width: 80px; top: 55px; left: 15px; }
-#joystick-knob { position: absolute; width: 44px; height: 44px; top: 33px; left: 33px; background: #a8e4d2; border-radius: 50%; }
-#joystick-mapping { max-width: 110px; min-height: 44px; font: inherit; font-size: 13px; color: inherit; background: #222; border: 1px solid #444; border-radius: 5px; }
-@media (max-width: 600px) { #joystick-controls { flex-direction: column; gap: 4px; } }
+.joystick-pads { display: flex; gap: 12px; }
+.joystick-control { display: grid; justify-items: center; gap: 4px; font-size: 12px; color: #b8b8b8; }
+.joystick { width: 112px; height: 112px; flex-shrink: 0; border: 1px solid #555; border-radius: 50%; position: relative; background: #171717; touch-action: none; }
+.joystick::before, .joystick::after { content: ''; position: absolute; background: #444; }
+.joystick::before { width: 1px; height: 80px; left: 55px; top: 15px; }
+.joystick::after { height: 1px; width: 80px; top: 55px; left: 15px; }
+.joystick-knob { position: absolute; width: 44px; height: 44px; top: 33px; left: 33px; background: var(--accent); border-radius: 50%; }
+#joystick-mapping { width: 150px; min-height: 44px; font: inherit; font-size: 13px; color: inherit; background: #222; border: 1px solid #444; border-radius: 5px; }
+@media (max-width: 600px) { #joystick-controls { flex-direction: column; gap: 6px; } .dual-joysticks #quick-keys { flex-direction: column; } }
+@media (max-width: 400px) { #joystick-controls:not([hidden]) + .quick-controls #quick-keys { flex-direction: column; } }
 #keys { max-width: 920px; margin: auto; display: grid; gap: 5px; }
 .key-row { display: flex; gap: 4px; justify-content: center; }
 .key { padding: 4px 0; min-width: 0; flex: 1; min-height: 38px; font-size: 13px; touch-action: none; }
@@ -34,4 +37,4 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
 #error { position: absolute; max-width: min(40ch, 90%); padding: 24px; background: #151515; text-align: center; line-height: 1.5; }
 #error button { padding: 10px 20px; }
 ::selection { color: #112c24; background: var(--accent); }
-@media (max-height: 500px) and (pointer: coarse) { #keys .key { min-height: 32px; } #joystick { width: 96px; height: 96px; } #joystick-knob { top: 25px; left: 25px; } #joystick::before { left: 47px; top: 7px; } #joystick::after { top: 47px; left: 7px; } }
+@media (max-height: 500px) and (pointer: coarse) { #keys .key { min-height: 32px; } .joystick { width: 96px; height: 96px; } .joystick-knob { top: 25px; left: 25px; } .joystick::before { left: 47px; top: 7px; } .joystick::after { top: 47px; left: 7px; } }

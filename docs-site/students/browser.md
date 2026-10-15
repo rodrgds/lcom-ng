@@ -37,7 +37,10 @@ finger while dragging with another to drag objects or slash.
 **Esc**, **Space** and **Enter** stay within reach. Tap **Keyboard** to show or
 hide the full keyboard. Hold keys, combine touches, or tap Shift, Ctrl and Alt
 to latch modifiers. **Fn** switches to function keys, navigation and punctuation.
-The optional **Joystick** sends arrow keys or WASD, with diagonal movement.
+The optional **Joystick** starts in **Mouse** mode: hold the stick to move the
+cursor, and push further to move faster. **Arrow keys** and **WASD** control
+keyboard movement instead. **Mouse + arrows** or **Mouse + WASD** shows two
+independent sticks, so you can move and aim together while holding a click button.
 Both panels start closed to leave more room for the game. Desktop stays game-only.
 
 Press Ctrl+C in the terminal to stop the preview. Re-run the command after source

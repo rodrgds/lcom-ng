@@ -63,6 +63,11 @@ async function start(page, game = 'fixture') {
   await expect(page.locator('#status')).toHaveText('Game running.');
 }
 const consoleText = page => (output.get(page) || []).join('\n');
+function mousePackets(page) {
+  const bytes = [...consoleText(page).matchAll(/mouse:([0-9a-f]{2})/g)].map(match => parseInt(match[1], 16));
+  if (bytes[0] === 0xfa) bytes.shift();
+  return Array.from({ length: Math.floor(bytes.length / 3) }, (_, i) => bytes.slice(i * 3, i * 3 + 3));
+}
 const pixel = page => page.locator('canvas').evaluate(canvas => [...canvas.getContext('2d').getImageData(0, 0, 1, 1).data]);
 
 test('desktop starts directly in a game with only black letterboxing', async ({ page }) => {
@@ -170,11 +175,7 @@ test('mobile dragging moves the cursor without pressing a mouse button or jumpin
   const cdp = await context.newCDPSession(page);
   const box = await page.locator('canvas').boundingBox();
   const contact = { x: box.x + box.width * 0.75, y: box.y + box.height * 0.75, id: 1 };
-  const packets = () => {
-    const bytes = [...consoleText(page).matchAll(/mouse:([0-9a-f]{2})/g)].map(match => parseInt(match[1], 16));
-    if (bytes[0] === 0xfa) bytes.shift(); // PS/2 enable acknowledgement, before the packets.
-    return Array.from({ length: Math.floor(bytes.length / 3) }, (_, i) => bytes.slice(i * 3, i * 3 + 3));
-  };
+  const packets = () => mousePackets(page);
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [contact] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ ...contact, x: contact.x + box.width / 10 }] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
@@ -219,11 +220,19 @@ test('mobile controls stay compact, with a dismissible keyboard and optional map
   const pad = await page.locator('#joystick').boundingBox();
   const right = { x: pad.x + pad.width - 10, y: pad.y + pad.height / 2, id: 1 };
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [right] });
+  await expect.poll(() => mousePackets(page).length).toBeGreaterThan(2);
+  expect(mousePackets(page).every(([flags, dx, dy]) => (flags & 3) === 0 && dx > 0 && dy === 0)).toBe(true);
+  expect(consoleText(page)).not.toContain('key:4d');
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+  await page.getByLabel('Joystick mode').selectOption('arrows');
+  const arrows = await page.locator('#joystick').boundingBox();
+  const arrowRight = { x: arrows.x + arrows.width - 10, y: arrows.y + arrows.height / 2, id: 1 };
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [arrowRight] });
   await expect.poll(() => consoleText(page)).toContain('key:4d');
-  await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ ...right, x: pad.x + pad.width / 2, y: pad.y + pad.height / 2 }] });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ ...arrowRight, x: arrows.x + arrows.width / 2, y: arrows.y + arrows.height / 2 }] });
   await expect.poll(() => consoleText(page)).toContain('key:cd');
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
-  await page.getByLabel('Joystick keys').selectOption('wasd');
+  await page.getByLabel('Joystick mode').selectOption('wasd');
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [right] });
   await expect.poll(() => consoleText(page)).toContain('key:20');
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
@@ -236,6 +245,44 @@ test('mobile controls stay compact, with a dismissible keyboard and optional map
     const expectedHeight = Math.min(viewport.width * 3 / 4, viewport.height - controlHeight);
     expect(Math.abs((await page.locator('canvas').boundingBox()).height - expectedHeight)).toBeLessThan(1);
     await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= innerWidth && document.documentElement.scrollHeight <= innerHeight)).toBe(true);
+  }
+  await context.close();
+});
+
+test('dual joysticks move and aim independently while a mouse button is held', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+  const page = await context.newPage();
+  await start(page);
+  await page.getByRole('button', { name: 'Joystick', exact: true }).tap();
+  const cdp = await context.newCDPSession(page);
+  for (const [mode, make, release] of [['mouse-arrows', '4b', 'cb'], ['mouse-wasd', '1e', '9e']]) {
+    await page.getByLabel('Joystick mode').selectOption(mode);
+    const movement = await page.getByRole('group', { name: 'Movement joystick', exact: true }).boundingBox();
+    const mouse = await page.getByRole('group', { name: 'Mouse joystick', exact: true }).boundingBox();
+    const click = await page.getByRole('button', { name: 'Left click', exact: true }).boundingBox();
+    const hold = { x: click.x + click.width / 2, y: click.y + click.height / 2, id: 3 };
+    const move = { x: movement.x + 10, y: movement.y + movement.height / 2, id: 1 };
+    const aim = { x: mouse.x + mouse.width * 0.75, y: mouse.y + mouse.height * 0.25, id: 2 };
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [hold] });
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [hold, move] });
+    await expect.poll(() => consoleText(page)).toContain(`key:${make}`);
+    const before = mousePackets(page).length;
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [hold, move, aim] });
+    await expect.poll(() => mousePackets(page).length).toBeGreaterThan(before + 2);
+    expect(mousePackets(page).slice(before).every(([flags, dx, dy]) => (flags & 3) === 1 && dx > 0 && dy > 0)).toBe(true);
+    // Lifting the movement finger releases keys while the other stick keeps aiming.
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [hold, aim] });
+    await expect.poll(() => consoleText(page)).toContain(`key:${release}`);
+    const afterMovement = mousePackets(page).length;
+    await expect.poll(() => mousePackets(page).length).toBeGreaterThan(afterMovement + 2);
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
+    await expect(page.getByRole('button', { name: 'Left click', exact: true })).toHaveAttribute('aria-pressed', 'false');
+    await page.keyboard.press('b');
+    await expect.poll(() => consoleText(page)).toContain('key:b0');
+    const stopped = mousePackets(page).length;
+    // Advance several painted frames to detect a cursor loop that outlives its touch.
+    await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(resolve)))));
+    expect(mousePackets(page).length).toBe(stopped);
   }
   await context.close();
 });
@@ -297,6 +344,8 @@ test('Flappy renders and restarts on desktop and mobile', async ({ browser }) =>
       await page.getByRole('button', { name: 'Keyboard', exact: true }).tap();
       await page.getByRole('button', { name: 'Joystick', exact: true }).tap();
       await page.screenshot({ path: path.join(root, 'build/web-qa/mobile-joystick.png'), fullPage: true });
+      await page.getByLabel('Joystick mode').selectOption('mouse-arrows');
+      await page.screenshot({ path: path.join(root, 'build/web-qa/mobile-dual-joysticks.png'), fullPage: true });
       await page.setViewportSize({ width: 844, height: 390 });
       await expect(page.locator('#joystick')).toHaveCSS('width', '96px');
       await expect.poll(async () => {

@@ -9,10 +9,8 @@ const controls = document.querySelector('#touch-controls');
 const keyboardToggle = document.querySelector('#keyboard-toggle');
 const joystickToggle = document.querySelector('#joystick-toggle');
 const joystick = document.querySelector('#joystick');
-const joystickKnob = document.querySelector('#joystick-knob');
 const joystickMapping = document.querySelector('#joystick-mapping');
 let touchPointer = null;
-let joystickPointer = null;
 const mouseSources = new Map();
 const functionToggle = document.createElement('button');
 functionToggle.id = 'function-toggle';
@@ -226,29 +224,69 @@ for (const button of controls.querySelectorAll('[data-mouse]')) {
   button.addEventListener('contextmenu', event => event.preventDefault());
 }
 
-function resetJoystick() {
-  joystickPointer = null;
-  for (const code of ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'KeyW', 'KeyA', 'KeyS', 'KeyD']) player.key(code, false, 'joystick');
-  joystickKnob.style.transform = '';
+function createJoystick(pad) {
+  const knob = pad.querySelector('.joystick-knob');
+  const source = `joystick-${pad.id}`;
+  let pointer = null, x = 0, y = 0, frame = null, lastTime = null, dx = 0, dy = 0;
+  const stick = {
+    mode: 'mouse',
+    reset() {
+      pointer = null; x = y = dx = dy = 0; lastTime = null;
+      cancelAnimationFrame(frame); frame = null;
+      for (const code of ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown', 'KeyW', 'KeyA', 'KeyS', 'KeyD']) player.key(code, false, source);
+      knob.style.transform = '';
+    },
+  };
+  function moveMouse(time) {
+    if (pointer === null || !player.module || player.paused) { stick.reset(); return; }
+    // Deflection controls cursor velocity. Cap elapsed time to avoid resume jumps.
+    const elapsed = lastTime === null ? 0 : Math.min((time - lastTime) / 1000, 1 / 30);
+    lastTime = time;
+    const distance = Math.hypot(x, y);
+    if (distance > 0.15) {
+      const speed = Math.max(canvas.width, canvas.height) * 0.75 * (distance - 0.15) / (0.85 * distance);
+      dx += x * speed * elapsed; dy -= y * speed * elapsed;
+      const stepX = Math.round(dx), stepY = Math.round(dy);
+      dx -= stepX; dy -= stepY;
+      if (stepX || stepY) sendMouse(stepX, stepY);
+    }
+    frame = requestAnimationFrame(moveMouse);
+  }
+  function move(event) {
+    const rect = pad.getBoundingClientRect();
+    x = (event.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+    y = (event.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+    const distance = Math.hypot(x, y);
+    if (distance > 1) { x /= distance; y /= distance; }
+    knob.style.transform = `translate(${x * (rect.width / 2 - 22)}px, ${y * (rect.height / 2 - 22)}px)`;
+    if (stick.mode === 'mouse') return;
+    const codes = stick.mode === 'wasd' ? ['KeyA', 'KeyD', 'KeyW', 'KeyS'] : ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
+    [x < -0.3, x > 0.3, y < -0.3, y > 0.3].forEach((down, i) => player.key(codes[i], down, source));
+  }
+  pad.addEventListener('pointerdown', event => {
+    if (pointer !== null) return;
+    event.preventDefault(); pad.setPointerCapture(event.pointerId); player.unlockAudio();
+    pointer = event.pointerId; move(event);
+    if (stick.mode === 'mouse') frame = requestAnimationFrame(moveMouse);
+  });
+  pad.addEventListener('pointermove', event => { if (event.pointerId === pointer) move(event); });
+  for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) pad.addEventListener(event, event => { if (event.pointerId === pointer) stick.reset(); });
+  return stick;
 }
-function moveJoystick(event) {
-  const rect = joystick.getBoundingClientRect();
-  let x = (event.clientX - rect.left - rect.width / 2) / (rect.width / 2);
-  let y = (event.clientY - rect.top - rect.height / 2) / (rect.height / 2);
-  const distance = Math.hypot(x, y);
-  if (distance > 1) { x /= distance; y /= distance; }
-  joystickKnob.style.transform = `translate(${x * (rect.width / 2 - 22)}px, ${y * (rect.height / 2 - 22)}px)`;
-  const codes = joystickMapping.value === 'wasd' ? ['KeyA', 'KeyD', 'KeyW', 'KeyS'] : ['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'];
-  [x < -0.3, x > 0.3, y < -0.3, y > 0.3].forEach((down, i) => player.key(codes[i], down, 'joystick'));
-}
-joystick.addEventListener('pointerdown', event => {
-  if (joystickPointer !== null) return;
-  event.preventDefault(); joystick.setPointerCapture(event.pointerId); player.unlockAudio();
-  joystickPointer = event.pointerId; moveJoystick(event);
+const primaryJoystick = createJoystick(joystick);
+const mouseJoystick = createJoystick(document.querySelector('#mouse-joystick'));
+function resetJoystick() { primaryJoystick.reset(); mouseJoystick.reset(); }
+joystickMapping.addEventListener('change', () => {
+  player.releaseAll();
+  const dual = joystickMapping.value.startsWith('mouse-');
+  primaryJoystick.mode = dual ? joystickMapping.value.slice(6) : joystickMapping.value;
+  document.querySelector('#mouse-joystick-control').hidden = !dual;
+  controls.classList.toggle('dual-joysticks', dual);
+  const label = primaryJoystick.mode === 'mouse' ? 'Mouse' : primaryJoystick.mode === 'wasd' ? 'WASD' : 'Arrow keys';
+  document.querySelector('#joystick-label').textContent = label;
+  joystick.setAttribute('aria-label', primaryJoystick.mode === 'mouse' ? 'Mouse joystick' : 'Movement joystick');
+  canvas.focus({ preventScroll: true });
 });
-joystick.addEventListener('pointermove', event => { if (event.pointerId === joystickPointer) moveJoystick(event); });
-for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) joystick.addEventListener(event, event => { if (event.pointerId === joystickPointer) resetJoystick(); });
-joystickMapping.addEventListener('change', () => { resetJoystick(); canvas.focus({ preventScroll: true }); });
 function togglePanel(button, panel) {
   player.releaseAll();
   panel.hidden = !panel.hidden;
