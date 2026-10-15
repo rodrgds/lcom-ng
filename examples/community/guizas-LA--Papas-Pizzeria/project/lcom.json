@@ -41,5 +41,7 @@
   "build": {
     "assetRoot": "..",
     "assets": []
-  }
+  },
+  "description": "Prepare a pizza, put it in the oven and keep the kitchen moving.",
+  "preview": "../../../../collections/arcade/previews/guizas-la-papas-pizzeria-807f3b26e203.png"
 }

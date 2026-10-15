@@ -46,5 +46,7 @@
     "assets": [
       "proj/src/scoreboard.txt"
     ]
-  }
+  },
+  "description": "Run, jump and shoot through a hand-drawn platform adventure.",
+  "preview": "../../../../../collections/arcade/previews/leonardomagalhaes21-feup-lcom-9e3925b94730.png"
 }

@@ -49,5 +49,7 @@
   "build": {
     "assetRoot": "..",
     "assets": []
-  }
+  },
+  "description": "Place blocks and guide your panda through a moonlit platform puzzle.",
+  "preview": "../../../../collections/arcade/previews/josesereno-bamboozlers-a02f6afff6d5.png"
 }

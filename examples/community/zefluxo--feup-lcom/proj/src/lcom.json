@@ -57,5 +57,7 @@
     "assets": [
       "proj/src/home/lcom/labs/proj/src/game/scores.txt"
     ]
-  }
+  },
+  "description": "Rotate falling blocks and build complete lines before the stack reaches the top.",
+  "preview": "../../../../../collections/arcade/previews/zefluxo-feup-lcom-7d2140581772.png"
 }

@@ -45,5 +45,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Place your bet, take another card or stand. Try to beat the dealer at blackjack.",
+  "preview": "../../../../../collections/arcade/previews/gablm-feup-lcom-labjack-de14d1919ed9.png"
 }

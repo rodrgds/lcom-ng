@@ -26,5 +26,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Choose a word theme, guess the letters and solve the word before your chances run out.",
+  "preview": "../../../../../collections/arcade/previews/rodriguess2-lcom-hangman-b8d098d60c4c.png"
 }

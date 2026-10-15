@@ -52,5 +52,7 @@
   "build": {
     "assetRoot": "..",
     "assets": []
-  }
+  },
+  "description": "Share the arena with a second player. Move, aim and fight for survival.",
+  "preview": "../../../../collections/arcade/previews/diogoalves12-feup-lcom-a9dac2656b4f.png"
 }

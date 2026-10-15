@@ -40,5 +40,7 @@
     "environment": {
       "LCOM_COMPAT_MOUSE_IRQ_ONLY": "1"
     }
-  }
+  },
+  "description": "Two players, one ball. Defend your goal and send it into the other net.",
+  "preview": "../../../../collections/arcade/previews/bersanots-feup-lcom-a436e5039455.png"
 }

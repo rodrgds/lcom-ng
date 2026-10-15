@@ -1,0 +1,344 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-15T21:43:56.063053+00:00",
+  "title": "Design System: LCOM Arcade Web",
+  "extensions": {
+    "colorMeta": {
+      "ink-violet": {
+        "role": "neutral",
+        "displayName": "Ink Violet",
+        "tonalRamp": [
+          "oklch(15% 0.0345 282.45)",
+          "oklch(26% 0.0345 282.45)",
+          "oklch(38% 0.0345 282.45)",
+          "oklch(49% 0.0345 282.45)",
+          "oklch(61% 0.0345 282.45)",
+          "oklch(72% 0.0345 282.45)",
+          "oklch(84% 0.0345 282.45)",
+          "oklch(95% 0.0345 282.45)"
+        ]
+      },
+      "warm-white": {
+        "role": "neutral",
+        "displayName": "Warm White",
+        "tonalRamp": [
+          "oklch(15% 0.0163 79.35)",
+          "oklch(26% 0.0163 79.35)",
+          "oklch(38% 0.0163 79.35)",
+          "oklch(49% 0.0163 79.35)",
+          "oklch(61% 0.0163 79.35)",
+          "oklch(72% 0.0163 79.35)",
+          "oklch(84% 0.0163 79.35)",
+          "oklch(95% 0.0163 79.35)"
+        ]
+      },
+      "acid-lime": {
+        "role": "primary",
+        "displayName": "Acid Lime",
+        "tonalRamp": [
+          "oklch(15% 0.1934 127.05)",
+          "oklch(26% 0.1934 127.05)",
+          "oklch(38% 0.1934 127.05)",
+          "oklch(49% 0.1934 127.05)",
+          "oklch(61% 0.1934 127.05)",
+          "oklch(72% 0.1934 127.05)",
+          "oklch(84% 0.1934 127.05)",
+          "oklch(95% 0.1934 127.05)"
+        ]
+      },
+      "muted-lilac": {
+        "role": "neutral",
+        "displayName": "Muted Lilac",
+        "tonalRamp": [
+          "oklch(15% 0.0394 290.39)",
+          "oklch(26% 0.0394 290.39)",
+          "oklch(38% 0.0394 290.39)",
+          "oklch(49% 0.0394 290.39)",
+          "oklch(61% 0.0394 290.39)",
+          "oklch(72% 0.0394 290.39)",
+          "oklch(84% 0.0394 290.39)",
+          "oklch(95% 0.0394 290.39)"
+        ]
+      },
+      "control-hover": {
+        "role": "neutral",
+        "displayName": "Control Hover",
+        "tonalRamp": [
+          "oklch(15% 0.0436 289.03)",
+          "oklch(26% 0.0436 289.03)",
+          "oklch(38% 0.0436 289.03)",
+          "oklch(49% 0.0436 289.03)",
+          "oklch(61% 0.0436 289.03)",
+          "oklch(72% 0.0436 289.03)",
+          "oklch(84% 0.0436 289.03)",
+          "oklch(95% 0.0436 289.03)"
+        ]
+      },
+      "search-surface": {
+        "role": "neutral",
+        "displayName": "Search Surface",
+        "tonalRamp": [
+          "oklch(15% 0.0387 287.86)",
+          "oklch(26% 0.0387 287.86)",
+          "oklch(38% 0.0387 287.86)",
+          "oklch(49% 0.0387 287.86)",
+          "oklch(61% 0.0387 287.86)",
+          "oklch(72% 0.0387 287.86)",
+          "oklch(84% 0.0387 287.86)",
+          "oklch(95% 0.0387 287.86)"
+        ]
+      },
+      "search-border": {
+        "role": "neutral",
+        "displayName": "Search Border",
+        "tonalRamp": [
+          "oklch(15% 0.0463 294.04)",
+          "oklch(26% 0.0463 294.04)",
+          "oklch(38% 0.0463 294.04)",
+          "oklch(49% 0.0463 294.04)",
+          "oklch(61% 0.0463 294.04)",
+          "oklch(72% 0.0463 294.04)",
+          "oklch(84% 0.0463 294.04)",
+          "oklch(95% 0.0463 294.04)"
+        ]
+      },
+      "progress-track": {
+        "role": "neutral",
+        "displayName": "Progress Track",
+        "tonalRamp": [
+          "oklch(15% 0.0492 289.94)",
+          "oklch(26% 0.0492 289.94)",
+          "oklch(38% 0.0492 289.94)",
+          "oklch(49% 0.0492 289.94)",
+          "oklch(61% 0.0492 289.94)",
+          "oklch(72% 0.0492 289.94)",
+          "oklch(84% 0.0492 289.94)",
+          "oklch(95% 0.0492 289.94)"
+        ]
+      },
+      "secondary-action": {
+        "role": "neutral",
+        "displayName": "Secondary Action",
+        "tonalRamp": [
+          "oklch(15% 0.0516 290.97)",
+          "oklch(26% 0.0516 290.97)",
+          "oklch(38% 0.0516 290.97)",
+          "oklch(49% 0.0516 290.97)",
+          "oklch(61% 0.0516 290.97)",
+          "oklch(72% 0.0516 290.97)",
+          "oklch(84% 0.0516 290.97)",
+          "oklch(95% 0.0516 290.97)"
+        ]
+      },
+      "library-error": {
+        "role": "neutral",
+        "displayName": "Library Error",
+        "tonalRamp": [
+          "oklch(15% 0.0822 24.46)",
+          "oklch(26% 0.0822 24.46)",
+          "oklch(38% 0.0822 24.46)",
+          "oklch(49% 0.0822 24.46)",
+          "oklch(61% 0.0822 24.46)",
+          "oklch(72% 0.0822 24.46)",
+          "oklch(84% 0.0822 24.46)",
+          "oklch(95% 0.0822 24.46)"
+        ]
+      },
+      "loading-error": {
+        "role": "neutral",
+        "displayName": "Loading Error",
+        "tonalRamp": [
+          "oklch(15% 0.0545 29.41)",
+          "oklch(26% 0.0545 29.41)",
+          "oklch(38% 0.0545 29.41)",
+          "oklch(49% 0.0545 29.41)",
+          "oklch(61% 0.0545 29.41)",
+          "oklch(72% 0.0545 29.41)",
+          "oklch(84% 0.0545 29.41)",
+          "oklch(95% 0.0545 29.41)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "identity": {
+        "displayName": "Collection identity",
+        "purpose": "Compact masthead collection name."
+      },
+      "display": {
+        "displayName": "Loading display",
+        "purpose": "Selected game title while its first frame loads."
+      },
+      "title": {
+        "displayName": "Tile title",
+        "purpose": "Game names over gameplay artwork."
+      },
+      "body": {
+        "displayName": "Description",
+        "purpose": "Short game premise and explanatory states."
+      },
+      "status": {
+        "displayName": "Transfer status",
+        "purpose": "Measured download status with tabular numerals."
+      }
+    },
+    "shadows": [
+      {
+        "name": "card-near",
+        "value": "0 8px 22px -12px hsl(var(--hue) 95% 65% / calc(var(--near)*.8))",
+        "purpose": "Fine-pointer proximity glow."
+      },
+      {
+        "name": "card-hover-focus",
+        "value": "0 12px 32px -8px hsl(var(--hue) 90% 65% / .7)",
+        "purpose": "User-pinned colorful hover and keyboard-focus response."
+      },
+      {
+        "name": "tile-title",
+        "value": "0 2px 5px #0009",
+        "purpose": "Title contrast above game artwork."
+      },
+      {
+        "name": "loading-art",
+        "value": "0 24px 80px -30px #8472ff90",
+        "purpose": "Soft violet depth beneath startup artwork."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "Shared card and play affordance easing."
+      },
+      {
+        "name": "card",
+        "value": ".32s",
+        "purpose": "Card transform and glow."
+      },
+      {
+        "name": "art",
+        "value": ".6s",
+        "purpose": "Hover/focus image scale."
+      },
+      {
+        "name": "play-mark",
+        "value": ".25s",
+        "purpose": "Play disc opacity and lift."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "wide-grid",
+        "value": "min-width:1600px"
+      },
+      {
+        "name": "compact-grid-and-stacked-loading",
+        "value": "max-width:700px"
+      },
+      {
+        "name": "two-columns",
+        "value": "max-width:480px"
+      },
+      {
+        "name": "short-landscape-loading",
+        "value": "max-height:500px and min-width:600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Search icon button",
+      "kind": "button",
+      "refersTo": "icon-button",
+      "description": "Reveals the name filter; shared icon-tool treatment also serves fullscreen.",
+      "html": "<button class=\"ds-icon\" aria-label=\"Find a game\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m15.5 15.5 5 5\"/></svg></button>",
+      "css": ".ds-icon{font-family:Bricolage,system-ui,sans-serif;display:grid;place-items:center;width:44px;height:44px;border:0;border-radius:12px;background:transparent;color:var(--muted,#bcb9d5);cursor:pointer}.ds-icon svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round}.ds-icon:hover,.ds-icon[aria-expanded=true]{background:#29263e;color:#fff8ed}.ds-icon:focus-visible{outline:3px solid var(--accent,#c5ff62);outline-offset:4px}"
+    },
+    {
+      "name": "Search field",
+      "kind": "input",
+      "refersTo": "search",
+      "description": "Shown by the icon, with focus moved into the field.",
+      "html": "<input class=\"ds-search\" type=\"search\" placeholder=\"Find a game\u2026\" aria-label=\"Find a game\">",
+      "css": ".ds-search{font-family:Bricolage,system-ui,sans-serif;width:min(100%,420px);height:44px;padding:0 14px;border:1px solid #77718f;border-radius:12px;background:#252338;color:#fff8ed;caret-color:var(--accent,#c5ff62)}.ds-search::placeholder{color:var(--muted,#bcb9d5)}.ds-search:focus-visible{outline:3px solid var(--accent,#c5ff62);outline-offset:4px}"
+    },
+    {
+      "name": "Game tile fallback",
+      "kind": "card",
+      "refersTo": "game-card",
+      "description": "The built initial fallback demonstrates the tile frame without substituting new game artwork. Production tiles use original previews or icons.",
+      "html": "<a class=\"ds-game\" href=\"#game=example\" aria-label=\"Play Game title\"><span class=\"ds-art\"><span class=\"ds-initial\" aria-hidden=\"true\">G</span><span class=\"ds-play\" aria-hidden=\"true\"><svg viewBox=\"0 0 24 24\"><path d=\"m8 4 13 8-13 8z\"/></svg></span></span><span class=\"ds-name\">Game title</span></a>",
+      "css": ".ds-game{font-family:Bricolage,system-ui,sans-serif;--hue:250;display:block;position:relative;width:240px;border-radius:14px;background:hsl(var(--hue) 35% 20%);color:#fff;text-decoration:none;transition:transform .32s var(--ease,cubic-bezier(.16,1,.3,1)),box-shadow .32s var(--ease,cubic-bezier(.16,1,.3,1))}.ds-art{display:block;position:relative;aspect-ratio:1.7;border-radius:inherit;overflow:hidden}.ds-art:after{content:\"\";position:absolute;inset:0;background:linear-gradient(180deg,#090813c9 0%,#09081345 32%,transparent 65%)}.ds-initial{display:grid;place-items:center;height:100%;min-height:120px;font-size:54px;color:var(--accent,#c5ff62)}.ds-name{position:absolute;z-index:1;inset:12px 13px auto;max-width:90%;font-size:17px;font-weight:800;line-height:1.12;text-wrap:balance;text-shadow:0 2px 5px #0009}.ds-play{position:absolute;right:12px;bottom:12px;z-index:1;display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--accent,#c5ff62);color:#101021;opacity:0;transform:translateY(8px);transition:opacity .25s var(--ease,cubic-bezier(.16,1,.3,1)),transform .25s var(--ease,cubic-bezier(.16,1,.3,1))}.ds-play svg{width:18px;height:18px;fill:currentColor}.ds-game:hover,.ds-game:focus-visible{transform:translateY(-3px);box-shadow:0 12px 32px -8px hsl(var(--hue) 90% 65% / .7)}.ds-game:hover .ds-play,.ds-game:focus-visible .ds-play{opacity:1;transform:none}.ds-game:active{transform:scale(.98)}.ds-game:focus-visible{outline:3px solid var(--accent,#c5ff62);outline-offset:4px}@media(prefers-reduced-motion:reduce){.ds-game,.ds-play{transition:none}.ds-game:hover,.ds-game:focus-visible{transform:none}}"
+    },
+    {
+      "name": "Retry action",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Focused primary recovery action when a game transfer fails.",
+      "html": "<button class=\"ds-retry\">Try again</button>",
+      "css": ".ds-retry{font-family:Bricolage,system-ui,sans-serif;min-height:44px;padding:10px 16px;border:0;border-radius:10px;font-weight:700;background:var(--accent,#c5ff62);color:#101021;cursor:pointer}.ds-retry:focus-visible{outline:3px solid var(--accent,#c5ff62);outline-offset:4px}"
+    },
+    {
+      "name": "Return action",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Secondary recovery action returns to the game gallery.",
+      "html": "<button class=\"ds-return\">Back to games</button>",
+      "css": ".ds-return{font-family:Bricolage,system-ui,sans-serif;min-height:44px;padding:10px 16px;border:0;border-radius:10px;font-weight:700;background:#302b48;color:#fff8ed;cursor:pointer}.ds-return:focus-visible{outline:3px solid var(--accent,#c5ff62);outline-offset:4px}"
+    },
+    {
+      "name": "Measured loading progress",
+      "kind": "custom",
+      "description": "A real byte-based progress rail and tabular status; sample values only illustrate the reported transfer.",
+      "html": "<div class=\"ds-transfer\"><progress aria-label=\"Game download\" value=\"68\" max=\"128\"></progress><p role=\"status\">Downloading \u00b7 6.8 / 12.8 MB</p></div>",
+      "css": ".ds-transfer{font-family:Bricolage,system-ui,sans-serif;width:100%;max-width:380px;color:var(--muted,#bcb9d5)}.ds-transfer progress{display:block;appearance:none;width:100%;height:8px;border:0;border-radius:8px;background:#34304c;overflow:hidden;accent-color:var(--accent,#c5ff62)}.ds-transfer progress::-webkit-progress-bar{background:#34304c}.ds-transfer progress::-webkit-progress-value{background:var(--accent,#c5ff62);border-radius:8px}.ds-transfer progress::-moz-progress-bar{background:var(--accent,#c5ff62)}.ds-transfer p{font-size:13px;line-height:1.5;font-variant-numeric:tabular-nums;margin:10px 0 24px}"
+    },
+    {
+      "name": "Home return",
+      "kind": "nav",
+      "description": "The game return uses a stroked home SVG and accepts the player-reported control theme.",
+      "html": "<button class=\"ds-home\" aria-label=\"Games\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9\"/></svg></button>",
+      "css": ".ds-home{display:grid;place-items:center;width:44px;height:44px;padding:8px 10px;border:1px solid #444;border-radius:5px;background:#222;color:#eee;cursor:pointer}.ds-home svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.ds-home:hover{filter:brightness(1.3)}.ds-home:focus-visible{outline:3px solid var(--accent,#c5ff62);outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The artwork is the arcade",
+    "overview": "The web library uses dense gameplay scenes, warm heavy lettering and an acid-lime L/play mark on an ink-violet ground. The user supplied Friv references establish the gallery density and names over wide images; original student artwork supplies the color and character. Colorful hover glow is an explicit user-pinned requirement.\n\nThis document records the web launcher and startup screen from sdk/collection/web-template/. Native Android remains a separate platform scope: its existing black, white and mint palette, compact adaptive tiles and platform controls continue independently. Web tokens and Bricolage typography do not redefine native mobile control colors.",
+    "keyCharacteristics": [
+      "Gameplay artwork carries the identity.",
+      "Compact icon tools leave the gallery in view.",
+      "Warm, heavy type and rounded wide tiles.",
+      "Measured loading progress followed by the first presented game frame."
+    ],
+    "rules": [
+      {
+        "name": "The Artwork Rule",
+        "body": "Use original game previews or icons as the visual content; keep names over a dark contrast scrim.",
+        "section": "colors"
+      },
+      {
+        "name": "The Responsive Gallery Rule",
+        "body": "Keep the implemented wide tile proportions and responsive column changes; the enlarged first tile belongs to the desktop gallery only.",
+        "section": "layout"
+      },
+      {
+        "name": "The Requested Glow Rule",
+        "body": "Preserve colorful card hover and keyboard-focus glow. It is a user-pinned interaction, with reduced-motion behavior respected.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do retain the ink-violet, warm-white and acid-lime web identity.",
+      "Do use the self-hosted Bricolage Grotesque font and keep its OFL license with the asset.",
+      "Do preserve original game imagery, readable overlaid names, visible keyboard focus and safe-area spacing.",
+      "Do keep search behind its icon and restore focus after returning from a game.",
+      "Do show real transfer progress, then wait for the first presented frame before hiding startup.",
+      "Do preserve native Android styling and gameplay control colors within their platform scope."
+    ],
+    "donts": [
+      "Don't restore square artwork or permanently visible search as web rules.",
+      "Don't replace the gallery with promotional sections, large introductions or technical settings.",
+      "Don't invent timed progress percentages or dismiss startup on download completion alone.",
+      "Don't apply the web palette or display font to original game presentation or native mobile controls."
+    ]
+  }
+}

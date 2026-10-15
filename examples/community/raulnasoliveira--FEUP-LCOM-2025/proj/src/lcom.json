@@ -40,5 +40,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Put your reaction time to the test in a series of quick challenges.",
+  "preview": "../../../../../collections/arcade/previews/raulnasoliveira-feup-lcom-2025-23b9e09f9b80.png"
 }

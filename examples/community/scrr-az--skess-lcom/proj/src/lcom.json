@@ -24,5 +24,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Sketch the secret word or type your guess as another player draws.",
+  "preview": "../../../../../collections/arcade/previews/scrr-az-skess-lcom-282ac263194e.png"
 }

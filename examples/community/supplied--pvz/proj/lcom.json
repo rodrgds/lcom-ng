@@ -37,5 +37,7 @@
     "assets": [
       "proj/assets"
     ]
-  }
+  },
+  "description": "Build a garden of sunflowers and peashooters. Keep the zombies off your lawn.",
+  "preview": "../../../../collections/arcade/previews/supplied-pvz-002c15167874.png"
 }

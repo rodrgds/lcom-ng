@@ -47,5 +47,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Find your way through the dungeon. Dash past danger and fight the enemies ahead.",
+  "preview": "../../../../../collections/arcade/previews/cata-24-minix3-game-952ce67c4b3d.png"
 }

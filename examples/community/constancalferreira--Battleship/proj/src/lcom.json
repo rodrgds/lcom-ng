@@ -64,5 +64,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Arrange your fleet, take turns firing and find your opponent’s ships before they find yours.",
+  "preview": "../../../../../collections/arcade/previews/constancalferreira-battleship-0d18d3873e2b.png"
 }

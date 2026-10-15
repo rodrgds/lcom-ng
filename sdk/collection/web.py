@@ -1,5 +1,6 @@
 """Static responsive launcher. Each game lives in its own disposable document."""
 import html
+import hashlib
 import errno
 import importlib.util
 import json
@@ -47,19 +48,36 @@ def build(entries, output, name, icon=None):
     # be cleaned on a later successful export. Unknown files remain untouched.
     pending = {**owned, **{entry['id']: {'id': entry['id']} for entry in entries}}
     marker.write_text(json.dumps({'format': 1, 'games': list(pending.values())}) + '\n')
-    catalog = []
     for entry in entries:
         print('Exporting collection game: ' + entry['name'], flush=True)
         destination = output / 'games' / entry['id']
         args = exporter.argument_parser().parse_args([str(entry['project']), '--output', str(destination)])
         exporter.build(args)
-        catalog.append({'id': entry['id'], 'name': entry['name'],
-                        'url': f'games/{entry["id"]}/',
-                        'icon': f'games/{entry["id"]}/icon.png' if entry['icon'] else None})
+    catalog = write_launcher(entries, output, name, icon)
+    current = {game['id'] for game in catalog}
+    for identifier in owned.keys() - current:
+        _prune_game(output, identifier)
+    marker.write_text(json.dumps({'format': 1, 'games': catalog}, indent=2) + '\n')
+    return output
+
+
+def write_launcher(entries, output, name, icon=None):
+    """Package the library UI and metadata for already exported games."""
+    output = Path(output)
+    catalog = [{'id': entry['id'], 'name': entry['name'],
+                'description': entry['settings']['description'],
+                'revision': hashlib.sha256((output / 'games' / entry['id'] / 'index.html').read_bytes()).hexdigest()[:12],
+                'url': f'games/{entry["id"]}/',
+                'preview': f'games/{entry["id"]}/preview.png' if entry['settings']['preview'] else None,
+                'icon': f'games/{entry["id"]}/icon.png' if entry['icon'] else None}
+               for entry in entries]
     (output / 'collection.json').write_text(json.dumps({'name': name, 'games': catalog}, ensure_ascii=False) + '\n')
     for filename in ('index.html', 'launcher.css', 'launcher.js'):
         shutil.copy2(Path(__file__).parent / 'web-template' / filename, output / filename)
     shell = (output / 'index.html').read_text().replace('@NAME@', html.escape(name))
+    for filename in ('launcher.css', 'launcher.js'):
+        digest = hashlib.sha256((output / filename).read_bytes()).hexdigest()[:12]
+        shell = shell.replace(f'"{filename}"', f'"{filename}?v={digest}"')
     if icon:
         shutil.copy2(icon, output / 'icon.png')
         shell = shell.replace('</head>', '<link rel="icon" href="icon.png"><link rel="apple-touch-icon" href="icon.png"></head>')
@@ -67,13 +85,10 @@ def build(entries, output, name, icon=None):
         (output / 'icon.png').unlink(missing_ok=True)
     (output / 'index.html').write_text(shell)
     manifest = {'name': name, 'short_name': name, 'start_url': './', 'scope': './',
-                'display': 'fullscreen', 'background_color': '#080a09', 'theme_color': '#080a09'}
+                'display': 'fullscreen', 'background_color': '#101021', 'theme_color': '#101021'}
     if icon:
         size = int.from_bytes(Path(icon).read_bytes()[16:20], 'big')
         manifest['icons'] = [{'src': 'icon.png', 'sizes': f'{size}x{size}', 'type': 'image/png'}]
     (output / 'manifest.webmanifest').write_text(json.dumps(manifest, ensure_ascii=False) + '\n')
-    current = {game['id'] for game in catalog}
-    for identifier in owned.keys() - current:
-        _prune_game(output, identifier)
-    marker.write_text(json.dumps({'format': 1, 'games': catalog}, indent=2) + '\n')
-    return output
+    shutil.copytree(Path(__file__).parent / 'web-template/assets', output / 'assets', dirs_exist_ok=True)
+    return catalog

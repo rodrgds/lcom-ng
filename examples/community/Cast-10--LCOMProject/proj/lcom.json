@@ -59,5 +59,7 @@
   "build": {
     "assetRoot": "..",
     "assets": []
-  }
+  },
+  "description": "Choose your fighters and face a friend in a two-player arena battle.",
+  "preview": "../../../../collections/arcade/previews/cast-10-lcomproject-1c6c122eea2f.png"
 }

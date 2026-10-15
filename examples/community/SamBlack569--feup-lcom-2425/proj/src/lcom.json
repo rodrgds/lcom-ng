@@ -37,5 +37,7 @@
     "environment": {
       "LCOM_COMPAT_MOUSE_REPORTING": "1"
     }
-  }
+  },
+  "description": "Weave through space and keep your ship clear of enemy fire.",
+  "preview": "../../../../../collections/arcade/previews/samblack569-feup-lcom-2425-c1eb853acae2.png"
 }

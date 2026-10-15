@@ -70,5 +70,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Jump through dark caverns and fight your way forward with sword and magic.",
+  "preview": "../../../../../collections/arcade/previews/antoniocrego-lcom-t01-g3-c70a27f473d7.png"
 }

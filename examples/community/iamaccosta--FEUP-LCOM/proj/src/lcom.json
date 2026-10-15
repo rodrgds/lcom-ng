@@ -48,5 +48,7 @@
     "pathAliases": {
       "/home/lcom/labs/g02": "."
     }
-  }
+  },
+  "description": "Turn over the cards and remember what you saw. Find each matching pair.",
+  "preview": "../../../../../collections/arcade/previews/iamaccosta-feup-lcom-8eb08d543062.png"
 }

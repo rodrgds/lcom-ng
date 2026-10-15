@@ -38,5 +38,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Move through an underwater world and shoot your way past its enemies.",
+  "preview": "../../../../../collections/arcade/previews/dsv8-feup-lcom-97a7235a6dfe.png"
 }

@@ -48,5 +48,7 @@
     "environment": {
       "LCOM_COMPAT_MOUSE_REPORTING": "1"
     }
-  }
+  },
+  "description": "Guide your snake toward the apples and steer clear of traps.",
+  "preview": "../../../../../collections/arcade/previews/joanaigs-lcom-snake-game-330f9e657355.png"
 }

@@ -46,5 +46,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Place your defenses and hold the line against the approaching army.",
+  "preview": "../../../../../collections/arcade/previews/ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3.png"
 }

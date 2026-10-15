@@ -61,5 +61,7 @@
   "build": {
     "assetRoot": "..",
     "assets": []
-  }
+  },
+  "description": "Follow the falling notes and press the right keys as they reach the line.",
+  "preview": "../../../../collections/arcade/previews/vasco888888-feup-leic-lcom-be8975b3e8c5.png"
 }

@@ -1,4 +1,4 @@
-import createLcomGame from './game.js';
+import {prepareGame, instantiateGame} from './loading.js';
 
 const canvas = document.querySelector('#game');
 const status = document.querySelector('#status');
@@ -13,6 +13,10 @@ let mobile = null;
 const fullscreenButton = document.querySelector("#fullscreen");
 // The collection owns fullscreen so its Games return button stays in view.
 const collectionPlayer = window.parent !== window && new URLSearchParams(location.search).get('collection') === '1';
+let firstFrame = false;
+function reportLoading(state) {
+  if (collectionPlayer) parent.postMessage({type:'lcom-player-loading', ...state}, location.origin);
+}
 const keyboardToggle = document.querySelector('#keyboard-toggle');
 const joystickToggle = document.querySelector('#joystick-toggle');
 const joystick = document.querySelector('#joystick');
@@ -92,6 +96,7 @@ const player = {
     }
     this.image.data.set(bytes);
     canvas.getContext('2d').putImageData(this.image, 0, 0);
+    if (!firstFrame) { firstFrame = true; reportLoading({phase:'ready'}); }
   },
   unlockAudio() {
     this.audioContext ||= new AudioContext();
@@ -173,6 +178,7 @@ new MutationObserver(publishLayout).observe(controls,{subtree:true,childList:tru
 
 let finished = false;
 function failed(message) {
+  reportLoading({phase:'error'});
   player.module = null; player.held.clear(); player.stopAudio();
   status.textContent = `Could not run the game: ${message}.`;
   document.querySelector('#error-message').textContent = status.textContent;
@@ -703,7 +709,7 @@ fullscreenButton.onclick = async () => {
 document.addEventListener('pointerdown', () => { if (touch.matches && mobile?.fullscreen) enterFullscreen(); }, { once: true });
 
 try {
-  const response = await fetch('./game.json');
+  const response = await fetch('./game.json', {cache:'no-cache'});
   if (!response.ok) throw new Error('game settings could not be loaded');
   const config = await response.json();
   document.title = `${config.name} · lcom-ng`;
@@ -721,14 +727,16 @@ try {
     }
   }
   updateKeyboard();
-  const module = await createLcomGame({ player, preRun: [module => Object.assign(module.ENV,config.environment || {})], print: text => console.log(text), printErr: text => console.warn(text),
+  const [{default:createLcomGame}, prepared] = await Promise.all([import('./game.js'), prepareGame(config.downloads, reportLoading)]);
+  const module = await instantiateGame(createLcomGame, { player, preRun: [module => Object.assign(module.ENV,config.environment || {})], print: text => console.log(text), printErr: text => console.warn(text),
     onAbort: reason => failed(String(reason)),
     onExit: code => {
+      if (!firstFrame) reportLoading({phase:'error'});
       player.releaseAll(); player.stopAudio(); player.module = null; finished = true;
       canvas.classList.add('mouse-released');
       status.textContent = code ? `Game exited with status ${code}.` : 'Game finished. Press Enter or tap the game to restart.';
     },
-  });
+  }, prepared);
   module.FS.mkdirTree(config.workingDirectory);
   module.FS.chdir(config.workingDirectory);
   canvas.focus({ preventScroll: true }); player.paused = document.hidden;

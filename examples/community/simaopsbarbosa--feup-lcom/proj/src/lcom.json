@@ -35,5 +35,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Watch for the signal and react. Challenge your timing alone or with a second player.",
+  "preview": "../../../../../collections/arcade/previews/simaopsbarbosa-feup-lcom-e3fa6454545b.png"
 }

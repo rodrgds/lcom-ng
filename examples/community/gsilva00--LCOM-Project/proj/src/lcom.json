@@ -45,5 +45,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Jump, kick and chase the ball in a two-player pixel football match.",
+  "preview": "../../../../../collections/arcade/previews/gsilva00-lcom-project-4c94e7405c90.png"
 }

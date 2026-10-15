@@ -48,5 +48,7 @@
     "environment": {
       "LCOM_COMPAT_MOUSE_REPORTING": "1"
     }
-  }
+  },
+  "description": "Jump, run and fire your way through a colorful side-scrolling battle.",
+  "preview": "../../../collections/arcade/previews/alexandre2004costa-lcom-project-e3c159e09375.png"
 }

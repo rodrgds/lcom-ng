@@ -51,5 +51,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Outmaneuver another player, plant your bombs and escape before they explode.",
+  "preview": "../../../../../collections/arcade/previews/monsterdied-lcomproj-138166482bfa.png"
 }

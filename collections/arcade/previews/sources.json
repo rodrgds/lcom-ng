@@ -1,0 +1,549 @@
+{
+  "origin": "Actual gameplay captures from the 2026-10-15 mobile gameplay review. Original game pixels, cropped to remove host controls and resized to at most 800 \u00d7 600.",
+  "games": [
+    {
+      "id": "supplied-pvz-002c15167874",
+      "name": "Plants vs. Zombies",
+      "capture": "build/mobile-ux2/a/evidence/supplied-pvz-002c15167874/04-sunflower-planted.png",
+      "captureSha256": "1292c87db15d013f32fcdabf86ec96e1fe08dcc3f30448a108aecec9c228205b",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/supplied-pvz-002c15167874.png"
+    },
+    {
+      "id": "dsv8-feup-lcom-97a7235a6dfe",
+      "name": "Plant Hero",
+      "capture": "build/mobile-ux2/a/evidence/dsv8-feup-lcom-97a7235a6dfe/03-move-shoot.png",
+      "captureSha256": "cc5df1369f49e4478b24248976cf59fb9977fc06d82cbf9c835493678c81c4ef",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/dsv8-feup-lcom-97a7235a6dfe.png"
+    },
+    {
+      "id": "josesereno-bamboozlers-a02f6afff6d5",
+      "name": "Bamboozlers",
+      "capture": "build/mobile-ux2/b/evidence/josesereno-bamboozlers-a02f6afff6d5/placed-box-game.png",
+      "captureSha256": "fb2dbaf0fa501ec5927a0fd2d9455e36440d93d20c130109234132bcd0037221",
+      "crop": null,
+      "preview": "previews/josesereno-bamboozlers-a02f6afff6d5.png"
+    },
+    {
+      "id": "bersanots-feup-lcom-a436e5039455",
+      "name": "Sticky Ball",
+      "capture": "build/mobile-ux2/b/evidence/bersanots-feup-lcom-a436e5039455/p1-released-p2-moving-game.png",
+      "captureSha256": "e2adf2f346cf395f14d62fefc4095aa0d8321b93e78e4ec24d2e8a35a10e9eb4",
+      "crop": null,
+      "preview": "previews/bersanots-feup-lcom-a436e5039455.png"
+    },
+    {
+      "id": "adriano-7-feup-lcom-727bed1b84da",
+      "name": "Space Invaders",
+      "capture": "build/mobile-ux2/a/evidence/adriano-7-feup-lcom-727bed1b84da/03-move-fire.png",
+      "captureSha256": "7af644582a3430c725e87999e4fdec0ee7390403da12293f80dcfb57afe88a59",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/adriano-7-feup-lcom-727bed1b84da.png"
+    },
+    {
+      "id": "andrenasx-feup-lcom-3c62b99c6b04",
+      "name": "Asteroids: UFO Attack",
+      "capture": "build/mobile-ux2/a/evidence/andrenasx-feup-lcom-3c62b99c6b04/03-move-aim-fire.png",
+      "captureSha256": "b2e637adfb5a45f010182f785fc18f85b995e35a667be0c9673e28ccffc169ec",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/andrenasx-feup-lcom-3c62b99c6b04.png"
+    },
+    {
+      "id": "teixeiraa05-lcom-sushi-slash-aeb86527d30d",
+      "name": "Sushi Slash",
+      "capture": "build/mobile-ux2/a/evidence/teixeiraa05-lcom-sushi-slash-aeb86527d30d/tracked-after-2.png",
+      "captureSha256": "bb88c13a789a2bd7993e90d586d6918049e1b226b0f5390ea8c478586a0e438d",
+      "crop": null,
+      "preview": "previews/teixeiraa05-lcom-sushi-slash-aeb86527d30d.png"
+    },
+    {
+      "id": "raulnasoliveira-feup-lcom-2025-23b9e09f9b80",
+      "name": "Brain Training",
+      "capture": "build/mobile-ux2/a/evidence/raulnasoliveira-feup-lcom-2025-23b9e09f9b80/04-reaction-result.png",
+      "captureSha256": "8d10aa3e26acff84476dcb6554790a9453c8c7b6f409e8718fef6266904e0285",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/raulnasoliveira-feup-lcom-2025-23b9e09f9b80.png"
+    },
+    {
+      "id": "diogoalves12-feup-lcom-a9dac2656b4f",
+      "name": "Dual Arena",
+      "capture": "build/mobile-ux2/b/evidence/diogoalves12-feup-lcom-a9dac2656b4f/moving-game.png",
+      "captureSha256": "fd61334bce777918a0a2b71e18d3031afc01da0fb38b32a4e5e6b1de20c9403a",
+      "crop": null,
+      "preview": "previews/diogoalves12-feup-lcom-a9dac2656b4f.png"
+    },
+    {
+      "id": "ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3",
+      "name": "Star Wars: Defend the Republic",
+      "capture": "build/mobile-ux2/a/evidence/ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3/03-placed-and-running.png",
+      "captureSha256": "d8786a909360d65dc42a074e98f87d211755f238370ede93e3457323de0b6e55",
+      "crop": [
+        180,
+        0,
+        780,
+        480
+      ],
+      "preview": "previews/ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3.png"
+    },
+    {
+      "id": "zefluxo-feup-lcom-7d2140581772",
+      "name": "Minix Tetris",
+      "capture": "build/mobile-ux2/a/evidence/zefluxo-feup-lcom-7d2140581772/03-piece-moved-rotated-dropped.png",
+      "captureSha256": "d6ed766785b5dc3ea47f85f64f578071450693f50a27f37f147d281090c91846",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/zefluxo-feup-lcom-7d2140581772.png"
+    },
+    {
+      "id": "m1ke26-minix-grand-prix-d83709a8a95c",
+      "name": "MINIX Grand Prix",
+      "capture": "build/mobile-ux2/a/evidence/m1ke26-minix-grand-prix-d83709a8a95c/05-drive-handbrake-boost.png",
+      "captureSha256": "c4475626d9b3e7ebf1d36aa93bfdbf0907e486844db43c9b53a37cb6e989fbe0",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/m1ke26-minix-grand-prix-d83709a8a95c.png"
+    },
+    {
+      "id": "casemiromjm-minixsweeper-286a5a2780c5",
+      "name": "Minixsweeper",
+      "capture": "build/mobile-ux2/a/evidence/casemiromjm-minixsweeper-286a5a2780c5/05-tap-mode-restored.png",
+      "captureSha256": "59fefb7874bfb7b74b2744f43ad55b43411e66c4b58fd3609d76d26e8a26e6ea",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/casemiromjm-minixsweeper-286a5a2780c5.png"
+    },
+    {
+      "id": "martimcferreira-lcom-project-9a16857450a6",
+      "name": "FEUP Hero",
+      "capture": "build/mobile-ux2/a/evidence/martimcferreira-lcom-project-9a16857450a6/04-notes-hit.png",
+      "captureSha256": "71ea8c5caf83b76f2e5c7240245fa0431ca0bed861b885bd488640f74c3e02bb",
+      "crop": [
+        0,
+        32,
+        556,
+        448
+      ],
+      "preview": "previews/martimcferreira-lcom-project-9a16857450a6.png"
+    },
+    {
+      "id": "samblack569-feup-lcom-2425-c1eb853acae2",
+      "name": "Space Shooter",
+      "capture": "build/mobile-ux2/a/evidence/samblack569-feup-lcom-2425-c1eb853acae2/03-ship-moved-auto-fire.png",
+      "captureSha256": "360a32b17504f6afa3d37f65697ad99010b74aedd95dbc03cf825324442f25df",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/samblack569-feup-lcom-2425-c1eb853acae2.png"
+    },
+    {
+      "id": "peucastro-lcom-03ab6e7e63db",
+      "name": "Bomberman",
+      "capture": "build/mobile-ux2/a/evidence/peucastro-lcom-03ab6e7e63db/03-move-place-bomb.png",
+      "captureSha256": "5547606d3c10e6968a30b2929f4b4d4c1bc2e273ec1f2465207cc6583c7679fa",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/peucastro-lcom-03ab6e7e63db.png"
+    },
+    {
+      "id": "mariajvieira-feup-lcom-d95c409c5aa9",
+      "name": "Snake Garden",
+      "capture": "build/mobile-ux2/a/evidence/mariajvieira-feup-lcom-d95c409c5aa9/04-snake-turns.png",
+      "captureSha256": "0e1bbc14b1740909c9d6979b72c88ee9a923dc9df0e1941f3e6c2c56a4b9e1bf",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/mariajvieira-feup-lcom-d95c409c5aa9.png"
+    },
+    {
+      "id": "vasco888888-feup-leic-lcom-be8975b3e8c5",
+      "name": "Dr. Minix: Tiles Lab",
+      "capture": "build/mobile-ux2/b/evidence/vasco888888-feup-leic-lcom-be8975b3e8c5/notes-running-game.png",
+      "captureSha256": "5603ec32cfd947bf0249470764b948ff6990956d7825c383805764b659368fcc",
+      "crop": null,
+      "preview": "previews/vasco888888-feup-leic-lcom-be8975b3e8c5.png"
+    },
+    {
+      "id": "rodriguess2-lcom-hangman-b8d098d60c4c",
+      "name": "Hangman",
+      "capture": "build/mobile-ux2/b/evidence/rodriguess2-lcom-hangman-b8d098d60c4c/guesses-game.png",
+      "captureSha256": "9c6aa3ad5307c2df886207f701727c29397929ad7c1667b82a3bea87d100bbc0",
+      "crop": null,
+      "preview": "previews/rodriguess2-lcom-hangman-b8d098d60c4c.png"
+    },
+    {
+      "id": "cast-10-lcomproject-1c6c122eea2f",
+      "name": "Minix Legends",
+      "capture": "build/mobile-ux2/b/evidence/cast-10-lcomproject-1c6c122eea2f/both-attack-game.png",
+      "captureSha256": "4cd42ff1876ad2ec966874ae8d57f224af7edb65e458e36ff92fcfe778a22de1",
+      "crop": null,
+      "preview": "previews/cast-10-lcomproject-1c6c122eea2f.png"
+    },
+    {
+      "id": "yuka-sky-lcom-d0ec5dfcc81b",
+      "name": "Skess",
+      "capture": "build/mobile-ux2/b/evidence/yuka-sky-lcom-d0ec5dfcc81b/line-game.png",
+      "captureSha256": "7218f623ce4ff1f38cd5a3e040c633ed1ab1b6e29a791d76d489b8e0d189d57b",
+      "crop": null,
+      "preview": "previews/yuka-sky-lcom-d0ec5dfcc81b.png"
+    },
+    {
+      "id": "pedroribas372-minix-spaceinvaders-e02a4844fc81",
+      "name": "Space Invaders: Neon Fleet",
+      "capture": "build/mobile-ux2/a/evidence/pedroribas372-minix-spaceinvaders-e02a4844fc81/03-move-fire-third-level.png",
+      "captureSha256": "de7039903bfbb1b0ed2392db44fe2dedc765568e48a361f62692d8d97ec8fb3a",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/pedroribas372-minix-spaceinvaders-e02a4844fc81.png"
+    },
+    {
+      "id": "simaopsbarbosa-feup-lcom-e3fa6454545b",
+      "name": "Quick Reflex",
+      "capture": "build/mobile-ux2/b/evidence/simaopsbarbosa-feup-lcom-e3fa6454545b/two-player-ready-game.png",
+      "captureSha256": "4fe4a283991b8772b88d988ed381870ffc51884331d685192b8d6b6a4d599d3e",
+      "crop": null,
+      "preview": "previews/simaopsbarbosa-feup-lcom-e3fa6454545b.png"
+    },
+    {
+      "id": "pacocalypse-387c0be823e4",
+      "name": "Pacocalypse",
+      "capture": "build/mobile-ux2/b/evidence/pacocalypse-387c0be823e4/playing-game.png",
+      "captureSha256": "3c4c8bdac7fc0e3b0adffa7478f98e2a9a387a21d660eae62b1a3562d9e7a573",
+      "crop": null,
+      "preview": "previews/pacocalypse-387c0be823e4.png"
+    },
+    {
+      "id": "gomesidk-survive-the-blast-3d56ca17c03b",
+      "name": "Survive the Blast",
+      "capture": "build/mobile-ux2/b/evidence/gomesidk-survive-the-blast-3d56ca17c03b/bomb-uncovered-game.png",
+      "captureSha256": "eb3a9f39ab8b4aa2ff7f9e8ed3555178ec81c8590fffb9c716cb94eced189f78",
+      "crop": null,
+      "preview": "previews/gomesidk-survive-the-blast-3d56ca17c03b.png"
+    },
+    {
+      "id": "antoniocrego-lcom-t01-g3-c70a27f473d7",
+      "name": "Knight Quest",
+      "capture": "build/mobile-ux2/a/evidence/antoniocrego-lcom-t01-g3-c70a27f473d7/03-move-jump-slash-blast.png",
+      "captureSha256": "acbc9f77b20b4f7f723e2095fe7f8e4202754b337e9ca151b97ffa5af06e15a8",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/antoniocrego-lcom-t01-g3-c70a27f473d7.png"
+    },
+    {
+      "id": "worms-d4885e74d5cb",
+      "name": "LCOMBAT",
+      "capture": "build/mobile-ux2/b/evidence/worms-d4885e74d5cb/shot-game.png",
+      "captureSha256": "f3e198789e8a34b38cc6c65f1aefb0ab608e21604cc6d07d876cfe52b2815daa",
+      "crop": null,
+      "preview": "previews/worms-d4885e74d5cb.png"
+    },
+    {
+      "id": "gsilva00-lcom-project-4c94e7405c90",
+      "name": "Pixel Football",
+      "capture": "build/mobile-ux2/b/evidence/gsilva00-lcom-project-4c94e7405c90/jump-kick-game.png",
+      "captureSha256": "346e356baf50d94dcbdecbbe98009f1af876e6dbe03bbc35681d2252ed27415a",
+      "crop": null,
+      "preview": "previews/gsilva00-lcom-project-4c94e7405c90.png"
+    },
+    {
+      "id": "iamaccosta-feup-lcom-8eb08d543062",
+      "name": "Memory Match",
+      "capture": "build/mobile-ux2/b/evidence/iamaccosta-feup-lcom-8eb08d543062/flipped-card-game.png",
+      "captureSha256": "9ca37289a5b3127054d9a1ece3452b558fe6809026cb90e375b610a75a27be25",
+      "crop": null,
+      "preview": "previews/iamaccosta-feup-lcom-8eb08d543062.png"
+    },
+    {
+      "id": "luanalima27-lcom-feup-eda1c5716f42",
+      "name": "Star Defender",
+      "capture": "build/mobile-ux2/b/evidence/luanalima27-lcom-feup-eda1c5716f42/flight-fire-game.png",
+      "captureSha256": "dea038018b5beff0e654fd948fb9717f035dcf6595b8439f2ccb19342d585b9c",
+      "crop": null,
+      "preview": "previews/luanalima27-lcom-feup-eda1c5716f42.png"
+    },
+    {
+      "id": "guystavo7-feup-lcom-project-912ca0851017",
+      "name": "Fruit Defense",
+      "capture": "build/mobile-ux2/b/evidence/guystavo7-feup-lcom-project-912ca0851017/board-game.png",
+      "captureSha256": "9debe8606a466d47a4298a72471a0219d3184e0dba16037a3895d336ef3b10cc",
+      "crop": null,
+      "preview": "previews/guystavo7-feup-lcom-project-912ca0851017.png"
+    },
+    {
+      "id": "duarte-pombo-minix-whack-a-mole-c0b1a146de15",
+      "name": "Whack-a-Mole",
+      "capture": "build/mobile-ux2/a/evidence/duarte-pombo-minix-whack-a-mole-c0b1a146de15/live-before-hit.png",
+      "captureSha256": "4c91d77955cc5a9b00a1bc709e5d07522ed5ba64d29704dfd9af38205649138c",
+      "crop": null,
+      "preview": "previews/duarte-pombo-minix-whack-a-mole-c0b1a146de15.png"
+    },
+    {
+      "id": "guizas-la-papas-pizzeria-807f3b26e203",
+      "name": "Papa's Pizzeria",
+      "capture": "build/mobile-ux2/a/evidence/guizas-la-papas-pizzeria-807f3b26e203/03-pizza-in-oven.png",
+      "captureSha256": "0e7998a843a92cafb41a936af29135c29766717051cae0315c5a3396f42fcb3c",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/guizas-la-papas-pizzeria-807f3b26e203.png"
+    },
+    {
+      "id": "cata-24-minix3-game-952ce67c4b3d",
+      "name": "Labyrinth Quest",
+      "capture": "build/mobile-ux2/a/evidence/cata-24-minix3-game-952ce67c4b3d/03-move-dash-blade.png",
+      "captureSha256": "6691e30b63380d71d109f624b6ae54638f8b70ea5b09f6baad4e2262a162d99d",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/cata-24-minix3-game-952ce67c4b3d.png"
+    },
+    {
+      "id": "constancalferreira-battleship-0d18d3873e2b",
+      "name": "Battleship",
+      "capture": "build/mobile-ux2/b/evidence/constancalferreira-battleship-0d18d3873e2b/battle-shot-game.png",
+      "captureSha256": "c2b395d849d74baff5126a795a7145a37a595b26a7b37dc97d27af5208987779",
+      "crop": null,
+      "preview": "previews/constancalferreira-battleship-0d18d3873e2b.png"
+    },
+    {
+      "id": "worms-0ace38f831e6",
+      "name": "LCOMbat: Worms",
+      "capture": "build/mobile-ux2/a/evidence/worms-0ace38f831e6/03-moved-aimed-fired.png",
+      "captureSha256": "8a9cf4be957e857952fb21e7731e7de35ec003e6f3349f425bd86136b5895932",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/worms-0ace38f831e6.png"
+    },
+    {
+      "id": "dab1d-getawaycar-a7df638127d0",
+      "name": "Getaway Car",
+      "capture": "build/mobile-ux2/a/evidence/dab1d-getawaycar-a7df638127d0/04-both-players-steered.png",
+      "captureSha256": "9eb16f0cb94c85668a0d35b16214be11d8e84f44330ba4235546521f5be66a2d",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/dab1d-getawaycar-a7df638127d0.png"
+    },
+    {
+      "id": "d4yz-stp-minix-pacman-e9e2296201be",
+      "name": "MINIX Pac-Man",
+      "capture": "build/mobile-ux2/a/evidence/d4yz-stp-minix-pacman-e9e2296201be/03-maze-movement.png",
+      "captureSha256": "0d986753e07092e0c530ef0b690662f057e74566a57d76a33c42dba88bc26cd9",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/d4yz-stp-minix-pacman-e9e2296201be.png"
+    },
+    {
+      "id": "teclas-9e9acdbd5fab",
+      "name": "Teclas",
+      "capture": "build/mobile-ux2/a/evidence/teclas-9e9acdbd5fab/02-typed-real-words.png",
+      "captureSha256": "d0346b593409aacc9b901588197d7d048f20c71abc7a738bfb1c17184ee93ce3",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/teclas-9e9acdbd5fab.png"
+    },
+    {
+      "id": "scrr-az-skess-lcom-282ac263194e",
+      "name": "Skess: Draw & Guess",
+      "capture": "build/mobile-ux2/b/evidence/scrr-az-skess-lcom-282ac263194e/line-game.png",
+      "captureSha256": "985ac5bfcc32f34f4c6a0295d8be4fbd1694b73000cf6062d73b564a35784f78",
+      "crop": null,
+      "preview": "previews/scrr-az-skess-lcom-282ac263194e.png"
+    },
+    {
+      "id": "hugo-mgs-lcom-space-invaders-5c534d6f57b3",
+      "name": "Space Invaders: Alien Waves",
+      "capture": "build/mobile-ux2/a/evidence/hugo-mgs-lcom-space-invaders-5c534d6f57b3/03-move-and-fire.png",
+      "captureSha256": "cedfa049f34cd7c1a4508369b1fe7ba1314cad80112341670c73882c3aa503d8",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/hugo-mgs-lcom-space-invaders-5c534d6f57b3.png"
+    },
+    {
+      "id": "alexandre2004costa-lcom-project-e3c159e09375",
+      "name": "Aerial Ambush",
+      "capture": "build/mobile-ux2/b/evidence/alexandre2004costa-lcom-project-e3c159e09375/jump-fire-game.png",
+      "captureSha256": "a05134bfb66a375e3d26cea45683ab3ac4afddda9a30b939d9c09e8e8a418766",
+      "crop": null,
+      "preview": "previews/alexandre2004costa-lcom-project-e3c159e09375.png"
+    },
+    {
+      "id": "joaolopes15-lcom-4115b87918f9",
+      "name": "Block Blast",
+      "capture": "build/mobile-ux2/b/evidence/joaolopes15-lcom-4115b87918f9/paddle-play-game.png",
+      "captureSha256": "bbd350eb9a54c2c16b55825074824952843ea26cb3f34f0e7efd11376b3c2233",
+      "crop": null,
+      "preview": "previews/joaolopes15-lcom-4115b87918f9.png"
+    },
+    {
+      "id": "monsterdied-lcomproj-138166482bfa",
+      "name": "Bomber Arena",
+      "capture": "build/mobile-ux2/b/evidence/monsterdied-lcomproj-138166482bfa/final-game.png",
+      "captureSha256": "78ac33b303cd569ffce7db55f97b19938b1a9f6a8ec8d243d55c3bc147c9baf5",
+      "crop": null,
+      "preview": "previews/monsterdied-lcomproj-138166482bfa.png"
+    },
+    {
+      "id": "luizhqueiroz-lcom-memorygame-4540b5424a79",
+      "name": "Memory Quest",
+      "capture": "build/mobile-ux2/b/evidence/luizhqueiroz-lcom-memorygame-4540b5424a79/tap-card-100-game.png",
+      "captureSha256": "099eb51d5fe5a1aafc0a066c3d46072fa241ec6687abe246d9c3b82e39263f13",
+      "crop": null,
+      "preview": "previews/luizhqueiroz-lcom-memorygame-4540b5424a79.png"
+    },
+    {
+      "id": "diogosilva11-lcom-ed97fdb962ec",
+      "name": "Robot Arena",
+      "capture": "build/mobile-ux2/b/evidence/diogosilva11-lcom-ed97fdb962ec/move-fire-game.png",
+      "captureSha256": "dab89ac06c4e32b617b5166a449f20654ef23b3aeb087d1e2ae0d43662149dcb",
+      "crop": null,
+      "preview": "previews/diogosilva11-lcom-ed97fdb962ec.png"
+    },
+    {
+      "id": "joanaigs-lcom-snake-game-330f9e657355",
+      "name": "Snake Orchard",
+      "capture": "build/mobile-ux2/a/evidence/joanaigs-lcom-snake-game-330f9e657355/03-apple-and-trap.png",
+      "captureSha256": "227ad5c04b361f80ee1bf543e7e08259e41a31f08e703dc8078ff83d9bef177a",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/joanaigs-lcom-snake-game-330f9e657355.png"
+    },
+    {
+      "id": "migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f",
+      "name": "Classic Chess",
+      "capture": "build/mobile-ux2/b/evidence/migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f/ai-response-game.png",
+      "captureSha256": "31f24b5fa30dce33ba915a2dfc8fdd84b09b336c3496be433e1d345e5e8dc190",
+      "crop": null,
+      "preview": "previews/migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f.png"
+    },
+    {
+      "id": "leonardomagalhaes21-feup-lcom-9e3925b94730",
+      "name": "Not Cuphead",
+      "capture": "build/mobile-ux2/b/evidence/leonardomagalhaes21-feup-lcom-9e3925b94730/jump-fire-game.png",
+      "captureSha256": "784f2e47f2cc0f95d670c651809f47b525bae25d46b1fcfa2f51fa86702aed5a",
+      "crop": null,
+      "preview": "previews/leonardomagalhaes21-feup-lcom-9e3925b94730.png"
+    },
+    {
+      "id": "henriquesfernandes-lcomaze-e2d54c32196a",
+      "name": "LCOMaze",
+      "capture": "build/mobile-ux2/b/evidence/henriquesfernandes-lcomaze-e2d54c32196a/maze-game.png",
+      "captureSha256": "3589bbc5104432b4803b35d623c1f605c96110212aa42dee689743d4597c43e1",
+      "crop": null,
+      "preview": "previews/henriquesfernandes-lcomaze-e2d54c32196a.png"
+    },
+    {
+      "id": "forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4",
+      "name": "Minhoca",
+      "capture": "build/mobile-ux2/a/evidence/forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4/03-classic-turns.png",
+      "captureSha256": "d970ae11a5e0dd7d181bae8f9db76540fb454354c0b341b5b77e9ff6029351dc",
+      "crop": [
+        160,
+        0,
+        800,
+        480
+      ],
+      "preview": "previews/forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4.png"
+    },
+    {
+      "id": "gablm-feup-lcom-labjack-de14d1919ed9",
+      "name": "LabJack",
+      "capture": "build/mobile-ux2/b/evidence/gablm-feup-lcom-labjack-de14d1919ed9/hand-game.png",
+      "captureSha256": "6d20b404b0026e3c7a89d5a0812a8dcc163d8d009bc65249766f9583d18697e3",
+      "crop": null,
+      "preview": "previews/gablm-feup-lcom-labjack-de14d1919ed9.png"
+    },
+    {
+      "id": "teixdavide-feup-lcom-pettycats-768b12c9a51f",
+      "name": "PettyCats",
+      "capture": "build/mobile-ux2/b/evidence/teixdavide-feup-lcom-pettycats-768b12c9a51f/final-game.png",
+      "captureSha256": "193ed0a879589c1717b99767cbd42102787408affef68a61a4e62dff5dd130ce",
+      "crop": null,
+      "preview": "previews/teixdavide-feup-lcom-pettycats-768b12c9a51f.png"
+    }
+  ]
+}

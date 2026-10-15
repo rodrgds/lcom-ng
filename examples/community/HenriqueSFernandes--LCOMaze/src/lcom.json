@@ -46,5 +46,7 @@
     "arguments": [
       "host"
     ]
-  }
+  },
+  "description": "Explore the maze one corridor at a time and find your way through.",
+  "preview": "../../../../collections/arcade/previews/henriquesfernandes-lcomaze-e2d54c32196a.png"
 }

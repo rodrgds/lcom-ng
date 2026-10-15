@@ -55,5 +55,7 @@
   "build": {
     "assetRoot": ".",
     "assets": []
-  }
+  },
+  "description": "Pick your level, move into position and fire through the neon alien fleet.",
+  "preview": "../../../collections/arcade/previews/pedroribas372-minix-spaceinvaders-e02a4844fc81.png"
 }

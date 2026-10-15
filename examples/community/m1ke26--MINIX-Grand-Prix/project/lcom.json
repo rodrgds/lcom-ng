@@ -61,5 +61,7 @@
     "pathAliases": {
       "/home/lcom/labs/grupo_2leic01_2": "."
     }
-  }
+  },
+  "description": "Take the wheel, race around the track and use your boost on the straights.",
+  "preview": "../../../../collections/arcade/previews/m1ke26-minix-grand-prix-d83709a8a95c.png"
 }

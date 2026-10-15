@@ -52,6 +52,26 @@ invalid values and missing files produce an error naming the setting. The file
 can contain just `name`, just `mobile`, or any subset below. `version` is optional;
 when supplied, use `1`.
 
+## Web collection artwork
+
+Add a short gameplay description and a screenshot for the browser library:
+
+```json
+{
+  "name": "Sushi Slash",
+  "description": "Slice the flying sushi before it falls.",
+  "preview": "screenshots/gameplay.png"
+}
+```
+
+`description` is optional, with up to 500 characters. `preview` is an optional
+PNG of at least 48 pixels in each dimension, relative to the configuration file.
+A gameplay capture around 800×600 works well. The library crops it to a wide tile
+and puts the game name over the image. Without a preview, it uses the icon.
+The loading screen shows the description and actual download progress, then
+opens the game when its first frame appears. These fields do not alter gameplay
+or native controls.
+
 ## Mobile controls
 
 | Setting under `mobile` | Default | Choices |

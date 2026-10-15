@@ -44,5 +44,7 @@
     "assets": [
       "Project/beatmaps"
     ]
-  }
+  },
+  "description": "Hit the notes as they reach the fretboard and keep the rhythm going.",
+  "preview": "../../../../collections/arcade/previews/martimcferreira-lcom-project-9a16857450a6.png"
 }

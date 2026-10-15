@@ -45,7 +45,9 @@ through `devenv shell -- ...`.
   folders, including wrapper folders for the flat C examples.
 - Game collections: `lcom.collection.json` lists project folders relative to its
   directory. `sdk/collection/` owns validation and native Android/responsive web
-  launchers; `collections/arcade/` is the example manifest. Per-game settings stay
+  launchers; `collections/arcade/` is the example manifest. Browser gameplay
+  previews live under `collections/arcade/previews/`, with per-game `preview`
+  paths and `description` in `lcom.json`. Keep original game assets unchanged. Per-game settings stay
   in each game's `lcom.json`. Pinned student sources under `examples/community/`
   retain `UPSTREAM.json` hashes and separately recorded source-defect patches.
   Keep Android game libraries in the isolated `:game` process, with fresh globals

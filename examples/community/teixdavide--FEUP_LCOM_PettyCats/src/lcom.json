@@ -42,5 +42,7 @@
   "build": {
     "assetRoot": "..",
     "assets": []
-  }
+  },
+  "description": "Move your cat around the room and explore this student-made pixel world.",
+  "preview": "../../../../collections/arcade/previews/teixdavide-feup-lcom-pettycats-768b12c9a51f.png"
 }

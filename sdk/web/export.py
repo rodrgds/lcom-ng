@@ -98,6 +98,41 @@ def argument_parser():
     return parser
 
 
+def write_game_metadata(output, settings, arguments, working_directory):
+    """Refresh presentation metadata without recompiling an unchanged game."""
+    output = Path(output)
+    downloads = {name: (output / name).stat().st_size for name in ('game.wasm', 'game.data')
+                 if (output / name).is_file()}
+    config = {**source_project.project_config.public(settings), 'arguments': arguments,
+              'workingDirectory': working_directory, 'downloads': downloads}
+    (output / 'game.json').write_text(json.dumps(config, ensure_ascii=False) + '\n')
+    for key in ('icon', 'preview'):
+        destination = output / f'{key}.png'
+        if settings[key]: shutil.copy2(settings[key], destination)
+        else: destination.unlink(missing_ok=True)
+
+
+def write_player(output, settings):
+    """Package and version the shared host independently of the game binary."""
+    output = Path(output)
+    names = ['player.js', 'player.css', 'loading.js']
+    for name in names: shutil.copy2(WEB / name, output / name)
+    player = (output / 'player.js').read_text()
+    for name in ('loading.js', 'game.js'):
+        digest = hashlib.sha256((output / name).read_bytes()).hexdigest()[:12]
+        player = player.replace(f"'./{name}'", f"'./{name}?v={digest}'")
+    (output / 'player.js').write_text(player)
+    shell = (WEB / 'shell.html').read_text().replace('<title>lcom-ng game</title>',
+        '<title>' + html.escape(settings['name']) + ' · lcom-ng</title>')
+    for name in ('player.js', 'player.css'):
+        digest = hashlib.sha256((output / name).read_bytes()).hexdigest()[:12]
+        shell = shell.replace(f'"./{name}"', f'"./{name}?v={digest}"')
+    if settings['icon']:
+        shell = shell.replace('</head>', '<link rel="icon" href="./icon.png"><link rel="apple-touch-icon" href="./icon.png"></head>')
+    (output / 'index.html').write_text(shell)
+    return ['index.html', *names]
+
+
 def build(args):
     if (args.project / 'lcom.collection.json').is_file():
         sys.path.insert(0, str(SDK))
@@ -162,11 +197,7 @@ def build(args):
         for source, digest in sources.items():
             if Path(source).is_file() and hashlib.sha256(Path(source).read_bytes()).hexdigest() != digest:
                 raise compat.BuildError(f"Source changed during export: {source}")
-        config = {**source_project.project_config.public(settings), "arguments": args.arg,
-                  "workingDirectory": working_directory}
-        (work / "game.json").write_text(json.dumps(config, ensure_ascii=False) + "\n")
-        if settings['icon']:
-            shutil.copy2(settings['icon'], work / 'icon.png')
+        write_game_metadata(work, settings, args.arg, working_directory)
         manifest = {'name': args.name, 'short_name': args.name, 'start_url': './', 'scope': './',
                     'display': 'fullscreen' if settings['mobile']['fullscreen'] else 'standalone',
                     'background_color': '#000000', 'theme_color': settings['mobile']['theme']['accent']}
@@ -179,18 +210,15 @@ def build(args):
         output.mkdir(parents=True, exist_ok=True)
         names = ["game.js", "game.wasm", "game.json", "manifest.webmanifest"]
         if settings["icon"]: names.append("icon.png")
+        if settings["preview"]: names.append("preview.png")
         if (work / "game.data").is_file():
             names.append("game.data")
         for name in names:
             shutil.copy2(work / name, output / name)
-        for source, name in (("shell.html", "index.html"), ("player.js", "player.js"), ("player.css", "player.css")):
-            shutil.copy2(WEB / source, output / name)
-            names.append(name)
-        shell = (output / 'index.html').read_text().replace('<title>lcom-ng game</title>', '<title>' + html.escape(args.name) + ' · lcom-ng</title>')
-        if settings['icon']: shell = shell.replace('</head>', '<link rel="icon" href="./icon.png"><link rel="apple-touch-icon" href="./icon.png"></head>')
-        (output / 'index.html').write_text(shell)
+        names.extend(write_player(output, settings))
         # Remove stale identity assets when re-exporting without a configured icon.
-        if not settings['icon']: (output / 'icon.png').unlink(missing_ok=True)
+        for key in ('icon', 'preview'):
+            if not settings[key]: (output / f'{key}.png').unlink(missing_ok=True)
         (output / "lcom-web.json").write_text(json.dumps({"format": 1, "files": names,
             "sources": {name: digest for name, digest in sources.items() if not name.startswith(str(work))}}, indent=2) + "\n")
     return output

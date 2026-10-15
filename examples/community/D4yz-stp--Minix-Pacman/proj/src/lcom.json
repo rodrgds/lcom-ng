@@ -36,5 +36,7 @@
     "assets": [
       "proj/src/score.txt"
     ]
-  }
+  },
+  "description": "Chase dots through the maze while keeping a safe distance from the ghosts.",
+  "preview": "../../../../../collections/arcade/previews/d4yz-stp-minix-pacman-e9e2296201be.png"
 }

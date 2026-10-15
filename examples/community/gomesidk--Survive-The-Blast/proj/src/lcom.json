@@ -45,5 +45,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Explore the board and uncover its secrets while staying clear of the bombs.",
+  "preview": "../../../../../collections/arcade/previews/gomesidk-survive-the-blast-3d56ca17c03b.png"
 }

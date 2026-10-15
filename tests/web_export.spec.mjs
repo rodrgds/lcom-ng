@@ -54,7 +54,7 @@ test.beforeAll(async () => {
   const projects=[];
   for (const [name,title] of [['one','First game'],['two','Second game']]) {
     const project=path.join(directory,name); cpSync(path.join(root,'tests/fixtures/web/native'),project,{recursive:true});
-    writeFileSync(path.join(project,'lcom.json'),JSON.stringify({name:title,build:{assets:['assets'],environment:{LCOM_COLLECTION_TEST:'ready from profile'}},mobile:{fullscreen:true,controls:{quickKeys:['KP_ENTER','A','B','C','D','E','F','G','H','I'],keyboard:false,joystick:false,mouseButtons:false,layout:'overlay'}}}));
+    writeFileSync(path.join(project,'lcom.json'),JSON.stringify({name:title,description:'Find matching tiles and beat your best score.',preview:path.join(root,'docs/assets/android-icons/sushi-slash.png'),build:{assets:['assets'],environment:{LCOM_COLLECTION_TEST:'ready from profile'}},mobile:{fullscreen:true,controls:{quickKeys:['KP_ENTER','A','B','C','D','E','F','G','H','I'],keyboard:false,joystick:false,mouseButtons:false,layout:'overlay'}}}));
     projects.push('../'+name);
   }
   writeFileSync(path.join(collection,'lcom.collection.json'),JSON.stringify({name:'Classroom Arcade',projects}));
@@ -774,9 +774,12 @@ test('collection is responsive, forwards profiles, and discards game state on re
   await page.goto(`${base}/collection/`);
   await expect(page.getByRole('heading',{name:'Classroom Arcade'})).toBeVisible();
   const columns=()=>page.locator('#games').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
-  expect(await columns()).toBe(3);
+  expect(await columns()).toBe(2);
   await page.setViewportSize({width:1280,height:800});
   expect(await columns()).toBeGreaterThan(3);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
+  expect(await page.locator('.game').evaluateAll(items => items.every(item => item.querySelector('.art').getBoundingClientRect().width <= item.getBoundingClientRect().width + 1))).toBeTruthy();
+  await page.getByRole('button',{name:'Find a game',exact:true}).click();
   await page.getByRole('searchbox').fill('Second');
   await expect(page.getByRole('link',{name:'Play Second game'})).toBeVisible();
   await expect(page.getByRole('link',{name:'Play First game'})).toHaveCount(0);
@@ -810,4 +813,41 @@ test('collection is responsive, forwards profiles, and discards game state on re
   await page.goBack();
   await expect(page.getByRole('heading',{name:'Classroom Arcade'})).toBeVisible();
   await context.close();
+});
+
+
+test('collection loading supports cancellation, download failures, and retry to the first frame', async ({page}) => {
+  await page.goto(`${base}/collection/`);
+  let release, requested;
+  const gate = new Promise(resolve => { release = resolve; });
+  const started = new Promise(resolve => { requested = resolve; });
+  let mode = 'hold';
+  await page.route('**/collection/games/*/game.wasm', async route => {
+    if(mode === 'hold') { requested(); await gate; }
+    if(mode === 'fail') await route.fulfill({status:503,body:'Unavailable'});
+    else { try { await route.continue(); } catch { /* The canceled frame no longer exists. */ } }
+  });
+  await page.getByRole('link',{name:'Play First game'}).click();
+  await started;
+  await expect(page.locator('#loading')).toBeVisible();
+  await expect(page.locator('#load-title')).toHaveText('First game');
+  await expect(page.locator('#load-description')).toHaveText('Find matching tiles and beat your best score.');
+  await expect(page.getByRole('progressbar',{name:'Game download'})).toBeVisible();
+  // An unrelated same-origin window must not dismiss another frame's loader.
+  await page.evaluate(() => window.postMessage({type:'lcom-player-loading',phase:'ready'},location.origin));
+  await expect(page.locator('#loading')).toBeVisible();
+  await page.getByRole('button',{name:'Games',exact:true}).click();
+  await expect(page.locator('iframe')).toHaveCount(0);
+  mode = 'fail'; release();
+  await page.getByRole('link',{name:'Play Second game'}).click();
+  await expect(page.locator('#load-title')).toHaveText('Second game');
+  await expect(page.getByRole('button',{name:'Try again',exact:true})).toBeVisible();
+  mode = 'run';
+  await page.getByRole('button',{name:'Try again',exact:true}).click();
+  await expect(page.locator('#loading')).toBeHidden();
+  const frame = page.frameLocator('iframe');
+  await expect.poll(() => pixel(frame)).toEqual([17,34,51,255]);
+  await expect(frame.locator('#status')).toHaveText('Game running.');
+  await page.getByRole('button',{name:'Games',exact:true}).click();
+  await expect(page.getByRole('link',{name:'Play Second game'})).toBeFocused();
 });

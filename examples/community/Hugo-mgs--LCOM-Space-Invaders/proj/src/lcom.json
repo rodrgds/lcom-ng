@@ -41,5 +41,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Dodge the falling shots and shoot your way through the alien waves.",
+  "preview": "../../../../../collections/arcade/previews/hugo-mgs-lcom-space-invaders-5c534d6f57b3.png"
 }

@@ -66,5 +66,7 @@
   "build": {
     "assetRoot": "..",
     "assets": []
-  }
+  },
+  "description": "Steer through traffic and dodge obstacles. Share the road with a second player.",
+  "preview": "../../../../collections/arcade/previews/dab1d-getawaycar-a7df638127d0.png"
 }

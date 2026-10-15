@@ -48,5 +48,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Navigate the arena and fire at your opponents while avoiding incoming shots.",
+  "preview": "../../../../../collections/arcade/previews/diogosilva11-lcom-ed97fdb962ec.png"
 }

@@ -1,7 +1,7 @@
 # LCOM Arcade
 
 A collection of original student games. `lcom.collection.json` lists their
-folders; each game's `lcom.json` owns its name, icon and mobile controls.
+folders; each game's `lcom.json` owns its name, icon, description, preview screenshot and mobile controls.
 
 ```sh
 lcom-ng web collections/arcade
@@ -10,7 +10,7 @@ lcom-ng export android collections/arcade --output dist/lcom-arcade-android
 ```
 
 The Android launcher is native and fullscreen, with columns adapting to screen
-width and text size. The web grid is responsive. The Games button prefers unused
+width and text size. The web gallery uses a dense responsive screenshot grid, with game names over the artwork and search behind an icon. Loading shows the game description and measured download progress. The Games button prefers unused
 space outside the game and returns to the collection.
 
 See [the collection guide](../../docs-site/instructors/game-collections.md) for

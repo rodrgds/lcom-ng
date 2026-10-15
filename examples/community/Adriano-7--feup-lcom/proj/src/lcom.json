@@ -40,5 +40,7 @@
   "build": {
     "assetRoot": "../..",
     "assets": []
-  }
+  },
+  "description": "Slide beneath the fleet, dodge incoming fire and clear the alien formation.",
+  "preview": "../../../../../collections/arcade/previews/adriano-7-feup-lcom-727bed1b84da.png"
 }
