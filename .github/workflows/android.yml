@@ -54,5 +54,5 @@ jobs:
             build/android-qa/coordinates/game.apk
             build/android-qa/*.png
             build/android-qa/android-logcat.txt
-            build/android-qa/android-direct-logcat.txt
+            build/android-qa/android-direct-*.txt
             build/android-qa/android-coordinates-logcat.txt

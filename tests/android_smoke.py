@@ -44,6 +44,65 @@ def wait_for_frame(name,expected):
         time.sleep(0.1)
 
 
+def wait_for_input(package,x,y):
+    component=package+'/pt.rgo.lcomng.GameActivity'
+    deadline=time.monotonic()+10
+    while True:
+        state=adb('shell','dumpsys','input')
+        focused=re.search(r'(?ms)^  FocusedWindows:\n(.*?)(?=^  \S|\Z)',state)
+        focus=focused.group(1) if focused else ''
+        focused_game=re.search(r"name='[^']* "+re.escape(component)+r"'",focus)
+        # InputDispatcher regions use physical coordinates. Its display matrix
+        # maps those to the logical screenshot/adb coordinates, including wm
+        # size overrides and rotation. Invert that affine transform first.
+        display=re.search(r'(?ms)^  Display: 0\n(.*?)(?=^  \S|\Z)',state)
+        matrix=re.search(r'transform[^\n]*\n\s+([^\n]+)\n\s+([^\n]+)',
+                         display.group(1) if display else '')
+        point=None
+        if matrix:
+            try:
+                a,b,tx=map(float,matrix.group(1).split())
+                c,d,ty=map(float,matrix.group(2).split())
+                determinant=a*d-b*c
+                if determinant:
+                    point=((d*(x-tx)-b*(y-ty))/determinant,
+                           (a*(y-ty)-c*(x-tx))/determinant)
+            except ValueError: pass
+        windows=[line for line in state.splitlines()
+                 if re.search(r'\bname=[^,]* '+re.escape(component)+r',',line)]
+        for window in windows:
+            config=re.search(r'inputConfig=([^,]+)',window)
+            region=re.search(r'touchableRegion=([^\n]+?)(?:, \w+=|$)',window)
+            rectangles=re.findall(r'\[(-?\d+),(-?\d+)\]\[(-?\d+),(-?\d+)\]',
+                                  region.group(1) if region else '')
+            contains=point is not None and any(
+                int(left)<=point[0]<int(right) and int(top)<=point[1]<int(bottom)
+                for left,top,right,bottom in rectangles)
+            if (focused_game and 'DispatchEnabled: true' in state and
+                'DispatchFrozen: false' in state and config and
+                not any(flag in config.group(1) for flag in
+                        ('NOT_TOUCHABLE','NOT_VISIBLE','NO_INPUT_CHANNEL')) and contains):
+                (OUT/'android-direct-input-ready.txt').write_text(state)
+                return
+        assert time.monotonic()<deadline, (
+            f'Game input not ready at logical ({x},{y}), physical {point}:\n{focus}\n'+
+            '\n'.join(windows))
+        time.sleep(0.1)
+
+
+def direct_diagnostics():
+    # Capture before force-stop, including failures before the tap is sent.
+    commands={'logcat':('logcat','-d'), 'input':('shell','dumpsys','input'),
+              'window':('shell','dumpsys','window','windows'),
+              'activity':('shell','dumpsys','activity','activities')}
+    for name,command in commands.items():
+        try: output=adb(*command)
+        except subprocess.CalledProcessError as error: output=str(error)
+        (OUT/f'android-direct-failure-{name}.txt').write_text(output)
+    try: screenshot('android-direct-failure.png')
+    except subprocess.CalledProcessError: pass
+
+
 def main():
     OUT.mkdir(parents=True,exist_ok=True)
     adb('install','-r',str(OUT / 'smoke/game.apk'))
@@ -140,7 +199,11 @@ def direct_touch():
         fit=min(frame.width/800,frame.height/600)
         assert abs(width-800*fit)<=2 and abs(height-600*fit)<=2,(frame.size,left,top,width,height)
         assert abs(left-(frame.width-width)/2)<=1 and abs(top-(frame.height-height)/2)<=1
-        adb('shell','input','tap',str(round(left+width*0.125)),str(round(top+height*0.25)))
+        x,y=round(left+width*0.125),round(top+height*0.25)
+        # A first rendered frame can precede the focused input window's
+        # launch/rotation transition. Wait for this actual point to be touchable.
+        wait_for_input(package,x,y)
+        adb('shell','input','tap',str(x),str(y))
         deadline=time.monotonic()+5
         positions=[]
         while time.monotonic()<deadline:
@@ -153,13 +216,14 @@ def direct_touch():
                 x=max(0,min(799,x+dx-(256 if flags&16 else 0)))
                 y=max(0,min(599,y-dy+(256 if flags&32 else 0)))
                 positions.append((x,y,flags&7))
-            if positions and positions[-1][2]==0: break
+            # Startup neutral packets and coordinate travel precede the press.
+            if any(p[2]==1 for p in positions) and positions[-1][2]==0: break
             time.sleep(0.1)
+        (OUT/'android-direct-logcat.txt').write_text(log)
         presses=[p for p in positions if p[2]==1]
         assert len(presses)==1,positions
         assert abs(presses[0][0]-100)<=2 and abs(presses[0][1]-150)<=2,positions
         assert positions[-1][2]==0,positions
-        (OUT/'android-direct-logcat.txt').write_text(log)
         # A fullscreen static game has no control redraws to mask a missing
         # foreground event. Resume it without sending any further game input.
         for cycle in range(3):
@@ -169,7 +233,11 @@ def direct_touch():
             wait_for_frame(f'android-direct-resumed-{cycle}.png',lambda frame:
                 count_color(frame,(17,34,51))>frame.width*frame.height/3)
         print('Android landscape lock, direct tap ordering and fullscreen static resume passed')
+    except Exception:
+        direct_diagnostics()
+        raise
     finally:
+        (OUT/'android-direct-logcat.txt').write_text(adb('logcat','-d','-s','lcom-ng:I','*:S'))
         adb('shell','am','force-stop',package)
 
 
