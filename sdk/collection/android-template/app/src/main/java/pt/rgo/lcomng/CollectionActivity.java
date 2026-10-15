@@ -16,6 +16,11 @@ import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
 import android.widget.GridLayout;
+import android.widget.EditText;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.inputmethod.InputMethodManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -33,6 +38,8 @@ public final class CollectionActivity extends Activity {
     private ScrollView scroll;
     private GridLayout grid;
     private int columns;
+    private String query = "";
+    private TextView summary, empty;
     private String anchorId;
     private int anchorOffset, anchorHeight;
     private boolean restorePending, resumed;
@@ -111,21 +118,92 @@ public final class CollectionActivity extends Activity {
         scroll.setFillViewport(true);
         content = new LinearLayout(this);
         content.setOrientation(LinearLayout.VERTICAL);
+        content.setFocusableInTouchMode(true);
+        content.setDefaultFocusHighlightEnabled(false);
         content.setPadding(dp(18) + sideInset, dp(28) + topInset, dp(18) + sideInset, dp(24) + bottomInset);
         scroll.addView(content, new ScrollView.LayoutParams(-1, -2));
         TextView heading = text(title, 30, 0xfff4f7f5);
         heading.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         content.addView(heading);
-        TextView subtitle = text(games.size() + " student games · Pick something to play", 14, 0xffa9b3ad);
-        subtitle.setPadding(0, dp(6), 0, dp(22));
-        content.addView(subtitle);
+        summary = text("", 14, 0xffa9b3ad);
+        summary.setPadding(0, dp(6), 0, dp(18));
+        content.addView(summary);
+        EditText search = new EditText(this);
+        search.setSingleLine(true);
+        search.setTextSize(16);
+        search.setTextColor(0xfff4f7f5);
+        search.setHintTextColor(0xffa9b3ad);
+        search.setHint("Find a game");
+        search.setContentDescription("Find a game");
+        search.setPadding(dp(14), 0, dp(14), 0);
+        search.setMinHeight(dp(48));
+        search.setImeOptions(EditorInfo.IME_ACTION_DONE);
+        GradientDrawable searchSurface = new GradientDrawable();
+        searchSurface.setColor(0xff171d19);
+        searchSurface.setCornerRadius(dp(8));
+        searchSurface.setStroke(dp(1), 0xff38463d);
+        search.setBackground(searchSurface);
+        search.setText(query);
+        LinearLayout.LayoutParams searchSize = new LinearLayout.LayoutParams(-1, dp(48));
+        searchSize.bottomMargin = dp(18);
+        content.addView(search, searchSize);
+        search.setOnEditorActionListener((view, action, event) -> {
+            if (action != EditorInfo.IME_ACTION_DONE) return false;
+            hideKeyboard();
+            content.requestFocus();
+            return true;
+        });
+        search.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence value, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence value, int start, int before, int count) {
+                query = value.toString();
+                anchorId = null;
+                renderGames();
+            }
+            @Override public void afterTextChanged(Editable value) {}
+        });
         grid = new GridLayout(this);
         columns = columnCount();
         grid.setColumnCount(columns);
         grid.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
         grid.setUseDefaultMargins(false);
         content.addView(grid, new LinearLayout.LayoutParams(-1, -2));
+        empty = text("No games match. Try another name.", 16, 0xffa9b3ad);
+        empty.setPadding(0, dp(18), 0, dp(18));
+        content.addView(empty);
+        renderGames();
+        setContentView(scroll);
+        scroll.setOnApplyWindowInsetsListener((view, insets) -> {
+            int left = 0, right = 0;
+            topInset = bottomInset = 0;
+            if (Build.VERSION.SDK_INT >= 28 && insets.getDisplayCutout() != null) {
+                left = insets.getDisplayCutout().getSafeInsetLeft();
+                right = insets.getDisplayCutout().getSafeInsetRight();
+                topInset = insets.getDisplayCutout().getSafeInsetTop();
+                bottomInset = insets.getDisplayCutout().getSafeInsetBottom();
+            }
+            sideInset = Math.max(left, right);
+            content.setPadding(dp(18) + left, dp(28) + topInset, dp(18) + right, dp(24) + bottomInset);
+            reflowGrid();
+            return insets;
+        });
+        scroll.requestApplyInsets();
+        immerse();
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager keyboard = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if (keyboard != null) keyboard.hideSoftInputFromWindow(content.getWindowToken(), 0);
+    }
+
+    private void renderGames() {
+        grid.removeAllViews();
+        int visible = 0;
+        String filter = query.trim().toLowerCase(java.util.Locale.ROOT);
         for (Game game : games) {
+            game.tile = null;
+            if (!game.name.toLowerCase(java.util.Locale.ROOT).contains(filter)) continue;
+            visible++;
             LinearLayout tile = new LinearLayout(this);
             game.tile = tile;
             tile.setOrientation(LinearLayout.VERTICAL);
@@ -139,7 +217,11 @@ public final class CollectionActivity extends Activity {
             tile.setClickable(true);
             tile.setFocusable(true);
             tile.setContentDescription("Play " + game.name);
-            tile.setOnClickListener(view -> startActivity(new Intent(this, GameActivity.class).putExtra("game", game.id)));
+            tile.setOnClickListener(view -> {
+                hideKeyboard();
+                content.requestFocus();
+                startActivity(new Intent(this, GameActivity.class).putExtra("game", game.id));
+            });
             GridLayout.LayoutParams cell = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED), GridLayout.spec(GridLayout.UNDEFINED, 1f));
             cell.width = 0;
             cell.height = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -163,7 +245,7 @@ public final class CollectionActivity extends Activity {
             label.setPadding(0, dp(6), 0, 0);
             tile.addView(label, new LinearLayout.LayoutParams(-1, -2));
         }
-        int blanks = (columns - games.size() % columns) % columns;
+        int blanks = (columns - visible % columns) % columns;
         for (int index = 0; index < blanks; index++) {
             View blank = new View(this);
             GridLayout.LayoutParams cell = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED), GridLayout.spec(GridLayout.UNDEFINED, 1f));
@@ -172,23 +254,10 @@ public final class CollectionActivity extends Activity {
             cell.setMargins(dp(4), 0, dp(4), 0);
             grid.addView(blank, cell);
         }
-        setContentView(scroll);
-        scroll.setOnApplyWindowInsetsListener((view, insets) -> {
-            int left = 0, right = 0;
-            topInset = bottomInset = 0;
-            if (Build.VERSION.SDK_INT >= 28 && insets.getDisplayCutout() != null) {
-                left = insets.getDisplayCutout().getSafeInsetLeft();
-                right = insets.getDisplayCutout().getSafeInsetRight();
-                topInset = insets.getDisplayCutout().getSafeInsetTop();
-                bottomInset = insets.getDisplayCutout().getSafeInsetBottom();
-            }
-            sideInset = Math.max(left, right);
-            content.setPadding(dp(18) + left, dp(28) + topInset, dp(18) + right, dp(24) + bottomInset);
-            reflowGrid();
-            return insets;
-        });
-        scroll.requestApplyInsets();
-        immerse();
+        empty.setVisibility(visible == 0 ? View.VISIBLE : View.GONE);
+        summary.setText(filter.isEmpty()
+            ? games.size() + " student games · Pick something to play"
+            : visible + " of " + games.size() + " games");
     }
 
     private int columnCount() {

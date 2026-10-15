@@ -3,6 +3,8 @@
 Combine a class's projects into one Android APK and a browser library. The native
 Android menu adapts its columns to the screen and text size. The web menu adapts to phones, tablets and desktop
 screens. Games keep their original presentation and their own mobile controls.
+Android's **Find a game** field filters titles as you type and keeps the query
+when you return from playing.
 
 ## Try the student arcade
 
@@ -42,13 +44,18 @@ optional. When supplied, the icon must be a square PNG of at least 48 pixels.
 Folders must be unique; nested collections are rejected. Moving the collection
 and games together preserves the folder list and game identities.
 
-Configure each game's name, icon, source/assets and controls in its own
+Configure each game's name, icon, description, preview screenshot, source/assets and controls in its own
 [`lcom.json`](../students/project-config). Both exporters reuse that profile.
 Collection-wide `--name` and `--icon` override the launcher identity. Source,
 asset, argument and orientation switches belong in the individual game profiles.
 
 Re-exporting to the same web output removes generated bundles for games you took
 out of the list. Files you added yourself are preserved.
+
+The web library uses wide screenshot tiles with names over the artwork. Search
+opens from the magnifying glass. Games without a `preview` use their icon.
+A loading screen shows the game's `description` and download progress; failed
+downloads offer a retry or a return to the library.
 
 ## Playing and returning
 

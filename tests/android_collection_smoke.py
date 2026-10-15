@@ -100,6 +100,33 @@ adb('shell', 'am', 'start', '-W', '-n', package + '/pt.rgo.lcomng.CollectionActi
 wait(library_visible, 'Native game library failed to appear')
 launcher_pid = pid(package)
 assert launcher_pid, 'No launcher process'
+
+# Exercise the native search field through real input, including recovery from
+# zero matches. Pick a real catalog word instead of hard-coding a game title.
+search_query = ''
+def search_library(value):
+    global search_query
+    click('Find a game')
+    adb('shell', 'input', 'keyevent', 'KEYCODE_MOVE_END')
+    if search_query:
+        adb('shell', 'input', 'keyevent', *(['KEYCODE_DEL'] * len(search_query)))
+    if value:
+        adb('shell', 'input', 'text', value)
+    search_query = value
+    adb('shell', 'input', 'keyevent', 'KEYCODE_ENTER')
+
+query = max(re.findall(r'[A-Za-z]+', catalog['games'][0]['name']), key=len).upper()
+expected = {'Play ' + game['name'] for game in catalog['games'] if query.lower() in game['name'].lower()}
+search_library(query)
+filtered = {node.get('content-desc') for node in ui().iter('node') if node.get('content-desc', '').startswith('Play ')}
+assert filtered and filtered <= expected, ('Native search includes an unrelated game', filtered, expected)
+screenshot('collection-search')
+search_library('ZZZ_NO_ARCADE_MATCH_14')
+tree = ui()
+assert not any(node.get('content-desc', '').startswith('Play ') for node in tree.iter('node'))
+assert any(node.get('text') == 'No games match. Try another name.' for node in tree.iter('node'))
+search_library('')
+wait(library_visible, 'Clearing native search did not restore the library')
 # am start can retain keyboard navigation from a previous Back-key probe.
 # Enter touch mode on empty title padding before checking authored colors.
 adb('shell', 'input', 'tap', '1', '1')
