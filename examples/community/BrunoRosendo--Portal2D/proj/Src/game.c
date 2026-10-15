@@ -57,6 +57,10 @@ int game_end() {
 
   if (game_state != MENU && game_state != OVER)
     destroy_all_sprites();
+  else {
+    destroy_sprite(cursor);
+    cursor = NULL;
+  }
 
   return 0;
 }
@@ -168,8 +172,12 @@ int read_level_from_file() {
   draw_level();
   draw_sprite(character);
 
-  old_purple = *create_sprite(purple_1_down, 0, 0, 0, 0); // allocate memory
-  old_green = *create_sprite(green_1_down, 0, 0, 0, 0);
+  Sprite *snapshot = create_sprite(purple_1_down, 0, 0, 0, 0);
+  old_purple = *snapshot;
+  free(snapshot);
+  snapshot = create_sprite(green_1_down, 0, 0, 0, 0);
+  old_green = *snapshot;
+  free(snapshot);
 
   cursor = create_sprite(cursor_xpm, 600, 500, 0, 0);
   old_cursor = *(cursor);
@@ -310,19 +318,30 @@ void destroy_all_sprites() {
   erase_everything();
   flip_page();
   destroy_sprite(cursor);
+  cursor = NULL;
   destroy_sprite(character);
+  character = NULL;
   destroy_sprite(character2);
+  character2 = NULL;
   destroy_sprite(end_flag);
+  end_flag = NULL;
   destroy_asprite(purple_portal);
   destroy_asprite(green_portal);
   purple_portal = NULL;
   green_portal = NULL;
-  destroy_sprite(&old_green);
-  destroy_sprite(&old_purple);
+  /* These snapshots are value objects. Only their pixel maps are heap owned. */
+  free(old_green.map);
+  free(old_purple.map);
+  old_green = (Sprite){0};
+  old_purple = (Sprite){0};
   free(reversed_img);
   free(reversed_img2);
+  reversed_img = NULL;
+  reversed_img2 = NULL;
   for (int i = 0; i < block_num; ++i) destroy_sprite(blocks[i]);
   free(blocks);
+  blocks = NULL;
+  block_num = 0;
 }
 
 bool check_level_end() {

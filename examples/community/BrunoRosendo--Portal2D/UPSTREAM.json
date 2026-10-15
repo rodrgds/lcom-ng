@@ -119,10 +119,23 @@
         {
           "path": "proj/Src/game.c",
           "originalSha256": "98ac3d24d05918e53c8a7400b2290fa497610abb9f9580c0a97f77f86fe94f31",
-          "patchedSha256": "536ea4a302221a4d9579f72a8f7a39572867cc4a96267f65f9ace79028b1e19c",
-          "reason": "Original four-byte level filename buffer overflows while appending .txt, corrupting the level path and trapping in browser. Enlarged only the filename buffer after reproducing failed level load."
+          "patchedSha256": "d4ee4661c097a432db70c0e01606a0da23bea3c34348eb58c364001928586151",
+          "reason": "Preserve the earlier level filename buffer fix. Free only owned pixel maps of global portal value snapshots, release their temporary heap wrappers, and clear level pointers after destruction so Escape, level changes and editor/co-op transitions cannot free static or stale objects."
+        },
+        {
+          "path": "proj/Src/sprites.c",
+          "originalSha256": "be0bc7973b58f66fa5902b79b0a37e88120aea68ab024483e1dea2eb206ba7ec",
+          "patchedSha256": "b529f812504b5670da6e943b855e766d7eedab43be669a88c24ee27222c2be87",
+          "reason": "Destroy both separately owned normal/reversed image maps, including after flip_sprite swaps their pointers."
+        },
+        {
+          "path": "proj/Src/asprite.c",
+          "originalSha256": "832db5ca5690dd73db759809bb29f546512d344133df967983ea3f3673b77fea",
+          "patchedSha256": "dc4c0763afb100015b09bc146339696963564e354892274da227222c69dffcb3",
+          "reason": "Give animated portals one owner for all frame images; the drawable Sprite borrows the active frame. Reuse the first image, release every frame on replacement/destruction, and clean partial construction on an image load failure."
         }
-      ]
+      ],
+      "reproduction": "Native Android gameplay, portals then Escape aborts in destroy_all_sprites -> free with truncated pointer tag. The public desktop CLI reproduces SIGABRT134 on Play then Escape even without portals. After correcting ownership both minimal and paired-portal replays return to menu without abort."
     }
   ],
   "license": {
@@ -151,6 +164,11 @@
       "gameplay": "Swipe cursor from (600,500) to Play, Purple click; hold right, Jump, Purple portal, move cursor, Green portal; Back then original Exit menu clean.",
       "errors": [],
       "rawCanvas": "build/arcade-expansion/evidence-b/portal-gameplay.png"
+    },
+    "cleanup": {
+      "before": "Play then Escape: twice SIGABRT134 on desktop, twice Android SIGABRT pointer-tag abort.",
+      "after": "Desktop public CLI minimal exit and paired portal/exit replays survive through their tick guard; Android rebuild/retest pending.",
+      "evidence": "build/arcade-expansion/portal-cleanup"
     }
   },
   "controlsRationale": "Swipe cursor from (600,500) to Play, Purple click; hold right, Jump, Purple portal, move cursor, Green portal; Back then original Exit menu clean."

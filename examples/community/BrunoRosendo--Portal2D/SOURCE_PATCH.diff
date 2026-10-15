@@ -1,6 +1,17 @@
 --- a/proj/Src/game.c
 +++ b/proj/Src/game.c
-@@ -89,7 +89,7 @@
+@@ -57,6 +57,10 @@
+ 
+   if (game_state != MENU && game_state != OVER)
+     destroy_all_sprites();
++  else {
++    destroy_sprite(cursor);
++    cursor = NULL;
++  }
+ 
+   return 0;
+ }
+@@ -89,7 +93,7 @@
    // read the next level
  
    current_level++;
@@ -9,3 +20,125 @@
    char suffix[] = ".txt";
    int level = current_level;
    sprintf(file, "%d", level);
+@@ -168,8 +172,12 @@
+   draw_level();
+   draw_sprite(character);
+ 
+-  old_purple = *create_sprite(purple_1_down, 0, 0, 0, 0); // allocate memory
+-  old_green = *create_sprite(green_1_down, 0, 0, 0, 0);
++  Sprite *snapshot = create_sprite(purple_1_down, 0, 0, 0, 0);
++  old_purple = *snapshot;
++  free(snapshot);
++  snapshot = create_sprite(green_1_down, 0, 0, 0, 0);
++  old_green = *snapshot;
++  free(snapshot);
+ 
+   cursor = create_sprite(cursor_xpm, 600, 500, 0, 0);
+   old_cursor = *(cursor);
+@@ -310,19 +318,30 @@
+   erase_everything();
+   flip_page();
+   destroy_sprite(cursor);
++  cursor = NULL;
+   destroy_sprite(character);
++  character = NULL;
+   destroy_sprite(character2);
++  character2 = NULL;
+   destroy_sprite(end_flag);
++  end_flag = NULL;
+   destroy_asprite(purple_portal);
+   destroy_asprite(green_portal);
+   purple_portal = NULL;
+   green_portal = NULL;
+-  destroy_sprite(&old_green);
+-  destroy_sprite(&old_purple);
++  /* These snapshots are value objects. Only their pixel maps are heap owned. */
++  free(old_green.map);
++  free(old_purple.map);
++  old_green = (Sprite){0};
++  old_purple = (Sprite){0};
+   free(reversed_img);
+   free(reversed_img2);
++  reversed_img = NULL;
++  reversed_img2 = NULL;
+   for (int i = 0; i < block_num; ++i) destroy_sprite(blocks[i]);
+   free(blocks);
++  blocks = NULL;
++  block_num = 0;
+ }
+ 
+ bool check_level_end() {
+--- a/proj/Src/sprites.c
++++ b/proj/Src/sprites.c
+@@ -35,8 +35,9 @@
+ void destroy_sprite(Sprite *sp) {
+     if( sp == NULL )
+         return;
+-    if(sp ->map)
+-        free(sp->map);
++    if(sp->map_reversed != sp->map)
++        free(sp->map_reversed);
++    free(sp->map);
+     free(sp);
+     sp = NULL;
+ }
+--- a/proj/Src/asprite.c
++++ b/proj/Src/asprite.c
+@@ -8,27 +8,31 @@
+ 
+ ASprite* create_asprite(int num_pic, xpm_map_t pics[], int aspeed, int x, int y, int xspeed, int yspeed){
+ 
++    if (num_pic <= 0) return NULL;
+     ASprite* asp = (ASprite*) malloc(sizeof(ASprite));
++    if (asp == NULL) return NULL;
+     asp->aspeed = aspeed;
+     asp->num_fig = num_pic;
+     asp->frames_left = aspeed;
+     asp->cur_fig = 0;
+-
+-    // First sprite
+     asp->sp = create_sprite(pics[0], x, y, xspeed, yspeed);
+-
+-    asp->map = (uint8_t**) malloc(num_pic * sizeof(uint8_t*));
+-    //asp->map[0] = asp->sp->map;
+-
+-    for (size_t i = 0; (int) i < num_pic; ++i){
++    if (asp->sp == NULL) {
++        free(asp);
++        return NULL;
++    }
++    asp->map = (uint8_t**) calloc(num_pic, sizeof(uint8_t*));
++    if (asp->map == NULL) {
++        destroy_sprite(asp->sp);
++        free(asp);
++        return NULL;
++    }
++    /* The animation owns every frame. Its drawable sprite borrows one frame. */
++    asp->map[0] = asp->sp->map;
++    for (int i = 1; i < num_pic; ++i) {
+         xpm_image_t img;
+         asp->map[i] = xpm_load(pics[i], get_type(), &img);
+-        if (asp->map == NULL){
+-            printf("Asprite creation failed\n");
+-            for (size_t j = 0; j < i; ++j) free(asp->map[j]);
+-            free(asp->map);
+-            destroy_sprite(asp->sp);
+-            free(asp);
++        if (asp->map[i] == NULL) {
++            destroy_asprite(asp);
+             return NULL;
+         }
+     }
+@@ -102,7 +106,11 @@
+ 
+ void destroy_asprite(ASprite* asp){
+     if (asp == NULL) return;
+-    if (asp->map) free(asp->map);
++    if (asp->map) {
++        for (int i = 0; i < asp->num_fig; ++i) free(asp->map[i]);
++        free(asp->map);
++        if (asp->sp) asp->sp->map = NULL;
++    }
+     destroy_sprite(asp->sp);
+     free(asp);
+     asp = NULL;

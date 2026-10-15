@@ -35,8 +35,9 @@ Sprite *create_sprite(xpm_map_t pic, int x, int y, int xspeed, int yspeed){
 void destroy_sprite(Sprite *sp) {
     if( sp == NULL )
         return;
-    if(sp ->map)
-        free(sp->map);
+    if(sp->map_reversed != sp->map)
+        free(sp->map_reversed);
+    free(sp->map);
     free(sp);
     sp = NULL;
 }

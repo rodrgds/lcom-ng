@@ -131,7 +131,7 @@ int main(void) {
             self.assertNotEqual(score(frames[0]), score(frames[1]),
                                 'The launched ball must hit a brick and change the displayed score')
 
-    def test_portal_level_filename_fits_while_loading_the_first_level(self):
+    def test_portal_first_level_loads_and_survives_return_and_restart(self):
         # The original four-byte filename overflows when adding ".txt". Enter
         # Play through real mouse packets and inspect independently chosen walls.
         cli = Path(os.environ.get('LCOM_CLI', ROOT / 'build/machinelab')).resolve()
@@ -155,6 +155,30 @@ int main(void) {
             self.assertEqual((magic, dimensions, depth), (b'P6', b'1280 1024', b'255'))
             self.assertEqual(len(pixels), 1280 * 1024 * 3)
             pixel = lambda x, y: tuple(pixels[(y * 1280 + x) * 3:(y * 1280 + x) * 3 + 3])
+            self.assertEqual(pixel(100, 200), (0, 0, 0))
+            self.assertGreaterEqual(min(pixel(720, 400)), 200)
+            # Returning after animated portals previously freed global Sprite
+            # values. Re-entering a level also checks that cleanup leaves no
+            # dangling level owners for the next session.
+            restart = folder / 'return-restart.mlabscript'
+            restart.write_text(replay.read_text() + '\n' + """at 400 key ESC down
+at 401 key ESC up
+at 450 mouse -100 100 0
+at 455 mouse -100 100 0
+at 460 mouse -100 100 0
+at 465 mouse -100 0 0
+at 470 mouse -100 0 0
+at 480 mouse 0 0 1
+at 485 mouse 0 0 0
+""")
+            result = subprocess.run([str(cli), 'run', '--headless', '--script', str(restart),
+                                     '--max-ticks', '540', '--timeout', '15', '--dump-presented',
+                                     '--dump-frame', str(frame), '--', str(folder / 'native/proj'), 'Resources'],
+                                    cwd=folder, env={**os.environ, 'LCOM_COMPAT_PROJECT_ROOT': str(folder)},
+                                    capture_output=True, text=True, timeout=30)
+            self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+            self.assertIn('max virtual ticks reached (540)', result.stdout + result.stderr)
+            pixels = frame.read_bytes().split(b'\n', 3)[3]
             self.assertEqual(pixel(100, 200), (0, 0, 0))
             self.assertGreaterEqual(min(pixel(720, 400)), 200)
 

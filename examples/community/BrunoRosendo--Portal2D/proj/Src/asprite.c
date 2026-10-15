@@ -8,27 +8,31 @@
 
 ASprite* create_asprite(int num_pic, xpm_map_t pics[], int aspeed, int x, int y, int xspeed, int yspeed){
 
+    if (num_pic <= 0) return NULL;
     ASprite* asp = (ASprite*) malloc(sizeof(ASprite));
+    if (asp == NULL) return NULL;
     asp->aspeed = aspeed;
     asp->num_fig = num_pic;
     asp->frames_left = aspeed;
     asp->cur_fig = 0;
-
-    // First sprite
     asp->sp = create_sprite(pics[0], x, y, xspeed, yspeed);
-
-    asp->map = (uint8_t**) malloc(num_pic * sizeof(uint8_t*));
-    //asp->map[0] = asp->sp->map;
-
-    for (size_t i = 0; (int) i < num_pic; ++i){
+    if (asp->sp == NULL) {
+        free(asp);
+        return NULL;
+    }
+    asp->map = (uint8_t**) calloc(num_pic, sizeof(uint8_t*));
+    if (asp->map == NULL) {
+        destroy_sprite(asp->sp);
+        free(asp);
+        return NULL;
+    }
+    /* The animation owns every frame. Its drawable sprite borrows one frame. */
+    asp->map[0] = asp->sp->map;
+    for (int i = 1; i < num_pic; ++i) {
         xpm_image_t img;
         asp->map[i] = xpm_load(pics[i], get_type(), &img);
-        if (asp->map == NULL){
-            printf("Asprite creation failed\n");
-            for (size_t j = 0; j < i; ++j) free(asp->map[j]);
-            free(asp->map);
-            destroy_sprite(asp->sp);
-            free(asp);
+        if (asp->map[i] == NULL) {
+            destroy_asprite(asp);
             return NULL;
         }
     }
@@ -102,7 +106,11 @@ ASprite* create_portal(portal_type type, int x, int y){
 
 void destroy_asprite(ASprite* asp){
     if (asp == NULL) return;
-    if (asp->map) free(asp->map);
+    if (asp->map) {
+        for (int i = 0; i < asp->num_fig; ++i) free(asp->map[i]);
+        free(asp->map);
+        if (asp->sp) asp->sp->map = NULL;
+    }
     destroy_sprite(asp->sp);
     free(asp);
     asp = NULL;
