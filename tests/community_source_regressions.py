@@ -90,6 +90,44 @@ int main(void) {
 }
 ''', source_flags=['-Dmalloc=game_allocate'])
 
+    def test_bounce_normal_enter_opens_playfield_and_launches_a_scoring_ball(self):
+        # Both menu and launch advertise normal Enter. Replaying those real key
+        # events catches stale-menu repainting and rejecting one-byte Enter.
+        cli = Path(os.environ.get('LCOM_CLI', ROOT / 'build/machinelab')).resolve()
+        project = COMMUNITY / 'leticia-003--2ndYear_FEUP_LCom/proj/src'
+        replay = ROOT / 'scripts/collection-replays/leticia-bounce-enter.mlabscript'
+        with tempfile.TemporaryDirectory(prefix='lcom-bounce-regression-') as temporary:
+            folder = Path(temporary)
+            subprocess.run([str(cli), 'compat', 'build', str(project), '--output', str(folder / 'native')],
+                           check=True, capture_output=True, text=True, timeout=120)
+            frames = []
+            for tick in (145, 360):
+                frame = folder / f'{tick}.ppm'
+                result = subprocess.run([str(cli), 'run', '--headless', '--max-ticks', str(tick),
+                                         '--timeout', '20', '--script', str(replay),
+                                         '--dump-presented', '--dump-frame', str(frame), '--',
+                                         str(folder / 'native/proj')], cwd=folder,
+                                        capture_output=True, text=True, timeout=30)
+                self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                self.assertIn('max virtual ticks reached', result.stdout + result.stderr)
+                magic, dimensions, depth, pixels = frame.read_bytes().split(b'\n', 3)
+                self.assertEqual((magic, dimensions, depth), (b'P6', b'1280 1024', b'255'))
+                self.assertEqual(len(pixels), 1280 * 1024 * 3)
+                frames.append(pixels)
+            pixel = lambda frame, x, y: tuple(frame[(y * 1280 + x) * 3:(y * 1280 + x) * 3 + 3])
+            # The unoccupied field must show the game's pale background after
+            # opening Play, rather than retaining the blue menu artwork.
+            self.assertEqual(pixel(frames[0], 1000, 500), (222, 239, 245))
+            red_ball = lambda frame: sum(r > 150 and g < 120 and b < 120
+                for y in range(550, 850) for x in range(251, 1280)
+                for r, g, b in [pixel(frame, x, y)])
+            self.assertEqual(red_ball(frames[0]), 0)
+            self.assertGreater(red_ball(frames[1]), 50, 'Enter must launch the ball away from its paddle')
+            score = lambda frame: tuple(pixel(frame, x, y)
+                for y in range(350, 440) for x in range(70, 190))
+            self.assertNotEqual(score(frames[0]), score(frames[1]),
+                                'The launched ball must hit a brick and change the displayed score')
+
 
 if __name__ == '__main__':
     unittest.main()

@@ -1,0 +1,5 @@
+# Ordinary Enter opens the menu selection, then launches the ball.
+at 100 key ENTER down
+at 101 key ENTER up
+at 160 key ENTER down
+at 161 key ENTER up
