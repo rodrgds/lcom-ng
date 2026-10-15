@@ -167,8 +167,16 @@
     },
     "cleanup": {
       "before": "Play then Escape: twice SIGABRT134 on desktop, twice Android SIGABRT pointer-tag abort.",
-      "after": "Desktop public CLI minimal exit and paired portal/exit replays survive through their tick guard; Android rebuild/retest pending.",
+      "after": "Permanent public CLI return/restart regression passes; final ARM64 Android APK and browser touch complete two paired-portal cleanup/restart cycles without aborting. Native Home and original Exit recover normally.",
       "evidence": "build/arcade-expansion/portal-cleanup"
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+      "demonstrated": "Play opens the first puzzle, movement and jump work, and both portal colors appear. Escape returns to the menu, Play starts again, a second Escape returns again, and Home recovers the collection without crashing.",
+      "limitations": "Two native cleanup/restart cycles and paired portals verified. No completed puzzle, co-op peer or full level-editor session; no physical-phone measurement.",
+      "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
     }
   },
   "controlsRationale": "Swipe cursor from (600,500) to Play, Purple click; hold right, Jump, Purple portal, move cursor, Green portal; Back then original Exit menu clean."

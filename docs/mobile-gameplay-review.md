@@ -1,5 +1,8 @@
 # Mobile gameplay review, 15 October 2026
 
+This records the initial 53-game review. The subsequent 65-game expansion and
+current build evidence are in [the expansion review](arcade-expansion-review.md).
+
 All 53 collection games have representative touch gameplay checks, including
 movement, scoring, card selection, drawing, typing, piece movement and local
 multiplayer. These are short sessions, not completed campaigns or proof that
@@ -9,10 +12,10 @@ every mode works. Each game's demonstrated actions and limits are recorded in
 
 ## Source boundary
 
-Updated all 53 collection profiles and the standalone PvZ/Sushi profiles through
+At this stage, updated all 53 collection profiles and the standalone PvZ/Sushi profiles through
 `lcom.json`. All 6,818 other game files match the snapshot before this review,
 including their assets, upstream hashes and previously recorded source patches.
-No student code or new source-defect patches were added.
+No student code or new source-defect patches were added during that stage.
 
 ## Shared player improvements
 
@@ -68,14 +71,15 @@ Current review evidence is under `build/mobile-ux2/`. Browser gameplay, native
 emulator checks and physical-device performance are separate evidence.
 Physical-phone performance has not been measured.
 
-## Remaining limits
+## Limits recorded during the initial review
 
-- Minhoca's original local-duel menu declares its byte mouse counter as `int`
-  in another translation unit. Single-player works; the source remains unchanged.
-  See [issue 11](https://github.com/rodrgds/lcom-ng/issues/11).
-- PettyCats' original renderer accepts `y == height` and writes beyond its
-  allocated screen buffer. Extended native play can crash; process isolation
-  returns to the library. See [issue 12](https://github.com/rodrgds/lcom-ng/issues/12).
+- Minhoca's incorrectly widened mouse counter and PettyCats' inclusive framebuffer
+  bounds were fixed in the subsequent source-authorized Arcade expansion. Both
+  fixes have failing-before/passing-after compiled regressions, recorded source
+  patches, browser gameplay and fresh native Android touch sessions. See
+  [issue 11](https://github.com/rodrgds/lcom-ng/issues/11),
+  [issue 12](https://github.com/rodrgds/lcom-ng/issues/12) and
+  [the expansion review](arcade-expansion-review.md).
 - Accelerated, warped or reset guest cursors retain relative movement. Whack's
   direct mapping is verified at the original default mouse sensitivity.
 - UART multiplayer and FEUP Hero's external UART music helper were not verified.
@@ -84,15 +88,16 @@ Physical-phone performance has not been measured.
 Configuration is documented in
 [`project-config.md`](../docs-site/students/project-config.md).
 
-## Published build
+## Previous published build, before expansion
 
-The verified export is live at [arcade.rgo.pt](https://arcade.rgo.pt), Worker version
+The initial verified export was published at [arcade.rgo.pt](https://arcade.rgo.pt),
+Worker version
 `b2ab47f5-570e-4c09-9315-71b8afe3f90a`. All 53 production mobile
 launch/render/return flows passed with zero control collisions, browser errors or
 failed requests. All 53 decoded game modules, 163 shell/player/config assets and
 53 decoded icons match or render correctly. Checks used normal DNS and TLS.
 
-The ARM64 collection APK is `dist/lcom-arcade-android/collection.apk`,
+The initial ARM64 collection APK was `dist/lcom-arcade-android/collection.apk`,
 315,973,005 bytes, SHA-256:
 `2da36bbc58f8217f7a56ca0f7315c3aff68ecd50e157919adea435b7a092d665`.
 Both standalone PvZ and Sushi APKs were refreshed too. All three signatures,

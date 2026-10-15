@@ -4,156 +4,270 @@
   "verificationSummary": {
     "date": "2026-10-15",
     "sourceAudit": {
-      "games": 53,
-      "pinnedOriginalFiles": 6616,
-      "unchangedGames": 38,
-      "correctedGames": 15,
-      "correctedSourceFiles": 19,
-      "command": "devenv shell -- python3 scripts/check_collection_sources.py"
+      "games": 65,
+      "pinnedOriginalFiles": 7757,
+      "unchangedGames": 45,
+      "correctedGames": 20,
+      "correctedSourceFiles": 31,
+      "command": "devenv shell -- python3 scripts/check_collection_sources.py --require-tracked"
     },
     "android": {
       "apk": "dist/lcom-arcade-android/collection.apk",
-      "sha256": "2da36bbc58f8217f7a56ca0f7315c3aff68ecd50e157919adea435b7a092d665",
-      "bytes": 315973005,
+      "sha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+      "bytes": 353556768,
       "abi": "arm64-v8a",
-      "gameLibraries": 53,
-      "nativeLibraries": 56,
-      "selectedSourceFiles": 4722,
+      "gameLibraries": 65,
+      "nativeLibraries": 68,
+      "selectedSourceFiles": 5795,
       "signatureVerified": true,
       "alignment16K": true,
-      "profilesMatchSource": 53,
-      "actualInputGameplaySessions": [
-        "Classic Chess",
-        "Whack-a-Mole",
-        "Survive the Blast",
-        "Space Invaders",
-        "Snake Orchard",
-        "Sticky Ball"
+      "profilesMatchSource": 65,
+      "coldLaunchRenderReturnPassed": 65,
+      "processIsolationSavedFileForcedTerminationAndCrashContainment": "passed",
+      "newGameGameplaySessions": 12,
+      "changedGameFinalAPKRechecks": [
+        "Portal 2D",
+        "BreakPong"
       ],
-      "finalLayoutRecheck": "Classic Chess keyboard, compact toolbar, continuous f2-f4, AI reply and Home return",
-      "coverageNote": "Six actual native input sessions preceded the last render-only quick-key width correction. The final uniform APK was reinstalled and its Chess layout/input/return tested again. No new 53-entry native cold-launch sweep; previous sweep is retained separately.",
-      "physicalDevicePerformance": "not measured",
+      "repairedExistingGameSessions": [
+        "Minhoca",
+        "PettyCats"
+      ],
+      "coverageNote": "New 12 representative native sessions: 10 on f068c304... and Portal/BreakPong on final 46447b5a...; only those 2 games changed between builds. All 65 cold launches, fresh processes, rendered guest pixels and Home returns use the exact final APK. Existing native gameplay remains separately recorded in previousReview.",
       "evidence": [
-        "build/mobile-ux2/native/QA.md",
-        "build/mobile-ux2/native/final-artifacts.json",
-        "build/mobile-ux2/native/final-profiles.json"
+        "build/arcade-expansion/final-apk-inventory.json",
+        "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json",
+        "build/arcade-expansion/native-all65/native-sweep-results.json"
       ],
-      "previousSweep": {
-        "apk": "dist/lcom-arcade-android/collection.apk",
-        "sha256": "735c7d1a4d298a10203d4e7ab518369eec3e673e1a19e762a704a96ce024485d",
-        "abi": "arm64-v8a",
-        "launchRenderReturnPassed": 52,
-        "processIsolationSavedFileAndForcedTermination": "passed",
-        "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json",
-        "physicalDevicePerformance": "not measured",
-        "renderedGames": 53,
-        "sourceBlockedGames": [
-          {
-            "name": "PettyCats",
-            "issue": "https://github.com/rodrgds/lcom-ng/issues/12",
-            "nativeCrashReproductions": 2
-          }
-        ],
-        "finalRuntimeSpotChecks": [
-          "Chess board and rook unobscured",
-          "Chess controls collapse expands guest viewport and both chrome targets relocate",
-          "Chess expansion restores panel",
-          "Chess right-click cancel followed by hover does not reselect",
-          "Chess subsequent legal f2-f4 move succeeds"
-        ],
-        "coverageNote": "53-entry sweep preceded final geometry-cache/right-cancel shared-runtime patch. The final rebuilt uniform APK was then installed and its Chess input/panel behavior checked directly. Student sources and profiles did not change between those builds."
-      }
+      "physicalDevicePerformance": "not measured"
     },
     "web": {
+      "url": "https://arcade.rgo.pt",
       "output": "dist/lcom-arcade-web",
-      "launchReturnPassed": 53,
+      "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+      "sourceRevision": "66c77ff",
+      "launchReturnPassed": 65,
       "pageErrors": 0,
       "networkFailures": 0,
+      "artworkDecoded": 130,
+      "exactStaticAssetsMatched": 526,
+      "decodedModuleHashesMatched": 65,
+      "loadingAndKeyboardFlowsPassed": 4,
       "responsive": [
         {
+          "width": 320,
+          "scrollWidth": 320,
+          "cards": 65,
+          "columns": "145.5px 145.5px",
+          "small": 0,
+          "overflow": []
+        },
+        {
           "width": 390,
-          "columns": 3,
-          "overflow": false,
-          "cards": 53,
-          "minWidth": 108.65625
+          "scrollWidth": 390,
+          "cards": 65,
+          "columns": "180.5px 180.5px",
+          "small": 0,
+          "overflow": []
         },
         {
           "width": 768,
-          "columns": 4,
-          "overflow": false,
-          "cards": 53,
-          "minWidth": 158.640625
+          "scrollWidth": 768,
+          "cards": 65,
+          "columns": "234.656px 234.672px 234.672px",
+          "small": 0,
+          "overflow": []
         },
         {
           "width": 1440,
-          "columns": 7,
-          "overflow": false,
-          "cards": 53,
-          "minWidth": 168.6875
+          "scrollWidth": 1440,
+          "cards": 65,
+          "columns": "223.328px 223.328px 223.328px 223.344px 223.328px 223.328px",
+          "small": 0,
+          "overflow": []
         }
       ],
-      "evidence": "build/mobile-ux2/web-final/results.json",
-      "live": {
-        "url": "https://arcade.rgo.pt",
-        "launchRenderReturnPassed": 53,
-        "pageErrors": 0,
-        "networkFailures": 0,
-        "controlCollisions": 0,
-        "evidence": "build/mobile-ux2/web-live/results.json",
-        "scope": "Production mobile Chrome with normal DNS and TLS; final controls and all53 launch/render/return flows.",
-        "workerVersion": "b2ab47f5-570e-4c09-9315-71b8afe3f90a",
-        "moduleDecodedHashesPassed": 53,
-        "iconsLoaded": 53,
-        "hostingEvidence": "build/mobile-ux2/hosting-live.json"
-      },
-      "controlCollisions": 0
+      "evidence": [
+        "build/arcade-expansion/web-final/live/results.json",
+        "build/arcade-expansion/live-hosting-65.log",
+        "build/arcade-expansion/live-assets-65.json",
+        "build/arcade-expansion/web-final/targeted/results.json"
+      ]
     },
     "repositoryGate": {
       "status": "passed",
       "command": "devenv shell -- env EMCC_CORES=4 lcom-ng-verify",
-      "runtimeIntegrationTests": 37,
-      "browserTests": 25,
+      "runtimeIntegrationTests": 38,
+      "browserTests": 26,
       "projectConfigurationTests": 11,
       "collectionTests": 3,
       "installedSDKRelocation": "passed",
       "docsGalleryStates": 99,
       "docsAndRemotion": "passed",
-      "evidence": "build/mobile-ux2/final-verify.log",
-      "androidReturnGeometry": "passed",
-      "finalNativeFollowup": "build/mobile-ux2/native-final-verification.log",
-      "finalDocumentationCheck": "build/mobile-ux2/docs-final.log"
+      "evidence": "build/arcade-expansion/final-fixed-verify.log"
     },
     "mobileGameplay": {
+      "gamesReviewed": 65,
+      "representativeBrowserGameplayPassed": 65,
+      "newNativeGameplayPassed": 12,
+      "sourceLimitedGames": [],
+      "scope": "Representative browser touch gameplay for all 65; actual native checkpoints for all 12 additions plus repaired Minhoca/PettyCats. No completed campaigns, every mode or physical-phone performance claim. UART peer modes and FEUP Hero external music helper remain unverified.",
+      "report": "docs/arcade-expansion-review.md"
+    },
+    "previousReview": {
       "date": "2026-10-15",
-      "gamesReviewed": 53,
-      "representativeGameplayPassed": 53,
-      "sourceLimitedGames": [
-        "Minhoca local duel, issue11",
-        "PettyCats extended native play, issue12"
-      ],
-      "profilesImproved": 53,
-      "studentFilesFrozen": 6818,
-      "newStudentSourceChanges": 0,
-      "scope": "All53 reviewed through representative actual browser touch gameplay. Original Minhoca duel and extended PettyCats native renderer limits remain. No complete campaigns or physical-phone performance claimed.",
-      "evidence": [
-        "build/mobile-ux2/a/gameplay-ledger.json",
-        "build/mobile-ux2/b/ux-ledger.json",
-        "build/mobile-ux2/native/QA.md",
-        "build/mobile-ux2/web-final/results.json",
-        "build/mobile-ux2/web-live/results.json"
-      ],
-      "report": "docs/mobile-gameplay-review.md",
-      "representativeGameplaySurface": "browser",
-      "currentNativeInputSessions": [
-        "Classic Chess",
-        "Whack-a-Mole",
-        "Survive the Blast",
-        "Space Invaders",
-        "Snake Orchard",
-        "Sticky Ball"
-      ],
-      "finalNativeLayoutRecheck": "Classic Chess",
-      "nativeCoverage": "Six input sessions plus final render-only recheck, not a new53-entry native sweep."
+      "sourceAudit": {
+        "games": 53,
+        "pinnedOriginalFiles": 6616,
+        "unchangedGames": 38,
+        "correctedGames": 15,
+        "correctedSourceFiles": 19,
+        "command": "devenv shell -- python3 scripts/check_collection_sources.py"
+      },
+      "android": {
+        "apk": "dist/lcom-arcade-android/collection.apk",
+        "sha256": "2da36bbc58f8217f7a56ca0f7315c3aff68ecd50e157919adea435b7a092d665",
+        "bytes": 315973005,
+        "abi": "arm64-v8a",
+        "gameLibraries": 53,
+        "nativeLibraries": 56,
+        "selectedSourceFiles": 4722,
+        "signatureVerified": true,
+        "alignment16K": true,
+        "profilesMatchSource": 53,
+        "actualInputGameplaySessions": [
+          "Classic Chess",
+          "Whack-a-Mole",
+          "Survive the Blast",
+          "Space Invaders",
+          "Snake Orchard",
+          "Sticky Ball"
+        ],
+        "finalLayoutRecheck": "Classic Chess keyboard, compact toolbar, continuous f2-f4, AI reply and Home return",
+        "coverageNote": "Six actual native input sessions preceded the last render-only quick-key width correction. The final uniform APK was reinstalled and its Chess layout/input/return tested again. No new 53-entry native cold-launch sweep; previous sweep is retained separately.",
+        "physicalDevicePerformance": "not measured",
+        "evidence": [
+          "build/mobile-ux2/native/QA.md",
+          "build/mobile-ux2/native/final-artifacts.json",
+          "build/mobile-ux2/native/final-profiles.json"
+        ],
+        "previousSweep": {
+          "apk": "dist/lcom-arcade-android/collection.apk",
+          "sha256": "735c7d1a4d298a10203d4e7ab518369eec3e673e1a19e762a704a96ce024485d",
+          "abi": "arm64-v8a",
+          "launchRenderReturnPassed": 52,
+          "processIsolationSavedFileAndForcedTermination": "passed",
+          "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json",
+          "physicalDevicePerformance": "not measured",
+          "renderedGames": 53,
+          "sourceBlockedGames": [
+            {
+              "name": "PettyCats",
+              "issue": "https://github.com/rodrgds/lcom-ng/issues/12",
+              "nativeCrashReproductions": 2
+            }
+          ],
+          "finalRuntimeSpotChecks": [
+            "Chess board and rook unobscured",
+            "Chess controls collapse expands guest viewport and both chrome targets relocate",
+            "Chess expansion restores panel",
+            "Chess right-click cancel followed by hover does not reselect",
+            "Chess subsequent legal f2-f4 move succeeds"
+          ],
+          "coverageNote": "53-entry sweep preceded final geometry-cache/right-cancel shared-runtime patch. The final rebuilt uniform APK was then installed and its Chess input/panel behavior checked directly. Student sources and profiles did not change between those builds."
+        }
+      },
+      "web": {
+        "output": "dist/lcom-arcade-web",
+        "launchReturnPassed": 53,
+        "pageErrors": 0,
+        "networkFailures": 0,
+        "responsive": [
+          {
+            "width": 390,
+            "columns": 3,
+            "overflow": false,
+            "cards": 53,
+            "minWidth": 108.65625
+          },
+          {
+            "width": 768,
+            "columns": 4,
+            "overflow": false,
+            "cards": 53,
+            "minWidth": 158.640625
+          },
+          {
+            "width": 1440,
+            "columns": 7,
+            "overflow": false,
+            "cards": 53,
+            "minWidth": 168.6875
+          }
+        ],
+        "evidence": "build/mobile-ux2/web-final/results.json",
+        "live": {
+          "url": "https://arcade.rgo.pt",
+          "launchRenderReturnPassed": 53,
+          "pageErrors": 0,
+          "networkFailures": 0,
+          "controlCollisions": 0,
+          "evidence": "build/mobile-ux2/web-live/results.json",
+          "scope": "Production mobile Chrome with normal DNS and TLS; final controls and all53 launch/render/return flows.",
+          "workerVersion": "b2ab47f5-570e-4c09-9315-71b8afe3f90a",
+          "moduleDecodedHashesPassed": 53,
+          "iconsLoaded": 53,
+          "hostingEvidence": "build/mobile-ux2/hosting-live.json"
+        },
+        "controlCollisions": 0
+      },
+      "repositoryGate": {
+        "status": "passed",
+        "command": "devenv shell -- env EMCC_CORES=4 lcom-ng-verify",
+        "runtimeIntegrationTests": 37,
+        "browserTests": 25,
+        "projectConfigurationTests": 11,
+        "collectionTests": 3,
+        "installedSDKRelocation": "passed",
+        "docsGalleryStates": 99,
+        "docsAndRemotion": "passed",
+        "evidence": "build/mobile-ux2/final-verify.log",
+        "androidReturnGeometry": "passed",
+        "finalNativeFollowup": "build/mobile-ux2/native-final-verification.log",
+        "finalDocumentationCheck": "build/mobile-ux2/docs-final.log"
+      },
+      "mobileGameplay": {
+        "date": "2026-10-15",
+        "gamesReviewed": 53,
+        "representativeGameplayPassed": 53,
+        "sourceLimitedGames": [
+          "Minhoca local duel, issue11",
+          "PettyCats extended native play, issue12"
+        ],
+        "profilesImproved": 53,
+        "studentFilesFrozen": 6818,
+        "newStudentSourceChanges": 0,
+        "scope": "All53 reviewed through representative actual browser touch gameplay. Original Minhoca duel and extended PettyCats native renderer limits remain. No complete campaigns or physical-phone performance claimed.",
+        "evidence": [
+          "build/mobile-ux2/a/gameplay-ledger.json",
+          "build/mobile-ux2/b/ux-ledger.json",
+          "build/mobile-ux2/native/QA.md",
+          "build/mobile-ux2/web-final/results.json",
+          "build/mobile-ux2/web-live/results.json"
+        ],
+        "report": "docs/mobile-gameplay-review.md",
+        "representativeGameplaySurface": "browser",
+        "currentNativeInputSessions": [
+          "Classic Chess",
+          "Whack-a-Mole",
+          "Survive the Blast",
+          "Space Invaders",
+          "Snake Orchard",
+          "Sticky Ball"
+        ],
+        "finalNativeLayoutRecheck": "Classic Chess",
+        "nativeCoverage": "Six input sessions plus final render-only recheck, not a new53-entry native sweep."
+      }
     }
   },
   "games": [
@@ -173,14 +287,10 @@
       "verification": {
         "scope": "Original-source native Android deck selection, board placement, resource spending, pause and exit previously verified; included collection reverified separately.",
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -197,6 +307,13 @@
           ],
           "limitations": [],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=supplied-pvz-002c15167874",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "collectionId": "supplied-pvz-002c15167874",
@@ -230,7 +347,9 @@
           "proj/assets"
         ]
       },
-      "provenance": "examples/community/supplied--pvz/UPSTREAM.json"
+      "provenance": "examples/community/supplied--pvz/UPSTREAM.json",
+      "description": "Build a garden of sunflowers and peashooters. Keep the zombies off your lawn.",
+      "preview": "collections/arcade/previews/supplied-pvz-002c15167874.png"
     },
     {
       "id": "DSV8--FEUP-LCom",
@@ -290,14 +409,10 @@
           "evidence": "build/collection-qa/import-a/DSV8--FEUP-LCom/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -316,6 +431,13 @@
             "No kill or score increase asserted."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=dsv8-feup-lcom-97a7235a6dfe",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "runs": [
@@ -379,7 +501,10 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "provenance": "examples/community/DSV8--FEUP-LCom/UPSTREAM.json"
+      "provenance": "examples/community/DSV8--FEUP-LCom/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Move through an underwater world and shoot your way past its enemies.",
+      "preview": "collections/arcade/previews/dsv8-feup-lcom-97a7235a6dfe.png"
     },
     {
       "id": "josesereno--Bamboozlers",
@@ -439,14 +564,10 @@
           "evidence": "build/collection-qa/import-a/josesereno--Bamboozlers/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -473,6 +594,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=josesereno-bamboozlers-a02f6afff6d5",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "runs": [
@@ -547,7 +675,10 @@
         "assetRoot": "..",
         "assets": []
       },
-      "provenance": "examples/community/josesereno--Bamboozlers/UPSTREAM.json"
+      "provenance": "examples/community/josesereno--Bamboozlers/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Place blocks and guide your panda through a moonlit platform puzzle.",
+      "preview": "collections/arcade/previews/josesereno-bamboozlers-a02f6afff6d5.png"
     },
     {
       "id": "bersanots--FEUP-LCOM",
@@ -607,14 +738,10 @@
           "evidence": "build/collection-qa/import-a/bersanots--FEUP-LCOM/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "gameplay-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -636,6 +763,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=bersanots-feup-lcom-a436e5039455",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "runs": [
@@ -701,7 +835,10 @@
           "LCOM_COMPAT_MOUSE_IRQ_ONLY": "1"
         }
       },
-      "provenance": "examples/community/bersanots--FEUP-LCOM/UPSTREAM.json"
+      "provenance": "examples/community/bersanots--FEUP-LCOM/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Two players, one ball. Defend your goal and send it into the other net.",
+      "preview": "collections/arcade/previews/bersanots-feup-lcom-a436e5039455.png"
     },
     {
       "id": "Adriano-7--feup-lcom",
@@ -761,14 +898,10 @@
           "evidence": "build/collection-qa/import-a/Adriano-7--feup-lcom/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "gameplay-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -787,6 +920,13 @@
             "No kill or score increase asserted in this pass."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=adriano-7-feup-lcom-727bed1b84da",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "runs": [
@@ -873,7 +1013,19 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "provenance": "examples/community/Adriano-7--feup-lcom/UPSTREAM.json"
+      "provenance": "examples/community/Adriano-7--feup-lcom/UPSTREAM.json",
+      "sourcePatches": [
+        {
+          "file": "proj/src/model/game/monster.c",
+          "patch": "SOURCE_PATCH.diff",
+          "reason": "Monster animation frame was uninitialized; dirty allocation reproduces invalid first animation index and real WASM gameplay traps out of bounds. Extern declarations also falsely limited sprite tables to4 despite actual indices up to8. Initialize first frame and use compatible incomplete extern arrays.",
+          "upstreamSha256": "fe059f72641cd2665c6f0f84f08f822eed8ebd599fe4da4214f0b32603734f64",
+          "patchedSha256": "5c676ec560832e053b2adbf1f25b46e1205fac98afe42e4bf6e170c3e14fe962",
+          "verification": "Dirty-heap constructor regression RED then GREEN; original web gameplay trapped out of bounds, corrected web start/move/fire passed without JS errors. Evidence: import-a/constructor-before.log, constructor-after.log, space-debug-after.log and actual gameplay capture."
+        }
+      ],
+      "description": "Slide beneath the fleet, dodge incoming fire and clear the alien formation.",
+      "preview": "collections/arcade/previews/adriano-7-feup-lcom-727bed1b84da.png"
     },
     {
       "id": "andrenasx--FEUP-LCOM",
@@ -931,14 +1083,10 @@
           "evidence": "build/collection-qa/import-a/andrenasx--FEUP-LCOM/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -957,6 +1105,13 @@
             "No asteroid kill or score increase asserted."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=andrenasx-feup-lcom-3c62b99c6b04",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "runs": [
@@ -1028,7 +1183,19 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "provenance": "examples/community/andrenasx--FEUP-LCOM/UPSTREAM.json"
+      "provenance": "examples/community/andrenasx--FEUP-LCOM/UPSTREAM.json",
+      "sourcePatches": [
+        {
+          "file": "proj/src/proj.c",
+          "patch": "SOURCE_PATCH.diff",
+          "reason": "Menu actions were polled only on timer interrupts, after later mouse releases reset mousePressed. A real80ms mobile button tap was ignored while1000ms worked. Dispatch menu actions immediately after a complete mouse packet so press edges are observed.",
+          "upstreamSha256": "f26f714c0a8a528c1c6c19682eb03807ad886bde1e2fb0158ef9970b7286fc2f",
+          "patchedSha256": "dfa315dd082356e1b8e6b971908efa42cf0664bc2d0ea4e6265c4a19b3646489",
+          "verification": "Original real80ms menu tap stayed in menu,1000ms hold entered game. The same80ms mobile tap now enters active UFO gameplay after the source correction, with no JS errors. Evidence: import-a/menu-debug-final.log, asteroid-debug.log, asteroids-after.log."
+        }
+      ],
+      "description": "Pilot your ship through an asteroid field. Turn, thrust and fire to stay alive.",
+      "preview": "collections/arcade/previews/andrenasx-feup-lcom-3c62b99c6b04.png"
     },
     {
       "id": "teixeiraa05--lcom-sushi-slash",
@@ -1084,14 +1251,10 @@
           "evidence": "build/collection-qa/import-a/teixeiraa05--lcom-sushi-slash/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -1112,6 +1275,13 @@
             "Blind repeated y420 swipes missed the randomized launches; those attempts are retained and are not treated as the success proof."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=teixeiraa05-lcom-sushi-slash-aeb86527d30d",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "sourceChanges": [],
@@ -1149,7 +1319,10 @@
           "proj/assets"
         ]
       },
-      "provenance": "examples/community/teixeiraa05--lcom-sushi-slash/UPSTREAM.json"
+      "provenance": "examples/community/teixeiraa05--lcom-sushi-slash/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Follow the flying sushi with your blade and slice it before it falls.",
+      "preview": "collections/arcade/previews/teixeiraa05-lcom-sushi-slash-aeb86527d30d.png"
     },
     {
       "id": "raulnasoliveira--FEUP-LCOM-2025",
@@ -1206,14 +1379,10 @@
           "evidence": "build/collection-qa/import-a/raulnasoliveira--FEUP-LCOM-2025/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -1233,6 +1402,13 @@
             "Letter and memory modes are not completed in this pass; optional keyboard retained."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=raulnasoliveira-feup-lcom-2025-23b9e09f9b80",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "runs": [
@@ -1299,7 +1475,10 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "provenance": "examples/community/raulnasoliveira--FEUP-LCOM-2025/UPSTREAM.json"
+      "provenance": "examples/community/raulnasoliveira--FEUP-LCOM-2025/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Put your reaction time to the test in a series of quick challenges.",
+      "preview": "collections/arcade/previews/raulnasoliveira-feup-lcom-2025-23b9e09f9b80.png"
     },
     {
       "id": "diogoalves12--feup-lcom",
@@ -1357,14 +1536,10 @@
           "evidence": "build/collection-qa/import-a/diogoalves12--feup-lcom/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -1386,6 +1561,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=diogoalves12-feup-lcom-a9dac2656b4f",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "runs": [
@@ -1463,7 +1645,10 @@
         "assetRoot": "..",
         "assets": []
       },
-      "provenance": "examples/community/diogoalves12--feup-lcom/UPSTREAM.json"
+      "provenance": "examples/community/diogoalves12--feup-lcom/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Share the arena with a second player. Move, aim and fight for survival.",
+      "preview": "collections/arcade/previews/diogoalves12-feup-lcom-a9dac2656b4f.png"
     },
     {
       "id": "IMS-up2021--Star-Wars-Defend-the-Republic-LCOM-2025-",
@@ -1521,14 +1706,10 @@
           "evidence": "build/collection-qa/import-a/IMS-up2021--Star-Wars-Defend-the-Republic-LCOM-2025-/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -1547,6 +1728,13 @@
             "No battle victory asserted."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "runs": [
@@ -1618,7 +1806,10 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "provenance": "examples/community/IMS-up2021--Star-Wars-Defend-the-Republic-LCOM-2025-/UPSTREAM.json"
+      "provenance": "examples/community/IMS-up2021--Star-Wars-Defend-the-Republic-LCOM-2025-/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Place your defenses and hold the line against the approaching army.",
+      "preview": "collections/arcade/previews/ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3.png"
     },
     {
       "id": "zefluxo--feup-lcom",
@@ -1676,14 +1867,10 @@
           "evidence": "build/collection-qa/import-a/zefluxo--feup-lcom/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "derivedScoreData": "Pinned source score table copied unchanged to the literal relative path used by original source, validated independently by B: original get_scores RED0 entries then GREEN13.",
@@ -1703,6 +1890,13 @@
             "No complete line or scoreboard save asserted."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=zefluxo-feup-lcom-7d2140581772",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "runs": [
@@ -1804,7 +1998,10 @@
           "proj/src/home/lcom/labs/proj/src/game/scores.txt"
         ]
       },
-      "provenance": "examples/community/zefluxo--feup-lcom/UPSTREAM.json"
+      "provenance": "examples/community/zefluxo--feup-lcom/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Rotate falling blocks and build complete lines before the stack reaches the top.",
+      "preview": "collections/arcade/previews/zefluxo-feup-lcom-7d2140581772.png"
     },
     {
       "id": "m1ke26--MINIX-Grand-Prix",
@@ -1898,14 +2095,10 @@
           "evidence": "build/collection-qa/import-a/m1ke26--MINIX-Grand-Prix/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -1926,6 +2119,13 @@
             "No lap completion asserted. Initial attempt exposed toolbar/collapse collision, now retested after generic allocator correction."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=m1ke26-minix-grand-prix-d83709a8a95c",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "gameplay_script": "scripts/compat-grand-prix-gameplay.mlabscript",
@@ -2004,7 +2204,10 @@
           "/home/lcom/labs/grupo_2leic01_2": "."
         }
       },
-      "provenance": "examples/community/m1ke26--MINIX-Grand-Prix/UPSTREAM.json"
+      "provenance": "examples/community/m1ke26--MINIX-Grand-Prix/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Take the wheel, race around the track and use your boost on the straights.",
+      "preview": "collections/arcade/previews/m1ke26-minix-grand-prix-d83709a8a95c.png"
     },
     {
       "id": "casemiromjm--minixsweeper",
@@ -2085,14 +2288,10 @@
           "evidence": "build/collection-qa/import-a/casemiromjm--minixsweeper/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -2115,6 +2314,13 @@
             "Initial tap failure reproduced an original click-guard/host cursor mismatch and was corrected in shared Pointer, preserving student code. Fresh isolated export build/mobile-ux2/a/minix-web supplies the actual proof. No complete minefield win asserted."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=casemiromjm-minixsweeper-286a5a2780c5",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "gameplay_script": "scripts/compat-minixsweeper-gameplay.mlabscript",
@@ -2169,7 +2375,10 @@
         "assetRoot": "..",
         "assets": []
       },
-      "provenance": "examples/community/casemiromjm--minixsweeper/UPSTREAM.json"
+      "provenance": "examples/community/casemiromjm--minixsweeper/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Reveal the board one square at a time. Flag the mines and trust the numbers.",
+      "preview": "collections/arcade/previews/casemiromjm-minixsweeper-286a5a2780c5.png"
     },
     {
       "id": "martimcferreira--lcom-project",
@@ -2251,14 +2460,10 @@
           "evidence": "build/collection-qa/import-a/martimcferreira--lcom-project/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -2278,6 +2483,13 @@
             "Full keyboard remains for player name. Panel keeps bottom hit zone clear. Original external-UART soundtrack is not claimed as audio proof."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=martimcferreira-lcom-project-9a16857450a6",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "gameplay_script": "scripts/compat-guitar-hero-gameplay.mlabscript",
@@ -2339,7 +2551,10 @@
           "Project/beatmaps"
         ]
       },
-      "provenance": "examples/community/martimcferreira--lcom-project/UPSTREAM.json"
+      "provenance": "examples/community/martimcferreira--lcom-project/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Hit the notes as they reach the fretboard and keep the rhythm going.",
+      "preview": "collections/arcade/previews/martimcferreira-lcom-project-9a16857450a6.png"
     },
     {
       "id": "SamBlack569--feup-lcom-2425",
@@ -2422,14 +2637,10 @@
           "evidence": "build/collection-qa/import-a/SamBlack569--feup-lcom-2425/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -2449,6 +2660,13 @@
             "Up/down were removed because no gameplay handler consumes them; no kill asserted."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=samblack569-feup-lcom-2425-c1eb853acae2",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "gameplay_script": "scripts/compat-space-shooter-gameplay.mlabscript",
@@ -2507,7 +2725,10 @@
           "LCOM_COMPAT_MOUSE_REPORTING": "1"
         }
       },
-      "provenance": "examples/community/SamBlack569--feup-lcom-2425/UPSTREAM.json"
+      "provenance": "examples/community/SamBlack569--feup-lcom-2425/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Weave through space and keep your ship clear of enemy fire.",
+      "preview": "collections/arcade/previews/samblack569-feup-lcom-2425-c1eb853acae2.png"
     },
     {
       "id": "peucastro--lcom",
@@ -2589,14 +2810,10 @@
           "evidence": "build/collection-qa/import-a/peucastro--lcom/web-mobile-gameplay.png"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "source_hashes_unchanged": true,
@@ -2616,6 +2833,13 @@
             "No destroyed wall, opponent kill or full round claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=peucastro-lcom-03ab6e7e63db",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "gameplay_script": "scripts/compat-peucastro-gameplay.mlabscript",
@@ -2674,7 +2898,10 @@
           "proj/src/assets"
         ]
       },
-      "provenance": "examples/community/peucastro--lcom/UPSTREAM.json"
+      "provenance": "examples/community/peucastro--lcom/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Drop bombs, break through the maze and get out of the blast zone.",
+      "preview": "collections/arcade/previews/peucastro-lcom-03ab6e7e63db.png"
     },
     {
       "id": "mariajvieira--feup-lcom",
@@ -2735,14 +2962,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -2762,6 +2985,13 @@
             "No apple consumption asserted; the score remains0."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=mariajvieira-feup-lcom-d95c409c5aa9",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/mariajvieira--feup-lcom-populated-gameplay.mlabscript",
@@ -2830,7 +3060,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Guide your growing snake around the garden without running into yourself.",
+      "preview": "collections/arcade/previews/mariajvieira-feup-lcom-d95c409c5aa9.png"
     },
     {
       "id": "vasco888888--feup-leic-lcom",
@@ -2943,14 +3175,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -2970,6 +3198,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=vasco888888-feup-leic-lcom-be8975b3e8c5",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/vasco888888--feup-leic-lcom-populated-gameplay.mlabscript",
@@ -3055,7 +3290,9 @@
         "assetRoot": "..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Follow the falling notes and press the right keys as they reach the line.",
+      "preview": "collections/arcade/previews/vasco888888-feup-leic-lcom-be8975b3e8c5.png"
     },
     {
       "id": "rodriguess2--lcom-hangman",
@@ -3116,14 +3353,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -3145,6 +3378,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=rodriguess2-lcom-hangman-b8d098d60c4c",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/rodriguess2--lcom-hangman-populated-gameplay.mlabscript",
@@ -3195,7 +3435,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Choose a word theme, guess the letters and solve the word before your chances run out.",
+      "preview": "collections/arcade/previews/rodriguess2-lcom-hangman-b8d098d60c4c.png"
     },
     {
       "id": "cast-10--lcomproject",
@@ -3256,14 +3498,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -3285,6 +3523,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=cast-10-lcomproject-1c6c122eea2f",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/cast-10--lcomproject-populated-gameplay.mlabscript",
@@ -3368,7 +3613,9 @@
         "assetRoot": "..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Choose your fighters and face a friend in a two-player arena battle.",
+      "preview": "collections/arcade/previews/cast-10-lcomproject-1c6c122eea2f.png"
     },
     {
       "id": "yuka-sky--lcom",
@@ -3429,14 +3676,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -3459,6 +3702,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=yuka-sky-lcom-d0ec5dfcc81b",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/yuka-sky--lcom-populated-gameplay.mlabscript",
@@ -3515,7 +3765,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Draw a clue or guess the word. A drawing-and-guessing game built for sharing.",
+      "preview": "collections/arcade/previews/yuka-sky-lcom-d0ec5dfcc81b.png"
     },
     {
       "id": "pedroribas372--minix-spaceinvaders",
@@ -3576,14 +3828,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -3603,6 +3851,13 @@
             "Initial menu touch was intercepted by fullscreen before generic corner allocation was fixed; final screenshots are the retest."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=pedroribas372-minix-spaceinvaders-e02a4844fc81",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/pedroribas372--minix-spaceinvaders-populated-gameplay.mlabscript",
@@ -3682,7 +3937,9 @@
         "assetRoot": ".",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Pick your level, move into position and fire through the neon alien fleet.",
+      "preview": "collections/arcade/previews/pedroribas372-minix-spaceinvaders-e02a4844fc81.png"
     },
     {
       "id": "simaopsbarbosa--feup-lcom",
@@ -3743,14 +4000,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -3771,6 +4024,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=simaopsbarbosa-feup-lcom-e3fa6454545b",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/simaopsbarbosa--feup-lcom-populated-gameplay.mlabscript",
@@ -3830,7 +4090,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Watch for the signal and react. Challenge your timing alone or with a second player.",
+      "preview": "collections/arcade/previews/simaopsbarbosa-feup-lcom-e3fa6454545b.png"
     },
     {
       "id": "filipecruz06--feup-lcom-proj",
@@ -3891,14 +4153,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -3918,6 +4176,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=pacocalypse-387c0be823e4",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/filipecruz06--feup-lcom-proj-populated-gameplay.mlabscript",
@@ -3979,7 +4244,9 @@
         "assetRoot": "..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Explore the maze, collect dots and keep away from the ghosts.",
+      "preview": "collections/arcade/previews/pacocalypse-387c0be823e4.png"
     },
     {
       "id": "gomesidk--survive-the-blast",
@@ -4040,14 +4307,10 @@
           "passed": true
         },
         "android": {
-          "status": "gameplay-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -4070,6 +4333,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=gomesidk-survive-the-blast-3d56ca17c03b",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/gomesidk--survive-the-blast-populated-gameplay.mlabscript",
@@ -4139,7 +4409,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Explore the board and uncover its secrets while staying clear of the bombs.",
+      "preview": "collections/arcade/previews/gomesidk-survive-the-blast-3d56ca17c03b.png"
     },
     {
       "id": "antoniocrego--lcom-t01-g3",
@@ -4200,14 +4472,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -4226,6 +4494,13 @@
             "W/S are retained as named menu actions, not unused vertical gameplay directions. No completed level asserted."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=antoniocrego-lcom-t01-g3-c70a27f473d7",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/antoniocrego--lcom-t01-g3-populated-gameplay.mlabscript",
@@ -4320,7 +4595,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Jump through dark caverns and fight your way forward with sword and magic.",
+      "preview": "collections/arcade/previews/antoniocrego-lcom-t01-g3-c70a27f473d7.png"
     },
     {
       "id": "riquifeup--lcombat",
@@ -4383,14 +4660,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -4410,6 +4683,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=worms-d4885e74d5cb",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/riquifeup--lcombat-populated-gameplay.mlabscript",
@@ -4495,7 +4775,9 @@
         "assetRoot": "..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Move across the terrain, line up a shot and battle the opposing team.",
+      "preview": "collections/arcade/previews/worms-d4885e74d5cb.png"
     },
     {
       "id": "gsilva00--lcom-project",
@@ -4569,14 +4851,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -4596,6 +4874,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=gsilva00-lcom-project-4c94e7405c90",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/gsilva00--lcom-project-populated-gameplay.mlabscript",
@@ -4664,7 +4949,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Jump, kick and chase the ball in a two-player pixel football match.",
+      "preview": "collections/arcade/previews/gsilva00-lcom-project-4c94e7405c90.png"
     },
     {
       "id": "iamaccosta--feup-lcom",
@@ -4725,14 +5012,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -4757,6 +5040,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=iamaccosta-feup-lcom-8eb08d543062",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/iamaccosta--feup-lcom-populated-gameplay.mlabscript",
@@ -4828,7 +5118,9 @@
           "/home/lcom/labs/g02": "."
         }
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Turn over the cards and remember what you saw. Find each matching pair.",
+      "preview": "collections/arcade/previews/iamaccosta-feup-lcom-8eb08d543062.png"
     },
     {
       "id": "luanalima27--lcom-feup",
@@ -4889,14 +5181,10 @@
           "passed": true
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -4916,6 +5204,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=luanalima27-lcom-feup-eda1c5716f42",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/luanalima27--lcom-feup-populated-gameplay.mlabscript",
@@ -4978,7 +5273,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Move your starfighter beneath the alien formation and return fire.",
+      "preview": "collections/arcade/previews/luanalima27-lcom-feup-eda1c5716f42.png"
     },
     {
       "id": "guystavo7--feup-lcom-project",
@@ -5082,14 +5379,10 @@
           "gesture": "Two real CDP touchscreen taps held120ms, NewGame400,350 thenPlay400,550"
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -5110,6 +5403,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=guystavo7-feup-lcom-project-912ca0851017",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/guystavo7--feup-lcom-project-populated-gameplay.mlabscript",
@@ -5248,7 +5548,9 @@
           "sourceRevision": "ad0703bebf8ab8fd00ede7f690667e2034ca682d",
           "reason": "Exact runtime data alias for original absolute Minix CSV path."
         }
-      ]
+      ],
+      "description": "Place your defenders around the path and stop the enemies from getting through.",
+      "preview": "collections/arcade/previews/guystavo7-feup-lcom-project-912ca0851017.png"
     },
     {
       "repo": "Duarte-Pombo/MINIX-Whack-a-Mole",
@@ -5340,14 +5642,10 @@
           "visualInspection": "Real mobile Chrome960x480 touch controls, gameplay and full landscape height inspected; post-action status Game running, no JS errors."
         },
         "android": {
-          "status": "gameplay-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -5370,6 +5668,13 @@
             "Earlier attempt waited for a specific late mole and lost when another escaped; that failure is retained and is not treated as the hit proof."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=duarte-pombo-minix-whack-a-mole-c0b1a146de15",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "collectionId": "duarte-pombo-minix-whack-a-mole-c0b1a146de15",
@@ -5378,7 +5683,10 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "provenance": "examples/community/Duarte-Pombo--MINIX-Whack-a-Mole/UPSTREAM.json"
+      "provenance": "examples/community/Duarte-Pombo--MINIX-Whack-a-Mole/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Watch the holes and tap each mole as it pops up. Be quick with the hammer.",
+      "preview": "collections/arcade/previews/duarte-pombo-minix-whack-a-mole-c0b1a146de15.png"
     },
     {
       "repo": "guizas-LA/Papas-Pizzeria",
@@ -5483,14 +5791,10 @@
           "visualInspection": "Real mobile Chrome960x480 touch controls, gameplay and full landscape height inspected; post-action status Game running, no JS errors."
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -5509,6 +5813,13 @@
             "No completed slicing/serving order asserted. Initial keyboard-toggle overlap was fixed in shared layout and this flow retested."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=guizas-la-papas-pizzeria-807f3b26e203",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "collectionId": "guizas-la-papas-pizzeria-807f3b26e203",
@@ -5517,7 +5828,10 @@
         "assetRoot": "..",
         "assets": []
       },
-      "provenance": "examples/community/guizas-LA--Papas-Pizzeria/UPSTREAM.json"
+      "provenance": "examples/community/guizas-LA--Papas-Pizzeria/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Prepare a pizza, put it in the oven and keep the kitchen moving.",
+      "preview": "collections/arcade/previews/guizas-la-papas-pizzeria-807f3b26e203.png"
     },
     {
       "repo": "Cata-24/minix3-game",
@@ -5634,14 +5948,10 @@
           "visualInspection": "Real mobile Chrome960x480 touch controls, gameplay and full landscape height inspected; post-action status Game running, no JS errors."
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -5660,6 +5970,13 @@
             "Right click is door/reward interaction, not a second attack. No level win asserted."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=cata-24-minix3-game-952ce67c4b3d",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "collectionId": "cata-24-minix3-game-952ce67c4b3d",
@@ -5668,7 +5985,19 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "provenance": "examples/community/Cata-24--minix3-game/UPSTREAM.json"
+      "provenance": "examples/community/Cata-24--minix3-game/UPSTREAM.json",
+      "sourcePatches": [
+        {
+          "file": "proj/src/states/game.c",
+          "patch": "SOURCE_PATCH.diff",
+          "reason": "Original undefined R_BIT direction label prevented compilation. Switch enumerates all8directions; RDOWN was the missing intended branch.",
+          "upstreamSha256": "e0644316c4eb1424585a2df7e7d9e67660a178070f2a7cedf6262e6f7aaad87d",
+          "patchedSha256": "74f8cbcf829e1dd5719c23bd7d98569c042d97ac1cbc1c79ae59d0b29c8f5214",
+          "verification": "Original native compile failed undeclared R_BIT. Corrected enum compiles natively and to WebAssembly; guarded native replay and real mobile controls show active maze/enemy gameplay."
+        }
+      ],
+      "description": "Find your way through the dungeon. Dash past danger and fight the enemies ahead.",
+      "preview": "collections/arcade/previews/cata-24-minix3-game-952ce67c4b3d.png"
     },
     {
       "repo": "constancalferreira/Battleship",
@@ -5805,14 +6134,10 @@
           "visualInspection": "Real mobile Chrome960x480 touch controls, gameplay and full landscape height inspected; post-action status Game running, no JS errors."
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -5842,6 +6167,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=constancalferreira-battleship-0d18d3873e2b",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "collectionId": "constancalferreira-battleship-0d18d3873e2b",
@@ -5850,7 +6182,18 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "provenance": "examples/community/constancalferreira--Battleship/UPSTREAM.json"
+      "provenance": "examples/community/constancalferreira--Battleship/UPSTREAM.json",
+      "sourcePatches": [
+        {
+          "file": "proj/src/proj.c",
+          "originalSha256": "5406bff75a7d4f608b888bb53368199b797aced3efb0a80488f0094962b332ca",
+          "patchedSha256": "817cfb8863d17033b61fd93bc1c58600eb972c4deea67042e6edba6d092c7a7a",
+          "reason": "Initialize a state changed by a keyboard or mouse IRQ before rendering in the same combined timer notification. Original combined Enter+timer event copied a null start_buffer; UBSan start.c:26 and gameplay replay reproduce the crash.",
+          "verification": "Original same replay crashed during MENU->START on combined keyboard+timer IRQ; UBSan identified null start_buffer read in draw_start. Corrected native replay and real mobile80ms Enter/select/fire reach both battle grids and a hit cell without crash."
+        }
+      ],
+      "description": "Arrange your fleet, take turns firing and find your opponent’s ships before they find yours.",
+      "preview": "collections/arcade/previews/constancalferreira-battleship-0d18d3873e2b.png"
     },
     {
       "repo": "af0nsx/Worms",
@@ -5976,14 +6319,10 @@
           "visualInspection": "Real mobile Chrome960x480 touch controls, gameplay and full landscape height inspected; post-action status Game running, no JS errors."
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -6002,6 +6341,13 @@
             "No impact, damage or completed turn asserted. Vertical arrows retained because weapons use them for aim."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=worms-0ace38f831e6",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "collectionId": "worms-0ace38f831e6",
@@ -6010,7 +6356,10 @@
         "assetRoot": "..",
         "assets": []
       },
-      "provenance": "examples/community/af0nsx--Worms/UPSTREAM.json"
+      "provenance": "examples/community/af0nsx--Worms/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Aim across a destructible battlefield and take your shot in a turn-based worm battle.",
+      "preview": "collections/arcade/previews/worms-0ace38f831e6.png"
     },
     {
       "repo": "Dab1d/GetAwayCar",
@@ -6142,14 +6491,10 @@
           "visualInspection": "Real mobile Chrome960x480 touch controls, gameplay and full landscape height inspected; post-action status Game running, no JS errors."
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -6169,6 +6514,13 @@
             "Menu up/down retained as named actions; no finished race asserted."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=dab1d-getawaycar-a7df638127d0",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "collectionId": "dab1d-getawaycar-a7df638127d0",
@@ -6177,7 +6529,10 @@
         "assetRoot": "..",
         "assets": []
       },
-      "provenance": "examples/community/Dab1d--GetAwayCar/UPSTREAM.json"
+      "provenance": "examples/community/Dab1d--GetAwayCar/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Steer through traffic and dodge obstacles. Share the road with a second player.",
+      "preview": "collections/arcade/previews/dab1d-getawaycar-a7df638127d0.png"
     },
     {
       "repo": "D4yz-stp/Minix-Pacman",
@@ -6275,14 +6630,10 @@
           "visualInspection": "Real mobile Chrome960x480 touch controls, gameplay and full landscape height inspected; post-action status Game running, no JS errors."
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -6301,6 +6652,13 @@
             "No completed maze asserted."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=d4yz-stp-minix-pacman-e9e2296201be",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "collectionId": "d4yz-stp-minix-pacman-e9e2296201be",
@@ -6311,7 +6669,10 @@
           "proj/src/score.txt"
         ]
       },
-      "provenance": "examples/community/D4yz-stp--Minix-Pacman/UPSTREAM.json"
+      "provenance": "examples/community/D4yz-stp--Minix-Pacman/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Chase dots through the maze while keeping a safe distance from the ghosts.",
+      "preview": "collections/arcade/previews/d4yz-stp-minix-pacman-e9e2296201be.png"
     },
     {
       "repo": "aishend/TECLAS-The-Typing-Game",
@@ -6412,14 +6773,10 @@
           "visualInspection": "Real mobile Chrome960x480 touch controls, gameplay and full landscape height inspected; post-action status Game running, no JS errors."
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -6438,6 +6795,13 @@
             "Correct-word score not asserted because the typed text deliberately differs from the random displayed words. Initial keyboard-toggle collision was fixed and the typing flow retested."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=teclas-9e9acdbd5fab",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "collectionId": "teclas-9e9acdbd5fab",
@@ -6448,7 +6812,10 @@
           "teclas/results"
         ]
       },
-      "provenance": "examples/community/aishend--TECLAS-The-Typing-Game/UPSTREAM.json"
+      "provenance": "examples/community/aishend--TECLAS-The-Typing-Game/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Type the words on screen and keep up with the next challenge.",
+      "preview": "collections/arcade/previews/teclas-9e9acdbd5fab.png"
     },
     {
       "repo": "scrr-az/skess-lcom",
@@ -6536,14 +6903,10 @@
           "visualInspection": "Real mobile Chrome960x480 touch controls, gameplay and full landscape height inspected; post-action status Game running, no JS errors."
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -6566,6 +6929,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=scrr-az-skess-lcom-282ac263194e",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "collectionId": "scrr-az-skess-lcom-282ac263194e",
@@ -6574,7 +6944,10 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "provenance": "examples/community/scrr-az--skess-lcom/UPSTREAM.json"
+      "provenance": "examples/community/scrr-az--skess-lcom/UPSTREAM.json",
+      "sourcePatches": [],
+      "description": "Sketch the secret word or type your guess as another player draws.",
+      "preview": "collections/arcade/previews/scrr-az-skess-lcom-282ac263194e.png"
     },
     {
       "repo": "Hugo-mgs/LCOM-Space-Invaders",
@@ -6695,14 +7068,10 @@
           "visualInspection": "Real mobile Chrome960x480 touch controls, gameplay and full landscape height inspected; post-action status Game running, no JS errors."
         },
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "physicalPhone": "not tested",
         "webCollection": {
@@ -6721,6 +7090,13 @@
             "No kill or score increase asserted."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=hugo-mgs-lcom-space-invaders-5c534d6f57b3",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "collectionId": "hugo-mgs-lcom-space-invaders-5c534d6f57b3",
@@ -6729,7 +7105,25 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "provenance": "examples/community/Hugo-mgs--LCOM-Space-Invaders/UPSTREAM.json"
+      "provenance": "examples/community/Hugo-mgs--LCOM-Space-Invaders/UPSTREAM.json",
+      "sourcePatches": [
+        {
+          "file": "proj/src/model/game.c",
+          "originalSha256": "e7f708b3311cd24255ffd881e5179c9ee01fb17cb067e81bc635a76572e3b7f8",
+          "patchedSha256": "e1e45a1efd4fc1f9b6ba5ea3d61ce9554d53f062004b699f4f3272d48b7996cf",
+          "reason": "Match the uint8_t mouse_byte_index definition. Original full-width extern read/write accessed adjacent globals; browser relative menu input lost movement before this correction.",
+          "verification": "Original mismatched extern lost browser cursor movement. Matching uint8_t extern restores accurate menu hover. Same real80ms Play tap then exposed original ACK race: disable-reporting command read queued release header08 and returned. Bounded ACK reading reaches active wave1, movement and firing, with Game running status and no JS errors."
+        },
+        {
+          "file": "proj/src/controllers/kbc/mouse.c",
+          "originalSha256": "b6e86ef90c2b5204a47704c82e10893e1a50f35cd5f7c7e50465a37c2de08067",
+          "patchedSha256": "3b4b473060479b523a3fa2a5ff6b6ef2aa76f5e8048ac9da77ae2cd2a0a83a60",
+          "reason": "Wait for the mouse command ACK behind queued stream bytes. The same 80ms mobile Play tap previously read release header0x08 as the disable-reporting response and returned before gameplay; bounded ACK loop makes menu-to-keyboard transition work.",
+          "verification": "Original mismatched extern lost browser cursor movement. Matching uint8_t extern restores accurate menu hover. Same real80ms Play tap then exposed original ACK race: disable-reporting command read queued release header08 and returned. Bounded ACK reading reaches active wave1, movement and firing, with Game running status and no JS errors."
+        }
+      ],
+      "description": "Dodge the falling shots and shoot your way through the alien waves.",
+      "preview": "collections/arcade/previews/hugo-mgs-lcom-space-invaders-5c534d6f57b3.png"
     },
     {
       "id": "alexandre2004costa--lcom-project",
@@ -6833,14 +7227,10 @@
           }
         ],
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -6861,6 +7251,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=alexandre2004costa-lcom-project-e3c159e09375",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/alexandre2004costa--lcom-project-populated-gameplay.mlabscript",
@@ -6940,7 +7337,9 @@
           "copyOf": "game_results.txt",
           "reason": "Preserve original relative home/lcom/labs/proj/game_results.txt spelling."
         }
-      ]
+      ],
+      "description": "Jump, run and fire your way through a colorful side-scrolling battle.",
+      "preview": "collections/arcade/previews/alexandre2004costa-lcom-project-e3c159e09375.png"
     },
     {
       "id": "joaolopes15--lcom",
@@ -7024,14 +7423,10 @@
           }
         ],
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -7051,6 +7446,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=joaolopes15-lcom-4115b87918f9",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/joaolopes15--lcom-populated-gameplay.mlabscript",
@@ -7116,7 +7518,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Keep the ball in play and break the wall of colored blocks.",
+      "preview": "collections/arcade/previews/joaolopes15-lcom-4115b87918f9.png"
     },
     {
       "id": "monsterdied--lcomproj",
@@ -7219,14 +7623,10 @@
           }
         ],
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -7246,6 +7646,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=monsterdied-lcomproj-138166482bfa",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/monsterdied--lcomproj-populated-gameplay.mlabscript",
@@ -7320,7 +7727,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Outmaneuver another player, plant your bombs and escape before they explode.",
+      "preview": "collections/arcade/previews/monsterdied-lcomproj-138166482bfa.png"
     },
     {
       "id": "luizhqueiroz--lcom-memorygame",
@@ -7423,14 +7832,10 @@
           }
         ],
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -7453,6 +7858,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=luizhqueiroz-lcom-memorygame-4540b5424a79",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/luizhqueiroz--lcom-memorygame-populated-gameplay.mlabscript",
@@ -7541,7 +7953,9 @@
           "/home/lcom/labs/proj": "."
         }
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Reveal the hidden pictures and find the matching cards.",
+      "preview": "collections/arcade/previews/luizhqueiroz-lcom-memorygame-4540b5424a79.png"
     },
     {
       "id": "diogosilva11--lcom",
@@ -7645,14 +8059,10 @@
           }
         ],
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -7672,6 +8082,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=diogosilva11-lcom-ed97fdb962ec",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/diogosilva11--lcom-populated-gameplay.mlabscript",
@@ -7745,7 +8162,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Navigate the arena and fire at your opponents while avoiding incoming shots.",
+      "preview": "collections/arcade/previews/diogosilva11-lcom-ed97fdb962ec.png"
     },
     {
       "id": "joanaigs--lcom-snake-game",
@@ -7849,14 +8268,10 @@
           }
         ],
         "android": {
-          "status": "gameplay-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -7875,6 +8290,13 @@
             "No complete multiplayer match asserted. Relative pointer retained because the original menu initializes a separate cursor."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=joanaigs-lcom-snake-game-330f9e657355",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/joanaigs--lcom-snake-game-populated-gameplay.mlabscript",
@@ -7946,7 +8368,9 @@
           "LCOM_COMPAT_MOUSE_REPORTING": "1"
         }
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Guide your snake toward the apples and steer clear of traps.",
+      "preview": "collections/arcade/previews/joanaigs-lcom-snake-game-330f9e657355.png"
     },
     {
       "id": "migueljcpedrosa--lcom-classic-chess-game",
@@ -8049,14 +8473,10 @@
           }
         ],
         "android": {
-          "status": "gameplay-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -8082,6 +8502,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/migueljcpedrosa--lcom-classic-chess-game-populated-gameplay.mlabscript",
@@ -8146,7 +8573,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Choose a piece, plan your next move and play a game of chess.",
+      "preview": "collections/arcade/previews/migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f.png"
     },
     {
       "id": "leonardomagalhaes21--feup-lcom",
@@ -8250,14 +8679,10 @@
           }
         ],
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -8284,6 +8709,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=leonardomagalhaes21-feup-lcom-9e3925b94730",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/leonardomagalhaes21--feup-lcom-populated-gameplay.mlabscript",
@@ -8359,7 +8791,9 @@
           "kind": "empty runtime data file",
           "reason": "Upstream expects this writable scoreboard path but does not ship the file. Empty content preserves the original empty score list and creates its directory in packaged VFS."
         }
-      ]
+      ],
+      "description": "Run, jump and shoot through a hand-drawn platform adventure.",
+      "preview": "collections/arcade/previews/leonardomagalhaes21-feup-lcom-9e3925b94730.png"
     },
     {
       "id": "henriquesfernandes--lcomaze",
@@ -8447,14 +8881,10 @@
           }
         ],
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -8475,6 +8905,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=henriquesfernandes-lcomaze-e2d54c32196a",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/henriquesfernandes--lcomaze-populated-gameplay.mlabscript",
@@ -8550,7 +8987,9 @@
           "host"
         ]
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Explore the maze one corridor at a time and find your way through.",
+      "preview": "collections/arcade/previews/henriquesfernandes-lcomaze-e2d54c32196a.png"
     },
     {
       "id": "forreca05--lcom-snake-game-projeto-2025",
@@ -8569,7 +9008,26 @@
         "status": "missing",
         "files": []
       },
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "examples/community/Forreca05--LCOM-Snake-Game-Projeto-2025/SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "proj/src/input/input.c",
+              "originalSha256": "e454e79c9bfcda8c39740feb44d970943c09b0c29f7f16f24dfd4e2a52ef1a5d",
+              "patchedSha256": "27ccd7c8ed02ab39964d70f3f8346f8454f69c4fd56f7147b4fa8c8300f4648e",
+              "reason": "Match the mouse controller byte_index definition (uint8_t) in the gameplay input handler. Reading/writing it as int also consumes adjacent packet bytes and prevents pointer updates. Issue #11."
+            },
+            {
+              "path": "proj/src/menu/local_or_remote.c",
+              "originalSha256": "470f609d5a32b6be1e2a4dd162892c597cd42c2f403c685e6a6ad6e079c60b45",
+              "patchedSha256": "c322394146cd680f3c5cd506d2fb12848fcaaeeeb30db373969316ba32a419bf",
+              "reason": "Match the mouse controller byte_index definition (uint8_t) in the local/remote menu. The widened read prevents complete packet recognition and makes the local duel option unselectable. Issue #11."
+            }
+          ],
+          "reproduction": "devenv shell -- python3 tests/community_source_regressions.py"
+        }
+      ],
       "controlsRationale": "Classic mode needs four-way WASD while Survival uses A/D. Label the actual1/2 input-method choices, preserving direct mouse menus at verified sprite-clamped bounds.",
       "verification": {
         "repo": "Forreca05/LCOM-Snake-Game-Projeto-2025",
@@ -8645,14 +9103,10 @@
           }
         ],
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -8663,14 +9117,29 @@
         "mobileGameplay": {
           "status": "passed",
           "surface": "Chrome mobile emulation 960x480 landscape, hasTouch/isMobile, current shared root player.js/css with per-page resolved candidate game.json override",
-          "demonstrated": "Direct-tapped Start and Classic, then turned the original snake right/down/left using the visible WASD cross.",
+          "demonstrated": "Browser touch enters Classic and Local duel after the byte-counter repair; both original snakes can be steered. Native touch independently enters Local duel and exercises both player control paths.",
           "evidence": [
             "build/mobile-ux2/a/evidence/forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4/03-classic-turns.png"
           ],
           "limitations": [
-            "Classic needs four directions; Survival uses A/D. Input-method1/2 actions remain explicitly labelled Keyboard and Mouse. No apple score or local multiplayer retest asserted."
+            "Representative movement and local-duel input only; no completed match or UART peer claim."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+          "evidence": "build/arcade-expansion/native-existing-final/SUMMARY.json",
+          "directionalHoldSeconds": 0.6,
+          "scope": "Local duel and both player input paths"
         }
       },
       "replay": "scripts/collection-replays/forreca05--lcom-snake-game-projeto-2025-populated-gameplay.mlabscript",
@@ -8745,7 +9214,9 @@
           "LCOM_COMPAT_MOUSE_REPORTING": "1"
         }
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Turn at the right moment, collect food and keep your growing snake alive.",
+      "preview": "collections/arcade/previews/forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4.png"
     },
     {
       "id": "gablm--feup_lcom_labjack",
@@ -8829,14 +9300,10 @@
           }
         ],
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "passed",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Clean launch/render/return sweep passed. Final uniform runtime rebuild has additional Chess cancellation and panel checks.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -8857,6 +9324,13 @@
             "Representative session; no completed campaign or UART peer match claimed."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=gablm-feup-lcom-labjack-de14d1919ed9",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
         }
       },
       "replay": "scripts/collection-replays/gablm--feup_lcom_labjack-populated-gameplay.mlabscript",
@@ -8927,7 +9401,9 @@
         "assetRoot": "../..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Place your bet, take another card or stand. Try to beat the dealer at blackjack.",
+      "preview": "collections/arcade/previews/gablm-feup-lcom-labjack-de14d1919ed9.png"
     },
     {
       "id": "teixdavide--feup_lcom_pettycats",
@@ -8961,9 +9437,15 @@
               "originalSha256": "d9c08a4c96a8e7f77c0aaea4d0f76931a77003fb953a10a3d9c4997341097679",
               "patchedSha256": "02d5f0592f2e9ae819cc99d92f8890ea7616b8da20e0a9d8a870a84fa7a03c04",
               "reason": "Original startup SIGSEGV while no cat is within selection radius. getSelectedCat returns and dereferences an uninitialized closestCat when all candidates are distant. Initialize NULL and mark selection only when a cat was found. Original deleteRoom also frees uninitialized walls pointers; the real gameplay exit reproduces SIGSEGV under MallocScribble=1. Initialize the four unused wall slots to NULL."
+            },
+            {
+              "path": "src/drivers/gpu.c",
+              "originalSha256": "60f7c4ef56cb00b1be54f63c3ee8f06d1ce15eef72aa5e83b14b33cda299d88b",
+              "patchedSha256": "ae07b2301abd08aa249f48c079000283569cb893592eed6dbbf51f7b5d5a1b4a",
+              "reason": "Clip coordinates at the exclusive screen width and height. x==width corrupts the following row and y==height writes past the allocated framebuffer, causing extended native gameplay crashes. Issue #12."
             }
           ],
-          "reproduction": "source-regressions/teixdavide--FEUP_LCOM_PettyCats/results.json"
+          "reproduction": "source-regressions/teixdavide--FEUP_LCOM_PettyCats/results.json; devenv shell -- python3 tests/community_source_regressions.py"
         }
       ],
       "controlsRationale": "Room and cat/player movement controls remain reachable, named Interact/Pet exposed. Existing frozen source issue12 remains; no claim of full petting/victory flow.",
@@ -9050,15 +9532,10 @@
           }
         ],
         "android": {
-          "status": "build-and-profile-verified",
-          "scope": "Final uniform53-game APK. See aggregate coverage for the six input sessions and final Chess layout recheck. Other games have previous native launch evidence, not a new native replay.",
-          "evidence": "build/mobile-ux2/native/QA.md",
-          "previousVerifiedSweep": {
-            "status": "source-blocked",
-            "scope": "Android API35 ARM64 emulator, native rendering and fresh isolated game process. Extended native play crashes in original framebuffer renderer; prompt Games return and launcher crash containment pass.",
-            "evidence": "build/mobile-ux-workers/native/native-evidence-ledger.json",
-            "issue": "https://github.com/rodrgds/lcom-ng/issues/12"
-          }
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
         },
         "webCollection": {
           "status": "passed",
@@ -9069,15 +9546,30 @@
         "mobileGameplay": {
           "status": "passed",
           "surface": "Chrome mobile emulation 920x440 landscape, actual touch through visible UI",
-          "demonstrated": "S500ms,D500ms,InteractE,W300ms,A200ms. Room and cat/player movement controls remain reachable, named Interact/Pet exposed. Existing frozen source issue12 remains; no claim of full petting/victory flow.",
+          "demonstrated": "Room movement and Interact/Pet controls remain reachable after the exclusive framebuffer-bound repair. Browser directional stress and native 35.2 seconds cumulative held directional input complete without renderer crashes.",
           "evidence": [
             "build/mobile-ux2/b/evidence/teixdavide-feup-lcom-pettycats-768b12c9a51f/cat-room-ui.png",
             "build/mobile-ux2/b/evidence/teixdavide-feup-lcom-pettycats-768b12c9a51f/final-ui.png"
           ],
           "limitations": [
-            "Representative session; no completed campaign or UART peer match claimed."
+            "Representative movement, interaction and renderer stress only; no completed petting/victory flow or physical-phone performance claim."
           ],
           "date": "2026-10-15"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=teixdavide-feup-lcom-pettycats-768b12c9a51f",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+          "evidence": "build/arcade-expansion/native-existing-final/SUMMARY.json",
+          "directionalHoldSeconds": 35.2,
+          "scope": "32 directional holds totaling 35.2 seconds, plus Interact/Pet input; no completed petting cycle claimed"
         }
       },
       "replay": "scripts/collection-replays/teixdavide--feup_lcom_pettycats-populated-gameplay.mlabscript",
@@ -9143,7 +9635,9 @@
         "assetRoot": "..",
         "assets": []
       },
-      "derivedAssets": []
+      "derivedAssets": [],
+      "description": "Move your cat around the room and explore this student-made pixel world.",
+      "preview": "collections/arcade/previews/teixdavide-feup-lcom-pettycats-768b12c9a51f.png"
     },
     {
       "id": "DavidGustavo6--LCOM-game",
@@ -9231,7 +9725,25 @@
           ]
         },
         "android": {
-          "status": "pending-final-collection-build"
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=davidgustavo6-lcom-game-7f0cc9b9f5ba",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+          "demonstrated": "Built an archer tower through direct touch and the Archer action. Coins decrease from 300 to 250, enemies advance and arrows appear.",
+          "limitations": "Short native touchscreen trial; no full campaign completion or physical-phone performance measurement.",
+          "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
         }
       },
       "collectionId": "davidgustavo6-lcom-game-7f0cc9b9f5ba"
@@ -9309,7 +9821,25 @@
           ]
         },
         "android": {
-          "status": "pending-final-collection-build"
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=lsfaria04-lcom-project-tennis-for-two-2e48173786f1",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+          "demonstrated": "Selected Start with Down/Enter, served and moved the lower player. The ball advances and the opponent scores a round.",
+          "limitations": "Short native touchscreen trial; no full campaign completion or physical-phone performance measurement.",
+          "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
         }
       },
       "collectionId": "lsfaria04-lcom-project-tennis-for-two-2e48173786f1"
@@ -9396,7 +9926,25 @@
           ]
         },
         "android": {
-          "status": "pending-final-collection-build"
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=rodeso-lcom-brick-blitz-3014442d8fa6",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+          "demonstrated": "Opened the brick board, held D to move the paddle, launched the ball and observed continued flight.",
+          "limitations": "Short native movement/launch trial. Missile was delivered but no collected missile power-up or destroyed brick is claimed; no full level or physical-phone test.",
+          "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
         }
       },
       "collectionId": "rodeso-lcom-brick-blitz-3014442d8fa6"
@@ -9481,7 +10029,25 @@
           ]
         },
         "android": {
-          "status": "pending-final-collection-build"
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=murielpinho-feup-lcom-1920-bc475165f123",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+          "demonstrated": "Completed the triangular mission using the arrow and Select/Fly controls, reached MISSION ACCOMPLISHED and opened the next graph.",
+          "limitations": "Short native touchscreen trial; no full campaign completion or physical-phone performance measurement.",
+          "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
         }
       },
       "collectionId": "murielpinho-feup-lcom-1920-bc475165f123"
@@ -9575,7 +10141,25 @@
           ]
         },
         "android": {
-          "status": "pending-final-collection-build"
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=francis802-tower-clash-21525d616a06",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+          "demonstrated": "Started a match, held Fire to charge and release a projectile, paused, then returned to the original menu.",
+          "limitations": "Short native touchscreen trial; no full campaign completion or physical-phone performance measurement.",
+          "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
         }
       },
       "collectionId": "francis802-tower-clash-21525d616a06"
@@ -9676,7 +10260,25 @@
           ]
         },
         "android": {
-          "status": "pending-final-collection-build"
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=ruben38esteves-project-lcom-minixsurfers-f64f6c1da3a9",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+          "demonstrated": "Started versus mode with relative hover. D moves the runner; simultaneous A and Train move player one and spawn a train for player two. Score reaches 76.",
+          "limitations": "Two-player movement/spawn input verified. No complete versus round or sustained aim-stick precision trial; no physical-phone performance measurement.",
+          "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
         }
       },
       "collectionId": "ruben38esteves-project-lcom-minixsurfers-f64f6c1da3a9"
@@ -9707,9 +10309,17 @@
         "dpad": false,
         "look": false,
         "layout": "overlay",
-        "pointer": "direct",
+        "pointer": "move",
         "toolbar": "top-right",
-        "pads": [],
+        "pads": [
+          {
+            "mode": "mouse",
+            "style": "stick",
+            "side": "left",
+            "axes": "horizontal",
+            "sensitivity": 1
+          }
+        ],
         "actions": [
           {
             "label": "Launch",
@@ -9717,21 +10327,13 @@
             "position": "bottom-right"
           }
         ],
-        "touch": "tap",
-        "tapDuration": 60,
-        "cursor": {
-          "x": 100,
-          "y": 100,
-          "maxX": 800,
-          "maxY": 600,
-          "bounds": "reject"
-        }
+        "touch": "move"
       },
       "build": {
         "assetRoot": ".",
         "assets": []
       },
-      "controlsRationale": "1 starts single-player. Direct tap/hover matches cursor(100,100), unit delta and reject bounds0..800,0..600; right mouse Launch should be held briefly because original game samples once per timer frame. Verified paddle moved, brick damage and score1.",
+      "controlsRationale": "Relative hover and a horizontal mouse stick provide continuous paddle movement. The student paddle caps each mouse delta at eight pixels, so its position does not follow an absolute guest cursor. Launch sends right mouse; 1 starts, 3 opens instructions, 4 opens high scores, Escape exits.",
       "sourcePatches": [],
       "license": {
         "status": "missing",
@@ -9748,16 +10350,35 @@
         "mobileGameplay": {
           "status": "passed",
           "surface": "Chrome mobile touch emulation",
-          "demonstrated": "1 starts single-player. Direct tap/hover matches cursor(100,100), unit delta and reject bounds0..800,0..600; right mouse Launch should be held briefly because original game samples once per timer frame. Verified paddle moved, brick damage and score1.",
+          "demonstrated": "Relative hover and horizontal mouse stick both move the paddle; Launch releases the ball and scores 0001. Native counterpart scores 0005 with all 3 lives.",
           "evidence": [
-            "/Users/rgo/dev/lcom-ng/build/arcade-expansion/import-a/evidence/Vidal322--BreakPong"
+            "/Users/rgo/dev/lcom-ng/build/arcade-expansion/import-a/evidence/Vidal322--BreakPong",
+            "build/arcade-expansion/web-final/targeted/results.json"
           ],
           "limitations": [
             "Representative gameplay only; no complete campaign or physical-phone performance claim."
           ]
         },
         "android": {
-          "status": "pending-final-collection-build"
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=vidal322-breakpong-df233c2d2a2c",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "demonstrated": "The horizontal mouse stick moves the paddle both ways. Launch releases the ball, score reaches 0005 and several bricks are damaged or removed, with all three lives remaining.",
+          "limitations": "Final relative-hover profile and thumbstick verified. No complete campaign, UART peer or physical-phone performance measurement.",
+          "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
         }
       },
       "collectionId": "vidal322-breakpong-df233c2d2a2c"
@@ -9869,7 +10490,25 @@
           ]
         },
         "android": {
-          "status": "pending-final-collection-build"
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=leticia-003-2ndyear-feup-lcom-ab9c644ba6fb",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+          "demonstrated": "Ordinary Enter starts the complete board and launches the ball. Held Right moves the paddle, a brick disappears, score reaches 5 and Pause works.",
+          "limitations": "Short native touchscreen trial; no full campaign completion or physical-phone performance measurement.",
+          "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
         }
       },
       "collectionId": "leticia-003-2ndyear-feup-lcom-ab9c644ba6fb"
@@ -9945,10 +10584,23 @@
             {
               "path": "proj/Src/game.c",
               "originalSha256": "98ac3d24d05918e53c8a7400b2290fa497610abb9f9580c0a97f77f86fe94f31",
-              "patchedSha256": "536ea4a302221a4d9579f72a8f7a39572867cc4a96267f65f9ace79028b1e19c",
-              "reason": "Original four-byte level filename buffer overflows while appending .txt, corrupting the level path and trapping in browser. Enlarged only the filename buffer after reproducing failed level load."
+              "patchedSha256": "d4ee4661c097a432db70c0e01606a0da23bea3c34348eb58c364001928586151",
+              "reason": "Preserve the earlier level filename buffer fix. Free only owned pixel maps of global portal value snapshots, release their temporary heap wrappers, and clear level pointers after destruction so Escape, level changes and editor/co-op transitions cannot free static or stale objects."
+            },
+            {
+              "path": "proj/Src/sprites.c",
+              "originalSha256": "be0bc7973b58f66fa5902b79b0a37e88120aea68ab024483e1dea2eb206ba7ec",
+              "patchedSha256": "b529f812504b5670da6e943b855e766d7eedab43be669a88c24ee27222c2be87",
+              "reason": "Destroy both separately owned normal/reversed image maps, including after flip_sprite swaps their pointers."
+            },
+            {
+              "path": "proj/Src/asprite.c",
+              "originalSha256": "832db5ca5690dd73db759809bb29f546512d344133df967983ea3f3673b77fea",
+              "patchedSha256": "dc4c0763afb100015b09bc146339696963564e354892274da227222c69dffcb3",
+              "reason": "Give animated portals one owner for all frame images; the drawable Sprite borrows the active frame. Reuse the first image, release every frame on replacement/destruction, and clean partial construction on an image load failure."
             }
-          ]
+          ],
+          "reproduction": "Native Android gameplay, portals then Escape aborts in destroy_all_sprites -> free with truncated pointer tag. The public desktop CLI reproduces SIGABRT134 on Play then Escape even without portals. After correcting ownership both minimal and paired-portal replays return to menu without abort."
         }
       ],
       "license": {
@@ -9966,16 +10618,35 @@
         "mobileGameplay": {
           "status": "passed",
           "surface": "Chrome mobile touch emulation",
-          "demonstrated": "Swipe cursor from (600,500) to Play, Purple click; hold right, Jump, Purple portal, move cursor, Green portal; Back then original Exit menu clean.",
+          "demonstrated": "Walked, jumped, placed both portal colors and completed two gameplay-to-menu cleanup/restart cycles. Co-op enter/return checks cover ownership only, without a UART peer.",
           "evidence": [
-            "build/arcade-expansion/evidence-b/portal-gameplay.png"
+            "build/arcade-expansion/evidence-b/portal-gameplay.png",
+            "build/arcade-expansion/web-final/targeted/results.json"
           ],
           "limitations": [
             "Representative gameplay only; no complete campaign or physical-phone performance claim."
           ]
         },
         "android": {
-          "status": "pending-final-collection-build"
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=brunorosendo-portal2d-efb0e7bceb35",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "demonstrated": "Play opens the first puzzle, movement and jump work, and both portal colors appear. Escape returns to the menu, Play starts again, a second Escape returns again, and Home recovers the collection without crashing.",
+          "limitations": "Two native cleanup/restart cycles and paired portals verified. No completed puzzle, co-op peer or full level-editor session; no physical-phone measurement.",
+          "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
         }
       },
       "collectionId": "brunorosendo-portal2d-efb0e7bceb35"
@@ -10048,7 +10719,25 @@
           ]
         },
         "android": {
-          "status": "pending-final-collection-build"
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=dagarsar-lcom-4a069f7a0061",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+          "demonstrated": "Enter and Start ball open gameplay. A touch drag moves the paddle; a brick disappears and score reaches 005. Moving away lets the ball fall and returns to the original menu.",
+          "limitations": "Native rightward paddle drag and score005 verified. A sustained full round and leftward paddle position snapshot are not claimed; no physical-phone measurement.",
+          "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
         }
       },
       "collectionId": "dagarsar-lcom-4a069f7a0061"
@@ -10130,7 +10819,25 @@
           ]
         },
         "android": {
-          "status": "pending-final-collection-build"
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=rodrigopombo1-projeto-lcom-571c4f64fa76",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+          "demonstrated": "Play opens the dungeon. Held W moves the player upward while monsters advance and the timer reaches 03. Another direct tap changes the crosshair and play continues to 04.",
+          "limitations": "Movement, pointer targeting and advancing dungeon verified. Monster kill, gameover/highscore write and full survival not verified natively; no physical-phone measurement.",
+          "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
         }
       },
       "collectionId": "rodrigopombo1-projeto-lcom-571c4f64fa76"
@@ -10242,7 +10949,25 @@
           ]
         },
         "android": {
-          "status": "pending-final-collection-build"
+          "status": "passed",
+          "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+          "scope": "Final uniform 65-game APK: fresh native process, rendered guest pixels, Home return and launcher isolation. Gameplay checkpoints are separately recorded.",
+          "evidence": "build/arcade-expansion/native-all65/native-sweep-results.json"
+        },
+        "productionWeb": {
+          "status": "passed",
+          "url": "https://arcade.rgo.pt/#game=unrealxinfinity-alienexpress-12fa5db8be9d",
+          "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
+          "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
+          "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "nativeGameplay": {
+          "status": "passed",
+          "surface": "Actual ARM64 Android emulator touchscreen",
+          "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+          "demonstrated": "Located the package at its actual native spawn, moved toward it with WASD, picked it up and selected slot 1. The orange package visibly occupies the first inventory slot.",
+          "limitations": "One native package pickup and inventory selection verified. No complete delivery, late enemy combat or advanced inventory dragging; no physical-phone measurement.",
+          "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
         }
       },
       "collectionId": "unrealxinfinity-alienexpress-12fa5db8be9d"

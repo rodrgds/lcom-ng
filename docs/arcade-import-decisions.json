@@ -1,0 +1,230 @@
+{
+  "date": "2026-10-15",
+  "before": 53,
+  "after": 65,
+  "admitted": 12,
+  "decisions": [
+    {
+      "repository": "https://github.com/aluisamarques/feup-lcom-trex-game",
+      "revision": "f139d0b8cc49a17b451bb1a0c494fde60fb80a11",
+      "status": "excluded",
+      "reason": "Builds and intro renders, but initial headless probe timed out after15seconds before240virtual ticks. Actual gameplay/score/objectives not verified, not counted."
+    },
+    {
+      "repository": "https://github.com/andrelago13/Pacnix",
+      "revision": "c940890a60c9ea02c286347fc8e55511e82e1ad1",
+      "status": "excluded",
+      "reason": "Original Pacnix requires unsupported x86 asmhandlerkbd.S handler."
+    },
+    {
+      "repository": "https://github.com/ban08/lcom-minix-driver-game",
+      "revision": "094998815658bfd5a6f5c36f171c382d58ed8373",
+      "status": "excluded",
+      "reason": "Incomplete pinned project: Makefile explicitly lists mouse.c, but upstream proj/src tree omits mouse.c and required mouse implementation. Primitive Dino loop source remains, but importer would need reconstructing drivers."
+    },
+    {
+      "repository": "https://github.com/BrunoRosendo/Portal2D",
+      "revision": "67df1e2ba019d438cecea716fa2d4ec16f7aa46f",
+      "status": "admitted",
+      "reason": "Pinned complete sources/assets, distinct source fingerprint, native and browser builds, representative mobile touch gameplay passed."
+    },
+    {
+      "repository": "https://github.com/cyrilico/to-infinity-and-beyond-minix",
+      "revision": "b3460543c23f97800d0ce85c8cf8cf3a77b34e0e",
+      "status": "excluded",
+      "reason": "Original project requires unsupported x86 read_scancode_asm.S."
+    },
+    {
+      "repository": "https://github.com/dagarsar/lcom",
+      "revision": "59f31f17959b0c68b6a16eb8d32e0c6051fb9e3f",
+      "status": "admitted",
+      "reason": "Pinned complete sources/assets, distinct source fingerprint, native and browser builds, representative mobile touch gameplay passed."
+    },
+    {
+      "repository": "https://github.com/dansreis/LCOM-DODGEM",
+      "revision": "dc46e7162fe4d584d9715863d61812cbf2fa5c5f",
+      "status": "excluded",
+      "reason": "Vintage local lmlib header conflicts with compatibility lm_init(void)/lm_free signatures and VBE type."
+    },
+    {
+      "repository": "https://github.com/DavidGustavo6/LCOM-game",
+      "revision": "de9b4106a1d1aaec60027be5a73a6f35c4da6dd3",
+      "status": "admitted",
+      "reason": "Real browser mobile touch gameplay and native builds passed."
+    },
+    {
+      "repository": "https://github.com/davidrocha9/FEUP-LCOM",
+      "revision": "0864c92e25f79fbb952d59e729f52901fab33f9f",
+      "status": "excluded",
+      "reason": "Incomplete Undertale final source calls undeclared proj_demo() from main project callback; unchanged build fails."
+    },
+    {
+      "repository": "https://github.com/duartefrazao/LCOM-BitSpace",
+      "revision": "73a87c4865fe07e4191ee900c24fc513ee3ba055",
+      "status": "excluded",
+      "reason": "Native builder rejects project-specific rtc_asm.S and low-level asm helpers. Complete original art is present, but broader assembly compatibility work required."
+    },
+    {
+      "repository": "https://github.com/Eduardo-LP-Silva/Minix-Trouble",
+      "revision": "0656b0517544571971684eab35b2c789b580354f",
+      "status": "excluded",
+      "reason": "Original project requires unsupported x86 ASM.S and M_IH.S interrupt handlers."
+    },
+    {
+      "repository": "https://github.com/fernandorego/feup-lcom-connect4",
+      "revision": "55efe850ea66ec31601816985c757266619e575b",
+      "status": "excluded",
+      "reason": "Builds after shared IRQ_ENABLE support and menu renders/hover responds. Actual touchscreen Play selection did not enter gameplay. Original current_date[20] overflows with21byte formatted timestamp; no source patch or playability claim accepted."
+    },
+    {
+      "repository": "https://github.com/francis802/Tower-Clash",
+      "revision": "649e7149aba983fb12f53096b015b236c7f4d31c",
+      "status": "admitted",
+      "reason": "Pinned complete sources/assets, distinct source fingerprint, native and browser builds, representative mobile touch gameplay passed."
+    },
+    {
+      "repository": "https://github.com/IohanSardinha/Alien-Jump-LCOM",
+      "revision": "46055885b9768199102ddacc9a49f205a1902c3d",
+      "status": "excluded",
+      "reason": "Original callback int(proj_main_loop)() conflicts with required int(argc,argv) declaration. Excluded pending dedicated compatibility repair."
+    },
+    {
+      "repository": "https://github.com/joanasmramos/FEUP-LCOM",
+      "revision": "abf50a2ec8fd481af4ac8608af800d047539d9d5",
+      "status": "excluded",
+      "reason": "Vintage lmlib lm_init/lm_free and vbe_mode_info_t declarations conflict; no unchanged build."
+    },
+    {
+      "repository": "https://github.com/JPMMaia/lcom",
+      "revision": "726b95eb2e3e42346d17e6262347ee6ecd2b42fc",
+      "status": "excluded",
+      "reason": "Vintage Minix entrypoint depends on missing sys_whoami/sys_enable_iop/endpoint_t and other old driver types."
+    },
+    {
+      "repository": "https://github.com/Lantaros/LCOM",
+      "revision": "56d2db8f00718f876097b67e0c2e24270ee230ed",
+      "status": "excluded",
+      "reason": "Original project requires unsupported x86 assembly.S handler."
+    },
+    {
+      "repository": "https://github.com/LeKinaSa/lcom-galactic-warfare",
+      "revision": "077cd9d1ccce92605e3bfa0bea5e2c2ce11fdbdf",
+      "status": "excluded",
+      "reason": "Builds but startup requires host/remote role and serial linked second player; excluded from standalone mobile arcade."
+    },
+    {
+      "repository": "https://github.com/leticia-003/2ndYear_FEUP_LCom",
+      "revision": "fd08be7ee796e28742bb07ed2a0171319a0de5e3",
+      "status": "admitted",
+      "reason": "Real browser mobile touch gameplay and native builds passed."
+    },
+    {
+      "repository": "https://github.com/LsFaria04/LCOM_Project-Tennis_for_Two",
+      "revision": "4e812f9969b5dae60334bd855ac0f3c2d6342bb4",
+      "status": "admitted",
+      "reason": "Real browser mobile touch gameplay and native builds passed."
+    },
+    {
+      "repository": "https://github.com/Marantesss/feup-lcom",
+      "revision": "a8221e1ea8de49c6776fbfe74bd27ba34bd92381",
+      "status": "excluded",
+      "reason": "Minix Force includes missing legacy lcom/read_xpm.h. No unchanged build."
+    },
+    {
+      "repository": "https://github.com/MurielPinho/FEUP-LCOM-1920",
+      "revision": "d36662bb5a5e0e88c36bb65a27ecc0e137d6e949",
+      "status": "admitted",
+      "reason": "Pinned complete sources/assets, distinct source fingerprint, native and browser builds, representative mobile touch gameplay passed."
+    },
+    {
+      "repository": "https://github.com/pemesteves/LCOM_1819",
+      "revision": "3c7ce46c79cd9a80c6b27fba8d37281fcdc8fbbb",
+      "status": "excluded",
+      "reason": "Original Run Rocky Run project requires unsupported keyboard_asm.S, mouse_asm.S and timer_asm.S handlers."
+    },
+    {
+      "repository": "https://github.com/rafaelribeiro1510/BoomerMan",
+      "revision": "72b0cfccef8627bec6a8e154bd0b89f99a7d84e7",
+      "status": "excluded",
+      "reason": "Native builder rejects project-specific ena_interrupts.S/dis_interrupts.S. Older assembly ABI work required; no claim of source gameplay failure."
+    },
+    {
+      "repository": "https://github.com/raulviana/FEUP-LCOM",
+      "revision": "5a7ed4431c60222add957269c4ad3841c98a0767",
+      "status": "excluded",
+      "reason": "Asteroids global variable wait conflicts with host POSIX wait() declaration, compile fails."
+    },
+    {
+      "repository": "https://github.com/reeckset/LCOM_Minix_2017",
+      "revision": "422068bc25d6f50aceb2341e9381af4f4194e6e6",
+      "status": "excluded",
+      "reason": "Vintage Minix struct reg86u and zero-argument lm_init() unsupported; unchanged build fails."
+    },
+    {
+      "repository": "https://github.com/rendoir/feup-lcom",
+      "revision": "7b03b6745d78144fe46d30b03fedec0f0212ecbb",
+      "status": "excluded",
+      "reason": "Vintage Minix API conflicts: project redeclares vbe_mode_info_t with incompatible layout; no unchanged build."
+    },
+    {
+      "repository": "https://github.com/Revuj/ConquerTheMoon",
+      "revision": "47b23e200dc08bf26ef81ee07b4d2b68acc4e205",
+      "status": "excluded",
+      "reason": "Native builder rejects kbc_asm_ih.S/timer_asm.S/rtc_asm_uip.S; game requires project-specific assembly replacements. Deprioritized in favor of C-only complete projects."
+    },
+    {
+      "repository": "https://github.com/rodeso/lcom.brick-blitz",
+      "revision": "e2fa0770017aa1c8f94e8a521b8c67b96a4b8cc3",
+      "status": "admitted",
+      "reason": "Real browser mobile touch gameplay and native builds passed."
+    },
+    {
+      "repository": "https://github.com/RodrigoPombo1/projeto-lcom",
+      "revision": "f0ad2ebadeed4a6c6cfb94610fc01758a2e5663a",
+      "status": "admitted",
+      "reason": "Pinned complete sources/assets, distinct source fingerprint, native and browser builds, representative mobile touch gameplay passed."
+    },
+    {
+      "repository": "https://github.com/Ruben38Esteves/Project-LCOM-MinixSurfers",
+      "revision": "0e776e4911c9c0502a0db699e86b88ff5c973a06",
+      "status": "admitted",
+      "reason": "Real browser mobile touch gameplay and native builds passed."
+    },
+    {
+      "repository": "https://github.com/SergioEstevao11/FEUP-LCOM",
+      "revision": "bc9ee2e0eeee725aa7e5fdccfd042caa5d83ed0c",
+      "status": "excluded",
+      "reason": "Penguin Run builds but original keyboard subscription returns hook id1 as success; caller interprets1 as failure and exits before presenting. Also truncates framebuffer pointers to32bits. Excluded from admission rather than counting black menu capture."
+    },
+    {
+      "repository": "https://github.com/tripor/LCOM_201718",
+      "revision": "7da8ada27470ca8b60ae1f20f54f81129ee930b3",
+      "status": "excluded",
+      "reason": "Original tower defense project requires unsupported x86 asm.S handler."
+    },
+    {
+      "repository": "https://github.com/unrealxinfinity/AlienExpress",
+      "revision": "5342f6571eb9701311bbe17d6a14834bb90a4376",
+      "status": "admitted",
+      "reason": "Native and web builds pass after local RTC helper rename. Actual mobile touch movement and package pickup into inventory visually verified. No duplicate C units with existing imported games."
+    },
+    {
+      "repository": "https://github.com/VascoGo/ninja-labyrinth",
+      "revision": "c59f72411e679a3725ebd3460a5529a9e0d7c7a6",
+      "status": "excluded",
+      "reason": "Exact C/header fingerprint mirror of existing Cata-24/minix3-game after same R_BIT source typo correction. Excluded as duplicate, not a new title."
+    },
+    {
+      "repository": "https://github.com/Vidal322/BreakPong",
+      "revision": "f3891f5f475eae32c01ad25d1997f0c5b9f44834",
+      "status": "admitted",
+      "reason": "Real browser mobile touch gameplay and native builds passed."
+    },
+    {
+      "repository": "https://github.com/Viperxyzzz/LCOM",
+      "revision": "08a08837fc475c0dfc1db9d83de342e31959977d",
+      "status": "excluded",
+      "reason": "Incomplete Makefile: SRCS line is commented out and no explicit object source rules exist."
+    }
+  ]
+}

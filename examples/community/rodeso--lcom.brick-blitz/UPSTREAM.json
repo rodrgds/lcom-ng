@@ -82,6 +82,14 @@
       500
     ],
     "evidence": "build/arcade-expansion/import-a/evidence/rodeso--lcom.brick-blitz",
-    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim."
+    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+      "demonstrated": "Opened the brick board, held D to move the paddle, launched the ball and observed continued flight.",
+      "limitations": "Short native movement/launch trial. Missile was delivered but no collected missile power-up or destroyed brick is claimed; no full level or physical-phone test.",
+      "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
+    }
   }
 }

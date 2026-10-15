@@ -145,6 +145,14 @@
       500
     ],
     "evidence": "build/arcade-expansion/import-a/evidence/LsFaria04--LCOM_Project-Tennis_for_Two",
-    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim."
+    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+      "demonstrated": "Selected Start with Down/Enter, served and moved the lower player. The ball advances and the opponent scores a round.",
+      "limitations": "Short native touchscreen trial; no full campaign completion or physical-phone performance measurement.",
+      "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
+    }
   }
 }

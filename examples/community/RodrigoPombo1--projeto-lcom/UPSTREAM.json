@@ -78,6 +78,14 @@
       "gameplay": "Direct tap Play (400,176), hold up >2sec, observed character travel/timer02 and advancing monsters; loss reached GAME OVER with mapped highscore data; Exit clean.",
       "errors": [],
       "rawCanvas": "build/arcade-expansion/evidence-b/leiria-gameplay.png"
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+      "demonstrated": "Play opens the dungeon. Held W moves the player upward while monsters advance and the timer reaches 03. Another direct tap changes the crosshair and play continues to 04.",
+      "limitations": "Movement, pointer targeting and advancing dungeon verified. Monster kill, gameover/highscore write and full survival not verified natively; no physical-phone measurement.",
+      "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
     }
   },
   "controlsRationale": "Direct tap Play (400,176), hold up >2sec, observed character travel/timer02 and advancing monsters; loss reached GAME OVER with mapped highscore data; Exit clean."

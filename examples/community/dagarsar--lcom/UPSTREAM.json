@@ -69,6 +69,14 @@
       "gameplay": "ENTER on START, Start ball (right mouse), drag canvas while holding left touch; observed paddle travel, removed brick and score005; menu Down twice, ENTER clean exit.",
       "errors": [],
       "rawCanvas": "build/arcade-expansion/evidence-b/block-gameplay.png"
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+      "demonstrated": "Enter and Start ball open gameplay. A touch drag moves the paddle; a brick disappears and score reaches 005. Moving away lets the ball fall and returns to the original menu.",
+      "limitations": "Native rightward paddle drag and score005 verified. A sustained full round and leftward paddle position snapshot are not claimed; no physical-phone measurement.",
+      "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
     }
   },
   "controlsRationale": "ENTER on START, Start ball (right mouse), drag canvas while holding left touch; observed paddle travel, removed brick and score005; menu Down twice, ENTER clean exit."

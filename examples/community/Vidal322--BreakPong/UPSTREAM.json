@@ -147,6 +147,14 @@
       500
     ],
     "evidence": "build/arcade-expansion/import-a/evidence/Vidal322--BreakPong",
-    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim."
+    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "46447b5a60535304029cb35e3380c600d5daa1fd708dd4dec6183f52ebde2976",
+      "demonstrated": "The horizontal mouse stick moves the paddle both ways. Launch releases the ball, score reaches 0005 and several bricks are damaged or removed, with all three lives remaining.",
+      "limitations": "Final relative-hover profile and thumbstick verified. No complete campaign, UART peer or physical-phone performance measurement.",
+      "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
+    }
   }
 }

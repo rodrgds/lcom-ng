@@ -433,6 +433,14 @@
     ],
     "evidence": "build/arcade-expansion/import-a/evidence/unrealxinfinity--AlienExpress",
     "objective": "Moved from214100 to first spawned package and picked it into first inventory slot. Timer8s; source-complete mobile actions exposed.",
-    "limits": "Short functional gameplay trial only; no full survival run, late-wave enemy combat, advanced inventory dragging or physical Android claim."
+    "limits": "Short functional gameplay trial only; no full survival run, late-wave enemy combat, advanced inventory dragging or physical Android claim.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+      "demonstrated": "Located the package at its actual native spawn, moved toward it with WASD, picked it up and selected slot 1. The orange package visibly occupies the first inventory slot.",
+      "limitations": "One native package pickup and inventory selection verified. No complete delivery, late enemy combat or advanced inventory dragging; no physical-phone measurement.",
+      "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
+    }
   }
 }

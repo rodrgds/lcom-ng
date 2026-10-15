@@ -150,7 +150,15 @@
       500
     ],
     "evidence": "build/arcade-expansion/import-a/evidence/DavidGustavo6--LCOM-game",
-    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim."
+    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+      "demonstrated": "Built an archer tower through direct touch and the Archer action. Coins decrease from 300 to 250, enemies advance and arrows appear.",
+      "limitations": "Short native touchscreen trial; no full campaign completion or physical-phone performance measurement.",
+      "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
+    }
   },
   "omittedMetadata": {
     "reason": "Upstream operating-system and version-control metadata is excluded from the distributable source inventory.",

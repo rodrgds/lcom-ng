@@ -70,6 +70,14 @@
       500
     ],
     "evidence": "build/arcade-expansion/import-a/evidence/Ruben38Esteves--Project-LCOM-MinixSurfers",
-    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim."
+    "limits": "Short functional gameplay trial and menu, no full campaign completion or physical Android device claim.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "f068c3044ee637dfca4a5f8d0d6abc3bf1231c4277d8500e2917d728f03df152",
+      "demonstrated": "Started versus mode with relative hover. D moves the runner; simultaneous A and Train move player one and spawn a train for player two. Score reaches 76.",
+      "limitations": "Two-player movement/spawn input verified. No complete versus round or sustained aim-stick precision trial; no physical-phone performance measurement.",
+      "evidence": "build/arcade-expansion/native-new/evidence/native-gameplay-ledger.json"
+    }
   }
 }
