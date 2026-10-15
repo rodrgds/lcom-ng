@@ -31,6 +31,22 @@ audio, and serial communication.
 ports owned by one guest machine; the latter creates two independent machines
 and bridges matching ports between them.
 
+## Desktop interaction
+
+`word_processor` saves with `Cmd/Ctrl-S` or `F2` and reopens the file passed as
+its first argument (default `build/lcom-notes.txt`). Save errors remain visible;
+failed writes preserve the original file. `Cmd/Ctrl-Z` swaps the last edit.
+
+`music_maker` accepts mouse clicks on notes, instruments and transport. `Space`
+plays/pauses; `Enter` toggles a note; arrows move; `M` mutes; `Cmd/Ctrl-Z` swaps
+the last note edit. `F1` shows all controls. `breakout_demo` supports arrows or
+`A/D`, `Space` pause and `R` restart.
+
+Editors accept Command on macOS and Ctrl on other platforms. `Cmd/Ctrl-W`
+closes interactive studios. `Esc` closes help first, then the application.
+Opening help blocks edits underneath it. Right Ctrl releases the captured
+mouse; `F3` opens the debug overlay on keyboards without Right Ctrl.
+
 ## Showcase Studios
 
 These seven finished programs combine several labs into project-scale tools,
@@ -43,13 +59,13 @@ Regenerate all nine canonical frames with
 
 | Program | What it demonstrates | Controls |
 | --- | --- | --- |
-| `pixel_studio` | 16×16 sprite editing, palette tools, continuous drag strokes, 32-state history, zoom, RTC-stamped C export | Mouse draws and selects; right-click picks; `P/E/F/I` tools; `1/2/3` or `-/+` zoom; `Ctrl-Z/Y`; `C` clear; `G` grid; `S/F2` export; `F1/H` help |
-| `serial_whiteboard` | two-window UART drawing, shared cursors, CRC8 frames, sequence/ACK/NACK, retries, HELLO reconnect, bounded queues, snapshot resync | Mouse drag draws; palette or `1-5` selects ink; `C` clears both peers; `R` rotates the local session; `H` help; optional role argument `restart` exercises a same-token transport reset |
+| `pixel_studio` | 16×16 sprite editing, palette tools, continuous drag strokes, 32-state history, zoom, RTC-stamped C export | Mouse draws and selects; right-click picks; `B/P/E/F/I` tools; `1/2/3` or `-/+` zoom; `Cmd/Ctrl-Z`, `Cmd/Ctrl-Shift-Z` redo (`Ctrl-Y` also works); `C` clear; `G` grid; `S/F2` or `Cmd/Ctrl-S` export; `F1/H` help |
+| `serial_whiteboard` | two-window UART drawing, shared cursors, CRC8 frames, sequence/ACK/NACK, retries, HELLO reconnect, bounded queues, snapshot resync | Mouse drag draws; palette or `1-5` selects ink; `C` clears both peers; `R` rotates the local session; `F1/H` help; optional role argument `restart` exercises a same-token transport reset |
 | `pomodoro_clock` | RTC wall-clock snapshots beside a PIT-backed monotonic focus timer, mouse controls, completion tones | `Space` start/pause; `R` reset; `Tab` switch focus/break; `D` 5s/3s demo; `M` mute; or click the visible buttons |
 | `interrupt_scope` | live IRQ rates, history graph, scancode and PS/2 bytes, UART loopback traffic, RTC IRQ/poll status, recent events | Generate keyboard/mouse activity; `Space` freezes the rate view; `C` clears; `L` toggles UART loopback |
-| `tilemap_editor` | layered tile/object painting, gesture history, validation, RTC-stamped `.mlmap` export, isolated Sokoban playtest | Edit: drag, right-click pick, `1-5` brushes, `Ctrl-Z/Y`, `G`, `V`, `S/F2`; `Enter/M` playtest. Play: arrows/WASD, `U` undo, `R` reset |
+| `tilemap_editor` | layered tile/object painting, gesture history, validation, RTC-stamped `.mlmap` export, isolated Sokoban playtest | Edit: drag, right-click pick, `1-5` brushes, `Cmd/Ctrl-Z`, `Cmd/Ctrl-Shift-Z` redo (`Ctrl-Y` also works), `G`, `V`, `S/F2` or `Cmd/Ctrl-S`; `Enter/M` playtest. Play: arrows/WASD, `U` undo, `R` reset |
 | `serial_transfer` | paced 8-byte blocks in 16-byte frames, manifest, CRC8/CRC32, stop-and-wait ACK/NACK, timeout and retransmission | Automatic after `send`/`receive` role selection; deterministic role arguments exercise block loss, DONE-ACK loss, CRC rejection, and peer timeout |
-| `ambient_aquarium` | RTC-driven dawn/day/sunset/night lighting, PIT motion, mouse feeding, bubbles, and AC97 event tones | Click or `F` feeds; `L` cycles lighting; `P/Space` pauses motion; `B` bubbles; `S` sound; `R` reset |
+| `ambient_aquarium` | RTC-driven dawn/day/sunset/night lighting, PIT motion, mouse feeding, bubbles, and AC97 event tones | Click or `F` feeds; `L` cycles lighting; `P/Space` pauses motion; `B` bubbles; `M/S` sound; `R` reset |
 
 `Esc` exits every interactive studio except `serial_transfer`, which exits both
 peers after the receiver verifies the final CRC32.
@@ -214,3 +230,29 @@ lcom-ng run --headless --script scripts/pvz_menu_exit.mlabscript \
 Scripts used by automated tests should stay short and stable. Longer authored
 video scripts may prioritize presentation timing; verify them visually when
 game layouts or balance change.
+
+### Per-app guides and screenshots
+
+The docs have dedicated pages for [Notes](https://lcom.rgo.pt/examples/word-processor),
+[Pocket Composer](https://lcom.rgo.pt/examples/music-maker),
+[Pixel Studio](https://lcom.rgo.pt/examples/pixel-studio),
+[Tile Forge](https://lcom.rgo.pt/examples/tilemap-editor),
+[Focus Clock](https://lcom.rgo.pt/examples/pomodoro-clock),
+[Interrupt Scope](https://lcom.rgo.pt/examples/interrupt-scope),
+[Shared Whiteboard](https://lcom.rgo.pt/examples/serial-whiteboard),
+[Serial Transfer](https://lcom.rgo.pt/examples/serial-transfer),
+[Aquarium](https://lcom.rgo.pt/examples/ambient-aquarium),
+[Breakout](https://lcom.rgo.pt/examples/breakout),
+[Flappy Bird](https://lcom.rgo.pt/examples/flappy-bird),
+[Ninjix](https://lcom.rgo.pt/examples/ninjix) and
+[Plants vs. Zombies](https://lcom.rgo.pt/examples/plants-vs-zombies).
+Each guide contains controls, a workflow, and a gallery of real runtime states.
+
+Regenerate all gallery screenshots with:
+
+```sh
+devenv shell -- python3 scripts/capture_gallery.py
+```
+
+Use `--app pixel-studio` for one app or `--list` for all available states.
+`--check` reports changed sources or images that need regeneration.

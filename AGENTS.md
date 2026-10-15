@@ -48,6 +48,19 @@ through `devenv shell -- ...`.
   predefined checks: `dev/lab-solutions/` and `dev/lab-tests/`.
 - Public website source: `docs-site/`. `docs-site/public/assets/` and the
   VitePress build directory are generated; do not hand-edit or stage them.
+- Showcase UI primitives and input modifiers: `examples/example_ui.h`. The
+  baked type tables in `examples/example_font.h` keep apps self-contained;
+  regenerate with `scripts/generate_example_font.py` (Pillow and DejaVu fonts).
+  Help overlays must consume editing input while maintaining button/modifier
+  releases. Command is guest input, Right Ctrl is host mouse release. Keep
+  shortcuts, hit targets, authored replays and screenshots aligned. See
+  `docs/showcase-ui.md` before changing shared UI or help/input behavior.
+- Example galleries: `scripts/showcase-gallery.json` owns the real replay states,
+  fixtures, labels and source inputs. Regenerate all with
+  `devenv shell -- python3 scripts/capture_gallery.py`, or select `--app <slug>`.
+  `--check` validates freshness. Canonical PNGs and metadata live under
+  `docs/assets/screenshots/gallery/`; every app has a docs page with `ExampleGallery`.
+  Captures use `--dump-presented` so a tick guard cannot expose an unfinished repaint.
 - Canonical public video: `docs/assets/demo/machine-lab-demo.mp4`. Its source is
   `media/remotion/`, and its deterministic inputs are produced by
   `scripts/capture_marketing_examples.sh`.

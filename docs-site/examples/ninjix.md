@@ -69,3 +69,9 @@ Ninjix is a good final-project reference when students ask:
 
 It should not be treated as the starter template. It is evidence of the target
 scale, not the minimum expected project.
+
+## In the game
+
+Open a screenshot to inspect the original menus, setup, play and pause states.
+
+<ExampleGallery app="ninjix" />

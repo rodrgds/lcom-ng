@@ -34,6 +34,7 @@ cmake --build "$BUILD_DIR" --target \
   -j4
 
 mkdir -p "$SCREENSHOT_DIR" "$TMP_DIR"
+rm -f "$TMP_DIR/tilemap-demo.mlmap"
 
 "$CLI" run --headless --rtc 2026-08-12T14:35:42 \
   --script "$ROOT/scripts/pixel_studio_demo.mlabscript" \
@@ -44,7 +45,7 @@ grep -q "exports=1" "$TMP_DIR/pixel-studio.txt"
 grep -q "PIXEL_STUDIO_SPRITE_WIDTH 16u" "$TMP_DIR/pixel-studio-sprite.h"
 grep -q "PIXEL_STUDIO_SPRITE_HEIGHT 16u" "$TMP_DIR/pixel-studio-sprite.h"
 grep -q "pixel_studio_sprite\\[256\\]" "$TMP_DIR/pixel-studio-sprite.h"
-grep -q "Pixel Studio export: 2026-08-12 14:35:42" \
+grep -q "Pixel Studio export: 2026-08-12 14:35:52" \
   "$TMP_DIR/pixel-studio-sprite.h"
 test "$(grep -Eo '0x[0-9A-F]{8}u' "$TMP_DIR/pixel-studio-sprite.h" | wc -l | tr -d ' ')" -eq 256
 "${CC:-cc}" -std=c11 -pedantic-errors -fsyntax-only \
@@ -95,7 +96,7 @@ grep -q "frozen=0 loopback=1" "$TMP_DIR/interrupt-scope.txt"
   > "$TMP_DIR/tilemap-editor.txt"
 grep -q "valid=1" "$TMP_DIR/tilemap-editor.txt"
 grep -q "solved=1" "$TMP_DIR/tilemap-editor.txt"
-grep -q "^# saved 2026-08-12T15:10:05$" "$TMP_DIR/tilemap-demo.mlmap"
+grep -q "^# saved 2026-08-12T15:10:09$" "$TMP_DIR/tilemap-demo.mlmap"
 grep -q "^# validation valid$" "$TMP_DIR/tilemap-demo.mlmap"
 awk '
   /^size 10 8$/ { in_map = 1; next }

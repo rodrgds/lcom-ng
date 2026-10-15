@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 set -eu
 
+python3 scripts/capture_gallery.py --check
+
 test -f package.json
 test -f bun.lock
 test -f wrangler.toml

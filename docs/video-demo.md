@@ -4,13 +4,23 @@ This walkthrough is ordered to tell one story: normal tooling, preserved device
 learning, deterministic testing, a complete project, and a student workspace.
 Run it once before recording so Nix, the build, and ffmpeg are warm.
 
-For a short public-facing version, use
+For the 40-second public launch film, use
 [docs/assets/demo/machine-lab-demo.mp4](assets/demo/machine-lab-demo.mp4). It can
 be regenerated with:
 
 ```sh
 devenv shell -- sh scripts/render_public_demo.sh
 ```
+
+The launch uses actual app replays and gameplay, moving paired whiteboard footage,
+locally bundled typefaces, and an original quiet ambient score. Raw sequencer
+and game audio are muted. There is no narration, percussion or repetitive tick.
+`scripts/compose_launch_audio.py` generates the score; `capture_launch_clips.sh`
+creates caption-free footage. Both run as part of the render command above.
+The final film is 1920×1080 at 30 fps. All four games have named action cuts,
+including Plants vs. Zombies. Paired footage is sampled from real presented
+frames by `scripts/capture_paired_clip.py`, then encoded at 10 fps. Inspect scene changes and check the audio
+after a render before replacing a published copy.
 
 ## Prepare
 
@@ -74,7 +84,9 @@ In the window:
 3. Press F11 if fullscreen helps the recording.
 4. Press Escape to exit.
 
-On macOS, Command releases the captured mouse. On other hosts, use Right Ctrl.
+Right Ctrl releases the captured mouse. On keyboards without Right Ctrl, use
+`F3` to open the debug overlay and release the pointer. Command remains available
+for app shortcuts on macOS.
 
 ## 4. Show a Complete Existing Project
 

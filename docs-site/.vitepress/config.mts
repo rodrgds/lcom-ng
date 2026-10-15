@@ -114,14 +114,32 @@ const developerSidebar = [
 ];
 
 const examplesSidebar = [
-  {
-    text: "Examples",
-    items: [
-      { text: "Overview", link: "/examples/" },
-      { text: "Showcase Studios", link: "/examples/showcase-studios" },
-      { text: "Ninjix", link: "/examples/ninjix" },
-    ],
-  },
+  { text: "Examples", items: [
+    { text: "Overview", link: "/examples/" },
+    { text: "Showcase Studios", link: "/examples/showcase-studios" },
+  ] },
+  { text: "Creative tools", items: [
+    { text: "Notes", link: "/examples/word-processor" },
+    { text: "Pocket Composer", link: "/examples/music-maker" },
+    { text: "Pixel Studio", link: "/examples/pixel-studio" },
+    { text: "Tile Forge", link: "/examples/tilemap-editor" },
+  ] },
+  { text: "Devices in action", items: [
+    { text: "Focus Clock", link: "/examples/pomodoro-clock" },
+    { text: "Interrupt Scope", link: "/examples/interrupt-scope" },
+    { text: "Shared Whiteboard", link: "/examples/serial-whiteboard" },
+    { text: "Serial Transfer", link: "/examples/serial-transfer" },
+    { text: "Ambient Aquarium", link: "/examples/ambient-aquarium" },
+  ] },
+  { text: "Games", items: [
+    { text: "Breakout", link: "/examples/breakout" },
+    { text: "Flappy Bird", link: "/examples/flappy-bird" },
+    { text: "Ninjix", link: "/examples/ninjix" },
+    { text: "Plants vs. Zombies", link: "/examples/plants-vs-zombies" },
+  ] },
+  { text: "Contributing", items: [
+    { text: "Update screenshots", link: "/examples/screenshots" },
+  ] },
 ];
 
 export default defineConfig({

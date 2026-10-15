@@ -40,6 +40,9 @@ cp "$ROOT/docs/assets/screenshots/tilemap-editor.png" "$STAGING_DIR/screenshots/
 cp "$ROOT/docs/assets/screenshots/serial-transfer-sender.png" "$STAGING_DIR/screenshots/serial-transfer-sender.png"
 cp "$ROOT/docs/assets/screenshots/serial-transfer-receiver.png" "$STAGING_DIR/screenshots/serial-transfer-receiver.png"
 cp "$ROOT/docs/assets/screenshots/ambient-aquarium.png" "$STAGING_DIR/screenshots/ambient-aquarium.png"
+if [ -d "$ROOT/docs/assets/screenshots/gallery" ]; then
+  cp -R "$ROOT/docs/assets/screenshots/gallery" "$STAGING_DIR/screenshots/gallery"
+fi
 cp "$ROOT/docs/assets/demo/machine-lab-demo.mp4" "$STAGING_DIR/demo/machine-lab-demo.mp4"
 
 if [ -e "$PUBLIC_DIR" ]; then

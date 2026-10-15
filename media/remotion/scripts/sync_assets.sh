@@ -1,19 +1,15 @@
 #!/usr/bin/env sh
 set -eu
-
 ROOT="$(CDPATH= cd -- "$(dirname -- "$0")/../../.." && pwd)"
 PUBLIC_DIR="$ROOT/media/remotion/public"
-
-rm -rf "$PUBLIC_DIR"
-mkdir -p "$PUBLIC_DIR/screenshots" "$PUBLIC_DIR/clips" "$PUBLIC_DIR/audio"
-
-cp "$ROOT/docs/assets/screenshots/word-processor.png" "$PUBLIC_DIR/screenshots/word-processor.png"
-cp "$ROOT/docs/assets/screenshots/music-maker.png" "$PUBLIC_DIR/screenshots/music-maker.png"
-cp "$ROOT/docs/assets/screenshots/breakout.png" "$PUBLIC_DIR/screenshots/breakout.png"
-cp "$ROOT/docs/assets/screenshots/flappy.png" "$PUBLIC_DIR/screenshots/flappy.png"
-cp "$ROOT/docs/assets/screenshots/ninjix.png" "$PUBLIC_DIR/screenshots/ninjix.png"
-cp "$ROOT/docs/assets/demo/word-processor.mp4" "$PUBLIC_DIR/clips/word-processor.mp4"
-cp "$ROOT/docs/assets/demo/music-maker.mp4" "$PUBLIC_DIR/clips/music-maker.mp4"
-cp "$ROOT/docs/assets/demo/music-maker.wav" "$PUBLIC_DIR/audio/music-maker.wav"
-
-echo "synced Remotion assets"
+mkdir -p "$PUBLIC_DIR/screenshots" "$PUBLIC_DIR/clips" "$PUBLIC_DIR/audio" "$PUBLIC_DIR/fonts"
+cp "$ROOT"/docs/assets/screenshots/*.png "$PUBLIC_DIR/screenshots/"
+for name in music-maker; do
+  cp "$ROOT/docs/assets/demo/$name.mp4" "$PUBLIC_DIR/clips/$name.mp4"
+done
+for name in pixel_studio tilemap_editor ambient_aquarium interrupt_scope ninjix serial_whiteboard pvz breakout flappy word-processor; do
+  cp "$ROOT/build/launch-clips/$name.mp4" "$PUBLIC_DIR/clips/$name.mp4"
+done
+cp "$ROOT/build/launch-clips/ambient.wav" "$PUBLIC_DIR/audio/ambient.wav"
+cp -f "$ROOT"/media/remotion/assets/*.ttf "$PUBLIC_DIR/fonts/"
+echo "Synced launch footage, typefaces and original ambient score"

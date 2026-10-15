@@ -1,0 +1,1156 @@
+{
+  "apps": [
+    {
+      "slug": "word-processor",
+      "executable": "word_processor",
+      "args": [
+        "notebook.txt"
+      ],
+      "fixtures": {
+        "notebook.txt": "Studio notebook\n\nSmall ideas, made real.\n\nTODAY\n- Sketch a character\n- Build its first level\n- Find a four-track melody\n\nKeep the good bits. Try another version.\n"
+      },
+      "controls": [
+        [
+          "Cmd/Ctrl+S or F2",
+          "Save the document"
+        ],
+        [
+          "Cmd/Ctrl+Z / Shift+Z",
+          "Undo / redo"
+        ],
+        [
+          "Cmd/Ctrl+A / C / X / V",
+          "Select all / copy / cut / paste"
+        ],
+        [
+          "Arrows / Shift+arrows",
+          "Move / extend selection"
+        ],
+        [
+          "Mouse click / drag",
+          "Place caret / select text"
+        ],
+        [
+          "Home / End / Page Up / Down",
+          "Navigate document"
+        ],
+        [
+          "F1",
+          "Shortcuts"
+        ],
+        [
+          "Esc / Cmd/Ctrl+W",
+          "Close, with save prompt for unsaved work"
+        ]
+      ],
+      "workflow": [
+        "Open a plain text file by passing its path after the executable. A new path starts an empty document.",
+        "Write, select with Shift+arrows or by dragging, and use the host clipboard. Notes supports ASCII text up to 4 KB.",
+        "Save with Command-S on Mac, Ctrl-S elsewhere, F2, or the Save button. Closing unsaved work offers Save, Discard and Cancel."
+      ],
+      "states": [
+        {
+          "slug": "empty",
+          "title": "A clean page",
+          "caption": "The writing surface stays central, with a real Save button, edit history and word count.",
+          "ticks": 12,
+          "script": "at 0 rtc 2026-08-12T14:35:42\n",
+          "args": [
+            "empty.txt"
+          ]
+        },
+        {
+          "slug": "notebook",
+          "title": "A working notebook",
+          "caption": "The full-width page keeps the note readable without an inspector competing with the text.",
+          "ticks": 12,
+          "script": "at 0 rtc 2026-08-12T14:35:42\n"
+        },
+        {
+          "slug": "selection",
+          "title": "Select and edit",
+          "caption": "Command-A selects the document; Shift+arrows and mouse dragging select a smaller passage.",
+          "ticks": 20,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key LGUI down\nat 6 key A down\nat 8 key A up\nat 10 key LGUI up\n"
+        },
+        {
+          "slug": "editing",
+          "title": "A thought in progress",
+          "caption": "A typed addition marks the document unsaved and makes Undo available.",
+          "ticks": 82,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key ENTER down\nat 6 key ENTER up\nat 9 key O down\nat 11 key O up\nat 14 key N down\nat 16 key N up\nat 19 key E down\nat 21 key E up\nat 24 key SPACE down\nat 26 key SPACE up\nat 29 key M down\nat 31 key M up\nat 34 key O down\nat 36 key O up\nat 39 key R down\nat 41 key R up\nat 44 key E down\nat 46 key E up\nat 49 key SPACE down\nat 51 key SPACE up\nat 54 key I down\nat 56 key I up\nat 59 key D down\nat 61 key D up\nat 64 key E down\nat 66 key E up\nat 69 key A down\nat 71 key A up\n"
+        },
+        {
+          "slug": "saved",
+          "title": "Saved to disk",
+          "caption": "Command-S writes the actual text file atomically and confirms success in the status bar.",
+          "ticks": 45,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key ENTER down\nat 6 key ENTER up\nat 9 key D down\nat 11 key D up\nat 14 key O down\nat 16 key O up\nat 19 key N down\nat 21 key N up\nat 24 key E down\nat 26 key E up\nat 29 key LGUI down\nat 31 key S down\nat 33 key S up\nat 35 key LGUI up\n"
+        },
+        {
+          "slug": "save-changes",
+          "title": "Close without losing work",
+          "caption": "Closing a modified document offers Save, Discard or Cancel.",
+          "ticks": 27,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key SPACE down\nat 6 key SPACE up\nat 9 key A down\nat 11 key A up\nat 14 key ESC down\nat 16 key ESC up\n"
+        },
+        {
+          "slug": "shortcuts",
+          "title": "Editing shortcuts",
+          "caption": "The help overlay captures editing input while modifier and pointer releases remain tracked.",
+          "ticks": 17,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key F1 down\nat 6 key F1 up\n"
+        },
+        {
+          "slug": "save-error",
+          "title": "A useful save failure",
+          "caption": "A missing output folder produces a visible failure and keeps the document unsaved.",
+          "ticks": 25,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key A down\nat 6 key A up\nat 9 key LGUI down\nat 11 key S down\nat 13 key S up\nat 15 key LGUI up\n",
+          "args": [
+            "missing/notebook.txt"
+          ]
+        }
+      ],
+      "sources": [
+        "examples/word_processor.c",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ]
+    },
+    {
+      "slug": "music-maker",
+      "executable": "music_maker",
+      "args": [
+        "composition.mlpat"
+      ],
+      "fixtures": {},
+      "controls": [
+        [
+          "Space / P",
+          "Play or pause"
+        ],
+        [
+          "Click / arrows + Enter",
+          "Write or toggle a note"
+        ],
+        [
+          "1-4 / Tab",
+          "Select instrument"
+        ],
+        [
+          "M / track M button",
+          "Mute selected track"
+        ],
+        [
+          "- / + or transport buttons",
+          "Change tempo"
+        ],
+        [
+          "Home",
+          "Restart the loop"
+        ],
+        [
+          "Backspace / Delete",
+          "Remove current note"
+        ],
+        [
+          "C / R",
+          "Clear track / restore demo pattern"
+        ],
+        [
+          "Cmd/Ctrl+S / S / F2",
+          "Save pattern"
+        ],
+        [
+          "Cmd/Ctrl+Z / Shift+Z",
+          "Undo / redo"
+        ],
+        [
+          "F1",
+          "Shortcuts"
+        ]
+      ],
+      "workflow": [
+        "Start with the four-track demo or pass a saved .mlpat file to reopen a composition.",
+        "Choose a track, click the piano roll to place notes and use the overview lanes to jump to a step.",
+        "Play with Space, isolate a part with the mute buttons, and adjust tempo from 70 to 200 BPM.",
+        "Save the pattern to keep notes, mute states and tempo."
+      ],
+      "states": [
+        {
+          "slug": "piano-roll",
+          "title": "One loop, four voices",
+          "caption": "The piano roll separates the active voice from the other tracks, with a compact pattern overview below.",
+          "ticks": 12,
+          "script": "at 0 rtc 2026-08-12T14:35:42\n"
+        },
+        {
+          "slug": "bass",
+          "title": "Shape the bass line",
+          "caption": "Number keys select instruments and the lane overview exposes every track.",
+          "ticks": 37,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key 2 down\nat 6 key 2 up\nat 9 key RIGHT down\nat 11 key RIGHT up\nat 14 key RIGHT down\nat 16 key RIGHT up\nat 19 key UP down\nat 21 key UP up\nat 24 key ENTER down\nat 26 key ENTER up\n"
+        },
+        {
+          "slug": "rhythm",
+          "title": "A rhythm of its own",
+          "caption": "The drum lane can be edited with the same mouse and keyboard controls as melodic voices.",
+          "ticks": 32,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key 4 down\nat 6 key 4 up\nat 9 key RIGHT down\nat 11 key RIGHT up\nat 14 key UP down\nat 16 key UP up\nat 19 key ENTER down\nat 21 key ENTER up\n"
+        },
+        {
+          "slug": "playing",
+          "title": "Hear the whole loop",
+          "caption": "Space starts real AC97 audio playback with a visible step playhead.",
+          "ticks": 120,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key SPACE down\nat 6 key SPACE up\n"
+        },
+        {
+          "slug": "muted",
+          "title": "Make room in the mix",
+          "caption": "Mute is visible on each instrument and changes the audio that is actually rendered.",
+          "ticks": 100,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key 2 down\nat 6 key 2 up\nat 9 key M down\nat 11 key M up\nat 14 key SPACE down\nat 16 key SPACE up\n"
+        },
+        {
+          "slug": "blank-track",
+          "title": "Start a new part",
+          "caption": "Clear removes only the selected instrument; Undo restores the previous pattern.",
+          "ticks": 22,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key 3 down\nat 6 key 3 up\nat 9 key C down\nat 11 key C up\n"
+        },
+        {
+          "slug": "saved",
+          "title": "Keep the composition",
+          "caption": "Command-S saves a reloadable pattern including tempo and mute states.",
+          "ticks": 40,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key RIGHT down\nat 6 key RIGHT up\nat 9 key UP down\nat 11 key UP up\nat 14 key ENTER down\nat 16 key ENTER up\nat 19 key MINUS down\nat 21 key MINUS up\nat 24 key LGUI down\nat 26 key S down\nat 28 key S up\nat 30 key LGUI up\n"
+        },
+        {
+          "slug": "shortcuts",
+          "title": "The complete control map",
+          "caption": "The modal help lists writing, transport, history, persistence and tempo controls.",
+          "ticks": 17,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key F1 down\nat 6 key F1 up\n"
+        }
+      ],
+      "sources": [
+        "examples/music_maker.c",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ]
+    },
+    {
+      "slug": "pixel-studio",
+      "executable": "pixel_studio",
+      "args": [
+        "sprite.h"
+      ],
+      "fixtures": {},
+      "controls": [
+        [
+          "B / P / E / F / I",
+          "Pencil / eraser / fill / eyedropper"
+        ],
+        [
+          "Mouse drag / right-click",
+          "Paint / pick canvas color"
+        ],
+        [
+          "Arrows + Enter / Space",
+          "Move pixel cursor and apply tool"
+        ],
+        [
+          "Delete",
+          "Erase the cursor pixel"
+        ],
+        [
+          "[ / ]",
+          "Previous / next palette color"
+        ],
+        [
+          "X / V",
+          "Flip horizontally / vertically"
+        ],
+        [
+          "1 / 2 / 3 or - / +",
+          "Zoom"
+        ],
+        [
+          "G",
+          "Toggle grid"
+        ],
+        [
+          "Cmd/Ctrl+Z / Shift+Z",
+          "Undo / redo"
+        ],
+        [
+          "Cmd/Ctrl+S / S / F2",
+          "Export reusable C header"
+        ],
+        [
+          "C / F1",
+          "Clear / shortcuts"
+        ]
+      ],
+      "workflow": [
+        "Draw with pencil or erase, fill a connected color region, or right-click to pick a color.",
+        "Use the cursor keys and Enter to edit pixel by pixel without a mouse. The footer reports the exact pixel and opaque pixel count.",
+        "Compare the native-size and 2x previews, toggle grid and zoom, and flip the sprite with X or V.",
+        "Export writes a reusable ARGB C header atomically; transparent pixels stay transparent."
+      ],
+      "states": [
+        {
+          "slug": "sprite",
+          "title": "Every pixel counts",
+          "caption": "A 16 by 16 canvas, indexed palette, native-size previews and real history controls.",
+          "ticks": 12,
+          "script": "at 0 rtc 2026-08-12T14:35:42\n"
+        },
+        {
+          "slug": "pencil",
+          "title": "A complete brush stroke",
+          "caption": "Dragging interpolates between cells, so fast strokes stay connected.",
+          "ticks": 28,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 mouse -119 89 0\nat 8 mouse 0 0 1\nat 12 mouse 180 -154 1\nat 16 mouse 0 0 0\n"
+        },
+        {
+          "slug": "fill",
+          "title": "Fill a connected region",
+          "caption": "The fill tool replaces only the connected region, with one reversible history step.",
+          "ticks": 29,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key F down\nat 6 key F up\nat 9 mouse -162 155 0\nat 13 mouse 0 0 1\nat 17 mouse 0 0 0\n"
+        },
+        {
+          "slug": "keyboard",
+          "title": "Pixel-perfect keyboard editing",
+          "caption": "Arrow keys move a visible cursor; Enter applies the selected tool and the footer identifies the pixel.",
+          "ticks": 47,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key RIGHT down\nat 6 key RIGHT up\nat 9 key RIGHT down\nat 11 key RIGHT up\nat 14 key RIGHT down\nat 16 key RIGHT up\nat 19 key DOWN down\nat 21 key DOWN up\nat 24 key DOWN down\nat 26 key DOWN up\nat 29 key DOWN down\nat 31 key DOWN up\nat 34 key ENTER down\nat 36 key ENTER up\n"
+        },
+        {
+          "slug": "flipped",
+          "title": "Explore a variation",
+          "caption": "Flip horizontally or vertically with X and V, and reverse the edit through normal Undo.",
+          "ticks": 22,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key X down\nat 6 key X up\nat 9 key V down\nat 11 key V up\n"
+        },
+        {
+          "slug": "clean-preview",
+          "title": "See the silhouette",
+          "caption": "The smallest zoom with the grid hidden gives a clean look at the sprite.",
+          "ticks": 22,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key 1 down\nat 6 key 1 up\nat 9 key G down\nat 11 key G up\n"
+        },
+        {
+          "slug": "exported",
+          "title": "Ready to use in C",
+          "caption": "Export creates the reusable C array and only reports success after the file is complete.",
+          "ticks": 17,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key S down\nat 6 key S up\n"
+        },
+        {
+          "slug": "shortcuts",
+          "title": "Mouse and keyboard, together",
+          "caption": "Tool keys, palette stepping, keyboard drawing, transforms and history are all documented in the app.",
+          "ticks": 17,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key F1 down\nat 6 key F1 up\n"
+        }
+      ],
+      "sources": [
+        "examples/pixel_studio.c",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ]
+    },
+    {
+      "slug": "tilemap-editor",
+      "executable": "tilemap_editor",
+      "args": [
+        "level.mlmap"
+      ],
+      "fixtures": {},
+      "controls": [
+        [
+          "1-5",
+          "Floor / wall / goal / crate / player"
+        ],
+        [
+          "Mouse drag / right-click",
+          "Paint / pick tile"
+        ],
+        [
+          "Arrows + Space",
+          "Move tile cursor and paint"
+        ],
+        [
+          "Delete",
+          "Erase the tile under the cursor"
+        ],
+        [
+          "Enter / F5",
+          "Switch editor / playtest"
+        ],
+        [
+          "Arrows / WASD in playtest",
+          "Move player"
+        ],
+        [
+          "U / R in playtest",
+          "Undo move / reset puzzle"
+        ],
+        [
+          "Cmd/Ctrl+Z / Shift+Z",
+          "Undo / redo map edit"
+        ],
+        [
+          "V / G",
+          "Validate / toggle grid"
+        ],
+        [
+          "Cmd/Ctrl+S / S / F2",
+          "Save map"
+        ],
+        [
+          "Esc in playtest",
+          "Return to editor"
+        ],
+        [
+          "F1 / ? button",
+          "Shortcuts"
+        ]
+      ],
+      "workflow": [
+        "Paint terrain and objects on the same map. Floor removes an object, while a goal can share its cell with a crate or player.",
+        "Validate before playtesting. The check catches open boundaries, missing players, unmatched goals and crates, isolated goals and static corner traps.",
+        "Enter or F5 starts an isolated playtest. Move with arrows or WASD, undo with U and reset with R. Escape returns to editing.",
+        "Save exports the original designed map, not the transient playtest board. Pass the same .mlmap path to reopen it later."
+      ],
+      "states": [
+        {
+          "slug": "map",
+          "title": "Design the puzzle",
+          "caption": "Tile tools, map canvas and validation form a complete workspace.",
+          "ticks": 12,
+          "script": "at 0 rtc 2026-08-12T14:35:42\n"
+        },
+        {
+          "slug": "keyboard",
+          "title": "Paint without a mouse",
+          "caption": "Arrows move a tile cursor; Space paints the selected brush.",
+          "ticks": 32,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key RIGHT down\nat 6 key RIGHT up\nat 9 key DOWN down\nat 11 key DOWN up\nat 14 key 1 down\nat 16 key 1 up\nat 19 key SPACE down\nat 21 key SPACE up\n"
+        },
+        {
+          "slug": "invalid",
+          "title": "Catch an open boundary",
+          "caption": "Removing an outer wall creates a visible validation warning and blocks playtesting.",
+          "ticks": 27,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key 1 down\nat 6 key 1 up\nat 9 key SPACE down\nat 11 key SPACE up\nat 14 key V down\nat 16 key V up\n"
+        },
+        {
+          "slug": "history",
+          "title": "Undo an edit",
+          "caption": "The Undo button becomes available after a tile change, while saved state remains explicit.",
+          "ticks": 32,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key RIGHT down\nat 6 key RIGHT up\nat 9 key DOWN down\nat 11 key DOWN up\nat 14 key 3 down\nat 16 key 3 up\nat 19 key SPACE down\nat 21 key SPACE up\n"
+        },
+        {
+          "slug": "playtest",
+          "title": "Try the puzzle",
+          "caption": "Playtest uses an isolated copy of the objects, with real Undo and Reset controls.",
+          "ticks": 22,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key ENTER down\nat 6 key ENTER up\nat 9 key RIGHT down\nat 11 key RIGHT up\n"
+        },
+        {
+          "slug": "solved",
+          "title": "A clear finish",
+          "caption": "The solved message stays below the map, preserving a view of the completed board.",
+          "ticks": 52,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key ENTER down\nat 6 key ENTER up\nat 9 key S down\nat 11 key S up\nat 14 key W down\nat 16 key W up\nat 19 key A down\nat 21 key A up\nat 24 key S down\nat 26 key S up\nat 29 key S down\nat 31 key S up\nat 34 key D down\nat 36 key D up\nat 39 key D down\nat 41 key D up\n"
+        },
+        {
+          "slug": "saved",
+          "title": "Save the designed map",
+          "caption": "Command-S writes a map file and reports whether it is a valid puzzle or a draft.",
+          "ticks": 20,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key LGUI down\nat 6 key S down\nat 8 key S up\nat 10 key LGUI up\n"
+        },
+        {
+          "slug": "shortcuts",
+          "title": "Build, test, refine",
+          "caption": "The in-app control map covers keyboard editing, playtesting, validation and saving.",
+          "ticks": 17,
+          "script": "at 0 rtc 2026-08-12T14:35:42\nat 4 key F1 down\nat 6 key F1 up\n"
+        }
+      ],
+      "sources": [
+        "examples/tilemap_editor.c",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ]
+    },
+    {
+      "slug": "pomodoro-clock",
+      "executable": "pomodoro_clock",
+      "args": [],
+      "states": [
+        {
+          "slug": "ready",
+          "title": "Ready to focus",
+          "caption": "Choose a 25-minute focus session or a five-minute break.",
+          "ticks": 120,
+          "script": ""
+        },
+        {
+          "slug": "running",
+          "title": "A session in progress",
+          "caption": "The countdown runs from the monotonic timer, independently of the wall clock.",
+          "ticks": 180,
+          "script": "at 10 key SPACE down\nat 11 key SPACE up\n"
+        },
+        {
+          "slug": "paused",
+          "title": "Pick up where you left off",
+          "caption": "Space pauses and resumes without losing elapsed time.",
+          "ticks": 150,
+          "script": "at 10 key SPACE down\nat 11 key SPACE up\nat 100 key SPACE down\nat 101 key SPACE up\n"
+        },
+        {
+          "slug": "break",
+          "title": "Time to recharge",
+          "caption": "B selects a break directly. F returns to focus.",
+          "ticks": 120,
+          "script": "at 10 key B down\nat 11 key B up\n"
+        },
+        {
+          "slug": "completion",
+          "title": "A completed focus session",
+          "caption": "Quick demo mode completes a focus session in five seconds and selects a break.",
+          "ticks": 400,
+          "script": "at 10 key D down\nat 11 key D up\nat 20 key SPACE down\nat 21 key SPACE up\n"
+        },
+        {
+          "slug": "quiet",
+          "title": "A quieter workspace",
+          "caption": "The sound control mutes the completion chime.",
+          "ticks": 120,
+          "script": "at 10 key M down\nat 11 key M up\n"
+        },
+        {
+          "slug": "help",
+          "title": "Everything within reach",
+          "caption": "F1 explains the controls and captures editing input.",
+          "ticks": 120,
+          "script": "at 10 key F1 down\nat 11 key F1 up\n"
+        }
+      ],
+      "sources": [
+        "examples/pomodoro_clock.c",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ]
+    },
+    {
+      "slug": "interrupt-scope",
+      "executable": "interrupt_scope",
+      "args": [],
+      "states": [
+        {
+          "slug": "live",
+          "title": "Every device has its own lane",
+          "caption": "Independently scaled lanes reveal input bursts alongside the steady timer.",
+          "ticks": 600,
+          "script": "at 30 key A down\nat 31 key A up\nat 50 mouse 24 -18 0\nat 62 mouse -15 24 1\nat 65 mouse 0 0 0\nat 90 key RIGHT down\nat 91 key RIGHT up\n"
+        },
+        {
+          "slug": "keyboard",
+          "title": "Keyboard scan codes",
+          "caption": "Typing produces real make and break bytes in the device inspector.",
+          "ticks": 240,
+          "script": "at 30 key A down\nat 31 key A up\nat 50 mouse 24 -18 0\nat 62 mouse -15 24 1\nat 65 mouse 0 0 0\nat 90 key RIGHT down\nat 91 key RIGHT up\nat 210 key B down\nat 211 key B up\nat 220 key X down\nat 221 key X up\n"
+        },
+        {
+          "slug": "mouse",
+          "title": "Mouse packets",
+          "caption": "The inspector shows the three bytes of each PS/2 mouse packet.",
+          "ticks": 180,
+          "script": "at 30 key A down\nat 31 key A up\nat 50 mouse 24 -18 0\nat 62 mouse -15 24 1\nat 65 mouse 0 0 0\nat 90 key RIGHT down\nat 91 key RIGHT up\nat 150 mouse 38 -20 1\nat 151 mouse 0 0 0\n"
+        },
+        {
+          "slug": "frozen",
+          "title": "Pause the history",
+          "caption": "Space freezes the graph while hardware counters continue to update.",
+          "ticks": 360,
+          "script": "at 30 key A down\nat 31 key A up\nat 50 mouse 24 -18 0\nat 62 mouse -15 24 1\nat 65 mouse 0 0 0\nat 90 key RIGHT down\nat 91 key RIGHT up\nat 180 key SPACE down\nat 181 key SPACE up\n"
+        },
+        {
+          "slug": "loopback-off",
+          "title": "Disable the serial probe",
+          "caption": "L toggles COM1 loopback while the remaining devices stay live.",
+          "ticks": 360,
+          "script": "at 30 key A down\nat 31 key A up\nat 50 mouse 24 -18 0\nat 62 mouse -15 24 1\nat 65 mouse 0 0 0\nat 90 key RIGHT down\nat 91 key RIGHT up\nat 180 key L down\nat 181 key L up\n"
+        },
+        {
+          "slug": "clear",
+          "title": "Start a fresh measurement",
+          "caption": "C clears the counters and history, ready for the next experiment.",
+          "ticks": 250,
+          "script": "at 30 key A down\nat 31 key A up\nat 50 mouse 24 -18 0\nat 62 mouse -15 24 1\nat 65 mouse 0 0 0\nat 90 key RIGHT down\nat 91 key RIGHT up\nat 240 key C down\nat 241 key C up\n"
+        },
+        {
+          "slug": "help",
+          "title": "Learn the instrument",
+          "caption": "F1 explains rate windows, polling and loopback.",
+          "ticks": 240,
+          "script": "at 30 key A down\nat 31 key A up\nat 50 mouse 24 -18 0\nat 62 mouse -15 24 1\nat 65 mouse 0 0 0\nat 90 key RIGHT down\nat 91 key RIGHT up\nat 200 key F1 down\nat 201 key F1 up\n"
+        }
+      ],
+      "sources": [
+        "examples/interrupt_scope.c",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ]
+    },
+    {
+      "slug": "ambient-aquarium",
+      "executable": "ambient_aquarium",
+      "args": [],
+      "states": [
+        {
+          "slug": "dawn",
+          "title": "A new morning",
+          "caption": "Dawn uses cool soft light; 1 selects this phase.",
+          "ticks": 160,
+          "script": "at 10 key 1 down\nat 11 key 1 up\n"
+        },
+        {
+          "slug": "day",
+          "title": "A living desktop aquarium",
+          "caption": "2 selects daylight. Fish, plants and bubbles keep moving.",
+          "ticks": 180,
+          "script": "at 10 key 2 down\nat 11 key 2 up\n"
+        },
+        {
+          "slug": "feeding",
+          "title": "Follow the food",
+          "caption": "Click the water to scatter food and watch fish gather.",
+          "ticks": 160,
+          "script": "at 10 key 2 down\nat 11 key 2 up\nat 70 mouse 100 70 0\nat 80 mouse 0 0 1\nat 81 mouse 0 0 0\n"
+        },
+        {
+          "slug": "sunset",
+          "title": "Evening arrives",
+          "caption": "3 selects the warm sunset palette.",
+          "ticks": 180,
+          "script": "at 10 key 3 down\nat 11 key 3 up\n"
+        },
+        {
+          "slug": "night",
+          "title": "After dark",
+          "caption": "4 selects night. A returns lighting to the real clock.",
+          "ticks": 180,
+          "script": "at 10 key 4 down\nat 11 key 4 up\n"
+        },
+        {
+          "slug": "paused",
+          "title": "A moment of stillness",
+          "caption": "Space pauses motion without resetting the habitat.",
+          "ticks": 180,
+          "script": "at 10 key 2 down\nat 11 key 2 up\nat 120 key SPACE down\nat 121 key SPACE up\n"
+        },
+        {
+          "slug": "quiet",
+          "title": "Only the fish",
+          "caption": "Hide bubbles and mute sound with B and M.",
+          "ticks": 180,
+          "script": "at 10 key 2 down\nat 11 key 2 up\nat 20 key B down\nat 21 key B up\nat 30 key M down\nat 31 key M up\n"
+        },
+        {
+          "slug": "help",
+          "title": "A guide to the habitat",
+          "caption": "F1 opens the control guide while fish continue swimming.",
+          "ticks": 180,
+          "script": "at 10 key F1 down\nat 11 key F1 up\n"
+        }
+      ],
+      "sources": [
+        "examples/ambient_aquarium.c",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ]
+    },
+    {
+      "slug": "serial-whiteboard",
+      "executable": "serial_whiteboard",
+      "args": [
+        "left"
+      ],
+      "states": [
+        {
+          "slug": "connected",
+          "title": "Two desks, one board",
+          "caption": "Both peers connect over the virtual serial cable.",
+          "ticks": 90,
+          "script": "",
+          "right_script": "",
+          "capture_side": "left"
+        },
+        {
+          "slug": "drawing",
+          "title": "Draw together",
+          "caption": "Each board shows both local and remote strokes.",
+          "ticks": 420,
+          "script": "at 0.4s move -120 92 during 0.5s\nat 1.0s mouse 0 0 1\nat 1.1s move 78 -24 during 0.7s 1\nat 1.9s move 66 54 during 0.6s 1\nat 2.6s move 74 -62 during 0.7s 1\nat 3.4s mouse 0 0 0\nat 4.0s key 3 down\nat 4.1s key 3 up\nat 4.3s move -170 -74 during 0.8s\nat 5.2s mouse 0 0 1\nat 5.3s move 112 0 during 0.8s 1\nat 6.2s mouse 0 0 0\n",
+          "right_script": "at 0.6s move 84 70 during 0.5s\nat 1.3s mouse 0 0 1\nat 1.4s move -72 -42 during 0.7s 1\nat 2.2s move -74 58 during 0.6s 1\nat 2.9s move -76 -48 during 0.7s 1\nat 3.7s mouse 0 0 0\nat 4.4s key 5 down\nat 4.5s key 5 up\nat 4.7s move 88 -96 during 0.8s\nat 5.6s mouse 0 0 1\nat 5.7s move -156 0 during 1.0s 1\nat 6.8s mouse 0 0 0\n",
+          "capture_side": "left"
+        },
+        {
+          "slug": "peer-view",
+          "title": "The other side of the conversation",
+          "caption": "The right desk keeps its own ink and cursor while sharing the same board.",
+          "ticks": 420,
+          "script": "at 0.4s move -120 92 during 0.5s\nat 1.0s mouse 0 0 1\nat 1.1s move 78 -24 during 0.7s 1\nat 1.9s move 66 54 during 0.6s 1\nat 2.6s move 74 -62 during 0.7s 1\nat 3.4s mouse 0 0 0\nat 4.0s key 3 down\nat 4.1s key 3 up\nat 4.3s move -170 -74 during 0.8s\nat 5.2s mouse 0 0 1\nat 5.3s move 112 0 during 0.8s 1\nat 6.2s mouse 0 0 0\n",
+          "right_script": "at 0.6s move 84 70 during 0.5s\nat 1.3s mouse 0 0 1\nat 1.4s move -72 -42 during 0.7s 1\nat 2.2s move -74 58 during 0.6s 1\nat 2.9s move -76 -48 during 0.7s 1\nat 3.7s mouse 0 0 0\nat 4.4s key 5 down\nat 4.5s key 5 up\nat 4.7s move 88 -96 during 0.8s\nat 5.6s mouse 0 0 1\nat 5.7s move -156 0 during 1.0s 1\nat 6.8s mouse 0 0 0\n",
+          "capture_side": "right"
+        },
+        {
+          "slug": "plain-canvas",
+          "title": "A clear canvas",
+          "caption": "G hides the guide grid without changing any strokes.",
+          "ticks": 450,
+          "script": "at 0.4s move -120 92 during 0.5s\nat 1.0s mouse 0 0 1\nat 1.1s move 78 -24 during 0.7s 1\nat 1.9s move 66 54 during 0.6s 1\nat 2.6s move 74 -62 during 0.7s 1\nat 3.4s mouse 0 0 0\nat 4.0s key 3 down\nat 4.1s key 3 up\nat 4.3s move -170 -74 during 0.8s\nat 5.2s mouse 0 0 1\nat 5.3s move 112 0 during 0.8s 1\nat 6.2s mouse 0 0 0\nat 430 key G down\nat 431 key G up\n",
+          "right_script": "at 0.6s move 84 70 during 0.5s\nat 1.3s mouse 0 0 1\nat 1.4s move -72 -42 during 0.7s 1\nat 2.2s move -74 58 during 0.6s 1\nat 2.9s move -76 -48 during 0.7s 1\nat 3.7s mouse 0 0 0\nat 4.4s key 5 down\nat 4.5s key 5 up\nat 4.7s move 88 -96 during 0.8s\nat 5.6s mouse 0 0 1\nat 5.7s move -156 0 during 1.0s 1\nat 6.8s mouse 0 0 0\n",
+          "capture_side": "left"
+        },
+        {
+          "slug": "resync",
+          "title": "Resynchronize the drawing",
+          "caption": "S replays the local stroke snapshot to the other desk.",
+          "ticks": 490,
+          "script": "at 0.4s move -120 92 during 0.5s\nat 1.0s mouse 0 0 1\nat 1.1s move 78 -24 during 0.7s 1\nat 1.9s move 66 54 during 0.6s 1\nat 2.6s move 74 -62 during 0.7s 1\nat 3.4s mouse 0 0 0\nat 4.0s key 3 down\nat 4.1s key 3 up\nat 4.3s move -170 -74 during 0.8s\nat 5.2s mouse 0 0 1\nat 5.3s move 112 0 during 0.8s 1\nat 6.2s mouse 0 0 0\nat 480 key S down\nat 481 key S up\n",
+          "right_script": "at 0.6s move 84 70 during 0.5s\nat 1.3s mouse 0 0 1\nat 1.4s move -72 -42 during 0.7s 1\nat 2.2s move -74 58 during 0.6s 1\nat 2.9s move -76 -48 during 0.7s 1\nat 3.7s mouse 0 0 0\nat 4.4s key 5 down\nat 4.5s key 5 up\nat 4.7s move 88 -96 during 0.8s\nat 5.6s mouse 0 0 1\nat 5.7s move -156 0 during 1.0s 1\nat 6.8s mouse 0 0 0\n",
+          "capture_side": "left"
+        },
+        {
+          "slug": "keyboard",
+          "title": "Draw from the keyboard",
+          "caption": "Shift + arrow keys draws precise segments, arrows alone move the cursor.",
+          "ticks": 180,
+          "script": "at 10 key LSHIFT down\nat 20 key RIGHT down\nat 21 key RIGHT up\nat 23 key RIGHT down\nat 24 key RIGHT up\nat 26 key RIGHT down\nat 27 key RIGHT up\nat 29 key RIGHT down\nat 30 key RIGHT up\nat 32 key RIGHT down\nat 33 key RIGHT up\nat 35 key RIGHT down\nat 36 key RIGHT up\nat 38 key RIGHT down\nat 39 key RIGHT up\nat 41 key RIGHT down\nat 42 key RIGHT up\nat 44 key RIGHT down\nat 45 key RIGHT up\nat 47 key RIGHT down\nat 48 key RIGHT up\nat 50 key RIGHT down\nat 51 key RIGHT up\nat 53 key RIGHT down\nat 54 key RIGHT up\nat 60 key LSHIFT up\n",
+          "right_script": "",
+          "capture_side": "left"
+        },
+        {
+          "slug": "help",
+          "title": "A shared surface, familiar controls",
+          "caption": "F1 explains drawing, colors, clearing and resynchronization.",
+          "ticks": 460,
+          "script": "at 0.4s move -120 92 during 0.5s\nat 1.0s mouse 0 0 1\nat 1.1s move 78 -24 during 0.7s 1\nat 1.9s move 66 54 during 0.6s 1\nat 2.6s move 74 -62 during 0.7s 1\nat 3.4s mouse 0 0 0\nat 4.0s key 3 down\nat 4.1s key 3 up\nat 4.3s move -170 -74 during 0.8s\nat 5.2s mouse 0 0 1\nat 5.3s move 112 0 during 0.8s 1\nat 6.2s mouse 0 0 0\nat 440 key F1 down\nat 441 key F1 up\n",
+          "right_script": "at 0.6s move 84 70 during 0.5s\nat 1.3s mouse 0 0 1\nat 1.4s move -72 -42 during 0.7s 1\nat 2.2s move -74 58 during 0.6s 1\nat 2.9s move -76 -48 during 0.7s 1\nat 3.7s mouse 0 0 0\nat 4.4s key 5 down\nat 4.5s key 5 up\nat 4.7s move 88 -96 during 0.8s\nat 5.6s mouse 0 0 1\nat 5.7s move -156 0 during 1.0s 1\nat 6.8s mouse 0 0 0\n",
+          "capture_side": "left"
+        }
+      ],
+      "sources": [
+        "examples/serial_whiteboard.c",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ],
+      "paired": true,
+      "right_args": [
+        "right"
+      ]
+    },
+    {
+      "slug": "serial-transfer",
+      "executable": "serial_transfer",
+      "args": [
+        "send"
+      ],
+      "states": [
+        {
+          "slug": "connecting",
+          "title": "Ready to transfer",
+          "caption": "The sender has prepared the sprite and starts its acknowledged block transfer.",
+          "ticks": 2,
+          "script": ""
+        },
+        {
+          "slug": "progress",
+          "title": "One block at a time",
+          "caption": "The receiver fills in only bytes it has actually received.",
+          "ticks": 70,
+          "script": "",
+          "capture_side": "right"
+        },
+        {
+          "slug": "retry",
+          "title": "Recovering a lost frame",
+          "caption": "Fault mode drops one frame. The sender waits, then retries it.",
+          "ticks": 130,
+          "script": "",
+          "args": [
+            "send",
+            "fault"
+          ]
+        },
+        {
+          "slug": "complete",
+          "title": "Verified delivery",
+          "caption": "The final CRC32 matches on both peers.",
+          "ticks": 700,
+          "script": "",
+          "args": [
+            "send",
+            "fault"
+          ]
+        },
+        {
+          "slug": "receiver",
+          "title": "A complete received sprite",
+          "caption": "All 32 blocks are present and the result is verified.",
+          "ticks": 700,
+          "script": "",
+          "args": [
+            "send",
+            "fault"
+          ],
+          "capture_side": "right"
+        },
+        {
+          "slug": "failure",
+          "title": "A precise failure state",
+          "caption": "A deliberately bad CRC leaves an unverified transfer and a clear failure heading.",
+          "ticks": 700,
+          "script": "",
+          "args": [
+            "send",
+            "badcrc"
+          ],
+          "capture_side": "right",
+          "expected_exit": 1,
+          "expect": [
+            "role=sender failed bytes=256",
+            "role=receiver failed bytes=256",
+            "coordinated=yes",
+            "badcrc:rejected"
+          ]
+        },
+        {
+          "slug": "help",
+          "title": "Inspect the transfer",
+          "caption": "F1 opens help. Space keeps the result visible after completion.",
+          "ticks": 160,
+          "script": "at 10 key SPACE down\nat 11 key SPACE up\nat 20 key F1 down\nat 21 key F1 up\n"
+        }
+      ],
+      "sources": [
+        "examples/serial_transfer.c",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ],
+      "paired": true,
+      "right_args": [
+        "receive"
+      ]
+    },
+    {
+      "slug": "breakout",
+      "executable": "breakout_demo",
+      "args": [],
+      "controls": [
+        "Left / Right or A / D move the paddle.",
+        "Space or Enter serves. Space or P pauses; R restarts.",
+        "F1 or H opens help; Escape closes help, then closes the game."
+      ],
+      "states": [
+        {
+          "slug": "ready",
+          "title": "Ready to serve",
+          "caption": "Three lives, 36 bricks, and a ball waiting on the paddle.",
+          "ticks": 20,
+          "script": ""
+        },
+        {
+          "slug": "how-to-play",
+          "title": "How to play",
+          "caption": "Help freezes play and explains the round without losing progress.",
+          "ticks": 20,
+          "script": "at 2 key F1 down\nat 3 key F1 up\n"
+        },
+        {
+          "slug": "first-serve",
+          "title": "First serve",
+          "caption": "Space launches the ball into the wall.",
+          "ticks": 34,
+          "script": "at 2 key SPACE down\nat 3 key SPACE up\n"
+        },
+        {
+          "slug": "paddle-control",
+          "title": "Paddle control",
+          "caption": "Move the paddle with arrows or A and D.",
+          "ticks": 52,
+          "script": "at 2 key SPACE down\nat 3 key SPACE up\nat 8 key RIGHT down\nat 42 key RIGHT up\n"
+        },
+        {
+          "slug": "brick-wall",
+          "title": "Breaking the wall",
+          "caption": "Each broken brick adds ten points to the score.",
+          "ticks": 94,
+          "script": "at 2 key SPACE down\nat 3 key SPACE up\n"
+        },
+        {
+          "slug": "paused",
+          "title": "Take a break",
+          "caption": "Pause holds the ball and paddle in place.",
+          "ticks": 100,
+          "script": "at 2 key SPACE down\nat 3 key SPACE up\nat 90 key P down\nat 91 key P up\n"
+        },
+        {
+          "slug": "next-life",
+          "title": "Another chance",
+          "caption": "A missed return costs a life. The next serve waits for you.",
+          "ticks": 200,
+          "script": "at 2 key SPACE down\nat 3 key SPACE up\n"
+        },
+        {
+          "slug": "game-over",
+          "title": "Out of lives",
+          "caption": "The round ends after three misses and offers a clear restart.",
+          "ticks": 620,
+          "script": "at 2 key SPACE down\nat 3 key SPACE up\nat 210 key SPACE down\nat 211 key SPACE up\nat 420 key SPACE down\nat 421 key SPACE up\n"
+        }
+      ],
+      "sources": [
+        "examples/breakout_demo.c",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ]
+    },
+    {
+      "slug": "flappy-bird",
+      "executable": "flappy_bird",
+      "args": [],
+      "controls": [
+        "Space, Up, or a mouse click flaps.",
+        "P pauses; Space, Enter, P, or a click resumes.",
+        "F1 or H shows instructions. R retries a crash. Escape quits.",
+        "Arrow keys or Tab select a menu option; Enter or click activates it."
+      ],
+      "states": [
+        {
+          "slug": "menu",
+          "title": "Find your rhythm",
+          "caption": "The readable pixel menu keeps the original bird and landscape.",
+          "ticks": 20,
+          "script": ""
+        },
+        {
+          "slug": "how-to-fly",
+          "title": "How to fly",
+          "caption": "Controls and pipe navigation in a help screen that freezes play.",
+          "ticks": 20,
+          "script": "at 2 key F1 down\nat 3 key F1 up\n"
+        },
+        {
+          "slug": "takeoff",
+          "title": "Takeoff",
+          "caption": "One flap lifts the bird into its run.",
+          "ticks": 20,
+          "script": "at 2 key SPACE down\nat 3 key SPACE up\n"
+        },
+        {
+          "slug": "approach",
+          "title": "Approaching the pipes",
+          "caption": "Actual keyboard flaps approach the first pipe gap.",
+          "ticks": 270,
+          "script": "at 2 key SPACE down\nat 3 key SPACE up\nat 42 key SPACE down\nat 43 key SPACE up\nat 80 key SPACE down\nat 81 key SPACE up\nat 117 key SPACE down\nat 118 key SPACE up\nat 154 key SPACE down\nat 155 key SPACE up\nat 192 key SPACE down\nat 193 key SPACE up\nat 229 key SPACE down\nat 230 key SPACE up\nat 266 key SPACE down\nat 267 key SPACE up\nat 304 key SPACE down\nat 305 key SPACE up\nat 341 key SPACE down\nat 342 key SPACE up\nat 393 key SPACE down\nat 394 key SPACE up\n"
+        },
+        {
+          "slug": "through-gap",
+          "title": "Threading the gap",
+          "caption": "The bird flies between the two halves of a pipe.",
+          "ticks": 315,
+          "script": "at 2 key SPACE down\nat 3 key SPACE up\nat 42 key SPACE down\nat 43 key SPACE up\nat 80 key SPACE down\nat 81 key SPACE up\nat 117 key SPACE down\nat 118 key SPACE up\nat 154 key SPACE down\nat 155 key SPACE up\nat 192 key SPACE down\nat 193 key SPACE up\nat 229 key SPACE down\nat 230 key SPACE up\nat 266 key SPACE down\nat 267 key SPACE up\nat 304 key SPACE down\nat 305 key SPACE up\nat 341 key SPACE down\nat 342 key SPACE up\nat 393 key SPACE down\nat 394 key SPACE up\n"
+        },
+        {
+          "slug": "scored",
+          "title": "A successful pass",
+          "caption": "The score updates after clearing the first pipe.",
+          "ticks": 360,
+          "script": "at 2 key SPACE down\nat 3 key SPACE up\nat 42 key SPACE down\nat 43 key SPACE up\nat 80 key SPACE down\nat 81 key SPACE up\nat 117 key SPACE down\nat 118 key SPACE up\nat 154 key SPACE down\nat 155 key SPACE up\nat 192 key SPACE down\nat 193 key SPACE up\nat 229 key SPACE down\nat 230 key SPACE up\nat 266 key SPACE down\nat 267 key SPACE up\nat 304 key SPACE down\nat 305 key SPACE up\nat 341 key SPACE down\nat 342 key SPACE up\nat 393 key SPACE down\nat 394 key SPACE up\n"
+        },
+        {
+          "slug": "paused",
+          "title": "Flight paused",
+          "caption": "The world stops while the pause panel stays readable.",
+          "ticks": 325,
+          "script": "at 2 key SPACE down\nat 3 key SPACE up\nat 42 key SPACE down\nat 43 key SPACE up\nat 80 key SPACE down\nat 81 key SPACE up\nat 117 key SPACE down\nat 118 key SPACE up\nat 154 key SPACE down\nat 155 key SPACE up\nat 192 key SPACE down\nat 193 key SPACE up\nat 229 key SPACE down\nat 230 key SPACE up\nat 266 key SPACE down\nat 267 key SPACE up\nat 304 key SPACE down\nat 305 key SPACE up\nat 341 key SPACE down\nat 342 key SPACE up\nat 393 key SPACE down\nat 394 key SPACE up\nat 318 key P down\nat 319 key P up\n"
+        },
+        {
+          "slug": "game-over",
+          "title": "Try again",
+          "caption": "A crash offers an immediate retry and the session best.",
+          "ticks": 110,
+          "script": "at 2 key SPACE down\nat 3 key SPACE up\n"
+        }
+      ],
+      "sources": [
+        "examples/flappy/**/*.[ch]",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ]
+    },
+    {
+      "slug": "ninjix",
+      "executable": "ninjix",
+      "args": [],
+      "controls": [
+        "Arrows or W / S choose a menu option; Enter activates it. Mouse buttons match their visible bounds.",
+        "1 to 4 select a defender, then click the map to place it. Right click cancels.",
+        "Click the wave play button to send enemies. Escape pauses or resumes.",
+        "N advances to the next level in single player."
+      ],
+      "states": [
+        {
+          "slug": "menu",
+          "title": "Ninjix",
+          "caption": "The original illustrated menu and authored pixel artwork.",
+          "ticks": 20,
+          "script": ""
+        },
+        {
+          "slug": "instructions",
+          "title": "How to defend",
+          "caption": "Instructions explain towers, controls, and enemy waves.",
+          "ticks": 20,
+          "script": "at 2 key 3 down\nat 3 key 3 up\nat 6 key ENTER down\nat 7 key ENTER up\n"
+        },
+        {
+          "slug": "credits",
+          "title": "Credits",
+          "caption": "The original game credits and resource attributions.",
+          "ticks": 20,
+          "script": "at 2 key 4 down\nat 3 key 4 up\nat 6 key ENTER down\nat 7 key ENTER up\n"
+        },
+        {
+          "slug": "multiplayer",
+          "title": "A shared challenge",
+          "caption": "The serial multiplayer lobby waits for its paired player.",
+          "ticks": 90,
+          "script": "at 2 key 2 down\nat 3 key 2 up\nat 6 key ENTER down\nat 7 key ENTER up\n"
+        },
+        {
+          "slug": "level-one",
+          "title": "Plan the defence",
+          "caption": "The first level leaves time to study its path and shrine.",
+          "ticks": 30,
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\n"
+        },
+        {
+          "slug": "placement",
+          "title": "Place a defender",
+          "caption": "Number shortcuts select a tower and preview its range.",
+          "ticks": 82,
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 40 key 1 down\nat 41 key 1 up\nat 44 move -192 220 during 36\nat 84 mouse 0 0 1\nat 85 mouse 0 0 0\n"
+        },
+        {
+          "slug": "battle",
+          "title": "The first wave",
+          "caption": "Two complementary towers defend the path during a real wave.",
+          "ticks": 600,
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 40 key 1 down\nat 41 key 1 up\nat 44 move -192 220 during 36\nat 84 mouse 0 0 1\nat 85 mouse 0 0 0\nat 100 key 3 down\nat 101 key 3 up\nat 104 move 128 -96 during 36\nat 144 mouse 0 0 1\nat 145 mouse 0 0 0\nat 160 move 314 -390 during 60\nat 224 mouse 0 0 1\nat 225 mouse 0 0 0\n"
+        },
+        {
+          "slug": "paused",
+          "title": "Paused defence",
+          "caption": "The pause menu keeps the battlefield visible.",
+          "ticks": 630,
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 40 key 1 down\nat 41 key 1 up\nat 44 move -192 220 during 36\nat 84 mouse 0 0 1\nat 85 mouse 0 0 0\nat 100 key 3 down\nat 101 key 3 up\nat 104 move 128 -96 during 36\nat 144 mouse 0 0 1\nat 145 mouse 0 0 0\nat 160 move 314 -390 during 60\nat 224 mouse 0 0 1\nat 225 mouse 0 0 0\nat 610 key ESC down\nat 611 key ESC up\n"
+        }
+      ],
+      "sources": [
+        "examples/ninjix/**/*.[ch]",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ]
+    },
+    {
+      "slug": "plants-vs-zombies",
+      "executable": "pvz",
+      "args": [],
+      "controls": [
+        "Enter starts plant selection on the first press. Click a plant to add or remove it; drag it to choose a slot.",
+        "Pick six plants, then Space starts the lawn. Arrows and Enter also navigate selection.",
+        "1 to 6 selects a seed; arrows move the target; Enter or Space plants. Mouse selection and placement also work.",
+        "Click suns to collect them. S selects the shovel; Escape or right click cancels a held action.",
+        "P or Escape pauses. Enter, Space, P, or Escape resumes. Q returns to the menu while paused; X quits.",
+        "F1 opens instructions and freezes the game."
+      ],
+      "states": [
+        {
+          "slug": "menu",
+          "title": "Defend the lawn",
+          "caption": "The menu uses the game map and its own garden palette.",
+          "ticks": 20,
+          "script": ""
+        },
+        {
+          "slug": "how-to-play",
+          "title": "Grow a defence",
+          "caption": "Instructions cover sun, deck selection, placement, shovel, and pause.",
+          "ticks": 20,
+          "script": "at 2 key F1 down\nat 3 key F1 up\n"
+        },
+        {
+          "slug": "choose-plants",
+          "title": "Choose your plants",
+          "caption": "Seven illustrated seeds with names and costs.",
+          "ticks": 12,
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\n"
+        },
+        {
+          "slug": "deck-ready",
+          "title": "A complete deck",
+          "caption": "Six chosen plants enable the Play button.",
+          "ticks": 70,
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\n"
+        },
+        {
+          "slug": "lawn",
+          "title": "A fresh lawn",
+          "caption": "The selected deck is ready, with a starting budget of 50 sun.",
+          "ticks": 80,
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\nat 74 key SPACE down\nat 75 key SPACE up\n"
+        },
+        {
+          "slug": "plant-target",
+          "title": "Choose a cell",
+          "caption": "Keyboard targeting previews a sunflower before spending sun.",
+          "ticks": 104,
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\nat 74 key SPACE down\nat 75 key SPACE up\nat 82 key 1 down\nat 83 key 1 up\nat 86 key LEFT down\nat 87 key LEFT up\nat 90 key LEFT down\nat 91 key LEFT up\nat 94 key LEFT down\nat 95 key LEFT up\nat 98 key LEFT down\nat 99 key LEFT up\n"
+        },
+        {
+          "slug": "garden",
+          "title": "Growing under pressure",
+          "caption": "A real planted sunflower, falling sun, and incoming zombies.",
+          "ticks": 1100,
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\nat 74 key SPACE down\nat 75 key SPACE up\nat 82 key 1 down\nat 83 key 1 up\nat 86 key LEFT down\nat 87 key LEFT up\nat 90 key LEFT down\nat 91 key LEFT up\nat 94 key LEFT down\nat 95 key LEFT up\nat 98 key LEFT down\nat 99 key LEFT up\nat 106 key ENTER down\nat 107 key ENTER up\n"
+        },
+        {
+          "slug": "paused",
+          "title": "Pause the garden",
+          "caption": "Resume, return to the menu, or quit with mouse or keyboard.",
+          "ticks": 670,
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\nat 74 key SPACE down\nat 75 key SPACE up\nat 82 key 1 down\nat 83 key 1 up\nat 86 key LEFT down\nat 87 key LEFT up\nat 90 key LEFT down\nat 91 key LEFT up\nat 94 key LEFT down\nat 95 key LEFT up\nat 98 key LEFT down\nat 99 key LEFT up\nat 106 key ENTER down\nat 107 key ENTER up\nat 650 key P down\nat 651 key P up\n"
+        }
+      ],
+      "sources": [
+        "examples/pvz/**/*.[ch]",
+        "examples/example_ui.h",
+        "examples/example_font.h"
+      ]
+    }
+  ]
+}

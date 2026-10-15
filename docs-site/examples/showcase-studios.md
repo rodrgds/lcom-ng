@@ -1,6 +1,6 @@
 # Showcase Studios
 
-Seven finished applications show how the device labs combine into useful tools,
+The device studios show how the device labs combine into useful tools,
 observable protocols, and calm ambient software. Every studio uses the public C
 API, renders at 800×600, and has a deterministic path for teaching, screenshots,
 and regression evidence.
@@ -15,12 +15,18 @@ and regression evidence.
 | Reliable Serial Transfer | PIT, UART, VBE | manifests, block transfer, checksum, retry |
 | Ambient Aquarium | RTC, PIT, mouse, keyboard, VBE, audio | time-aware behavior, deterministic animation |
 
+The editors use Command on macOS and Ctrl on other hosts. `Cmd/Ctrl-W`
+closes an interactive studio. `Esc` closes help before exiting. Help blocks
+keyboard and mouse edits beneath it.
+
 All nine frames on this page come from
 `devenv shell -- sh scripts/capture_showcase_examples.sh`.
 
 ## Pixel Studio
 
-<img src="/assets/screenshots/pixel-studio.png" alt="Pixel Studio showing a 16 by 16 sprite canvas, tool rail, palette, preview, zoom controls, and RTC clock">
+[Open the complete Pixel Studio guide and gallery](./pixel-studio).
+
+<img src="/assets/screenshots/pixel-studio.png" alt="Pixel Studio showing a 16 by 16 sprite canvas, tool rail, palette, preview, zoom controls, and export status">
 
 Pixel Studio turns PS/2 packets into a complete editing workflow. Continuous
 drag interpolation avoids gaps, each gesture becomes one undo state, and export
@@ -28,8 +34,8 @@ produces a reusable RTC-stamped C header.
 
 - **Tools:** pencil, eraser, flood fill, eyedropper, 16-color palette.
 - **Editing:** 32-state undo/redo, three zoom levels, optional grid, live preview.
-- **Controls:** mouse draw/select; right-click pick; `P/E/F/I`; `1/2/3` or
-  `-/+`; `Ctrl-Z/Y`; `C`; `G`; `S/F2`; `F1/H`; `Esc`.
+- **Controls:** mouse draw/select; right-click pick; `B/P/E/F/I`; `1/2/3` or
+  `-/+`; `Cmd/Ctrl-Z` undo, `Cmd/Ctrl-Shift-Z` redo (`Ctrl-Y` also works); `C`; `G`; `S/F2` or `Cmd/Ctrl-S`; `F1/H`; `Esc`.
 - **Artifact:** `build/pixel_studio_sprite.h` by default, or the first program
   argument.
 
@@ -47,6 +53,8 @@ lcom-ng run --headless --script scripts/pixel_studio_demo.mlabscript \
 ```
 
 ## Paired Serial Whiteboard
+
+[Open the complete guide and gallery](./serial-whiteboard).
 
 <div class="screenshot-grid">
   <figure>
@@ -69,7 +77,7 @@ visible instead of hiding it behind a networking library.
   incremental snapshots, atomic resync, and same-token transport-reset
   recognition.
 - **Controls:** drag to draw; click the palette or press `1-5`; `C` clears both
-  peers; `R` rotates the local session; `H` help; `Esc` exit.
+  peers; `R` rotates the local session; `F1/H` help; `Esc` exit.
 
 ```sh
 lcom-ng run-pair build/examples/serial_whiteboard left \
@@ -94,7 +102,7 @@ Pass `restart` after either role to exercise an in-process, same-session-token
 transport reset. The peer recognizes the reset and rebuilds synchronized
 protocol state without discarding either canvas.
 
-## Desk Clock / Pomodoro
+## Focus Clock / Pomodoro
 
 <img src="/assets/screenshots/pomodoro-clock.png" alt="Pomodoro clock showing RTC wall time above a separate PIT-backed focus countdown and session controls">
 
@@ -122,7 +130,9 @@ lcom-ng run --headless --rtc 2026-07-30T09:40:00 \
   build/examples/pomodoro_clock
 ```
 
-## Interrupt Scope / Device Monitor
+## Interrupt Scope
+
+[Open the complete guide and gallery](./interrupt-scope). / Device Monitor
 
 <img src="/assets/screenshots/interrupt-scope.png" alt="Interrupt Scope dashboard showing per-device IRQ rates, a rate history graph, raw bytes, RTC status, and recent events">
 
@@ -149,7 +159,9 @@ lcom-ng run --headless --rtc 2026-07-30T09:40:00 \
   build/examples/interrupt_scope
 ```
 
-## Tile Forge / Level Editor
+## Tile Forge
+
+[Open the complete guide and gallery](./tilemap-editor). / Level Editor
 
 <img src="/assets/screenshots/tilemap-editor.png" alt="Tile Forge showing a Sokoban map canvas, tile palette, validation panel, minimap, and editor controls">
 
@@ -159,7 +171,7 @@ playtest uses an isolated copy, so moving crates never damages the authored map.
 - **Editor:** continuous painting, right-click pick, gesture-level undo/redo,
   grid, minimap, validation for player/crate/goal invariants.
 - **Playtest:** arrows or WASD, move undo, reset, solved state, move/push counts.
-- **Controls:** `1-5` brushes; `Ctrl-Z/Y`; `G`; `V`; `S/F2`; `Enter/M`; `F1/H`;
+- **Controls:** `1-5` brushes; `Cmd/Ctrl-Z` undo, `Cmd/Ctrl-Shift-Z` redo (`Ctrl-Y` also works); `G`; `V`; `S/F2` or `Cmd/Ctrl-S`; `Enter/M`; `F1/H`;
   then arrows/WASD, `U`, `R`; `Esc`.
 - **Artifact:** RTC-stamped `.mlmap` text with a portable 10×8 glyph grid and
   validation result.
@@ -175,6 +187,8 @@ lcom-ng run --headless --script scripts/tilemap_editor_demo.mlabscript \
 ```
 
 ## Reliable Serial Transfer
+
+[Open the complete guide and gallery](./serial-transfer).
 
 <div class="screenshot-grid">
   <figure>
@@ -220,6 +234,8 @@ the same machine-readable CRC or peer-timeout reason.
 
 ## Ambient Aquarium
 
+[Open the complete guide and gallery](./ambient-aquarium).
+
 <img src="/assets/screenshots/ambient-aquarium.png" alt="Ambient Aquarium showing fish, bubbles, food, a manual daylight override, PIT motion state, and controls">
 
 Ambient Aquarium is deliberately not a score-driven game. RTC wall time selects
@@ -231,7 +247,7 @@ mouse interaction and generated tones turn it into a small desktop habitat.
   RTC-following or manually overridden lighting.
 - **Audio:** distinct water chimes for feeding and lighting changes.
 - **Controls:** click or `F` feed; `L` lighting; `P/Space` pause; `B` bubbles;
-  `S` sound; `R` reset; `Esc`.
+  `M/S` sound; `R` reset; `Esc`.
 
 ```sh
 lcom-ng run --rtc 2026-07-30T18:30:00 -- \
