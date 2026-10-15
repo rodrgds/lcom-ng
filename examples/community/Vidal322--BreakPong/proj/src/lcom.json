@@ -18,9 +18,17 @@
       "dpad": false,
       "look": false,
       "layout": "overlay",
-      "pointer": "direct",
+      "pointer": "move",
       "toolbar": "top-right",
-      "pads": [],
+      "pads": [
+        {
+          "mode": "mouse",
+          "style": "stick",
+          "side": "left",
+          "axes": "horizontal",
+          "sensitivity": 1
+        }
+      ],
       "actions": [
         {
           "label": "Launch",
@@ -28,15 +36,7 @@
           "position": "bottom-right"
         }
       ],
-      "touch": "tap",
-      "tapDuration": 60,
-      "cursor": {
-        "x": 100,
-        "y": 100,
-        "maxX": 800,
-        "maxY": 600,
-        "bounds": "reject"
-      }
+      "touch": "move"
     }
   },
   "build": {

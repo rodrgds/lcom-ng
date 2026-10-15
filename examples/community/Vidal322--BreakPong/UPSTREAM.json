@@ -137,7 +137,7 @@
     "status": "missing",
     "files": []
   },
-  "controlsRationale": "1 starts single-player. Direct tap/hover matches cursor(100,100), unit delta and reject bounds0..800,0..600; right mouse Launch should be held briefly because original game samples once per timer frame. Verified paddle moved, brick damage and score1.",
+  "controlsRationale": "Relative hover and a horizontal mouse stick provide continuous paddle movement. The student paddle caps each mouse delta at eight pixels, so its position does not follow an absolute guest cursor. Launch sends right mouse; 1 starts, 3 opens instructions, 4 opens high scores, Escape exits.",
   "verification": {
     "nativeBuild": true,
     "browserBuild": true,
