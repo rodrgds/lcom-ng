@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "PettyCats",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "toolbar": "top-right",
+      "look": false,
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "both"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Interact",
+          "position": "bottom-right",
+          "key": "E"
+        },
+        {
+          "label": "Pet",
+          "position": "bottom-right",
+          "mouseButton": "left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  }
+}

@@ -1,0 +1,44 @@
+# All files without extension
+*
+!*.*
+!/**/
+
+# LCF output
+output.txt
+trace.txt
+
+### C ###
+# Prerequisites
+*.d
+
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Linker output
+*.ilk
+*.map
+*.exp
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+*.lib
+*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+
+#clion idea
+.idea/
+.vscode/
+.codex
+.minix-src/
+.claude
+.gdbinit
+CMakeLists.txt

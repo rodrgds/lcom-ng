@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "Space Shooter",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "dpad": {
+        "keys": "wasd",
+        "side": "left",
+        "axes": "horizontal"
+      },
+      "toolbar": "top-left",
+      "repeatKeys": [
+        "A",
+        "D"
+      ],
+      "actions": [
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [],
+    "environment": {
+      "LCOM_COMPAT_MOUSE_REPORTING": "1"
+    }
+  }
+}

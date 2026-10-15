@@ -1,0 +1,13 @@
+# Center576,432 toplay576,325. ESC pauses; pauseQUIT returnsmenu, menuQUIT exits.
+at 100 mouse 0 107 0
+at 130 mouse 0 0 1
+at 131 mouse 0 0 0
+at 200 key D down
+at 201 key D up
+at 500 key ESC down
+at 501 key ESC up
+at 530 mouse 0 -100 0
+at 550 mouse 0 0 1
+at 551 mouse 0 0 0
+at 590 mouse 0 0 1
+at 591 mouse 0 0 0

@@ -1,0 +1,11 @@
+--- a/proj/src/proj.c
++++ b/proj/src/proj.c
+@@ -114,6 +114,8 @@
+                     if(mouse_parse_packet(byte, &pp)==0){
+                       byteCnt=0;
+                       updateMouse(pp, game);
++                      if(game->state==MENU) mouseMainMenuChange(game);
++                      else if(game->state==HELP || game->state==GAMEOVER) mouseMenuChange(game);
+                     }
+                   }
+                 }

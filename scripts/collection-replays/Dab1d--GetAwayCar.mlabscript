@@ -1,0 +1,12 @@
+at 200 key ENTER down
+at 201 key ENTER up
+at 230 key ENTER down
+at 231 key ENTER up
+at 260 key ENTER down
+at 261 key ENTER up
+at 290 key ENTER down
+at 291 key ENTER up
+at 320 key D down
+at 321 key D up
+at 350 mouse 0 0 1
+at 351 mouse 0 0 0

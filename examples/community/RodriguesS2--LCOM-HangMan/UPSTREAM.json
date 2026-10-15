@@ -1,0 +1,103 @@
+{
+  "repository": "https://github.com/RodriguesS2/LCOM-HangMan",
+  "revision": "6c76df070f321dd20349a6e6429bee2797223b9c",
+  "sourceHashes": {
+    "README.md": "b0ede285e645eb87b43e835f84ce34b80e8d49715c11e8cd7f80b6dde393d9a9",
+    "proj/.gitignore": "7040d508a5fbc5954e49ea40365798a02e904b2ed0ea4522fd200daa1b09cf99",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/Makefile": "b0e829e193cbe726e905f06872ab2428627c2dc9abfc0510569a6251579fcecf",
+    "proj/src/assets/font.c": "ea17173691e35aaf172e202923d7da206b3cd74afd7a396d00fb84e0a167fd99",
+    "proj/src/assets/font.h": "2ecc3ca0913e8c44c0a14c08df3cee04716f16016c111a654ee52a34d9d5410e",
+    "proj/src/assets/game_pixmap.h": "7ac5f6f5f7e3d493fc81a1826456c9191bc231ea3350e42891493b44caf98292",
+    "proj/src/assets/mouse_pixmap.h": "dddf9fe80552965d710dc45537525e2bb8f7bbf4a5a62c51ea358144ce57494b",
+    "proj/src/game/categories.c": "d915eaa2c2f90659d2021b56e7a6ab164983d2f8f1d5bc9d5405be53f222a095",
+    "proj/src/game/categories.h": "482da1f54e6bb28be612767282bdc9a3c3dd94b846a01b0cf28421cde41c3706",
+    "proj/src/game/game.c": "1bbd54ec40500882c3ca3366ae52ca15873b4fd00bd610e5469c3639e11010f5",
+    "proj/src/game/game.h": "eb5b8ebccb2bd93b1be1c5515fabe36037dec4e222cfe0e9a024cc609e6feb83",
+    "proj/src/game/game_state.c": "c2fa60c4835d745451dd90a2869c0606172943a0aa86643f942525b97dbda172",
+    "proj/src/game/game_state.h": "e112f18e9fb25e8ffbf83f8b4d1f7c19d66630894e2a6229a092f7763206f108",
+    "proj/src/game/hangman.c": "4ad1fc2f2c9bda144e037f6589e1f40baee0a7e2399ce484882172d48112c767",
+    "proj/src/game/hangman.h": "6e8879ed668b0c24abfb1948990d5d1ad415b41b7b712f3d375fb98c9aafc58e",
+    "proj/src/game/instructions.c": "6cb105b30475888959650fe7c9578ab0f4f38bd04854cd2c981ac0208fc32be4",
+    "proj/src/game/instructions.h": "efbb742f897d9202881c35ab138dc2132ee27243ac22a021256f7b9c96cf6fcc",
+    "proj/src/game/menu.c": "88d2e00affbe7ca0f4100a3b078847f561bf66bef26988ba30254db07700e88e",
+    "proj/src/game/menu.h": "b15726d5f1321f18fb0d48a39acc7079fd3f162354b9e463daabb68c2d364a38",
+    "proj/src/game/words.c": "1b1734eadef34cf0012b6d209ec0663c590bed2b0759da10ad1b6cf6821ab501",
+    "proj/src/game/words.h": "8ebc6586353e107c7ee3533d1dbd9181049b74a3d547e291df12078bd7a988e6",
+    "proj/src/main.c": "9ee254ab5c075d981f7a442ae54bdc832c8054d43b26ee7f5a20daaaa5a9970d",
+    "proj/src/peripherals/graphics/VBE.h": "58ac7db3d2ab564563af470b74095f398a159d0e995b0a6e267b61183f7217a4",
+    "proj/src/peripherals/graphics/graphics.c": "eef5fffcf066dbb227ff6c80697457384e3c0c1d2fa691046a30bfd279b5a8b3",
+    "proj/src/peripherals/graphics/graphics.h": "de768f13164947847a86229df2f5f6018f43db091ca515e4cc57c7c7ec0e2f0c",
+    "proj/src/peripherals/i8042.h": "c0c4674fe9343e1b61f2551958f44907df9d75d1db1bfff05624b2ae6861e9ff",
+    "proj/src/peripherals/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/peripherals/k_controller.c": "a2122be4e0092bfcfb437fc2d05951333531c3f1ed7b76c2be50955d6fd5239d",
+    "proj/src/peripherals/k_controller.h": "cfbac92f459548bdba7ec9ad64dd8f5375ebc8f3b64096effc0c1bfca5978a4c",
+    "proj/src/peripherals/keyboard/keyboard.c": "6f5d73d7fe1e870235a805e24fb61bc21901d88f5615813beba3f3d62bac7d13",
+    "proj/src/peripherals/keyboard/keyboard.h": "8b75587178a5de7ab718276eb0e939f6f268be3895b0d946ae162fb0c0e1e79a",
+    "proj/src/peripherals/mouse/mouse.c": "6df8dd96cd519fbe275d504f15cb61919a89609c14e40849e12d6db9f3588c08",
+    "proj/src/peripherals/mouse/mouse.h": "64279cf785f22cac89999acab0dd83580a739bbb4c35c78feee49bffa31efee6",
+    "proj/src/peripherals/timer/timer.c": "ad9eec0fc4fad2945b856ee51b2a56c29161b23c4408fde88e461ee827bda2a4",
+    "proj/src/peripherals/utils.c": "57b320cd15b3b5cccaf2ffad1958d0ccb6a9b8485d643067249eadfe5e4c9816"
+  },
+  "sourcePatches": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "Letter guesses require full keyboard; menu accepts arrows and ENTER. peripherals/mouse/mouse.c initializes150,150, applies unit deltas, clamps to1024-32 and768-32, allowing direct menu taps.",
+  "icon": {
+    "type": "gameplay-capture",
+    "source": "evidence/RodriguesS2--LCOM-HangMan/populated-gameplay.ppm",
+    "crop": [
+      82,
+      54,
+      963,
+      737
+    ],
+    "sourceSize": [
+      1024,
+      768
+    ]
+  },
+  "verification": {
+    "repo": "RodriguesS2/LCOM-HangMan",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/RodriguesS2--LCOM-HangMan/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/RodriguesS2--LCOM-HangMan/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/RodriguesS2--LCOM-HangMan/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Guarded populated capture; clean application exit is checked separately"
+      },
+      {
+        "id": "gameplay-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/RodriguesS2--LCOM-HangMan/gameplay-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/RodriguesS2--LCOM-HangMan/gameplay-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/RodriguesS2--LCOM-HangMan/gameplay-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Clean application exit after original input and cleanup"
+      }
+    ],
+    "browser": {
+      "id": "rodriguess2--lcom-hangman",
+      "width": 1024,
+      "height": 768,
+      "colors": 5,
+      "status": "Game running.",
+      "controlsFit": true,
+      "errors": [],
+      "passed": true
+    }
+  },
+  "derivedAssets": []
+}

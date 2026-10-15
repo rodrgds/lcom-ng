@@ -1,0 +1,11 @@
+IndentWidth: 4
+TabWidth: 4
+PointerAlignment: Left
+ColumnLimit: 0
+AllowShortLoopsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: Inline
+AllowShortBlocksOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: true
+IndentCaseLabels: true
+BinPackArguments: true
+BinPackParameters: true

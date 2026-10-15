@@ -1,0 +1,204 @@
+{
+  "repository": "https://github.com/Joanaigs/Lcom-Snake-Game",
+  "revision": "6ebf0b9669845718b630cd8ea5707f5f0c216054",
+  "sourceHashes": {
+    "README.md": "c295158c5666840150ebda7c184187e989c9534b25fb1ecddc75021e7d81fb41",
+    "proj/src/Makefile": "8aab8352b1718632acf77d4b735b779dc2c1b9163303d04fd8f3cda246497059",
+    "proj/src/apple.c": "c93e6a0c330460919745380385409c102f3bd26b0c61e24bd14dcfcb3d12507e",
+    "proj/src/apple.h": "51cb589161ab3db206e2b8cc4d11131d339a4492e44dffc54da092807888f48c",
+    "proj/src/cursor.h": "e8506f490b4ef719eab630d0c59ec89554f0186b71db2242e5bde7e84e1afbdb",
+    "proj/src/game.c": "8e128baff932ac14ef4991fbf0c829ccad8fa34faf2965e9f84dc19cbc82e73d",
+    "proj/src/game.h": "0fbf81d2df5caae5ac058ec134819ab373d382e6416f7abd662353c73a99edbf",
+    "proj/src/gameOver.c": "e90dad5e7aadce98d19d7ae732c9e208025c9caca406cbec48deb81cb86eae46",
+    "proj/src/gameOver.h": "55c7a4f71c7ade085f48b70c78cb78685db35301805a3a90f9f7fd9ea1e6ea2a",
+    "proj/src/graphics.c": "b117fc8a622ad00afce80ca89bf91d87d2bfca0ff2acff33e3e5c274d0ab60aa",
+    "proj/src/graphics.h": "16b4cc06ccf23bf87de97358b5c3f3eb4cd0790996ae1127b154c2d757cd47d3",
+    "proj/src/header.c": "e9f617e98f03bec648ba5b55b509e89c4248bffa2d2f8e563f970e1882da837e",
+    "proj/src/header.h": "9983167bbd2e3d679c77b684b7e9d68270b99beb48410b4ddb3100dfc8e7c550",
+    "proj/src/i8042.h": "626134eeb8981649026ab050f621a8608e101a934e7754acb5a0cd872d4adac7",
+    "proj/src/i8254.h": "6c4b906700e0f4c462fa65bd6bd3b16086ee20c7b72579be8577d7929de665a7",
+    "proj/src/images/0.xpm": "d53607a86527a9efc37e4ec348f403b44518573da3d336ddfb057f2c7ce30f65",
+    "proj/src/images/1.xpm": "331e05e684c6d755eef0681175af908a499c784dc2600384ed21d206b0f5d272",
+    "proj/src/images/2.xpm": "286012853d797269b90f33fe376139d8428e24d052ea2ed2993999b8780d422e",
+    "proj/src/images/3.xpm": "9b2d3652e0b95a59ac637db23a014c8b63305ee4244e2b9e447e712ca8ce9f84",
+    "proj/src/images/4.xpm": "266d7403194f7e53101b4e7dea6fd415dd16efd7b6502e361a6e7cd5de4b7522",
+    "proj/src/images/5.xpm": "79a587ac6dbe3d0e7c96ea78fde94ebe9a620b9cbea8bb2f7fd5a63df730cb72",
+    "proj/src/images/6.xpm": "99f41d5144bc5d5c49f3d10f932e445c8ded4c9df69866d058b531125f704c44",
+    "proj/src/images/7.xpm": "6cab8d9b721ff52a4ab96520386ca25b835f826f51cf7ad37ffba7f7a77c3857",
+    "proj/src/images/8.xpm": "7ed287271dcd2713ef054de8a32f8835b81ac73491035c7598dc7e01986c7b95",
+    "proj/src/images/9.xpm": "ff994864c6e4632dbbdf455f0b947105eb97574f0db01c04bf584e6905b3d293",
+    "proj/src/images/cabeca_cobra_baixo.xpm": "852d74eb232f0edbfb8bef702b718c3000140af16dbe24039decca2e2c71940b",
+    "proj/src/images/cabeca_cobra_cima.xpm": "72506e6e6bf182cdd01cd6527c62ea9d848d080787ee5a9502050c47e3d1f8fa",
+    "proj/src/images/cabeca_cobra_dir.xpm": "87131bced630fe74b52c331cc1a2ef9a4f174133c647554a913453fd6ab207a5",
+    "proj/src/images/cabeca_cobra_esq.xpm": "63125e0d18ad404e01f0dc551b1b518f0bcd196b901c859980fac96ac979563c",
+    "proj/src/images/cauda-baixo.xpm": "089244989dc93f96c9314aa082a9a47a154e665af18c63755ac7b5f4e46c9a51",
+    "proj/src/images/cauda-cima.xpm": "d7906a3cc0000cd547d0239b6f74382e659632a185b959614fb52181c5c93128",
+    "proj/src/images/cauda-direita.xpm": "e30fbf1a9f62ed7ae9a8a0f5b1e0afcbc1c93eaea7407c676ca2827b6af6f6c1",
+    "proj/src/images/cauda-esquerda.xpm": "dbcc23c44e4d2cbe559b6897b7b7ebd4a65b060401df450d259e1abf548bf8d5",
+    "proj/src/images/clock.xpm": "45b01ab22a47af06289b26fb79286150b054aaa276f059340d555ac8ac29afae",
+    "proj/src/images/continue_colored.xpm": "f9ba4c4dd1bccb86e1a27af696d2babdfba685473677e38fe7c92ae1d56fc7f5",
+    "proj/src/images/corpo_cobra.xpm": "d10e517835e60176eb27097ede12671b4d383f096b31ab2c69b9c12353637939",
+    "proj/src/images/corpo_cobra_H.xpm": "6f64a67bb89a90746821eca68e027999457816b1e385e63d95bfcf8c5434a29b",
+    "proj/src/images/corpo_cobra_V.xpm": "5951e40f2321451c425f0655c007ef12da3cc1297262c741fd72c593a78c0fe2",
+    "proj/src/images/gameOver.xpm": "382d226ea96a6756d313e088494a00c162d1371e6ec3ac4fa664abc89328609b",
+    "proj/src/images/game_background.xpm": "40894e7b69f91acf14d29502659e452177ab5dc6753d16549a08368ec7cf3798",
+    "proj/src/images/heart-left.xpm": "8ae71a9688987c06dfa47abfe60ae550a6935809e5b4ab0a4cbebc5c240c6b8d",
+    "proj/src/images/heart-right.xpm": "6afa988c05e1d8c85ad2a64f8105d8b387347a0db0d2e81bd84378dc89ca1ff7",
+    "proj/src/images/instructions.xpm": "32d1232a95b541f4f74a3271a7ced850c4e22daacf016ebc74a41a8dd44c7b90",
+    "proj/src/images/instructions_back.xpm": "c6d352f4cc5b92766ea3d79d2a9d804142b8f28547f9894ca66524b9b1e4e2c7",
+    "proj/src/images/maca.xpm": "d9122d151f608d3a36a9090744d46d91759016a050d70b1c615fe0da3dc07d3b",
+    "proj/src/images/maca_castanha.xpm": "cd60d851e9de4b3ff24a055105e2177f82e812cef3813ea44040c7804bf13b8c",
+    "proj/src/images/maca_preta.xpm": "2f41fa05133d53052a89d75d1278f40d8c9c4ea5d7a0eead3ee08859b34efe67",
+    "proj/src/images/menu_background.xpm": "e60811ecf2864b81ea1b4966bb7581849baae6fe110dfd5d229acd7aa1390344",
+    "proj/src/images/menu_exit.xpm": "134c6a004b917fc82dd55d3b9badad0bb00bf10c6f5c75711205e1a4211bdcbd",
+    "proj/src/images/menu_instructions.xpm": "a4c71030e5a6fc4f0814fbd63053b571481e3e5654fb8f7a8fee441c4e5704ea",
+    "proj/src/images/menu_multiPlayer.xpm": "9018d9c108a9f87d932dd43d1620bb7cc4f41434b477d7c58ed5fcaae47b6354",
+    "proj/src/images/menu_singlePlayer.xpm": "4f86a95befc737f918b07e08f351552eec7271bb1df5ebc5d54dc71644febbd2",
+    "proj/src/images/mouse_cursor.xpm": "2f7a35c5a9645cc32216d1f4d47466953d9fcb221c1a71ee5c2249c49f52d7df",
+    "proj/src/images/png/0.png": "a639cebc72c3e170dd8c63c09faa869f46a13fb4b2a0635dc9999da17430b559",
+    "proj/src/images/png/1.png": "d231163a3015b99bea7defc55e7ed845a2f914a3a7c6fd8e2986343a767e46d0",
+    "proj/src/images/png/2.png": "b7dd0b4998e251c760ae22c89228997b19a77c7152d02a0325b6332297badd83",
+    "proj/src/images/png/3.png": "26e66bac4beeb529bd8770251a9d788eee6048d176b5ac51b2f099a39610e361",
+    "proj/src/images/png/4.png": "ec49c1c1e1368d28f0d3319b336183103757c966d367aafbd02ca832eb78ab88",
+    "proj/src/images/png/5.png": "403e4022fb8fa44dbc2c77e2e2217337abe317855cfd11ab4a85bde5c0bef423",
+    "proj/src/images/png/6.png": "8e5445aff0a66be19fe1db583e47e41947b070b2b34438c8ffce2ca1473433f6",
+    "proj/src/images/png/7.png": "4fba6e57edb15dfc4a0b9b1ea7dfd7454386e54ff7c56045fe535634e048f6c2",
+    "proj/src/images/png/8.png": "031ebe5b89cfc1fee287fba3f755b8957f51213a32bc40f09cca8f076d7c7c15",
+    "proj/src/images/png/9.png": "df750d59874ab9dd0a6d067f3a1aa19d7197d136b63ab74916cb4c2ce236dbee",
+    "proj/src/images/png/cabeca_cobra_baixo.png": "1f8155ef394962a8efdadb3b0affdd588d08debf0247947b374e45d21683c453",
+    "proj/src/images/png/cabeca_cobra_cima.png": "13bd35a07c628809db03388d2077476c45363a2b21d0b39dd58e868d2babedf8",
+    "proj/src/images/png/cabeca_cobra_dir.png": "3c63319f54ad0a2ebd5be13f8206fa789ebd9ec77149b20facb62f2cb4d2f16c",
+    "proj/src/images/png/cabeca_cobra_esq.png": "5e11798a4134733a8284745ef62b47fb1fc63771f05bf75c5c3d4dd0addd9326",
+    "proj/src/images/png/cauda-baixo.png": "50306b19f223296a333d6923ae9456f3aafe31a7891dc3c77b9393295a62926a",
+    "proj/src/images/png/cauda-cima.png": "036b2e0f9414d7c63530690c6a6a2766685d9f2a4d5a8ce99671d6e7cd4529e8",
+    "proj/src/images/png/cauda-direita.png": "e475370e315fc5427b6243bed8a8ce61aaff4ad1d699887adb250d71c2c6ed1c",
+    "proj/src/images/png/cauda-esquerda.png": "572f5142e5c8221a4c1b667d3d66610b2ac10b3eabb5c0a1d0e616f117d14dd8",
+    "proj/src/images/png/clock.png": "fa641822fb6b7550b18bdef510f007ab3eb2b0a3f3f1e44ca036a58a2e528c6d",
+    "proj/src/images/png/corpo_cobra.png": "473695f2576006d25a0bb6120fe5b86da33af4e45f08977cd85b34b1d08019a8",
+    "proj/src/images/png/game_background.png": "7f93be7e1b1f3fc39a7162b44ab6c146b643dda3500209b2d392f8fa4168b622",
+    "proj/src/images/png/heart-left.png": "c29e3c166e8499adfbcd4a87dff68ae3f6ff9182f7cbd83aa63f24fa09d81d01",
+    "proj/src/images/png/heart-right.png": "7ecd12a1f3a9f977fe6b74ae11e6d44c6af95523f43b1b179a7b02c94cc6428e",
+    "proj/src/instructions.c": "155bf7cf1207e1c952ce0eb8d7c021376b91237223a58131e207e65da35cdb37",
+    "proj/src/instructions.h": "b537231414b78b255f4d2ce9b8d2f95cf1d363f66a737d0a4997fedf85af7f00",
+    "proj/src/keyboard.c": "3f8498076c60ea993441770d46b0758b84afde77dc18e2fb8edb1a68d58e4795",
+    "proj/src/keyboard.h": "349cea1f2c389da12d1972ae0823780f24422e23e1d9f036ccda6127d39491d5",
+    "proj/src/macros.h": "1f286c52e66c9cf5d39353938a338a1135bc46b7771e34c25edc7d5dbbd7e694",
+    "proj/src/menu.c": "de00db93d6f5907e73e8db39a0bf677a16ca80426953aa20151a61ca96510bda",
+    "proj/src/menu.h": "5b8002e5f32022a7095fe03db0e377ef9ef679aa59dcc11bd1aa0377cbbde622",
+    "proj/src/mouse.c": "74240b8caea25fc4efafcf688f01f17cd5a8e8b6a4c5617b28354090f78e16d3",
+    "proj/src/mouse.h": "8fe4370d4a75c3835a59fc30f46fa496fda7351991b08122c17e79ac8586efb6",
+    "proj/src/objects.c": "4141ea54fceb9242a66023238106cdc9c9f5671394f42ad0cb170ef0772b04f2",
+    "proj/src/objects.h": "317d8c3c0a4eb59825810f0bd826744bc748ad5bc48cd4fbfc002f063333b005",
+    "proj/src/proj.c": "69896990d6d6edb4e99fdc49fff96b3882fdeca54733bd82993f8a76dd5fec68",
+    "proj/src/proj.h": "2cd97a762aece393e3f0ea4ccdb6bdf185245b82b1419e2b4ef94cd39bea2b84",
+    "proj/src/rtc.c": "25e1d8ef61bfeb5e326dbe8eb7d35e3790277560b3d899c805909bff8b5f9de0",
+    "proj/src/rtc.h": "7e8d56963828c9ea2b9d53be186f0729c29e95e39841dc5cf56a790b80d0b48c",
+    "proj/src/rtc_macros.h": "b2011ce73bfbe81b62142c808b901db899cc828a1221c3b115e826d12d0ba669",
+    "proj/src/snake.c": "ba51197d323cfdb43c4f70bed43825c1006a2a8c2d214dfb8e1467169f31c1a6",
+    "proj/src/snake.h": "b7bf2648689b0b78539fe930aaf232361dd1d745d2b5740dccb0443bfe1e83b9",
+    "proj/src/timer.c": "fa10e3aedc677dbe28ef557e6c1c6623f7df386e00bdbf54e0629ba2ffcb65e5",
+    "proj/src/timer.h": "0a49dabf6eb8acd791015cf0c799c6f28e83c17a33c1d840d96eff24802fa3d6",
+    "proj/src/utils.c": "c82750097f08d9674b2608af74d051536b5a1ed8cc171faf4cf06893e6245e7c",
+    "proj/src/utils.h": "dc0a34945047a6a94d85d926ca5d1f74f874f2942752bcf5332f452a44a4c07a"
+  },
+  "sourcePatches": [
+    {
+      "path": "examples/community/Joanaigs--Lcom-Snake-Game/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "proj/src/graphics.c",
+          "originalSha256": "b117fc8a622ad00afce80ca89bf91d87d2bfca0ff2acff33e3e5c274d0ab60aa",
+          "patchedSha256": "ad41f9376ae73349a9e418e4e3c07cf693a351b8ee2b2e8985f27f48f1c96bbe",
+          "reason": "Native menu reproducibly SIGSEGV in draw_xpm. Original graphics code truncates heap/framebuffer pointers to 32-bit unsigned int before address arithmetic. Use uintptr_t for the three existing pointer offsets, preserving all game behavior."
+        }
+      ],
+      "reproduction": "source-regressions/Joanaigs--Lcom-Snake-Game/results.json"
+    }
+  ],
+  "derivedAssets": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "Original menus are mouse clicks. WASD moves snake, ESC ends round, ENTER continues after game over. Source cursor is local per menu and has no clamping, so relative pointer. Original enable function sends controller prefix but returns before F4; project environment supplies initial reporting.",
+  "icon": {
+    "kind": "original source sprite",
+    "source": "examples/community/Joanaigs--Lcom-Snake-Game/proj/src/images/cabeca_cobra_dir.xpm",
+    "background": "#70b72e",
+    "output": "icon.png",
+    "size": [
+      512,
+      512
+    ]
+  },
+  "verification": {
+    "repo": "Joanaigs/Lcom-Snake-Game",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/Joanaigs--Lcom-Snake-Game/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/Joanaigs--Lcom-Snake-Game/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/Joanaigs--Lcom-Snake-Game/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Actual original gameplay state, screenshot inspected; bounded capture"
+      },
+      {
+        "id": "menu-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/Joanaigs--Lcom-Snake-Game/menu-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/Joanaigs--Lcom-Snake-Game/menu-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/Joanaigs--Lcom-Snake-Game/menu-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Original clean callback exit; scope is menu-exit"
+      }
+    ],
+    "originalSourceFailure": {
+      "repo": "Joanaigs/Lcom-Snake-Game",
+      "source": "exact pinned source for every modified file",
+      "buildExit": 0,
+      "runExit": 139,
+      "expectedFailureObserved": true
+    },
+    "browser": [
+      {
+        "id": "joanaigs--lcom-snake-game",
+        "width": 800,
+        "height": 600,
+        "colors": 468,
+        "status": "Game running.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "webBuild": [
+      {
+        "id": "joanaigs--lcom-snake-game",
+        "exit": 0,
+        "seconds": 8.1,
+        "output": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/web-exports/joanaigs--lcom-snake-game"
+      }
+    ],
+    "browserExit": [
+      {
+        "id": "joanaigs--lcom-snake-game",
+        "width": 800,
+        "height": 600,
+        "colors": 3566,
+        "status": "Game finished. Press Enter or tap the game to restart.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "directTouch": []
+  }
+}

@@ -1,0 +1,5 @@
+/src/.vscode/
+/src/output.txt
+/src/trace.txt
+/src/proj
+/src/*.o

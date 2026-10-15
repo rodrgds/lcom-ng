@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "name": "Hangman",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "UP",
+        "DOWN"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "touch": "tap",
+      "toolbar": "top-right",
+      "keyboardPosition": "bottom"
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

@@ -1,0 +1,31 @@
+--- a/project/src/cursorHandler.c
++++ b/project/src/cursorHandler.c
+@@ -102,7 +102,7 @@
+     if (!leftButton) c->currentState = DEFAULT;
+ }
+ 
+-static void cursorUpdateCoordinates(Cursor* c) {
++void cursorUpdateCoordinates(Cursor* c) {
+     c->x += c->deltaX;
+     c->y += c->deltaY;
+ 
+--- a/project/include/utils/cursorHandler.h
++++ b/project/include/utils/cursorHandler.h
+@@ -45,6 +45,7 @@
+  *  @param[in] terminal Terminal de video.
+  *  @param[in] deltaTime Delta em segundos.
+  */
++void cursorUpdateCoordinates(Cursor* c);
+ void cursorUpdate(Cursor* c, Terminal* terminal, float deltaTime);
+ 
+ /** @brief Coordenada X logica do cursor.
+--- a/project/src/gameState.c
++++ b/project/src/gameState.c
+@@ -153,6 +153,7 @@
+ }
+ 
+ void gameStateUpdate(GameState* state, Terminal* terminal, float deltaTime) {
++    cursorUpdateCoordinates(getCursor());
+     state->act(state, terminal, deltaTime);
+     cursorUpdate(getCursor(), terminal, deltaTime);
+ }

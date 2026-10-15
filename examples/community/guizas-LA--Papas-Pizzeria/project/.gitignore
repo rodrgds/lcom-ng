@@ -1,0 +1,8 @@
+.gdbinit
+*.o*
+core*
+*.core
+proj
+trace.txt
+output.txt
+minixline.txt

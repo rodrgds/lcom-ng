@@ -1,0 +1,13 @@
+#ifndef __MENU_ACTION_ENUM_H__
+#define __MENU_ACTION_ENUM_H__
+
+typedef enum {
+    MENU_ACTION_NONE,
+    MENU_ACTION_START_GAME,
+    MENU_ACTION_RETRY,
+    MENU_ACTION_MAIN_MENU,
+    MENU_ACTION_HOW_TO_PLAY,
+    MENU_ACTION_EXIT
+} menu_action_t;
+
+#endif

@@ -1,0 +1,125 @@
+/**
+ * @file loop.c
+ * @brief Main game loop: device initialisation, event dispatch, and cleanup.
+ */
+
+#include "loop.h"
+
+#include <lcom/lcf.h>
+#include <lcom/timer.h>
+
+#include <stdint.h>
+#include <stdio.h>
+
+#include "game_state.h"
+#include "keyboard_logic.h"
+#include "mouse_logic.h"
+#include "draw.h"
+#include "graphics.h"
+#include "interrupts.h"
+#include "mouse.h"
+#include "sprites.h"
+#include "draw_utils.h"
+
+#define EN_DATA_REPORT 0xF4 /**< Mouse command: enable data reporting. */
+
+/**
+ * @brief Initialises all subsystems (VBE, frame-buffer, interrupts, sprites) and runs
+ *        the IPC-based event loop, dispatching timer, keyboard, and mouse notifications
+ *        until @c game_is_running() returns false.
+ * @param argc Argument count (unused).
+ * @param argv Argument vector (unused).
+ * @return 0 on clean exit, 1 if any initialisation step fails.
+ */
+int game_loop(int argc, char *argv[]) {
+  uint8_t timer_irq;
+  uint8_t kbd_irq;
+  uint8_t mouse_irq;
+  uint8_t mouse_bytes[3];
+  int mouse_byte_count = 0;
+  Game game;
+
+  (void) argc;
+  (void) argv;
+
+  if (map_video_memory(GAME_VIDEO_MODE) != 0) return 1;
+  if (set_graphics_mode(GAME_VIDEO_MODE) != 0) return 1;
+  if (draw_init(GAME_VIDEO_MODE) != 0) { vg_exit(); return 1; }
+
+  if (subscribe_all(&timer_irq, &kbd_irq, &mouse_irq) != 0) {
+    vg_exit();
+    return 1;
+  }
+
+  mouse_write_cmd(0xE8);
+  mouse_write_cmd(0x03);
+  mouse_write_cmd(0xF3);
+  mouse_write_cmd(200);
+
+  if (mouse_write_cmd(EN_DATA_REPORT) != 0) {
+    unsubscribe_all();
+    vg_exit();
+    return 1;
+  }
+
+  if (timer_set_frequency(0, GAME_FPS) != 0) {
+    cleanup_game_devices();
+    return 1;
+  }
+
+  if (loadSprites() != 0) {
+    cleanup_game_devices();
+    return 1;
+  }
+
+  game_init(&game);
+  rtc_read_datetime(&game.current_time);
+  game.order_time = game.current_time;
+
+  while (game_is_running(&game)) {
+    int ipc_status;
+    message msg;
+    int r = driver_receive(ANY, &msg, &ipc_status);
+
+    if (r != 0) {
+      printf("driver_receive failed: %d\n", r);
+      continue;
+    }
+
+    if (!is_ipc_notify(ipc_status)) continue;
+
+    if (_ENDPOINT_P(msg.m_source) == HARDWARE) {
+      if (msg.m_notify.interrupts & BIT(mouse_irq)) {
+        uint8_t byte;
+        while (read_kbc_byte(&byte, true) == 0) {
+          if (mouse_byte_count == 0 && ((byte & BIT(3)) == 0)) continue;
+
+          mouse_bytes[mouse_byte_count++] = byte;
+
+          if (mouse_byte_count == 3) {
+            struct packet pkt;
+            mouse_parse_packet(mouse_bytes, &pkt);
+            game_handle_mouse_packet(&game, &pkt);
+            mouse_byte_count = 0;
+          }
+        }
+      }
+
+      if (msg.m_notify.interrupts & BIT(kbd_irq)) {
+        uint8_t scancode;
+        if (read_kbc_byte(&scancode, false) == 0) {
+          game_handle_keyboard(&game, scancode);
+        }
+      }
+
+      if (msg.m_notify.interrupts & BIT(timer_irq)) {
+        timer_int_handler();
+        game_update(&game);
+        game_draw(&game);
+      }
+    }
+  }
+
+  unloadSprites();
+  return cleanup_game_devices();
+}

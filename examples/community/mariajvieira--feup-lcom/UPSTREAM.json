@@ -1,0 +1,90 @@
+{
+  "repository": "https://github.com/mariajvieira/feup-lcom",
+  "revision": "e364f4d91606371c5660f28bcd11048d02f8a57e",
+  "sourceHashes": {
+    "README.md": "addb7e9d4420385d499ae6ded7f264a727025f502a1deb6532056980c485acb0",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/Makefile": "bfb0190d3d081168bd09345b4ed90ae5986919d5006fc539c548cd5cf8e9238e",
+    "proj/src/controllers/keyboard/i8042.h": "c441c7ae138611cea068954c4203de3f41b8c25d9bf2152d52fc1772288ed56a",
+    "proj/src/controllers/keyboard/keyboard.c": "ea6d52a61216a21183c122ccbd300b701ebff103fdca0889c29b4986f9925673",
+    "proj/src/controllers/keyboard/keyboard.h": "c7850c7e7d7508f8aeab0a267b77ef5cd7a1a4a1d4b7bb40e50c25ae85657bd3",
+    "proj/src/controllers/menu/exit.xpm": "78c201a242254eef311b0330ed0798e58b6ac652ae64046b77c41800a6a28deb",
+    "proj/src/controllers/menu/help.xpm": "3bc80c5d9bafe02d1b76dfc27aae86f1d53a3f7f4ec54d623b8ce29e88b32810",
+    "proj/src/controllers/menu/menu.c": "e0ef6417d90dd0c2ead8919c984becd9c6e31a0cf1a94aeda342c194bf91096a",
+    "proj/src/controllers/menu/menu.h": "011626cf1553de0a71d7fca2dc738392ec1636a14bc7effed05c4fc2ea146064",
+    "proj/src/controllers/menu/settings.xpm": "b5033b4f5eb98579e7c53c41cd340fa59a42e61b290f12bcc435de8b9347e2bf",
+    "proj/src/controllers/menu/start.xpm": "5b76f824996c505f49b04cc7ccbd32118d0d919b3eebe3fe04d2c275cca3b311",
+    "proj/src/controllers/timer/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/controllers/timer/timer.c": "5efd5ee64ec54003c6c76f02b4aa22d3bd03bc3dec46d92943c1dcda0768b7a1",
+    "proj/src/controllers/utils.c": "600e326f79a81c6310c07487ddfe0c357da88a4758c47d14433979f3ffcf653b",
+    "proj/src/controllers/video/graphics.c": "b4d6ad1b0a8017b44e52e9ba6ef53735951e71a4bfbd37947e99b8dfc4b5156b",
+    "proj/src/controllers/video/graphics.h": "f279525074e86e428964b9a9f7b92d09f3377e7fc9b9104951fc2cdb82830fb4",
+    "proj/src/game/digits.c": "b706c534c5e6428720b218d402c9c30670e036b6f2dc7d26953158879738c028",
+    "proj/src/game/digits.h": "31a4f596ae971a21c948519fa5d522b5036b1f0900fc1a1bce77985d807a85a7",
+    "proj/src/game/game.c": "642929e1c67232f51aee969634704e2ab540938fa3928739f14e79c5a8fd27f2",
+    "proj/src/game/game.h": "af15507dfeb29fa5dd89682ff130a62a883e81e1e79a4f18dbd9c3863c733e36",
+    "proj/src/main.c": "1a4d126ac96bf174087ec4c66f9b6b29ca7efdda1238f5f23e1f99fa476232da"
+  },
+  "sourcePatches": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "Original game/game.c W/A/S/D turns; controllers/menu/menu.c UP/DOWN and ENTER select. A left WASD directional pad plus menu keys avoids mouse controls.",
+  "icon": {
+    "type": "gameplay-capture",
+    "source": "evidence/mariajvieira--feup-lcom/populated-gameplay.ppm",
+    "crop": [
+      154,
+      108,
+      870,
+      730
+    ],
+    "sourceSize": [
+      1024,
+      768
+    ]
+  },
+  "verification": {
+    "repo": "mariajvieira/feup-lcom",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/mariajvieira--feup-lcom/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/mariajvieira--feup-lcom/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/mariajvieira--feup-lcom/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Guarded populated capture; clean application exit is checked separately"
+      },
+      {
+        "id": "gameplay-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/mariajvieira--feup-lcom/gameplay-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/mariajvieira--feup-lcom/gameplay-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/mariajvieira--feup-lcom/gameplay-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Clean application exit after original input and cleanup"
+      }
+    ],
+    "browser": {
+      "id": "mariajvieira--feup-lcom",
+      "width": 1024,
+      "height": 768,
+      "colors": 6,
+      "status": "Game running.",
+      "controlsFit": true,
+      "errors": [],
+      "passed": true
+    }
+  },
+  "derivedAssets": []
+}

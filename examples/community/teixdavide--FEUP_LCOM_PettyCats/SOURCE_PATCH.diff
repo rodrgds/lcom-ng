@@ -1,0 +1,39 @@
+--- a/src/main.c
++++ b/src/main.c
+@@ -46,7 +46,7 @@
+   return 0;
+ }
+ 
+-int (proj_main_loop)() {
++int (proj_main_loop)(int argc, char **argv) {
+ 
+   Game *game = createNewGame();
+ 
+--- a/src/models/Room.c
++++ b/src/models/Room.c
+@@ -6,6 +6,7 @@
+ 
+ Room* newRoom(){
+     Room *room = (Room*) malloc(sizeof(Room));
++    for (int i = 0; i < 4; i++) room->walls[i] = NULL;
+     room->player = newPlayer(100, 100);
+     room->center = newPosition(512, 371);
+     room->n_cats = 0;
+@@ -54,7 +55,7 @@
+ Entity* getSelectedCat(Room* room) {
+     
+     Entity* currCat;
+-    Entity* closestCat;
++    Entity* closestCat = NULL;
+     double distToPlayer;
+     double minDistToPlayer = SELECT_RADIUS;
+     
+@@ -72,7 +73,7 @@
+             closestCat = currCat;
+         }
+     }
+-    ((CatInfo*)closestCat->typeInfo)->isSelected = true;
++    if (closestCat != NULL) ((CatInfo*)closestCat->typeInfo)->isSelected = true;
+     return closestCat;
+ }
+ 

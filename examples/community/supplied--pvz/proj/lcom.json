@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "Plants vs. Zombies",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "direct",
+      "layout": "overlay",
+      "cursor": {
+        "x": 400,
+        "y": 300,
+        "maxX": 799,
+        "maxY": 599
+      },
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    },
+    "theme": {
+      "accent": "#65c46b",
+      "font": "sans"
+    }
+  },
+  "icon": "icon.png",
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "proj/assets"
+    ]
+  }
+}

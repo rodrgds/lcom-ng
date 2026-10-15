@@ -1,0 +1,13 @@
+# main.c START rect420..720,500..600; cursor576,432. Click then type guess/draw, ESC exits.
+at 100 mouse 0 -100 0
+at 120 mouse 0 0 1
+at 121 mouse 0 0 0
+at 450 text TABLE
+at 480 key ENTER down
+at 481 key ENTER up
+at 530 mouse 10 -10 1
+at 540 mouse 20 -10 1
+at 550 mouse 20 0 1
+at 551 mouse 0 0 0
+at 800 key ESC down
+at 801 key ESC up

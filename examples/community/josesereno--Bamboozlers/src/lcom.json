@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "Bamboozlers",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ENTER",
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "dpad": false,
+      "toolbar": "top-right",
+      "look": false,
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "touch": "hold-drag",
+      "actions": [
+        {
+          "label": "Jump",
+          "position": "bottom-right",
+          "key": "UP"
+        },
+        {
+          "label": "Rotate",
+          "position": "bottom-right",
+          "key": "R"
+        },
+        {
+          "label": "Levels",
+          "position": "top-left",
+          "key": "Q"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  }
+}

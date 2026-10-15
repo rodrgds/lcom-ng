@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "name": "Bomberman",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "dpad": {
+        "keys": "arrows",
+        "side": "left"
+      },
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "position": "bottom-right",
+          "label": "Bomb",
+          "key": "SPACE"
+        },
+        {
+          "position": "top-right",
+          "label": "Select",
+          "key": "ENTER"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/assets"
+    ]
+  }
+}

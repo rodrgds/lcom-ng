@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "Labyrinth Quest",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": {
+        "mode": "wasd",
+        "side": "left"
+      },
+      "pointer": "move",
+      "layout": "overlay",
+      "look": {
+        "side": "right",
+        "sensitivity": 1
+      },
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "position": "bottom-right",
+          "label": "Dash",
+          "key": "SPACE"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Attack",
+          "mouseButton": "left"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Interact",
+          "mouseButton": "right"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

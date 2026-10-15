@@ -1,0 +1,40 @@
+/* XPM */
+static char * flagged_cell[] = {
+/* columns rows colors chars-per-pixel */
+"30 30 5 1",
+"  c #3C3C3C",
+". c #C0C0C0",
+"X c #FFFFFF",
+"R	c #FF0000", // vermelho (bandeira)
+"b	c #000001", // preto (base)
+"XXXXXXXXXXXXXXXXXXXXXXXXXXXXX ",
+"XXXXXXXXXXXXXXXXXXXXXXXXXXXX  ",
+"XX..........................  ",
+"XX..........................  ",
+"XX..........................  ",
+"XX.............RRR..........  ",
+"XX...........RRRRR..........  ",
+"XX.........RRRRRRR..........  ",
+"XX.......RRRRRRRRR..........  ",
+"XX.....RRRRRRRRRRR..........  ",
+"XX.......RRRRRRRRR..........  ",
+"XX.........RRRRRRR..........  ",
+"XX...........RRRRR..........  ",
+"XX...........bbRRR..........  ",
+"XX...........bbbbb..........  ",
+"XX...........bbbbb..........  ",
+"XX...........bbbbb..........  ",
+"XX...........bbbbb..........  ",
+"XX...........bbbbb..........  ",
+"XX...........bbbbb..........  ",
+"XX.........bbbbbbbbb........  ",
+"XX.........bbbbbbbbb........  ",
+"XX.......bbbbbbbbbbbbb......  ",
+"XX.......bbbbbbbbbbbbb......  ",
+"XX.......bbbbbbbbbbbbb......  ",
+"XX.......bbbbbbbbbbbbb......  ",
+"XX..........................  ",
+"XX..........................  ",
+"X                             ",
+"                              "
+};

@@ -1,0 +1,11 @@
+--- a/proj/src/devices/gpu/gpu.c
++++ b/proj/src/devices/gpu/gpu.c
+@@ -78,7 +78,7 @@
+ 
+ 
+ int free_buffers() {
+-  free(video_mem);
++  vm_unmap_phys(SELF, video_mem, vmi.XResolution * vmi.YResolution * bytes_per_pixel);
+   free(double_buffer);
+   free(game_background);
+   return 0;

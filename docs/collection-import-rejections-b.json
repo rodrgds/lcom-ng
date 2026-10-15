@@ -1,0 +1,24 @@
+[
+  {
+    "repo": "PedroPF1234/Tower-Engineering-LCOM-23-24",
+    "revision": "d406c7e28046ae8f66b844c8a704187e6b64b5aa",
+    "reason": "Actual native gameplay works, but original Quit reproducibly SIGABRT. Narrow mapped-framebuffer release and redundant animated-sprite destructor corrections expose further ownership/UAF SIGTRAP in cleanup. Excluded because clean return remains broken; no partial patches integrated.",
+    "evidence": "evidence/PedroPF1234--Tower-Engineering-LCOM-23-24/finish-results.json"
+  },
+  {
+    "repo": "TiagoRibeiro2006/BomberLab",
+    "revision": "fc9c522ea6b35435fd81f29c06ebfc85e79fef45",
+    "reason": "Native menu renders, but prior pinned compatibility evidence confirms callback frees active view while widget_tick still traverses it, guarded allocator UAF and gameplay139. Not accepted based only on menu/normal-heap capture. No game rewrite undertaken.",
+    "evidence": "docs/compatibility-results.md"
+  },
+  {
+    "repo": "g0ncal0/lcom_targetShooting",
+    "revision": "245523ced1dfa8516420261a04d364dd7338857a",
+    "reason": "Original game requires IntelliMouse deviceID3 and4-byte wheel packets after200/100/80 negotiation. Current shared runtime emulates3-byte PS/2 mouse, so original mouse_enable_scrolling correctly fails before game. No fake deviceID or source bypass.",
+    "evidence": "evidence/g0ncal0--lcom_targetShooting/initial.log"
+  },
+  {
+    "repo": "Ruben38Esteves/Project-LCOM-Cuphead",
+    "reason": "Exact duplicate of selected leonardomagalhaes21/feup-LCOM project tree9ef922c0a2d9665ce67cca344fee6b2afb2a8d70, so not counted as another game."
+  }
+]

@@ -1,0 +1,203 @@
+{
+  "repository": "https://github.com/migueljcpedrosa/LCOM-Classic-Chess-Game",
+  "revision": "d4174ee225077df23cdf0c453639f88a2c8c0848",
+  "sourceHashes": {
+    "README.md": "ac0edb1cab8f680e7780f29abef353e95349ce5cc0e5f4c2c17f04850eb54caa",
+    "proj/src/.clang-format": "66f7a3be551c14980db4ff14cd66a0fcbad862e03ccd4dc4a0d52a715a1082d7",
+    "proj/src/Makefile": "90aeec9a0cb25bd5bed40eac7974572e418d40a5a45c1cdae44c032fa8923799",
+    "proj/src/controller/game_controller.c": "564e3586a06963f43cda763306a241f39ed37e49af5502bd233d0d0b72543d40",
+    "proj/src/controller/game_controller.h": "8bfbf7f9870fdf533d4dcdc1f65c38d80260ad3593e7959455a45a59fae0ecec",
+    "proj/src/controller/game_over_controller.c": "2d85e9a3160ba18cf67be0492e5b2e08399243a6fa0b1a2ab1a260e2367df81c",
+    "proj/src/controller/game_over_controller.h": "8e9ba0604c44c33cac1656bcaab0e6afdb0e2600a1dc5f364d3a660ac1d2efaa",
+    "proj/src/controller/menu_controller.c": "d0ad224cc698884689604fd8a01510856aa01feaf23bf315bb580cba8067453d",
+    "proj/src/controller/menu_controller.h": "9d517ef7c3ff1e4f7a0bfc1a934d8d836f0831fbede23387702870531f273f13",
+    "proj/src/controller/name_controller.c": "346cc3ecc574a85667f8c923c561b1246acebd2d789491a823e3623bc92969f5",
+    "proj/src/controller/name_controller.h": "feb4d2aeb1bc060d2baa58b15b52747cb7fd35b7656a0f58cb8487f85b2dc594",
+    "proj/src/drivers/keyboard/keyboard.c": "f0c4a4d737e04e96111f5e3d4b8b29c8b212001ff81b1a33c015b88bd1a04c0e",
+    "proj/src/drivers/keyboard/keyboard.h": "0f021f0fca8c577d22670b3dccf624432c3d3a6d992f1c70f7a74122bdd1d119",
+    "proj/src/drivers/keyboard/mkbd.h": "441c2c33b8d4a2706bce48a6d5a0a126f8740c625875cdb3c9804a7933f58295",
+    "proj/src/drivers/mouse/i8042.h": "3acd03f24e46650aa13c159f2f8bb2494efc4c17e5b53338be44da15acfaa3ba",
+    "proj/src/drivers/mouse/mouse.c": "91baf248e46cb4b9e1f3d647f013b1ef5b115b1b561f14d9ecfae2a8d982b33c",
+    "proj/src/drivers/mouse/mouse.h": "d10d854af0ad0a7871b0ba630ecb218c393e530f6e5fe484837ef325d8baee0c",
+    "proj/src/drivers/rtc/mrtc.h": "c2b1307b7f4adbfa418a4bbe264b427e04fddc291c25a126c9936cdb1e0032a6",
+    "proj/src/drivers/rtc/rtc.c": "0ccc9c7bd6fd20909d043538eb534c8a0bea9e73d503a59f35683637f497adbd",
+    "proj/src/drivers/rtc/rtc.h": "9b5a733ac3f1bca16e98606fdf871a2f6c6af0f042e1ed110ceaf6956c494369",
+    "proj/src/drivers/serial_port/sp.c": "9a5a32b7f4819ed39af84924afb6e9e308364c76c8a2f295709828bbcc6ef81f",
+    "proj/src/drivers/serial_port/sp.h": "80e453050d53c21cc39fb6e4d2f9ef70da0fbdc4393f0d10aadfd983808df53e",
+    "proj/src/drivers/serial_port/sp_data_queue.c": "ff7b88a351ca59ee1cfa77644310761dcdebf11b64bd3bce88e03cfd75958f9f",
+    "proj/src/drivers/serial_port/sp_data_queue.h": "96cbdcd17fe4f18d867865ff73261b93238a7288544d7c62176ee02761236b43",
+    "proj/src/drivers/timer/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/drivers/timer/i8254.h": "da88c58e67ef08c6f3227d80a8e18cfd9786403d780bc8372dbb3f9268fe028e",
+    "proj/src/drivers/timer/timer.c": "025ff555bb98f79eac5bda4176447f49c406016add0b3efd72da601fa91b12af",
+    "proj/src/drivers/timer/timer.h": "04ec3d8d6a20c570431cf318a403acd09962ec1a17e32c74c2e81439a2b374dc",
+    "proj/src/drivers/utils.c": "dc957bbe96ad5d9f1dcbde51f3a43b3cd0a20e5ede2365d756faf547741005b1",
+    "proj/src/drivers/utils.h": "52b3be5573f7e815a31332f5949884f2c7eb5c10589eca97d27c7c9c20b9568b",
+    "proj/src/drivers/video_card/gpu.c": "a05381f3dd95b24f8005cca456bd28a57e9ced74e3c9711d4fe2078dcb0f1206",
+    "proj/src/drivers/video_card/gpu.h": "0024ed3b9bafdb2e20afef3a6709b9ac563dba631f8839b2ee3d49dde00d01e1",
+    "proj/src/drivers/video_card/vbe.h": "2a2faf397c4e05c5368aaeae3e8a8cc7a828c5330027f65ae073e5e4b884ab37",
+    "proj/src/main.c": "5de353d8fe7b8d4dccd060b9fd9dc367ff16704b34dc4e712256301466907021",
+    "proj/src/model/cursor/cursor.c": "d1fdc686c2914576409583261c158a7a6dc00de3e81acadcc1ae1363c958ad26",
+    "proj/src/model/cursor/cursor.h": "2c09eb3fb94a410a3b9650fc62e15ced5ce01b222caef66b0cbb075870fb701b",
+    "proj/src/model/cursor/cursor_input.c": "342e8ed0d886aebe29f7f4a131360cbbb8ecaffa010547397c4ccb05c73712ea",
+    "proj/src/model/cursor/cursor_input.h": "f4e0d7399a6c1893d4d63aebabc8299ebb1c53a6f236857f925ccddc8e5b93dc",
+    "proj/src/model/game/board.c": "3597fefcdac03081e48ba03c4ddc10fd6ff8ca49e93759726ef1821fc9fdae50",
+    "proj/src/model/game/board.h": "3814a0335ce588442d3bd9349d360d453cb7d58ddf715ead17ed59737db8897d",
+    "proj/src/model/game/game.c": "0ae10e2b134e1a9b05b4a971e66269b62037319a0870d880df6e358f0745bd70",
+    "proj/src/model/game/game.h": "c52ca508d89b77061eb9ded6a7a7ba632256b0082b407373a8257e5cb26e59bb",
+    "proj/src/model/game/game_util.h": "98860c3ca13fa729b8b580e50e2739b88c1600d3b142596a70db4d66f29c52b4",
+    "proj/src/model/game/move.c": "b9ba33e401bd9798f35c740e16a2c1d58e985255219d4d47a61aaa96fcf4b151",
+    "proj/src/model/game/move.h": "b5726e3c0b25331fb599b53fb719751717d689e5e786784bd99a3dee186ef997",
+    "proj/src/model/game/pieces.c": "520e3d10c3fbdf598b5fd64a9cb42a968f0a5b538fb25e27d07289352ad9a474",
+    "proj/src/model/game/pieces.h": "cfb97755f9e890a876d688d804cf22c89e6ff53fab685b203fbaa2eb655b0e80",
+    "proj/src/model/game/player.c": "1cd1fff1df8c50a085364f0d01f5c5b2ab787ede172b040999c70eee6d309466",
+    "proj/src/model/game/player.h": "4f5bef1b71e8fc7964be01d1a31bec574943d0d1ecb90bc3d4f770a154e47f8a",
+    "proj/src/model/game_over/game_over.c": "9056f078b59e90fde460a1261a0c6e9ebf0fc864758133f41e49a85ca412a2a3",
+    "proj/src/model/game_over/game_over.h": "74c8e5a28c9205ae640d4d69b152f68da82cd8f270d58f50f739be5ce9f1eb19",
+    "proj/src/model/menu/menu.c": "9c938c967fecf228ba223943994f9afeb38e4af4c9810c63bd4c58340d800566",
+    "proj/src/model/menu/menu.h": "32c6558ad3714a6fae484342b3a661a933482aa8dbd25a4c6a59267049571f0d",
+    "proj/src/model/model_utils.h": "9054502380fc5e792de4e8f55fecd2b42d5a41be6e71e47910e8077a5e06e140",
+    "proj/src/model/name/name_input.c": "a939d7ed3d9a657cbb8710986c12c1c8913064a1d53527f2667259ea9f31ac8a",
+    "proj/src/model/name/name_input.h": "a58a91fae0fa44373612cab7dfe72a23bc3e131e7640906834cea8847785aed3",
+    "proj/src/model/xpm/alphabet-courier.xpm": "187356064ab63d5fe4a2b618ba503a03019e8ca963ee7a8085d5d76b6935b8b3",
+    "proj/src/model/xpm/alphabet-small.xpm": "0427355545333aaf85f95a6bea7c4231849e49dd07be14e2a1088df7efc18407",
+    "proj/src/model/xpm/blackBishop.xpm": "bba113d55b8ebeb3c2543f674bc5aea96fcfdb43a38d557c500c870bfbb2f5ab",
+    "proj/src/model/xpm/blackKing.xpm": "74fede4409599b5c08be1544c35f1ed17f0fca4692932db50df5a3a340583369",
+    "proj/src/model/xpm/blackKnight.xpm": "a6a9cb2c835dd375c41bb422b6c0bbe69c05badf7b62d5a2bac1601a4297df68",
+    "proj/src/model/xpm/blackPawn.xpm": "b109ef182c0b34e849eab33f96c12a2a51c637727c07b9f424f72d21772a4d04",
+    "proj/src/model/xpm/blackQueen.xpm": "f1a7db3b2cc2887948c453962a5e88a92fa351788f5140a06e3b8521cc9b481e",
+    "proj/src/model/xpm/blackRook.xpm": "1e7df39405810246041c6932ce9d72fb9490e8dcaaf509e73ea33bc328f17d31",
+    "proj/src/model/xpm/chessBackground.xpm": "4a6649b640b47a87c2af3cc5651a212aca2404c71af13ff8a563102d8dbf8b77",
+    "proj/src/model/xpm/exitButtonMenu.xpm": "a1193f2b4534e2e11be187289a3ecc2db8b4cd895b6cfa9078f0e96e2e604723",
+    "proj/src/model/xpm/mouse.xpm": "1086b7488389dae0b8bf0892ec8d9a851a5ff5ce1ac4fd5307109c4991c3e6e6",
+    "proj/src/model/xpm/numbers.xpm": "16750dd9dcc470da3a7c19999c0663eca933209eaf4c8c420940e367a2f09a2a",
+    "proj/src/model/xpm/numbers_small.xpm": "9825340c75e822a53e114f4aa73fce42477e0499ef8a2616d5e555d18a239d99",
+    "proj/src/model/xpm/playButtonMenu.xpm": "afcec3ae3775ef80be13955bbe03f40f32b68f56cf4467804493f2da48983e5f",
+    "proj/src/model/xpm/slash.xpm": "1f69489210abc5d92d4586174991542c1f332245518a093242674754ae68fc90",
+    "proj/src/model/xpm/slashWhite.xpm": "aa661aa874805560d8611e9da983b803b0dd5ee1a99cf228df7afe76d5f80e08",
+    "proj/src/model/xpm/whiteBishop.xpm": "39671be71544427a1f39615a2fb3debf66c5b07917c89ec69c0c1d029c607a7d",
+    "proj/src/model/xpm/whiteKing.xpm": "00a20aff99d1b5868d7a0cb980cc57667b6e62dffdde87d2d044d91258676a5e",
+    "proj/src/model/xpm/whiteKnight.xpm": "79d27e373e25adbe5d7c90c156713b9d54e57bef10730cd4a5e3140cc49271bd",
+    "proj/src/model/xpm/whitePawn.xpm": "c202febcb634e84337c0c09046b9f4a0745d557c3457054f9885a1ea1a1af1bd",
+    "proj/src/model/xpm/whiteQueen.xpm": "c321ce3efd2424ef9f698a847f16150b0fda5a7dd8046cce7964d7d8cd3b582c",
+    "proj/src/model/xpm/whiteRook.xpm": "dd2db5aa5149f9a1cd501579b432f38c3a9a8af80522b96aadec85b1e9768912",
+    "proj/src/model/xpm/xpm.h": "bc6756ee48cd7b42a1e315d084208e305cb86ff830a2d1664525641abb225240",
+    "proj/src/state/state.c": "742c7188d3d37196e1f1b620e9c80f94e3cb701c7f359ef0df879bee911f4459",
+    "proj/src/state/state.h": "d2d7d0e28420913b0eba3f70a02f7fcb960d90b1af6d6a989bb6ae25709fb7aa",
+    "proj/src/view/game_over_viewer.c": "6734b5dd1dfcfcfaf3913c1b0021c36bb294661da8dcef945ee47f707378b136",
+    "proj/src/view/game_over_viewer.h": "0dd90eef632fe569a9a50dfd936d7d51ee6469233bd8cc7a4356b95faa348076",
+    "proj/src/view/game_viewer.c": "3e9e700eaa12b833d38bfc42a20ccf53e277a5e10d3d5c3e57a862c632461a92",
+    "proj/src/view/game_viewer.h": "87008ca177a2f46a410bcae2a944238861ccbb8b487098d76527b195d2becca3",
+    "proj/src/view/menu_viewer.c": "b5a3e80a6d3380dd1eef81b759a862164ece3c313dd8878c1ddeaff92fcc6e08",
+    "proj/src/view/menu_viewer.h": "060fe8141b585a442f6d2da8bf73a16a408217cb7f755be3ffc57df61742410f",
+    "proj/src/view/name_viewer.c": "1604eb283fc755cdecb9fc4e8a4aa8160ea45f23524bca99ae01268c176ae4ea",
+    "proj/src/view/name_viewer.h": "14e8c26af198e32948da43113cb08b8d998f5e0d28ab9769b10c5070bbfc19b3",
+    "proj/src/view/sprite.c": "e339d74b57d837c5e8372f93a78f89fb5e757365f606019621bedda4b385a7a6",
+    "proj/src/view/sprite.h": "e260b52d39a04a2998bf3f85d7d59c343ec25343e08c172eebc68672c5a5e5a9",
+    "proj/src/view/viewer.c": "3eff4fe16584c0f4d1d0b5ac7b4a1ad5b65ba1c40c68d257eeb0b94c9fa2389d",
+    "proj/src/view/viewer.h": "5b9e31b317621944e0dfb280b2761e41a12654fe74810daadb6b19e26ae952b2"
+  },
+  "sourcePatches": [
+    {
+      "path": "examples/community/migueljcpedrosa--LCOM-Classic-Chess-Game/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "proj/src/model/game/pieces.h",
+          "originalSha256": "cfb97755f9e890a876d688d804cf22c89e6ff53fab685b203fbaa2eb655b0e80",
+          "patchedSha256": "506f1e7ff7ee4df52388dc373ed1ebbed0f0929c0751186bf134456c39e7a3e5",
+          "reason": "Original pieces.h redefines WHITE and BLACK already declared by included game_util.h Color. Use the already-defined Color type documented for this member; values and behavior unchanged."
+        }
+      ],
+      "reproduction": "source-regressions/migueljcpedrosa--LCOM-Classic-Chess-Game/results.json"
+    }
+  ],
+  "derivedAssets": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "Original ENTER starts, typed player name, mouse selects/moves pieces and ESC exits. Full keyboard supports name entry. Relative pointer avoids an unverified guest cursor contract.",
+  "icon": {
+    "kind": "original menu chess king art",
+    "source": "evidence/migueljcpedrosa--LCOM-Classic-Chess-Game/initial.ppm",
+    "crop": [
+      0,
+      43,
+      426,
+      820
+    ],
+    "output": "icon.png",
+    "size": [
+      512,
+      512
+    ]
+  },
+  "verification": {
+    "repo": "migueljcpedrosa/LCOM-Classic-Chess-Game",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/migueljcpedrosa--LCOM-Classic-Chess-Game/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/migueljcpedrosa--LCOM-Classic-Chess-Game/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/migueljcpedrosa--LCOM-Classic-Chess-Game/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Actual original gameplay state, screenshot inspected; bounded capture"
+      },
+      {
+        "id": "menu-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/migueljcpedrosa--LCOM-Classic-Chess-Game/menu-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/migueljcpedrosa--LCOM-Classic-Chess-Game/menu-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/migueljcpedrosa--LCOM-Classic-Chess-Game/menu-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Original clean callback exit; scope is menu-exit"
+      }
+    ],
+    "originalSourceFailure": {
+      "repo": "migueljcpedrosa/LCOM-Classic-Chess-Game",
+      "source": "exact pinned source for every modified file",
+      "buildExit": 1,
+      "expectedFailureObserved": true
+    },
+    "browser": [
+      {
+        "id": "migueljcpedrosa--lcom-classic-chess-game",
+        "width": 1152,
+        "height": 864,
+        "colors": 253,
+        "status": "Game running.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "webBuild": [
+      {
+        "id": "migueljcpedrosa--lcom-classic-chess-game",
+        "exit": 0,
+        "seconds": 8.2,
+        "output": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/web-exports/migueljcpedrosa--lcom-classic-chess-game"
+      }
+    ],
+    "browserExit": [
+      {
+        "id": "migueljcpedrosa--lcom-classic-chess-game",
+        "width": 1152,
+        "height": 864,
+        "colors": 1579,
+        "status": "Game finished. Press Enter or tap the game to restart.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "directTouch": []
+  }
+}

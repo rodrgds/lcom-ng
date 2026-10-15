@@ -1,0 +1,150 @@
+{
+  "repository": "https://github.com/Vasco888888/feup-leic-lcom",
+  "revision": "cdf1668915aaebb900a9ef8eca3252e2414324cb",
+  "sourceHashes": {
+    "README.md": "9847ffeabfb8458a18426a98934bbf08a1d29c1de820e1ddbc9876a446678d72",
+    "src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/.gitignore": "1128571f39a0f3f55a277cd5e454fcec19746c80519fc3f1a5df5ed1fe767a70",
+    "src/Makefile": "2d3d5b8bf4c33f3299910f7a2ad70c984c274956b95f04cf651b2d2893de4dfb",
+    "src/conf.h": "23d25aa870950b43988945f936d828400d620948c8efdb8eb6239e011d33aefd",
+    "src/game/game.c": "9694a68bd39d9a1112b9cd7dff475d7cb0ad4b792d3665e1c3e75283389bf245",
+    "src/game/game.h": "ffb19171286f91a4c1363c08249e9de47a991903bae86ca753dff1460a20ff49",
+    "src/game/tile.c": "967649ea87236811731dffe55c38050439cda7e6106d37015670337f050aaedf",
+    "src/game/tile.h": "c3c52c8a8233864edde1190ea46bbdc6ecae008fe955d2ab02b1024fa0e5f9da",
+    "src/highscore/highscore.c": "e6a1fd4659eddf924795fb54a72b5f6e97144b0c164809ff3f9f3edc48bf2273",
+    "src/highscore/highscore.h": "c2bbe3063f801149e2269ca8ea2c6a86f07c8be228cb162ffe5b16ccd3af165d",
+    "src/keyboard/KBC.c": "7a756435a8716dc765ae2743622c3721bf80b50ff71ecf5e2a2a16f3f466589c",
+    "src/keyboard/KBC.h": "c8fdc7fbffe3253b4c82b8c0077ed6b73d4acd92c4680dc588e1a7df5a0c9237",
+    "src/keyboard/i8042.h": "c3ae7bc9cac3b45ca55bc02355e770926b36452f821a0ffbdb5142117fa4973c",
+    "src/keyboard/keyboard.c": "f9ff5c9af6cdac2c7e551a5cdb5710c2d5798b566752fc1689b51b39d164c863",
+    "src/keyboard/keyboard.h": "886b6ef35ef3e6f55286499c5e2a87b4d4d6ddee1af8c7a53346dc2f8d26a870",
+    "src/main.c": "96b476dbe79bcab839633578d1117d6aea784f07771f80ac1d59c450ae53d39f",
+    "src/menu/menu.c": "8d101d25adb591461c92a52f2a40771468647edbb6e31834d17ce7967ea13d74",
+    "src/menu/menu.h": "8d6839f104f6cdd26ba50f7294e1043c4b70761ed1e469d7d69bc9241abfd57e",
+    "src/menu/options.c": "1a884fd70b761d4f9970fcfe0b871c0e8d394009998f1a402ef060c47dbbf2cf",
+    "src/menu/options.h": "461de179fd4adf4fa0343ba3e3c818724a2c8f4fa16340a54fae7175f7998bfc",
+    "src/timer/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "src/timer/timer.c": "19e148f1e07908dbe312a9ab2b4365176fe0b9c1087987b744e701cbea3ff554",
+    "src/timer/timer.h": "31d1575449ac9852cdd7609d5a793d0b92c25c2d8b3eb25406fd30027813d84d",
+    "src/utils/utils.c": "ec2548a0e5e2b49a62a2fe08e2c2e7d42ed47af7a8a55a9ba1fe14ba77624d1d",
+    "src/utils/utils.h": "572cd7e95cc4088c1f0bf3e92f2159c0d0b331d910ffa75ac72a6faf87ece2e4",
+    "src/video/VBE.h": "6ab229e92c7d9a89e3b79489237a27d6bb3439fd64cf8e02b9dbf8936b1c5e24",
+    "src/video/font.h": "006617b710097ee70ec38e58f432158dd2604ae19c1f004f98b3d02bc008ac8b",
+    "src/video/graphics.c": "4ad8d6a6a3ec85b77c4a7d0f7254d468f851274cd2590804e3eb1dc820cee83e",
+    "src/video/graphics.h": "180d730640a1de1d4525bff4bac76e5de3615809338306a2cffcb47c3801b7b0"
+  },
+  "sourcePatches": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "game/tile.c has seven note lanes A/S/D/F/G/H/J. Independent quick buttons support simultaneous notes and holds; ENTER starts, W/S navigate all original menus, ESC returns. No full keyboard covers the board.",
+  "icon": {
+    "type": "gameplay-capture",
+    "source": "evidence/Vasco888888--feup-leic-lcom/populated-gameplay.ppm",
+    "crop": [
+      40,
+      90,
+      760,
+      600
+    ],
+    "sourceSize": [
+      800,
+      600
+    ]
+  },
+  "verification": {
+    "repo": "Vasco888888/feup-leic-lcom",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/Vasco888888--feup-leic-lcom/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/Vasco888888--feup-leic-lcom/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/Vasco888888--feup-leic-lcom/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Guarded populated capture; clean application exit is checked separately"
+      },
+      {
+        "id": "gameplay-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/Vasco888888--feup-leic-lcom/gameplay-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/Vasco888888--feup-leic-lcom/gameplay-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/Vasco888888--feup-leic-lcom/gameplay-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Clean application exit after original input and cleanup"
+      }
+    ],
+    "browser": {
+      "id": "vasco888888--feup-leic-lcom",
+      "width": 800,
+      "height": 600,
+      "colors": 8,
+      "status": "Game running.",
+      "quickKeys": [
+        {
+          "label": "A",
+          "width": 65.5,
+          "height": 44
+        },
+        {
+          "label": "S",
+          "width": 65.5,
+          "height": 44
+        },
+        {
+          "label": "D",
+          "width": 65.5,
+          "height": 44
+        },
+        {
+          "label": "F",
+          "width": 65.5,
+          "height": 44
+        },
+        {
+          "label": "G",
+          "width": 65.5,
+          "height": 44
+        },
+        {
+          "label": "H",
+          "width": 65.5,
+          "height": 44
+        },
+        {
+          "label": "J",
+          "width": 65.5,
+          "height": 44
+        },
+        {
+          "label": "W",
+          "width": 65.5,
+          "height": 44
+        },
+        {
+          "label": "\u21b5",
+          "width": 137,
+          "height": 44
+        },
+        {
+          "label": "Esc",
+          "width": 137,
+          "height": 44
+        }
+      ],
+      "controlsFit": true,
+      "errors": [],
+      "passed": true
+    }
+  },
+  "derivedAssets": []
+}

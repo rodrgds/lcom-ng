@@ -1,0 +1,6 @@
+.gdbinit
+lab3
+lab3.o
+kbd.o
+utils.o
+timer.o

@@ -1,0 +1,25 @@
+#ifndef __UTILS_H_
+#define __UTILS_H_
+
+#define STATE_MENU 0
+#define STATE_EXIT 1
+#define STATE_SELECTMODE 2
+#define STATE_GAME_SINGLEPLAYER 3
+#define STATE_GAME_SINGLEPLAYER_IO 4
+#define STATE_GAME_SINGLEPLAYER_CLASSIC 5
+#define STATE_GAME_MULTIPLAYER 6
+#define STATE_GAME_MULTIPLAYER_LOCAL 7
+#define STATE_GAME_MULTIPLAYER_REMOTE 8
+#define CELL_SIZE 64
+#define MAX_SNAKE_LEN 100
+#define SCREEN_WIDTH 1152
+#define SCREEN_HEIGHT 832
+#define KEY_W 0x11
+#define KEY_A 0x1E
+#define KEY_S 0x1F
+#define KEY_D 0x20
+
+typedef enum { LEFT = 1, UP, DOWN, RIGHT, NO} Direction;
+
+#endif
+

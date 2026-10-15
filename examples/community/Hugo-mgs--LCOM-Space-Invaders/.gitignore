@@ -1,0 +1,7 @@
+**/.DS_Store
+output.txt
+trace.txt
+.vscode
+*.o
+.gdbinit
+proj/src/proj

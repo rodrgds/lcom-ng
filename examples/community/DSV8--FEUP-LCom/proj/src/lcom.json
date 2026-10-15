@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "name": "Plant Hero",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": {
+        "mode": "wasd",
+        "side": "left"
+      },
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "position": "top-right",
+          "label": "Start",
+          "key": "1"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Fire",
+          "mouseButton": "left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

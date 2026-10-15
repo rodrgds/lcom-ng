@@ -1,0 +1,11 @@
+at 200 key SPACE down
+at 201 key SPACE up
+at 320 mouse 0 -64 0
+at 340 mouse 0 0 1
+at 341 mouse 0 0 0
+at 460 mouse 0 -82 0
+at 465 mouse 0 -83 0
+at 470 mouse 0 -82 0
+at 480 mouse 0 0 1
+at 481 mouse 0 0 0
+at 600 text TEST WORLD

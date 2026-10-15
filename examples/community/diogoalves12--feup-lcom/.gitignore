@@ -1,0 +1,9 @@
+proj
+*.o
+*.d
+.gdbinit
+output.txt
+trace.txt
+.DS_Store
+project-docs
+docs/

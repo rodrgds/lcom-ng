@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Dual Arena",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "UP",
+        "DOWN",
+        "ENTER",
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "touch": "move",
+      "pads": [],
+      "actions": [
+        {
+          "label": "P1 Move",
+          "key": "W",
+          "position": "bottom-left"
+        },
+        {
+          "label": "P1 Fire",
+          "key": "SPACE",
+          "position": "bottom-left"
+        },
+        {
+          "label": "P2 Move",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "P2 Fire",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Pause",
+          "position": "top-left",
+          "key": "P"
+        }
+      ],
+      "toolbar": "top-right"
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  }
+}

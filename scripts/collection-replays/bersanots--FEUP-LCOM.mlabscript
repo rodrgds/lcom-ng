@@ -1,0 +1,6 @@
+at 100 mouse 0 0 1
+at 101 mouse 0 0 0
+at 140 key W down
+at 160 key RIGHT down
+at 200 key W up
+at 210 key RIGHT up

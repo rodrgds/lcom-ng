@@ -1,0 +1,11 @@
+--- a/proj/src/devices/mouse/mouse.c
++++ b/proj/src/devices/mouse/mouse.c
+@@ -78,7 +78,7 @@
+ 
+ int (mouse_write_cmd)(uint8_t cmd){
+   int attempts = ATTEMPTS;
+-  uint8_t acknowledgment_byte;
++  uint8_t acknowledgment_byte = 0;
+ 
+   while(attempts > 0 && acknowledgment_byte != ACK){
+     if(kbc_write_cmd(KBC_CMD_REG, MOUSE_WRITE_BYTE)) 

@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "name": "Minix Legends",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "touch": "move",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "both"
+        },
+        {
+          "mode": "arrows",
+          "side": "right",
+          "style": "dpad",
+          "axes": "both"
+        }
+      ],
+      "actions": [
+        {
+          "label": "P1 Attack",
+          "position": "bottom-left",
+          "mouseButton": "left"
+        },
+        {
+          "label": "P2 Attack",
+          "position": "bottom-right",
+          "mouseButton": "right"
+        },
+        {
+          "label": "Start",
+          "position": "top-left",
+          "key": "W"
+        },
+        {
+          "label": "Shop",
+          "position": "top-left",
+          "key": "P"
+        }
+      ],
+      "toolbar": "top-right",
+      "look": false
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  }
+}

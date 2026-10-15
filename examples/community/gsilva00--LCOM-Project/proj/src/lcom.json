@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "name": "Pixel Football",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "UP",
+        "DOWN",
+        "ENTER",
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "toolbar": "top-right",
+      "look": false,
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Jump",
+          "position": "bottom-right",
+          "key": "UP"
+        },
+        {
+          "label": "Kick",
+          "position": "bottom-right",
+          "key": "DOWN"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

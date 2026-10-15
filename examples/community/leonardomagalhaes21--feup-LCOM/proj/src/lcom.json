@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "Not Cuphead",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "touch": "move",
+      "actions": [
+        {
+          "label": "Jump",
+          "position": "bottom-right",
+          "key": "W"
+        },
+        {
+          "label": "Fire",
+          "position": "bottom-right",
+          "mouseButton": "left"
+        }
+      ],
+      "toolbar": "top-right",
+      "keyboardPosition": "bottom",
+      "look": false,
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/scoreboard.txt"
+    ]
+  }
+}

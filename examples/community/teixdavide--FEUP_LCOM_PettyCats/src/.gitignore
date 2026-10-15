@@ -1,0 +1,15 @@
+output.txt
+trace.txt
+*.o
+.vscode
+.clang-format
+.gdbinit
+*.d
+proj
+.depend
+.clang-format
+.vscode
+.clang-*
+core.*
+proj/.minix-src/
+proj/src/.minix-src/

@@ -1,0 +1,8 @@
+at 200 mouse 60 40 0
+at 205 mouse 60 40 0
+at 230 mouse 0 0 1
+at 231 mouse 0 0 0
+at 280 key D down
+at 300 key D up
+at 330 key SPACE down
+at 331 key SPACE up

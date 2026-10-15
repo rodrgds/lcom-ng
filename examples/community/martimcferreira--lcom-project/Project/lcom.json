@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "name": "FEUP Hero",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "A",
+        "S",
+        "D",
+        "F",
+        "G"
+      ],
+      "joystick": false,
+      "layout": "panel",
+      "pointer": "direct",
+      "cursor": {
+        "x": 400,
+        "y": 500,
+        "maxX": 799,
+        "maxY": 599
+      },
+      "toolbar": "auto",
+      "actions": [
+        {
+          "position": "top-right",
+          "label": "Select",
+          "key": "ENTER"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "Project/beatmaps"
+    ]
+  }
+}

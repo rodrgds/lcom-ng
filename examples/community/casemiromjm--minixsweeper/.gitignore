@@ -1,0 +1,15 @@
+# ignore c compilation files
+**/*.o
+**/.gdbinit
+.gdbinit
+labs/lab[0-9]/lab[0-9]
+
+# macOS files
+**/.DS_Store
+.DS_Store
+
+# ignore debugging files (trace.txt, output.txt)
+**/*.txt
+
+# ignore build files
+**/src/proj

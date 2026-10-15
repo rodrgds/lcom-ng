@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "Block Blast",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "UP",
+        "DOWN",
+        "ENTER",
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "look": false,
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Launch",
+          "position": "bottom-right",
+          "key": "SPACE"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

@@ -1,0 +1,17 @@
+at 100 mouse 120 -120 0
+at 110 mouse 30 -120 0
+at 120 mouse 0 -120 0
+at 130 mouse 0 -120 0
+at 140 mouse 0 -120 0
+at 150 mouse 0 -60 0
+at 170 mouse 0 0 1
+at 171 mouse 0 0 0
+at 200 key 2 down
+at 201 key 2 up
+at 220 mouse -110 110 0
+at 230 mouse -110 110 0
+at 240 mouse -110 110 0
+at 250 mouse 0 110 0
+at 260 mouse 0 110 0
+at 280 mouse 0 0 1
+at 281 mouse 0 0 0

@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "name": "Battleship",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "UP",
+        "DOWN",
+        "ENTER",
+        "ESC",
+        "1",
+        "2"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "overlay",
+      "dpad": false,
+      "look": {
+        "side": "left",
+        "sensitivity": 0.35
+      },
+      "actions": [
+        {
+          "label": "Menu",
+          "position": "top-left",
+          "key": "M"
+        },
+        {
+          "label": "Rules",
+          "position": "top-left",
+          "key": "SPACE"
+        },
+        {
+          "label": "Help",
+          "position": "top-left",
+          "key": "H"
+        },
+        {
+          "label": "Drag",
+          "position": "bottom-left",
+          "mouseButton": "left"
+        },
+        {
+          "label": "Rotate",
+          "position": "bottom-right",
+          "mouseButton": "right"
+        },
+        {
+          "label": "Ready",
+          "position": "bottom-right",
+          "key": "R"
+        }
+      ],
+      "toolbar": "top-right",
+      "touch": "hold-drag",
+      "pads": []
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

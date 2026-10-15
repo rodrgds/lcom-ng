@@ -1,0 +1,52 @@
+/* XPM */
+#include "lcom/xpm.h"
+
+/* XPM */
+static xpm_row_t const two_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"19 33 10 1 ",
+"  c None",
+". c #2A2A2A",
+"X c #2B2B2B",
+"o c #2C2C2C",
+"O c #22FDE1",
+"+ c #22FDE3",
+"@ c #21FEE3",
+"# c #22FEE3",
+"$ c #23FEE3",
+"% c #22FFE4",
+/* pixels */
+"    @@@@@@@@@@     ",
+"   @@@@@@@@@@@@    ",
+"   @@@@@@@@@@@@    ",
+"XX              @@ ",
+"XXX  X      XX  @@ ",
+"XXX XXX    oXX  @@ ",
+"XXX  XXX  oXXX  @@ ",
+"XXX   XXXoXXX   @@ ",
+"XXX    XXXXX    @@ ",
+"XXX    oXXX     @@ ",
+"XXX   oXXXXX    @@ ",
+"XXX  oXXX XXX   @@ ",
+"XXX XXXX   XXX  @@ ",
+"XXX XXX     XX  @@ ",
+"XXX             @@ ",
+" X  @@@@@@@@@@% @  ",
+"   @@@@@@@@@@@@    ",
+"   @@@@@@@@@@@@    ",
+"@@              XX ",
+"@@@ XX      XX  XX ",
+"@@@ XXX    XXX  XX ",
+"@@@  XXX  XXX   XX ",
+"@@@   XXXXXX    XX ",
+"@@@    XXXX     XX ",
+"@@@    XXXX     XX ",
+"@@@   XXXXXX    XX ",
+"@@@  XXX  XXX   XX ",
+"@@@ XXX    XXX  XX ",
+"@@@ oX      X   XX ",
+"@@              XX ",
+"   @@@@@@@@@@@@    ",
+"   @@@@@@@@@@@@    ",
+"    @@@@@@@@@@     "
+};

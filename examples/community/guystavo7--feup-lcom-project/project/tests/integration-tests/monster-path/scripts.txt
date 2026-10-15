@@ -1,0 +1,17 @@
+
+code for testing out of minix:
+
+gcc -g -Wall -fsanitize=address monsterTest.c monster.c vec2d.c -o monsterTest -lm
+  ./monsterTest
+
+gcc -g -Wall -fsanitize=address pathTest.c path.c vec2d.c ../data_structures/vector.c -o pathTest -lm
+  ./pathTest
+
+  gcc -g -fsanitize=address vec2dTest.c vec2d.c -o vec2dTest -lm
+  ./vec2dTest
+
+
+code for trying monster path test (in MINIX):
+
+make
+lcom_run proj

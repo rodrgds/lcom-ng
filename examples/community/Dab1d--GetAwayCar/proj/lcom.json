@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "name": "Getaway Car",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "overlay",
+      "dpad": {
+        "keys": "arrows",
+        "side": "right",
+        "axes": "horizontal"
+      },
+      "touch": "move",
+      "actions": [
+        {
+          "position": "bottom-left",
+          "label": "P1 Left",
+          "key": "A"
+        },
+        {
+          "position": "bottom-left",
+          "label": "P1 Right",
+          "key": "D"
+        },
+        {
+          "position": "bottom-right",
+          "label": "P2 Left",
+          "mouseButton": "left"
+        },
+        {
+          "position": "bottom-right",
+          "label": "P2 Right",
+          "mouseButton": "right"
+        },
+        {
+          "position": "top-right",
+          "label": "Menu up",
+          "key": "UP"
+        },
+        {
+          "position": "top-right",
+          "label": "Menu down",
+          "key": "DOWN"
+        },
+        {
+          "position": "top-right",
+          "label": "Select",
+          "key": "ENTER"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ],
+      "toolbar": "top-left"
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  }
+}

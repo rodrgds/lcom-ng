@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Aerial Ambush",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "touch": "move",
+      "actions": [
+        {
+          "label": "Jump",
+          "position": "bottom-right",
+          "key": "SPACE"
+        },
+        {
+          "label": "Fire",
+          "position": "bottom-right",
+          "mouseButton": "left"
+        }
+      ],
+      "toolbar": "top-right",
+      "look": false,
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "home/lcom/labs/proj/game_results.txt"
+    ],
+    "environment": {
+      "LCOM_COMPAT_MOUSE_REPORTING": "1"
+    }
+  }
+}

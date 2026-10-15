@@ -1,0 +1,9 @@
+*.o
+proj
+!proj/
+lab0
+lab2
+lab3
+lab4
+lab5
+.gdbinit

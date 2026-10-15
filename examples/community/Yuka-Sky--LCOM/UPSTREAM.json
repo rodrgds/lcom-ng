@@ -1,0 +1,85 @@
+{
+  "repository": "https://github.com/Yuka-Sky/LCOM",
+  "revision": "e333e84a361140f7ba410bf219133d7b2fd92860",
+  "sourceHashes": {
+    "Project/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "Project/src/Makefile": "2fdb2a34183b483341d8e817c11fc0216886fa5d4a263e8968c86888d6fe95ab",
+    "Project/src/drawScreens.c": "471ac9225435f7d034e2a46cf1e11030a2f7f3300490381b479f0483ae1adc31",
+    "Project/src/drawScreens.h": "1487cee44163fc2c9d5359a00852c72738c75f73db812dfc7bb9c39485d10b88",
+    "Project/src/drawingLogic.c": "cd299599b9e76b581c71a1a00cb933cfcaa1768f31108dbb08a27570ae3f23f1",
+    "Project/src/drawingLogic.h": "afa41f87a74e01223b8e565f9f2e5aa2dd52599104b2813b6b31c561da5893da",
+    "Project/src/graphics/VBE.h": "9d52d2935b23f686616c31ce455a8e99aa25d8df38145bee58d6ab45b1fa2f60",
+    "Project/src/graphics/graphics.c": "a37facaee8146b79221a8f290611b67ecfe0588a0b4f3723d9b70c9176cf229d",
+    "Project/src/graphics/graphics.h": "55b3cec52b9df587df5153263bea0a66c1f0ee77882e3de25e17792dfeb1faf8",
+    "Project/src/main.c": "c861070b377c00c1feb615709637a7d4e0ac0d1d030e2c44878d60a08ff8c072",
+    "Project/src/mousekb/KBC.c": "8100bd223360314fc350da5a297610e82c2d92d6a1935825d0265680bc9c4a2d",
+    "Project/src/mousekb/KBC.h": "247a067e1ec62ebca7ca0b2dbeda3dedd37b1736a2216fabeb8d0eaf41b9d6a4",
+    "Project/src/mousekb/i8042.h": "e64aac8058bb40e97c665630a3d8f637ed3f38eff692c482479774f3a92fe73a",
+    "Project/src/mousekb/keyboard.c": "2339d895b7eafdb506fd6c4e5f5d910430819050088f9f3e598823e77059179c",
+    "Project/src/mousekb/keyboard.h": "957b4f110dd1262d143cc352998f680b871c78a5705da6f1df45af60a69a850a",
+    "Project/src/mousekb/mouse.c": "9b32968b24f6ae358c9f9e66b2456ae0ee79d0fcd3cc3967a5a38315a8caac90",
+    "Project/src/mousekb/mouse.h": "a1c5d63c9e7267e49f06ccc728f3b899d34fbbaff90f3291d475a147dc369d34",
+    "Project/src/timer/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "Project/src/timer/timer.c": "e562125a8df7f5db191259d0f6acf07646c1b2b4ff15c22130205c6ced4e4643",
+    "Project/src/utils.c": "d3ae979307fb188b9d98ba9d158ed1ba11c5d7570a4346ed2ddd17eb09515979",
+    "Project/src/xpm_files.h": "2708811c41bceda27b84eb358eeebadb6ad55ff79fe9ff499749ace47d0f671c"
+  },
+  "sourcePatches": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "Drawing/guessing game uses mouse and typed words. main.c warps cursor325,410 at state transition, so relative drag is intentional; direct tracking would drift after the warp.",
+  "icon": {
+    "type": "game-menu-wordmark",
+    "source": "evidence/Yuka-Sky--LCOM/icon-menu.ppm",
+    "crop": [
+      503,
+      298,
+      650,
+      342
+    ],
+    "composition": "Original XPM SKESS title enlarged on original menu background."
+  },
+  "verification": {
+    "repo": "Yuka-Sky/LCOM",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/Yuka-Sky--LCOM/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/Yuka-Sky--LCOM/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/Yuka-Sky--LCOM/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Guarded populated capture; clean application exit is checked separately"
+      },
+      {
+        "id": "gameplay-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/Yuka-Sky--LCOM/gameplay-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/Yuka-Sky--LCOM/gameplay-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/Yuka-Sky--LCOM/gameplay-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Clean application exit after original input and cleanup"
+      }
+    ],
+    "browser": {
+      "id": "yuka-sky--lcom",
+      "width": 1152,
+      "height": 864,
+      "colors": 6,
+      "status": "Game running.",
+      "controlsFit": true,
+      "errors": [],
+      "passed": true
+    }
+  },
+  "derivedAssets": []
+}

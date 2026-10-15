@@ -1,0 +1,34 @@
+--- a/proj/src/model/game.c
++++ b/proj/src/model/game.c
+@@ -13,7 +13,7 @@
+ 
+ extern uint8_t scancode;
+ extern struct packet mouse_packet;
+-extern int mouse_byte_index;
++extern uint8_t mouse_byte_index;
+ extern unsigned int counter;
+ 
+ bool mouse_dirty;
+--- a/proj/src/controllers/kbc/mouse.c
++++ b/proj/src/controllers/kbc/mouse.c
+@@ -25,11 +25,15 @@
+     if (KBC_write_cmd_byte(KBD_IN_BUF, MOUSE_WRITE_CMD) != 0) return 1;
+     if (KBC_write_cmd_byte(KBD_OUT_BUF, cmd) != 0) return 1;
+ 
+-    if (util_sys_inb(KBD_OUT_BUF, &status) != 0) return 1;
+-
+-    if (status == MOUSE_ACK) return 0;
+-    else if (status == MOUSE_NACK) return mouse_issue_cmd(cmd);
+-
++    // A short tap can leave stream bytes ahead of the command ACK.
++    for (unsigned attempt = 0; attempt < 32; ++attempt) {
++        if (KBC_read_output(KBD_OUT_BUF, &status) != 0) {
++            tickdelay(micros_to_ticks(100));
++            continue;
++        }
++        if (status == MOUSE_ACK) return 0;
++        if (status == MOUSE_NACK) return mouse_issue_cmd(cmd);
++    }
+     return 1;
+ }
+ 

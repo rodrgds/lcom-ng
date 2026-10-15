@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "name": "Classic Chess",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "touch": "hold-drag",
+      "cursor": {
+        "x": 0,
+        "y": 0,
+        "maxX": 1134,
+        "maxY": 837,
+        "bounds": "reject"
+      },
+      "toolbar": "top-right",
+      "keyboardPosition": "bottom",
+      "actions": [
+        {
+          "label": "Cancel",
+          "position": "bottom-right",
+          "mouseButton": "right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

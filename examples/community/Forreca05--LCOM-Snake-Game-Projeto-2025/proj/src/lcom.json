@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "Minhoca",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "dpad": {
+        "side": "left",
+        "keys": "wasd"
+      },
+      "layout": "overlay",
+      "pointer": "direct",
+      "cursor": {
+        "x": 576,
+        "y": 432,
+        "maxX": 1129,
+        "maxY": 839
+      },
+      "toolbar": "top-left",
+      "touch": "tap",
+      "actions": [
+        {
+          "position": "top-right",
+          "label": "Keyboard",
+          "key": "1"
+        },
+        {
+          "position": "top-right",
+          "label": "Mouse",
+          "key": "2"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [],
+    "environment": {
+      "LCOM_COMPAT_MOUSE_REPORTING": "1"
+    }
+  }
+}

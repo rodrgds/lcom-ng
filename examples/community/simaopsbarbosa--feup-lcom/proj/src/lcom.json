@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "name": "Quick Reflex",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ENTER",
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "touch": "move",
+      "actions": [
+        {
+          "label": "P1 React",
+          "key": "SPACE",
+          "position": "bottom-left"
+        },
+        {
+          "label": "P2 React",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "toolbar": "top-right"
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

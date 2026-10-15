@@ -1,0 +1,29 @@
+--- a/proj/src/graphics.c
++++ b/proj/src/graphics.c
+@@ -68,7 +68,7 @@
+             if (memcmp( &img.bytes[color_position] , (char*)&transparentColor, bytes_per_pixel) == 0 )
+                 continue;
+             
+-            memcpy((void *)((unsigned int)video_mem_buf + p), &img.bytes[color_position], bytes_per_pixel);
++            memcpy((void *)((uintptr_t)video_mem_buf + p), &img.bytes[color_position], bytes_per_pixel);
+                 
+         }
+     }
+@@ -86,7 +86,7 @@
+             if (memcmp( &img.bytes[color_position] , (char*)&transparentColor, bytes_per_pixel) == 0 )
+                 continue;
+             
+-            memcpy((void *)((unsigned int)video_mem + p), &img.bytes[color_position], bytes_per_pixel);
++            memcpy((void *)((uintptr_t)video_mem + p), &img.bytes[color_position], bytes_per_pixel);
+                 
+         }
+     }
+@@ -97,7 +97,7 @@
+         for(uint8_t row = 0; row < img.height; row++){
+             unsigned int p = (x+ col + (y + row) * h_res) * bytes_per_pixel;
+             unsigned color_position = ((y+row)*background.width+ (x+col))*bytes_per_pixel;
+-            memcpy((void *)((unsigned int)video_mem_buf + p), &background.bytes[color_position], bytes_per_pixel);
++            memcpy((void *)((uintptr_t)video_mem_buf + p), &background.bytes[color_position], bytes_per_pixel);
+         }
+     }
+ }

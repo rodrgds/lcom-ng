@@ -1,0 +1,11 @@
+--- a/proj/src/proj.c
++++ b/proj/src/proj.c
+@@ -166,6 +166,8 @@
+           }
+ 
+           if (msg.m_notify.interrupts & timer_irq_set) { 
++            init_states(get_state(), prev_state);
++            prev_state = get_state();
+             if (state == MENU) menu_main_loop();
+             if (state == START) start_main_loop();
+             if (state == RULES) rules_main_loop();

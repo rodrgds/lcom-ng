@@ -1,0 +1,74 @@
+{
+  "version": 1,
+  "name": "Knight Quest",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "dpad": {
+        "side": "left",
+        "keys": "wasd",
+        "axes": "horizontal"
+      },
+      "layout": "overlay",
+      "pointer": "direct",
+      "cursor": {
+        "x": 400,
+        "y": 300,
+        "minX": 1,
+        "minY": 1,
+        "maxX": 799,
+        "maxY": 599,
+        "bounds": "reject"
+      },
+      "touch": "tap",
+      "actions": [
+        {
+          "position": "bottom-right",
+          "label": "Jump",
+          "key": "SPACE"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Slash",
+          "mouseButton": "left"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Blast",
+          "mouseButton": "right"
+        },
+        {
+          "position": "top-right",
+          "label": "Menu up",
+          "key": "W"
+        },
+        {
+          "position": "top-right",
+          "label": "Menu down",
+          "key": "S"
+        },
+        {
+          "position": "top-right",
+          "label": "Select",
+          "key": "ENTER"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ],
+      "toolbar": "top-left"
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

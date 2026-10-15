@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "name": "Survive the Blast",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "cursor": {
+        "x": 640,
+        "y": 512,
+        "maxX": 1255,
+        "maxY": 999
+      },
+      "toolbar": "top-right",
+      "look": false,
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "both"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Bomb",
+          "position": "bottom-right",
+          "mouseButton": "right"
+        }
+      ],
+      "touch": "tap",
+      "tapDuration": 60
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

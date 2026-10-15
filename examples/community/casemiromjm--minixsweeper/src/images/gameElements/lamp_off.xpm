@@ -1,0 +1,37 @@
+/* XPM */
+static char * lamp_off[] = {
+"30 30 3 1",
+"  c #808080", // cinzento claro (fundo)
+". c #000001", // cinzento claro (fundo)
+"Y c #CFCFCF", // cinzento (apagada)
+"                              ",
+"                              ",
+"          .........           ",
+"        ...YYYYYYY...         ",
+"       ..YYYYYYYYYYY..        ",
+"      ..YYYYYYYYYYYYY..       ",
+"     ..YYYYYYYYYYYYYYY..      ",
+"     .YYYYYYYYYYYYYYYYY.      ",
+"    ..YYYYYYYYYYYYYYYYY..     ",
+"    .YYYYYYYYYYYYYYYYYYY.     ",
+"    .YYYYYYYYYYYYYYYYYYY.     ",
+"    .YYYYYYYYYYYYYYYYYYY.     ",
+"    .YYYYYYYYYYYYYYYYYYY.     ",
+"    ..YYYYYYYYYYYYYYYYY..     ",
+"     .YYYYYYYYYYYYYYYYY.      ",
+"     ..YYYYYYYYYYYYYYY..      ",
+"      ..YYYYYYYYYYYYY..       ",
+"       ..YYYYYYYYYYY..        ",
+"        ...YYYYYYY...         ",
+"          ..YYYYY..           ",
+"           .     .            ",
+"           .     .            ",
+"           .     .            ",
+"           .     .            ",
+"           .     .            ",
+"           .......            ",
+"                              ",
+"                              ",
+"                              ",
+"                              "
+};

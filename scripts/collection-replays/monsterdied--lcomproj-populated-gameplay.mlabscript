@@ -1,0 +1,12 @@
+at 100 key ENTER down
+at 101 key ENTER up
+at 130 text ALICE
+at 200 key ENTER down
+at 201 key ENTER up
+at 230 text BOB
+at 300 key ENTER down
+at 301 key ENTER up
+at 340 key D down
+at 370 key D up
+at 380 key SPACE down
+at 381 key SPACE up

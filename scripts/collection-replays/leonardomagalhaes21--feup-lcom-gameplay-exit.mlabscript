@@ -1,0 +1,12 @@
+at 60 mouse -67 -96 0
+at 80 mouse 0 -20 0
+at 120 mouse 0 0 1
+at 125 mouse 0 0 0
+at 190 mouse 96 -26 0
+at 205 mouse 2 0 0
+at 240 mouse 0 0 1
+at 245 mouse 0 0 0
+at 280 key D down
+at 310 key D up
+at 360 key ESC down
+at 361 key ESC up

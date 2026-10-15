@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "name": "MINIX Pac-Man",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "off",
+      "layout": "overlay",
+      "dpad": {
+        "keys": "arrows",
+        "side": "left"
+      },
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "position": "top-right",
+          "label": "Select",
+          "key": "ENTER"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/score.txt"
+    ]
+  }
+}

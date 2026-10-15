@@ -1,0 +1,5 @@
+.gdbinit
+lab5
+*.o
+*.out
+*.txt

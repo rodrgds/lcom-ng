@@ -1,0 +1,136 @@
+{
+  "repository": "https://github.com/DiogoSilva11/LCOM",
+  "revision": "be191c1e409efecbe5ef6ea2ddad795c6f63e1e8",
+  "sourceHashes": {
+    "README.md": "24142f9e18d29196649de7f021f08b82f3a7a54481351f188503894b754bb671",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/Makefile": "827a678dab3c8b220fdf5d14e911cbead3ee55cb0829e293d73888a9b14efdd6",
+    "proj/src/bios.h": "ecd3a023fde994432d4ab91dbcf7f129226cd7e60c79ae29980e9257fcf70029",
+    "proj/src/controller.c": "cde9a4c8a872e68c8fa4fef9d4f11a77fab1f259e2a2a67705d4772159f405a7",
+    "proj/src/controller.h": "4428db4f810dd65516a21d87ddf75da6bb288709330a2cd7a61e90362dc16323",
+    "proj/src/game.c": "cfb859940e9839cbdc641f9ea64b43f0c00da9e1113db544fc0afe90ac35375e",
+    "proj/src/game.h": "92dfe34b5247922fdf0cdb8d19ee6529691ee8d9e936078bfdb9b096ec09ae93",
+    "proj/src/i8042.h": "7713a2e969168c5660d694996491a7d6e1a261c25dfd6bdae673d43f335afb6e",
+    "proj/src/i8254.h": "1c8abad49480ecc156e4b3f184a07cd1f783f17cc2c9f692efd88f77916a13dd",
+    "proj/src/info.h": "6984ec220283c7ddae1d977175710f5bacd24f3bdc14ad0b83887608db75aa5a",
+    "proj/src/kbd.c": "afe13e2e495a188922b63e211585bcff52923441d3eb70631272a97ecd5dc502",
+    "proj/src/kbd.h": "770a308ced7e6a6656ee1d12e4188d7e8d3911138803441d0d9f6d85dbbe8fda",
+    "proj/src/m_i8042.h": "bfa5fe44ee07ba81b14a9f90432f2e1888234cccc5530d65d2c633cfbae5a13c",
+    "proj/src/menu.c": "c2cf1f8adc142c996f26451107018b93929f6fcebfea5af92c4217a60a07dade",
+    "proj/src/menu.h": "4b9a0423c4fbe62c2e8151500054e274732bf8ac8132cbbe0898159c07a039f1",
+    "proj/src/mouse.c": "317eae3f1d21405b7d76a245d4d31a65a502166c6b15035f43baf590cac51e01",
+    "proj/src/mouse.h": "1bcc0ac422a463e0d1495d25acc698a311c920a99eaea6207505c3c63f4413be",
+    "proj/src/proj.c": "154309052ee64a3e1d0d06e9e4a51f18fb531ae3a12750875c6c16945518a3a2",
+    "proj/src/sprites.h": "083b45b04c0d9757544e39e909753b80063c92ba920c0725f6fb63eb9c481ea0",
+    "proj/src/timer.c": "d90bccb39f9b4b3c7e4b55e3a080de8b3de1e7fe16b941bca5e8ae07cd715787",
+    "proj/src/timer_info.h": "d8a34201283ff21bd1eeae41a69e7a1f5dfad4e1ed7a9319fad3d101dc282bbc",
+    "proj/src/utils.c": "39a846d922fbbc43243a2cd9031131d52e4d7c94f9967c0b3b9a42703ca28c72",
+    "proj/src/vbe.c": "14f23051469e3f6d1bd62a2d6722549b480e6f97ff765a36734e452540c83c4f",
+    "proj/src/vbe_func.h": "6284993ed6eb1e79b283edf40ccf82b9201015eefbf8cd71ab1a736b858fa242"
+  },
+  "sourcePatches": [
+    {
+      "path": "examples/community/DiogoSilva11--LCOM/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "proj/src/mouse.c",
+          "originalSha256": "317eae3f1d21405b7d76a245d4d31a65a502166c6b15035f43baf590cac51e01",
+          "patchedSha256": "a8a840650f52c3b67958b6d2591c68222cdaede701829c060773e6c6a4fd202e",
+          "reason": "Original mouse_cmd waited for an ACK after controller prefix0xD4, which has no reply. Original menu exit failed time-out/status1 in mouse_disable; now only the device command argument waits for its ACK."
+        }
+      ],
+      "reproduction": "source-regressions/DiogoSilva11--LCOM/results.json"
+    }
+  ],
+  "derivedAssets": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "Original menu1 play/0 quit. W/A/S/D move, mouse aims crosshair and left-button release shoots. Relative pointer retains source crosshair behavior.",
+  "icon": {
+    "kind": "original game art cropped from verified native capture",
+    "source": "evidence/DiogoSilva11--LCOM/populated-gameplay.ppm",
+    "crop": [
+      0.18,
+      0.05,
+      0.83,
+      0.92
+    ],
+    "output": "icon.png",
+    "size": [
+      512,
+      512
+    ]
+  },
+  "verification": {
+    "repo": "DiogoSilva11/LCOM",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/DiogoSilva11--LCOM/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/DiogoSilva11--LCOM/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/DiogoSilva11--LCOM/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Actual original gameplay state, screenshot inspected; bounded capture"
+      },
+      {
+        "id": "menu-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/DiogoSilva11--LCOM/menu-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/DiogoSilva11--LCOM/menu-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/DiogoSilva11--LCOM/menu-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Original clean callback exit; scope is menu-exit"
+      }
+    ],
+    "originalSourceFailure": {
+      "repo": "DiogoSilva11/LCOM",
+      "source": "exact pinned source for every modified file",
+      "buildExit": 0,
+      "runExit": 1,
+      "expectedFailureObserved": true
+    },
+    "browser": [
+      {
+        "id": "diogosilva11--lcom",
+        "width": 1024,
+        "height": 768,
+        "colors": 7,
+        "status": "Game running.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "webBuild": [
+      {
+        "id": "diogosilva11--lcom",
+        "exit": 0,
+        "seconds": 6.1,
+        "output": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/web-exports/diogosilva11--lcom"
+      }
+    ],
+    "browserExit": [
+      {
+        "id": "diogosilva11--lcom",
+        "width": 1024,
+        "height": 768,
+        "colors": 3,
+        "status": "Game finished. Press Enter or tap the game to restart.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "directTouch": []
+  }
+}

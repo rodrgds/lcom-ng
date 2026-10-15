@@ -1,0 +1,39 @@
+# Binary
+proj
+
+# Object files
+*.o
+*.o-*
+*.d
+.depend
+
+# Static libraries
+*.a
+
+# Logs
+trace.txt
+output.txt
+*.log
+
+# Core dumps
+core
+core.*
+*.core
+
+# Editor / OS
+*~
+*.swp
+.vscode/
+.DS_Store
+
+# Agent
+.agents/
+
+# Test binaries
+tests/game/test_game_viewer
+tests/game/test_game_view
+tests/game/worm/test_worm_viewer
+tests/game/worm/test_worm_view
+tests/game/worm/test_worm
+tests/game/worm/test_worm_controller
+tests/game/projectile/test_projectile

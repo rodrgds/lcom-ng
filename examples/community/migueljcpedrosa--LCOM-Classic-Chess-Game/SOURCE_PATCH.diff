@@ -1,0 +1,11 @@
+--- a/proj/src/model/game/pieces.h
++++ b/proj/src/model/game/pieces.h
+@@ -31,7 +31,7 @@
+ 
+     Position position;
+ 
+-    enum {WHITE, BLACK} color;
++    Color color;
+     Type type;
+     bool has_moved;
+     enum {ALIVE, CAPTURED} status;

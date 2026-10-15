@@ -1,0 +1,10 @@
+at 100 key ENTER down
+at 101 key ENTER up
+at 180 key ENTER down
+at 181 key ENTER up
+at 260 key D down
+at 261 key D up
+at 300 mouse 0 0 1
+at 301 mouse 0 0 0
+at 500 key ESC down
+at 501 key ESC up

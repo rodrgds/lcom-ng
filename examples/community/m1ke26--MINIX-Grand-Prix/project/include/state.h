@@ -1,0 +1,146 @@
+#ifndef _STATE_H_
+#define _STATE_H_
+
+#include <lcom/lcf.h>
+#include <stdbool.h>
+#include "car.h"
+#include "input.h"
+#include "start_menu.h"
+#include "camera.h"
+#include "track.h"
+#include "pause_menu.h"
+#include "font.h"
+#include "race.h"
+#include "finish_menu.h"
+#include "leaderboard_menu.h"
+#include "rtc.h"
+#include "cursor.h"
+
+extern bool running;
+
+typedef enum
+{
+    STATE_START,
+    STATE_LEADERBOARD,
+    STATE_LOADING,
+    STATE_IN_GAME,
+    STATE_GAME_OVER
+} state_tag_t;
+
+typedef struct
+{
+    state_tag_t tag;
+    cursor_t *cursor;
+    union {
+        struct {
+            start_menu_t *menu;
+        } start;
+
+        struct
+        {
+            font_t *font;
+            int track_index;
+            int car_index;
+            char username[16];
+            bool drawn;
+        } loading;
+
+        struct {
+            car_t *car;
+            track_t *track;
+            camera_t *camera;
+            font_t *font;
+            race_t race;
+            game_input_t input;
+            bool pause;
+            pause_menu_t *pause_menu;
+            char username[16];
+            int track_index;
+        } in_game;
+
+        struct
+        {
+            finish_menu_t *menu;
+            char username[16];
+        } game_over;
+        struct {
+            leaderboard_menu_t *menu;
+        } leaderboard;
+    } data;
+} state_t;
+
+/**
+    @brief Initializes the game state to the starting screen.
+    @return Pointer to the initialized game state.
+**/
+state_t *init_state();
+
+/**
+    @brief Draws the current state on the screen, including all relevant elements based on the state tag.
+    @param state Pointer to the current game state.
+**/
+void draw_state(state_t *state);
+
+/**
+    @brief Destroys the game state and frees any allocated resources.
+    @param state Pointer to the current game state.
+**/
+void destroy_state(state_t *state);
+
+/**
+    @brief Updates the game state based on user input and game events. This function should be called in the main game loop.
+    @param state Pointer to the current game state.
+**/
+void update_state(state_t *state);
+
+/**
+    @brief Handles mouse events depending on the current state.
+    @param state Pointer to the current game state.
+    @param pp Pointer to the packet containing the mouse event.
+    @param cursor_x The x-coordinate of the mouse cursor.
+    @param cursor_y The y-coordinate of the mouse cursor.
+**/
+void handle_mouse_event(state_t *state, struct packet *pp, int cursor_x, int cursor_y);
+
+/**
+    @brief Handles keyboard events depending on the current state.
+    @param state Pointer to the current game state.
+    @param scancode The scancode of the key pressed.
+**/
+void handle_kbd_event(state_t *state, uint8_t scancode);
+
+/**
+ * @brief Transitions the game to the loading state before starting the race.
+ *
+ * @param state Pointer to the current game state.
+ * @param font The font to use for rendering the loading screen.
+ */
+void state_enter_loading(state_t *state, font_t *font);
+
+/**
+ * @brief Transitions the game back to the start-menu state, freeing in-game resources.
+ *
+ * @param state Pointer to the current game state.
+ * @param font  The font to reuse for the start menu.
+ * @param username Optional username to preserve; if NULL, shows placeholder.
+ */
+void state_enter_start(state_t *state, font_t *font, const char *username);
+
+/**
+ * @brief Transitions the game to the game-over state.
+ *
+ * @param state Pointer to the current game state.
+ * @param font  The font to use for game over menu.
+ * @param race  The completed race, used to populate lap times.
+ */
+void state_enter_game_over(state_t *state, font_t *font, const race_t *race);
+
+/**
+ * @brief Transitions the game to the leaderboard menu showing current user's best times.
+ * @param state Pointer to the current game state.
+ * @param font The font to use for the leaderboard menu.
+ * @param username The player's username to display and load times for.
+ */
+void state_enter_leaderboard(state_t *state, font_t *font, const char *username);
+
+#endif /* _STATE_H_ */

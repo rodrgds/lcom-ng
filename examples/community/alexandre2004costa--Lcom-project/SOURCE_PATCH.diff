@@ -1,0 +1,14 @@
+--- a/devices/graphic.c
++++ b/devices/graphic.c
+@@ -121,8 +121,9 @@
+  * @brief Frees the allocated video buffers
+  */
+ void (freeVideoBuffers)(){
+-    free(video_buff);
+-    free(video_buff2);
++    size_t size = (size_t)byts_per_pixel * modeInfos.XResolution * modeInfos.YResolution;
++    vm_unmap_phys(SELF, video_buff, size);
++    vm_unmap_phys(SELF, video_buff2, size);
+ }
+ 
+ /**@}*/

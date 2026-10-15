@@ -1,0 +1,5 @@
+at 60 mouse 80 -68 0
+at 100 mouse 0 0 1
+at 110 mouse 0 0 0
+at 160 key RIGHT down
+at 200 key RIGHT up

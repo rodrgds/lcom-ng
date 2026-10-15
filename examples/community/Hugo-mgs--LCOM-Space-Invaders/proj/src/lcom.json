@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "name": "Space Invaders: Alien Waves",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "overlay",
+      "touch": "tap",
+      "actions": [
+        {
+          "position": "bottom-right",
+          "label": "Fire",
+          "key": "SPACE"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Select",
+          "mouseButton": "left"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ],
+      "toolbar": "top-left",
+      "dpad": {
+        "side": "left",
+        "keys": "wasd",
+        "axes": "horizontal"
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

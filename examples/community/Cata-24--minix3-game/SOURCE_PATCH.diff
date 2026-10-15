@@ -1,0 +1,11 @@
+--- a/proj/src/states/game.c
++++ b/proj/src/states/game.c
+@@ -998,7 +998,7 @@
+             knife_sprite = &knife_dup;
+             reversed_knife = true;  
+             break;
+-        case R_BIT:
++        case RDOWN:
+             knife_sprite = &knife_ddown;
+             reversed_knife = true;           
+             break;

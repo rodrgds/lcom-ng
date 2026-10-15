@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Snake Orchard",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "dpad": {
+        "side": "left",
+        "keys": "wasd"
+      },
+      "layout": "overlay",
+      "pointer": "drag",
+      "touch": "move",
+      "actions": [
+        {
+          "position": "bottom-right",
+          "label": "Place Apple",
+          "mouseButton": "left"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Place Trap",
+          "mouseButton": "right"
+        },
+        {
+          "position": "top-right",
+          "label": "Select",
+          "key": "ENTER"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ],
+      "toolbar": "top-left"
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [],
+    "environment": {
+      "LCOM_COMPAT_MOUSE_REPORTING": "1"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "name": "Whack-a-Mole",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "direct",
+      "layout": "overlay",
+      "touch": "press",
+      "actions": [
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ],
+      "toolbar": "top-left",
+      "cursor": {
+        "x": 512,
+        "y": 384,
+        "maxX": 1023,
+        "maxY": 767
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

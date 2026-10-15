@@ -1,0 +1,16 @@
+subscribing keyboard interrupts
+subscribing timer interrupts
+setting graphics mode
+loading assets for menu...
+pellet at 1 3
+pellet at 26 3
+pellet at 1 23
+pellet at 26 23
+state: 0
+state: 1
+loading assets
+pellet at 1 3
+pellet at 26 3
+pellet at 1 23
+pellet at 26 23
+waiting for ESC key

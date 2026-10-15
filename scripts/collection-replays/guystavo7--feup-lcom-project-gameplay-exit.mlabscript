@@ -1,0 +1,11 @@
+at 100 mouse 0 -50 0
+at 120 mouse 0 0 1
+at 121 mouse 0 0 0
+at 250 mouse 0 -120 0
+at 260 mouse 0 -80 0
+at 280 mouse 0 0 1
+at 281 mouse 0 0 0
+at 400 key D down
+at 430 key D up
+at 600 key ENTER down
+at 601 key ENTER up

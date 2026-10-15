@@ -1,0 +1,28 @@
+{
+  "version": 1,
+  "name": "Skess: Draw & Guess",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ENTER",
+        "BACKSPACE",
+        "ESC"
+      ],
+      "joystick": false,
+      "pointer": "drag",
+      "layout": "overlay",
+      "toolbar": "top-right",
+      "keyboardPosition": "bottom",
+      "touch": "press"
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

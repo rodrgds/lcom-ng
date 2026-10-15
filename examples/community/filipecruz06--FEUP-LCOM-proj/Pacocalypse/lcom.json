@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "Pacocalypse",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "cursor": {
+        "x": 576,
+        "y": 432,
+        "maxX": 1151,
+        "maxY": 863
+      },
+      "touch": "tap",
+      "toolbar": "top-right",
+      "look": false,
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "both"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  }
+}

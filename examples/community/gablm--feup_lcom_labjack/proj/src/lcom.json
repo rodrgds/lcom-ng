@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "name": "LabJack",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ENTER",
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "keyboardPosition": "bottom",
+      "actions": [
+        {
+          "label": "Hit",
+          "position": "bottom-right",
+          "key": "1"
+        },
+        {
+          "label": "Stand",
+          "position": "bottom-right",
+          "key": "2"
+        },
+        {
+          "label": "Double",
+          "position": "bottom-right",
+          "key": "3"
+        },
+        {
+          "label": "Surrender",
+          "position": "bottom-right",
+          "key": "4"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

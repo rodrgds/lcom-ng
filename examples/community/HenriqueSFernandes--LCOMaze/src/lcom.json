@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "LCOMaze",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ],
+      "toolbar": "top-right",
+      "look": false,
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "both"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Aim",
+          "position": "bottom-right",
+          "mouseButton": "left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [],
+    "arguments": [
+      "host"
+    ]
+  }
+}

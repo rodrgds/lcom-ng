@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "name": "Fruit Defense",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "cursor": {
+        "x": 400,
+        "y": 300,
+        "maxX": 799,
+        "maxY": 599
+      },
+      "toolbar": "top-right",
+      "look": false,
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "both"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Use",
+          "position": "bottom-right",
+          "mouseButton": "left"
+        },
+        {
+          "label": "Cancel",
+          "position": "bottom-right",
+          "mouseButton": "right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "grupo_2leic13_2/project/resources/maps"
+    ]
+  }
+}

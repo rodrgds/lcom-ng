@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "name": "Memory Quest",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "keyboardPosition": "bottom",
+      "look": false,
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "both"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Start",
+          "position": "top-left",
+          "key": "1"
+        },
+        {
+          "label": "Scores",
+          "position": "top-left",
+          "key": "2"
+        },
+        {
+          "label": "Flip",
+          "position": "bottom-right",
+          "key": "ENTER"
+        }
+      ],
+      "touch": "tap",
+      "cursor": {
+        "x": 10,
+        "y": 10,
+        "minX": 0,
+        "minY": 0,
+        "maxX": 800,
+        "maxY": 600,
+        "bounds": "clamp"
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "src/game/record/record.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj": "."
+    }
+  }
+}

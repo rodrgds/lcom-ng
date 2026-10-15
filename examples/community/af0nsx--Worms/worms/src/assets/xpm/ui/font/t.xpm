@@ -1,0 +1,26 @@
+/* XPM */
+static const char *font_t[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 4 1 ",
+"X c #7A757A",
+". c #A0A0A0",
+"  c None",
+"o c #FCFEFC",
+/* pixels */
+"                ",
+"                ",
+"                ",
+"                ",
+"    oooooooo    ",
+"    XX.oo.XX    ",
+"       oo       ",
+"       oo       ",
+"       oo       ",
+"       oo       ",
+"       oo       ",
+"       oo       ",
+"       oo       ",
+"       XX       ",
+"                ",
+"                "
+};

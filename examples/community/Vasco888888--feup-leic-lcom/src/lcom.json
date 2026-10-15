@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "name": "Dr. Minix: Tiles Lab",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "UP",
+        "DOWN",
+        "ENTER",
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "A",
+          "position": "bottom-left",
+          "key": "A"
+        },
+        {
+          "label": "S",
+          "position": "bottom-left",
+          "key": "S"
+        },
+        {
+          "label": "D",
+          "position": "bottom-left",
+          "key": "D"
+        },
+        {
+          "label": "F",
+          "position": "bottom-left",
+          "key": "F"
+        },
+        {
+          "label": "G",
+          "position": "bottom-right",
+          "key": "G"
+        },
+        {
+          "label": "H",
+          "position": "bottom-right",
+          "key": "H"
+        },
+        {
+          "label": "J",
+          "position": "bottom-right",
+          "key": "J"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  }
+}

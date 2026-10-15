@@ -1,0 +1,167 @@
+{
+  "repository": "https://github.com/HenriqueSFernandes/LCOMaze",
+  "revision": "a0dc6e641d93c36047e1e740833854013b54799d",
+  "sourceHashes": {
+    "README.md": "4d50d1fe7f132b6dca903c64fb01fb8fcb54dd9a45c85a89a012fa4d4ec26c26",
+    "src/.clang-format": "3f6a1940d4f69a849f77e206e555594de71c8d868e4531c29e7a19e7322e26f5",
+    "src/Makefile": "b75657679367502e042ab315df405280454048ba3b2bb8960825abb8d72f576e",
+    "src/controllers/UART.h": "f1e58a7e7350bd08e1de149fd07500852ce17ce6d1939f760ddf21b670627bf8",
+    "src/controllers/graphics.c": "3400098c68855197f08d27c67a76ca0b9b51c75688700119c1d022f4a42d8f4a",
+    "src/controllers/graphics.h": "9cae7c1f92ef0c5a3bcc1933c37a82730d7aaab95ac2b0cb448cf0c98ebf146a",
+    "src/controllers/keyboard.c": "746d6160b60769a5b606c768d2d2e966424e896075fc9a862d751b9dbff893ab",
+    "src/controllers/keyboard.h": "bdd16ce55c6b39e188508e4ef1daa6c0af468af7eb2c3aacd95a7ffcb32b6c9e",
+    "src/controllers/mouse.c": "2735269a93610dc60faf338398c4f419fdd649f9423e181ec6ca46e4a5a968ee",
+    "src/controllers/mouse.h": "a6dd65fcf435ade02a7498c6e927b2f3d795719680f8caf605ee663b57ec11a7",
+    "src/controllers/rtc.c": "e0db3062a061c1ba411dd55fc613fae6642a061f1d1e52721bdb29174925019e",
+    "src/controllers/rtc.h": "b67f94327f28b48238206955e3c078290d756195d7fd79b9107e19bfa3a48b46",
+    "src/controllers/serial.c": "e5e8aa9b8ed5dfe5cc139add6a586b5b9d5d8aa67b2c3085e1708a5594fb4d71",
+    "src/controllers/serial.h": "082d23b57365a591bae55c9f1dcb4c3f8e8e6e305c1f9ae863f5b480d2d2c174",
+    "src/controllers/timer.c": "7d63f4aab57e0e1e67abb3a0847f13c55663aa626f4dbe12ab5e781779cb2cc9",
+    "src/controllers/timer.h": "e250aa5c9a28024e12e44841dcb9e6d6570f8309843b760537078a5fa4ee15ca",
+    "src/data_structures/linked_list.c": "ac94c0a8605307c43d959be3cca15e30f83bc6a2cf2ec1f61a3c2f8b0ad03685",
+    "src/data_structures/linked_list.h": "935e2e34f4d1a888e45530bdecfab93ad7a27faa09ae0f84bd75a63a2c47c120",
+    "src/data_structures/queue.c": "f2eaf7f0f7ca55c81095ef05947fc317b3f09b137d8810b5ce6ffe211eb99624",
+    "src/data_structures/queue.h": "e25da8f56ce09d96a8c0e5b006f9be85aac55ff3386f75b22da9197334630cb9",
+    "src/data_structures/stack.c": "37514588f1a6f03ee3a57713cfccd2696e2235b2890871ddc671570258803635",
+    "src/data_structures/stack.h": "34ad747b40beb73e885314b9e5c24c484bc029b0e4935a72bafe6622acaa4580",
+    "src/game/game.c": "b53fa8ff9b6353eb62f9e13071259caa471130d941d570392e47035badcf8182",
+    "src/game/game.h": "e994e684ace60f2ed3a2c243365201ef92b8e16147d2a2516f1b6adf7514ad8b",
+    "src/game/info.c": "a00197ec863cde30a8d5ebb46d4d4916ccb5b08c0514886b58f3819aa39f0500",
+    "src/game/info.h": "bc38e6f6956fd23d438f1b658530ee1259e240b8b08155f864d965f3bdc9d8ab",
+    "src/game/maze.c": "8dcaba553ca9ff8119a20e683af374235166adf600177e6244a0130c03075d15",
+    "src/game/maze.h": "cd5153a8d41df21e149168a0537ce26fdcf6d8f44ad593ba8b818def0f863265",
+    "src/game/menu.c": "4219a98c5700615aa109c05b0e1c5009e54f01dcb47c8dd1ceaf41d4f908536d",
+    "src/game/menu.h": "afa1e1f576cf17b787b016ce6d56d41fe5223d8023e4d7adac5c548c06b67f98",
+    "src/images/font/cursor.xpm": "aef123e89af27f794cddf806f9dbf8ffc69410350d463369a78c8e54c3003cfa",
+    "src/images/font/letter_a.xpm": "3ca39afbd9c39fe735ad0b8e227e3b1c0763d0af55e47c2e9a0378d91bb69c2c",
+    "src/images/font/letter_b.xpm": "cf3a93bd31a2c58a6af4acbb2199dded8e95a2b07c6677581ba72daed6e9dba2",
+    "src/images/font/letter_c.xpm": "65fee41edefa25e41e520c66ace371d96cabc113ba71c15e4a0a32a84ba9ed0b",
+    "src/images/font/letter_d.xpm": "97d5601a8a0c1b93c063b42b9345672f0296826f3d458873f8e9c4475f79a534",
+    "src/images/font/letter_e.xpm": "6e847e7f0c829b1c297f8cf4ab6c75506a3b650b2e8f6555f337106b05fc2675",
+    "src/images/font/letter_f.xpm": "e142b7249d6a687cd100f7e13ed14f92bd4148c819ccd385974e14ebd850ff2c",
+    "src/images/font/letter_g.xpm": "1e2b4621d24bcbb77b800f77b249a8c99483845e3c9de5cb2dd20983fdc89e20",
+    "src/images/font/letter_h.xpm": "07a696c594fc56fe261714b5cc6dedab7a3973f381ba7d50a134b9256d214885",
+    "src/images/font/letter_i.xpm": "3fe039bed7f0f09bd73aa32acca76f58ad094ecb22f8bd2f010b7acba0bdc5a6",
+    "src/images/font/letter_j.xpm": "92a11f667104aab8841414cc02e24db810040658afa1cb84424e0d203c1ca8b2",
+    "src/images/font/letter_k.xpm": "7e98275991c0eb9ddbbba2aee9f14cb54ccc81eab87ac045080b2d9c56c35d25",
+    "src/images/font/letter_l.xpm": "ed44c130e41f0a13ffa240286263ef6fbfdfa25cb5db7e275e2d27e414c30de2",
+    "src/images/font/letter_m.xpm": "924e1d0a369b1721bba4e2b832213f5bfecbdec875e2d48a94ec7d3b5a5747db",
+    "src/images/font/letter_n.xpm": "6d2ab367af03976bfd646493a3c636533f6eaac44ee398989269c87fd5b46204",
+    "src/images/font/letter_o.xpm": "426028515a9216c2eb84709a31e844ca849f9487e03fd924f979af04659f2b33",
+    "src/images/font/letter_p.xpm": "78ae6fb05b2ec1bbe156d905f8bafae663f8cb109b8f00a17624a0fb673e5e7f",
+    "src/images/font/letter_q.xpm": "5f4a00d1b580f85c3f859c0114b5df0c85bed020c25615e3e70c4274f9829fba",
+    "src/images/font/letter_r.xpm": "052b43b9932e5a18e450aea432f784e0b49af5673f164f495f8bbfc479f0ddc3",
+    "src/images/font/letter_s.xpm": "32f15e299d66c623ceef2760cb751c9d1d67969de862b949d14e1a5de6b199c6",
+    "src/images/font/letter_t.xpm": "b0c7fa13659fec20a2307ef5390038188e5fb6940655badd0e245bf1480cd2c0",
+    "src/images/font/letter_u.xpm": "a384293b3928385a0bfb7a2d368c11797181c3332b7e60e4f15b90632992aa8f",
+    "src/images/font/letter_v.xpm": "2189d0f6a2d1ed8efa815380a139b010cad3ba018a90527a6affa856c85e51c7",
+    "src/images/font/letter_w.xpm": "a7b9cc791fbe3c84dd6d6e9b7521266c72b5b8ffa663a4296af2f79a94368eec",
+    "src/images/font/letter_x.xpm": "fe2c11b94d6f29c395a2d3d6b4d0a651f2b59c42c6df0132595de0c4ae2d0773",
+    "src/images/font/letter_y.xpm": "62ca6c9bb619f079ec65fd6eb2438b3a18eb016775066494a7a9bf6c702aed1b",
+    "src/images/font/letter_z.xpm": "103977a3cae27146fc2731f97336cbc34ada0478bd5c684636da00d56a3f129a",
+    "src/images/font/number_eight.xpm": "ed5acd52b2512dade7d207e78f17fbe6cb21daee67425c751b63552e48817e5d",
+    "src/images/font/number_five.xpm": "a99ca7c75ef0b13c1668dd07232fbc4486873c30f7c5f3899f93c8533c8ae8f7",
+    "src/images/font/number_four.xpm": "ed298cc230c7f8d30e58140bba22fa276ff1dc42c46cda23fbd86d8cbb8f4223",
+    "src/images/font/number_nine.xpm": "3a081ce527ea94b5554634def3df8809358efdd0a913e2db2342dcc4f906ab47",
+    "src/images/font/number_one.xpm": "511de3b07eecf104904ad05c87e2c3b7aa5f319de189a1bddbf7cf993b150d93",
+    "src/images/font/number_seven.xpm": "bb65f14994111c992e7935cdce90a8a60e3e626a28e46eedc26a9291e5aceea8",
+    "src/images/font/number_six.xpm": "590b7306a53c87d1ec9fd7c560114b5fabaa5f2e79e9906a56fd6223500e14d4",
+    "src/images/font/number_three.xpm": "f1dec9042118c6758c11b7a101af04cf1bed999a93057f4ce0423806a1198720",
+    "src/images/font/number_two.xpm": "2fe122f1f63b663f7612ea477bfae3c9517eda88129a7b6dd6a2ebad75d76a5a",
+    "src/images/font/number_zero.xpm": "4c903808d89aee4d2d0d5923984c85a759991158f6df332bc1ded7438ee6cf09",
+    "src/images/font/right_arrow.xpm": "37cf4b2a813eb92d290faade992d7de0742701290212d6235a15766829768c15",
+    "src/images/player.xpm": "b70ba69365e136b93078814258f561393188b2610e971bd4d239571ef90ab1d3",
+    "src/images/player2.xpm": "4f2aca3c9888c62645fa6621bd117ae973834c5b243c9472f4134c43a67a0cc0",
+    "src/images/player3.xpm": "e231c653acd4499afd459751cfe4eb573e3048e4d90d40383beab945bfe644be",
+    "src/images/player4.xpm": "f0de49c3f670906104f458488d27cb8042c1927cb5aa2eea3f153e5c8b3fa58b",
+    "src/images/player5.xpm": "af3541e8a24592a22da55162020999c9b75822caa94ea241724475821adbd6dc",
+    "src/proj.c": "96dd80ba2b5d57669fbdab6bc3cae07ce75188f77adc132e49d10e7a5d1eb2d9",
+    "src/proj.h": "a5d283580d674bb14a89213fb70edff7ec9e1afaa611f82bdf7da315b8596d9d",
+    "src/t.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/utils.c": "48de7c121786495e75aa54038b8bf9b5aa2bb4fd3b669faeda3ddb5ad0cadc01"
+  },
+  "sourcePatches": [],
+  "derivedAssets": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "Original command argument host selects single-player-capable role. Mouse clicks choose menu and holding left button aims; WASD moves relative to aim. Source halves/repeats deltas and has no game clamp, so relative pointer.",
+  "icon": {
+    "kind": "original source sprite",
+    "source": "examples/community/HenriqueSFernandes--LCOMaze/src/images/player2.xpm",
+    "background": "#12151a",
+    "output": "icon.png",
+    "size": [
+      512,
+      512
+    ]
+  },
+  "verification": {
+    "repo": "HenriqueSFernandes/LCOMaze",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [
+          "host"
+        ],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/HenriqueSFernandes--LCOMaze/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/HenriqueSFernandes--LCOMaze/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/HenriqueSFernandes--LCOMaze/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Actual original gameplay state, screenshot inspected; bounded capture"
+      },
+      {
+        "id": "menu-exit",
+        "args": [
+          "host"
+        ],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/HenriqueSFernandes--LCOMaze/menu-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/HenriqueSFernandes--LCOMaze/menu-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/HenriqueSFernandes--LCOMaze/menu-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Original clean callback exit; scope is menu-exit"
+      }
+    ],
+    "browser": [
+      {
+        "id": "henriquesfernandes--lcomaze",
+        "width": 1152,
+        "height": 864,
+        "colors": 11,
+        "status": "Game running.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "webBuild": [
+      {
+        "id": "henriquesfernandes--lcomaze",
+        "exit": 0,
+        "seconds": 4.5,
+        "output": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/web-exports/henriquesfernandes--lcomaze"
+      }
+    ],
+    "browserExit": [
+      {
+        "id": "henriquesfernandes--lcomaze",
+        "width": 1152,
+        "height": 864,
+        "colors": 3,
+        "status": "Game finished. Press Enter or tap the game to restart.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "directTouch": []
+  }
+}

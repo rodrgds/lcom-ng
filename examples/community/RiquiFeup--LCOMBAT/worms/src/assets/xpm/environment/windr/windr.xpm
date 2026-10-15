@@ -1,0 +1,19 @@
+/* XPM */
+static const char *windr[] = {
+"96 13 2 2",
+"a  c None",
+"b  c #da5144",
+"a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b ",
+"a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b ",
+"a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b ",
+"a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b ",
+"a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b ",
+"a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b ",
+"a a a a a a a b a a a a a a a b a a a a a a a b a a a a a a a b a a a a a a a b a a a a a a a b a a a a a a a b a a a a a a a b a a a a a a a b a a a a a a a b a a a a a a a b a a a a a a a b ",
+"a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b a a a a a a b b ",
+"a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b a a a a a b b b ",
+"a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b a a a a b b b b ",
+"a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b a a a b b b b b ",
+"a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b a a b b b b b b ",
+"a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b a b b b b b b b "
+};

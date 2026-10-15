@@ -1,0 +1,8 @@
+at 200 key ENTER down
+at 201 key ENTER up
+at 250 key RIGHT down
+at 270 key RIGHT up
+at 300 key 1 down
+at 301 key 1 up
+at 360 key SPACE down
+at 400 key SPACE up

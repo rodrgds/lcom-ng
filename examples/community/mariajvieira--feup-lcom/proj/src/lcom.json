@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "name": "Snake Garden",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "dpad": {
+        "side": "left",
+        "keys": "wasd"
+      },
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "position": "top-right",
+          "label": "Level up",
+          "key": "UP"
+        },
+        {
+          "position": "top-right",
+          "label": "Level down",
+          "key": "DOWN"
+        },
+        {
+          "position": "top-right",
+          "label": "Select",
+          "key": "ENTER"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

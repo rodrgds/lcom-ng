@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "name": "LCOMbat: Worms",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "direct",
+      "layout": "overlay",
+      "dpad": {
+        "keys": "arrows",
+        "side": "left"
+      },
+      "cursor": {
+        "x": 400,
+        "y": 300,
+        "maxX": 799,
+        "maxY": 599
+      },
+      "touch": "move",
+      "actions": [
+        {
+          "position": "bottom-right",
+          "label": "Jump / Fire",
+          "key": "SPACE"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Weapon 1",
+          "key": "1"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Weapon 2",
+          "key": "2"
+        },
+        {
+          "position": "top-right",
+          "label": "Select",
+          "key": "ENTER"
+        },
+        {
+          "position": "top-right",
+          "label": "Quit",
+          "key": "Q"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ],
+      "toolbar": "top-left"
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  }
+}

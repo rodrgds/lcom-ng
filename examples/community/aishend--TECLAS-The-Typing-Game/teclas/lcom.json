@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "Teclas",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "SPACE",
+        "ENTER",
+        "BACKSPACE"
+      ],
+      "joystick": false,
+      "pointer": "direct",
+      "layout": "overlay",
+      "cursor": {
+        "x": 512,
+        "y": 384,
+        "maxX": 1023,
+        "maxY": 767
+      },
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "teclas/results"
+    ]
+  }
+}

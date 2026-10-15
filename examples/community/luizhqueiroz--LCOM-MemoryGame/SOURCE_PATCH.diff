@@ -1,0 +1,11 @@
+--- a/src/main.c
++++ b/src/main.c
+@@ -127,7 +127,7 @@
+ }
+ 
+ 
+-int (proj_main_loop)() {
++int (proj_main_loop)(int argc, char **argv) {
+ 
+     if (map_vram(R800x600_DC)) {
+         return 1;

@@ -1,0 +1,152 @@
+{
+  "repository": "https://github.com/luizhqueiroz/LCOM-MemoryGame",
+  "revision": "d740913f2049d0ddc7e089eef59a865160111cf7",
+  "sourceHashes": {
+    "README.md": "7aba21c663388199fb4332f599b832379d9436fa4593d4aa592e1dd668c631bc",
+    "src/Makefile": "85ea433382acff81878bf95b83225a7b771ff26a39ed22d1c33014eeeff3104a",
+    "src/devices/keyboard/i8042.h": "f62df6c6ddcd4ed3b352cc8b23dc251afacbff2f8685bfbc9cf51101e0932e1f",
+    "src/devices/keyboard/kbc.c": "40ee5853854cfd26d24ce14bd37b3d1bba03e816b95ce2e3781fe8ef2d56a1d8",
+    "src/devices/keyboard/kbc.h": "71172c43fdd15a6ba0aeac36859ccb69d7cf75878d9f0f216d100b60f0acb014",
+    "src/devices/mouse/i8042_mouse.h": "5d63a30eb2d75826c1109eafce0fa6f430eeef630a9c863cbee1bcf37a4c4578",
+    "src/devices/mouse/mouse.c": "8e32c1ccc56e3cc54c9a985717e4b02deb4b0b69f5d987c55d95f45685b7abd1",
+    "src/devices/mouse/mouse.h": "616ce27b9e4b15d51a9fe3b4c1929328ebe3f6975861b4f529f6c89fc657ec75",
+    "src/devices/rtc/rtc.c": "6bb540134297155da5d8d72fc80fdecb2b914ab77c154634072b6c85b635ed4c",
+    "src/devices/rtc/rtc.h": "4d738edb39b674165c4d659338f9ff0ae2e57e0dfd035a9128c5250e55810b78",
+    "src/devices/rtc/rtc_info.h": "7a9a3b23f8fd9a4ee7b294b974b59e2d17b7b44e6bbfdb0d71d95eba39eacfec",
+    "src/devices/timer/i8254.h": "9d0550cd0f61722dd6ec79e5caac0e3011c1380b3c581688693c867872cc0aa7",
+    "src/devices/timer/timer.c": "2da8440c589696dac59095591be1dda049849d3c9213d0fb2825720328c4f24b",
+    "src/devices/timer/timer.h": "3200c4044127b31fff7e115e5af19fdf9d0fc07da12c67ef63bb8a10639dc56f",
+    "src/devices/utils.c": "9c30844c50ee71678f5a16c1327131d20a6a1b30e74ce70c3117261e48cfcdca",
+    "src/devices/video_card/graphics.c": "3664a675e8839c23e86747f57ab301d3cebcbc3733e3a21391553e03508fcdf0",
+    "src/devices/video_card/graphics.h": "7b0b089afa9493dfcf7644344be3e3df516ef225a3b4eeb31c4d184f259fcdef",
+    "src/devices/video_card/vbe.h": "a55f331f4e6c42f4e007ef7602185610455080b69d510e0db578584c26eb7288",
+    "src/game/card/card.c": "a2e0292b1a9618590217458296dff773c9dcd172512286e3a9c9b7d621cdbfc6",
+    "src/game/card/card.h": "a429c957b07eb2543469cda3c962d4ad5eeb3db79e0e07b30860ee4e348967c5",
+    "src/game/game.c": "3c5759cdb3768c4afaab4f5bb4caf5bebb01396187edda8e6c3b8c1d172db043",
+    "src/game/game.h": "e0311abad27531ea4bc20220fddceedae22b3770a8b9939e938893ac7b8155aa",
+    "src/game/game_definition.h": "292a66603edc0bc12d03e7d62e9f4d468f4a8ea79c9d31ec35654922a80138b3",
+    "src/game/game_utils/game_utils.c": "cc819f1ff72093a4a9e9613e1e91dc3e9281960bb92b20832d6081f57b85c417",
+    "src/game/game_utils/game_utils.h": "b7f2d61b76c0a8c5f7044dbe2c34c4aaf16c7b580cd2cae8b179c798fd7dad9a",
+    "src/game/main_game/main_game.c": "0fd330d7f3a0165724d5a45d9013c81276b3361c8220b35cd078172261d0f539",
+    "src/game/main_game/main_game.h": "e7977ae1ca9f49503ee8916ad0e7f9d66549290af94227ccd9e37802071fced4",
+    "src/game/menu/menu.c": "4b94d24b6bfb1049450922f0ae447015c07e7cc67497a0895058eade6fd55b45",
+    "src/game/menu/menu.h": "175cdfcfc79ef4e4c19975bfc105dcccf4750a9e7bd73953f8fd5134bb9812e8",
+    "src/game/record/record.c": "8776edfa6539ff57f42caa4d1e063128bb3265ed47c7e66d6cc0593b0f9e2bf7",
+    "src/game/record/record.h": "e9ee593c43fef049a28016719002a414b5a290e459cd2434d14303c225e7dd15",
+    "src/game/record/record.txt": "5b2e09bf761d8055b1dfcb905ffd63360d7134fd3f0a148b25bb54050e84e7cd",
+    "src/images/background/background_xpm.h": "19bb040bd312976703fba3076eac3a6062b797ab4777567c00c65ef6dbf8ad2f",
+    "src/images/letter/letter_xpm.h": "84a45f816450cbf884760e301b6441c8e0a384e2dbd486c5bc523416b29db8be",
+    "src/images/menu/menu_option_xpm.h": "c8e26f435f96128608fc704f12fea4cfa226e6da2e7e498528b9eda8a7c9a137",
+    "src/images/mouse/mouse_xpm.h": "a15222da8015126a57737d5fc2635916c14a5d57da0d31eeac776192f77ab713",
+    "src/images/number/number_xpm.h": "2f5187fa8459c378587b3fe2265683ebc24c3bdefa9d016568b6dab689e5dc1d",
+    "src/images/sprite/sprite.c": "969c30ca25f07f316722bd73c70587d64e6020eda0c6b65ada85e4e85403cb90",
+    "src/images/sprite/sprite.h": "281f8033df5d0b25b06b40e7c177a33f01bb9fbf146bede347cc2a01a5dbb5d7",
+    "src/images/symbol/symbol_xpm.h": "18662bb0f2484945ab19de6751008c481eadba3c065b92351e7cd070287de09a",
+    "src/images/title/title_xpm.h": "a525ac529292a63785f34665ad2eee33d6638753a1e3f4ddb4b9326219466d54",
+    "src/main.c": "545a0816eed5c3de52f63357e45891277948ad2a619afd57bb07a7ef1fbcac85"
+  },
+  "sourcePatches": [
+    {
+      "path": "examples/community/luizhqueiroz--LCOM-MemoryGame/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "src/main.c",
+          "originalSha256": "545a0816eed5c3de52f63357e45891277948ad2a619afd57bb07a7ef1fbcac85",
+          "patchedSha256": "25a24eb3c43f33c35e986ddf1427ae905263b4d3f9cee6d6280eb69a39835b5d",
+          "reason": "Original callback definition has no parameters, conflicting with the required LCF int(argc,argv) callback signature. Compile failed at main.c:130; only signature corrected, behavior unchanged."
+        }
+      ],
+      "reproduction": "source-regressions/luizhqueiroz--LCOM-MemoryGame/results.json"
+    }
+  ],
+  "derivedAssets": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "Original keyboard route:1 starts,2 records; arrows select card and ENTER flips. ESC returns/exits, full keyboard enters winner name. Pointer disabled because keyboard covers the game.",
+  "icon": {
+    "kind": "original game art cropped from verified native capture",
+    "source": "evidence/luizhqueiroz--LCOM-MemoryGame/initial.ppm",
+    "crop": [
+      0.1,
+      0,
+      0.85,
+      1
+    ],
+    "output": "icon.png",
+    "size": [
+      512,
+      512
+    ]
+  },
+  "verification": {
+    "repo": "luizhqueiroz/LCOM-MemoryGame",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/luizhqueiroz--LCOM-MemoryGame/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/luizhqueiroz--LCOM-MemoryGame/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/luizhqueiroz--LCOM-MemoryGame/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Actual original gameplay state, screenshot inspected; bounded capture"
+      },
+      {
+        "id": "menu-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/luizhqueiroz--LCOM-MemoryGame/menu-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/luizhqueiroz--LCOM-MemoryGame/menu-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/luizhqueiroz--LCOM-MemoryGame/menu-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Original clean callback exit; scope is menu-exit"
+      }
+    ],
+    "originalSourceFailure": {
+      "repo": "luizhqueiroz/LCOM-MemoryGame",
+      "source": "exact pinned source for every modified file",
+      "buildExit": 1,
+      "expectedFailureObserved": true
+    },
+    "browser": [
+      {
+        "id": "luizhqueiroz--lcom-memorygame",
+        "width": 800,
+        "height": 600,
+        "colors": 57,
+        "status": "Game running.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "webBuild": [
+      {
+        "id": "luizhqueiroz--lcom-memorygame",
+        "exit": 0,
+        "seconds": 7.6,
+        "output": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/web-exports/luizhqueiroz--lcom-memorygame"
+      }
+    ],
+    "browserExit": [
+      {
+        "id": "luizhqueiroz--lcom-memorygame",
+        "width": 800,
+        "height": 600,
+        "colors": 1018,
+        "status": "Game finished. Press Enter or tap the game to restart.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "directTouch": []
+  }
+}

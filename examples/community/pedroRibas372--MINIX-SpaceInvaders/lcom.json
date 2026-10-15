@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "name": "Space Invaders: Neon Fleet",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "dpad": {
+        "side": "left",
+        "keys": "wasd",
+        "axes": "horizontal"
+      },
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-left",
+      "repeatKeys": [
+        "A",
+        "D",
+        "SPACE"
+      ],
+      "actions": [
+        {
+          "position": "bottom-right",
+          "label": "Fire",
+          "key": "SPACE"
+        },
+        {
+          "position": "top-right",
+          "label": "Menu up",
+          "key": "UP"
+        },
+        {
+          "position": "top-right",
+          "label": "Menu down",
+          "key": "DOWN"
+        },
+        {
+          "position": "top-right",
+          "label": "Select",
+          "key": "ENTER"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  }
+}

@@ -1,0 +1,14 @@
+at 200 mouse 98 -80 0
+at 205 mouse 97 -80 0
+at 210 mouse 97 -80 0
+at 215 mouse 98 -80 0
+at 240 mouse 0 0 1
+at 241 mouse 0 0 0
+at 270 key D down
+at 271 key D up
+at 300 key W down
+at 330 key W up
+at 350 key SPACE down
+at 351 key SPACE up
+at 380 mouse 0 0 2
+at 381 mouse 0 0 0

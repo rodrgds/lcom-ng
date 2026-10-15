@@ -1,0 +1,7 @@
+.gdbinit
+output.txt
+trace.txt
+lab4
+*.o
+*.out
+*.exe

@@ -1,0 +1,8 @@
+at 50 mouse 96 -91 0
+at 55 mouse 0 0 0
+at 65 mouse 91 0 0
+at 70 mouse 0 0 0
+at 150 mouse 0 0 1
+at 155 mouse 0 0 0
+at 200 key SPACE down
+at 210 key SPACE up

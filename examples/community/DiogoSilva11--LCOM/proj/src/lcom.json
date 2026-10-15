@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Robot Arena",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "toolbar": "top-right",
+      "look": false,
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "both"
+        }
+      ],
+      "touch": "move",
+      "actions": [
+        {
+          "label": "Fire",
+          "position": "bottom-right",
+          "mouseButton": "left"
+        },
+        {
+          "label": "Start",
+          "position": "top-left",
+          "key": "1"
+        },
+        {
+          "label": "Quit",
+          "position": "top-left",
+          "key": "0"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

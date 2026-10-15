@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "name": "Papa's Pizzeria",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "overlay",
+      "toolbar": "top-left",
+      "touch": "tap",
+      "actions": [
+        {
+          "position": "top-right",
+          "label": "Menu up",
+          "key": "UP"
+        },
+        {
+          "position": "top-right",
+          "label": "Menu down",
+          "key": "DOWN"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Select",
+          "key": "ENTER"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  }
+}

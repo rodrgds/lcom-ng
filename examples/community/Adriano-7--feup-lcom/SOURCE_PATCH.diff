@@ -1,0 +1,20 @@
+--- a/proj/src/model/game/monster.c
++++ b/proj/src/model/game/monster.c
+@@ -1,7 +1,7 @@
+ #include "model/game/monster.h"
+ 
+-extern xpm_image_t game_xpm[4];
+-extern uint8_t* game_xpm_map[4];
++extern xpm_image_t game_xpm[];
++extern uint8_t* game_xpm_map[];
+ 
+ Monster_t* createMonster(enum MonsterType monsterType, int x, int y, int speedX, int speedY) {
+     Monster_t* monster = malloc(sizeof(Monster_t));
+@@ -21,6 +21,7 @@
+     monster->speedX = speedX;
+     monster->speedY = speedY;
+     monster->monsterType = monsterType;
++    monster->cur_image = 0;
+ 
+     return monster;
+ }

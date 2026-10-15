@@ -1,0 +1,109 @@
+{
+  "repository": "https://github.com/pedroRibas372/MINIX-SpaceInvaders",
+  "revision": "b34d4cf932aa50fca013b5b70676f615ebcc91af",
+  "sourceHashes": {
+    "Makefile": "ae1cf9f7df5febedfeb154201f76239c6a13e91f59057bf496b934465a14f922",
+    "README.md": "c9be1698c9a8a6df6546e7c004d94edce394f98a316678fe44fdcb1bc6166f4b",
+    "controllers/graphicsCard/graphics.c": "56ecb018c3879b404ce09bbb534e7f2ee524b53ba5844da41a487d0956bda90e",
+    "controllers/graphicsCard/graphics.h": "707269a5a1ece1083261bdf8b2c1033fc64a6d07408ac2e2d5c6ed370f54999e",
+    "controllers/keyboard/i8042.h": "bf49e84c835ce22b7c5634c2ba694302ff3553fa95ad1d057f01dfb12b682700",
+    "controllers/keyboard/keyboard.c": "a4ee3f70308edac70beaeb6920822f6d5b7782773fdc4a3b1cf3b6396d97382a",
+    "controllers/keyboard/keyboard.h": "83aff0f8de1515bd77e1b6b1218c116baa7e440513cd3276d728834dedc6087d",
+    "controllers/timer/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "controllers/timer/timer.c": "910019b9bfad4eb3ead822158c3eb59c790209852d36e02fd77df5cbd24184f1",
+    "controllers/timer/utils.c": "a4bd44151839a44baa411b2564cefc22f531f3ac2aedc35b587f0aba7ebf5c19",
+    "game/game.c": "d48489fa0548c9b28cd49dc1bee0958de813aade8a3ce9f943bfb58e9538c644",
+    "game/game.h": "6950a95adb6eb4ec6d1cf32a6f9f6948eb928dc2c9a8f1587a299e52113a76ec",
+    "global.h": "a3a452ef871d258725bb4362ce68d027b5b19307ad46b636818fc3c770c19c19",
+    "main.c": "2b1b1a6e6c397bee00761d62ae8091220489b4035129f1e2571aa8248c5404cb",
+    "menu/menu.c": "e0dc7d9a7e36c89281756f500d5f190b9959e1c270f0918908e8cee8dff087c9",
+    "menu/menu.h": "e2c6e0d06cbacaeda3a1ed8ebe4668640e70fd49a35e079893b2f0f38f2ecd77",
+    "menulevel/menulevel.c": "3ba9636073331499aea91961995657188c84afdb657869484c1be1482811e11a",
+    "menulevel/menulevel.h": "a1dcac2c44a7a0538ff5fb28a0daf98f758e676c30b8919fe2405966d5293a37",
+    "sprites/sprites.c": "8db61a577f842f712475e4615210b9266cfda448c652966c5cfe04ab842644ed",
+    "sprites/sprites.h": "1995509b912114919d77a8a602fbaff76e55cfd0767f8516e287ec802e878072",
+    "view/game/gameView.c": "72beb05fd3b509209a54c143c09d9be15392a5906c46923b10efa55c5f6fa942",
+    "view/game/gameView.h": "7788e4590b1b5756d8fa51606b49244d61d09495f620500e794572b6ab98b5d3",
+    "view/menu/menuView.c": "2c6d07a6974957b07fa4ec1bb6fbb06c4dbb8c6efeac766d21aaeb45f66364e6",
+    "view/menu/menuView.h": "fbda5eb8c4252d4347b4d12ed7b4f6fa2c55b6cbe92996845a67edb90d901f85",
+    "xpm/HP.xpm": "a14a0ea696e727f856d2cc26b83bd2853be6fde78f90664654c002efa388fcd7",
+    "xpm/LVL.xpm": "c7fac22c24ff1da94b6e26f34480a5d003b180c2181e078549e85ba6148a6b0d",
+    "xpm/SCR.xpm": "06c41c38cf8cbd1fd1bac84cd8381864c3edf1061878ae7fe71f51b674dce3a9",
+    "xpm/bullets.xpm": "04c31bc37c6ecfb5d8db46a60772f52bacd67f86892817cfd0b0d4497fc8eac7",
+    "xpm/chooselevel.xpm": "30e1bf786027d52e05ef01dbe5ede64a7cbbc37f2eaa97372ee2d597ed1d725b",
+    "xpm/crusader.xpm": "419b4b8bffc23f9e88935f99d4730e3181a285bde757798fc6c6cfdd3a656014",
+    "xpm/exitbuttons.xpm": "e3226b02afbfb5f3c7796e6759a0bc0c649a3bfea5e9bdf4d2a2ea2942da78cd",
+    "xpm/hero.xpm": "676fd16254866ff7702973d041086900a08030d6824c797e3e0d22dc17286dbf",
+    "xpm/intruder.xpm": "8f2dd297256fb49a95355f2e8f57441ad2a0298ac0eb800d5e2f5b8b6eedc1d5",
+    "xpm/level1.xpm": "67e56e6680545d3c34459fdbb8dc4f5cf682f3412b3b64f60d6d16d2c9081a8f",
+    "xpm/level2.xpm": "c859757a3fb9f3ba7895ea9771ee6d8d161dce3bbc417828bb800f8e77228d8b",
+    "xpm/level3.xpm": "49d04072f60592c936973e7cb2a9cae3503bafeb85f5f149ed86b291ddb88420",
+    "xpm/levelbuttons.xpm": "3bb5fdd9c9db8d22a7543b96775aa1f5ac04702850830e7b052daa9ff7efb9be",
+    "xpm/numbers.xpm": "8ded1438e1f6e21b1e7afd7ad6107f5d9e68b2115cb4df11f58a5aa11abbdfef",
+    "xpm/spaceInvaders.xpm": "141be705b31dae61ac07222e551d65b2f652759f1e6d8215f4b29c78ac49d915",
+    "xpm/startbuttons.xpm": "66753d920f4c11e61185d8acd2de80d0c772e1a39a722b7d610e29e00a773a52",
+    "xpm/youlose.xpm": "8193842d258735119d70e6ed5513336969276a0611ec0fd1f5730b035ba95dc8",
+    "xpm/youwin.xpm": "084e7f3fcc9e82c4b9b8b3a3766da50089d0e39ef0b83526fa7726a019302ce6"
+  },
+  "sourcePatches": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "game/game.c uses A/D to move, SPACE shoot; menu/menu.c ENTER selects and W/S choose. WASD pad exposes those original keys.",
+  "icon": {
+    "type": "gameplay-capture",
+    "source": "evidence/pedroRibas372--MINIX-SpaceInvaders/populated-gameplay.ppm",
+    "crop": [
+      154,
+      77,
+      891,
+      668
+    ],
+    "sourceSize": [
+      1024,
+      768
+    ]
+  },
+  "verification": {
+    "repo": "pedroRibas372/MINIX-SpaceInvaders",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/pedroRibas372--MINIX-SpaceInvaders/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/pedroRibas372--MINIX-SpaceInvaders/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/pedroRibas372--MINIX-SpaceInvaders/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Guarded populated capture; clean application exit is checked separately"
+      },
+      {
+        "id": "gameplay-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/pedroRibas372--MINIX-SpaceInvaders/gameplay-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/pedroRibas372--MINIX-SpaceInvaders/gameplay-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/pedroRibas372--MINIX-SpaceInvaders/gameplay-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Clean application exit after original input and cleanup"
+      }
+    ],
+    "browser": {
+      "id": "pedroribas372--minix-spaceinvaders",
+      "width": 1024,
+      "height": 768,
+      "colors": 10,
+      "status": "Game running.",
+      "controlsFit": true,
+      "errors": [],
+      "passed": true
+    }
+  },
+  "derivedAssets": []
+}

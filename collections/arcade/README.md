@@ -1,0 +1,39 @@
+# LCOM Arcade
+
+A collection of original student games. `lcom.collection.json` lists their
+folders; each game's `lcom.json` owns its name, icon and mobile controls.
+
+```sh
+lcom-ng web collections/arcade
+lcom-ng export web collections/arcade --output dist/lcom-arcade-web
+lcom-ng export android collections/arcade --output dist/lcom-arcade-android
+```
+
+The Android launcher is native and fullscreen, with columns adapting to screen
+width and text size. The web grid is responsive. The Games button prefers unused
+space outside the game and returns to the collection.
+
+See [the collection guide](../../docs-site/instructors/game-collections.md) for
+creating a class collection, Android prerequisites, per-game settings and limits.
+Source provenance, verification and licensing are in
+[`examples/community/catalog.json`](../../examples/community/catalog.json).
+
+Publish the verified web export to `arcade.rgo.pt` through the repository's
+Cloudflare account:
+
+```sh
+devenv shell -- python3 scripts/package_arcade_web.py
+devenv shell -- bunx wrangler deploy --config collections/arcade/wrangler.jsonc
+```
+
+The packaging step copies the export into `build/arcade-publish`, losslessly
+compresses Wasm modules. A small Worker serves their encoding correctly and
+streams decompression for clients requesting identity encoding. This keeps large
+modules within the host's asset limit. Other files use static serving. The regular
+export stays directly usable on other static servers. Check all modules with
+browser gzip encoding, plus large identity responses and cache revalidation,
+then test the live player:
+
+```sh
+devenv shell -- python3 tests/arcade_hosting.py --url https://arcade.rgo.pt
+```

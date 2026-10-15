@@ -1,0 +1,10 @@
+--- a/proj/src/mouse.c
++++ b/proj/src/mouse.c
+@@ -84,6 +84,7 @@
+         return 1;
+       }
+ 
++      if (!arg) return 0; // The controller prefix itself has no mouse ACK.
+       uint8_t ack_byte;
+       if (mouse_ret_value(&ack_byte))
+         return 1;

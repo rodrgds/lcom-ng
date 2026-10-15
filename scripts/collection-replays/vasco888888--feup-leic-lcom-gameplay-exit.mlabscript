@@ -1,0 +1,13 @@
+# Dr.Minix menu ENTER starts, note lanes A/S/D/F/G/H/J; game ESC finishes, menu ESC exits.
+at 100 key ENTER down
+at 101 key ENTER up
+at 420 key A down
+at 425 key A up
+at 450 key S down
+at 455 key S up
+at 480 key D down
+at 485 key D up
+at 500 key ESC down
+at 501 key ESC up
+at 700 key ESC down
+at 701 key ESC up

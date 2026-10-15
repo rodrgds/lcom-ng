@@ -1,0 +1,7 @@
+
+trace.txt
+output.txt
+.gbinit
+.vscode
+.clang-format
+*.o

@@ -1,0 +1,9 @@
+# menu.c Enter starts level1; arrows move; main loop Escape break exits.
+at 100 key ENTER down
+at 101 key ENTER up
+at 150 key RIGHT down
+at 151 key RIGHT up
+at 185 key DOWN down
+at 186 key DOWN up
+at 500 key ESC down
+at 501 key ESC up

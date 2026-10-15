@@ -1,0 +1,12 @@
+src/.vscode
+src/.clang-format
+src/*.o
+.gdbinit
+src/.gdbinit
+src/.vscode
+src/.clang-format
+src/*.o
+src/proj
+output.txt
+trace.txt
+../proj-zip.zip

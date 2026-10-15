@@ -1,0 +1,11 @@
+--- a/proj/src/main.c
++++ b/proj/src/main.c
+@@ -44,7 +44,7 @@
+ int i = 0;
+ extern time_display time_info;
+ 
+-int (proj_main_loop)(){
++int (proj_main_loop)(int argc, char **argv){
+ 
+ 
+ 

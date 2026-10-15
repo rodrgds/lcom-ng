@@ -1,0 +1,28 @@
+/* XPM */
+static const char *font_l[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 6 1 ",
+"o c #5E6456",
+". c #7A757A",
+"X c #B8B9C4",
+"  c None",
+"O c #C2CEC2",
+"+ c #FCFEFC",
+/* pixels */
+"                ",
+"                ",
+"                ",
+"                ",
+"     X+X        ",
+"     X+X        ",
+"     X+X        ",
+"     X+X        ",
+"     X+X        ",
+"     X+X        ",
+"     X+X        ",
+"     X+O        ",
+"     X+++++.    ",
+"     o.....     ",
+"                ",
+"                "
+};

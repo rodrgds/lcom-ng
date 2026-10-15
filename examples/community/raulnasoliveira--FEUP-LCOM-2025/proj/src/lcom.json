@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "Brain Training",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "position": "top-right",
+          "label": "Menu up",
+          "key": "UP"
+        },
+        {
+          "position": "top-right",
+          "label": "Menu down",
+          "key": "DOWN"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Select / React",
+          "key": "ENTER"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

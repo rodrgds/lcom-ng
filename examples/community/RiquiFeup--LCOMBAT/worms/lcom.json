@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "name": "LCOMBAT",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "UP",
+        "DOWN",
+        "ENTER",
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "cursor": {
+        "x": 400,
+        "y": 300,
+        "maxX": 799,
+        "maxY": 599
+      },
+      "toolbar": "top-right",
+      "look": false,
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Jump / Fire",
+          "position": "bottom-right",
+          "key": "SPACE"
+        },
+        {
+          "label": "Bazooka",
+          "position": "bottom-right",
+          "key": "1"
+        },
+        {
+          "label": "Grenade",
+          "position": "bottom-right",
+          "key": "2"
+        },
+        {
+          "label": "Unequip",
+          "position": "bottom-right",
+          "key": "Q"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  }
+}

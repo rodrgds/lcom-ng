@@ -1,0 +1,200 @@
+{
+  "repository": "https://github.com/teixdavide/FEUP_LCOM_PettyCats",
+  "revision": "678372ac889677fb6241a6daa100ec7d56dcd6b0",
+  "sourceHashes": {
+    "README.md": "78751b2c0b4befa4260de281f2996f620d234a62d45fc883ca7dee1b3e439517",
+    "src/.DS_Store": "3065d0ee725cb4dae1f68ca394053a69607239e9e1b02705b04b3b0ea3c5a84d",
+    "src/.gitignore": "84db8ae0a9ca678669c018df85c201f8d44ca6158c54af3edb494f670760c1cf",
+    "src/Makefile": "65ad1412be4f7a386b14c86bead596d5e4bd937dbdb0d4690461123bfe4165e0",
+    "src/controller/controllerKeyboard.c": "06455bba8ad0114e457e03cb717a3396412dc90990aad8bb4b144bedf25ceac6",
+    "src/controller/controllerKeyboard.h": "195c4f70b29fb1f457de49f4b64f84ef8d552b84f19fc4274bc68faed65ce4bb",
+    "src/controller/controllerMouse.c": "4866222ba67ff63d2986fd4a00871f1c69a3d798627b873c7cd28f61d17b4964",
+    "src/controller/controllerMouse.h": "1266d05cf6eaa15311551d1591832fa89810d2daff4a19c94af02bb6e2ebc7ee",
+    "src/drivers/gpu.c": "60f7c4ef56cb00b1be54f63c3ee8f06d1ce15eef72aa5e83b14b33cda299d88b",
+    "src/drivers/gpu.h": "93f74de9a8fc19550ea3b8527482465f961082f2254242c4b180264f655edcca",
+    "src/drivers/i8042.h": "1752d8ff5d6261002ac39ec5d2ee0c027240a9a82234fbde459068aaf3937e29",
+    "src/drivers/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "src/drivers/keyboard.c": "1ac2f94588ec60b9bb8f0fed902b459245b5f1e9b09e46e7cf4c828fb51dc7b6",
+    "src/drivers/keyboard.h": "389479fd33b9855c1a34db7dbfb5cc400c8efc17817247a4f213f46df57ea463",
+    "src/drivers/mouse.c": "59cf5eabd7b527e864a9da5ea598755e11572c4f30ef61896d0dcfb08d2f828e",
+    "src/drivers/mouse.h": "915e9557fa7cc9534c5a1e1b8c77c9f11e96aef844ae037562327068d15e19fc",
+    "src/drivers/rtclock.c": "47c20439e7c908a7c2cb5a334ac2ec632a4a5ea376e978889c63a375a0bae7a9",
+    "src/drivers/rtclock.h": "d02e7e1ab998b7f43ddec083ff2b2ac062372da6d88ce3149bc2decdf63e7821",
+    "src/drivers/serial_port.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/drivers/serial_port.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/drivers/timer.c": "3faa753cd5357d1bb164529362a3c98c72439fb5ee5881e1eef1dfad296893b0",
+    "src/drivers/utils_drivers.c": "df600491d164db16c0fe172972a31a7177ac4645494c577b17c94cd92ba9ed86",
+    "src/drivers/utils_drivers.h": "43d32dd6cdeedf48ca4a3f51c8030cd9ef249986671a09e92773d28b86f76c57",
+    "src/font/characters.xpm": "e6818c1264fe821c97737d86eb774eca5aad9749ee80d9b78130ac141802c2a2",
+    "src/images/.DS_Store": "8ddc62668a3a1e836a4ecd1368da7a9313fd1341d4e39afe8fc071783d91ad82",
+    "src/images/cats/.DS_Store": "0d4ef51ae409c186c2a29a3058365089d51c7c68a6b98435788e16f5d0294cc7",
+    "src/images/cats/cat0.xpm": "786b777dc624c362b7510b3638b98731e5f16120fd7d64a484c56518726ab9d6",
+    "src/images/cats/cat1.xpm": "2f0db77762fb7f8a943fab661a6e8a957d12a71a50c341a0ca2190b42aab90c7",
+    "src/images/cats/cat2.xpm": "232b06659006427656d3086867ed0bdfd8e2efd71f18256c375570d0576646b2",
+    "src/images/cats/cat3.xpm": "c0b90ec9df91ab538f3ae7498b50660705e7815eead42204a26bf099c6e0686d",
+    "src/images/cats/cat4.xpm": "2f87ab7209d600185230c7ce6dfdf3c236a94f2fc09847dcec8f3c2424a9a920",
+    "src/images/character/back.xpm": "a33a063d99aad1b242da4fdb569148de21d095336eec968ee005447baa39969c",
+    "src/images/character/front.xpm": "cdd7b611636041749a62fb468ea805ec3c209c8e9b5e7deda0fef2c55ea6ff27",
+    "src/images/character/left.xpm": "bfc3907a28aafb383334d2192c9b6e25e243f6c7018c8acb10b384c58f8ec1dd",
+    "src/images/character/right.xpm": "180db51d5104cf70b816c7676161f8a7cbd253dbc5ca1a07e952e0620d8c9958",
+    "src/images/menu/instructions.xpm": "5cfdc82cd01044d8c01db1787719ffa8046d45dba271d7475349dd327a7d3b75",
+    "src/images/menu/logo.xpm": "8840651dce6a1016e8001b3e2966f5fdc5031d927b23779b606bc626021597a6",
+    "src/images/menu/play_game.xpm": "0f6a83b21bbdf5266b9b3e78984d5dc84e9a6abe6fcdcfa33b212d0964ad3ed7",
+    "src/images/menu/quit.xpm": "d9129dcfcc0c4efe9c2d0ec5dd2e0c3955f4c8f640b356c37e1fe22515377761",
+    "src/images/mouse/mouse.xpm": "e7fe0e58a05ba79243c431e481bcc80c9cbac63ca130f83cc7d4aabcbc4104e2",
+    "src/images/scenery/cloud.xpm": "6d0ea19c2ad38e055f5468d5056eca7bf45c9c255bae1d277bd4907ac382c04f",
+    "src/images/state_machines/.DS_Store": "4093da35d03825a045152e692f18ba7bb6ff76cd8a33d958eb3c8f381aeb0461",
+    "src/images/state_machines/state_machine0.xpm": "bf24de8eb45f4965c42857ecc6a5247497da1f182587009fd49a6af63388eac6",
+    "src/images/state_machines/state_machine1.xpm": "944a2c93dda7a39db02d5417fed5a9d10b915d38c4818df9a5480981cc01eaac",
+    "src/images/state_machines/state_machine2.xpm": "74c3b7713f99a99f6168ad4cf8cfaea651f573e99888e21f99806c6b53476327",
+    "src/images/state_machines/state_machine3.xpm": "1e54c969c3d4b352755677eddf9d138e07bfe6f090192d9209319b939f88a746",
+    "src/images/state_machines/state_machine4.xpm": "8e56483e3ea952e090dc5f73048ac7630ba6ca832f9869b0e288f275e202f37a",
+    "src/main.c": "fa9d29fd1d4038892b1f87964cbad58f5b92f2f2cad40599eed6e9eb01a046bf",
+    "src/models/CatInfo.c": "07713c66e6ed99359391aaadcd16aef195788bb6acade8c46118b967ee8147f9",
+    "src/models/CatInfo.h": "180dab07e8cf91082ad400872f25a3853de8908af2362ddfb5200d8d4f059e81",
+    "src/models/Cloud.h": "5111c77c1c55be0514b1d894e9093ac6f7940f4b7d1d879c4b9a5260115a8150",
+    "src/models/Datetime.h": "c2ee3a8c721a3838126bd92b903fdad3515e95e3848b89242acf6a099fa7e072",
+    "src/models/Entity.c": "0450ffc13d2ac6342ad776a08db2acbaf9feba111862e69a0304ff976051f633",
+    "src/models/Entity.h": "37a2c04e512b3bb49fdc1624425db2873009a6a2b74f4cd3cf5b74bde4b44dc2",
+    "src/models/Game.c": "d0d4e23b8fc9d3448bcb38f90cfb922d5ff99a565e976d0250551be95d972479",
+    "src/models/Game.h": "ede976a31d66cdb1d61b1e87612c2c55c337db31f0b6a5b39d32bb577b1def7d",
+    "src/models/PlayerInfo.c": "86f291e61bd1e818fcbd5de72e375a60f19e3730a600271af3c53a4722fa10ee",
+    "src/models/PlayerInfo.h": "67040ef91d2e5498166844866978cf9f69d83dd58dab37fa42b722fb0a33c211",
+    "src/models/Room.c": "d9c08a4c96a8e7f77c0aaea4d0f76931a77003fb953a10a3d9c4997341097679",
+    "src/models/Room.h": "a81cec3ed36dc6a242e31c139369c5105de983d7eda8b28db0f441f780bcb845",
+    "src/models/Sprite.c": "2ac4cc21dcb3a0a516c868873d1404faf5c01497d3ef59a9b44e2592a9dcee46",
+    "src/models/Sprite.h": "a34582a82158a2c39415a8c545a9f630a2eeb10bb75b156f099a5ea8eb2aa82f",
+    "src/utils/aux_structs/HurtBox.c": "b25995801c5a6f6963a7af38a3c5ab48a8f6f0d080f4624d9ac4fdefe5d31d00",
+    "src/utils/aux_structs/HurtBox.h": "3edb194c16b3ed6cc52cc8ca79abd10cca577cc500c2c23b8448742343ce0ad4",
+    "src/utils/aux_structs/Position.c": "d14d27240d7d232123a6b0d4d0ed3992d2aebf765427931d38135d7635ae7d48",
+    "src/utils/aux_structs/Position.h": "cb0cb97259e127a73c563f1010884cbbd847ab60e62f2e7b6b8bc1eea6790431",
+    "src/utils/utils.c": "9f04def73288c1c7ddcc9245e987b8fbbc073aaa708db01c3345a40ee82c0957",
+    "src/utils/utils.h": "a67ccd61584aaf563c88bddc6ea7821a96e9949093375326c5672bd477c7b902",
+    "src/viewer/gameView.c": "529b645ef44b9794e23e945eac59e5a213ce3d4a849d01f2aa9070a8444867fd",
+    "src/viewer/gameView.h": "77f2e13ddf27b22002edefa161fa0b3c23301ecc8e06bdb5201e3987471c9c3e"
+  },
+  "sourcePatches": [
+    {
+      "path": "examples/community/teixdavide--FEUP_LCOM_PettyCats/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "src/main.c",
+          "originalSha256": "fa9d29fd1d4038892b1f87964cbad58f5b92f2f2cad40599eed6e9eb01a046bf",
+          "patchedSha256": "874074bc849f4de09340b0caa3913e842f239bdb71098d02a7db0057ac14b364",
+          "reason": "Original callback definition has no parameters, conflicting with the required LCF int(argc,argv) callback signature. Compile failed at main.c:49; only signature corrected, behavior unchanged."
+        },
+        {
+          "path": "src/models/Room.c",
+          "originalSha256": "d9c08a4c96a8e7f77c0aaea4d0f76931a77003fb953a10a3d9c4997341097679",
+          "patchedSha256": "02d5f0592f2e9ae819cc99d92f8890ea7616b8da20e0a9d8a870a84fa7a03c04",
+          "reason": "Original startup SIGSEGV while no cat is within selection radius. getSelectedCat returns and dereferences an uninitialized closestCat when all candidates are distant. Initialize NULL and mark selection only when a cat was found. Original deleteRoom also frees uninitialized walls pointers; the real gameplay exit reproduces SIGSEGV under MallocScribble=1. Initialize the four unused wall slots to NULL."
+        }
+      ],
+      "reproduction": "source-regressions/teixdavide--FEUP_LCOM_PettyCats/results.json"
+    }
+  ],
+  "derivedAssets": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "Original WASD moves player; E begins petting nearest cat, mouse gestures perform petting, ESC opens menu then exits. Relative pointer preserves its gesture controller.",
+  "icon": {
+    "kind": "original indexed cat sprite from native capture",
+    "source": "evidence/teixdavide--FEUP_LCOM_PettyCats/populated-gameplay.ppm",
+    "crop": [
+      412,
+      708,
+      445,
+      740
+    ],
+    "output": "icon.png",
+    "size": [
+      512,
+      512
+    ]
+  },
+  "verification": {
+    "repo": "teixdavide/FEUP_LCOM_PettyCats",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/teixdavide--FEUP_LCOM_PettyCats/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/teixdavide--FEUP_LCOM_PettyCats/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/teixdavide--FEUP_LCOM_PettyCats/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Actual original gameplay state, screenshot inspected; bounded capture"
+      },
+      {
+        "id": "gameplay-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/teixdavide--FEUP_LCOM_PettyCats/gameplay-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/teixdavide--FEUP_LCOM_PettyCats/gameplay-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/teixdavide--FEUP_LCOM_PettyCats/gameplay-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Original clean callback exit; scope is gameplay-exit"
+      }
+    ],
+    "originalSourceFailure": {
+      "repo": "teixdavide/FEUP_LCOM_PettyCats",
+      "source": "exact pinned source for every modified file",
+      "buildExit": 1,
+      "callbackOnlyBuildExit": 0,
+      "originalRoomRunExit": 139,
+      "expectedFailureObserved": true
+    },
+    "guardedAllocatorCleanup": {
+      "id": "scribble-cleanup-after",
+      "args": [],
+      "exit": 0,
+      "guard": false,
+      "passed": true,
+      "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/teixdavide--FEUP_LCOM_PettyCats/scribble-cleanup-after.log",
+      "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/teixdavide--FEUP_LCOM_PettyCats/scribble-cleanup-after.jsonl",
+      "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/teixdavide--FEUP_LCOM_PettyCats/scribble-cleanup-after.ppm",
+      "populated_pixels": true,
+      "scope": "normal callback exit"
+    },
+    "browser": [
+      {
+        "id": "teixdavide--feup_lcom_pettycats",
+        "width": 1024,
+        "height": 768,
+        "colors": 19,
+        "status": "Game running.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "webBuild": [
+      {
+        "id": "teixdavide--feup_lcom_pettycats",
+        "exit": 0,
+        "seconds": 8.3,
+        "output": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/web-exports/teixdavide--feup_lcom_pettycats"
+      }
+    ],
+    "browserExit": [
+      {
+        "id": "teixdavide--feup_lcom_pettycats",
+        "width": 1024,
+        "height": 768,
+        "colors": 7,
+        "status": "Game finished. Press Enter or tap the game to restart.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "directTouch": []
+  }
+}

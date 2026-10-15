@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "Sticky Ball",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "dpad": false,
+      "touch": "tap",
+      "toolbar": "top-right",
+      "look": false,
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "both"
+        },
+        {
+          "mode": "arrows",
+          "side": "right",
+          "style": "dpad",
+          "axes": "both"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [],
+    "environment": {
+      "LCOM_COMPAT_MOUSE_IRQ_ONLY": "1"
+    }
+  }
+}

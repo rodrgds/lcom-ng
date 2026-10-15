@@ -1,0 +1,8 @@
+at 70 mouse 0 -96 0
+at 80 mouse 0 -2 0
+at 130 mouse 0 0 1
+at 135 mouse 0 0 0
+at 200 mouse 0 0 1
+at 205 mouse 0 0 0
+at 260 key D down
+at 261 key D up

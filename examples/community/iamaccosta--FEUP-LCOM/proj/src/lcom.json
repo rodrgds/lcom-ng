@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Memory Match",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "touch": "tap",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Play",
+          "position": "top-left",
+          "key": "P"
+        },
+        {
+          "label": "Instructions",
+          "position": "top-left",
+          "key": "I"
+        },
+        {
+          "label": "Exit",
+          "position": "top-left",
+          "key": "E"
+        },
+        {
+          "label": "Flip",
+          "position": "bottom-right",
+          "mouseButton": "left"
+        }
+      ],
+      "tapDuration": 60
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [],
+    "pathAliases": {
+      "/home/lcom/labs/g02": "."
+    }
+  }
+}

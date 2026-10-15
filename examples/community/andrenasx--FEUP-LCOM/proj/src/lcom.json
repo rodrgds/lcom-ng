@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "Asteroids: UFO Attack",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": {
+        "mode": "wasd",
+        "side": "left"
+      },
+      "layout": "overlay",
+      "pointer": "move",
+      "look": {
+        "side": "right",
+        "sensitivity": 1
+      },
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "position": "bottom-right",
+          "label": "Fire",
+          "mouseButton": "left"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

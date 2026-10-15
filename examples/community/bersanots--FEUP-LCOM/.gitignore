@@ -1,0 +1,11 @@
+# Project
+output.txt
+trace.txt
+
+# C
+*.o
+proj
+.gdbinit
+
+# VisualStudioCode
+.vscode/*

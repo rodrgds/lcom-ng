@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "Space Invaders",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "dpad": {
+        "keys": "arrows",
+        "side": "left",
+        "axes": "horizontal"
+      },
+      "toolbar": "top-left",
+      "repeatKeys": [
+        "LEFT",
+        "RIGHT",
+        "SPACE"
+      ],
+      "actions": [
+        {
+          "position": "bottom-right",
+          "label": "Fire",
+          "key": "SPACE"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

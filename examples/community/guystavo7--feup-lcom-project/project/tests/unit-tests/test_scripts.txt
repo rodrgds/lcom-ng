@@ -1,0 +1,14 @@
+gcc -g -Wall -fsanitize=address monsterTest.c ../../src/monster/monster.c ../../src/vec2d.c -o monsterTest -lm
+  ./monsterTest
+
+
+gcc -g -Wall -fsanitize=address pathTest.c ../../src/monster/path.c ../../src/vec2d.c ../../src/data_structures/vector.c -o pathTest -lm
+  ./pathTest
+
+
+gcc -g -fsanitize=address vec2dTest.c ../../src/vec2d.c -o vec2dTest -lm
+  ./vec2dTest
+
+
+gcc -g -Wall -fsanitize=address vectorTest.c  ../../src/data_structures/vector.c -o pathTest -lm
+  ./vectorTest

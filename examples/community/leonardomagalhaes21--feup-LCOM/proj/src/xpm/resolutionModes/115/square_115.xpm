@@ -1,0 +1,12 @@
+/* XPM */
+static char *square_115[] = {
+/* columns rows colors chars-per-pixel */
+"5 5 1 1 ",
+"  c #FFFFFF",
+/* pixels */
+"     ",
+"     ",
+"     ",
+"     ",
+"     "
+};

@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "Minixsweeper",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "cursor": {
+        "x": 400,
+        "y": 300,
+        "maxX": 799,
+        "maxY": 599
+      },
+      "toolbar": "top-left",
+      "touch": "tap",
+      "actions": [
+        {
+          "position": "bottom-right",
+          "label": "Flag",
+          "mouseButton": "right"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  }
+}

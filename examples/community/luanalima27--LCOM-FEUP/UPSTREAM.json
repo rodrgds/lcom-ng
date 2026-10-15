@@ -1,0 +1,102 @@
+{
+  "repository": "https://github.com/luanalima27/LCOM-FEUP",
+  "revision": "8a51f4788f459f16e832668dd988ec4f42552fdf",
+  "sourceHashes": {
+    "README.md": "1f9ec28fdb84f81c0ae360538f7a61162e1682be17e24ba98b0a8bd7b3402917",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/Makefile": "4e439b6f013f5fb270cfecfabd9cb20b744002df0ddaee75b4c11a472a0719a8",
+    "proj/src/alien.c": "69b356fd095a3bf116a2e0605673807c07641add14adfa03a7f11a01e23f5e10",
+    "proj/src/alien.h": "2e85bac509102e91473d19128847341244c47fa72c150802c9317b015d80cf9c",
+    "proj/src/bg.c": "2a73b7773c4a7dc34c0e394a42e61801651332368f40556fcae32ef74e6b595e",
+    "proj/src/bg.h": "1ad90794cc00a78dcf9a3007e4d8448fb879e7e33ec8c545e324ba7c2bd3de7a",
+    "proj/src/buttons.c": "fc17f9ed17d93ec736dca5fc0897abcab1f58ede127fcea287bf3e8695ebcc39",
+    "proj/src/buttons.h": "4072bf49931ac9a29d6bb36f5e759034d9e42a92954f9e8cbe0881232b5bbc73",
+    "proj/src/cursor.c": "6141ddc8407fe3cee9d83d23a78239084d6f0d1724c7bd0a886a54d9c0741044",
+    "proj/src/cursor.h": "0a520e020b2dd2cac1ceecce83cf6524d98a322462c16d1a234be1ba4d150876",
+    "proj/src/i8042.h": "d31f6d129bfb1801edd78420088ddeb25e125914a630904a7e4c1f71e1d18c2b",
+    "proj/src/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/keyboards.c": "e62fa8608ab46433de023a23e5ff8f25297a5fcb0e4ca6300e31ac4408e5ac93",
+    "proj/src/keyboards.h": "907d7212d60b6974b885bef95cc4478a639fb8a76c5a9f51113fe6d904cf3709",
+    "proj/src/letters.c": "6fda65fa2704374da11a86d074969dbbb850b18cc4bc4f82d49f23986c293f8e",
+    "proj/src/letters.h": "c6376937eeae75eb13de8324b3981e93e67d1f62c679970f9386421c907b676e",
+    "proj/src/mouse.c": "336ced7680f5f5b83a8c405a55864f9aa41604f48a4d48347808c2ebf03ebcb3",
+    "proj/src/mouse.h": "8ece9179c4024af110757df76789c60d44cf035f7c9743c71a6ab9c0176ad1ec",
+    "proj/src/pixmapproj.h": "79550f1d5bd28f26c6f2d2d14ee033aaee4ac1f71cf6f968b602ff6583b30674",
+    "proj/src/player.c": "e5e04d7db6d10be35893b1be5d214690bbfa2e58903f3dee7ece104b0b1e12d6",
+    "proj/src/player.h": "d25b8b6919cfe7fcfa19fb5be6f5c420d5252a65a3909f970b0e3aff434c3102",
+    "proj/src/proj.c": "eae2e5e15d70cdb499662c3f96d3b334a863a33615402acea1e07b09dbc5b78b",
+    "proj/src/projectiles.c": "80997760db33f7d54ea7c0573cdb367861f0d0a7a053a7e556387a6622b2cfa8",
+    "proj/src/projectiles.h": "882d58c3a39ef21595d13b4a2cb13dc1549921ef88f5b60a1146033454603f62",
+    "proj/src/rtc.c": "77a230dc9b70789fe20a04b5eafea834533a596ae83e51570c85df3c163fb600",
+    "proj/src/rtc.h": "f3dde595256f76187c5a0caef24c8b3ea6157d133b449d858f94ffd050b7365f",
+    "proj/src/score.c": "dc413d5affbc12b60b386d13f0f82c7d004bb90741e0bee4fcfd2bfadf519bd6",
+    "proj/src/score.h": "7b15e03079308d7a970e0dfae68380243cfebafce9bc4925c157929dec5c03ea",
+    "proj/src/sprites.c": "7631b32a0980afc81b50b9253780ab2a17bfc166f345f7075a8abf73407b7009",
+    "proj/src/sprites.h": "23e47d526cad3768de5870064f470228331b0416e093c45762b35db4c41288d6",
+    "proj/src/timer.c": "518c563633a3bfb08216cac7a0be24da1fe42829b6899a0e23871122cfcea31e",
+    "proj/src/utils.c": "72c42dc41b78874d64576876b29efad25d45407ecb18747e16cecb94cd850953",
+    "proj/src/video.c": "dcd9ef69bd545cd574a1753a0327323beb2126ab877867d8f236723b4681aa5e",
+    "proj/src/video.h": "16abbd8e457430ec3a85786a118a2741dfc06e66ed71cff89e108fc81b195f03"
+  },
+  "sourcePatches": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "proj.c menu W/S+ENTER, gameplay W/A/S/D; mouse aims and left click shoots. Original cursor processing is not a verified direct contract, so preserve relative drag.",
+  "icon": {
+    "type": "gameplay-capture",
+    "source": "evidence/luanalima27--LCOM-FEUP/populated-gameplay.ppm",
+    "crop": [
+      355,
+      465,
+      495,
+      600
+    ],
+    "sourceSize": [
+      800,
+      600
+    ]
+  },
+  "verification": {
+    "repo": "luanalima27/LCOM-FEUP",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/luanalima27--LCOM-FEUP/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/luanalima27--LCOM-FEUP/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/luanalima27--LCOM-FEUP/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Populated gameplay from original controls"
+      },
+      {
+        "id": "gameplay-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/luanalima27--LCOM-FEUP/gameplay-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/luanalima27--LCOM-FEUP/gameplay-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b/evidence/luanalima27--LCOM-FEUP/gameplay-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Clean quit following gameplay"
+      }
+    ],
+    "browser": {
+      "id": "luanalima27--lcom-feup",
+      "width": 800,
+      "height": 600,
+      "colors": 9,
+      "status": "Game running.",
+      "controlsFit": true,
+      "errors": [],
+      "passed": true
+    }
+  },
+  "derivedAssets": []
+}

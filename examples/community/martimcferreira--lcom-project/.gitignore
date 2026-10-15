@@ -1,0 +1,43 @@
+# --- Binários e Executáveis ---
+LCOM
+*.out
+app
+
+# --- Bibliotecas e Objetos ---
+*.o
+*.a
+*.so
+*.lib
+
+# --- Ficheiros gerados pelo CMake ---
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+
+# --- Ficheiros de Log e Debug da LCF ---
+trace.txt
+output.txt
+.lcf_trace
+*.log
+
+# --- Ficheiros de Sistema e Editores ---
+.DS_Store
+.vscode/
+.idea/
+*~
+*.swp
+
+# --- Pastas de Build (Boa prática) ---
+build/
+bin/
+obj/
+
+# --- Projeto LCOM ---
+proj
+Project/proj
+Project/scores.txt
+scores.txt
+/tmp/
+lab1/.minix-src/

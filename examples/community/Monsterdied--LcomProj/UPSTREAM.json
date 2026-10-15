@@ -1,0 +1,213 @@
+{
+  "repository": "https://github.com/Monsterdied/LcomProj",
+  "revision": "a2cf0924aaf80f1e2a9ae078bf9066e3daab962d",
+  "sourceHashes": {
+    "README.md": "dff6680035260443e93fb74038348f6efedfac0641eab127df3fecfc9a60b1e0",
+    "proj/src/.gitignore": "9fc4838e57a72a8fd05a6efaeec20c7d36cc02536f3c897ebf44ce69feb056f6",
+    "proj/src/Game/Game.c": "9e31efc7990749246cd11cb6fb6b18b0754a9d1271598d09d67387a49e0bb99a",
+    "proj/src/Game/Game.h": "e78614b69814976952ddc853c4db43d0fecdeb338cafe40035ffa8727ea39ca0",
+    "proj/src/Game/Menu.c": "27b2d4e5ee4d548ed1e8ec0b3cbec3c1f0835a116fd34857f837b06b4333503a",
+    "proj/src/Game/Menu.h": "8e625b615cd7b236a66e2bdfd17a76286fba55427d155cab98bf9c1968b032e4",
+    "proj/src/Game/SelectNames.c": "89bf0e7ee506ac10b72a3c224fa322ad87aab2a7eb5d8b5bca2993d32b6f0e8e",
+    "proj/src/Game/SelectNames.h": "9e7022c7c9d7449f29ac9e8c64f6818b429ad31d4d8dbba50000de931b50636d",
+    "proj/src/Game/gameControllers/Controller.c": "f23c57193466674ddec5494d17573de9495928b4ee281467855855b2a643d575",
+    "proj/src/Game/gameControllers/Controller.h": "86e37194e49ffa64d043b5c95788d16e5f1d9d8e09172082990317d69b7abef1",
+    "proj/src/Game/gameControllers/kbc_controller.c": "911082736922fb60a47c53ef7b56d717c52f29692ae51b810d35d54ebe56fda4",
+    "proj/src/Game/gameControllers/kbc_controller.h": "25373437927f3569613b741717458043d326a0449c4dddb91ce4915a71834720",
+    "proj/src/Game/load.c": "d07b7d9d72078da5a654ec98360c698519a6eb36d3df8bd8265e63f4793faacb",
+    "proj/src/Game/load.h": "9fd96f6c8761f2f82480fdb4fe50deacd22049fdd2e51197b1b220435a14c497",
+    "proj/src/Game/message.c": "877e542778a2ef4ba711c65f4bbada8206358ced4ab55d7dd7f64249e0d29e95",
+    "proj/src/Game/message.h": "a4d36e255ca03f8e3ef3984c8337d52e6acaa85260cbe6f0e6daf1ec93013951",
+    "proj/src/Makefile": "52fe12625fd8d771ff4eeef1e1b6c222a0b24835e5d3078503e85f581b2ee2ab",
+    "proj/src/devices/i8042-mouse.h": "9d9217a04b282b89de1a4a22407aa1b8dae1a040f26ea9de94dd8ec6a7d7dba4",
+    "proj/src/devices/i8042.h": "70b8bcced9302a1a47985e58622032884559add688b792b4af1243037357254b",
+    "proj/src/devices/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/devices/keyboard.c": "ad2d8d6b877c6ce698dafcf305ea8b13e1a164ab0064eab89ee61cb88b2df304",
+    "proj/src/devices/keyboard.h": "97b5051bd6d0b581a78f5337013976ea16f7b0d7cb255738bb3d8941eea0acda",
+    "proj/src/devices/mouse.c": "4543acaca7e2397cc45d20b62e954f41b03ef3b189b7d2b658f631335ed12b3c",
+    "proj/src/devices/mouse.h": "539a6e54c85d30792a74bbb3bfbce40efdf6df16340350627892a4a33dd169ae",
+    "proj/src/devices/rtc.c": "59ba44759dedfe4971b98bb21e0825296adb045c93826c5255c7cc6117ec11d6",
+    "proj/src/devices/rtc.h": "7843fde5141b8b6b15aaa02e2bc8b1743fb5da4a20dcd382d567f06714490290",
+    "proj/src/devices/timer.c": "edbe761244894e96324a291f4c78c0780293ee57eb133d5e6f2eb3a4ae6b15b4",
+    "proj/src/devices/utils.c": "8a66e3f41a9dcc2ddef4b9668ebb3ad0d0b74f35ce2f6252ed7caf0efdee9190",
+    "proj/src/devices/video_gr.c": "c14c5c42a08ea5ec2bde0efc3c0d3a61a8869253c97ecdf54f8651ec64d5b699",
+    "proj/src/devices/video_gr.h": "4c76eef1ae5f4456647f9c117cd89adf44b81b6f11fc7abb9778ed667df54468",
+    "proj/src/draw/draw.c": "05a995ebf115590680ad0b2d53a833d128fea4bbb7256005313589bcc92dcff4",
+    "proj/src/draw/draw.h": "8d085507a848a8d0c8d2ec1a69fab3ac7ca6c4b639c4b4474503d5c45617cf98",
+    "proj/src/main.c": "636f8e6276262c3224a1d5182aff81401874f6f0b2677627de2549be05fe3691",
+    "proj/src/models/background/grass.xpm": "8be7e5ff0882b6237f8265493329b312f21e161455c8eb0b9937a16eb85c7685",
+    "proj/src/models/background/grassnight.xpm": "f87457b5223490ec760436abdaf08bfcc542b0b394406dbff5347faea7cc4217",
+    "proj/src/models/background/message_background.xpm": "dc939981694115eb0e7c3d8a245ca7ff7e22b32abc620f71842de27b7190ea9c",
+    "proj/src/models/bomb/bomb1.xpm": "3c93d271f5481789afc7862867dc1313be3b97fd1e13a235bf1eba4c6d36e910",
+    "proj/src/models/bomb/bomb2.xpm": "4928f2ff4dc008d359f1a81a0f0e27b18213c33e92d099acaac3f6cc08d0412b",
+    "proj/src/models/bomb/bomb3.xpm": "d82fdea00a17ac10d9e175b5f03bb174f2bea46df934c86d93bd2bacec41d5c9",
+    "proj/src/models/bomberman/downview/black/downidleblack.xpm": "89dcdf1fabf26f2bfb3492ed54a8c468939d7c370c145e52cbd82955f607abec",
+    "proj/src/models/bomberman/downview/black/downwalk1black.xpm": "6bc4be0e688c7a7047b6acb2a61c7424ec9ccff4eedd8cdfb1789610ecfa144c",
+    "proj/src/models/bomberman/downview/black/downwalk2black.xpm": "c1529381a718c6cfd98864495fb25097cc9765bf573d48bb2d667fc97ff59d05",
+    "proj/src/models/bomberman/downview/white/downidlewhite.xpm": "61d0cd5bb2634c47e9aeed95bcdfdc14647a264c1d3f1c4108d2460be1617302",
+    "proj/src/models/bomberman/downview/white/downwalk1white.xpm": "9a7e3a64c3c726f04b2f121e31f0404cb3603707b16c96fcbee8fe361b14f0dc",
+    "proj/src/models/bomberman/downview/white/downwalk2white.xpm": "310df1f9fa780d73119f3616127d889712d2e98a00bb672cfbe68ae34eee16c0",
+    "proj/src/models/bomberman/leftview/black/leftidleblack.xpm": "5eb2254111b015a5cdb811c2919588d80723c90b309bc06cd5088bfaf436a20e",
+    "proj/src/models/bomberman/leftview/black/walkleft1black.xpm": "9f19e6182d7f09092b2f641f37fdf98fe7a9fe4c30f450bda95b69b8985af8f9",
+    "proj/src/models/bomberman/leftview/black/walkleft2black.xpm": "8e8ec159c415de99b6776c3d70d7122cfa4cb7809d2012d20ae227e53c0b1755",
+    "proj/src/models/bomberman/leftview/white/leftidlewhite.xpm": "1390b2be43c4c6cc698dc45c62bd7098db92fb9bbb671aaae1880a0dd5c1b35e",
+    "proj/src/models/bomberman/leftview/white/walkleft1white.xpm": "224a806726c1d48aa47f7ec96a95f267f88a073200b274b2ccce604e96acec17",
+    "proj/src/models/bomberman/leftview/white/walkleft2white.xpm": "4fe7e8d2c51cd912efa9b18487edc54dace2737cdd33a439ac07d887f04e5fe9",
+    "proj/src/models/bomberman/rightView/black/rightidleblack.xpm": "530791ed50530c637ef4378bc658174f3df4b6fbfe345dcf9366814b7b6ca785",
+    "proj/src/models/bomberman/rightView/black/walkright1black.xpm": "b305ce2ee0c123e579505353f9557c3dbb4d617c59b491040beee51775b288b7",
+    "proj/src/models/bomberman/rightView/black/walkright2black.xpm": "5dee116d774319d3621d63d0e72096d30d0da1fba0f4f799799114bd23b7d351",
+    "proj/src/models/bomberman/rightView/white/rightidlewhite.xpm": "3d0057418a31e730867451658b3f5696654bced1d67264dc3b85896f7c6d397d",
+    "proj/src/models/bomberman/rightView/white/walkright1white.xpm": "9f9a851403ef632061e0ddeccb2f6f53efda5e71034f18efb3f8c9388b04ee6c",
+    "proj/src/models/bomberman/rightView/white/walkright2white.xpm": "9cd02d3c107b68cdd245251844545128f0015cc077f1254cb746419ad851c627",
+    "proj/src/models/bomberman/upview/black/upidleblack.xpm": "0b75787c3845a159ccb96e9cdd642aafb7ddf1f00cc014b994ba1ca3eb3a3ee1",
+    "proj/src/models/bomberman/upview/black/upwalk1black.xpm": "6c5e6e598b10693ca38ad15afea9f6dc1cba8188c37bd3c847e86c3a48a30416",
+    "proj/src/models/bomberman/upview/black/upwalk2black.xpm": "5299091229830e256aa38ba4e99c33a644910bc6935514dba0b06c5ac3df8d18",
+    "proj/src/models/bomberman/upview/white/upidlewhite.xpm": "92d6bf44fe229e50cfae6f717807286433ddb4a0e23953fa7ce593e937daf753",
+    "proj/src/models/bomberman/upview/white/upwalk1white.xpm": "bad453191b57b097bb9aa7a419ec29fa6e3d64791ba3364f084d900f861656c6",
+    "proj/src/models/bomberman/upview/white/upwalk2white.xpm": "7f30ff9f425685b49cfc82011a2d8f87ec64151943e6c4ee302e08d7fd9ce992",
+    "proj/src/models/brick/brick.xpm": "6acc5c390b3094ba5070f3173013f3e66cd7706f4e21bd6d5c9b418030f251ab",
+    "proj/src/models/coin/coin1.xpm": "3dcd521e4065caca5b00c54c99ba8c79ee0da359d3a45d482c887a07ec81cb77",
+    "proj/src/models/coin/coin2.xpm": "fbbb4175c2e1e4b712faeaa192be132de531b8b44acdb1a3bd96951a303b58c8",
+    "proj/src/models/coin/coin3.xpm": "8f6673aaccc8dda7bb36d72e9ee396dde63b04d27c715c3dcc30c2d1f7f5584e",
+    "proj/src/models/coin/coin4.xpm": "ba78b08590a0cffd342219067af1cf9fee60412517d38cb08bd3955a33c7b577",
+    "proj/src/models/coin/coin5.xpm": "b42f9c4da30a29b846b444bf4aed9a33984aeddc8c10ef128f202c749a2ac1f6",
+    "proj/src/models/explosions/explosion1.xpm": "9a1b68f77a5503084c2fdae7e14b7e0095f6ac07a296d2cf556e2cbf7b9f1b1a",
+    "proj/src/models/explosions/explosion1bot.xpm": "7d5cfb30b7deac44c690d209b7362dc3edd2c56722ceb1b63bd90774ed1df376",
+    "proj/src/models/explosions/explosion1left.xpm": "ce8a26b5faacddd3638b5b3aff66802038c26066a2aaa641042e578aafb63516",
+    "proj/src/models/explosions/explosion1right.xpm": "25018daf95e81b5cccbb6a38b945cfb1d8fe47bd1aa267918bdce8a2bff58233",
+    "proj/src/models/explosions/explosion1top.xpm": "d6ff69d6336a524f55eb8402877f94444f26b79262948c180bbd62dea8ec4442",
+    "proj/src/models/explosions/explosion2.xpm": "9aa2c7ad8897911bbff6cbf28b1e1f2d885d54b339953f4c6ce21998cafb5a65",
+    "proj/src/models/explosions/explosion2bot.xpm": "2dac133947bcc654842afab6fae2a0d0dc8e218399c42174bf0740bb85921840",
+    "proj/src/models/explosions/explosion2left.xpm": "4a876f120325700e86a3445ae365c24eb718be98b4239fba4653c65bc8e87f33",
+    "proj/src/models/explosions/explosion2right.xpm": "592a79ca238a87b12ce20b5b96ed49c3e6f40cf9b4b620e274fd57c66472e5be",
+    "proj/src/models/explosions/explosion2top.xpm": "0665def6efccc8899e5c515892d6fcbdd9195e9395a1cfe6649a2b90e72553e7",
+    "proj/src/models/font/font.xpm": "83b7d1a9e56d439c7da1cafeadc974278b2144acb7ae534a338bc9fa298a28c4",
+    "proj/src/models/menu/menuIcon.xpm": "d1ea5ba5fc803e161aab42089721d0a974a78d73671147f9e4de34ca15fa8581",
+    "proj/src/models/menu/not_selected_continue.xpm": "b040d56304e639697f704202e8364d65a47d29b31362a98e69cf6dfd3c6157d7",
+    "proj/src/models/menu/not_selected_exit.xpm": "ec46f8cad88b227792d4ceb0079112680cd50b0f61bc1778320314d494305c48",
+    "proj/src/models/menu/not_selected_start.xpm": "f87b92e82903bd1dbc52bc5940a770a0e1c455c604d8c3281bf54904ec31bebd",
+    "proj/src/models/menu/selected_continue.xpm": "3943b0e0937550052739f3a12d214e866cc83043c3fd38182c3d315abb0c1f1c",
+    "proj/src/models/menu/selected_exit.xpm": "2aa6df2a2ae3d0ef651885860d142f5f2627ff0b1a64b3bde6211083283dfeaa",
+    "proj/src/models/menu/selected_start.xpm": "b0ddc19f109b82d5a7c4bfa914b4c62f686c210ccc8fd25866a0617ccfde20c3",
+    "proj/src/models/models.h": "dd614dc5c138b88ac3f7de50bbc15730d14f282196e8e008a93b3e9f81e34e61",
+    "proj/src/models/mouse/LOL_MOUSE.xpm": "63238ed54c2c6067c83c9147867a20096b04ed7306824b58c174c0dd74ec8ce1",
+    "proj/src/models/numbers/0.xpm": "c575a5a601c6b2ae6939a2cf00a128b499f7b0239cb0001ebd41a063e2320aa7",
+    "proj/src/models/numbers/1.xpm": "f1a1c544af371adf446f5d26489caa9df4806a99628918b318f41af78ae76e3c",
+    "proj/src/models/numbers/2.xpm": "44699cc4b9a6010740119a7cb676edb59cb6526e69d48496a7b6168f03618501",
+    "proj/src/models/numbers/3.xpm": "a5949606fe2335ffdf6025b885b88ca2951b25f2d9b0b97c944bfbc6d6501d53",
+    "proj/src/models/numbers/4.xpm": "55f457c3e41d862ce1b16a48bae428f824b6ab17d05f162bfb0d19156cfa6f2a",
+    "proj/src/models/numbers/5.xpm": "642c95c23966ca027bd16fb0c443a568fa50ef1811eb75e6963b059583b4c7d4",
+    "proj/src/models/numbers/6.xpm": "9e777509b0370ec2b5b09b24e2f9c7114e4197f8c01d39d88a3d871827909385",
+    "proj/src/models/numbers/7.xpm": "dd35a945b791ac6bc2f067d6be2251a44eeb29c6b02105ff91da710bcb7e7d56",
+    "proj/src/models/numbers/8.xpm": "559dcc9c42e127425ce7090ab36e46931a48c8ff47742d4aaa93ca9d869c7b29",
+    "proj/src/models/numbers/9.xpm": "a61a34992f1f5371a2ec1993cb6f9b737e59adc44ff90f208ac4651bcb76e061",
+    "proj/src/models/numbers/double_points.xpm": "5f6300f2d230aafdfc2494d425249f366181b93c8f8143c490b7cf2b8e7a26d5",
+    "proj/src/models/wall/wall.xpm": "68f18c2e5f60830e7706c6a1a55737bb19af970e9dfddebe68ad882289237b89",
+    "proj/src/models/weather/moon.xpm": "7a6ffd036c00c4c01e70414f88958c2d80e4b2915ae656b1628bee388f6b0aa1",
+    "proj/src/models/weather/sun.xpm": "00d7f379e44c1fe91d259a19157333eb4eda4028819513fd4d83b36969e8bd43"
+  },
+  "sourcePatches": [
+    {
+      "path": "examples/community/Monsterdied--LcomProj/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "proj/src/main.c",
+          "originalSha256": "636f8e6276262c3224a1d5182aff81401874f6f0b2677627de2549be05fe3691",
+          "patchedSha256": "da1a3066b677138649ad73b7ee9f09597997427fe6f04a1266b54fb5d38ca519",
+          "reason": "Original callback int() conflicts with required LCF int(argc,argv) signature. Only signature corrected after compiler failure, original game logic unchanged."
+        }
+      ],
+      "reproduction": "source-regressions/Monsterdied--LcomProj/results.json"
+    }
+  ],
+  "derivedAssets": [],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "Original Bomberman-style two-player game: player1 WASD/SPACE, player2 arrows/INSERT. W/S/ENTER selects menu, typed names before game; ESC exits. Full keyboard supports names. Mouse route optional, disabled to keep board open.",
+  "icon": {
+    "kind": "original menu wordmark",
+    "source": "evidence/Monsterdied--LcomProj/initial.ppm",
+    "crop": [
+      160,
+      78,
+      656,
+      341
+    ],
+    "output": "icon.png",
+    "size": [
+      512,
+      512
+    ]
+  },
+  "verification": {
+    "repo": "Monsterdied/LcomProj",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/Monsterdied--LcomProj/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/Monsterdied--LcomProj/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/Monsterdied--LcomProj/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Actual original gameplay state, screenshot inspected; bounded capture"
+      },
+      {
+        "id": "menu-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/Monsterdied--LcomProj/menu-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/Monsterdied--LcomProj/menu-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/Monsterdied--LcomProj/menu-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Original clean callback exit; scope is menu-exit"
+      }
+    ],
+    "originalSourceFailure": {
+      "repo": "Monsterdied/LcomProj",
+      "source": "exact pinned source for every modified file",
+      "buildExit": 1,
+      "expectedFailureObserved": true
+    },
+    "browser": [
+      {
+        "id": "monsterdied--lcomproj",
+        "width": 800,
+        "height": 600,
+        "colors": 885,
+        "status": "Game running.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "webBuild": [
+      {
+        "id": "monsterdied--lcomproj",
+        "exit": 0,
+        "seconds": 6.2,
+        "output": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/web-exports/monsterdied--lcomproj"
+      }
+    ],
+    "browserExit": [
+      {
+        "id": "monsterdied--lcomproj",
+        "width": 800,
+        "height": 600,
+        "colors": 472,
+        "status": "Game finished. Press Enter or tap the game to restart.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "directTouch": []
+  }
+}

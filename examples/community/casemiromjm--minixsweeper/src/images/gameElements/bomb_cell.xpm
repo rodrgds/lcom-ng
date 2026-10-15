@@ -1,0 +1,39 @@
+/* XPM */
+static char * bomb_cell[] = {
+"30 30 3 1",
+" 	c #C0C0C0", // cinza claro (fundo)
+"b	c #000001", // preto (base)
+"w	c #FFFFFF", // branco (destaque)
+"                              ",
+"                              ",
+"                              ",
+"                              ",
+"             bbbb             ",
+"             bbbb             ",
+"             bbbb             ",
+"     bb    bbbbbbbb    bb     ",
+"    bbbb  bbbbbbbbbb  bbbb    ",
+"    bbbbbbbbbbbbbbbbbbbbbb    ",
+"      bbbbbbbbbbbbbbbbbb      ",
+"       bbbbbbbbbbbbbbbb       ",
+"       bbbbwwwwbbbbbbbb       ",
+"       bbbbwwwwbbbbbbbb       ",
+"      bbbbbwwwwbbbbbbbbb      ",
+"   bbbbbbbbbbbbbbbbbbbbbbbb   ",
+"   bbbbbbbbbbbbbbbbbbbbbbbb   ",
+"      bbbbbbbbbbbbbbbbbb      ",
+"       bbbbbbbbbbbbbbbb       ",
+"       bbbbbbbbbbbbbbbb       ",
+"       bbbbbbbbbbbbbbbb       ",
+"      bbbbbbbbbbbbbbbbbb      ",
+"    bbbbbbbbbbbbbbbbbbbbbb    ",
+"    bbbb  bbbbbbbbbb  bbbb    ",
+"     bb    bbbbbbbb    bb     ",
+"             bbbb             ",
+"             bbbb             ",
+"             bbbb             ",
+"                              ",
+"                              ",
+"                              ",
+"                              "
+};

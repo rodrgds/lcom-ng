@@ -1,0 +1,20 @@
+[
+  {
+    "repo": "matildeoliveirasilvafeup/2D-Game-",
+    "reason": "Incomplete original project: upstream README lists Makefile and custom libs/drivers, but the pinned tree omits both. Source includes graphics.h and other custom library headers that are absent. Import would require writing replacement project drivers.",
+    "revision": "fd9eee1dfeefe529cc47258a9e436afd9341b62c",
+    "repository": "https://github.com/matildeoliveirasilvafeup/2D-Game-",
+    "evidence": {
+      "makefiles": [],
+      "customLibraryFiles": []
+    }
+  },
+  {
+    "repo": "gcsam11/MINIX-LCOM",
+    "reason": "Exact proj/src Git tree mirror of imported DSV8/FEUP-LCom at ca0515a861cc7c9b21d86f97290945cea1f7a487; not counted as a distinct game.",
+    "revision": "65d3079f190f018af89952fe54afec8385297788",
+    "repository": "https://github.com/gcsam11/MINIX-LCOM",
+    "duplicateOf": "DSV8/FEUP-LCom",
+    "sourceTree": "95b2de6654f73e469250045de6778b818a1f2b48"
+  }
+]

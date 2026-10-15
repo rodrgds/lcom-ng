@@ -1,0 +1,4 @@
+# Force LF line endings for all files going into Minix.
+# Without this, Windows Git may inject \r\n which breaks BSD make,
+# shell scripts, and other Minix tooling.
+* text=auto eol=lf

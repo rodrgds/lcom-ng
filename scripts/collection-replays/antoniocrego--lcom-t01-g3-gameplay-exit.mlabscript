@@ -1,0 +1,14 @@
+at 100 key ENTER down
+at 101 key ENTER up
+at 170 key D down
+at 190 key D up
+at 200 key SPACE down
+at 201 key SPACE up
+at 500 key ESC down
+at 501 key ESC up
+at 550 key S down
+at 551 key S up
+at 580 key S down
+at 581 key S up
+at 610 key ENTER down
+at 611 key ENTER up

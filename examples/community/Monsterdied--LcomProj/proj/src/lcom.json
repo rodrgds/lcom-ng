@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "name": "Bomber Arena",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ENTER",
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "touch": "move",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "both"
+        },
+        {
+          "mode": "keypad",
+          "side": "right",
+          "style": "dpad",
+          "axes": "both"
+        }
+      ],
+      "actions": [
+        {
+          "label": "P1 Bomb",
+          "key": "SPACE",
+          "position": "bottom-left"
+        },
+        {
+          "label": "P2 Bomb",
+          "key": "KP0",
+          "position": "bottom-right"
+        }
+      ],
+      "toolbar": "top-right",
+      "keyboardPosition": "bottom",
+      "look": false
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  }
+}

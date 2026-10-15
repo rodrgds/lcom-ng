@@ -1,0 +1,43 @@
+# Object files
+*.o
+*.obj
+
+# Build artifacts
+*.a
+*.so
+*.dylib
+
+# Temporary files
+*~
+*.swp
+*.swo
+
+# IDE files
+.vscode/
+.idea/
+**/.clangd
+compile_commands.json
+compile_flags.txt
+.cache/clangd/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+Session.vim
+
+# Backup files
+*.bak
+*.backup
+
+# MINIX source
+.minix-src/
+.agent/
+
+# Lab compiled binaries
+lab[0-9]/lab[0-9]
+
+# Experiment compiled binary
+experiment/io_experiment

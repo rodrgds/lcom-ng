@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "name": "MINIX Grand Prix",
+  "icon": "icon.png",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": {
+        "mode": "wasd",
+        "side": "left"
+      },
+      "layout": "overlay",
+      "pointer": "direct",
+      "touch": "tap",
+      "cursor": {
+        "x": 400,
+        "y": 300,
+        "maxX": 799,
+        "maxY": 599
+      },
+      "actions": [
+        {
+          "position": "bottom-right",
+          "label": "Drift",
+          "key": "SPACE"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Boost",
+          "key": "LSHIFT"
+        },
+        {
+          "position": "top-right",
+          "label": "Select",
+          "key": "ENTER"
+        },
+        {
+          "position": "top-right",
+          "label": "Esc",
+          "key": "ESC"
+        }
+      ],
+      "toolbar": "top-left"
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [],
+    "libraries": [
+      "timer=../libs/timer.c",
+      "kbc=../libs/kbc.c",
+      "rtc=../libs/rtc.c",
+      "mouse=../libs/mouse.c",
+      "video=../libs/video-card.c",
+      "utils=../libs/utils.c"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/grupo_2leic01_2": "."
+    }
+  }
+}

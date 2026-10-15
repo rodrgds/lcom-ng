@@ -1,0 +1,14 @@
+# Player menu cursor40,40 ->400,310 selects1player; secondmenu REACT at400,375.
+at 80 mouse 120 -100 0
+at 90 mouse 120 -100 0
+at 100 mouse 120 -70 0
+at 110 mouse 0 0 0
+at 130 mouse 0 0 1
+at 131 mouse 0 0 0
+at 150 mouse 0 -65 0
+at 170 mouse 0 0 1
+at 171 mouse 0 0 0
+at 450 key SPACE down
+at 451 key SPACE up
+at 500 key ESC down
+at 501 key ESC up

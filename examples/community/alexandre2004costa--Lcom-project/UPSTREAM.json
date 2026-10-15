@@ -1,0 +1,179 @@
+{
+  "repository": "https://github.com/alexandre2004costa/Lcom-project",
+  "revision": "c7953bfe270678361ce71e9a1b28f466d35d7c40",
+  "sourceHashes": {
+    "Makefile": "c6429b6737864885d713899c58a8a13626f02252ac81edb0d16ecdedf1408ff5",
+    "README.md": "377261a2edb9b2cd6986994bd78f6e396084309e3c0cbfe68cf616ac4b2e80a2",
+    "classes/Bomb.c": "86ed556b022eda1c66888669b2dedfd72df08877f4b33075d126ea9471c9135a",
+    "classes/Bomb.h": "0881be4e1833f5f7caae7ebab8abc274e23f3c2e9cf65897e316e091edd8c5b2",
+    "classes/Object.c": "3025519c1d3dd71ba0f0e84e53146f1c2cb671eab9fc539c52fde355885fabaa",
+    "classes/Object.h": "dcdb2a5627997520e1090d9b5f4e97267dcc9b2dd85d67d47a65db643445f09b",
+    "classes/Plane.c": "fe4d3ea88b6e5f45affe2fcfc4dca97ff1a4dec7d80cf13505d4d745dbbeadd5",
+    "classes/Plane.h": "657f97782b8b6c66aaa3863e3c34433555b81c4bed6fba3b908d994fb574c80a",
+    "classes/Player.c": "daec8a0d97b16517c61a73f54261aab39884cdc6e851fb6729f957fc8abe7177",
+    "classes/Player.h": "14ebd0bbbe4f9e2870bf985361b40a82fb6370ab765035458fcce89220423867",
+    "classes/Score.c": "111fb17dc9bddfd14addb8acdd0cc4ad8928782c3e7ff1534ab92e8f24108c40",
+    "classes/Score.h": "93131ac35f98f3f5b983225b1813f2444a3d72669f95114e1e7f1958da1f5928",
+    "classes/Sprite.c": "38327c9cb98e02611ef8aed8de47f7ec72d8a171432352bb77c06586ef803d93",
+    "classes/Sprite.h": "c60caa6e3c930f350e04b8d2346520c2dde7bc4846d4de83f42d43366a5cd349",
+    "controller.c": "0d47e308524ec6b018deeec8a1204da9fd73ebb64b72a1fe13de56a2580dbaee",
+    "controller.h": "269c12c910de9075312dd1810168bdbe21954dcea51a014be6a1d7674b8cf23c",
+    "devices/graphic.c": "b1f4635a25be68f0c5635a3c86a75d9649e0bc9e6e51eb9eb86887ecb6d7bc0f",
+    "devices/graphic.h": "c06b3c3bcac668c505e5bb4f7a0ac0d67ef91b26b884c2847083aa856cc84150",
+    "devices/i8042.h": "79e9f8518341b9363e5a08eb1edaab76d01b87cdfdc21924b6b6e38793b14f25",
+    "devices/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "devices/kbc.c": "a87158c8298901b239c76f0b3ac1f90c3a98604af3c280d0a59346b5cbab797c",
+    "devices/kbc.h": "997b5b500ffca88aa26f13c8d3b3465e6eb272c25936656abaa6348df0e82029",
+    "devices/keyboard.c": "7271718c55f3ddf566004c22fffa428b0c323632a8a692eb6b51736f93190ae8",
+    "devices/keyboard.h": "99ab54d3e2bf413ac9182430e3a6fe76652473387cc698b0553fe138700fec1d",
+    "devices/mouse.c": "d0460f13595c40f6c9363e93dd3d397421450f3d2fcbb08bdada5c97d8a15eb2",
+    "devices/mouse.h": "1d40268b97ca1da4e462e9e8863e039cb28560e85cc70640dc962138540e803b",
+    "devices/queue.c": "595bdea1b0c5d0e93f4e02194d0f283ff21eb484eb44102877b930b580857920",
+    "devices/queue.h": "1ca18106d03918795f3b4497e52a2cdfc54dc256f5fa79fd131df9ab03337125",
+    "devices/rtc.c": "2a07dcbb48af66c05013a87658cbaf6ba53f494589c18d40f13b6320f77a60fe",
+    "devices/rtc.h": "797ae5a90ee2fcbdc9b371b89e94fbc2e9c4d938e11fa0dcba093e5cb0b58c0e",
+    "devices/serialPort.c": "38680d6ea1c6e8976ef084a6b4e13f84fce8ad17c83a4f02849ea742040f588b",
+    "devices/serialPort.h": "4183c9e069bcce15002173051a8c874e6871156bec79713d9f283ccc30bdec6d",
+    "devices/timer.c": "db7908c0011e77f0890a24a2881783e4cf176003018ad4cb72941113d5a84951",
+    "devices/utils.c": "53865e0236fc884f56f6e66832d944318d25770edcc83e14a0c5b4a4681735ec",
+    "game_results.txt": "efcfa18aa6b81ff702e16755b9f4031ce970cc05f2ffdd83cd6b4dc991c516e4",
+    "img/cp.PNG": "680cb2eab1467eb113ecd30455d068ea48b15450d1ff7b624b46402e6b16d7e5",
+    "img/game.PNG": "19d492df1a35a1aa15a04c89312c007de84a59101abc62a84ee421b35aa3d001",
+    "img/gameM.PNG": "6744f716f39d457ad5c755e734ffe4034eff0be2bea97e4d03c98a74d2ea19c9",
+    "img/menu.PNG": "727b68a0318c03285da88d68b84bf4baae9a7bc70c267f590bf66eb64feda776",
+    "img/score.PNG": "cd607a4e286abfe71f8f0481e52e43404750bb0719aed7e6ca3540aac8a1e15a",
+    "img/scores.png": "14c7d9fd70df06732c7546efd71715f16ac8258f308c5de1d95fcae8de7044f2",
+    "model.c": "89c30122dccef89dedf8cfd409cf947b029cc382f8c4a43c95080406e7487c98",
+    "model.h": "d554aa174c0bcf6696bf82d8b8997e9e7e142c52a7306085df821597250d7766",
+    "proj.c": "3678c713e64b3f45819a8e333fa672739203aa710679b43617f159571eea12c0",
+    "xpm/alphabet.xpm": "218e8ba21bc4a277725a52f36265503dc510f2451f414efbd89cc467497d842b",
+    "xpm/back.xpm": "f2ad35b70f01528d290feb808b392f3565518e6b5f279a5279e150db6b9c2f7c",
+    "xpm/bala.xpm": "1facc2e7d99c13dc472f73363a9e7f7d3ee3d02bc45c1fddf2519f50e99b5396",
+    "xpm/bomb.xpm": "f8c362e2165097ba799aec97ab3bbc904366d4c1c1551593c0eb78e6aba7aeef",
+    "xpm/colon.xpm": "42e5b7a5d181fcbbf1489a693f743bee6df98598cce5a21868a2cec8b06a570f",
+    "xpm/explode.xpm": "056d0ebfbc042ca2a590c0d53c68c320ec9661dd15703f64c3ba7e8a50bd6a8e",
+    "xpm/healthBar.xpm": "02a02b4588683b5892c0d22b11fdffb3fcba65a076adc7ae4ed7b4b0d7b40b10",
+    "xpm/heart.xpm": "7da7d2abe7b90aeb44b29b8118de2892916a5acaf688ebc86aa12870db18bfcd",
+    "xpm/hyphen.xpm": "e65210098649fdfa6dd489db135146a7b5a1f206d9badcb3667e339ffe798504",
+    "xpm/menu.xpm": "ea198b2637b4c75e16ac311d1714fef27bdc5cfb4982fd58c92759c9f37ee141",
+    "xpm/mouse.xpm": "3cbd30faa2dd99d6ab3016168b25199a1ccfd46a863c9801eb5f08e95eaad98e",
+    "xpm/mouseClick.xpm": "99cdfbcd2aa376941551f2c7b7d7610698828e602bf05e0dcceedfe562f518b1",
+    "xpm/multi.xpm": "7ad27c69ba8ed73f604e7c22ab91ecb4cd183dbb1b8d9a34e011679409ad5c51",
+    "xpm/multiP1.xpm": "4d3eb73ab04d5cf18dbd97337a0edecc49062a66b821a18836a5e7dbdbc87dec",
+    "xpm/multiP2.xpm": "3d92624f36c396b84ed920127e56ab1ca0d1753f6243826cae71dba599058d53",
+    "xpm/numbers.xpm": "cb4bf425aa5e63ff55c0d2965fe1f0d45f88128c650b93392b761e60fc7f5dda",
+    "xpm/plane.xpm": "dc447a9b51a4c4d9a762d36740a0a40e8b4e493c6ad73700674005e5383fc10b",
+    "xpm/planeR.xpm": "d08e9780b68d09222967af3abfea6fabf2baed307672fa703a680be1ade8726a",
+    "xpm/player.xpm": "a972bfc94f659e2a04e9c9311aba1fa6210c00734b8bb065f652815622013f74",
+    "xpm/player2.xpm": "00c44746bc553fe85957201a2c24381669808260739d0e49e6ea82d89904bfc1",
+    "xpm/scores.xpm": "89c7f02a283e7a9f3854aa4afde3aaf0864aea04300b530f584ffe8d51f9b46e",
+    "xpm/slash.xpm": "01aa486700b9f93cd03a6043d0d48a98a42e7fb175829b70fe1b1abca7c19f1e",
+    "xpm/small_numbers.xpm": "ee16e14dffecbfaf739e2ca4f448d39ad81be4180a1a79682e29690b39079e50"
+  },
+  "sourcePatches": [
+    {
+      "path": "examples/community/alexandre2004costa--Lcom-project/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "devices/graphic.c",
+          "originalSha256": "b1f4635a25be68f0c5635a3c86a75d9649e0bc9e6e51eb9eb86887ecb6d7bc0f",
+          "patchedSha256": "ed1151a736ee580df81d236ac38ce6d7916683471d7ad6a2c19ff86d43ecd355",
+          "reason": "Original Close menu reproduces SIGABRT: freeVideoBuffers passes two vm_map_phys framebuffer mappings to free. Release each mapping through vm_unmap_phys using the existing mode dimensions."
+        }
+      ],
+      "reproduction": "source-regressions/alexandre2004costa--Lcom-project/results.json"
+    }
+  ],
+  "derivedAssets": [
+    {
+      "path": "home/lcom/labs/proj/game_results.txt",
+      "copyOf": "game_results.txt",
+      "reason": "Preserve original relative home/lcom/labs/proj/game_results.txt spelling."
+    }
+  ],
+  "license": {
+    "status": "missing",
+    "files": []
+  },
+  "controlsRationale": "Original controller.c maps A/D movement and SPACE jump, exposed as explicit quick keys; mouse presses shoot and select menus. Mouse is processed after each packet byte with repeated deltas, so relative pointer preserves source behavior. No direct preset.",
+  "icon": {
+    "kind": "original source sprite",
+    "source": "examples/community/alexandre2004costa--Lcom-project/xpm/plane.xpm",
+    "background": "#8065b7",
+    "output": "icon.png",
+    "size": [
+      512,
+      512
+    ]
+  },
+  "verification": {
+    "repo": "alexandre2004costa/Lcom-project",
+    "buildExit": 0,
+    "runs": [
+      {
+        "id": "populated-gameplay",
+        "args": [],
+        "exit": 1,
+        "guard": true,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/alexandre2004costa--Lcom-project/populated-gameplay.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/alexandre2004costa--Lcom-project/populated-gameplay.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/alexandre2004costa--Lcom-project/populated-gameplay.ppm",
+        "populated_pixels": true,
+        "scope": "Actual original gameplay state, screenshot inspected; bounded capture"
+      },
+      {
+        "id": "menu-exit",
+        "args": [],
+        "exit": 0,
+        "guard": false,
+        "passed": true,
+        "log": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/alexandre2004costa--Lcom-project/menu-exit.log",
+        "trace": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/alexandre2004costa--Lcom-project/menu-exit.jsonl",
+        "frame": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/evidence/alexandre2004costa--Lcom-project/menu-exit.ppm",
+        "populated_pixels": true,
+        "scope": "Original clean callback exit; scope is menu-exit"
+      }
+    ],
+    "originalSourceFailure": {
+      "repo": "alexandre2004costa/Lcom-project",
+      "source": "exact pinned source for every modified file",
+      "buildExit": 0,
+      "runExit": 134,
+      "expectedFailureObserved": true
+    },
+    "browser": [
+      {
+        "id": "alexandre2004costa--lcom-project",
+        "width": 1152,
+        "height": 864,
+        "colors": 500,
+        "status": "Game running.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "webBuild": [
+      {
+        "id": "alexandre2004costa--lcom-project",
+        "exit": 0,
+        "seconds": 9.1,
+        "output": "/Users/rgo/dev/lcom-ng/build/collection-workers/import-b2/web-exports/alexandre2004costa--lcom-project"
+      }
+    ],
+    "browserExit": [
+      {
+        "id": "alexandre2004costa--lcom-project",
+        "width": 1152,
+        "height": 864,
+        "colors": 247,
+        "status": "Game finished. Press Enter or tap the game to restart.",
+        "controlsFit": true,
+        "errors": [],
+        "passed": true
+      }
+    ],
+    "directTouch": []
+  }
+}

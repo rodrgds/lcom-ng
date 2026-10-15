@@ -1,0 +1,68 @@
+# Doxygen — documentação do código em include/ e src/ (exclui resources/).
+
+PROJECT_NAME           = "LCOM — Projeto (grupo)"
+PROJECT_BRIEF          = "Tower defense / jogo LCOM: módulos em C11."
+PROJECT_NUMBER         =
+
+OUTPUT_DIRECTORY       = docs/doxygen
+CREATE_SUBDIRS         = NO
+ALLOW_UNICODE_NAMES    = YES
+OUTPUT_LANGUAGE        = English
+
+OPTIMIZE_OUTPUT_FOR_C  = YES
+EXTENSION_MAPPING      =
+
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = NO
+WARN_IF_DOC_ERROR      = YES
+WARN_NO_PARAMDOC       = NO
+
+INPUT                  = include src
+INPUT_ENCODING         = UTF-8
+FILE_PATTERNS          = *.c *.h
+RECURSIVE              = YES
+EXCLUDE                = resources \
+                          tests
+EXCLUDE_PATTERNS       = */timerTest.c
+
+INCLUDE_PATH           = include ../lab5
+
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = NO
+EXPAND_ONLY_PREDEF     = NO
+SKIP_FUNCTION_MACROS   = YES
+
+EXTRACT_ALL            = NO
+EXTRACT_PRIVATE        = NO
+EXTRACT_PACKAGE        = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = NO
+
+CASE_SENSE_NAMES       = YES
+HIDE_SCOPE_NAMES       = NO
+SHOW_INCLUDE_FILES     = YES
+INLINE_INFO            = YES
+SORT_MEMBER_DOCS       = YES
+SORT_BRIEF_DOCS        = YES
+
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_TREEVIEW      = YES
+GENERATE_LATEX         = NO
+
+HAVE_DOT               = NO
+CLASS_DIAGRAMS         = NO
+
+USE_MDFILE_AS_MAINPAGE = docs/README_Doxygen.md
+
+ALIASES                =
+
+STRIP_FROM_PATH        = include src
+STRIP_FROM_INC_PATH    =
+
+PREDEFINED             = __attribute__(x)=
+
+TAGFILES               =
+
+DOT_PATH               =

@@ -1,0 +1,9 @@
+# MenuController kbd.p1.up starts; KeyboardInterpreter maps W to up, A/S/D move, SPACE attack.
+at 100 key W down
+at 101 key W up
+at 160 key D down
+at 180 key D up
+at 210 key SPACE down
+at 211 key SPACE up
+at 500 key ESC down
+at 501 key ESC up
