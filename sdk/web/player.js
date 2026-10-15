@@ -191,9 +191,12 @@ area.addEventListener('pointerdown', event => {
   canvas.focus({ preventScroll: true }); player.unlockAudio();
   if (event.pointerType !== 'touch' || touchPointer) return;
   event.preventDefault();
-  // The game is a relative touchpad. Landing a finger never moves or clicks.
+  // Start each relative drag at the finger, without moving the game cursor.
   touchPointer = { id: event.pointerId, x: event.clientX, y: event.clientY, dx: 0, dy: 0 };
   area.setPointerCapture(event.pointerId);
+  // Press at the existing cursor, without moving it to the finger's landing point.
+  // An explicit right-button hold takes precedence for right-button dragging.
+  setMouseButtons(`screen-${event.pointerId}`, player.buttons & 2 ? 0 : 1);
 });
 area.addEventListener('pointermove', event => {
   if (event.pointerId !== touchPointer?.id) return;
@@ -206,7 +209,10 @@ area.addEventListener('pointermove', event => {
   if (dx || dy) sendMouse(dx, dy);
 });
 for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) area.addEventListener(event, event => {
-  if (event.pointerId === touchPointer?.id) touchPointer = null;
+  if (event.pointerId === touchPointer?.id) {
+    touchPointer = null;
+    setMouseButtons(`screen-${event.pointerId}`, 0);
+  }
 });
 
 for (const button of controls.querySelectorAll('[data-mouse]')) {
@@ -297,6 +303,7 @@ function togglePanel(button, panel) {
     other.setAttribute('aria-expanded', 'false');
   }
   document.querySelector('.compact-controls').hidden = !keyboard.hidden;
+  controls.classList.toggle('dual-joysticks', !document.querySelector('#joystick-controls').hidden && joystickMapping.value.startsWith('mouse-'));
   canvas.focus({ preventScroll: true });
 }
 keyboardToggle.onclick = () => togglePanel(keyboardToggle, keyboard);
@@ -360,6 +367,7 @@ function updateKeyboard() {
   keyboard.hidden = true;
   document.querySelector('.compact-controls').hidden = false;
   document.querySelector('#joystick-controls').hidden = true;
+  controls.classList.remove('dual-joysticks');
   keyboardToggle.setAttribute('aria-expanded', 'false');
   joystickToggle.setAttribute('aria-expanded', 'false');
   document.querySelector('#quick-keys').replaceChildren();

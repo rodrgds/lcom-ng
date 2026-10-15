@@ -29,10 +29,12 @@ Refresh the page to restart, or press Enter after the game exits.
 Mouse capture requires Pointer Lock support. Embedded browsers without it hide
 the system cursor over the game but cannot keep it inside the window.
 
-On mobile, drag anywhere above the controls to move the game cursor, like a
-touchpad. Lifting and placing your finger never clicks or jumps the cursor.
-Use **Left click** and **Right click** separately. Hold either button with one
-finger while dragging with another to drag objects or slash.
+On mobile, touch the area above the controls to press the left mouse button at
+the game cursor. Lift to finish the click, or hold and drag to move the cursor
+with the button down. A new touch never jumps the cursor to your finger.
+Use the **Mouse** joystick to move without clicking. The separate **Left click**
+and **Right click** buttons can be held while using a stick. Holding **Right click**
+also makes a screen drag use that button instead of adding a left click.
 
 **Esc**, **Space** and **Enter** stay within reach. Tap **Keyboard** to show or
 hide the full keyboard. Hold keys, combine touches, or tap Shift, Ctrl and Alt

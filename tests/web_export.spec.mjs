@@ -167,7 +167,7 @@ test('installed CLI exports an external project after relocation', async ({ page
 });
 
 
-test('mobile dragging moves the cursor without pressing a mouse button or jumping on contact', async ({ browser }) => {
+test('mobile taps click and held touches drag without jumping on contact', async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
   const page = await context.newPage();
   await start(page);
@@ -177,12 +177,20 @@ test('mobile dragging moves the cursor without pressing a mouse button or jumpin
   const contact = { x: box.x + box.width * 0.75, y: box.y + box.height * 0.75, id: 1 };
   const packets = () => mousePackets(page);
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [contact] });
+  await expect.poll(() => packets().at(-1)?.[0] & 3).toBe(1);
+  expect(packets().at(-1).slice(1)).toEqual([0, 0]);
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ ...contact, x: contact.x + box.width / 10 }] });
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
   await expect.poll(() => packets().length).toBeGreaterThan(0);
-  expect(packets().every(([flags]) => (flags & 3) === 0)).toBe(true);
+  await expect.poll(() => packets().at(-1)?.[0] & 3).toBe(0);
+  expect(packets().some(([flags, x]) => (flags & 3) === 1 && x > 0)).toBe(true);
   // One tenth of the 800px framebuffer, regardless of where the finger landed.
   expect(packets().reduce((sum, [flags, x]) => sum + x - (flags & 16 ? 256 : 0), 0)).toBe(80);
+  const beforeTap = packets().length;
+  await page.locator('canvas').tap({ position: { x: 20, y: 20 } });
+  await expect.poll(() => packets().length).toBe(beforeTap + 2);
+  expect(packets().slice(beforeTap).map(([flags]) => flags & 3)).toEqual([1, 0]);
+  expect(packets().slice(beforeTap).every(([, dx, dy]) => dx === 0 && dy === 0)).toBe(true);
   const left = await page.getByRole('button', { name: 'Left click', exact: true }).boundingBox();
   const right = await page.getByRole('button', { name: 'Right click', exact: true }).boundingBox();
   const fingers = [left, right].map((box, id) => ({ x: box.x + box.width / 2, y: box.y + box.height / 2, id: id + 2 }));
@@ -271,19 +279,20 @@ test('dual joysticks move and aim independently while a mouse button is held', a
     await expect.poll(() => mousePackets(page).length).toBeGreaterThan(before + 2);
     expect(mousePackets(page).slice(before).every(([flags, dx, dy]) => (flags & 3) === 1 && dx > 0 && dy > 0)).toBe(true);
     // Lifting the movement finger releases keys while the other stick keeps aiming.
-    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [hold, aim] });
+    await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [move] });
     await expect.poll(() => consoleText(page)).toContain(`key:${release}`);
     const afterMovement = mousePackets(page).length;
     await expect.poll(() => mousePackets(page).length).toBeGreaterThan(afterMovement + 2);
     await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
     await expect(page.getByRole('button', { name: 'Left click', exact: true })).toHaveAttribute('aria-pressed', 'false');
-    await page.keyboard.press('b');
-    await expect.poll(() => consoleText(page)).toContain('key:b0');
+    await expect.poll(() => mousePackets(page).at(-1)).toEqual([8, 0, 0]);
     const stopped = mousePackets(page).length;
     // Advance several painted frames to detect a cursor loop that outlives its touch.
     await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(() => requestAnimationFrame(resolve)))));
     expect(mousePackets(page).length).toBe(stopped);
   }
+  await page.getByRole('button', { name: 'Joystick', exact: true }).tap();
+  expect((await page.locator('#touch-controls').boundingBox()).height).toBeLessThan(130);
   await context.close();
 });
 
