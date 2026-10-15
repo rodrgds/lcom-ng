@@ -59,6 +59,9 @@ class ProjectConfig(unittest.TestCase):
                            ({'mobile':{'controls':{'cursor':{'x':401,'maxX':400}}}},'cursor.x'),
                            ({'mobile':{'controls':{'joystick':None}}},'joystick'),
                            ({'mobile':{'controls':{'joystick':{'side':'right'},'look':True}}},'side'),
+                           ({'description':False},'description'),
+                           ({'description':'x'*501},'description'),
+                           ({'preview':'missing.png'},'preview'),
                            ({'version':2},'version')]:
             with self.subTest(data=data):
                 self.write(data)
@@ -67,11 +70,14 @@ class ProjectConfig(unittest.TestCase):
     def test_config_icon_path_and_cli_overrides(self):
         (self.root/'settings').mkdir(); png(self.root/'settings/icon.png')
         settings_path=self.root/'settings/custom.json'
-        settings_path.write_text(json.dumps({'name':'File title','icon':'icon.png','mobile':{'orientation':'landscape'},'build':{'sources':['main.c'],'arguments':['--practice']}}))
+        settings_path.write_text(json.dumps({'name':'File title','icon':'icon.png','preview':'icon.png','description':'Slice sushi before it falls.','mobile':{'orientation':'landscape'},'build':{'sources':['main.c'],'arguments':['--practice']}}))
         args=argparse.Namespace(project=self.project,config=settings_path,name='CLI title',icon=None,orientation='portrait',source=[],include=[],asset=[],asset_root=None,arg=['--cli'],library=[])
         s=config.resolve(args)
         self.assertEqual(args.icon,(self.root/'settings/icon.png').resolve())
         self.assertEqual(s['name'],'CLI title')
+        self.assertEqual(s['preview'], (self.root/'settings/icon.png').resolve())
+        self.assertEqual(config.public(s)['description'], 'Slice sushi before it falls.')
+        self.assertEqual(config.public(s)['preview'], 'preview.png')
         self.assertEqual(s['mobile']['orientation'],'portrait')
         self.assertEqual(args.arg,['--cli'])
         self.assertEqual(args.source,['main.c'])

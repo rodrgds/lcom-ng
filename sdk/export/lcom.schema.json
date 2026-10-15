@@ -514,6 +514,17 @@
           }
         }
       }
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 500,
+      "description": "Short gameplay description, shown while a web collection game loads."
+    },
+    "preview": {
+      "type": "string",
+      "minLength": 1,
+      "description": "PNG screenshot, at least 48 pixels in each dimension. Relative to this configuration file."
     }
   },
   "$defs": {

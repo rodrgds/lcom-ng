@@ -54,17 +54,33 @@ def icon_path(path):
     return path
 
 
+def preview_path(path):
+    try:
+        path = Path(path).resolve(strict=True)
+        data = path.read_bytes()
+    except OSError as error:
+        raise ValueError(f'preview image could not be read: {path}') from error
+    if (len(data) < 24 or data[:8] != b'\x89PNG\r\n\x1a\n' or data[12:16] != b'IHDR'
+            or min(int.from_bytes(data[16:20], 'big'), int.from_bytes(data[20:24], 'big')) < 48):
+        raise ValueError('preview must be a PNG image at least 48 pixels in each dimension')
+    return path
+
+
 def load(project, explicit=None):
     """Missing implicit config is valid. Explicit missing paths and typos are errors."""
     project = Path(project).resolve()
     path = Path(explicit).resolve(strict=True) if explicit else project / 'lcom.json'
     data = json.loads(path.read_text()) if path.is_file() else {}
-    object_value(data, str(path), ['$schema','version','name','icon','mobile','build'])
+    object_value(data, str(path), ['$schema','version','name','icon','description','preview','mobile','build'])
     if 'version' in data and (type(data['version']) is not int or data['version'] != 1):
         raise ValueError('lcom.json version must be 1')
-    result = {'name': string(data.get('name',project.name),'name'), 'icon': None,
+    result = {'name': string(data.get('name',project.name),'name'), 'icon': None, 'preview': None, 'description': '',
               'mobile': copy.deepcopy(DEFAULT_MOBILE), 'build': {}}
     if 'icon' in data: result['icon'] = icon_path(path.parent / string(data['icon'],'icon'))
+    if 'description' in data:
+        result['description'] = string(data['description'], 'description').strip()
+        if len(result['description']) > 500: raise ValueError('description must contain at most 500 characters')
+    if 'preview' in data: result['preview'] = preview_path(path.parent / string(data['preview'], 'preview'))
     mobile = object_value(data.get('mobile',{}),'mobile',['orientation','fullscreen','controls','theme'])
     for key in ('orientation','fullscreen'):
         if key in mobile:
@@ -229,7 +245,8 @@ def runtime_environment(config):
 
 
 def public(config):
-    return {'name':config['name'],'icon':'icon.png' if config['icon'] else None,'mobile':config['mobile'],
+    return {'name':config['name'], 'description':config['description'],
+            'preview':'preview.png' if config['preview'] else None, 'icon':'icon.png' if config['icon'] else None,'mobile':config['mobile'],
             'environment':runtime_environment(config)}
 
 
