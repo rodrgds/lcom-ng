@@ -22,6 +22,21 @@ static void key(Uint32 type) {
 }
 static uint8_t readKey() { uint8_t b=0; CHECK(lcom_port_read8(KBC_OUT_BUF,&b)==LCOM_OK); return b; }
 static bool keyReady() { uint8_t status=0; CHECK(lcom_port_read8(KBC_ST_REG,&status)==LCOM_OK); return status & KBC_ST_OBF; }
+static bool expectedKey(uint8_t expected) {
+  uint8_t actual=readKey();
+  if(actual==expected)return true;
+  uint8_t status=0;CHECK(lcom_port_read8(KBC_ST_REG,&status)==LCOM_OK);
+  std::fprintf(stderr,"Expected key 0x%02x, received 0x%02x, remaining controller status 0x%02x, paused=%d, pending touch=%d\n",
+               expected,actual,status,lcom::embedded::host().paused(),SDL_HasEvent(SDL_EVENT_FINGER_DOWN));
+  int count=0;auto windows=SDL_GetWindows(&count);
+  for(int i=0;i<count;++i) {
+    int w=0,h=0,pw=0,ph=0;
+    SDL_GetWindowSize(windows[i],&w,&h);SDL_GetWindowSizeInPixels(windows[i],&pw,&ph);
+    std::fprintf(stderr,"Window %u: %dx%d logical, %dx%d pixels, flags 0x%llx\n",
+                 SDL_GetWindowID(windows[i]),w,h,pw,ph,static_cast<unsigned long long>(SDL_GetWindowFlags(windows[i])));
+  }
+  SDL_free(windows);dumpRecentSdlEvents();return false;
+}
 static void positionedControls() {
   using namespace lcom::embedded;
   ControlConfig controls;controls.orientation="landscape";controls.layout="overlay";
@@ -412,14 +427,14 @@ int main() {
   controls.actions={{"left","P1 Bomb","SPACE",0},{"right","P2 Bomb","KP0",0}};
   lcom::embedded::configureControls(controls);
   CHECK(lcom_init()==LCOM_OK);CHECK(lcom_irq_subscribe(KBC_IRQ,0,&keyboard)==LCOM_OK);
-  touch(SDL_EVENT_FINGER_DOWN,40,86.f/760,262.f/400);CHECK(readKey()==0x11);
-  touch(SDL_EVENT_FINGER_DOWN,41,674.f/760,262.f/400);CHECK(readKey()==0x48);CHECK(!keyReady());
-  touch(SDL_EVENT_FINGER_DOWN,42,86.f/760,210.f/400);CHECK(readKey()==0x39);
-  touch(SDL_EVENT_FINGER_DOWN,43,674.f/760,210.f/400);CHECK(readKey()==0x52);CHECK(!keyReady());
-  touch(SDL_EVENT_FINGER_CANCELED,40,86.f/760,262.f/400);CHECK(readKey()==0x91);
-  touch(SDL_EVENT_FINGER_CANCELED,41,674.f/760,262.f/400);CHECK(readKey()==0xc8);
-  touch(SDL_EVENT_FINGER_CANCELED,42,86.f/760,210.f/400);CHECK(readKey()==0xb9);
-  touch(SDL_EVENT_FINGER_CANCELED,43,674.f/760,210.f/400);CHECK(readKey()==0xd2);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_DOWN,40,86.f/760,262.f/400);CHECK(expectedKey(0x11));
+  touch(SDL_EVENT_FINGER_DOWN,41,674.f/760,262.f/400);CHECK(expectedKey(0x48));CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_DOWN,42,86.f/760,210.f/400);CHECK(expectedKey(0x39));
+  touch(SDL_EVENT_FINGER_DOWN,43,674.f/760,210.f/400);CHECK(expectedKey(0x52));CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_CANCELED,40,86.f/760,262.f/400);CHECK(expectedKey(0x91));
+  touch(SDL_EVENT_FINGER_CANCELED,41,674.f/760,262.f/400);CHECK(expectedKey(0xc8));
+  touch(SDL_EVENT_FINGER_CANCELED,42,86.f/760,210.f/400);CHECK(expectedKey(0xb9));
+  touch(SDL_EVENT_FINGER_CANCELED,43,674.f/760,210.f/400);CHECK(expectedKey(0xd2));CHECK(!keyReady());
   lcom_exit();
   controls.repeatKeys={"W"};
   lcom::embedded::configureControls(controls);
