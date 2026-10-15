@@ -304,6 +304,8 @@ test('Flappy renders and restarts on desktop and mobile', async ({ browser }) =>
         const controls = await page.locator('#touch-controls').boundingBox();
         return Math.abs(game.height + controls.height - 390);
       }).toBeLessThan(1);
+      // Let the mobile compositor paint the new orientation before capturing it.
+      await page.evaluate(() => new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve))));
       await page.screenshot({ path: path.join(root, 'build/web-qa/mobile-landscape.png') });
     }
     if (mobile) await page.getByRole('button', { name: 'ESC', exact: true }).tap();
