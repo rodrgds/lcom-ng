@@ -3,6 +3,7 @@
 import os
 from pathlib import Path
 import shlex
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -127,6 +128,33 @@ int main(void) {
                 for y in range(350, 440) for x in range(70, 190))
             self.assertNotEqual(score(frames[0]), score(frames[1]),
                                 'The launched ball must hit a brick and change the displayed score')
+
+    def test_portal_level_filename_fits_while_loading_the_first_level(self):
+        # The original four-byte filename overflows when adding ".txt". Enter
+        # Play through real mouse packets and inspect independently chosen walls.
+        cli = Path(os.environ.get('LCOM_CLI', ROOT / 'build/machinelab')).resolve()
+        project = COMMUNITY / 'BrunoRosendo--Portal2D/proj/Src'
+        replay = ROOT / 'scripts/collection-replays/BrunoRosendo--Portal2D-gameplay.mlabscript'
+        with tempfile.TemporaryDirectory(prefix='lcom-portal-regression-') as temporary:
+            folder = Path(temporary)
+            subprocess.run([str(cli), 'compat', 'build', str(project), '--output', str(folder / 'native')],
+                           check=True, capture_output=True, text=True, timeout=120)
+            shutil.copytree(project / 'Resources', folder / 'Resources')
+            (folder / 'proj').mkdir()
+            frame = folder / 'gameplay.ppm'
+            result = subprocess.run([str(cli), 'run', '--headless', '--script', str(replay),
+                                     '--max-ticks', '360', '--timeout', '15', '--dump-presented',
+                                     '--dump-frame', str(frame), '--', str(folder / 'native/proj'), 'Resources'],
+                                    cwd=folder, env={**os.environ, 'LCOM_COMPAT_PROJECT_ROOT': str(folder)},
+                                    capture_output=True, text=True, timeout=30)
+            self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+            self.assertIn('max virtual ticks reached (360)', result.stdout + result.stderr)
+            magic, dimensions, depth, pixels = frame.read_bytes().split(b'\n', 3)
+            self.assertEqual((magic, dimensions, depth), (b'P6', b'1280 1024', b'255'))
+            self.assertEqual(len(pixels), 1280 * 1024 * 3)
+            pixel = lambda x, y: tuple(pixels[(y * 1280 + x) * 3:(y * 1280 + x) * 3 + 3])
+            self.assertEqual(pixel(100, 200), (0, 0, 0))
+            self.assertGreaterEqual(min(pixel(720, 400)), 200)
 
 
 if __name__ == '__main__':

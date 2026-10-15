@@ -1,0 +1,19 @@
+at 150 mouse -100 100 0
+at 155 mouse -100 100 0
+at 160 mouse -100 100 0
+at 165 mouse -100 0 0
+at 170 mouse -100 0 0
+at 180 mouse 0 0 1
+at 185 mouse 0 0 0
+at 220 key D down
+at 250 key D up
+at 260 key SPACE down
+at 265 key SPACE up
+at 275 mouse 0 0 1
+at 280 mouse 0 0 0
+at 285 mouse 100 -25 0
+at 290 mouse 100 -25 0
+at 295 mouse 100 -25 0
+at 300 mouse 100 -25 0
+at 310 mouse 0 0 2
+at 315 mouse 0 0 0
