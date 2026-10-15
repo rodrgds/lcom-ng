@@ -9,7 +9,7 @@
 #include <cstdio>
 #include <cstdlib>
 #include <filesystem>
-#define CHECK(value) do { if (!(value)) { std::fprintf(stderr,"line %d: %s (%s)\n",__LINE__,#value,SDL_GetError()); std::exit(1); } } while (0)
+#define CHECK(value) do { if (!(value)) { std::fprintf(stderr,"line %d: %s (%s)\n",__LINE__,#value,SDL_GetError()); dumpRecentSdlEvents(); std::exit(1); } } while (0)
 
 static void touch(SDL_EventType type, SDL_FingerID id, float x, float y) {
   SDL_Event e{}; e.type = type; e.tfinger.type = type; e.tfinger.fingerID = id;
@@ -35,7 +35,7 @@ static bool expectedKey(uint8_t expected) {
     std::fprintf(stderr,"Window %u: %dx%d logical, %dx%d pixels, flags 0x%llx\n",
                  SDL_GetWindowID(windows[i]),w,h,pw,ph,static_cast<unsigned long long>(SDL_GetWindowFlags(windows[i])));
   }
-  SDL_free(windows);dumpRecentSdlEvents();return false;
+  SDL_free(windows);return false;
 }
 static void positionedControls() {
   using namespace lcom::embedded;
@@ -227,10 +227,26 @@ int main() {
   touch(SDL_EVENT_FINGER_DOWN,11,0.95f,0.87f);
   SDL_Delay(30); lcom::embedded::host().pump();
   CHECK(keyReady());
-  uint8_t flags=readKey(), dx=readKey(), dy=readKey();
-  CHECK((flags&3)==0 && dx>0 && dx<128 && dy>0 && dy<128);
+  auto mouseByte=[] {
+    uint8_t status=0;CHECK(lcom_port_read8(KBC_ST_REG,&status)==LCOM_OK);
+    CHECK((status&(KBC_ST_OBF|KBC_ST_AUX))==(KBC_ST_OBF|KBC_ST_AUX));
+    return readKey();
+  };
+  int travelX=0,travelY=0;
+  auto sampleLookPacket=[&] {
+    uint8_t flags=mouseByte(),dx=mouseByte(),dy=mouseByte();
+    CHECK((flags&0xc7)==0 && (flags&8)!=0);
+    int x=int(dx)-((flags&0x10)?256:0),y=int(dy)-((flags&0x20)?256:0);
+    CHECK(x>=0 && y>=0);
+    travelX+=x;travelY+=y;
+  };
+  // An early fractional sample can move just one axis. The held stick must
+  // produce positive cumulative travel on both axes, independent of host speed.
+  for(int packet=0;packet<16 && keyReady();++packet)sampleLookPacket();
+  CHECK(travelX>0 && travelY>0);
   touch(SDL_EVENT_FINGER_CANCELED,11,0.95f,0.87f);
-  while (keyReady()) { readKey(); readKey(); readKey(); }
+  int pendingPackets=0;
+  while(keyReady()) {CHECK(++pendingPackets<=16);sampleLookPacket();}
   touch(SDL_EVENT_FINGER_CANCELED,10,0.07f,0.916f);
   CHECK(readKey()==0x9e);
   SDL_Delay(30); lcom::embedded::host().pump(); CHECK(!keyReady());
