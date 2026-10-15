@@ -33,6 +33,9 @@ through `devenv shell -- ...`.
   from it. Do not restore a second hand-maintained catalog.
 - Public C API: `sdk/include/lcom/`; host implementation:
   `runtime/`; C client/protocol boundary: `sdk/client/`.
+- Browser exports: read `docs-site/students/browser.md`. Keep the web SDK source
+  payload relocatable through `scripts/package_student.py`; browser regressions
+  run through `lcom-ng-web-test`, including real multi-touch keyboard input.
 - Minix/LCF compatibility SDK: `sdk/compat/include/` and `sdk/compat/src/`,
   linked through the separate `lcom_minix` library. Keep its legacy declarations
   separate from the native SDK. For legacy project work, read

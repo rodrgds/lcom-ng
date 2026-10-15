@@ -13,6 +13,8 @@ option list; this guide explains when to use each command.
 | `lcom-ng replay` | run one program with an authored input timeline |
 | `lcom-ng setup` | generate a student workspace |
 | `lcom-ng compat build` | build unchanged Minix/LCF project sources |
+| `lcom-ng export web` | rebuild sources and assets for browser play |
+| `lcom-ng web` | build and open a game in a browser |
 | `lcom-ng test` | compile and execute one predefined student lab test |
 | `lcom-ng lab` | list labs or inspect requested functions |
 | `lcom-ng bundle` | package a runtime and program for the current platform |

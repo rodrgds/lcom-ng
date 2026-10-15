@@ -60,3 +60,6 @@ Good projects combine at least three device areas:
 
 Your project should include source, a deterministic replay or scripted smoke
 path, and one artifact such as a screenshot, WAV, video, trace, or bundle.
+
+Use the [browser exporter](/students/browser) to share the finished game as a
+website, including an on-screen keyboard for mobile players.

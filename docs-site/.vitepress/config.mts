@@ -176,7 +176,7 @@ export default defineConfig({
     sidebar: {
       "/labs/": labSidebar,
       "/students/": [
-        { text: "Students", items: [{ text: "Download and install", link: "/students/install" }, { text: "Existing Minix project", link: "/students/compatibility" }, { text: "Native labs", link: "/students/" }, { text: "macOS details", link: "/students/macos" }] },
+        { text: "Students", items: [{ text: "Download and install", link: "/students/install" }, { text: "Existing Minix project", link: "/students/compatibility" }, { text: "Native labs", link: "/students/" }, { text: "Browser export", link: "/students/browser" }, { text: "macOS details", link: "/students/macos" }] },
       ],
       "/instructors/": [
         {

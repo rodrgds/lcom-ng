@@ -14,6 +14,8 @@ packaging student programs.
 | `lcom-ng test` | compile and run one predefined lab test |
 | `lcom-ng lab` | list labs or inspect requested functions |
 | `lcom-ng bundle` | package a runtime and program for this platform |
+| `lcom-ng export web` | rebuild C sources as a standalone browser game |
+| `lcom-ng web` | build a project folder and open it in a browser |
 | `lcom-ng docs cli` | print a Markdown CLI reference |
 | `lcom-ng completion` | emit shell completion |
 

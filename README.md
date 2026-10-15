@@ -29,6 +29,20 @@ lcom-ng run -- .lcom-ng/lab2 timer_test_int 2
 
 [Compatibility guide](docs/from-minix.md) · [Tested projects and known failures](docs/compatibility-recent.md)
 
+### Browser games
+
+Source builds can export a game as static HTML, JavaScript, WebAssembly and
+assets, including a touch keyboard for mobile players:
+
+```sh
+devenv shell -- lcom-ng web path/to/my-game
+```
+
+Use `lcom-ng web .` for your own project. To publish static files, use
+`lcom-ng export web . --output dist/game`. See the [browser guide](docs-site/students/browser.md)
+for project layouts, hosting and current limits. Earlier release archives do not
+include this command.
+
 ### Native lcom-ng project
 
 Start a workspace using the native SDK and course labs:
