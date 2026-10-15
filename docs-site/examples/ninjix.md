@@ -1,5 +1,7 @@
 # Ninjix
 
+[Play in your browser](https://ninjix.rgo.pt/).
+
 Ninjix is the larger game port included with lcom-ng. It came from a
 previous Minix-style final project and is useful because it shows that the labs
 lead to real application structure, not only isolated device functions.

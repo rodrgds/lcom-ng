@@ -38,6 +38,12 @@ changes. Use `--port 8080` to choose a port or `--no-open` to copy the printed U
 into another browser. To try a phone on the same network, add `--host 0.0.0.0`
 and open your computer's network address with the printed port.
 
+## Play published games
+
+- [Plants vs. Zombies](https://plantsvszombiesrafa.pages.dev/), built from the unchanged original student archive.
+- [Ninjix](https://ninjix.rgo.pt/).
+- [Sushi Slash](https://sushi-slash.pages.dev/), built from the original upstream project.
+
 ## Your project
 
 The exporter discovers:

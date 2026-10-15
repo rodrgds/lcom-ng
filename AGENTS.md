@@ -64,6 +64,9 @@ through `devenv shell -- ...`.
   `--check` validates freshness. Canonical PNGs and metadata live under
   `docs/assets/screenshots/gallery/`; every app has a docs page with `ExampleGallery`.
   Captures use `--dump-presented` so a tick guard cannot expose an unfinished repaint.
+- PvZ preserves the original student project's UI, art and controls. Keep platform
+  adaptations separate from game presentation; source identity is recorded in
+  `docs/compatibility-results.md`.
 - Canonical public video: `docs/assets/demo/machine-lab-demo.mp4`. Its source is
   `media/remotion/`, and its deterministic inputs are produced by
   `scripts/capture_marketing_examples.sh`.

@@ -35,7 +35,7 @@ import sys
 root, output = map(Path, sys.argv[1:])
 apps = json.loads((root / 'scripts/showcase-gallery.json').read_text())['apps']
 for slug, state_name, name, stop in [
-    ('plants-vs-zombies', 'garden', 'pvz', 'at 1140 key P down\nat 1141 key P up\nat 1144 key X down\nat 1145 key X up\n'),
+    ('plants-vs-zombies', 'garden', 'pvz', 'at 1140 key ESC down\nat 1141 key ESC up\nat 1144 key ESC down\nat 1145 key ESC up\n'),
     ('breakout', 'brick-wall', 'breakout', 'at 240 key ESC down\nat 241 key ESC up\n'),
     ('flappy-bird', 'through-gap', 'flappy', 'at 420 key ESC down\nat 421 key ESC up\n'),
 ]:

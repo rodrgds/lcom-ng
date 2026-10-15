@@ -1081,75 +1081,65 @@
       "executable": "pvz",
       "args": [],
       "controls": [
-        "Enter starts plant selection on the first press. Click a plant to add or remove it; drag it to choose a slot.",
-        "Pick six plants, then Space starts the lawn. Arrows and Enter also navigate selection.",
+        "Use the original Start Game button, or Enter twice, to open plant selection.",
+        "Pick six plants with arrows and Enter, or drag seeds into deck slots. Space starts the lawn.",
         "1 to 6 selects a seed; arrows move the target; Enter or Space plants. Mouse selection and placement also work.",
         "Click suns to collect them. S selects the shovel; Escape or right click cancels a held action.",
-        "P or Escape pauses. Enter, Space, P, or Escape resumes. Q returns to the menu while paused; X quits.",
-        "F1 opens instructions and freezes the game."
+        "Escape pauses. Enter resumes; Q returns to the menu while paused; Escape quits from pause."
       ],
       "states": [
         {
           "slug": "menu",
-          "title": "Defend the lawn",
-          "caption": "The menu uses the game map and its own garden palette.",
+          "title": "Original title screen",
+          "caption": "The original project menu, colors and bitmap font.",
           "ticks": 20,
           "script": ""
         },
         {
-          "slug": "how-to-play",
-          "title": "Grow a defence",
-          "caption": "Instructions cover sun, deck selection, placement, shovel, and pause.",
-          "ticks": 20,
-          "script": "at 2 key F1 down\nat 3 key F1 up\n"
-        },
-        {
           "slug": "choose-plants",
           "title": "Choose your plants",
-          "caption": "Seven illustrated seeds with names and costs.",
+          "caption": "The original inventory grid and six deck slots.",
           "ticks": 12,
-          "script": "at 2 key ENTER down\nat 3 key ENTER up\n"
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 4 key ENTER down\nat 5 key ENTER up\n"
         },
         {
           "slug": "deck-ready",
           "title": "A complete deck",
-          "caption": "Six chosen plants enable the Play button.",
+          "caption": "Six chosen plants enable the original Start Game button.",
           "ticks": 70,
-          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\n"
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 4 key ENTER down\nat 5 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\n"
         },
         {
           "slug": "lawn",
           "title": "A fresh lawn",
           "caption": "The selected deck is ready, with a starting budget of 50 sun.",
           "ticks": 80,
-          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\nat 74 key SPACE down\nat 75 key SPACE up\n"
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 4 key ENTER down\nat 5 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\nat 74 key SPACE down\nat 75 key SPACE up\n"
         },
         {
           "slug": "plant-target",
           "title": "Choose a cell",
           "caption": "Keyboard targeting previews a sunflower before spending sun.",
           "ticks": 104,
-          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\nat 74 key SPACE down\nat 75 key SPACE up\nat 82 key 1 down\nat 83 key 1 up\nat 86 key LEFT down\nat 87 key LEFT up\nat 90 key LEFT down\nat 91 key LEFT up\nat 94 key LEFT down\nat 95 key LEFT up\nat 98 key LEFT down\nat 99 key LEFT up\n"
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 4 key ENTER down\nat 5 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\nat 74 key SPACE down\nat 75 key SPACE up\nat 82 key 1 down\nat 83 key 1 up\nat 86 key LEFT down\nat 87 key LEFT up\nat 90 key LEFT down\nat 91 key LEFT up\nat 94 key LEFT down\nat 95 key LEFT up\nat 98 key LEFT down\nat 99 key LEFT up\n"
         },
         {
           "slug": "garden",
           "title": "Growing under pressure",
           "caption": "A real planted sunflower, falling sun, and incoming zombies.",
           "ticks": 1100,
-          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\nat 74 key SPACE down\nat 75 key SPACE up\nat 82 key 1 down\nat 83 key 1 up\nat 86 key LEFT down\nat 87 key LEFT up\nat 90 key LEFT down\nat 91 key LEFT up\nat 94 key LEFT down\nat 95 key LEFT up\nat 98 key LEFT down\nat 99 key LEFT up\nat 106 key ENTER down\nat 107 key ENTER up\n"
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 4 key ENTER down\nat 5 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\nat 74 key SPACE down\nat 75 key SPACE up\nat 82 key 1 down\nat 83 key 1 up\nat 86 key LEFT down\nat 87 key LEFT up\nat 90 key LEFT down\nat 91 key LEFT up\nat 94 key LEFT down\nat 95 key LEFT up\nat 98 key LEFT down\nat 99 key LEFT up\nat 106 key ENTER down\nat 107 key ENTER up\n"
         },
         {
           "slug": "paused",
           "title": "Pause the garden",
-          "caption": "Resume, return to the menu, or quit with mouse or keyboard.",
+          "caption": "The original pause screen: Enter resumes, Q returns to the menu and Escape quits.",
           "ticks": 670,
-          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\nat 74 key SPACE down\nat 75 key SPACE up\nat 82 key 1 down\nat 83 key 1 up\nat 86 key LEFT down\nat 87 key LEFT up\nat 90 key LEFT down\nat 91 key LEFT up\nat 94 key LEFT down\nat 95 key LEFT up\nat 98 key LEFT down\nat 99 key LEFT up\nat 106 key ENTER down\nat 107 key ENTER up\nat 650 key P down\nat 651 key P up\n"
+          "script": "at 2 key ENTER down\nat 3 key ENTER up\nat 4 key ENTER down\nat 5 key ENTER up\nat 10 key ENTER down\nat 11 key ENTER up\nat 14 key RIGHT down\nat 15 key RIGHT up\nat 18 key ENTER down\nat 19 key ENTER up\nat 22 key RIGHT down\nat 23 key RIGHT up\nat 26 key ENTER down\nat 27 key ENTER up\nat 30 key RIGHT down\nat 31 key RIGHT up\nat 34 key ENTER down\nat 35 key ENTER up\nat 38 key LEFT down\nat 39 key LEFT up\nat 42 key LEFT down\nat 43 key LEFT up\nat 46 key LEFT down\nat 47 key LEFT up\nat 50 key DOWN down\nat 51 key DOWN up\nat 54 key ENTER down\nat 55 key ENTER up\nat 58 key RIGHT down\nat 59 key RIGHT up\nat 62 key ENTER down\nat 63 key ENTER up\nat 74 key SPACE down\nat 75 key SPACE up\nat 82 key 1 down\nat 83 key 1 up\nat 86 key LEFT down\nat 87 key LEFT up\nat 90 key LEFT down\nat 91 key LEFT up\nat 94 key LEFT down\nat 95 key LEFT up\nat 98 key LEFT down\nat 99 key LEFT up\nat 106 key ENTER down\nat 107 key ENTER up\nat 650 key ESC down\nat 651 key ESC up\n"
         }
       ],
       "sources": [
-        "examples/pvz/**/*.[ch]",
-        "examples/example_ui.h",
-        "examples/example_font.h"
+        "examples/pvz/**/*.[ch]"
       ]
     }
   ]
