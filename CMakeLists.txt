@@ -312,7 +312,7 @@ if(BUILD_TESTING)
     target_compile_options(sdl_render_tests PRIVATE -Wall -Wextra -Wpedantic)
     target_link_libraries(sdl_render_tests PRIVATE machinelab_core PkgConfig::SDL3 PkgConfig::SDL3_TTF)
     add_executable(embedded_sdl_tests tests/embedded_sdl_tests.cpp
-      runtime/embedded/SdlHost.cpp runtime/backends/SdlAudioBackend.cpp)
+      tests/embedded_sdl_host.cpp runtime/backends/SdlAudioBackend.cpp)
     target_compile_definitions(embedded_sdl_tests PRIVATE MACHINE_LAB_WITH_SDL)
     target_link_libraries(embedded_sdl_tests PRIVATE lcom_embedded PkgConfig::SDL3)
     add_test(NAME embedded_sdl COMMAND embedded_sdl_tests)

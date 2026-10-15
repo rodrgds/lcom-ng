@@ -49,6 +49,22 @@ class StudentSourceRegressions(unittest.TestCase):
 extern int mouse_x, mouse_y;
 static uint8_t bytes[] = {0x08, 5, 7, 0x38, 0xfd, 0xfe};
 static int next_byte;
+/* PE linkers retain unused source functions. Supply their unrelated device
+   dependencies explicitly and fail if the mouse test ever reaches one. */
+uint8_t scancode, remote_scancode;
+int timer_count;
+void kbc_ih(void) { abort(); }
+void timer_int_handler(void) { abort(); }
+void drawGameState(GameState *game) { abort(); }
+int sp_send_byte(uint8_t byte) { abort(); }
+int util_sys_inb(int port, uint8_t *value) { abort(); }
+int sys_irqsetpolicy(int irq, int policy, int *hook) { abort(); }
+int sys_irqrmpolicy(int *hook) { abort(); }
+int KBC_write_command(uint8_t port, uint8_t command) { abort(); }
+int KBC_read_status(uint8_t *status) { abort(); }
+int KBC_read_output(uint8_t *output) { abort(); }
+uint32_t micros_to_ticks(uint32_t micros) { abort(); }
+int tickdelay(clock_t ticks) { abort(); }
 int KBC_get_byte(uint8_t *byte) { *byte = bytes[next_byte++]; return 0; }
 int main(void) {
   Sprite cursor = {0}; GameState game = {0}; game.cursorSprite = &cursor;
@@ -70,6 +86,10 @@ int main(void) {
 #include "drivers/gpu.h"
 #include <assert.h>
 static uint8_t front[12], allocation[64];
+/* These unused mode/sprite entry points must never be needed by pixel writes. */
+int sys_int86(reg86_t *regs) { abort(); }
+int vg_exit(void) { abort(); }
+uint8_t *xpm_load(xpm_map_t map, enum xpm_image_type type, xpm_image_t *img) { abort(); }
 void *game_allocate(size_t size) {
   assert(size == 12); memset(allocation, 0xcd, sizeof allocation); return allocation;
 }
@@ -146,11 +166,13 @@ int main(void) {
             shutil.copytree(project / 'Resources', folder / 'Resources')
             (folder / 'proj').mkdir()
             frame = folder / 'gameplay.ppm'
+            # Virtual ticks and frame assertions define this functional test.
+            # Allow slower Intel CI enough wall time to reach those same ticks.
             result = subprocess.run([str(cli), 'run', '--headless', '--script', str(replay),
-                                     '--max-ticks', '360', '--timeout', '15', '--dump-presented',
+                                     '--max-ticks', '360', '--timeout', '60', '--dump-presented',
                                      '--dump-frame', str(frame), '--', str(folder / 'native/proj'), 'Resources'],
                                     cwd=folder, env={**os.environ, 'LCOM_COMPAT_PROJECT_ROOT': str(folder)},
-                                    capture_output=True, text=True, timeout=30)
+                                    capture_output=True, text=True, timeout=90)
             self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
             self.assertIn('max virtual ticks reached (360)', result.stdout + result.stderr)
             magic, dimensions, depth, pixels = frame.read_bytes().split(b'\n', 3)
@@ -174,10 +196,10 @@ at 480 mouse 0 0 1
 at 485 mouse 0 0 0
 """)
             result = subprocess.run([str(cli), 'run', '--headless', '--script', str(restart),
-                                     '--max-ticks', '540', '--timeout', '15', '--dump-presented',
+                                     '--max-ticks', '540', '--timeout', '60', '--dump-presented',
                                      '--dump-frame', str(frame), '--', str(folder / 'native/proj'), 'Resources'],
                                     cwd=folder, env={**os.environ, 'LCOM_COMPAT_PROJECT_ROOT': str(folder)},
-                                    capture_output=True, text=True, timeout=30)
+                                    capture_output=True, text=True, timeout=90)
             self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
             self.assertIn('max virtual ticks reached (540)', result.stdout + result.stderr)
             pixels = frame.read_bytes().split(b'\n', 3)[3]

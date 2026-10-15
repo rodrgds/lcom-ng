@@ -1,6 +1,7 @@
 #include "embedded/Host.hpp"
 #include "embedded/SdlHost.hpp"
 #include "embedded/Controls.hpp"
+#include "embedded_sdl_capture.hpp"
 #include <lcom/lcom.h>
 #include <lcom/vbe.h>
 #include <lcom/i8042.h>
@@ -39,7 +40,7 @@ static void positionedControls() {
   touch(SDL_EVENT_FINGER_DOWN,402,726.f/760,34.f/400);CHECK(readKey()==0x01);
   touch(SDL_EVENT_FINGER_UP,402,726.f/760,34.f/400);CHECK(readKey()==0x81);
   int count=0;auto windows=SDL_GetWindows(&count);CHECK(count==1);
-  auto frame=SDL_RenderReadPixels(SDL_GetRenderer(windows[0]),nullptr);SDL_free(windows);CHECK(frame);
+  auto frame=readPresentedFrame(SDL_GetRenderer(windows[0]));SDL_free(windows);CHECK(frame);
   Uint8 r,g,b,a;CHECK(SDL_ReadSurfacePixel(frame,660,34,&r,&g,&b,&a));CHECK(r==0 && g==0 && b==0);
   CHECK(SDL_ReadSurfacePixel(frame,86,262,&r,&g,&b,&a));CHECK(r==0 && g==0 && b==0);
   std::filesystem::create_directories("build/mobile-ux2/native");CHECK(SDL_SaveBMP(frame,"build/mobile-ux2/native/horizontal-pad.bmp"));SDL_DestroySurface(frame);
@@ -63,7 +64,7 @@ static void positionedControls() {
     float y=position=="bottom"?318:270;
     touch(SDL_EVENT_FINGER_DOWN,421,x/760,y/400);CHECK(readKey()==0x1e);
     touch(SDL_EVENT_FINGER_UP,421,x/760,y/400);CHECK(readKey()==0x9e);
-    windows=SDL_GetWindows(&count);frame=SDL_RenderReadPixels(SDL_GetRenderer(windows[0]),nullptr);SDL_free(windows);CHECK(frame);
+    windows=SDL_GetWindows(&count);frame=readPresentedFrame(SDL_GetRenderer(windows[0]));SDL_free(windows);CHECK(frame);
     CHECK(SDL_SaveBMP(frame,("build/mobile-ux2/native/keyboard-"+position+".bmp").c_str()));SDL_DestroySurface(frame);
     lcom_exit();
   }
@@ -82,7 +83,7 @@ static void positionedControls() {
   lcom_exit();
   // A configured hover-only profile must not advertise a click mode switch.
   controls.touch="move";configureControls(controls);CHECK(lcom_init()==LCOM_OK);
-  windows=SDL_GetWindows(&count);frame=SDL_RenderReadPixels(SDL_GetRenderer(windows[0]),nullptr);SDL_free(windows);CHECK(frame);
+  windows=SDL_GetWindows(&count);frame=readPresentedFrame(SDL_GetRenderer(windows[0]));SDL_free(windows);CHECK(frame);
   CHECK(SDL_ReadSurfacePixel(frame,715,30,&r,&g,&b,&a));CHECK(r==0 && g==0 && b==0);
   SDL_DestroySurface(frame);lcom_exit();
   // A toolbar that fits the actual side gutter must leave all guest pixels
@@ -97,7 +98,7 @@ static void positionedControls() {
   windows=SDL_GetWindows(&count);CHECK(count==1);CHECK(SDL_SetWindowSize(windows[0],820,400));
   CHECK(SDL_SyncWindow(windows[0]));
   lcom::embedded::host().pump();CHECK(lcom_vbe_present()==LCOM_OK);
-  frame=SDL_RenderReadPixels(SDL_GetRenderer(windows[0]),nullptr);SDL_free(windows);CHECK(frame);
+  frame=readPresentedFrame(SDL_GetRenderer(windows[0]));SDL_free(windows);CHECK(frame);
   if(frame->w!=820 || frame->h!=400)
     std::fprintf(stderr,"Resized renderer output: %dx%d, expected 820x400\n",frame->w,frame->h);
   CHECK(frame->w==820 && frame->h==400);
@@ -111,7 +112,7 @@ static void positionedControls() {
   CHECK(SDL_SaveBMP(frame,"build/mobile-ux2/native/gutter-toolbar.bmp"));SDL_DestroySurface(frame);
   touch(SDL_EVENT_FINGER_DOWN,432,790.f/820,222.f/400);
   touch(SDL_EVENT_FINGER_UP,432,790.f/820,222.f/400);
-  windows=SDL_GetWindows(&count);frame=SDL_RenderReadPixels(SDL_GetRenderer(windows[0]),nullptr);SDL_free(windows);CHECK(frame);
+  windows=SDL_GetWindows(&count);frame=readPresentedFrame(SDL_GetRenderer(windows[0]));SDL_free(windows);CHECK(frame);
   CHECK(SDL_ReadSurfacePixel(frame,780,205,&r,&g,&b,&a));CHECK(r==g && g==b);
   SDL_DestroySurface(frame);
   lcom_exit();configureControls({});
@@ -153,7 +154,7 @@ int main() {
   int count=0; SDL_Window **windows=SDL_GetWindows(&count);
   CHECK(windows && count==1);
   SDL_Window *window=windows[0]; SDL_free(windows);
-  SDL_Surface *frame=SDL_RenderReadPixels(SDL_GetRenderer(window),nullptr);
+  SDL_Surface *frame=readPresentedFrame(SDL_GetRenderer(window));
   CHECK(frame);
   Uint8 r=0,g=0,b=0,a=0;
   CHECK(SDL_ReadSurfacePixel(frame,200,180,&r,&g,&b,&a));
@@ -168,7 +169,7 @@ int main() {
   // Android's app events reach watchers without entering the polled queue.
   SDL_FlushEvent(SDL_EVENT_DID_ENTER_FOREGROUND);
   lcom::embedded::host().pump();
-  SDL_Surface *restored=SDL_RenderReadPixels(renderer,nullptr);
+  SDL_Surface *restored=readPresentedFrame(renderer);
   CHECK(restored); CHECK(SDL_ReadSurfacePixel(restored,200,180,&r,&g,&b,&a));
   CHECK(r==17 && g==34 && b==51); SDL_DestroySurface(restored);
   std::filesystem::create_directories("build/android-qa");
@@ -238,7 +239,7 @@ int main() {
   CHECK(lcom_vbe_present()==LCOM_OK);
   windows=SDL_GetWindows(&count); CHECK(windows && count==1);
   window=windows[0]; SDL_free(windows);
-  frame=SDL_RenderReadPixels(SDL_GetRenderer(window),nullptr); CHECK(frame);
+  frame=readPresentedFrame(SDL_GetRenderer(window)); CHECK(frame);
   for (auto point : {SDL_Point{380,0},SDL_Point{380,399},SDL_Point{115,200},SDL_Point{644,200}}) {
     CHECK(SDL_ReadSurfacePixel(frame,point.x,point.y,&r,&g,&b,&a));
     CHECK(r==17 && g==34 && b==51);
@@ -439,14 +440,16 @@ int main() {
   windows=SDL_GetWindows(&count);CHECK(windows && count==1);window=windows[0];SDL_free(windows);
   CHECK(SDL_SetWindowSize(window,960,400));CHECK(SDL_SyncWindow(window));lcom::embedded::host().pump();
   CHECK(lcom_vbe_present()==LCOM_OK);
-  frame=SDL_RenderReadPixels(SDL_GetRenderer(window),nullptr);CHECK(frame);
+  frame=readPresentedFrame(SDL_GetRenderer(window));CHECK(frame);
+  CHECK(frame->w==960 && frame->h==400);
   // Independently fitted4:3guest:512x384within536x384remaining area.
   for(int y=9;y<391;y+=3) for(int x=21;x<531;x+=3) {
     CHECK(SDL_ReadSurfacePixel(frame,x,y,&r,&g,&b,&a));CHECK(r==17 && g==34 && b==51);
   }
   SDL_DestroySurface(frame);
   CHECK(SDL_SetWindowSize(window,400,500));CHECK(SDL_SyncWindow(window));lcom::embedded::host().pump();
-  frame=SDL_RenderReadPixels(SDL_GetRenderer(window),nullptr);CHECK(frame);
+  frame=readPresentedFrame(SDL_GetRenderer(window));CHECK(frame);
+  CHECK(frame->w==400 && frame->h==500);
   // A short portrait panel reserves its pads/actions below a336x252guest.
   for(int y=9;y<203;y+=3) for(int x=72;x<328;x+=3) {
     CHECK(SDL_ReadSurfacePixel(frame,x,y,&r,&g,&b,&a));CHECK(r==17 && g==34 && b==51);
