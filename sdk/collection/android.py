@@ -147,10 +147,11 @@ def build(entries, output: Path, name: str, icon: Path | None, app_id: str,
                               .replace('@NDK_VERSION@', android_export.NDK_VERSION)
                               .replace('@ABIS@', ', '.join(repr(abi) for abi in abis)))
         label = name.replace('\\', '\\\\').replace('"', '\\"').replace("'", "\\'").replace('\n', '\\n')
-        (work / 'app/src/main/res/values/strings.xml').write_text(
+        resources = work / 'app/src/main/res'
+        (resources / 'values').mkdir(parents=True, exist_ok=True)
+        (resources / 'values/strings.xml').write_text(
             '<resources><string name="app_name">"' + html.escape(label, quote=False) + '"</string></resources>\n')
         if icon_bytes:
-            resources = work / 'app/src/main/res'
             (resources / 'drawable-nodpi').mkdir(exist_ok=True)
             (resources / 'drawable-nodpi/app_icon.png').write_bytes(icon_bytes)
             (resources / 'drawable').mkdir(exist_ok=True)

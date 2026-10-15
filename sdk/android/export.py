@@ -111,11 +111,12 @@ def build(args):
                               .replace('@ABIS@', ', '.join("'" + abi + "'" for abi in (args.abi or ['arm64-v8a']))))
         name = info['name']
         label = name.replace('\\', '\\\\').replace('"', '\\"').replace("'", "\\'").replace('\n', '\\n')
-        (work / 'app/src/main/res/values/strings.xml').write_text(
+        resources = work / 'app/src/main/res'
+        (resources / 'values').mkdir(parents=True, exist_ok=True)
+        (resources / 'values/strings.xml').write_text(
             '<resources><string name="app_name">"' + html.escape(label, quote=False) + '"</string></resources>\n')
         if icon_bytes:
             (work / 'icon.png').write_bytes(icon_bytes)
-            resources = work / 'app/src/main/res'
             (resources / 'drawable-nodpi').mkdir(parents=True)
             (resources / 'drawable-nodpi/app_icon.png').write_bytes(icon_bytes)
             (resources / 'drawable').mkdir(exist_ok=True)
