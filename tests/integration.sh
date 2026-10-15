@@ -141,7 +141,7 @@ for completion in "$OUT_DIR/machinelab.bash" "$OUT_DIR/_machinelab" "$OUT_DIR/ma
   grep -q -- "dump-presented" "$completion"
 done
 
-for command in run run-pair replay setup test bundle lab docs completion; do
+for command in run run-pair replay setup test bundle export web lab docs completion; do
   "$CLI" "$command" --help > "$OUT_DIR/help-$command.txt" 2>&1
   grep -Fq "$command [OPTIONS]" "$OUT_DIR/help-$command.txt"
   ! grep -q "lcom-ng: .*requires\|lcom-ng: unknown" "$OUT_DIR/help-$command.txt"

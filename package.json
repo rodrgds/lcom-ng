@@ -5,6 +5,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test:web": "playwright test",
     "docs:assets": "sh scripts/sync_docs_site_assets.sh",
     "docs:dev": "bun run docs:assets && vitepress dev docs-site --host 0.0.0.0",
     "docs:build": "bun run docs:assets && vitepress build docs-site",
@@ -14,6 +15,7 @@
     "video:render": "sh scripts/render_public_demo.sh"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "vitepress": "1.6.4",
     "wrangler": "4.106.0"
   }

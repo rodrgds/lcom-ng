@@ -15,6 +15,9 @@ cmake -S . -B build -G Ninja -DMACHINE_LAB_WITH_SDL=ON -DCMAKE_BUILD_TYPE=Debug
 cmake --build build
 ctest --test-dir build --output-on-failure
 
+echo "==> WebAssembly export and browser input checks"
+bun run test:web
+
 echo "==> Public docs and asset checks"
 bun run docs:check
 
