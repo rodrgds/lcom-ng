@@ -874,3 +874,21 @@ test('phone collection cards keep long titles clear of game icons', async ({page
   const icon = await card.locator('.game-icon').boundingBox();
   expect(label.y+label.height).toBeLessThanOrEqual(icon.y);
 });
+
+test('failed player module downloads offer retry in collections and standalone exports', async ({page}) => {
+  let fail = true;
+  await page.route('**/loading.js*', route => fail ? route.abort('failed') : route.continue());
+  await page.goto(`${base}/collection/`);
+  await page.getByRole('link',{name:'Play First game',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Try again',exact:true})).toBeVisible();
+  fail = false;
+  await page.getByRole('button',{name:'Try again',exact:true}).click();
+  await expect(page.locator('#loading')).toBeHidden();
+  await expect.poll(() => pixel(page.frameLocator('iframe'))).toEqual([17,34,51,255]);
+  fail = true;
+  await page.goto(`${base}/fixture/`);
+  await expect(page.getByRole('button',{name:'Reload',exact:true})).toBeVisible();
+  fail = false;
+  await page.getByRole('button',{name:'Reload',exact:true}).click();
+  await expect.poll(() => pixel(page)).toEqual([17,34,51,255]);
+});

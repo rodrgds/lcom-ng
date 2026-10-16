@@ -38,6 +38,18 @@
     </div>
     <section id="keyboard" aria-label="On-screen keyboard" hidden><div id="keys"></div></section>
   </section>
-  <script type="module" src="./player.js"></script>
+  <script>
+    // Keep download recovery available even when the player or an import fails.
+    window.addEventListener('error', event => {
+      if (event.target?.id !== 'player-script') return;
+      const message = 'Could not load the game player. Check your connection and try again.';
+      document.querySelector('#status').textContent = message;
+      document.querySelector('#error-message').textContent = message;
+      document.querySelector('#error').hidden = false;
+      document.querySelector('#reload').onclick = () => location.reload();
+      if (parent !== window) parent.postMessage({type:'lcom-player-loading',phase:'error'},location.origin);
+    }, true);
+  </script>
+  <script id="player-script" type="module" src="./player.js"></script>
 </body>
 </html>
