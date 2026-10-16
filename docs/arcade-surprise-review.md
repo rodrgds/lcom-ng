@@ -219,3 +219,39 @@ browser confirmed nine desktop columns, the clover and 18 deferred icons.
 Proof screenshots are under `build/arcade-loading-polish/live/` and `live-perf/`.
 Concurrent expansion and grouping changes were preserved. Game binaries and the
 previous native Android APK are unchanged by this web-only update.
+
+## Game surroundings, 2026-10-16
+
+Published browser source `48a5fcf925a2b23140a2fccfa8ca9fd2e5e2a18c` with Worker version
+`3d796f2f-4be3-4664-af76-b2ea60d805ac` at <https://arcade.rgo.pt/>.
+
+- Unused game margins use the library's `#101021` background. Two faint columns
+  of game icons drift in opposite directions behind the embedded player.
+- Columns require at least 112px of side space and disappear when touch controls
+  occupy their area. They never capture pointer input or cover the canvas.
+- Artwork borrows decoded library icons first. Direct game links need at most
+  eight extra icons, fetched only after the first game frame and only where a
+  column fits. Reduced motion makes them static; hidden tabs pause animation;
+  returning to the library removes the decoration images.
+- Only collection players expose their background. Standalone game exports keep
+  their existing black background. Game binaries, assets and settings are unchanged.
+
+Verification: the new margin regression first failed on the black background,
+then passed with the repair. All 22 collection/navigation checks passed together;
+its additional direct-link image-budget check passed separately, for 23 distinct
+checks. The documentation build and the pinned-source audit passed: 66 games,
+7,757 files, 37 documented source corrections across 83 files.
+
+Real Memory Match exports were inspected locally and on the public site at
+1440×810 desktop, 390×844 portrait and 844×390 touch landscape. Desktop had two
+columns outside the canvas; touch layouts kept the controls clear. First-frame
+loading, reduced motion and return cleanup passed without browser errors.
+Native in-app browser inspection confirmed the published background and artwork.
+All 215 checked public assets matched the package, including HTML, JavaScript
+and CSS for each of the 66 players. This verifies the shared player deployment,
+not another complete gameplay pass through the catalogue.
+
+Evidence: `build/arcade-surroundings/` contains the frozen SDK, red/green browser
+results, unchanged-game hashes, desktop/phone captures and live byte receipt.
+Concurrent catalogue and runtime work was preserved and excluded from publication.
+This browser-only release does not change the Android APK.
