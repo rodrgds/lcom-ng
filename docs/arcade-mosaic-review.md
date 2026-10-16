@@ -1,8 +1,9 @@
 # Arcade mosaic and Android launcher release
 
-Published source: `a3697659922a759193688c973d028b5523c363e5`.
+APK source: `a3697659922a759193688c973d028b5523c363e5`.
+Web metadata source: `6bc0e7d5130b560268418de7152df7d899160f28`.
 Web: <https://arcade.rgo.pt/>.
-Worker version: `014ce0c7-2f0d-4e69-b5f9-41898dae667f`.
+Worker version: `66fc0525-db53-4b93-8e4c-0d4ddd154313`.
 Release: <https://github.com/rodrgds/lcom-ng/releases/tag/arcade-2026-10-16-mosaic>.
 
 ## Result
@@ -38,3 +39,5 @@ Its public download was streamed and independently hashed. The installed APK and
 The live web shell, modules and catalog match the packaged build. All 328 hosted icons, previews and gallery frames match their local bytes. All 66 Wasm modules passed live hosting checks, including 68 gzip/identity responses, plus HEAD and cache revalidation.
 
 The live Ninjix Exit button was clicked in the desktop browser. It removed the game iframe and restored the library's search context. Physical Android-device performance is outside the emulator evidence above.
+
+The final creation-year correction fetched all 65 public repositories through GitHub's repository `createdAt` API field. Metadata/export regression and docs checks passed, and the republished live catalog matches those creation timestamps. This web-only metadata correction leaves the published APK unchanged.
