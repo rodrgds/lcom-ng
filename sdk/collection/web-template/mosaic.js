@@ -22,6 +22,9 @@ export class Mosaic {
   shuffle(animate = true) {
     this.onShuffle?.();
     this.featured = shuffled(this.tiles.filter(tile => tile.game.featured));
+    // Jitter one target in each horizontal band, then mix their order. Keep
+    // these choices until Shuffle so responsive reflow stays predictable.
+    this.featuredTargets = shuffled(this.featured.map((_, index) => (index + Math.random()) / this.featured.length));
     this.ordinary = shuffled(this.tiles.filter(tile => !tile.game.featured));
     this.width = 0;
     this.layout(animate);
@@ -71,8 +74,10 @@ export class Mosaic {
         for (let x = 0; x <= tracks - 4; x += 2) if (free(x, y, 4)) candidates.push(x);
         if (!candidates.length) y += 2;
       } while (!candidates.length);
-      // Alternate across the board as well as spreading the starts across rows.
-      candidates.sort((a, b) => previous ? Math.abs(b - previous.x) - Math.abs(a - previous.x) : b - a);
+      // The nearest free slot may be central or near an edge. Stratified
+      // targets spread highlights across the board without an edge zigzag.
+      const target = this.featuredTargets[index] * (tracks - 4);
+      candidates.sort((a, b) => Math.abs(a - target) - Math.abs(b - target));
       const x = candidates[0];
       reserve(tile, x, y, 4);
       previous = {x, y};

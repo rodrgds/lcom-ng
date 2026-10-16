@@ -39,6 +39,7 @@ test.beforeAll(async () => {
 test.afterAll(async () => new Promise(resolve => server.close(resolve)));
 
 test('square icon mosaic spaces featured games and shuffles without fetching galleries', async ({page}) => {
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Mosaic Fixture',games:games.map(game=>({...game,name:'Minixsweeper'}))}}));
   const shots = []; page.on('request', request => {if (request.url().includes('/shot-')) shots.push(request.url());});
   await page.setViewportSize({width:1440,height:1000}); await page.goto(base);
   await expect(page.locator('#games a[data-id]')).toHaveCount(24);
@@ -49,13 +50,18 @@ test('square icon mosaic spaces featured games and shuffles without fetching gal
     expect(new Set(featured).size).toBe(4);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
   }
+  await page.setViewportSize({width:1440,height:1000});
+  const spread=()=>page.locator('.featured').evaluateAll(items=>items.map(item=>{const b=item.getBoundingClientRect();return {x:b.x,right:b.right};}));
+  await expect.poll(async()=>{const items=await spread();return items.filter(b=>b.x>32&&b.right<1408).length;},
+    {message:'featured games include interior positions on a wide grid'}).toBeGreaterThan(0);
+  expect(new Set((await spread()).map(b=>Math.round(b.x))).size).toBeGreaterThan(2);
   const order = () => page.locator('#games a[data-id]').evaluateAll(links=>links.map(link=>link.getAttribute('href')));
   const before = await order(); await page.getByRole('button',{name:'Shuffle games'}).click();
   expect(await order()).not.toEqual(before);
   expect(shots).toEqual([]);
 });
 
-test('hover opens a bounded wide preview and pushes consecutive screenshots across it', async ({page}) => {
+test('hover opens a bounded wide preview and pushes consecutive screenshots across it', async ({page},testInfo) => {
   await page.setViewportSize({width:1280,height:800}); await page.goto(base);
   const card = page.locator('.game:not(.featured) a').first();
   const rest = await card.boundingBox(); await card.hover();
@@ -63,6 +69,15 @@ test('hover opens a bounded wide preview and pushes consecutive screenshots acro
   await expect.poll(async()=> (await card.boundingBox()).height).toBeGreaterThan(rest.height*1.05);
   const box = await card.boundingBox(); expect(box.x).toBeGreaterThanOrEqual(7); expect(box.x+box.width).toBeLessThanOrEqual(1273);
   await expect(card.locator('img[src="/shot-red.svg"]')).toHaveCount(1);
+  const progress=()=>card.locator('.preview-steps i').first().evaluate(bar=>new DOMMatrixReadOnly(getComputedStyle(bar,'::after').transform).a);
+  expect(await progress()).toBeLessThan(.35);
+  await expect.poll(progress,{timeout:4000,intervals:[30]}).toBeGreaterThan(.98);
+  await card.screenshot({path:testInfo.outputPath('first-progress-full.png')});
+  await page.mouse.move(1,1);await page.waitForTimeout(400);
+  const started=await page.evaluate(()=>performance.now());await card.hover();
+  await expect(card.locator('img[src="/shot-red.svg"]')).toHaveCount(1);
+  expect(await progress()).toBeLessThan(.35);
+  await card.screenshot({path:testInfo.outputPath('first-progress-restarted.png')});
   // During a real push, both image rectangles straddle the window. A fade or an
   // instantaneous src swap cannot satisfy this observable geometry.
   await expect.poll(()=>card.evaluate(element=>{
@@ -71,11 +86,12 @@ test('hover opens a bounded wide preview and pushes consecutive screenshots acro
     const box=element.getBoundingClientRect(),left=a.getBoundingClientRect(),right=b.getBoundingClientRect();
     return left.x < box.x-10 && right.x > box.x+10 && right.x < box.right-10;
   }),{timeout:7000,intervals:[40]}).toBeTruthy();
+  expect(await page.evaluate(()=>performance.now())-started).toBeLessThan(2900);
   await page.mouse.move(1,1); await page.waitForTimeout(400);
   expect((await card.boundingBox()).width).toBeCloseTo(rest.width,0);
 });
 
-test('search is modal, preserves context through play, and restores keyboard focus', async ({page}) => {
+test('search is modal, preserves context through play, and restores keyboard focus', async ({page},testInfo) => {
   await page.goto(base);
   const toggle=page.getByRole('button',{name:'Find a game',exact:true});await toggle.click();
   const dialog=page.getByRole('dialog');await expect(dialog).toBeVisible();
@@ -86,7 +102,29 @@ test('search is modal, preserves context through play, and restores keyboard foc
   await page.keyboard.press('ArrowDown');await expect(dialog.locator('#search-results a')).toBeFocused();
   await page.keyboard.press('Enter');await expect(page.locator('#loading')).toBeHidden();
   await expect(page.locator('iframe')).toHaveCount(1);
-  await page.getByRole('button',{name:'Games',exact:true}).click();await expect(dialog).toBeVisible();
+  const home=page.getByRole('button',{name:'Games',exact:true});
+  await expect(home.locator('svg')).toHaveCSS('stroke','rgb(255, 255, 255)');
+  await expect(home.locator('svg')).toHaveCSS('fill','none');
+  await expect(home).toHaveCSS('background-color','rgb(34, 34, 34)');
+  // A game may use light controls and dark text. Collection navigation keeps
+  // its own contrasting colors when the actual child reports that theme.
+  await page.frames().find(frame=>frame.url().includes('/games/')).evaluate(()=>parent.postMessage({
+    type:'lcom-player-layout',width:innerWidth,height:innerHeight,
+    game:{x:0,y:0,width:innerWidth,height:innerHeight},occupied:[],
+    theme:{button:'#dddddd',text:'#111111',font:'mono'},
+  },location.origin));
+  await expect(home).toHaveCSS('background-color','rgb(34, 34, 34)');
+  await expect(home.locator('svg')).toHaveCSS('stroke','rgb(255, 255, 255)');
+  await home.screenshot({path:testInfo.outputPath('home-normal.png')});
+  await home.hover();
+  await expect(home.locator('svg')).toHaveCSS('stroke','rgb(255, 255, 255)');
+  await home.screenshot({path:testInfo.outputPath('home-hover.png')});
+  await page.keyboard.press('Shift+Tab');
+  await expect(home).toBeFocused();
+  await expect(home).toHaveCSS('outline-style','solid');
+  await expect(home).toHaveCSS('outline-width','3px');
+  await page.screenshot({path:testInfo.outputPath('home-focus.png')});
+  await page.keyboard.press('Enter');await expect(dialog).toBeVisible();
   await expect(input).toHaveValue('07');await expect(dialog.locator('#search-results a')).toBeFocused();
   await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();await expect(toggle).toBeFocused();
 });
@@ -111,12 +149,36 @@ test('hover facts show a plain year and the repository opens without launching t
   await expect(repo).toBeVisible();
   await expect(card.locator('.game-facts')).toHaveText('2020 · 1.3 MB');
   await page.keyboard.press('Tab'); await expect(repo).toBeFocused();
-  const popupPromise=page.waitForEvent('popup'); await repo.click();
-  const popup=await popupPromise; await popup.waitForLoadState();
+  await page.evaluate(()=>new Promise(resolve=>{
+    window.addEventListener('scroll',()=>requestAnimationFrame(resolve),{once:true});
+    window.scrollBy(0,scrollY>0?-8:8);
+  }));
+  // Crossing another tile while aiming for a focused Repo link must not hide it.
+  const neighbor=()=>page.locator('.game-launch').evaluateAll(links=>{
+    for (const link of links) {
+      if (link.dataset.id === 'game-0') continue;
+      const box=link.getBoundingClientRect(),x=box.x+box.width/2,y=box.y+box.height/2;
+      if (x>0 && x<innerWidth && y>0 && y<innerHeight && document.elementFromPoint(x,y)?.closest('.game-launch')===link) return {x,y,id:link.dataset.id};
+    }
+  });
+  const target=await neighbor();expect(target).toBeTruthy();await page.mouse.move(target.x,target.y);
+  const [popup]=await Promise.all([page.waitForEvent('popup'),repo.click({timeout:3000})]);
+  await popup.waitForLoadState();
   expect(popup.url()).toBe('https://github.com/example/game');
   expect(page.url()).toBe(base+'/');
   await expect(page.locator('iframe')).toHaveCount(0);
   await popup.close();
+  const game=card.locator('a[data-id]');
+  await game.click();await expect(page.locator('#loading')).toBeHidden();
+  await page.getByRole('button',{name:'Games',exact:true}).click();
+  await expect(game).toBeFocused();await game.hover({trial:true});
+  const square=await card.evaluate(element=>element.getBoundingClientRect().width);
+  expect((await game.boundingBox()).width).toBeGreaterThan(square*1.6);
+  const next=await neighbor();expect(next).toBeTruthy();
+  const nextLink=page.locator(`a[data-id="${next.id}"]`),rest=await nextLink.boundingBox();
+  await page.mouse.move(next.x,next.y);
+  await expect.poll(async()=>(await nextLink.boundingBox()).width).toBeGreaterThan(rest.width*1.6);
+  await expect.poll(async()=>(await game.boundingBox()).width).toBeCloseTo(square,0);
 });
 
 test('reduced motion keeps previews still and touch launches in one tap', async ({browser}) => {

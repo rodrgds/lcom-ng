@@ -18,10 +18,6 @@ function placeReturn(layout) {
   if(!Number.isFinite(sx) || !Number.isFinite(sy)) return;
   const transform=r=>({x:bounds.x+r.x*sx,y:bounds.y+r.y*sy,width:r.width*sx,height:r.height*sy});
   const game=transform(layout.game), occupied=layout.occupied.map(transform);
-  if(layout.theme) {
-    back.style.background=layout.theme.button;back.style.color=layout.theme.text;
-    back.style.fontFamily=layout.theme.font==='mono'?'ui-monospace,monospace':'system-ui,sans-serif';
-  }
   const w=back.offsetWidth,h=back.offsetHeight;
   const left=parseFloat(style.paddingLeft),top=parseFloat(style.paddingTop);
   const right=innerWidth-parseFloat(style.paddingRight)-w,bottom=innerHeight-parseFloat(style.paddingBottom)-h;

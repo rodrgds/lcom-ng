@@ -1,6 +1,6 @@
 const motion = matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
-const interval = 3000;
+const interval = 2400;
 
 export function downloadSize(bytes) {
   if (!Number.isFinite(bytes) || bytes <= 0) return '';
@@ -19,7 +19,13 @@ export class Previews {
     document.addEventListener('visibilitychange', () => { if (document.hidden) this.stop(); });
     window.addEventListener('blur', () => this.stop());
     window.addEventListener('resize', () => this.stop());
-    window.addEventListener('scroll', () => this.stop(), {passive: true});
+    window.addEventListener('scroll', () => {
+      if (this.hasFocusedAction()) {
+        const rect = this.position(this.active);
+        if (rect.bottom > 0 && rect.top < innerHeight && rect.right > 0 && rect.left < innerWidth) return;
+      }
+      this.stop();
+    }, {passive: true});
     motion.addEventListener('change', () => this.stop());
   }
 
@@ -75,12 +81,17 @@ export class Previews {
     window_.append(track, steps, play);
     link.append(icon, window_, description); element.append(link, overlay);
     const tile = {game, element, link, track, slides, sources, bars, index: 0, token: 0};
-    element.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch' && finePointer.matches) this.start(tile); });
+    element.addEventListener('pointerenter', event => {
+      // Keep keyboard actions reachable while the pointer crosses other tiles.
+      if (event.pointerType !== 'touch' && finePointer.matches && !this.hasFocusedAction()) this.start(tile);
+    });
     element.addEventListener('pointerleave', () => { if (this.active === tile && !element.contains(document.activeElement)) this.stop(); });
     link.addEventListener('focus', () => {
       // Native keyboard focus scrolls first, so measure the final viewport position.
+      const active = this.active, token = active?.token;
       requestAnimationFrame(() => {
-        if (document.activeElement === link && (finePointer.matches || link.matches(':focus-visible'))) this.start(tile);
+        if ((!this.active || this.active === active && active?.token === token) && document.activeElement === link &&
+            (finePointer.matches || link.matches(':focus-visible'))) this.start(tile);
       });
     });
     element.addEventListener('focusout', event => { if (this.active === tile && !element.contains(event.relatedTarget)) this.stop(); });
@@ -99,13 +110,11 @@ export class Previews {
     return image;
   }
 
-  async start(tile) {
-    if (this.active === tile) return;
-    this.stop();
-    this.active = tile;
-    clearTimeout(tile.closingTimer);
-    tile.element.classList.remove('preview-closing');
-    const token = ++tile.token;
+  hasFocusedAction() {
+    return !!this.active && document.activeElement !== this.active.link && this.active.element.contains(document.activeElement);
+  }
+
+  position(tile) {
     const rect = tile.element.getBoundingClientRect(), edge = 8;
     const width = Math.min(innerWidth - edge * 2, rect.width * 1.85);
     const height = Math.min(innerHeight - edge * 2, rect.height * 1.12);
@@ -115,6 +124,17 @@ export class Previews {
     tile.element.style.setProperty('--preview-height', `${height}px`);
     tile.element.style.setProperty('--preview-left', `${left - rect.x}px`);
     tile.element.style.setProperty('--preview-top', `${top - rect.y}px`);
+    return rect;
+  }
+
+  async start(tile) {
+    if (this.active === tile) return;
+    this.stop();
+    this.active = tile;
+    clearTimeout(tile.closingTimer);
+    tile.element.classList.remove('preview-closing');
+    const token = ++tile.token;
+    this.position(tile);
     tile.element.classList.add('previewing');
     tile.index = 0;
     tile.track.replaceChildren();
@@ -131,6 +151,8 @@ export class Previews {
     tile.bars.forEach((bar, index) => {
       bar.className = index === tile.index ? 'current' : index < tile.index ? 'seen' : '';
       bar.style.setProperty('--duration', `${interval}ms`);
+      // Re-entering can reuse the current bar after its animation has finished.
+      if (index === tile.index) for (const animation of bar.getAnimations({subtree:true})) animation.currentTime = 0;
     });
   }
 
