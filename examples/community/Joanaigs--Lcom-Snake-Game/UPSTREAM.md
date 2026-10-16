@@ -17,3 +17,7 @@ Exact original/patched SHA256 and SOURCE_PATCH.diff are recorded in UPSTREAM.jso
 ## Controls
 
 Original menus are mouse clicks. WASD moves snake, ESC ends round, ENTER continues after game over. Source cursor is local per menu and has no clamping, so relative pointer. Original enable function sends controller prefix but returns before F4; project environment supplies initial reporting.
+
+## Cursor corrections
+
+The original40×40 cursor now remains inside the framebuffer in menus, multiplayer and game-over. Each original phase still starts at200,200 with unit signed movement. The mouse reporting helper now sends the actual enable/disable command and consumes its ACK with bounded polling. Public CLI cursor captures cover both corners through raw packets and normal mouse input. The existing graphics pointer-width correction and original art are retained.

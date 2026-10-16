@@ -102,7 +102,7 @@ class ProjectConfig(unittest.TestCase):
         output=self.root/'profile.cpp'
         config.write_native(s,output)
         with output.open('a') as f:
-            f.write('\nint main() { auto &c=game::controls; return c.pointer!="direct" || c.cursor.x!=25 || c.cursor.y!=-1 || c.cursor.maxX!=800 || c.cursor.maxY!=600; }\n')
+            f.write('\nint main() { auto &c=game::controls; return c.pointer!="direct" || c.cursor.x!=25 || c.cursor.y!=-1 || c.cursor.maxX!=800 || c.cursor.maxY!=600 || c.cursor.pixelsPerUnit!=1 || c.cursor.fractional; }\n')
         subprocess.run(['c++','-std=c++17','-I',str(ROOT/'sdk/compat/include'),'-I',str(ROOT/'runtime'),str(output),'-o',str(self.root/'profile')],check=True)
         subprocess.run([self.root/'profile'],check=True)
 

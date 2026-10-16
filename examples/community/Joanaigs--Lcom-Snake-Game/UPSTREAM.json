@@ -103,16 +103,46 @@
   },
   "sourcePatches": [
     {
-      "path": "examples/community/Joanaigs--Lcom-Snake-Game/SOURCE_PATCH.diff",
+      "path": "SOURCE_PATCH.diff",
       "files": [
         {
           "path": "proj/src/graphics.c",
           "originalSha256": "b117fc8a622ad00afce80ca89bf91d87d2bfca0ff2acff33e3e5c274d0ab60aa",
           "patchedSha256": "ad41f9376ae73349a9e418e4e3c07cf693a351b8ee2b2e8985f27f48f1c96bbe",
           "reason": "Native menu reproducibly SIGSEGV in draw_xpm. Original graphics code truncates heap/framebuffer pointers to 32-bit unsigned int before address arithmetic. Use uintptr_t for the three existing pointer offsets, preserving all game behavior."
+        },
+        {
+          "path": "proj/src/cursor.h",
+          "originalSha256": "e8506f490b4ef719eab630d0c59ec89554f0186b71db2242e5bde7e84e1afbdb",
+          "patchedSha256": "9fc0042049b018f7e84b618c21a6a98e0a1249a78cafcc58e1a984b32c73c66d",
+          "reason": "Keep the complete original cursor sprite inside the actual framebuffer after unit signed movement; share bounds handling across menu, multiplayer and game-over while preserving each phase initial200,200."
+        },
+        {
+          "path": "proj/src/menu.c",
+          "originalSha256": "de00db93d6f5907e73e8db39a0bf677a16ca80426953aa20151a61ca96510bda",
+          "patchedSha256": "1930779c2ee09d28832ec62e8da7c750cf20928f1827b85298df2b0619e72468",
+          "reason": "Keep the complete original cursor sprite inside the actual framebuffer after unit signed movement; share bounds handling across menu, multiplayer and game-over while preserving each phase initial200,200."
+        },
+        {
+          "path": "proj/src/game.c",
+          "originalSha256": "8e128baff932ac14ef4991fbf0c829ccad8fa34faf2965e9f84dc19cbc82e73d",
+          "patchedSha256": "fbe4e4db3b89f43845f26aac9cb32ddc638ddd9362d0ee1ec1b3da320241b1a9",
+          "reason": "Keep the complete original cursor sprite inside the actual framebuffer after unit signed movement; share bounds handling across menu, multiplayer and game-over while preserving each phase initial200,200."
+        },
+        {
+          "path": "proj/src/gameOver.c",
+          "originalSha256": "e90dad5e7aadce98d19d7ae732c9e208025c9caca406cbec48deb81cb86eae46",
+          "patchedSha256": "6457e7c6dc6510a8bd4843949850723b510be4d1818872823ec9c4d621804169",
+          "reason": "Keep the complete original cursor sprite inside the actual framebuffer after unit signed movement; share bounds handling across menu, multiplayer and game-over while preserving each phase initial200,200."
+        },
+        {
+          "path": "proj/src/mouse.c",
+          "originalSha256": "74240b8caea25fc4efafcf688f01f17cd5a8e8b6a4c5617b28354090f78e16d3",
+          "patchedSha256": "70c64438174a93d611a286f668bbba5516280e7aaca2ac38888f92129380e3bf",
+          "reason": "Send both mouse command prefix and enable/disable byte, then consume its ACK using bounded readiness and resend handling. The original helper returned before sending the command."
         }
       ],
-      "reproduction": "source-regressions/Joanaigs--Lcom-Snake-Game/results.json"
+      "reproduction": "Public CLI raw PS2 replay drives menu cursor beyond both frame corners. Original cursor disappears; corrected whole40x40 art remains at760,560 or0,0. Separate normal-mouse CLI replay fails before reporting-helper correction and passes after it. Prior uintptr_t graphics correction remains retained."
     }
   ],
   "derivedAssets": [],

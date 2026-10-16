@@ -61,52 +61,34 @@ int(mouse_unsubscribe)() {
 
 uint8_t outuputByte;
 int mouse_enable_data_report(bool enable) {
-  for (int i = 0; i < 5; ++i) {
-    for (int num = 0; num < 10; num++) {
-      uint8_t byte;
-      if (util_sys_inb(STATUS_REG, &byte))
-        return 1;
-      if (!(byte & IBF)) {
-        sys_outb(CMD_KBC, WRITE_MOUSE);
-        return 0;
+  for (int attempt = 0; attempt < 5; attempt++) {
+    for (int stage = 0; stage < 2; stage++) {
+      int ready;
+      for (ready = 0; ready < 10; ready++) {
+        uint8_t status;
+        if (util_sys_inb(STATUS_REG, &status)) return 1;
+        if (!(status & IBF)) break;
+        tickdelay(micros_to_ticks(DELAY));
+      }
+      if (ready == 10) return 1;
+      uint8_t command = stage == 0 ? WRITE_MOUSE : (enable ? ENABLE_DATA_REPORT : DISABLE_DATA_REPORT);
+      if (sys_outb(stage == 0 ? CMD_KBC : OUT_BUF, command)) return 1;
+    }
+    for (int ready = 0; ready < 10; ready++) {
+      uint8_t status, response;
+      if (util_sys_inb(STATUS_REG, &status)) return 1;
+      if (status & (TOB | PARITY_BIT)) return 1;
+      if ((status & (OBF | MOUSE_AUX)) == (OBF | MOUSE_AUX)) {
+        if (util_sys_inb(OUT_BUF, &response)) return 1;
+        if (response == ACK) return 0;
+        if (response != 0xFE) return 1;
+        break; // Mouse requested the command again.
       }
       tickdelay(micros_to_ticks(DELAY));
     }
-    if (enable) {
-      for (int num = 0; num < 10; num++) {
-        uint8_t byte;
-        if (util_sys_inb(STATUS_REG, &byte))
-          return 1;
-        if (!(byte & IBF)) {
-          sys_outb(OUT_BUF, ENABLE_DATA_REPORT);
-          return 0;
-        }
-        tickdelay(micros_to_ticks(DELAY));
-      }
-    }
-    else {
-      for (int num = 0; num < 10; num++) {
-        uint8_t byte;
-        if (util_sys_inb(STATUS_REG, &byte))
-          return 1;
-        if (!(byte & IBF)) {
-          sys_outb(OUT_BUF, DISABLE_DATA_REPORT);
-          return 0;
-        }
-        tickdelay(micros_to_ticks(DELAY));
-      }
-    }
-    if (util_sys_inb(OUT_BUF, &outuputByte) != 0) {
-      return 1;
-    }
-    if (outuputByte == ACK) {
-      return 0;
-    }
-    tickdelay(micros_to_ticks(DELAY));
   }
   return 1;
 }
-
 
 
 

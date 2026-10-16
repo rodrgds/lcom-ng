@@ -16,3 +16,5 @@ Original command argument host selects single-player-capable role. Mouse clicks 
 ## Source correction
 
 Only complete mouse packets update menu/game cursor state. SOURCE_PATCH.diff records the correction; the public CLI regression renders the original cursor at10,5 after movement20,-10 followed by a neutral packet.
+
+Cursor edge correction retains the whole original19×30 sprite inside1152×864, with maximum1133,834. Gameplay clamps each completed packet before aim calculation, matching menu bounds and the calibrated model. Half sensitivity and fractional cursor state remain unchanged.

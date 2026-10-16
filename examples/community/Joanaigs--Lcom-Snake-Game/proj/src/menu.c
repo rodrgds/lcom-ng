@@ -198,8 +198,7 @@ int mainMenuLoop() {
             mouse_ih();
             if (mouse_number_bytes >= 3) {
               struct packet p = parse_packet();
-              c.x += p.delta_x;
-              c.y -= p.delta_y;
+              cursor_move(&c, p.delta_x, p.delta_y, h_res, v_res);
               if (menu(&c, &p))
                 good = 0;
             }

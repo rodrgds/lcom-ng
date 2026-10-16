@@ -6,9 +6,9 @@
     "sourceAudit": {
       "games": 65,
       "pinnedOriginalFiles": 7757,
-      "unchangedGames": 40,
-      "correctedGames": 25,
-      "correctedSourceFiles": 44,
+      "unchangedGames": 39,
+      "correctedGames": 26,
+      "correctedSourceFiles": 53,
       "command": "devenv shell -- python3 scripts/check_collection_sources.py --require-tracked"
     },
     "android": {
@@ -1046,6 +1046,14 @@
           "upstreamSha256": "fe059f72641cd2665c6f0f84f08f822eed8ebd599fe4da4214f0b32603734f64",
           "patchedSha256": "5c676ec560832e053b2adbf1f25b46e1205fac98afe42e4bf6e170c3e14fe962",
           "verification": "Dirty-heap constructor regression RED then GREEN; original web gameplay trapped out of bounds, corrected web start/move/fire passed without JS errors. Evidence: import-a/constructor-before.log, constructor-after.log, space-debug-after.log and actual gameplay capture."
+        },
+        {
+          "file": "proj/src/model/cursor.c",
+          "patch": "SOURCE_PATCH.diff",
+          "reason": "Compare the cursor hotspot directly to the top margin, allowing single-pixel downward movements to leave that margin instead of snapping back until an entire sprite-height motion arrives.",
+          "upstreamSha256": "c8b308931dd7f4a6cfcbc666fadb3fd0869a0b9564d4427db4e28bdd52c99e41",
+          "patchedSha256": "68a2fd60ed5db2c15f435fc09104a9a4dbf0f59ea03b7a11ae5506e397cd39ac",
+          "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_space_invaders_cursor_can_leave_top_margin_one_pixel_at_a_time"
         }
       ],
       "description": "Slide beneath the fleet, dodge incoming fire and clear the alien formation.",
@@ -2756,7 +2764,7 @@
       "path": "examples/community/SamBlack569--feup-lcom-2425/proj/src",
       "repository": "https://github.com/SamBlack569/feup-lcom-2425",
       "revision": "1cc59d8d45fc0bf4eeb6a5b8b358327fd494679b",
-      "controlsRationale": "Ship only responds to A/D or left/right and fires automatically. Repeated makes let a held thumb keep moving.",
+      "controlsRationale": "Verified unit cursor0,0 and full20x20 sprite bounds1132,844. Track hidden-scene movement for continuity; retain relative mobile gestures and existing reporting override.",
       "icon": "examples/community/SamBlack569--feup-lcom-2425/proj/src/icon.png",
       "collectionId": "samblack569-feup-lcom-2425-c1eb853acae2",
       "config": "examples/community/SamBlack569--feup-lcom-2425/proj/src/lcom.json",
@@ -2768,7 +2776,24 @@
         }
       },
       "provenance": "examples/community/SamBlack569--feup-lcom-2425/UPSTREAM.json",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/drivers/mouse.c",
+          "patch": "SOURCE_PATCH.diff",
+          "reason": "Keep the full original 20 by 20 cursor sprite inside the framebuffer; menu cursor tracking also continues while gameplay/help hide it.",
+          "upstreamSha256": "dfb3a52398f35ea706e720f2df7d56bf39debd96b7ff45389edcceba2b1f1087",
+          "patchedSha256": "b1f8ba7472eb9007797ebe0e422df22b1ebfdad0dce5d05f58e70a4e6e8ae780",
+          "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_space_shooter_cursor_stays_in_framebuffer"
+        },
+        {
+          "file": "proj/src/core/game.c",
+          "patch": "SOURCE_PATCH.diff",
+          "reason": "Clamp the unit-delta cursor to the active framebuffer and maintain its position while gameplay/help hide it, so returning to menus preserves physical pointer alignment.",
+          "upstreamSha256": "00598ea5d9996f8bea51a78cfaf360b473f074055af6977ba8151afdd015353a",
+          "patchedSha256": "3147e8d73ca7f1fc88873f57ef8bde9a08c3008de795516298322a09c0d4e922",
+          "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_space_shooter_cursor_stays_in_framebuffer"
+        }
+      ],
       "description": "Weave through space and keep your ship clear of enemy fire.",
       "preview": "collections/arcade/previews/samblack569-feup-lcom-2425-c1eb853acae2.png"
     },
@@ -3494,12 +3519,25 @@
       "icon": "examples/community/Cast-10--LCOMProject/proj/icon.png",
       "config": "examples/community/Cast-10--LCOMProject/proj/lcom.json",
       "provenance": "examples/community/Cast-10--LCOMProject/UPSTREAM.json",
-      "controlsRationale": "Both players move and attack independently; Shop is reached. Fixed shared top-left allocation makes Start/Shop reachable. UART/network features not claimed.",
+      "controlsRationale": "Verified unit cursor512,384, full50x52 sprite bounds974,716, and explicit mouse-reporting override. Calibrate physical browser input; retain native/mobile keypad gameplay controls.",
       "license": {
         "status": "missing",
         "files": []
       },
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "examples/community/Cast-10--LCOMProject/SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "proj/input/MouseInterpreter.c",
+              "originalSha256": "b999e2172a262d2cc3696e95b318d35b503e0f05fc86026c115fb8c2bbfdeb14",
+              "patchedSha256": "88224bad795854a4a884153d1d7fa3119df819e3e97e143f09686bc2e7a24a47"
+            }
+          ],
+          "reason": "Keep the original50x52 cursor sprite fully inside the framebuffer; original clamps allowed its entire visible glyph to leave the canvas at right/bottom. Unit deltas, start512384 and mouse attack behavior stay intact.",
+          "verification": "Actual Chromium PS/2 cursor vanished at right/bottom with reporting enabled; compiled source regression RED then GREEN, with expected bounds derived independently from the original XPM header. tests/community_source_regressions.py test_minix_legends_cursor_sprite_remains_inside_framebuffer"
+        }
+      ],
       "verification": {
         "repo": "Cast-10/LCOMProject",
         "buildExit": 0,
@@ -4851,6 +4889,25 @@
               "patchedSha256": "1421517abc29e7c6cc3fc9dbfcbec3f0783cd5e52f9718a87e1bc3e32cd86f5f"
             }
           ]
+        },
+        {
+          "path": "examples/community/gsilva00--LCOM-Project/SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "proj/src/objects/cursor.c",
+              "originalSha256": "8dbf625b2eb1717563ab5ee6f5868b33d211c6650940471f75ed68868287e41e",
+              "patchedSha256": "6998a54eca3330f485bae177ca90bef3e017ef42c9bf640bf1f563b7142f2a59",
+              "reason": "Start the cursor at framebuffer centre and integrate signed coordinates with final-pixel clamps. Decode Y as a positive magnitude with explicit direction, preventing unsigned underflow from teleporting to the opposite edge."
+            },
+            {
+              "path": "proj/src/proj.c",
+              "originalSha256": "1f024cefcf5b2ae41e01d941eaf72af6d4f69d29d54a1e478c1601de13dfa0f0",
+              "patchedSha256": "94378c9e3095f274c4aa1685e728d6eb2f471ba59993ec67e82e4821c961e8b4",
+              "reason": "Start the cursor at framebuffer centre and integrate signed coordinates with final-pixel clamps. Decode Y as a positive magnitude with explicit direction, preventing unsigned underflow from teleporting to the opposite edge."
+            }
+          ],
+          "reason": "Start the cursor at framebuffer centre and integrate signed coordinates with final-pixel clamps. Decode Y as a positive magnitude with explicit direction, preventing unsigned underflow from teleporting to the opposite edge.",
+          "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_pixel_football_cursor_edges_preserve_direction"
         }
       ],
       "verification": {
@@ -5202,12 +5259,26 @@
       "icon": "examples/community/luanalima27--LCOM-FEUP/proj/src/icon.png",
       "config": "examples/community/luanalima27--LCOM-FEUP/proj/src/lcom.json",
       "provenance": "examples/community/luanalima27--LCOM-FEUP/UPSTREAM.json",
-      "controlsRationale": "Ship movement and Fire input reach live alien level. Mouse aim remains relative; no campaign completion claimed.",
+      "controlsRationale": "Verified unit cursor0,0 and16x16 bounds784,584. Enable mouse reporting and calibrate physical browser movement; preserve native/mobile relative gameplay.",
       "license": {
         "status": "missing",
         "files": []
       },
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "examples/community/luanalima27--LCOM-FEUP/SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "proj/src/mouse.c",
+              "originalSha256": "336ced7680f5f5b83a8c405a55864f9aa41604f48a4d48347808c2ebf03ebcb3",
+              "patchedSha256": "f58f7f5a6205e8e2a6af9a5cfc056bf1e4bbc1703faa433e85299617d5cf69b8",
+              "reason": "Clamp cursor movement at the screen margins without jumping five pixels backward when motion crosses any boundary."
+            }
+          ],
+          "reason": "Clamp cursor movement at the screen margins without jumping five pixels backward when motion crosses any boundary.",
+          "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_star_defender_cursor_clamps_without_edge_recoil"
+        }
+      ],
       "verification": {
         "repo": "luanalima27/LCOM-FEUP",
         "buildExit": 0,
@@ -8264,16 +8335,46 @@
       },
       "sourcePatches": [
         {
-          "path": "examples/community/Joanaigs--Lcom-Snake-Game/SOURCE_PATCH.diff",
+          "path": "SOURCE_PATCH.diff",
           "files": [
             {
               "path": "proj/src/graphics.c",
               "originalSha256": "b117fc8a622ad00afce80ca89bf91d87d2bfca0ff2acff33e3e5c274d0ab60aa",
               "patchedSha256": "ad41f9376ae73349a9e418e4e3c07cf693a351b8ee2b2e8985f27f48f1c96bbe",
               "reason": "Native menu reproducibly SIGSEGV in draw_xpm. Original graphics code truncates heap/framebuffer pointers to 32-bit unsigned int before address arithmetic. Use uintptr_t for the three existing pointer offsets, preserving all game behavior."
+            },
+            {
+              "path": "proj/src/cursor.h",
+              "originalSha256": "e8506f490b4ef719eab630d0c59ec89554f0186b71db2242e5bde7e84e1afbdb",
+              "patchedSha256": "9fc0042049b018f7e84b618c21a6a98e0a1249a78cafcc58e1a984b32c73c66d",
+              "reason": "Keep the complete original cursor sprite inside the actual framebuffer after unit signed movement; share bounds handling across menu, multiplayer and game-over while preserving each phase initial200,200."
+            },
+            {
+              "path": "proj/src/menu.c",
+              "originalSha256": "de00db93d6f5907e73e8db39a0bf677a16ca80426953aa20151a61ca96510bda",
+              "patchedSha256": "1930779c2ee09d28832ec62e8da7c750cf20928f1827b85298df2b0619e72468",
+              "reason": "Keep the complete original cursor sprite inside the actual framebuffer after unit signed movement; share bounds handling across menu, multiplayer and game-over while preserving each phase initial200,200."
+            },
+            {
+              "path": "proj/src/game.c",
+              "originalSha256": "8e128baff932ac14ef4991fbf0c829ccad8fa34faf2965e9f84dc19cbc82e73d",
+              "patchedSha256": "fbe4e4db3b89f43845f26aac9cb32ddc638ddd9362d0ee1ec1b3da320241b1a9",
+              "reason": "Keep the complete original cursor sprite inside the actual framebuffer after unit signed movement; share bounds handling across menu, multiplayer and game-over while preserving each phase initial200,200."
+            },
+            {
+              "path": "proj/src/gameOver.c",
+              "originalSha256": "e90dad5e7aadce98d19d7ae732c9e208025c9caca406cbec48deb81cb86eae46",
+              "patchedSha256": "6457e7c6dc6510a8bd4843949850723b510be4d1818872823ec9c4d621804169",
+              "reason": "Keep the complete original cursor sprite inside the actual framebuffer after unit signed movement; share bounds handling across menu, multiplayer and game-over while preserving each phase initial200,200."
+            },
+            {
+              "path": "proj/src/mouse.c",
+              "originalSha256": "74240b8caea25fc4efafcf688f01f17cd5a8e8b6a4c5617b28354090f78e16d3",
+              "patchedSha256": "70c64438174a93d611a286f668bbba5516280e7aaca2ac38888f92129380e3bf",
+              "reason": "Send both mouse command prefix and enable/disable byte, then consume its ACK using bounded readiness and resend handling. The original helper returned before sending the command."
             }
           ],
-          "reproduction": "source-regressions/Joanaigs--Lcom-Snake-Game/results.json"
+          "reproduction": "Public CLI raw PS2 replay drives menu cursor beyond both frame corners. Original cursor disappears; corrected whole40x40 art remains at760,560 or0,0. Separate normal-mouse CLI replay fails before reporting-helper correction and passes after it. Prior uintptr_t graphics correction remains retained."
         }
       ],
       "controlsRationale": "Keep the real four-way WASD snake input and mouse placement controls used in multiplayer, with menu keys separated.",
@@ -8900,12 +9001,24 @@
               "originalSha256": "96dd80ba2b5d57669fbdab6bc3cae07ce75188f77adc132e49d10e7a5d1eb2d9",
               "patchedSha256": "ebc4f08acfc1dbaa79f80304cfaad58f704c94e371b767152c375537bd061201",
               "reason": "Apply cursor movement and buttons only after all three bytes are decoded; partial IRQ bytes must not replay stale motion or buttons."
+            },
+            {
+              "path": "src/game/menu.c",
+              "originalSha256": "4219a98c5700615aa109c05b0e1c5009e54f01dcb47c8dd1ceaf41d4f908536d",
+              "patchedSha256": "a58f756e60686b5174c1486cca4c85fa28ade41f9c4d1fda77e7ea2bd7c292df",
+              "reason": "Clamp the whole original19x30 cursor within the framebuffer in menu and gameplay. Apply gameplay bounds per completed packet before aiming so fractional half-speed movement and the calibrated model share the same boundary."
+            },
+            {
+              "path": "src/game/game.c",
+              "originalSha256": "b53fa8ff9b6353eb62f9e13071259caa471130d941d570392e47035badcf8182",
+              "patchedSha256": "d3e457a1149ebfbc93b7581fccd49650dceac53846202d39b73672f81a372fb3",
+              "reason": "Clamp the whole original19x30 cursor within the framebuffer in menu and gameplay. Apply gameplay bounds per completed packet before aiming so fractional half-speed movement and the calibrated model share the same boundary."
             }
           ],
-          "reproduction": "Public CLI movement20,-10 then neutral0,0 renders cursor30,15 before correction,10,5 after correction, preserving original half sensitivity."
+          "reproduction": "Public CLI packet replay retains prior30,15→10,5 correction. Public menu/game mouse handlers with20,-20 at1132,833 previously moved beyond the visible sprite edge, now clamp1133,834; odd input still retains0.5 fractions and signed return clampszero."
         }
       ],
-      "controlsRationale": "Held-key repeats navigate bounded starting corridor. Existing repeatKeys WASD preserved. Full maze completion not claimed.",
+      "controlsRationale": "Stable double cursor0,0 retains half-speed fractional motion. Apply complete packets once and clamp the original19x30 cursor to1133,834 before aim calculation. Browser calibration retains fractions; mobile gestures remain relative.",
       "verification": {
         "repo": "HenriqueSFernandes/LCOMaze",
         "buildExit": 0,
@@ -9516,7 +9629,7 @@
       },
       "sourcePatches": [
         {
-          "path": "examples/community/teixdavide--FEUP_LCOM_PettyCats/SOURCE_PATCH.diff",
+          "path": "SOURCE_PATCH.diff",
           "files": [
             {
               "path": "src/main.c",
@@ -9535,12 +9648,18 @@
               "originalSha256": "60f7c4ef56cb00b1be54f63c3ee8f06d1ce15eef72aa5e83b14b33cda299d88b",
               "patchedSha256": "ae07b2301abd08aa249f48c079000283569cb893592eed6dbbf51f7b5d5a1b4a",
               "reason": "Clip coordinates at the exclusive screen width and height. x==width corrupts the following row and y==height writes past the allocated framebuffer, causing extended native gameplay crashes. Issue #12."
+            },
+            {
+              "path": "src/controller/controllerMouse.c",
+              "originalSha256": "4866222ba67ff63d2986fd4a00871f1c69a3d798627b873c7cd28f61d17b4964",
+              "patchedSha256": "41660303f25b7152079fb3a4b7c6dc825b0b60311b95cfaeadaabfa828981835",
+              "reason": "Clamp the whole original16x16 mouse cursor inside the1024x768 framebuffer instead of allowing its origin at the offscreen resolution boundary. Preserve unit movement and buttons."
             }
           ],
-          "reproduction": "source-regressions/teixdavide--FEUP_LCOM_PettyCats/results.json; devenv shell -- python3 tests/community_source_regressions.py"
+          "reproduction": "Public moveMouse input at1007,751 with delta2,-2 must stop at1008,752. Original advances to1009,753 and eventually1024,768, hiding the cursor. Existing graphics clipping correction remains recorded."
         }
       ],
-      "controlsRationale": "Room and cat/player movement controls remain reachable, named Interact/Pet exposed. Existing frozen source issue12 remains; no claim of full petting/victory flow.",
+      "controlsRationale": "Stable unit cursor0,0 with full16x16 sprite bounds1008,752. Calibrate physical browser movement while retaining relative mobile petting and dragging.",
       "verification": {
         "repo": "teixdavide/FEUP_LCOM_PettyCats",
         "buildExit": 0,

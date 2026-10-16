@@ -66,6 +66,7 @@ void game_update_delta() {
 void game_mouse_handler() {
     x_mouse += mouse_packet.delta_x * 0.5;
     y_mouse -= mouse_packet.delta_y * 0.5;
+    game_check_bound();
     update_delta = mouse_packet.lb;
     if (update_delta) {
         game_update_delta();
@@ -73,10 +74,11 @@ void game_mouse_handler() {
 }
 
 void game_check_bound() {
-    if (x_mouse > mode_info.XResolution)
-        x_mouse = mode_info.XResolution;
-    if (y_mouse > mode_info.YResolution)
-        y_mouse = mode_info.YResolution;
+    // Keep the original19x30 cursor completely inside the framebuffer.
+    if (x_mouse > mode_info.XResolution - 19)
+        x_mouse = mode_info.XResolution - 19;
+    if (y_mouse > mode_info.YResolution - 30)
+        y_mouse = mode_info.YResolution - 30;
     if (x_mouse < 0)
         x_mouse = 0;
     if (y_mouse < 0)

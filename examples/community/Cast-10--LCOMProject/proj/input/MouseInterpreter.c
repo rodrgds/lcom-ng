@@ -1,5 +1,8 @@
 #include "MouseInterpreter.h"
 
+/* The original cursor asset is 50x52 and is drawn from its top-left corner. */
+enum { CURSOR_WIDTH = 50, CURSOR_HEIGHT = 52 };
+
 void mouseStateInit(MouseState *state, int x, int y) {
     if (state == NULL) {
         return;
@@ -27,10 +30,12 @@ void mouseInterpretPacket(MouseState *state, struct packet *packet, int screen_w
     state->x += packet->delta_x;
     state->y -= packet->delta_y;
 
+    int max_x = screen_w > CURSOR_WIDTH ? screen_w - CURSOR_WIDTH : 0;
+    int max_y = screen_h > CURSOR_HEIGHT ? screen_h - CURSOR_HEIGHT : 0;
     if (state->x < 0) state->x = 0;
-    if (state->x >= screen_w) state->x = screen_w - 1;
+    if (state->x > max_x) state->x = max_x;
     if (state->y < 0) state->y = 0;
-    if (state->y >= screen_h) state->y = screen_h - 1;
+    if (state->y > max_y) state->y = max_y;
 
     /*
      * Left click -> Player 1 attack

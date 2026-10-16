@@ -89,9 +89,21 @@
           "originalSha256": "96dd80ba2b5d57669fbdab6bc3cae07ce75188f77adc132e49d10e7a5d1eb2d9",
           "patchedSha256": "ebc4f08acfc1dbaa79f80304cfaad58f704c94e371b767152c375537bd061201",
           "reason": "Apply cursor movement and buttons only after all three bytes are decoded; partial IRQ bytes must not replay stale motion or buttons."
+        },
+        {
+          "path": "src/game/menu.c",
+          "originalSha256": "4219a98c5700615aa109c05b0e1c5009e54f01dcb47c8dd1ceaf41d4f908536d",
+          "patchedSha256": "a58f756e60686b5174c1486cca4c85fa28ade41f9c4d1fda77e7ea2bd7c292df",
+          "reason": "Clamp the whole original19x30 cursor within the framebuffer in menu and gameplay. Apply gameplay bounds per completed packet before aiming so fractional half-speed movement and the calibrated model share the same boundary."
+        },
+        {
+          "path": "src/game/game.c",
+          "originalSha256": "b53fa8ff9b6353eb62f9e13071259caa471130d941d570392e47035badcf8182",
+          "patchedSha256": "d3e457a1149ebfbc93b7581fccd49650dceac53846202d39b73672f81a372fb3",
+          "reason": "Clamp the whole original19x30 cursor within the framebuffer in menu and gameplay. Apply gameplay bounds per completed packet before aiming so fractional half-speed movement and the calibrated model share the same boundary."
         }
       ],
-      "reproduction": "Public CLI movement20,-10 then neutral0,0 renders cursor30,15 before correction,10,5 after correction, preserving original half sensitivity."
+      "reproduction": "Public CLI packet replay retains prior30,15\u219210,5 correction. Public menu/game mouse handlers with20,-20 at1132,833 previously moved beyond the visible sprite edge, now clamp1133,834; odd input still retains0.5 fractions and signed return clampszero."
     }
   ],
   "derivedAssets": [],

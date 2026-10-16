@@ -452,14 +452,15 @@ void moveMouse(int *mouse_pos_x, int *mouse_pos_y){
   if(*mouse_pos_x<0){
     *mouse_pos_x=0;
   }
-  if(*mouse_pos_x>1024){
-    *mouse_pos_x=1024;
+  // Keep the original16x16 cursor inside the1024x768 framebuffer.
+  if(*mouse_pos_x>1024-16){
+    *mouse_pos_x=1024-16;
   }
   if(*mouse_pos_y<0){
     *mouse_pos_y=0;
   }
-  if(*mouse_pos_y>768){
-    *mouse_pos_y=768;
+  if(*mouse_pos_y>768-16){
+    *mouse_pos_y=768-16;
   }
 
 }

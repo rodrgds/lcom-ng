@@ -19,3 +19,5 @@ Exact original/patched SHA256 and SOURCE_PATCH.diff are recorded in UPSTREAM.jso
 ## Controls
 
 Original WASD moves player; E begins petting nearest cat, mouse gestures perform petting, ESC opens menu then exits. Relative pointer preserves its gesture controller.
+
+The mouse coordinate clamp now keeps its original16×16 sprite inside the1024×768 framebuffer. Cursor limits1008,752 match the desktop profile. Source sensitivity, art and mobile gesture mapping remain unchanged. The prior graphics clipping correction is retained.

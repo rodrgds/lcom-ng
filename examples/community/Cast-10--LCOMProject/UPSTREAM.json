@@ -137,7 +137,20 @@
     "proj/viewer/sprite/Sprite.c": "8c30cc7b857e5f01a24f62dc9201dec5f1885be4f1abdb1dbf7926b9cb57e6bb",
     "proj/viewer/sprite/Sprite.h": "f119bc17afcf88ebd217162eee23e3fe04940981022ea53b68bec0868972e230"
   },
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "path": "examples/community/Cast-10--LCOMProject/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "proj/input/MouseInterpreter.c",
+          "originalSha256": "b999e2172a262d2cc3696e95b318d35b503e0f05fc86026c115fb8c2bbfdeb14",
+          "patchedSha256": "88224bad795854a4a884153d1d7fa3119df819e3e97e143f09686bc2e7a24a47"
+        }
+      ],
+      "reason": "Keep the original50x52 cursor sprite fully inside the framebuffer; original clamps allowed its entire visible glyph to leave the canvas at right/bottom. Unit deltas, start512384 and mouse attack behavior stay intact.",
+      "verification": "Actual Chromium PS/2 cursor vanished at right/bottom with reporting enabled; compiled source regression RED then GREEN, with expected bounds derived independently from the original XPM header. tests/community_source_regressions.py test_minix_legends_cursor_sprite_remains_inside_framebuffer"
+    }
+  ],
   "license": {
     "status": "missing",
     "files": []
@@ -197,5 +210,17 @@
       "passed": true
     }
   },
-  "derivedAssets": []
+  "derivedAssets": [],
+  "cursorCalibration": {
+    "initial": [
+      512,
+      384
+    ],
+    "maximum": [
+      974,
+      716
+    ],
+    "desktopScale": 1,
+    "mouseReporting": "The original proj/main.c subscribes mouse but never sends0xF4; build.environment.LCOM_COMPAT_MOUSE_REPORTING=1 enables reporting through the existing compatibility override."
+  }
 }

@@ -44,3 +44,34 @@
 -  if (x < 0 || y < 0 || x > vbe_mode_info.XResolution || y > vbe_mode_info.YResolution) {
 +  if (x >= vbe_mode_info.XResolution || y >= vbe_mode_info.YResolution) {
      return 0;
+--- a/src/controller/controllerMouse.c
++++ b/src/controller/controllerMouse.c
+@@ -452,17 +452,18 @@
+   if(*mouse_pos_x<0){
+     *mouse_pos_x=0;
+   }
+-  if(*mouse_pos_x>1024){
+-    *mouse_pos_x=1024;
++  // Keep the original16x16 cursor inside the1024x768 framebuffer.
++  if(*mouse_pos_x>1024-16){
++    *mouse_pos_x=1024-16;
+   }
+   if(*mouse_pos_y<0){
+     *mouse_pos_y=0;
+   }
+-  if(*mouse_pos_y>768){
+-    *mouse_pos_y=768;
+-  }
+-
+-}
+-
+-
+-
++  if(*mouse_pos_y>768-16){
++    *mouse_pos_y=768-16;
++  }
++
++}
++
++
++

@@ -39,6 +39,10 @@ class StudentSourceRegressions(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
     def test_space_shooter_cursor_stays_in_framebuffer(self):
+        import re
+        source = COMMUNITY / 'SamBlack569--feup-lcom-2425/proj/src'
+        asset = (source / 'graphics/xpms/cursor.h').read_text()
+        width,height = map(int,re.search(r'"(\d+) (\d+) \d+ \d+ ',asset).groups())
         self.compile_and_run(COMMUNITY / 'SamBlack569--feup-lcom-2425/proj/src',
                              ['drivers/mouse.c','core/game.c'], r'''#include "drivers/mouse.h"
 #include "core/game.h"
@@ -65,19 +69,20 @@ int main(void) {
   assert(x_init==0 && y_init==0);
   pp.delta_x=96; pp.delta_y=-96;
   for(int i=0;i<20;i++) assert(track_mouse_movement()==0);
-  assert(x_init==1151 && y_init==863);
+  assert(x_init==$MAX_X$ && y_init==$MAX_Y$);
   pp.delta_x=-10; pp.delta_y=10;
   assert(track_mouse_movement()==0);
-  assert(x_init==1141 && y_init==853);
+  assert(x_init==$INNER_X$ && y_init==$INNER_Y$);
   pp.x_ov=true; pp.delta_x=50;
-  assert(track_mouse_movement()!=0 && x_init==1141 && y_init==853);
+  assert(track_mouse_movement()!=0 && x_init==$INNER_X$ && y_init==$INNER_Y$);
   pp.x_ov=false; x_init=400;y_init=300;
   pp.delta_x=5;pp.delta_y=6;game_state=GAME_STATE;
   mouse_handler();assert(x_init==405 && y_init==294);
   game_state=HELP_STATE;mouse_handler();assert(x_init==410 && y_init==288);
   return 0;
 }
-''')
+'''.replace('$MAX_X$',str(1152-width)).replace('$MAX_Y$',str(864-height))
+           .replace('$INNER_X$',str(1142-width)).replace('$INNER_Y$',str(854-height)))
 
 
     def test_pixel_football_cursor_edges_preserve_direction(self):
@@ -243,6 +248,129 @@ int main(void) {
 
     def test_aerial_ambush_enables_mouse_reporting(self):
         self.aerial_ambush_cursor(raw_bytes=False)
+
+
+    def test_minix_legends_cursor_sprite_remains_inside_framebuffer(self):
+        # Cursor dimensions come from the rendered asset, independently of input code.
+        import re
+        project = COMMUNITY / 'Cast-10--LCOMProject/proj'
+        header = (project / 'assets/cursor/cursor_xpms.h').read_text()
+        match = re.search(r'"(\d+) (\d+) \d+ \d+"', header)
+        width,height = map(int, match.groups())
+        self.compile_and_run(project / 'input', ['MouseInterpreter.c'], r'''#include "MouseInterpreter.h"
+#include <assert.h>
+int main(void) {
+  MouseState state;mouseStateInit(&state,512,384);
+  struct packet packet={.delta_x=96,.delta_y=-96};
+  for(int i=0;i<20;i++)mouseInterpretPacket(&state,&packet,1024,768);
+  assert(state.x==$MAX_X$ && state.y==$MAX_Y$);
+  packet.delta_x=-96;packet.delta_y=96;
+  for(int i=0;i<20;i++)mouseInterpretPacket(&state,&packet,1024,768);
+  assert(state.x==0 && state.y==0);
+  packet.delta_x=3;packet.delta_y=-5;packet.lb=true;
+  mouseInterpretPacket(&state,&packet,1024,768);
+  assert(state.x==3 && state.y==5 && state.p1.attack && state.p1.attack_pressed);
+  return 0;
+}
+'''.replace('$MAX_X$',str(1024-width)).replace('$MAX_Y$',str(768-height)))
+
+
+    def test_pettycats_cursor_clamps_its_whole_sprite_inside_the_frame(self):
+        # Original mouse art is16x16, so a1024x768 screen ends at1008,752.
+        self.compile_and_run(COMMUNITY / 'teixdavide--FEUP_LCOM_PettyCats/src',
+                             ['controller/controllerMouse.c'], r'''
+#include <lcom/lcf.h>
+#include "controller/controllerMouse.h"
+#include <assert.h>
+struct packet mouse_packet;
+int main(void) {
+  int x=1007,y=751;
+  mouse_packet=(struct packet){.delta_x=2,.delta_y=-2}; moveMouse(&x,&y);
+  if(x!=1008 || y!=752) {fprintf(stderr,"Whole16px cursor must remain within the framebuffer\n");return 1;}
+  mouse_packet=(struct packet){.delta_x=200,.delta_y=-200}; moveMouse(&x,&y);
+  assert(x==1008 && y==752);
+  mouse_packet=(struct packet){.delta_x=-3,.delta_y=4}; moveMouse(&x,&y);
+  assert(x==1005 && y==748);
+  x=y=1; mouse_packet=(struct packet){.delta_x=-20,.delta_y=20};moveMouse(&x,&y);
+  assert(x==0 && y==0);
+  mouse_packet=(struct packet){.delta_x=10,.delta_y=-20,.lb=true};moveMouse(&x,&y);
+  assert(x==10 && y==20);
+  return 0;
+}
+''')
+
+
+    def snake_orchard_cursor(self, raw_bytes):
+        # Actual menu IRQ processing must keep the whole original cursor visible.
+        cli = Path(os.environ.get('LCOM_CLI', ROOT / 'build/machinelab')).resolve()
+        project = COMMUNITY / 'Joanaigs--Lcom-Snake-Game/proj/src'
+        with tempfile.TemporaryDirectory(prefix='lcom-orchard-cursor-') as temporary:
+            folder = Path(temporary)
+            subprocess.run([str(cli), 'compat', 'build', str(project), '--output', str(folder / 'native')],
+                           check=True, capture_output=True, text=True, timeout=120)
+            for name, moves, expected in [('lower-right', [(200,-200)]*4, (760,560)),
+                                           ('upper-left', [(-200,200)]*4, (0,0))]:
+                with self.subTest(edge=name):
+                    replay = folder / 'cursor.mlabscript'
+                    lines=[]
+                    for i,(x,y) in enumerate(moves):
+                        header=8 | (16 if x<0 else 0) | (32 if y<0 else 0)
+                        for j,byte in enumerate((header,x & 255,y & 255)):
+                            lines.append(f'at {180+i*10+j} ps2 mouse {byte} ok\n')
+                    replay.write_text(''.join(lines) if raw_bytes else ''.join(f'at {180+i*10} mouse {x} {y} 0\n' for i,(x,y) in enumerate(moves)))
+                    frame = folder / 'menu.ppm'
+                    result = subprocess.run([str(cli), 'run', '--headless', '--script', str(replay),
+                                             '--max-ticks', '260', '--timeout', '30', '--dump-presented',
+                                             '--dump-frame', str(frame), '--', str(folder / 'native/proj')],
+                                            cwd=folder, capture_output=True, text=True, timeout=45)
+                    self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+                    self.assertIn('max virtual ticks reached (260)', result.stdout + result.stderr)
+                    magic, dimensions, depth, pixels = frame.read_bytes().split(b'\n', 3)
+                    self.assertEqual((magic, dimensions, depth), (b'P6', b'800 600', b'255'))
+                    # Independent authored points in the original40x40 cursor:
+                    # top black outline, near-black antialias and white interior.
+                    checks = [(7,0,(0,0,0)),(8,2,(2,2,2)),(9,4,(255,255,255)),
+                              (12,10,(255,255,255)),(16,16,(255,255,255))]
+                    for x,y,color in checks:
+                        offset=((expected[1]+y)*800+expected[0]+x)*3
+                        self.assertEqual(tuple(pixels[offset:offset+3]),color,
+                                         f'{name}: original cursor must remain inside the framebuffer')
+
+
+    def test_snake_orchard_cursor_remains_visible_after_large_mouse_motion(self):
+        self.snake_orchard_cursor(raw_bytes=True)
+
+
+    def test_snake_orchard_enables_mouse_reporting(self):
+        self.snake_orchard_cursor(raw_bytes=False)
+
+
+    def test_lcomaze_cursor_keeps_its_whole_sprite_inside_menu_and_game(self):
+        self.compile_and_run(COMMUNITY / 'HenriqueSFernandes--LCOMaze/src',
+                             ['game/menu.c', 'game/game.c'], r'''
+#include <lcom/lcf.h>
+#include "game/menu.h"
+#include "game/game.h"
+#include <assert.h>
+vbe_mode_info_t mode_info;
+struct packet mouse_packet;
+bool host, running;
+int state;
+double atan2(double y, double x) { abort(); }
+int main(void) {
+  mode_info=(vbe_mode_info_t){.XResolution=1152,.YResolution=864};
+  x_mouse=1132; y_mouse=833;
+  mouse_packet=(struct packet){.delta_x=20,.delta_y=-20};menu_mouse_handler();
+  if(x_mouse!=1133 || y_mouse!=834) {fprintf(stderr,"Menu must retain whole19x30 cursor at the edge\n");return 1;}
+  x_mouse=1132;y_mouse=833;game_mouse_handler();
+  if(x_mouse!=1133 || y_mouse!=834) {fprintf(stderr,"Game must retain whole19x30 cursor at the edge\n");return 1;}
+  x_mouse=y_mouse=0;mouse_packet=(struct packet){.delta_x=1,.delta_y=-1};menu_mouse_handler();
+  assert(x_mouse==0.5 && y_mouse==0.5);
+  mouse_packet=(struct packet){.delta_x=-20,.delta_y=20};game_mouse_handler();
+  assert(x_mouse==0 && y_mouse==0);
+  return 0;
+}
+''')
 
 
     def test_memory_match_consumes_complete_mouse_packets_once(self):

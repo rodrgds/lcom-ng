@@ -1,23 +1,28 @@
 --- a/proj/src/drivers/mouse.c
 +++ b/proj/src/drivers/mouse.c
-@@ -9,6 +9,8 @@
+@@ -9,6 +9,11 @@
  struct packet pp;
  int bytes_received = 0;
  
 +extern unsigned hres, vres;
 +
++/* The cursor asset is drawn at its top-left corner. */
++enum { CURSOR_WIDTH = 20, CURSOR_HEIGHT = 20 };
++
  int x_init = 0;
  int y_init = 0;
  
-@@ -19,6 +21,11 @@
+@@ -19,6 +24,13 @@
  
  	x_init += pp.delta_x;
  	y_init -= pp.delta_y;
 +
 +	if (x_init < 0) x_init = 0;
 +	if (y_init < 0) y_init = 0;
-+	if (hres && x_init >= (int)hres) x_init = (int)hres - 1;
-+	if (vres && y_init >= (int)vres) y_init = (int)vres - 1;
++	int max_x = hres > CURSOR_WIDTH ? (int)hres - CURSOR_WIDTH : 0;
++	int max_y = vres > CURSOR_HEIGHT ? (int)vres - CURSOR_HEIGHT : 0;
++	if (x_init > max_x) x_init = max_x;
++	if (y_init > max_y) y_init = max_y;
  
  	return 0;
  }

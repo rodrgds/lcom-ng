@@ -8,9 +8,9 @@
     {
       "file": "proj/src/drivers/mouse.c",
       "patch": "SOURCE_PATCH.diff",
-      "reason": "Clamp the unit-delta cursor to the active framebuffer and maintain its position while gameplay/help hide it, so returning to menus preserves physical pointer alignment.",
+      "reason": "Keep the full original 20 by 20 cursor sprite inside the framebuffer; menu cursor tracking also continues while gameplay/help hide it.",
       "upstreamSha256": "dfb3a52398f35ea706e720f2df7d56bf39debd96b7ff45389edcceba2b1f1087",
-      "patchedSha256": "d6a2aeec6c8ad61532d1fc792b1231cae565221c57244f486b05997c3a6a747b",
+      "patchedSha256": "b1f8ba7472eb9007797ebe0e422df22b1ebfdad0dce5d05f58e70a4e6e8ae780",
       "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_space_shooter_cursor_stays_in_framebuffer"
     },
     {

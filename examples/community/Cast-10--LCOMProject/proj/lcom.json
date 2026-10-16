@@ -57,15 +57,18 @@
       "cursor": {
         "x": 512,
         "y": 384,
-        "maxX": 1023,
-        "maxY": 767,
+        "maxX": 974,
+        "maxY": 716,
         "desktopScale": 1
       }
     }
   },
   "build": {
     "assetRoot": "..",
-    "assets": []
+    "assets": [],
+    "environment": {
+      "LCOM_COMPAT_MOUSE_REPORTING": "1"
+    }
   },
   "description": "Choose your fighters and face a friend in a two-player arena battle.",
   "preview": "../../../../collections/arcade/previews/cast-10-lcomproject-1c6c122eea2f.png"

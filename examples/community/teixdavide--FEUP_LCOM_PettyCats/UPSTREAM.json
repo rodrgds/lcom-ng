@@ -71,7 +71,7 @@
   },
   "sourcePatches": [
     {
-      "path": "examples/community/teixdavide--FEUP_LCOM_PettyCats/SOURCE_PATCH.diff",
+      "path": "SOURCE_PATCH.diff",
       "files": [
         {
           "path": "src/main.c",
@@ -90,9 +90,15 @@
           "originalSha256": "60f7c4ef56cb00b1be54f63c3ee8f06d1ce15eef72aa5e83b14b33cda299d88b",
           "patchedSha256": "ae07b2301abd08aa249f48c079000283569cb893592eed6dbbf51f7b5d5a1b4a",
           "reason": "Clip coordinates at the exclusive screen width and height. x==width corrupts the following row and y==height writes past the allocated framebuffer, causing extended native gameplay crashes. Issue #12."
+        },
+        {
+          "path": "src/controller/controllerMouse.c",
+          "originalSha256": "4866222ba67ff63d2986fd4a00871f1c69a3d798627b873c7cd28f61d17b4964",
+          "patchedSha256": "41660303f25b7152079fb3a4b7c6dc825b0b60311b95cfaeadaabfa828981835",
+          "reason": "Clamp the whole original16x16 mouse cursor inside the1024x768 framebuffer instead of allowing its origin at the offscreen resolution boundary. Preserve unit movement and buttons."
         }
       ],
-      "reproduction": "source-regressions/teixdavide--FEUP_LCOM_PettyCats/results.json; devenv shell -- python3 tests/community_source_regressions.py"
+      "reproduction": "Public moveMouse input at1007,751 with delta2,-2 must stop at1008,752. Original advances to1009,753 and eventually1024,768, hiding the cursor. Existing graphics clipping correction remains recorded."
     }
   ],
   "derivedAssets": [],

@@ -38,6 +38,7 @@ test.beforeAll(async () => {
   exportGame('tests/fixtures/web/minix', 'legacy', cli, '--asset-root', '..', '--asset', 'minix/assets');
   exportGame('examples/flappy', 'flappy', cli, '--name', 'LCOM Bird');
   exportGame('examples/ninjix', 'ninjix', cli, '--name', 'Ninjix');
+  exportGame('examples/community/Cast-10--LCOMProject/proj', 'minix-legends', cli);
   workspace = path.join(directory, 'new student game');
   execFileSync(cli, ['setup', workspace], { stdio: 'pipe' });
   copyFileSync(path.join(root, 'tests/fixtures/web/native/main.c'), path.join(workspace, 'proj/main.c'));
@@ -1151,4 +1152,27 @@ test('fractional guest cursors keep odd touch packets aligned with physical mous
   await page.waitForTimeout(100);expect(position()).toEqual([113,113]);
   await move(100,100);expect(position()).toEqual([100,100]);
   await context.close();
+});
+
+test('Minix Legends enables mouse motion and keeps its whole cursor visible at edges', async ({page}) => {
+  const strings=[...readFileSync(path.join(root,'examples/community/Cast-10--LCOMProject/proj/assets/cursor/cursor_xpms.h'),'utf8').matchAll(/"((?:\\.|[^"\\])*)"/g)].map(match=>JSON.parse('"'+match[1].replaceAll('\t','\\t')+'"'));
+  const [width,height,colors,cpp]=strings[0].split(' ').map(Number);
+  const transparent=new Set(strings.slice(1,1+colors).filter(line=>/\bc None$/.test(line)).map(line=>line.slice(0,cpp)));
+  const mask=[];
+  for(let y=0;y<height;y++)for(let x=0;x<width;x++)if(!transparent.has(strings[1+colors+y].slice(x*cpp,(x+1)*cpp)))mask.push([x,y]);
+  await start(page,'minix-legends');
+  const canvas=page.locator('canvas');
+  const template=await canvas.evaluate((canvas,mask)=>{
+    const d=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;
+    return mask.map(([x,y])=>[x,y,...d.slice(((384+y)*canvas.width+512+x)*4,((384+y)*canvas.width+512+x)*4+3)]);
+  },mask);
+  expect(new Set(template.map(sample=>sample.slice(2).join(','))).size).toBeGreaterThan(10);
+  for(const [x,y] of [[100,25],[0,0],[974,0],[974,716],[0,716],[100,25]]) {
+    const point=await canvas.evaluate((c,{x,y})=>{const r=c.getBoundingClientRect();return {x:r.left+x*r.width/c.width,y:r.top+y*r.height/c.height};},{x,y});
+    await page.mouse.move(point.x,point.y);
+    await expect.poll(()=>canvas.evaluate((c,{x,y,template})=>{
+      const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;
+      return template.filter(([dx,dy,r,g,b])=>{const i=((y+dy)*c.width+x+dx)*4;return d[i]===r&&d[i+1]===g&&d[i+2]===b;}).length;
+    },{x,y,template})).toBe(template.length);
+  }
 });
