@@ -124,3 +124,47 @@ confirmed two separate utility columns and three game columns. Desktop search,
 shortcuts, roulette, sound after interaction, a Not Cuphead first frame and
 return focus passed. Touch portrait, landscape and reduced motion also passed,
 with no page errors. Proof screenshots are under `build/arcade-two-tiles/live/`.
+
+## Search motion, desktop density and clean roulette follow-up
+
+Web sources `7700130c` and `ed4b2594` add:
+
+- Search enters with a 320ms lift and scale, with a fading backdrop and a faster
+  180ms exit. Native dialog transitions reverse on reopening without delaying
+  typing, focus or launch. Reduced motion keeps opening and closing immediate.
+- Desktop tiles use a denser grid, including nine columns at 1440px rather than
+  eight. Regular tiles measure about 147px there. The phone layout is unchanged.
+- Surprise me shows only the reel while choosing. It accelerates, slows over
+  8.8 seconds, then pauses briefly before opening the result. Every crossed card
+  triggers a quiet mechanical Cuelume tick. The marker lands 8–92% into the
+  selected card, preserving that point through resizing and expansion.
+- The result grows into a screenshot with icon, title, description, available
+  year and download size, public Repo link and Play. Middle gallery frames favor
+  gameplay over an early quiet frame. Outside click and Escape dismiss it.
+  Heading, close, skip and spin-again controls have been removed from the reel.
+
+The motion and density regressions first failed against the preceding launcher.
+The new roulette checks first reproduced its extra controls and centered result.
+All 17 focused release browser checks passed. The final roulette and rotation
+checks were rerun after correcting an immediate reduced-motion re-open geometry
+race. Frame samples verify acceleration, slowdown, intermediate reveal sizes,
+noncentral landings and audible attacks for the passing cards. Cancellation
+leaves no later ticks or game launch. Both edges, touch, resize, unavailable audio
+and reduced motion are covered.
+
+The real 66-game catalogue passed responsive checks, plus desktop, phone portrait
+and landscape result reviews. Play stays visible and reachable; images load and
+there is no horizontal overflow. The docs build, owned whitespace checks and
+pinned 7,757-file source inventory passed. Concurrent imports, grouping and
+runtime changes remain separate from this release.
+
+Published Worker version: `3b54e260-56c0-4f82-8042-1cef9afed902`.
+All 15 checked public assets match the release package for `ed4b2594`. Live Chrome
+confirmed search, the denser desktop grid, screenshot results and a Sushi Slash
+first frame launched from the result, followed by return focus. Phone portrait
+and landscape passed with reduced motion and no page errors. The in-app browser
+also opened search with Command+K and completed a real random spin to Euler's
+Way. Proof is under `build/arcade-search-motion/live/`.
+
+This update changes the web launcher. The previously delivered native Android
+APK and the 66 pinned game binaries are unchanged.
