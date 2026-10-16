@@ -93,7 +93,7 @@ class CollectionManifest(unittest.TestCase):
         identifier=entries[0]['id']
         image=base64.b64decode('UklGRh4AAABXRUJQVlA4TBEAAAAvAUAAAAdQwGIUu/+BiOh/AAA=')
         (self.collection/'capture.webp').write_bytes(image)
-        (self.collection/'metadata.json').write_text(json.dumps({'version':1,'games':{identifier:{'year':2024,'yearLabel':'Updated 2024','yearSource':{'kind':'commit','url':'https://example.com/commit/pinned','detail':'Pinned commit from 2024-05-12'},'featured':True}}}))
+        (self.collection/'metadata.json').write_text(json.dumps({'version':1,'games':{identifier:{'year':2024,'yearLabel':'Updated 2024','yearSource':{'kind':'commit','url':'https://example.com/commit/pinned','detail':'Pinned commit from 2024-05-12'},'featured':True,'repository':'https://github.com/example/game'}}}))
         (self.collection/'gallery.json').write_text(json.dumps({'version':1,'games':{identifier:['capture.webp']}}))
         (self.collection/'web.json').write_text(json.dumps({'version':1,'metadata':'metadata.json','gallery':'gallery.json'}))
         output=self.root/'export'
@@ -104,6 +104,7 @@ class CollectionManifest(unittest.TestCase):
         games=web.write_launcher(entries,output,'Class games',presentation=self.collection/'web.json')
         game=games[0]
         self.assertEqual((game['year'],game['yearLabel'],game['yearSource']['kind'],game['featured']),(2024,'Updated 2024','commit',True))
+        self.assertEqual(game['repository'],'https://github.com/example/game')
         self.assertNotIn('year',games[1])
         self.assertEqual(game['downloadBytes'],47)
         self.assertEqual(sum(item['bytes'] for item in game['downloadFiles']),47)
@@ -126,7 +127,7 @@ class CollectionManifest(unittest.TestCase):
         (self.root/'outside.webp').write_bytes(b'not an image')
         (self.collection/'escape.webp').symlink_to(self.root/'outside.webp')
         (self.collection/'fake.webp').write_bytes(b'not an image')
-        cases=[({'version':1,'gallery':'gallery.json'},None,{'version':1,'games':{identifier:['fake.webp']}}),({'version':1,'metadata':'../first/lcom.json'},None,None),
+        cases=[({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'repository':'javascript:alert(1)'}}},None),({'version':1,'gallery':'gallery.json'},None,{'version':1,'games':{identifier:['fake.webp']}}),({'version':1,'metadata':'../first/lcom.json'},None,None),
                ({'version':1,'gallery':'gallery.json'},None,{'version':1,'games':{identifier:['escape.webp']}}),
                ({'version':1,'gallery':'gallery.json'},None,{'version':1,'games':{identifier:['../outside.webp']}}),
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{'unknown':{'year':2025}}},None),

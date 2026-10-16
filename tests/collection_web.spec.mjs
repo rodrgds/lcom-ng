@@ -10,7 +10,8 @@ const games = Array.from({length: 24}, (_, index) => ({
   id: 'game-' + index, name: 'Game ' + String(index).padStart(2, '0'),
   url: `games/${index}/`, icon: `/icon-${index}.svg`,
   screenshots: ['/shot-red.svg', '/shot-blue.svg', '/shot-green.svg'],
-  featured: index < 4, yearLabel: '2020', downloadBytes: 1250000,
+  featured: index < 4, year: 2020, yearLabel: 'Updated 2020', downloadBytes: 1250000,
+  repository: index === 0 ? 'https://github.com/example/game' : undefined,
 }));
 test.beforeAll(async () => {
   server = createServer((request, response) => {
@@ -40,7 +41,7 @@ test.afterAll(async () => new Promise(resolve => server.close(resolve)));
 test('square icon mosaic spaces featured games and shuffles without fetching galleries', async ({page}) => {
   const shots = []; page.on('request', request => {if (request.url().includes('/shot-')) shots.push(request.url());});
   await page.setViewportSize({width:1440,height:1000}); await page.goto(base);
-  await expect(page.locator('#games a')).toHaveCount(24);
+  await expect(page.locator('#games a[data-id]')).toHaveCount(24);
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({width,height:1000});
     await expect.poll(()=>page.locator('.game').evaluateAll(items=>items.every(item=>Math.abs(item.offsetWidth-item.offsetHeight)<2))).toBeTruthy();
@@ -48,7 +49,7 @@ test('square icon mosaic spaces featured games and shuffles without fetching gal
     expect(new Set(featured).size).toBe(4);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
   }
-  const order = () => page.locator('#games a').evaluateAll(links=>links.map(link=>link.getAttribute('href')));
+  const order = () => page.locator('#games a[data-id]').evaluateAll(links=>links.map(link=>link.getAttribute('href')));
   const before = await order(); await page.getByRole('button',{name:'Shuffle games'}).click();
   expect(await order()).not.toEqual(before);
   expect(shots).toEqual([]);
@@ -81,7 +82,7 @@ test('search is modal, preserves context through play, and restores keyboard foc
   const input=page.getByRole('searchbox');await expect(input).toBeFocused();
   await input.fill('no such game');await expect(dialog.getByText('No games match. Try another name.')).toBeVisible();
   await input.fill('07');await expect(dialog.locator('#search-results a')).toHaveCount(1);
-  await expect(page.locator('#games a')).toHaveCount(24);
+  await expect(page.locator('#games a[data-id]')).toHaveCount(24);
   await page.keyboard.press('ArrowDown');await expect(dialog.locator('#search-results a')).toBeFocused();
   await page.keyboard.press('Enter');await expect(page.locator('#loading')).toBeHidden();
   await expect(page.locator('iframe')).toHaveCount(1);
@@ -92,21 +93,38 @@ test('search is modal, preserves context through play, and restores keyboard foc
 
 test('keyboard previews survive scrolling a focused game into view', async ({page}) => {
   await page.setViewportSize({width:1000,height:650}); await page.goto(base);
-  const last=page.locator('#games a').last();
+  const last=page.locator('#games a[data-id]').last();
   await last.focus();
   await expect(last).toBeFocused();
   await expect.poll(()=>last.evaluate(link=>link.parentElement.classList.contains('preview-ready'))).toBeTruthy();
   await page.waitForTimeout(400);
-  await expect(last.locator('.game-name')).toBeVisible();
+  await expect(page.locator('.game').last().locator('.game-name')).toBeVisible();
   expect(await last.evaluate(link=>link.parentElement.classList.contains('previewing'))).toBeTruthy();
+});
+
+test('hover facts show a plain year and the repository opens without launching the game', async ({page}) => {
+  await page.context().route('https://github.com/example/game', route=>route.fulfill({contentType:'text/html',body:'<title>Repository fixture</title>'}));
+  await page.goto(base);
+  const card=page.locator('.game').filter({has:page.locator('a[data-id="game-0"]')});
+  await card.locator('a[data-id]').focus();
+  const repo=card.getByRole('link',{name:'Repository for Game 00'});
+  await expect(repo).toBeVisible();
+  await expect(card.locator('.game-facts')).toHaveText('2020 · 1.3 MB');
+  await page.keyboard.press('Tab'); await expect(repo).toBeFocused();
+  const popupPromise=page.waitForEvent('popup'); await repo.click();
+  const popup=await popupPromise; await popup.waitForLoadState();
+  expect(popup.url()).toBe('https://github.com/example/game');
+  expect(page.url()).toBe(base+'/');
+  await expect(page.locator('iframe')).toHaveCount(0);
+  await popup.close();
 });
 
 test('reduced motion keeps previews still and touch launches in one tap', async ({browser}) => {
   const context=await browser.newContext({reducedMotion:'reduce',viewport:{width:1000,height:800}});
   const page=await context.newPage();const shots=[];page.on('request',request=>{if(request.url().includes('/shot-'))shots.push(request.url());});
-  await page.goto(base);await page.locator('#games a').first().hover();
+  await page.goto(base);await page.locator('#games a[data-id]').first().hover();
   await expect.poll(()=>shots.length).toBe(1);await page.waitForTimeout(3600);expect(shots).toHaveLength(1);await context.close();
   const phone=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
-  const mobile=await phone.newPage();await mobile.goto(base);await mobile.locator('#games a').first().tap();
+  const mobile=await phone.newPage();await mobile.goto(base);await mobile.locator('#games a[data-id]').first().tap();
   await expect(mobile.locator('iframe')).toHaveCount(1);await expect(mobile.locator('#loading')).toBeHidden();await phone.close();
 });

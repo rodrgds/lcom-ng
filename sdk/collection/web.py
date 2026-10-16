@@ -203,7 +203,11 @@ def _presentation(path, identifiers):
                         raise ValueError(f'Gallery image must be WebP: {image}')
                 galleries[identifier] = images
                 continue
-            config.object_value(value, identifier, ['year', 'yearLabel', 'yearSource', 'featured'])
+            config.object_value(value, identifier, ['year', 'yearLabel', 'yearSource', 'featured', 'repository'])
+            if 'repository' in value:
+                config.string(value['repository'], 'repository')
+                if not re.match(r'^https?://[^\s]+$', value['repository']):
+                    raise ValueError('repository must be an HTTP URL')
             if 'year' in value and (type(value['year']) is not int or not 1900 <= value['year'] <= 2100):
                 raise ValueError('Game year must be an integer from 1900 to 2100')
             if 'yearLabel' in value:

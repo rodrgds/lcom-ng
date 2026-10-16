@@ -70,10 +70,12 @@ An optional `web.json` beside the collection manifest adds web-only presentation
 ```
 
 Both files use `{"version": 1, "games": {...}}`, keyed by exported game IDs from
-`collection.json`. Metadata entries accept `featured`, `year`, `yearSource` and
+`collection.json`. Metadata entries accept `featured`, `repository`, `year`, `yearSource` and
 `yearLabel`. A year source has a `kind` (`course`, `commit` or `unknown`), a
-`detail`, and an optional `url`. Label commit dates **Updated YYYY** rather than
-presenting them as creation dates. Unknown years can be omitted.
+`detail`, and an optional `url`. Keep commit-date provenance in `yearSource` and
+use **Updated YYYY** in the stored label; the launcher displays just the year.
+Unknown years can be omitted. A public `repository` HTTP URL adds a **Repo** link
+to the expanded tile, opening separately from the game.
 
 Gallery entries are arrays of up to 12 relative WebP paths inside the collection
 folder. The exporter copies them under content hashes and loads them only when
@@ -92,6 +94,8 @@ fullscreen when the browser supports it; the player also fills the viewport
 without that API. A **Games** button returns to the library. It occupies unused
 letterboxing when space permits and avoids the game's input controls. Browser history
 works too. Escape remains game input.
+When a game exits normally, its shared player automatically returns to the web
+library. Standalone exports retain their restart behavior.
 
 Android runs each game in a separate native process. **Games**, Android Back,
 normal game exit and a game crash return to the existing launcher. Launching again

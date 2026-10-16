@@ -8,7 +8,8 @@ export function downloadSize(bytes) {
 }
 
 export function facts(game) {
-  return [game.yearLabel, downloadSize(game.downloadBytes)].filter(Boolean).join(' · ');
+  const year = String(game.yearLabel || game.year || '').replace(/^Updated\s+/, '');
+  return [year, downloadSize(game.downloadBytes)].filter(Boolean).join(' · ');
 }
 
 export class Previews {
@@ -27,6 +28,7 @@ export class Previews {
     element.className = 'game' + (game.featured ? ' featured' : '');
     element.setAttribute('role', 'listitem');
     const link = document.createElement('a');
+    link.className = 'game-launch';
     link.href = '#game=' + encodeURIComponent(game.id);
     link.dataset.id = game.id;
     link.setAttribute('aria-label', 'Play ' + game.name);
@@ -45,11 +47,22 @@ export class Previews {
     window_.className = 'preview-window';
     window_.setAttribute('aria-hidden', 'true');
     const track = document.createElement('span'); track.className = 'preview-track';
+    const overlay = document.createElement('span'); overlay.className = 'preview-overlay';
     const copy = document.createElement('span'); copy.className = 'preview-copy';
     const name = document.createElement('span'); name.className = 'game-name'; name.textContent = game.name;
+    name.setAttribute('aria-hidden', 'true');
     const stats = document.createElement('span'); stats.className = 'game-facts'; stats.textContent = facts(game);
+    stats.setAttribute('aria-hidden', 'true');
     stats.title = [game.yearSource?.detail, game.downloadBytes ? 'Approximate first-load download, including the game and player. Previews excluded; caching may reduce it.' : ''].filter(Boolean).join(' ');
-    copy.append(name, stats);
+    const meta = document.createElement('span'); meta.className = 'game-meta'; meta.append(stats);
+    if (game.repository) {
+      const repo = document.createElement('a'); repo.className = 'game-repo';
+      repo.href = game.repository; repo.target = '_blank'; repo.rel = 'noopener noreferrer';
+      repo.setAttribute('aria-label', 'Repository for ' + game.name);
+      repo.innerHTML = 'Repo<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7 9M7 3H3v10h10V9"/></svg>';
+      meta.append(repo);
+    }
+    copy.append(name, meta); overlay.append(copy);
     const play = document.createElement('span'); play.className = 'preview-play';
     play.innerHTML = '<svg viewBox="0 0 24 24"><path d="m8 4 12 8-12 8z"/></svg>';
     const steps = document.createElement('span'); steps.className = 'preview-steps';
@@ -59,19 +72,19 @@ export class Previews {
       const bar = document.createElement('i'); steps.append(bar); return bar;
     });
     steps.hidden = sources.length < 2;
-    window_.append(track, steps, play, copy);
-    link.append(icon, window_, description); element.append(link);
+    window_.append(track, steps, play);
+    link.append(icon, window_, description); element.append(link, overlay);
     const tile = {game, element, link, track, slides, sources, bars, index: 0, token: 0};
-    link.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch' && finePointer.matches) this.start(tile); });
-    link.addEventListener('pointerleave', () => { if (this.active === tile && document.activeElement !== link) this.stop(); });
+    element.addEventListener('pointerenter', event => { if (event.pointerType !== 'touch' && finePointer.matches) this.start(tile); });
+    element.addEventListener('pointerleave', () => { if (this.active === tile && !element.contains(document.activeElement)) this.stop(); });
     link.addEventListener('focus', () => {
       // Native keyboard focus scrolls first, so measure the final viewport position.
       requestAnimationFrame(() => {
         if (document.activeElement === link && (finePointer.matches || link.matches(':focus-visible'))) this.start(tile);
       });
     });
-    link.addEventListener('blur', () => { if (this.active === tile) this.stop(); });
-    link.addEventListener('keydown', event => { if (event.key === 'Escape') this.stop(); });
+    element.addEventListener('focusout', event => { if (this.active === tile && !element.contains(event.relatedTarget)) this.stop(); });
+    element.addEventListener('keydown', event => { if (event.key === 'Escape') this.stop(); });
     link.addEventListener('click', () => { this.stop(); launch(link); });
     return tile;
   }
@@ -98,10 +111,10 @@ export class Previews {
     const height = Math.min(innerHeight - edge * 2, rect.height * 1.12);
     const left = Math.max(edge, Math.min(innerWidth - edge - width, rect.x + rect.width / 2 - width / 2));
     const top = Math.max(edge, Math.min(innerHeight - edge - height, rect.y + rect.height / 2 - height / 2));
-    tile.link.style.setProperty('--preview-width', `${width}px`);
-    tile.link.style.setProperty('--preview-height', `${height}px`);
-    tile.link.style.setProperty('--preview-left', `${left - rect.x}px`);
-    tile.link.style.setProperty('--preview-top', `${top - rect.y}px`);
+    tile.element.style.setProperty('--preview-width', `${width}px`);
+    tile.element.style.setProperty('--preview-height', `${height}px`);
+    tile.element.style.setProperty('--preview-left', `${left - rect.x}px`);
+    tile.element.style.setProperty('--preview-top', `${top - rect.y}px`);
     tile.element.classList.add('previewing');
     tile.index = 0;
     tile.track.replaceChildren();

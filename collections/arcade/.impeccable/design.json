@@ -383,6 +383,13 @@
       },
       "reducedMotion": "Disable transitions, animations and automatic screenshot cycling; keep static previews and metadata.",
       "searchDialog": "Native showModal focus containment, Escape, input/result arrow navigation, opener restoration and query retention."
+    },
+    "repositoryLinks": {
+      "placement": "After year and download size in expanded previews",
+      "label": "Repo",
+      "target": "_blank",
+      "interaction": "Sibling link, independent of game launch",
+      "yearDisplay": "Year or academic range only, without Updated; full source kind remains in catalog provenance"
     }
   },
   "components": [
@@ -423,7 +430,7 @@
       "kind": "input",
       "refersTo": "search-field",
       "description": "The modal search field uses an inset surface and a focus-within outline.",
-      "html": "<label class=\"ds-search\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m15.5 15.5 5 5\"/></svg><input type=\"search\" aria-label=\"Find a game\" placeholder=\"Search games\u2026\"></label>",
+      "html": "<label class=\"ds-search\"><svg viewBox=\"0 0 24 24\" aria-hidden=\"true\"><circle cx=\"10.5\" cy=\"10.5\" r=\"6.5\"/><path d=\"m15.5 15.5 5 5\"/></svg><input type=\"search\" aria-label=\"Find a game\" placeholder=\"Search games…\"></label>",
       "css": ".ds-search{font-family:Bricolage,system-ui,sans-serif;display:flex;align-items:center;gap:12px;background:#111022;border-radius:12px;padding:0 14px;color:#bcb9d5;width:min(100%,420px)}.ds-search svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8}.ds-search input{font-family:Bricolage,system-ui,sans-serif;width:100%;min-width:0;height:54px;background:none;color:#fff8ed;border:0;font-size:17px;caret-color:var(--accent,#c5ff62)}.ds-search input::placeholder{color:#bcb9d5}.ds-search input:focus-visible{outline:0}.ds-search:focus-within{outline:2px solid var(--accent,#c5ff62);outline-offset:2px}"
     },
     {
