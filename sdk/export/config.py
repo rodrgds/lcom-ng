@@ -8,7 +8,7 @@ DEFAULT_MOBILE = {
     'orientation': 'auto', 'fullscreen': False,
     'controls': {'keyboard': True, 'mouseButtons': True, 'quickKeys': ['ESC', 'SPACE', 'ENTER'],
                  'joystick': True, 'look': False, 'dpad': False, 'layout': 'panel', 'pointer': 'drag',
-                 'touch': 'auto', 'pads': [], 'actions': [], 'repeatKeys': [],
+                 'touch': 'auto', 'touchClick': True, 'pads': [], 'actions': [], 'repeatKeys': [],
                  'toolbar': 'auto', 'keyboardPosition': 'auto', 'tapDuration': 0,
                  'cursor': {'x': -1, 'y': -1, 'maxX': -1, 'maxY': -1,
                             'minX': 0, 'minY': 0, 'bounds': 'clamp'}},
@@ -88,7 +88,7 @@ def load(project, explicit=None):
     controls = object_value(mobile.get('controls',{}),'mobile.controls',DEFAULT_MOBILE['controls'])
     for key,value in controls.items():
         target = 'mobile.controls.'+key
-        if key in ('keyboard','mouseButtons'): boolean(value,target)
+        if key in ('keyboard','mouseButtons','touchClick'): boolean(value,target)
         elif key in ('joystick','look','dpad'):
             if type(value) is bool:
                 if value and key != 'joystick': value = {'side':'right' if key=='look' else 'left'}
@@ -274,7 +274,7 @@ def write_native(config, path):
            '  lcom::embedded::ControlConfig c;']
     values={'name':config['name'],'orientation':m['orientation'],'layout':c['layout'],'pointer':c['pointer'],'touch':c['touch'],'font':t['font'],
             'toolbar':c['toolbar'],'keyboardPosition':c['keyboardPosition'],'tapDuration':c['tapDuration'],
-            'fullscreen':m['fullscreen'],'keyboard':c['keyboard'],'mouseButtons':c['mouseButtons'],
+            'touchClick':c['touchClick'],'fullscreen':m['fullscreen'],'keyboard':c['keyboard'],'mouseButtons':c['mouseButtons'],
             'joystickMenu':c['joystick'] is True}
     for key,value in values.items(): lines.append(f'  c.{key} = ' + (cpp_string(value) if isinstance(value,str) else json.dumps(value)) + ';')
     lines.append('  c.quickKeys = {' + ','.join(json.dumps(v) for v in c['quickKeys']) + '};')

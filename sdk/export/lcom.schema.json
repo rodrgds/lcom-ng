@@ -479,11 +479,16 @@
                 "right"
               ]
             },
+            "touchClick": {
+              "type": "boolean",
+              "default": true,
+              "description": "Initial touch-click toggle state. False starts with movement only; explicit mouse buttons remain active."
+            },
             "tapDuration": {
               "type": "integer",
               "minimum": 0,
               "maximum": 250,
-              "description": "Synthetic stationary tap press duration in milliseconds, for games sampling held buttons in a timer. Zero preserves packet-only taps."
+              "description": "Minimum stationary screen-tap and explicit mouse-action hold in milliseconds, for games sampling buttons in a timer. Zero preserves packet-only taps."
             }
           }
         },

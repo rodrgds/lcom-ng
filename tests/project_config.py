@@ -124,7 +124,7 @@ class ProjectConfig(unittest.TestCase):
 
     def test_multiplayer_touch_profile_reaches_native_host(self):
         self.write({'mobile':{'controls':{'touch':'hold-drag','pointer':'direct','repeatKeys':['W','KP8'],
-          'toolbar':'top-right','keyboardPosition':'left','tapDuration':60,
+          'toolbar':'top-right','keyboardPosition':'left','tapDuration':60,'touchClick':False,
           'cursor':{'x':1,'y':1,'minX':1,'minY':1,'maxX':799,'maxY':599,'bounds':'reject'},
           'pads':[{'side':'left','mode':'wasd','style':'stick','axes':'horizontal'},
                   {'side':'right','mode':'keypad','keys':{'left':'KP4','up':'KP8','right':'KP6','down':'KP2'}}],
@@ -135,10 +135,10 @@ class ProjectConfig(unittest.TestCase):
         self.assertFalse(settings['mobile']['controls']['joystick'])
         output=self.root/'multiplayer.cpp';config.write_native(settings,output)
         with output.open('a') as f:
-            f.write('int main() { auto &c=game::controls; return c.touch!="hold-drag" || c.toolbar!="top-right" || c.keyboardPosition!="left" || c.tapDuration!=60 || c.repeatKeys.size()!=2 || c.repeatKeys[1]!="KP8" || !c.cursor.rejectBounds || c.cursor.minX!=1 || c.pads.size()!=2 || c.pads[0].mode!="wasd" || c.pads[0].axes!="horizontal" || !c.pads[1].directional || c.pads[1].keys[1]!="KP8" || c.actions.size()!=3 || c.actions[0].position!="top-left" || c.actions[1].key!="KP0" || c.actions[2].mouseButton!=2; }')
+            f.write('int main() { auto &c=game::controls; return c.touchClick || c.touch!="hold-drag" || c.toolbar!="top-right" || c.keyboardPosition!="left" || c.tapDuration!=60 || c.repeatKeys.size()!=2 || c.repeatKeys[1]!="KP8" || !c.cursor.rejectBounds || c.cursor.minX!=1 || c.pads.size()!=2 || c.pads[0].mode!="wasd" || c.pads[0].axes!="horizontal" || !c.pads[1].directional || c.pads[1].keys[1]!="KP8" || c.actions.size()!=3 || c.actions[0].position!="top-left" || c.actions[1].key!="KP0" || c.actions[2].mouseButton!=2; }')
         subprocess.run(['c++','-std=c++17','-I',str(ROOT/'sdk/compat/include'),'-I',str(ROOT/'runtime'),str(output),'-o',str(self.root/'multiplayer')],check=True)
         subprocess.run([self.root/'multiplayer'],check=True)
-        invalid=[{'touch':'sometimes'}, {'tapDuration':True}, {'tapDuration':-1}, {'tapDuration':251}, {'toolbar':'middle'}, {'keyboardPosition':'center'}, {'pads':[{'axes':'diagonal'}]},
+        invalid=[{'touchClick':0}, {'touch':'sometimes'}, {'tapDuration':True}, {'tapDuration':-1}, {'tapDuration':251}, {'toolbar':'middle'}, {'keyboardPosition':'center'}, {'pads':[{'axes':'diagonal'}]},
                  {'actions':[{'position':'nowhere','label':'Fire','key':'SPACE'}]},
                  {'repeatKeys':['W','W']}, {'repeatKeys':['BOGUS']}, {'pads':[{'side':'left'},{'side':'left'}]},
                  {'pads':[{'mode':'mouse'}]}, {'pads':[{'keys':{'up':'W'}}]},

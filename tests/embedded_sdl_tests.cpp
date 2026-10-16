@@ -86,16 +86,21 @@ static void positionedControls() {
   // Action-only pointer profiles retain a discoverable Move-only switch.
   controls={};controls.orientation="landscape";controls.layout="overlay";
   controls.keyboard=controls.mouseButtons=controls.joystickMenu=false;controls.quickKeys.clear();
-  controls.pointer="direct";controls.touch="tap";controls.actions={{"","Esc","ESC",0,"bottom-right"}};
+  controls.pointer="direct";controls.touch="tap";controls.touchClick=false;controls.actions={{"","Esc","ESC",0,"bottom-right"}};
   configureControls(controls);CHECK(lcom_init()==LCOM_OK);
   lcom_irq_t mouse;CHECK(lcom_irq_subscribe(MOUSE_IRQ,0,&mouse)==LCOM_OK);
   CHECK(lcom_port_write8(KBC_CMD_REG,KBC_CMD_WRITE_MOUSE)==LCOM_OK);
   CHECK(lcom_port_write8(KBC_IN_BUF,0xf4)==LCOM_OK);CHECK(readKey()==0xfa);
+  touch(SDL_EVENT_FINGER_DOWN,429,.5f,.5f);touch(SDL_EVENT_FINGER_UP,429,.5f,.5f);
+  while(keyReady()) {CHECK((readKey()&1)==0);readKey();readKey();}
   touch(SDL_EVENT_FINGER_DOWN,430,715.f/760,30.f/400);
   touch(SDL_EVENT_FINGER_UP,430,715.f/760,30.f/400);
   touch(SDL_EVENT_FINGER_DOWN,431,.5f,.5f);touch(SDL_EVENT_FINGER_UP,431,.5f,.5f);
-  while(keyReady()) {CHECK((readKey()&1)==0);readKey();readKey();}
+  bool clicked=false;
+  while(keyReady()) {clicked|=(readKey()&1)!=0;readKey();readKey();}
+  CHECK(clicked);
   lcom_exit();
+  controls.touchClick=true;
   // A configured hover-only profile must not advertise a click mode switch.
   controls.touch="move";configureControls(controls);CHECK(lcom_init()==LCOM_OK);
   windows=SDL_GetWindows(&count);frame=readPresentedFrame(SDL_GetRenderer(windows[0]));SDL_free(windows);CHECK(frame);
@@ -206,7 +211,88 @@ static void steeringWheelControls() {
   CHECK(expectedKey(0x9e));CHECK(!keyReady());SDL_free(windows);
   lcom_exit();configureControls({});
 }
+static void mouseActionTapDuration() {
+  using namespace lcom::embedded;
+  ControlConfig c;c.orientation="landscape";c.layout="overlay";c.pointer="off";
+  c.keyboard=c.mouseButtons=c.joystickMenu=false;c.quickKeys.clear();c.tapDuration=200;
+  c.actions={{"","Flip","",1,"bottom-right"},{"","Flag","",2,"bottom-right"},{"","Middle","",4,"bottom-right"}};
+  uint8_t buttons=0;std::vector<uint8_t> transitions;
+  auto init=[&] {
+    configureControls(c);CHECK(lcom_init()==LCOM_OK);
+    lcom_irq_t mouse;CHECK(lcom_irq_subscribe(MOUSE_IRQ,0,&mouse)==LCOM_OK);
+    CHECK(lcom_port_write8(KBC_CMD_REG,KBC_CMD_WRITE_MOUSE)==LCOM_OK);
+    CHECK(lcom_port_write8(KBC_IN_BUF,0xf4)==LCOM_OK);CHECK(readKey()==0xfa);buttons=0;
+  };
+  auto drain=[&] {
+    while(keyReady()) {
+      uint8_t status=0;CHECK(lcom_port_read8(KBC_ST_REG,&status)==LCOM_OK);CHECK(status&KBC_ST_AUX);
+      uint8_t flags=readKey();CHECK((flags&0xc8)==8);CHECK(readKey()==0);CHECK(readKey()==0);buttons=flags&7;transitions.push_back(buttons);
+    }
+  };
+  auto contact=[&](SDL_EventType type,SDL_FingerID id,float x,float y) {
+    touch(type,id,x/760,y/400);drain();
+  };
+  auto physical=[&](Uint32 type) {
+    SDL_Event e{};e.type=type;e.button.button=SDL_BUTTON_LEFT;e.button.down=type==SDL_EVENT_MOUSE_BUTTON_DOWN;
+    e.button.x=380;e.button.y=200;CHECK(SDL_PushEvent(&e));host().pump();drain();
+  };
+  init();
+  for(int index=0;index<3;++index) {
+    float x=index==1?714:634,y=index==2?366:310;uint8_t bit=1<<index;
+    Uint64 beforeDown=SDL_GetTicks();contact(SDL_EVENT_FINGER_DOWN,600,x,y);CHECK(buttons==bit);
+    // A released tap remains down until its ORIGINAL press deadline, not
+    // a fresh interval counted from release.
+    SDL_Delay(c.tapDuration/2);
+    contact(SDL_EVENT_FINGER_UP,600,x,y);
+    if(SDL_GetTicks()-beforeDown<c.tapDuration)CHECK(buttons==bit);
+    SDL_Delay(c.tapDuration/2+10);host().pump();drain();CHECK(buttons==0);
+    // A long press must not start a second minimum-duration interval on up.
+    contact(SDL_EVENT_FINGER_DOWN,601,x,y);CHECK(buttons==bit);
+    SDL_Delay(c.tapDuration+10);contact(SDL_EVENT_FINGER_UP,601,x,y);CHECK(buttons==0);
+  }
+  // Releasing/canceling one owner cannot drop another owner's held button.
+  contact(SDL_EVENT_FINGER_DOWN,602,634,310);CHECK(buttons==1);
+  contact(SDL_EVENT_FINGER_DOWN,603,634,310);
+  contact(SDL_EVENT_FINGER_CANCELED,602,634,310);CHECK(buttons==1);
+  contact(SDL_EVENT_FINGER_UP,603,634,310);
+  SDL_Delay(c.tapDuration+10);host().pump();drain();CHECK(buttons==0);
+  physical(SDL_EVENT_MOUSE_BUTTON_DOWN);CHECK(buttons==1);
+  contact(SDL_EVENT_FINGER_DOWN,604,634,310);contact(SDL_EVENT_FINGER_UP,604,634,310);
+  SDL_Delay(c.tapDuration+10);host().pump();drain();CHECK(buttons==1);
+  physical(SDL_EVENT_MOUSE_BUTTON_UP);CHECK(buttons==0);
+  // Canceling a pulse whose contact already ended clears only that owner.
+  physical(SDL_EVENT_MOUSE_BUTTON_DOWN);
+  Uint64 cancelDown=SDL_GetTicks();
+  contact(SDL_EVENT_FINGER_DOWN,605,714,310);contact(SDL_EVENT_FINGER_UP,605,714,310);
+  if(SDL_GetTicks()-cancelDown<c.tapDuration)CHECK(buttons==3);
+  contact(SDL_EVENT_FINGER_CANCELED,605,714,310);CHECK(buttons==1);
+  physical(SDL_EVENT_MOUSE_BUTTON_UP);CHECK(buttons==0);
+  contact(SDL_EVENT_FINGER_DOWN,606,634,310);contact(SDL_EVENT_FINGER_CANCELED,606,634,310);CHECK(buttons==0);
+  // Reusing a touch ID starts a distinct press, even inside a previous
+  // minimum interval. Its superseded timer must not release the new hold.
+  for(int index=0;index<2;++index) {
+    contact(SDL_EVENT_FINGER_DOWN,612,634,310);contact(SDL_EVENT_FINGER_UP,612,634,310);
+    bool pending=buttons==1;transitions.clear();
+    float x=index==0?634:714;uint8_t bit=index==0?1:2;
+    contact(SDL_EVENT_FINGER_DOWN,612,x,310);
+    CHECK(transitions==(pending?std::vector<uint8_t>{0,bit}:std::vector<uint8_t>{bit}));
+    SDL_Delay(c.tapDuration+10);host().pump();drain();CHECK(buttons==bit);
+    contact(SDL_EVENT_FINGER_CANCELED,612,x,310);CHECK(buttons==0);
+  }
+  // App lifecycle and control disclosure cancel pending pulses immediately.
+  contact(SDL_EVENT_FINGER_DOWN,607,634,310);contact(SDL_EVENT_FINGER_UP,607,634,310);
+  SDL_Event focus{};focus.type=SDL_EVENT_WINDOW_FOCUS_LOST;CHECK(SDL_PushEvent(&focus));host().pump();CHECK(host().paused());
+  focus.type=SDL_EVENT_WINDOW_FOCUS_GAINED;CHECK(SDL_PushEvent(&focus));host().pump();drain();CHECK(buttons==0);
+  contact(SDL_EVENT_FINGER_DOWN,608,634,310);contact(SDL_EVENT_FINGER_UP,608,634,310);
+  contact(SDL_EVENT_FINGER_DOWN,609,30,30);CHECK(buttons==0);contact(SDL_EVENT_FINGER_UP,609,30,30);
+  lcom_exit();init();host().pump();drain();CHECK(buttons==0);
+  contact(SDL_EVENT_FINGER_DOWN,610,634,310);contact(SDL_EVENT_FINGER_UP,610,634,310);lcom_exit();
+  init();SDL_Delay(c.tapDuration+10);host().pump();drain();CHECK(buttons==0);lcom_exit();
+  c.tapDuration=0;init();contact(SDL_EVENT_FINGER_DOWN,611,634,310);CHECK(buttons==1);
+  contact(SDL_EVENT_FINGER_UP,611,634,310);CHECK(buttons==0);lcom_exit();configureControls({});
+}
 int main() {
+  mouseActionTapDuration();
   steeringWheelControls();
   positionedControls();
   CHECK(lcom_init()==LCOM_OK);

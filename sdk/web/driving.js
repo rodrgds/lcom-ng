@@ -52,7 +52,7 @@ export function createSteeringWheel({left, right, maxAngle = 135, deadZone = 8},
   });
   for (const name of ['pointerup', 'pointercancel', 'lostpointercapture'])
     element.addEventListener(name, event => { if (event.pointerId === pointer) reset(); });
-  function keyboardAngle() { setAngle(keyboard.size === 1 ? (keyboard.has('ArrowLeft') ? -1 : 1)*maxAngle/3 : 0); }
+  function keyboardAngle() { setAngle(keyboard.size === 1 ? (keyboard.has('ArrowLeft') ? -1 : 1)*maxAngle : 0); }
   for (const name of ['keydown', 'keyup']) element.addEventListener(name, event => {
     if (!['ArrowLeft', 'ArrowRight', 'Home'].includes(event.code)) return;
     event.preventDefault(); event.stopPropagation();

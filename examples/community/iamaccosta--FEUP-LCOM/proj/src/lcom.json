@@ -39,7 +39,8 @@
           "mouseButton": "left"
         }
       ],
-      "tapDuration": 60
+      "tapDuration": 60,
+      "touchClick": false
     }
   },
   "build": {

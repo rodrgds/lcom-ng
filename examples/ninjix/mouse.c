@@ -51,7 +51,11 @@ bool mouse_had_error(void) {
 
 int mouse_send_cmd(uint8_t cmd) {
   if (lcom_port_write8(KBC_CMD_REG, KBC_CMD_WRITE_MOUSE) != LCOM_OK) return 1;
-  return lcom_port_write8(KBC_IN_BUF, cmd) == LCOM_OK ? 0 : 1;
+  if (lcom_port_write8(KBC_IN_BUF, cmd) != LCOM_OK) return 1;
+  /* Consume the command reply before the interrupt handler decodes movement.
+     ACK also has the packet sync bit set, so leaving it queued shifts a packet. */
+  uint8_t reply = 0;
+  return lcom_port_read8(KBC_OUT_BUF, &reply) == LCOM_OK && reply == MOUSE_ACK ? 0 : 1;
 }
 
 int mouse_enable_data_report(void) {

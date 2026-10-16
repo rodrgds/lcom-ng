@@ -39,11 +39,12 @@
           "mouseButton": "left"
         },
         {
-          "label": "Cancel",
+          "label": "Build / cancel",
           "position": "bottom-right",
           "mouseButton": "right"
         }
-      ]
+      ],
+      "touchClick": false
     }
   },
   "build": {

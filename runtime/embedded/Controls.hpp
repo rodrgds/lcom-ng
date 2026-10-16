@@ -35,6 +35,7 @@ struct ControlConfig {
   uint32_t accent = 0x72d6b0, keyboardAccent = 0x72d6b0, button = 0x222222, text = 0xeeeeee;
   std::string toolbar = "auto", keyboardPosition = "auto";
   int tapDuration = 0;
+  bool touchClick = true;
 };
 // Set before lcom_init. Desktop's normal runtime does not use this mobile host.
 void configureControls(const ControlConfig &config);

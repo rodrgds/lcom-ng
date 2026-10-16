@@ -21,6 +21,7 @@ namespace {
 ControlConfig settings;
 struct Pad { SDL_FRect rect; PadConfig config; float x = 0, y = 0, dx = 0, dy = 0; float angle = 0, contactAngle = 0; };
 struct Button { SDL_FRect rect; std::string label, key; int action = 0; uint8_t mouseButton = 0; std::string icon; };
+uint8_t buttonMouse(const Button &b) { return b.mouseButton | (b.action==3?1:b.action==4?2:0); }
 struct Finger {
   float x, y; int button = -1; bool game = false; float dx = 0, dy = 0; int pad = -1;
   float originX = 0, originY = 0; bool moved = false, blocked = false;
@@ -114,6 +115,9 @@ class SdlHost final : public Host {
   std::vector<Pad> pads_;
   uint64_t last_pad_time_ = 0;
   Uint64 tap_until_ = 0;
+  // Released mouse actions retain their own minimum press, independently
+  // of other contacts and physical button ownership.
+  std::map<std::pair<SDL_FingerID,uint8_t>,Uint64> mouse_action_until_;
   bool joystick_open_ = false;
   SDL_FRect game_rect_{};
   std::vector<float> toggle_layout_;
@@ -145,7 +149,7 @@ class SdlHost final : public Host {
   void color(int r, int g, int b) { SDL_SetRenderDrawColor(renderer_, r, g, b, 255); }
   void release() {
     for (const auto &key : keys_) injectKey(key.c_str(), false);
-    keys_.clear(); repeat_keys_.clear(); fingers_.clear(); physical_.clear();
+    keys_.clear(); repeat_keys_.clear(); fingers_.clear(); physical_.clear();mouse_action_until_.clear();
     for (auto &pad : pads_) pad.x = pad.y = pad.dx = pad.dy = pad.angle = pad.contactAngle = 0;
     last_pad_time_ = SDL_GetTicksNS();
     mouse_ = physical_mouse_ = 0; tap_hold_=false;tap_until_=0;
@@ -174,10 +178,9 @@ class SdlHost final : public Host {
       if (finger.button < 0 || static_cast<size_t>(finger.button) >= buttons_.size()) continue;
       const auto &b = buttons_[finger.button];
       if (!b.key.empty()) next.insert(b.key);
-      if (b.action == 3) mouse |= 1;
-      if (b.action == 4) mouse |= 2;
-      mouse |= b.mouseButton;
+      mouse |= buttonMouse(b);
     }
+    for(const auto &[owner,deadline]:mouse_action_until_) mouse|=owner.second;
     for (auto &[id,finger] : fingers_) if (finger.game && mouse) finger.blocked=true;
     if(mouse&2) {tap_hold_=false;tap_until_=0;}
     if(tap_until_) mouse |= 1;
@@ -649,7 +652,13 @@ class SdlHost final : public Host {
     float length=std::hypot(p.x,p.y); if (length>1) { p.x/=length; p.y/=length; }
   }
   void tickPads() {
-    if(tap_until_ && SDL_GetTicks()>=tap_until_) {tap_until_=0;syncInput();}
+    bool changed=false;Uint64 ticks=SDL_GetTicks();
+    if(tap_until_ && ticks>=tap_until_) {tap_until_=0;changed=true;}
+    for(auto it=mouse_action_until_.begin();it!=mouse_action_until_.end();) {
+      if(ticks>=it->second) {it=mouse_action_until_.erase(it);changed=true;}
+      else ++it;
+    }
+    if(changed)syncInput();
     if (settings.touch=="hold-drag" && !paused_ && !move_only_) {
       bool changed=false;
       for (auto &[id,f] : fingers_) if (f.game && !f.held && !f.moved && !f.blocked && SDL_GetTicks()-f.downAt>=180) {
@@ -673,9 +682,20 @@ class SdlHost final : public Host {
       if(dx || dy) injectMouse(dx,dy,mouse_);
     }
   }
+  bool clearMouseAction(SDL_FingerID id) {
+    bool changed=false;
+    for(auto it=mouse_action_until_.begin();it!=mouse_action_until_.end();) {
+      if(it->first.first==id) {it=mouse_action_until_.erase(it);changed=true;}
+      else ++it;
+    }
+    return changed;
+  }
   void finger(const SDL_TouchFingerEvent &event) {
     float x = event.x*width_, y = event.y*height_;
     if (event.type == SDL_EVENT_FINGER_DOWN) {
+      // A reused contact starts a distinct press instead of inheriting the
+      // released contact's remaining pulse or its original deadline.
+      if(clearMouseAction(event.fingerID))syncInput();
       Finger f{x,y};
       f.originX=x; f.originY=y; f.downAt=SDL_GetTicks(); f.blocked=(mouse_ & ~(tap_hold_?1:0))!=0;
       for (size_t i = 0; i < buttons_.size(); ++i) if (inside(x,y,buttons_[i].rect)) { f.button = i; break; }
@@ -707,11 +727,19 @@ class SdlHost final : public Host {
       }
       fingers_[event.fingerID] = f;
     } else {
+      bool canceled=event.type==SDL_EVENT_FINGER_CANCELED && clearMouseAction(event.fingerID);
       auto found = fingers_.find(event.fingerID);
-      if (found == fingers_.end()) return;
+      if (found == fingers_.end()) {if(canceled)syncInput();return;}
       auto &f=found->second;
       f.moved |= std::hypot(x-f.originX,y-f.originY)>8;
       if (event.type == SDL_EVENT_FINGER_UP || event.type == SDL_EVENT_FINGER_CANCELED) {
+        if(event.type==SDL_EVENT_FINGER_UP && settings.tapDuration>0 && f.button>=0 && static_cast<size_t>(f.button)<buttons_.size()) {
+          uint8_t buttons=buttonMouse(buttons_[f.button]);
+          Uint64 deadline=f.downAt+settings.tapDuration;
+          if(buttons && SDL_GetTicks()<deadline) {
+            auto &until=mouse_action_until_[{event.fingerID,buttons}];until=std::max(until,deadline);
+          }
+        }
         if (event.type == SDL_EVENT_FINGER_UP && found->second.game && settings.pointer == "direct") {
           found->second.x=x; found->second.y=y;
           syncInput();
@@ -761,6 +789,7 @@ class SdlHost final : public Host {
   }
 public:
   bool start() override {
+    move_only_ = !settings.touchClick;
     configureCursor(settings.cursor);
     // SDL updates Android's Activity orientation when creating its resizable
     // window. Keep that request consistent with the exported manifest.
@@ -798,7 +827,7 @@ public:
     if (renderer_) SDL_DestroyRenderer(renderer_);
     if (window_) SDL_DestroyWindow(window_);
     texture_ = nullptr; renderer_ = nullptr; window_ = nullptr;
-    fingers_.clear(); physical_.clear(); keys_.clear(); repeat_keys_.clear(); pads_.clear();
+    fingers_.clear(); physical_.clear(); keys_.clear(); repeat_keys_.clear(); pads_.clear();mouse_action_until_.clear();
     toggle_layout_.clear();group_layout_.clear();
     keyboard_=collapsed_=move_only_=joystick_open_=tap_hold_=false;
     paused_ = false; mouse_ = physical_mouse_ = 0;tap_until_=0;

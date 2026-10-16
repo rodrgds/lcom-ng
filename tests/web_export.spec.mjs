@@ -898,10 +898,11 @@ test('failed player module downloads offer retry in collections and standalone e
 test('steering wheel turns around its rim while pedals and physical keys remain independent', async ({browser}) => {
   const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
   const page=await context.newPage();
+  let wheelProfile={maxAngle:120,deadZone:8};
   await page.route('**/configured-dual/game.json', async route => {
     const response=await route.fetch(),settings=await response.json();
     Object.assign(settings.mobile.controls,{keyboard:false,mouseButtons:false,joystick:false,look:false,dpad:false,
-      quickKeys:[],pointer:'off',pads:[{side:'left',mode:'wasd',style:'wheel',axes:'horizontal',maxAngle:120,deadZone:8}],
+      quickKeys:[],pointer:'off',pads:[{side:'left',mode:'wasd',style:'wheel',axes:'horizontal',...wheelProfile}],
       actions:[{position:'bottom-right',label:'Accelerate',key:'W',icon:'accelerator'},
                {position:'bottom-right',label:'Brake / reverse',key:'S',icon:'brake'}]});
     await route.fulfill({response,json:settings});
@@ -956,5 +957,113 @@ test('steering wheel turns around its rim while pedals and physical keys remain 
   await wheel.focus();await page.keyboard.down('ArrowLeft');
   await expect.poll(()=>consoleText(page).split('key:1e').length).toBeGreaterThan(2);
   await page.keyboard.up('ArrowLeft');await expect(wheel).toHaveAttribute('aria-valuenow','0');
+  // Keyboard steering must cross even the largest configurable dead zone.
+  wheelProfile={maxAngle:45,deadZone:30};
+  await start(page,'configured-dual');await wheel.focus();
+  await page.keyboard.down('ArrowLeft');
+  await expect.poll(()=>consoleText(page)).toContain('key:1e');
+  await expect(wheel).toHaveAttribute('aria-valuenow','-45');
+  await page.keyboard.up('ArrowLeft');
+  await expect(wheel).toHaveAttribute('aria-valuenow','0');
+  await expect.poll(()=>consoleText(page)).toContain('key:9e');
+  await context.close();
+});
+
+
+test('touch clicks can start disabled while hover, explicit actions and the toggle work', async ({browser}) => {
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-direct/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();
+    Object.assign(settings.mobile.controls,{touch:'tap',touchClick:false,
+      actions:[{position:'bottom-right',label:'Discover',mouseButton:'left'},
+               {position:'bottom-right',label:'Flag',mouseButton:'right'}]});
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-direct');
+  const toggle=page.locator('#pointer-toggle');
+  await expect(toggle).toHaveAttribute('aria-pressed','false');
+  const b=await page.locator('canvas').boundingBox();
+  await page.touchscreen.tap(b.x+b.width*.4,b.y+b.height*.4);
+  await expect.poll(()=>mousePackets(page).length).toBeGreaterThan(0);
+  expect(mousePackets(page).every(([flags])=>(flags&3)===0)).toBe(true);
+  await page.getByRole('button',{name:'Discover',exact:true}).tap();
+  await expect.poll(()=>mousePackets(page).some(([flags])=>flags&1)).toBe(true);
+  await page.getByRole('button',{name:'Flag',exact:true}).tap();
+  await expect.poll(()=>mousePackets(page).some(([flags])=>flags&2)).toBe(true);
+  await toggle.tap();await expect(toggle).toHaveAttribute('aria-pressed','true');
+  const before=mousePackets(page).length;
+  await page.touchscreen.tap(b.x+b.width*.6,b.y+b.height*.4);
+  await expect.poll(()=>mousePackets(page).slice(before).some(([flags])=>flags&1)).toBe(true);
+  await context.close();
+});
+
+test('a fast desktop mouse move preserves its full travel to the top of the game', async ({page}) => {
+  await start(page);
+  const b=await page.locator('canvas').boundingBox();
+  await page.mouse.click(b.x+b.width/2,b.y+b.height/2);
+  await page.waitForTimeout(80);
+  output.get(page).length=0;
+  await page.mouse.move(b.x+b.width/2,b.y+b.height*25/600);
+  const travel=()=>mousePackets(page).reduce((sum,[flags,,dy])=>sum+((flags&32)?dy-256:dy),0);
+  await expect.poll(travel).toBe(275);
+});
+
+test('Ninjix consumes mouse startup replies before following the cursor to the top', async ({page}) => {
+  await start(page,'ninjix');
+  const canvas=page.locator('canvas'),b=await canvas.boundingBox();
+  const move=async(x,y)=>{await page.mouse.move(b.x+x*b.width/800,b.y+y*b.height/600);await page.waitForTimeout(180);};
+  const pixels=()=>canvas.evaluate(c=>Array.from(c.getContext('2d').getImageData(0,0,220,120).data));
+  for(const phase of ['menu','playing']) {
+  if(phase==='playing') {await page.mouse.click(b.x+400*b.width/800,b.y+220*b.height/600);await page.waitForTimeout(350);}
+  await move(100,300);const before=await pixels();
+  await move(100,25);const after=await pixels();
+  let minX=220,minY=120,changed=0;
+  for(let y=0;y<120;y++)for(let x=0;x<220;x++) {
+    const i=(y*220+x)*4;
+    if(before[i]!==after[i]||before[i+1]!==after[i+1]||before[i+2]!==after[i+2]) {
+      minX=Math.min(minX,x);minY=Math.min(minY,y);changed++;
+    }
+  }
+  expect(changed).toBeGreaterThan(10);
+  expect(minX).toBeGreaterThanOrEqual(95);expect(minX).toBeLessThanOrEqual(110);
+  expect(minY,phase+' cursor').toBeGreaterThanOrEqual(20);expect(minY,phase+' cursor').toBeLessThanOrEqual(40);
+  }
+});
+
+test('configured mouse actions preserve short taps, cancel immediately and keep independent holds', async ({browser}) => {
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-direct/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();
+    Object.assign(settings.mobile.controls,{tapDuration:250,touch:'tap',touchClick:false,
+      actions:[{position:'bottom-right',label:'Flip',mouseButton:'left'},
+               {position:'bottom-right',label:'Cancel',mouseButton:'right'}]});
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-direct');
+  const flip=page.getByRole('button',{name:'Flip',exact:true}),cancel=page.getByRole('button',{name:'Cancel',exact:true});
+  const point=async(button,id)=>{const b=await button.boundingBox();return{id,x:b.x+b.width/2,y:b.y+b.height/2};};
+  const left=await point(flip,1),right=await point(cancel,2),cdp=await context.newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[left]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[left]});
+  await expect(flip).toHaveAttribute('aria-pressed','true');
+  await expect(flip).toHaveAttribute('aria-pressed','false');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[left]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+  await expect(flip).toHaveAttribute('aria-pressed','false');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[left]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[left,right]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[right]});
+  await expect(cancel).toHaveAttribute('aria-pressed','false');
+  await expect(flip).toHaveAttribute('aria-pressed','true');
+  await page.waitForTimeout(280);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[left]});
+  await expect(flip).toHaveAttribute('aria-pressed','false');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[left]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[left]});
+  await page.locator('#controls-toggle').tap();
+  await page.waitForTimeout(280);
+  await expect(page.getByRole('button',{name:'Flip',exact:true,includeHidden:true})).toHaveAttribute('aria-pressed','false');
   await context.close();
 });

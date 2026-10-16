@@ -119,6 +119,23 @@ static void interruptOnlyMouseDoesNotBlockKeyboard() {
 int main() {
   directTouchClearsClickGate();
   interruptOnlyMouseDoesNotBlockKeyboard();
+  // A fast browser motion must not leave the guest cursor behind at the edge.
+  {
+    lcom::embedded::Pointer pointer;pointer.reset(800,600);
+    int x=400,y=300,packets=0;
+    pointer.relative(0,-275,0);
+    while(auto packet=pointer.next()) {x+=packet->dx;y-=packet->dy;++packets;}
+    CHECK(x==400 && y==25 && packets==3);
+    // Coalesced samples retain total travel, with releases ordered after motion.
+    pointer.relative(180,100,1);pointer.relative(70,40,1);pointer.relative(0,0,0);
+    bool pressed=false,released=false;
+    while(auto packet=pointer.next()) {
+      x+=packet->dx;y-=packet->dy;
+      if(packet->buttons) pressed=true;
+      if(pressed && !packet->buttons) {CHECK(x==650 && y==165);released=true;}
+    }
+    CHECK(released && x==650 && y==165);
+  }
   // Knight and chess reject an invalid delta independently on each axis.
   // Relative travel to an edge must not desynchronize the following direct tap.
   {

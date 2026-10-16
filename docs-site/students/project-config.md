@@ -88,7 +88,8 @@ or native controls.
 | `controls.layout` | `"panel"` | `"panel"` beside/below the game, or `"overlay"` over the full game area |
 | `controls.pointer` | `"drag"` | `"drag"` holds left click with relative motion, `"move"` moves without clicking, `"direct"` taps at the finger, `"off"` disables screen touch |
 | `controls.touch` | `"auto"` | `"press"`, `"tap"`, `"hold-drag"`, `"tap-hold"`, `"move"`; see gestures below |
-| `controls.tapDuration` | `0` | Synthesized click hold in milliseconds, `0` to `250`; use `60` for games that sample held mouse buttons on timer ticks |
+| `controls.touchClick` | `true` | Initial touch-click switch state; `false` starts in Move only mode while separate mouse actions still work |
+| `controls.tapDuration` | `0` | Minimum tap hold in milliseconds, `0` to `250`; use `60` for games that sample held mouse buttons on timer ticks |
 | `controls.toolbar` | `"auto"` | Menu/control cluster: `"auto"` or a corner, such as `"top-right"` |
 | `controls.keyboardPosition` | `"auto"` | Expanded keyboard: `"auto"`, `"bottom"`, `"left"`, `"right"` |
 | `controls.cursor` | Centered, bounded by the framebuffer | Guest start `x`, `y`, inclusive `minX`, `minY`, `maxX`, `maxY`, and `bounds`: `"clamp"` or `"reject"` |
@@ -136,8 +137,9 @@ do not click. This lets players inspect pieces without selecting them. Use
 separate buttons should provide all clicks. These settings affect touch only.
 
 Some games check held mouse buttons once per frame instead of handling mouse
-press edges. Set `"tapDuration": 60` to hold synthesized taps across those timer
-ticks. Ordinary press/drag input and tap-hold latching retain their own lifetimes.
+press edges. Set `"tapDuration": 60` to hold synthesized screen taps and quick
+mouse-action button taps across those timer ticks. Longer button holds release
+immediately on lift. Ordinary press/drag input and tap-hold latching retain their own lifetimes.
 A new contact, cancellation, backgrounding or a right-click releases the pulse.
 
 For drag-based boards, `"touch": "hold-drag"` keeps movement immediate without
@@ -147,6 +149,13 @@ hold keeps the whole gesture as hover-only. A quick stationary tap clicks.
 The older `"tap-hold"` alternates press and release across two taps when that
 interaction is preferred. Cancellation, backgrounding and closing the controls
 release held input. Choose `"layout": "panel"` to keep controls off the board.
+
+For boards where an accidental touch could reveal a cell or choose a card, set
+`"touchClick": false`. Touch still moves the cursor, and separate named mouse
+actions can discover, flag or select. Players can enable touch clicks with the
+pointer switch. Keep the underlying `touch` policy, such as `"tap"`, to choose
+what that switch enables. Use `"touch": "move"` when clicks should stay disabled
+and the switch should be hidden.
 
 ### Movement and aiming
 

@@ -33,7 +33,7 @@ class Pointer {
         pending_.back().absolute == input.absolute) {
       auto &last = pending_.back();
       if (input.absolute) { last.x = input.x; last.y = input.y; }
-      else { last.x = std::clamp(last.x + input.x, -96, 96); last.y = std::clamp(last.y + input.y, -96, 96); }
+      else { last.x = std::clamp(last.x + input.x, -4096, 4096); last.y = std::clamp(last.y + input.y, -4096, 4096); }
     } else pending_.push_back(input);
   }
 public:
@@ -48,9 +48,12 @@ public:
     x_ = std::clamp(config_.x < 0 ? width/2 : config_.x, min_x_, max_x_);
     y_ = std::clamp(config_.y < 0 ? height/2 : config_.y, min_y_, max_y_);
   }
+  // Keep motion until next() splits it into PS/2-sized packets. A fast
+  // browser event can span hundreds of pixels; limiting it to one packet
+  // would leave the guest cursor behind the physical pointer.
   void relative(int dx, int dy, uint8_t buttons) {
     if (dx || dy || (buttons & 7) != requested_buttons_)
-      append({false, std::clamp(dx,-96,96), std::clamp(dy,-96,96), buttons, false});
+      append({false, std::clamp(dx,-4096,4096), std::clamp(dy,-4096,4096), buttons, false});
   }
   void absolute(int x, int y, uint8_t buttons) {
     append({true, std::clamp(x,min_x_,max_x_), std::clamp(y,min_y_,max_y_), buttons, false});

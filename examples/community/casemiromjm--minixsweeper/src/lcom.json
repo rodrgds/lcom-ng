@@ -27,11 +27,17 @@
           "mouseButton": "right"
         },
         {
+          "position": "bottom-right",
+          "label": "Discover",
+          "mouseButton": "left"
+        },
+        {
           "position": "top-right",
           "label": "Esc",
           "key": "ESC"
         }
-      ]
+      ],
+      "touchClick": false
     }
   },
   "build": {

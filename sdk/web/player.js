@@ -26,6 +26,7 @@ let touchPointer = null;
 let touchClickEnabled = true;
 let tapTimer = null;
 const mouseSources = new Map();
+const mouseButtonContacts = new Map();
 const functionToggle = document.createElement('button');
 functionToggle.id = 'function-toggle';
 functionToggle.type = 'button';
@@ -83,6 +84,8 @@ const player = {
     this.buttons = 0;
     this.lastPointer = null;
     mouseSources.clear();
+    for (const contact of mouseButtonContacts.values()) clearTimeout(contact.timer);
+    mouseButtonContacts.clear();
     clearTimeout(tapTimer); tapTimer = null;
     clearTimeout(touchPointer?.holdTimer);
     touchPointer = null;
@@ -346,9 +349,25 @@ function bindMouseButton(button) {
   const mask = Number(button.dataset.mouse);
   button.addEventListener('pointerdown', event => {
     event.preventDefault(); button.setPointerCapture(event.pointerId); player.unlockAudio();
-    setMouseButtons(`button-${event.pointerId}`, mask);
+    const source=`button-${event.pointerId}`,previous=mouseButtonContacts.get(event.pointerId);
+    if(previous) { clearTimeout(previous.timer);setMouseButtons(source,0); }
+    mouseButtonContacts.set(event.pointerId,{source,start:performance.now(),released:false,timer:null});
+    setMouseButtons(source, mask);
   });
-  for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) button.addEventListener(event, event => setMouseButtons(`button-${event.pointerId}`, 0));
+  for (const name of ['pointerup', 'pointercancel', 'lostpointercapture']) button.addEventListener(name, event => {
+    const contact=mouseButtonContacts.get(event.pointerId);
+    if(!contact || (event.type==='lostpointercapture' && contact.released)) return;
+    const release=()=>{
+      if(mouseButtonContacts.get(event.pointerId)!==contact) return;
+      clearTimeout(contact.timer);mouseButtonContacts.delete(event.pointerId);setMouseButtons(contact.source,0);
+    };
+    if(event.type==='pointerup') {
+      contact.released=true;
+      const remaining=(mobile?.controls.tapDuration || 0)-(performance.now()-contact.start);
+      if(remaining>0) { contact.timer=setTimeout(release,remaining);return; }
+    }
+    release();
+  });
   button.addEventListener('click', event => {
     if (event.detail !== 0) return;
     player.unlockAudio(); setMouseButtons('activation', mask);
@@ -722,6 +741,7 @@ try {
   const config = await response.json();
   document.title = `${config.name} · lcom-ng`;
   mobile = config.mobile || null;
+  touchClickEnabled = mobile?.controls.touchClick !== false;
   if (mobile) {
     for (const [key,value] of Object.entries(mobile.theme)) {
       if (key !== 'font') document.documentElement.style.setProperty('--'+key.replace(/[A-Z]/g,m=>'-'+m.toLowerCase()),value);

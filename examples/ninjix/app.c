@@ -130,6 +130,18 @@ static bool app_is_multiplayer_setup_screen(app_screen_tag_t tag)
          tag == APP_SCREEN_MULTIPLAYER_ROLE;
 }
 
+typedef struct { int16_t x, y; } cursor_position_t;
+
+/* Screen transitions keep relative mouse input aligned with the host cursor. */
+static cursor_position_t app_cursor_position(app_t *app)
+{
+  if (app_is_menu_screen(app->tag))
+    return (cursor_position_t){app_menu(app)->cursor_x, app_menu(app)->cursor_y};
+  if (app_is_multiplayer_setup_screen(app->tag))
+    return (cursor_position_t){app_multiplayer_menu(app)->cursor_x, app_multiplayer_menu(app)->cursor_y};
+  return (cursor_position_t){app_scene(app)->cursor_x, app_scene(app)->cursor_y};
+}
+
 static bool app_is_multiplayer_game(const app_t *app)
 {
   return app != NULL &&
@@ -177,6 +189,7 @@ static void app_shutdown_screen(app_t *app)
 
 static int app_switch_to_game(app_t *app, uint32_t current_tick, uint16_t level_id)
 {
+  cursor_position_t cursor = app_cursor_position(app);
   app_shutdown_screen(app);
 
   if (scene_init(app_scene(app), &app->resources, level_id, APP_PHYSICS_HZ, APP_RENDER_HZ) != 0)
@@ -184,6 +197,10 @@ static int app_switch_to_game(app_t *app, uint32_t current_tick, uint16_t level_
     printf("app: scene_init() failed on transition to game\n");
     return 1;
   }
+
+  app_scene(app)->cursor_x = cursor.x;
+  app_scene(app)->cursor_y = cursor.y;
+  scene_step_cursor(app_scene(app));
 
   app_set_screen(app, APP_SCREEN_PLAYING);
   app->last_physics_tick     = current_tick;
@@ -195,6 +212,7 @@ static int app_switch_to_game(app_t *app, uint32_t current_tick, uint16_t level_
 
 static int app_switch_to_menu(app_t *app, uint32_t current_tick)
 {
+  cursor_position_t cursor = app_cursor_position(app);
   app_shutdown_screen(app);
 
   if (menu_init(app_menu(app), &app->resources, APP_TIMER_HZ, APP_RENDER_HZ) != 0)
@@ -203,6 +221,9 @@ static int app_switch_to_menu(app_t *app, uint32_t current_tick)
     return 1;
   }
 
+  app_menu(app)->cursor_x = cursor.x;
+  app_menu(app)->cursor_y = cursor.y;
+
   app_set_screen(app, APP_SCREEN_MENU);
   app->last_render_tick = current_tick;
   return 0;
@@ -210,6 +231,7 @@ static int app_switch_to_menu(app_t *app, uint32_t current_tick)
 
 static int app_switch_to_multiplayer_wait(app_t *app, uint32_t current_tick)
 {
+  cursor_position_t cursor = app_cursor_position(app);
   app_shutdown_screen(app);
 
   if (menu_init(app_multiplayer_menu(app), &app->resources, APP_TIMER_HZ, APP_RENDER_HZ) != 0)
@@ -217,6 +239,9 @@ static int app_switch_to_multiplayer_wait(app_t *app, uint32_t current_tick)
     printf("app: menu_init() failed on transition to multiplayer wait\n");
     return 1;
   }
+
+  app_multiplayer_menu(app)->cursor_x = cursor.x;
+  app_multiplayer_menu(app)->cursor_y = cursor.y;
 
   if (app->serial_ready)
     ser_clear_rx_state(COM1_BASE);
@@ -243,6 +268,7 @@ static int app_switch_to_multiplayer_game(app_t *app, uint32_t current_tick, uin
 {
   multiplayer_role_t role = app->multiplayer.local_role;
 
+  cursor_position_t cursor = app_cursor_position(app);
   app_shutdown_screen(app);
 
   if (scene_init(app_scene(app), &app->resources, level_id, APP_PHYSICS_HZ, APP_RENDER_HZ) != 0)
@@ -250,6 +276,10 @@ static int app_switch_to_multiplayer_game(app_t *app, uint32_t current_tick, uin
     printf("app: scene_init() failed on transition to multiplayer game\n");
     return 1;
   }
+
+  app_scene(app)->cursor_x = cursor.x;
+  app_scene(app)->cursor_y = cursor.y;
+  scene_step_cursor(app_scene(app));
 
   scene_set_multiplayer_role(app_scene(app), role);
   multiplayer_mark_game_started(&app->multiplayer);

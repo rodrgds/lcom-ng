@@ -470,7 +470,7 @@
   "ninjix/battle": {
     "caption": "Two complementary towers defend the path during a real wave.",
     "exit": "bounded snapshot",
-    "fingerprint": "4bf644db60b25dc74ad000112250432921f8d98853dabae0ff49c1c3dd7d46a9",
+    "fingerprint": "947d71fe5d7202963f72cdf77e4b421bb99b810eec28344535f5980a22eb728b",
     "height": 600,
     "order": 6,
     "pixels_sha256": "8afce28a5a0e7a5095494fa4f8929768d35da62513a6dd6ecede0e37fd2940b2",
@@ -482,7 +482,7 @@
   "ninjix/credits": {
     "caption": "The original game credits and resource attributions.",
     "exit": "bounded snapshot",
-    "fingerprint": "f0b8aaf6b05b41b14b43fd151bdfcf411e8f326bb150c773442d3e71159c2b61",
+    "fingerprint": "a8056b366c6e6050a2c133b49a63cd33e5b3998a056fdc71d8a7e59f56aa4cd1",
     "height": 600,
     "order": 2,
     "pixels_sha256": "80f417976de78b68adf7b32f1680847a52a96c874fd7591425b64da4c4880a2b",
@@ -494,7 +494,7 @@
   "ninjix/instructions": {
     "caption": "Instructions explain towers, controls, and enemy waves.",
     "exit": "bounded snapshot",
-    "fingerprint": "ef10ad09d83bd7cb5ac90e720506cb6eef988d39a4274add8d8d76eaca5a03e8",
+    "fingerprint": "69b75184abc398f84fa6f301edbe4b4900938e65c80cee1e9b40ab525a7d6ec4",
     "height": 600,
     "order": 1,
     "pixels_sha256": "30c5df4fe704e6034c5a4b402bbbe50beec655be8c311cc45486309a352e63c9",
@@ -506,7 +506,7 @@
   "ninjix/level-one": {
     "caption": "The first level leaves time to study its path and shrine.",
     "exit": "bounded snapshot",
-    "fingerprint": "a69dde89364ac12a38c3949896f227aaa58277b2626e63499fab2ab1cff5a7be",
+    "fingerprint": "d977de83f2d40878ee9fa774d0bb7d99fc31c86644ffc5e832dfd0d0c157d495",
     "height": 600,
     "order": 4,
     "pixels_sha256": "e156788439397c846533438016c56f302af742c1938a529576f5b3d78618c839",
@@ -518,7 +518,7 @@
   "ninjix/menu": {
     "caption": "The original illustrated menu and authored pixel artwork.",
     "exit": "bounded snapshot",
-    "fingerprint": "ba5f99ac472b2e8c0c363a375f8e67f2b0f5d09f89aae9436f1cd51650386c7f",
+    "fingerprint": "0b86b9142512d0ba6b759c3d29e34b871be30cf6cd79afc8a11a65a00f4e0662",
     "height": 600,
     "order": 0,
     "pixels_sha256": "5140560332c4ec8bb4614b6aee6e0b749080210effd421cda181a64dc7a80086",
@@ -530,7 +530,7 @@
   "ninjix/multiplayer": {
     "caption": "The serial multiplayer lobby waits for its paired player.",
     "exit": "bounded snapshot",
-    "fingerprint": "c0dff6726b98c985b982ceada6af66999944b039e1f9e659b8d35e13b5c2f2ba",
+    "fingerprint": "bcd43ca962e8955503893e00d124e0ad0855e3e047fe3c14b80b9d2d0f453469",
     "height": 600,
     "order": 3,
     "pixels_sha256": "7a5ab9c33910da186827a24441790fbc20f46e8fbef3687515fe60a47e81bb29",
@@ -542,7 +542,7 @@
   "ninjix/paused": {
     "caption": "The pause menu keeps the battlefield visible.",
     "exit": "bounded snapshot",
-    "fingerprint": "32ecd10ea41579803bc1d61a498172a29507f52541567a897e3fdd64a861807f",
+    "fingerprint": "e7616a00f3b6a23de57a272ca6935e4089dc420b61ebb53e173f91aced5bcd81",
     "height": 600,
     "order": 7,
     "pixels_sha256": "303137eff5891273510f7bbccf593f9d90790b780df45c928e107b967853b49c",
@@ -554,7 +554,7 @@
   "ninjix/placement": {
     "caption": "Number shortcuts select a tower and preview its range.",
     "exit": "bounded snapshot",
-    "fingerprint": "2855f2e93b63db070eb6fd3fe675a27def3505371d165fae61fc97e2fd80d4a3",
+    "fingerprint": "b90f45012fae242799043357d8abb1a9f9d9fc07a26c0680a0170325bd47ba37",
     "height": 600,
     "order": 5,
     "pixels_sha256": "30c4ffb6f71a045480f79717a9a4bb7ba76ca04ab3227bedf6d3b78d55ef991e",

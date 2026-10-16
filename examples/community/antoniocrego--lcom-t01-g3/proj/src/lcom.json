@@ -64,7 +64,8 @@
           "key": "ESC"
         }
       ],
-      "toolbar": "top-left"
+      "toolbar": "top-left",
+      "touchClick": false
     }
   },
   "build": {
