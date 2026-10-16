@@ -168,3 +168,54 @@ Way. Proof is under `build/arcade-search-motion/live/`.
 
 This update changes the web launcher. The previously delivered native Android
 APK and the 66 pinned game binaries are unchanged.
+
+## Random highlights, clover and viewport loading
+
+Web sources `6244e981` and `621ca705` preserve the four fixed highlights and add
+two distinct ordinary games to each visit or Shuffle. Resizing and returning
+from play retain the arrangement. Extra selections update only the current
+mosaic, leaving authored featured metadata unchanged. Previous extra picks
+return to ordinary sizes on the next shuffle.
+
+Surprise now uses the Lucide clover, with its ISC notice bundled locally.
+Desktop spacing fits nine normal columns at 1280px. Smaller brand padding and
+28px display type keep the complete Arcade name visible; phones retain their
+two utility columns above three game columns.
+
+Icons receive sources within 160px of the viewport, using the final shuffled
+positions. Scrolling, resizing and Shuffle load newly visible games. Decode
+completion starts a short fade and scale reveal. Reduced motion reveals them
+immediately. Missing art loads the existing fallback. Hover screenshots remain
+on demand, and keyboard focus can request an icon before the observer runs.
+
+All 21 focused browser checks passed across the release suite and corrected
+layout check. The new regressions first failed for eight desktop columns,
+excessive offscreen requests and absent loading transitions. A 120-game fixture
+covers deferral, scrolling and Shuffle. Held image responses prove the real fade,
+fixed tile dimensions, reduced motion and a missing-image fallback. The brand
+regression inspects actual line fragments so font ink extending beyond a line
+box cannot be mistaken for truncated text. It first reproduced the ellipsis,
+then passed after the compact brand treatment. The docs build, owned whitespace
+checks and pinned 7,757-file source inventory passed.
+
+Cold Chrome samples used the same catalogue and random seed, with cache disabled:
+
+| View | Initial icon requests | Encoded icon bytes | LCP sample |
+| --- | --- | --- | --- |
+| 1280 × 720 | 66 → 48 | 279,651 → 209,524 | 252 → 688ms |
+| 390 × 844 | 45 → 15 | 196,208 → 76,429 | 224 → 636ms |
+
+The reveal contributes to the later paint timing. These fast-network lab samples
+establish reduced initial artwork requests and bytes, rather than a field speed
+score. All visible icons loaded; phone CLS was zero and desktop CLS was 0.0046.
+The before and public after measurements live under `build/arcade-loading-polish/`.
+
+Published Worker version: `80c07f30-e905-4b1f-8b23-75a6f6792110`.
+All 16 checked public launcher and attribution assets match `621ca705`'s package.
+Live desktop and touch checks confirmed four staples plus two extra highlights,
+stable resize selection, new random inputs on Shuffle, 66 unique playable tiles,
+no overlapping cells or horizontal overflow, and no page errors. The in-app
+browser confirmed nine desktop columns, the clover and 18 deferred icons.
+Proof screenshots are under `build/arcade-loading-polish/live/` and `live-perf/`.
+Concurrent expansion and grouping changes were preserved. Game binaries and the
+previous native Android APK are unchanged by this web-only update.
