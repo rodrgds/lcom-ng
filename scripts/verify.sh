@@ -21,6 +21,7 @@ bun run test:web
 echo "==> Project configuration contracts"
 python3 tests/project_config.py
 python3 tests/collection_export.py
+python3 tests/collection_sources.py
 python3 tests/arcade_packaging.py
 python3 scripts/check_collection_sources.py --require-tracked
 

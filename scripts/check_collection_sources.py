@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify pinned collection files and reverse every documented student patch."""
+"""Verify repository examples, pinned imports and documented source patches."""
 import argparse
 import hashlib
 import json
@@ -26,13 +26,29 @@ def check(folder, require_tracked=False):
                                 check=True, capture_output=True)
         tracked = set(result.stdout.decode().split('\0'))
     fingerprints = {}
-    total_files = patched_files = patched_games = 0
+    total_files = patched_files = patched_games = authored_games = 0
     for entry in entries:
         project = entry['project']
         root = next((path for path in (project, *project.parents)
                      if (path / 'UPSTREAM.json').is_file()), None)
         if root is None:
-            raise ValueError(f'{project}: missing UPSTREAM.json')
+            # Repository examples evolve with Git; imported games retain pinned
+            # upstream bytes and independently recorded corrections below.
+            if not project.is_relative_to(ROOT / 'examples') or project.is_relative_to(ROOT / 'examples/community'):
+                raise ValueError(f'{project}: missing UPSTREAM.json')
+            code = [path for path in project.rglob('*') if path.is_file()
+                    and path.suffix.lower() in ('.c', '.h', '.cpp', '.hpp')]
+            if not code:
+                raise ValueError(f'{project}: no authored source files')
+            files = [*code, project / 'lcom.json',
+                     *[entry['settings'][key] for key in ('icon', 'preview') if entry['settings'][key]]]
+            for path in files:
+                if not path.resolve().is_relative_to(ROOT) or not path.is_file():
+                    raise ValueError(f'{project}: missing or invalid repository file: {path}')
+                if tracked is not None and path.relative_to(ROOT).as_posix() not in tracked:
+                    raise ValueError(f'{project}: repository file is not tracked in Git: {path}')
+            authored_games += 1
+            continue
         provenance = json.loads((root / 'UPSTREAM.json').read_text())
         hashes = provenance.get('sourceHashes', provenance.get('sha256'))
         if not hashes:
@@ -97,7 +113,8 @@ def check(folder, require_tracked=False):
             patched_games += 1
             patched_files += len(changes)
         total_files += len(hashes)
-    print(f'{len(entries)} distinct games, {total_files} pinned files verified; '
+    print(f'{len(entries)} games ({len(entries)-authored_games} pinned, {authored_games} repository examples), '
+          f'{total_files} pinned files verified; '
           f'{patched_games} documented source corrections across {patched_files} files.')
 
 

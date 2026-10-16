@@ -25,8 +25,11 @@ jobs:
           devenv shell -- bunx playwright install --with-deps chromium
       - name: Verify browser exports
         run: devenv shell -- lcom-ng-web-test
-      - name: Verify Arcade image packaging
-        run: devenv shell -- python3 tests/arcade_packaging.py
+      - name: Verify Arcade source and image packaging
+        run: |
+          devenv shell -- python3 tests/collection_sources.py
+          devenv shell -- python3 scripts/check_collection_sources.py --require-tracked
+          devenv shell -- python3 tests/arcade_packaging.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
