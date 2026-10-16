@@ -31,10 +31,10 @@
       "path": "SOURCE_PATCH.diff",
       "files": [
         {
-          "path": "proj/src/proj.c",
-          "originalSha256": "17f894bddff02bdbfbbb361dba71e64abf96c41090888ea7e77739141d0f2960",
-          "patchedSha256": "a27c3b84703d5a32db9a1b6eaf2e12525a645d9bbc04eff7da3373c8a7af45bd",
-          "reason": "Apply mouse movement only after a newly completed packet, rather than replaying its old deltas on both partial bytes of the next packet. Reset failed packet assembly and ignore overflow movement."
+          "path": "proj/src/game.c",
+          "originalSha256": "06fc58ff3795d54ad9fde7043886b92b594eb57bc1dea80448f633da7acb7412",
+          "patchedSha256": "7788fcd933a4ab3b9be3511ee63ec08f58bab7c09ddf58da99ea57efd517cbf2",
+          "reason": "Preserve original half-speed cursor motion and clip its sprite at framebuffer edges. Cover the framebuffer when repainting shorter background art by repeating its final source row/column, removing stale cursor pixels without altering the original art."
         },
         {
           "path": "proj/src/mouse.c",
@@ -43,13 +43,13 @@
           "reason": "Check the synchronization bit at each packet boundary so discarded input cannot permanently offset three-byte packet assembly."
         },
         {
-          "path": "proj/src/game.c",
-          "originalSha256": "06fc58ff3795d54ad9fde7043886b92b594eb57bc1dea80448f633da7acb7412",
-          "patchedSha256": "c33f4cf7330a2caf19f9456e93b3594d244e9167ec0c5635d1ebdf0449d8a5ef",
-          "reason": "Preserve half-speed signed integer motion while clamping its applied delta consistently to the framebuffer hotspot bounds. Clip the original cursor sprite at every frame edge while preserving source row stride."
+          "path": "proj/src/proj.c",
+          "originalSha256": "17f894bddff02bdbfbbb361dba71e64abf96c41090888ea7e77739141d0f2960",
+          "patchedSha256": "a27c3b84703d5a32db9a1b6eaf2e12525a645d9bbc04eff7da3373c8a7af45bd",
+          "reason": "Apply mouse movement only after a newly completed packet, rather than replaying its old deltas on both partial bytes of the next packet. Reset failed packet assembly and ignore overflow movement."
         }
       ],
-      "reproduction": "Public CLI replay sends mouse20,-10 then neutral0,0. Original presented cursor is30,15; corrected cursor10,5 preserves intended half-speed. Public motion/drawing regression separately reproduces scaled bound jumps and offscreen cursor pixel writes, then passes after the correction."
+      "reproduction": "CLI packet regression and motion/drawing regression pass. Background redraw boundary regression leaves an old cursor on the uncovered framebuffer row before correction and restores the original art edge after correction."
     }
   ],
   "license": {

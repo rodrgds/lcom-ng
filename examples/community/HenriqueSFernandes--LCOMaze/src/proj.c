@@ -115,12 +115,12 @@ int(proj_main_loop)(int argc, char *argv[]) {
                         if (byte_index == 3) {
                             byte_index = 0;
                             create_packet();
-                        }
-                        if (state == Game) {
-                            game_mouse_handler();
-                        }
-                        else if (state == Menu) {
-                            menu_mouse_handler();
+                            if (state == Game) {
+                                game_mouse_handler();
+                            }
+                            else if (state == Menu) {
+                                menu_mouse_handler();
+                            }
                         }
                     }
                     if (msg.m_notify.interrupts & irq_set_timer) {

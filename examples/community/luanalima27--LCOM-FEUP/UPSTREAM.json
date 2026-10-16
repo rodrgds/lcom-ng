@@ -38,7 +38,21 @@
     "proj/src/video.c": "dcd9ef69bd545cd574a1753a0327323beb2126ab877867d8f236723b4681aa5e",
     "proj/src/video.h": "16abbd8e457430ec3a85786a118a2741dfc06e66ed71cff89e108fc81b195f03"
   },
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "path": "examples/community/luanalima27--LCOM-FEUP/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "proj/src/mouse.c",
+          "originalSha256": "336ced7680f5f5b83a8c405a55864f9aa41604f48a4d48347808c2ebf03ebcb3",
+          "patchedSha256": "f58f7f5a6205e8e2a6af9a5cfc056bf1e4bbc1703faa433e85299617d5cf69b8",
+          "reason": "Clamp cursor movement at the screen margins without jumping five pixels backward when motion crosses any boundary."
+        }
+      ],
+      "reason": "Clamp cursor movement at the screen margins without jumping five pixels backward when motion crosses any boundary.",
+      "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_star_defender_cursor_clamps_without_edge_recoil"
+    }
+  ],
   "license": {
     "status": "missing",
     "files": []

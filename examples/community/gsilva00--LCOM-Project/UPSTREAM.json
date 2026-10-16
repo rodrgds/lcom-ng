@@ -129,6 +129,25 @@
           "patchedSha256": "1421517abc29e7c6cc3fc9dbfcbec3f0783cd5e52f9718a87e1bc3e32cd86f5f"
         }
       ]
+    },
+    {
+      "path": "examples/community/gsilva00--LCOM-Project/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "proj/src/objects/cursor.c",
+          "originalSha256": "8dbf625b2eb1717563ab5ee6f5868b33d211c6650940471f75ed68868287e41e",
+          "patchedSha256": "6998a54eca3330f485bae177ca90bef3e017ef42c9bf640bf1f563b7142f2a59",
+          "reason": "Start the cursor at framebuffer centre and integrate signed coordinates with final-pixel clamps. Decode Y as a positive magnitude with explicit direction, preventing unsigned underflow from teleporting to the opposite edge."
+        },
+        {
+          "path": "proj/src/proj.c",
+          "originalSha256": "1f024cefcf5b2ae41e01d941eaf72af6d4f69d29d54a1e478c1601de13dfa0f0",
+          "patchedSha256": "94378c9e3095f274c4aa1685e728d6eb2f471ba59993ec67e82e4821c961e8b4",
+          "reason": "Start the cursor at framebuffer centre and integrate signed coordinates with final-pixel clamps. Decode Y as a positive magnitude with explicit direction, preventing unsigned underflow from teleporting to the opposite edge."
+        }
+      ],
+      "reason": "Start the cursor at framebuffer centre and integrate signed coordinates with final-pixel clamps. Decode Y as a positive magnitude with explicit direction, preventing unsigned underflow from teleporting to the opposite edge.",
+      "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_pixel_football_cursor_edges_preserve_direction"
     }
   ],
   "license": {

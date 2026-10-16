@@ -17,3 +17,7 @@ Exact original/patched SHA256 and SOURCE_PATCH.diff are recorded in UPSTREAM.jso
 ## Controls
 
 Original controller.c maps A/D movement and SPACE jump, exposed as explicit quick keys; mouse presses shoot and select menus. Mouse is processed after each packet byte with repeated deltas, so relative pointer preserves source behavior. No direct preset.
+
+## Source corrections
+
+Enable mouse reporting with the original acknowledged command helper. Apply cursor motion and left button actions only after the full three-byte packet. Public CLI regressions independently verify normal mouse reporting and raw PS2 packet assembly. The relative pointer profile is retained: hidden gameplay ignores mouse cursor motion, so a global desktop calibration would diverge from the paused menu cursor.

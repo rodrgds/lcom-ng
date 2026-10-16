@@ -80,7 +80,20 @@
     "src/t.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "src/utils.c": "48de7c121786495e75aa54038b8bf9b5aa2bb4fd3b669faeda3ddb5ad0cadc01"
   },
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "src/proj.c",
+          "originalSha256": "96dd80ba2b5d57669fbdab6bc3cae07ce75188f77adc132e49d10e7a5d1eb2d9",
+          "patchedSha256": "ebc4f08acfc1dbaa79f80304cfaad58f704c94e371b767152c375537bd061201",
+          "reason": "Apply cursor movement and buttons only after all three bytes are decoded; partial IRQ bytes must not replay stale motion or buttons."
+        }
+      ],
+      "reproduction": "Public CLI movement20,-10 then neutral0,0 renders cursor30,15 before correction,10,5 after correction, preserving original half sensitivity."
+    }
+  ],
   "derivedAssets": [],
   "license": {
     "status": "missing",

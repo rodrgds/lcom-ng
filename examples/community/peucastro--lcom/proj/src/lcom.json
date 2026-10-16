@@ -33,7 +33,14 @@
           "label": "Esc",
           "key": "ESC"
         }
-      ]
+      ],
+      "cursor": {
+        "x": 518,
+        "y": 384,
+        "maxX": 1008,
+        "maxY": 752,
+        "desktopScale": 1
+      }
     }
   },
   "build": {

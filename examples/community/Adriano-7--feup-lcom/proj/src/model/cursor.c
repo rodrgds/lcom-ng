@@ -49,7 +49,7 @@ void updateCursor(Cursor_t* cursor){
         cursor->drawableObject->x = mode_info.XResolution - cursor->drawableObject->img.width - 40;
     }
 
-    if(cursor->drawableObject->y - cursor->drawableObject->img.height < 40){
+    if(cursor->drawableObject->y < 40){
         cursor->drawableObject->y = 40;
     }
     else if(cursor->drawableObject->y + cursor->drawableObject->img.height >= mode_info.YResolution - 40){

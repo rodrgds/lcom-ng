@@ -1,0 +1,35 @@
+--- a/proj/src/drivers/mouse.c
++++ b/proj/src/drivers/mouse.c
+@@ -9,6 +9,8 @@
+ struct packet pp;
+ int bytes_received = 0;
+ 
++extern unsigned hres, vres;
++
+ int x_init = 0;
+ int y_init = 0;
+ 
+@@ -19,6 +21,11 @@
+ 
+ 	x_init += pp.delta_x;
+ 	y_init -= pp.delta_y;
++
++	if (x_init < 0) x_init = 0;
++	if (y_init < 0) y_init = 0;
++	if (hres && x_init >= (int)hres) x_init = (int)hres - 1;
++	if (vres && y_init >= (int)vres) y_init = (int)vres - 1;
+ 
+ 	return 0;
+ }
+--- a/proj/src/core/game.c
++++ b/proj/src/core/game.c
+@@ -50,8 +50,8 @@
+ }
+ 
+ void (mouse_handler)() {
++  track_mouse_movement();
+   if (game_state == MENU_STATE) {
+-    track_mouse_movement();
+     get_menu();
+     draw_mouse();
+     load_buffer();

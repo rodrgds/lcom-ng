@@ -50,8 +50,8 @@ void (process_mouse_packet)() {
 }
 
 void (mouse_handler)() {
+  track_mouse_movement();
   if (game_state == MENU_STATE) {
-    track_mouse_movement();
     get_menu();
     draw_mouse();
     load_buffer();

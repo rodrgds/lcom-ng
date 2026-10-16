@@ -20,7 +20,14 @@
       "pointer": "drag",
       "touch": "tap",
       "toolbar": "top-right",
-      "keyboardPosition": "bottom"
+      "keyboardPosition": "bottom",
+      "cursor": {
+        "x": 150,
+        "y": 150,
+        "maxX": 992,
+        "maxY": 736,
+        "desktopScale": 2
+      }
     }
   },
   "build": {

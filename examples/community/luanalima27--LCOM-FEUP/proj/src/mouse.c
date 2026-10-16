@@ -286,16 +286,16 @@ void move_cursor(){
 
     
     if(x_mouse < 0){
-      x_mouse = 5;
+      x_mouse = 0;
     }
     if (y_mouse < 0){
-      y_mouse = 5;
+      y_mouse = 0;
     }
     if(x_mouse > vmi_p.XResolution - 16){
-      x_mouse = vmi_p.XResolution - 16-5;
+      x_mouse = vmi_p.XResolution - 16;
     }
     if (y_mouse > vmi_p.YResolution - 16){
-      y_mouse = vmi_p.YResolution - 16-5;
+      y_mouse = vmi_p.YResolution - 16;
     }
 
     packet0.delta_x = 0;

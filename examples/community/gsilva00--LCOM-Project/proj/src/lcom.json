@@ -39,7 +39,14 @@
           "position": "bottom-right",
           "key": "DOWN"
         }
-      ]
+      ],
+      "cursor": {
+        "x": 400,
+        "y": 300,
+        "maxX": 799,
+        "maxY": 599,
+        "desktopScale": 1
+      }
     }
   },
   "build": {

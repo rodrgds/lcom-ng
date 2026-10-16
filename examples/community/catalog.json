@@ -6,9 +6,9 @@
     "sourceAudit": {
       "games": 65,
       "pinnedOriginalFiles": 7757,
-      "unchangedGames": 45,
-      "correctedGames": 20,
-      "correctedSourceFiles": 31,
+      "unchangedGames": 40,
+      "correctedGames": 25,
+      "correctedSourceFiles": 44,
       "command": "devenv shell -- python3 scripts/check_collection_sources.py --require-tracked"
     },
     "android": {
@@ -5018,10 +5018,10 @@
           "path": "SOURCE_PATCH.diff",
           "files": [
             {
-              "path": "proj/src/proj.c",
-              "originalSha256": "17f894bddff02bdbfbbb361dba71e64abf96c41090888ea7e77739141d0f2960",
-              "patchedSha256": "a27c3b84703d5a32db9a1b6eaf2e12525a645d9bbc04eff7da3373c8a7af45bd",
-              "reason": "Apply mouse movement only after a newly completed packet, rather than replaying its old deltas on both partial bytes of the next packet. Reset failed packet assembly and ignore overflow movement."
+              "path": "proj/src/game.c",
+              "originalSha256": "06fc58ff3795d54ad9fde7043886b92b594eb57bc1dea80448f633da7acb7412",
+              "patchedSha256": "7788fcd933a4ab3b9be3511ee63ec08f58bab7c09ddf58da99ea57efd517cbf2",
+              "reason": "Preserve original half-speed cursor motion and clip its sprite at framebuffer edges. Cover the framebuffer when repainting shorter background art by repeating its final source row/column, removing stale cursor pixels without altering the original art."
             },
             {
               "path": "proj/src/mouse.c",
@@ -5030,13 +5030,13 @@
               "reason": "Check the synchronization bit at each packet boundary so discarded input cannot permanently offset three-byte packet assembly."
             },
             {
-              "path": "proj/src/game.c",
-              "originalSha256": "06fc58ff3795d54ad9fde7043886b92b594eb57bc1dea80448f633da7acb7412",
-              "patchedSha256": "c33f4cf7330a2caf19f9456e93b3594d244e9167ec0c5635d1ebdf0449d8a5ef",
-              "reason": "Preserve half-speed signed integer motion while clamping its applied delta consistently to the framebuffer hotspot bounds. Clip the original cursor sprite at every frame edge while preserving source row stride."
+              "path": "proj/src/proj.c",
+              "originalSha256": "17f894bddff02bdbfbbb361dba71e64abf96c41090888ea7e77739141d0f2960",
+              "patchedSha256": "a27c3b84703d5a32db9a1b6eaf2e12525a645d9bbc04eff7da3373c8a7af45bd",
+              "reason": "Apply mouse movement only after a newly completed packet, rather than replaying its old deltas on both partial bytes of the next packet. Reset failed packet assembly and ignore overflow movement."
             }
           ],
-          "reproduction": "Public CLI replay sends mouse20,-10 then neutral0,0. Original presented cursor is30,15; corrected cursor10,5 preserves intended half-speed. Public motion/drawing regression separately reproduces scaled bound jumps and offscreen cursor pixel writes, then passes after the correction."
+          "reproduction": "CLI packet regression and motion/drawing regression pass. Background redraw boundary regression leaves an old cursor on the uncovered framebuffer row before correction and restores the original art edge after correction."
         }
       ],
       "verification": {
@@ -7211,19 +7211,31 @@
       },
       "sourcePatches": [
         {
-          "path": "examples/community/alexandre2004costa--Lcom-project/SOURCE_PATCH.diff",
+          "path": "SOURCE_PATCH.diff",
           "files": [
             {
               "path": "devices/graphic.c",
               "originalSha256": "b1f4635a25be68f0c5635a3c86a75d9649e0bc9e6e51eb9eb86887ecb6d7bc0f",
               "patchedSha256": "ed1151a736ee580df81d236ac38ce6d7916683471d7ad6a2c19ff86d43ecd355",
               "reason": "Original Close menu reproduces SIGABRT: freeVideoBuffers passes two vm_map_phys framebuffer mappings to free. Release each mapping through vm_unmap_phys using the existing mode dimensions."
+            },
+            {
+              "path": "proj.c",
+              "originalSha256": "3678c713e64b3f45819a8e333fa672739203aa710679b43617f159571eea12c0",
+              "patchedSha256": "684c35d418f1d9a8320c5673f4024b06206e60fb890d4488172f09d268846126",
+              "reason": "Enable mouse reporting through the existing acknowledged command before entering the event loop."
+            },
+            {
+              "path": "model.c",
+              "originalSha256": "89c30122dccef89dedf8cfd409cf947b029cc382f8c4a43c95080406e7487c98",
+              "patchedSha256": "4cad824e73cb6e9834f4d3b9fc2e24c1d88bf103d0509779a935f7acff679864",
+              "reason": "Move and click only after a complete three-byte packet so the previous Y or repeated previous X/Y cannot affect menu input."
             }
           ],
-          "reproduction": "source-regressions/alexandre2004costa--Lcom-project/results.json"
+          "reproduction": "Real CLI menu capture: normal movement20,-10 then neutral0,0 renders0,0 while reporting is disabled. Raw PS2 equivalent bypasses reporting and renders60,30 because partial packets move the cursor. Both render20,10 after corrections. Existing graphic.c correction retains vm_unmap_phys for mapped framebuffers, verified by the original Close-menu reproduction."
         }
       ],
-      "controlsRationale": "Live platform scene, movement/jump and orange projectile visible. Horizontal A/D pad replaces separate move actions. Multiplayer is UART.",
+      "controlsRationale": "Keyboard movement and Fire mouse action retain the original gameplay. The menu cursor starts0,0 with unit deltas, but ignores motion during gameplay, so its relative drag profile remains. Recorded source fixes enable reporting and consume complete packets once.",
       "verification": {
         "repo": "alexandre2004costa/Lcom-project",
         "buildExit": 0,
@@ -8879,7 +8891,20 @@
         "status": "missing",
         "files": []
       },
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "src/proj.c",
+              "originalSha256": "96dd80ba2b5d57669fbdab6bc3cae07ce75188f77adc132e49d10e7a5d1eb2d9",
+              "patchedSha256": "ebc4f08acfc1dbaa79f80304cfaad58f704c94e371b767152c375537bd061201",
+              "reason": "Apply cursor movement and buttons only after all three bytes are decoded; partial IRQ bytes must not replay stale motion or buttons."
+            }
+          ],
+          "reproduction": "Public CLI movement20,-10 then neutral0,0 renders cursor30,15 before correction,10,5 after correction, preserving original half sensitivity."
+        }
+      ],
       "controlsRationale": "Held-key repeats navigate bounded starting corridor. Existing repeatKeys WASD preserved. Full maze completion not claimed.",
       "verification": {
         "repo": "HenriqueSFernandes/LCOMaze",

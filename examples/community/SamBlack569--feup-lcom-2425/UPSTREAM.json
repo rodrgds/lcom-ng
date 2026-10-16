@@ -4,7 +4,24 @@
   "project": "proj/src",
   "licenseFiles": [],
   "licenseStatus": "No license found in upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "proj/src/drivers/mouse.c",
+      "patch": "SOURCE_PATCH.diff",
+      "reason": "Clamp the unit-delta cursor to the active framebuffer and maintain its position while gameplay/help hide it, so returning to menus preserves physical pointer alignment.",
+      "upstreamSha256": "dfb3a52398f35ea706e720f2df7d56bf39debd96b7ff45389edcceba2b1f1087",
+      "patchedSha256": "d6a2aeec6c8ad61532d1fc792b1231cae565221c57244f486b05997c3a6a747b",
+      "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_space_shooter_cursor_stays_in_framebuffer"
+    },
+    {
+      "file": "proj/src/core/game.c",
+      "patch": "SOURCE_PATCH.diff",
+      "reason": "Clamp the unit-delta cursor to the active framebuffer and maintain its position while gameplay/help hide it, so returning to menus preserves physical pointer alignment.",
+      "upstreamSha256": "00598ea5d9996f8bea51a78cfaf360b473f074055af6977ba8151afdd015353a",
+      "patchedSha256": "3147e8d73ca7f1fc88873f57ef8bde9a08c3008de795516298322a09c0d4e922",
+      "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_space_shooter_cursor_stays_in_framebuffer"
+    }
+  ],
   "sha256": {
     ".gitignore": "fd5ef01e2b68c069c5eec89d728295c682f75e6f78e96571f55127d99a9bfc1f",
     "README.md": "a1cfdb93418bfec97f8c6db64ab12c5a10729e9520a425ad766f5ee8cb830389",

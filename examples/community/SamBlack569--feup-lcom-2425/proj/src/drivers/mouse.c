@@ -9,6 +9,8 @@ static int hook_id = 4;
 struct packet pp;
 int bytes_received = 0;
 
+extern unsigned hres, vres;
+
 int x_init = 0;
 int y_init = 0;
 
@@ -19,6 +21,11 @@ int(track_mouse_movement)() {
 
 	x_init += pp.delta_x;
 	y_init -= pp.delta_y;
+
+	if (x_init < 0) x_init = 0;
+	if (y_init < 0) y_init = 0;
+	if (hres && x_init >= (int)hres) x_init = (int)hres - 1;
+	if (vres && y_init >= (int)vres) y_init = (int)vres - 1;
 
 	return 0;
 }

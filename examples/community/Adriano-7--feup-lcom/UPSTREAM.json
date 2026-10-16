@@ -12,6 +12,14 @@
       "upstreamSha256": "fe059f72641cd2665c6f0f84f08f822eed8ebd599fe4da4214f0b32603734f64",
       "patchedSha256": "5c676ec560832e053b2adbf1f25b46e1205fac98afe42e4bf6e170c3e14fe962",
       "verification": "Dirty-heap constructor regression RED then GREEN; original web gameplay trapped out of bounds, corrected web start/move/fire passed without JS errors. Evidence: import-a/constructor-before.log, constructor-after.log, space-debug-after.log and actual gameplay capture."
+    },
+    {
+      "file": "proj/src/model/cursor.c",
+      "patch": "SOURCE_PATCH.diff",
+      "reason": "Compare the cursor hotspot directly to the top margin, allowing single-pixel downward movements to leave that margin instead of snapping back until an entire sprite-height motion arrives.",
+      "upstreamSha256": "c8b308931dd7f4a6cfcbc666fadb3fd0869a0b9564d4427db4e28bdd52c99e41",
+      "patchedSha256": "68a2fd60ed5db2c15f435fc09104a9a4dbf0f59ea03b7a11ae5506e397cd39ac",
+      "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_space_invaders_cursor_can_leave_top_margin_one_pixel_at_a_time"
     }
   ],
   "sha256": {

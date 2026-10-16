@@ -41,6 +41,7 @@ int (proj_main_loop)(int argc, char *argv[]){
   loadSprites();
   timer_set_frequency(0, 60);
   if (enableInterrupts() != 0)return 1;
+  if (write_to_mouse(0xF4) != 0) return 1;
   waitForInterrupt();
   return EndDevices();    
 }

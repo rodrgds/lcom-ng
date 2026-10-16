@@ -1088,7 +1088,7 @@ int(proj_main_loop)(int argc, char *argv[]) {
 
                 if (mouse_big_packet[0] & PS2_YDELTA) {
                   uint16_t y = 0xFF00 | mouse_big_packet[2];
-                  delta_y = -((~y) + 1);
+                  delta_y = ((~y) + 1);
                 }
                 else {
                   delta_y = mouse_big_packet[2];

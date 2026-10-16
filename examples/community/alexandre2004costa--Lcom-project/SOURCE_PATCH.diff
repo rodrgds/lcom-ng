@@ -12,3 +12,28 @@
  }
  
  /**@}*/
+--- a/proj.c
++++ b/proj.c
+@@ -41,6 +41,7 @@
+   loadSprites();
+   timer_set_frequency(0, 60);
+   if (enableInterrupts() != 0)return 1;
++  if (write_to_mouse(0xF4) != 0) return 1;
+   waitForInterrupt();
+   return EndDevices();    
+ }
+--- a/model.c
++++ b/model.c
+@@ -186,8 +186,10 @@
+           if(msg.m_notify.interrupts & mouseIRQ) {
+             mouse_ih();
+             managePackages();
+-            mouseMovement();
+-            if (byteCount == 2 && pp.lb) leftMouseClick(true);
++            if (byteCount == 0) {
++              mouseMovement();
++              if (pp.lb) leftMouseClick(true);
++            }
+           }
+           if (msg.m_notify.interrupts & serialIRQ) {
+             serial_ih();

@@ -13,8 +13,8 @@ Cursor *create_cursor(xpm_map_t pic) {
   }
 
   cr->img = img;
-  cr->x = 800;
-  cr->y = 600;
+  cr->x = 400;
+  cr->y = 300;
   
   return cr;
 }
@@ -27,15 +27,13 @@ void destroy_cursor(Cursor *cr) {
 
 void set_coordinates(Cursor *cr, uint16_t x, uint16_t y, bool negative_x , bool negative_y) {
   if (cr == NULL) return;
-  if (negative_x) cr->x -= x;
-  else cr->x += x;
-  
-  if (cr->y - y > 600) cr->y = 0;
-  else cr->y -= y;
-  
-  // Avoid going out of bounds
-  if (cr->x < 0) cr->x = 0;
-  if (cr->y < 0) cr->y = 0;
-  if (cr->x > 800) cr->x = 800;
-  if (cr->y > 600) cr->y = 600;
+  int32_t new_x = (int32_t)cr->x + (negative_x ? -(int32_t)x : (int32_t)x);
+  int32_t new_y = (int32_t)cr->y + (negative_y ? -(int32_t)y : (int32_t)y);
+
+  if (new_x < 0) new_x = 0;
+  if (new_y < 0) new_y = 0;
+  if (new_x > 799) new_x = 799;
+  if (new_y > 599) new_y = 599;
+  cr->x = (uint16_t)new_x;
+  cr->y = (uint16_t)new_y;
 }

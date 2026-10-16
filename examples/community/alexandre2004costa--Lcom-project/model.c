@@ -186,8 +186,10 @@ void waitForInterrupt(){
           if(msg.m_notify.interrupts & mouseIRQ) {
             mouse_ih();
             managePackages();
-            mouseMovement();
-            if (byteCount == 2 && pp.lb) leftMouseClick(true);
+            if (byteCount == 0) {
+              mouseMovement();
+              if (pp.lb) leftMouseClick(true);
+            }
           }
           if (msg.m_notify.interrupts & serialIRQ) {
             serial_ih();

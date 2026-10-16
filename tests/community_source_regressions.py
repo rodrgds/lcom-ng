@@ -38,6 +38,213 @@ class StudentSourceRegressions(unittest.TestCase):
             result = subprocess.run([str(binary)], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def test_space_shooter_cursor_stays_in_framebuffer(self):
+        self.compile_and_run(COMMUNITY / 'SamBlack569--feup-lcom-2425/proj/src',
+                             ['drivers/mouse.c','core/game.c'], r'''#include "drivers/mouse.h"
+#include "core/game.h"
+#include <assert.h>
+unsigned hres=1152, vres=864;
+extern int x_init,y_init;
+extern struct packet pp;
+void get_menu(void){abort();}
+void draw_mouse(void){abort();}
+void draw_help_menu(void){abort();}
+void load_buffer(void){abort();}
+void clear_all_buffers(void){abort();}
+void load_game_background(void){abort();}
+void get_game_background(void){abort();}
+void draw_asteroid(int x,int y){abort();}
+void draw_spaceship(int x){abort();}
+void draw_score(int n,int x,int y){abort();}
+void draw_time(int n){abort();}
+int vg_exit(void){abort();}
+extern game_state_t game_state;
+int main(void) {
+  pp.delta_x=-96; pp.delta_y=96;
+  assert(track_mouse_movement()==0);
+  assert(x_init==0 && y_init==0);
+  pp.delta_x=96; pp.delta_y=-96;
+  for(int i=0;i<20;i++) assert(track_mouse_movement()==0);
+  assert(x_init==1151 && y_init==863);
+  pp.delta_x=-10; pp.delta_y=10;
+  assert(track_mouse_movement()==0);
+  assert(x_init==1141 && y_init==853);
+  pp.x_ov=true; pp.delta_x=50;
+  assert(track_mouse_movement()!=0 && x_init==1141 && y_init==853);
+  pp.x_ov=false; x_init=400;y_init=300;
+  pp.delta_x=5;pp.delta_y=6;game_state=GAME_STATE;
+  mouse_handler();assert(x_init==405 && y_init==294);
+  game_state=HELP_STATE;mouse_handler();assert(x_init==410 && y_init==288);
+  return 0;
+}
+''')
+
+
+    def test_pixel_football_cursor_edges_preserve_direction(self):
+        self.compile_and_run(COMMUNITY / 'gsilva00--LCOM-Project/proj/src/objects',
+                             ['cursor.c'], r'''#include "cursor.h"
+#include <assert.h>
+uint8_t *xpm_load(xpm_map_t p,enum xpm_image_type t,xpm_image_t *i) {
+  static uint8_t pixel; (void)p;(void)t;i->width=1;i->height=1;return &pixel;
+}
+int main(void) {
+  Cursor *c=create_cursor(NULL);
+  assert(c && c->x==400 && c->y==300);
+  c->x=5;c->y=5;
+  set_coordinates(c,10,10,true,true);
+  assert(c->x==0 && c->y==0);
+  set_coordinates(c,10,10,false,false);
+  assert(c->x==10 && c->y==10);
+  c->x=795;c->y=595;
+  set_coordinates(c,10,10,false,false);
+  assert(c->x==799 && c->y==599);
+  set_coordinates(c,10,10,true,true);
+  assert(c->x==789 && c->y==589);
+  destroy_cursor(c);
+  return 0;
+}
+''')
+
+
+    def test_space_invaders_cursor_can_leave_top_margin_one_pixel_at_a_time(self):
+        self.compile_and_run(COMMUNITY / 'Adriano-7--feup-lcom/proj/src/model',
+                             ['cursor.c'], r'''#include "cursor.h"
+#include <assert.h>
+vbe_mode_info_t mode_info={.XResolution=800,.YResolution=600};
+struct packet pkt;
+int video_draw_rectangle(uint16_t x,uint16_t y,uint16_t w,uint16_t h,uint32_t c) {return 0;}
+int main(void) {
+  DrawableObject_t object={.x=100,.y=40,.img={.width=16,.height=16}};
+  Cursor_t cursor={.drawableObject=&object};
+  pkt.delta_y=-1;
+  for(int i=0;i<20;i++) {updateCursor(&cursor);assert(object.y==41+i);}
+  pkt.delta_y=96; updateCursor(&cursor);assert(object.y==40);
+  pkt.delta_y=-96; updateCursor(&cursor);assert(object.y==136);
+  return 0;
+}
+''')
+
+
+    def test_star_defender_cursor_clamps_without_edge_recoil(self):
+        self.compile_and_run(COMMUNITY / 'luanalima27--LCOM-FEUP/proj/src',
+                             ['mouse.c'], r'''#include "mouse.h"
+#include <assert.h>
+vbe_mode_info_t vmi_p={.XResolution=800,.YResolution=600};
+extern int x_mouse,y_mouse;
+extern struct packet packet0;
+int main(void) {
+  packet0.delta_x=-1;packet0.delta_y=1;
+  move_cursor();assert(x_mouse==0 && y_mouse==0);
+  x_mouse=784;y_mouse=584;
+  packet0.delta_x=1;packet0.delta_y=-1;
+  move_cursor();assert(x_mouse==784 && y_mouse==584);
+  packet0.delta_x=-1;packet0.delta_y=1;
+  move_cursor();assert(x_mouse==783 && y_mouse==583);
+  assert(packet0.delta_x==0 && packet0.delta_y==0);
+  return 0;
+}
+''')
+
+
+    def test_lcomaze_consumes_complete_mouse_packets_once(self):
+        # The real IRQ loop must advance its original half-speed cursor once,
+        # including when the next packet is neutral.
+        cli = Path(os.environ.get('LCOM_CLI', ROOT / 'build/machinelab')).resolve()
+        project = COMMUNITY / 'HenriqueSFernandes--LCOMaze/src'
+        with tempfile.TemporaryDirectory(prefix='lcom-maze-cursor-') as temporary:
+            folder = Path(temporary)
+            subprocess.run([str(cli), 'compat', 'build', str(project), '--output', str(folder / 'native')],
+                           check=True, capture_output=True, text=True, timeout=120)
+            replay = folder / 'cursor.mlabscript'
+            replay.write_text('at 180 mouse 20 -10 0\nat 200 mouse 0 0 0\n')
+            frame = folder / 'menu.ppm'
+            result = subprocess.run([str(cli), 'run', '--headless', '--script', str(replay),
+                                     '--max-ticks', '240', '--timeout', '30', '--dump-presented',
+                                     '--dump-frame', str(frame), '--', str(folder / 'native/proj'), 'host'],
+                                    cwd=folder, capture_output=True, text=True, timeout=45)
+            self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+            self.assertIn('max virtual ticks reached (240)', result.stdout + result.stderr)
+            magic, dimensions, depth, pixels = frame.read_bytes().split(b'\n', 3)
+            self.assertEqual((magic, dimensions, depth), (b'P6', b'1152 864', b'255'))
+            # Only the cursor has white pixels in the top-left 80x60 region.
+            white = [(x,y) for y in range(60) for x in range(80)
+                     if pixels[(y*1152+x)*3:(y*1152+x)*3+3] == b'\xff\xff\xff']
+            self.assertGreater(len(white), 100, 'The original white cursor must be rendered')
+            self.assertEqual((min(x for x,y in white), min(y for x,y in white)), (10,5),
+                             'A complete movement packet advances the half-speed cursor once')
+
+
+    def test_memory_match_background_erases_cursor_on_uncovered_edge(self):
+        # Original background art is one row shorter than the framebuffer.
+        # Redrawing must erase a cursor that occupied that last row.
+        self.compile_and_run(COMMUNITY / 'iamaccosta--FEUP-LCOM/proj/src', ['game.c'], r'''
+#include <lcom/lcf.h>
+#include "game.h"
+#include "video.h"
+#include <assert.h>
+extern xpm_image_t imgBackground;
+extern uint8_t *spriteBackground;
+vbe_mode_info_t modeinfo;
+xpm_image_t imgDeck, imgCardBack;
+uint8_t *spriteDeck, *spriteCardBack;
+static uint32_t framebuffer[6];
+uint8_t *xpm_load(xpm_map_t map, enum xpm_image_type type, xpm_image_t *img) { abort(); }
+void greenPartOfScreen(int x, int y, int width, int height) { abort(); }
+void vg_draw_card(int x, int y, int column, int row) { abort(); }
+int my_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
+  assert(x < 2 && y < 3); framebuffer[y*2+x] = color & 0xffffff; return 0;
+}
+int main(void) {
+  uint8_t pixels[] = {1,2,3,4,5,6,7,8,9,10,11,12};
+  spriteBackground=pixels; imgBackground=(xpm_image_t){.width=2,.height=2};
+  modeinfo=(vbe_mode_info_t){.XResolution=2,.YResolution=3,.BitsPerPixel=24};
+  framebuffer[4]=framebuffer[5]=0x00a2e8;
+  drawBackground();
+  assert(framebuffer[0] == 0x030201 && framebuffer[1] == 0x060504);
+  assert(framebuffer[2] == 0x090807 && framebuffer[3] == 0x0c0b0a);
+  if (framebuffer[4] != 0x090807 || framebuffer[5] != 0x0c0b0a) {
+    fprintf(stderr,"Background redraw must erase the last-row cursor using the art edge\n"); return 1;
+  }
+  return 0;
+}
+''')
+
+
+    def aerial_ambush_cursor(self, raw_bytes):
+        # Movement must use one complete X/Y pair rather than mixed bytes.
+        cli = Path(os.environ.get('LCOM_CLI', ROOT / 'build/machinelab')).resolve()
+        project = COMMUNITY / 'alexandre2004costa--Lcom-project'
+        with tempfile.TemporaryDirectory(prefix='lcom-aerial-cursor-') as temporary:
+            folder = Path(temporary)
+            subprocess.run([str(cli), 'compat', 'build', str(project), '--output', str(folder / 'native')],
+                           check=True, capture_output=True, text=True, timeout=120)
+            replay = folder / 'cursor.mlabscript'
+            replay.write_text('at 180 ps2 mouse 0x28 ok\nat 181 ps2 mouse 20 ok\nat 182 ps2 mouse 246 ok\nat 200 ps2 mouse 8 ok\nat 201 ps2 mouse 0 ok\nat 202 ps2 mouse 0 ok\n' if raw_bytes else 'at 180 mouse 20 -10 0\nat 200 mouse 0 0 0\n')
+            frame = folder / 'menu.ppm'
+            result = subprocess.run([str(cli), 'run', '--headless', '--script', str(replay),
+                                     '--max-ticks', '240', '--timeout', '30', '--dump-presented',
+                                     '--dump-frame', str(frame), '--', str(folder / 'native/proj')],
+                                    cwd=folder, capture_output=True, text=True, timeout=45)
+            self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+            self.assertIn('max virtual ticks reached (240)', result.stdout + result.stderr)
+            magic, dimensions, depth, pixels = frame.read_bytes().split(b'\n', 3)
+            self.assertEqual((magic, dimensions, depth), (b'P6', b'1152 864', b'255'))
+            # The cursor outline is RGB17,17,17. Sky in this region is colored.
+            outline = [(x,y) for y in range(100) for x in range(150)
+                       if pixels[(y*1152+x)*3:(y*1152+x)*3+3] == b'\x11\x11\x11']
+            self.assertGreater(len(outline), 100, 'The original cursor outline must render')
+            self.assertEqual((min(x for x,y in outline), min(y for x,y in outline)), (20,10),
+                             'Only one complete X/Y packet moves the cursor')
+
+
+    def test_aerial_ambush_consumes_complete_mouse_packets_once(self):
+        self.aerial_ambush_cursor(raw_bytes=True)
+
+
+    def test_aerial_ambush_enables_mouse_reporting(self):
+        self.aerial_ambush_cursor(raw_bytes=False)
+
+
     def test_memory_match_consumes_complete_mouse_packets_once(self):
         # A neutral packet after movement must not replay its preceding delta.
         # Exercise the real IRQ loop and independently locate the blue cursor.

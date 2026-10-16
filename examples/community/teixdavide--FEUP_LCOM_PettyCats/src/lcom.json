@@ -36,7 +36,14 @@
           "position": "bottom-right",
           "mouseButton": "left"
         }
-      ]
+      ],
+      "cursor": {
+        "x": 0,
+        "y": 0,
+        "maxX": 1024,
+        "maxY": 768,
+        "desktopScale": 1
+      }
     }
   },
   "build": {

@@ -575,15 +575,15 @@ void drawSun() {
 }
 
 void drawBackground() {
-  int screenY = 0;
-  int screenX = 0;
-  uint8_t *map = spriteBackground;
-  for (int line = screenY; line < (imgBackground.height + screenY); line++) {
-    for (int col = screenX; col < (imgBackground.width + screenX); col++) {
+  int bytes_per_pixel = (modeinfo.BitsPerPixel + 7) / 8;
+  for (int line = 0; line < modeinfo.YResolution; line++) {
+    int source_y = line < imgBackground.height ? line : imgBackground.height - 1;
+    for (int col = 0; col < modeinfo.XResolution; col++) {
+      int source_x = col < imgBackground.width ? col : imgBackground.width - 1;
+      uint8_t *pixel = spriteBackground + (source_y * imgBackground.width + source_x) * bytes_per_pixel;
       uint32_t color;
-      memcpy(&color, map, 3);
+      memcpy(&color, pixel, 3);
       my_draw_pixel(col, line, color);
-      map += ((modeinfo.BitsPerPixel + 7) / 8);
     }
   }
 }

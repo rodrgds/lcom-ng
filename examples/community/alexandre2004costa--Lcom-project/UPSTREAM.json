@@ -72,16 +72,28 @@
   },
   "sourcePatches": [
     {
-      "path": "examples/community/alexandre2004costa--Lcom-project/SOURCE_PATCH.diff",
+      "path": "SOURCE_PATCH.diff",
       "files": [
         {
           "path": "devices/graphic.c",
           "originalSha256": "b1f4635a25be68f0c5635a3c86a75d9649e0bc9e6e51eb9eb86887ecb6d7bc0f",
           "patchedSha256": "ed1151a736ee580df81d236ac38ce6d7916683471d7ad6a2c19ff86d43ecd355",
           "reason": "Original Close menu reproduces SIGABRT: freeVideoBuffers passes two vm_map_phys framebuffer mappings to free. Release each mapping through vm_unmap_phys using the existing mode dimensions."
+        },
+        {
+          "path": "proj.c",
+          "originalSha256": "3678c713e64b3f45819a8e333fa672739203aa710679b43617f159571eea12c0",
+          "patchedSha256": "684c35d418f1d9a8320c5673f4024b06206e60fb890d4488172f09d268846126",
+          "reason": "Enable mouse reporting through the existing acknowledged command before entering the event loop."
+        },
+        {
+          "path": "model.c",
+          "originalSha256": "89c30122dccef89dedf8cfd409cf947b029cc382f8c4a43c95080406e7487c98",
+          "patchedSha256": "4cad824e73cb6e9834f4d3b9fc2e24c1d88bf103d0509779a935f7acff679864",
+          "reason": "Move and click only after a complete three-byte packet so the previous Y or repeated previous X/Y cannot affect menu input."
         }
       ],
-      "reproduction": "source-regressions/alexandre2004costa--Lcom-project/results.json"
+      "reproduction": "Real CLI menu capture: normal movement20,-10 then neutral0,0 renders0,0 while reporting is disabled. Raw PS2 equivalent bypasses reporting and renders60,30 because partial packets move the cursor. Both render20,10 after corrections. Existing graphic.c correction retains vm_unmap_phys for mapped framebuffers, verified by the original Close-menu reproduction."
     }
   ],
   "derivedAssets": [
