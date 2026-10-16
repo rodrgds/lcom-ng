@@ -156,7 +156,7 @@
             "cursor": {
               "type": "object",
               "additionalProperties": false,
-              "description": "Guest cursor initial position and inclusive bounds. Direct mapping requires unit deltas and no independent cursor warps. bounds describes whether an out-of-bounds delta clamps or is rejected per axis.",
+              "description": "Guest cursor initial position and inclusive bounds. Optional desktopScale calibrates physical browser mouse movement for verified half, unit or double guest deltas. Direct mapping requires unit deltas and no independent cursor warps. bounds describes whether an out-of-bounds delta clamps or is rejected per axis.",
               "properties": {
                 "x": {
                   "type": "integer",
@@ -187,6 +187,11 @@
                   "type": "integer",
                   "minimum": 0,
                   "maximum": 16384
+                },
+                "desktopScale": {
+                  "type": "number",
+                  "enum": [0.5, 1, 2],
+                  "description": "Guest pixels per raw PS/2 unit, for physical browser mouse only. Requires a verified initial position, bounds, and no independent cursor warps."
                 },
                 "bounds": {
                   "enum": [

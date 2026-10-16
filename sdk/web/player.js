@@ -50,9 +50,10 @@ const guestKey = code => aliases[code] || (/^Key[A-Z]$/.test(code) ? code.slice(
 
 const player = {
   module: null, paused: false, held: new Map(), repeats: new Map(), buttons: 0, image: null,
-  audioContext: null, audioSource: null, lastPointer: null,
+  audioContext: null, audioSource: null, lastPointer: null, desktopPointer: null,
   attach(module) {
     this.module = module;
+    this.desktopPointer = null;
     const c = mobile?.controls.cursor || {};
     module.ccall('lcom_web_cursor', null, Array(7).fill('number'), [c.x ?? -1,c.y ?? -1,c.maxX ?? -1,c.maxY ?? -1,c.minX ?? 0,c.minY ?? 0,c.bounds === 'reject' ? 1 : 0]);
     this.releaseAll();
@@ -259,6 +260,23 @@ function mouse(event) {
   const point = canvasPoint(event);
   if (mobile?.controls.pointer === 'direct') {
     setMouseButtons('physical', event.buttons, 0, 0, point);
+    return;
+  }
+  const cursor = mobile?.controls.cursor;
+  if (cursor?.desktopScale) {
+    // This model belongs to the running guest, not its current focus. Keeping
+    // it across release/re-entry prevents a centre-origin jump at canvas edges.
+    const position = player.desktopPointer ||= [cursor.x >= 0 ? cursor.x : canvas.width / 2,
+                                               cursor.y >= 0 ? cursor.y : canvas.height / 2];
+    const target = point.map((value, axis) => Math.max(cursor[axis ? 'minY' : 'minX'] ?? 0,
+      Math.min(cursor[axis ? 'maxY' : 'maxX'] >= 0 ? cursor[axis ? 'maxY' : 'maxX'] : (axis ? canvas.height : canvas.width) - 1, Math.round(value))));
+    const scale = cursor.desktopScale;
+    // Half-speed games truncate each packet's delta/2. Even raw deltas and
+    // the runtime's even packet limit preserve every requested guest pixel.
+    const quantum = scale < 1 ? 2 : 1;
+    const raw = target.map((value, axis) => Math.trunc((value - position[axis]) / scale / quantum) * quantum);
+    position[0] += raw[0] * scale; position[1] += raw[1] * scale;
+    setMouseButtons('physical', event.buttons, raw[0], -raw[1]);
     return;
   }
   const previous = player.lastPointer || [canvas.width / 2, canvas.height / 2];

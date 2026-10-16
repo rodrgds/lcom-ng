@@ -93,6 +93,7 @@ or native controls.
 | `controls.toolbar` | `"auto"` | Menu/control cluster: `"auto"` or a corner, such as `"top-right"` |
 | `controls.keyboardPosition` | `"auto"` | Expanded keyboard: `"auto"`, `"bottom"`, `"left"`, `"right"` |
 | `controls.cursor` | Centered, bounded by the framebuffer | Guest start `x`, `y`, inclusive `minX`, `minY`, `maxX`, `maxY`, and `bounds`: `"clamp"` or `"reject"` |
+| `controls.cursor.desktopScale` | Unset | Physical browser mouse calibration: guest pixels per PS/2 unit, `0.5`, `1` or `2` |
 | `controls.pads` | `[]` | Up to two directional pads, sticks or steering wheels |
 | `controls.actions` | `[]` | Up to eight named key or mouse actions, at most four per corner |
 
@@ -447,3 +448,20 @@ those keys. Quick keys wrap on smaller screens and support simultaneous holds:
 ```
 
 Only enable a directional pad or stick when the game uses one.
+
+### Desktop mouse calibration
+
+For a relative-pointer game with a verified cursor start, inclusive bounds and
+no independent cursor warps, set `cursor.desktopScale` to the number of guest
+pixels moved per PS/2 unit. For example, Memory Match starts at `(0, 0)`, clamps
+to `(799, 599)` and divides each packet delta by two:
+
+```json
+"cursor": { "x": 0, "y": 0, "maxX": 799, "maxY": 599, "desktopScale": 0.5 }
+```
+
+The browser preserves this position across focus release and canvas re-entry.
+Half-speed mapping emits even raw deltas; double-speed mapping retains sub-step
+travel until a guest pixel step is representable. Touch gestures and native
+physical mice retain their existing relative behavior. Keep this unset for
+cursors that warp, wrap, accelerate or move independently through other inputs.

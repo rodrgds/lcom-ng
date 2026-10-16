@@ -164,9 +164,13 @@ def load(project, explicit=None):
                 positions.append(action.get('position','bottom-'+action.get('side','right')))
             if any(positions.count(position)>4 for position in positions): raise ValueError(target+' allows up to four actions per position')
         elif key=='cursor':
-            object_value(value,target,DEFAULT_MOBILE['controls']['cursor'])
+            object_value(value,target,[*DEFAULT_MOBILE['controls']['cursor'],'desktopScale'])
             value={**DEFAULT_MOBILE['controls']['cursor'],**value}
             for field,coordinate in value.items():
+                if field=='desktopScale':
+                    if type(coordinate) not in (int,float) or coordinate not in (0.5,1,2):
+                        raise ValueError(target+'.desktopScale must be 0.5, 1 or 2')
+                    continue
                 if field=='bounds':
                     choice(coordinate,target+'.bounds',['clamp','reject']); continue
                 if type(coordinate) is not int or not -1 <= coordinate <= 16384:

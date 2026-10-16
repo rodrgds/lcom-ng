@@ -1067,3 +1067,39 @@ test('configured mouse actions preserve short taps, cancel immediately and keep 
   await expect(page.getByRole('button',{name:'Flip',exact:true,includeHidden:true})).toHaveAttribute('aria-pressed','false');
   await context.close();
 });
+
+// A guest using integer delta/2 needs even raw packets. Its logical position
+// must survive focus release, canvas exit and re-entry, without stale deltas.
+test('calibrated desktop mouse respects guest gain, bounds and re-entry', async ({page}) => {
+  let scale=0.5;
+  await page.route('**/configured-dual/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();
+    Object.assign(settings.mobile.controls,{pointer:'move',cursor:{x:0,y:0,minX:0,minY:0,maxX:799,maxY:599,desktopScale:scale}});
+    await route.fulfill({response,json:settings});
+  });
+  for (scale of [0.5,2]) {
+    await start(page,'configured-dual');
+    await page.locator('canvas').focus();
+    const move=async(x,y)=>{
+      await page.locator('canvas').evaluate((canvas,{x,y})=>{
+        const r=canvas.getBoundingClientRect();
+        canvas.dispatchEvent(new PointerEvent('pointermove',{pointerType:'mouse',clientX:r.left+x*r.width/canvas.width,clientY:r.top+y*r.height/canvas.height}));
+      },{x,y});
+      await page.waitForTimeout(250);
+    };
+    const position=()=>mousePackets(page).reduce(([x,y],packet)=>{
+      const dx=packet[1]-(packet[0]&16?256:0),dy=packet[2]-(packet[0]&32?256:0);
+      return [Math.max(0,Math.min(799,x+Math.trunc(dx*scale))),Math.max(0,Math.min(599,y-Math.trunc(dy*scale)))];
+    },[0,0]);
+    await move(100,550);
+    expect(position()).toEqual([100,550]);
+    await move(100,1000);expect(position()).toEqual([100,scale===2?598:599]);
+    // Release/re-entry must retain the guest coordinate, not restart at centre.
+    await page.locator('canvas').evaluate(canvas=>canvas.blur());
+    const click=await page.locator('canvas').evaluate(canvas=>{const r=canvas.getBoundingClientRect();return {x:r.left+101*r.width/canvas.width,y:r.top+101*r.height/canvas.height};});
+    await page.mouse.click(click.x,click.y);
+    await page.waitForTimeout(250);
+    expect(position()).toEqual(scale===2?[100,102]:[101,101]);
+    await move(102,102);expect(position()).toEqual([102,102]);
+  }
+});
