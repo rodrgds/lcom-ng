@@ -10,7 +10,8 @@ lcom.json owns its title, icon, description, preview, assets and controls. Web
 collection metadata adds sourced year labels, featured selection and captured
 gameplay frames; packaging measures the approximate first-load download size.
 Original game artwork and presentation stay intact. Unknown years are omitted;
-source update dates retain their source kind in the catalog provenance.
+Arcade years come from GitHub repository creation timestamps, recorded in the
+catalog provenance.
 
 The web library makes game art the arcade. Square icons fill the screen at rest;
 hover or keyboard focus reveals captured gameplay, the name and available year

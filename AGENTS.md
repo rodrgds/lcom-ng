@@ -50,7 +50,8 @@ through `devenv shell -- ...`.
   paths and `description` in `lcom.json`. Keep original game assets unchanged. Per-game settings stay
   in each game's `lcom.json`. Optional collection `web.json` points to web-only
   `game-metadata.json` and `gallery.json`; year evidence and featured selection
-  belong there. Captured gallery frames live in `collections/arcade/galleries/`.
+  belong there. Arcade years use GitHub repository creation timestamps, never
+  last updates or commit dates. Captured gallery frames live in `collections/arcade/galleries/`.
   Pinned student sources under `examples/community/`
   retain `UPSTREAM.json` hashes and separately recorded source-defect patches.
   Keep Android game libraries in the isolated `:game` process, with fresh globals

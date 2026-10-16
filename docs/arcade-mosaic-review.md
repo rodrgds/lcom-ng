@@ -8,7 +8,7 @@ Release: <https://github.com/rodrgds/lcom-ng/releases/tag/arcade-2026-10-16-mosa
 ## Result
 
 - Square icon mosaic, separate featured rows, shuffled order, embedded utility tiles and modal search.
-- Wider hover previews with real horizontal slide transitions, plain year/size facts and independent Repo links for 65 public projects.
+- Wider hover previews with real horizontal slide transitions, repository creation year/size facts and independent Repo links for 65 public projects. Creation years are verified from GitHub's `createdAt` field; supplied PvZ has no public repository date.
 - 196 real gameplay captures across 66 games, 4,924,502 bytes. Memory Quest and LabJack use two useful frames; other games use three. Inputs, crop bounds and provenance are in the checked-in gallery manifests.
 - Three generated launcher icons, including the final simple pixel Ninjix requested after review. Exact prompts and final hashes are in `collections/arcade/icons/generation.json`. Original in-game artwork is unchanged.
 - Shared web host returns to the library on normal guest exit. Standalone exports keep restart behavior; detectable error exits retain the player. Android's existing SDL completion returns to its surviving native launcher.

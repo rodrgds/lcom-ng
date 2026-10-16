@@ -389,7 +389,7 @@
       "label": "Repo",
       "target": "_blank",
       "interaction": "Sibling link, independent of game launch",
-      "yearDisplay": "Year or academic range only, without Updated; full source kind remains in catalog provenance"
+      "yearDisplay": "GitHub repository creation year only; exact createdAt timestamp remains in catalog provenance"
     }
   },
   "components": [

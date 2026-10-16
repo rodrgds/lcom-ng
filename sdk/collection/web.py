@@ -4,6 +4,7 @@ import hashlib
 import errno
 import importlib.util
 import json
+from datetime import datetime
 from pathlib import Path
 import shutil
 import re
@@ -215,8 +216,8 @@ def _presentation(path, identifiers):
                 if 'year' not in value: raise ValueError('yearLabel requires an evidenced year')
             if 'year' in value and 'yearSource' not in value: raise ValueError('Game year requires yearSource')
             if 'yearSource' in value:
-                evidence = config.object_value(value['yearSource'], 'yearSource', ['kind', 'url', 'detail'])
-                config.choice(evidence.get('kind'), 'yearSource.kind', ['course', 'commit', 'unknown'])
+                evidence = config.object_value(value['yearSource'], 'yearSource', ['kind', 'url', 'detail', 'createdAt'])
+                config.choice(evidence.get('kind'), 'yearSource.kind', ['repository', 'course', 'commit', 'unknown'])
                 config.string(evidence.get('detail'), 'yearSource.detail')
                 if 'url' in evidence:
                     config.string(evidence['url'], 'yearSource.url')
@@ -224,6 +225,12 @@ def _presentation(path, identifiers):
                         raise ValueError('yearSource.url must be an HTTP URL')
                 if evidence['kind'] == 'commit' and value.get('yearLabel') != f"Updated {value.get('year')}":
                     raise ValueError('Commit dates must be labelled Updated YYYY')
+                if evidence['kind'] == 'repository':
+                    created = config.string(evidence.get('createdAt'), 'yearSource.createdAt')
+                    if datetime.fromisoformat(created.replace('Z', '+00:00')).year != value.get('year'):
+                        raise ValueError('Repository year must match its creation date')
+                    if 'yearLabel' in value and value['yearLabel'] != str(value['year']):
+                        raise ValueError('Repository year labels must use the creation year')
                 if evidence['kind'] == 'unknown' and 'year' in value:
                     raise ValueError('Unknown yearSource cannot establish a year')
             if 'featured' in value: config.boolean(value['featured'], 'featured')

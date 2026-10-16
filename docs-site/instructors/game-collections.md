@@ -71,9 +71,11 @@ An optional `web.json` beside the collection manifest adds web-only presentation
 
 Both files use `{"version": 1, "games": {...}}`, keyed by exported game IDs from
 `collection.json`. Metadata entries accept `featured`, `repository`, `year`, `yearSource` and
-`yearLabel`. A year source has a `kind` (`course`, `commit` or `unknown`), a
-`detail`, and an optional `url`. Keep commit-date provenance in `yearSource` and
-use **Updated YYYY** in the stored label; the launcher displays just the year.
+`yearLabel`. A year source has a `kind` (`repository`, `course`, `commit` or `unknown`), a
+`detail`, and an optional `url`. The included Arcade uses GitHub repository
+creation years, with the exact `createdAt` timestamp recorded in `yearSource`.
+Repository years must match that timestamp. Commit-date metadata remains
+supported with **Updated YYYY** in its stored label; the launcher displays just the year.
 Unknown years can be omitted. A public `repository` HTTP URL adds a **Repo** link
 to the expanded tile, opening separately from the game.
 

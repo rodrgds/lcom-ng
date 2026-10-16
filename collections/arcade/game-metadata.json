@@ -4,499 +4,548 @@
     "supplied-pvz-002c15167874": {
       "yearSource": {
         "kind": "unknown",
-        "detail": "User-supplied PvZ archive has no verified course or source commit date. Year omitted."
+        "detail": "The supplied PvZ archive has no public repository; repository creation year is omitted."
       },
       "featured": true
     },
     "dsv8-feup-lcom-97a7235a6dfe": {
       "year": 2024,
-      "yearLabel": "Updated 2024",
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/DSV8/FEUP-LCom/commit/ca0515a861cc7c9b21d86f97290945cea1f7a487",
-        "detail": "Pinned upstream commit ca0515a861cc7c9b21d86f97290945cea1f7a487 was committed 2024-10-18T23:26:06Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/DSV8/FEUP-LCom",
+        "createdAt": "2024-10-18T23:22:00Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/DSV8/FEUP-LCom"
     },
     "josesereno-bamboozlers-a02f6afff6d5": {
       "year": 2023,
-      "yearLabel": "Updated 2023",
+      "yearLabel": "2023",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/josesereno/Bamboozlers/commit/8492b6ae42767efee595e3265c2852bba595268a",
-        "detail": "Pinned upstream commit 8492b6ae42767efee595e3265c2852bba595268a was committed 2023-07-23T22:05:14Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/josesereno/Bamboozlers",
+        "createdAt": "2023-07-23T21:52:57Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/josesereno/Bamboozlers"
     },
     "bersanots-feup-lcom-a436e5039455": {
       "year": 2021,
-      "yearLabel": "Updated 2021",
+      "yearLabel": "2021",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/bersanots/FEUP-LCOM/commit/04e6ad63181e05a801c8f71eedf440c6bda04fc0",
-        "detail": "Pinned upstream commit 04e6ad63181e05a801c8f71eedf440c6bda04fc0 was committed 2021-06-23T01:32:59Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/bersanots/FEUP-LCOM",
+        "createdAt": "2021-06-23T01:28:47Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/bersanots/FEUP-LCOM"
     },
     "adriano-7-feup-lcom-727bed1b84da": {
-      "year": 2026,
-      "yearLabel": "Updated 2026",
+      "year": 2023,
+      "yearLabel": "2023",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/Adriano-7/feup-lcom/commit/e0b46670ed2122e2ad303a7d5ed83e51b517d215",
-        "detail": "Pinned upstream commit e0b46670ed2122e2ad303a7d5ed83e51b517d215 was committed 2026-04-03T20:12:37Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/Adriano-7/feup-lcom",
+        "createdAt": "2023-05-29T21:59:45Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Adriano-7/feup-lcom"
     },
     "andrenasx-feup-lcom-3c62b99c6b04": {
       "year": 2020,
-      "yearLabel": "Updated 2020",
+      "yearLabel": "2020",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/andrenasx/FEUP-LCOM/commit/4c34535b3ed40a3f60dba1d2c63fbe6aec946883",
-        "detail": "Pinned upstream commit 4c34535b3ed40a3f60dba1d2c63fbe6aec946883 was committed 2020-10-13T20:36:51Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/andrenasx/FEUP-LCOM",
+        "createdAt": "2020-02-27T18:03:36Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/andrenasx/FEUP-LCOM"
     },
     "teixeiraa05-lcom-sushi-slash-aeb86527d30d": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/teixeiraa05/lcom-sushi-slash/commit/2ee087937f7bb7b1a0d2a45036ca16cc71577421",
-        "detail": "Pinned upstream commit 2ee087937f7bb7b1a0d2a45036ca16cc71577421 was committed 2026-10-14T10:44:38Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/teixeiraa05/lcom-sushi-slash",
+        "createdAt": "2026-10-14T10:23:59Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "featured": true,
       "repository": "https://github.com/teixeiraa05/lcom-sushi-slash"
     },
     "raulnasoliveira-feup-lcom-2025-23b9e09f9b80": {
       "year": 2025,
-      "yearLabel": "Updated 2025",
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/raulnasoliveira/FEUP-LCOM-2025/commit/a94d7998e4a0ed234aa0e13f8444195ffc9d332a",
-        "detail": "Pinned upstream commit a94d7998e4a0ed234aa0e13f8444195ffc9d332a was committed 2025-05-30T22:58:40Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/raulnasoliveira/FEUP-LCOM-2025",
+        "createdAt": "2025-10-10T17:07:30Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/raulnasoliveira/FEUP-LCOM-2025"
     },
     "diogoalves12-feup-lcom-a9dac2656b4f": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/diogoalves12/feup-lcom/commit/14cf5aaefacf17cde4e309f5c6dc18d6195bb49a",
-        "detail": "Pinned upstream commit 14cf5aaefacf17cde4e309f5c6dc18d6195bb49a was committed 2026-06-05T22:58:46Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/diogoalves12/feup-lcom",
+        "createdAt": "2026-05-11T16:53:07Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/diogoalves12/feup-lcom"
     },
     "ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3": {
       "year": 2025,
-      "yearLabel": "Updated 2025",
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/IMS-up2021/Star-Wars-Defend-the-Republic-LCOM-2025-/commit/c2a8b571335769d971fa1128c2374834b299208d",
-        "detail": "Pinned upstream commit c2a8b571335769d971fa1128c2374834b299208d was committed 2025-06-27T12:51:06Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/IMS-up2021/Star-Wars-Defend-the-Republic-LCOM-2025-",
+        "createdAt": "2025-06-07T12:01:48Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/IMS-up2021/Star-Wars-Defend-the-Republic-LCOM-2025-"
     },
     "zefluxo-feup-lcom-7d2140581772": {
       "year": 2022,
-      "yearLabel": "Updated 2022",
+      "yearLabel": "2022",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/zefluxo/feup-lcom/commit/e65ab1042229cd99acc5d21a69efbba9d6f53792",
-        "detail": "Pinned upstream commit e65ab1042229cd99acc5d21a69efbba9d6f53792 was committed 2022-06-16T20:59:06Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/zefluxo/feup-lcom",
+        "createdAt": "2022-06-16T20:53:57Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/zefluxo/feup-lcom"
     },
     "m1ke26-minix-grand-prix-d83709a8a95c": {
       "year": 2026,
-      "yearLabel": "2025/26",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "course",
-        "url": "https://github.com/m1ke26/MINIX-Grand-Prix/blob/c246fb4ba19820940f399155d23eb814b961a9cf/README.md#L9",
-        "detail": "The README Year badge states 2025/26."
+        "kind": "repository",
+        "url": "https://github.com/m1ke26/MINIX-Grand-Prix",
+        "createdAt": "2026-09-29T17:36:30Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/m1ke26/MINIX-Grand-Prix"
     },
     "casemiromjm-minixsweeper-286a5a2780c5": {
       "year": 2025,
-      "yearLabel": "Updated 2025",
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/casemiromjm/minixsweeper/commit/bf2455303e1b9978027bf14e40c44754c5a86e29",
-        "detail": "Pinned upstream commit bf2455303e1b9978027bf14e40c44754c5a86e29 was committed 2025-06-18T21:58:03Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/casemiromjm/minixsweeper",
+        "createdAt": "2025-06-18T10:14:07Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/casemiromjm/minixsweeper"
     },
     "martimcferreira-lcom-project-9a16857450a6": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/martimcferreira/lcom-project/commit/fe0d474018e04b983b76ef4392e30f145f9b0fdc",
-        "detail": "Pinned upstream commit fe0d474018e04b983b76ef4392e30f145f9b0fdc was committed 2026-08-30T12:05:00Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/martimcferreira/lcom-project",
+        "createdAt": "2026-08-28T10:18:16Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/martimcferreira/lcom-project"
     },
     "samblack569-feup-lcom-2425-c1eb853acae2": {
       "year": 2025,
-      "yearLabel": "Updated 2025",
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/SamBlack569/feup-lcom-2425/commit/1cc59d8d45fc0bf4eeb6a5b8b358327fd494679b",
-        "detail": "Pinned upstream commit 1cc59d8d45fc0bf4eeb6a5b8b358327fd494679b was committed 2025-06-01T16:15:09Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/SamBlack569/feup-lcom-2425",
+        "createdAt": "2025-06-18T15:54:41Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/SamBlack569/feup-lcom-2425"
     },
     "peucastro-lcom-03ab6e7e63db": {
-      "year": 2026,
-      "yearLabel": "Updated 2026",
+      "year": 2025,
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/peucastro/lcom/commit/f8fd47bcfdd76c5eb4e94e5e929e63a888259b2b",
-        "detail": "Pinned upstream commit f8fd47bcfdd76c5eb4e94e5e929e63a888259b2b was committed 2026-04-30T08:39:18Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/peucastro/lcom",
+        "createdAt": "2025-02-18T21:33:18Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/peucastro/lcom"
     },
     "mariajvieira-feup-lcom-d95c409c5aa9": {
-      "year": 2026,
-      "yearLabel": "Updated 2026",
+      "year": 2025,
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/mariajvieira/feup-lcom/commit/e364f4d91606371c5660f28bcd11048d02f8a57e",
-        "detail": "Pinned upstream commit e364f4d91606371c5660f28bcd11048d02f8a57e was committed 2026-01-16T11:24:21Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/mariajvieira/feup-lcom",
+        "createdAt": "2025-07-01T11:05:51Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/mariajvieira/feup-lcom"
     },
     "vasco888888-feup-leic-lcom-be8975b3e8c5": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/Vasco888888/feup-leic-lcom/commit/cdf1668915aaebb900a9ef8eca3252e2414324cb",
-        "detail": "Pinned upstream commit cdf1668915aaebb900a9ef8eca3252e2414324cb was committed 2026-06-05T16:00:36Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/Vasco888888/feup-leic-lcom",
+        "createdAt": "2026-01-23T14:14:54Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Vasco888888/feup-leic-lcom"
     },
     "rodriguess2-lcom-hangman-b8d098d60c4c": {
       "year": 2025,
-      "yearLabel": "Updated 2025",
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/RodriguesS2/LCOM-HangMan/commit/6c76df070f321dd20349a6e6429bee2797223b9c",
-        "detail": "Pinned upstream commit 6c76df070f321dd20349a6e6429bee2797223b9c was committed 2025-12-31T14:01:10Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/RodriguesS2/LCOM-HangMan",
+        "createdAt": "2025-12-31T13:57:14Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/RodriguesS2/LCOM-HangMan"
     },
     "cast-10-lcomproject-1c6c122eea2f": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/Cast-10/LCOMProject/commit/e895b1dfe6aa0269cafc73010da990a195ab1ffd",
-        "detail": "Pinned upstream commit e895b1dfe6aa0269cafc73010da990a195ab1ffd was committed 2026-06-05T22:58:14Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/Cast-10/LCOMProject",
+        "createdAt": "2026-09-25T21:43:21Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Cast-10/LCOMProject"
     },
     "yuka-sky-lcom-d0ec5dfcc81b": {
       "year": 2025,
-      "yearLabel": "Updated 2025",
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/Yuka-Sky/LCOM/commit/e333e84a361140f7ba410bf219133d7b2fd92860",
-        "detail": "Pinned upstream commit e333e84a361140f7ba410bf219133d7b2fd92860 was committed 2025-06-02T16:39:51Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/Yuka-Sky/LCOM",
+        "createdAt": "2025-02-20T16:10:52Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Yuka-Sky/LCOM"
     },
     "pedroribas372-minix-spaceinvaders-e02a4844fc81": {
       "year": 2025,
-      "yearLabel": "Updated 2025",
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/pedroRibas372/MINIX-SpaceInvaders/commit/b34d4cf932aa50fca013b5b70676f615ebcc91af",
-        "detail": "Pinned upstream commit b34d4cf932aa50fca013b5b70676f615ebcc91af was committed 2025-10-08T14:08:12Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/pedroRibas372/MINIX-SpaceInvaders",
+        "createdAt": "2025-10-08T13:27:55Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/pedroRibas372/MINIX-SpaceInvaders"
     },
     "simaopsbarbosa-feup-lcom-e3fa6454545b": {
-      "year": 2025,
-      "yearLabel": "Updated 2025",
+      "year": 2026,
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/simaopsbarbosa/feup-lcom/commit/b2489e2420eeea858df8d9164df267a52e12e8fa",
-        "detail": "Pinned upstream commit b2489e2420eeea858df8d9164df267a52e12e8fa was committed 2025-05-30T21:47:42Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/simaopsbarbosa/feup-lcom",
+        "createdAt": "2026-02-27T11:41:40Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/simaopsbarbosa/feup-lcom"
     },
     "pacocalypse-387c0be823e4": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/filipecruz06/FEUP-LCOM-proj/commit/b9981f12376b9dc5d2b95f066b9cacdb171ceb88",
-        "detail": "Pinned upstream commit b9981f12376b9dc5d2b95f066b9cacdb171ceb88 was committed 2026-09-22T17:42:09Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/filipecruz06/FEUP-LCOM-proj",
+        "createdAt": "2026-09-22T17:41:35Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/filipecruz06/FEUP-LCOM-proj"
     },
     "gomesidk-survive-the-blast-3d56ca17c03b": {
       "year": 2025,
-      "yearLabel": "Updated 2025",
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/gomesidk/Survive-The-Blast/commit/b73f072fdcd4d189002e1d376f0fbafa95d25c1e",
-        "detail": "Pinned upstream commit b73f072fdcd4d189002e1d376f0fbafa95d25c1e was committed 2025-05-30T23:26:52Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/gomesidk/Survive-The-Blast",
+        "createdAt": "2025-09-28T15:34:05Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/gomesidk/Survive-The-Blast"
     },
     "antoniocrego-lcom-t01-g3-c70a27f473d7": {
-      "year": 2023,
-      "yearLabel": "Updated 2023",
+      "year": 2025,
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/antoniocrego/lcom-t01-g3/commit/77307d413bd8ed873575ef7a8edc6523460f6401",
-        "detail": "Pinned upstream commit 77307d413bd8ed873575ef7a8edc6523460f6401 was committed 2023-05-28T23:15:01Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/antoniocrego/lcom-t01-g3",
+        "createdAt": "2025-06-04T16:10:59Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/antoniocrego/lcom-t01-g3"
     },
     "worms-d4885e74d5cb": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/RiquiFeup/LCOMBAT/commit/6981e4295329ff2f8dfd9e32e51ceaa45a6b2bf4",
-        "detail": "Pinned upstream commit 6981e4295329ff2f8dfd9e32e51ceaa45a6b2bf4 was committed 2026-07-23T15:02:46Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/RiquiFeup/LCOMBAT",
+        "createdAt": "2026-07-23T15:03:13Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/RiquiFeup/LCOMBAT"
     },
     "gsilva00-lcom-project-4c94e7405c90": {
       "year": 2025,
-      "yearLabel": "Updated 2025",
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/gsilva00/LCOM-Project/commit/4e793123ae3cd5ad486e1472fa715cff6567c66e",
-        "detail": "Pinned upstream commit 4e793123ae3cd5ad486e1472fa715cff6567c66e was committed 2025-01-31T10:20:05Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/gsilva00/LCOM-Project",
+        "createdAt": "2025-01-31T10:17:16Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/gsilva00/LCOM-Project"
     },
     "iamaccosta-feup-lcom-8eb08d543062": {
-      "year": 2023,
-      "yearLabel": "Updated 2023",
+      "year": 2022,
+      "yearLabel": "2022",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/iamaccosta/FEUP-LCOM/commit/977a5cee882ba8016f0c6535512611a44bb64e12",
-        "detail": "Pinned upstream commit 977a5cee882ba8016f0c6535512611a44bb64e12 was committed 2023-04-18T18:10:53Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/iamaccosta/FEUP-LCOM",
+        "createdAt": "2022-06-22T14:03:52Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/iamaccosta/FEUP-LCOM"
     },
     "luanalima27-lcom-feup-eda1c5716f42": {
-      "year": 2024,
-      "yearLabel": "2023/24",
+      "year": 2025,
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "course",
-        "url": "https://github.com/luanalima27/LCOM-FEUP/blob/8a51f4788f459f16e832668dd988ec4f42552fdf/README.md#L1",
-        "detail": "The README title states FEUP-LCOM 2023/2024."
+        "kind": "repository",
+        "url": "https://github.com/luanalima27/LCOM-FEUP",
+        "createdAt": "2025-05-10T14:01:23Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/luanalima27/LCOM-FEUP"
     },
     "guystavo7-feup-lcom-project-912ca0851017": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/guystavo7/feup-lcom-project/commit/ad0703bebf8ab8fd00ede7f690667e2034ca682d",
-        "detail": "Pinned upstream commit ad0703bebf8ab8fd00ede7f690667e2034ca682d was committed 2026-06-07T19:49:43Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/guystavo7/feup-lcom-project",
+        "createdAt": "2026-09-26T20:35:28Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/guystavo7/feup-lcom-project"
     },
     "duarte-pombo-minix-whack-a-mole-c0b1a146de15": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/Duarte-Pombo/MINIX-Whack-a-Mole/commit/76b1b08719bbf63f13f19a8f918050420ba1ca7f",
-        "detail": "Pinned upstream commit 76b1b08719bbf63f13f19a8f918050420ba1ca7f was committed 2026-10-07T11:55:49Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/Duarte-Pombo/MINIX-Whack-a-Mole",
+        "createdAt": "2026-10-07T11:44:32Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Duarte-Pombo/MINIX-Whack-a-Mole"
     },
     "guizas-la-papas-pizzeria-807f3b26e203": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/guizas-LA/Papas-Pizzeria/commit/000501bc4254a98cc28374b363d031f5d2a78601",
-        "detail": "Pinned upstream commit 000501bc4254a98cc28374b363d031f5d2a78601 was committed 2026-10-06T00:19:46Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/guizas-LA/Papas-Pizzeria",
+        "createdAt": "2026-10-05T23:17:18Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/guizas-LA/Papas-Pizzeria"
     },
     "cata-24-minix3-game-952ce67c4b3d": {
-      "year": 2024,
-      "yearLabel": "2023/24",
+      "year": 2025,
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "course",
-        "url": "https://github.com/Cata-24/minix3-game/blob/faae1683745df7f807d1f9c3750ac8c9054f9193/README.md#L239",
-        "detail": "The README explicitly names the LCOM 2023/2024 course."
+        "kind": "repository",
+        "url": "https://github.com/Cata-24/minix3-game",
+        "createdAt": "2025-08-29T19:59:50Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Cata-24/minix3-game"
     },
     "constancalferreira-battleship-0d18d3873e2b": {
-      "year": 2025,
-      "yearLabel": "2025",
+      "year": 2026,
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "course",
-        "url": "https://github.com/constancalferreira/Battleship/blob/3ae4bcccf2adcf91a7d234786a2dd8732932f1af/README.md#L1",
-        "detail": "The README title states LCOM Project 2025 - Battleship."
+        "kind": "repository",
+        "url": "https://github.com/constancalferreira/Battleship",
+        "createdAt": "2026-08-10T10:49:05Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/constancalferreira/Battleship"
     },
     "worms-0ace38f831e6": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/af0nsx/Worms/commit/f38804476b0e38ded06497a64b1e52ea51a23ae9",
-        "detail": "Pinned upstream commit f38804476b0e38ded06497a64b1e52ea51a23ae9 was committed 2026-06-05T23:02:41Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/af0nsx/Worms",
+        "createdAt": "2026-07-12T17:13:28Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/af0nsx/Worms"
     },
     "dab1d-getawaycar-a7df638127d0": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/Dab1d/GetAwayCar/commit/f405670ac7c0ab9579aad3140d3ce717fc1cce19",
-        "detail": "Pinned upstream commit f405670ac7c0ab9579aad3140d3ce717fc1cce19 was committed 2026-06-05T22:48:08Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/Dab1d/GetAwayCar",
+        "createdAt": "2026-06-07T19:10:54Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Dab1d/GetAwayCar"
     },
     "d4yz-stp-minix-pacman-e9e2296201be": {
       "year": 2025,
-      "yearLabel": "Updated 2025",
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/D4yz-stp/Minix-Pacman/commit/f4c8b10c02d16b4801c6fdeca0cfd9627f246491",
-        "detail": "Pinned upstream commit f4c8b10c02d16b4801c6fdeca0cfd9627f246491 was committed 2025-10-10T14:28:55Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/D4yz-stp/Minix-Pacman",
+        "createdAt": "2025-10-10T14:25:44Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/D4yz-stp/Minix-Pacman"
     },
     "teclas-9e9acdbd5fab": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/aishend/TECLAS-The-Typing-Game/commit/a2666f4194f80c9eff177ed3120d1c7057f8756f",
-        "detail": "Pinned upstream commit a2666f4194f80c9eff177ed3120d1c7057f8756f was committed 2026-06-05T22:25:28Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/aishend/TECLAS-The-Typing-Game",
+        "createdAt": "2026-06-06T00:18:18Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "featured": true,
       "repository": "https://github.com/aishend/TECLAS-The-Typing-Game"
     },
     "scrr-az-skess-lcom-282ac263194e": {
-      "year": 2025,
-      "yearLabel": "Updated 2025",
+      "year": 2026,
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/scrr-az/skess-lcom/commit/08626275da972c82291efcab0fbed8a57b0eb854",
-        "detail": "Pinned upstream commit 08626275da972c82291efcab0fbed8a57b0eb854 was committed 2025-05-30T22:16:25Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/scrr-az/skess-lcom",
+        "createdAt": "2026-04-28T09:37:53Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/scrr-az/skess-lcom"
     },
     "hugo-mgs-lcom-space-invaders-5c534d6f57b3": {
-      "year": 2025,
-      "yearLabel": "Updated 2025",
+      "year": 2026,
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/Hugo-mgs/LCOM-Space-Invaders/commit/7b554e113754ffdd5b26b269a0efafea3227468e",
-        "detail": "Pinned upstream commit 7b554e113754ffdd5b26b269a0efafea3227468e was committed 2025-06-01T15:36:29Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/Hugo-mgs/LCOM-Space-Invaders",
+        "createdAt": "2026-02-23T09:24:56Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Hugo-mgs/LCOM-Space-Invaders"
     },
     "alexandre2004costa-lcom-project-e3c159e09375": {
-      "year": 2025,
-      "yearLabel": "Updated 2025",
+      "year": 2024,
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/alexandre2004costa/Lcom-project/commit/c7953bfe270678361ce71e9a1b28f466d35d7c40",
-        "detail": "Pinned upstream commit c7953bfe270678361ce71e9a1b28f466d35d7c40 was committed 2025-02-04T11:30:42Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/alexandre2004costa/Lcom-project",
+        "createdAt": "2024-07-03T19:41:09Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/alexandre2004costa/Lcom-project"
     },
     "joaolopes15-lcom-4115b87918f9": {
-      "year": 2025,
-      "yearLabel": "Updated 2025",
+      "year": 2026,
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/joaolopes15/LCOM/commit/28f8d8fe48c6434e1f5286f75cef740fdab160c2",
-        "detail": "Pinned upstream commit 28f8d8fe48c6434e1f5286f75cef740fdab160c2 was committed 2025-05-30T22:54:58Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/joaolopes15/LCOM",
+        "createdAt": "2026-04-07T00:17:56Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/joaolopes15/LCOM"
     },
     "monsterdied-lcomproj-138166482bfa": {
-      "year": 2023,
-      "yearLabel": "Updated 2023",
+      "year": 2024,
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/Monsterdied/LcomProj/commit/a2cf0924aaf80f1e2a9ae078bf9066e3daab962d",
-        "detail": "Pinned upstream commit a2cf0924aaf80f1e2a9ae078bf9066e3daab962d was committed 2023-05-28T22:19:10Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/Monsterdied/LcomProj",
+        "createdAt": "2024-07-28T14:37:02Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Monsterdied/LcomProj"
     },
     "luizhqueiroz-lcom-memorygame-4540b5424a79": {
       "year": 2024,
-      "yearLabel": "Updated 2024",
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/luizhqueiroz/LCOM-MemoryGame/commit/d740913f2049d0ddc7e089eef59a865160111cf7",
-        "detail": "Pinned upstream commit d740913f2049d0ddc7e089eef59a865160111cf7 was committed 2024-10-15T04:17:20Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/luizhqueiroz/LCOM-MemoryGame",
+        "createdAt": "2024-10-15T04:17:53Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/luizhqueiroz/LCOM-MemoryGame"
     },
     "diogosilva11-lcom-ed97fdb962ec": {
-      "year": 2022,
-      "yearLabel": "Updated 2022",
+      "year": 2024,
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/DiogoSilva11/LCOM/commit/be191c1e409efecbe5ef6ea2ddad795c6f63e1e8",
-        "detail": "Pinned upstream commit be191c1e409efecbe5ef6ea2ddad795c6f63e1e8 was committed 2022-06-13T22:21:51Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/DiogoSilva11/LCOM",
+        "createdAt": "2024-05-06T20:39:21Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/DiogoSilva11/LCOM"
     },
     "joanaigs-lcom-snake-game-330f9e657355": {
-      "year": 2022,
-      "yearLabel": "Updated 2022",
+      "year": 2024,
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/Joanaigs/Lcom-Snake-Game/commit/6ebf0b9669845718b630cd8ea5707f5f0c216054",
-        "detail": "Pinned upstream commit 6ebf0b9669845718b630cd8ea5707f5f0c216054 was committed 2022-06-13T10:11:17Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/Joanaigs/Lcom-Snake-Game",
+        "createdAt": "2024-09-02T14:12:03Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Joanaigs/Lcom-Snake-Game"
     },
     "migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f": {
       "year": 2024,
-      "yearLabel": "Updated 2024",
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/migueljcpedrosa/LCOM-Classic-Chess-Game/commit/d4174ee225077df23cdf0c453639f88a2c8c0848",
-        "detail": "Pinned upstream commit d4174ee225077df23cdf0c453639f88a2c8c0848 was committed 2024-10-25T15:45:35Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/migueljcpedrosa/LCOM-Classic-Chess-Game",
+        "createdAt": "2024-10-25T15:14:50Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/migueljcpedrosa/LCOM-Classic-Chess-Game"
     },
     "leonardomagalhaes21-feup-lcom-9e3925b94730": {
       "year": 2024,
-      "yearLabel": "Updated 2024",
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/leonardomagalhaes21/feup-LCOM/commit/9f09dbb02f492c8db058ad1b1c56821f70282670",
-        "detail": "Pinned upstream commit 9f09dbb02f492c8db058ad1b1c56821f70282670 was committed 2024-06-12T22:07:43Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/leonardomagalhaes21/feup-LCOM",
+        "createdAt": "2024-06-08T21:34:37Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/leonardomagalhaes21/feup-LCOM"
     },
     "henriquesfernandes-lcomaze-e2d54c32196a": {
       "year": 2024,
-      "yearLabel": "Updated 2024",
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/HenriqueSFernandes/LCOMaze/commit/a0dc6e641d93c36047e1e740833854013b54799d",
-        "detail": "Pinned upstream commit a0dc6e641d93c36047e1e740833854013b54799d was committed 2024-08-02T19:13:00Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/HenriqueSFernandes/LCOMaze",
+        "createdAt": "2024-06-05T22:50:40Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/HenriqueSFernandes/LCOMaze"
     },
@@ -504,159 +553,175 @@
       "year": 2025,
       "yearLabel": "2025",
       "yearSource": {
-        "kind": "course",
-        "url": "https://github.com/Forreca05/LCOM-Snake-Game-Projeto-2025/blob/a1da222e751d4e61ffa3f668baf3585ad9880d18/README.md#L1",
-        "detail": "The README title states LCOM Snake Game - Projeto 2025."
+        "kind": "repository",
+        "url": "https://github.com/Forreca05/LCOM-Snake-Game-Projeto-2025",
+        "createdAt": "2025-06-24T22:18:51Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Forreca05/LCOM-Snake-Game-Projeto-2025"
     },
     "gablm-feup-lcom-labjack-de14d1919ed9": {
       "year": 2024,
-      "yearLabel": "Updated 2024",
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/gablm/feup_lcom_labjack/commit/54347c5c6bd3ad51aea160cc9f4ccbe577ca8a22",
-        "detail": "Pinned upstream commit 54347c5c6bd3ad51aea160cc9f4ccbe577ca8a22 was committed 2024-06-26T23:24:23Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/gablm/feup_lcom_labjack",
+        "createdAt": "2024-06-01T15:07:31Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/gablm/feup_lcom_labjack"
     },
     "teixdavide-feup-lcom-pettycats-768b12c9a51f": {
       "year": 2024,
-      "yearLabel": "Updated 2024",
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/teixdavide/FEUP_LCOM_PettyCats/commit/678372ac889677fb6241a6daa100ec7d56dcd6b0",
-        "detail": "Pinned upstream commit 678372ac889677fb6241a6daa100ec7d56dcd6b0 was committed 2024-06-27T00:11:54Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/teixdavide/FEUP_LCOM_PettyCats",
+        "createdAt": "2024-06-27T00:04:48Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/teixdavide/FEUP_LCOM_PettyCats"
     },
     "davidgustavo6-lcom-game-7f0cc9b9f5ba": {
       "year": 2024,
-      "yearLabel": "Updated 2024",
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/DavidGustavo6/LCOM-game/commit/de9b4106a1d1aaec60027be5a73a6f35c4da6dd3",
-        "detail": "Pinned upstream commit de9b4106a1d1aaec60027be5a73a6f35c4da6dd3 was committed 2024-10-07T16:26:36Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/DavidGustavo6/LCOM-game",
+        "createdAt": "2024-10-07T16:23:15Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/DavidGustavo6/LCOM-game"
     },
     "lsfaria04-lcom-project-tennis-for-two-2e48173786f1": {
       "year": 2024,
-      "yearLabel": "Updated 2024",
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/LsFaria04/LCOM_Project-Tennis_for_Two/commit/4e812f9969b5dae60334bd855ac0f3c2d6342bb4",
-        "detail": "Pinned upstream commit 4e812f9969b5dae60334bd855ac0f3c2d6342bb4 was committed 2024-08-20T15:24:06Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/LsFaria04/LCOM_Project-Tennis_for_Two",
+        "createdAt": "2024-08-20T15:20:56Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/LsFaria04/LCOM_Project-Tennis_for_Two"
     },
     "rodeso-lcom-brick-blitz-3014442d8fa6": {
       "year": 2024,
-      "yearLabel": "Updated 2024",
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/rodeso/lcom.brick-blitz/commit/e2fa0770017aa1c8f94e8a521b8c67b96a4b8cc3",
-        "detail": "Pinned upstream commit e2fa0770017aa1c8f94e8a521b8c67b96a4b8cc3 was committed 2024-06-27T12:14:46Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/rodeso/lcom.brick-blitz",
+        "createdAt": "2024-03-26T09:45:55Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/rodeso/lcom.brick-blitz"
     },
     "murielpinho-feup-lcom-1920-bc475165f123": {
-      "year": 2020,
-      "yearLabel": "2019/20",
+      "year": 2019,
+      "yearLabel": "2019",
       "yearSource": {
-        "kind": "course",
-        "url": "https://github.com/MurielPinho/FEUP-LCOM-1920/blob/d36662bb5a5e0e88c36bb65a27ecc0e137d6e949/README.md#L57",
-        "detail": "The README states the code was developed for LCOM 2019/20."
+        "kind": "repository",
+        "url": "https://github.com/MurielPinho/FEUP-LCOM-1920",
+        "createdAt": "2019-11-25T16:33:59Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/MurielPinho/FEUP-LCOM-1920"
     },
     "francis802-tower-clash-21525d616a06": {
       "year": 2023,
-      "yearLabel": "Updated 2023",
+      "yearLabel": "2023",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/francis802/Tower-Clash/commit/649e7149aba983fb12f53096b015b236c7f4d31c",
-        "detail": "Pinned upstream commit 649e7149aba983fb12f53096b015b236c7f4d31c was committed 2023-06-13T02:46:05Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/francis802/Tower-Clash",
+        "createdAt": "2023-06-13T02:45:17Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/francis802/Tower-Clash"
     },
     "ruben38esteves-project-lcom-minixsurfers-f64f6c1da3a9": {
       "year": 2023,
-      "yearLabel": "Updated 2023",
+      "yearLabel": "2023",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/Ruben38Esteves/Project-LCOM-MinixSurfers/commit/0e776e4911c9c0502a0db699e86b88ff5c973a06",
-        "detail": "Pinned upstream commit 0e776e4911c9c0502a0db699e86b88ff5c973a06 was committed 2023-06-10T23:47:18Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/Ruben38Esteves/Project-LCOM-MinixSurfers",
+        "createdAt": "2023-06-10T23:41:58Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Ruben38Esteves/Project-LCOM-MinixSurfers"
     },
     "vidal322-breakpong-df233c2d2a2c": {
-      "year": 2023,
-      "yearLabel": "Updated 2023",
+      "year": 2024,
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/Vidal322/BreakPong/commit/f3891f5f475eae32c01ad25d1997f0c5b9f44834",
-        "detail": "Pinned upstream commit f3891f5f475eae32c01ad25d1997f0c5b9f44834 was committed 2023-05-28T23:32:56Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/Vidal322/BreakPong",
+        "createdAt": "2024-04-14T12:02:10Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/Vidal322/BreakPong"
     },
     "leticia-003-2ndyear-feup-lcom-ab9c644ba6fb": {
       "year": 2025,
-      "yearLabel": "Updated 2025",
+      "yearLabel": "2025",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/leticia-003/2ndYear_FEUP_LCom/commit/fd08be7ee796e28742bb07ed2a0171319a0de5e3",
-        "detail": "Pinned upstream commit fd08be7ee796e28742bb07ed2a0171319a0de5e3 was committed 2025-06-05T16:31:16Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/leticia-003/2ndYear_FEUP_LCom",
+        "createdAt": "2025-06-05T16:11:01Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/leticia-003/2ndYear_FEUP_LCom"
     },
     "brunorosendo-portal2d-efb0e7bceb35": {
-      "year": 2022,
-      "yearLabel": "Updated 2022",
+      "year": 2021,
+      "yearLabel": "2021",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/BrunoRosendo/Portal2D/commit/67df1e2ba019d438cecea716fa2d4ec16f7aa46f",
-        "detail": "Pinned upstream commit 67df1e2ba019d438cecea716fa2d4ec16f7aa46f was committed 2022-09-15T00:52:12Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/BrunoRosendo/Portal2D",
+        "createdAt": "2021-01-22T15:35:26Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/BrunoRosendo/Portal2D"
     },
     "dagarsar-lcom-4a069f7a0061": {
       "year": 2022,
-      "yearLabel": "Updated 2022",
+      "yearLabel": "2022",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/dagarsar/lcom/commit/59f31f17959b0c68b6a16eb8d32e0c6051fb9e3f",
-        "detail": "Pinned upstream commit 59f31f17959b0c68b6a16eb8d32e0c6051fb9e3f was committed 2022-12-16T12:51:40Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/dagarsar/lcom",
+        "createdAt": "2022-12-16T12:48:53Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/dagarsar/lcom"
     },
     "rodrigopombo1-projeto-lcom-571c4f64fa76": {
       "year": 2024,
-      "yearLabel": "Updated 2024",
+      "yearLabel": "2024",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/RodrigoPombo1/projeto-lcom/commit/f0ad2ebadeed4a6c6cfb94610fc01758a2e5663a",
-        "detail": "Pinned upstream commit f0ad2ebadeed4a6c6cfb94610fc01758a2e5663a was committed 2024-06-02T22:45:40Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/RodrigoPombo1/projeto-lcom",
+        "createdAt": "2024-12-14T00:32:33Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/RodrigoPombo1/projeto-lcom"
     },
     "unrealxinfinity-alienexpress-12fa5db8be9d": {
-      "year": 2025,
-      "yearLabel": "Updated 2025",
+      "year": 2023,
+      "yearLabel": "2023",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/unrealxinfinity/AlienExpress/commit/5342f6571eb9701311bbe17d6a14834bb90a4376",
-        "detail": "Pinned upstream commit 5342f6571eb9701311bbe17d6a14834bb90a4376 was committed 2025-01-24T15:35:35Z. This records the imported revision, not the game's creation date."
+        "kind": "repository",
+        "url": "https://github.com/unrealxinfinity/AlienExpress",
+        "createdAt": "2023-04-24T15:38:01Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "repository": "https://github.com/unrealxinfinity/AlienExpress"
     },
     "ninjix-e742f8bcdc75": {
       "year": 2026,
-      "yearLabel": "Updated 2026",
+      "yearLabel": "2026",
       "yearSource": {
-        "kind": "commit",
-        "url": "https://github.com/rodrgds/lcom-ng/commit/a84ef282b29dd331b07f0b1ed78e82173d533e49",
-        "detail": "Latest repository commit affecting Ninjix was committed 2026-10-16T09:16:48+01:00. This is an update date, not a creation date."
+        "kind": "repository",
+        "url": "https://github.com/rodrgds/lcom-ng",
+        "createdAt": "2026-06-21T14:44:46Z",
+        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
       },
       "featured": true,
       "repository": "https://github.com/rodrgds/lcom-ng/tree/main/examples/ninjix"

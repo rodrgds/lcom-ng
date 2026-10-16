@@ -244,7 +244,7 @@ Each tile has a Play link with an accessible name and available year/size
 facts. Only its launcher icon is visible at rest; missing artwork falls back to
 the collection mark. Hover with a fine pointer or keyboard focus opens the wider
 preview. The icon moves into the footer beside the name and available facts;
-year labels omit the word Updated. Public projects add an underlined Repo link
+Arcade year labels use GitHub repository creation years. Public projects add an underlined Repo link
 after those facts. It opens in a separate tab and is a sibling of the Play link,
 so following a repository never launches a game. Authored replacement icons are
 documented in `icons/generation.json`; original in-game artwork stays unchanged.
