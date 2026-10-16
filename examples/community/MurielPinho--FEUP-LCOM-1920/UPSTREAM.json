@@ -41,6 +41,18 @@
         }
       ],
       "verification": "Actual compiled renderer regression RED before correction and GREEN afterward: tests/community_source_regressions.py test_euler_cursor_render_keeps_centered_art_inside_frame"
+    },
+    {
+      "path": "examples/community/MurielPinho--FEUP-LCOM-1920/SOURCE_PATCH.diff",
+      "reason": "Consume ACK for each streaming/reporting/reset command before packet parsing. Previously two startup ACK bytes swallowed the first cursor movement; reset ACKs could also contaminate the next menu/game entry.",
+      "verification": "Actual-source RED/GREEN: test_euler_mouse_commands_consume_acks_before_first_cursor_packet covers first motion, reset, NACK retry, and bounded timeout; real browser first64px movement reproduces dropped packet before repair.",
+      "files": [
+        {
+          "path": "proj/src/ps2.c",
+          "originalSha256": "d5490699406aef8c3b9d6f7d07b835fb1f858b98c7f8a2c48c06e4dbcf4af220",
+          "patchedSha256": "4c9b0e242f41b51a223b97bd634da6c654dd174ca4f329fa6232eae75e96b652"
+        }
+      ]
     }
   ],
   "derivedAssets": [

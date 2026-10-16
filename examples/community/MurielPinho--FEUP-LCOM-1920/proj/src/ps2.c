@@ -145,31 +145,39 @@ int mouse_write_dflt_kbc_cmd_byte()
     return 0;
 }
 
+/* Command replies must not enter the three-byte movement packet parser. */
+static int mouse_command_with_ack(uint8_t command)
+{
+    for (int attempt = 0; attempt < 3; attempt++) {
+        if (kbc_write_byte(KBC_CMD_REG, WRITE_MOUSE_BYTE) != 0 ||
+            kbc_write_byte(KBC_IN_BUF, command) != 0) return 1;
+        for (int poll = 0; poll < KBC_N_TRIES; poll++) {
+            uint8_t status, reply;
+            if (kbc_read_byte(KBC_STAT_REG, &status) != 0) return 1;
+            if ((status & OBF) && (status & BIT(5))) {
+                if ((status & (PAR_ERR | TO_ERR)) ||
+                    kbc_read_byte(KBC_OUT_BUF, &reply) != 0) return 1;
+                if (reply == ACK) return 0;
+                if (reply == NACK) break;
+                return 1;
+            }
+            tickdelay(micros_to_ticks(POLL_DELAY));
+        }
+    }
+    return 1;
+}
+
 int mouse_enable_data_report()
 {
-    kbc_write_byte(KBC_CMD_REG, WRITE_MOUSE_BYTE);
-
-    kbc_write_byte(KBC_IN_BUF, STREAM_MODE);
-
-    kbc_write_byte(KBC_CMD_REG, WRITE_MOUSE_BYTE);
-
-    kbc_write_byte(KBC_IN_BUF, ENABLE_DATA_REPORT);
-    
-    return 0;
+    if (mouse_command_with_ack(STREAM_MODE) != 0) return 1;
+    return mouse_command_with_ack(ENABLE_DATA_REPORT);
 }
 
 int mouse_reset()
 {
-    kbc_write_byte(KBC_CMD_REG, WRITE_MOUSE_BYTE);
-
-    kbc_write_byte(KBC_IN_BUF, REMOTE_MODE);
-
-    kbc_write_byte(KBC_CMD_REG, WRITE_MOUSE_BYTE);
-
-    kbc_write_byte(KBC_IN_BUF, DISABLE_DATA_REPORT);
-    
-    mouse_write_dflt_kbc_cmd_byte();
-    return 0;
+    if (mouse_command_with_ack(REMOTE_MODE) != 0 ||
+        mouse_command_with_ack(DISABLE_DATA_REPORT) != 0) return 1;
+    return mouse_write_dflt_kbc_cmd_byte();
 }
 bool util_get_bit(uint8_t val, uint8_t bit_no)
 {

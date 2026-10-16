@@ -40,6 +40,44 @@ class StudentSourceRegressions(unittest.TestCase):
             result = subprocess.run([str(binary)], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def test_euler_mouse_commands_consume_acks_before_first_cursor_packet(self):
+        self.compile_and_run(COMMUNITY/'MurielPinho--FEUP-LCOM-1920/proj/src',
+                             ['ps2.c','mouse.c','menu.c'],r'''#include "ps2.h"
+#include "sprite.h"
+#include "mouse.h"
+#include "menu.h"
+#include "macros.h"
+#include <assert.h>
+static uint8_t queue[64];static int count,index_,mouse_command,commands,retry_next,silent;
+extern Mouse *mouse;extern MenuObject *menu;
+extern uint8_t mouseData;
+int util_sys_inb(int port,uint8_t *value){
+ if(port==KBC_STAT_REG){*value=index_<count?(OBF|BIT(5)):0;return 0;}
+ if(port==KBC_OUT_BUF){assert(index_<count);*value=queue[index_++];return 0;}
+ assert(0);return 1;
+}
+int sys_outb(int port,uint32_t value){
+ if(port==KBC_CMD_REG){mouse_command=value==WRITE_MOUSE_BYTE;return 0;}
+ if(port==KBC_IN_BUF && mouse_command){commands++;mouse_command=0;if(!silent)queue[count++]=retry_next?(retry_next=0,NACK):ACK;return 0;}
+ return 0;
+}
+uint32_t micros_to_ticks(uint32_t us){return 0;}
+int tickdelay(clock_t ticks){return 0;}
+uint8_t minix_get_dflt_kbc_cmd_byte(void){return 0x47;}
+int main(void){
+ assert(mouse_enable_data_report()==0);assert(commands==2 && index_==count);
+ Sprite cursor={.x=400,.y=300,.width=40,.height=40};Mouse pointer={.sprite=&cursor};mouse=&pointer;
+ MenuObject selection={.mState=Selecting,.menuOption=1};menu=&selection;
+ /* The very first movement packet must move by all7/-9 units. */
+ uint8_t packet[]={0x18,0xF9,9};
+ for(int i=0;i<3;i++){mouseData=packet[i];if(mouse_evaluate_bytes())handleMouse();}
+ assert(cursor.x==393 && cursor.y==291 && !pointer.lb_status);
+ /* Reset also sends commands, so a menu/game round-trip must leave no ACK. */
+ assert(mouse_reset()==0 && commands==4 && index_==count);
+ retry_next=1;assert(mouse_enable_data_report()==0 && commands==7 && index_==count);
+ silent=1;assert(mouse_enable_data_report()!=0 && commands<=10);return 0;
+}''')
+
     def test_space_shooter_cursor_stays_in_framebuffer(self):
         import re
         source = COMMUNITY / 'SamBlack569--feup-lcom-2425/proj/src'
