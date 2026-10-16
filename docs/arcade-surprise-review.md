@@ -100,3 +100,27 @@ checks passed the compact search, both shortcuts, spatial search navigation,
 roulette result, sound after interaction, a real Portal 2D first frame and return
 focus. Phone portrait, landscape and reduced motion passed, with no page errors.
 The in-app browser also confirmed the compact control tile visually.
+
+## Separate tiles and phone density follow-up
+
+Web source `b63a9cbb` replaces the combined control tile with a separate logo
+tile and a four-button tile. Phones keep these in two columns above a distinct
+three-column game grid. Featured games retain their larger spans; desktop
+continues packing the two utility tiles into the full mosaic. Sounds retain the
+interaction-only behavior from the preceding update.
+
+The updated layout regression first failed against the combined tile. The denser
+grid then reproduced five pixels of horizontal overflow at 320px from hidden
+preview metadata. Containing inactive overlays fixed it while preserving opened
+previews and their Repo links. All 14 release browser checks passed. Responsive
+checks with the real catalogue passed at 320, 390, 768 and 1440; the layout test
+also covers 584px, 44px controls, unclipped labels, Tab order and spatial arrows.
+The docs build, design scan, whitespace checks and pinned 66-game source audit
+passed. Concurrent expansion and runtime work were preserved.
+
+Published Worker version: `6c14a8e5-4507-43c7-a1fc-974765103c88`.
+All 15 checked public assets match the release package. Live phone assertions
+confirmed two separate utility columns and three game columns. Desktop search,
+shortcuts, roulette, sound after interaction, a Not Cuphead first frame and
+return focus passed. Touch portrait, landscape and reduced motion also passed,
+with no page errors. Proof screenshots are under `build/arcade-two-tiles/live/`.
