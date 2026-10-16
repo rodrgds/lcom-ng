@@ -78,6 +78,37 @@ int main(void){
  silent=1;assert(mouse_enable_data_report()!=0 && commands<=10);return 0;
 }''')
 
+    def test_portal_cursor_frame_restores_the_previous_inset_origin(self):
+        project=COMMUNITY/'BrunoRosendo--Portal2D/proj/Src'
+        self.compile_and_run(project,['sprites.c'],r'''#include "$GAME_SOURCE$"
+#include <assert.h>
+static uint16_t frame[48];
+unsigned get_h_res(void){return 8;}unsigned get_v_res(void){return 6;}
+enum xpm_image_type get_type(void){return XPM_5_6_5;}
+uint32_t xpm_transparency_color(enum xpm_image_type t){return 0xffff;}
+int vg_draw_pixel(uint16_t x,uint16_t y,uint16_t c){assert(x<8 && y<6);frame[y*8+x]=c;return 0;}
+int vg_draw_from_background(uint16_t x,uint16_t y){if(x<8&&y<6)frame[y*8+x]=0;return 0;}
+void draw_time(Sprite* sprites){memset(sprites,0,19*sizeof(Sprite));}
+void buffer_screen(void){}void flip_page(void){}
+void load_background(void){abort();}void erase_everything(void){abort();}
+void draw_menu(void){abort();}void erase_menu(void){abort();}int exit_menu(void){abort();}
+FILE *lcom_compat_fopen(const char*p,const char*m){abort();}
+void animate_asprite(ASprite *a){abort();}
+void destroy_asprite(ASprite *a){abort();}
+ASprite* create_portal(portal_type t,int x,int y){abort();}
+uint8_t *xpm_load(xpm_map_t p,enum xpm_image_type t,xpm_image_t *i){abort();}
+int main(void){
+ uint16_t colors[]={0xffff,0x1234,0x2345,0x3456,0x4567,0x5678};
+ old_cursor=(Sprite){.x=7,.y=5,.width=3,.height=2,.map=(uint8_t*)colors};draw_cursor(&old_cursor);
+ assert(frame[4*8+6]==0x1234 && frame[5*8+7]==0x5678);
+ Sprite next={.x=1,.y=1,.width=3,.height=2,.map=(uint8_t*)colors};cursor=&next;game_state=MENU;
+ draw_new_frame();
+ /* Old edge glyph must be completely gone, new glyph must remain. */
+ for(int y=4;y<6;y++)for(int x=5;x<8;x++)assert(frame[y*8+x]==0);
+ assert(frame[1*8+2]==0x1234 && frame[2*8+3]==0x5678);
+ assert(next.x==1 && next.y==1);return 0;
+}'''.replace('$GAME_SOURCE$',str(project/'game.c')))
+
     def test_space_shooter_cursor_stays_in_framebuffer(self):
         import re
         source = COMMUNITY / 'SamBlack569--feup-lcom-2425/proj/src'

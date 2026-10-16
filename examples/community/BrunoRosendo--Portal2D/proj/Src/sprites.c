@@ -54,14 +54,24 @@ void draw_sprite(Sprite* sp){
     }
 }
 
-void draw_cursor(Sprite *cursor){
-    // Keep the rendered art inside the screen without changing portal aim.
+static Sprite cursor_render_copy(Sprite *cursor){
+    // Drawing and restoring must use the same inset without changing portal aim.
     Sprite render = *cursor;
     int max_x = (int)get_h_res() > render.width ? get_h_res() - render.width : 0;
     int max_y = (int)get_v_res() > render.height ? get_v_res() - render.height : 0;
     render.x = render.x < 0 ? 0 : render.x > max_x ? max_x : render.x;
     render.y = render.y < 0 ? 0 : render.y > max_y ? max_y : render.y;
+    return render;
+}
+
+void draw_cursor(Sprite *cursor){
+    Sprite render = cursor_render_copy(cursor);
     draw_sprite(&render);
+}
+
+void erase_cursor(Sprite *cursor){
+    Sprite render = cursor_render_copy(cursor);
+    erase_sprite(&render);
 }
 
 void erase_sprite(Sprite* sp){

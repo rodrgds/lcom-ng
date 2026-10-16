@@ -1388,7 +1388,7 @@ void draw_new_frame() {
     editor_update = false;
   }
 
-  erase_sprite(&old_cursor);
+  erase_cursor(&old_cursor);
   old_cursor = (*cursor);
 
   for (int i = 0; i < 19; ++i)

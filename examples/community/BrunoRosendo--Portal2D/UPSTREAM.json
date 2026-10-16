@@ -119,16 +119,16 @@
         {
           "path": "proj/Src/game.c",
           "originalSha256": "98ac3d24d05918e53c8a7400b2290fa497610abb9f9580c0a97f77f86fe94f31",
-          "patchedSha256": "894e0e9a0e2322608e2a69b4e9309b48d9c14e09176ec93e4968d0feec28c31c",
-          "reason": "Preserve the earlier level filename buffer fix. Free only owned pixel maps of global portal value snapshots, release their temporary heap wrappers, and clear level pointers after destruction so Escape, level changes and editor/co-op transitions cannot free static or stale objects. Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions.",
-          "verification": " test_portal_cursor_draw_preserves_aim_at_the_level_edge"
+          "patchedSha256": "33b5171e798a8e9d222dcfa73c424db1721bd7b50e15a2c5faac041f7ded177b",
+          "reason": "Preserve the earlier level filename buffer fix. Free only owned pixel maps of global portal value snapshots, release their temporary heap wrappers, and clear level pointers after destruction so Escape, level changes and editor/co-op transitions cannot free static or stale objects. Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions. Restore the previous cursor through the identical inset transform used for drawing, so moving away from screen edges leaves no trails.",
+          "verification": "Actual draw_new_frame integration RED/GREEN: test_portal_cursor_frame_restores_the_previous_inset_origin; actual browser edge-to-centre trail check."
         },
         {
           "path": "proj/Src/sprites.c",
           "originalSha256": "be0bc7973b58f66fa5902b79b0a37e88120aea68ab024483e1dea2eb206ba7ec",
-          "patchedSha256": "4b9892e8df4c0a2f940670f958a13041e7e2c5699079011f0c6a2b24d89cc112",
-          "reason": "Destroy both separately owned normal/reversed image maps, including after flip_sprite swaps their pointers. Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions.",
-          "verification": " test_portal_cursor_draw_preserves_aim_at_the_level_edge"
+          "patchedSha256": "d2b809bba6255a1aa18832279bffb39eb7cab40e60c7115a9e461dce36408324",
+          "reason": "Destroy both separately owned normal/reversed image maps, including after flip_sprite swaps their pointers. Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions. Restore the previous cursor through the identical inset transform used for drawing, so moving away from screen edges leaves no trails.",
+          "verification": "Actual draw_new_frame integration RED/GREEN: test_portal_cursor_frame_restores_the_previous_inset_origin; actual browser edge-to-centre trail check."
         },
         {
           "path": "proj/Src/asprite.c",
@@ -145,8 +145,9 @@
         {
           "path": "proj/Src/sprites.h",
           "originalSha256": "0fa93a3d37a265ace464fe740eb512ce2bb2fc2d153f841331a367128ca4e37e",
-          "patchedSha256": "5b007186e4578e4293ae4c77ba049c0a8a45cb353910ecd9a4c821c9a4c5746b",
-          "reason": "Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions."
+          "patchedSha256": "1f44b825bc89a837090bd5a24d19192122e261e534985c0d1c1044c96848ff2f",
+          "reason": "Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions. Restore the previous cursor through the identical inset transform used for drawing, so moving away from screen edges leaves no trails.",
+          "verification": "Actual draw_new_frame integration RED/GREEN: test_portal_cursor_frame_restores_the_previous_inset_origin; actual browser edge-to-centre trail check."
         }
       ],
       "verification": "Actual compiled renderer regression RED before correction and GREEN afterward: tests/community_source_regressions.py test_portal_cursor_draw_preserves_aim_at_the_level_edge"

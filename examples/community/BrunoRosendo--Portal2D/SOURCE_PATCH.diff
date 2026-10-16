@@ -100,6 +100,15 @@
    buffer_screen();
  
    // erase the previous frame
+@@ -1369,7 +1388,7 @@
+     editor_update = false;
+   }
+ 
+-  erase_sprite(&old_cursor);
++  erase_cursor(&old_cursor);
+   old_cursor = (*cursor);
+ 
+   for (int i = 0; i < 19; ++i)
 --- a/proj/Src/sprites.c
 +++ b/proj/Src/sprites.c
 @@ -35,8 +35,9 @@
@@ -114,20 +123,30 @@
      free(sp);
      sp = NULL;
  }
-@@ -51,6 +52,16 @@
+@@ -51,6 +52,26 @@
                  vg_draw_pixel(x, y, color);
          }
      }
 +}
 +
-+void draw_cursor(Sprite *cursor){
-+    // Keep the rendered art inside the screen without changing portal aim.
++static Sprite cursor_render_copy(Sprite *cursor){
++    // Drawing and restoring must use the same inset without changing portal aim.
 +    Sprite render = *cursor;
 +    int max_x = (int)get_h_res() > render.width ? get_h_res() - render.width : 0;
 +    int max_y = (int)get_v_res() > render.height ? get_v_res() - render.height : 0;
 +    render.x = render.x < 0 ? 0 : render.x > max_x ? max_x : render.x;
 +    render.y = render.y < 0 ? 0 : render.y > max_y ? max_y : render.y;
++    return render;
++}
++
++void draw_cursor(Sprite *cursor){
++    Sprite render = cursor_render_copy(cursor);
 +    draw_sprite(&render);
++}
++
++void erase_cursor(Sprite *cursor){
++    Sprite render = cursor_render_copy(cursor);
++    erase_sprite(&render);
  }
  
  void erase_sprite(Sprite* sp){
@@ -193,12 +212,13 @@
      asp = NULL;
 --- a/proj/Src/sprites.h
 +++ b/proj/Src/sprites.h
-@@ -57,6 +57,9 @@
+@@ -57,6 +57,10 @@
   */
  void draw_sprite(Sprite* sp);
  
 +/** Draw cursor art inside the frame while preserving its logical aim. */
 +void draw_cursor(Sprite* cursor);
++void erase_cursor(Sprite* cursor);
 +
  /**
   * @brief Erases the sprite by painting it all in black
