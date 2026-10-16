@@ -13,12 +13,14 @@
 <body>
 <main id="library">
   <div id="grid" class="mosaic">
-    <div class="library-controls" role="group" aria-label="Library controls">
+    <div class="library-tools">
       <a class="identity grid-utility" href="./" aria-label="@NAME@ home"><img src="assets/arcade.svg" width="44" height="44" alt=""><h1>@NAME@</h1></a>
-      <button id="search-toggle" class="utility-tile grid-utility" type="button" aria-label="Find a game" aria-haspopup="dialog" aria-expanded="false" aria-controls="search-panel" title="Find a game (Ctrl+K / ⌘K)" aria-keyshortcuts="Control+k Meta+k"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span>Search</span></button>
-      <button id="fullscreen" class="utility-tile grid-utility" type="button" aria-label="Enter fullscreen" title="Fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg><span>Screen</span></button>
-      <button id="shuffle" class="utility-tile grid-utility" type="button" aria-label="Shuffle games" title="Shuffle games"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3.5-2 5-5m2-3c1.5-2.5 3-4 5-4h3m-4-4 4 4-4 4"/></svg><span>Shuffle</span></button>
-      <button id="surprise" class="utility-tile grid-utility" type="button" aria-label="Surprise me" aria-haspopup="dialog" aria-controls="surprise-panel" disabled><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="9" width="22" height="19" rx="4"/><path d="M11 9V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3M5 17h7m8 0h7m-14-3 3 6 3-6"/></svg><span>Surprise</span></button>
+      <div class="library-controls" role="group" aria-label="Library controls">
+        <button id="search-toggle" class="utility-tile grid-utility" type="button" aria-label="Find a game" aria-haspopup="dialog" aria-expanded="false" aria-controls="search-panel" title="Find a game (Ctrl+K / ⌘K)" aria-keyshortcuts="Control+k Meta+k"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span>Search</span></button>
+        <button id="fullscreen" class="utility-tile grid-utility" type="button" aria-label="Enter fullscreen" title="Fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg><span>Screen</span></button>
+        <button id="shuffle" class="utility-tile grid-utility" type="button" aria-label="Shuffle games" title="Shuffle games"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3.5-2 5-5m2-3c1.5-2.5 3-4 5-4h3m-4-4 4 4-4 4"/></svg><span>Shuffle</span></button>
+        <button id="surprise" class="utility-tile grid-utility" type="button" aria-label="Surprise me" aria-haspopup="dialog" aria-controls="surprise-panel" disabled><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="9" width="22" height="19" rx="4"/><path d="M11 9V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3M5 17h7m8 0h7m-14-3 3 6 3-6"/></svg><span>Surprise</span></button>
+      </div>
     </div>
     <div id="games" role="list" aria-label="Games"></div>
   </div>

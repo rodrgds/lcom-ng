@@ -90,17 +90,24 @@ test('mosaic arrows use square placement rather than expanded previews or reposi
 });
 
 
-test('library controls fit one game square with a compact header and four actions',async({page},testInfo)=>{
+test('separate brand and controls stay in two phone columns above three game columns',async({page},testInfo)=>{
   await page.goto(base);
   const panel=page.getByRole('group',{name:'Library controls',exact:true});
   for(const width of [320,390,584,768,1440]) {
     await page.setViewportSize({width,height:900});await expect(panel).toBeVisible();
-    await expect.poll(()=>panel.evaluate(element=>{
-      const panel=element.getBoundingClientRect(),normal=document.querySelector('.game:not(.featured)').getBoundingClientRect();
-      return Math.abs(panel.width-normal.width)<2&&Math.abs(panel.height-normal.height)<2;
-    })).toBe(true);
-    const brand=await page.locator('.identity').boundingBox(),surprise=await page.locator('#surprise').boundingBox();
-    expect(brand.width).toBeGreaterThan(brand.height*1.6);expect(surprise.y).toBeGreaterThanOrEqual(brand.y+brand.height);
+    const brand=await page.locator('.identity').boundingBox(),tools=await panel.boundingBox();
+    expect(tools.x).toBeGreaterThanOrEqual(brand.x+brand.width);
+    expect(Math.abs(brand.y-tools.y)).toBeLessThan(2);expect(Math.abs(brand.height-tools.height)).toBeLessThan(2);
+    expect(Math.abs(brand.width-tools.width)).toBeLessThan(2);
+    if(width<=600) {
+      await expect.poll(()=>page.locator('#games').evaluate(element=>{
+        const normal=element.querySelector('.game:not(.featured)').getBoundingClientRect(),gap=parseFloat(getComputedStyle(element).gap);
+        return Math.abs(element.clientWidth-normal.width*3-gap*2)<2;
+      })).toBe(true);
+      expect(await page.locator('#games').evaluate(element=>Math.min(...[...element.querySelectorAll('.game')].map(game=>game.getBoundingClientRect().top)))).toBeGreaterThanOrEqual(tools.y+tools.height);
+    } else {
+      const normal=await page.locator('.game:not(.featured)').first().boundingBox();expect(Math.abs(tools.width-normal.width)).toBeLessThan(2);
+    }
     await expect(panel.locator('button')).toHaveCount(4);
     for(const control of await panel.locator('a,button').all()) {
       const rect=await control.boundingBox();expect(rect.width).toBeGreaterThanOrEqual(44);expect(rect.height).toBeGreaterThanOrEqual(44);
@@ -119,7 +126,7 @@ test('library controls fit one game square with a compact header and four action
   for(const id of ['search-toggle','fullscreen','shuffle','surprise']) {
     await page.keyboard.press('Tab');await expect(page.locator('#'+id)).toBeFocused();
   }
-  await page.locator('.identity').focus();await page.keyboard.press('ArrowDown');await expect(page.locator('#search-toggle')).toBeFocused();
+  await page.locator('.identity').focus();await page.keyboard.press('ArrowRight');await expect(page.locator('#search-toggle')).toBeFocused();
   await page.keyboard.press('ArrowRight');await expect(page.locator('#fullscreen')).toBeFocused();
   await page.keyboard.press('ArrowDown');await expect(page.locator('#surprise')).toBeFocused();
   await page.keyboard.press('ArrowLeft');await expect(page.locator('#shuffle')).toBeFocused();

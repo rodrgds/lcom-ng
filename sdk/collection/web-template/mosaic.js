@@ -34,9 +34,9 @@ export class Mosaic {
     const width = this.grid.clientWidth;
     if (!width || width === this.width) return;
     this.width = width;
-    const gap = width < 600 ? 8 : 12;
-    // Leave room for three rows of 44px controls in a normal tile.
-    const columns = Math.max(2, Math.min(14, Math.floor((width + gap) / (width < 600 ? 156 : 168))));
+    const mobile = matchMedia('(max-width:600px)').matches;
+    const gap = mobile ? 8 : 12;
+    const columns = mobile ? 3 : Math.max(2, Math.min(14, Math.floor((width + gap) / 168)));
     const tracks = columns * 2;
     const unit = (width - (tracks - 1) * gap) / tracks;
     const before = new Map(this.tiles.map(tile => [tile.element, tile.element.getBoundingClientRect()]));
@@ -61,9 +61,9 @@ export class Mosaic {
         tile.element.style.gridRow = `${y + 1} / span ${size}`;
       }
     };
-    // The brand and four actions share one normal square.
-    reserve(null, 0, 0, 2);
-    const rows = Math.max(2, Math.ceil((1 + this.ordinary.length + this.featured.length * 4) / columns));
+    // Phones place the two utility tiles above the separate game grid.
+    if (!mobile) { reserve(null, 0, 0, 2);reserve(null, 2, 0, 2); }
+    const rows = Math.max(2, Math.ceil(((mobile ? 0 : 2) + this.ordinary.length + this.featured.length * 4) / columns));
     const usedColumns = new Set();
     let previous = null;
     this.featured.forEach((tile, index) => {

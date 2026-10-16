@@ -63,7 +63,8 @@ library. **Shuffle** rearranges the library.
 
 **Surprise me** spins through game icons, then offers **Play** or **Spin again**.
 You can skip the animation; reduced motion shows the result immediately.
-The logo and four actions share one framed control tile. UI sounds play after
+The logo and four actions have separate framed tiles. Phones keep these in two
+columns above a three-column game grid. UI sounds play after
 interaction and can be muted through the browser tab. No audio downloads or
 third-party requests are needed.
 A loading screen shows the game's `description` and download progress; failed
