@@ -7987,7 +7987,7 @@
       "root": "examples/community/luizhqueiroz--LCOM-MemoryGame",
       "project": "src",
       "config": "examples/community/luizhqueiroz--LCOM-MemoryGame/src/lcom.json",
-      "icon": "examples/community/luizhqueiroz--LCOM-MemoryGame/src/icon.png",
+      "icon": "collections/arcade/icons/memory-quest.png",
       "provenance": "examples/community/luizhqueiroz--LCOM-MemoryGame/UPSTREAM.json",
       "license": {
         "status": "missing",
@@ -9142,7 +9142,7 @@
       "root": "examples/community/HenriqueSFernandes--LCOMaze",
       "project": "src",
       "config": "examples/community/HenriqueSFernandes--LCOMaze/src/lcom.json",
-      "icon": "examples/community/HenriqueSFernandes--LCOMaze/src/icon.png",
+      "icon": "collections/arcade/icons/lcomaze.png",
       "provenance": "examples/community/HenriqueSFernandes--LCOMaze/UPSTREAM.json",
       "license": {
         "status": "missing",

@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "LCOMaze",
-  "icon": "icon.png",
+  "icon": "../../../../collections/arcade/icons/lcomaze.png",
   "mobile": {
     "orientation": "landscape",
     "fullscreen": true,

@@ -58,7 +58,7 @@
       "font": "sans"
     }
   },
-  "icon": "icon.png",
+  "icon": "../../collections/arcade/icons/ninjix.png",
   "preview": "preview.png",
   "description": "Place ninja defenders, upgrade their skills and protect the shrine from enemy waves.",
   "build": {

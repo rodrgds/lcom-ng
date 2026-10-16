@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "Memory Quest",
-  "icon": "icon.png",
+  "icon": "../../../../collections/arcade/icons/memory-quest.png",
   "mobile": {
     "orientation": "landscape",
     "fullscreen": true,

@@ -10,8 +10,18 @@ lcom-ng export android collections/arcade --output dist/lcom-arcade-android
 ```
 
 The Android launcher is native and fullscreen, with columns adapting to screen
-width and text size. The web gallery uses a dense responsive screenshot grid, with game names and icons over the artwork and search behind an icon. Loading shows the selected game's icon, description and measured download progress. The Games button prefers unused
+width and text size. The web library uses a shuffled square icon mosaic, with
+larger featured games spread down the grid. Hover or keyboard focus expands a
+tile into sliding gameplay screenshots, its name, evidenced year and download
+size and a public Repo link when available. Search opens a modal. Loading shows the selected game's icon, description
+and measured download progress. The Games button prefers unused
 space outside the game and returns to the collection.
+Normal in-game Quit actions return to the library automatically.
+
+The checked-in gallery has 196 real captures across 66 games. See
+[`galleries/README.md`](galleries/README.md) for capture and validation commands.
+Three authored launcher illustrations replace weak icons; exact image-generation
+prompts and source hashes are in [`icons/generation.json`](icons/generation.json).
 
 See [the collection guide](../../docs-site/instructors/game-collections.md) for
 creating a class collection, Android prerequisites, per-game settings and limits.
@@ -28,7 +38,7 @@ devenv shell -- bunx wrangler deploy --config collections/arcade/wrangler.jsonc
 
 The packaging step copies the export into `build/arcade-publish`, losslessly
 compresses Wasm modules and generates smaller WebP previews (up to 640 × 480)
-and icons (up to 128 × 128). Original captures stay unchanged. Content-based
+and icons (256 × 256, or 512 × 512 for featured tiles). Original captures stay unchanged. Content-based
 filenames refresh image caches when the artwork changes; an original is kept
 when it is already smaller. A small Worker serves their encoding correctly and
 streams decompression for clients requesting identity encoding. This keeps large

@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "tool": "image_gen.imagegen",
+  "mode": "built-in",
+  "created": "2026-10-16",
+  "scope": "Authored launcher illustrations only. Original game source and in-game artwork remain unchanged.",
+  "processing": "Resize generated square images to 512 by 512 using Pillow LANCZOS, convert to opaque RGB PNG. No compositing or drawing. Embed exact generation prompt as PNG metadata with impeccable embed-prompt.",
+  "icons": [
+    {
+      "id": "ninjix-e742f8bcdc75",
+      "slug": "ninjix",
+      "profile": "examples/ninjix/lcom.json",
+      "prompt": "Use case: stylized-concept. Asset type: final square launcher icon for Ninjix, matching simple pixel-art game icons. Use the attached original icon ONLY as a character reference. Create a MUCH SIMPLER icon: one large cute black hooded ninja sprite centered on a completely plain muted dark-green background, like the reference character. Pale rectangular face opening, two simple black vertical eyes, tiny pink cheek marks and small hands. The one sprite should occupy about 70 percent of the square height and be immediately recognizable at tiny sizes. Crisp flat pixel-style block shapes, a limited palette, deliberate stepped pixel edges and no texture. Full-bleed square canvas. Remove the old gold border and the entire title/logo. No scenery, shrine, path, enemies, props, weapons, lettering, text, logo, border, frame or rounded rectangle. No 3D appearance, materials, lighting effects, shadows, gradients, highlights or decorative particles. Only the single simple flat pixel-art ninja and solid dark-green background.",
+      "references": [
+        "examples/ninjix/icon.png"
+      ],
+      "generatedSize": [
+        1254,
+        1254
+      ],
+      "path": "collections/arcade/icons/ninjix.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "de950bf0f350b38f68b9c78b0c888c5fe469df469c513fab753943401b21d5c2",
+      "generatedSha256": "c8df109bf1abd8e53efe6b0d5f8de9df41d8329c6f1c2779fe0fb0af0845bdb6",
+      "generatedFile": "exec-5044df3a-71ba-45ce-991b-afc797f900bd.png"
+    },
+    {
+      "id": "henriquesfernandes-lcomaze-e2d54c32196a",
+      "slug": "lcomaze",
+      "profile": "examples/community/HenriqueSFernandes--LCOMaze/src/lcom.json",
+      "prompt": "Use case: stylized-concept. Asset type: polished square launcher icon for LCOMaze, an overhead maze exploration game with a flashlight, used on web and Android at 48\u2013512px. Create a brand-new full-bleed illustrated game icon. Scene: a tight overhead view of a small adventurer exploring a dark labyrinth. Subject is a tiny top-down explorer with a warm flashlight cone revealing a clear corner and branching maze corridors. Maze walls and corridors should dominate the square in a bold readable labyrinth pattern; the illuminated route should feel inviting and clever. Keep the explorer simple, based on the actual game's small overhead player, not a portrait, no combat scene. Clean stylized game illustration with soft depth, deep navy stone, blue-teal walls, a golden flashlight beam and warm pale path. Use strong large geometric shapes legible as a small icon. Let maze corridors continue fully to all four canvas edges; full-bleed square illustration, no inset panel. No words, no letters, no numbers, no logo, no border, no frame, no rounded square, no empty margins, no interface controls, no watermark. This is promotional launcher art, not a screenshot.",
+      "references": [],
+      "generatedSize": [
+        1254,
+        1254
+      ],
+      "path": "collections/arcade/icons/lcomaze.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "b8b3e7d1f74b7529648fdaf9be49a383d5106f01f189f4ca87d2eee7f351934c",
+      "generatedSha256": "d65e33a13d4173213befcd6df84a68de54a79caf159a1d2e8dbbaf3d5ae1194a",
+      "generatedFile": "exec-7d97b395-de45-4ea7-8235-560029c9b280.png"
+    },
+    {
+      "id": "luizhqueiroz-lcom-memorygame-4540b5424a79",
+      "slug": "memory-quest",
+      "profile": "examples/community/luizhqueiroz--LCOM-MemoryGame/src/lcom.json",
+      "prompt": "Use case: stylized-concept. Asset type: polished square launcher icon for Memory Quest, a simple matching-pairs memory card game, used on web and Android at 48\u2013512px. Create a brand-new full-bleed illustrated game icon. Subject: four chunky game cards in a lively tight overlapping arrangement on a bright blue tabletop. Two face-up cards clearly display the SAME bold golden star symbol, communicating a matching pair immediately; the remaining two show friendly coral-red patterned card backs. Use a slight top-down perspective, soft rounded physical card corners, tactile toy-like 3D-game illustration, clean highlights, strong silhouettes, saturated sky blue, coral and golden yellow. Matching symbols must be identical, simple and large, no complicated mini pictures. Cards occupy most of the square and the tabletop fills every canvas edge. No text, no letters, no numbers, no menu, no play buttons, no inset panel, no outer border, no frame, no baked rounded-square mask, no empty padding, no watermark. Promotional launcher art, not a screenshot.",
+      "references": [],
+      "generatedSize": [
+        1254,
+        1254
+      ],
+      "path": "collections/arcade/icons/memory-quest.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "bc57733e8e4d0a329d838c56281522d5e193051c26f400d1fd65b88268cc864f",
+      "generatedSha256": "3af1875665323234ce356f8a50018f5b78887edd0731ba9c8c7a338938031c3f",
+      "generatedFile": "exec-7fdfe644-50ad-48e3-ad48-b89cda88d814.png"
+    }
+  ]
+}

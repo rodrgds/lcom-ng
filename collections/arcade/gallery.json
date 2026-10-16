@@ -1,0 +1,333 @@
+{
+  "version": 1,
+  "games": {
+    "supplied-pvz-002c15167874": [
+      "galleries/supplied-pvz-002c15167874/defenders-placed.webp",
+      "galleries/supplied-pvz-002c15167874/wave-advancing.webp",
+      "galleries/supplied-pvz-002c15167874/garden-under-pressure.webp"
+    ],
+    "teixeiraa05-lcom-sushi-slash-aeb86527d30d": [
+      "galleries/teixeiraa05-lcom-sushi-slash-aeb86527d30d/sliced-throw-1.webp",
+      "galleries/teixeiraa05-lcom-sushi-slash-aeb86527d30d/sliced-throw-2.webp",
+      "galleries/teixeiraa05-lcom-sushi-slash-aeb86527d30d/sliced-throw-3.webp"
+    ],
+    "teclas-9e9acdbd5fab": [
+      "galleries/teclas-9e9acdbd5fab/typing-ready.webp",
+      "galleries/teclas-9e9acdbd5fab/words-completed.webp",
+      "galleries/teclas-9e9acdbd5fab/typing-progress.webp"
+    ],
+    "ninjix-e742f8bcdc75": [
+      "galleries/ninjix-e742f8bcdc75/defenders-ready.webp",
+      "galleries/ninjix-e742f8bcdc75/first-wave.webp",
+      "galleries/ninjix-e742f8bcdc75/battle-progress.webp"
+    ],
+    "dsv8-feup-lcom-97a7235a6dfe": [
+      "galleries/dsv8-feup-lcom-97a7235a6dfe/play-started.webp",
+      "galleries/dsv8-feup-lcom-97a7235a6dfe/play-progress.webp",
+      "galleries/dsv8-feup-lcom-97a7235a6dfe/play-continued.webp"
+    ],
+    "josesereno-bamboozlers-a02f6afff6d5": [
+      "galleries/josesereno-bamboozlers-a02f6afff6d5/panda-ready.webp",
+      "galleries/josesereno-bamboozlers-a02f6afff6d5/panda-moved.webp",
+      "galleries/josesereno-bamboozlers-a02f6afff6d5/panda-jumping.webp"
+    ],
+    "bersanots-feup-lcom-a436e5039455": [
+      "galleries/bersanots-feup-lcom-a436e5039455/board-ready.webp",
+      "galleries/bersanots-feup-lcom-a436e5039455/first-action.webp",
+      "galleries/bersanots-feup-lcom-a436e5039455/second-action.webp"
+    ],
+    "adriano-7-feup-lcom-727bed1b84da": [
+      "galleries/adriano-7-feup-lcom-727bed1b84da/play-started.webp",
+      "galleries/adriano-7-feup-lcom-727bed1b84da/play-progress.webp",
+      "galleries/adriano-7-feup-lcom-727bed1b84da/play-continued.webp"
+    ],
+    "andrenasx-feup-lcom-3c62b99c6b04": [
+      "galleries/andrenasx-feup-lcom-3c62b99c6b04/play-started.webp",
+      "galleries/andrenasx-feup-lcom-3c62b99c6b04/play-progress.webp",
+      "galleries/andrenasx-feup-lcom-3c62b99c6b04/play-continued.webp"
+    ],
+    "raulnasoliveira-feup-lcom-2025-23b9e09f9b80": [
+      "galleries/raulnasoliveira-feup-lcom-2025-23b9e09f9b80/board-ready.webp",
+      "galleries/raulnasoliveira-feup-lcom-2025-23b9e09f9b80/first-action.webp",
+      "galleries/raulnasoliveira-feup-lcom-2025-23b9e09f9b80/second-action.webp"
+    ],
+    "diogoalves12-feup-lcom-a9dac2656b4f": [
+      "galleries/diogoalves12-feup-lcom-a9dac2656b4f/play-started.webp",
+      "galleries/diogoalves12-feup-lcom-a9dac2656b4f/play-progress.webp",
+      "galleries/diogoalves12-feup-lcom-a9dac2656b4f/play-continued.webp"
+    ],
+    "ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3": [
+      "galleries/ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3/play-started.webp",
+      "galleries/ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3/play-progress.webp",
+      "galleries/ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3/play-continued.webp"
+    ],
+    "zefluxo-feup-lcom-7d2140581772": [
+      "galleries/zefluxo-feup-lcom-7d2140581772/play-started.webp",
+      "galleries/zefluxo-feup-lcom-7d2140581772/play-progress.webp",
+      "galleries/zefluxo-feup-lcom-7d2140581772/play-continued.webp"
+    ],
+    "m1ke26-minix-grand-prix-d83709a8a95c": [
+      "galleries/m1ke26-minix-grand-prix-d83709a8a95c/board-ready.webp",
+      "galleries/m1ke26-minix-grand-prix-d83709a8a95c/first-action.webp",
+      "galleries/m1ke26-minix-grand-prix-d83709a8a95c/second-action.webp"
+    ],
+    "casemiromjm-minixsweeper-286a5a2780c5": [
+      "galleries/casemiromjm-minixsweeper-286a5a2780c5/first-discovery.webp",
+      "galleries/casemiromjm-minixsweeper-286a5a2780c5/first-flag.webp",
+      "galleries/casemiromjm-minixsweeper-286a5a2780c5/second-flag.webp"
+    ],
+    "martimcferreira-lcom-project-9a16857450a6": [
+      "galleries/martimcferreira-lcom-project-9a16857450a6/play-started.webp",
+      "galleries/martimcferreira-lcom-project-9a16857450a6/play-progress.webp",
+      "galleries/martimcferreira-lcom-project-9a16857450a6/play-continued.webp"
+    ],
+    "samblack569-feup-lcom-2425-c1eb853acae2": [
+      "galleries/samblack569-feup-lcom-2425-c1eb853acae2/play-started.webp",
+      "galleries/samblack569-feup-lcom-2425-c1eb853acae2/play-progress.webp",
+      "galleries/samblack569-feup-lcom-2425-c1eb853acae2/play-continued.webp"
+    ],
+    "peucastro-lcom-03ab6e7e63db": [
+      "galleries/peucastro-lcom-03ab6e7e63db/play-started.webp",
+      "galleries/peucastro-lcom-03ab6e7e63db/play-progress.webp",
+      "galleries/peucastro-lcom-03ab6e7e63db/play-continued.webp"
+    ],
+    "mariajvieira-feup-lcom-d95c409c5aa9": [
+      "galleries/mariajvieira-feup-lcom-d95c409c5aa9/first-food.webp",
+      "galleries/mariajvieira-feup-lcom-d95c409c5aa9/growing-snake.webp",
+      "galleries/mariajvieira-feup-lcom-d95c409c5aa9/long-snake.webp"
+    ],
+    "vasco888888-feup-leic-lcom-be8975b3e8c5": [
+      "galleries/vasco888888-feup-leic-lcom-be8975b3e8c5/play-started.webp",
+      "galleries/vasco888888-feup-leic-lcom-be8975b3e8c5/play-progress.webp",
+      "galleries/vasco888888-feup-leic-lcom-be8975b3e8c5/play-continued.webp"
+    ],
+    "rodriguess2-lcom-hangman-b8d098d60c4c": [
+      "galleries/rodriguess2-lcom-hangman-b8d098d60c4c/board-ready.webp",
+      "galleries/rodriguess2-lcom-hangman-b8d098d60c4c/first-action.webp",
+      "galleries/rodriguess2-lcom-hangman-b8d098d60c4c/second-action.webp"
+    ],
+    "cast-10-lcomproject-1c6c122eea2f": [
+      "galleries/cast-10-lcomproject-1c6c122eea2f/play-started.webp",
+      "galleries/cast-10-lcomproject-1c6c122eea2f/play-progress.webp",
+      "galleries/cast-10-lcomproject-1c6c122eea2f/play-continued.webp"
+    ],
+    "yuka-sky-lcom-d0ec5dfcc81b": [
+      "galleries/yuka-sky-lcom-d0ec5dfcc81b/board-ready.webp",
+      "galleries/yuka-sky-lcom-d0ec5dfcc81b/first-action.webp",
+      "galleries/yuka-sky-lcom-d0ec5dfcc81b/second-action.webp"
+    ],
+    "pedroribas372-minix-spaceinvaders-e02a4844fc81": [
+      "galleries/pedroribas372-minix-spaceinvaders-e02a4844fc81/play-started.webp",
+      "galleries/pedroribas372-minix-spaceinvaders-e02a4844fc81/play-progress.webp",
+      "galleries/pedroribas372-minix-spaceinvaders-e02a4844fc81/play-continued.webp"
+    ],
+    "simaopsbarbosa-feup-lcom-e3fa6454545b": [
+      "galleries/simaopsbarbosa-feup-lcom-e3fa6454545b/wait-for-green.webp",
+      "galleries/simaopsbarbosa-feup-lcom-e3fa6454545b/react-now.webp",
+      "galleries/simaopsbarbosa-feup-lcom-e3fa6454545b/reaction-result.webp"
+    ],
+    "pacocalypse-387c0be823e4": [
+      "galleries/pacocalypse-387c0be823e4/play-started.webp",
+      "galleries/pacocalypse-387c0be823e4/play-progress.webp",
+      "galleries/pacocalypse-387c0be823e4/play-continued.webp"
+    ],
+    "gomesidk-survive-the-blast-3d56ca17c03b": [
+      "galleries/gomesidk-survive-the-blast-3d56ca17c03b/play-started.webp",
+      "galleries/gomesidk-survive-the-blast-3d56ca17c03b/play-progress.webp",
+      "galleries/gomesidk-survive-the-blast-3d56ca17c03b/play-continued.webp"
+    ],
+    "antoniocrego-lcom-t01-g3-c70a27f473d7": [
+      "galleries/antoniocrego-lcom-t01-g3-c70a27f473d7/board-ready.webp",
+      "galleries/antoniocrego-lcom-t01-g3-c70a27f473d7/first-action.webp",
+      "galleries/antoniocrego-lcom-t01-g3-c70a27f473d7/second-action.webp"
+    ],
+    "worms-d4885e74d5cb": [
+      "galleries/worms-d4885e74d5cb/play-started.webp",
+      "galleries/worms-d4885e74d5cb/play-progress.webp",
+      "galleries/worms-d4885e74d5cb/play-continued.webp"
+    ],
+    "gsilva00-lcom-project-4c94e7405c90": [
+      "galleries/gsilva00-lcom-project-4c94e7405c90/board-ready.webp",
+      "galleries/gsilva00-lcom-project-4c94e7405c90/first-action.webp",
+      "galleries/gsilva00-lcom-project-4c94e7405c90/returning-left.webp"
+    ],
+    "iamaccosta-feup-lcom-8eb08d543062": [
+      "galleries/iamaccosta-feup-lcom-8eb08d543062/covered-cards.webp",
+      "galleries/iamaccosta-feup-lcom-8eb08d543062/first-card.webp",
+      "galleries/iamaccosta-feup-lcom-8eb08d543062/second-card.webp"
+    ],
+    "luanalima27-lcom-feup-eda1c5716f42": [
+      "galleries/luanalima27-lcom-feup-eda1c5716f42/play-started.webp",
+      "galleries/luanalima27-lcom-feup-eda1c5716f42/play-progress.webp",
+      "galleries/luanalima27-lcom-feup-eda1c5716f42/play-continued.webp"
+    ],
+    "guystavo7-feup-lcom-project-912ca0851017": [
+      "galleries/guystavo7-feup-lcom-project-912ca0851017/board-ready.webp",
+      "galleries/guystavo7-feup-lcom-project-912ca0851017/first-action.webp",
+      "galleries/guystavo7-feup-lcom-project-912ca0851017/second-action.webp"
+    ],
+    "duarte-pombo-minix-whack-a-mole-c0b1a146de15": [
+      "galleries/duarte-pombo-minix-whack-a-mole-c0b1a146de15/moles-appearing.webp",
+      "galleries/duarte-pombo-minix-whack-a-mole-c0b1a146de15/top-row-hammered.webp",
+      "galleries/duarte-pombo-minix-whack-a-mole-c0b1a146de15/bottom-row-hammered.webp"
+    ],
+    "guizas-la-papas-pizzeria-807f3b26e203": [
+      "galleries/guizas-la-papas-pizzeria-807f3b26e203/pizza-base.webp",
+      "galleries/guizas-la-papas-pizzeria-807f3b26e203/pizza-toppings.webp",
+      "galleries/guizas-la-papas-pizzeria-807f3b26e203/pizza-in-oven.webp"
+    ],
+    "cata-24-minix3-game-952ce67c4b3d": [
+      "galleries/cata-24-minix3-game-952ce67c4b3d/play-started.webp",
+      "galleries/cata-24-minix3-game-952ce67c4b3d/play-progress.webp",
+      "galleries/cata-24-minix3-game-952ce67c4b3d/play-continued.webp"
+    ],
+    "constancalferreira-battleship-0d18d3873e2b": [
+      "galleries/constancalferreira-battleship-0d18d3873e2b/board-ready.webp",
+      "galleries/constancalferreira-battleship-0d18d3873e2b/first-bomb.webp",
+      "galleries/constancalferreira-battleship-0d18d3873e2b/second-bomb.webp"
+    ],
+    "worms-0ace38f831e6": [
+      "galleries/worms-0ace38f831e6/play-started.webp",
+      "galleries/worms-0ace38f831e6/play-progress.webp",
+      "galleries/worms-0ace38f831e6/play-continued.webp"
+    ],
+    "dab1d-getawaycar-a7df638127d0": [
+      "galleries/dab1d-getawaycar-a7df638127d0/play-started.webp",
+      "galleries/dab1d-getawaycar-a7df638127d0/play-progress.webp",
+      "galleries/dab1d-getawaycar-a7df638127d0/play-continued.webp"
+    ],
+    "d4yz-stp-minix-pacman-e9e2296201be": [
+      "galleries/d4yz-stp-minix-pacman-e9e2296201be/play-started.webp",
+      "galleries/d4yz-stp-minix-pacman-e9e2296201be/play-progress.webp",
+      "galleries/d4yz-stp-minix-pacman-e9e2296201be/play-continued.webp"
+    ],
+    "scrr-az-skess-lcom-282ac263194e": [
+      "galleries/scrr-az-skess-lcom-282ac263194e/play-started.webp",
+      "galleries/scrr-az-skess-lcom-282ac263194e/another-stroke.webp",
+      "galleries/scrr-az-skess-lcom-282ac263194e/closed-shape.webp"
+    ],
+    "hugo-mgs-lcom-space-invaders-5c534d6f57b3": [
+      "galleries/hugo-mgs-lcom-space-invaders-5c534d6f57b3/play-started.webp",
+      "galleries/hugo-mgs-lcom-space-invaders-5c534d6f57b3/play-progress.webp",
+      "galleries/hugo-mgs-lcom-space-invaders-5c534d6f57b3/play-continued.webp"
+    ],
+    "alexandre2004costa-lcom-project-e3c159e09375": [
+      "galleries/alexandre2004costa-lcom-project-e3c159e09375/solo-level.webp",
+      "galleries/alexandre2004costa-lcom-project-e3c159e09375/jumping-right.webp",
+      "galleries/alexandre2004costa-lcom-project-e3c159e09375/fire-and-move.webp"
+    ],
+    "joaolopes15-lcom-4115b87918f9": [
+      "galleries/joaolopes15-lcom-4115b87918f9/play-started.webp",
+      "galleries/joaolopes15-lcom-4115b87918f9/play-progress.webp",
+      "galleries/joaolopes15-lcom-4115b87918f9/play-continued.webp"
+    ],
+    "monsterdied-lcomproj-138166482bfa": [
+      "galleries/monsterdied-lcomproj-138166482bfa/bomber-match.webp",
+      "galleries/monsterdied-lcomproj-138166482bfa/bomber-moving.webp",
+      "galleries/monsterdied-lcomproj-138166482bfa/bomb-planted.webp"
+    ],
+    "luizhqueiroz-lcom-memorygame-4540b5424a79": [
+      "galleries/luizhqueiroz-lcom-memorygame-4540b5424a79/memory-board.webp",
+      "galleries/luizhqueiroz-lcom-memorygame-4540b5424a79/first-flip.webp"
+    ],
+    "diogosilva11-lcom-ed97fdb962ec": [
+      "galleries/diogosilva11-lcom-ed97fdb962ec/robots-live.webp",
+      "galleries/diogosilva11-lcom-ed97fdb962ec/robot-dodge.webp",
+      "galleries/diogosilva11-lcom-ed97fdb962ec/robot-movement.webp"
+    ],
+    "joanaigs-lcom-snake-game-330f9e657355": [
+      "galleries/joanaigs-lcom-snake-game-330f9e657355/snake-right.webp",
+      "galleries/joanaigs-lcom-snake-game-330f9e657355/snake-down.webp",
+      "galleries/joanaigs-lcom-snake-game-330f9e657355/snake-left.webp"
+    ],
+    "migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f": [
+      "galleries/migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f/opening-position.webp",
+      "galleries/migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f/pawn-selected.webp",
+      "galleries/migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f/opening-move.webp"
+    ],
+    "leonardomagalhaes21-feup-lcom-9e3925b94730": [
+      "galleries/leonardomagalhaes21-feup-lcom-9e3925b94730/play-started.webp",
+      "galleries/leonardomagalhaes21-feup-lcom-9e3925b94730/play-progress.webp",
+      "galleries/leonardomagalhaes21-feup-lcom-9e3925b94730/play-continued.webp"
+    ],
+    "henriquesfernandes-lcomaze-e2d54c32196a": [
+      "galleries/henriquesfernandes-lcomaze-e2d54c32196a/corridor-13.webp",
+      "galleries/henriquesfernandes-lcomaze-e2d54c32196a/corridor-26.webp",
+      "galleries/henriquesfernandes-lcomaze-e2d54c32196a/corridor-38.webp"
+    ],
+    "forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4": [
+      "galleries/forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4/play-started.webp",
+      "galleries/forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4/play-progress.webp",
+      "galleries/forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4/play-continued.webp"
+    ],
+    "gablm-feup-lcom-labjack-de14d1919ed9": [
+      "galleries/gablm-feup-lcom-labjack-de14d1919ed9/dealt-hand.webp",
+      "galleries/gablm-feup-lcom-labjack-de14d1919ed9/hit-animation.webp"
+    ],
+    "teixdavide-feup-lcom-pettycats-768b12c9a51f": [
+      "galleries/teixdavide-feup-lcom-pettycats-768b12c9a51f/play-started.webp",
+      "galleries/teixdavide-feup-lcom-pettycats-768b12c9a51f/play-progress.webp",
+      "galleries/teixdavide-feup-lcom-pettycats-768b12c9a51f/play-continued.webp"
+    ],
+    "davidgustavo6-lcom-game-7f0cc9b9f5ba": [
+      "galleries/davidgustavo6-lcom-game-7f0cc9b9f5ba/empty-tower-slot.webp",
+      "galleries/davidgustavo6-lcom-game-7f0cc9b9f5ba/archer-built.webp",
+      "galleries/davidgustavo6-lcom-game-7f0cc9b9f5ba/enemy-wave.webp"
+    ],
+    "lsfaria04-lcom-project-tennis-for-two-2e48173786f1": [
+      "galleries/lsfaria04-lcom-project-tennis-for-two-2e48173786f1/court-started.webp",
+      "galleries/lsfaria04-lcom-project-tennis-for-two-2e48173786f1/served-and-moved.webp",
+      "galleries/lsfaria04-lcom-project-tennis-for-two-2e48173786f1/rally.webp"
+    ],
+    "rodeso-lcom-brick-blitz-3014442d8fa6": [
+      "galleries/rodeso-lcom-brick-blitz-3014442d8fa6/brick-board.webp",
+      "galleries/rodeso-lcom-brick-blitz-3014442d8fa6/held-movement.webp",
+      "galleries/rodeso-lcom-brick-blitz-3014442d8fa6/ball-launched.webp"
+    ],
+    "murielpinho-feup-lcom-1920-bc475165f123": [
+      "galleries/murielpinho-feup-lcom-1920-bc475165f123/triangle-mission.webp",
+      "galleries/murielpinho-feup-lcom-1920-bc475165f123/first-edge.webp",
+      "galleries/murielpinho-feup-lcom-1920-bc475165f123/next-mission.webp"
+    ],
+    "francis802-tower-clash-21525d616a06": [
+      "galleries/francis802-tower-clash-21525d616a06/castle-match.webp",
+      "galleries/francis802-tower-clash-21525d616a06/charged-shot.webp",
+      "galleries/francis802-tower-clash-21525d616a06/projectile-flight.webp"
+    ],
+    "ruben38esteves-project-lcom-minixsurfers-f64f6c1da3a9": [
+      "galleries/ruben38esteves-project-lcom-minixsurfers-f64f6c1da3a9/versus-run.webp",
+      "galleries/ruben38esteves-project-lcom-minixsurfers-f64f6c1da3a9/runner-moved.webp",
+      "galleries/ruben38esteves-project-lcom-minixsurfers-f64f6c1da3a9/two-player-input.webp"
+    ],
+    "vidal322-breakpong-df233c2d2a2c": [
+      "galleries/vidal322-breakpong-df233c2d2a2c/breakout-ready.webp",
+      "galleries/vidal322-breakpong-df233c2d2a2c/ball-launched.webp",
+      "galleries/vidal322-breakpong-df233c2d2a2c/brick-rally.webp"
+    ],
+    "leticia-003-2ndyear-feup-lcom-ab9c644ba6fb": [
+      "galleries/leticia-003-2ndyear-feup-lcom-ab9c644ba6fb/initial-board.webp",
+      "galleries/leticia-003-2ndyear-feup-lcom-ab9c644ba6fb/first-brick-break.webp",
+      "galleries/leticia-003-2ndyear-feup-lcom-ab9c644ba6fb/rally-continues.webp"
+    ],
+    "brunorosendo-portal2d-efb0e7bceb35": [
+      "galleries/brunorosendo-portal2d-efb0e7bceb35/portal-level.webp",
+      "galleries/brunorosendo-portal2d-efb0e7bceb35/chell-moved.webp",
+      "galleries/brunorosendo-portal2d-efb0e7bceb35/jumped.webp"
+    ],
+    "dagarsar-lcom-4a069f7a0061": [
+      "galleries/dagarsar-lcom-4a069f7a0061/block-live.webp",
+      "galleries/dagarsar-lcom-4a069f7a0061/paddle-right.webp",
+      "galleries/dagarsar-lcom-4a069f7a0061/paddle-left.webp"
+    ],
+    "rodrigopombo1-projeto-lcom-571c4f64fa76": [
+      "galleries/rodrigopombo1-projeto-lcom-571c4f64fa76/dungeon-started.webp",
+      "galleries/rodrigopombo1-projeto-lcom-571c4f64fa76/dungeon-movement.webp",
+      "galleries/rodrigopombo1-projeto-lcom-571c4f64fa76/dungeon-combat.webp"
+    ],
+    "unrealxinfinity-alienexpress-12fa5db8be9d": [
+      "galleries/unrealxinfinity-alienexpress-12fa5db8be9d/alien-run-started.webp",
+      "galleries/unrealxinfinity-alienexpress-12fa5db8be9d/package-reached.webp",
+      "galleries/unrealxinfinity-alienexpress-12fa5db8be9d/package-picked-up.webp"
+    ]
+  }
+}
