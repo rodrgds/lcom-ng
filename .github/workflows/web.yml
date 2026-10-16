@@ -22,7 +22,7 @@ jobs:
       - name: Install JavaScript and browser dependencies
         run: |
           devenv shell -- bun install --frozen-lockfile
-          devenv shell -- bunx playwright install --with-deps chromium
+          devenv shell -- bunx playwright install --with-deps chromium firefox
       - name: Verify browser exports
         run: devenv shell -- lcom-ng-web-test
       - name: Verify Arcade source and image packaging

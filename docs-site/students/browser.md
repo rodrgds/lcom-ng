@@ -123,7 +123,7 @@ threads, `SharedArrayBuffer` or JavaScript Promise Integration.
 | Browser | Expected behavior | Verification |
 | --- | --- | --- |
 | Chrome and Edge | Game, audio, keyboard and free desktop mouse input | Chromium automated tests |
-| Firefox on desktop | Same export, with free mouse input | Not yet tested |
+| Firefox on desktop | Same export, with free mouse input | Automated collection startup and pause/resume checks |
 | Safari on macOS | Same export, with free mouse input | Not yet tested |
 | Safari on iPhone and iPad | Game, audio and custom touch keyboard; no Pointer Lock | Physical devices not yet tested |
 
@@ -136,6 +136,9 @@ relocation, student workspaces, Escape without cursor release, host release keys
 multi-touch keyboard input, relative touch dragging, separate mouse buttons,
 and the optional joystick. Mobile tests use touch emulation. This does not
 certify every Minix project or every mobile browser.
+
+Chromium and Firefox also check that a collection game reaches its first frame
+when focus changes during loading, then pauses and resumes normally.
 
 ## Tools and limits
 

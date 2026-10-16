@@ -224,7 +224,13 @@ document.addEventListener('keyup', event => {
   }
 });
 canvas.addEventListener('blur', releaseMouse);
-window.addEventListener('blur', () => { releaseMouse(); player.paused = true; player.stopAudio(); });
+window.addEventListener('blur', () => {
+  releaseMouse();
+  // The collection keeps the iframe inert until its first frame. Firefox can
+  // blur it during startup, before the loader can give it focus again.
+  player.paused = document.hidden || !collectionPlayer || firstFrame;
+  player.stopAudio();
+});
 window.addEventListener('focus', () => { player.paused = document.hidden; });
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) releaseMouse();
