@@ -52,10 +52,38 @@ asset, argument and orientation switches belong in the individual game profiles.
 Re-exporting to the same web output removes generated bundles for games you took
 out of the list. Files you added yourself are preserved.
 
-The web library uses wide screenshot tiles with names over the artwork. Search
-opens from the magnifying glass. Games without a `preview` use their icon.
+The web library uses square game icons, with larger featured games spread down
+the grid. Hover or keyboard focus expands a tile into gameplay screenshots with
+its name, year when known, and approximate first-load download size. Screenshots
+slide every few seconds; reduced motion keeps the first frame still. Touch opens
+a game directly. **Search** opens a modal and preserves its query when returning
+from a game. **Shuffle** rearranges the library.
 A loading screen shows the game's `description` and download progress; failed
 downloads offer a retry or a return to the library.
+
+## Web galleries and metadata
+
+An optional `web.json` beside the collection manifest adds web-only presentation:
+
+```json
+{"version": 1, "metadata": "game-metadata.json", "gallery": "gallery.json"}
+```
+
+Both files use `{"version": 1, "games": {...}}`, keyed by exported game IDs from
+`collection.json`. Metadata entries accept `featured`, `year`, `yearSource` and
+`yearLabel`. A year source has a `kind` (`course`, `commit` or `unknown`), a
+`detail`, and an optional `url`. Label commit dates **Updated YYYY** rather than
+presenting them as creation dates. Unknown years can be omitted.
+
+Gallery entries are arrays of up to 12 relative WebP paths inside the collection
+folder. The exporter copies them under content hashes and loads them only when
+a tile expands. A game without a gallery uses its configured preview or icon.
+Download sizes include the game bundle and player, exclude gallery imagery,
+and may shrink with caching or server compression.
+
+The included Arcade keeps its capture sequences and provenance beside
+`gallery.json`. Its capture script records actual browser canvas states; see
+the collection's gallery instructions before regenerating images.
 
 ## Playing and returning
 

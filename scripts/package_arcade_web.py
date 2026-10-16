@@ -8,13 +8,25 @@ import json
 from io import BytesIO
 from pathlib import Path
 import shutil
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "sdk"))
+from collection.web import download_metadata
 
 from PIL import Image
 
 
 def package_image(source, output, relative, bounds):
-    original = (source / relative).read_bytes()
+    relative = Path(relative)
+    original_path = (source / relative).resolve(strict=True)
+    if relative.is_absolute() or '..' in relative.parts or not original_path.is_relative_to(source):
+        raise ValueError(f"Image path escapes export: {relative}")
+    relative = relative.as_posix()
+    original = original_path.read_bytes()
     with Image.open(source / relative) as image:
+        if image.format == "WEBP" and image.width <= bounds[0] and image.height <= bounds[1]:
+            image.load()
+            return relative, len(original), len(original)
         image.thumbnail(bounds, Image.Resampling.LANCZOS)
         encoded = BytesIO()
         image.save(encoded, format="WEBP", quality=80, method=6)
@@ -41,16 +53,24 @@ def main():
     shutil.copytree(source, output)
     records, images = [], []
     for game in catalog["games"]:
-        for kind, bounds in (("preview", (640, 480)), ("icon", (128, 128))):
+        icon_bounds = (512, 512) if game.get("featured") else (256, 256)
+        for kind, bounds in (("preview", (640, 480)), ("icon", icon_bounds)):
             if not game.get(kind):
                 continue
             relative, before, after = package_image(source, output, game[kind], bounds)
             game[kind] = relative
             images.append({"path": relative, "bytes": before, "publishedBytes": after})
+        screenshots=[]
+        for screenshot in game.get("screenshots", []):
+            relative, before, after = package_image(source, output, screenshot, (640, 480))
+            screenshots.append(relative)
+            images.append({"path": relative, "bytes": before, "publishedBytes": after})
+        game["screenshots"] = screenshots
         relative = Path("games") / game["id"] / "game.wasm"
         original = (source / relative).read_bytes()
         encoded = gzip.compress(original, compresslevel=9, mtime=0)
         assert gzip.decompress(encoded) == original
+        game.update(download_metadata(source / "games" / game["id"], f"games/{game['id']}/", len(encoded)))
         (output / relative).write_bytes(encoded)
         records.append({"path": relative.as_posix(), "bytes": len(original),
                         "gzipBytes": len(encoded),

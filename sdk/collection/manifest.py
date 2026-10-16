@@ -56,7 +56,9 @@ def build(args, target):
         raise ValueError('Output must be separate from the collection folder and its parents')
     if target == 'web':
         from collection import web
-        return web.build(collection['entries'], output, name, icon)
+        presentation = Path(args.project) / 'web.json'
+        return web.build(collection['entries'], output, name, icon,
+                         presentation if presentation.is_file() else None)
     from collection import android
     return android.build(collection['entries'], output, name, icon,
                          args.app_id or 'pt.rgo.lcomng.arcade', args.abi,

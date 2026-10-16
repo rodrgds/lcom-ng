@@ -30,11 +30,22 @@ class ArcadePackagingTest(unittest.TestCase):
                 originals[name] = (game / f"{name}.png").read_bytes()
             module = b"\x00asm\x01\x00\x00\x00"
             (game / "game.wasm").write_bytes(module)
-            catalog = {"name": "Fixture", "games": [{"id": "fixture", "preview": "games/fixture/preview.png", "icon": "games/fixture/icon.png"}]}
+            (game / "game.js").write_bytes(b"loader")
+            (game / "player.js").write_bytes(b"player")
+            (game / "game.data").write_bytes(b"assets")
+            gallery=game/"screenshots";gallery.mkdir()
+            Image.new("RGB",(640,480),(24,128,216)).save(gallery/"actual.webp",format="WEBP",quality=80)
+            gallery_bytes=(gallery/"actual.webp").read_bytes()
+            catalog = {"name": "Fixture", "games": [{"id": "fixture", "preview": "games/fixture/preview.png", "icon": "games/fixture/icon.png", "screenshots":["games/fixture/screenshots/actual.webp"]}]}
             (source / "collection.json").write_text(json.dumps(catalog))
             subprocess.run([sys.executable, str(ROOT / "scripts/package_arcade_web.py"), "--source", str(source), "--output", str(output)], check=True, capture_output=True)
             published = json.loads((output / "collection.json").read_text())["games"][0]
-            for name, maximum in (("preview", (640, 480)), ("icon", (128, 128))):
+            self.assertEqual((output/published["screenshots"][0]).read_bytes(),gallery_bytes)
+            expected=len(gzip.compress(module,compresslevel=9,mtime=0))+len(b"loader")+len(b"player")+len(b"assets")
+            self.assertEqual(published["downloadBytes"],expected)
+            self.assertEqual(published["downloadBasis"],"gzip-wasm-identity-rest")
+            self.assertEqual(sum(item["bytes"] for item in published["downloadFiles"]),expected)
+            for name, maximum in (("preview", (640, 480)), ("icon", (256, 256))):
                 path = output / published[name]
                 self.assertLess(path.stat().st_size, len(originals[name]) // 2)
                 with Image.open(path) as image:

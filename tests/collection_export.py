@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Collection folder-list contracts, including relocation and validation."""
 import json
+import base64
 from pathlib import Path
 import shutil
 import sys
@@ -58,11 +59,19 @@ class CollectionManifest(unittest.TestCase):
             args.output.mkdir(parents=True, exist_ok=True)
             (args.output / 'index.html').write_text('game')
             (args.output / 'game.wasm').write_bytes(b'game')
+            (args.output / 'game.js').write_bytes(b'loader')
             (args.output / 'lcom-web.json').write_text(json.dumps({'files': ['index.html', 'game.wasm']}))
         with patch.object(web.exporter, 'build', side_effect=compile_game):
             web.build(entries, output, 'Class games')
+            image=base64.b64decode('UklGRh4AAABXRUJQVlA4TBEAAAAvAUAAAAdQwGIUu/+BiOh/AAA=')
+            (self.collection/'shot.webp').write_bytes(image)
+            (self.collection/'gallery.json').write_text(json.dumps({'version':1,'games':{entry['id']:['shot.webp'] for entry in entries}}))
+            (self.collection/'web.json').write_text(json.dumps({'version':1,'gallery':'gallery.json'}))
+            catalog=web.write_launcher(entries,output,'Class games',presentation=self.collection/'web.json')
+            screenshots=[output/game['screenshots'][0] for game in catalog]
             removed = output / 'games' / entries[1]['id']
             (removed / 'my-notes.txt').write_text('keep this')
+            (removed/'screenshots'/'personal.webp').write_bytes(b'keep personal image')
             unknown = output / 'games' / 'personal'
             unknown.mkdir()
             (unknown / 'index.html').write_text('personal game')
@@ -70,11 +79,93 @@ class CollectionManifest(unittest.TestCase):
                 with self.assertRaises(RuntimeError): web.build(entries[:1], output, 'Class games')
             self.assertTrue((removed / 'index.html').is_file())
             web.build(entries[:1], output, 'Class games')
+        self.assertTrue(all(not image.exists() for image in screenshots))
+        self.assertEqual((removed/'screenshots'/'personal.webp').read_bytes(),b'keep personal image')
         self.assertFalse((removed / 'index.html').exists())
         self.assertFalse((removed / 'game.wasm').exists())
         self.assertEqual((removed / 'my-notes.txt').read_text(), 'keep this')
         self.assertEqual((unknown / 'index.html').read_text(), 'personal game')
         self.assertEqual(len(json.loads((output / 'collection.json').read_text())['games']), 1)
+
+
+    def test_web_presentation_relocates_images_and_measures_required_game_files(self):
+        entries=manifest.load(self.collection)['entries']
+        identifier=entries[0]['id']
+        image=base64.b64decode('UklGRh4AAABXRUJQVlA4TBEAAAAvAUAAAAdQwGIUu/+BiOh/AAA=')
+        (self.collection/'capture.webp').write_bytes(image)
+        (self.collection/'metadata.json').write_text(json.dumps({'version':1,'games':{identifier:{'year':2024,'yearLabel':'Updated 2024','yearSource':{'kind':'commit','url':'https://example.com/commit/pinned','detail':'Pinned commit from 2024-05-12'},'featured':True}}}))
+        (self.collection/'gallery.json').write_text(json.dumps({'version':1,'games':{identifier:['capture.webp']}}))
+        (self.collection/'web.json').write_text(json.dumps({'version':1,'metadata':'metadata.json','gallery':'gallery.json'}))
+        output=self.root/'export'
+        for entry in entries:
+            game=output/'games'/entry['id'];game.mkdir(parents=True)
+            for name,data in {'index.html':b'shell','game.js':b'loader','game.wasm':b'wasm','game.data':b'assets','player.js':b'player','player.css':b'styles','loading.js':b'loading','driving.js':b'wheel','game.json':b'{}','preview.png':b'excluded artwork'}.items():
+                (game/name).write_bytes(data)
+        games=web.write_launcher(entries,output,'Class games',presentation=self.collection/'web.json')
+        game=games[0]
+        self.assertEqual((game['year'],game['yearLabel'],game['yearSource']['kind'],game['featured']),(2024,'Updated 2024','commit',True))
+        self.assertNotIn('year',games[1])
+        self.assertEqual(game['downloadBytes'],47)
+        self.assertEqual(sum(item['bytes'] for item in game['downloadFiles']),47)
+        self.assertNotIn('preview.png',[Path(item['path']).name for item in game['downloadFiles']])
+        self.assertEqual(len(game['screenshots']),1)
+        screenshot=output/game['screenshots'][0]
+        self.assertEqual(screenshot.read_bytes(),image)
+        self.assertTrue(screenshot.name.endswith('.webp'))
+        self.assertTrue(screenshot.is_relative_to(output/'games'/identifier/'screenshots'))
+        moved=self.root/'moved';shutil.move(self.collection,moved)
+        games=web.write_launcher(entries,output,'Class games',presentation=moved/'web.json')
+        self.assertEqual(games[0]['screenshots'],game['screenshots'])
+
+    def test_web_presentation_rejects_paths_outside_collection_and_invalid_metadata(self):
+        entries=manifest.load(self.collection)['entries'];identifier=entries[0]['id']
+        output=self.root/'export'
+        for entry in entries:
+            game=output/'games'/entry['id'];game.mkdir(parents=True)
+            for name in ['index.html','game.js','game.wasm']:(game/name).write_bytes(b'game')
+        (self.root/'outside.webp').write_bytes(b'not an image')
+        (self.collection/'escape.webp').symlink_to(self.root/'outside.webp')
+        (self.collection/'fake.webp').write_bytes(b'not an image')
+        cases=[({'version':1,'gallery':'gallery.json'},None,{'version':1,'games':{identifier:['fake.webp']}}),({'version':1,'metadata':'../first/lcom.json'},None,None),
+               ({'version':1,'gallery':'gallery.json'},None,{'version':1,'games':{identifier:['escape.webp']}}),
+               ({'version':1,'gallery':'gallery.json'},None,{'version':1,'games':{identifier:['../outside.webp']}}),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{'unknown':{'year':2025}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'year':True}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'featured':'yes'}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{entry['id']:{'unsupported':True} for entry in entries}},None)]
+        for sidecar,metadata,gallery in cases:
+            with self.subTest(sidecar=sidecar,metadata=metadata,gallery=gallery):
+                (self.collection/'web.json').write_text(json.dumps(sidecar))
+                if metadata:(self.collection/'metadata.json').write_text(json.dumps(metadata))
+                if gallery:(self.collection/'gallery.json').write_text(json.dumps(gallery))
+                with self.assertRaises(ValueError):web.write_launcher(entries,output,'Class games',presentation=self.collection/'web.json')
+
+        (self.collection/'web.json').unlink()
+        (self.root/'outside.json').write_text('{}')
+        (self.collection/'web.json').symlink_to(self.root/'outside.json')
+        with self.assertRaises(ValueError):web.write_launcher(entries,output,'Class games',presentation=self.collection/'web.json')
+
+
+    def test_leaf_module_changes_invalidate_the_launcher_and_are_exported(self):
+        entries=manifest.load(self.collection)['entries'];output=self.root/'export'
+        for entry in entries:
+            folder=output/'games'/entry['id'];folder.mkdir(parents=True)
+            for name in ['index.html','game.js','game.wasm']:(folder/name).write_bytes(b'game')
+        module=self.root/'installed-sdk'/'collection';template=module/'web-template';(template/'assets').mkdir(parents=True)
+        (template/'index.html').write_text('<title>@NAME@</title><script src="launcher.js"></script><link href="launcher.css">')
+        (template/'launcher.js').write_text("import {color} from './widget.js'; console.log(color);")
+        (template/'launcher.css').write_text('body{color:blue}')
+        (template/'widget.js').write_text("export const color='blue';")
+        with patch.object(web,'__file__',str(module/'web.py')):
+            web.write_launcher(entries,output,'Class games')
+            first=(output/'index.html').read_text();first_module=(output/'launcher.js').read_text()
+            self.assertEqual((output/'widget.js').read_text(),"export const color='blue';")
+            self.assertIn('./widget.js?v=',first_module)
+            (template/'widget.js').write_text("export const color='red';")
+            web.write_launcher(entries,output,'Class games')
+            self.assertNotEqual(first,(output/'index.html').read_text())
+            self.assertNotEqual(first_module,(output/'launcher.js').read_text())
+            self.assertEqual((output/'widget.js').read_text(),"export const color='red';")
 
 
 if __name__ == '__main__': unittest.main()
