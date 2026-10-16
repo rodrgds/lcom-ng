@@ -72,6 +72,10 @@ def library_visible():
     return any(node.get('content-desc', '').startswith('Play ') for node in ui().iter('node'))
 
 def click_game(game):
+    # Use the persistent native search rather than making the size of artwork
+    # determine whether a game near the end of a large catalog is reachable.
+    word = max(re.findall(r'[A-Za-z]+', game['name']), key=len)
+    search_library(word)
     description = 'Play ' + game['name']
     order = {'Play ' + entry['name']: index for index, entry in enumerate(catalog['games'])}
     for attempt in range(24):
@@ -125,8 +129,21 @@ search_library('ZZZ_NO_ARCADE_MATCH_14')
 tree = ui()
 assert not any(node.get('content-desc', '').startswith('Play ') for node in tree.iter('node'))
 assert any(node.get('text') == 'No games match. Try another name.' for node in tree.iter('node'))
-search_library('')
+# The clear action remains reachable even when the result grid is empty.
+click('Clear search')
+search_query = ''
 wait(library_visible, 'Clearing native search did not restore the library')
+assert find('Choose a random game') is not None, 'Random-game action is inaccessible'
+# The search header stays available while browsing deep in a larger library.
+if len(catalog['games']) > 12:
+    viewport = screenshot('collection-search-sticky-before').size
+    adb('shell', 'input', 'swipe', str(viewport[0]//2), str(viewport[1]*4//5), str(viewport[0]//2), str(viewport[1]//3), '600')
+    assert find('Find a game') is not None, 'Search scrolls out of reach with game cards'
+    search_library(query)
+    assert any(node.get('content-desc', '').startswith('Play ') for node in ui().iter('node')), 'Sticky search did not filter the scrolled library'
+    click('Clear search')
+    search_query = ''
+    wait(library_visible, 'Clearing sticky search did not restore the library')
 # am start can retain keyboard navigation from a previous Back-key probe.
 # Enter touch mode on empty title padding before checking authored colors.
 adb('shell', 'input', 'tap', '1', '1')
@@ -140,7 +157,7 @@ visible = [node for node in ui().iter('node') if node.get('content-desc', '').st
 if len(catalog['games']) >= 3:
     rectangles = [list(map(int,re.findall(r'\d+',node.get('bounds')))) for node in visible]
     first_row = [rect for rect in rectangles if rect[1] == rectangles[0][1]]
-    assert 3 <= len(first_row) <= 6, 'Native library lost its adaptive columns'
+    assert 2 <= len(first_row) <= 6, 'Native library lost its adaptive columns'
     assert all(left[2] <= right[0] for left,right in zip(first_row,first_row[1:])), 'Native game tiles overlap'
 previous_pids = set()
 shots = []

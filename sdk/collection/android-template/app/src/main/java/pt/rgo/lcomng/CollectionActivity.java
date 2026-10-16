@@ -5,45 +5,56 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.RippleDrawable;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
-import android.widget.GridLayout;
-import android.widget.EditText;
-import android.text.Editable;
-import android.text.TextWatcher;
-import android.view.inputmethod.InputMethodManager;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Locale;
+import java.util.Random;
 
 /** Native library UI. SDL and student code are loaded exclusively in :game. */
 public final class CollectionActivity extends Activity {
+    private static final int BACKGROUND = 0xff080a09, SURFACE = 0xff171d19;
+    private static final int INK = 0xfff4f7f5, MUTED = 0xffa9b3ad, ACCENT = 0xff72d6b0;
     private final ArrayList<Game> games = new ArrayList<>();
-    private String title = "Game library";
-    private LinearLayout content;
+    private final Random random = new Random();
+    private String title = "Game library", query = "";
+    private LinearLayout root, content;
     private ScrollView scroll;
     private GridLayout grid;
-    private int columns;
-    private String query = "";
+    private EditText search;
+    private Button clear, surprise;
     private TextView summary, empty;
     private String anchorId;
-    private int anchorOffset, anchorHeight;
+    private int columns, anchorOffset, anchorHeight, sideInset, topInset, bottomInset;
     private boolean restorePending, resumed;
-    private int sideInset, topInset, bottomInset;
 
     private static final class Game {
         String id, name;
@@ -63,12 +74,31 @@ public final class CollectionActivity extends Activity {
             getWindow().setAttributes(attributes);
         }
         if (Build.VERSION.SDK_INT >= 30) getWindow().setDecorFitsSystemWindows(false);
-        TextView loading = text("Loading games…", 18, 0xfff4f7f5);
+        if (savedInstanceState != null) {
+            query = savedInstanceState.getString("query", "");
+            anchorId = savedInstanceState.getString("anchor");
+            anchorOffset = savedInstanceState.getInt("anchorOffset");
+            anchorHeight = savedInstanceState.getInt("anchorHeight");
+        }
+        loadCatalog();
+    }
+
+    private void loadCatalog() {
+        LinearLayout loading = new LinearLayout(this);
+        loading.setOrientation(LinearLayout.VERTICAL);
         loading.setGravity(Gravity.CENTER);
-        loading.setBackgroundColor(0xff080a09);
+        loading.setPadding(dp(24), dp(24), dp(24), dp(24));
+        loading.setBackgroundColor(BACKGROUND);
+        ProgressBar progress = new ProgressBar(this);
+        progress.setIndeterminateTintList(android.content.res.ColorStateList.valueOf(ACCENT));
+        loading.addView(progress, new LinearLayout.LayoutParams(dp(36), dp(36)));
+        TextView message = text("Loading games…", 16, INK);
+        message.setPadding(0, dp(20), 0, 0);
+        loading.addView(message);
         setContentView(loading);
         immerse();
-        // Decoding a whole class's artwork must not block taps or activity startup.
+        // Decode bundled artwork away from the UI thread. A bad icon must not
+        // make the other games inaccessible.
         new Thread(() -> {
             try {
                 JSONObject catalog = CollectionCatalog.read(this);
@@ -85,6 +115,8 @@ public final class CollectionActivity extends Activity {
                             BitmapFactory.Options options = new BitmapFactory.Options();
                             options.inSampleSize = 2;
                             game.icon = BitmapFactory.decodeStream(input, null, options);
+                        } catch (Exception error) {
+                            android.util.Log.w("lcom-ng", "Cannot load game artwork: " + game.id, error);
                         }
                     }
                     loaded.add(game);
@@ -95,10 +127,21 @@ public final class CollectionActivity extends Activity {
                     games.clear();
                     games.addAll(loaded);
                     render();
+                    restoreAnchorAfterLayout();
                 });
             } catch (Exception error) {
                 android.util.Log.e("lcom-ng", "Cannot load game library", error);
-                runOnUiThread(() -> loading.setText("Could not load this game library."));
+                runOnUiThread(() -> {
+                    if (isFinishing() || isDestroyed()) return;
+                    loading.removeView(progress);
+                    message.setText("Could not load this game library.");
+                    message.setGravity(Gravity.CENTER);
+                    Button retry = action("Try again", false);
+                    LinearLayout.LayoutParams size = new LinearLayout.LayoutParams(-2, dp(48));
+                    size.topMargin = dp(20);
+                    loading.addView(retry, size);
+                    retry.setOnClickListener(view -> loadCatalog());
+                });
             }
         }, "collection-artwork").start();
     }
@@ -112,45 +155,106 @@ public final class CollectionActivity extends Activity {
         return view;
     }
 
+    private GradientDrawable surface(int color, int stroke) {
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setColor(color);
+        drawable.setCornerRadius(dp(16));
+        if (stroke != 0) drawable.setStroke(dp(2), stroke);
+        return drawable;
+    }
+
+    private Drawable interactive(int color) {
+        StateListDrawable states = new StateListDrawable();
+        states.addState(new int[]{android.R.attr.state_focused}, surface(color, ACCENT));
+        states.addState(new int[]{}, surface(color, 0));
+        return new RippleDrawable(android.content.res.ColorStateList.valueOf(0x4472d6b0), states, surface(Color.WHITE, 0));
+    }
+
+    private Button action(String label, boolean icon) {
+        Button button = new Button(this);
+        button.setText(label);
+        button.setTextColor(INK);
+        button.setTextSize(14);
+        button.setAllCaps(false);
+        button.setMinWidth(dp(48));
+        button.setMinHeight(dp(48));
+        button.setPadding(icon ? 0 : dp(18), 0, icon ? 0 : dp(18), 0);
+        button.setBackground(interactive(SURFACE));
+        return button;
+    }
+
     private void render() {
-        scroll = new ScrollView(this);
-        scroll.setBackgroundColor(0xff080a09);
-        scroll.setFillViewport(true);
-        content = new LinearLayout(this);
-        content.setOrientation(LinearLayout.VERTICAL);
-        content.setFocusableInTouchMode(true);
-        content.setDefaultFocusHighlightEnabled(false);
-        content.setPadding(dp(18) + sideInset, dp(28) + topInset, dp(18) + sideInset, dp(24) + bottomInset);
-        scroll.addView(content, new ScrollView.LayoutParams(-1, -2));
-        TextView heading = text(title, 30, 0xfff4f7f5);
+        restorePending = false;
+        root = new LinearLayout(this);
+        root.setOrientation(LinearLayout.VERTICAL);
+        root.setBackgroundColor(BACKGROUND);
+        root.setFocusableInTouchMode(true);
+        root.setDefaultFocusHighlightEnabled(false);
+        Configuration configuration = getResources().getConfiguration();
+        boolean compactHeader = configuration.screenWidthDp >= 600 && configuration.screenHeightDp < 600;
+        LinearLayout header = new LinearLayout(this);
+        header.setOrientation(compactHeader ? LinearLayout.HORIZONTAL : LinearLayout.VERTICAL);
+        header.setGravity(Gravity.CENTER_VERTICAL);
+        header.setPadding(dp(4), dp(8), dp(4), dp(16));
+        root.addView(header, new LinearLayout.LayoutParams(-1, -2));
+        LinearLayout titleRow = new LinearLayout(this);
+        titleRow.setGravity(Gravity.CENTER_VERTICAL);
+        LinearLayout titleBlock = new LinearLayout(this);
+        titleBlock.setOrientation(LinearLayout.VERTICAL);
+        TextView heading = text(title, compactHeader ? 24 : 28, INK);
         heading.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-        content.addView(heading);
-        summary = text("", 14, 0xffa9b3ad);
-        summary.setPadding(0, dp(6), 0, dp(18));
-        content.addView(summary);
-        EditText search = new EditText(this);
+        if (Build.VERSION.SDK_INT >= 28) heading.setAccessibilityHeading(true);
+        titleBlock.addView(heading);
+        summary = text("", 14, MUTED);
+        summary.setPadding(0, dp(4), 0, 0);
+        titleBlock.addView(summary);
+        titleRow.addView(titleBlock, new LinearLayout.LayoutParams(0, -2, 1));
+        surprise = action("", true);
+        surprise.setContentDescription("Choose a random game");
+        surprise.setTooltipText("Choose a random game");
+        surprise.setForeground(new ControlIcon(false));
+        surprise.setOnClickListener(view -> {
+            ArrayList<Game> matches = matchingGames();
+            if (!matches.isEmpty()) launch(matches.get(random.nextInt(matches.size())));
+        });
+        LinearLayout.LayoutParams randomSize = new LinearLayout.LayoutParams(dp(48), dp(48));
+        randomSize.leftMargin = dp(12);
+        titleRow.addView(surprise, randomSize);
+        header.addView(titleRow, compactHeader
+            ? new LinearLayout.LayoutParams(0, -2, 1) : new LinearLayout.LayoutParams(-1, -2));
+        LinearLayout searchRow = new LinearLayout(this);
+        searchRow.setGravity(Gravity.CENTER_VERTICAL);
+        LinearLayout.LayoutParams rowSize = compactHeader
+            ? new LinearLayout.LayoutParams(0, -2, 1) : new LinearLayout.LayoutParams(-1, -2);
+        rowSize.topMargin = compactHeader ? 0 : dp(20);
+        rowSize.leftMargin = compactHeader ? dp(24) : 0;
+        header.addView(searchRow, rowSize);
+        search = new EditText(this);
         search.setSingleLine(true);
         search.setTextSize(16);
-        search.setTextColor(0xfff4f7f5);
-        search.setHintTextColor(0xffa9b3ad);
+        search.setTextColor(INK);
+        search.setHintTextColor(MUTED);
         search.setHint("Find a game");
         search.setContentDescription("Find a game");
-        search.setPadding(dp(14), 0, dp(14), 0);
-        search.setMinHeight(dp(48));
-        search.setImeOptions(EditorInfo.IME_ACTION_DONE);
-        GradientDrawable searchSurface = new GradientDrawable();
-        searchSurface.setColor(0xff171d19);
-        searchSurface.setCornerRadius(dp(8));
-        searchSurface.setStroke(dp(1), 0xff38463d);
-        search.setBackground(searchSurface);
+        search.setPadding(dp(16), 0, dp(16), 0);
+        search.setMinHeight(dp(52));
+        search.setImeOptions(EditorInfo.IME_ACTION_SEARCH | EditorInfo.IME_FLAG_NO_EXTRACT_UI);
+        search.setBackground(interactive(SURFACE));
         search.setText(query);
-        LinearLayout.LayoutParams searchSize = new LinearLayout.LayoutParams(-1, dp(48));
-        searchSize.bottomMargin = dp(18);
-        content.addView(search, searchSize);
+        searchRow.addView(search, new LinearLayout.LayoutParams(0, dp(52), 1));
+        clear = action("", true);
+        clear.setContentDescription("Clear search");
+        clear.setTooltipText("Clear search");
+        clear.setForeground(new ControlIcon(true));
+        clear.setOnClickListener(view -> search.setText(""));
+        LinearLayout.LayoutParams clearSize = new LinearLayout.LayoutParams(dp(48), dp(48));
+        clearSize.leftMargin = dp(8);
+        searchRow.addView(clear, clearSize);
         search.setOnEditorActionListener((view, action, event) -> {
-            if (action != EditorInfo.IME_ACTION_DONE) return false;
+            if (action != EditorInfo.IME_ACTION_SEARCH &&
+                    (event == null || event.getKeyCode() != android.view.KeyEvent.KEYCODE_ENTER)) return false;
             hideKeyboard();
-            content.requestFocus();
+            root.requestFocus();
             return true;
         });
         search.addTextChangedListener(new TextWatcher() {
@@ -159,21 +263,32 @@ public final class CollectionActivity extends Activity {
                 query = value.toString();
                 anchorId = null;
                 renderGames();
+                scroll.scrollTo(0, 0);
             }
             @Override public void afterTextChanged(Editable value) {}
         });
+        scroll = new ScrollView(this);
+        scroll.setFillViewport(true);
+        scroll.setClipToPadding(false);
+        root.addView(scroll, new LinearLayout.LayoutParams(-1, 0, 1));
+        content = new LinearLayout(this);
+        content.setOrientation(LinearLayout.VERTICAL);
+        content.setPadding(0, 0, 0, dp(12));
+        scroll.addView(content, new ScrollView.LayoutParams(-1, -2));
         grid = new GridLayout(this);
         columns = columnCount();
         grid.setColumnCount(columns);
         grid.setAlignmentMode(GridLayout.ALIGN_BOUNDS);
         grid.setUseDefaultMargins(false);
         content.addView(grid, new LinearLayout.LayoutParams(-1, -2));
-        empty = text("No games match. Try another name.", 16, 0xffa9b3ad);
-        empty.setPadding(0, dp(18), 0, dp(18));
-        content.addView(empty);
+        empty = text("No games match. Try another name.", 16, MUTED);
+        empty.setGravity(Gravity.CENTER);
+        empty.setPadding(dp(16), dp(40), dp(16), dp(40));
+        content.addView(empty, new LinearLayout.LayoutParams(-1, -2));
         renderGames();
-        setContentView(scroll);
-        scroll.setOnApplyWindowInsetsListener((view, insets) -> {
+        setContentView(root);
+        applyPadding();
+        root.setOnApplyWindowInsetsListener((view, insets) -> {
             int left = 0, right = 0;
             topInset = bottomInset = 0;
             if (Build.VERSION.SDK_INT >= 28 && insets.getDisplayCutout() != null) {
@@ -182,95 +297,106 @@ public final class CollectionActivity extends Activity {
                 topInset = insets.getDisplayCutout().getSafeInsetTop();
                 bottomInset = insets.getDisplayCutout().getSafeInsetBottom();
             }
+            if (Build.VERSION.SDK_INT >= 30) {
+                bottomInset = Math.max(bottomInset, insets.getInsets(WindowInsets.Type.ime() | WindowInsets.Type.mandatorySystemGestures()).bottom);
+            } else {
+                bottomInset = Math.max(bottomInset, insets.getSystemWindowInsetBottom());
+            }
             sideInset = Math.max(left, right);
-            content.setPadding(dp(18) + left, dp(28) + topInset, dp(18) + right, dp(24) + bottomInset);
+            applyPadding();
             reflowGrid();
             return insets;
         });
-        scroll.requestApplyInsets();
+        root.requestApplyInsets();
         immerse();
+    }
+
+    private void applyPadding() {
+        root.setPadding(dp(12) + sideInset, dp(16) + topInset, dp(12) + sideInset, bottomInset);
+    }
+
+    private ArrayList<Game> matchingGames() {
+        ArrayList<Game> matches = new ArrayList<>();
+        String filter = query.trim().toLowerCase(Locale.ROOT);
+        for (Game game : games) if (game.name.toLowerCase(Locale.ROOT).contains(filter)) matches.add(game);
+        return matches;
     }
 
     private void hideKeyboard() {
         InputMethodManager keyboard = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-        if (keyboard != null) keyboard.hideSoftInputFromWindow(content.getWindowToken(), 0);
+        if (keyboard != null) keyboard.hideSoftInputFromWindow(root.getWindowToken(), 0);
+    }
+
+    private void launch(Game game) {
+        hideKeyboard();
+        root.requestFocus();
+        startActivity(new Intent(this, GameActivity.class).putExtra("game", game.id));
     }
 
     private void renderGames() {
         grid.removeAllViews();
-        int visible = 0;
-        String filter = query.trim().toLowerCase(java.util.Locale.ROOT);
-        for (Game game : games) {
-            game.tile = null;
-            if (!game.name.toLowerCase(java.util.Locale.ROOT).contains(filter)) continue;
-            visible++;
+        for (Game game : games) game.tile = null;
+        ArrayList<Game> matches = matchingGames();
+        int iconSize = Math.max(dp(64), (getResources().getDisplayMetrics().widthPixels - dp(24) - 2 * sideInset) / columns - dp(12));
+        for (Game game : matches) {
             LinearLayout tile = new LinearLayout(this);
             game.tile = tile;
             tile.setOrientation(LinearLayout.VERTICAL);
-            tile.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
-            tile.setPadding(dp(6), dp(6), dp(6), dp(8));
-            GradientDrawable surface = new GradientDrawable();
-            surface.setColor(0xff171d19);
-            surface.setCornerRadius(dp(12));
-            android.content.res.ColorStateList rippleColor = android.content.res.ColorStateList.valueOf(0x4472d6b0);
-            tile.setBackground(new android.graphics.drawable.RippleDrawable(rippleColor, surface, null));
+            tile.setBackground(interactive(SURFACE));
+            tile.setClipToOutline(true);
             tile.setClickable(true);
             tile.setFocusable(true);
             tile.setContentDescription("Play " + game.name);
-            tile.setOnClickListener(view -> {
-                hideKeyboard();
-                content.requestFocus();
-                startActivity(new Intent(this, GameActivity.class).putExtra("game", game.id));
-            });
-            GridLayout.LayoutParams cell = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED), GridLayout.spec(GridLayout.UNDEFINED, 1f));
+            tile.setOnClickListener(view -> launch(game));
+            GridLayout.LayoutParams cell = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL), GridLayout.spec(GridLayout.UNDEFINED, 1f));
             cell.width = 0;
             cell.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-            cell.setMargins(dp(4), dp(4), dp(4), dp(6));
+            cell.setMargins(dp(4), dp(4), dp(4), dp(8));
             grid.addView(tile, cell);
-            ImageView artwork = new ImageView(this);
-            artwork.setScaleType(ImageView.ScaleType.FIT_CENTER);
-            artwork.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-            if (game.icon != null) artwork.setImageBitmap(game.icon);
-            else artwork.setImageResource(android.R.drawable.ic_media_play);
-            GradientDrawable outline = new GradientDrawable();
-            outline.setColor(0xff080a09);
-            outline.setCornerRadius(dp(12));
-            artwork.setBackground(outline);
-            artwork.setClipToOutline(true);
-            tile.addView(artwork, new LinearLayout.LayoutParams(dp(64), dp(64)));
-            TextView label = text(game.name, 12, 0xfff4f7f5);
-            label.setGravity(Gravity.TOP | Gravity.CENTER_HORIZONTAL);
+            if (game.icon != null) {
+                ImageView artwork = new ImageView(this);
+                artwork.setScaleType(ImageView.ScaleType.FIT_CENTER);
+                artwork.setImageBitmap(game.icon);
+                artwork.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+                tile.addView(artwork, new LinearLayout.LayoutParams(-1, iconSize));
+            } else {
+                TextView initial = text(game.name.isEmpty() ? "?" : game.name.substring(0, 1).toUpperCase(Locale.ROOT), 40, ACCENT);
+                initial.setGravity(Gravity.CENTER);
+                initial.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+                tile.addView(initial, new LinearLayout.LayoutParams(-1, iconSize));
+            }
+            TextView label = text(game.name, 14, INK);
             label.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
             label.setMinLines(2);
-            label.setPadding(0, dp(6), 0, 0);
+            label.setPadding(dp(12), dp(10), dp(12), dp(12));
+            label.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
             tile.addView(label, new LinearLayout.LayoutParams(-1, -2));
         }
-        int blanks = (columns - visible % columns) % columns;
+        int blanks = (columns - matches.size() % columns) % columns;
         for (int index = 0; index < blanks; index++) {
             View blank = new View(this);
-            GridLayout.LayoutParams cell = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED), GridLayout.spec(GridLayout.UNDEFINED, 1f));
+            GridLayout.LayoutParams cell = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL), GridLayout.spec(GridLayout.UNDEFINED, 1f));
             cell.width = 0;
             cell.height = 0;
             cell.setMargins(dp(4), 0, dp(4), 0);
             grid.addView(blank, cell);
         }
-        empty.setVisibility(visible == 0 ? View.VISIBLE : View.GONE);
-        summary.setText(filter.isEmpty()
-            ? games.size() + " student games · Pick something to play"
-            : visible + " of " + games.size() + " games");
+        empty.setVisibility(matches.isEmpty() ? View.VISIBLE : View.GONE);
+        summary.setText(query.trim().isEmpty() ? games.size() + " games" : matches.size() + " of " + games.size() + " games");
+        clear.setVisibility(query.isEmpty() ? View.GONE : View.VISIBLE);
+        surprise.setEnabled(!matches.isEmpty());
+        surprise.setAlpha(matches.isEmpty() ? .4f : 1f);
     }
 
     private int columnCount() {
-        int width = getResources().getDisplayMetrics().widthPixels - dp(36) - 2*sideInset;
-        float fontScale = Math.max(1f,getResources().getConfiguration().fontScale);
-        return Math.max(1, Math.min(6, width / dp(92*fontScale)));
+        int width = getResources().getDisplayMetrics().widthPixels - dp(24) - 2 * sideInset;
+        float fontScale = Math.max(1f, getResources().getConfiguration().fontScale);
+        return Math.max(1, Math.min(6, width / dp(144 * Math.min(fontScale, 1.5f))));
     }
 
     private void reflowGrid() {
         if (!resumed || grid == null || columns == columnCount()) return;
         rememberAnchor();
-        // Rebuild column specs and last-row spacers together. Keep the first
-        // visible game's identity, including its clipped fraction, across it.
         render();
         restoreAnchorAfterLayout();
     }
@@ -280,7 +406,7 @@ public final class CollectionActivity extends Activity {
         int viewportTop = scroll.getScrollY();
         for (Game game : games) {
             if (game.tile == null || game.tile.getHeight() == 0) continue;
-            int top = content.getTop() + grid.getTop() + game.tile.getTop();
+            int top = grid.getTop() + game.tile.getTop();
             if (top + game.tile.getHeight() <= viewportTop) continue;
             anchorId = game.id;
             anchorOffset = top - viewportTop;
@@ -297,9 +423,7 @@ public final class CollectionActivity extends Activity {
                 scroll.getViewTreeObserver().removeOnPreDrawListener(this);
                 restorePending = false;
                 for (Game game : games) if (game.id.equals(anchorId) && game.tile != null) {
-                    int top = content.getTop() + grid.getTop() + game.tile.getTop();
-                    // Keep a partially visible row partially visible when its
-                    // artwork becomes wider or narrower after rotation.
+                    int top = grid.getTop() + game.tile.getTop();
                     int offset = anchorOffset < 0 && anchorHeight > 0
                         ? Math.round((float) anchorOffset * game.tile.getHeight() / anchorHeight) : anchorOffset;
                     scroll.scrollTo(0, top - offset);
@@ -310,6 +434,15 @@ public final class CollectionActivity extends Activity {
             }
         });
         scroll.invalidate();
+    }
+
+    @Override public void onSaveInstanceState(Bundle state) {
+        rememberAnchor();
+        state.putString("query", query);
+        state.putString("anchor", anchorId);
+        state.putInt("anchorOffset", anchorOffset);
+        state.putInt("anchorHeight", anchorHeight);
+        super.onSaveInstanceState(state);
     }
 
     @Override public void onPause() {
@@ -328,8 +461,8 @@ public final class CollectionActivity extends Activity {
     @Override public void onConfigurationChanged(Configuration config) {
         rememberAnchor();
         super.onConfigurationChanged(config);
-        reflowGrid();
-        if (content != null) content.requestApplyInsets();
+        // Font-size changes need a rebuild even when the column count is stable.
+        if (grid != null) render();
         restoreAnchorAfterLayout();
         immerse();
     }
@@ -353,5 +486,33 @@ public final class CollectionActivity extends Activity {
             View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
             View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
             View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+    }
+
+    /** The two utility actions share a single authored, 2 dp stroke family. */
+    private final class ControlIcon extends Drawable {
+        private final boolean close;
+        private final Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        ControlIcon(boolean close) { this.close = close; paint.setStyle(Paint.Style.STROKE); paint.setStrokeCap(Paint.Cap.ROUND); paint.setStrokeJoin(Paint.Join.ROUND); }
+        @Override public void draw(Canvas canvas) {
+            canvas.save();
+            canvas.translate(getBounds().centerX() - dp(12), getBounds().centerY() - dp(12));
+            canvas.scale(dp(24) / 24f, dp(24) / 24f);
+            paint.setColor(INK); paint.setStrokeWidth(2);
+            if (close) {
+                canvas.drawLine(6, 6, 18, 18, paint); canvas.drawLine(6, 18, 18, 6, paint);
+            } else {
+                android.graphics.Path path = new android.graphics.Path();
+                path.moveTo(3, 6); path.lineTo(6, 6); path.cubicTo(10, 6, 14, 18, 18, 18); path.lineTo(21, 18);
+                path.moveTo(18, 15); path.lineTo(21, 18); path.lineTo(18, 21);
+                path.moveTo(3, 18); path.lineTo(6, 18); path.cubicTo(8, 18, 9, 15, 10, 13);
+                path.moveTo(14, 9); path.cubicTo(15, 7, 16, 6, 18, 6); path.lineTo(21, 6);
+                path.moveTo(18, 3); path.lineTo(21, 6); path.lineTo(18, 9);
+                canvas.drawPath(path, paint);
+            }
+            canvas.restore();
+        }
+        @Override public void setAlpha(int alpha) { paint.setAlpha(alpha); }
+        @Override public void setColorFilter(android.graphics.ColorFilter filter) { paint.setColorFilter(filter); }
+        @Override public int getOpacity() { return android.graphics.PixelFormat.TRANSLUCENT; }
     }
 }
