@@ -13,8 +13,6 @@ int game_over_menu_selected_option = -1; // default to no selection
 
 void game_over_init() {
     game_over_menu_selected_option = -1;
-    cursor_x = 40; 
-    cursor_y = 40;
     draw_game_over_frame();
 }
 

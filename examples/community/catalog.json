@@ -4065,12 +4065,35 @@
       "icon": "examples/community/simaopsbarbosa--feup-lcom/proj/src/icon.png",
       "config": "examples/community/simaopsbarbosa--feup-lcom/proj/src/lcom.json",
       "provenance": "examples/community/simaopsbarbosa--feup-lcom/UPSTREAM.json",
-      "controlsRationale": "Actual two-player reaction result is a tie at1166ms each; separated corner actions work.",
+      "controlsRationale": "Relative mobile movement with separate player actions; verified desktop cursor starts at (40,40), unit deltas and sprite-safe bounds (784,573). Track cursor movement during both game modes and retain it on results so calibrated desktop movement stays aligned.",
       "license": {
         "status": "missing",
         "files": []
       },
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "examples/community/simaopsbarbosa--feup-lcom/SOURCE_PATCH.diff",
+          "reason": "Keep cursor position synchronized during reaction/guess rounds and preserve it on the result menu instead of warping it to (40,40). Browser calibration then follows the physical pointer through a whole round.",
+          "files": [
+            {
+              "path": "proj/src/model/react_mode.c",
+              "originalSha256": "1a2dcf53a325a42481f63c2a04adf0399ccbe236f211c1da6e32ea8e4858ad80",
+              "patchedSha256": "c2aee322a3d096ff79239382567d457c4b9ac24e2b39a46575af0b963b53346d"
+            },
+            {
+              "path": "proj/src/model/guess_mode.c",
+              "originalSha256": "3d361bf1adca38d170c2cf042427e1eb7ebc1d0570318be4c9ab4e9e77ba2aec",
+              "patchedSha256": "4800df64d8b7ea23e7e3b0a8e6df4dfeb555e29b50fb14f58f558004d01c1810"
+            },
+            {
+              "path": "proj/src/model/game_over_menu.c",
+              "originalSha256": "48c2ef4be1b097464bf77f9c725a3fd09da5d3907cd3899f50ebad974ffcb21a",
+              "patchedSha256": "31981c472a708ac55e35be98df0f01e3861f159f5c452b91bc452250e276d30f"
+            }
+          ],
+          "verification": "Actual exported Quick Reflex browser regression: bottom cursor alignment and result-menu alignment after movement during a reaction round, tests/web_export.spec.mjs."
+        }
+      ],
       "verification": {
         "repo": "simaopsbarbosa/feup-lcom",
         "buildExit": 0,

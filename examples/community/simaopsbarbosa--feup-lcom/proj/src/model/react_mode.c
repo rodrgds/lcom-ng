@@ -79,6 +79,7 @@ void react_mode_keyboard_ih(void) {
 }
 
 void react_mode_mouse_ih(void) {
+    update_mouse_state_menus();
    if(gameMode != REACT_MODE) return;
    if(playerMode == ONE_PLAYER) return;
 

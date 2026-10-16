@@ -1,0 +1,31 @@
+--- a/proj/src/model/react_mode.c
++++ b/proj/src/model/react_mode.c
+@@ -79,6 +79,7 @@
+ }
+ 
+ void react_mode_mouse_ih(void) {
++    update_mouse_state_menus();
+    if(gameMode != REACT_MODE) return;
+    if(playerMode == ONE_PLAYER) return;
+ 
+--- a/proj/src/model/guess_mode.c
++++ b/proj/src/model/guess_mode.c
+@@ -90,6 +90,7 @@
+ }
+ 
+ void guess_mode_mouse_ih(void) {
++    update_mouse_state_menus();
+     if(gameMode != GUESS_MODE) return;
+     if(playerMode == ONE_PLAYER) return;
+     if(count_down) return; // Ignore mouse clicks during countdown
+--- a/proj/src/model/game_over_menu.c
++++ b/proj/src/model/game_over_menu.c
+@@ -13,8 +13,6 @@
+ 
+ void game_over_init() {
+     game_over_menu_selected_option = -1;
+-    cursor_x = 40; 
+-    cursor_y = 40;
+     draw_game_over_frame();
+ }
+ 

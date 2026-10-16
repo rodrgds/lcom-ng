@@ -29,7 +29,14 @@
           "position": "bottom-right"
         }
       ],
-      "toolbar": "top-right"
+      "toolbar": "top-right",
+      "cursor": {
+        "x": 40,
+        "y": 40,
+        "maxX": 784,
+        "maxY": 573,
+        "desktopScale": 1
+      }
     }
   },
   "build": {

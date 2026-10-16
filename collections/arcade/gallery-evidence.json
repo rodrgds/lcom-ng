@@ -1847,19 +1847,20 @@
       "captures": [
         {
           "source": "browser gameplay canvas",
-          "sha256": "e41e9afcd993a508610907224841191a9035933f374586fbde359421488ea6f9",
+          "sha256": "b4fdc17ed95b5e1730017a0b874796b2d320e936b079388e9a73851f15048cfd",
           "originalSha256": "17fcface8cf47c19a04d3a6e87cf2eba59e1ad17a81e1801b760a3a0984934a7",
           "caption": "Wait for the reaction signal",
           "framebuffer": [
             800,
             600
           ],
+          "crop": null,
           "replay": "gallery-captures.json#simaopsbarbosa-feup-lcom-e3fa6454545b",
           "replaySha256": "2a25027017a9733b1149aa15c5e4bb5a3fae6e2f354d281fabf43bbb72e35bc8",
           "gameFiles": [
             {
               "file": "game.wasm",
-              "sha256": "09ff21fca3161e68804f11ee1f3e04fc5b63feeb89fa0744da5331ddcca8d51a"
+              "sha256": "33abf47d6f4e3c8243e2805e6ed89a3ff4c9f1e02a5942d330892f8d78f59606"
             },
             {
               "file": "game.js",
@@ -1869,19 +1870,20 @@
         },
         {
           "source": "browser gameplay canvas",
-          "sha256": "9fc4398d639d8ad87a6622ca5784006a46945d16fe1551abd27b7d0f7152b298",
+          "sha256": "c581f643f00307e6319452a3fb57b689791244e1f2aee2b2f07b03f600e4e474",
           "originalSha256": "d1b8e1dd3b0ffeae33f483b6af439ed1ed796216ac4fdd22b522a3d2325c2049",
           "caption": "The rendered signal has turned green",
           "framebuffer": [
             800,
             600
           ],
+          "crop": null,
           "replay": "gallery-captures.json#simaopsbarbosa-feup-lcom-e3fa6454545b",
           "replaySha256": "2a25027017a9733b1149aa15c5e4bb5a3fae6e2f354d281fabf43bbb72e35bc8",
           "gameFiles": [
             {
               "file": "game.wasm",
-              "sha256": "09ff21fca3161e68804f11ee1f3e04fc5b63feeb89fa0744da5331ddcca8d51a"
+              "sha256": "33abf47d6f4e3c8243e2805e6ed89a3ff4c9f1e02a5942d330892f8d78f59606"
             },
             {
               "file": "game.js",
@@ -1891,19 +1893,20 @@
         },
         {
           "source": "browser gameplay canvas",
-          "sha256": "46601c360fe28ab9cc21c7b04b1b984dcb622163d131ace4f1532ec013f15122",
-          "originalSha256": "2d5c20c16a864427dcf4e529c4ad3d93e3126155c7cb6ea1bba5441732c25721",
+          "sha256": "12c6d916ecba909aa416ca1a897a604f50ea2181998ee28db2e55e29dff88c71",
+          "originalSha256": "247ce2f4d9f8bab3ba27121d0b88de1e873f6949a0037fc5f2a4094e98bbc017",
           "caption": "Reaction time after pressing Space on green",
           "framebuffer": [
             800,
             600
           ],
+          "crop": null,
           "replay": "gallery-captures.json#simaopsbarbosa-feup-lcom-e3fa6454545b",
           "replaySha256": "2a25027017a9733b1149aa15c5e4bb5a3fae6e2f354d281fabf43bbb72e35bc8",
           "gameFiles": [
             {
               "file": "game.wasm",
-              "sha256": "09ff21fca3161e68804f11ee1f3e04fc5b63feeb89fa0744da5331ddcca8d51a"
+              "sha256": "33abf47d6f4e3c8243e2805e6ed89a3ff4c9f1e02a5942d330892f8d78f59606"
             },
             {
               "file": "game.js",

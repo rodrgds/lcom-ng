@@ -90,6 +90,7 @@ void guess_mode_keyboard_ih(void) {
 }
 
 void guess_mode_mouse_ih(void) {
+    update_mouse_state_menus();
     if(gameMode != GUESS_MODE) return;
     if(playerMode == ONE_PLAYER) return;
     if(count_down) return; // Ignore mouse clicks during countdown

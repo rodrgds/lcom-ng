@@ -38,6 +38,7 @@ test.beforeAll(async () => {
   exportGame('tests/fixtures/web/minix', 'legacy', cli, '--asset-root', '..', '--asset', 'minix/assets');
   exportGame('examples/flappy', 'flappy', cli, '--name', 'LCOM Bird');
   exportGame('examples/ninjix', 'ninjix', cli, '--name', 'Ninjix');
+  exportGame('examples/community/simaopsbarbosa--feup-lcom/proj/src', 'quick-reflex', cli);
   exportGame('examples/community/Cast-10--LCOMProject/proj', 'minix-legends', cli);
   exportGame('examples/community/DavidGustavo6--LCOM-game/src', 'tower-defense', cli);
   workspace = path.join(directory, 'new student game');
@@ -1239,4 +1240,29 @@ test('Minix Tower Defense accepts physical mouse and direct touch to enter the a
     await expect.poll(()=>canvas.evaluate(c=>Array.from(c.getContext('2d').getImageData(50,50,1,1).data).slice(0,3))).toEqual([99,114,26]);
     await page.screenshot({path:test.info().outputPath('touch-entered-arena.png')});
   } finally { await context.close(); }
+});
+
+
+test('Quick Reflex keeps its cursor under the desktop pointer at the bottom and after both rounds', async ({page}) => {
+  await start(page,'quick-reflex');
+  const canvas=page.locator('canvas'),b=await canvas.boundingBox();
+  const move=async(x,y)=>{await page.mouse.move(b.x+x*b.width/800,b.y+y*b.height/600);};
+  const click=async(x,y)=>{await move(x,y);await page.waitForTimeout(100);await page.mouse.click(b.x+x*b.width/800,b.y+y*b.height/600);};
+  // This corner contains only the brown background and the white guest cursor.
+  // The native pointer remains inside the canvas during the entire movement.
+  const cursor=()=>canvas.evaluate(c=>{const d=c.getContext('2d').getImageData(100,550,16,27).data;let white=0;for(let i=0;i<d.length;i+=4)if(d[i]>230&&d[i+1]>230&&d[i+2]>230)white++;return white;});
+  await move(100,300);await page.waitForTimeout(100);
+  await move(100,550);
+  await expect.poll(cursor,{message:'bottom cursor follows browser pointer'}).toBeGreaterThan(40);
+  await click(400,310); // One player.
+  for(const [mode,y] of [['React',375],['Guess',315]]) {
+    await click(400,y);
+    const green=()=>canvas.evaluate(c=>{const [r,g]=c.getContext('2d').getImageData(20,20,1,1).data;return g>100&&r<30;});
+    await expect.poll(green,{message:mode+' round reaches its green signal',timeout:12_000}).toBe(true);
+    await move(700,500); // Movement during play must stay tracked.
+    await page.waitForTimeout(100);await page.keyboard.press('Space');
+    await move(100,550);
+    await expect.poll(cursor,{message:mode+' result-menu cursor remains aligned'}).toBeGreaterThan(40);
+    await click(400,500); // Return to the mode menu.
+  }
 });
