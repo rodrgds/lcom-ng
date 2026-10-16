@@ -9,12 +9,59 @@
       "mouseButtons": false,
       "quickKeys": [],
       "joystick": false,
-      "pointer": "drag",
-      "layout": "overlay"
+      "dpad": false,
+      "look": false,
+      "pointer": "move",
+      "touch": "tap",
+      "layout": "panel",
+      "toolbar": "top-left",
+      "actions": [
+        {
+          "label": "Normal",
+          "key": "1",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Sniper",
+          "key": "2",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Smoke",
+          "key": "3",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Poison",
+          "key": "4",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Start",
+          "key": "ENTER",
+          "position": "top-right"
+        },
+        {
+          "label": "Pause",
+          "key": "ESC",
+          "position": "top-right"
+        },
+        {
+          "label": "Cancel",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        }
+      ]
     },
     "theme": {
       "accent": "#f8cb59",
       "font": "sans"
     }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "description": "Place ninja defenders, upgrade their skills and protect the shrine from enemy waves.",
+  "build": {
+    "assets": []
   }
 }
