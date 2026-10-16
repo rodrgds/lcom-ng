@@ -4165,6 +4165,14 @@
           "workerVersion": "e9522664-215f-4b67-a5cd-c207b70845fd",
           "scope": "Actual touch launch, nonblank canvas, reachable controls and Home return; deployed module/config/player/artwork bytes match final export.",
           "evidence": "build/arcade-expansion/web-final/live/results.json"
+        },
+        "cursorFix20261016": {
+          "status": "passed",
+          "scope": "Desktop browser cursor aligned at bottom and after both React and Guess rounds. Actual mobile Android touch reaction result and Play Again retained relative controls. Headless and SDL source replays exited0.",
+          "browserRegression": "tests/web_export.spec.mjs: Quick Reflex keeps its cursor under the desktop pointer at the bottom and after both rounds",
+          "nativeEvidence": "build/arcade-reaction-android/final-results.json",
+          "sourcePatch": "SOURCE_PATCH.diff",
+          "physicalPhone": "not tested"
         }
       },
       "replay": "scripts/collection-replays/simaopsbarbosa--feup-lcom-populated-gameplay.mlabscript",
@@ -4218,7 +4226,14 @@
             "position": "bottom-right"
           }
         ],
-        "toolbar": "top-right"
+        "toolbar": "top-right",
+        "cursor": {
+          "x": 40,
+          "y": 40,
+          "maxX": 784,
+          "maxY": 573,
+          "desktopScale": 1
+        }
       },
       "build": {
         "assetRoot": "../..",
