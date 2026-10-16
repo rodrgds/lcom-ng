@@ -3,7 +3,8 @@
 The expansion starts from the 53-game collection and its recorded representative
 browser touch gameplay. New imports require a distinct source fingerprint, pinned
 provenance, source-derived artwork and actual touch gameplay before admission.
-The collection now contains **65 distinct games**, including 12 new imports.
+The expansion release contains **65 distinct imported games**, including 12 new imports.
+The [Ninjix follow-up](arcade-ninjix-review.md) brings the current Arcade to 66 games.
 The scout reviewed 37 repositories, admitted 12 and rejected 25, including a
 duplicate with identical source and projects without usable gameplay. Detailed
 reasons are in
