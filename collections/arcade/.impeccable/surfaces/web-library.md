@@ -1,27 +1,58 @@
 # Web library
 
-Mode: Experience. Scope: replacement web library and game startup state. Native launcher and gameplay retain their platform behavior.
+Mode: Experience. Scope: responsive web library and game startup. Native Android
+and original gameplay retain their platform behavior.
 
 ## THESIS
 
-The game artwork is the library. A visitor should see many playable choices immediately, recognize each by its scene and name, and enter one without navigating promotional sections.
+The game art is the arcade. Original square icons fill the screen and invite
+immediate play. Names and real gameplay appear on hover or keyboard focus.
 
 ## OWN-WORLD
 
-The user pinned the dense Friv gallery, especially the second supplied reference with wide screenshot tiles and names over the image. That explicit reference overrides the concept seed's random world. Use a less childish interpretation: ink-violet ground, warm white Bricolage Grotesque, a compact acid-lime L/play mark, and original game pixels. Colorful hover glow is an explicit user requirement.
+The user's revised CrazyGames and Poki references supersede the earlier Friv,
+wide-card and glow direction. Retain the ink-violet ground, warm-white
+self-hosted Bricolage type and acid-lime L/play identity. Original game art
+provides the color. Library hover depth is neutral, without colorful glow.
 
 ## STORY
 
-Browse the gallery, optionally open search, choose a game, learn its premise while its real bytes download, and enter on the first presented frame. The home control returns to the gallery. A failed transfer offers retry or return.
+Browse the icon mosaic or open modal Search. Hover or focus reveals captured
+gameplay, name, available sourced year and approximate first-load size. Choose a
+game, read its premise during measured transfer, and enter on its first presented
+frame. Home returns to the originating tile or restores Search with its query
+and selected result. Failed transfer offers retry or return.
 
 ## FIRST VIEWPORT
 
-Compact logo header and two icon controls. Dense wide tiles begin directly beneath it, with no introductory text or footer. A larger first tile adds variation on desktop; phone tiles keep two equal columns. Names remain over the artwork at every width.
+The full-width mosaic begins at the safe-area edge. Its lime identity is a real
+grid tile. Search and Full screen are adjacent half-size square tiles with
+Shuffle directly beneath. Ordinary icons are square; Plants vs. Zombies, Sushi
+Slash, Teclas and Ninjix are larger squares, randomized and distributed across
+distinct rows. Names remain visually hidden at rest, including on phones.
 
 ## FORM
 
-Code-led. Concept-seed ran from collections/arcade on 2026-10-15. The installed helper emitted no long seed reference. The user's reference takes precedence over its assignment. Wide 1.7:1 screenshot cards, top-left names against a dark contrast scrim, 14px corners, 12px desktop gaps, 9px phone gaps, one enlarged desktop tile. No generated decision comp. Changes are verified against the actual implementation and supplied reference, not an invented mockup.
+Code-led. Ordinary tiles span 2 by 2 microcells; featured tiles span 4 by 4.
+The grid has two microtracks per ordinary column, with 8px phone gaps and 12px
+desktop gaps. Safe-area minimum spacing is 8px on phones and 12px on desktop.
+Game corners are 16px, reducing to 13px at 600px. The identity h1 sizes relative
+to its tile container. There is no separate header or maximum-width wrapper.
+
+Hover or keyboard focus expands a tile to 1.85 times its width and 1.12 times its
+height, clamped to an 8px viewport margin. The icon becomes a footer badge beside
+the name and available year/size. Real gameplay frames push-slide on a 3-second
+cycle, with a static preview under reduced motion. Search is a native dialog
+with keyboard focus, name matching, result metadata and retained query state.
 
 ## QUALITY BAR
 
-User-supplied reference: /var/folders/jf/mychl72s7gl4hhsp7dclzdq40000gn/T/codex-clipboard-071a908b-1ba3-41a5-9b1d-b812f9b935de.png. Borrow its density, wide gameplay art, and names on tiles. Avoid its bulky pill frames and excessive text. Supplied loading references establish a visible game name, short description, and progress; the implementation uses measured byte progress and first-frame readiness.
+No generated or approved decision comp exists. The user's pinned CrazyGames
+and Poki references set the direction; source and actual rendered output verify
+its implementation. Review captures live under ../review/: desktop.png,
+mobile.png, user-480.png, hover.png and search.png. The desktop capture includes
+the final Search contrast correction; earlier phone captures retain the previous
+purple and do not define that token. DESIGN.md frontmatter records the current
+Search rest and hover colors, whose white-text contrast is approximately 5.56:1
+and 4.64:1. Player/loading acceptance still requires real transfer progress and
+first-frame readiness. These web decisions do not redefine native Android.

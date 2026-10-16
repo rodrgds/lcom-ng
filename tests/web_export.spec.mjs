@@ -776,18 +776,19 @@ test('collection is responsive, forwards profiles, and discards game state on re
   const page=await context.newPage(); observe(page);
   await page.goto(`${base}/collection/`);
   await expect(page.getByRole('heading',{name:'Classroom Arcade'})).toBeVisible();
-  const columns=()=>page.locator('#games').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
-  expect(await columns()).toBe(2);
+  const columns=()=>page.locator('#grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
+  expect(await columns()).toBe(4);
   await page.setViewportSize({width:1280,height:800});
-  expect(await columns()).toBeGreaterThan(3);
+  await expect.poll(columns).toBe(14);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
-  expect(await page.locator('.game').evaluateAll(items => items.every(item => item.querySelector('.art').getBoundingClientRect().width <= item.getBoundingClientRect().width + 1))).toBeTruthy();
+  expect(await page.locator('.game').evaluateAll(items => items.every(item => Math.abs(item.getBoundingClientRect().width - item.getBoundingClientRect().height) < 1))).toBeTruthy();
   await page.getByRole('button',{name:'Find a game',exact:true}).click();
   await page.getByRole('searchbox').fill('Second');
-  await expect(page.getByRole('link',{name:'Play Second game'})).toBeVisible();
-  await expect(page.getByRole('link',{name:'Play First game'})).toHaveCount(0);
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await expect(page.locator('#search-results a')).toHaveCount(1);
+  await expect(page.locator('#search-results a')).toContainText('Second game');
   await page.getByRole('searchbox').fill('');
-  await page.getByRole('link',{name:'Play First game'}).click();
+  await page.locator('#search-results a').filter({hasText:'First game'}).click();
   const frame=page.frameLocator('iframe');
   await expect(frame.locator('#status')).toHaveText('Game running.');
   await expect.poll(()=>consoleText(page)).toContain('environment:ready from profile');
@@ -811,7 +812,7 @@ test('collection is responsive, forwards profiles, and discards game state on re
   expect(await page.locator('iframe').boundingBox()).toMatchObject({x:0,y:0,width:1280,height:800});
   await page.getByRole('button',{name:'Games',exact:true}).click();
   await expect(page.locator('iframe')).toHaveCount(0);
-  await page.getByRole('link',{name:'Play Second game'}).click();
+  await page.locator('#search-results a').filter({hasText:'Second game'}).click();
   await expect(frame.locator('#status')).toHaveText('Game running.');
   await page.goBack();
   await expect(page.getByRole('heading',{name:'Classroom Arcade'})).toBeVisible();
@@ -861,7 +862,7 @@ test('collection loading supports cancellation, download failures, and retry to 
   await expect(page.getByRole('link',{name:'Play Second game'})).toBeFocused();
 });
 
-test('phone collection cards keep long titles clear of game icons', async ({page}) => {
+test('phone collection keeps square icon targets and reveals long names in search', async ({page}) => {
   await page.setViewportSize({width:320,height:844});
   const title = 'Star Wars: Defend the Republic';
   await page.route('**/collection/collection.json', async route => {
@@ -873,9 +874,12 @@ test('phone collection cards keep long titles clear of game icons', async ({page
   const card = page.getByRole('link',{name:'Play '+title,exact:true});
   await expect(card).toBeVisible();
   await page.evaluate(() => document.fonts.ready);
-  const label = await card.locator('.game-name').boundingBox();
   const icon = await card.locator('.game-icon').boundingBox();
-  expect(label.y+label.height).toBeLessThanOrEqual(icon.y);
+  expect(Math.abs(icon.width-icon.height)).toBeLessThan(1);
+  expect(icon.width).toBeGreaterThan(100);
+  await page.getByRole('button',{name:'Find a game',exact:true}).click();
+  await page.getByRole('searchbox').fill('Star Wars');
+  await expect(page.locator('#search-results strong')).toHaveText(title);
 });
 
 test('failed player module downloads offer retry in collections and standalone exports', async ({page}) => {

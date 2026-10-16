@@ -1,10 +1,14 @@
+import {Mosaic} from './mosaic.js';
+import {Previews} from './previews.js';
+import {GameSearch} from './search.js';
+
 const library = document.querySelector('#library');
 const play = document.querySelector('#play');
 const games = document.querySelector('#games');
-const search = document.querySelector('#search');
 const count = document.querySelector('#count');
 const host = document.querySelector('#frame-host');
-let catalog = [], selected = null, lastLink = null;
+let catalog = [], selected = null, lastLink = null, gameSearch = null;
+const previews = new Previews();
 const back=document.querySelector('#back');
 function placeReturn(layout) {
   const frame=host.querySelector('iframe');
@@ -76,39 +80,26 @@ document.addEventListener('fullscreenchange', () => {
   document.querySelector('#fullscreen').setAttribute('aria-label', document.fullscreenElement ? 'Exit fullscreen' : 'Enter fullscreen');
 });
 function render() {
-  const query = search.value.trim().toLocaleLowerCase();
-  const visible = catalog.filter(game => game.name.toLocaleLowerCase().includes(query));
-  games.replaceChildren(...visible.map((game, index) => {
-    const item = document.createElement('div'); item.className = 'game' + (!query && index === 0 ? ' featured' : '');
-    item.style.setProperty('--hue', String((index * 43 + 245) % 360)); item.setAttribute('role','listitem');
-    const link = document.createElement('a'); link.href = '#game=' + encodeURIComponent(game.id);
-    link.setAttribute('aria-label', 'Play ' + game.name);
-    const art = document.createElement('span'); art.className = 'art';
-    if (game.preview || game.icon) {
-      const image = document.createElement('img'); image.className = 'game-preview'; image.src = game.preview || game.icon; image.alt = ''; image.loading = index < 12 ? 'eager' : 'lazy'; image.decoding = 'async'; image.width = 800; image.height = 600; image.onerror = () => { image.onerror = null; if(game.icon && image.getAttribute('src') !== game.icon) image.src = game.icon; }; art.append(image);
-    } else {
-      const fallback = document.createElement('span'); fallback.className = 'fallback'; fallback.textContent = game.name[0]; fallback.setAttribute('aria-hidden','true'); art.append(fallback);
-    }
-    if (game.icon) {
-      const icon = document.createElement('img'); icon.className = 'game-icon';
-      icon.src = game.icon; icon.alt = ''; icon.width = 32; icon.height = 32;
-      icon.loading = index < 12 ? 'eager' : 'lazy'; icon.decoding = 'async';
-      icon.onerror = () => icon.remove(); art.append(icon);
-    }
-    const mark = document.createElement('span'); mark.className = 'play-mark'; mark.innerHTML = '<svg viewBox="0 0 24 24"><path d="m8 4 13 8-13 8z"/></svg>'; mark.setAttribute('aria-hidden','true'); art.append(mark);
-    const label = document.createElement('span'); label.className = 'game-name'; label.textContent = game.name;
-    link.append(art,label); item.append(link);
-    link.onclick = () => { lastLink = link; if (matchMedia('(pointer:coarse)').matches) fullscreen(); };
-    return item;
+  const tiles = catalog.map((game, index) => previews.tile(game, index, link => {
+    lastLink = link;
+    if (matchMedia('(pointer:coarse)').matches) fullscreen();
   }));
-  measureCards();
-  count.textContent = query ? `${visible.length} of ${catalog.length} games` : `${catalog.length} games, ready to play`;
-  document.querySelector('#empty').hidden = visible.length > 0;
+  const mosaic = new Mosaic(document.querySelector('#grid'), games, tiles, () => previews.stop());
+  document.querySelector('#shuffle').onclick = () => {
+    mosaic.shuffle();
+    count.textContent = `${catalog.length} games, shuffled`;
+  };
+  gameSearch = new GameSearch(catalog, link => {
+    previews.stop(); lastLink = link;
+    if (matchMedia('(pointer:coarse)').matches) fullscreen();
+  });
+  count.textContent = `${catalog.length} games, ready to play`;
 }
 function route(force = false) {
   const id = new URLSearchParams(location.hash.slice(1)).get('game');
   const game = catalog.find(game => game.id === id);
   if (!force && game && selected?.id === game.id) return;
+  previews.stop();
   host.replaceChildren(); selected = game || null; ready = false; progressStep = -1;
   loading.hidden = !game; host.inert = !!game;
   library.hidden = !!game; play.hidden = !game;
@@ -132,43 +123,14 @@ function route(force = false) {
     frame.onerror = () => loadingState({phase:'error'});
   } else {
     document.title = library.querySelector('h1').textContent;
-    lastLink?.focus({preventScroll:true});
+    if (lastLink?.closest('dialog')) gameSearch?.open(lastLink.dataset.id);
+    else lastLink?.focus({preventScroll:true});
   }
 }
 document.querySelector('#back').onclick = () => { location.hash = ''; };
 window.addEventListener('hashchange', () => route());
 document.querySelector('#retry').onclick = () => route(true);
 document.querySelector('#cancel').onclick = () => { location.hash = ''; };
-search.oninput = render;
-const searchToggle = document.querySelector('#search-toggle');
-function toggleSearch(open) {
-  searchToggle.setAttribute('aria-expanded', String(open));
-  document.querySelector('#search-panel').hidden = !open;
-  if (open) search.focus();
-  else { search.value = ''; render(); searchToggle.focus(); }
-}
-searchToggle.onclick = () => toggleSearch(searchToggle.getAttribute('aria-expanded') !== 'true');
-search.onkeydown = event => { if (event.key === 'Escape') { event.preventDefault(); toggleSearch(false); } };
-
-let cardBounds = [], pointerFrame = null;
-function measureCards() { cardBounds = [...games.children].map(element => ({element, rect:element.getBoundingClientRect()})); }
-new ResizeObserver(measureCards).observe(games);
-window.addEventListener('scroll', measureCards, {passive:true});
-const fineMotion = matchMedia('(pointer:fine) and (prefers-reduced-motion:no-preference)');
-games.addEventListener('pointermove', event => {
-  if (!fineMotion.matches || pointerFrame !== null) return;
-  const {clientX:x,clientY:y} = event;
-  pointerFrame = requestAnimationFrame(() => {
-    pointerFrame = null;
-    document.querySelector('#ambience').style.setProperty('--x', `${x}px`);
-    document.querySelector('#ambience').style.setProperty('--y', `${y}px`);
-    for (const {element,rect} of cardBounds) {
-      const distance = Math.hypot(x - rect.x - rect.width/2, y - rect.y - rect.height/2);
-      element.style.setProperty('--near', String(Math.max(0, 1 - distance/340)));
-    }
-  });
-});
-games.addEventListener('pointerleave', () => { for (const {element} of cardBounds) element.style.setProperty('--near','0'); });
 try {
   const response = await fetch('collection.json', {cache:'no-cache'});
   if (!response.ok) throw new Error('The game library could not be loaded.');
