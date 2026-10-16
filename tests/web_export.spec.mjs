@@ -857,3 +857,20 @@ test('collection loading supports cancellation, download failures, and retry to 
   await page.getByRole('button',{name:'Games',exact:true}).click();
   await expect(page.getByRole('link',{name:'Play Second game'})).toBeFocused();
 });
+
+test('phone collection cards keep long titles clear of game icons', async ({page}) => {
+  await page.setViewportSize({width:320,height:844});
+  const title = 'Star Wars: Defend the Republic';
+  await page.route('**/collection/collection.json', async route => {
+    const catalog = await (await route.fetch()).json();
+    catalog.games[0].name = title;
+    await route.fulfill({json:catalog});
+  });
+  await page.goto(`${base}/collection/`);
+  const card = page.getByRole('link',{name:'Play '+title,exact:true});
+  await expect(card).toBeVisible();
+  await page.evaluate(() => document.fonts.ready);
+  const label = await card.locator('.game-name').boundingBox();
+  const icon = await card.locator('.game-icon').boundingBox();
+  expect(label.y+label.height).toBeLessThanOrEqual(icon.y);
+});
