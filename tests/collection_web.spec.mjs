@@ -58,6 +58,10 @@ test('square icon mosaic spaces featured games and shuffles without fetching gal
   const order = () => page.locator('#games a[data-id]').evaluateAll(links=>links.map(link=>link.getAttribute('href')));
   const before = await order(); await page.getByRole('button',{name:'Shuffle games'}).click();
   expect(await order()).not.toEqual(before);
+  for(let shuffle=0;shuffle<5;shuffle++) {
+    await page.getByRole('button',{name:'Shuffle games'}).click();
+    await expect.poll(async()=>new Set((await spread()).map(b=>Math.round(b.x))).size).toBeGreaterThan(2);
+  }
   expect(shots).toEqual([]);
 });
 
@@ -189,4 +193,98 @@ test('reduced motion keeps previews still and touch launches in one tap', async 
   const phone=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
   const mobile=await phone.newPage();await mobile.goto(base);await mobile.locator('#games a[data-id]').first().tap();
   await expect(mobile.locator('iframe')).toHaveCount(1);await expect(mobile.locator('#loading')).toBeHidden();await phone.close();
+});
+
+test('Surprise Me accelerates, settles on a real game, and restores its opener after play', async ({page},testInfo) => {
+  await page.setViewportSize({width:1280,height:800});await page.goto(base);
+  const surprise=page.getByRole('button',{name:'Surprise me',exact:true});
+  await surprise.click();
+  const dialog=page.getByRole('dialog',{name:'Surprise me',exact:true});
+  await expect(dialog).toBeVisible();
+  const track=dialog.locator('.roulette-track');
+  const position=()=>track.evaluate(element=>element.getBoundingClientRect().x);
+  const distance=async()=>{const before=await position();await page.waitForTimeout(200);return before-await position();};
+  const early=await distance();await page.waitForTimeout(800);const middle=await distance();
+  expect(middle).toBeGreaterThan(early*1.5);
+  await page.waitForTimeout(2700);const late=await distance();expect(late).toBeLessThan(middle*.4);
+  const play=dialog.getByRole('button',{name:/^Play /});await expect(play).toBeVisible();
+  const name=(await play.getAttribute('aria-label')).slice(5),winner=games.find(game=>game.name===name);expect(winner).toBeTruthy();
+  const marker=await dialog.locator('.roulette-marker').boundingBox();
+  const card=await track.locator('[data-selected="true"]').boundingBox();
+  expect(Math.abs(card.x+card.width/2-marker.x-marker.width/2)).toBeLessThan(2);
+  await page.screenshot({path:testInfo.outputPath('surprise-result.png')});
+  await play.click();await expect(page.locator('iframe')).toHaveAttribute('src',new RegExp(winner.url));
+  await page.getByRole('button',{name:'Games',exact:true}).click();await expect(surprise).toBeFocused();
+  await surprise.click();await dialog.getByRole('button',{name:'Skip animation',exact:true}).click();
+  await expect(dialog.getByRole('button',{name:/^Play /})).toBeVisible();
+  await dialog.getByRole('button',{name:'Spin again',exact:true}).click();
+  await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();
+  await page.waitForTimeout(5500);await expect(page.locator('iframe')).toHaveCount(0);await expect(surprise).toBeFocused();
+});
+
+test('real collection sounds stay opt-in, mute during a spin, and persist without autoplay', async ({page}) => {
+  const errors=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.addInitScript(()=>{
+    window.audioContexts=[];window.audioStarts=0;
+    const Native=window.AudioContext;
+    window.AudioContext=new Proxy(Native,{construct(target,args){const context=Reflect.construct(target,args);window.audioContexts.push(context);return context;}});
+    for(const Type of [OscillatorNode,AudioBufferSourceNode]) {
+      const start=Type.prototype.start;Type.prototype.start=function(...args){window.audioStarts++;return start.apply(this,args);};
+    }
+    const connect=AudioNode.prototype.connect;
+    AudioNode.prototype.connect=function(destination,...args){
+      if(destination===this.context.destination){const meter=this.context.createAnalyser();meter.fftSize=512;window.audioMeter=meter;connect.call(this,meter);connect.call(meter,destination);return destination;}
+      return connect.call(this,destination,...args);
+    };
+    window.audioRms=()=>{if(!window.audioMeter)return 0;const data=new Float32Array(window.audioMeter.fftSize);window.audioMeter.getFloatTimeDomainData(data);return Math.sqrt(data.reduce((sum,n)=>sum+n*n,0)/data.length);};
+  });
+  await page.goto(base);await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','false');
+  await page.getByRole('button',{name:'Surprise me',exact:true}).click();
+  expect(await page.evaluate(()=>audioContexts.length)).toBe(0);
+  await page.locator('#surprise-sound').focus();await page.keyboard.press('Enter');
+  await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','true');
+  await expect.poll(()=>page.evaluate(()=>audioRms()),{intervals:[10]}).toBeGreaterThan(.00001);
+  expect(await page.evaluate(()=>audioContexts.length)).toBe(1);
+  await page.locator('#surprise-sound').click();await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','false');
+  const starts=await page.evaluate(()=>audioStarts);
+  await expect.poll(()=>page.evaluate(()=>audioRms()),{intervals:[10],timeout:500}).toBeLessThan(.00001);
+  await page.waitForTimeout(300);expect(await page.evaluate(()=>audioStarts)).toBe(starts);
+  await page.getByRole('button',{name:'Skip animation',exact:true}).click();
+  expect(await page.evaluate(()=>audioStarts)).toBe(starts);
+  await page.getByRole('button',{name:'Close Surprise me',exact:true}).click();
+  await page.locator('#sound-toggle').click();await expect(page.locator('#surprise-sound')).toHaveAttribute('aria-pressed','true');
+  await page.reload();await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','true');
+  expect(await page.evaluate(()=>audioContexts.length)).toBe(0);
+  await page.keyboard.press('Control+k');await expect.poll(()=>page.evaluate(()=>audioStarts)).toBeGreaterThan(0);
+  await page.keyboard.press('Escape');await page.locator('#sound-toggle').click();await page.reload();
+  await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','false');
+  expect(errors).toEqual([]);
+});
+
+test('touch roulette supports reduced motion, resize and missing Web Audio', async ({browser},testInfo) => {
+  const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});
+  const page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));
+  await page.addInitScript(()=>{Object.defineProperty(window,'AudioContext',{value:undefined});Object.defineProperty(window,'webkitAudioContext',{value:undefined});});
+  await page.goto(base);await expect(page.locator('#sound-toggle')).toBeDisabled();
+  await page.getByRole('button',{name:'Surprise me',exact:true}).tap();
+  const dialog=page.getByRole('dialog',{name:'Surprise me',exact:true});
+  await expect(dialog.getByRole('button',{name:/^Play /})).toBeVisible({timeout:1000});
+  const transform=await dialog.locator('.roulette-track').evaluate(element=>element.style.transform);
+  await page.waitForTimeout(150);expect(await dialog.locator('.roulette-track').evaluate(element=>element.style.transform)).toBe(transform);
+  await expect(page.locator('#surprise-sound')).toBeDisabled();
+  const alignment=()=>dialog.evaluate(element=>{const card=element.querySelector('[data-selected]').getBoundingClientRect(),marker=element.querySelector('.roulette-marker').getBoundingClientRect();return Math.abs(card.x+card.width/2-marker.x-marker.width/2);});
+  expect(await alignment()).toBeLessThan(2);
+  await page.screenshot({path:testInfo.outputPath('surprise-phone.png')});
+  await page.setViewportSize({width:844,height:390});await expect.poll(alignment).toBeLessThan(2);
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(844);
+  const box=await dialog.boundingBox();expect(box.y).toBeGreaterThanOrEqual(0);expect(box.y+box.height).toBeLessThanOrEqual(390);
+  for(const button of [dialog.getByRole('button',{name:/^Play /}),dialog.getByRole('button',{name:'Spin again',exact:true})]) {
+    const action=await button.boundingBox();expect(action.y+action.height).toBeLessThanOrEqual(box.y+box.height);
+    expect(await button.evaluate(element=>{const rect=element.getBoundingClientRect();return element.contains(document.elementFromPoint(rect.x+rect.width/2,rect.y+rect.height/2));})).toBe(true);
+  }
+  await page.screenshot({path:testInfo.outputPath('surprise-landscape.png')});
+  await dialog.getByRole('button',{name:'Spin again',exact:true}).tap();
+  await expect(dialog.getByRole('button',{name:/^Play /})).toBeVisible();expect(await alignment()).toBeLessThan(2);
+  await dialog.getByRole('button',{name:'Close Surprise me',exact:true}).tap();
+  await expect(dialog).not.toBeVisible();expect(errors).toEqual([]);await context.close();
 });

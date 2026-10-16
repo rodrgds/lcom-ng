@@ -14,20 +14,27 @@
 <main id="library">
   <div id="grid" class="mosaic">
     <a class="identity grid-utility" href="./" aria-label="@NAME@ home"><img src="assets/arcade.svg" width="44" height="44" alt=""><h1>@NAME@</h1></a>
-    <button id="search-toggle" class="utility-tile grid-utility" type="button" aria-label="Find a game" aria-haspopup="dialog" aria-expanded="false" aria-controls="search-panel" title="Find a game"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span>Search</span></button>
+    <button id="search-toggle" class="utility-tile grid-utility" type="button" aria-label="Find a game" aria-haspopup="dialog" aria-expanded="false" aria-controls="search-panel" title="Find a game (Ctrl+K / ⌘K)" aria-keyshortcuts="Control+k Meta+k"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span>Search</span></button>
     <button id="fullscreen" class="utility-tile grid-utility" type="button" aria-label="Enter fullscreen" title="Fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg><span>Full screen</span></button>
     <button id="shuffle" class="utility-tile grid-utility" type="button" aria-label="Shuffle games" title="Shuffle games"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3.5-2 5-5m2-3c1.5-2.5 3-4 5-4h3m-4-4 4 4-4 4"/></svg><span>Shuffle</span></button>
+    <button id="sound-toggle" class="utility-tile grid-utility" type="button" aria-label="Enable UI sounds" aria-pressed="false"><svg data-sound-off viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5zm5 4 6 6m0-6-6 6"/></svg><svg data-sound-on viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M11 5 6 9H3v6h3l5 4V5zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg><span>Sound off</span></button>
+    <button id="surprise" class="utility-tile grid-utility" type="button" aria-label="Surprise me" aria-haspopup="dialog" aria-controls="surprise-panel" disabled><svg viewBox="0 0 32 32" aria-hidden="true"><rect x="5" y="9" width="22" height="19" rx="4"/><path d="M11 9V6a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v3M5 17h7m8 0h7m-14-3 3 6 3-6"/></svg><span>Surprise me</span></button>
     <div id="games" role="list" aria-label="Games"></div>
   </div>
   <p id="count" class="sr-only" aria-live="polite">Loading games…</p>
   <p id="error" role="alert" hidden></p>
 </main>
-<dialog id="search-panel" aria-labelledby="search-title">
-  <div class="search-heading"><h2 id="search-title">Find your next game</h2><button id="search-close" type="button" aria-label="Close search"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div>
+<dialog id="search-panel" aria-label="Find a game">
   <form role="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input id="search" type="search" placeholder="Search games…" aria-label="Find a game" autocomplete="off" autofocus></form>
   <p id="search-count" role="status"></p>
   <div id="search-results" role="list" aria-label="Search results"></div>
   <p id="empty" hidden>No games match. Try another name.</p>
+</dialog>
+<dialog id="surprise-panel" aria-labelledby="surprise-title">
+  <div class="surprise-heading"><h2 id="surprise-title">Surprise me</h2><div class="surprise-tools"><button id="surprise-sound" class="icon-button" type="button" aria-label="Enable UI sounds" aria-pressed="false"><svg data-sound-off viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5zm5 4 6 6m0-6-6 6"/></svg><svg data-sound-on viewBox="0 0 24 24" aria-hidden="true" hidden><path d="M11 5 6 9H3v6h3l5 4V5zm4 3a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></svg></button><button id="surprise-close" class="icon-button" type="button" aria-label="Close Surprise me"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></div></div>
+  <div id="surprise-reel" aria-hidden="true"><div class="roulette-track"></div><div class="roulette-marker"></div></div>
+  <p id="surprise-result" role="status" aria-live="polite">Finding your next game…</p>
+  <div class="surprise-actions"><button id="surprise-skip" type="button">Skip animation</button><button id="surprise-play" type="button" hidden>Play<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7z"/></svg></button><button id="surprise-again" type="button" hidden>Spin again</button></div>
 </dialog>
 <section id="play" hidden aria-label="Game player">
   <button id="back" class="back" type="button" aria-label="Games" title="Back to games"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></svg></button>

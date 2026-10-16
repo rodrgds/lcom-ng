@@ -57,7 +57,14 @@ the grid. Hover or keyboard focus expands a tile into gameplay screenshots with
 its name, year when known, and approximate first-load download size. Screenshots
 slide every few seconds; reduced motion keeps the first frame still. Touch opens
 a game directly. **Search** opens a modal and preserves its query when returning
-from a game. **Shuffle** rearranges the library.
+from a game. Open it with **Ctrl+K** or **Command+K**, and dismiss it with Escape
+or a tap outside. Arrow keys move through the visible grid in search and the
+library. **Shuffle** rearranges the library.
+
+**Surprise me** spins through game icons, then offers **Play** or **Spin again**.
+You can skip the animation; reduced motion shows the result immediately.
+**Sound off** enables optional UI sounds, with a saved mute preference. Sounds
+play after interaction, with no audio downloads or third-party requests.
 A loading screen shows the game's `description` and download progress; failed
 downloads offer a retry or a return to the library.
 

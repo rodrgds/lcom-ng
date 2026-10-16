@@ -1,4 +1,6 @@
 import {facts} from './previews.js';
+import {bindGridNavigation} from './navigation.js';
+import {cue} from './audio.js';
 
 export class GameSearch {
   constructor(catalog, launch) {
@@ -9,14 +11,20 @@ export class GameSearch {
     this.results = document.querySelector('#search-results');
     this.toggle = document.querySelector('#search-toggle');
     this.toggle.onclick = () => this.open();
-    document.querySelector('#search-close').onclick = () => this.dialog.close();
     this.dialog.querySelector('form').onsubmit = event => {
       event.preventDefault(); this.results.querySelector('a')?.click();
     };
     this.dialog.addEventListener('click', event => {
       if (event.target !== this.dialog) return;
       const rect = this.dialog.getBoundingClientRect();
-      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) this.dialog.close();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) this.dismiss();
+    });
+    this.dialog.addEventListener('cancel', event => {
+      event.preventDefault(); this.dismiss();
+    });
+    this.dialog.addEventListener('keydown', event => {
+      // A search input otherwise consumes its first Escape to clear the query.
+      if (event.key === 'Escape') { event.preventDefault(); this.dismiss(); }
     });
     this.dialog.addEventListener('close', () => {
       this.toggle.setAttribute('aria-expanded', 'false');
@@ -24,27 +32,35 @@ export class GameSearch {
     });
     this.input.oninput = () => this.render();
     this.input.onkeydown = event => {
-      if (event.key === 'ArrowDown') { event.preventDefault(); this.results.querySelector('a')?.focus(); }
-    };
-    this.results.onkeydown = event => {
-      if (!['ArrowDown', 'ArrowUp'].includes(event.key)) return;
-      const links = [...this.results.querySelectorAll('a')], index = links.indexOf(document.activeElement);
-      if (index < 0) return;
-      event.preventDefault();
-      if (event.key === 'ArrowUp' && index === 0) this.input.focus();
-      else links[Math.max(0, Math.min(links.length - 1, index + (event.key === 'ArrowDown' ? 1 : -1)))].focus();
-    };
-    document.addEventListener('keydown', event => {
-      if (event.key === '/' && !event.ctrlKey && !event.metaKey && !event.altKey && !this.dialog.open && !document.querySelector('#library').hidden) {
-        event.preventDefault(); this.open();
+      if (event.key === 'ArrowDown' && !event.ctrlKey && !event.metaKey && !event.altKey && !event.shiftKey) {
+        event.preventDefault(); this.results.querySelector('a')?.focus();
       }
+    };
+    bindGridNavigation(this.results, 'a', {onUpBoundary: () => this.input.focus()});
+    document.addEventListener('keydown', event => {
+      if (event.defaultPrevented || event.altKey || document.querySelector('#library').hidden ||
+          [...document.querySelectorAll('dialog[open]')].some(dialog => dialog !== this.dialog)) return;
+      const command = event.key.toLowerCase() === 'k' && (event.ctrlKey || event.metaKey);
+      const slash = event.key === '/' && !event.ctrlKey && !event.metaKey &&
+        !event.target.closest('input,textarea,select,[contenteditable="true"]');
+      if (!command && !slash) return;
+      event.preventDefault();
+      if (this.dialog.open) this.input.focus();
+      else this.open();
     });
+  }
+
+  dismiss() {
+    if (!this.dialog.open) return;
+    cue('close', {emphasis:'subtle'});
+    this.dialog.close();
   }
 
   open(restoreId = null) {
     if (this.dialog.open) return;
     this.opener = restoreId || document.activeElement === document.body ? this.toggle : document.activeElement;
     this.render(); this.dialog.showModal();
+    if (restoreId === null) cue('open', {emphasis:'subtle'});
     this.toggle.setAttribute('aria-expanded', 'true');
     const link = [...this.results.querySelectorAll('a')].find(link => link.dataset.id === restoreId);
     (link || this.input).focus();

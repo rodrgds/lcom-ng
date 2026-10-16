@@ -60,10 +60,16 @@ export class Mosaic {
         tile.element.style.gridRow = `${y + 1} / span ${size}`;
       }
     };
-    // Identity occupies one normal tile; two small tools and Shuffle occupy another.
+    // Identity and the four small controls occupy two normal tiles.
     reserve(null, 0, 0, 2);
     reserve(null, 2, 0, 2);
-    const rows = Math.max(2, Math.ceil((2 + this.ordinary.length + this.featured.length * 4) / columns));
+    const surprise = this.grid.querySelector('#surprise');
+    const surpriseX = tracks >= 6 ? 4 : 0, surpriseY = tracks >= 6 ? 0 : 2;
+    reserve(null, surpriseX, surpriseY, 2);
+    surprise.style.gridColumn = `${surpriseX + 1} / span 2`;
+    surprise.style.gridRow = `${surpriseY + 1} / span 2`;
+    const rows = Math.max(2, Math.ceil((3 + this.ordinary.length + this.featured.length * 4) / columns));
+    const usedColumns = new Set();
     let previous = null;
     this.featured.forEach((tile, index) => {
       let y = Math.round(index * Math.max(0, rows - 2) / Math.max(1, this.featured.length - 1)) * 2;
@@ -76,9 +82,11 @@ export class Mosaic {
       } while (!candidates.length);
       // The nearest free slot may be central or near an edge. Stratified
       // targets spread highlights across the board without an edge zigzag.
+      // Prefer unused columns when reserved tiles displace several targets.
       const target = this.featuredTargets[index] * (tracks - 4);
-      candidates.sort((a, b) => Math.abs(a - target) - Math.abs(b - target));
+      candidates.sort((a, b) => Number(usedColumns.has(a)) - Number(usedColumns.has(b)) || Math.abs(a - target) - Math.abs(b - target));
       const x = candidates[0];
+      usedColumns.add(x);
       reserve(tile, x, y, 4);
       previous = {x, y};
     });

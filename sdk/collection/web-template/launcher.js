@@ -1,14 +1,19 @@
 import {Mosaic} from './mosaic.js';
 import {Previews} from './previews.js';
 import {GameSearch} from './search.js';
+import {Surprise} from './surprise.js';
+import {cue, initSound} from './audio.js';
+import {bindGridNavigation} from './navigation.js';
 
 const library = document.querySelector('#library');
 const play = document.querySelector('#play');
 const games = document.querySelector('#games');
 const count = document.querySelector('#count');
 const host = document.querySelector('#frame-host');
-let catalog = [], selected = null, lastLink = null, gameSearch = null;
+let catalog = [], selected = null, lastLink = null, gameSearch = null, surprise = null;
 const previews = new Previews();
+initSound(document.querySelector('#sound-toggle'));
+initSound(document.querySelector('#surprise-sound'));
 const back=document.querySelector('#back');
 function placeReturn(layout) {
   const frame=host.querySelector('iframe');
@@ -71,24 +76,36 @@ async function fullscreen() {
   catch { /* Mobile browsers without Fullscreen API still use the complete viewport. */ }
 }
 document.querySelector('#fullscreen').onclick = async () => {
+  const before = !!document.fullscreenElement;
   if (document.fullscreenElement) await document.exitFullscreen(); else await fullscreen();
+  if (before !== !!document.fullscreenElement) cue('toggle',{emphasis:'subtle'});
 };
 document.addEventListener('fullscreenchange', () => {
   document.querySelector('#fullscreen').setAttribute('aria-label', document.fullscreenElement ? 'Exit fullscreen' : 'Enter fullscreen');
 });
 function render() {
-  const tiles = catalog.map((game, index) => previews.tile(game, index, link => {
+  const launch = link => {
     lastLink = link;
+    cue('navigate',{emphasis:'subtle'});
     if (matchMedia('(pointer:coarse)').matches) fullscreen();
-  }));
+  };
+  const tiles = catalog.map((game, index) => previews.tile(game, index, launch));
   const mosaic = new Mosaic(document.querySelector('#grid'), games, tiles, () => previews.stop());
   document.querySelector('#shuffle').onclick = () => {
     mosaic.shuffle();
+    cue('select',{emphasis:'subtle'});
     count.textContent = `${catalog.length} games, shuffled`;
   };
   gameSearch = new GameSearch(catalog, link => {
-    previews.stop(); lastLink = link;
-    if (matchMedia('(pointer:coarse)').matches) fullscreen();
+    previews.stop(); launch(link);
+  });
+  surprise = new Surprise(catalog, game => {
+    launch(document.querySelector('#surprise'));
+    location.hash = 'game=' + encodeURIComponent(game.id);
+  });
+  document.querySelector('#surprise').addEventListener('click', () => previews.stop());
+  bindGridNavigation(document.querySelector('#grid'),'.grid-utility, .game-launch',{
+    geometry: element => element.closest('.game') || element,
   });
   count.textContent = `${catalog.length} games, ready to play`;
 }
@@ -96,6 +113,7 @@ function route(force = false) {
   const id = new URLSearchParams(location.hash.slice(1)).get('game');
   const game = catalog.find(game => game.id === id);
   if (!force && game && selected?.id === game.id) return;
+  surprise?.close();
   previews.stop();
   host.replaceChildren(); selected = game || null; ready = false; progressStep = -1;
   loading.hidden = !game; host.inert = !!game;
@@ -124,7 +142,7 @@ function route(force = false) {
     else lastLink?.focus({preventScroll:true});
   }
 }
-document.querySelector('#back').onclick = () => { location.hash = ''; };
+document.querySelector('#back').onclick = () => { cue('navigate',{direction:'back',emphasis:'subtle'});location.hash = ''; };
 window.addEventListener('hashchange', () => route());
 document.querySelector('#retry').onclick = () => route(true);
 document.querySelector('#cancel').onclick = () => { location.hash = ''; };
