@@ -1,16 +1,18 @@
 import {cue, unlockSound} from './audio.js';
+import {facts} from './previews.js';
 
-const duration = 5200;
+const duration = 8800;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
 
-// A short acceleration, a fast run, then a long, deliberate settling phase.
+// Integrate a brief acceleration, a fast run and a long quadratic slowdown.
+// Position and velocity meet at each boundary, so the reel never changes gear.
 function travel(time) {
-  const accelerate = .12, cruise = .30;
-  const total = accelerate / 2 + cruise - accelerate + (1 - cruise) / 4;
+  const accelerate = .08, cruise = .22;
+  const total = accelerate / 2 + cruise - accelerate + (1 - cruise) / 3;
   if (time < accelerate) return time * time / (2 * accelerate * total);
   if (time < cruise) return (accelerate / 2 + time - accelerate) / total;
   const tail = (time - cruise) / (1 - cruise);
-  return (accelerate / 2 + cruise - accelerate + (1 - cruise) * (1 - (1 - tail) ** 4) / 4) / total;
+  return (accelerate / 2 + cruise - accelerate + (1 - cruise) * (1 - (1 - tail) ** 3) / 3) / total;
 }
 
 export class Surprise {
@@ -21,18 +23,19 @@ export class Surprise {
     this.dialog = document.querySelector('#surprise-panel');
     this.viewport = document.querySelector('#surprise-reel');
     this.track = this.viewport.querySelector('.roulette-track');
-    this.result = document.querySelector('#surprise-result');
+    this.detail = document.querySelector('#surprise-detail');
+    this.status = document.querySelector('#surprise-status');
     this.play = document.querySelector('#surprise-play');
-    this.again = document.querySelector('#surprise-again');
-    this.skip = document.querySelector('#surprise-skip');
     this.frame = null;
     this.opener.disabled = !catalog.length;
     this.opener.onclick = () => {
+      this.dialog.classList.remove('revealed');
+      this.detail.inert = true;
+      this.play.hidden = true;
       this.dialog.showModal();
       unlockSound();
       this.spin();
     };
-    document.querySelector('#surprise-close').onclick = () => this.close();
     this.dialog.addEventListener('click', event => {
       if (event.target !== this.dialog) return;
       const r = this.dialog.getBoundingClientRect();
@@ -40,11 +43,11 @@ export class Surprise {
     });
     this.dialog.addEventListener('cancel', () => this.stop());
     this.dialog.addEventListener('close', () => {
+      // Native close events can arrive after a rapid reopen.
+      if (this.dialog.open) return;
       this.stop();
       if (!document.querySelector('#library').hidden) this.opener.focus({preventScroll:true});
     });
-    this.skip.onclick = () => this.reveal();
-    this.again.onclick = () => this.spin();
     this.play.onclick = () => {
       if (this.frame !== null || !this.winner) return;
       const game = this.winner;
@@ -59,8 +62,8 @@ export class Surprise {
     });
     new ResizeObserver(() => {
       if (!this.dialog.open || !this.track.children.length) return;
-      this.measure();
-      this.position(this.fraction);
+      this.measure();this.position(this.fraction);
+      this.lastCard = this.cardAtMarker();
     }).observe(this.viewport);
   }
 
@@ -78,11 +81,13 @@ export class Surprise {
   spin() {
     this.stop();
     this.winner = this.catalog[Math.floor(Math.random() * this.catalog.length)];
-    this.winnerIndex = 34 + Math.floor(Math.random() * 5);
+    this.winnerIndex = 44 + Math.floor(Math.random() * 9);
+    // Keep a small inset from both edges. The marker always belongs to exactly
+    // one game, including after resizing, rather than landing in a gap.
+    this.landing = .08 + Math.random() * .84;
     const deck = [];
-    for (let index = 0; index < this.winnerIndex + 5; index++) {
-      let game = this.catalog[Math.floor(Math.random() * this.catalog.length)];
-      if (index === this.winnerIndex) game = this.winner;
+    for (let index = 0; index < this.winnerIndex + 6; index++) {
+      const game = index === this.winnerIndex ? this.winner : this.catalog[Math.floor(Math.random() * this.catalog.length)];
       const card = document.createElement('div');
       card.className = 'roulette-card';
       const image = new Image();
@@ -94,51 +99,84 @@ export class Surprise {
       deck.push(card);
     }
     this.track.replaceChildren(...deck);
-    this.viewport.classList.remove('landed');
-    this.result.textContent = 'Finding your next game…';
-    this.play.hidden = this.again.hidden = true;
-    this.skip.hidden = false;
+    this.status.textContent = 'Choosing a game…';
+    this.prepareResult();
     this.measure();this.position(0);
     if (reducedMotion.matches) { this.reveal();return; }
-    this.skip.focus({preventScroll:true});
     this.track.classList.add('rolling');
-    this.started = performance.now();this.lastTick = -Infinity;this.lastCard = 2;
+    this.started = performance.now();this.lastCard = this.cardAtMarker();
     cue('tap',{emphasis:'subtle',theme:'mech'});
     const animate = now => {
       const progress = Math.min(1,(now - this.started) / duration);
       this.position(travel(progress));
-      const card = Math.round(2 + (this.winnerIndex - 2) * this.fraction);
-      if (card !== this.lastCard && now - this.lastTick >= 125) {
-        cue('select',{emphasis:'subtle',theme:'mech',volume:.45});
-        this.lastTick = now;
+      const card = this.cardAtMarker();
+      // Crossings, rather than a time throttle, own the ticks. A dropped frame
+      // still accounts for each passed card, with no timers left after close.
+      while (this.lastCard < card) {
+        cue('select',{emphasis:'subtle',theme:'mech',volume:.65});
+        this.lastCard++;
       }
-      this.lastCard = card;
-      if (progress < 1) this.frame = requestAnimationFrame(animate);
+      // Let the stopped marker register before the game artwork opens.
+      if (now - this.started < duration + 420) this.frame = requestAnimationFrame(animate);
       else this.reveal();
     };
     this.frame = requestAnimationFrame(animate);
   }
 
+  prepareResult() {
+    const game = this.winner;
+    document.querySelector('#surprise-result').textContent = game.name;
+    document.querySelector('#surprise-facts').textContent = facts(game);
+    const description = document.querySelector('#surprise-description');
+    description.textContent = game.description || '';
+    description.hidden = !game.description;
+    const repo = document.querySelector('#surprise-repo');
+    repo.hidden = !game.repository;
+    if (game.repository) {
+      repo.href = game.repository;
+      repo.setAttribute('aria-label','Repository for ' + game.name);
+    } else repo.removeAttribute('href');
+    for (const [selector,source] of [
+      ['.surprise-scene',game.screenshots?.[Math.floor(game.screenshots.length / 2)] || game.preview || game.icon],
+      ['.surprise-icon',game.icon],
+    ]) {
+      const image = this.detail.querySelector(selector);
+      image.onerror = () => {
+        image.onerror = () => {image.onerror = null;image.src = 'assets/arcade.svg';};
+        image.src = selector === '.surprise-scene' && game.icon ? game.icon : 'assets/arcade.svg';
+      };
+      image.src = source || 'assets/arcade.svg';
+    }
+    this.play.setAttribute('aria-label','Play ' + game.name);
+  }
+
   measure() {
-    const width = this.track.firstElementChild.getBoundingClientRect().width;
-    const step = width + parseFloat(getComputedStyle(this.track).columnGap);
-    const center = (this.viewport.clientWidth - width) / 2;
-    this.start = center - 2 * step;
-    this.end = center - this.winnerIndex * step;
+    // The reel scales away during the reveal. Measure its layout width so
+    // visual transforms cannot shift the selected game during expansion.
+    this.cardWidth = parseFloat(getComputedStyle(this.track.firstElementChild).width);
+    this.gap = parseFloat(getComputedStyle(this.track).columnGap);
+    this.step = this.cardWidth + this.gap;
+    this.marker = this.viewport.clientWidth / 2;
+    this.start = this.marker - this.cardWidth / 2 - 3 * this.step;
+    this.end = this.marker - this.winnerIndex * this.step - this.cardWidth * this.landing;
   }
 
   position(fraction) {
     this.fraction = fraction;
-    this.track.style.transform = `translate3d(${this.start + (this.end - this.start) * fraction}px,0,0)`;
+    this.offset = this.start + (this.end - this.start) * fraction;
+    this.track.style.transform = `translate3d(${this.offset}px,0,0)`;
+  }
+
+  cardAtMarker() {
+    return Math.floor((this.marker - this.offset + this.gap / 2) / this.step);
   }
 
   reveal(sound = true) {
-    this.stop();this.measure();this.position(1);
-    this.viewport.classList.add('landed');
-    this.result.textContent = this.winner.name;
-    this.skip.hidden = true;
-    this.play.hidden = this.again.hidden = false;
-    this.play.setAttribute('aria-label','Play ' + this.winner.name);
+    this.stop();this.dialog.classList.add('revealed');
+    this.measure();this.position(1);
+    this.detail.inert = false;
+    this.status.textContent = this.winner.name;
+    this.play.hidden = false;
     this.play.focus({preventScroll:true});
     if (sound) cue('ready',{theme:'bubble',emphasis:'normal'});
   }

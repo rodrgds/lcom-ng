@@ -195,31 +195,69 @@ test('reduced motion keeps previews still and touch launches in one tap', async 
   await expect(mobile.locator('iframe')).toHaveCount(1);await expect(mobile.locator('#loading')).toBeHidden();await phone.close();
 });
 
-test('Surprise Me accelerates, settles on a real game, and restores its opener after play', async ({page},testInfo) => {
+test('Surprise Me ticks through a longer spin, lands within a card and reveals a playable game', async ({page},testInfo) => {
+  await page.addInitScript(()=>{
+    Math.random=()=>.02;
+    window.audioPulses=[];
+    for(const Type of [OscillatorNode,AudioBufferSourceNode]) {
+      const start=Type.prototype.start;Type.prototype.start=function(...args){window.audioPulses.push(performance.now());return start.apply(this,args);};
+    }
+  });
+  const catalog=games.map(game=>({...game,description:'A quick round of '+game.name+'.'}));
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Roulette fixture',games:catalog}}));
   await page.setViewportSize({width:1280,height:800});await page.goto(base);
   const surprise=page.getByRole('button',{name:'Surprise me',exact:true});
-  await surprise.click();
+  await page.evaluate(()=>document.querySelector('#surprise').addEventListener('click',()=>{
+    window.reelFrames=[];
+    const sample=()=>{
+      const dialog=document.querySelector('#surprise-panel'),track=dialog.querySelector('.roulette-track'),marker=dialog.querySelector('.roulette-marker').getBoundingClientRect();
+      const middle=marker.x+marker.width/2, cards=[...track.children];
+      const index=cards.findIndex(card=>{const r=card.getBoundingClientRect();return r.left<=middle&&r.right>=middle;});
+      window.reelFrames.push({time:performance.now(),index,x:track.getBoundingClientRect().x,height:dialog.getBoundingClientRect().height});
+      if(dialog.open&&performance.now()-window.reelFrames[0].time<11000)requestAnimationFrame(sample);
+    };requestAnimationFrame(sample);
+  },{once:true}));
+  const started=await page.evaluate(()=>performance.now());await surprise.click();
   const dialog=page.getByRole('dialog',{name:'Surprise me',exact:true});
   await expect(dialog).toBeVisible();
-  const track=dialog.locator('.roulette-track');
-  const position=()=>track.evaluate(element=>element.getBoundingClientRect().x);
-  const distance=async()=>{const before=await position();await page.waitForTimeout(200);return before-await position();};
-  const early=await distance();await page.waitForTimeout(800);const middle=await distance();
-  expect(middle).toBeGreaterThan(early*1.5);
-  await page.waitForTimeout(2700);const late=await distance();expect(late).toBeLessThan(middle*.4);
-  const play=dialog.getByRole('button',{name:/^Play /});await expect(play).toBeVisible();
-  const name=(await play.getAttribute('aria-label')).slice(5),winner=games.find(game=>game.name===name);expect(winner).toBeTruthy();
-  const marker=await dialog.locator('.roulette-marker').boundingBox();
-  const card=await track.locator('[data-selected="true"]').boundingBox();
-  expect(Math.abs(card.x+card.width/2-marker.x-marker.width/2)).toBeLessThan(2);
+  await expect(dialog.getByRole('button')).toHaveCount(0);
+  await expect(dialog.getByRole('heading')).toHaveCount(0);
+  const rollingBox=await dialog.boundingBox(),track=dialog.locator('.roulette-track');
+  const play=dialog.getByRole('button',{name:/^Play /});await expect(play).toBeVisible({timeout:11000});
+  const elapsed=await page.evaluate(()=>performance.now())-started;
+  expect(elapsed).toBeGreaterThan(7500);expect(elapsed).toBeLessThan(11000);
+  const name=(await play.getAttribute('aria-label')).slice(5),winner=catalog.find(game=>game.name===name);expect(winner).toBeTruthy();
+  await expect(dialog.getByRole('heading',{name:winner.name,exact:true})).toBeVisible();
+  await expect(dialog.locator('#surprise-facts')).toHaveText('2020 · 1.3 MB');
+  await expect(dialog.locator('#surprise-description')).toHaveText(winner.description);
+  await expect(dialog.getByRole('link',{name:'Repository for '+winner.name})).toHaveAttribute('href',winner.repository);
+  expect(winner.screenshots).toContain(await dialog.locator('.surprise-scene').getAttribute('src'));
+  await expect.poll(async()=>(await dialog.boundingBox()).height).toBeGreaterThan(rollingBox.height*1.8);
+  await page.waitForTimeout(600);
+  const marker=await dialog.locator('.roulette-marker').boundingBox(),card=await track.locator('[data-selected="true"]').boundingBox();
+  const landing=(marker.x+marker.width/2-card.x)/card.width;
+  expect(landing).toBeGreaterThan(.04);expect(landing).toBeLessThan(.2);
+  const observed=await page.evaluate(()=>({frames:reelFrames,pulses:audioPulses}));
+  const nearest=time=>observed.frames.reduce((best,frame)=>Math.abs(frame.time-observed.frames[0].time-time)<Math.abs(best.time-observed.frames[0].time-time)?frame:best);
+  const speed=(from,to)=>{const a=nearest(from),b=nearest(to);return (a.x-b.x)/(b.time-a.time);};
+  expect(speed(1000,1200)).toBeGreaterThan(speed(50,250)*1.5);
+  expect(speed(6000,6200)).toBeLessThan(speed(1000,1200)*.4);
+  const passed=[...new Set(observed.frames.filter(frame=>frame.index>=0).map(frame=>frame.index))];
+  const pulses=observed.pulses.filter((time,index,all)=>!index||time-all[index-1]>10);
+  // Every card crossing has its own attack, even during the fast part. The
+  // previous time throttle dropped audible ticks for roughly half the cards.
+  expect(pulses.length).toBeGreaterThanOrEqual(passed.length);
+  expect(pulses.length).toBeLessThanOrEqual(passed.length+4);
+  const finalHeight=(await dialog.boundingBox()).height;
+  expect(observed.frames.some(frame=>frame.height>rollingBox.height+15&&frame.height<finalHeight-15)).toBe(true);
+  await testInfo.attach('roulette-motion-and-audio',{body:JSON.stringify(observed),contentType:'application/json'});
   await page.screenshot({path:testInfo.outputPath('surprise-result.png')});
   await play.click();await expect(page.locator('iframe')).toHaveAttribute('src',new RegExp(winner.url));
   await page.getByRole('button',{name:'Games',exact:true}).click();await expect(surprise).toBeFocused();
-  await surprise.click();await dialog.getByRole('button',{name:'Skip animation',exact:true}).click();
-  await expect(dialog.getByRole('button',{name:/^Play /})).toBeVisible();
-  await dialog.getByRole('button',{name:'Spin again',exact:true}).click();
-  await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();
-  await page.waitForTimeout(5500);await expect(page.locator('iframe')).toHaveCount(0);await expect(surprise).toBeFocused();
+  await surprise.click();await page.mouse.click(2,2);await expect(dialog).not.toBeVisible();
+  const afterClose=await page.evaluate(()=>audioPulses.length);
+  await page.waitForTimeout(9500);await expect(page.locator('iframe')).toHaveCount(0);await expect(surprise).toBeFocused();
+  expect(await page.evaluate(()=>audioPulses.length)).toBe(afterClose);
 });
 
 test('real collection sounds start on interaction without a sound setting or autoplay', async ({page}) => {
@@ -248,8 +286,7 @@ test('real collection sounds start on interaction without a sound setting or aut
   const starts=await page.evaluate(()=>audioStarts);
   await page.getByRole('button',{name:'Surprise me',exact:true}).click();
   await expect.poll(()=>page.evaluate(()=>audioStarts)).toBeGreaterThan(starts);
-  await page.getByRole('button',{name:'Skip animation',exact:true}).click();
-  await page.getByRole('button',{name:'Close Surprise me',exact:true}).click();
+  await page.keyboard.press('Escape');
   await page.evaluate(()=>localStorage.setItem('lcom-arcade-sound','false'));
   await page.reload();await expect(page.locator('#games .game-launch')).toHaveCount(24);
   expect(await page.evaluate(()=>audioContexts.length)).toBe(0);
@@ -258,29 +295,29 @@ test('real collection sounds start on interaction without a sound setting or aut
   expect(errors).toEqual([]);
 });
 
-test('touch roulette supports reduced motion, resize and missing Web Audio', async ({browser},testInfo) => {
+test('touch roulette preserves an off-center landing on resize with reduced motion and no Web Audio', async ({browser},testInfo) => {
   const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});
   const page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));
-  await page.addInitScript(()=>{Object.defineProperty(window,'AudioContext',{value:undefined});Object.defineProperty(window,'webkitAudioContext',{value:undefined});});
+  await page.addInitScript(()=>{Math.random=()=>.98;Object.defineProperty(window,'AudioContext',{value:undefined});Object.defineProperty(window,'webkitAudioContext',{value:undefined});});
   await page.goto(base);
   await page.getByRole('button',{name:'Surprise me',exact:true}).tap();
   const dialog=page.getByRole('dialog',{name:'Surprise me',exact:true});
   await expect(dialog.getByRole('button',{name:/^Play /})).toBeVisible({timeout:1000});
+  await expect(dialog.getByRole('button')).toHaveCount(1);
   const transform=await dialog.locator('.roulette-track').evaluate(element=>element.style.transform);
   await page.waitForTimeout(150);expect(await dialog.locator('.roulette-track').evaluate(element=>element.style.transform)).toBe(transform);
-  const alignment=()=>dialog.evaluate(element=>{const card=element.querySelector('[data-selected]').getBoundingClientRect(),marker=element.querySelector('.roulette-marker').getBoundingClientRect();return Math.abs(card.x+card.width/2-marker.x-marker.width/2);});
-  expect(await alignment()).toBeLessThan(2);
+  const alignment=()=>dialog.evaluate(element=>{const card=element.querySelector('[data-selected]').getBoundingClientRect(),marker=element.querySelector('.roulette-marker').getBoundingClientRect();return (marker.x+marker.width/2-card.x)/card.width;});
+  const landing=await alignment();expect(landing).toBeGreaterThan(.8);expect(landing).toBeLessThan(.96);
   await page.screenshot({path:testInfo.outputPath('surprise-phone.png')});
-  await page.setViewportSize({width:844,height:390});await expect.poll(alignment).toBeLessThan(2);
+  await page.setViewportSize({width:844,height:390});await expect.poll(alignment).toBeCloseTo(landing,2);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(844);
   const box=await dialog.boundingBox();expect(box.y).toBeGreaterThanOrEqual(0);expect(box.y+box.height).toBeLessThanOrEqual(390);
-  for(const button of [dialog.getByRole('button',{name:/^Play /}),dialog.getByRole('button',{name:'Spin again',exact:true})]) {
-    const action=await button.boundingBox();expect(action.y+action.height).toBeLessThanOrEqual(box.y+box.height);
-    expect(await button.evaluate(element=>{const rect=element.getBoundingClientRect();return element.contains(document.elementFromPoint(rect.x+rect.width/2,rect.y+rect.height/2));})).toBe(true);
-  }
+  const button=dialog.getByRole('button',{name:/^Play /});
+  const action=await button.boundingBox();expect(action.y+action.height).toBeLessThanOrEqual(box.y+box.height);
+  expect(await button.evaluate(element=>{const rect=element.getBoundingClientRect();return element.contains(document.elementFromPoint(rect.x+rect.width/2,rect.y+rect.height/2));})).toBe(true);
   await page.screenshot({path:testInfo.outputPath('surprise-landscape.png')});
-  await dialog.getByRole('button',{name:'Spin again',exact:true}).tap();
-  await expect(dialog.getByRole('button',{name:/^Play /})).toBeVisible();expect(await alignment()).toBeLessThan(2);
-  await dialog.getByRole('button',{name:'Close Surprise me',exact:true}).tap();
-  await expect(dialog).not.toBeVisible();expect(errors).toEqual([]);await context.close();
+  await page.touchscreen.tap(2,2);await expect(dialog).not.toBeVisible();
+  await page.getByRole('button',{name:'Surprise me',exact:true}).tap();
+  await expect(dialog.getByRole('button',{name:/^Play /})).toBeVisible();expect(await alignment()).toBeCloseTo(landing,2);
+  await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();expect(errors).toEqual([]);await context.close();
 });

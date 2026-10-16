@@ -61,8 +61,11 @@ from a game. Open it with **Ctrl+K** or **Command+K**, and dismiss it with Escap
 or a tap outside. Arrow keys move through the visible grid in search and the
 library. **Shuffle** rearranges the library.
 
-**Surprise me** spins through game icons, then offers **Play** or **Spin again**.
-You can skip the animation; reduced motion shows the result immediately.
+**Surprise me** spins for about nine seconds, ticking as each game passes the
+marker. It slows to a point within the chosen icon, then expands into the game's
+screenshot, description, year, download size and public repository link, with a
+**Play** button. Escape or a tap outside closes it. Reduced motion shows the
+result immediately.
 The logo and four actions have separate framed tiles. Phones keep these in two
 columns above a three-column game grid. UI sounds play after
 interaction and can be muted through the browser tab. No audio downloads or
