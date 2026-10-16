@@ -37,6 +37,7 @@ def check(folder, require_tracked=False):
             if not project.is_relative_to(ROOT / 'examples') or project.is_relative_to(ROOT / 'examples/community'):
                 raise ValueError(f'{project}: missing UPSTREAM.json')
             code = [path for path in project.rglob('*') if path.is_file()
+                    and not any(part in ('.lcom-ng', '.git') for part in path.relative_to(project).parts)
                     and path.suffix.lower() in ('.c', '.h', '.cpp', '.hpp')]
             if not code:
                 raise ValueError(f'{project}: no authored source files')

@@ -26,12 +26,17 @@ class MixedCollectionSources(unittest.TestCase):
             for folder, code in ((local, 'int main(void) { return 0; }'), (imported, 'int main(void) { return 1; }')):
                 (folder / 'main.c').write_text(code)
                 (folder / 'lcom.json').write_text(json.dumps({'name': folder.name}))
+            (local / '.gitignore').write_text('.lcom-ng/\n')
             upstream = imported / 'UPSTREAM.json'
             upstream.write_text(json.dumps({'sourceHashes': {'main.c': hashlib.sha256((imported / 'main.c').read_bytes()).hexdigest()}}))
             (collection / 'lcom.collection.json').write_text(json.dumps({'projects': ['../../examples/local', '../../examples/community/imported']}))
             subprocess.run(['git', 'init', '-q', str(repo)], check=True, capture_output=True)
             subprocess.run(['git', '-C', str(repo), 'add', '.'], check=True, capture_output=True)
             with patch.object(checker, 'ROOT', repo):
+                checker.check(collection, require_tracked=True)
+                generated = local / '.lcom-ng/android/native'
+                generated.mkdir(parents=True)
+                (generated / 'GameConfig.hpp').write_text('int generated;')
                 checker.check(collection, require_tracked=True)
                 (local / 'missing.c').write_text('int missing;')
                 with self.assertRaisesRegex(ValueError, 'not tracked'):
