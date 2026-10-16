@@ -69,3 +69,34 @@ same resolved tools from `.devenv/profile/bin`.
 
 These changes affect the browser collection launcher. Game binaries and the
 previously delivered Android APK retain their existing verification scope.
+
+## Compact controls follow-up
+
+Web source `0530efd9065da2f0b39a97cecd90d0bfb5a6ea8f` supersedes the
+three-tile controls and optional sound setting described above:
+
+- One framed square contains the compact brand header and Search, Screen,
+  Shuffle and Surprise buttons. The four actions occupy a two-by-two grid.
+- Sound is enabled after interaction, with no in-page sound switch or stored
+  preference. Browser tab muting controls audio. Page load remains silent.
+- Mobile sizing leaves room for three rows of 44px targets. Labels remain on
+  one line. Tab order follows the visual order; spatial arrows remain active.
+
+All 14 focused release browser checks passed, plus the updated label and target
+checks at widths 320, 390, 584, 768 and 1440. The new layout and sound checks first
+failed against the previous launcher. A phone label-wrap regression also failed
+before the compact label treatment. Actual Web Audio output was measured after
+keyboard and pointer interactions; reload creates no audio context.
+
+The real 66-game catalogue passed responsive checks at 320, 390, 768 and 1440.
+The documentation build, design scan and owned-diff checks passed. The pinned
+66-game source inventory verified 7,757 files and 37 recorded corrections.
+Concurrent imports, grouping and runtime work were preserved; the deployment
+uses the previous published catalogue and only this change's launcher files.
+
+Published Worker version: `bb1d766b-76e4-4db4-bd8e-b75c5b39566b`.
+All 15 checked public assets match the release package. Live desktop and touch
+checks passed the compact search, both shortcuts, spatial search navigation,
+roulette result, sound after interaction, a real Portal 2D first frame and return
+focus. Phone portrait, landscape and reduced motion passed, with no page errors.
+The in-app browser also confirmed the compact control tile visually.
