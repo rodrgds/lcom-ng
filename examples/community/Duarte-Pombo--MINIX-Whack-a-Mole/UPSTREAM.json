@@ -4,7 +4,16 @@
   "project": "proj/src",
   "licenseFiles": [],
   "licenseStatus": "No license found in upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "proj/src/uiElements/cursor.c",
+      "patch": "SOURCE_PATCH.diff",
+      "reason": "Keep both original hammer frames visible inside the framebuffer while preserving access to all six mole centres and menu/settings targets.",
+      "upstreamSha256": "cf2eaa7a5a70c39686233d569b0dc08aef93fa4cf4f264c92cfd8acd80c5cec8",
+      "patchedSha256": "90010f982e55d3875b29c23180380f76783a196e9c35ac316b74561ed79ae05d",
+      "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_whack_hammer_stays_visible_and_can_hit_bottom_right_mole"
+    }
+  ],
   "sha256": {
     ".gitignore": "9750e7e5d2b13eb643b8e9ff7b1c3feed05c1f028031044d0e4f75a94f5a3228",
     "README.md": "381c7c78aafa593c5132480e39dc55f5b03b9c1f6b87dc850cc561ed1236c39c",

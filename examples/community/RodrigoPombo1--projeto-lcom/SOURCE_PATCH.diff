@@ -1,0 +1,46 @@
+--- a/proj/src/devices/graphics/graphics.c
++++ b/proj/src/devices/graphics/graphics.c
+@@ -130,3 +130,13 @@
+     }
+     return 0;
+ }
++
++int cursor_load_to_frame_buffer(struct image_struct *image, int x, int y, uint8_t *video_mem) {
++    int max_x = h_res > image->width ? h_res - image->width : 0;
++    int max_y = v_res > image->height ? v_res - image->height : 0;
++    x -= (int) image->width / 2;
++    y -= (int) image->height / 2;
++    x = x < 0 ? 0 : x > max_x ? max_x : x;
++    y = y < 0 ? 0 : y > max_y ? max_y : y;
++    return image_load_to_frame_buffer(image, x, y, video_mem);
++}
+--- a/proj/src/devices/graphics/graphics.h
++++ b/proj/src/devices/graphics/graphics.h
+@@ -25,4 +25,7 @@
+ 
+ int (image_load_to_frame_buffer)(struct image_struct *image, uint16_t x, uint16_t y, uint8_t *video_mem);
+ 
++/* Draw the whole cursor around its unchanged logical hotspot. */
++int cursor_load_to_frame_buffer(struct image_struct *image, int x, int y, uint8_t *video_mem);
++
+ #endif
+--- a/proj/src/main.c
++++ b/proj/src/main.c
+@@ -392,7 +392,7 @@
+                     break;
+             }
+             memcpy(mouse_frame_buffer, game_frame_buffer, length_frame_buffer);
+-            image_load_to_frame_buffer(&cursor, mouse_position_x - 16, mouse_position_y - 16, mouse_frame_buffer);
++            cursor_load_to_frame_buffer(&cursor, mouse_position_x, mouse_position_y, mouse_frame_buffer);
+             memcpy(frame_buffer, mouse_frame_buffer, length_frame_buffer);
+             continue; // skip the rest of the loop
+         }
+@@ -634,7 +634,7 @@
+             continue;
+         }
+         memcpy(mouse_frame_buffer, game_frame_buffer, length_frame_buffer);
+-        image_load_to_frame_buffer(&cursor, mouse_position_x - 16, mouse_position_y - 16, mouse_frame_buffer);
++        cursor_load_to_frame_buffer(&cursor, mouse_position_x, mouse_position_y, mouse_frame_buffer);
+         memcpy(frame_buffer, mouse_frame_buffer, length_frame_buffer);
+     }
+ 

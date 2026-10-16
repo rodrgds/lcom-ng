@@ -392,7 +392,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
                     break;
             }
             memcpy(mouse_frame_buffer, game_frame_buffer, length_frame_buffer);
-            image_load_to_frame_buffer(&cursor, mouse_position_x - 16, mouse_position_y - 16, mouse_frame_buffer);
+            cursor_load_to_frame_buffer(&cursor, mouse_position_x, mouse_position_y, mouse_frame_buffer);
             memcpy(frame_buffer, mouse_frame_buffer, length_frame_buffer);
             continue; // skip the rest of the loop
         }
@@ -634,7 +634,7 @@ int (proj_main_loop)(int argc, char *argv[]) {
             continue;
         }
         memcpy(mouse_frame_buffer, game_frame_buffer, length_frame_buffer);
-        image_load_to_frame_buffer(&cursor, mouse_position_x - 16, mouse_position_y - 16, mouse_frame_buffer);
+        cursor_load_to_frame_buffer(&cursor, mouse_position_x, mouse_position_y, mouse_frame_buffer);
         memcpy(frame_buffer, mouse_frame_buffer, length_frame_buffer);
     }
 

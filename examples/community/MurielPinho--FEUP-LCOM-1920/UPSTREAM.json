@@ -29,7 +29,20 @@
     "proj/src/timer.c": "894d0e555723fd46e053e265a3b87695e2657516dc93383441a14704c3f69ae8",
     "proj/src/utils.c": "b866a69d3457479e7a2357ccff327ba9ca26075aef3577baa3bd0d29a72a2f00"
   },
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "proj/src/mouse.c",
+          "originalSha256": "b3d68f9711163238269ccff988bd5a8328c2272b1db0d3b430e83d337f2d634d",
+          "patchedSha256": "5ff504a0795cf1541933407a48fda9f6d0de1f677c8dc18e2ffd89d7421981c1",
+          "reason": "Render a bounded copy of the centered cursor sprite so its original logical edge coordinates remain available for menu and graph hit tests."
+        }
+      ],
+      "verification": "Actual compiled renderer regression RED before correction and GREEN afterward: tests/community_source_regressions.py test_euler_cursor_render_keeps_centered_art_inside_frame"
+    }
+  ],
   "derivedAssets": [
     {
       "path": "proj/src/icon.png",

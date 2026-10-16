@@ -5,6 +5,7 @@ unsigned int vram_size;
 uint8_t* video_mem;
 uint8_t* temp_mem;
 vbe_mode_info_t mode_info;
+extern struct Sprite *mouse;
 
 int (setBIOSMode)(uint16_t mode) {
     reg86_t r86;
@@ -81,7 +82,7 @@ int (clear_temp_buf)() {
 
 int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
     if (color == 0xff000000) return 0;
-    if (x > mode_info.XResolution || y > mode_info.YResolution) return 1;
+    if (x >= mode_info.XResolution || y >= mode_info.YResolution) return 1;
 
     if (mode_info.BitsPerPixel != 32) {
         color = color & (BIT(mode_info.BitsPerPixel) - 1);
@@ -99,6 +100,12 @@ int drawSprite(struct Sprite *sprite, bool reversed){
     int x = sprite->x_pos;
     int y = sprite->y_pos;
     uint16_t height = sprite->height, width = sprite->width;
+    if (sprite == mouse) {
+        int max_x = mode_info.XResolution > width ? mode_info.XResolution - width : 0;
+        int max_y = mode_info.YResolution > height ? mode_info.YResolution - height : 0;
+        x = x < 0 ? 0 : x > max_x ? max_x : x;
+        y = y < 0 ? 0 : y > max_y ? max_y : y;
+    }
     if (!reversed) {
         for (int h = 0 ; h < height ; h++) {
             for (int w = 0 ; w < width ; w++) {

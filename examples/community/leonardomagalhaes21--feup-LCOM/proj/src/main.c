@@ -206,10 +206,7 @@ int(proj_main_loop)(int argc, char *argv[]) {
             if (idx == 3) {
               idx = 0;
               mouse_generate_packet();
-              if (!((mouse_packet.delta_x + mouse->x) <= 0 || (mouse_packet.delta_x + mouse->x + 7) >= (info.XResolution) || (-mouse_packet.delta_y + mouse->y) <= 0 || (-mouse_packet.delta_y + mouse->y) > (info.YResolution))) {
-                mouse->x += mouse_packet.delta_x;
-                mouse->y -= mouse_packet.delta_y;
-              }
+              moveMouseCursor(mouse, mouse_packet.delta_x, mouse_packet.delta_y, info.XResolution, info.YResolution);
             if(currentState==RESOLUTION){
                   if(res14C(mouse->x, mouse->y)==0){
                     change_mode(0x14C);
@@ -386,10 +383,7 @@ int(proj_main_loop)(int argc, char *argv[]) {
             if (idx == 3) {
               idx = 0;
               mouse_generate_packet();
-              if (!((mouse_packet.delta_x + mouse->x) <= 0 || (mouse_packet.delta_x + mouse->x + 7) >= (info.XResolution) || (-mouse_packet.delta_y + mouse->y) <= 0 || (-mouse_packet.delta_y + mouse->y) > (info.YResolution))) {
-                mouse->x += mouse_packet.delta_x;
-                mouse->y -= mouse_packet.delta_y;
-              }
+              moveMouseCursor(mouse, mouse_packet.delta_x, mouse_packet.delta_y, info.XResolution, info.YResolution);
               if (currentState == MENU) {
                 playButton(mouse->x, mouse->y);
                 leaderboardButton(mouse->x, mouse->y);

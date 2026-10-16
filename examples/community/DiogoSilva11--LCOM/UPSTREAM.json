@@ -30,16 +30,22 @@
   },
   "sourcePatches": [
     {
-      "path": "examples/community/DiogoSilva11--LCOM/SOURCE_PATCH.diff",
+      "path": "SOURCE_PATCH.diff",
       "files": [
         {
           "path": "proj/src/mouse.c",
           "originalSha256": "317eae3f1d21405b7d76a245d4d31a65a502166c6b15035f43baf590cac51e01",
           "patchedSha256": "a8a840650f52c3b67958b6d2591c68222cdaede701829c060773e6c6a4fd202e",
           "reason": "Original mouse_cmd waited for an ACK after controller prefix0xD4, which has no reply. Original menu exit failed time-out/status1 in mouse_disable; now only the device command argument waits for its ACK."
+        },
+        {
+          "path": "proj/src/game.c",
+          "originalSha256": "cfb859940e9839cbdc641f9ea64b43f0c00da9e1113db544fc0afe90ac35375e",
+          "patchedSha256": "49bec810c204cd4a37949a5025d7ff26499331b93a2a756e0037ac0e56a14a7c",
+          "reason": "Clamp only the14x13 crosshair drawing origin inside the framebuffer. Preserve full-screen logical aim and shooting coordinates. The original pixel renderer writes all supplied pixels without clipping."
         }
       ],
-      "reproduction": "source-regressions/DiogoSilva11--LCOM/results.json"
+      "reproduction": "Public moveCrosshair then drawCrosshair submits draw1023,767 before correction, which extends past1024x768 allocation. Corrected draw fits1010,755 while crosshairCenter remains1030,773. Signed return-to-origin is also verified."
     }
   ],
   "derivedAssets": [],

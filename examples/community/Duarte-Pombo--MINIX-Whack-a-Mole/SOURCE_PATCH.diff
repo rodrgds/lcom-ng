@@ -1,0 +1,24 @@
+--- a/proj/src/uiElements/cursor.c
++++ b/proj/src/uiElements/cursor.c
+@@ -151,12 +151,17 @@
+ 
+     if (new_x < 0) 
+         new_x = 0;
+-    if ((uint16_t)new_x >= h_res) 
+-        new_x = (int16_t)(h_res - 1);
++    /* Both hammer frames fit; every mole/menu target remains reachable. */
++    unsigned width = hammerCursor_img.width > hammerCursorClick_img.width ? hammerCursor_img.width : hammerCursorClick_img.width;
++    unsigned height = hammerCursor_img.height > hammerCursorClick_img.height ? hammerCursor_img.height : hammerCursorClick_img.height;
++    int max_x = h_res > width ? (int)(h_res - width) : 0;
++    int max_y = v_res > height ? (int)(v_res - height) : 0;
++    if (new_x > max_x)
++        new_x = max_x;
+     if (new_y < 0) 
+         new_y = 0;
+-    if ((uint16_t)new_y >= v_res) 
+-        new_y = (int16_t)(v_res - 1);
++    if (new_y > max_y)
++        new_y = max_y;
+     
+     cursor_update_pos(new_x, new_y);
+ }

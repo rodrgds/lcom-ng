@@ -1,5 +1,14 @@
 --- a/proj/Src/game.c
 +++ b/proj/Src/game.c
+@@ -26,7 +26,7 @@
+     load_background();
+     cursor = create_sprite(cursor_xpm, 600, 500, 0, 0);
+     old_cursor = *(cursor);
+-    draw_sprite(cursor);
++    draw_cursor(cursor);
+     draw_time(old_time);
+   }
+ 
 @@ -57,6 +57,10 @@
  
    if (game_state != MENU && game_state != OVER)
@@ -20,7 +29,7 @@
    char suffix[] = ".txt";
    int level = current_level;
    sprintf(file, "%d", level);
-@@ -168,8 +172,12 @@
+@@ -168,12 +172,16 @@
    draw_level();
    draw_sprite(character);
  
@@ -35,6 +44,20 @@
  
    cursor = create_sprite(cursor_xpm, 600, 500, 0, 0);
    old_cursor = *(cursor);
+-  draw_sprite(cursor);
++  draw_cursor(cursor);
+ 
+   return 0;
+ }
+@@ -211,7 +219,7 @@
+ 
+   cursor = create_sprite(cursor_xpm, 600, 500, 0, 0);
+   old_cursor = *(cursor);
+-  draw_sprite(cursor);
++  draw_cursor(cursor);
+ 
+   return 0;
+ }
 @@ -310,19 +318,30 @@
    erase_everything();
    flip_page();
@@ -68,6 +91,15 @@
  }
  
  bool check_level_end() {
+@@ -1320,7 +1339,7 @@
+ 
+   Sprite old_time_sprites[19];
+   draw_time(old_time_sprites); // time always shows up
+-  draw_sprite(cursor);         // cursor is always used
++  draw_cursor(cursor);         // cursor is always used
+   buffer_screen();
+ 
+   // erase the previous frame
 --- a/proj/Src/sprites.c
 +++ b/proj/Src/sprites.c
 @@ -35,8 +35,9 @@
@@ -82,6 +114,23 @@
      free(sp);
      sp = NULL;
  }
+@@ -51,6 +52,16 @@
+                 vg_draw_pixel(x, y, color);
+         }
+     }
++}
++
++void draw_cursor(Sprite *cursor){
++    // Keep the rendered art inside the screen without changing portal aim.
++    Sprite render = *cursor;
++    int max_x = (int)get_h_res() > render.width ? get_h_res() - render.width : 0;
++    int max_y = (int)get_v_res() > render.height ? get_v_res() - render.height : 0;
++    render.x = render.x < 0 ? 0 : render.x > max_x ? max_x : render.x;
++    render.y = render.y < 0 ? 0 : render.y > max_y ? max_y : render.y;
++    draw_sprite(&render);
+ }
+ 
+ void erase_sprite(Sprite* sp){
 --- a/proj/Src/asprite.c
 +++ b/proj/Src/asprite.c
 @@ -8,27 +8,31 @@
@@ -142,3 +191,15 @@
      destroy_sprite(asp->sp);
      free(asp);
      asp = NULL;
+--- a/proj/Src/sprites.h
++++ b/proj/Src/sprites.h
+@@ -57,6 +57,9 @@
+  */
+ void draw_sprite(Sprite* sp);
+ 
++/** Draw cursor art inside the frame while preserving its logical aim. */
++void draw_cursor(Sprite* cursor);
++
+ /**
+  * @brief Erases the sprite by painting it all in black
+  * @param sp Sprites intended to erase

@@ -8,3 +8,16 @@
        uint8_t ack_byte;
        if (mouse_ret_value(&ack_byte))
          return 1;
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -246,7 +246,9 @@
+ }
+ 
+ int (drawCrosshair)() {
+-  if (vg_draw_element(crosshair_sprite, crosshair.x, crosshair.y)) {
++  int draw_x = crosshair.x < CONSOLE_WIDTH - BULLET_WIDTH ? crosshair.x : CONSOLE_WIDTH - BULLET_WIDTH;
++  int draw_y = crosshair.y < CONSOLE_HEIGHT - BULLET_HEIGHT ? crosshair.y : CONSOLE_HEIGHT - BULLET_HEIGHT;
++  if (vg_draw_element(crosshair_sprite, draw_x, draw_y)) {
+     if (leave())
+       return 1;
+     return 1;

@@ -4,7 +4,16 @@
   "project": "proj",
   "licenseFiles": [],
   "licenseStatus": "No license found in upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "lab4/mouse.c",
+      "patch": "SOURCE_PATCH.diff",
+      "reason": "Keep the complete original 12x12 cursor visible at right/bottom edges; slash/button semantics and menu targets remain reachable.",
+      "upstreamSha256": "f21898f430a71a8a10d04ec828b6ce98753e1d310adf2c02e5e706416c82c187",
+      "patchedSha256": "d74d3ee48f32dec1482b1f8cdef14ba6fecdbacf4a4afe05244cc5a8df2ba4fc",
+      "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_sushi_cursor_edges_keep_the_original_sprite_visible"
+    }
+  ],
   "sha256": {
     ".gitignore": "5be15d3cc0cc24a8478aaff6ad2a9926785ab8e396dbfcec30bc10e6b685bc85",
     ".gitmodules": "b89842a06ac9e957570c55639c1e8111b4a71a1302e45f40699e002eab907b94",

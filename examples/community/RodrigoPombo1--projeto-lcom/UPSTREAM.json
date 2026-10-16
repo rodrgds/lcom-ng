@@ -46,7 +46,33 @@
     "proj/src/xpm_files/LCOM_menu.xpm": "d892d6e36feec95be13c09f1b770ab0777b0838755aeff89ad12280cc79e7b08",
     "proj/src/xpm_files/LCOM_monster.xpm": "f1aa5b3ece3c27b8a02b5be5c423a4fd9792fd4eea0d31af7919d264499c12d8"
   },
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "path": "examples/community/RodrigoPombo1--projeto-lcom/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "proj/src/devices/graphics/graphics.c",
+          "originalSha256": "c147e52be61c9cc275b87db500ffba3f646abebbdce7b8df04dd694d6ef14316",
+          "patchedSha256": "4f65897e3d7375186a468d6658053588d292a5c1cf6140b4df630040f29cbdbf",
+          "reason": "Clamp the centered32x32 cursor draw origin on initial and interrupt-driven redraws, preserving logical menu/game coordinates and full original cursor visibility."
+        },
+        {
+          "path": "proj/src/devices/graphics/graphics.h",
+          "originalSha256": "988025c3057f566b2e96a4a502eeafdf00c30d039c37643063a3f80341831fc5",
+          "patchedSha256": "ff972c2e5da0b0f62d52d9cd0d405a2b08c367e230a7799ba8a8fc5dee7b4cc1",
+          "reason": "Clamp the centered32x32 cursor draw origin on initial and interrupt-driven redraws, preserving logical menu/game coordinates and full original cursor visibility."
+        },
+        {
+          "path": "proj/src/main.c",
+          "originalSha256": "ddf6495a223c11de6b70564a7ae79f383d3598f871ff7432abf8ac8192d1cb84",
+          "patchedSha256": "0d5698d3f8a8d3f298ba1ccb18bcf163427de0ca4dcb6447e697c7561fed695b",
+          "reason": "Clamp the centered32x32 cursor draw origin on initial and interrupt-driven redraws, preserving logical menu/game coordinates and full original cursor visibility."
+        }
+      ],
+      "reason": "Clamp the centered32x32 cursor draw origin on initial and interrupt-driven redraws, preserving logical menu/game coordinates and full original cursor visibility.",
+      "verification": "Compiled source regression RED on frozen43c3b7a, GREEN after repair: tests/community_source_regressions.py StudentSourceRegressions.test_leiria_cursor_is_visible_at_both_logical_corners"
+    }
+  ],
   "license": {
     "status": "missing",
     "files": []

@@ -1,0 +1,15 @@
+--- a/src/view/view.c
++++ b/src/view/view.c
+@@ -747,6 +747,12 @@
+ {
+   uint16_t height = sprite->height;
+   uint16_t width = sprite->width;
++  if (sprite == mouse || sprite == mouse_click) {
++    int max_x = mode_info.XResolution > width ? mode_info.XResolution - width : 0;
++    int max_y = mode_info.YResolution > height ? mode_info.YResolution - height : 0;
++    x = x < 0 ? 0 : x > max_x ? max_x : x;
++    y = y < 0 ? 0 : y > max_y ? max_y : y;
++  }
+   uint32_t current_color;
+   for (int h = 0; h < height; h++)
+   {

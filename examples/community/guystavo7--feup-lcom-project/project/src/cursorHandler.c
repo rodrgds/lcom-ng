@@ -134,7 +134,15 @@ void cursorSetPlacementHoverValid(Cursor* c, bool valid) {
 }
 
 static void cursorDraw(Cursor* c, Terminal* terminal, float deltaTime) {
-    drawSpriteXPM(c->sprites[c->currentState], terminal, c->x, c->y, false);
+    /* Placement still uses the full-screen input point; only artwork is inset. */
+    SpriteXPM* sprite = c->sprites[c->currentState];
+    int max_x = c->width - getSpriteWidth(sprite);
+    int max_y = c->height - getSpriteHeight(sprite);
+    if (max_x < 0) max_x = 0;
+    if (max_y < 0) max_y = 0;
+    int draw_x = c->x > max_x ? max_x : c->x;
+    int draw_y = c->y > max_y ? max_y : c->y;
+    drawSpriteXPM(sprite, terminal, draw_x, draw_y, false);
 }
 
 void cursorUpdate(Cursor* c, Terminal* terminal, float deltaTime) {

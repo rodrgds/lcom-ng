@@ -130,3 +130,13 @@ int (image_load_to_frame_buffer)(struct image_struct *image, uint16_t x, uint16_
     }
     return 0;
 }
+
+int cursor_load_to_frame_buffer(struct image_struct *image, int x, int y, uint8_t *video_mem) {
+    int max_x = h_res > image->width ? h_res - image->width : 0;
+    int max_y = v_res > image->height ? v_res - image->height : 0;
+    x -= (int) image->width / 2;
+    y -= (int) image->height / 2;
+    x = x < 0 ? 0 : x > max_x ? max_x : x;
+    y = y < 0 ? 0 : y > max_y ? max_y : y;
+    return image_load_to_frame_buffer(image, x, y, video_mem);
+}

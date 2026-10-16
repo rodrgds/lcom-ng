@@ -57,6 +57,43 @@
         }
       ],
       "reproduction": "source-regressions/luizhqueiroz--LCOM-MemoryGame/results.json"
+    },
+    {
+      "path": "examples/community/luizhqueiroz--LCOM-MemoryGame/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "src/game/main_game/main_game.c",
+          "originalSha256": "0fd330d7f3a0165724d5a45d9013c81276b3361c8220b35cd078172261d0f539",
+          "patchedSha256": "f1a32586a6b9c7792d2a8fcf5ea28e13009d1bc04dd269dcb2fb16925d95f66e",
+          "reason": "Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates."
+        },
+        {
+          "path": "src/game/menu/menu.c",
+          "originalSha256": "4b94d24b6bfb1049450922f0ae447015c07e7cc67497a0895058eade6fd55b45",
+          "patchedSha256": "cab2003b32507e531c8add2e6aae8dbd44a234d9537d9517c35ab8ee30323969",
+          "reason": "Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates."
+        },
+        {
+          "path": "src/game/record/record.c",
+          "originalSha256": "8776edfa6539ff57f42caa4d1e063128bb3265ed47c7e66d6cc0593b0f9e2bf7",
+          "patchedSha256": "cfc3d87aa55611b6807148109858960bc604b41c4bb8d81e7ed9e618be9c897c",
+          "reason": "Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates."
+        },
+        {
+          "path": "src/images/sprite/sprite.c",
+          "originalSha256": "969c30ca25f07f316722bd73c70587d64e6020eda0c6b65ada85e4e85403cb90",
+          "patchedSha256": "7c9dd3aa074deb1101e8584cf220f512dfc2c8ca5744c7cbe125376c6cc81513",
+          "reason": "Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates."
+        },
+        {
+          "path": "src/images/sprite/sprite.h",
+          "originalSha256": "281f8033df5d0b25b06b40e7c177a33f01bb9fbf146bede347cc2a01a5dbb5d7",
+          "patchedSha256": "76a389edcb411cbc3b732669b9a051f6dea9c72a23b969290d52600bdb266629",
+          "reason": "Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates."
+        }
+      ],
+      "reason": "Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates.",
+      "verification": "Compiled source regression RED on frozen43c3b7a, GREEN after repair: tests/community_source_regressions.py StudentSourceRegressions.test_memory_quest_draws_complete_cursor_in_every_phase"
     }
   ],
   "derivedAssets": [],

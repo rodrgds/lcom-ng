@@ -166,5 +166,20 @@
       "src/.DS_Store": "ba353234e7a077c0d7743c957bf56e6abdd626d1eb6b6e2438b4490b7df06caa",
       "src/devices/.DS_Store": "a442fd7c7ac8758dc89e7b3b4de5a1d7fa869cadcaf5583b4356e81a316e30db"
     }
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "examples/community/DavidGustavo6--LCOM-game/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "src/sprites/sprite.c",
+          "originalSha256": "32254ddb0723b9c8b18ff6acb463e59f9e616bfd8c75d201918a71432643b549",
+          "patchedSha256": "521bc6832f01b2632c5d44e28c30c6f4677896e545f3fb85a0d2a5fda35399b0",
+          "reason": "Keep the entire mouse sprite visible by clamping only its draw origin. Preserve logical slot/tower targeting and other sprites."
+        }
+      ],
+      "reason": "Keep the entire mouse sprite visible by clamping only its draw origin. Preserve logical slot/tower targeting and other sprites.",
+      "verification": "Compiled source regression RED on frozen43c3b7a, GREEN after repair: tests/community_source_regressions.py StudentSourceRegressions.test_tower_defense_draws_cursor_inside_screen_without_moving_slot_hotspot"
+    }
+  ]
 }

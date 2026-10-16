@@ -104,11 +104,11 @@ void (main_game_timer)() {
 
 int (main_game_display_mouse)(int x, int y) {
     if (mouse_selected_card != NULL && mode == GAME_MODE) {
-        if (display_sprite(select_mouse_cursor, x, y)) {
+        if (display_cursor(select_mouse_cursor, x, y)) {
             return 1;
         }
     } else {
-        if (display_sprite(mouse_cursor, x, y)) {
+        if (display_cursor(mouse_cursor, x, y)) {
             return 1;
         }
     }

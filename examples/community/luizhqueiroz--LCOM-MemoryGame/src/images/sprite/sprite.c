@@ -49,3 +49,12 @@ int display_sprite(Sprite *sprite, int x, int y) {
 
     return 0; 
 }
+
+int display_cursor(Sprite *sprite, int x, int y) {
+    if (!sprite) return 1;
+    int max_x = mode_info.XResolution > sprite->width ? mode_info.XResolution - sprite->width : 0;
+    int max_y = mode_info.YResolution > sprite->height ? mode_info.YResolution - sprite->height : 0;
+    x = x < 0 ? 0 : x > max_x ? max_x : x;
+    y = y < 0 ? 0 : y > max_y ? max_y : y;
+    return display_sprite(sprite, x, y);
+}

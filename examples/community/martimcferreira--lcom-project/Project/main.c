@@ -153,9 +153,10 @@ int mouse_y = 500;
 
 static void clamp_mouse_position(void) {
   if (mouse_x < 0) mouse_x = 0;
-  if (mouse_x > 799) mouse_x = 799;
+  /* The original cursor is 12 by 15 pixels, drawn top-left. */
+  if (mouse_x > 800 - 12) mouse_x = 800 - 12;
   if (mouse_y < 0) mouse_y = 0;
-  if (mouse_y > 599) mouse_y = 599;
+  if (mouse_y > 600 - 15) mouse_y = 600 - 15;
 }
 
 static bool is_menu_state(GameState state) {

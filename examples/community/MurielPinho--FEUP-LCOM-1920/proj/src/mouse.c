@@ -30,7 +30,14 @@ void delete_mouse(Mouse *mouse)
 
 void draw_mouse(Mouse *mouse)
 {
-  draw_sprite(mouse->sprite);
+  // Rendering uses a copy so edge targets retain their original hit coordinates.
+  Sprite cursor = *mouse->sprite;
+  int min_x = cursor.width / 2, min_y = cursor.height / 2;
+  int max_x = HEIGHT - (cursor.width - min_x);
+  int max_y = WIDTH - (cursor.height - min_y);
+  cursor.x = cursor.x < min_x ? min_x : cursor.x > max_x ? max_x : cursor.x;
+  cursor.y = cursor.y < min_y ? min_y : cursor.y > max_y ? max_y : cursor.y;
+  draw_sprite(&cursor);
 }
 
 void setMouseX(Mouse *mouse, uint16_t x)

@@ -24,7 +24,20 @@
     "Project/src/utils.c": "d3ae979307fb188b9d98ba9d158ed1ba11c5d7570a4346ed2ddd17eb09515979",
     "Project/src/xpm_files.h": "2708811c41bceda27b84eb358eeebadb6ad55ff79fe9ff499749ace47d0f671c"
   },
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "path": "examples/community/Yuka-Sky--LCOM/SOURCE_PATCH.diff",
+      "reason": "Inset only the cursor artwork to the visible framebuffer, preserving original drawing-area coordinates, Clear hit targets, and semantic state warps.",
+      "verification": "Actual source compiled RED/GREEN regression: test_skess_cursor_draw_keeps_canvas_and_edge_hit_coordinates",
+      "files": [
+        {
+          "path": "Project/src/drawScreens.c",
+          "originalSha256": "471ac9225435f7d034e2a46cf1e11030a2f7f3300490381b479f0483ae1adc31",
+          "patchedSha256": "e5d29dd997f231924610bcc49f90f0476292b8fbaca482215ad8d1884013b583"
+        }
+      ]
+    }
+  ],
   "license": {
     "status": "missing",
     "files": []

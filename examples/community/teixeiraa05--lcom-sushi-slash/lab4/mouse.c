@@ -240,9 +240,12 @@ void mouse_update_state(MouseGameState *state, struct packet *pp, int screen_wid
     state->y += state->dy;
 
     if (state->x < 0) state->x = 0;
-    if (state->x > screen_width) state->x = screen_width;
+    /* Original cursor_point.xpm is 12 by 12, drawn top-left. */
+    int max_x = screen_width > 12 ? screen_width - 12 : 0;
+    int max_y = screen_height > 12 ? screen_height - 12 : 0;
+    if (state->x > max_x) state->x = max_x;
     if (state->y < 0) state->y = 0;
-    if (state->y > screen_height) state->y = screen_height;
+    if (state->y > max_y) state->y = max_y;
 
     // Detect slash gesture
     int velocity_squared = state->dx * state->dx + state->dy * state->dy;

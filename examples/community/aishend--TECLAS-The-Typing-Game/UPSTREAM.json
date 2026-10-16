@@ -4,7 +4,21 @@
   "project": "teclas",
   "licenseFiles": [],
   "licenseStatus": "No license found in upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "path": "examples/community/aishend--TECLAS-The-Typing-Game/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "teclas/src/cursor.c",
+          "originalSha256": "acc0fd7a0b76046d074765007bc7fe16b41b8a50a9ec74d24f97206b1c3b43c1",
+          "patchedSha256": "4a1eafdc3c96c275351945fd672b294f1c412ccdacbc7cecab46735a5974918e",
+          "reason": "Keep the entire loaded cursor sprite visible at each edge by clamping its draw origin, preserving logical click coordinates."
+        }
+      ],
+      "reason": "Keep the entire loaded cursor sprite visible at each edge by clamping its draw origin, preserving logical click coordinates.",
+      "verification": "Compiled source regression RED on frozen43c3b7a, GREEN after repair: tests/community_source_regressions.py StudentSourceRegressions.test_teclas_draws_complete_cursor_without_changing_hotspot"
+    }
+  ],
   "sha256": {
     ".gitignore": "c1a77dc30b0d7f5887b81f52ec24e5d5e50edb7c2316217d25d49cc089d0bfd1",
     "Doxyfile": "038dc20df64c74807ba07fa222b52f53a5ab7ac0b7fb13fdb9161b3566fe1bc3",

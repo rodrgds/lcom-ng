@@ -58,6 +58,13 @@ int (draw_timer_display)(int elapsed_time) {
 }
 
 int (draw_cursor)(int x, int y, uint8_t* mouse_map, xpm_image_t img){
+  /* Keep the sprite visible without changing drawing-area or button coordinates. */
+  int max_x = img.width < 1152 ? 1152 - img.width : 0;
+  int max_y = img.height < 864 ? 864 - img.height : 0;
+  if (x > max_x) x = max_x;
+  if (y > max_y) y = max_y;
+  if (x < 0) x = 0;
+  if (y < 0) y = 0;
   if(vg_draw_xpm(img, mouse_map, x, y)) return 1;
   return 0;
 }

@@ -35,4 +35,6 @@ typedef struct
 MouseCursor *createMouseCursor(int x,int y, Sprite *sp);
 
 
+void moveMouseCursor(MouseCursor *mc, int dx, int dy, int width, int height);
+
 #endif

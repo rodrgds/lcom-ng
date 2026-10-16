@@ -7,7 +7,7 @@ extern int counter;
 extern uint8_t outputCode;
 
 int (paint_pixel)(uint16_t x, uint16_t y, uint32_t color){
-    if (x>mode_info.XResolution || y>mode_info.YResolution || color==0xF0F0F0) return 0;
+    if (x>=mode_info.XResolution || y>=mode_info.YResolution || color==0xF0F0F0) return 0;
 
     unsigned bytesPerPixel = (mode_info.BitsPerPixel+7)/8;
 

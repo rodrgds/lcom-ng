@@ -9,3 +9,5 @@ Student source and required art are preserved byte for byte except explicitly re
 License: No license file was supplied by this upstream revision; source availability does not grant redistribution permission.
 
 Cursor edge correction: clamp to the same boundary on overshoot instead of moving five pixels back. Original and corrected hashes and the reversible patch are recorded in `UPSTREAM.json`.
+
+Cursor rendering correction: Clip17x17 gameplay target blits at the framebuffer edges and reject equality bounds, preventing the actual ARM64 bottom-edge SIGSEGV while preserving logical aiming coordinates. Verified by `test_star_defender_xpm_clips_framebuffer_edges` with the actual student rendering owner.

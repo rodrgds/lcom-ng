@@ -182,7 +182,20 @@
     "src/view/view.c": "23fe3bcb7671e5e585057c9c376fa46beef998e6a81e128ae30e8a2a39ab9540",
     "src/view/view.h": "7f5c1ddd68d488bce9c923384bcf5c4e36fdbacb05a62db19c20b90dceed88e6"
   },
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "src/view/view.c",
+          "originalSha256": "23fe3bcb7671e5e585057c9c376fa46beef998e6a81e128ae30e8a2a39ab9540",
+          "patchedSha256": "99dcdca072a58943148f5b7cf5e709859da930cf728f9a79e3b2127a3e2e396a",
+          "reason": "Clamp only normal/hover cursor artwork origins inside the framebuffer, preserving full-screen logical click coordinates and all other sprite positions."
+        }
+      ],
+      "verification": "Actual compiled renderer regression RED before correction and GREEN afterward: tests/community_source_regressions.py test_castle_cursor_draw_preserves_fullscreen_hit_coordinates"
+    }
+  ],
   "derivedAssets": [
     {
       "path": "src/icon.png",

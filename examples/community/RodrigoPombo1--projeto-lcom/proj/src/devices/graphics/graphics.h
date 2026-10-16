@@ -25,4 +25,7 @@ int (xpm_load_to_image)(xpm_map_t, struct image_struct *image);
 
 int (image_load_to_frame_buffer)(struct image_struct *image, uint16_t x, uint16_t y, uint8_t *video_mem);
 
+/* Draw the whole cursor around its unchanged logical hotspot. */
+int cursor_load_to_frame_buffer(struct image_struct *image, int x, int y, uint8_t *video_mem);
+
 #endif

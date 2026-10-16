@@ -168,16 +168,34 @@
   },
   "sourcePatches": [
     {
-      "path": "examples/community/leonardomagalhaes21--feup-LCOM/SOURCE_PATCH.diff",
+      "path": "SOURCE_PATCH.diff",
       "files": [
         {
           "path": "proj/src/devices/mouse/mouse.c",
           "originalSha256": "35879c44ab9d9da17b33180eed64d5c50b02d1f8a993b3cb8c8c0a4e5f04e485",
           "patchedSha256": "0e2d01704f4fd26ef099b42c2e620d801d5fe46d37cac3a82837c599ef7eb66a",
           "reason": "Original native startup reproducibly SIGTRAP in mouse_write_cmd before first frame. acknowledgment_byte is read by the while condition before initialization, undefined behavior. Initialize it to a non-ACK value so the intended first command is sent."
+        },
+        {
+          "path": "proj/src/main.c",
+          "originalSha256": "a01eb436dc6b5a181b66657c65c859a6219ca1298af55868b356d79dc5fd4886",
+          "patchedSha256": "03f627717bd1257103149a6c7790a43b75b92c5a17e7839e4eb6318ce2624408",
+          "reason": "Preserve all-or-nothing cursor movement and phase initialization, but validate each loaded resolution square actual extent instead of hardcoded7px X and unbounded Y."
+        },
+        {
+          "path": "proj/src/game/classes/mouse_cursor.c",
+          "originalSha256": "b0eae1c44f08ce366399e98ef9c481f8cb31c41c1142855fc36c8cc764e396d9",
+          "patchedSha256": "f980d09914e8d221c78c8518d981253d8ada425a7424a65070ae0985fcb79a3b",
+          "reason": "Preserve all-or-nothing cursor movement and phase initialization, but validate each loaded resolution square actual extent instead of hardcoded7px X and unbounded Y."
+        },
+        {
+          "path": "proj/src/game/classes/mouse_cursor.h",
+          "originalSha256": "8d38809169326da2150f7c25594d501647a23fb108f903732e19c7b506a66f6a",
+          "patchedSha256": "b8b5f82e12fa1eff5a262d92c1563931cdcca583eaa2cf49cee37fbef1421f04",
+          "reason": "Preserve all-or-nothing cursor movement and phase initialization, but validate each loaded resolution square actual extent instead of hardcoded7px X and unbounded Y."
         }
       ],
-      "reproduction": "source-regressions/leonardomagalhaes21--feup-LCOM/results.json"
+      "reproduction": "Public CLI640x480 resolution-menu replay moves original4x4 square from222,194 to222,434 then requestsY480. Original accepts and loses cursor. Corrected code rejects the second packet, leaving the white square visible at222,434."
     }
   ],
   "derivedAssets": [

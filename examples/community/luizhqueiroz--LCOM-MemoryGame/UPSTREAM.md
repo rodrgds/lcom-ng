@@ -17,3 +17,5 @@ Exact original/patched SHA256 and SOURCE_PATCH.diff are recorded in UPSTREAM.jso
 ## Controls
 
 Original keyboard route:1 starts,2 records; arrows select card and ENTER flips. ESC returns/exits, full keyboard enters winner name. Pointer disabled because keyboard covers the game.
+
+Cursor rendering correction: Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates. Verified by `test_memory_quest_draws_complete_cursor_in_every_phase` with the actual student rendering owner.

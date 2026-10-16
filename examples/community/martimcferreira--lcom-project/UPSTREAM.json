@@ -4,7 +4,16 @@
   "project": "Project",
   "licenseFiles": [],
   "licenseStatus": "No license found in upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "Project/main.c",
+      "patch": "SOURCE_PATCH.diff",
+      "reason": "Keep the complete original 12x15 cursor visible at right/bottom edges; bottom/right Restart and menu buttons remain reachable.",
+      "upstreamSha256": "37fd6883d69795d56b6df9f186e7b2fcd6078db5b3f24317db3a77645046b539",
+      "patchedSha256": "d55b3ef25f08d1725a0de76041d1da2479eb745eea3e81fd2997b8f11843f97f",
+      "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_feup_hero_menu_cursor_remains_visible_at_right_bottom"
+    }
+  ],
   "sha256": {
     ".gitattributes": "84610b053842365996dad86aa705450fae7e8e9ecb21c11e5e5f51c42b391577",
     ".gitignore": "2efc833ce477c82d5827fd574d9c3be4c0a14ae3a610b2876bf8151e9555cd99",

@@ -12,6 +12,14 @@
       "upstreamSha256": "e0644316c4eb1424585a2df7e7d9e67660a178070f2a7cedf6262e6f7aaad87d",
       "patchedSha256": "74f8cbcf829e1dd5719c23bd7d98569c042d97ac1cbc1c79ae59d0b29c8f5214",
       "verification": "Original native compile failed undeclared R_BIT. Corrected enum compiles natively and to WebAssembly; guarded native replay and real mobile controls show active maze/enemy gameplay."
+    },
+    {
+      "file": "proj/src/drivers/video.c",
+      "patch": "SOURCE_PATCH.diff",
+      "reason": "Keep the cursor artwork inside the framebuffer without changing logical aim or hit coordinates; reject pixels at the framebuffer dimensions before any memory write.",
+      "upstreamSha256": "855dfd34ea003c33991cadcef60ee9f3cccc315ca3e641a18d282455650a6a9a",
+      "patchedSha256": "b914df50de8b4b5e6d294e08f1a19fb4205d926687aaab316a48b394d88e54b4",
+      "verification": "Actual compiled renderer regression RED before correction and GREEN afterward: tests/community_source_regressions.py test_labyrinth_cursor_draw_stays_visible_without_moving_aim"
     }
   ],
   "sha256": {

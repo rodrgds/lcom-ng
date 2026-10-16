@@ -144,12 +144,19 @@ int draw_sprite(Sprite *sprite) {
   if (sprite == NULL) {
     return 1;
   }
+  int draw_x = sprite->x, draw_y = sprite->y;
+  if (sprite == mouse) {
+    int max_x = x_res > sprite->width ? x_res - sprite->width : 0;
+    int max_y = y_res > sprite->height ? y_res - sprite->height : 0;
+    draw_x = draw_x < 0 ? 0 : draw_x > max_x ? max_x : draw_x;
+    draw_y = draw_y < 0 ? 0 : draw_y > max_y ? max_y : draw_y;
+  }
   for (int i = 0; i < sprite->height; i++) {
     for (int j = 0; j < sprite->width; j++) {
       if (sprite->colors[i * sprite->width + j] == TRANSPARENCY_COLOR) {
         continue;
       }
-      if (draw_pixel(sprite->x + j, sprite->y + i, sprite->colors[i * sprite->width + j])) {
+      if (draw_pixel(draw_x + j, draw_y + i, sprite->colors[i * sprite->width + j])) {
         return 1;
       }
     }

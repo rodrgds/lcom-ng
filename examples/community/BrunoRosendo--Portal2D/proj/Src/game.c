@@ -26,7 +26,7 @@ int game_init() {
     load_background();
     cursor = create_sprite(cursor_xpm, 600, 500, 0, 0);
     old_cursor = *(cursor);
-    draw_sprite(cursor);
+    draw_cursor(cursor);
     draw_time(old_time);
   }
 
@@ -181,7 +181,7 @@ int read_level_from_file() {
 
   cursor = create_sprite(cursor_xpm, 600, 500, 0, 0);
   old_cursor = *(cursor);
-  draw_sprite(cursor);
+  draw_cursor(cursor);
 
   return 0;
 }
@@ -219,7 +219,7 @@ int editor_init() {
 
   cursor = create_sprite(cursor_xpm, 600, 500, 0, 0);
   old_cursor = *(cursor);
-  draw_sprite(cursor);
+  draw_cursor(cursor);
 
   return 0;
 }
@@ -1339,7 +1339,7 @@ void draw_new_frame() {
 
   Sprite old_time_sprites[19];
   draw_time(old_time_sprites); // time always shows up
-  draw_sprite(cursor);         // cursor is always used
+  draw_cursor(cursor);         // cursor is always used
   buffer_screen();
 
   // erase the previous frame

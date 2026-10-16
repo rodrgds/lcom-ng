@@ -9,3 +9,55 @@
  
    while(attempts > 0 && acknowledgment_byte != ACK){
      if(kbc_write_cmd(KBC_CMD_REG, MOUSE_WRITE_BYTE)) 
+--- a/proj/src/main.c
++++ b/proj/src/main.c
+@@ -206,10 +206,7 @@
+             if (idx == 3) {
+               idx = 0;
+               mouse_generate_packet();
+-              if (!((mouse_packet.delta_x + mouse->x) <= 0 || (mouse_packet.delta_x + mouse->x + 7) >= (info.XResolution) || (-mouse_packet.delta_y + mouse->y) <= 0 || (-mouse_packet.delta_y + mouse->y) > (info.YResolution))) {
+-                mouse->x += mouse_packet.delta_x;
+-                mouse->y -= mouse_packet.delta_y;
+-              }
++              moveMouseCursor(mouse, mouse_packet.delta_x, mouse_packet.delta_y, info.XResolution, info.YResolution);
+             if(currentState==RESOLUTION){
+                   if(res14C(mouse->x, mouse->y)==0){
+                     change_mode(0x14C);
+@@ -386,10 +383,7 @@
+             if (idx == 3) {
+               idx = 0;
+               mouse_generate_packet();
+-              if (!((mouse_packet.delta_x + mouse->x) <= 0 || (mouse_packet.delta_x + mouse->x + 7) >= (info.XResolution) || (-mouse_packet.delta_y + mouse->y) <= 0 || (-mouse_packet.delta_y + mouse->y) > (info.YResolution))) {
+-                mouse->x += mouse_packet.delta_x;
+-                mouse->y -= mouse_packet.delta_y;
+-              }
++              moveMouseCursor(mouse, mouse_packet.delta_x, mouse_packet.delta_y, info.XResolution, info.YResolution);
+               if (currentState == MENU) {
+                 playButton(mouse->x, mouse->y);
+                 leaderboardButton(mouse->x, mouse->y);
+--- a/proj/src/game/classes/mouse_cursor.c
++++ b/proj/src/game/classes/mouse_cursor.c
+@@ -10,3 +10,14 @@
+     mc->sprite = sp;
+     return mc;
+ }
++
++
++void moveMouseCursor(MouseCursor *mc, int dx, int dy, int width, int height) {
++    int next_x = mc->x + dx;
++    int next_y = mc->y - dy;
++    if (next_x <= 0 || next_y <= 0 ||
++        next_x > width - mc->sprite->width || next_y > height - mc->sprite->height)
++      return;
++    mc->x = next_x;
++    mc->y = next_y;
++}
+--- a/proj/src/game/classes/mouse_cursor.h
++++ b/proj/src/game/classes/mouse_cursor.h
+@@ -35,4 +35,6 @@
+ MouseCursor *createMouseCursor(int x,int y, Sprite *sp);
+ 
+ 
++void moveMouseCursor(MouseCursor *mc, int dx, int dy, int width, int height);
++
+ #endif

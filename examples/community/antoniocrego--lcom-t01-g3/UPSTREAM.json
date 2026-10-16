@@ -70,7 +70,27 @@
     "proj/src/sprites/sprites.c": "ed2c1caf7974d72c88b742daa4720652d24153fa8597e124e25cd67828950169",
     "proj/src/sprites/sprites.h": "0e6d2fa79671d9765ecc9eef4eaf73267f45ac28ac4a73a86b17c8031a2fb498"
   },
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "path": "examples/community/antoniocrego--lcom-t01-g3/SOURCE_PATCH.diff",
+      "reason": "Keep the original cursor visible at all screen edges and reject one-past framebuffer coordinates without changing hit targets.",
+      "verification": "Actual-source canary regression RED/GREEN: test_knight_quest_pixel_edges_cannot_wrap_or_overwrite_framebuffer; actual browser cursor edges and re-entry RED/GREEN.",
+      "files": [
+        {
+          "path": "proj/src/proj.c",
+          "reason": "Inset cursor artwork while preserving full-screen hit coordinates.",
+          "originalSha256": "5e09b6659d5135ed1d393e59bfeb513b9f46ed301d68c2bb18378c700d9dee07",
+          "patchedSha256": "3fe4dd7afffbe3bcd0c7876509547f3c16a9d671a0111334ce8313e526bbf3af"
+        },
+        {
+          "path": "proj/src/controllers/video/video_gr.c",
+          "reason": "Reject exact width/height pixels before offset calculation, preventing right-edge wrap and bottom-edge memory corruption.",
+          "originalSha256": "3c3896a6ebed75b8584e7e74ce265bcc9d54f5070f82542c7c859fda87cc7647",
+          "patchedSha256": "1df2060f1618a48ff4abed63184919814c9f1514bd0465a41bc78eb9756e6d1e"
+        }
+      ]
+    }
+  ],
   "license": {
     "status": "missing",
     "files": []

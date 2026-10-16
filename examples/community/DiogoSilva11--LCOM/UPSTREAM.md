@@ -17,3 +17,7 @@ Exact original/patched SHA256 and SOURCE_PATCH.diff are recorded in UPSTREAM.jso
 ## Controls
 
 Original menu1 play/0 quit. W/A/S/D move, mouse aims crosshair and left-button release shoots. Relative pointer retains source crosshair behavior.
+
+## Cursor edge correction
+
+Clamp only the14x13 crosshair drawing origin inside the framebuffer. Preserve full-screen logical aim and shooting coordinates. The original pixel renderer writes all supplied pixels without clipping. Public moveCrosshair then drawCrosshair submits draw1023,767 before correction, which extends past1024x768 allocation. Corrected draw fits1010,755 while crosshairCenter remains1030,773. Signed return-to-origin is also verified. Original game art and all previous source correction records are retained.

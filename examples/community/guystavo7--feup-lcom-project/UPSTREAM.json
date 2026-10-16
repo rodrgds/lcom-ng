@@ -880,7 +880,7 @@
   "sourcePatches": [
     {
       "path": "examples/community/guystavo7--feup-lcom-project/SOURCE_PATCH.diff",
-      "reason": "Original gameStateUpdate consumed click at old cursor coordinates before applying deltas. Existing coordinate helper is now called before game input; final cursor rendering unchanged. Combined move+press replay fails before and reaches game field after.",
+      "reason": "Apply cursor deltas before game hit testing and inset only displayed cursor artwork to the framebuffer; original full-screen tower placement coordinates stay reachable.",
       "reproduction": "fruit-direct-regression.mlabscript",
       "files": [
         {
@@ -891,7 +891,7 @@
         {
           "path": "project/src/cursorHandler.c",
           "originalSha256": "1e33b9f2cc63f9d03a2555f8493e228dc3b983aef70d2e7b2061d6486c813f14",
-          "patchedSha256": "f27d394eb84c5172540b4944f67b4d6d5ebbbafcff2e839fde9c64af1c3a0b41"
+          "patchedSha256": "70831f4f74c085306c7f35f25e6ea8dd35ef8f952e8de4214c04f6ad0aedba94"
         },
         {
           "path": "project/src/gameState.c",

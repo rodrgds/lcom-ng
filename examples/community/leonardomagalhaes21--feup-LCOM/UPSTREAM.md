@@ -17,3 +17,7 @@ Exact original/patched SHA256 and SOURCE_PATCH.diff are recorded in UPSTREAM.jso
 ## Controls
 
 Original game chooses resolution by mouse, mouse clicks start/aim/shoot, A/D move and W jumps, exposed as explicit quick keys; ESC quits. Cursor resets when resolution changes and rejects boundary steps, so relative pointer.
+
+## Cursor edge correction
+
+Preserve all-or-nothing cursor movement and phase initialization, but validate each loaded resolution square actual extent instead of hardcoded7px X and unbounded Y. Public CLI640x480 resolution-menu replay moves original4x4 square from222,194 to222,434 then requestsY480. Original accepts and loses cursor. Corrected code rejects the second packet, leaving the white square visible at222,434. Original game art and all previous source correction records are retained.

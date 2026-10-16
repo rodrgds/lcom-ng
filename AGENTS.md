@@ -68,6 +68,12 @@ through `devenv shell -- ...`.
   and clamp bounds. Read `docs-site/students/project-config.md#direct-touch` before
   enabling one. Keep packet scheduling and cursor tracking shared in
   `runtime/embedded/Pointer.hpp`; preserve original game sources.
+  Check visible cursor artwork at every edge and across menu/game transitions,
+  including transparent sprite margins. A clamped hotspot can still leave the
+  whole glyph offscreen. Verify reporting commands and complete-packet handling
+  in the real game loop before enabling direct or calibrated browser input.
+  Trace the loaded sprite, its renderer's transparency key and framebuffer write
+  bounds. `pointer: "off"` disables screen touch, not the physical desktop mouse.
 - Native exports link selected student source objects directly into the app.
   Keep data-only units in that link, including when legacy headers contain
   tentative globals. An intermediate archive can silently drop initialized tables.

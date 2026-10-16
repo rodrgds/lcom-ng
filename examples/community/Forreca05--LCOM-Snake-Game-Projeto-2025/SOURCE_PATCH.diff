@@ -22,3 +22,30 @@
  extern uint8_t irq_set_keyboard, irq_set_mouse, irq_set_timer;
  extern int timer_count;
  
+--- a/proj/src/controllers/gpu/gpu.c
++++ b/proj/src/controllers/gpu/gpu.c
+@@ -56,10 +56,11 @@
+ }
+ 
+ int vg_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
++    if (x >= h_res || y >= v_res) return 1;
+     // Round up for cases like 15 bits
+     int bytes_per_pixel = (bits_per_pixel + 7) / 8;
+     // Calculate the address of the pixel
+-    uint32_t* pixel = (uint32_t*) ((uint8_t*)buffer + bytes_per_pixel * (h_res * y + x)); 
++    uint8_t* pixel = (uint8_t*)buffer + bytes_per_pixel * (h_res * y + x); 
+ 
+     // Isolate each color component
+     uint8_t r = (color >> 16) & 0xFF;
+@@ -80,9 +81,10 @@
+     int b_shift = (8 - info.BlueFieldPosition) - info.BlueMaskSize;
+ 
+     // Combine everything together
+-    *pixel = ((r & r_mask) << r_shift) |
++    uint32_t encoded = ((r & r_mask) << r_shift) |
+              ((g & g_mask) << g_shift) |
+              ((b & b_mask) >> b_shift);
++    memcpy(pixel, &encoded, bytes_per_pixel);
+ 
+     return 0;
+ }

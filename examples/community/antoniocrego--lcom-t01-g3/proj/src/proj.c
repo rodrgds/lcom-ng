@@ -316,7 +316,12 @@ int game_loop(){
             else if (game_state==RESULTS){
               drawSprite(victory,0,0);
             }
-            drawSprite(cursor,mouseX,mouseY);
+            /* Preserve hit coordinates while keeping the original cursor visible. */
+            int cursor_max_x = mode_info.XResolution > cursor->width ? mode_info.XResolution - cursor->width : 0;
+            int cursor_max_y = mode_info.YResolution > cursor->height ? mode_info.YResolution - cursor->height : 0;
+            int cursor_draw_x = mouseX > cursor_max_x ? cursor_max_x : mouseX;
+            int cursor_draw_y = mouseY > cursor_max_y ? cursor_max_y : mouseY;
+            drawSprite(cursor,cursor_draw_x,cursor_draw_y);
           }
           //keyboard
           if (msg.m_notify.interrupts & irq_kb) {

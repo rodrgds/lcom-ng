@@ -14,11 +14,13 @@ COMMUNITY = ROOT / 'examples/community'
 
 
 class StudentSourceRegressions(unittest.TestCase):
-    def compile_and_run(self, project, sources, harness, source_flags=()):
+    def compile_and_run(self, project, sources, harness, source_flags=(), include_dirs=()):
         compiler = shlex.split(os.environ.get('CC', 'cc'))
         flags = ['-std=gnu11', '-fcommon', '-ffunction-sections', '-fdata-sections',
                  '-Wno-deprecated-non-prototype', '-I', str(ROOT / 'sdk/compat/include'),
                  '-I', str(ROOT / 'sdk/include'), '-I', str(project)]
+        for include_dir in include_dirs:
+            flags.extend(['-I',str(include_dir)])
         linker = '-Wl,-dead_strip' if sys.platform == 'darwin' else '-Wl,--gc-sections'
         with tempfile.TemporaryDirectory(prefix='lcom-student-regression-') as temporary:
             folder = Path(temporary)
@@ -371,6 +373,425 @@ int main(void) {
   return 0;
 }
 ''')
+
+
+    def test_labyrinth_cursor_draw_stays_visible_without_moving_aim(self):
+        self.compile_and_run(COMMUNITY / 'Cata-24--minix3-game/proj/src', ['drivers/video.c'], r'''
+#include "drivers/video.h"
+#include <assert.h>
+struct Sprite *mouse;
+extern vbe_mode_info_t mode_info;
+extern uint8_t *temp_mem;
+int main(void) {
+  uint32_t pixels[50]={0}, colors[]={0xff000000,0x112233,0x223344,0x334455,0x445566,0x556677};
+  pixels[48]=pixels[49]=0xdeadbeef;
+  temp_mem=(uint8_t*)pixels;mode_info=(vbe_mode_info_t){.XResolution=8,.YResolution=6,.BitsPerPixel=32};
+  struct Sprite cursor={.x_pos=7,.y_pos=5,.width=3,.height=2,.colors=colors};mouse=&cursor;
+  assert(drawSprite(mouse,false)==0);
+  assert(pixels[4*8+6]==0x112233 && pixels[5*8+7]==0x556677);
+  assert(cursor.x_pos==7 && cursor.y_pos==5);
+  assert(pixels[48]==0xdeadbeef && pixels[49]==0xdeadbeef);
+  assert(vg_draw_pixel(8,5,0xabcdef)!=0 && vg_draw_pixel(7,6,0xabcdef)!=0);
+  assert(pixels[48]==0xdeadbeef && pixels[49]==0xdeadbeef);
+  return 0;
+}
+''')
+
+
+    def test_castle_cursor_draw_preserves_fullscreen_hit_coordinates(self):
+        self.compile_and_run(COMMUNITY / 'francis802--Tower-Clash/src', ['view/view.c'], r'''
+#include "view/view.h"
+#include <assert.h>
+Sprite *mouse,*mouse_click;
+extern vbe_mode_info_t mode_info;
+static int count,invalid;static uint32_t frame[48];
+int draw_pixel(uint16_t x,uint16_t y,uint32_t color,uint8_t *buffer) {
+  if(x>=8 || y>=6) {invalid++;return 1;} frame[y*8+x]=color;count++;return 0;
+}
+int main(void) {
+  mode_info=(vbe_mode_info_t){.XResolution=8,.YResolution=6};
+  uint32_t colors[]={TRANSPARENT,0x112233,0x223344,0x334455,0x445566,0x556677};
+  Sprite cursor={.width=3,.height=2,.colors=colors};mouse=&cursor;
+  assert(draw_sprite_xpm(mouse,8,6)==0);
+  assert(!invalid && count==5 && frame[4*8+6]==0x112233 && frame[5*8+7]==0x556677);
+  count=0;mouse_click=&cursor;mouse=NULL;
+  assert(draw_sprite_xpm(mouse_click,8,6)==0 && !invalid && count==5);
+  Sprite actor=cursor;count=0;
+  assert(draw_sprite_xpm(&actor,2,1)==0 && frame[1*8+3]==0x112233 && count==5);
+  return 0;
+}
+''')
+
+
+    def test_portal_cursor_draw_preserves_aim_at_the_level_edge(self):
+        self.compile_and_run(COMMUNITY / 'BrunoRosendo--Portal2D/proj/Src', ['sprites.c'], r'''
+#include "sprites.h"
+#include <assert.h>
+static int count,invalid;static uint16_t frame[48];
+unsigned get_h_res(void){return 8;} unsigned get_v_res(void){return 6;}
+enum xpm_image_type get_type(void){return XPM_5_6_5;}
+uint32_t xpm_transparency_color(enum xpm_image_type type){return 0xffff;}
+int vg_draw_pixel(uint16_t x,uint16_t y,uint16_t color) {
+  if(x>=8 || y>=6) {invalid++;return 1;} frame[y*8+x]=color;count++;return 0;
+}
+int main(void) {
+  uint16_t colors[]={0xffff,0x1234,0x2345,0x3456,0x4567,0x5678};
+  Sprite pointer={.x=7,.y=5,.width=3,.height=2,.map=(uint8_t*)colors};
+  draw_cursor(&pointer);
+  assert(!invalid && count==5 && frame[4*8+6]==0x1234 && frame[5*8+7]==0x5678);
+  assert(pointer.x==7 && pointer.y==5);
+  Sprite actor=pointer;actor.x=2;actor.y=1;count=0;
+  draw_sprite(&actor);assert(!invalid && count==5 && frame[1*8+3]==0x1234);
+  return 0;
+}
+''')
+
+
+    def test_euler_cursor_render_keeps_centered_art_inside_frame(self):
+        self.compile_and_run(COMMUNITY / 'MurielPinho--FEUP-LCOM-1920/proj/src', ['mouse.c'], r'''
+#include "sprite.h"
+#include "mouse.h"
+#include <assert.h>
+static int drawn_x,drawn_y;
+int draw_sprite(Sprite *sprite){drawn_x=sprite->x;drawn_y=sprite->y;return 0;}
+int main(void) {
+  Sprite sprite={.x=800,.y=600,.width=40,.height=40};Mouse mouse={.sprite=&sprite};
+  draw_mouse(&mouse);assert(drawn_x==780 && drawn_y==580);
+  assert(sprite.x==800 && sprite.y==600);
+  sprite.x=sprite.y=0;draw_mouse(&mouse);assert(drawn_x==20 && drawn_y==20);
+  assert(sprite.x==0 && sprite.y==0);
+  sprite.x=400;sprite.y=300;draw_mouse(&mouse);assert(drawn_x==400 && drawn_y==300);
+  return 0;
+}
+''')
+
+
+    def test_sushi_cursor_edges_keep_the_original_sprite_visible(self):
+        import re
+        project=COMMUNITY/'teixeiraa05--lcom-sushi-slash'
+        asset=(project/'proj/assets/cursor_point.xpm').read_text()
+        width,height=map(int,re.search(r'"(\d+) (\d+) \d+ \d+"',asset).groups())
+        self.compile_and_run(project,['lab4/mouse.c'],r'''#include "lab4/mouse.h"
+#include <lcom/lcf.h>
+#include <assert.h>
+int main(void){
+ MouseGameState state={.x=400,.y=300};struct packet p={.delta_x=96,.delta_y=-96,.lb=true};
+ for(int i=0;i<12;i++)mouse_update_state(&state,&p,800,600);
+ assert(state.x==$MAX_X$ && state.y==$MAX_Y$ && state.lb_pressed && state.is_slashing);
+ p.delta_x=-1;p.delta_y=1;mouse_update_state(&state,&p,800,600);
+ assert(state.x==$MAX_X$-1 && state.y==$MAX_Y$-1);
+ p.delta_x=-96;p.delta_y=96;for(int i=0;i<12;i++)mouse_update_state(&state,&p,800,600);
+ assert(state.x==0 && state.y==0);
+ /* The rightmost exit/button targets and slash area remain reachable. */
+ p.delta_x=96;p.delta_y=-96;for(int i=0;i<8;i++)mouse_update_state(&state,&p,800,600);
+ assert(state.x>=700 && state.y>=500);return 0;
+}'''.replace('$MAX_X$',str(800-width)).replace('$MAX_Y$',str(600-height)))
+
+
+    def test_feup_hero_menu_cursor_remains_visible_at_right_bottom(self):
+        project=COMMUNITY/'martimcferreira--lcom-project/Project'
+        self.compile_and_run(project,[],r'''#define main unused_student_main
+#include "$STUDENT_MAIN$"
+#undef main
+#include <assert.h>
+int main(void){
+ mouse_x=900;mouse_y=900;clamp_mouse_position();
+ assert(mouse_x==788 && mouse_y==585);
+ mouse_x=-100;mouse_y=-100;clamp_mouse_position();assert(mouse_x==0 && mouse_y==0);
+ /* Bottom/right Restart button remains fully reachable. */
+ mouse_x=680;mouse_y=570;clamp_mouse_position();assert(mouse_x==680 && mouse_y==570);
+ return 0;
+}'''.replace('$STUDENT_MAIN$',str(project/'main.c')),include_dirs=[project/'structures/includes',project/'structures/includes/drivers',project/'devices/video',project/'devices/uart'])
+
+
+    def test_skess_cursor_draw_keeps_canvas_and_edge_hit_coordinates(self):
+        project=COMMUNITY/'Yuka-Sky--LCOM/Project/src'
+        self.compile_and_run(project,['drawScreens.c','mousekb/mouse.c'],r'''#include "drawScreens.h"
+#include "mousekb/mouse.h"
+#include <assert.h>
+static int draws;
+int vg_draw_xpm(xpm_image_t img,uint8_t *map,uint16_t x,uint16_t y){
+ assert(x>=0 && y>=0 && x+img.width<=1152 && y+img.height<=864);draws++;return 0;
+}
+int main(void){
+ xpm_image_t img={.width=25,.height=39};uint8_t pixels[25*39*4]={0};
+ assert(draw_cursor(1152,864,pixels,img)==0 && draws==1);
+ assert(draw_cursor(0,0,pixels,img)==0 && draws==2);
+ /* Existing drawing-area coordinates, including Clear, must not change. */
+ int x=700,y=820;struct packet p={.delta_x=96,.delta_y=-96};
+ calculate_placement(&x,&y,750,864,50,50,p);assert(x==750 && y==864);
+ assert(draw_cursor(x,y,pixels,img)==0 && draws==3);return 0;
+}''')
+
+
+    def test_fruit_defense_cursor_display_preserves_edge_placement(self):
+        project=COMMUNITY/'guystavo7--feup-lcom-project'
+        self.compile_and_run(project,[],r'''#include "project/src/cursorHandler.c"
+#include "lab5/spriteXMP.c"
+#include <assert.h>
+static int opaque_draws,invalid_draws;
+uint32_t xpm_transparency_color(enum xpm_image_type type){return 0x00FEFEFE;}
+uint8_t *xpm_load(xpm_map_t map,enum xpm_image_type type,xpm_image_t *img){
+ int colors,cpp;sscanf(map[0],"%hu %hu %d %d",&img->width,&img->height,&colors,&cpp);
+ assert(cpp==1);uint32_t palette[256]={0};
+ for(int i=0;i<colors;i++){char *hex=strchr(map[1+i],'#');palette[(unsigned char)map[1+i][0]]=hex?strtoul(hex+1,NULL,16):0xFEFEFE;}
+ uint8_t *bytes=malloc(img->width*img->height*3);
+ for(int y=0;y<img->height;y++)for(int x=0;x<img->width;x++){uint32_t c=palette[(unsigned char)map[1+colors+y][x]];int at=(y*img->width+x)*3;bytes[at]=c;bytes[at+1]=c>>8;bytes[at+2]=c>>16;}return bytes;
+}
+unsigned int getBytesPerPixel(Terminal *t){return 3;}
+void drawPixel(Terminal *t,int x,int y,uint32_t c){if(x<0||y<0||x>=800||y>=600)invalid_draws++;else opaque_draws++;}
+void drawPixelInEmptyBuffer(Terminal *t,int x,int y,uint32_t c){abort();}
+int main(void){
+ Cursor *c=getCursor();cursorUpdateData(c,1000,1000,false,false,false);cursorUpdateCoordinates(c);
+ assert(cursorGetX(c)==799 && cursorGetY(c)==599);
+ /* Placement still receives the actual rightmost/bottommost game coordinates. */
+ for(int mode=0;mode<3;mode++){
+  cursorSetConstructionMode(c,mode!=0);cursorSetPlacementHoverValid(c,mode!=2);
+  opaque_draws=invalid_draws=0;cursorUpdate(c,NULL,0);
+  assert(opaque_draws>0 && invalid_draws==0 && cursorGetX(c)==799 && cursorGetY(c)==599);
+ }
+ cursorUpdateData(c,0,0,true,false,false);assert(cursorIsLeftButtonPressedDown(c));
+ assert(cursorGetX(c)==799 && cursorGetY(c)==599);cursorFree(c);return 0;
+}''')
+
+
+    def test_whack_hammer_stays_visible_and_can_hit_bottom_right_mole(self):
+        import re
+        project=COMMUNITY/'Duarte-Pombo--MINIX-Whack-a-Mole/proj/src'
+        images=[]
+        for name in ['hammerCursor','hammerCursorClick']:
+            strings=re.findall(r'"([^"\n]*)"',(project/'sprites'/f'{name}.xpm').read_text())
+            width,height,colors,cpp=map(int,strings[0].split())
+            transparent={row[:cpp] for row in strings[1:colors+1] if '#000000' in row}
+            data=[0 if row[x*cpp:(x+1)*cpp] in transparent else 1
+                  for row in strings[colors+1:colors+1+height] for x in range(width)]
+            images.append((width,height,','.join(map(str,data))))
+        harness=r'''#include "uiElements/cursor.h"
+#include "uiElements/mole.h"
+#include "settings.h"
+#include <assert.h>
+#include <stdlib.h>
+#include <string.h>
+extern unsigned h_res,v_res;extern uint8_t *video_mem;
+extern uint8_t *hammerCursor_pixmap,*hammerCursorClick_pixmap;
+extern xpm_image_t hammerCursor_img,hammerCursorClick_img;
+static const uint8_t original_mask[]={$MASK$},click_mask[]={$CLICK_MASK$};
+static int visible_pixels(void){int total=0;for(int i=0;i<1024*768*3;i+=3)total+=video_mem[i]!=0;return total;}
+int main(void){
+ h_res=1024;v_res=768;game_settings.mouse_sensitivity=1;
+ video_mem=calloc(1024*768,3);hammerCursor_pixmap=calloc($WIDTH$*$HEIGHT$,3);hammerCursorClick_pixmap=calloc($CLICK_WIDTH$*$CLICK_HEIGHT$,3);
+ hammerCursor_img.width=$WIDTH$;hammerCursor_img.height=$HEIGHT$;hammerCursorClick_img.width=$CLICK_WIDTH$;hammerCursorClick_img.height=$CLICK_HEIGHT$;
+ for(int i=0;i<$WIDTH$*$HEIGHT$;i++)memset(hammerCursor_pixmap+i*3,original_mask[i],3);
+ for(int i=0;i<$CLICK_WIDTH$*$CLICK_HEIGHT$;i++)memset(hammerCursorClick_pixmap+i*3,click_mask[i],3);
+ assert(cursor_init()==0);cursor_handle_movement(2000,-2000);
+ assert(_cursor.x==1024-$WIDTH$ && _cursor.y==768-$HEIGHT$);
+ cursor_draw();assert(visible_pixels()>0);set_click_state(true);memset(video_mem,0,1024*768*3);cursor_draw();assert(visible_pixels()>0);
+ /* Source bottom/right hole650,400,256x256 remains selectable at its centre. */
+ cursor_handle_movement(778-_cursor.x,_cursor.y-528);assert(_cursor.x==778 && _cursor.y==528);
+ moles[5].x=mole_positions[5].x;moles[5].y=mole_positions[5].y;moles[5].visible=true;moles[5].hammered=false;
+ assert(mole_check_collision(_cursor.x,_cursor.y));assert(moles[5].hammered && !moles[5].visible);
+ cursor_cleanup();free(video_mem);free(hammerCursor_pixmap);free(hammerCursorClick_pixmap);return 0;
+}'''
+        for token,value in zip(['$WIDTH$','$HEIGHT$','$MASK$','$CLICK_WIDTH$','$CLICK_HEIGHT$','$CLICK_MASK$'],[*images[0],*images[1]]):harness=harness.replace(token,str(value))
+        self.compile_and_run(project,['uiElements/cursor.c','uiElements/mole.c','labDrivers/video/video_gr.c','settings.c'],harness)
+
+
+    def test_not_cuphead_rejects_motion_that_hides_its_resolution_cursor(self):
+        # The actual default-mode cursor is the original opaque4x4 square.
+        cli = Path(os.environ.get('LCOM_CLI', ROOT / 'build/machinelab')).resolve()
+        project = COMMUNITY / 'leonardomagalhaes21--feup-LCOM/proj/src'
+        with tempfile.TemporaryDirectory(prefix='lcom-cuphead-cursor-') as temporary:
+            folder = Path(temporary)
+            subprocess.run([str(cli), 'compat', 'build', str(project), '--output', str(folder / 'native')],
+                           check=True, capture_output=True, text=True, timeout=120)
+            replay = folder / 'cursor.mlabscript'
+            replay.write_text('at 180 mouse 0 -240 0\nat 200 mouse 0 -46 0\n')
+            frame = folder / 'resolution.ppm'
+            result = subprocess.run([str(cli), 'run', '--headless', '--script', str(replay),
+                                     '--max-ticks', '240', '--timeout', '30', '--dump-presented',
+                                     '--dump-frame', str(frame), '--', str(folder / 'native/proj')],
+                                    cwd=folder, capture_output=True, text=True, timeout=45)
+            self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+            self.assertIn('max virtual ticks reached (240)', result.stdout + result.stderr)
+            magic, dimensions, depth, pixels = frame.read_bytes().split(b'\n', 3)
+            self.assertEqual((magic, dimensions, depth), (b'P6', b'640 480', b'255'))
+            for y in range(434,438):
+                for x in range(222,226):
+                    offset=(y*640+x)*3
+                    self.assertEqual(pixels[offset:offset+3],b'\xff\xff\xff',
+                                     'The invalid second motion must leave the original cursor visible at222,434')
+
+
+    def test_robot_arena_keeps_crosshair_draw_inside_frame_without_changing_aim(self):
+        # The real unbounded pixel renderer would write past its allocation if
+        # any part of the14x13 crosshair is submitted beyond the bottom edge.
+        self.compile_and_run(COMMUNITY / 'DiogoSilva11--LCOM/proj/src', ['game.c'], r'''
+#include <lcom/lcf.h>
+#include "game.h"
+#include <assert.h>
+int leave(void) { abort(); }
+static int draws;
+int vg_draw_element(xpm_row_t *pixmap, uint16_t x, uint16_t y) {
+  int width,height;assert(sscanf(pixmap[0],"%d %d",&width,&height)==2);
+  assert(width==14 && height==13);draws++;
+  if(x+width>1024 || y+height>768) {
+    fprintf(stderr,"Crosshair draw at%u,%u writes outside1024x768 framebuffer\n",x,y);return 1;
+  }
+  return 0;
+}
+int main(void) {
+  moveCrosshair(32767,-32767);
+  assert(crosshairCenterX()==1030 && crosshairCenterY()==773);
+  if(drawCrosshair())return 1;
+  moveCrosshair(-32767,32767);
+  assert(crosshairCenterX()==7 && crosshairCenterY()==6);
+  if(drawCrosshair())return 1;
+  assert(draws==2);return 0;
+}
+''')
+
+
+    def test_star_defender_xpm_clips_framebuffer_edges(self):
+        self.compile_and_run(COMMUNITY/'luanalima27--LCOM-FEUP/proj/src',['video.c'],r'''#include "video.h"
+#include <assert.h>
+extern char *buff;
+extern vbe_mode_info_t vmi_p;
+uint32_t xpm_transparency_color(enum xpm_image_type t){return 0xfffffe;}
+int main(void){
+ uint8_t guarded[4*3*3+16],colors[]={1,2,3,4,5,6,7,8,9,10,11,12};
+ memset(guarded,0xa5,sizeof guarded);buff=(char*)guarded+8;
+ vmi_p=(vbe_mode_info_t){.XResolution=4,.YResolution=3,.BitsPerPixel=24};
+ xpm_image_t img={.width=2,.height=2};
+ assert(draw_xpm(colors,img,3,2)==0);
+ assert(!memcmp(buff+33,colors,3));
+ for(int i=0;i<8;i++)assert(guarded[i]==0xa5 && guarded[44+i]==0xa5);
+ for(int i=0;i<33;i++)assert((uint8_t)buff[i]==0xa5);
+ assert(draw_xpm(colors,img,4,3)==0);
+ assert(vg_draw_pixel(4,0,colors)!=0 && vg_draw_pixel(0,3,colors)!=0);
+ for(int i=0;i<8;i++)assert(guarded[i]==0xa5 && guarded[44+i]==0xa5);
+ memset(buff,0,36);assert(draw_xpm(colors,img,0,0)==0);
+ assert(!memcmp(buff,colors,6) && !memcmp(buff+12,colors+6,6));
+ return 0;
+}''')
+
+
+    def test_teclas_draws_complete_cursor_without_changing_hotspot(self):
+        self.compile_and_run(COMMUNITY/'aishend--TECLAS-The-Typing-Game/teclas',['src/cursor.c'],r'''#include "src/cursor.h"
+#include "src/sprite.h"
+#include <assert.h>
+uint16_t screen_width=800,screen_height=600;
+static Sprite cursor={.img={.width=7,.height=5}};
+static int drawn_x,drawn_y;
+Sprite *sprite_load(xpm_map_t x){return &cursor;}
+void sprite_destroy(Sprite *s){}
+void sprite_draw(Sprite *s,uint16_t x,uint16_t y){assert(x+7<=800 && y+5<=600);drawn_x=x;drawn_y=y;}
+int main(void){cursor_init();cursor_move(2000,-2000);assert(cursor_x==799 && cursor_y==599);cursor_draw();assert(drawn_x==793 && drawn_y==595);assert(cursor_x==799 && cursor_y==599);cursor_move(-2000,2000);cursor_draw();assert(drawn_x==0 && drawn_y==0);cursor_destroy();return 0;}
+''')
+
+
+    def test_tower_defense_draws_cursor_inside_screen_without_moving_slot_hotspot(self):
+        self.compile_and_run(COMMUNITY/'DavidGustavo6--LCOM-game/src',['sprites/sprite.c'],r'''#include "sprites/sprite.h"
+#include <assert.h>
+uint16_t x_res=800,y_res=600;
+static int pixels;
+int draw_pixel(uint16_t x,uint16_t y,uint32_t color){assert(x<800 && y<600);pixels++;return 0;}
+int main(void){uint32_t colors[6]={1,2,3,4,5,6};Sprite cursor={.width=3,.height=2,.x=800,.y=600,.colors=colors};mouse=&cursor;assert(draw_sprite(mouse)==0 && pixels==6);assert(mouse->x==800 && mouse->y==600);cursor.x=0;cursor.y=0;pixels=0;assert(draw_sprite(mouse)==0 && pixels==6);return 0;}
+''')
+
+
+    def test_memory_quest_draws_complete_cursor_in_every_phase(self):
+        self.compile_and_run(COMMUNITY/'luizhqueiroz--LCOM-MemoryGame/src',['images/sprite/sprite.c','game/menu/menu.c','game/main_game/main_game.c','game/record/record.c'],r'''#include "game/menu/menu.h"
+#include "game/main_game/main_game.h"
+#include "game/record/record.h"
+#include <assert.h>
+unsigned int mode=0;
+static int count;
+int vg_draw_pixel(uint16_t x,uint16_t y,uint32_t color){assert(x<800 && y<600);count++;return 0;}
+int main(void){uint32_t colors[6]={1,2,3,4,5,6};Sprite sprite={.width=3,.height=2,.map=colors};mouse_cursor=select_mouse_cursor=&sprite;mode_info=(vbe_mode_info_t){.XResolution=800,.YResolution=600};int(*draw[])(int,int)={menu_display_mouse,main_game_display_mouse,winner_display_mouse,record_display_mouse};for(int i=0;i<4;i++){count=0;assert(draw[i](799,599)==0 && count==6);count=0;assert(draw[i](0,0)==0 && count==6);}return 0;}
+''')
+
+
+    def test_leiria_cursor_is_visible_at_both_logical_corners(self):
+        import re
+        cli=Path(os.environ.get('LCOM_CLI',ROOT/'build/machinelab')).resolve()
+        project=COMMUNITY/'RodrigoPombo1--projeto-lcom/proj/src'
+        rows=re.findall(r'"([^"]*)"',(project/'xpm_files/LCOM_cursor.xpm').read_text())[4:]
+        self.assertEqual(len(rows),32)
+        with tempfile.TemporaryDirectory(prefix='lcom-leiria-cursor-') as temporary:
+            folder=Path(temporary)
+            build=subprocess.run([str(cli),'compat','build',str(project),'--output',str(folder/'native')],capture_output=True,text=True,timeout=120)
+            self.assertEqual(build.returncode,0,build.stdout+build.stderr)
+            for corner in ['top-left','bottom-right']:
+                script=folder/(corner+'.mlabscript')
+                script.write_text(''.join(f'at {30+i*5} mouse 96 -96 0\n' for i in range(10)) if corner=='bottom-right' else '')
+                frame=folder/(corner+'.ppm')
+                result=subprocess.run([str(cli),'run','--headless','--script',str(script),'--max-ticks','120','--timeout','30','--dump-presented','--dump-frame',str(frame),'--',str(folder/'native/proj')],cwd=folder,capture_output=True,text=True,timeout=45)
+                self.assertEqual(result.returncode,1,result.stdout+result.stderr)
+                self.assertIn('max virtual ticks reached (120)',result.stdout+result.stderr)
+                magic,dimensions,depth,pixels=frame.read_bytes().split(b'\n',3)
+                self.assertEqual((magic,dimensions,depth),(b'P6',b'800 600',b'255'))
+                origin=(0,0) if corner=='top-left' else (768,568)
+                for y,row in enumerate(rows):
+                    for x,value in enumerate(row):
+                        if value!='.':continue
+                        offset=((origin[1]+y)*800+origin[0]+x)*3
+                        self.assertEqual(pixels[offset:offset+3],b'\xff\xff\xff',f'Whole original cursor must remain visible at {corner}: {x},{y}')
+
+
+    def test_knight_quest_pixel_edges_cannot_wrap_or_overwrite_framebuffer(self):
+        self.compile_and_run(COMMUNITY/'antoniocrego--lcom-t01-g3/proj/src',
+                             ['controllers/video/video_gr.c'],r'''#include "controllers/video/video_gr.h"
+#include <assert.h>
+#include <string.h>
+vbe_mode_info_t mode_info={.XResolution=800,.YResolution=600,.BitsPerPixel=24};
+static uint8_t guarded[32+800*600*3+4096];
+uint8_t *second_frame_buffer=guarded+32;
+int vg_exit(void){abort();}
+int main(void){
+ memset(guarded,0xA5,sizeof(guarded));
+ paint_pixel(800,0,0x123456);paint_pixel(0,600,0x123456);paint_pixel(800,600,0x123456);
+ for(unsigned i=0;i<sizeof(guarded);i++)assert(guarded[i]==0xA5);
+ paint_pixel(799,599,0x123456);
+ unsigned last=32+(800*600-1)*3;
+ assert(guarded[last]==0x56 && guarded[last+1]==0x34 && guarded[last+2]==0x12);
+ for(unsigned i=last+3;i<sizeof(guarded);i++)assert(guarded[i]==0xA5);
+ return 0;
+}''')
+
+
+    def test_minhoca_pixel_writes_clip_coordinates_and_preserve_24bit_guard_bytes(self):
+        # Exercise the actual GPU public API and allocation-sized framebuffer.
+        # The original cursor can submit pixels beyond its logical clamp edge.
+        self.compile_and_run(COMMUNITY / 'Forreca05--LCOM-Snake-Game-Projeto-2025/proj/src',
+                             ['controllers/gpu/gpu.c'], r'''
+#include <lcom/lcf.h>
+#include "controllers/gpu/gpu.h"
+#include <assert.h>
+static unsigned char buffer[36+8], front[36];
+void *regression_alloc(size_t n) {assert(n==36);memset(buffer,0xa5,sizeof(buffer));return buffer;}
+int vbe_get_mode_info(uint16_t mode,vbe_mode_info_t *info) {
+  *info=(vbe_mode_info_t){.XResolution=4,.YResolution=3,.BitsPerPixel=24,
+    .RedMaskSize=8,.RedFieldPosition=16,.GreenMaskSize=8,.GreenFieldPosition=8,.BlueMaskSize=8,.BlueFieldPosition=0};return 0;
+}
+int sys_privctl(int who,int request,void *arg) {return 0;}
+void *vm_map_phys(int who,void *base,size_t length) {assert(length==36);return front;}
+int sys_int86(reg86_t *reg) {return 0;}
+void panic(const char *format,...) {abort();}
+int main(void) {
+  assert(vg_init(0x14c)==front);
+  vg_draw_pixel(3,2,0x123456);
+  assert(buffer[33]==0x56 && buffer[34]==0x34 && buffer[35]==0x12);
+  for(int i=36;i<44;i++)if(buffer[i]!=0xa5) {
+    fprintf(stderr,"24-bit final pixel must write exactly3bytes, preserving the allocation guard\n");return 1;
+  }
+  unsigned char before[44];memcpy(before,buffer,sizeof(buffer));
+  vg_draw_pixel(4,0,0xffffff);vg_draw_pixel(0,3,0xffffff);
+  if(memcmp(before,buffer,sizeof(buffer))) {
+    fprintf(stderr,"Offscreen cursor pixels must never alter framebuffer or guard bytes\n");return 1;
+  }
+  return 0;
+}
+''', source_flags=('-Dmalloc=regression_alloc',))
 
 
     def test_memory_match_consumes_complete_mouse_packets_once(self):

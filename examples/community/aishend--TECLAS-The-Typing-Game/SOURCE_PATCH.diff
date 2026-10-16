@@ -1,0 +1,18 @@
+--- a/teclas/src/cursor.c
++++ b/teclas/src/cursor.c
+@@ -29,7 +29,14 @@
+     if (cursor_y >= (int16_t)screen_height) cursor_y = screen_height - 1;
+ }
+ 
+-void(cursor_draw)() { sprite_draw(cursor_sprite, cursor_x, cursor_y); }
++void(cursor_draw)() {
++    if (!cursor_sprite) return;
++    int max_x = screen_width > cursor_sprite->img.width ? screen_width - cursor_sprite->img.width : 0;
++    int max_y = screen_height > cursor_sprite->img.height ? screen_height - cursor_sprite->img.height : 0;
++    int x = cursor_x > max_x ? max_x : cursor_x;
++    int y = cursor_y > max_y ? max_y : cursor_y;
++    sprite_draw(cursor_sprite, x < 0 ? 0 : x, y < 0 ? 0 : y);
++}
+ 
+ void(cursor_destroy)() {
+     sprite_destroy(cursor_sprite);

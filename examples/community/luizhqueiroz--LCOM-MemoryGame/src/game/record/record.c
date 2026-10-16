@@ -307,11 +307,11 @@ void (record_control_mouse)(struct packet *pp, int x, int y) {
 
 int (winner_display_mouse)(int x, int y) {
     if ((x >= 290 && x < 380 && y >= 480 && y < 570) || (x >= 450 && x < 540 && y >= 480 && y < 570)) {
-        if (display_sprite(select_mouse_cursor, x, y)) {
+        if (display_cursor(select_mouse_cursor, x, y)) {
             return 1;
         }
     } else {
-        if (display_sprite(mouse_cursor, x, y)) {
+        if (display_cursor(mouse_cursor, x, y)) {
             return 1;
         }
     }   
@@ -321,11 +321,11 @@ int (winner_display_mouse)(int x, int y) {
 
 int (record_display_mouse)(int x, int y) {
     if ((x >= 355 && x < 445 && y >= 480 && y < 570)) {
-        if (display_sprite(select_mouse_cursor, x, y)) {
+        if (display_cursor(select_mouse_cursor, x, y)) {
             return 1;
         }
     } else {
-        if (display_sprite(mouse_cursor, x, y)) {
+        if (display_cursor(mouse_cursor, x, y)) {
             return 1;
         }
     }   

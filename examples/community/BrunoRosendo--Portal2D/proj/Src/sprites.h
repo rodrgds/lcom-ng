@@ -57,6 +57,9 @@ void destroy_sprite(Sprite *sp);
  */
 void draw_sprite(Sprite* sp);
 
+/** Draw cursor art inside the frame while preserving its logical aim. */
+void draw_cursor(Sprite* cursor);
+
 /**
  * @brief Erases the sprite by painting it all in black
  * @param sp Sprites intended to erase

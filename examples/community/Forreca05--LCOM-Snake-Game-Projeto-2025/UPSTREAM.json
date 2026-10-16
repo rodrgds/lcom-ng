@@ -122,7 +122,7 @@
   },
   "sourcePatches": [
     {
-      "path": "examples/community/Forreca05--LCOM-Snake-Game-Projeto-2025/SOURCE_PATCH.diff",
+      "path": "SOURCE_PATCH.diff",
       "files": [
         {
           "path": "proj/src/input/input.c",
@@ -135,9 +135,15 @@
           "originalSha256": "470f609d5a32b6be1e2a4dd162892c597cd42c2f403c685e6a6ad6e079c60b45",
           "patchedSha256": "c322394146cd680f3c5cd506d2fb12848fcaaeeeb30db373969316ba32a419bf",
           "reason": "Match the mouse controller byte_index definition (uint8_t) in the local/remote menu. The widened read prevents complete packet recognition and makes the local duel option unselectable. Issue #11."
+        },
+        {
+          "path": "proj/src/controllers/gpu/gpu.c",
+          "originalSha256": "add5eba151ce097295a659445b847da2e3e6fd14684d8834c422215af29272a6",
+          "patchedSha256": "42880d2680715291be3642591315f4437f40c50478e5a15598a4da0a83f4c982",
+          "reason": "Clip pixel writes to the actual framebuffer dimensions and write exactly the current pixel format byte count. Original32-bit stores overran24-bit last pixels, and the partially clipped32x32 cursor could write beyond the buffer at logical1129,839. Preserve logical pointer/aim positions and original RGB packing."
         }
       ],
-      "reproduction": "devenv shell -- python3 tests/community_source_regressions.py"
+      "reproduction": "Public vg_init/vg_draw_pixel regression uses an independently guarded4x3x24-bit framebuffer. Original final-pixel write corrupts the first guardbyte; removing onlyXYguard also reproduces offscreen framebuffer/guard changes. Both pass after clipping/exactbytewrite. Original logicalcursor1129,839 and directprofile unchanged."
     }
   ],
   "derivedAssets": [],

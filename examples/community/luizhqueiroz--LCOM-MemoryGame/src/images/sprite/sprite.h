@@ -52,6 +52,9 @@ void destroy_sprite(Sprite *sp);
  */
 int display_sprite(Sprite *sprite, int x, int y);
 
+/* Keep the complete cursor visible while preserving logical click coordinates. */
+int display_cursor(Sprite *sprite, int x, int y);
+
 /**@}*/
 
 #endif

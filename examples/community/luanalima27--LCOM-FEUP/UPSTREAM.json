@@ -51,6 +51,19 @@
       ],
       "reason": "Clamp cursor movement at the screen margins without jumping five pixels backward when motion crosses any boundary.",
       "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_star_defender_cursor_clamps_without_edge_recoil"
+    },
+    {
+      "path": "examples/community/luanalima27--LCOM-FEUP/SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "proj/src/video.c",
+          "originalSha256": "dcd9ef69bd545cd574a1753a0327323beb2126ab877867d8f236723b4681aa5e",
+          "patchedSha256": "59d0e5049882a9cee963fcb894cdc014c7a5b5e17819ff790e1e06e0f2604617",
+          "reason": "Clip17x17 gameplay target blits at the framebuffer edges and reject equality bounds, preventing the actual ARM64 bottom-edge SIGSEGV while preserving logical aiming coordinates."
+        }
+      ],
+      "reason": "Clip17x17 gameplay target blits at the framebuffer edges and reject equality bounds, preventing the actual ARM64 bottom-edge SIGSEGV while preserving logical aiming coordinates.",
+      "verification": "Compiled source regression RED on frozen43c3b7a, GREEN after repair: tests/community_source_regressions.py StudentSourceRegressions.test_star_defender_xpm_clips_framebuffer_edges"
     }
   ],
   "license": {

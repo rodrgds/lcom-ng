@@ -63,13 +63,13 @@ int(vg_initi)(uint16_t mode) {
 int(vg_draw_pixel)(uint16_t x, uint16_t y, uint8_t *color) {
 
   // if x is bigger than max x, stop
-  if (x > vmi_p.XResolution) {
+  if (x >= vmi_p.XResolution) {
     printf("The paramater x is too big!");
     return 1;
   }
 
   // if y is bigger than max y, stop
-  if (y > vmi_p.YResolution) {
+  if (y >= vmi_p.YResolution) {
     printf("The paramater y is too big!");
     return 1;
   }
@@ -126,7 +126,8 @@ int(draw_xpm)(uint8_t *used_colors, xpm_image_t img, uint16_t x, uint16_t y) {
   for (int height = 0; height < img.height; height++) {
     for (int width = 0; width < img.width; width++) {
       if (xpm_transparency_color(XPM_8_8_8) != 0) {
-        if (vg_draw_pixel(x + width, y + height, used_colors) != 0) {
+        if (x + width < vmi_p.XResolution && y + height < vmi_p.YResolution &&
+            vg_draw_pixel(x + width, y + height, used_colors) != 0) {
           return 1;
         }
         used_colors += 3;

@@ -6,9 +6,9 @@
     "sourceAudit": {
       "games": 65,
       "pinnedOriginalFiles": 7757,
-      "unchangedGames": 39,
-      "correctedGames": 26,
-      "correctedSourceFiles": 53,
+      "unchangedGames": 29,
+      "correctedGames": 36,
+      "correctedSourceFiles": 79,
       "command": "devenv shell -- python3 scripts/check_collection_sources.py --require-tracked"
     },
     "android": {
@@ -1352,7 +1352,16 @@
         ]
       },
       "provenance": "examples/community/teixeiraa05--lcom-sushi-slash/UPSTREAM.json",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "lab4/mouse.c",
+          "patch": "SOURCE_PATCH.diff",
+          "reason": "Keep the complete original 12x12 cursor visible at right/bottom edges; slash/button semantics and menu targets remain reachable.",
+          "upstreamSha256": "f21898f430a71a8a10d04ec828b6ce98753e1d310adf2c02e5e706416c82c187",
+          "patchedSha256": "d74d3ee48f32dec1482b1f8cdef14ba6fecdbacf4a4afe05244cc5a8df2ba4fc",
+          "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_sushi_cursor_edges_keep_the_original_sprite_visible"
+        }
+      ],
       "description": "Follow the flying sushi with your blade and slice it before it falls.",
       "preview": "collections/arcade/previews/teixeiraa05-lcom-sushi-slash-aeb86527d30d.png"
     },
@@ -2602,7 +2611,16 @@
         ]
       },
       "provenance": "examples/community/martimcferreira--lcom-project/UPSTREAM.json",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "Project/main.c",
+          "patch": "SOURCE_PATCH.diff",
+          "reason": "Keep the complete original 12x15 cursor visible at right/bottom edges; bottom/right Restart and menu buttons remain reachable.",
+          "upstreamSha256": "37fd6883d69795d56b6df9f186e7b2fcd6078db5b3f24317db3a77645046b539",
+          "patchedSha256": "d55b3ef25f08d1725a0de76041d1da2479eb745eea3e81fd2997b8f11843f97f",
+          "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_feup_hero_menu_cursor_remains_visible_at_right_bottom"
+        }
+      ],
       "description": "Hit the notes as they reach the fretboard and keep the rhythm going.",
       "preview": "collections/arcade/previews/martimcferreira-lcom-project-9a16857450a6.png"
     },
@@ -3715,7 +3733,20 @@
         "status": "missing",
         "files": []
       },
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "examples/community/Yuka-Sky--LCOM/SOURCE_PATCH.diff",
+          "reason": "Inset only the cursor artwork to the visible framebuffer, preserving original drawing-area coordinates, Clear hit targets, and semantic state warps.",
+          "verification": "Actual source compiled RED/GREEN regression: test_skess_cursor_draw_keeps_canvas_and_edge_hit_coordinates",
+          "files": [
+            {
+              "path": "Project/src/drawScreens.c",
+              "originalSha256": "471ac9225435f7d034e2a46cf1e11030a2f7f3300490381b479f0483ae1adc31",
+              "patchedSha256": "e5d29dd997f231924610bcc49f90f0476292b8fbaca482215ad8d1884013b583"
+            }
+          ]
+        }
+      ],
       "verification": {
         "repo": "Yuka-Sky/LCOM",
         "buildExit": 0,
@@ -4511,7 +4542,27 @@
         "status": "missing",
         "files": []
       },
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "examples/community/antoniocrego--lcom-t01-g3/SOURCE_PATCH.diff",
+          "reason": "Keep the original cursor visible at all screen edges and reject one-past framebuffer coordinates without changing hit targets.",
+          "verification": "Actual-source canary regression RED/GREEN: test_knight_quest_pixel_edges_cannot_wrap_or_overwrite_framebuffer; actual browser cursor edges and re-entry RED/GREEN.",
+          "files": [
+            {
+              "path": "proj/src/proj.c",
+              "reason": "Inset cursor artwork while preserving full-screen hit coordinates.",
+              "originalSha256": "5e09b6659d5135ed1d393e59bfeb513b9f46ed301d68c2bb18378c700d9dee07",
+              "patchedSha256": "3fe4dd7afffbe3bcd0c7876509547f3c16a9d671a0111334ce8313e526bbf3af"
+            },
+            {
+              "path": "proj/src/controllers/video/video_gr.c",
+              "reason": "Reject exact width/height pixels before offset calculation, preventing right-edge wrap and bottom-edge memory corruption.",
+              "originalSha256": "3c3896a6ebed75b8584e7e74ce265bcc9d54f5070f82542c7c859fda87cc7647",
+              "patchedSha256": "1df2060f1618a48ff4abed63184919814c9f1514bd0465a41bc78eb9756e6d1e"
+            }
+          ]
+        }
+      ],
       "verification": {
         "repo": "antoniocrego/lcom-t01-g3",
         "buildExit": 0,
@@ -5277,6 +5328,19 @@
           ],
           "reason": "Clamp cursor movement at the screen margins without jumping five pixels backward when motion crosses any boundary.",
           "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_star_defender_cursor_clamps_without_edge_recoil"
+        },
+        {
+          "path": "examples/community/luanalima27--LCOM-FEUP/SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "proj/src/video.c",
+              "originalSha256": "dcd9ef69bd545cd574a1753a0327323beb2126ab877867d8f236723b4681aa5e",
+              "patchedSha256": "59d0e5049882a9cee963fcb894cdc014c7a5b5e17819ff790e1e06e0f2604617",
+              "reason": "Clip17x17 gameplay target blits at the framebuffer edges and reject equality bounds, preventing the actual ARM64 bottom-edge SIGSEGV while preserving logical aiming coordinates."
+            }
+          ],
+          "reason": "Clip17x17 gameplay target blits at the framebuffer edges and reject equality bounds, preventing the actual ARM64 bottom-edge SIGSEGV while preserving logical aiming coordinates.",
+          "verification": "Compiled source regression RED on frozen43c3b7a, GREEN after repair: tests/community_source_regressions.py StudentSourceRegressions.test_star_defender_xpm_clips_framebuffer_edges"
         }
       ],
       "verification": {
@@ -5436,7 +5500,7 @@
       "sourcePatches": [
         {
           "path": "examples/community/guystavo7--feup-lcom-project/SOURCE_PATCH.diff",
-          "reason": "Original gameStateUpdate consumed click at old cursor coordinates before applying deltas. Existing coordinate helper is now called before game input; final cursor rendering unchanged. Combined move+press replay fails before and reaches game field after.",
+          "reason": "Apply cursor deltas before game hit testing and inset only displayed cursor artwork to the framebuffer; original full-screen tower placement coordinates stay reachable.",
           "reproduction": "fruit-direct-regression.mlabscript",
           "files": [
             {
@@ -5447,7 +5511,7 @@
             {
               "path": "project/src/cursorHandler.c",
               "originalSha256": "1e33b9f2cc63f9d03a2555f8493e228dc3b983aef70d2e7b2061d6486c813f14",
-              "patchedSha256": "f27d394eb84c5172540b4944f67b4d6d5ebbbafcff2e839fde9c64af1c3a0b41"
+              "patchedSha256": "70831f4f74c085306c7f35f25e6ea8dd35ef8f952e8de4214c04f6ad0aedba94"
             },
             {
               "path": "project/src/gameState.c",
@@ -5822,7 +5886,16 @@
         "assets": []
       },
       "provenance": "examples/community/Duarte-Pombo--MINIX-Whack-a-Mole/UPSTREAM.json",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/uiElements/cursor.c",
+          "patch": "SOURCE_PATCH.diff",
+          "reason": "Keep both original hammer frames visible inside the framebuffer while preserving access to all six mole centres and menu/settings targets.",
+          "upstreamSha256": "cf2eaa7a5a70c39686233d569b0dc08aef93fa4cf4f264c92cfd8acd80c5cec8",
+          "patchedSha256": "90010f982e55d3875b29c23180380f76783a196e9c35ac316b74561ed79ae05d",
+          "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_whack_hammer_stays_visible_and_can_hit_bottom_right_mole"
+        }
+      ],
       "description": "Watch the holes and tap each mole as it pops up. Be quick with the hammer.",
       "preview": "collections/arcade/previews/duarte-pombo-minix-whack-a-mole-c0b1a146de15.png"
     },
@@ -6132,6 +6205,14 @@
           "upstreamSha256": "e0644316c4eb1424585a2df7e7d9e67660a178070f2a7cedf6262e6f7aaad87d",
           "patchedSha256": "74f8cbcf829e1dd5719c23bd7d98569c042d97ac1cbc1c79ae59d0b29c8f5214",
           "verification": "Original native compile failed undeclared R_BIT. Corrected enum compiles natively and to WebAssembly; guarded native replay and real mobile controls show active maze/enemy gameplay."
+        },
+        {
+          "file": "proj/src/drivers/video.c",
+          "patch": "SOURCE_PATCH.diff",
+          "reason": "Keep the cursor artwork inside the framebuffer without changing logical aim or hit coordinates; reject pixels at the framebuffer dimensions before any memory write.",
+          "upstreamSha256": "855dfd34ea003c33991cadcef60ee9f3cccc315ca3e641a18d282455650a6a9a",
+          "patchedSha256": "b914df50de8b4b5e6d294e08f1a19fb4205d926687aaab316a48b394d88e54b4",
+          "verification": "Actual compiled renderer regression RED before correction and GREEN afterward: tests/community_source_regressions.py test_labyrinth_cursor_draw_stays_visible_without_moving_aim"
         }
       ],
       "description": "Find your way through the dungeon. Dash past danger and fight the enemies ahead.",
@@ -6951,7 +7032,21 @@
         ]
       },
       "provenance": "examples/community/aishend--TECLAS-The-Typing-Game/UPSTREAM.json",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "examples/community/aishend--TECLAS-The-Typing-Game/SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "teclas/src/cursor.c",
+              "originalSha256": "acc0fd7a0b76046d074765007bc7fe16b41b8a50a9ec74d24f97206b1c3b43c1",
+              "patchedSha256": "4a1eafdc3c96c275351945fd672b294f1c412ccdacbc7cecab46735a5974918e",
+              "reason": "Keep the entire loaded cursor sprite visible at each edge by clamping its draw origin, preserving logical click coordinates."
+            }
+          ],
+          "reason": "Keep the entire loaded cursor sprite visible at each edge by clamping its draw origin, preserving logical click coordinates.",
+          "verification": "Compiled source regression RED on frozen43c3b7a, GREEN after repair: tests/community_source_regressions.py StudentSourceRegressions.test_teclas_draws_complete_cursor_without_changing_hotspot"
+        }
+      ],
       "description": "Type the words on screen and keep up with the next challenge.",
       "preview": "collections/arcade/previews/teclas-9e9acdbd5fab.png"
     },
@@ -7910,6 +8005,43 @@
             }
           ],
           "reproduction": "source-regressions/luizhqueiroz--LCOM-MemoryGame/results.json"
+        },
+        {
+          "path": "examples/community/luizhqueiroz--LCOM-MemoryGame/SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "src/game/main_game/main_game.c",
+              "originalSha256": "0fd330d7f3a0165724d5a45d9013c81276b3361c8220b35cd078172261d0f539",
+              "patchedSha256": "f1a32586a6b9c7792d2a8fcf5ea28e13009d1bc04dd269dcb2fb16925d95f66e",
+              "reason": "Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates."
+            },
+            {
+              "path": "src/game/menu/menu.c",
+              "originalSha256": "4b94d24b6bfb1049450922f0ae447015c07e7cc67497a0895058eade6fd55b45",
+              "patchedSha256": "cab2003b32507e531c8add2e6aae8dbd44a234d9537d9517c35ab8ee30323969",
+              "reason": "Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates."
+            },
+            {
+              "path": "src/game/record/record.c",
+              "originalSha256": "8776edfa6539ff57f42caa4d1e063128bb3265ed47c7e66d6cc0593b0f9e2bf7",
+              "patchedSha256": "cfc3d87aa55611b6807148109858960bc604b41c4bb8d81e7ed9e618be9c897c",
+              "reason": "Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates."
+            },
+            {
+              "path": "src/images/sprite/sprite.c",
+              "originalSha256": "969c30ca25f07f316722bd73c70587d64e6020eda0c6b65ada85e4e85403cb90",
+              "patchedSha256": "7c9dd3aa074deb1101e8584cf220f512dfc2c8ca5744c7cbe125376c6cc81513",
+              "reason": "Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates."
+            },
+            {
+              "path": "src/images/sprite/sprite.h",
+              "originalSha256": "281f8033df5d0b25b06b40e7c177a33f01bb9fbf146bede347cc2a01a5dbb5d7",
+              "patchedSha256": "76a389edcb411cbc3b732669b9a051f6dea9c72a23b969290d52600bdb266629",
+              "reason": "Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates."
+            }
+          ],
+          "reason": "Draw the complete normal or selection cursor inside the frame in menu, game, winner and record phases without changing logical card/button hit coordinates.",
+          "verification": "Compiled source regression RED on frozen43c3b7a, GREEN after repair: tests/community_source_regressions.py StudentSourceRegressions.test_memory_quest_draws_complete_cursor_in_every_phase"
         }
       ],
       "controlsRationale": "Two first-row cards reveal lion/envelope at intended positions. New direct contract: init10,10, unit deltas, independent clamp0..800/0..600, update position before click, no cursor warps. Arrow/Flip and name keyboard remain available.",
@@ -8126,16 +8258,22 @@
       },
       "sourcePatches": [
         {
-          "path": "examples/community/DiogoSilva11--LCOM/SOURCE_PATCH.diff",
+          "path": "SOURCE_PATCH.diff",
           "files": [
             {
               "path": "proj/src/mouse.c",
               "originalSha256": "317eae3f1d21405b7d76a245d4d31a65a502166c6b15035f43baf590cac51e01",
               "patchedSha256": "a8a840650f52c3b67958b6d2591c68222cdaede701829c060773e6c6a4fd202e",
               "reason": "Original mouse_cmd waited for an ACK after controller prefix0xD4, which has no reply. Original menu exit failed time-out/status1 in mouse_disable; now only the device command argument waits for its ACK."
+            },
+            {
+              "path": "proj/src/game.c",
+              "originalSha256": "cfb859940e9839cbdc641f9ea64b43f0c00da9e1113db544fc0afe90ac35375e",
+              "patchedSha256": "49bec810c204cd4a37949a5025d7ff26499331b93a2a756e0037ac0e56a14a7c",
+              "reason": "Clamp only the14x13 crosshair drawing origin inside the framebuffer. Preserve full-screen logical aim and shooting coordinates. The original pixel renderer writes all supplied pixels without clipping."
             }
           ],
-          "reproduction": "source-regressions/DiogoSilva11--LCOM/results.json"
+          "reproduction": "Public moveCrosshair then drawCrosshair submits draw1023,767 before correction, which extends past1024x768 allocation. Corrected draw fits1010,755 while crosshairCenter remains1030,773. Signed return-to-origin is also verified."
         }
       ],
       "controlsRationale": "Live arena and robot movement/fire. Named Start/Quit are reachable after shared top-left allocation fix.",
@@ -8776,16 +8914,34 @@
       },
       "sourcePatches": [
         {
-          "path": "examples/community/leonardomagalhaes21--feup-LCOM/SOURCE_PATCH.diff",
+          "path": "SOURCE_PATCH.diff",
           "files": [
             {
               "path": "proj/src/devices/mouse/mouse.c",
               "originalSha256": "35879c44ab9d9da17b33180eed64d5c50b02d1f8a993b3cb8c8c0a4e5f04e485",
               "patchedSha256": "0e2d01704f4fd26ef099b42c2e620d801d5fe46d37cac3a82837c599ef7eb66a",
               "reason": "Original native startup reproducibly SIGTRAP in mouse_write_cmd before first frame. acknowledgment_byte is read by the while condition before initialization, undefined behavior. Initialize it to a non-ACK value so the intended first command is sent."
+            },
+            {
+              "path": "proj/src/main.c",
+              "originalSha256": "a01eb436dc6b5a181b66657c65c859a6219ca1298af55868b356d79dc5fd4886",
+              "patchedSha256": "03f627717bd1257103149a6c7790a43b75b92c5a17e7839e4eb6318ce2624408",
+              "reason": "Preserve all-or-nothing cursor movement and phase initialization, but validate each loaded resolution square actual extent instead of hardcoded7px X and unbounded Y."
+            },
+            {
+              "path": "proj/src/game/classes/mouse_cursor.c",
+              "originalSha256": "b0eae1c44f08ce366399e98ef9c481f8cb31c41c1142855fc36c8cc764e396d9",
+              "patchedSha256": "f980d09914e8d221c78c8518d981253d8ada425a7424a65070ae0985fcb79a3b",
+              "reason": "Preserve all-or-nothing cursor movement and phase initialization, but validate each loaded resolution square actual extent instead of hardcoded7px X and unbounded Y."
+            },
+            {
+              "path": "proj/src/game/classes/mouse_cursor.h",
+              "originalSha256": "8d38809169326da2150f7c25594d501647a23fb108f903732e19c7b506a66f6a",
+              "patchedSha256": "b8b5f82e12fa1eff5a262d92c1563931cdcca583eaa2cf49cee37fbef1421f04",
+              "reason": "Preserve all-or-nothing cursor movement and phase initialization, but validate each loaded resolution square actual extent instead of hardcoded7px X and unbounded Y."
             }
           ],
-          "reproduction": "source-regressions/leonardomagalhaes21--feup-LCOM/results.json"
+          "reproduction": "Public CLI640x480 resolution-menu replay moves original4x4 square from222,194 to222,434 then requestsY480. Original accepts and loses cursor. Corrected code rejects the second packet, leaving the white square visible at222,434."
         }
       ],
       "controlsRationale": "Actual enemy/platform gameplay, jump and bullets visible. Preserve relative pointer because resolution selection resets guest cursor and resolution changes. Fast initial probe was too early; final exact replay waits for menu initialization.",
@@ -9215,7 +9371,7 @@
       },
       "sourcePatches": [
         {
-          "path": "examples/community/Forreca05--LCOM-Snake-Game-Projeto-2025/SOURCE_PATCH.diff",
+          "path": "SOURCE_PATCH.diff",
           "files": [
             {
               "path": "proj/src/input/input.c",
@@ -9228,9 +9384,15 @@
               "originalSha256": "470f609d5a32b6be1e2a4dd162892c597cd42c2f403c685e6a6ad6e079c60b45",
               "patchedSha256": "c322394146cd680f3c5cd506d2fb12848fcaaeeeb30db373969316ba32a419bf",
               "reason": "Match the mouse controller byte_index definition (uint8_t) in the local/remote menu. The widened read prevents complete packet recognition and makes the local duel option unselectable. Issue #11."
+            },
+            {
+              "path": "proj/src/controllers/gpu/gpu.c",
+              "originalSha256": "add5eba151ce097295a659445b847da2e3e6fd14684d8834c422215af29272a6",
+              "patchedSha256": "42880d2680715291be3642591315f4437f40c50478e5a15598a4da0a83f4c982",
+              "reason": "Clip pixel writes to the actual framebuffer dimensions and write exactly the current pixel format byte count. Original32-bit stores overran24-bit last pixels, and the partially clipped32x32 cursor could write beyond the buffer at logical1129,839. Preserve logical pointer/aim positions and original RGB packing."
             }
           ],
-          "reproduction": "devenv shell -- python3 tests/community_source_regressions.py"
+          "reproduction": "Public vg_init/vg_draw_pixel regression uses an independently guarded4x3x24-bit framebuffer. Original final-pixel write corrupts the first guardbyte; removing onlyXYguard also reproduces offscreen framebuffer/guard changes. Both pass after clipping/exactbytewrite. Original logicalcursor1129,839 and directprofile unchanged."
         }
       ],
       "controlsRationale": "Classic mode needs four-way WASD while Survival uses A/D. Label the actual1/2 input-method choices, preserving direct mouse menus at verified sprite-clamped bounds.",
@@ -9911,7 +10073,21 @@
         "assets": []
       },
       "controlsRationale": "Direct tap matches original cursor (5,5), unit deltas and clamp bounds 800x600. P starts, A/C builds, U upgrades. A tower was built and enemy wave visually verified.",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "examples/community/DavidGustavo6--LCOM-game/SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "src/sprites/sprite.c",
+              "originalSha256": "32254ddb0723b9c8b18ff6acb463e59f9e616bfd8c75d201918a71432643b549",
+              "patchedSha256": "521bc6832f01b2632c5d44e28c30c6f4677896e545f3fb85a0d2a5fda35399b0",
+              "reason": "Keep the entire mouse sprite visible by clamping only its draw origin. Preserve logical slot/tower targeting and other sprites."
+            }
+          ],
+          "reason": "Keep the entire mouse sprite visible by clamping only its draw origin. Preserve logical slot/tower targeting and other sprites.",
+          "verification": "Compiled source regression RED on frozen43c3b7a, GREEN after repair: tests/community_source_regressions.py StudentSourceRegressions.test_tower_defense_draws_cursor_inside_screen_without_moving_slot_hotspot"
+        }
+      ],
       "license": {
         "status": "missing",
         "files": []
@@ -10215,7 +10391,20 @@
         "assets": []
       },
       "controlsRationale": "Mobile controls exercised in Chromium with a 900x430 touch viewport. Trace every route once across a galaxy of puzzle missions.",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "proj/src/mouse.c",
+              "originalSha256": "b3d68f9711163238269ccff988bd5a8328c2272b1db0d3b430e83d337f2d634d",
+              "patchedSha256": "5ff504a0795cf1541933407a48fda9f6d0de1f677c8dc18e2ffd89d7421981c1",
+              "reason": "Render a bounded copy of the centered cursor sprite so its original logical edge coordinates remain available for menu and graph hit tests."
+            }
+          ],
+          "verification": "Actual compiled renderer regression RED before correction and GREEN afterward: tests/community_source_regressions.py test_euler_cursor_render_keeps_centered_art_inside_frame"
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -10327,7 +10516,20 @@
         "assets": []
       },
       "controlsRationale": "Mobile controls exercised in Chromium with a 900x430 touch viewport. Time the angle, charge your cannon and duel a rival castle.",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "src/view/view.c",
+              "originalSha256": "23fe3bcb7671e5e585057c9c376fa46beef998e6a81e128ae30e8a2a39ab9540",
+              "patchedSha256": "99dcdca072a58943148f5b7cf5e709859da930cf728f9a79e3b2127a3e2e396a",
+              "reason": "Clamp only normal/hover cursor artwork origins inside the framebuffer, preserving full-screen logical click coordinates and all other sprite positions."
+            }
+          ],
+          "verification": "Actual compiled renderer regression RED before correction and GREEN afterward: tests/community_source_regressions.py test_castle_cursor_draw_preserves_fullscreen_hit_coordinates"
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -10795,14 +10997,16 @@
             {
               "path": "proj/Src/game.c",
               "originalSha256": "98ac3d24d05918e53c8a7400b2290fa497610abb9f9580c0a97f77f86fe94f31",
-              "patchedSha256": "d4ee4661c097a432db70c0e01606a0da23bea3c34348eb58c364001928586151",
-              "reason": "Preserve the earlier level filename buffer fix. Free only owned pixel maps of global portal value snapshots, release their temporary heap wrappers, and clear level pointers after destruction so Escape, level changes and editor/co-op transitions cannot free static or stale objects."
+              "patchedSha256": "894e0e9a0e2322608e2a69b4e9309b48d9c14e09176ec93e4968d0feec28c31c",
+              "reason": "Preserve the earlier level filename buffer fix. Free only owned pixel maps of global portal value snapshots, release their temporary heap wrappers, and clear level pointers after destruction so Escape, level changes and editor/co-op transitions cannot free static or stale objects. Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions.",
+              "verification": " test_portal_cursor_draw_preserves_aim_at_the_level_edge"
             },
             {
               "path": "proj/Src/sprites.c",
               "originalSha256": "be0bc7973b58f66fa5902b79b0a37e88120aea68ab024483e1dea2eb206ba7ec",
-              "patchedSha256": "b529f812504b5670da6e943b855e766d7eedab43be669a88c24ee27222c2be87",
-              "reason": "Destroy both separately owned normal/reversed image maps, including after flip_sprite swaps their pointers."
+              "patchedSha256": "4b9892e8df4c0a2f940670f958a13041e7e2c5699079011f0c6a2b24d89cc112",
+              "reason": "Destroy both separately owned normal/reversed image maps, including after flip_sprite swaps their pointers. Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions.",
+              "verification": " test_portal_cursor_draw_preserves_aim_at_the_level_edge"
             },
             {
               "path": "proj/Src/asprite.c",
@@ -10812,6 +11016,18 @@
             }
           ],
           "reproduction": "Native Android gameplay, portals then Escape aborts in destroy_all_sprites -> free with truncated pointer tag. The public desktop CLI reproduces SIGABRT134 on Play then Escape even without portals. After correcting ownership both minimal and paired-portal replays return to menu without abort."
+        },
+        {
+          "path": "SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "proj/Src/sprites.h",
+              "originalSha256": "0fa93a3d37a265ace464fe740eb512ce2bb2fc2d153f841331a367128ca4e37e",
+              "patchedSha256": "5b007186e4578e4293ae4c77ba049c0a8a45cb353910ecd9a4c821c9a4c5746b",
+              "reason": "Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions."
+            }
+          ],
+          "verification": "Actual compiled renderer regression RED before correction and GREEN afterward: tests/community_source_regressions.py test_portal_cursor_draw_preserves_aim_at_the_level_edge"
         }
       ],
       "license": {
@@ -11005,7 +11221,33 @@
         }
       },
       "controlsRationale": "Direct tap Play (400,176), hold up >2sec, observed character travel/timer02 and advancing monsters; loss reached GAME OVER with mapped highscore data; Exit clean.",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "examples/community/RodrigoPombo1--projeto-lcom/SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "proj/src/devices/graphics/graphics.c",
+              "originalSha256": "c147e52be61c9cc275b87db500ffba3f646abebbdce7b8df04dd694d6ef14316",
+              "patchedSha256": "4f65897e3d7375186a468d6658053588d292a5c1cf6140b4df630040f29cbdbf",
+              "reason": "Clamp the centered32x32 cursor draw origin on initial and interrupt-driven redraws, preserving logical menu/game coordinates and full original cursor visibility."
+            },
+            {
+              "path": "proj/src/devices/graphics/graphics.h",
+              "originalSha256": "988025c3057f566b2e96a4a502eeafdf00c30d039c37643063a3f80341831fc5",
+              "patchedSha256": "ff972c2e5da0b0f62d52d9cd0d405a2b08c367e230a7799ba8a8fc5dee7b4cc1",
+              "reason": "Clamp the centered32x32 cursor draw origin on initial and interrupt-driven redraws, preserving logical menu/game coordinates and full original cursor visibility."
+            },
+            {
+              "path": "proj/src/main.c",
+              "originalSha256": "ddf6495a223c11de6b70564a7ae79f383d3598f871ff7432abf8ac8192d1cb84",
+              "patchedSha256": "0d5698d3f8a8d3f298ba1ccb18bcf163427de0ca4dcb6447e697c7561fed695b",
+              "reason": "Clamp the centered32x32 cursor draw origin on initial and interrupt-driven redraws, preserving logical menu/game coordinates and full original cursor visibility."
+            }
+          ],
+          "reason": "Clamp the centered32x32 cursor draw origin on initial and interrupt-driven redraws, preserving logical menu/game coordinates and full original cursor visibility.",
+          "verification": "Compiled source regression RED on frozen43c3b7a, GREEN after repair: tests/community_source_regressions.py StudentSourceRegressions.test_leiria_cursor_is_visible_at_both_logical_corners"
+        }
+      ],
       "license": {
         "status": "missing",
         "files": []

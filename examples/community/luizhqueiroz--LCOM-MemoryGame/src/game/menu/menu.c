@@ -90,11 +90,11 @@ void (menu_control_mouse)(struct packet *pp, int x, int y) {
 
 int (menu_display_mouse)(int x, int y) {
     if ((x >= 300 && x < 500 && y >= 300 && y < 390) || (x >= 300 && x < 500 && y >= 420 && y < 510) || (x >= 735 && x < 795 && y >= 530 && y < 590)) {
-        if (display_sprite(select_mouse_cursor, x, y)) {
+        if (display_cursor(select_mouse_cursor, x, y)) {
             return 1;
         }
     } else {
-        if (display_sprite(mouse_cursor, x, y)) {
+        if (display_cursor(mouse_cursor, x, y)) {
             return 1;
         }
     }   
