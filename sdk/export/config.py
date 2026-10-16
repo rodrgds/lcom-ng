@@ -120,27 +120,39 @@ def load(project, explicit=None):
             if not isinstance(value,list) or len(value)>2: raise ValueError(target+' must contain up to two pads')
             pads=[]
             for p in value:
-                object_value(p,target,['side','mode','style','keys','sensitivity','axes'])
-                p={**{'side':'left','mode':'arrows','style':'dpad','sensitivity':1,'axes':'both'},**p}
+                object_value(p,target,['side','mode','style','keys','sensitivity','axes','maxAngle','deadZone'])
+                p={**{'side':'left','mode':'arrows','style':'dpad','sensitivity':1,
+                      'axes':'horizontal' if p.get('style')=='wheel' else 'both'},**p}
                 choice(p['side'],target+'.side',['left','right'])
                 choice(p['mode'],target+'.mode',['arrows','wasd','keypad','mouse'])
-                choice(p['style'],target+'.style',['dpad','stick'])
+                choice(p['style'],target+'.style',['dpad','stick','wheel'])
                 choice(p['axes'],target+'.axes',['both','horizontal','vertical'])
                 if type(p['sensitivity']) not in (int,float) or not 0.1<=p['sensitivity']<=5:
                     raise ValueError(target+'.sensitivity must be between 0.1 and 5')
                 if p['mode']=='mouse' and (p['style']!='stick' or 'keys' in p):
                     raise ValueError(target+': mouse pads require stick style and no keys')
+                if p['style']=='wheel':
+                    if p['axes']!='horizontal': raise ValueError(target+': wheels use horizontal steering only')
+                    for field,default,minimum,maximum in [('maxAngle',135,45,270),('deadZone',8,0,30)]:
+                        value=p.get(field,default)
+                        if type(value) not in (int,float) or not minimum<=value<=maximum:
+                            raise ValueError(target+'.'+field+f' must be between {minimum} and {maximum} degrees')
+                        p[field]=value
+                elif 'maxAngle' in p or 'deadZone' in p:
+                    raise ValueError(target+': maxAngle and deadZone require wheel style')
                 if 'keys' in p:
                     object_value(p['keys'],target+'.keys',['up','left','down','right'])
-                    if set(p['keys'])!={'up','left','down','right'} or any(not isinstance(k,str) or k not in KEYS for k in p['keys'].values()):
-                        raise ValueError(target+'.keys must map all four directions to guest key names')
+                    required={'left','right'} if p['style']=='wheel' else {'up','left','down','right'}
+                    if not required.issubset(p['keys']) or any(not isinstance(k,str) or k not in KEYS for k in p['keys'].values()):
+                        raise ValueError(target+'.keys must map '+('left and right' if p['style']=='wheel' else 'all four directions')+' to guest key names')
                 pads.append(p)
             value=pads
         elif key=='actions':
             if not isinstance(value,list) or len(value)>8: raise ValueError(target+' must contain up to eight actions')
             positions=[]
             for action in value:
-                object_value(action,target,['side','position','label','key','mouseButton'])
+                object_value(action,target,['side','position','label','key','mouseButton','icon'])
+                if 'icon' in action: choice(action['icon'],target+'.icon',['accelerator','brake','reverse'])
                 if 'side' in action: choice(action['side'],target+'.side',['left','right'])
                 if 'position' in action: choice(action['position'],target+'.position',CORNERS)
                 elif 'side' not in action: raise ValueError(target+' requires side or position')
@@ -278,10 +290,14 @@ def write_native(config, path):
         keys='{'+','.join(cpp_string(p.get('keys',{}).get(k,'')) for k in ('left','up','right','down'))+'}'
         lines.append('  c.pads.push_back({true,'+cpp_string(p['mode'])+','+cpp_string(p['side'])+','+str(float(p['sensitivity']))+'f,'+str(p['style']=='dpad').lower()+','+keys+'});')
         lines.append('  c.pads.back().axes = '+cpp_string(p['axes'])+';')
+        if p['style']=='wheel':
+            lines.append('  c.pads.back().wheel = true;')
+            for field in ('maxAngle','deadZone'): lines.append(f'  c.pads.back().{field} = {float(p[field])}f;')
     for a in c['actions']:
         side=a.get('side',a.get('position','bottom-right').split('-')[1])
         lines.append('  c.actions.push_back({'+','.join(cpp_string(side if k=='side' else a.get(k,'')) for k in ('side','label','key'))+','+str({'left':1,'right':2,'middle':4}.get(a.get('mouseButton'),0))+'});')
         lines.append('  c.actions.back().position = '+cpp_string(a.get('position',''))+';')
+        if a.get('icon'): lines.append('  c.actions.back().icon = '+cpp_string(a['icon'])+';')
     for key in ('accent','keyboardAccent','button','text'): lines.append(f'  c.{key} = 0x{t[key][1:]};')
     lines += ['  return c;', '}();']
     environment=runtime_environment(config)

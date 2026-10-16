@@ -115,10 +115,10 @@ def write_game_metadata(output, settings, arguments, working_directory):
 def write_player(output, settings):
     """Package and version the shared host independently of the game binary."""
     output = Path(output)
-    names = ['player.js', 'player.css', 'loading.js']
+    names = ['player.js', 'player.css', 'loading.js', 'driving.js']
     for name in names: shutil.copy2(WEB / name, output / name)
     player = (output / 'player.js').read_text()
-    for name in ('loading.js', 'game.js'):
+    for name in ('loading.js', 'game.js', 'driving.js'):
         digest = hashlib.sha256((output / name).read_bytes()).hexdigest()[:12]
         player = player.replace(f"'./{name}'", f"'./{name}?v={digest}'")
     (output / 'player.js').write_text(player)

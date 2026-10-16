@@ -533,9 +533,10 @@ test('mobile controls stay compact, with a dismissible keyboard and optional map
   await expect.poll(() => consoleText(page)).toContain('key:4d');
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ ...arrowRight, x: arrows.x + arrows.width / 2, y: arrows.y + arrows.height / 2 }] });
   await expect.poll(() => consoleText(page)).toContain('key:cd');
-  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [{ ...arrowRight, x: arrows.x + arrows.width / 2, y: arrows.y + arrows.height / 2 }] });
   await page.getByLabel('Joystick mode').selectOption('wasd');
-  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [right] });
+  const wasd = await page.locator('#joystick').boundingBox();
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: wasd.x + wasd.width - 10, y: wasd.y + wasd.height / 2, id: 1 }] });
   await expect.poll(() => consoleText(page)).toContain('key:20');
   await cdp.send('Input.dispatchTouchEvent', { type: 'touchCancel', touchPoints: [] });
   await expect.poll(() => consoleText(page)).toContain('key:a0');
@@ -891,4 +892,69 @@ test('failed player module downloads offer retry in collections and standalone e
   fail = false;
   await page.getByRole('button',{name:'Reload',exact:true}).click();
   await expect.poll(() => pixel(page)).toEqual([17,34,51,255]);
+});
+
+
+test('steering wheel turns around its rim while pedals and physical keys remain independent', async ({browser}) => {
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-dual/game.json', async route => {
+    const response=await route.fetch(),settings=await response.json();
+    Object.assign(settings.mobile.controls,{keyboard:false,mouseButtons:false,joystick:false,look:false,dpad:false,
+      quickKeys:[],pointer:'off',pads:[{side:'left',mode:'wasd',style:'wheel',axes:'horizontal',maxAngle:120,deadZone:8}],
+      actions:[{position:'bottom-right',label:'Accelerate',key:'W',icon:'accelerator'},
+               {position:'bottom-right',label:'Brake / reverse',key:'S',icon:'brake'}]});
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-dual');
+  const wheel=page.getByRole('slider',{name:'Steering wheel',exact:true});
+  await expect(wheel).toHaveAttribute('aria-valuenow','0');
+  const bounds=await wheel.boundingBox();
+  expect(bounds.width).toBeGreaterThanOrEqual(128);
+  const rim=angle=>({id:1,x:bounds.x+bounds.width/2+Math.sin(angle*Math.PI/180)*bounds.width*.4,
+    y:bounds.y+bounds.height/2-Math.cos(angle*Math.PI/180)*bounds.height*.4});
+  const pedal=async(name,id)=>{const b=await page.getByRole('button',{name,exact:true}).boundingBox();
+    expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);
+    return{id,x:b.x+b.width/2,y:b.y+b.height/2};};
+  const gas=await pedal('Accelerate',2),brake=await pedal('Brake / reverse',3);
+  const cdp=await context.newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rim(170)]});
+  await expect(wheel).toHaveAttribute('aria-valuenow','0');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rim(170),gas]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rim(190),gas]});
+  await expect(wheel).toHaveAttribute('aria-valuenow','20');
+  for(const code of ['11','20']) await expect.poll(()=>consoleText(page)).toContain('key:'+code);
+  expect(consoleText(page)).not.toContain('key:1f');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rim(190),gas,brake]});
+  await expect.poll(()=>consoleText(page)).toContain('key:1f');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[gas]});
+  await expect.poll(()=>consoleText(page)).toContain('key:91');
+  expect(consoleText(page)).not.toContain('key:9f');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rim(90),brake]});
+  await expect(wheel).toHaveAttribute('aria-valuenow','-80');
+  await expect.poll(()=>consoleText(page)).toContain('key:1e');
+  await page.keyboard.down('a');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[rim(90)]});
+  await expect(wheel).toHaveAttribute('aria-valuenow','0');
+  expect(consoleText(page)).not.toContain('key:9e');
+  await page.keyboard.up('a');
+  await expect.poll(()=>consoleText(page)).toContain('key:9e');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+  await expect.poll(()=>consoleText(page)).toContain('key:9f');
+  // A second finger cannot seize an already held wheel.
+  const other={...rim(0),id:4};
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rim(0)]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[rim(0),other]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rim(0),{...rim(90),id:4}]});
+  await expect(wheel).toHaveAttribute('aria-valuenow','0');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rim(90),{...rim(90),id:4}]});
+  await expect(wheel).toHaveAttribute('aria-valuenow','90');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[rim(180),{...rim(90),id:4}]});
+  await expect(wheel).toHaveAttribute('aria-valuenow','120');
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+  await expect(wheel).toHaveAttribute('aria-valuenow','0');
+  await wheel.focus();await page.keyboard.down('ArrowLeft');
+  await expect.poll(()=>consoleText(page).split('key:1e').length).toBeGreaterThan(2);
+  await page.keyboard.up('ArrowLeft');await expect(wheel).toHaveAttribute('aria-valuenow','0');
+  await context.close();
 });

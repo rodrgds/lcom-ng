@@ -19,8 +19,8 @@
 namespace lcom::embedded {
 namespace {
 ControlConfig settings;
-struct Pad { SDL_FRect rect; PadConfig config; float x = 0, y = 0, dx = 0, dy = 0; };
-struct Button { SDL_FRect rect; std::string label, key; int action = 0; uint8_t mouseButton = 0; };
+struct Pad { SDL_FRect rect; PadConfig config; float x = 0, y = 0, dx = 0, dy = 0; float angle = 0, contactAngle = 0; };
+struct Button { SDL_FRect rect; std::string label, key; int action = 0; uint8_t mouseButton = 0; std::string icon; };
 struct Finger {
   float x, y; int button = -1; bool game = false; float dx = 0, dy = 0; int pad = -1;
   float originX = 0, originY = 0; bool moved = false, blocked = false;
@@ -48,6 +48,7 @@ std::vector<std::pair<int,SDL_FRect>> padTargets(const Pad &p) {
 bool inside(float x, float y, const SDL_FRect &r) { return x >= r.x && x < r.x+r.w && y >= r.y && y < r.y+r.h; }
 bool padContains(const Pad &pad,float x,float y) {
   if(!inside(x,y,pad.rect))return false;
+  if(pad.config.wheel)return std::hypot(x-pad.rect.x-pad.rect.w/2,y-pad.rect.y-pad.rect.h/2)<=pad.rect.w/2;
   if(!pad.config.directional)return true;
   for(const auto &target:padTargets(pad)) if(inside(x,y,target.second))return true;
   return false;
@@ -145,7 +146,7 @@ class SdlHost final : public Host {
   void release() {
     for (const auto &key : keys_) injectKey(key.c_str(), false);
     keys_.clear(); repeat_keys_.clear(); fingers_.clear(); physical_.clear();
-    for (auto &pad : pads_) pad.x = pad.y = pad.dx = pad.dy = 0;
+    for (auto &pad : pads_) pad.x = pad.y = pad.dx = pad.dy = pad.angle = pad.contactAngle = 0;
     last_pad_time_ = SDL_GetTicksNS();
     mouse_ = physical_mouse_ = 0; tap_hold_=false;tap_until_=0;
     injectMouse(0, 0, 0);
@@ -162,10 +163,12 @@ class SdlHost final : public Host {
         const auto &p = pads_[finger.pad];
         if (p.config.mode != "mouse") {
           const auto keys=padKeys(p.config);
-          if (padDirection(p.config,0) && p.x < -0.3f) next.insert(keys[0]);
-          if (padDirection(p.config,2) && p.x > 0.3f) next.insert(keys[2]);
-          if (padDirection(p.config,1) && p.y < -0.3f) next.insert(keys[1]);
-          if (padDirection(p.config,3) && p.y > 0.3f) next.insert(keys[3]);
+          bool left=p.config.wheel?p.angle < -p.config.deadZone:p.x < -.3f;
+          bool right=p.config.wheel?p.angle > p.config.deadZone:p.x > .3f;
+          if (padDirection(p.config,0) && left) next.insert(keys[0]);
+          if (padDirection(p.config,2) && right) next.insert(keys[2]);
+          if (!p.config.wheel && padDirection(p.config,1) && p.y < -0.3f) next.insert(keys[1]);
+          if (!p.config.wheel && padDirection(p.config,3) && p.y > 0.3f) next.insert(keys[3]);
         }
       }
       if (finger.button < 0 || static_cast<size_t>(finger.button) >= buttons_.size()) continue;
@@ -292,7 +295,7 @@ class SdlHost final : public Host {
     bool overlay = settings.layout == "overlay";
     const bool has_pads=settings.joystick.enabled || joystick_open_ || settings.look.enabled || settings.dpad.enabled || !settings.pads.empty();
     float pad_size=156.f;
-    size_t action_rows=0;
+    size_t action_height=0;
     for(const std::string vertical:{"top","bottom"}) {
       size_t widest=0;
       for(const std::string side:{"left","right"}) {
@@ -301,7 +304,10 @@ class SdlHost final : public Host {
         });
         widest=std::max(widest,count);
       }
-      action_rows+=(widest+1)/2;
+      bool pedals=std::any_of(settings.actions.begin(),settings.actions.end(),[&](const auto &action){
+        return !action.icon.empty() && (action.position.empty()?"bottom-"+action.side:action.position).find(vertical)==0;
+      });
+      action_height+=((widest+1)/2)*(pedals?92:56);
     }
     bool side_panel=landscape;
     bool left_panel=false;
@@ -322,7 +328,7 @@ class SdlHost final : public Host {
     };
     float quick_h = (quick_keys.empty() && !settings.keyboard) ? 0 : rows_for(quick_w)*48.f;
     float controls_h = quick_h + (arrow_row?48:0) + (action_row?48:0) + (keyboard_?192:0);
-    if(!overlay && !keyboard_) controls_h+=(has_pads?pad_size+8:0)+(action_rows?56*action_rows+8:0);
+    if(!overlay && !keyboard_) controls_h+=(has_pads?pad_size+8:0)+(action_height?action_height+8:0);
     float panel_h = collapsed_ ? 48.f : controls_h;
     if (side_panel) panel_h = available_h;
     if (!has_controls) panel_w = panel_h = 0;
@@ -386,7 +392,7 @@ class SdlHost final : public Host {
       py=top+available_h-controls_h;
       if (!landscape && !pads_.empty() && !keyboard_) py-=pad_size+8;
       if (!landscape && !keyboard_ && !settings.actions.empty()) {
-        py-=56*action_rows+8;
+        py-=action_height+8;
       }
     }
     if (collapsed_) { buttons_.push_back({{left,top,44,44},"@controls","",5}); publish(); return; }
@@ -446,7 +452,9 @@ class SdlHost final : public Host {
           if(position==corner) actions.push_back(action);
         }
         if(actions.empty()) continue;
-        float action_w=std::min(156.f,pad_width/2-4);
+        bool pedals=std::any_of(actions.begin(),actions.end(),[](const auto &action){return !action.icon.empty();});
+        float action_w=std::min(pedals?212.f:156.f,pedals?pad_width-4:pad_width/2-4);
+        float action_h=pedals?88.f:52.f;
         if(corner.find("top")==0) {
           float cell=52;
           for(const auto &action:actions)cell=std::max(cell,textWidth(action.label)+24);
@@ -455,12 +463,12 @@ class SdlHost final : public Host {
         float gutter=corner.find("right")!=std::string::npos ?
             left+available_w-game_rect_.x-game_rect_.w-8:game_rect_.x-left-8;
         if(overlay && gutter>=(actions.size()>1?108:52))action_w=std::min(action_w,gutter);
-        SDL_FRect group{0,0,action_w,56.f*((actions.size()+1)/2)-4};
+        SDL_FRect group{0,0,action_w,(action_h+4)*((actions.size()+1)/2)-4};
         group=placeGroup(corner,group,corner,pad_left,top,pad_width,available_h,occupied);
         for(size_t i=0;i<actions.size();++i) {
           float bw=actions.size()==1 ? action_w : (action_w-4)/2;
-          SDL_FRect rect{group.x+(i%2)*(bw+4),group.y+(i/2)*56,bw,52};
-          buttons_.push_back({rect,actions[i].label,actions[i].key,0,actions[i].mouseButton});occupied.push_back(rect);
+          SDL_FRect rect{group.x+(i%2)*(bw+4),group.y+(i/2)*(action_h+4),bw,action_h};
+          buttons_.push_back({rect,actions[i].label,actions[i].key,0,actions[i].mouseButton,actions[i].icon});occupied.push_back(rect);
         }
       }
       publish(); return;
@@ -515,6 +523,25 @@ class SdlHost final : public Host {
   void label(const Button &b, uint32_t rgb) {
     float cx=b.rect.x+b.rect.w/2, cy=b.rect.y+b.rect.h/2;
     std::string name=b.label;
+    if(!b.icon.empty()) {
+      const float top=b.rect.y+8, pedal_h=b.rect.h-40, pedal_w=std::min(36.f,b.rect.w*.45f);
+      const float tilt=b.icon=="accelerator"?6.f:0.f;
+      ink(rgb,220);
+      SDL_FPoint outline[]={{cx-pedal_w/2+tilt,top},{cx+pedal_w/2,top},
+        {cx+pedal_w/2-tilt,top+pedal_h},{cx-pedal_w/2,top+pedal_h},{cx-pedal_w/2+tilt,top}};
+      SDL_RenderLines(renderer_,outline,5);
+      for(int i=1;i<=3;++i) {
+        float y=top+pedal_h*i/4;
+        SDL_RenderLine(renderer_,cx-pedal_w/2+5,y,cx+pedal_w/2-5,y);
+      }
+      if(b.icon=="reverse") text("R",cx,top+pedal_h/2,rgb,.9f);
+      auto split=name.find(" / ");
+      if(split!=std::string::npos) {
+        text(name.substr(0,split),cx,b.rect.y+b.rect.h-23,rgb,.8f);
+        text(name.substr(split+3),cx,b.rect.y+b.rect.h-9,rgb,.8f);
+      } else text(name,cx,b.rect.y+b.rect.h-14,rgb,std::min(.9f,(b.rect.w-8)/std::max(1.f,textWidth(name))));
+      return;
+    }
     if (name=="LEFT" || name=="RIGHT" || name=="UP" || name=="DOWN") {
       for (auto &c : name) c=static_cast<char>(std::tolower(c));
       name="@"+name;
@@ -530,6 +557,40 @@ class SdlHost final : public Host {
     float advance=textWidth(name);
     text(name,cx,cy,rgb,std::min(b.action==8?1.35f:1.f,(b.rect.w-8)/std::max(1.f,advance)));
   }
+  void wheel(const Pad &p) {
+    const float cx=p.rect.x+p.rect.w/2,cy=p.rect.y+p.rect.h/2,radius=p.rect.w/2-3;
+    const float radians=p.angle*3.14159265f/180;
+    auto point=[&](float angle,float radius) {return SDL_FPoint{cx+std::cos(angle+radians)*radius,cy+std::sin(angle+radians)*radius};};
+    auto ring=[&](float outer,float thickness,uint32_t color) {
+      std::vector<SDL_Vertex> vertices;
+      SDL_FColor tint{((color>>16)&255)/255.f,((color>>8)&255)/255.f,(color&255)/255.f,.94f};
+      for(int i=0;i<64;++i) {
+        float a=i*6.2831853f/64,b=(i+1)*6.2831853f/64;
+        for(const auto &v:{point(a,outer),point(b,outer),point(a,outer-thickness),
+                           point(b,outer),point(b,outer-thickness),point(a,outer-thickness)})
+          vertices.push_back({v,tint,{0,0}});
+      }
+      SDL_RenderGeometry(renderer_,nullptr,vertices.data(),static_cast<int>(vertices.size()),nullptr,0);
+    };
+    ring(radius,18,0x101416);ring(radius-2,3,0x697478);ring(radius-7,7,0x30393d);
+    ink(settings.text,190);
+    for(int i=0;i<3;++i) {
+      float a=(-150+i*120)*3.14159265f/180;
+      auto start=point(a,12),end=point(a,radius-15);
+      float dx=std::sin(a+radians)*4,dy=-std::cos(a+radians)*4;
+      SDL_FColor tint{.38f,.43f,.45f,1};
+      SDL_Vertex vertices[]={{{start.x+dx,start.y+dy},tint,{0,0}},{{end.x+dx,end.y+dy},tint,{0,0}},
+        {{start.x-dx,start.y-dy},tint,{0,0}},{{end.x+dx,end.y+dy},tint,{0,0}},
+        {{end.x-dx,end.y-dy},tint,{0,0}},{{start.x-dx,start.y-dy},tint,{0,0}}};
+      SDL_RenderGeometry(renderer_,nullptr,vertices,6,nullptr,0);
+    }
+    ring(18,18,0x20282c);ring(18,2,0x879398);
+    SDL_FColor accent{((settings.accent>>16)&255)/255.f,((settings.accent>>8)&255)/255.f,(settings.accent&255)/255.f,1};
+    SDL_Vertex mark[]={{point(-1.62f,radius-1),accent,{0,0}},{point(-1.52f,radius-1),accent,{0,0}},
+      {point(-1.62f,radius-17),accent,{0,0}},{point(-1.52f,radius-1),accent,{0,0}},
+      {point(-1.52f,radius-17),accent,{0,0}},{point(-1.62f,radius-17),accent,{0,0}}};
+    SDL_RenderGeometry(renderer_,nullptr,mark,6,nullptr,0);
+  }
   void draw() {
     if (!renderer_ || paused_) return;
     layout();
@@ -539,6 +600,7 @@ class SdlHost final : public Host {
     SDL_SetRenderDrawBlendMode(renderer_,SDL_BLENDMODE_BLEND);
     if (!collapsed_ && !keyboard_) for (const auto &p : pads_) {
       float cx=p.rect.x+p.rect.w/2, cy=p.rect.y+p.rect.h/2;
+      if(p.config.wheel) { wheel(p);continue; }
       if (p.config.directional) {
         const auto keys=padKeys(p.config);
         for (const auto &[direction,rect] : padTargets(p)) {
@@ -568,6 +630,19 @@ class SdlHost final : public Host {
   }
   void movePad(Finger &finger, float x, float y) {
     auto &p=pads_[finger.pad];
+    if(p.config.wheel) {
+      // Ignore the hub where pointer angle is undefined. Rim movement uses
+      // incremental signed angles, so crossing +/-180 degrees stays smooth.
+      float dx=x-p.rect.x-p.rect.w/2,dy=y-p.rect.y-p.rect.h/2;
+      if(std::hypot(dx,dy)<p.rect.w*.075f) {finger.held=false;return;}
+      float angle=std::atan2(dy,dx)*180/3.14159265f;
+      if(!finger.held) {p.contactAngle=angle;finger.held=true;return;}
+      float delta=angle-p.contactAngle;
+      if(delta>180)delta-=360;
+      if(delta< -180)delta+=360;
+      p.angle=std::clamp(p.angle+delta,-p.config.maxAngle,p.config.maxAngle);
+      p.contactAngle=angle;p.x=p.angle/p.config.maxAngle;p.y=0;return;
+    }
     p.x=(x-p.rect.x-p.rect.w/2)/(p.rect.w/2); p.y=(y-p.rect.y-p.rect.h/2)/(p.rect.h/2);
     if(p.config.axes=="horizontal") p.y=0;
     if(p.config.axes=="vertical") p.x=0;
@@ -649,7 +724,7 @@ class SdlHost final : public Host {
           tap_hold_=!tap_hold_;syncInput();
         }
         if(event.type==SDL_EVENT_FINGER_CANCELED && f.game) {tap_hold_=false;tap_until_=0;}
-        if (found->second.pad>=0) { auto &p=pads_[found->second.pad]; p.x=p.y=p.dx=p.dy=0; }
+        if (found->second.pad>=0) { auto &p=pads_[found->second.pad]; p.x=p.y=p.dx=p.dy=p.angle=p.contactAngle=0; }
         fingers_.erase(found);
       }
       else {

@@ -231,7 +231,8 @@
                   "style": {
                     "enum": [
                       "dpad",
-                      "stick"
+                      "stick",
+                      "wheel"
                     ]
                   },
                   "sensitivity": {
@@ -244,9 +245,7 @@
                     "additionalProperties": false,
                     "required": [
                       "left",
-                      "up",
-                      "right",
-                      "down"
+                      "right"
                     ],
                     "properties": {
                       "left": {
@@ -269,6 +268,18 @@
                       "horizontal",
                       "vertical"
                     ]
+                  },
+                  "maxAngle": {
+                    "type": "number",
+                    "minimum": 45,
+                    "maximum": 270,
+                    "description": "Wheel rotation limit in degrees on either side of centre. Default 135."
+                  },
+                  "deadZone": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 30,
+                    "description": "Neutral wheel angle in degrees. Default 8."
                   }
                 },
                 "allOf": [
@@ -295,6 +306,58 @@
                       "not": {
                         "required": [
                           "keys"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "if": {
+                      "properties": {
+                        "style": {
+                          "const": "wheel"
+                        }
+                      },
+                      "required": [
+                        "style"
+                      ]
+                    },
+                    "then": {
+                      "properties": {
+                        "mode": {
+                          "enum": [
+                            "arrows",
+                            "wasd",
+                            "keypad"
+                          ]
+                        },
+                        "axes": {
+                          "const": "horizontal"
+                        }
+                      }
+                    },
+                    "else": {
+                      "properties": {
+                        "keys": {
+                          "required": [
+                            "left",
+                            "up",
+                            "right",
+                            "down"
+                          ]
+                        }
+                      },
+                      "not": {
+                        "anyOf": [
+                          {
+                            "required": [
+                              "maxAngle"
+                            ]
+                          },
+                          {
+                            "required": [
+                              "deadZone"
+                            ]
+                          }
                         ]
                       }
                     }
@@ -340,6 +403,14 @@
                       "bottom-left",
                       "bottom-right"
                     ]
+                  },
+                  "icon": {
+                    "enum": [
+                      "accelerator",
+                      "brake",
+                      "reverse"
+                    ],
+                    "description": "Optional pedal artwork. The label remains the accessible action name."
                   }
                 },
                 "oneOf": [

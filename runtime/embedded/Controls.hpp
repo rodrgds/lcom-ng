@@ -13,11 +13,14 @@ struct PadConfig {
   bool directional = false;
   std::array<std::string,4> keys{}; // left, up, right, down; empty uses mode.
   std::string axes = "both";
+  bool wheel = false;
+  float maxAngle = 135, deadZone = 8;
 };
 struct ActionConfig {
   std::string side, label, key;
   uint8_t mouseButton = 0;
   std::string position;
+  std::string icon;
 };
 struct ControlConfig {
   std::string name = "lcom-ng", orientation = "auto", layout = "panel", pointer = "drag", font = "sans";

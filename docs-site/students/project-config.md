@@ -92,7 +92,7 @@ or native controls.
 | `controls.toolbar` | `"auto"` | Menu/control cluster: `"auto"` or a corner, such as `"top-right"` |
 | `controls.keyboardPosition` | `"auto"` | Expanded keyboard: `"auto"`, `"bottom"`, `"left"`, `"right"` |
 | `controls.cursor` | Centered, bounded by the framebuffer | Guest start `x`, `y`, inclusive `minX`, `minY`, `maxX`, `maxY`, and `bounds`: `"clamp"` or `"reject"` |
-| `controls.pads` | `[]` | Up to two pads with independent directions and sides |
+| `controls.pads` | `[]` | Up to two directional pads, sticks or steering wheels |
 | `controls.actions` | `[]` | Up to eight named key or mouse actions, at most four per corner |
 
 ### Direct touch
@@ -218,7 +218,7 @@ menu commands. For example:
 ```
 
 Pad modes are `arrows`, `wasd`, `keypad` (8/4/2/6), and `mouse`. Styles are
-`dpad` and `stick`; mouse mode requires `stick`. A pad can instead map all four
+`dpad`, `stick` and `wheel`; mouse mode requires `stick`. A pad can instead map all four
 directions through `"keys": {"up":"W","left":"A","down":"S","right":"D"}`.
 Only one pad can occupy each side, including the older joystick, look and dpad
 settings. Explicit pads hide the optional default joystick menu.
@@ -231,6 +231,7 @@ actions independently. Positions are `top-left`, `top-right`, `bottom-left` and
 `position` takes precedence. Use `axes: "horizontal"` or `"vertical"` on pads,
 the legacy dpad or a configured joystick to remove unused directions. WASD and
 keypad controls display their actual keys, while arrow controls display arrows.
+
 
 ```json
 {
@@ -267,6 +268,44 @@ require a player gesture for fullscreen and orientation lock. The fullscreen
 button requests both; unsupported orientation locking shows a rotation hint
 instead. Desktop browsers keep the game-only view. Browser support and device
 settings ultimately control whether fullscreen or orientation requests succeed.
+
+### Driving controls
+
+Use a steering wheel for games with held left/right steering, and separate
+pedal actions for acceleration and braking. For a game controlled with WASD:
+
+```json
+{
+  "mobile": { "controls": {
+    "layout": "overlay",
+    "joystick": false,
+    "pads": [
+      { "side": "left", "mode": "wasd", "style": "wheel",
+        "maxAngle": 135, "deadZone": 8 }
+    ],
+    "actions": [
+      { "position": "bottom-right", "label": "Brake / reverse",
+        "key": "S", "icon": "brake" },
+      { "position": "bottom-right", "label": "Accelerate",
+        "key": "W", "icon": "accelerator" }
+    ]
+  } }
+}
+```
+
+Drag around the rim to turn. The wheel returns to centre on release and can be
+held with a pedal using another finger. It sends ordinary held left/right keys
+outside its dead zone. It does not add analog steering to the guest game.
+`maxAngle` is the rotation limit in each direction, from 45 to 270 degrees,
+default 135. `deadZone` is from 0 to 30 degrees, default 8. These settings apply
+only to wheels, which always use the horizontal axis. Custom wheel `keys` need
+`left` and `right` mappings. Wheel modes can be `arrows`, `wasd` or `keypad`.
+
+Action `icon` accepts `accelerator`, `brake` or `reverse` to draw a pedal while
+keeping its label. Match each key and label to the game's behavior. MINIX Grand
+Prix uses S to brake through zero and then reverse. Lane-changing games with
+automatic acceleration should keep their directional controls.
+
 
 ## Colors and font
 

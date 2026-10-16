@@ -132,7 +132,82 @@ static void positionedControls() {
   SDL_DestroySurface(frame);
   lcom_exit();configureControls({});
 }
+static void steeringWheelControls() {
+  using namespace lcom::embedded;
+  ControlConfig c;c.orientation="landscape";c.layout="overlay";c.pointer="off";
+  c.keyboard=c.mouseButtons=c.joystickMenu=false;c.quickKeys.clear();
+  PadConfig wheel{true,"arrows","left",1};wheel.wheel=true;wheel.axes="horizontal";
+  wheel.keys={"A","","D",""};
+  c.pads={wheel};
+  c.actions={{"","Accelerate","W",0,"bottom-right","accelerator"},
+             {"","Brake / reverse","S",0,"bottom-right","brake"}};
+  configureControls(c);CHECK(lcom_init()==LCOM_OK);
+  CHECK(lcom_vbe_set_mode(LCOM_VBE_MODE_800_600_24)==LCOM_OK);CHECK(lcom_vbe_present()==LCOM_OK);
+  lcom_irq_t keyboard;CHECK(lcom_irq_subscribe(KBC_IRQ,0,&keyboard)==LCOM_OK);
+  // Circular hit region excludes the square's corners. A rim contact starts
+  // neutral, then a five-degree turn stays inside the authored dead zone.
+  touch(SDL_EVENT_FINGER_DOWN,500,9.f/760,237.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_UP,500,9.f/760,237.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_DOWN,501,86.f/760,246.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,501,92.f/760,246.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,501,134.f/760,266.f/400);CHECK(expectedKey(0x20));CHECK(!keyReady());
+  // Passing through the hub invalidates its undefined bearing. Reappearing
+  // across the wheel must retain the prior steering until angular movement.
+  touch(SDL_EVENT_FINGER_MOTION,501,86.f/760,314.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,501,18.f/760,314.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,501,86.f/760,314.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,501,134.f/760,266.f/400);CHECK(!keyReady());
+  // A second contact cannot take over a wheel already owned by this finger.
+  touch(SDL_EVENT_FINGER_DOWN,502,18.f/760,314.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,502,86.f/760,382.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_DOWN,503,634.f/760,366.f/400);CHECK(expectedKey(0x11));
+  touch(SDL_EVENT_FINGER_DOWN,504,714.f/760,366.f/400);CHECK(expectedKey(0x1f));CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,501,38.f/760,266.f/400);
+  CHECK(expectedKey(0xa0));CHECK(expectedKey(0x1e));CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_CANCELED,501,38.f/760,266.f/400);CHECK(expectedKey(0x9e));CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,502,154.f/760,314.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_UP,502,154.f/760,314.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_CANCELED,503,634.f/760,366.f/400);CHECK(expectedKey(0x91));
+  touch(SDL_EVENT_FINGER_CANCELED,504,714.f/760,366.f/400);CHECK(expectedKey(0x9f));CHECK(!keyReady());
+  // Crossing atan2's wrap boundary must keep a clockwise turn clockwise.
+  touch(SDL_EVENT_FINGER_DOWN,505,86.f/760,246.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,505,154.f/760,314.f/400);CHECK(expectedKey(0x20));
+  touch(SDL_EVENT_FINGER_MOTION,505,86.f/760,382.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,505,18.f/760,314.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,505,38.f/760,266.f/400);CHECK(!keyReady());
+  // At the 135-degree lock, unwinding 45 then 90 degrees centers the
+  // wheel. Unbounded accumulation would incorrectly keep steering right.
+  touch(SDL_EVENT_FINGER_MOTION,505,18.f/760,314.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,505,86.f/760,382.f/400);CHECK(expectedKey(0xa0));CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_UP,505,86.f/760,382.f/400);CHECK(!keyReady());
+  // Re-touch starts at neutral even on the opposite rim. Focus loss releases
+  // wheel and pedal together, and restored focus never restores held input.
+  touch(SDL_EVENT_FINGER_DOWN,506,18.f/760,314.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,506,86.f/760,246.f/400);CHECK(expectedKey(0x20));
+  touch(SDL_EVENT_FINGER_DOWN,507,634.f/760,366.f/400);CHECK(expectedKey(0x11));
+  int count=0;auto windows=SDL_GetWindows(&count);CHECK(count==1);
+  SDL_Event event{};event.type=SDL_EVENT_WINDOW_FOCUS_LOST;event.window.windowID=SDL_GetWindowID(windows[0]);
+  CHECK(SDL_PushEvent(&event));host().pump();CHECK(host().paused());
+  event.type=SDL_EVENT_WINDOW_FOCUS_GAINED;CHECK(SDL_PushEvent(&event));host().pump();
+  CHECK(expectedKey(0xa0));CHECK(expectedKey(0x91));CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_DOWN,508,86.f/760,246.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,508,134.f/760,266.f/400);CHECK(expectedKey(0x20));
+  touch(SDL_EVENT_FINGER_DOWN,509,634.f/760,366.f/400);CHECK(expectedKey(0x11));
+  event.type=SDL_EVENT_WINDOW_EXPOSED;CHECK(SDL_PushEvent(&event));host().pump();CHECK(!keyReady());
+  // Hiding controls releases both contacts, then reopening starts neutral.
+  touch(SDL_EVENT_FINGER_DOWN,510,30.f/760,30.f/400);
+  CHECK(expectedKey(0xa0));CHECK(expectedKey(0x91));CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_UP,510,30.f/760,30.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_DOWN,511,30.f/760,30.f/400);
+  touch(SDL_EVENT_FINGER_UP,511,30.f/760,30.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_DOWN,512,154.f/760,314.f/400);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_MOTION,512,86.f/760,246.f/400);CHECK(expectedKey(0x1e));
+  event.type=SDL_EVENT_WINDOW_PIXEL_SIZE_CHANGED;CHECK(SDL_PushEvent(&event));host().pump();
+  CHECK(expectedKey(0x9e));CHECK(!keyReady());SDL_free(windows);
+  lcom_exit();configureControls({});
+}
 int main() {
+  steeringWheelControls();
   positionedControls();
   CHECK(lcom_init()==LCOM_OK);
   lcom_irq_t keyboard;

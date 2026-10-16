@@ -1,4 +1,5 @@
 import {prepareGame, instantiateGame} from './loading.js';
+import {createSteeringWheel, decoratePedal} from './driving.js';
 
 const canvas = document.querySelector('#game');
 const status = document.querySelector('#status');
@@ -133,7 +134,7 @@ function publishLayout() {
     placeFloatingControls();
     if(!collectionPlayer) return;
     const rect=element=>{const r=element.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height};};
-    const occupied=[...document.querySelectorAll('#touch-controls button,#touch-controls .joystick,#controls-toggle,#fullscreen')]
+    const occupied=[...document.querySelectorAll('#touch-controls button,#touch-controls .joystick,#touch-controls .steering-wheel,#controls-toggle,#fullscreen')]
       .filter(element=>element.getClientRects().length && !element.closest('[hidden]')).map(rect);
     const layout={type:'lcom-player-layout',width:innerWidth,height:innerHeight,game:rect(canvas),occupied,theme:mobile?.theme};
     const encoded=JSON.stringify(layout);
@@ -154,7 +155,7 @@ function placeFloatingControls() {
   // Movement controls keep their thumb positions; utility groups fit around them.
   nodes.sort((a,b)=>Number(a===toolbar || a.classList.contains('corner-actions'))-Number(b===toolbar || b.classList.contains('corner-actions')));
   for(const node of nodes) for(const name of ['left','right','top','bottom','width']) node.style[name]='';
-  const obstacles=[...controls.querySelectorAll('button,.joystick'),controlsToggle,fullscreenButton]
+  const obstacles=[...controls.querySelectorAll('button,.joystick,.steering-wheel'),controlsToggle,fullscreenButton]
     .filter(element=>visible(element) && !nodes.some(node=>node.contains(element))).map(rect);
   const overlap=(a,b,gap=0)=>Math.max(0,Math.min(a.x+a.width,b.x+b.width+gap)-Math.max(a.x,b.x-gap))*Math.max(0,Math.min(a.y+a.height,b.y+b.height+gap)-Math.max(a.y,b.y-gap));
   for(const node of nodes) {
@@ -619,11 +620,18 @@ function renderCustomControls(c) {
         button.dataset.mouse=({left:1,right:2,middle:4})[action.mouseButton];
         button.setAttribute('aria-label',action.label); button.setAttribute('aria-pressed','false'); bindMouseButton(button);
       }
-      button.setAttribute('aria-label',action.label); actions.append(button);
+      button.setAttribute('aria-label',action.label);
+      if(action.icon) decoratePedal(button,action.icon,action.label);
+      actions.append(button);
     }
     group.append(actions);
     for(const [index,pad] of (c.pads || []).entries()) if(pad.side===side && position.startsWith('bottom')) {
-      if(pad.style==='stick') {
+      if(pad.style==='wheel') {
+        const keys=padKeys(pad),source='wheel-'+index;
+        const wheel=createSteeringWheel({...pad,left:browserKey(keys.left),right:browserKey(keys.right)},
+          (code,down)=>player.key(code,down,source),()=>player.unlockAudio());
+        group.append(wheel.element);extraSticks.push(wheel);
+      } else if(pad.style==='stick') {
         const element=document.createElement('div'); element.id='custom-pad-'+index; element.className='joystick';
         element.setAttribute('aria-label',pad.mode==='mouse'?'Mouse joystick':side+' movement joystick');
         const knob=document.createElement('span'); knob.className='joystick-knob'; element.append(knob); group.append(element);

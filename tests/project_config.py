@@ -101,6 +101,27 @@ class ProjectConfig(unittest.TestCase):
         subprocess.run(['c++','-std=c++17','-I',str(ROOT/'sdk/compat/include'),'-I',str(ROOT/'runtime'),str(output),'-o',str(self.root/'profile')],check=True)
         subprocess.run([self.root/'profile'],check=True)
 
+    def test_steering_wheel_and_pedal_profile_reaches_native_host(self):
+        self.write({'mobile':{'controls':{'joystick':False,
+            'pads':[{'style':'wheel','mode':'wasd','maxAngle':120,'deadZone':6,
+                     'keys':{'left':'A','right':'D'}}],
+            'actions':[{'side':'right','label':'Accelerate','key':'W','icon':'accelerator'},
+                       {'side':'right','label':'Brake / reverse','key':'S','icon':'brake'}]}}})
+        settings=config.load(self.project)
+        self.assertEqual(settings['mobile']['controls']['pads'][0]['axes'],'horizontal')
+        output=self.root/'driving.cpp';config.write_native(settings,output)
+        with output.open('a') as f:
+            f.write('int main() { auto &c=game::controls; return c.pads.size()!=1 || !c.pads[0].wheel || c.pads[0].maxAngle!=120 || c.pads[0].deadZone!=6 || c.pads[0].keys[0]!="A" || c.pads[0].keys[2]!="D" || c.pads[0].axes!="horizontal" || c.actions[0].icon!="accelerator" || c.actions[1].icon!="brake"; }')
+        subprocess.run(['c++','-std=c++17','-I',str(ROOT/'sdk/compat/include'),'-I',str(ROOT/'runtime'),str(output),'-o',str(self.root/'driving')],check=True)
+        subprocess.run([self.root/'driving'],check=True)
+        for pad in ({'maxAngle':True},{'maxAngle':44},{'maxAngle':271},{'deadZone':False},
+                    {'deadZone':-1},{'deadZone':31},{'axes':'vertical'},{'mode':'mouse'},
+                    {'keys':{'left':'A'}}):
+            self.write({'mobile':{'controls':{'pads':[{'style':'wheel',**pad}]}}})
+            with self.subTest(pad=pad),self.assertRaises(ValueError):config.load(self.project)
+        self.write({'mobile':{'controls':{'actions':[{'side':'right','label':'Gas','key':'W','icon':'unknown'}]}}})
+        with self.assertRaisesRegex(ValueError,'icon'):config.load(self.project)
+
     def test_multiplayer_touch_profile_reaches_native_host(self):
         self.write({'mobile':{'controls':{'touch':'hold-drag','pointer':'direct','repeatKeys':['W','KP8'],
           'toolbar':'top-right','keyboardPosition':'left','tapDuration':60,
