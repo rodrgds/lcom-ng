@@ -136,6 +136,32 @@ int main() {
     }
     CHECK(released && x==650 && y==165);
   }
+  // Browser calibration tracks delivered guest travel, including relative touch
+  // packet truncation, then maps large absolute ranges without the raw cap.
+  for (double scale : {0.5, 2.0}) {
+    lcom::embedded::Pointer pointer;
+    pointer.configure({0,0,16000,16000,0,0,false,scale}); pointer.reset(800,600);
+    int x=0,y=0;
+    auto drain=[&] {
+      while(auto p=pointer.next()) { x+=static_cast<int>(p->dx*scale); y-=static_cast<int>(p->dy*scale); }
+    };
+    pointer.absolute(100,100,0); drain(); CHECK(x==100 && y==100);
+    pointer.relative(41,21,0); drain();
+    CHECK(x==(scale==0.5 ? 120 : 182) && y==(scale==0.5 ? 110 : 142));
+    pointer.absolute(100,100,1); drain(); CHECK(x==100 && y==100);
+    pointer.absolute(6000,7000,0); drain(); CHECK(x==6000 && y==7000);
+    pointer.absolute(20,30,1); drain(); CHECK(x==20 && y==30);
+  }
+  {
+    lcom::embedded::Pointer pointer;
+    pointer.configure({0,0,799,599,0,0,false,0.5,true}); pointer.reset(800,600);
+    double x=0,y=0;
+    auto drain=[&] {while(auto p=pointer.next()) {x+=p->dx*0.5;y-=p->dy*0.5;}};
+    pointer.absolute(100,100,0);drain();CHECK(x==100 && y==100);
+    pointer.relative(13,13,0);drain();CHECK(x==106.5 && y==106.5);
+    pointer.relative(13,13,0);drain();CHECK(x==113 && y==113);
+    pointer.absolute(100,100,0);drain();CHECK(x==100 && y==100);
+  }
   // Knight and chess reject an invalid delta independently on each axis.
   // Relative travel to an edge must not desynchronize the following direct tap.
   {

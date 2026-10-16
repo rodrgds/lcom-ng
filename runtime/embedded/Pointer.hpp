@@ -13,13 +13,18 @@ struct CursorConfig {
   int x = -1, y = -1, maxX = -1, maxY = -1;
   int minX = 0, minY = 0;
   bool rejectBounds = false;
+  // Guest pixels per raw unit. Native profiles retain unit tracking; the
+  // browser sets this only for verified physical-mouse calibration.
+  double pixelsPerUnit = 1;
+  bool fractional = false;
 };
 
 class Pointer {
   struct Input { bool absolute; int x, y; uint8_t buttons; bool edge; bool hover = false; };
   std::deque<Input> pending_;
   CursorConfig config_;
-  int x_ = 400, y_ = 300, max_x_ = 799, max_y_ = 599, min_x_ = 0, min_y_ = 0;
+  double x_ = 400, y_ = 300;
+  int max_x_ = 799, max_y_ = 599, min_x_ = 0, min_y_ = 0;
   uint8_t requested_buttons_ = 0, delivered_buttons_ = 0;
 
   void append(Input input) {
@@ -67,17 +72,19 @@ public:
         input.hover = false;
         return MousePacket{0,0,delivered_buttons_};
       }
-      int dx = input.absolute ? input.x-x_ : input.x;
-      int dy = input.absolute ? input.y-y_ : input.y;
+      int dx = input.absolute ? static_cast<int>((input.x-x_)/config_.pixelsPerUnit) : input.x;
+      int dy = input.absolute ? static_cast<int>((input.y-y_)/config_.pixelsPerUnit) : input.y;
       int step_x = std::clamp(dx,-96,96), step_y = std::clamp(dy,-96,96);
       bool arrived = dx == step_x && dy == step_y;
       uint8_t buttons = arrived ? input.buttons : delivered_buttons_;
-      auto advance = [&](int position,int step,int minimum,int maximum) {
-        int target=position+step;
-        return config_.rejectBounds && (target<minimum || target>maximum) ? position : std::clamp(target,minimum,maximum);
+      auto advance = [&](double position,double step,int minimum,int maximum) {
+        double target=position+(config_.fractional ? step : static_cast<int>(step));
+        return config_.rejectBounds && (target<minimum || target>maximum) ? position : std::clamp(target,static_cast<double>(minimum),static_cast<double>(maximum));
       };
-      x_ = advance(x_,step_x,min_x_,max_x_);
-      y_ = advance(y_,step_y,min_y_,max_y_);
+      // Track what each delivered packet does, including integer division in
+      // half-speed games. Relative touch and calibrated mouse share one model.
+      x_ = advance(x_,step_x*config_.pixelsPerUnit,min_x_,max_x_);
+      y_ = advance(y_,step_y*config_.pixelsPerUnit,min_y_,max_y_);
       if (arrived) pending_.pop_front();
       else if (!input.absolute) { input.x -= step_x; input.y -= step_y; }
       if (!step_x && !step_y && buttons == delivered_buttons_) continue;

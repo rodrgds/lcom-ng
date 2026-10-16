@@ -1103,3 +1103,52 @@ test('calibrated desktop mouse respects guest gain, bounds and re-entry', async 
     await move(102,102);expect(position()).toEqual([102,102]);
   }
 });
+
+test('calibrated physical mouse follows touch travel and large cursor ranges', async ({browser}) => {
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-dual/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();
+    Object.assign(settings.mobile.controls,{pointer:'move',touch:'move',cursor:{x:0,y:0,maxX:16000,maxY:16000,desktopScale:0.5}});
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-dual');
+  const point=async(x,y)=>page.locator('canvas').evaluate((canvas,{x,y})=>{const r=canvas.getBoundingClientRect();return {x:r.left+x*r.width/canvas.width,y:r.top+y*r.height/canvas.height};},{x,y});
+  const move=async(x,y)=>{const p=await point(x,y);await page.locator('canvas').dispatchEvent('pointermove',{pointerType:'mouse',clientX:p.x,clientY:p.y});await page.waitForTimeout(200);};
+  const position=()=>mousePackets(page).reduce(([x,y],p)=>[x+Math.trunc((p[1]-(p[0]&16?256:0))/2),y-Math.trunc((p[2]-(p[0]&32?256:0))/2)],[0,0]);
+  await move(100,100);expect(position()).toEqual([100,100]);
+  const cdp=await context.newCDPSession(page),origin=await point(200,200),end=await point(240,220);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...origin,id:1}]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...end,id:1}]});
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[{...end,id:1}]});
+  await page.waitForTimeout(200);expect(position()).toEqual([120,110]);
+  await move(100,100);expect(position()).toEqual([100,100]);
+  await move(6000,7000);expect(position()).toEqual([6000,7000]);
+  await move(20,30);expect(position()).toEqual([20,30]);
+  await context.close();
+});
+
+test('fractional guest cursors keep odd touch packets aligned with physical mouse', async ({browser}) => {
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-dual/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();
+    Object.assign(settings.mobile.controls,{pointer:'move',touch:'move',cursor:{x:0,y:0,maxX:799,maxY:599,desktopScale:0.5,desktopFractional:true}});
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-dual');
+  const point=async(x,y)=>page.locator('canvas').evaluate((canvas,{x,y})=>{const r=canvas.getBoundingClientRect();return {x:r.left+x*r.width/canvas.width,y:r.top+y*r.height/canvas.height};},{x,y});
+  const move=async(x,y)=>{const p=await point(x,y);await page.locator('canvas').dispatchEvent('pointermove',{pointerType:'mouse',clientX:p.x,clientY:p.y});await page.waitForTimeout(200);};
+  const position=()=>mousePackets(page).reduce(([x,y],p)=>[x+(p[1]-(p[0]&16?256:0))/2,y-(p[2]-(p[0]&32?256:0))/2],[0,0]);
+  await move(100,100);expect(position()).toEqual([100,100]);
+  const cdp=await context.newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{...await point(200,200),id:1}]});
+  for(const n of [213,226]) {
+    await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{...await point(n,n),id:1}]});
+    await page.waitForTimeout(100);
+  }
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[{...await point(226,226),id:1}]});
+  await page.waitForTimeout(100);expect(position()).toEqual([113,113]);
+  await move(100,100);expect(position()).toEqual([100,100]);
+  await context.close();
+});

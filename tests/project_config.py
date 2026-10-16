@@ -57,6 +57,7 @@ class ProjectConfig(unittest.TestCase):
                            ({'mobile':{'controls':{'cursor':{'x':1.5}}}},'cursor.x'),
                            ({'mobile':{'controls':{'cursor':{'x':True}}}},'cursor.x'),
                            ({'mobile':{'controls':{'cursor':{'desktopScale':True}}}},'desktopScale'),
+                           ({'mobile':{'controls':{'cursor':{'desktopFractional':1}}}},'desktopFractional'),
                            ({'mobile':{'controls':{'cursor':{'desktopScale':0}}}},'desktopScale'),
                            ({'mobile':{'controls':{'cursor':{'desktopScale':0.7}}}},'desktopScale'),
                            ({'mobile':{'controls':{'cursor':{'x':401,'maxX':400}}}},'cursor.x'),
@@ -92,9 +93,9 @@ class ProjectConfig(unittest.TestCase):
         self.assertEqual(config.load(self.project)['mobile']['controls']['joystick'],{'mode':'mouse','side':'right'})
 
     def test_direct_cursor_contract_reaches_native_configuration(self):
-        self.write({'mobile':{'controls':{'pointer':'direct','cursor':{'x':25,'maxX':800,'maxY':600,'desktopScale':0.5}}}})
+        self.write({'mobile':{'controls':{'pointer':'direct','cursor':{'x':25,'maxX':800,'maxY':600,'desktopScale':0.5,'desktopFractional':True}}}})
         s=config.load(self.project)
-        self.assertEqual(s['mobile']['controls']['cursor'],{'x':25,'y':-1,'maxX':800,'maxY':600,'minX':0,'minY':0,'bounds':'clamp','desktopScale':0.5})
+        self.assertEqual(s['mobile']['controls']['cursor'],{'x':25,'y':-1,'maxX':800,'maxY':600,'minX':0,'minY':0,'bounds':'clamp','desktopScale':0.5,'desktopFractional':True})
         self.assertEqual(config.public(s)['mobile']['controls']['cursor']['desktopScale'], 0.5)
         # Compile the generated profile, proving it remains an executable
         # configuration rather than checking its emitted source spelling.

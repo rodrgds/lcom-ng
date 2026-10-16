@@ -188,6 +188,11 @@
                   "minimum": 0,
                   "maximum": 16384
                 },
+                "desktopFractional": {
+                  "type": "boolean",
+                  "default": false,
+                  "description": "The calibrated browser guest retains fractional cursor positions, rather than truncating each scaled packet delta."
+                },
                 "desktopScale": {
                   "type": "number",
                   "enum": [0.5, 1, 2],

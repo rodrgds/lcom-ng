@@ -61,7 +61,7 @@ EMSCRIPTEN_KEEPALIVE void lcom_web_mouse(int dx, int dy, int buttons) {
 EMSCRIPTEN_KEEPALIVE void lcom_web_pointer(int x, int y, int buttons) {
   lcom::embedded::injectPointer(x,y,static_cast<uint8_t>(buttons));
 }
-EMSCRIPTEN_KEEPALIVE void lcom_web_cursor(int x, int y, int max_x, int max_y, int min_x, int min_y, int reject) {
-  lcom::embedded::configureCursor({x,y,max_x,max_y,min_x,min_y,reject!=0});
+EMSCRIPTEN_KEEPALIVE void lcom_web_cursor(int x, int y, int max_x, int max_y, int min_x, int min_y, int reject, double scale, int fractional) {
+  lcom::embedded::configureCursor({x,y,max_x,max_y,min_x,min_y,reject!=0,scale==0.5 || scale==2 ? scale : 1,fractional!=0});
 }
 }
