@@ -93,9 +93,9 @@ test('mosaic arrows use square placement rather than expanded previews or reposi
 test('separate brand and controls stay in two phone columns above three game columns',async({page},testInfo)=>{
   await page.goto(base);
   const panel=page.getByRole('group',{name:'Library controls',exact:true});
-  for(const width of [320,390,584,768,1440]) {
+  for(const width of [320,390,584,768,1280,1440,1920]) {
     await page.setViewportSize({width,height:900});await expect(panel).toBeVisible();
-    const brand=await page.locator('.identity').boundingBox(),tools=await panel.boundingBox();
+    const {brand,tools}=await panel.evaluate(element=>({brand:document.querySelector('.identity').getBoundingClientRect().toJSON(),tools:element.getBoundingClientRect().toJSON()}));
     expect(tools.x).toBeGreaterThanOrEqual(brand.x+brand.width);
     expect(Math.abs(brand.y-tools.y)).toBeLessThan(2);expect(Math.abs(brand.height-tools.height)).toBeLessThan(2);
     expect(Math.abs(brand.width-tools.width)).toBeLessThan(2);
@@ -106,7 +106,12 @@ test('separate brand and controls stay in two phone columns above three game col
       })).toBe(true);
       expect(await page.locator('#games').evaluate(element=>Math.min(...[...element.querySelectorAll('.game')].map(game=>game.getBoundingClientRect().top)))).toBeGreaterThanOrEqual(tools.y+tools.height);
     } else {
-      const normal=await page.locator('.game:not(.featured)').first().boundingBox();expect(Math.abs(tools.width-normal.width)).toBeLessThan(2);
+      await expect.poll(()=>panel.evaluate(element=>{
+        const normal=document.querySelector('.game:not(.featured)').getBoundingClientRect();
+        return Math.abs(element.getBoundingClientRect().width-normal.width)<2&&normal.width<=150;
+      })).toBe(true);
+      const normal=await page.locator('.game:not(.featured)').first().boundingBox();
+      expect(normal.width).toBeLessThanOrEqual(150);expect(normal.width).toBeGreaterThanOrEqual(110);
     }
     await expect(panel.locator('button')).toHaveCount(4);
     for(const control of await panel.locator('a,button').all()) {
@@ -131,4 +136,61 @@ test('separate brand and controls stay in two phone columns above three game col
   await page.keyboard.press('ArrowDown');await expect(page.locator('#surprise')).toBeFocused();
   await page.keyboard.press('ArrowLeft');await expect(page.locator('#shuffle')).toBeFocused();
   await page.keyboard.press('ArrowUp');await expect(page.locator('#search-toggle')).toBeFocused();
+});
+
+
+for (const width of [1280,390]) test(`search moves smoothly into focus and out again at ${width}px`,async({page},testInfo)=>{
+  await page.setViewportSize({width,height:900});await page.goto(base);
+  await expect(page.locator('#games .game')).toHaveCount(24);
+  // Observe painted frames at the real dialog boundary, without exposing an
+  // animation hook or depending on CSS classes, keyframes or duration values.
+  const record=async(event,selector)=>page.evaluate(({event,selector})=>{
+    window.searchFrames=new Promise(resolve=>{
+      document.querySelector(selector).addEventListener(event,()=>{
+        const frames=[],start=performance.now();
+        const sample=now=>{
+          const dialog=document.querySelector('#search-panel'),style=getComputedStyle(dialog),box=dialog.getBoundingClientRect();
+          frames.push({time:now-start,x:box.x,y:box.y,width:box.width,opacity:Number(style.opacity),display:style.display});
+          if(now-start<500)requestAnimationFrame(sample);else resolve(frames);
+        };
+        requestAnimationFrame(sample);
+      },{once:true});
+    });
+  },{event,selector});
+  const dialog=page.locator('#search-panel'),input=page.getByRole('searchbox');
+  await record('click','#search-toggle');await page.locator('#search-toggle').click();
+  await expect(input).toBeFocused();
+  const opening=await page.evaluate(()=>window.searchFrames),settled=opening.at(-1);
+  expect(opening.some(frame=>frame.width>0&&frame.width<settled.width-3&&frame.y>settled.y+3&&frame.opacity<.95)).toBe(true);
+  expect(settled.opacity).toBe(1);
+  await page.screenshot({path:testInfo.outputPath('search-open.png')});
+  await record('close','#search-panel');await page.keyboard.press('Escape');
+  const closing=await page.evaluate(()=>window.searchFrames);
+  expect(closing.some(frame=>frame.display!=='none'&&frame.opacity>0&&frame.opacity<.95)).toBe(true);
+  expect(closing.at(-1).display).toBe('none');
+  await expect(page.locator('#search-toggle')).toBeFocused();
+  await testInfo.attach('search-motion-frames',{body:JSON.stringify({opening,closing},null,2),contentType:'application/json'});
+  // Reversing an exit and closing during entrance must never steal focus,
+  // discard typing, or leave a stale close callback that dismisses search.
+  await page.keyboard.press('Control+k');await page.keyboard.press('Escape');
+  await page.keyboard.press('Control+k');await input.fill('07');
+  await expect(dialog).toBeVisible();await expect(input).toBeFocused();
+  await expect(dialog.locator('#search-results a')).toHaveCount(1);
+  await page.keyboard.press('ArrowDown');await page.keyboard.press('Enter');
+  await expect(page.locator('iframe')).toHaveCount(1);
+  await expect(dialog).toBeHidden();
+});
+
+test('search stays immediate with reduced motion',async({page})=>{
+  await page.emulateMedia({reducedMotion:'reduce'});await page.goto(base);
+  await expect(page.locator('#games .game')).toHaveCount(24);
+  const state=await page.evaluate(()=>{
+    document.querySelector('#search-toggle').click();
+    const dialog=document.querySelector('#search-panel'),style=getComputedStyle(dialog);
+    const opened={opacity:style.opacity,transform:style.transform,backdrop:getComputedStyle(dialog,'::backdrop').opacity,focused:document.activeElement.id};
+    document.querySelector('#search').dispatchEvent(new KeyboardEvent('keydown',{key:'Escape',bubbles:true,cancelable:true}));
+    return {opened,closed:getComputedStyle(dialog).display};
+  });
+  expect(state.opened).toEqual({opacity:'1',transform:'none',backdrop:'1',focused:'search'});
+  expect(state.closed).toBe('none');
 });
