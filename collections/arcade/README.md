@@ -1,6 +1,6 @@
 # LCOM Arcade
 
-A collection of original student games. `lcom.collection.json` lists their
+A collection of original student games and the Ninjix showcase. `lcom.collection.json` lists their
 folders; each game's `lcom.json` owns its name, icon, description, preview screenshot and mobile controls.
 
 ```sh
@@ -10,7 +10,7 @@ lcom-ng export android collections/arcade --output dist/lcom-arcade-android
 ```
 
 The Android launcher is native and fullscreen, with columns adapting to screen
-width and text size. The web gallery uses a dense responsive screenshot grid, with game names over the artwork and search behind an icon. Loading shows the game description and measured download progress. The Games button prefers unused
+width and text size. The web gallery uses a dense responsive screenshot grid, with game names and icons over the artwork and search behind an icon. Loading shows the selected game's icon, description and measured download progress. The Games button prefers unused
 space outside the game and returns to the collection.
 
 See [the collection guide](../../docs-site/instructors/game-collections.md) for
@@ -27,7 +27,10 @@ devenv shell -- bunx wrangler deploy --config collections/arcade/wrangler.jsonc
 ```
 
 The packaging step copies the export into `build/arcade-publish`, losslessly
-compresses Wasm modules. A small Worker serves their encoding correctly and
+compresses Wasm modules and generates smaller WebP previews (up to 640 × 480)
+and icons (up to 128 × 128). Original captures stay unchanged. Content-based
+filenames refresh image caches when the artwork changes; an original is kept
+when it is already smaller. A small Worker serves their encoding correctly and
 streams decompression for clients requesting identity encoding. This keeps large
 modules within the host's asset limit. Other files use static serving. The regular
 export stays directly usable on other static servers. Check all modules with
