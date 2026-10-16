@@ -820,6 +820,27 @@ test('collection is responsive, forwards profiles, and discards game state on re
 });
 
 
+test('normal guest exits return to the collection while errors and unrelated senders do not', async ({page}) => {
+  await page.goto(`${base}/collection/`);
+  const first = page.getByRole('link',{name:'Play First game',exact:true});
+  await first.click();
+  const frame = page.frameLocator('iframe');
+  await expect(frame.locator('#status')).toHaveText('Game running.');
+  await page.evaluate(() => window.postMessage({type:'lcom-player-exit',code:0},location.origin));
+  await expect(frame.locator('#status')).toHaveText('Game running.');
+  await frame.locator('canvas').press('x');
+  await expect(frame.locator('#status')).toHaveText('Game exited with status 9.');
+  await expect(page.locator('#library')).toBeHidden();
+  await page.getByRole('button',{name:'Games',exact:true}).click();
+  await first.click();
+  await expect(frame.locator('#status')).toHaveText('Game running.');
+  await frame.locator('canvas').press('Escape');
+  await expect(page.locator('iframe')).toHaveCount(0);
+  await expect(page.locator('#library')).toBeVisible();
+  await expect(first).toBeFocused();
+  await expect(page).not.toHaveURL(/game=/);
+});
+
 test('collection loading supports cancellation, download failures, and retry to the first frame', async ({page}) => {
   await page.goto(`${base}/collection/`);
   const catalog = await (await page.request.get(`${base}/collection/collection.json`)).json();

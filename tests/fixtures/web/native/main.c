@@ -47,6 +47,9 @@ int main(int argc, char **argv) {
       if (lcom_port_read8(KBC_ST_REG, &status) || !(status & KBC_ST_OBF)) break;
       if (lcom_port_read8(KBC_OUT_BUF, &byte)) return 8;
       printf("%s:%02x\n", status & KBC_ST_AUX ? "mouse" : "key", byte);
+      if (!(status & KBC_ST_AUX) && byte == 0x2d) {
+        lcom_exit(); exit(9);
+      }
       if (!(status & KBC_ST_AUX) && byte == 0x1e) {
         pixels[0] = 0; pixels[1] = 255; pixels[2] = 0;
         lcom_vbe_present();

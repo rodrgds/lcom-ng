@@ -759,10 +759,12 @@ try {
   const module = await instantiateGame(createLcomGame, { player, preRun: [module => Object.assign(module.ENV,config.environment || {})], print: text => console.log(text), printErr: text => console.warn(text),
     onAbort: reason => failed(String(reason)),
     onExit: code => {
-      if (!firstFrame) reportLoading({phase:'error'});
+      const returnToCollection = collectionPlayer && code === 0;
+      if (!firstFrame && !returnToCollection) reportLoading({phase:'error'});
       player.releaseAll(); player.stopAudio(); player.module = null; finished = true;
       canvas.classList.add('mouse-released');
       status.textContent = code ? `Game exited with status ${code}.` : 'Game finished. Press Enter or tap the game to restart.';
+      if (returnToCollection) parent.postMessage({type:'lcom-player-exit',code:0},location.origin);
     },
   }, prepared);
   module.FS.mkdirTree(config.workingDirectory);

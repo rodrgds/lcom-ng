@@ -67,6 +67,7 @@ window.addEventListener('message', event => {
   if(event.origin !== location.origin || event.source !== host.querySelector('iframe')?.contentWindow) return;
   if(event.data?.type === 'lcom-player-layout') placeReturn(event.data);
   if(event.data?.type === 'lcom-player-loading') loadingState(event.data);
+  if(event.data?.type === 'lcom-player-exit' && event.data.code === 0) location.hash = '';
 });
 
 async function fullscreen() {
