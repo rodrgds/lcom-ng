@@ -10,31 +10,18 @@ revision, bundle hash and build command are in `cuelume-provenance.json`.
 
 ## App integration
 
-Import from `../audio.js`:
+Import `cue(name, options)` and `unlockSound()` from `../audio.js`.
+Cues pass their options to Cuelume. Call `unlockSound()` in the gesture that starts
+an interaction. Browsers without Web Audio remain usable and silently skip cues.
 
-- `initSound(button)`: bind a sound toggle once. Multiple buttons share state.
-  Optional `svg[data-sound-on]`, `svg[data-sound-off]` and a label `span` update
-  together. Buttons expose `aria-pressed` and Enable/Mute UI sounds labels.
-- `cue(name, options)`: request a current Cuelume cue, such as `tap`, `select`,
-  `open`, `close`, `navigate`, `ready` or `count`. Options pass through unchanged.
-- `unlockSound()`: call in the native gesture starting an interaction. Resolves
-  whether sound can run. Muted users return false without creating an audio context.
-- `setSoundEnabled(boolean)`: change, synchronize and persist the preference.
+UI sounds are enabled at volume 0.35. Audio starts after interaction, never on
+page load. The browser tab's mute control is the user's sound preference. The
+launcher has no separate sound toggle or stored setting.
 
-Sound defaults off. The preference is stored as `true` or `false` under
-`lcom-arcade-sound`. Storage failures keep a working choice for the current visit.
-Changes in another tab synchronize through the storage event. Browsers without
-Web Audio show a disabled unavailable sound toggle; the other controls still work.
-An unsuccessful unlock resets sound off instead of claiming that audio is active.
-Muting also fades any Cuelume voices already ringing. UI sound volume is 0.35.
-
-The toggle plays its own subtle `toggle` confirmation after audio unlocks. Do
-not also bind a generic tap to it. Callers own meaningful cue selection and
-cadence. Roulette crossings use `select` with `theme: 'mech'` and
-`emphasis: 'subtle'`, at most eight per second. A landing can use `ready` with
-`theme: 'bubble'`. Avoid cues for ordinary hover or background work.
-
-The current upstream guide is <https://cuelume.dev/agents.md>.
+Callers own meaningful cue selection and cadence. Roulette crossings use
+`select` with `theme: 'mech'` and `emphasis: 'subtle'`, at most eight per second.
+Landing uses `ready` with `theme: 'bubble'`. Ordinary hover and background work
+remain silent. The current guide is <https://cuelume.dev/agents.md>.
 
 ## Rebuild the vendored module
 

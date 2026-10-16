@@ -222,7 +222,7 @@ test('Surprise Me accelerates, settles on a real game, and restores its opener a
   await page.waitForTimeout(5500);await expect(page.locator('iframe')).toHaveCount(0);await expect(surprise).toBeFocused();
 });
 
-test('real collection sounds stay opt-in, mute during a spin, and persist without autoplay', async ({page}) => {
+test('real collection sounds start on interaction without a sound setting or autoplay', async ({page}) => {
   const errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.addInitScript(()=>{
     window.audioContexts=[];window.audioStarts=0;
@@ -238,26 +238,23 @@ test('real collection sounds stay opt-in, mute during a spin, and persist withou
     };
     window.audioRms=()=>{if(!window.audioMeter)return 0;const data=new Float32Array(window.audioMeter.fftSize);window.audioMeter.getFloatTimeDomainData(data);return Math.sqrt(data.reduce((sum,n)=>sum+n*n,0)/data.length);};
   });
-  await page.goto(base);await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','false');
-  await page.getByRole('button',{name:'Surprise me',exact:true}).click();
+  await page.goto(base);await expect(page.locator('#games .game-launch')).toHaveCount(24);
+  await expect(page.getByRole('button',{name:/UI sounds/})).toHaveCount(0);
   expect(await page.evaluate(()=>audioContexts.length)).toBe(0);
-  await page.locator('#surprise-sound').focus();await page.keyboard.press('Enter');
-  await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','true');
+  await page.keyboard.press('Control+k');
   await expect.poll(()=>page.evaluate(()=>audioRms()),{intervals:[10]}).toBeGreaterThan(.00001);
   expect(await page.evaluate(()=>audioContexts.length)).toBe(1);
-  await page.locator('#surprise-sound').click();await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','false');
+  await page.keyboard.press('Escape');
   const starts=await page.evaluate(()=>audioStarts);
-  await expect.poll(()=>page.evaluate(()=>audioRms()),{intervals:[10],timeout:500}).toBeLessThan(.00001);
-  await page.waitForTimeout(300);expect(await page.evaluate(()=>audioStarts)).toBe(starts);
+  await page.getByRole('button',{name:'Surprise me',exact:true}).click();
+  await expect.poll(()=>page.evaluate(()=>audioStarts)).toBeGreaterThan(starts);
   await page.getByRole('button',{name:'Skip animation',exact:true}).click();
-  expect(await page.evaluate(()=>audioStarts)).toBe(starts);
   await page.getByRole('button',{name:'Close Surprise me',exact:true}).click();
-  await page.locator('#sound-toggle').click();await expect(page.locator('#surprise-sound')).toHaveAttribute('aria-pressed','true');
-  await page.reload();await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','true');
+  await page.evaluate(()=>localStorage.setItem('lcom-arcade-sound','false'));
+  await page.reload();await expect(page.locator('#games .game-launch')).toHaveCount(24);
   expect(await page.evaluate(()=>audioContexts.length)).toBe(0);
-  await page.keyboard.press('Control+k');await expect.poll(()=>page.evaluate(()=>audioStarts)).toBeGreaterThan(0);
-  await page.keyboard.press('Escape');await page.locator('#sound-toggle').click();await page.reload();
-  await expect(page.locator('#sound-toggle')).toHaveAttribute('aria-pressed','false');
+  await page.getByRole('button',{name:'Shuffle games',exact:true}).click();
+  await expect.poll(()=>page.evaluate(()=>audioRms()),{intervals:[10]}).toBeGreaterThan(.00001);
   expect(errors).toEqual([]);
 });
 
@@ -265,13 +262,12 @@ test('touch roulette supports reduced motion, resize and missing Web Audio', asy
   const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});
   const page=await context.newPage(),errors=[];page.on('pageerror',error=>errors.push(error.message));
   await page.addInitScript(()=>{Object.defineProperty(window,'AudioContext',{value:undefined});Object.defineProperty(window,'webkitAudioContext',{value:undefined});});
-  await page.goto(base);await expect(page.locator('#sound-toggle')).toBeDisabled();
+  await page.goto(base);
   await page.getByRole('button',{name:'Surprise me',exact:true}).tap();
   const dialog=page.getByRole('dialog',{name:'Surprise me',exact:true});
   await expect(dialog.getByRole('button',{name:/^Play /})).toBeVisible({timeout:1000});
   const transform=await dialog.locator('.roulette-track').evaluate(element=>element.style.transform);
   await page.waitForTimeout(150);expect(await dialog.locator('.roulette-track').evaluate(element=>element.style.transform)).toBe(transform);
-  await expect(page.locator('#surprise-sound')).toBeDisabled();
   const alignment=()=>dialog.evaluate(element=>{const card=element.querySelector('[data-selected]').getBoundingClientRect(),marker=element.querySelector('.roulette-marker').getBoundingClientRect();return Math.abs(card.x+card.width/2-marker.x-marker.width/2);});
   expect(await alignment()).toBeLessThan(2);
   await page.screenshot({path:testInfo.outputPath('surprise-phone.png')});

@@ -88,3 +88,40 @@ test('mosaic arrows use square placement rather than expanded previews or reposi
   await expect(page.locator(':focus')).toHaveClass(/game-launch/);
   await page.locator('.identity').focus();await page.keyboard.press('ArrowLeft');await expect(page.locator('.identity')).toBeFocused();
 });
+
+
+test('library controls fit one game square with a compact header and four actions',async({page},testInfo)=>{
+  await page.goto(base);
+  const panel=page.getByRole('group',{name:'Library controls',exact:true});
+  for(const width of [320,390,584,768,1440]) {
+    await page.setViewportSize({width,height:900});await expect(panel).toBeVisible();
+    await expect.poll(()=>panel.evaluate(element=>{
+      const panel=element.getBoundingClientRect(),normal=document.querySelector('.game:not(.featured)').getBoundingClientRect();
+      return Math.abs(panel.width-normal.width)<2&&Math.abs(panel.height-normal.height)<2;
+    })).toBe(true);
+    const brand=await page.locator('.identity').boundingBox(),surprise=await page.locator('#surprise').boundingBox();
+    expect(brand.width).toBeGreaterThan(brand.height*1.6);expect(surprise.y).toBeGreaterThanOrEqual(brand.y+brand.height);
+    await expect(panel.locator('button')).toHaveCount(4);
+    for(const control of await panel.locator('a,button').all()) {
+      const rect=await control.boundingBox();expect(rect.width).toBeGreaterThanOrEqual(44);expect(rect.height).toBeGreaterThanOrEqual(44);
+      expect(await control.evaluate(element=>{const label=element.querySelector('span');return !label||(label.getBoundingClientRect().height<=parseFloat(getComputedStyle(label).fontSize)*1.5&&label.scrollWidth<=label.clientWidth+1);})).toBe(true);
+      expect(await control.evaluate(element=>{const b=element.getBoundingClientRect();return element.contains(document.elementFromPoint(b.x+b.width/2,b.y+b.height/2));})).toBe(true);
+    }
+    expect(await panel.evaluate(element=>{
+      const panel=element.getBoundingClientRect();return [...document.querySelectorAll('.game')].every(game=>{
+        const b=game.getBoundingClientRect();return Math.min(b.right,panel.right)-Math.max(b.left,panel.left)<1||Math.min(b.bottom,panel.bottom)-Math.max(b.top,panel.top)<1;
+      });
+    })).toBe(true);
+    expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+    await page.screenshot({path:testInfo.outputPath(`controls-${width}.png`)});
+  }
+  await page.locator('.identity').focus();
+  for(const id of ['search-toggle','fullscreen','shuffle','surprise']) {
+    await page.keyboard.press('Tab');await expect(page.locator('#'+id)).toBeFocused();
+  }
+  await page.locator('.identity').focus();await page.keyboard.press('ArrowDown');await expect(page.locator('#search-toggle')).toBeFocused();
+  await page.keyboard.press('ArrowRight');await expect(page.locator('#fullscreen')).toBeFocused();
+  await page.keyboard.press('ArrowDown');await expect(page.locator('#surprise')).toBeFocused();
+  await page.keyboard.press('ArrowLeft');await expect(page.locator('#shuffle')).toBeFocused();
+  await page.keyboard.press('ArrowUp');await expect(page.locator('#search-toggle')).toBeFocused();
+});

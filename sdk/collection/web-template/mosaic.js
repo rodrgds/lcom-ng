@@ -35,7 +35,8 @@ export class Mosaic {
     if (!width || width === this.width) return;
     this.width = width;
     const gap = width < 600 ? 8 : 12;
-    const columns = Math.max(2, Math.min(14, Math.floor((width + gap) / (width < 600 ? 142 : 168))));
+    // Leave room for three rows of 44px controls in a normal tile.
+    const columns = Math.max(2, Math.min(14, Math.floor((width + gap) / (width < 600 ? 156 : 168))));
     const tracks = columns * 2;
     const unit = (width - (tracks - 1) * gap) / tracks;
     const before = new Map(this.tiles.map(tile => [tile.element, tile.element.getBoundingClientRect()]));
@@ -60,15 +61,9 @@ export class Mosaic {
         tile.element.style.gridRow = `${y + 1} / span ${size}`;
       }
     };
-    // Identity and the four small controls occupy two normal tiles.
+    // The brand and four actions share one normal square.
     reserve(null, 0, 0, 2);
-    reserve(null, 2, 0, 2);
-    const surprise = this.grid.querySelector('#surprise');
-    const surpriseX = tracks >= 6 ? 4 : 0, surpriseY = tracks >= 6 ? 0 : 2;
-    reserve(null, surpriseX, surpriseY, 2);
-    surprise.style.gridColumn = `${surpriseX + 1} / span 2`;
-    surprise.style.gridRow = `${surpriseY + 1} / span 2`;
-    const rows = Math.max(2, Math.ceil((3 + this.ordinary.length + this.featured.length * 4) / columns));
+    const rows = Math.max(2, Math.ceil((1 + this.ordinary.length + this.featured.length * 4) / columns));
     const usedColumns = new Set();
     let previous = null;
     this.featured.forEach((tile, index) => {

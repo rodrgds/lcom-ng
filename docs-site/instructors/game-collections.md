@@ -63,8 +63,9 @@ library. **Shuffle** rearranges the library.
 
 **Surprise me** spins through game icons, then offers **Play** or **Spin again**.
 You can skip the animation; reduced motion shows the result immediately.
-**Sound off** enables optional UI sounds, with a saved mute preference. Sounds
-play after interaction, with no audio downloads or third-party requests.
+The logo and four actions share one framed control tile. UI sounds play after
+interaction and can be muted through the browser tab. No audio downloads or
+third-party requests are needed.
 A loading screen shows the game's `description` and download progress; failed
 downloads offer a retry or a return to the library.
 

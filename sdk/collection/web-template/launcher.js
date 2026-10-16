@@ -2,7 +2,7 @@ import {Mosaic} from './mosaic.js';
 import {Previews} from './previews.js';
 import {GameSearch} from './search.js';
 import {Surprise} from './surprise.js';
-import {cue, initSound} from './audio.js';
+import {cue} from './audio.js';
 import {bindGridNavigation} from './navigation.js';
 
 const library = document.querySelector('#library');
@@ -12,8 +12,6 @@ const count = document.querySelector('#count');
 const host = document.querySelector('#frame-host');
 let catalog = [], selected = null, lastLink = null, gameSearch = null, surprise = null;
 const previews = new Previews();
-initSound(document.querySelector('#sound-toggle'));
-initSound(document.querySelector('#surprise-sound'));
 const back=document.querySelector('#back');
 function placeReturn(layout) {
   const frame=host.querySelector('iframe');
