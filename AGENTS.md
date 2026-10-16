@@ -72,6 +72,8 @@ through `devenv shell -- ...`.
   including transparent sprite margins. A clamped hotspot can still leave the
   whole glyph offscreen. Verify reporting commands and complete-packet handling
   in the real game loop before enabling direct or calibrated browser input.
+  Run gameplay checks with the authored `build.environment`, recording extra
+  overrides. Accept pointer profiles after real motion and menu/game selection pass.
   Trace the loaded sprite, its renderer's transparency key and framebuffer write
   bounds. `pointer: "off"` disables screen touch, not the physical desktop mouse.
 - Native exports link selected student source objects directly into the app.
