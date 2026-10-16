@@ -9,10 +9,7 @@
       "keyboard": true,
       "mouseButtons": false,
       "quickKeys": [],
-      "joystick": {
-        "mode": "wasd",
-        "side": "left"
-      },
+      "joystick": false,
       "layout": "overlay",
       "pointer": "direct",
       "touch": "tap",
@@ -35,16 +32,37 @@
         },
         {
           "position": "top-right",
-          "label": "Select",
+          "label": "Start race",
           "key": "ENTER"
         },
         {
           "position": "top-right",
-          "label": "Esc",
+          "label": "Pause",
           "key": "ESC"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Brake / reverse",
+          "key": "S",
+          "icon": "brake"
+        },
+        {
+          "position": "bottom-right",
+          "label": "Accelerate",
+          "key": "W",
+          "icon": "accelerator"
         }
       ],
-      "toolbar": "top-left"
+      "toolbar": "top-left",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "wheel",
+          "maxAngle": 135,
+          "deadZone": 8
+        }
+      ]
     }
   },
   "build": {

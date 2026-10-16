@@ -6,9 +6,14 @@ Build from `project` with `lcom-ng compat build .`, or export using
 `lcom-ng export web .` / `lcom-ng export android .`. The adjacent `lcom.json`
 provides launcher identity, assets and mobile controls.
 
-WASD driving, Space braking/drift, Shift nitro, Enter countdown. Menu cursor recreated at state boundaries, so relative mode.
+Mobile uses a steering wheel for A/D, separate W acceleration and S brake/reverse
+pedals, Space drift and Shift boost. Tap Start in the menu, then use Start race
+for the Enter countdown. Direct touch follows the menu cursor at its verified
+400×300 start within the 800×600 framebuffer.
 
-Original source files and game assets remain byte-identical. `UPSTREAM.json`
-records their hashes, selected upstream revision and omitted development files.
+Original game assets remain unchanged. The driving-input correction consumes key
+releases while paused, preventing stuck controls after Resume. `UPSTREAM.json`
+records original and corrected hashes; `SOURCE_PATCH.diff` preserves the exact
+change and reverses to the pinned upstream source.
 
 No license found in upstream tree; attribution retained, redistribution permission not established.

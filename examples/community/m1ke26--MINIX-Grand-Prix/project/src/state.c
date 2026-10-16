@@ -416,8 +416,8 @@ static void in_game_handle_key(state_t *state, uint8_t scancode)
         return;
     }
 
-    /* Driving controls — only when not paused */
-    if (*pause) return;
+    /* Paused controls ignore new presses but must consume key releases. */
+    if (*pause && !(scancode & 0x80)) return;
 
     if      (scancode == W_MAKE)      input->accelerate = true;
     else if (scancode == W_BREAK)     input->accelerate = false;

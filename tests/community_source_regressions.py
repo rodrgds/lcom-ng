@@ -38,6 +38,142 @@ class StudentSourceRegressions(unittest.TestCase):
             result = subprocess.run([str(binary)], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def test_grand_prix_releases_driving_controls_while_paused(self):
+        # Public keyboard input must consume driving releases even during pause.
+        # Both ESC and the real mouse Resume button must return neutral controls.
+        self.compile_and_run(COMMUNITY / 'm1ke26--MINIX-Grand-Prix/project/include',
+                             ['../src/state.c', '../src/race.c', '../src/pause_menu.c', '../src/button.c'], r'''
+#include "state.h"
+#include "finish_menu.h"
+#include "start_menu.h"
+#include "car.h"
+#include "track.h"
+#include "camera.h"
+#include "vehicles.h"
+#include "kbc.h"
+#include "pause_menu.h"
+#include "hud.h"
+#include "cursor.h"
+#include "rtc.h"
+#include "tracks_pixmaps.h"
+#include "leaderboard.h"
+#include "leaderboard_menu.h"
+#include "minimap.h"
+#include "speedometer.h"
+#include <assert.h>
+/* Unrelated drawing, resource and menu-transition paths are not exercised.
+   Typed abort stubs also let PE linkers retain the whole original source unit. */
+bool running;
+xpm_row_t * const track_xpms[TRACK_XPM_COUNT] = {0};
+xpm_row_t * const collision_xpms[TRACK_XPM_COUNT] = {0};
+const vehicle_def_t *vehicle_get(int index) { abort(); }
+int car_sprite_index(car_t *car) { abort(); }
+camera_t *create_camera(int map_width, int map_height) { abort(); }
+car_t* create_car(double x, double y,double angle, xpm_map_t xpms[], int num_sprites) { abort(); }
+cursor_t* create_cursor(sprite_t *sprite, int x, int y, int scale) { abort(); }
+track_t *create_track(xpm_map_t track, xpm_map_t collision) { abort(); }
+void destroy_camera(camera_t *camera) { abort(); }
+void destroy_car(car_t *car) { abort(); }
+void destroy_cursor(cursor_t *cursor) { abort(); }
+void destroy_track(track_t *track) { abort(); }
+void draw_car(car_t *car, int cam_x, int cam_y, int sprite_idx) { abort(); }
+void draw_cursor(cursor_t *cursor) { abort(); }
+void draw_string(font_t *font, const char *str, int x, int y, uint32_t color) { abort(); }
+void draw_string_scaled(font_t *font, const char *str, int x, int y, int scale, uint32_t color) { abort(); }
+void draw_track(track_t *track, int cam_x, int cam_y) { abort(); }
+finish_menu_t *finish_menu_create(font_t *font, const race_t *race) { abort(); }
+void finish_menu_destroy(finish_menu_t *menu) { abort(); }
+void finish_menu_draw(const finish_menu_t *menu) { abort(); }
+bool finish_menu_handle_key(const finish_menu_t *menu, uint8_t scancode) { abort(); }
+void follow_camera(camera_t *camera, int car_x, int car_y) { abort(); }
+void hud_draw_boost_indicator(car_t *car) { abort(); }
+void hud_draw_controls_panel(font_t *font) { abort(); }
+void hud_draw_lap_counter(font_t *font, int current_lap, int total_laps) { abort(); }
+void hud_draw_race_countdown(font_t *font, int seconds_left) { abort(); }
+void hud_draw_race_start_prompt(font_t *font) { abort(); }
+void hud_draw_timer(font_t *font, unsigned time_elapsed) { abort(); }
+char kbd_scancode_to_char(uint8_t scancode) { abort(); }
+leaderboard_menu_t *leaderboard_menu_create(font_t *font, const char *username) { abort(); }
+void leaderboard_menu_destroy(leaderboard_menu_t *menu) { abort(); }
+void leaderboard_menu_draw(const leaderboard_menu_t *menu) { abort(); }
+bool leaderboard_menu_handle_key(const leaderboard_menu_t *menu, uint8_t scancode) { abort(); }
+void leaderboard_save_time(const char *username, unsigned time, int track_index, rtc_date date) { abort(); }
+void minimap_destroy() { abort(); }
+void minimap_draw(int car_x, int car_y) { abort(); }
+void minimap_init(int track_index, track_t *track) { abort(); }
+int rtc_read_date(rtc_date *date) { abort(); }
+void speedometer_draw(float speed) { abort(); }
+void speedometer_init() { abort(); }
+void start_menu_change_car(start_menu_t *sm, int delta) { abort(); }
+void start_menu_change_track(start_menu_t *sm, int delta) { abort(); }
+start_menu_t* start_menu_create(font_t *font, const char *username) { abort(); }
+void start_menu_destroy(start_menu_t *sm) { abort(); }
+void start_menu_draw(start_menu_t *sm, int cursor_x, int cursor_y) { abort(); }
+start_menu_action_t start_menu_handle_click(start_menu_t *sm, int x, int y) { abort(); }
+void start_menu_handle_key(start_menu_t *sm, char key) { abort(); }
+bool terrain_is_race_checkpoint(terrain_type_t t) { abort(); }
+terrain_type_t track_car_checkpoint(track_t *track, int car_x, int car_y, int car_w, int car_h) { abort(); }
+bool track_find_start_spawn(track_t *track, int car_w, int car_h, int *spawn_x, int *spawn_y) { abort(); }
+void update_car_physics(car_t *car, const game_input_t *input, track_t *track) { abort(); }
+void update_cursor_sprite(cursor_t *cursor, sprite_t *new_sprite) { abort(); }
+void vg_buf_clear(void) { abort(); }
+void vg_buf_desaturate(void) { abort(); }
+void vg_buf_draw_rect(int x, int y, int w, int h, uint32_t color) { abort(); }
+
+int main(void) {
+  const uint8_t down[] = {0x11, 0x1f, 0x1e, 0x20, 0x39, 0x2a};
+  const char *keys[] = {"W", "S", "A", "D", "Space", "Shift"};
+  int failures = 0;
+  for (int mouse_resume = 0; mouse_resume < 2; mouse_resume++) {
+    state_t state = {.tag = STATE_IN_GAME};
+    bool *held[] = {&state.data.in_game.input.accelerate, &state.data.in_game.input.brake,
+                   &state.data.in_game.input.turn_left, &state.data.in_game.input.turn_right,
+                   &state.data.in_game.input.handbrake, &state.data.in_game.input.boost};
+    race_init(&state.data.in_game.race);
+    handle_kbd_event(&state, 0x1c);
+    for (int tick = 0; tick < 180; tick++) race_update(&state.data.in_game.race);
+    assert(race_has_started(&state.data.in_game.race));
+    state.data.in_game.pause_menu = pause_menu_create(NULL);
+    assert(state.data.in_game.pause_menu);
+    for (int i = 0; i < 6; i++) {
+      handle_kbd_event(&state, down[i]); assert(*held[i]);
+    }
+    handle_kbd_event(&state, 0x01); handle_kbd_event(&state, 0x81);
+    assert(state.data.in_game.pause);
+    for (int i = 0; i < 6; i++) handle_kbd_event(&state, down[i] | 0x80);
+    if (mouse_resume) {
+      struct packet click = {.lb = true};
+      handle_mouse_event(&state, &click, 400, 280);
+    } else {
+      handle_kbd_event(&state, 0x01); handle_kbd_event(&state, 0x81);
+    }
+    assert(!state.data.in_game.pause);
+    for (int i = 0; i < 6; i++) {
+      if (*held[i]) {
+        fprintf(stderr, "%s remains latched after release while paused and %s resume\n",
+                keys[i], mouse_resume ? "mouse" : "ESC");
+        failures++;
+      }
+      /* Restore a neutral state through real events for the next scenario. */
+      handle_kbd_event(&state, down[i] | 0x80); assert(!*held[i]);
+    }
+    handle_kbd_event(&state, 0x01); handle_kbd_event(&state, 0x81);
+    for (int i = 0; i < 6; i++) { handle_kbd_event(&state, down[i]); assert(!*held[i]); }
+    handle_kbd_event(&state, 0x01); handle_kbd_event(&state, 0x81);
+    for (int i = 0; i < 6; i++) {
+      handle_kbd_event(&state, down[i]); assert(*held[i]);
+      /* A key physically held across pause still belongs to the driver. */
+      handle_kbd_event(&state, 0x01); handle_kbd_event(&state, 0x81);
+      handle_kbd_event(&state, 0x01); handle_kbd_event(&state, 0x81);
+      assert(*held[i]);
+      handle_kbd_event(&state, down[i] | 0x80); assert(!*held[i]);
+    }
+    pause_menu_destroy(state.data.in_game.pause_menu);
+  }
+  return failures ? 1 : 0;
+}
+''')
+
     def test_minhoca_gameplay_consumes_a_complete_mouse_packet(self):
         # Feed the real mouse controller, then observe the public gameplay handler.
         # Adjacent nonzero packet bytes expose an incorrectly widened extern read.

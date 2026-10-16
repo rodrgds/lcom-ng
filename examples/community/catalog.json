@@ -2161,7 +2161,16 @@
       "licenseFiles": [],
       "files": 242,
       "sizeBytes": 62419462,
-      "sourceChanges": [],
+      "sourceChanges": [
+        {
+          "file": "project/src/state.c",
+          "patch": "SOURCE_PATCH.diff",
+          "reason": "Consume driving key releases while paused so released acceleration, reverse/brake, steering, handbrake and boost cannot remain latched after ESC or mouse Resume. Continue ignoring new driving presses until gameplay resumes.",
+          "upstreamSha256": "b4b947e5c3fa78eb0626caba498697455bd7b1d31e130c195304e5e2fc4cca21",
+          "patchedSha256": "f31b8d055ded311c0cd60156cacc162453f3ec6855b0f2c34ffb4b4eac9c4666",
+          "verification": "Public handle_kbd_event regression failed for all six released controls with both ESC and real mouse Resume paths, then passed after the fix. It also verifies paused makes remain ignored, fresh resumed input works and a physically held key survives pause. tests/community_source_regressions.py StudentSourceRegressions.test_grand_prix_releases_driving_controls_while_paused"
+        }
+      ],
       "name": "MINIX Grand Prix",
       "controls": {
         "keyboard": true,
@@ -2229,7 +2238,16 @@
         }
       },
       "provenance": "examples/community/m1ke26--MINIX-Grand-Prix/UPSTREAM.json",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "project/src/state.c",
+          "patch": "SOURCE_PATCH.diff",
+          "reason": "Consume driving key releases while paused so released acceleration, reverse/brake, steering, handbrake and boost cannot remain latched after ESC or mouse Resume. Continue ignoring new driving presses until gameplay resumes.",
+          "upstreamSha256": "b4b947e5c3fa78eb0626caba498697455bd7b1d31e130c195304e5e2fc4cca21",
+          "patchedSha256": "f31b8d055ded311c0cd60156cacc162453f3ec6855b0f2c34ffb4b4eac9c4666",
+          "verification": "Public handle_kbd_event regression failed for all six released controls with both ESC and real mouse Resume paths, then passed after the fix. It also verifies paused makes remain ignored, fresh resumed input works and a physically held key survives pause. tests/community_source_regressions.py StudentSourceRegressions.test_grand_prix_releases_driving_controls_while_paused"
+        }
+      ],
       "description": "Take the wheel, race around the track and use your boost on the straights.",
       "preview": "collections/arcade/previews/m1ke26-minix-grand-prix-d83709a8a95c.png"
     },
