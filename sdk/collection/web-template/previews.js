@@ -16,6 +16,11 @@ export class Previews {
   constructor() {
     this.active = null;
     this.timer = null;
+    // Native lazy loading can fetch several screens ahead. Observe the final
+    // shuffled tile positions and only assign sources near the viewport.
+    this.iconObserver = typeof IntersectionObserver === 'undefined' ? null : new IntersectionObserver(entries => {
+      for (const entry of entries) if (entry.isIntersecting) this.loadIcon(entry.target);
+    }, {rootMargin:'160px 0px'});
     document.addEventListener('visibilitychange', () => { if (document.hidden) this.stop(); });
     window.addEventListener('blur', () => this.stop());
     window.addEventListener('resize', () => this.stop());
@@ -29,7 +34,16 @@ export class Previews {
     motion.addEventListener('change', () => this.stop());
   }
 
-  tile(game, index, launch) {
+  loadIcon(element) {
+    const icon = element.querySelector('.game-icon');
+    if (!icon.dataset.src) return;
+    this.iconObserver?.unobserve(element);
+    if (this.iconObserver) icon.loading = 'eager';
+    icon.src = icon.dataset.src;
+    delete icon.dataset.src;
+  }
+
+  tile(game, launch) {
     const element = document.createElement('div');
     element.className = 'game' + (game.featured ? ' featured' : '');
     element.setAttribute('role', 'listitem');
@@ -44,10 +58,14 @@ export class Previews {
     description.textContent = facts(game);
     link.setAttribute('aria-describedby', description.id);
     const icon = document.createElement('img');
-    icon.className = 'game-icon';
-    icon.src = game.icon || game.preview || 'assets/arcade.svg';
+    icon.className = 'game-icon pending';
+    icon.dataset.src = game.icon || game.preview || 'assets/arcade.svg';
     icon.alt = ''; icon.width = 256; icon.height = 256;
-    icon.loading = index < 16 ? 'eager' : 'lazy'; icon.decoding = 'async';
+    icon.loading = 'lazy'; icon.decoding = 'async';
+    icon.onload = async () => {
+      try { await icon.decode(); } catch { /* A loaded fallback can still be shown. */ }
+      icon.classList.remove('pending');
+    };
     icon.onerror = () => { icon.onerror = null; icon.src = 'assets/arcade.svg'; };
     const window_ = document.createElement('span');
     window_.className = 'preview-window';
@@ -97,6 +115,8 @@ export class Previews {
     element.addEventListener('focusout', event => { if (this.active === tile && !element.contains(event.relatedTarget)) this.stop(); });
     element.addEventListener('keydown', event => { if (event.key === 'Escape') this.stop(); });
     link.addEventListener('click', () => { this.stop(); launch(link); });
+    if (this.iconObserver) this.iconObserver.observe(element);
+    else this.loadIcon(element);
     return tile;
   }
 
@@ -131,6 +151,7 @@ export class Previews {
     if (this.active === tile) return;
     this.stop();
     this.active = tile;
+    this.loadIcon(tile.element);
     clearTimeout(tile.closingTimer);
     tile.element.classList.remove('preview-closing');
     const token = ++tile.token;
@@ -141,7 +162,11 @@ export class Previews {
     const image = await this.image(tile, 0);
     if (this.active !== tile || tile.token !== token) return;
     if (image) tile.track.replaceChildren(image);
-    else tile.track.replaceChildren(tile.link.querySelector('.game-icon').cloneNode());
+    else {
+      const fallback = tile.link.querySelector('.game-icon').cloneNode();
+      fallback.className = 'preview-frame';
+      tile.track.replaceChildren(fallback);
+    }
     tile.element.classList.add('preview-ready');
     this.progress(tile);
     this.schedule(tile);

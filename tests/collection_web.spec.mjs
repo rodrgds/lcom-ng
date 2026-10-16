@@ -27,7 +27,7 @@ test.beforeAll(async () => {
       response.end('<!doctype html><title>Playable fixture</title><script>setTimeout(()=>parent.postMessage({type:"lcom-player-loading",phase:"ready"},location.origin),20)</script>'); return;
     }
     try {
-      response.setHeader('Content-Type', name.endsWith('.js') ? 'text/javascript' : name.endsWith('.css') ? 'text/css' : 'text/html');
+      response.setHeader('Content-Type', ({'.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.ttf':'font/ttf'})[path.extname(name)] || 'text/html');
       let body = readFileSync(path.join(template, name === '/' ? 'index.html' : name));
       if (name === '/') body = body.toString().replaceAll('@NAME@', 'Mosaic Fixture');
       response.end(body);
@@ -358,4 +358,54 @@ test('random highlights handle collections with fewer than two ordinary games',a
     await expect(page.locator('.featured')).toHaveCount(catalog.length);
     expect(await page.locator('#games .game-launch').evaluateAll(links=>new Set(links.map(link=>link.dataset.id)).size)).toBe(catalog.length);
   }
+});
+
+
+test('grid icons load near the viewport, follow Shuffle, and wait to fetch distant games',async({page})=>{
+  const catalog=Array.from({length:120},(_,index)=>({...games[index%games.length],id:`lazy-${index}`,icon:`/icon-lazy-${index}.svg`,featured:index<4}));
+  await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Large library',games:catalog}}));
+  const icons=new Set(),shots=[];
+  page.on('request',request=>{const name=new URL(request.url()).pathname;if(name.startsWith('/icon-lazy-'))icons.add(name);if(name.startsWith('/shot-'))shots.push(name);});
+  await page.goto(base);await expect(page.locator('.game')).toHaveCount(120);await page.waitForLoadState('networkidle');
+  const visibleLoaded=()=>page.locator('.game').evaluateAll(items=>items.filter(item=>{
+    const rect=item.getBoundingClientRect();return rect.bottom>0&&rect.top<innerHeight;
+  }).every(item=>{const icon=item.querySelector('.game-icon');return icon.complete&&icon.naturalWidth>0&&getComputedStyle(icon).opacity==='1';}));
+  await expect.poll(visibleLoaded).toBe(true);
+  expect(icons.size).toBeLessThan(40);expect(shots).toEqual([]);
+  const distant=page.locator('.game').last(),id=await distant.locator('.game-launch').getAttribute('data-id');
+  const source=catalog.find(game=>game.id===id).icon;
+  expect((await distant.boundingBox()).y).toBeGreaterThan(844*3);
+  expect(icons.has(source)).toBe(false);
+  await distant.scrollIntoViewIfNeeded();
+  await expect.poll(()=>distant.locator('.game-icon').evaluate(icon=>icon.complete&&icon.naturalWidth>0)).toBe(true);
+  expect(icons.has(source)).toBe(true);
+  await page.locator('.identity').scrollIntoViewIfNeeded();
+  await page.getByRole('button',{name:'Shuffle games'}).click();
+  await expect.poll(visibleLoaded).toBe(true);await expect(page.locator('.game')).toHaveCount(120);
+  expect(shots).toEqual([]);
+});
+
+for(const reduced of [false,true])test(`loaded icons ${reduced?'appear immediately with a working fallback':'fade in after decoding without moving their tiles'}`,async({page})=>{
+  await page.emulateMedia({reducedMotion:reduced?'reduce':'no-preference'});
+  let release;const gate=new Promise(resolve=>{release=resolve;});
+  await page.route('**/icon-*.svg',async route=>{await gate;if(reduced)await route.fulfill({status:404,body:'missing'});else await route.continue();});
+  try{
+    await page.goto(base);await expect(page.locator('.game')).toHaveCount(24);
+    const target=page.locator('.game').first().locator('.game-icon');
+    await expect(target).toHaveCSS('opacity','0');const before=await page.locator('.game').first().boundingBox();
+    await target.evaluate(icon=>{
+      window.iconFrames=new Promise(resolve=>icon.addEventListener('load',()=>{
+        const frames=[],start=performance.now();
+        const sample=now=>{const style=getComputedStyle(icon);frames.push({time:now-start,opacity:Number(style.opacity)});if(now-start<500)requestAnimationFrame(sample);else resolve(frames);};
+        requestAnimationFrame(sample);
+      },{once:true}));
+    });
+    release();const frames=await page.evaluate(()=>window.iconFrames);
+    expect(frames.at(-1).opacity).toBe(1);
+    if(reduced){expect(frames.every(frame=>frame.opacity===0||frame.opacity===1)).toBe(true);await expect(target).toHaveAttribute('src','assets/arcade.svg');}
+    else expect(frames.some(frame=>frame.opacity>.01&&frame.opacity<.99)).toBe(true);
+    // The grid owns dimensions before and after loading, including failed art.
+    const after=await page.locator('.game').first().boundingBox();expect(after.width).toBeCloseTo(before.width,0);expect(after.height).toBeCloseTo(before.height,0);
+  }finally{release();}
 });

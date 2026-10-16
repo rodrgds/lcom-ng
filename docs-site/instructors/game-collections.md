@@ -54,7 +54,10 @@ out of the list. Files you added yourself are preserved.
 
 The web library uses square game icons, with larger featured games spread down
 the grid. Each visit and Shuffle adds two random highlights alongside the fixed
-featured games; resizing keeps the same selection. Hover or keyboard focus expands a tile into gameplay screenshots with
+featured games; resizing keeps the same selection. Desktop density fits nine
+columns at 1280px. Icons load near the viewport and reveal after decoding;
+offscreen games wait until scrolling or Shuffle brings them into view.
+Hover or keyboard focus expands a tile into gameplay screenshots with
 its name, year when known, and approximate first-load download size. Screenshots
 slide every few seconds; reduced motion keeps the first frame still. Touch opens
 a game directly. **Search** opens a modal and preserves its query when returning

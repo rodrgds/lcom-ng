@@ -87,7 +87,7 @@ function render() {
     cue('navigate',{emphasis:'subtle'});
     if (matchMedia('(pointer:coarse)').matches) fullscreen();
   };
-  const tiles = catalog.map((game, index) => previews.tile(game, index, launch));
+  const tiles = catalog.map(game => previews.tile(game, launch));
   const mosaic = new Mosaic(document.querySelector('#grid'), games, tiles, () => previews.stop());
   document.querySelector('#shuffle').onclick = () => {
     mosaic.shuffle();

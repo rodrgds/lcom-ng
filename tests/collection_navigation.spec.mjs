@@ -91,6 +91,7 @@ test('mosaic arrows use square placement rather than expanded previews or reposi
 
 
 test('separate brand and controls stay in two phone columns above three game columns',async({page},testInfo)=>{
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'LCOM Arcade',games}}));
   await page.goto(base);
   const panel=page.getByRole('group',{name:'Library controls',exact:true});
   for(const width of [320,390,584,768,1280,1440,1920]) {
@@ -112,6 +113,11 @@ test('separate brand and controls stay in two phone columns above three game col
       })).toBe(true);
       const normal=await page.locator('.game:not(.featured)').first().boundingBox();
       expect(normal.width).toBeLessThanOrEqual(150);expect(normal.width).toBeGreaterThanOrEqual(110);
+      if(width===1280)expect(await panel.evaluate(element=>{
+        const grid=document.querySelector('#grid'),normal=document.querySelector('.game:not(.featured)').getBoundingClientRect();
+        const gap=parseFloat(getComputedStyle(grid).gap);
+        return Math.round((grid.clientWidth+gap)/(normal.width+gap));
+      })).toBe(9);
     }
     await expect(panel.locator('button')).toHaveCount(4);
     for(const control of await panel.locator('a,button').all()) {
@@ -125,6 +131,11 @@ test('separate brand and controls stay in two phone columns above three game col
       });
     })).toBe(true);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+    expect(await page.locator('.identity h1').evaluate(element=>{
+      const range=document.createRange();range.selectNodeContents(element);
+      const lines=[...range.getClientRects()],box=element.getBoundingClientRect();
+      return new Set(lines.map(line=>Math.round(line.top))).size<=2&&lines.every(line=>line.right<=box.right+1);
+    })).toBe(true);
     await page.screenshot({path:testInfo.outputPath(`controls-${width}.png`)});
   }
   await page.locator('.identity').focus();
