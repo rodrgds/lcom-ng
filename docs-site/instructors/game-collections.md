@@ -76,6 +76,9 @@ interaction and can be muted through the browser tab. No audio downloads or
 third-party requests are needed.
 A loading screen shows the game's `description` and download progress; failed
 downloads offer a retry or a return to the library.
+Unused game margins keep the Arcade background. Wide side margins show quiet
+columns of game icons, borrowing loaded artwork first. They drift slowly, stay
+clear of touch controls and remain still with reduced motion.
 
 ## Web galleries and metadata
 

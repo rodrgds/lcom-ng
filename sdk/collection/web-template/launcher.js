@@ -1,3 +1,4 @@
+import {Surroundings} from './surroundings.js';
 import {Mosaic} from './mosaic.js';
 import {Previews} from './previews.js';
 import {GameSearch} from './search.js';
@@ -10,6 +11,7 @@ const play = document.querySelector('#play');
 const games = document.querySelector('#games');
 const count = document.querySelector('#count');
 const host = document.querySelector('#frame-host');
+const surroundings = new Surroundings(host);
 let catalog = [], selected = null, lastLink = null, gameSearch = null, surprise = null;
 const previews = new Previews();
 const back=document.querySelector('#back');
@@ -21,6 +23,7 @@ function placeReturn(layout) {
   if(!Number.isFinite(sx) || !Number.isFinite(sy)) return;
   const transform=r=>({x:bounds.x+r.x*sx,y:bounds.y+r.y*sy,width:r.width*sx,height:r.height*sy});
   const game=transform(layout.game), occupied=layout.occupied.map(transform);
+  surroundings.update(game,occupied);
   const w=back.offsetWidth,h=back.offsetHeight;
   const left=parseFloat(style.paddingLeft),top=parseFloat(style.paddingTop);
   const right=innerWidth-parseFloat(style.paddingRight)-w,bottom=innerHeight-parseFloat(style.paddingBottom)-h;
@@ -48,6 +51,7 @@ function loadingState(state) {
     document.querySelector('#retry').focus({preventScroll:true});
   } else if (state.phase === 'ready') {
     ready = true; loading.hidden = true; host.inert = false;
+    surroundings.start(selected,catalog);
     host.querySelector('iframe')?.contentWindow.focus();
   } else if (!ready && document.querySelector('#load-error').hidden) {
     const fraction = state.total > 0 ? Math.min(1, state.loaded / state.total) : null;
@@ -113,6 +117,7 @@ function route(force = false) {
   if (!force && game && selected?.id === game.id) return;
   surprise?.close();
   previews.stop();
+  surroundings.reset();
   host.replaceChildren(); selected = game || null; ready = false; progressStep = -1;
   loading.hidden = !game; host.inert = !!game;
   library.hidden = !!game; play.hidden = !game;

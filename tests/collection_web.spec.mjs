@@ -409,3 +409,48 @@ for(const reduced of [false,true])test(`loaded icons ${reduced?'appear immediate
     const after=await page.locator('.game').first().boundingBox();expect(after.width).toBeCloseTo(before.width,0);expect(after.height).toBeCloseTo(before.height,0);
   }finally{release();}
 });
+
+
+test('game surroundings stay outside gameplay, reuse loaded icons, and stop on return',async({page})=>{
+  await page.setViewportSize({width:1440,height:900});await page.goto(base);
+  await expect.poll(()=>page.locator('.game-icon').evaluateAll(images=>images.filter(image=>image.complete&&image.naturalWidth).length)).toBeGreaterThan(4);
+  const loaded=await page.locator('.game-icon').evaluateAll(images=>images.filter(image=>image.complete&&image.naturalWidth).map(image=>image.src));
+  await page.locator('.game-launch').first().click();await expect(page.locator('#loading')).toBeHidden();
+  const frame=page.frames().find(frame=>frame.url().includes('/games/'));
+  const report=async(game,occupied=[])=>frame.evaluate(({game,occupied})=>parent.postMessage({type:'lcom-player-layout',width:innerWidth,height:innerHeight,game,occupied},location.origin),{game,occupied});
+  await report({x:240,y:0,width:960,height:900});
+  await expect(page.locator('#play')).toHaveCSS('background-color','rgb(16, 16, 33)');
+  const rails=page.locator('.game-rail:not([hidden])');await expect(rails).toHaveCount(2);
+  expect(await rails.evaluateAll(rails=>rails.every(rail=>{const r=rail.getBoundingClientRect();return r.right<=224||r.x>=1216;}))).toBe(true);
+  expect(await rails.locator('img').evaluateAll(images=>images.every(image=>image.alt===''&&image.closest('[aria-hidden="true"]')))).toBe(true);
+  const borrowed=await rails.locator('img').evaluateAll(images=>images.map(image=>image.src));
+  expect(borrowed.every(src=>loaded.includes(src))).toBe(true);
+  const track=rails.first().locator('.rail-track');
+  const position=()=>track.evaluate(element=>getComputedStyle(element).transform);
+  const before=await position();await expect.poll(position).not.toBe(before);
+  await page.emulateMedia({reducedMotion:'reduce'});await expect(track).toHaveCSS('animation-name','none');
+  // A control in the left gutter suppresses its decoration, without moving
+  // the game or taking over any pointer input from the embedded player.
+  await report({x:240,y:0,width:960,height:900},[{x:60,y:400,width:100,height:100}]);
+  await expect(rails).toHaveCount(1);await expect(rails).toHaveCSS('pointer-events','none');
+  await page.setViewportSize({width:390,height:844});
+  await report({x:0,y:200,width:390,height:292});await expect(rails).toHaveCount(0);
+  await page.getByRole('button',{name:'Games',exact:true}).click();
+  await expect(page.locator('.game-rail img')).toHaveCount(0);
+  await expect(page.locator('#library')).toBeVisible();
+});
+
+test('direct game links fetch a bounded set of decorations only when side space is available',async({browser})=>{
+  for(const [width,height] of [[1440,900],[390,844]]) {
+    const context=await browser.newContext({viewport:{width,height}}),page=await context.newPage();
+    const icons=[];page.on('request',request=>{if(request.url().includes('/icon-'))icons.push(request.url());});
+    await page.goto(base+'/#game=game-0');await expect(page.locator('iframe')).toBeVisible();
+    await expect(page.locator('#loading')).toBeHidden();
+    const frame=page.frames().find(frame=>frame.url().includes('/games/'));
+    await frame.evaluate(()=>parent.postMessage({type:'lcom-player-layout',width:innerWidth,height:innerHeight,
+      game:innerWidth>1000?{x:240,y:0,width:960,height:900}:{x:0,y:200,width:390,height:292},occupied:[]},location.origin));
+    await expect(page.locator('.game-rail:not([hidden])')).toHaveCount(width>1000?2:0);
+    expect(new Set(icons).size).toBeLessThanOrEqual(width>1000?9:1);
+    await context.close();
+  }
+});

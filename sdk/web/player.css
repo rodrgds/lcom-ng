@@ -172,3 +172,8 @@ button svg { width: 24px; height: 24px; vertical-align: middle; pointer-events: 
 .pedal.held .pedal-grip { stroke: var(--accent); }
 @media (pointer: coarse) { .configured-overlay .steering-wheel { pointer-events: auto; } }
 @media (prefers-reduced-motion: reduce) { .wheel-rotor { transition: none; } }
+
+/* Collection artwork shows through the unused canvas margins only. */
+html.collection-player,.collection-player body{background:transparent}
+.collection-player #touch-controls{background:#101021}
+.collection-player .configured-overlay#touch-controls{background:transparent}

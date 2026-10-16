@@ -14,6 +14,7 @@ let mobile = null;
 const fullscreenButton = document.querySelector("#fullscreen");
 // The collection owns fullscreen so its Games return button stays in view.
 const collectionPlayer = window.parent !== window && new URLSearchParams(location.search).get('collection') === '1';
+document.documentElement.classList.toggle('collection-player',collectionPlayer);
 let firstFrame = false;
 function reportLoading(state) {
   if (collectionPlayer) parent.postMessage({type:'lcom-player-loading', ...state}, location.origin);
