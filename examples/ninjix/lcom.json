@@ -14,7 +14,7 @@
       "pointer": "move",
       "touch": "tap",
       "layout": "panel",
-      "toolbar": "top-left",
+      "toolbar": "auto",
       "actions": [
         {
           "label": "Normal",
