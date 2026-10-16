@@ -1,0 +1,101 @@
+--- a/proj/src/proj.c
++++ b/proj/src/proj.c
+@@ -58,6 +58,7 @@
+ extern int counter;
+ extern uint8_t read_packet;
+ extern bool reading_error;
++extern uint32_t total_packets;
+ 
+ extern Date date;
+ extern Player p1;
+@@ -178,15 +179,15 @@
+           if (msg.m_notify.interrupts & (irq_set3)) { // MOUSE
+ 
+             mouse_ih(); // calls interrupt handler
+-            if (reading_error == true && counter != 2) {
+-              continue;
+-            }
+-            else if (reading_error == true && counter == 2) {
++            if (reading_error) {
++              counter = 0;
+               reading_error = false;
+             }
+             else {
++              uint32_t previous_packets = total_packets;
+               print_mouse_packet();
+-              update_mouse_position(packet1.delta_x, packet1.delta_y);
++              if (total_packets != previous_packets && !packet1.x_ov && !packet1.y_ov)
++                update_mouse_position(packet1.delta_x, packet1.delta_y);
+             }
+           }
+ 
+--- a/proj/src/mouse.c
++++ b/proj/src/mouse.c
+@@ -8,7 +8,6 @@
+ 
+ struct packet packet1;
+ uint8_t read_packet;
+-bool is_sync = false;
+ int counter = 0;
+ int hook_id_mouse;
+ uint32_t total_packets = 0;
+@@ -133,14 +132,8 @@
+ 
+ void(print_mouse_packet)() {
+   
+-  if (is_sync == false) {
+-
+-    if ((read_packet & 0x08) == 0) {
+-      return;
+-    }
+-    else
+-      is_sync = true;
+-  }
++  if (counter == 0 && (read_packet & 0x08) == 0)
++    return;
+ 
+   if (counter == 0) {
+     packet1.bytes[0] = read_packet;
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -132,33 +132,19 @@
+     for (int col = mouse.x; col < imgMouse.width + mouse.x; col++) {
+       uint32_t color;
+       memcpy(&color, sprite, 3);
+-      my_draw_pixel(col, line, color);
++      if (col >= 0 && col < modeinfo.XResolution && line >= 0 && line < modeinfo.YResolution)
++        my_draw_pixel(col, line, color);
+       sprite += ((modeinfo.BitsPerPixel + 7) / 8);
+     }
+   }
+ }
+ 
+ void update_mouse_position(int x, int y) {
+-
+-  if (mouse.x + x < 0) {
+-    mouse.x = 0;
+-  }
+-  else if (mouse.x + x >= modeinfo.XResolution) {
+-    mouse.x = modeinfo.XResolution - 15;
+-  }
+-  else {
+-    mouse.x += x / 2;
+-  }
+-
+-  if (mouse.y - y < 0) {
+-    mouse.y = 0;
+-  }
+-  else if (mouse.y + y >= modeinfo.YResolution) {
+-    mouse.y = modeinfo.YResolution - 15;
+-  }
+-  else {
+-    mouse.y -= y / 2;
+-  }
++  int next_x = mouse.x + x / 2;
++  int next_y = mouse.y - y / 2;
++
++  mouse.x = next_x < 0 ? 0 : next_x >= modeinfo.XResolution ? modeinfo.XResolution - 1 : next_x;
++  mouse.y = next_y < 0 ? 0 : next_y >= modeinfo.YResolution ? modeinfo.YResolution - 1 : next_y;
+ }
+ 
+ void draw_menu() {

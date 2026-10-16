@@ -5008,12 +5008,37 @@
       "icon": "examples/community/iamaccosta--FEUP-LCOM/proj/src/icon.png",
       "config": "examples/community/iamaccosta--FEUP-LCOM/proj/src/lcom.json",
       "provenance": "examples/community/iamaccosta--FEUP-LCOM/UPSTREAM.json",
-      "controlsRationale": "First card reveals J-diamond with tapDuration60; identical tapDuration0 probe leaves card covered. Relative cursor retained because half-deltas are applied on multiple byte IRQs. Explicit Flip action retained.",
+      "controlsRationale": "Consume each complete packet once, preserve original half-delta sensitivity and cursor art, and clamp/clip safely. Cursor initializes0,0 once at startup and never warps across menu/game/pause. Browser-only desktopScale0.5 maps desktop points through even raw deltas; mobile relative touch remains unchanged.",
       "license": {
         "status": "missing",
         "files": []
       },
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "path": "SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "proj/src/proj.c",
+              "originalSha256": "17f894bddff02bdbfbbb361dba71e64abf96c41090888ea7e77739141d0f2960",
+              "patchedSha256": "a27c3b84703d5a32db9a1b6eaf2e12525a645d9bbc04eff7da3373c8a7af45bd",
+              "reason": "Apply mouse movement only after a newly completed packet, rather than replaying its old deltas on both partial bytes of the next packet. Reset failed packet assembly and ignore overflow movement."
+            },
+            {
+              "path": "proj/src/mouse.c",
+              "originalSha256": "4f3209829df24931001594eb8c8e509e83254331484c755ef543eecb6f15e08f",
+              "patchedSha256": "595e15e2bc1c2c142e984f3a2ee8308c6db2753e88eea3b31e9ed408e4ac02e5",
+              "reason": "Check the synchronization bit at each packet boundary so discarded input cannot permanently offset three-byte packet assembly."
+            },
+            {
+              "path": "proj/src/game.c",
+              "originalSha256": "06fc58ff3795d54ad9fde7043886b92b594eb57bc1dea80448f633da7acb7412",
+              "patchedSha256": "c33f4cf7330a2caf19f9456e93b3594d244e9167ec0c5635d1ebdf0449d8a5ef",
+              "reason": "Preserve half-speed signed integer motion while clamping its applied delta consistently to the framebuffer hotspot bounds. Clip the original cursor sprite at every frame edge while preserving source row stride."
+            }
+          ],
+          "reproduction": "Public CLI replay sends mouse20,-10 then neutral0,0. Original presented cursor is30,15; corrected cursor10,5 preserves intended half-speed. Public motion/drawing regression separately reproduces scaled bound jumps and offscreen cursor pixel writes, then passes after the correction."
+        }
+      ],
       "verification": {
         "repo": "iamaccosta/FEUP-LCOM",
         "buildExit": 0,

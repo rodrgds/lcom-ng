@@ -40,7 +40,14 @@
         }
       ],
       "tapDuration": 60,
-      "touchClick": false
+      "touchClick": false,
+      "cursor": {
+        "x": 0,
+        "y": 0,
+        "maxX": 799,
+        "maxY": 599,
+        "desktopScale": 0.5
+      }
     }
   },
   "build": {

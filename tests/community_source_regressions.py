@@ -38,6 +38,82 @@ class StudentSourceRegressions(unittest.TestCase):
             result = subprocess.run([str(binary)], capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
 
+    def test_memory_match_consumes_complete_mouse_packets_once(self):
+        # A neutral packet after movement must not replay its preceding delta.
+        # Exercise the real IRQ loop and independently locate the blue cursor.
+        cli = Path(os.environ.get('LCOM_CLI', ROOT / 'build/machinelab')).resolve()
+        project = COMMUNITY / 'iamaccosta--FEUP-LCOM/proj/src'
+        with tempfile.TemporaryDirectory(prefix='lcom-memory-cursor-') as temporary:
+            folder = Path(temporary)
+            subprocess.run([str(cli), 'compat', 'build', str(project), '--output', str(folder / 'native')],
+                           check=True, capture_output=True, text=True, timeout=120)
+            replay = folder / 'cursor.mlabscript'
+            replay.write_text('at 180 mouse 20 -10 0\nat 200 mouse 0 0 0\n')
+            frame = folder / 'menu.ppm'
+            result = subprocess.run([str(cli), 'run', '--headless', '--script', str(replay),
+                                     '--max-ticks', '240', '--timeout', '30', '--dump-presented',
+                                     '--dump-frame', str(frame), '--', str(folder / 'native/proj')],
+                                    cwd=folder, capture_output=True, text=True, timeout=45)
+            self.assertEqual(result.returncode, 1, result.stdout + result.stderr)
+            self.assertIn('max virtual ticks reached (240)', result.stdout + result.stderr)
+            magic, dimensions, depth, pixels = frame.read_bytes().split(b'\n', 3)
+            self.assertEqual((magic, dimensions, depth), (b'P6', b'800 600', b'255'))
+            blue = [(i // 3 % 800, i // 3 // 800) for i in range(0, len(pixels), 3)
+                    if pixels[i:i+3] == bytes((0, 162, 232))]
+            self.assertGreater(len(blue), 100, 'The original blue cursor must be rendered')
+            self.assertEqual((min(x for x, y in blue), min(y for x, y in blue)), (10, 5),
+                             'Only the complete movement packet advances the original half-speed cursor')
+
+    def test_memory_match_clamps_scaled_motion_and_clips_cursor_edges(self):
+        # Keep the original per-packet half sensitivity, including odd truncation.
+        # The renderer must never send offscreen cursor pixels to its framebuffer.
+        self.compile_and_run(COMMUNITY / 'iamaccosta--FEUP-LCOM/proj/src', ['game.c'], r'''
+#include <lcom/lcf.h>
+#include "game.h"
+#include "video.h"
+#include <assert.h>
+extern Mouse mouse;
+extern xpm_image_t imgMouse;
+extern uint8_t *spriteMouse;
+vbe_mode_info_t modeinfo;
+xpm_image_t imgDeck, imgCardBack;
+uint8_t *spriteDeck, *spriteCardBack;
+static int invalid_pixels, valid_pixels;
+static uint32_t colors[2];
+uint8_t *xpm_load(xpm_map_t map, enum xpm_image_type type, xpm_image_t *img) { abort(); }
+void greenPartOfScreen(int x, int y, int width, int height) { abort(); }
+void vg_draw_card(int x, int y, int column, int row) { abort(); }
+int my_draw_pixel(uint16_t x, uint16_t y, uint32_t color) {
+  if (x >= modeinfo.XResolution || y >= modeinfo.YResolution) invalid_pixels++;
+  else { assert(x == 3 && y >= 1 && y <= 2); colors[y-1] = color & 0xffffff; valid_pixels++; }
+  return 0;
+}
+int main(void) {
+  modeinfo = (vbe_mode_info_t){.XResolution=800, .YResolution=600, .BitsPerPixel=24};
+  create_mouse(); assert(mouse.x == 0 && mouse.y == 0);
+  update_mouse_position(20, -10); assert(mouse.x == 10 && mouse.y == 5);
+  update_mouse_position(1, -1); assert(mouse.x == 10 && mouse.y == 5);
+  update_mouse_position(-2, 2); assert(mouse.x == 9 && mouse.y == 4);
+  mouse.x=798; mouse.y=598; update_mouse_position(2, -2);
+  int failures=0;
+  if (mouse.x != 799 || mouse.y != 599) { fprintf(stderr,"Scaled delta must reach the last framebuffer pixel\n"); failures++; }
+  mouse.x=799; mouse.y=599; update_mouse_position(20, -20);
+  if (mouse.x != 799 || mouse.y != 599) { fprintf(stderr,"Scaled positive overflow must clamp at framebuffer bounds\n"); failures++; }
+  mouse.x=1; mouse.y=1; update_mouse_position(-20, 20);
+  if (mouse.x != 0 || mouse.y != 0) { fprintf(stderr,"Negative movement must clamp to zero\n"); failures++; }
+  uint8_t sprite[] = {1,2,3,4,5,6,7,8,9,10,11,12};
+  spriteMouse=sprite; imgMouse=(xpm_image_t){.width=2,.height=2};
+  modeinfo=(vbe_mode_info_t){.XResolution=4,.YResolution=3,.BitsPerPixel=24};
+  mouse.x=3; mouse.y=1; draw_mouse();
+  if (invalid_pixels || valid_pixels != 2 || colors[0] != 0x030201 || colors[1] != 0x090807) {
+    fprintf(stderr,"Cursor must clip the right edge without losing source row stride\n"); failures++;
+  }
+  invalid_pixels=valid_pixels=0; mouse.y=2; draw_mouse();
+  if (invalid_pixels || valid_pixels != 1) { fprintf(stderr,"Cursor must clip the bottom edge\n"); failures++; }
+  return failures ? 1 : 0;
+}
+''')
+
     def test_grand_prix_releases_driving_controls_while_paused(self):
         # Public keyboard input must consume driving releases even during pause.
         # Both ESC and the real mouse Resume button must return neutral controls.

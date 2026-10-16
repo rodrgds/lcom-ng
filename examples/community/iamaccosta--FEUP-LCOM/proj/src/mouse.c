@@ -8,7 +8,6 @@
 
 struct packet packet1;
 uint8_t read_packet;
-bool is_sync = false;
 int counter = 0;
 int hook_id_mouse;
 uint32_t total_packets = 0;
@@ -133,14 +132,8 @@ void(mouse_ih)() {
 
 void(print_mouse_packet)() {
   
-  if (is_sync == false) {
-
-    if ((read_packet & 0x08) == 0) {
-      return;
-    }
-    else
-      is_sync = true;
-  }
+  if (counter == 0 && (read_packet & 0x08) == 0)
+    return;
 
   if (counter == 0) {
     packet1.bytes[0] = read_packet;

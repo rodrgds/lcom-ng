@@ -58,6 +58,7 @@ extern struct packet packet1;
 extern int counter;
 extern uint8_t read_packet;
 extern bool reading_error;
+extern uint32_t total_packets;
 
 extern Date date;
 extern Player p1;
@@ -178,15 +179,15 @@ int(proj_main_loop)(int argc, char *argv[]) {
           if (msg.m_notify.interrupts & (irq_set3)) { // MOUSE
 
             mouse_ih(); // calls interrupt handler
-            if (reading_error == true && counter != 2) {
-              continue;
-            }
-            else if (reading_error == true && counter == 2) {
+            if (reading_error) {
+              counter = 0;
               reading_error = false;
             }
             else {
+              uint32_t previous_packets = total_packets;
               print_mouse_packet();
-              update_mouse_position(packet1.delta_x, packet1.delta_y);
+              if (total_packets != previous_packets && !packet1.x_ov && !packet1.y_ov)
+                update_mouse_position(packet1.delta_x, packet1.delta_y);
             }
           }
 

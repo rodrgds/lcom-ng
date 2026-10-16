@@ -132,33 +132,19 @@ void draw_mouse() {
     for (int col = mouse.x; col < imgMouse.width + mouse.x; col++) {
       uint32_t color;
       memcpy(&color, sprite, 3);
-      my_draw_pixel(col, line, color);
+      if (col >= 0 && col < modeinfo.XResolution && line >= 0 && line < modeinfo.YResolution)
+        my_draw_pixel(col, line, color);
       sprite += ((modeinfo.BitsPerPixel + 7) / 8);
     }
   }
 }
 
 void update_mouse_position(int x, int y) {
+  int next_x = mouse.x + x / 2;
+  int next_y = mouse.y - y / 2;
 
-  if (mouse.x + x < 0) {
-    mouse.x = 0;
-  }
-  else if (mouse.x + x >= modeinfo.XResolution) {
-    mouse.x = modeinfo.XResolution - 15;
-  }
-  else {
-    mouse.x += x / 2;
-  }
-
-  if (mouse.y - y < 0) {
-    mouse.y = 0;
-  }
-  else if (mouse.y + y >= modeinfo.YResolution) {
-    mouse.y = modeinfo.YResolution - 15;
-  }
-  else {
-    mouse.y -= y / 2;
-  }
+  mouse.x = next_x < 0 ? 0 : next_x >= modeinfo.XResolution ? modeinfo.XResolution - 1 : next_x;
+  mouse.y = next_y < 0 ? 0 : next_y >= modeinfo.YResolution ? modeinfo.YResolution - 1 : next_y;
 }
 
 void draw_menu() {
