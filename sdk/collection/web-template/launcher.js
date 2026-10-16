@@ -85,9 +85,15 @@ function render() {
     link.setAttribute('aria-label', 'Play ' + game.name);
     const art = document.createElement('span'); art.className = 'art';
     if (game.preview || game.icon) {
-      const image = document.createElement('img'); image.src = game.preview || game.icon; image.alt = ''; image.loading = index < 12 ? 'eager' : 'lazy'; image.decoding = 'async'; image.width = 800; image.height = 600; image.onerror = () => { image.onerror = null; if(game.icon && image.getAttribute('src') !== game.icon) image.src = game.icon; }; art.append(image);
+      const image = document.createElement('img'); image.className = 'game-preview'; image.src = game.preview || game.icon; image.alt = ''; image.loading = index < 12 ? 'eager' : 'lazy'; image.decoding = 'async'; image.width = 800; image.height = 600; image.onerror = () => { image.onerror = null; if(game.icon && image.getAttribute('src') !== game.icon) image.src = game.icon; }; art.append(image);
     } else {
       const fallback = document.createElement('span'); fallback.className = 'fallback'; fallback.textContent = game.name[0]; fallback.setAttribute('aria-hidden','true'); art.append(fallback);
+    }
+    if (game.icon) {
+      const icon = document.createElement('img'); icon.className = 'game-icon';
+      icon.src = game.icon; icon.alt = ''; icon.width = 32; icon.height = 32;
+      icon.loading = index < 12 ? 'eager' : 'lazy'; icon.decoding = 'async';
+      icon.onerror = () => icon.remove(); art.append(icon);
     }
     const mark = document.createElement('span'); mark.className = 'play-mark'; mark.innerHTML = '<svg viewBox="0 0 24 24"><path d="m8 4 13 8-13 8z"/></svg>'; mark.setAttribute('aria-hidden','true'); art.append(mark);
     const label = document.createElement('span'); label.className = 'game-name'; label.textContent = game.name;
@@ -113,6 +119,9 @@ function route(force = false) {
     document.querySelector('#load-description').textContent = game.description || '';
     const preview = document.querySelector('#load-preview');
     preview.src = game.preview || game.icon || 'assets/arcade.svg';
+    const icon = document.querySelector('.load-logo');
+    icon.onerror = () => { icon.onerror = null; icon.src = 'assets/arcade.svg'; };
+    icon.src = game.icon || 'assets/arcade.svg';
     document.querySelector('#load-error').hidden = true;
     document.querySelector('#load-progress').hidden = false;
     progress.removeAttribute('value');

@@ -54,7 +54,7 @@ test.beforeAll(async () => {
   const projects=[];
   for (const [name,title] of [['one','First game'],['two','Second game']]) {
     const project=path.join(directory,name); cpSync(path.join(root,'tests/fixtures/web/native'),project,{recursive:true});
-    writeFileSync(path.join(project,'lcom.json'),JSON.stringify({name:title,description:'Find matching tiles and beat your best score.',preview:path.join(root,'docs/assets/android-icons/sushi-slash.png'),build:{assets:['assets'],environment:{LCOM_COLLECTION_TEST:'ready from profile'}},mobile:{fullscreen:true,controls:{quickKeys:['KP_ENTER','A','B','C','D','E','F','G','H','I'],keyboard:false,joystick:false,mouseButtons:false,layout:'overlay'}}}));
+    writeFileSync(path.join(project,'lcom.json'),JSON.stringify({name:title,description:'Find matching tiles and beat your best score.',preview:path.join(root,'docs/assets/android-icons/sushi-slash.png'),icon:path.join(root,'docs/assets/android-icons/sushi-slash.png'),build:{assets:['assets'],environment:{LCOM_COLLECTION_TEST:'ready from profile'}},mobile:{fullscreen:true,controls:{quickKeys:['KP_ENTER','A','B','C','D','E','F','G','H','I'],keyboard:false,joystick:false,mouseButtons:false,layout:'overlay'}}}));
     projects.push('../'+name);
   }
   writeFileSync(path.join(collection,'lcom.collection.json'),JSON.stringify({name:'Classroom Arcade',projects}));
@@ -818,6 +818,9 @@ test('collection is responsive, forwards profiles, and discards game state on re
 
 test('collection loading supports cancellation, download failures, and retry to the first frame', async ({page}) => {
   await page.goto(`${base}/collection/`);
+  const catalog = await (await page.request.get(`${base}/collection/collection.json`)).json();
+  const [first, second] = catalog.games;
+  await expect(page.getByRole('link',{name:'Play First game'}).locator('.game-icon')).toHaveAttribute('src',first.icon);
   let release, requested;
   const gate = new Promise(resolve => { release = resolve; });
   const started = new Promise(resolve => { requested = resolve; });
@@ -831,6 +834,8 @@ test('collection loading supports cancellation, download failures, and retry to 
   await started;
   await expect(page.locator('#loading')).toBeVisible();
   await expect(page.locator('#load-title')).toHaveText('First game');
+  await expect(page.locator('.load-logo')).toHaveAttribute('src',first.icon);
+  await expect.poll(() => page.locator('.load-logo').evaluate(image => image.naturalWidth)).toBeGreaterThan(0);
   await expect(page.locator('#load-description')).toHaveText('Find matching tiles and beat your best score.');
   await expect(page.getByRole('progressbar',{name:'Game download'})).toBeVisible();
   // An unrelated same-origin window must not dismiss another frame's loader.
@@ -841,6 +846,7 @@ test('collection loading supports cancellation, download failures, and retry to 
   mode = 'fail'; release();
   await page.getByRole('link',{name:'Play Second game'}).click();
   await expect(page.locator('#load-title')).toHaveText('Second game');
+  await expect(page.locator('.load-logo')).toHaveAttribute('src',second.icon);
   await expect(page.getByRole('button',{name:'Try again',exact:true})).toBeVisible();
   mode = 'run';
   await page.getByRole('button',{name:'Try again',exact:true}).click();
