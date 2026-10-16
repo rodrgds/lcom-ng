@@ -51,7 +51,10 @@
   },
   "build": {
     "assetRoot": ".",
-    "assets": []
+    "assets": [],
+    "environment": {
+      "LCOM_COMPAT_MOUSE_REPORTING": "1"
+    }
   },
   "description": "Build and upgrade towers to stop waves of skeletons, orcs and golems.",
   "preview": "preview.png"

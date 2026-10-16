@@ -10070,9 +10070,12 @@
       },
       "build": {
         "assetRoot": ".",
-        "assets": []
+        "assets": [],
+        "environment": {
+          "LCOM_COMPAT_MOUSE_REPORTING": "1"
+        }
       },
-      "controlsRationale": "Direct tap matches original cursor (5,5), unit deltas and clamp bounds 800x600. P starts, A/C builds, U upgrades. A tower was built and enemy wave visually verified.",
+      "controlsRationale": "Direct tap matches original cursor (5,5), unit deltas and clamp bounds 800x600. P starts, A/C builds, U upgrades. A tower was built and enemy wave visually verified. Enable the original lab session mouse-reporting prerequisite so direct pointer motion and menu clicks reach the subscribed guest handler.",
       "sourcePatches": [
         {
           "path": "examples/community/DavidGustavo6--LCOM-game/SOURCE_PATCH.diff",

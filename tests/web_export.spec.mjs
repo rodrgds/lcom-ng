@@ -39,6 +39,7 @@ test.beforeAll(async () => {
   exportGame('examples/flappy', 'flappy', cli, '--name', 'LCOM Bird');
   exportGame('examples/ninjix', 'ninjix', cli, '--name', 'Ninjix');
   exportGame('examples/community/Cast-10--LCOMProject/proj', 'minix-legends', cli);
+  exportGame('examples/community/DavidGustavo6--LCOM-game/src', 'tower-defense', cli);
   workspace = path.join(directory, 'new student game');
   execFileSync(cli, ['setup', workspace], { stdio: 'pipe' });
   copyFileSync(path.join(root, 'tests/fixtures/web/native/main.c'), path.join(workspace, 'proj/main.c'));
@@ -1175,4 +1176,42 @@ test('Minix Legends enables mouse motion and keeps its whole cursor visible at e
       return template.filter(([dx,dy,r,g,b])=>{const i=((y+dy)*c.width+x+dx)*4;return d[i]===r&&d[i+1]===g&&d[i+2]===b;}).length;
     },{x,y,template})).toBe(template.length);
   }
+});
+
+
+test('Minix Tower Defense accepts physical mouse and direct touch to enter the arena', async ({browser}) => {
+  const context=await browser.newContext({viewport:{width:1024,height:768},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  try {
+    await start(page,'tower-defense');
+    const canvas=page.locator('canvas');
+    // This game's 12x19 arrow has an opaque gray first column and white interior.
+    const cursorAt=(x,y)=>canvas.evaluate((c,{x,y})=>{
+      const d=c.getContext('2d').getImageData(x,y,3,4).data;
+      const rgb=(x,y)=>Array.from(d.slice((y*3+x)*4,(y*3+x)*4+3));
+      return [rgb(0,0),rgb(0,1),rgb(1,2)];
+    },{x,y});
+    const arrow=[[243,241,243],[243,241,243],[255,255,255]];
+    await expect.poll(()=>cursorAt(5,5)).toEqual(arrow);
+    const point=(x,y)=>canvas.evaluate((c,{x,y})=>{
+      const r=c.getBoundingClientRect();return {x:r.left+x*r.width/c.width,y:r.top+y*r.height/c.height};
+    },{x,y});
+    for(const [x,y,drawX,drawY] of [[100,25,100,25],[799,599,788,581],[100,25,100,25]]) {
+      const p=await point(x,y);await page.mouse.move(p.x,p.y);
+      await expect.poll(()=>cursorAt(drawX,drawY)).toEqual(arrow);
+    }
+    await page.screenshot({path:test.info().outputPath('mouse-moved.png')});
+    const cdp=await context.newCDPSession(page),touch=async(type,x,y)=>{
+      await cdp.send('Input.dispatchTouchEvent',{type,touchPoints:[{...await point(x,y),id:1}]});
+    };
+    await touch('touchStart',150,150);
+    await touch('touchMove',200,180);
+    await expect.poll(()=>cursorAt(200,180)).toEqual(arrow);
+    await touch('touchEnd',200,180);
+    // Actual menu hit rectangle is x300..480,y300..380; no keyboard shortcut.
+    await canvas.tap({position:{x:(await canvas.boundingBox()).width/2,y:(await canvas.boundingBox()).height*340/600}});
+    // Arena art at screen(50,50) is #63721A, unlike the black menu background.
+    await expect.poll(()=>canvas.evaluate(c=>Array.from(c.getContext('2d').getImageData(50,50,1,1).data).slice(0,3))).toEqual([99,114,26]);
+    await page.screenshot({path:test.info().outputPath('touch-entered-arena.png')});
+  } finally { await context.close(); }
 });
