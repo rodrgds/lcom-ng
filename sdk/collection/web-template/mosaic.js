@@ -21,11 +21,16 @@ export class Mosaic {
 
   shuffle(animate = true) {
     this.onShuffle?.();
-    this.featured = shuffled(this.tiles.filter(tile => tile.game.featured));
+    const candidates = shuffled(this.tiles.filter(tile => !tile.game.featured));
+    this.featured = shuffled([...this.tiles.filter(tile => tile.game.featured), ...candidates.slice(0, 2)]);
+    // Extra highlights belong to this arrangement, never to the game metadata.
+    // Refresh their classes on Shuffle and keep the picks stable on resize.
+    const highlights = new Set(this.featured);
+    this.tiles.forEach(tile => tile.element.classList.toggle('featured', highlights.has(tile)));
     // Jitter one target in each horizontal band, then mix their order. Keep
     // these choices until Shuffle so responsive reflow stays predictable.
     this.featuredTargets = shuffled(this.featured.map((_, index) => (index + Math.random()) / this.featured.length));
-    this.ordinary = shuffled(this.tiles.filter(tile => !tile.game.featured));
+    this.ordinary = candidates.slice(2);
     this.width = 0;
     this.layout(animate);
   }

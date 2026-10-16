@@ -38,16 +38,22 @@ test.beforeAll(async () => {
 });
 test.afterAll(async () => new Promise(resolve => server.close(resolve)));
 
-test('square icon mosaic spaces featured games and shuffles without fetching galleries', async ({page}) => {
+test('square icon mosaic keeps staples plus two random highlights and shuffles without fetching galleries', async ({page}) => {
   await page.route('**/collection.json',route=>route.fulfill({json:{name:'Mosaic Fixture',games:games.map(game=>({...game,name:'Minixsweeper'}))}}));
   const shots = []; page.on('request', request => {if (request.url().includes('/shot-')) shots.push(request.url());});
   await page.setViewportSize({width:1440,height:1000}); await page.goto(base);
   await expect(page.locator('#games a[data-id]')).toHaveCount(24);
+  const featuredIds=()=>page.locator('.featured .game-launch').evaluateAll(links=>links.map(link=>link.dataset.id).sort());
+  await expect(page.locator('.featured')).toHaveCount(6);
+  const staples=games.filter(game=>game.featured).map(game=>game.id),initial=await featuredIds();
+  expect(staples.every(id=>initial.includes(id))).toBe(true);
+  expect(initial.filter(id=>!staples.includes(id))).toHaveLength(2);
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({width,height:1000});
     await expect.poll(()=>page.locator('.game').evaluateAll(items=>items.every(item=>Math.abs(item.offsetWidth-item.offsetHeight)<2))).toBeTruthy();
     const featured = await page.locator('.featured').evaluateAll(items=>items.map(item=>item.getBoundingClientRect().top));
-    expect(new Set(featured).size).toBe(4);
+    expect(new Set(featured).size).toBe(6);
+    expect(await featuredIds()).toEqual(initial);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
   }
   await page.setViewportSize({width:1440,height:1000});
@@ -62,6 +68,23 @@ test('square icon mosaic spaces featured games and shuffles without fetching gal
     await page.getByRole('button',{name:'Shuffle games'}).click();
     await expect.poll(async()=>new Set((await spread()).map(b=>Math.round(b.x))).size).toBeGreaterThan(2);
   }
+  // Independent random inputs must choose different extra games. A shuffle
+  // must also demote previous picks rather than accumulating large cards.
+  const selections=[];
+  for(const random of [.01,.99]) {
+    await page.evaluate(value=>{Math.random=()=>value;},random);
+    await page.getByRole('button',{name:'Shuffle games'}).click();
+    await expect(page.locator('.featured')).toHaveCount(6);
+    const current=await featuredIds();expect(staples.every(id=>current.includes(id))).toBe(true);
+    selections.push(current.filter(id=>!staples.includes(id)));
+    const ids=await page.locator('#games .game-launch').evaluateAll(links=>links.map(link=>link.dataset.id));
+    expect(ids).toHaveLength(24);expect(new Set(ids).size).toBe(24);
+    expect(await page.locator('.featured').evaluateAll(items=>{
+      const normal=document.querySelector('.game:not(.featured)').getBoundingClientRect(),gap=12;
+      return items.every(item=>Math.abs(item.getBoundingClientRect().width-(normal.width*2+gap))<2);
+    })).toBe(true);
+  }
+  expect(selections[0]).not.toEqual(selections[1]);
   expect(shots).toEqual([]);
 });
 
@@ -320,4 +343,19 @@ test('touch roulette preserves an off-center landing on resize with reduced moti
   await page.getByRole('button',{name:'Surprise me',exact:true}).tap();
   await expect(dialog.getByRole('button',{name:/^Play /})).toBeVisible();expect(await alignment()).toBeCloseTo(landing,2);
   await page.keyboard.press('Escape');await expect(dialog).not.toBeVisible();expect(errors).toEqual([]);await context.close();
+});
+
+
+test('random highlights handle collections with fewer than two ordinary games',async({page})=>{
+  let catalog;
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Small collection',games:catalog}}));
+  for(const ordinaryCount of [0,1,2]) {
+    catalog=games.slice(0,4+ordinaryCount);
+    await page.goto(base);
+    await expect(page.locator('.featured')).toHaveCount(catalog.length);
+    await expect(page.locator('#games .game-launch')).toHaveCount(catalog.length);
+    await page.getByRole('button',{name:'Shuffle games'}).click();
+    await expect(page.locator('.featured')).toHaveCount(catalog.length);
+    expect(await page.locator('#games .game-launch').evaluateAll(links=>new Set(links.map(link=>link.dataset.id)).size)).toBe(catalog.length);
+  }
 });

@@ -53,7 +53,8 @@ Re-exporting to the same web output removes generated bundles for games you took
 out of the list. Files you added yourself are preserved.
 
 The web library uses square game icons, with larger featured games spread down
-the grid. Hover or keyboard focus expands a tile into gameplay screenshots with
+the grid. Each visit and Shuffle adds two random highlights alongside the fixed
+featured games; resizing keeps the same selection. Hover or keyboard focus expands a tile into gameplay screenshots with
 its name, year when known, and approximate first-load download size. Screenshots
 slide every few seconds; reduced motion keeps the first frame still. Touch opens
 a game directly. **Search** opens a modal and preserves its query when returning
