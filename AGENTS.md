@@ -6,6 +6,11 @@ task.
 
 ## Start Here
 
+Current delivery focus is the web Arcade. Android builds, emulators, publication
+and CI are paused until the user resumes Android work. Qualify web imports in
+the browser; Android qualification is not a web admission or deployment gate.
+Preserve Android implementation and signing keys for future builds.
+
 For non-trivial work, run this once:
 
 ```sh
@@ -100,8 +105,8 @@ through `devenv shell -- ...`.
   NDK candidate checks compile actual objects with `-O2 -D_FORTIFY_SOURCE=2`
   and the Android toolchain's `-Wformat -Werror=format-security` flags.
   Source Makefiles alone omit flags added by CMake's NDK toolchain.
-  Verify the resulting APK with
-  actual native gameplay before admitting an import.
+  When admitting an import to Android, verify the resulting APK with actual
+  native gameplay.
 - Minix/LCF compatibility SDK: `sdk/compat/include/` and `sdk/compat/src/`,
   linked through the separate `lcom_minix` library. Keep its legacy declarations
   separate from the native SDK. For legacy project work, read

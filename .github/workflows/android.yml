@@ -1,9 +1,8 @@
 name: Native Android exports
 
 on:
-  pull_request:
-  push:
-    branches: [main]
+  # Android CI is paused while development focuses on the web app.
+  workflow_dispatch:
 
 permissions:
   contents: read
