@@ -1,0 +1,87 @@
+{
+  "repository": "https://github.com/afonsojramos/feup-lcom",
+  "commit": "5200ee9db709971f9d9ca15ab344413f3e45ab4a",
+  "project": "brickbreaker/src",
+  "sha256": {
+    "brickbreaker/src/mouse.c": "c555a191468c93bac591ba41b6a68d663855a452892eb231b4938b5be04f7eaa",
+    "brickbreaker/src/timer.c": "8a1d75368a16b63d4c74fda8e25403379e52bb44f0e591bf4eeeefa35d8a3f06",
+    "brickbreaker/src/rtc.c": "bc605a1f50aa0e269a367a838b76d14d5b906fd653e80f4847fad7a9b1643ad8",
+    "brickbreaker/src/settings.h": "3ec36d85d6e505fe52518c1ea3af10b7bb59c9672d9f273ec205af479c48620d",
+    "brickbreaker/src/Makefile": "b9d40ab0ff794efdc3f0452501df5355b028477ae2484bfe0f73c80359aae1fc",
+    "brickbreaker/src/statemachine.h": "75f51e5a709fe368162c6e4d25fbdcb9fc4e9e7941c1483e4bfd1868f98aee76",
+    "brickbreaker/src/kbd.h": "6bbc4c07dff203d39e48ad1454024c99f51453aa273f1d14272fcf5b12a81a35",
+    "brickbreaker/src/highscores.txt": "a150982f26eaf99d5f3011a573d5aedc2ba70b5fe4f0cff386b5d5806eb8995b",
+    "brickbreaker/src/vbe.h": "f61339c784fd6cc7fd55018408ffd9ca73a125326c90d1bf945a45da33f8f382",
+    "brickbreaker/src/video_gr.h": "ee18c2da6487920a7c1f89ed74d3206f127a98a5d37c1c8db7791428e7921ef6",
+    "brickbreaker/src/stableSprites.h": "4d3ca2b4ce8f9f6581cf6e9aa3c1ea813e8e8f7b66ca81d5e860e6f9a66cb08d",
+    "brickbreaker/src/i8042.h": "18fa34a841c7dff7c7e2ba6787504539c566bb6709b11daa734e41c735079788",
+    "brickbreaker/src/read_xpm.c": "f09b551bafc3de138b9434188c4820b1ed452c5905ddc20f2764a999c07f086a",
+    "brickbreaker/src/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "brickbreaker/src/mouse.h": "43c9e8733907adae119f09f939ab9dbc8e38a041a88e4312c42a97a4eaf9071f",
+    "brickbreaker/src/timer.h": "92288ebaa06f5cc244e174e985cc614e5bc741106c7a7f35d301432ff4dc6218",
+    "brickbreaker/src/rtc.h": "12e8cb428b45ba09667e137ff35c048f0163de0a821aa9b93113585b6cbb3377",
+    "brickbreaker/src/vbe.c": "9d962a33434abede7117dc688c48b47c37ad68ac6c5eaae635b3c8905b5c50b0",
+    "brickbreaker/src/video_gr.c": "b1665bf9f33196052b4a76cf1deec5281420f97b9f0fa031e2aff6decfb2d174",
+    "brickbreaker/src/sprites.h": "a49bfe4637b4e3ac89196c6ff696f031870f6037c009eec841099d8ea75993aa",
+    "brickbreaker/src/kbd.c": "0d229fe8789ee3a9c9cd11290f2327375b4885f8d8f1349da57f3c12e28f5d99",
+    "brickbreaker/src/i8254.h": "fb6e16b37d6c62be23812f13a3b2b988638d216a1b6e48226602c5df8cc026ac",
+    "brickbreaker/src/breaker.c": "c8087578a5affdeb9c9177f2b15df15a443915aa860d131a3e8014a2dab8ad7b",
+    "brickbreaker/src/state.h": "a00cb998059a7c5794cfc68bdb102360d539316a101e27ef8fc3dc4da4fb465f",
+    "brickbreaker/src/read_xpm.h": "ab4d0fc8de9fdeabf14f908eb41129c2082d1d06cbbe035e2f877b666abc26c7"
+  },
+  "selection": "Selected authored brickbreaker C/headers/Makefile and original highscores text retained. Labs, configuration launcher, shell runner, bundled compiled binaries/dependency products and VCS/OS metadata excluded. Raw pinned archive preserved separately.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "brickbreaker/src/video_gr.c",
+          "originalSha256": "b1665bf9f33196052b4a76cf1deec5281420f97b9f0fa031e2aff6decfb2d174",
+          "patchedSha256": "1d5a4182ef7066baeff456fac7c8ea66e79f99843c4ed508c8c9b0b4b40c3ba2",
+          "reason": "Count the actual128 Brick records with sizeof(allBricks[0]), avoiding original reads past allBricks[128]. Clamp original21x21 menu cursor artwork to the framebuffer and accept complete signed9bit deltas without narrowing to char.",
+          "verification": "Original real WASM UBSan index128 out-of-bounds when entering Play and owning brick-count RED; GREEN128record collision loops. Owning cursor edge RED; GREEN bounds/interior positions. Actual repeated right swipes originally hid the cursor; corrected source keeps it visible."
+        },
+        {
+          "file": "brickbreaker/src/video_gr.h",
+          "originalSha256": "ee18c2da6487920a7c1f89ed74d3206f127a98a5d37c1c8db7791428e7921ef6",
+          "patchedSha256": "dada7b60a944152a05c0e6605f07e55fe992fc81ea07a45e9404a99e2bc73104",
+          "reason": "Match owning moveCursor declaration to complete signed9bit integer deltas.",
+          "verification": "Actual timer packet regression covers all121pairs of ±255/200/128/127/1/0 and correctly forwards bothaxes. ARM64 optimized object compilation verifies shared declaration."
+        },
+        {
+          "file": "brickbreaker/src/timer.c",
+          "originalSha256": "8a1d75368a16b63d4c74fda8e25403379e52bb44f0e591bf4eeeefa35d8a3f06",
+          "patchedSha256": "22d6fc4bf6c4a55fc9580092a2696b741b240c9f3a5c137418e1d559c6cbd512",
+          "reason": "Return success from int masterClock on early Escape, rather than bare return. Decode mousepacket sign bits together with lower bytes before forwarding full deltas.",
+          "verification": "Original actual ARM64 compilation rejected nonvoid bare return. Owning earlyEscape RED/GREEN returns0 with real keyboard and timer notifications. Original signed low-byte packet test RED; GREEN all121complete signed9bit pairs."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original menu cursor begins900,600, gain0.15. Relative canvas input preserves that original gain; right panel mouse stick sensitivity5 improves traversal without altering game sensitivity. Select is original mouse-left. A/D move the paddle and select score initials; W/S cycle initials. Escape leaves play. Full9bit decoding and bounds are separately recorded genuine source repairs. Direct/calibrated touch is not enabled. Explicit relative original highscore prefix and /tmp aliases preserve source paths; inaccessible Android /tmp uses configured private alias only.",
+  "artwork": {
+    "icon": "Original captured colorful bricks, ball, powerup and paddle on simple dark tile. No upstream assets changed.",
+    "preview": "Actual original gameplay score1 and timer00:02, scaled1024x768 to640x480."
+  },
+  "verification": {
+    "browser": "Actual normal CDP touch Play and held A/D in landscape844x390 and portrait390x844. Live ball/brick collision and score1 seen, errors[]. Repeated rightward swipes retain menu cursor after source correction.",
+    "ndk": "All8authored C translation units compile actual ARM64 objects with -O2 -D_FORTIFY_SOURCE=2.",
+    "native": "passed: representative actual ARM64 Android emulator objectives; see nativeGameplay proof and limitations.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "80b7a529f6390a53f8fa01caa9e1f7299b08aa907985178fa4acb94612b057ac",
+      "evidence": "build/arcade-100/bricket-native-held450/results.json",
+      "demonstrated": [
+        "Original menu cursor is inside Play rectangle x380..662 y500..560 from900,600, originalgain0.15.",
+        "Colored brick rows, original paddle and live ball replace original title menu.",
+        "Paddle shifts left while live ball advances.",
+        "Paddle shifts right; timer advances and ball/brick collision may increase score depending original random trajectory."
+      ]
+    }
+  }
+}

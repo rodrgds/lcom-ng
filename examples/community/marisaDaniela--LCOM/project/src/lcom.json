@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "Snake: Fruit Trail",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Start",
+          "key": "SPACE",
+          "position": "top-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "res"
+    ],
+    "pathAliases": {
+      "/home/lcom/lcom1718-t1g04/project/res": "res"
+    }
+  },
+  "archetype": "Snake",
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "description": "Steer the original green snake, eat fruit and grow across its white board."
+}

@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "Prison Breaker",
+  "description": "React to the direction on screen and escape its changing instructions before time runs out.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "layout": "overlay",
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pointer": "off",
+      "joystick": false,
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Play / Retry",
+          "key": "ENTER",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "prisonBreaker/res"
+    ],
+    "pathAliases": {
+      "/home/lcom/lcom1718-t6g08/prisonBreaker": "prisonBreaker"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

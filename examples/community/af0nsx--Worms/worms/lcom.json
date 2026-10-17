@@ -63,5 +63,6 @@
     "assets": []
   },
   "description": "Aim across a destructible battlefield and take your shot in a turn-based worm battle.",
-  "preview": "../../../../collections/arcade/previews/worms-0ace38f831e6.png"
+  "preview": "../../../../collections/arcade/previews/worms-0ace38f831e6.png",
+  "archetype": "Worms"
 }

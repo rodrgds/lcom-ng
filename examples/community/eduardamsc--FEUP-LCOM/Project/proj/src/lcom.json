@@ -1,0 +1,104 @@
+{
+  "version": 1,
+  "name": "Obstacle Course",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "vertical"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../../..",
+    "assets": [
+      "Project/proj/res/images/gameOver.bmp",
+      "Project/proj/res/images/car.bmp",
+      "Project/proj/res/images/heart.bmp",
+      "Project/proj/res/images/hole2.bmp",
+      "Project/proj/res/images/score.bmp",
+      "Project/proj/res/images/e.bmp",
+      "Project/proj/res/images/3.bmp",
+      "Project/proj/res/images/r.bmp",
+      "Project/proj/res/images/2.bmp",
+      "Project/proj/res/images/d.bmp",
+      "Project/proj/res/images/coin.bmp",
+      "Project/proj/res/images/f.bmp",
+      "Project/proj/res/images/0.bmp",
+      "Project/proj/res/images/q.bmp",
+      "Project/proj/res/images/p.bmp",
+      "Project/proj/res/images/1.bmp",
+      "Project/proj/res/images/g.bmp",
+      "Project/proj/res/images/cone2.bmp",
+      "Project/proj/res/images/letters.bmp",
+      "Project/proj/res/images/5.bmp",
+      "Project/proj/res/images/t.bmp",
+      "Project/proj/res/images/c.bmp",
+      "Project/proj/res/images/b.bmp",
+      "Project/proj/res/images/u.bmp",
+      "Project/proj/res/images/4.bmp",
+      "Project/proj/res/images/6.bmp",
+      "Project/proj/res/images/w.bmp",
+      "Project/proj/res/images/a.bmp",
+      "Project/proj/res/images/v.bmp",
+      "Project/proj/res/images/7.bmp",
+      "Project/proj/res/images/l.bmp",
+      "Project/proj/res/images/m.bmp",
+      "Project/proj/res/images/z.bmp",
+      "Project/proj/res/images/riscas.bmp",
+      "Project/proj/res/images/9.bmp",
+      "Project/proj/res/images/x.bmp",
+      "Project/proj/res/images/o.bmp",
+      "Project/proj/res/images/n.bmp",
+      "Project/proj/res/images/y.bmp",
+      "Project/proj/res/images/8.bmp",
+      "Project/proj/res/images/backgroundNoStripes.bmp",
+      "Project/proj/res/images/startmenu.bmp",
+      "Project/proj/res/images/cursor.bmp",
+      "Project/proj/res/images/j.bmp",
+      "Project/proj/res/images/k.bmp",
+      "Project/proj/res/images/i.bmp",
+      "Project/proj/res/images/h.bmp",
+      "Project/proj/res/images/rock.bmp",
+      "Project/proj/res/images/background.bmp",
+      "Project/proj/res/images/rock2.bmp",
+      "Project/proj/res/images/hole.bmp",
+      "Project/proj/res/images/cone.bmp"
+    ],
+    "pathAliases": {
+      "/home/proj": "Project/proj"
+    }
+  },
+  "description": "Change lanes to collect coins and avoid rocks on a three-lane road.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

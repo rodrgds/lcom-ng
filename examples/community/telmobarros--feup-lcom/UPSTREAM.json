@@ -1,0 +1,129 @@
+{
+  "repository": "https://github.com/telmobarros/feup-lcom",
+  "revision": "166dd900ec26c10de8f4805f73a45a82c7aa36a6",
+  "project": "proj/code",
+  "sourceHashes": {
+    "README.md": "629ca666eae2cbe26130752ca3d9479d3fda87620f6c36e18b10685f3d8561bb",
+    "proj/code/Makefile": "bf35cea1800eb9171cd4198383d840204db0db25d07770c4e86f33e9cded421f",
+    "proj/code/bitmap.c": "55c609816236db671784da9d3f0f15feee9b0fc92497d5f518e439aee33c2913",
+    "proj/code/bitmap.h": "3442fa6ade0126349af988bf243c616943b6965ac291bf9a6f81fc5481c1dd5b",
+    "proj/code/character.c": "4a48b86ef35a0e07d4b5a54bd2fc113cdedbaed20abb46578b2f3cdcad1c5be5",
+    "proj/code/character.h": "3dc46396c8b0677cbf2e4a0d9a14405e522fec732484b6a5c39947485586f827",
+    "proj/code/compile.sh": "34bf40fa3a7d831666c6441141a718fe641d5cbd40ea11e062a777b3d6ce5725",
+    "proj/code/game.c": "04379ec8aa44371d680be79df9ebbe45883a46c19fff59fc92355c8b37f4b595",
+    "proj/code/game.h": "24081f5d104348639933e657d39376783064f569e5ef7c9067981a008c4731a0",
+    "proj/code/handler.c": "729717bbdb130c312f07ecf0f37a33f02129b2ee505c3638bba40ebb0ddfd86b",
+    "proj/code/handler.h": "37aa575b408333009c42aae4375e8e4afdca67e5bb0fdabd0482c03788860af6",
+    "proj/code/i8042.h": "47dbb60f269916053347f1a759caaae657427d179bd6cb3657ab7ee5a92b1369",
+    "proj/code/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "proj/code/img/.project": "32a6395e8833a4bf970b59600a2aa2f0a71dba55cf4f44f02d5a3e5f2e18b54e",
+    "proj/code/img/background.bmp": "04778a13a969b4b750f6186da77b5ff1427ed3191ffefbd0ddee9d9d7d99d0bf",
+    "proj/code/img/board.bmp": "895e9623b2bfa00e8f2b0db9bb000b0518dc60f75c9377066507ad810640b7ec",
+    "proj/code/img/button0_above.bmp": "549929ad0cc0868e95bfff38a13d44c0bd84053a68749f7516e8a1168c97770a",
+    "proj/code/img/button0_null.bmp": "4d102d5988a6b838e38625a90191d64a6c2efba2cfeb23bf1eecbce7d2b843be",
+    "proj/code/img/button1_above.bmp": "3e9500ff74ba16b6f00296938af1ce0493d7c571793ca894022aca8e28a23cfd",
+    "proj/code/img/button1_null.bmp": "6fa984434c2e78fc9b3edc4225cd87e5e3ef722db0c01ae78c93b6644e93e8b6",
+    "proj/code/img/button2_above.bmp": "2d4db6ca93b97915448b8fd3e7222987268ad413b308a7e626e4ea6c6471e8b4",
+    "proj/code/img/button2_null.bmp": "3e9ae16a453ff1d759c7fc6c47900d6190156d0844420cf8738947ebe7321088",
+    "proj/code/img/button3_above.bmp": "507bd912c5c12ec4439c94fb7f7fd82cc529c774c24d32a010c47eca05aa1f79",
+    "proj/code/img/button3_null.bmp": "62383fbfdf6fdb0e1623f8fad6eaef9e021db12cba298e6dacd7e4bd2cecc847",
+    "proj/code/img/button4_above.bmp": "0b8042193c4d74d3f58018db92aef713c32020b3627b0f2b4df66bd3e052c331",
+    "proj/code/img/button4_null.bmp": "d1595da005c5a267701b24aa842d99a545d38469a3d6933f4460de987637a037",
+    "proj/code/img/button5_above.bmp": "5e37634a222b1c86e43813c9d7009449e9de1f0d42eee7b1c4eeb4e9ea2babfe",
+    "proj/code/img/button5_null.bmp": "57bded2021e9334263d9f59c37871662da9cdb0aca9c7fe9f090500c11ea67b7",
+    "proj/code/img/char_left.bmp": "7a9d98db7d8d478114e7354395513a62e79ed3cbc136dabec474f428ee475885",
+    "proj/code/img/char_right.bmp": "83b8a4f822961e707090f8f80b6e7606dfe522181d4d730b3f1401cfc5db8fea",
+    "proj/code/img/font.bmp": "776ddcdd9566cf6dfbae6c91a388e3e30fe56514b713ca4b0e74add2571ad735",
+    "proj/code/img/highscores_background.bmp": "59b7edd500610d505a57325f2b77da747ab972fb71cdda069822c5c3236aedc9",
+    "proj/code/img/i.bmp": "79d6737a0733d9b8b97af6c0760bde8d46acec88ea87f763a9ee56e26db93c87",
+    "proj/code/img/instructions1.bmp": "79c2d9427a9101ac31c9a797c53979e7f622406de03c4f5224b09ec0f0965dd0",
+    "proj/code/img/instructions2.bmp": "31ea7941cf800c18fd4da49f2f2ca93da1d352402f3f3df90d8557c952c595bc",
+    "proj/code/img/instructions3.bmp": "8e014909225f1e1f379b955e15450023c6c516e3a058b7cd9c0c14a79973247b",
+    "proj/code/img/instructions4.bmp": "040d238ef80f8b90f3394877d6180189b8bddf0bcae93a04a6e3b1978a5dbafc",
+    "proj/code/img/j.bmp": "0385dd605c50f009e910ed66fc87c44f49a9a22b89174e4d6ac4a2f5849c55e4",
+    "proj/code/img/l.bmp": "b3dbcae3d7a692b1a9855a6865a0e65636cc9005f534b3c8beb5c16224b5e624",
+    "proj/code/img/loading1.bmp": "dcb9a6a850bab8b42e3f3db8927bfa00651ff46944dfa3fb8ff8030f18906b03",
+    "proj/code/img/loading2.bmp": "afc8f4545242edf207ad92efe617d2d6b87228cc69d53a1634e40a57894356ed",
+    "proj/code/img/mouse.bmp": "ced7ceccad1de1779b3792d7ac2d96da45afe3143d594132ea4030c2b65771a8",
+    "proj/code/img/o.bmp": "0458dee2989d96483a34a8df3ab65cf616618c8c12213f088c78522388e051d5",
+    "proj/code/img/s.bmp": "da9fc3969a02291f1398b2784aa067d4e6a7e3f0795d557dce0cb107ef7d26bf",
+    "proj/code/img/stopped.bmp": "9fe3e2c65821fcab2fe1ec0cea7dce4c921cb97f8cf18f3737bad6292d7179cd",
+    "proj/code/img/t.bmp": "1b3136cefb85cc56bb743a5938f787ca26deab018d9df2bbd9b7c44c002eac39",
+    "proj/code/img/z.bmp": "d6b3c36d026ee1f37fc869e3caab81ff2454a477479647aa5f9f992d5c9e2dc2",
+    "proj/code/install.sh": "85c5f87021eec445000638f6766da797168e2888a50044843b4c5df22ecb6932",
+    "proj/code/kbd.c": "36135a9bfc1f787c699536ca61baa97f26ba4fc63b3c38f0d5154bd07627f534",
+    "proj/code/kbd.h": "6577b0659fac8e6196972010322f64db83f916caa1f9336f90f772b1b6005475",
+    "proj/code/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "proj/code/logic.c": "9b8c9e38ece324a180cef8fd3f659551b0ab5f4b3fb64bc7e3aceedaaa33ce82",
+    "proj/code/logic.h": "396af60a34dcdc82cea32520554253c0e947166a381a6915f731bfdba384cd46",
+    "proj/code/menu.c": "1205fccb2b2001eafb33b295f4e5ec5020fb421d2e2219b2283b5eeaa7f8916e",
+    "proj/code/menu.h": "1d89be9c95c982bffedf9894c23369c8c09526c8c783ed6438973fa43ca4ef55",
+    "proj/code/mouse.c": "004d91639a6ba207e828e88daefe34749576a7bf7960a407debc003d74b84a52",
+    "proj/code/mouse.h": "9cbb7061f8ef521dfdd41af8875052a258fcb95c8d69f20addc2e2db9ab4b76a",
+    "proj/code/piece.c": "96808619ad0c297217e7f5b1d30ce5f68c7cd21ec2c4365731afa22c6a346ff3",
+    "proj/code/piece.h": "ded4685b3ea4f33d30ba5a8cae61111a522ed4345e7bb4e236a4b8069f948ffe",
+    "proj/code/proj.c": "74936a67d44c2792f633116666d8ab501376102057ec2fd3be15b8da7f4f16ae",
+    "proj/code/rtc.c": "eae60113a493e1853a590e956e6e7936accf95a6608316ebc852f51256451d04",
+    "proj/code/rtc.h": "45ef177d8055afad79c3289daed7be2ca902120c760576c540c141ae65cd78c7",
+    "proj/code/run.sh": "737a74f4ec7f4ea57beb83abd280c86c4745408447831f9235eb1c31e66b46cd",
+    "proj/code/serial.c": "b80baa4c449509173275371b98def40b56cc1f54b5538c8f13a7039d8149653d",
+    "proj/code/serial.h": "51a87e1d2e639e17baf6084e7b49a847b6e1a1d133c9490b793d818e462ae58b",
+    "proj/code/sprite.h": "842e96985a2cc6cd9a953c33c20ba11cc07fd650b46d26914f6023ee7071b67b",
+    "proj/code/timer.c": "9a68871c7e513d02b98bf3a09d2cf0c346bc2527269e8b04f8e0745c63c2dc5b",
+    "proj/code/timer.h": "ebbde0bff828e55f561409d9512ea50b11cc00873b827dbb879d46878ce05028",
+    "proj/code/vbe.c": "77de4ebeac9807b55bbef39e7813951e58a3600717a672cdff4cf2e29b319f78",
+    "proj/code/vbe.h": "e2a7896231af93bb118b5fb8130e2c865b3b8b0d8fa93fcd5c94f7c96842a340",
+    "proj/code/video_gr.c": "1c64b76c200109f3d9b0699353cb01ec24e3e5746454728082d17aca79b548c3",
+    "proj/code/video_gr.h": "97ae65560738c4fa52b95982ce30c79ad2f668ee741c50d70656048648dc57fc",
+    "proj/conf/proj": "0dad181142adc29c09486ce90269d5bb10eb044832bf120b6e8c9c0a1178bd34"
+  },
+  "selection": "Pinned project sources and game assets, retaining upstream README; labs, generated documentation, VCS/OS metadata and build products omitted.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "controlsRationale": "Original menu uses relative mouse and left click; cursor starts0,0 and rejects out-of-bounds glyph movement, so pointer move with positive in-bounds swipes is used. Right arrow pad moves/rotates/soft-drops pieces, Space swaps pieces. Left AD pad and W Jump preserve the additional local Battle character controls. Panel keeps controls outside both game boards in landscape and portrait. Actual browser touch passed both local modes.",
+  "artwork": {
+    "icon": "Original purple T tetromino img/t.bmp enlarged with nearest-neighbor pixels over a plain dark background.",
+    "preview": "Real single-player gameplay canvas captured after touch-driven piece rotation, swap and soft drop."
+  },
+  "verification": {
+    "browser": "Landscape single-player POINTS10 and settled piece; Battle character and falling pieces; portrait settled piece. Game running/errors[] in all.",
+    "native": "Configured native compilation passes; owning bitmap loader header correction is covered by red/green actual-source pointer identity regression. Actual Android startup/gameplay pending."
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/code/piece.c",
+          "originalSha256": "96808619ad0c297217e7f5b1d30ce5f68c7cd21ec2c4365731afa22c6a346ff3",
+          "patchedSha256": "1a462b91311bb71ed12141b88e5428b4b03840ff7ce7aa2b29a444822c87065c",
+          "reason": "Include the owning bitmap loader declaration so map_Bitmap returns a full-width pointer on64-bit hosts.",
+          "verification": "Actual piece.c and video_gr.c fail -Werror=implicit-function-declaration before correction; corrected real sources compile and new_piece retains the exact returned map pointer and dimensions."
+        },
+        {
+          "file": "proj/code/video_gr.c",
+          "originalSha256": "1c64b76c200109f3d9b0699353cb01ec24e3e5746454728082d17aca79b548c3",
+          "patchedSha256": "ec64447b553ba3b4bb919eb140764455190ad59af22123bf1dd5bba8d179dfca",
+          "reason": "Include the owning bitmap loader declaration so map_Bitmap returns a full-width pointer on64-bit hosts.",
+          "verification": "Actual piece.c and video_gr.c fail -Werror=implicit-function-declaration before correction; corrected real sources compile and new_piece retains the exact returned map pointer and dimensions."
+        },
+        {
+          "file": "proj/code/handler.c",
+          "originalSha256": "729717bbdb130c312f07ecf0f37a33f02129b2ee505c3638bba40ebb0ddfd86b",
+          "patchedSha256": "6492a5cffae8177fa335c8291ece4e5ce93fe1bf74a26d0e9090309a5d1f8a4a",
+          "reason": "Return0 consistently when ignoring an invalid first mouse packet byte, matching the documented handler success result and preserving synchronization behavior.",
+          "verification": "Original actual handler.c fails modern Clang non-void bare-return diagnostic, matching Android NDK failure. Corrected actual handler accepts invalid sync then full9-bit signed packet, returns0 throughout, leaves cursor unchanged on partial bytes and updates to105,102 with left button only at completion."
+        },
+        {
+          "file": "proj/code/bitmap.c",
+          "originalSha256": "55c609816236db671784da9d3f0f15feee9b0fc92497d5f518e439aee33c2913",
+          "patchedSha256": "58b3dc87315162ed559898723817fc7e30e1f4353d265484863180d0375a9400",
+          "reason": "Return NULL when the bitmap file cannot be loaded, matching the pointer-returning loader contract. Leave caller dimensions untouched.",
+          "verification": "Original actual bitmap.c fails Clang/Android NDK non-void bare-return diagnostic. Missing-file compiled regression verifies NULL with unchanged123x456 dimension sentinels after correction."
+        }
+      ]
+    }
+  ]
+}

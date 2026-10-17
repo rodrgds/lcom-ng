@@ -1,0 +1,98 @@
+{
+  "repository": "https://github.com/jotac431/FEUP-LCOM",
+  "revision": "8b432fa4bd73061e292f6d5abe24fcbd1b4d2a21",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "82773614d52f84014ee0cf2acbc9b989416f8fff861d79d3093dd425bb432fba",
+    "proj/.vscode/settings.json": "249bb7240803f4c02e55a2e3ca1d0e8cafc43a930e69995798b354b13974dfd4",
+    "proj/Pong_Ideas.txt": "f9b6a5b15de90039cf37e56ad85806aa4d723e394329fc6de7814c798cf76b49",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "proj/src/Makefile": "57e3786604bfc8603ccb1eabb0a5e6eb4cd44ab9dd353cced6f2334c432fe43a",
+    "proj/src/devices/i8042.h": "f32710b1ca082d27239d35851a00810c2cbd40a3f663a6604b343726b52d7536",
+    "proj/src/devices/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/devices/keyboard.c": "770928bbeec45624f49488da66433e8f4fcf7f57c6fb21ea4079eda13b2c6a6d",
+    "proj/src/devices/keyboard.h": "d3a5af41a25c238ef03dfbab60fdbdf8eac1079f0e4cfdc4c38c2cb558f7e20f",
+    "proj/src/devices/timer.c": "1d5db8e095af9c224fed096e5663ccf3ec917a43825500b3c09c20e29cf35294",
+    "proj/src/devices/utils.c": "f24fc0e5cd32222430731cb16b62cfe1e116a9807afea16aacfa9be6c28822f6",
+    "proj/src/devices/video.c": "7b4dc88adba5b638d50df9ccfbf114a3a636a3277e920d767d9068205e2de025",
+    "proj/src/devices/video.h": "91b727d397912eb968e06f35251d79a346740f939fadadecb83f8fe10bbc77ad",
+    "proj/src/game.c": "5bc76dc18daa355320ed0937c6ef7234a8c42e80b72a5384dd1006f3b604a89e",
+    "proj/src/game.h": "40575565b70b6c53e42663231145555b76949987b3bbba5d24e25e31f9924154",
+    "proj/src/proj.c": "26f4c603e5ce0d152eb76ee527c403169d1949c5e8d7c9c4974970fcfde47601",
+    "proj/src/xpms/Back.xpm": "d39ec14f75e162c0d0de17d38f1fdd0c580135d39b885142498a3c0bd8c2458f",
+    "proj/src/xpms/ball.xpm": "c7afdf61bd63e0a593fd7dfbb2a5011049d7487feda3685067f8c049b185bd3d",
+    "proj/src/xpms/ball2.xpm": "8f7bdd10d8c233212cdfbc2054d6a09973848612b1c29d83182c8b68fe9880c1",
+    "proj/src/xpms/pongBackground.xpm": "1c7c38f336f96cf7fc80bb8a9ff1b3124234842b8e6c606da5cce7f1010c7c6f"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.d",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/devices/video.c",
+          "reason": "Clip framebuffer writes when the original ball rectangle crosses a goal or screen edge; original pixel renderer wrote beyond the mapped frame.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/neon-court-renderer-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-green7.log"
+          },
+          "originalSha256": "7b4dc88adba5b638d50df9ccfbf114a3a636a3277e920d767d9068205e2de025",
+          "patchedSha256": "d357d706003aaa2575915d969e25015400001a9533c505fe394b79c7a1c41b70"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a flat palette",
+    "source": "proj/src/xpms/ball.xpm"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "73a4ef68306bd48aee8f96f58011bca45204a017e5e24c11e3d50ca10255d3bd",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "53baf01bf4ad5e9504abc117d57debbdb4074ef18c42d440c0447514591a68a0",
+      "kind": "Original browser gameplay capture"
+    }
+  ],
+  "verification": {
+    "browser": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay10-final.log",
+    "owningRegressions": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-tests.py",
+    "nativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/jotac431--FEUP-LCOM.native10-strict.log",
+    "android": "Pending independent parent-owned actual Android gameplay.",
+    "browserResults": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay-results.json",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "2a20937a73366b6700c5ec6c56a0e17f228d6fdbccb1aa8d7dcc6c375f38e733",
+      "evidence": "build/arcade-100/neon-territory-native-calibrated/results.json",
+      "demonstrated": [
+        "Independent original white paddles moved, soccer ball advances.",
+        "Original soccer ball continues a normal rally after both paddles move."
+      ],
+      "limitations": [
+        "Representative local touchscreen gameplay only; complete campaigns and physical-device performance remain untested.",
+        "Goal and respawn behavior were not established by this native run."
+      ]
+    }
+  }
+}

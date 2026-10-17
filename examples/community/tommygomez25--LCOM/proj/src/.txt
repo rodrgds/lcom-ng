@@ -1,0 +1,6 @@
+99 - jose
+9 - jorge
+6 - antonio
+5 - marta
+3 - henrique
+0 - tomas

@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "Minix PvZ: Garden Defense",
+  "description": "Grow the original plants and defend against zombie waves.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "1",
+        "2",
+        "3"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Freeze (10 sun)",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Shovel",
+          "key": "R",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Plants vs. Zombies",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

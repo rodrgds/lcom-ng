@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "name": "Space Invaders: Starfield",
+  "description": "Move your ship, aim the crosshair and blast the handmade alien fleet.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "layout": "overlay",
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pointer": "move",
+      "touch": "tap",
+      "joystick": false,
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "repeatKeys": [
+        "A",
+        "D"
+      ],
+      "actions": [
+        {
+          "label": "Select / Fire",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [],
+    "pathAliases": {
+      "home/lcom/labs/proj": "proj"
+    }
+  },
+  "archetype": "Space Invaders",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

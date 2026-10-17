@@ -58,5 +58,6 @@
     }
   },
   "description": "Turn over the cards and remember what you saw. Find each matching pair.",
-  "preview": "../../../../../collections/arcade/previews/iamaccosta-feup-lcom-8eb08d543062.png"
+  "preview": "../../../../../collections/arcade/previews/iamaccosta-feup-lcom-8eb08d543062.png",
+  "archetype": "Memory"
 }

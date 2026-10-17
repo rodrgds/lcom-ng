@@ -1,0 +1,84 @@
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -45,11 +45,11 @@
+   game->NUMBEROFSCORES = 0;
+   game->highscores = (highScore*) malloc(sizeof(highScore) * 5);
+   game->date = (realTime*)malloc(sizeof(realTime));
+-  game->highscores[0].name.nameAr = (char*) malloc(sizeof(char)*10);
+-  game->highscores[1].name.nameAr = (char*) malloc(sizeof(char)*10);
+-  game->highscores[2].name.nameAr = (char*) malloc(sizeof(char)*10);
+-  game->highscores[3].name.nameAr = (char*) malloc(sizeof(char)*10);
+-  game->highscores[4].name.nameAr = (char*) malloc(sizeof(char)*10);
++  game->highscores[0].name.nameAr = (char*) malloc(sizeof(char)*(10 + 1));
++  game->highscores[1].name.nameAr = (char*) malloc(sizeof(char)*(10 + 1));
++  game->highscores[2].name.nameAr = (char*) malloc(sizeof(char)*(10 + 1));
++  game->highscores[3].name.nameAr = (char*) malloc(sizeof(char)*(10 + 1));
++  game->highscores[4].name.nameAr = (char*) malloc(sizeof(char)*(10 + 1));
+ 
+   game->highscores[0].name.nameXpm = (letter*) malloc(sizeof(letter)*10);
+   game->highscores[1].name.nameXpm = (letter*) malloc(sizeof(letter)*10);
+@@ -66,7 +66,7 @@
+ 
+   //player's name
+   game->name = (name*)malloc(sizeof(name));
+-  game->name->nameAr = (char*) malloc(sizeof(char)*10);
++  game->name->nameAr = (char*) malloc(sizeof(char)*(10 + 1));
+   game->name->nameXpm = (letter*) malloc(sizeof(letter)*10);
+   game->name->nameSize = 0;
+ 
+@@ -1157,6 +1157,8 @@
+         }
+       }
+ 
++      game->name->nameAr[game->name->nameSize] = '\0';
++
+       if(new_highscore(game,game->result.speed) < 5) {
+         add_new_highscore(&game,new_highscore(game,game->result.speed),game->result.speed,game->date);
+       }
+--- a/proj/src/highscores.c
++++ b/proj/src/highscores.c
+@@ -24,6 +24,7 @@
+ 
+     fgets(buffer, 100, fp);
+     fgets(highscore->name.nameAr, highscore->name.nameSize + 1, fp);
++    fgets(buffer, sizeof(buffer), fp); // consume the rest of the name line
+   }
+ 
+   //stores de xpm array for evry name
+--- a/proj/src/sentences.c
++++ b/proj/src/sentences.c
+@@ -1,5 +1,6 @@
+ #include <lcom/lcf.h>
+ #include "sentences.h"
++#include <limits.h>
+ 
+ void loadLetters(){
+ 
+@@ -443,7 +444,7 @@
+ }
+ 
+ void destroySentencesAndLetters(){
+-  destroyTwoDimenArrayOnHeapUsingFree(sentences,nChars,nSentences);
++  destroyTwoDimenArrayOnHeapUsingFree(sentences,nSentences,nChars);
+   free(abc);
+   free(numbers);
+ }
+@@ -465,14 +466,16 @@
+ 
+ char* itoa(int value, int base)
+ {
+-  char * buffer = (char*)malloc(2*sizeof(char));
++  char * buffer = (char*)malloc(sizeof(unsigned int) * CHAR_BIT + 2);
++  if (buffer == NULL) return NULL;
++  buffer[0] = '\0';
+ 
+ 	// invalid input
+ 	if (base < 2 || base > 32)
+ 		return buffer;
+ 
+ 	// consider absolute value of number
+-	int n = abs(value);
++	unsigned int n = value < 0 ? 0u - (unsigned int)value : (unsigned int)value;
+ 
+ 	int i = 0;
+ 	while (n)

@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "Escape the Lab",
+  "description": "Explore the original first-person laboratory, unlock terminals and find your way through five maps.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "toolbar": "auto",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Interact",
+          "key": "E",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ],
+      "tapDuration": 65
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

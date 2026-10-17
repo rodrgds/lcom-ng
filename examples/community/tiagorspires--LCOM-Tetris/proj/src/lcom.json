@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "name": "Tetris: Block Workshop",
+  "description": "Rotate and place blocks to complete rows.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "quickKeys": [
+        "ESC",
+        "Q"
+      ],
+      "repeatReleaseKeys": [
+        "A",
+        "D",
+        "S"
+      ],
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Rotate",
+          "key": "W",
+          "side": "right"
+        },
+        {
+          "label": "Drop",
+          "key": "SPACE",
+          "side": "right"
+        },
+        {
+          "label": "Soft drop",
+          "key": "S",
+          "side": "right"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "side": "right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Tetris",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

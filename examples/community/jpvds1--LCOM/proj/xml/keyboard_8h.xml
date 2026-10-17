@@ -1,0 +1,365 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="keyboard_8h" kind="file" language="C++">
+    <compoundname>keyboard.h</compoundname>
+    <includes local="no">lcom/lcf.h</includes>
+    <includes refid="i8042_8h" local="yes">i8042.h</includes>
+    <includedby refid="keyboard_8c" local="yes">C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c</includedby>
+    <includedby refid="proj_8h" local="yes">C:/MINIX-LCOM/shared/g3/proj/src/proj.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>i8042.h</label>
+        <link refid="i8042_8h"/>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h</label>
+        <link refid="keyboard_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>lcom/lcf.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c</label>
+        <link refid="keyboard_8c"/>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h</label>
+        <link refid="keyboard_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c</label>
+        <link refid="_handlers_8c"/>
+      </node>
+      <node id="4">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h</label>
+        <link refid="_handlers_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.c</label>
+        <link refid="_levels_8c"/>
+      </node>
+      <node id="6">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.h</label>
+        <link refid="_levels_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.c</label>
+        <link refid="_menu_8c"/>
+      </node>
+      <node id="8">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.h</label>
+        <link refid="_menu_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.c</label>
+        <link refid="_missile_8c"/>
+      </node>
+      <node id="10">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.h</label>
+        <link refid="_missile_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/proj.c</label>
+        <link refid="proj_8c"/>
+      </node>
+      <node id="3">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/proj.h</label>
+        <link refid="proj_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="keyboard_8h_1aea970a154161a35f6894898a092ed70a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void()</type>
+        <definition>void() kbc_ih</definition>
+        <argsstring>()</argsstring>
+        <name>kbc_ih</name>
+        <briefdescription>
+<para>Keyboard interrupt handler. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" line="13" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="59" bodyend="62" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" declline="13" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8h_1a6bbc0d69dfee0ab12b1fdb8903613cdc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() kbc_subscribe</definition>
+        <argsstring>(uint8_t *irq_set)</argsstring>
+        <name>kbc_subscribe</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>irq_set</declname>
+        </param>
+        <briefdescription>
+<para>Subscribes keyboard interrupts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>irq_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the subscription bitmask. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" line="19" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="15" bodyend="23" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" declline="19" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8h_1a526bd92aadec04f451a9fe18704def65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() kbc_unsubscribe</definition>
+        <argsstring>()</argsstring>
+        <name>kbc_unsubscribe</name>
+        <briefdescription>
+<para>Unsubscribes keyboard interrupts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" line="24" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="25" bodyend="29" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" declline="24" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8h_1a1fec55bf1acc7a26c865c6454ccf4047" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kbc_read_buffer</definition>
+        <argsstring>(uint8_t port, uint8_t *data)</argsstring>
+        <name>kbc_read_buffer</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Reads data from the KBC buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>KBC port to read from. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the variable that will hold the read data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" line="31" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="31" bodyend="34" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" declline="31" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8h_1a94057fd94a31c177929975f785c9b106" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kbc_read_data</definition>
+        <argsstring>(uint8_t *scancode)</argsstring>
+        <name>kbc_read_data</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>scancode</declname>
+        </param>
+        <briefdescription>
+<para>Reads data from the KBC buffer assuming it contains a scancode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scancode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the variable that will hold the read scancode. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" line="37" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="36" bodyend="57" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" declline="37" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8h_1a478e9d9e6e396379599060715e26730a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() kbc_get_status</definition>
+        <argsstring>(uint8_t *st)</argsstring>
+        <name>kbc_get_status</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>st</declname>
+        </param>
+        <briefdescription>
+<para>Reads the KBC status byte. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>st</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the variable that will hold the status byte. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" line="43" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="6" bodyend="13" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" declline="43" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8h_1a92ffdbe2b735528ea192bd5c3fe78a30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() kbc_restore_interrupts</definition>
+        <argsstring>()</argsstring>
+        <name>kbc_restore_interrupts</name>
+        <briefdescription>
+<para>Restores the interrupts after disabling them during command handling. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" line="48" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="64" bodyend="72" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" declline="48" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8h_1a60a70661919026cecb64ed6e2a581326" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() kbc_write_cmd</definition>
+        <argsstring>(int port, uint8_t cmd)</argsstring>
+        <name>kbc_write_cmd</name>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>cmd</declname>
+        </param>
+        <briefdescription>
+<para>Writes a command to a KBC port. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>KBC port to write to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cmd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Command to be sent. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" line="55" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="74" bodyend="99" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h" declline="55" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Functions and macros related to keyboard communication. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>KEYBOARD_H<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KEYBOARD_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;lcom/lcf.h&gt;</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="i8042_8h" kindref="compound">i8042.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">void<sp/>(<ref refid="keyboard_8h_1aea970a154161a35f6894898a092ed70a" kindref="member">kbc_ih</ref>)();</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal">int<sp/>(<ref refid="keyboard_8h_1a6bbc0d69dfee0ab12b1fdb8903613cdc" kindref="member">kbc_subscribe</ref>)(uint8_t<sp/>*irq_set);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">int<sp/>(<ref refid="keyboard_8h_1a526bd92aadec04f451a9fe18704def65" kindref="member">kbc_unsubscribe</ref>)();</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="keyboard_8h_1a1fec55bf1acc7a26c865c6454ccf4047" kindref="member">kbc_read_buffer</ref>(uint8_t<sp/>port,<sp/>uint8_t<sp/>*data);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="keyboard_8h_1a94057fd94a31c177929975f785c9b106" kindref="member">kbc_read_data</ref>(uint8_t<sp/>*<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref>);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">int<sp/>(<ref refid="keyboard_8h_1a478e9d9e6e396379599060715e26730a" kindref="member">kbc_get_status</ref>)(uint8_t<sp/>*st);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal">int<sp/>(<ref refid="keyboard_8h_1a92ffdbe2b735528ea192bd5c3fe78a30" kindref="member">kbc_restore_interrupts</ref>)();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">int<sp/>(<ref refid="keyboard_8h_1a60a70661919026cecb64ed6e2a581326" kindref="member">kbc_write_cmd</ref>)(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>port,<sp/>uint8_t<sp/>cmd);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//KEYBOARD_H</highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.h"/>
+  </compounddef>
+</doxygen>

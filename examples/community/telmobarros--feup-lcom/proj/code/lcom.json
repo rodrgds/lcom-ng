@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "name": "Battle Tetris",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        },
+        {
+          "mode": "arrows",
+          "side": "right",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-left"
+        },
+        {
+          "label": "Jump",
+          "key": "W",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Swap",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "LEFT",
+        "RIGHT",
+        "DOWN"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/code/img"
+    ],
+    "pathAliases": {}
+  },
+  "description": "Stack, rotate and swap falling pieces, or challenge a jumping character in Battle mode.",
+  "archetype": "Tetris",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

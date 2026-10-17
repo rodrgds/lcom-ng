@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "Penguin Obstacle Dash",
+  "build": {
+    "cStandard": "gnu89",
+    "arguments": [
+      "start",
+      ".",
+      "PLAYER"
+    ],
+    "assets": [
+      "userinfo.txt"
+    ]
+  },
+  "mobile": {
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "side": "left",
+          "style": "dpad",
+          "mode": "wasd",
+          "axes": "vertical"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "S"
+      ],
+      "touchClick": false,
+      "actions": [
+        {
+          "position": "top-right",
+          "label": "Pause",
+          "key": "P"
+        }
+      ]
+    }
+  },
+  "description": "Guide the original pixel penguin through moving green gates. Hold the up/down controls or slide vertically, and pause any time.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

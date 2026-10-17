@@ -1,0 +1,111 @@
+{
+  "repository": "https://github.com/edualm/LCOM-Huetris",
+  "revision": "e370f62dff67c0af5f4b90b019009722b7e92a92",
+  "project": "code",
+  "sourceHashes": {
+    "code/scene_sp.c": "78bb8ee1cefb6ba486cf4fc14b54ffca9044cb7b28052a2ad6426b6582b5627f",
+    "code/kbc.h": "ca47e2dd1eaa77f9d3af3e04d52e8796cce373414efd89ec63124a556ff5a64c",
+    "code/mouse.c": "385cdbe0853c8919134e64f2b4d17d7fe55932251e334c459b68e51dceba6a8c",
+    "code/timer.c": "f989bb3588987021a128f5a443b515e3c80cf4701e1470f53449a6c501cb6a81",
+    "code/interrupt.c": "8fd37b0394c5b3c33d66d6b6225d26edac980e555a97fdd51fb62d1c998114af",
+    "code/MM640.h": "5aaca6db921a2a0628eb816c9e6d214d3b187fa88b4518bc6c8101af6361bd9e",
+    "code/tetriminos.c": "5ca4cef3c43068f03e6445b42fee34143142421cd04e751b1e03e1e686ea3ecb",
+    "code/ascii_map.h": "4255edf15e27b6b908c4879e8fb353d1e44fddbdab94cc45e56967140769f970",
+    "code/scene_eg.h": "97983000730d6a3786cc15cb2793dd791d8b79dca6bd8896ab45d94cb4a08d86",
+    "code/rtc.c": "92e605f8b4bbc077063f61ee6c9229146fc6303fe326e499d008326975184109",
+    "code/scene_mm.c": "dd127fd48b08c098c6f3e45ba88d0d083c09f559ca9c2ed2b98c9d7a4e50c8ce",
+    "code/Makefile": "3086bbc864e8e94bfe3e0ac3cae1c98e7495db60488403222a4c01a25e4c42ed",
+    "code/board.c": "6d9cf69542294fd33013d8cc70e8f8dba58f8d6d3a58b1bf40720d8c870b2783",
+    "code/scene_mp.h": "8ffaa55529a53d53e9883505e3a076a88602f816d66c6c924a4e77666da8ccf8",
+    "code/vbe.h": "c8db80c97e2471e613e280ba6804cbeab50c59f0eb1a7643303944b454b15216",
+    "code/video_gr.h": "e37c5428bf1bf547d597cbbf35ddd639efd30c54cf516ffb1b7d6c3c10e61195",
+    "code/scene.c": "312e75d63e2ea914497c66df855d198b096b54d8bb5a4ecc896b21ab3f68c56e",
+    "code/read_xpm.c": "9c5469c0f8e5847c216d2f958146ca3a4d108f9af8274269f76ea091816c56fb",
+    "code/lmlib.h": "39266674d6e78989c967cd54b2780b0b6b673e595be1ddca927b773074dea5b2",
+    "code/mouse.h": "3a3a70de82c5302ff6e284ad4847deed694f29c532c88414b4bab9a8a4995808",
+    "code/kbc.c": "9fc7ae7db872ca21d32628500933ff9da7105e435874e2777ca40147a1734eca",
+    "code/timer.h": "7218143b50343add49a16cde894d86f91f2bba07fd416f60df73cfd8ec80ff93",
+    "code/main.c": "96d53f10701a8fea47d0c8c326f34ca2fb5eebb15aeafcde17da57cc715b8986",
+    "code/scene_sp.h": "895277140f4e7713d34748151937be9506e941ec6be70b9b2e94a81e065ed3fa",
+    "code/scene_mm.h": "793db8732013954f3decd9d2674ff373c3407c610a376d20c7d4c322c38a8e49",
+    "code/GOM640.h": "67c5e432f90c4bba48486390888102b2ad9580af0182d27af72dc2fb9b2b3875",
+    "code/rtc.h": "a3de75c6bceb6c6ca9ed01ac2a34030304783f4122defee7b14e24d4409a7f19",
+    "code/scene_eg.c": "379ec0e381f2d60021fbcd94506fcbb2b02becd01ea14dea6ddfa011d277c7f4",
+    "code/tetriminos.h": "4ad77edffe99eca19f5da94f4e0d2317000d58d0bc1be7b8760c00522b3baa47",
+    "code/interrupt.h": "9497e4883299521f99f712471f1a539b7839063cdd7cf341c175a7b16e27cb74",
+    "code/vbe.c": "c8a3b379cd1dadd6f497403bd244d6fd207289162053c7a61b70f1e8f4f720f0",
+    "code/liblcom.h": "cad38dcc3c30a21b2ec9ebbd65fe28208c833f9f73ba167ff64a910e71a1baa1",
+    "code/video_gr.c": "71455c7cc1b10f243a406a5235e2d24ff15568cee0a9e5850734af69c4af2d73",
+    "code/scene_mp.c": "590bc8833c0eff254a4587ecc11d6888e34b5e93eb57479a35b33f95d93d3db4",
+    "code/board.h": "e5a70a3f530d2755519d158d64301407d0b559f6e9cbc62bc3985141fe120cb5",
+    "code/i8254.h": "4847a83e93eedf9cbf20a927926ddb5abff2c924171025d062a587a9e530a381",
+    "code/GOS640.h": "b0b2cd721c10855b65a5a2d71cf0f8d1b66c3215d60af7fad0ebfa87c2cc3faa",
+    "code/read_xpm.h": "31bd4cac02786e8f49b9dfd200e8ac0a3c1c7880803264f8758da6d5b37e91b9",
+    "code/pixmaps.h": "6c229be2dd1ab74f640cf00c959ddcf2bc0de07ff4a7e7d1526bf5e26c9b730c",
+    "code/scene.h": "466a3b2e2069eb4e9c64b2cf5964d4519b02a553c485c1a22591558dec1984e8",
+    "conf/huetris": "bd53a4718680c6f4febe25c22b57b88833185fef7be6196037991b8465e30ab3"
+  },
+  "selection": "Pinned original code and conf; VCS metadata and extra helper scripts omitted.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "controlsRationale": "Single-player arrows move/rotate/soft-drop and Space hard-drops; original1/2 keys select solo or local-versus. P2 uses original mouse left/right/middle buttons plus mouse Y gesture. Panel reserves the original board/next-piece/score areas. Explicit firmware aperture0xF0000000 matches original hardware constant, while SDK BIOS and actual maps remain one declared aperture.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "code/scene.c",
+          "originalSha256": "312e75d63e2ea914497c66df855d198b096b54d8bb5a4ecc896b21ab3f68c56e",
+          "patchedSha256": "cc26a495f3c84339d81c9b5f6c924f971c84a4225276b11e61d497904355a6b7",
+          "reason": "Install the existing exclusive mouse IRQ hook before enabling reporting, so the default Minix handler cannot race the command reply.",
+          "verification": "Original compiled actual source emits F4 before exclusive subscription, red owned assertion. Corrected delayed-ACK lifecycle regression installs hook first."
+        },
+        {
+          "file": "code/mouse.c",
+          "originalSha256": "385cdbe0853c8919134e64f2b4d17d7fe55932251e334c459b68e51dceba6a8c",
+          "patchedSha256": "38ef2abc23c2d37ab4cbabe57f9505790596e6d4e13be03863b6cb2ec68c3f10",
+          "reason": "Read and validate the delayed PS/2 enable-reporting ACK through the existing bounded KBC polling function.",
+          "verification": "After subscription ordering alone, compiled source still leaves ACK unread, second red read-count assertion. Corrected source consumes exactly one delayed0xFA and rejects0xFE; real solo/local-two browser play proceeds."
+        },
+        {
+          "file": "code/interrupt.c",
+          "originalSha256": "8fd37b0394c5b3c33d66d6b6225d26edac980e555a97fdd51fb62d1c998114af",
+          "patchedSha256": "de1c87d42902e732004328b99aef1b241b1cd503c58742a4f181a786a69aaa11",
+          "reason": "Drain notified mouse bytes on menu and end screens so unused mouse input cannot strand AUX bytes ahead of keyboard input. Store returned opaque kernel handles separately from the authored callback/notification indices; use saved handles for enable, disable and removal.",
+          "verification": "Original compiled menu/end-screen dispatch leaves all3 mouse bytes unread before keyboard selection, red read-count assertion. Corrected compiled regression passes. Real browser stray P2 menu action then1 enters game, consuming6 bytes across press/release and dispatching keyboard. Actual subscription manager with independently returned handles11/16/21/26 originally enables or removes the wrong handle, assertion RED. Corrected owner preserves authored indices0/1/2 and passes exact returned handles through subscription, reuse and complete cleanup."
+        },
+        {
+          "file": "code/board.c",
+          "originalSha256": "6d9cf69542294fd33013d8cc70e8f8dba58f8d6d3a58b1bf40720d8c870b2783",
+          "patchedSha256": "724c572a978dc9b567e52cc4233906acd73ba71630b55473dfad20651474426e",
+          "reason": "Consume notified keyboard bytes before checking for an active piece, and mouse bytes before checking the player count; inactive controls must not block the shared output buffer.",
+          "verification": "Compiled actual empty board originally performs no keyboard read, red keys==1. Corrected inactive-piece/solo-mouse regression drains one key and3 mouse bytes without rendering or changing the board."
+        },
+        {
+          "file": "code/main.c",
+          "originalSha256": "96d53f10701a8fea47d0c8c326f34ca2fb5eebb15aeafcde17da57cc715b8986",
+          "patchedSha256": "72ef21dd6104a02f7fd605ba0eb6bd119cfe9067d175365b8412798418d59ed3",
+          "reason": "Include the owning Minix driver header so the entry calls sef_startup with its declared void signature. An implicit C89 declaration may happen to work in a native ABI but is not a valid typed WASM call.",
+          "verification": "Actual original main.c under undeclared-function diagnostics is RED at sef_startup; corrected entry dispatch test verifies startup before scene_init and return0. Current original WASM traps at signature_mismatch:sef_startup before menu; corrected full browser replay is recorded separately."
+        }
+      ]
+    }
+  ],
+  "artwork": {
+    "icon": "Original I and O tetromino coordinates from code/tetriminos.c, rendered in their displayed cyan/green palette colors on a simple dark background. Original artwork files remain unchanged.",
+    "preview": "Real solo gameplay canvas after touch-driven movement, rotation and multiple hard drops."
+  },
+  "verification": {
+    "browser": "Actual CDP touch solo/local-two landscape and portrait play with settled pieces and score; stray P2 menu action then1 enters board after input-drain repair. Errors[] throughout.",
+    "native": "All16 original/corrected project translation units pass actual NDK27 ARM64 syntax. Actual Android gameplay pending.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/irq-impact-reviewed-native/results.json",
+      "apkSha256": "4aaaea6f439b33c5c99f2dff8ae6392115a58c0a0ebf45fe8fd1d849138f73cb",
+      "demonstrated": "Solo falling pieces, left/rotate/drop and settled stack, solo input after P2 button, and independent local two-player boards with P2 mouse buttons/rotation and P1 drop.",
+      "limits": "Representative original play on Android emulator. Full matches, physical phones and network play not qualified."
+    }
+  }
+}

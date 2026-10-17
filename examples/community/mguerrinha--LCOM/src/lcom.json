@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "Last One Standing",
+  "description": "Compete through the original arena.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ENTER",
+        "M",
+        "C",
+        "Q"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        },
+        {
+          "side": "right",
+          "mode": "arrows",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

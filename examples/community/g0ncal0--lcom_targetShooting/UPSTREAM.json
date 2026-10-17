@@ -1,0 +1,125 @@
+{
+  "repository": "https://github.com/g0ncal0/lcom_targetShooting",
+  "revision": "245523ced1dfa8516420261a04d364dd7338857a",
+  "project": "src",
+  "sourceHashes": {
+    "README.md": "5fa928b35b782af537712c091b9efe8d401fdae3315ef1941b624e297effbd9b",
+    "src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "src/.gitignore": "581b7a5f57419692a82f8f588713a00c74f0fe8cab2809eaee219c3ea6578cd8",
+    "src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "src/.vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "src/Makefile": "9d71783a045e840dd03ea4a3ce870469f7cc67d908ec17748da4bde249c56a69",
+    "src/devices/graphics/graphics.c": "3e695f60b2c2b4bdaef9bc6c6b87260805785514f154f7e126774837d7bef586",
+    "src/devices/graphics/graphics.h": "6befdfb7a96a165d7d4311eefd97d98a6970a200bbe4d188de9191f7939d40c9",
+    "src/devices/graphics/vbe.h": "86ea6b1880ee36353b9d61cd12f09164b3eac29d914ed74016274dea987c3d6a",
+    "src/devices/kbc/i8042.h": "76bfaab77c0356fe3a2725b583de8f4d229f6396407af31336b7981ab07e5107",
+    "src/devices/kbc/keyboard.c": "62a732cd004f3246e62e1d200d2e5e2b9ee93558ac6517e89fc1206ae2897c6a",
+    "src/devices/kbc/keyboard.h": "da932b4a4c50ff3851d85978a674932d6df84c512f9311cfd0e9468c309e411c",
+    "src/devices/kbc/mouse.c": "52289c625b11f08743fb6a9584025bdf37965465886c296e81b4a025b2ca475e",
+    "src/devices/kbc/mouse.h": "f0cddc02a4e653f14d219d9154099f334affa6194d2a28f1a99f86ffe62d82df",
+    "src/devices/rtc/rtc.c": "5a56db4f60e3f700c69cc03b7fedcdc0149d69985bffbad84bc05fa5451251bc",
+    "src/devices/rtc/rtc.h": "a6bf7e78800d1dc44e558d151b174f47a19987f16ca52f5531cfaf244bc2d4b6",
+    "src/devices/timer/i8254.h": "1ef3722a7f8cc906ce884f29fc4ea7ef6dde9c4234c3e365f50fb7ffd9a2dcb2",
+    "src/devices/timer/timer.c": "12edf23f41cf4750da12ead7a63181c454d0ccd84bad8011d91f92d5b43eaf20",
+    "src/devices/uart/queue/queue.c": "36f97a3942503671a6e3dd399c713d4322f44ea0583d4f7af776be0e01293261",
+    "src/devices/uart/queue/queue.h": "a3026c098ea2b40c1130fb4b3dd6dcecc8e3e76688697546c09c218ad73bf020",
+    "src/devices/uart/uart.c": "61bbbd2cf44ec43a9f80e04afdf9dd27449444b65a0dbd4a419a49fff88daa7b",
+    "src/devices/uart/uart.h": "476c64162c92e064d97251ce6e4fc3c85d4bd016c8e3c06b1ea23bcfcba1701c",
+    "src/event_handler.c": "4feb96b7825b9b6acafe14a66571f2f3e3fe78f6956a67dd87a4b17bf913d087",
+    "src/event_handler.h": "0cba78639fe28abc1ed23fbf148eb186e873bce3ae34c0411526d4fa4cbb954c",
+    "src/game/dynamite.c": "d1e7ace319c2c2c9bf176d69109c133e0adff2e6b4e12286885882da33fe38db",
+    "src/game/dynamite.h": "a4723b8c43046beef094f542e1e5aeceaf04b011261be03a385334d9172f4009",
+    "src/game/game.c": "432d9f4363f21d5a3d80b059e32e7c9d4c110a1d37190cb41a62c196a5724993",
+    "src/game/game.h": "d38929044be3dae9a6c9dab47413dca60149891bc5af6839ee9710f1292566ff",
+    "src/game/gameover.c": "1475e943dade5b28582a0750a7d94c5262f031747d28db14acb7d620369cbc91",
+    "src/game/gameover.h": "8f05ceac6dbdbf8a4a1d57f36437c2938d67b5c56567265847081a8c47b42f32",
+    "src/game/menu.c": "c6db595da7ccc7fab00b3f89080398a14333ed976f58ba0c8d5d3443f9db63ab",
+    "src/game/menu.h": "feacacc0330d46f8fd055897e9c0664a56ad5474e6e915afe5fda2845d16e986",
+    "src/game/player.c": "493420eb89c9f2e33ae6169a2374fcbfa7f09f91da3f8cee797488e2eb545468",
+    "src/game/player.h": "a2f933bbb7bd98303026f5485c9f411199ef62d54867e9c310a772ae6421fd19",
+    "src/game/position.h": "b2b941779ad9dd2269f4689b2fca7e8504522dea3cbe9f4535f8ce358a4c8230",
+    "src/game/sprite.c": "24e74e846f531ea98904c7170deaa3c9e2441208ad589a5f1ed7e641e9b9ab68",
+    "src/game/sprite.h": "5d1286c30970cd5ea57b7c7062ed297e6fbb5af905f065ff9cb509df8b948b68",
+    "src/game/target.c": "6aadd2a39c323a7ecc1581157b3ad029cb0bc8ab0529cc038a60fc02db91d5c5",
+    "src/game/target.h": "f156f2a7ddcbb5602a592ad0159cdfe96feb7e82918301594268f437fcc8b82a",
+    "src/game/wait_menu.c": "8104615e920460fc79789aa0a617bc30fe652f59df644b0637e6d75b33289971",
+    "src/game/wait_menu.h": "52149edef2d8a6af4e5f7cebffe020d247485434ece127d88b9e2ef22849876c",
+    "src/proj.c": "1d84000e162e6f031b28bcb1abf641e71cc022400d22d9ce841c23740177a6d2",
+    "src/resources/font/font.xpm": "8c57f0614135c65ee8fdb9d4623c336301197cada407454573a70e43d67ac322",
+    "src/resources/font/gameover.xpm": "a03feedbb200212ce0eeb059b271be18aa925d04577c61f768e24e97ab8c9465",
+    "src/resources/font/gameoverEsc.xpm": "6f6b1ccb559cab99b7fb47f3a8df04568bbf3664546266077803f9cde37c5334",
+    "src/resources/font/lost.xpm": "af396ce0e38018c4f03060c6d33f44fdb1fb7f35132ab06e6e8ba508d75690a4",
+    "src/resources/font/multiplayer.xpm": "118157c2b9352f1f0aa3510920225e08f6031757ea93b6b3bc87f2a1b901ce17",
+    "src/resources/font/numbers.xpm": "cedf8d4a72e2c3384db589df3eb082acb2ae0211279f223c5a6f2aea3d5aa758",
+    "src/resources/font/play.xpm": "3031cacb04ac915adeb8c8797ef686183d70b5d81169ef528f57f8f0dd30b9b1",
+    "src/resources/font/quit.xpm": "37b7d6590f9195a87e53f2607bd26fddf52beb139d147d95deced9deacf310ac",
+    "src/resources/font/score.xpm": "1c5648fa20e88152d74f0d0d363da57fe8c7adb92fb1af7375b6d63b641281a2",
+    "src/resources/font/singleplayer.xpm": "3f70d378cf16f6884a81c06c508611197a57e4ec368030a19431b85a0d1b2b60",
+    "src/resources/font/title.xpm": "326cca0d3b0aa152d9e67a06b79654716fa9450eda379ff02c000cec6132e2bc",
+    "src/resources/font/wait.xpm": "23fd782cbd2f0d8fab264d7d00824c3c415f3b4653b8e649c441741f9bd8d34e",
+    "src/resources/font/win.xpm": "d4ec8d03a2930c8125f9e2ad7de96cd30d93fe837f2f47eb4807f72f6681e58b",
+    "src/resources/sprites/aim.xpm": "c6b8e27f6d771fee846c53b0c73faa719ef038f30a14c908aba2d734f58b16db",
+    "src/resources/sprites/clock.xpm": "6590acbed7130ab52a4fff87f02f031d019349424107e3cd19f493c1e1f6a125",
+    "src/resources/sprites/dayDesert.xpm": "e5bd8ec8b16af209d3ee7a70a5b47598c8688e486b2e51221959828706c52e64",
+    "src/resources/sprites/dynamite.xpm": "48d29ea24bb0aac35118dcbc2c24977d73edb7c19c4ddb271953f78fd7c7e260",
+    "src/resources/sprites/explosion.xpm": "04d81df67a3f43d09aa530da87dd058aaa5e1d24080b45ac2e518c6095a34a3b",
+    "src/resources/sprites/fall.xpm": "4dc5d406884caa54505a46ab92c7ebcfcdda2619f25b471b2c356ccf58a85953",
+    "src/resources/sprites/nightDesert.xpm": "2d5476d254ecbcd8c289f1cc0089ee7e76be3dba17d0a486f076b2df37773298",
+    "src/resources/sprites/target.xpm": "bf4cd2ca49288696a2db6b8f29ff605118ef4e0023f3c7f0ae751a766e01f163",
+    "src/utils.c": "7561d2f813eae4ab18e15cfb39c5363804a1b0b04f2605a71265923cedd0b20d",
+    "src/utils.h": "042a1cddb6245873eca21cc0ecd131821522bc90c1bfbcb398b6f1b3cdfc6790"
+  },
+  "selection": "Original project source tree, headers, required assets and root README. Omitted unrelated labs, generated documentation, logs, compiled objects, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.mov",
+    "**/trace.txt",
+    "**/output.txt",
+    "**/core.*"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "src/resources/sprites/target.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "4617347322c35ffca836a7a82ea4238b7503e5297d2ed80a7b83dadced7b3410",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "689db04b9fcd70f193bcca4b99d69ec54fb737ce53e5e55b1ce9fad7ac14b162",
+      "kind": "gameplay preview"
+    }
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "src/devices/kbc/mouse.c",
+          "originalSha256": "52289c625b11f08743fb6a9584025bdf37965465886c296e81b4a025b2ca475e",
+          "patchedSha256": "5ebe996f81249c888458fc29be6530e618501c6b56e2fe42b1c3fb80a1165766",
+          "reason": "Consume the PS/2 Get Device ID ACK before reading its separate ID byte. Original reads onlyACK and mistakes0xFA for the ID, so IntelliMouse initialization exits before gameplay.",
+          "verification": "Actual source get-ID harness RED returned0xFA rather than3; GREEN consumes bothFA,03 in order."
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "web": "Real Chromium mobile touch gameplay in landscape and portrait; no JavaScript errors. Controls, menu transitions and game actions exercised.",
+    "evidence": "build/arcade-100/a/evidence/g0ncal0--lcom_targetShooting",
+    "native": "Original sources compiled against compatibility SDK; final native collection build pending integration."
+  }
+}

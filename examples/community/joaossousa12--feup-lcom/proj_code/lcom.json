@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "Minix Golf",
+  "description": "Time each turn to guide the moving ball through an obstacle course.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "1",
+        "2",
+        "3"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Turn",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [],
+    "environment": {
+      "LCOM_COMPAT_MOUSE_REPORTING": "1"
+    }
+  },
+  "archetype": "Mini Golf",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

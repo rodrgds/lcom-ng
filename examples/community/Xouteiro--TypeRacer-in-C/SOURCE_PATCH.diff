@@ -1,0 +1,32 @@
+--- a/proj/src/states_design/design.c
++++ b/proj/src/states_design/design.c
+@@ -70,7 +70,8 @@
+     design_draw_sprite_xpm(esc, mode_info.XResolution - 365, mode_info.YResolution - 45);
+     phrase_writer( game.phrase , 170);
+     if(game.pos_player >=1) {
+-        game.wpm = (int)(((double)(game.pos_player) / 5) / ((double)(rtc_get_elapsed_time()) / 60));
++        int elapsed = rtc_get_elapsed_time();
++        game.wpm = elapsed > 0 ? (int)(((double)(game.pos_player) / 5) / ((double)elapsed / 60)) : 0;
+         if(wpm_writer(game.wpm))return;
+     } 
+     else {
+@@ -89,7 +90,7 @@
+     design_draw_sprite_xpm(play_again, mode_info.XResolution/2 - 125 + 5, mode_info.YResolution/2 - 10);
+     design_draw_sprite_xpm(esc, mode_info.XResolution - 365, mode_info.YResolution - 45);
+     if (game.pos_player >=1) {
+-        game.wpm = (int)(((double)(game.pos_player) / 5) / ((double)(game.elapsed_time) / 60));
++        game.wpm = game.elapsed_time > 0 ? (int)(((double)(game.pos_player) / 5) / ((double)(game.elapsed_time) / 60)) : 0;
+         if(wpm_writer(game.wpm)) return;
+         if(accuracy_writer((int)(((double)(game.phrase_size) * 100) / ((double)(game.phrase_size + game.typo_overall_count)))))return;
+     }
+--- a/proj/src/states_design/states.h
++++ b/proj/src/states_design/states.h
+@@ -4,7 +4,7 @@
+ #include <minix/sysutil.h>
+ #include <lcom/lcf.h>
+ #include "controller/keyboard_mouse/KBC.h"
+-#include "controller/Keyboard_mouse/mouse.h"
++#include "controller/keyboard_mouse/mouse.h"
+ #include "controller/video/graphics.h"
+ #include "controller/rtc/rtc.h"
+ #include "design.h"

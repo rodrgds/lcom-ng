@@ -1,0 +1,112 @@
+{
+  "repository": "https://github.com/FranciscaCerquinho/feup-LCOM",
+  "revision": "355aae3697a9c807317bdfbe6a39af5201952550",
+  "project": "src",
+  "sourceHashes": {
+    "README.md": "16833f747c35598a23350b649a2efd0a42c24b7c21c63d591801ae8da1a1a00e",
+    "images/ClickedExit.bmp": "9818cbe0bebcb7802b6bd29e934efa13c77c7a7ae2cdddc368d33a7bc525a169",
+    "images/ClickedStart.bmp": "330fd94eb1a46d28f753378a06fe7962dcaa6b526849b09d7f900899d212dd23",
+    "images/GameOver.bmp": "1939d03614f5ffa662e692a04680c465ccbc398110e08bdefdde446c71c963f9",
+    "images/background.bmp": "fd7b688ca8eb0464789fd91dfb199d033a6af4651330561a9ec4a25515254aa6",
+    "images/exitButton.bmp": "d85677656ee8d9cc05e7e5b35f6ef77c3c043e4ca8ca16ee71e82213556aa408",
+    "images/mario.bmp": "4b4c84646ebc53520127562b33557d20ad60e81179867692f15bb23f8ba9d564",
+    "images/mario2.bmp": "48b09d58e92f0d183465d54fcbe111c11f9f96b780c62106a7966554f62537fb",
+    "images/menu.bmp": "23cbb6bcd359d9a2c82b8247b5aad01f330dea9eda561625cb0bad4c78d8b6b9",
+    "images/pipe.bmp": "7ce13fd4b3fb178390b8f7382eb16358e21ce6172deda04497e91a4136db38ac",
+    "images/startButton.bmp": "2e05269285e46f59203e2593365190e657a180a5d4aa26d46c6911042c5b4f7d",
+    "src/Background.c": "133f42d2b5ef011583cb34a5f4b282335dbf031d15e821343f18674cbbd6cb25",
+    "src/Background.h": "539dda7635e4ddade9831c236a423f5f60888685e15f2967f09f0ac7d62f7323",
+    "src/Bitmap.c": "9b7658a024cbc3d88a40a560d3123560a2d69690ec6c8eb9c341735c1bcc2af3",
+    "src/Bitmap.h": "4279310aea5152db48442e6f00538416b59a5377f1b4f8518de52995a88fc89f",
+    "src/Button.c": "fd3e101c9351373097e2bd25ca6977a8c935a1a7bfe2623980b2e339528c1e24",
+    "src/Button.h": "2f0cc7f942042008258baf10c0965088cbef6a77952e33d4fd52d702082bc6a9",
+    "src/Colision.c": "542d02b895ef5335e4a732c61fe99f6225ca6de5f5d728c3338043a8d621f3b7",
+    "src/Colision.h": "856e9b33e5d61d3c8191c62166b68b3cc35b9bb30f04516b6cda3d3b8ee45d55",
+    "src/IRQ.c": "202b1930d26846e374ce3f222ff81a82ea577aa45683947f9c52c0d346e36f21",
+    "src/IRQ.h": "3b93d182b3e504cc8e3598fdb45807cba4cbc3abbe077ed5648a783098801bb6",
+    "src/Makefile": "8beecb25c92e24d5c67e4d87a2717aafa90a5acf5a0e1858efceb59174d928b0",
+    "src/Mario.c": "dfd9bae05afaa9c9618c3c7fe49a9cee91b8f77a130640f8511e8b54e5731e98",
+    "src/Mario.h": "ca1726996ccb347c46a64dd68310f5ac2c9bcf4282b6743904118cb4a44818ea",
+    "src/MarioEvent.c": "4085ba05d4fcf1b9c8b6dce64ed5276c9e384e33dcb950d530b2b0b81eae6df8",
+    "src/MarioEvent.h": "8d84fb203863353ecb378324e65bf9ecc557ce89483b583410f7cc39d72d234b",
+    "src/Pipe.c": "42291247b127026c689f6c9c9677fdd42de10a74ac6e70826f0bc33cfb74dc82",
+    "src/Pipe.h": "bf56c681a4e119fd9b301b26131b0fa47eed84dacd7e312373dffec18f83adfb",
+    "src/StateMachineMenu.c": "c10ddd6c2979fe96833c74e33174b761fae292bc2dbabdaa91556ae5aa6c4e49",
+    "src/StateMachineMenu.h": "d6fd8de9a6f99006a65c123ac7ca70d7f06e6eb44df6c9089aaa6728832faf8c",
+    "src/i8042.h": "6cbd38231c707e8c905cadd0af15d554a357d6c540eda38cceb0acbb20ea1ad6",
+    "src/i8254.h": "53eb0e038aa03a8bc45444d880bbe4ab8b1686090a142bcfc3589ad5f1425d61",
+    "src/kbd.c": "3e946d3e34a63ad43142204ad5839c128dbd265a593893a05c07d5c0c0771e04",
+    "src/kbd.h": "24c0f14f1919b691bff2383f47a4e8a7b6031ad898d39a7082902ba41515f05a",
+    "src/lmlib.h": "eb3f692a3bbc440962b53c4f7f577561707b7695e75f591f44d4e5810c40b9db",
+    "src/macros_rtc.h": "445b4e0de409dd1ab2ec01d1b953efe09f3a5179ce41e4a0eb9e1eebf36361bc",
+    "src/main.c": "5ab41d2a81d235aefb50f2e4c4b46b03804452416e93b5f8e0de975129892f1b",
+    "src/mouse.c": "cd4efe508c0630aaf09d167d3532be04ac504fe02a45ef55ddfc0f8c190eae7f",
+    "src/mouse.h": "1a6665393154132146bb7c69a737b2751ccf8800d89c29d9a3ddda94023214a4",
+    "src/rtc.c": "45a3c7deb3dda40215da75ba1b543d6330f71aee2a7c324c870c7b7e25c65a70",
+    "src/rtc.h": "9ec15e2cd5a533ac23cd877664e2348cd30c6790f69574b337fbca3cb5c25e0b",
+    "src/timer.c": "de7bb04b1839f81e5870ea18c2f4f51b147b7f52db61c6d28d5ec00994708d6e",
+    "src/timer.h": "e980448677a0679fc91644ed8ff28e901680d3c3f3cc9d924c4dd2cd7c0fd637",
+    "src/vbe.c": "3d95a092668397e20fb087a2bfde31c031a72242b3cd27e508ca930eb7d3a8b5",
+    "src/vbe.h": "3a356a0ad7396bf48b82ba78ee7980252f6dbff370678500244cefc05bf42205",
+    "src/video_gr.c": "92c94262cfb239c786b4fc5aab90e03fb1eef586f0fe8b5b37d438245c079103",
+    "src/video_gr.h": "1c4bef46e3780b2cf33b1e0626f6e18de0d76f2f4e64713e7ad9592d95191c0c"
+  },
+  "selection": "Pinned original src C/H/Makefile, all ten original BMP assets and README. Original docs/report and unused Minix service configuration are omitted. Original artwork remains unchanged.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "controlsRationale": "Original S release starts; Space release jumps. The runner scrolls automatically. A reserved control panel exposes Start and Jump in both orientations. Physical mouse input is available on desktop; mobile pointer is off because its original menu also accepts a keyboard start and gameplay is keyboard-driven. Escape exits the original menu; collection Home ends an active run. Both authored absolute and relative home paths explicitly map to the pinned asset root.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "src/Colision.c",
+          "originalSha256": "542d02b895ef5335e4a732c61fe99f6225ca6de5f5d728c3338043a8d621f3b7",
+          "patchedSha256": "2e8e9b18cbabbfc4bb11a8ac62e2a3dc435424847ad033e00535a428b77e1aac",
+          "reason": "Return zero explicitly when the original pipe-collision predicate is false, avoiding an undefined return that ends a safe running or airborne game.",
+          "verification": "Actual optimized owning function called through a volatile function pointer originally reports collision for a distant pipe; corrected distant/airborne/touching-edge positions return0 and the original overlapping ground position returns1."
+        },
+        {
+          "file": "src/IRQ.c",
+          "originalSha256": "202b1930d26846e374ce3f222ff81a82ea577aa45683947f9c52c0d346e36f21",
+          "patchedSha256": "941a5e2f970e3a6b6139b52f4427e1a1d230f2b7e8b3d211d581e591fd09304d",
+          "reason": "Implement the declared void cleanup by calling the existing timer, keyboard and mouse unsubscribe owners; remove the discarded allocation and invalid value return.",
+          "verification": "Original void function returning a pointer fails return-type diagnostics; corrected actual cleanup calls all three original owners exactly once in order."
+        },
+        {
+          "file": "src/rtc.c",
+          "originalSha256": "45a3c7deb3dda40215da75ba1b543d6330f71aee2a7c324c870c7b7e25c65a70",
+          "patchedSha256": "e883ddd7f24546885b2f40979ffd5215cf489dbf71db1650734fa5b573690555",
+          "reason": "Pass the caller long buffer to sys_inb and return the loaded RTC byte rather than passing the address of a local pointer and returning that pointer.",
+          "verification": "Actual readDate owning fixture checks unchanged caller guards and exactyear/seconds bytes; original invalid pointer ABI is RED and corrected caller-buffer read GREEN."
+        },
+        {
+          "file": "src/vbe.c",
+          "originalSha256": "3d95a092668397e20fb087a2bfde31c031a72242b3cd27e508ca930eb7d3a8b5",
+          "patchedSha256": "301f2dd9edd7bc247f8d7e9a2eed9958446def0218225fbe16dc35e1c9b880cf",
+          "reason": "Initialize the four VBE2 signature bytes with character constants rather than string-literal pointers.",
+          "verification": "Actual original mode-information unit fails compilation on four pointer-to-byte assignments; corrected owning test compiles and receives exact1024x768x16 BIOS information."
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "browser": "Normal CDP touch Start/Jump, running animation, airborne jump and first pipe passed with current opaque-IRQ SDK. No page errors; landscape and portrait verified separately. Separate fresh ordinary runs verify natural collision -> original Game Over/date/score print -> Game finished, and original Escape menu exit -> Game finished. No page errors.",
+    "native": "All16 actual Makefile translation units compile to ARM64 objects with NDK27 -O2 -D_FORTIFY_SOURCE=2 -fstack-protector-strong and format-security. Actual Android gameplay pending.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/c34-reviewed-native/results.json",
+      "apkSha256": "58066f7ca18c3ef9a50f7b45a6956e0c10b3e3e004816b1a63a78b59a55fb713",
+      "demonstrated": "Root viewed original menu, Start, ordinary Jump release with Mario visibly airborne, landing and advancing pipe/scenery, then clean Home return.",
+      "limitations": [
+        "Representative run and jump verified on Android. First pipe pass and natural collision date/score separately verified in browser; no native first-pipe or full-score claim."
+      ]
+    }
+  },
+  "artwork": {
+    "icon": "Original mario.bmp and pipe.bmp sprites, nearest-neighbor scaling on a simple dark tile; cyan sprite backgrounds removed only in this derived icon. Original BMP assets unchanged.",
+    "preview": "Actual1024x768 gameplay canvas during an ordinary Jump action, scaled to640x480."
+  }
+}

@@ -45,6 +45,7 @@ private:
   uint8_t register_a_ = 0x26;
   uint8_t register_b_ = 0x02;
   uint8_t interrupt_flags_ = 0;
+  bool irq_delivered_ = false;
   bool update_in_progress_ = false;
   long double second_phase_ = 0;
   long double periodic_phase_ = 0;

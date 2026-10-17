@@ -1,0 +1,105 @@
+{
+  "repository": "https://github.com/ArturAlb/LCOM",
+  "revision": "eae7307dd7d8d23f50b039c0f14599f385e3d52d",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "9ab009d68c9882a104213b716b22f2d8c202113597964097579292b2dfb60eba",
+    "proj/src/Makefile": "4231f9311b04d388c4a299416ed54497c712d694b84b2dbb62f6b3a0f1d3f883",
+    "proj/src/devices/KBC/KBC.c": "35603a8f9fab5dae7785bb51141c99268f38ed7470fd49c6a272c7a581ea71a8",
+    "proj/src/devices/KBC/KBC.h": "e1c2cba9be8be18d0cd084ba4579219aa4be85d175ed661c598b1c90b5e67bb7",
+    "proj/src/devices/KBC/i8042.h": "28c923d65c9e56ae3e1adfa66a5c3a638ba602d52158f212538975fc53fddb96",
+    "proj/src/devices/KBC/keyboard.c": "66fda31d321245d81da4ebbe13d0a392afbed75bc2d63b608da493389e2c56a2",
+    "proj/src/devices/KBC/keyboard.h": "603d2be811d772ca3cf1ccbebf592581088f628429eb9de038807052fc2da2f9",
+    "proj/src/devices/KBC/mouse.c": "4696ce6ee3927b939f11dab68ef720beab665d407202eae0f49a9bfded9fb90e",
+    "proj/src/devices/KBC/mouse.h": "81bab550b3c2367a82289b2cb59a3490c01d9b6b4b3be44ffb711e04149aa319",
+    "proj/src/devices/RTC/rtc.c": "c62d135f04a7701e22d65e05f893999dbccea1a9dd25e17945af6ffe6a0fd17a",
+    "proj/src/devices/RTC/rtc.h": "7987a3e4250411f0c0266113759fbc8208562ff127305984c7ade12484e2fe9f",
+    "proj/src/devices/timer/i8254.h": "514e8bf121e5a44978a0752afe8bf5fc2550a6c8a4c4e8dbfda9539c56df79d7",
+    "proj/src/devices/timer/timer.c": "d9aff63ab764c6fccd83bf698bab27c2c47a2e8f6ec9aca991f872861314c8f5",
+    "proj/src/devices/timer/timer.h": "4be694a351e89f4a6d18e7047a9db88ea41a3c788118b275be69fba69d652d91",
+    "proj/src/devices/video_card/VBE.h": "70256df29b5a524479e4439a87333153d987e4da16bbbd6ea93fde67d413e816",
+    "proj/src/devices/video_card/video.c": "41133e76b364e39b8948af5d565260bcc43821917e951cf04587aa4d596ccf29",
+    "proj/src/devices/video_card/video.h": "74c1244bc97fbd1360dc35a2405392a4ef626bf9d2de64865d3d8e98b2e4ee28",
+    "proj/src/game/game.c": "385c53494d7fcc7f13a163875c16d9bb40bfa2204850bbc8fcaa3347c24b4140",
+    "proj/src/game/game.h": "77619e9ecbfbb8e856d6db48c631e9b2389a2eeb9945ba3c4e1077f986205712",
+    "proj/src/game/models/bullet.c": "361f15d6443f73eca0916ef1c533559ac6d17a5cca7d1280996cf1fc90063433",
+    "proj/src/game/models/bullet.h": "2a141689acb70f10983b522b1973ec8463bad0c1b27fcadc69684a4f5c9e7651",
+    "proj/src/game/models/list.c": "4f77c0e4f624a1784ec7d6f74f33c27c1e29f05409b85d50713769a36d46d45f",
+    "proj/src/game/models/list.h": "bb08df10d3044f918f4091a294461e224d388d4bee96b0121911ea48863d33a5",
+    "proj/src/game/models/object.c": "bd259547620f112421f34f7efc9b38ce4fae555dcd9da060f581184836a899f9",
+    "proj/src/game/models/object.h": "450eeeced8fefc9ee81caeeb6e8a3d1d33a4ec62523cd6e8d63a8461b4e65382",
+    "proj/src/game/states/gamestate.c": "fd2480e0ddbea74504bc344275248c36e215f0c9a1c1c65dd41f036c87d7dc17",
+    "proj/src/game/states/gamestate.h": "89c97b3d2df27066a020d7b05aa1b52bdb06fef6f1d36861285539053a198712",
+    "proj/src/game/views/canvas.c": "3314ddf63c4ef8641209302561c8d151f68b087e18338b84471bae50c2acd99a",
+    "proj/src/game/views/canvas.h": "6cf4f5b14af06faedebe8a259151d8bd8fbee9e7d6cf6761c79cbee21b8a18f8",
+    "proj/src/game/views/image.c": "6f7005e93196d833e673a18e072ca55b1961fd27379f10543b21ee4c545535ef",
+    "proj/src/game/views/image.h": "8d8920dcf54c8e536f6dab190f1556b9e863225b4174dc8d1e1bcf4a535160fe",
+    "proj/src/images/Barrel_1_Down.xpm": "6136a8ed08729bd32ab162a95f75a67a77189026cf1120ef30c37537f1daf458",
+    "proj/src/images/Barrel_1_Left.xpm": "e894d95e6f3446fdb252b2dfe8ec2debbb47dfe2e9dbcd3d9c85f7ab388b0128",
+    "proj/src/images/Barrel_1_Right.xpm": "e61c7ddcefa62644ac5ed0ff7f21cd760741d4b52818972fbfb8a83229d485c7",
+    "proj/src/images/Barrel_1_Up.xpm": "bbfca8b4d1d9ff6625c0b7b9030fc8804ab9f4a336ae8f2f771aee3efd73f6cf",
+    "proj/src/images/Bullet.xpm": "497b43ba73464f5ec6313633088218c3e07f396c10d66119b8349eeadc94767b",
+    "proj/src/images/Cross.xpm": "f0c8ea46c0ab609048544a5c60be8b498f8f379fc2829662423d6f7ee2edda75",
+    "proj/src/images/P1Win.xpm": "61d1f263e70357229144e23d0b39490b8a16855c7a3ff42e223bb38a40e5bff7",
+    "proj/src/images/P2Win.xpm": "f89a353d6e52ceb9d0be460d24723212e7a40c8564dcad8153064fe50da8c228",
+    "proj/src/images/Quit.xpm": "2ed65cf7910a796473f95ef2ded5894afb384f2a729801440e970bc40b049a62",
+    "proj/src/images/Quit_Hover.xpm": "39f97c636372aaa66c93acae4b768ef0197ffbca0e6477ebf4a5d87808d44009",
+    "proj/src/images/Start.xpm": "616d406f93d574582fb74ce30983db0eab9fd5be578edc43ca0749e59c6e0fe8",
+    "proj/src/images/Start_Hover.xpm": "531cf0cd3f30ea9aaf5418bda8e7b563d727203d27b6f1bfc7ced864893b08f7",
+    "proj/src/images/Tank_1_Down.xpm": "ee6446168842704d8a9e987b3587c15ebd5de31941098759a487e428386fd6f3",
+    "proj/src/images/Tank_1_Left.xpm": "eac05a13b452bd7268d47d831c9dce13ae43a4f80ed7d42093852554ce231416",
+    "proj/src/images/Tank_1_Right.xpm": "01115f99c62867304160d2b8f6eebbb1f360d27d9de741b93a992c1905ebcb07",
+    "proj/src/images/Tank_1_Up.xpm": "bc47690bb97ec9c76e8f4cf6e6af78dca4bbca59386cc37d8780401f018d0604",
+    "proj/src/images/Tank_2_Down.xpm": "29fd8bf54603a244f194f7365bebff1db101cc5150ec5aafe62a5b6461ae99c2",
+    "proj/src/main.c": "866cc1e1773c70e7aeac9eb9bc42b2d4190ebbd44c7bfa80ddf3b76214ae2a17",
+    "proj/src/utils.c": "46f6926a8867c1f6cc5d72700d264518504cc61803d04bcb8ae6859359ed903c"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated docs, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/images/Tank_1_Down.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "8a45d3a517900fe80a42c2d9b97dd479af6464600acdd0c5f73e2924a8ae015f",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "1aefeb1b770342173828277d3336318c025afce0b0204df595794ab6521fd4a2",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "controlsRationale": "Panel keeps original artwork unobscured in portrait and landscape. Source handlers determine every button and held-key behavior. Relative pointer preserves original packet/cursor semantics. WASD and arrows independently move the two local tanks; keypad actions provide the original second tank cannon directions. Both event-driven movement pads repeat make codes.",
+  "verification": {
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "checkpoint": "Both local tanks move independently, an aimed ricochet projectile hits the opposing tank, and the original P1 WINS! result remains visible during authored sleep(4).",
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence/ArturAlb--LCOM",
+    "log": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay8-tank-sleep-fixed.log",
+    "limits": [
+      "Android gameplay validation pending.",
+      "Remaining second-tank diagonal cannon directions and complete multi-round play are not yet demonstrated."
+    ],
+    "androidGameplay": "pending",
+    "sharedSdkRequirement": "Mapped VRAM presentation before compat tickdelay/sleep/usleep, fixed in freeze-a31-sleep-present; no student source edits.",
+    "nativeGameplay": {
+      "status": "passed",
+      "apkSha256": "f21e75fdd87c20a43626365d38487effee77b09bbde160cee2017af7e504ae5b",
+      "evidence": "build/arcade-100/next8-native-gameplay2/results.json",
+      "review": "Both local tanks change position; ordinary aimed Fire produces original P1 WINS result while blocking sleep preserves that frame. Actual native controls and Home cleanup reviewed."
+    }
+  }
+}

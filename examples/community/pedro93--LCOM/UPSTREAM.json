@@ -1,0 +1,90 @@
+{
+  "repository": "https://github.com/pedro93/LCOM",
+  "revision": "2e818bd76c526c99f5e16e086716e4885c79d47e",
+  "project": "src",
+  "sourceHashes": {
+    "LICENSE": "c32e86f9a4bb73d4dd355881b0aaae38c7d3659b9a9888206da5cd7d9f6be4ce",
+    "README.md": "7328e39a786279857d8865cb1b0a83303a216618e95630006a02b76a576cb388",
+    "src/RTC.c": "d7d4aa099fa7d91a54d7296fd17ff8863c10396df6a893209dfe66e55b31feda",
+    "src/RTC.h": "eda7ec422b96fcf5a538017d16a87a2e7e95feb61e196e8f3c15778cd5095a6f",
+    "src/commodore.c": "89f49729ae3436a8b33daedffeacbd1f10c4e5830143a6ea6df5777caf048de8",
+    "src/commodore.h": "2b47410a21802b5da76439f830a2ad0418476722662a8c6ffedad9ce43f17bfe",
+    "src/commodore_conf": "4b93838fdde16b1140070c9ddab9f61a36166e6e787757697626009b74d0dd25",
+    "src/i8042.h": "99c6d39d24c11f7fd64d36bc634b62368df53e105cb3922b277d586c2f25edd7",
+    "src/i8254.h": "9667994cd0cd91ff39eadac5e85ecc2d3dc11fecdcf358ec5cb44a3a7f0c84b9",
+    "src/interupts.c": "64199b3f62e551cf193138bcc28f12c5adbb023a83d8c387147787f8bbaf287e",
+    "src/interupts.h": "6310e3dbf87f66a0082fa5dd3eee5a8cfd765006a027716cd21efff1ce34e905",
+    "src/kbd.c": "c3dd6843a88722f2cdde56013d2dcc5a464dd656e5ecf672ac14ba9a01561b35",
+    "src/kbd.h": "7bed4a6728470bb1a42354da035263921eb744821f6e09fed0678b618bebff42",
+    "src/libraries.h": "39653befcc589643dd3b27d7fd9f1ff8b5230f4b4cb576ee0bb7ab3543f9847a",
+    "src/lmlib.h": "2b2150472e78812b87994baffa79e65ca500c52a11a10485363cfeee5cb74b76",
+    "src/main.c": "f83501e9fdf53668ba090413826d7de60c8117e964b8cfea1bc4333d6c20f0d3",
+    "src/makefile": "944b70694988eb0438a0f41312481b4be8c431e197c85364fb489bee1ec06b64",
+    "src/pixmap.h": "a8c8998b93e52143b6a3ce57ef869309bb5f193b83db5141fd6e351ba0b305a9",
+    "src/read_xpm.c": "05f532026412938690601401915b81075720447c1d36f2432db07bba5fab07a0",
+    "src/read_xpm.h": "eb6669c2ec87b157a367a045d8fdf48072d3f8aadfbf55fc649dc083cc672da6",
+    "src/speaker.c": "60deaefcc32faad545199f0b45ee276f5910d4bd40b50a26f7ec3580f03a89fa",
+    "src/speaker.h": "258d54ec58cf038f8e4d07c3384543e8a9357b126f4a1ff05a76b355fff10fd3",
+    "src/sprite.c": "c613902dc22dc20131640ffb1125c2a414113f0fa2ff72ab7b260352d608b45b",
+    "src/sprite.h": "75f1ab0c8096138b5349a04c35b7412ed611cb82242b3b7b11e2f2a874d23bcb",
+    "src/timer.c": "b2023795c4b17e6b8ec6dec426eb5f1cebee423e285f63c42c9bb1ad19a9aee1",
+    "src/timer.h": "c12abf05b0b56be549bf5fe3d714c805241efa1b9fa28c5b7bd726b9efdca898",
+    "src/vbe.c": "e8ffad5aa5af0f9bd30af618b379ec07bd199f02e3b388bd0de9c2cd7a9c902d",
+    "src/vbe.h": "31588a724f448e59009bfc1bbcffdef7474081fe59f769f08df3766bdd78ee77",
+    "src/video_gr.c": "bfb98efc2b567f773d6e691e366498448ffa72fa9f7f8685b053d3882b6bead9",
+    "src/video_gr.h": "c1a49ccf9c48b7d43dba682fd1db553e5fc6f60704323d1c4b3b2caa3c9d311a"
+  },
+  "selection": "Pinned original game code and required original artwork. No assembly source changes; compatibility CLI/STI lowering is SDK-owned.",
+  "omissions": [
+    ".git/**",
+    "OS metadata",
+    "IDE metadata",
+    "compiled objects/binaries",
+    "generated docs",
+    "unrelated labs",
+    "non-runtime documents/media"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "src/video_gr.c",
+          "reason": "Original vg_init definition unsigned long disagreed with public unsigned short declaration, causing browser LTO startup unreachable. Match original16-bit mode API. Live vg_set_pixel bare return for transparent index30 violates status contract and NDK18 rejects it; return0. The writer accepted x==width/y==height and incremented the pointer before writing, shifting every pixel and corrupting last-pixel canary. Use exclusive bounds and exact byte offset. Original artwork unchanged.",
+          "originalSha256": "bfb98efc2b567f773d6e691e366498448ffa72fa9f7f8685b053d3882b6bead9",
+          "patchedSha256": "be1d774f6e5ef7bd69060be3d2b02cf1c02bb1439c42098052255566144d7b24"
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original WASD per-make cursor movement with mobile repeatKeys, Enter fires/selects, keys1\u20134 are original special attacks. All controls in panel, pointer off because source has no mouse input. Both enemy/player ships remain displayed exactly as authored.",
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gallery19-final/galleries/pedro93-lcom-aef5fe19f228/volley.webp",
+    "captureSha256": "e1b2c45176445f14db9ed666b8be67f68e7f7d309871024426174cb095a3e2a3",
+    "originalSourceArt": true
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "f05d445cb3c80930c0230769a263923fb1e52d20b85ecc76c07638401df33824",
+      "kind": "Flat geometric launcher icon matching arcade style"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "7b67b856f7c95c8bf5a4a65061a62f1f46ebe522f1c79dfd0b37b3509c74afb3",
+      "kind": "Current corrected renderer original gameplay, actual row volley and computer response"
+    }
+  ],
+  "verification": {
+    "pixelRenderer": "Actual BIOS mode/map/fill, transparent skip/status, first+last valid pixel, x==width/y==height clipping and8-byte guard arrays. Original return-only correction fails all four pixel checks mask15; corrected writer passes. Actual NDK27 clang18 compile fails original bare return and compiles fixed source. Host Clang22 legacy suppression had hidden that production diagnostic.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/daedalus-commodore-reviewed-native/results.json",
+      "apkSha256": "a0a141499038d14698f55f275f39c5479c64790d660cf8ce30a83066392c4d70",
+      "demonstrated": "Root viewed the original menu remaining active, both boards and fleets, ordinary WASD selection, Enter shot/AIreply and normal horizontal volley with a red hit and row marks, then clean Home.",
+      "limitations": [
+        "Representative original shot/AIreply and volley verified. Entire randomly placed fleet, every special move and complete win are not qualified."
+      ]
+    }
+  }
+}

@@ -51,5 +51,6 @@
     }
   },
   "description": "Move your starfighter beneath the alien formation and return fire.",
-  "preview": "../../../../../collections/arcade/previews/luanalima27-lcom-feup-eda1c5716f42.png"
+  "preview": "../../../../../collections/arcade/previews/luanalima27-lcom-feup-eda1c5716f42.png",
+  "archetype": "Space Invaders"
 }

@@ -1,0 +1,46 @@
+--- a/proj/src/main.c
++++ b/proj/src/main.c
+@@ -13,6 +13,7 @@
+ extern uint8_t scancode;
+ extern int max_x, max_y; 
+ extern struct packet pp;
++extern bool update_count;
+ extern int x, y;
+ 
+ int main(int argc, char *argv[]) {
+@@ -111,6 +112,8 @@
+                 }
+                 if (msg.m_notify.interrupts & irq_set_mouse) {
+                     mouse_ih();
++                    if (!update_count) break;
++                    update_count = false;
+                     mouse_event_handler(&pp);
+                     if (state == MAIN_MENU && pp.lb == 1) {
+                         if (is_within_rectangle(x, y, (max_x / 2) - 150, (max_y / 2) - 130, 300, 100)) {
+--- a/proj/src/video.c
++++ b/proj/src/video.c
+@@ -63,7 +63,7 @@
+     
+     // verificar se as coordenadas estao dentro dos limites do ecrã
+ 
+-    if(x > mode_info.XResolution || y > mode_info.YResolution ) return 1;
++    if(x >= mode_info.XResolution || y >= mode_info.YResolution ) return 1;
+ 
+     // define where to color the pixel
+ 
+@@ -121,10 +121,14 @@
+ for (int i = 0; i < image.height; i++){
+     for (int j = 0; j < image.width; j++){
+         uint32_t color = colors[i * image.width + j];
+-        if(set_pixel_color(x + j, y + i, color) != 0) return 1;
++        if(set_pixel_color(x + j, y + i, color) != 0) {
++            free(colors);
++            return 1;
++        }
+     }
+ }
+ 
++free(colors);
+ return 0;
+ }
+ 

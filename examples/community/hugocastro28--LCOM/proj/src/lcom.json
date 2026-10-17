@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "Pac-Man: Coin Maze",
+  "description": "Collect coins and evade the original colorful ghosts.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "SPACE"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "UP",
+        "DOWN",
+        "LEFT",
+        "RIGHT"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Pac-Man",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "name": "Snake: Dodge the Fruit",
+  "description": "Guide your snake through a field of falling fruit.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "actions": [],
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "touch": "tap",
+      "tapDuration": 60,
+      "cursor": {
+        "x": 625,
+        "y": 550,
+        "maxX": 1228,
+        "maxY": 945
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/leaderboard_scores.txt"
+    ],
+    "environment": {
+      "LCOM_COMPAT_MOUSE_REPORTING": "1"
+    }
+  },
+  "archetype": "Snake",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

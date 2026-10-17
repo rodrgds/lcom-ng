@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "Space Invaders: Star Patrol",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Fire",
+          "key": "SPACE",
+          "position": "top-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": [],
+    "arguments": [
+      "PLAYER"
+    ]
+  },
+  "archetype": "Space Invaders",
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "description": "Pilot the original ship, shoot descending aliens and keep the patrol alive."
+}

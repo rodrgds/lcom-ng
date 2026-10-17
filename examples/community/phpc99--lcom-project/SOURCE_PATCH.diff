@@ -1,0 +1,34 @@
+--- a/proj/src/Controller/Game/CursorController.c
++++ b/proj/src/Controller/Game/CursorController.c
+@@ -92,10 +92,10 @@
+ 
+ static bool delete_block(CursorController cc, MapController *mc) {
+   if (cc.collision) {
+-    Element *element = mc->map->elements[cc.idx];
++    Element element = *mc->map->elements[cc.idx];
+   
+     if(delete (mc, cc.idx)){
+-      Backpack_add(get_player()->backpack, element);
++      Backpack_add(get_player()->backpack, &element);
+     }
+   
+     return true;
+@@ -207,6 +207,7 @@
+ 
+   backpack_use_selected(b);
+   add(mc, e->type, e->position, e->width, e->height, e->block_up);
++  delete_Element(e);
+ }
+ 
+ void ButtonPressed(Cursor *c, mouse_reading_t mouse_reading) {
+--- a/proj/src/Controller/Game/MapController.c
++++ b/proj/src/Controller/Game/MapController.c
+@@ -58,7 +58,7 @@
+ void add(MapController *mc, ElementType type , Position position, int16_t width, int16_t height, bool block_up){
+     size_t last = mc->map->count_elements;
+     mc->map->count_elements++;
+-    mc->map->elements = realloc(mc->map->elements, last * sizeof(*mc->map->elements));
++    mc->map->elements = realloc(mc->map->elements, mc->map->count_elements * sizeof(*mc->map->elements));
+     mc->map->elements[last] = new_Element(type, position, width, height, block_up);
+ }
+ 

@@ -1,0 +1,8 @@
+--- a/LCOM/projeto/src/main.c
++++ b/LCOM/projeto/src/main.c
+@@ -75,3 +75,5 @@
+ 
+ 
+ 	return 0;
++
++}

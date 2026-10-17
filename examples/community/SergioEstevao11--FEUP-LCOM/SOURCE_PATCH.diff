@@ -1,0 +1,22 @@
+--- a/proj/graphics.c
++++ b/proj/graphics.c
+@@ -57,7 +57,7 @@
+ 
+ void change_color(uint16_t x, uint16_t y, uint32_t color){
+     if (color != TrasparencyColor){
+-        uint32_t pixel_mem = (uint32_t) video_buffer;   
++        uint8_t *pixel_mem = (uint8_t *) video_buffer;   
+         pixel_mem += (y* res_x + x)*(bytes_pixel);
+         memcpy((void *) pixel_mem,&color,bytes_pixel);
+     }
+--- a/proj/keyboard.c
++++ b/proj/keyboard.c
+@@ -31,7 +31,7 @@
+    printf("b4 sys_irqsetpolicy: hood_id = 0x%02x\n",kbd_hook_id);
+    if(sys_irqsetpolicy(KBD_IRQ ,IRQ_REENABLE | IRQ_EXCLUSIVE, &kbd_hook_id) == OK){
+      printf("after sys_irqsetpolicy: hook_id = 0x%x\n", kbd_hook_id);
+-     return kbd_hook_id;
++     return 0;
+    }
+    else { 
+      printf("sys_irqsetpolicy() failed\n");

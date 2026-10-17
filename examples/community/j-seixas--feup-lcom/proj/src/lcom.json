@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "name": "Tron: Lightcycle Arena",
+  "archetype": "Tron",
+  "description": "Steer two lightcycles, leave bright trails and outlast the other riders in the original arena.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "2",
+        "3",
+        "4"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "panel",
+      "pads": [
+        {
+          "mode": "wasd",
+          "style": "dpad",
+          "side": "left",
+          "axes": "horizontal"
+        },
+        {
+          "mode": "arrows",
+          "style": "dpad",
+          "side": "right",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "side": "left"
+        },
+        {
+          "label": "Start / Pause",
+          "key": "SPACE",
+          "side": "right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": [
+      "imgs"
+    ],
+    "pathAliases": {
+      "home/lcom/lcom1617-t4g12/proj/src": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,141 @@
+{
+  "repository": "https://github.com/mguerrinha/LCOM",
+  "revision": "09ce204f3a5ae52bac06d743944da1823509cd06",
+  "project": "src",
+  "sourceHashes": {
+    "README.md": "84b10add9eeb18299fde880a86961a1b0bddce57ae6b054bf3794dbc53e6cad5",
+    "src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/Makefile": "91b8cb18828310b4023763dc3a36a8f604ced5c660072736c3a1f899817d1a0e",
+    "src/configs.h": "dca9a16104f9244c19210640aa9cec6b976be79586a0f8df69ed0a6dc2aff98e",
+    "src/controller/graphics/graphics.c": "548bd6cc8999be7c71f6e6437d7e095b0b0bb621fd36459c1acca3b0dec64113",
+    "src/controller/graphics/graphics.h": "8fb32c46fdfc8cb60bf9ccf1255406b7004e7117d0c135bac79e7a084e3d8532",
+    "src/controller/keyboard/KBC.c": "5b470955e4cf9bcab88080d23eeded823c9c8f15fb8afe61330049658568d440",
+    "src/controller/keyboard/KBC.h": "17716a3504e6f4ae0ec4a600957e81e488a51217194ecf15b0b5c39683f60247",
+    "src/controller/keyboard/i8042.h": "963481e978e663dbd57cfb1c963a53d5adb1e07d97ac0d4bcc41c1c679a45937",
+    "src/controller/keyboard/keyboard.c": "467b6e21c36caee1ad2f07d7cc14c5f5190acf0f81d4e15a58791d74910ad720",
+    "src/controller/keyboard/keyboard.h": "91f5998c7a0a8e31420d0bd21e598bd32639021a1e5bc312c0d3f81926159323",
+    "src/controller/mouse/KBC.c": "5b470955e4cf9bcab88080d23eeded823c9c8f15fb8afe61330049658568d440",
+    "src/controller/mouse/KBC.h": "96a47aee03cbd58577f018f89271da90fa708092e80dbfebafbad0be8163d5d6",
+    "src/controller/mouse/i8042.h": "00bee17fbb11acd012fad98fe14c9c2f0ab861e91b634d47bb6e546fde577817",
+    "src/controller/mouse/mouse.c": "f8570b04ec831918a440a6b4c40f42329ee1e05c64ee1931e1f411871b901779",
+    "src/controller/mouse/mouse.h": "83f3a0aa43d3d5418a90d2bc33b7e7f8a7e758e9b405abb6744fffe9f35681db",
+    "src/controller/rtc/rtc.c": "9e6fa31c0d9d5b9f939fcb92a9d3a53f66739251f69245e33aac20f0f8878206",
+    "src/controller/rtc/rtc.h": "d18823fc094691fee8999210d8831d369b9c82794a74d1cfb7ef5b28a165435d",
+    "src/controller/timer/i8254.h": "bdaddb0684915b4e6519518a5528e9eac2dec52db55852464edd122fb89e0142",
+    "src/controller/timer/timer.c": "5d1df60866b0cebb23103e7ec26f2382b2c0fadbdd70f62a0c060b0686f57ac5",
+    "src/controller/timer/timer.h": "378ab5e0431852614dd2b81201e25c5bd21b3418fcb05e0298c38de62bb271b9",
+    "src/controller/utils.c": "5358b3000a103a71c49d33442864e46e2ea27bde76dd9915ac51ea9e7baa0003",
+    "src/game/game.c": "a65f349bc08941e89ddf9a629fa6e2635302fb37a156e0e0f842eb9b6e71cfdf",
+    "src/game/game.h": "fa0de5efa29521742800094b8708651a9282879f88e89865f027570d9b4fc381",
+    "src/model/model.c": "4b07d7afd45815c94a2b21cb860435e0e82868db3e6399b3f92e570a3636afb6",
+    "src/model/model.h": "ad170f124439ce7362ec6271e1635d644f82dac353c466b160f063a6916d0ea3",
+    "src/model/player.c": "b92d4ccad0530dc8311d6aba76aa90b6e6684949b650801d74f56c5ddce0c17c",
+    "src/model/player.h": "64fd234f26be6e94248667d8167db7d8619ea1ffe6fc5fc10bc04803333b55f2",
+    "src/model/sprite.c": "c72a6ea1e0c0c7b2081123892e294afb67692a7e76645cdab9bc0a7822a4abef",
+    "src/model/sprite.h": "e88b5ecc8337685afa651619092cc431b5be921ed4fdf27a5a06676c29be3f38",
+    "src/model/xpm/arena.xpm": "39a69d55aa864c36813d39b6190dee4e05337ea3bedd71304d2f037cf250b255",
+    "src/model/xpm/bar.xpm": "9a40313c9c15a43e3294886a2b256b5c63c503397fb9fdb19bd405daf3239811",
+    "src/model/xpm/controls.xpm": "f9e9b2d7e4c64cb875cc7974979755a7c8a9ef183195ee9f552a4abbef405075",
+    "src/model/xpm/menu.xpm": "f46606862fd2b4f30d40aa36b3cfa558b98d906ddb9b479fd5decb33213297f4",
+    "src/model/xpm/mouse.xpm": "33422d7c490c0ec1f754e48a85ed0a8772b584666005232fa16e43164da136bf",
+    "src/model/xpm/num0.xpm": "43391d9364769f2217db5a192ba1b7e1587c012121d5ac794eea7a3c1a1966d3",
+    "src/model/xpm/num1.xpm": "3863918b9433eceb970b661d54bb2cb5c61b583c97ca2297db49274d128612c8",
+    "src/model/xpm/num2.xpm": "98431a6d46031ef51fa410757c815efb68b9154b0efcc7788c58661a396db3cb",
+    "src/model/xpm/num3.xpm": "078a0e87f736e5b8adb5f9a22a3e87d4123fc126c063c63632363f1166a83573",
+    "src/model/xpm/num4.xpm": "7ef3fd39d722f607a627dcbbee839d30c442b150159e39bc059aa413fe7f3d02",
+    "src/model/xpm/num5.xpm": "726448902bc103bd9b229106e5b756e47840a06f3557efec0f6f53f83255114f",
+    "src/model/xpm/num6.xpm": "01ed10fa2b4706a36c8abe2e04f473c1f078e1beaf9ab0d0c5ddd9482e80584b",
+    "src/model/xpm/num7.xpm": "e491ef48e377186729d1d8976c4ad5733d83711790d5de2f8ad8524123871bed",
+    "src/model/xpm/num8.xpm": "27758edeeb5aa1e400e1bc9fdc70e3b22ba487d348a46ad459c60ba33e527ce1",
+    "src/model/xpm/num9.xpm": "9f713f81519743a8a0d174740275e8512ebe68d85ec6ddf477d45dd6d19e2776",
+    "src/model/xpm/p1_left.xpm": "0c290991770e0704477b52a5a4fda74fc7d807dddaf574c24e11809bba9c9ec9",
+    "src/model/xpm/p1_right.xpm": "4a48acb5d270520f1c5c152c13bc43e0eac1a18a2d87a81cd3d99370ed9b9b02",
+    "src/model/xpm/p1_up.xpm": "79141b47816372608bf9641bffb829abc49edebca40e53c4a2175bb9ac153584",
+    "src/model/xpm/p1win.xpm": "7debd8648c6f6677ec8d3e81f829af176fe42153d62a63343f44a3283596a80d",
+    "src/model/xpm/p2_left.xpm": "f4d3d83d198eb7aeea924d8abe59392a81e9845d56ebdd9961f24450f35bfc17",
+    "src/model/xpm/p2_right.xpm": "0edc2048e74eae1ee0d56b44647fefd2b6a26858f739f3cb09b806317a2bd91d",
+    "src/model/xpm/p2_up.xpm": "261e547d64401677f3d56c3034fade55539e1e9f94d7682fa013368fda442db9",
+    "src/model/xpm/p2win.xpm": "90912c0d7cf525a06cedf56ff4f1101224df9cf54047bab8cbbe6cb2f95793f8",
+    "src/model/xpm/percentage.xpm": "989e21aa7bfde2614d2d66aaf884926fd078a653f19d34bd5e9e7d6437e2e826",
+    "src/model/xpm/player1.xpm": "1912a54b55221de5beaa4556887a9966c03276d411d3246849c8ac76206cf782",
+    "src/model/xpm/player2.xpm": "642f75cb1209986570598aa88f005865028c1a32069ff4671d90913255da6fc2",
+    "src/model/xpm/twopoints.xpm": "cf93d01b67e1431db1e486a4acbfb1e048ecc3eb8d31773540bf39b665380ecd",
+    "src/proj.c": "83d1ad61a6da3fb1471fc05dbac38f60bc6b28ee3c2b8f5028196a20acd7b6fd",
+    "src/timer.o-8de6fb9b": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/view/view.c": "1bcfa6de0489483a9704e4fd19ebb3dcdfd447a3113c577c5a5064efa351f826",
+    "src/view/view.h": "7e9357fc3bf586aac00d418679cfd8d742e7067988f59fd62f9d04d63ed823f1"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.d",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "src/controller/mouse/mouse.c",
+          "reason": "Initialize each command ACK before checking it. Original uninitialized ack_byte traps in optimized startup before any frame; original consecutive stream/reporting commands require independent ACKs.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-ack-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-ack-green.log"
+          },
+          "originalSha256": "f8570b04ec831918a440a6b4c40f42329ee1e05c64ee1931e1f411871b901779",
+          "patchedSha256": "4d388b98cc961aaaecb536539b0829631bcd8a9851be346c051a7d77c0b6ae1e"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a flat palette",
+    "source": "src/model/xpm/player1.xpm",
+    "additionalSource": "src/model/xpm/player2.xpm"
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "2a3d42510eb83e3d0d67a7c6e65c7f22c2024cd0f896ffe7d0575cf54d7999ce",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "1bc7683dd76968a0634808d4a164c0271df1691a26df9c35304e95eeccbabf33",
+      "kind": "Original browser gameplay capture"
+    }
+  ],
+  "verification": {
+    "browser": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay10-final.log",
+    "owningRegressions": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-tests.py",
+    "nativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/mguerrinha--LCOM.native10-strict.log",
+    "android": "Pending independent parent-owned actual Android gameplay.",
+    "browserResults": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay-results.json",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "2a20937a73366b6700c5ec6c56a0e17f228d6fdbccb1aa8d7dcc6c375f38e733",
+      "evidence": "build/arcade-100/neon-territory-native-calibrated/results.json",
+      "demonstrated": [
+        "Original two players start in their colored areas.",
+        "Original red player reached the next visible loop corner.",
+        "Original red player reached the next visible loop corner.",
+        "Original red player reached the next visible loop corner.",
+        "Original red player reached the next visible loop corner.",
+        "Closed loop becomes an original filled red region.",
+        "Original red region is filled and Player 1 territory shows 07%.",
+        "Independent arrow input moves blue player after red closed territory."
+      ],
+      "limitations": [
+        "Representative local touchscreen gameplay only; complete campaigns and physical-device performance remain untested."
+      ]
+    }
+  }
+}

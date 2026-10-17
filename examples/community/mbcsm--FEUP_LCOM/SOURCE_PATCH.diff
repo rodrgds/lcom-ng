@@ -1,0 +1,265 @@
+--- a/proj/code/cursor.c
++++ b/proj/code/cursor.c
+@@ -36,7 +36,7 @@
+         *x = 0;
+ 
+     if (*y > get_v_res() - imgC.height)
+-        *y = get_v_res();
++        *y = get_v_res() - imgC.height;
+     else if (*y < 15)
+         *y = 15;
+ 
+@@ -58,7 +58,7 @@
+             uint16_t *ptr_VM = (uint16_t*)video_mem;
+             ptr_VM += (i * h_res + j);
+ 
+-            *ptr_VM = dynamicUMOUSEArray[i * h_res + j];
++            *ptr_VM = dynamicUMOUSEArray[(i - y_Cursor) * imgC.width + (j - x_Cursor)];
+         }
+     }
+ }
+@@ -78,7 +78,7 @@
+             ptr_VM += (i * h_res + j);
+ 
+             uint16_t color = *ptr_VM;
+-            dynamicUMOUSEArray[i * h_res + j] = color;
++            dynamicUMOUSEArray[(i - y_Cursor) * imgC.width + (j - x_Cursor)] = color;
+         }
+     }
+ }
+--- a/proj/code/font.c
++++ b/proj/code/font.c
+@@ -22,7 +22,7 @@
+ 
+     /*xpm_image_t imgData;
+     uint16_t *data = NULL;*/
+-    printf(font);
++    printf("%s", font);
+     for (int i = 0; i < size; i++){
+         if (text[i] == ' '){
+             x += imgTemplate.width;
+--- a/proj/code/game.c
++++ b/proj/code/game.c
+@@ -591,6 +591,8 @@
+ }
+ 
+ void shootBullet(int pullX, int pullY){
++    if (pullX == 0 && pullY == 0)
++        return;
+     bullet = malloc(sizeof(Bullet));
+     bullet -> id = 1;
+     bullet -> posX = MOUSE_PULL_START_X;
+@@ -646,10 +648,16 @@
+         srand ( time(NULL) );
+         int prob = rand() % 100;
+         if(prob < 50){
+-            blocks[totalBlocks].alive = true;
+-            blocks[totalBlocks].x = i;
+-            blocks[totalBlocks].y = 0;
+-            totalBlocks++;
++            int slot = 0;
++            while (slot < totalBlocks && blocks[slot].alive)
++                slot++;
++            if (slot == (int)(sizeof blocks / sizeof blocks[0]))
++                continue;
++            blocks[slot].alive = true;
++            blocks[slot].x = i;
++            blocks[slot].y = 0;
++            if (slot == totalBlocks)
++                totalBlocks++;
+         }
+     }
+     level++;
+--- a/proj/code/rtc.c
++++ b/proj/code/rtc.c
+@@ -196,48 +196,48 @@
+ }
+ 
+ char * get_current_date_and_time(bool to_print){
+-	char * date_and_time = malloc(20 * sizeof *date_and_time);	
+-	sprintf(date_and_time, "D20%02d/%02d/%02dT%02d:%02d:%02d\n", dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);
++	char * date_and_time = malloc(32 * sizeof *date_and_time);	
++	snprintf(date_and_time, 32, "D20%02d/%02d/%02dT%02d:%02d:%02d\n", dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second);
+ 	
+ 	if (to_print){
+ 		int month = dt.month;
+ 		switch (month)
+ 	{
+ 		case 1:
+-			sprintf(date_and_time, "%02d JAN 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
++			snprintf(date_and_time, 32, "%02d JAN 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
+ 			break;
+ 		case 2:
+-			sprintf(date_and_time, "%02d FEB 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
++			snprintf(date_and_time, 32, "%02d FEB 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
+ 			break;
+ 		case 3:
+-			sprintf(date_and_time, "%02d MAR 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
++			snprintf(date_and_time, 32, "%02d MAR 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
+ 			break;
+ 		case 4:
+-			sprintf(date_and_time, "%02d APR 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
++			snprintf(date_and_time, 32, "%02d APR 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
+ 			break;
+ 		case 5:
+-			sprintf(date_and_time, "%02d MAY 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
++			snprintf(date_and_time, 32, "%02d MAY 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
+ 			break;
+ 		case 6:
+-			sprintf(date_and_time, "%02d JUN 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
++			snprintf(date_and_time, 32, "%02d JUN 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
+ 			break;
+ 		case 7:
+-			sprintf(date_and_time, "%02d JUL 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
++			snprintf(date_and_time, 32, "%02d JUL 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
+ 			break;
+ 		case 8:
+-			sprintf(date_and_time, "%02d AUG 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
++			snprintf(date_and_time, 32, "%02d AUG 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
+ 			break;
+ 		case 9:
+-			sprintf(date_and_time, "%02d SEP 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
++			snprintf(date_and_time, 32, "%02d SEP 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
+ 			break;
+ 		case 10:
+-			sprintf(date_and_time, "%02d OCT 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
++			snprintf(date_and_time, 32, "%02d OCT 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
+ 			break;
+ 		case 11:
+-			sprintf(date_and_time, "%02d NOV 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
++			snprintf(date_and_time, 32, "%02d NOV 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
+ 			break;
+ 		case 12:
+-			sprintf(date_and_time, "%02d DEZ 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
++			snprintf(date_and_time, 32, "%02d DEZ 20%02d %02d:%02d:%02d\n", dt.day,  dt.year, dt.hour, dt.minute, dt.second);
+ 			break;
+ 	
+ 		default:
+--- a/proj/code/score.c
++++ b/proj/code/score.c
+@@ -1,89 +1,36 @@
+ #include <lcom/lcf.h>
+ 
+ #include "score.h"
++#include <limits.h>
+ 
+ 
+ 
+ void loadScores(){
++    static char dates[5][32];
++    int *values[] = {&s.scoreOne, &s.scoreTwo, &s.scoreThree, &s.scoreFour, &s.scoreFive};
++    char **targets[] = {&s.scoreOneDate, &s.scoreTwoDate, &s.scoreThreeDate, &s.scoreFourDate, &s.scoreFiveDate};
++    s = (Scores){0};
+     FILE *best_scores = fopen("/z.txt", "r");
+-
+-    printf("Try");
+-    if(best_scores == NULL) {
+-        //perror("File opening failed");
+-        printf("File not open");
++    if (best_scores == NULL) {
+         best_scores = fopen("/z.txt", "w");
+-        fclose(best_scores);
++        if (best_scores != NULL)
++            fclose(best_scores);
+         return;
+     }
+-
+-    printf("Opened!");
+-
+-    //if (feof(best_scores)){
+-        s.scoreOne = 0;
+-        s.scoreTwo = 0;
+-        s.scoreThree = 0;
+-        s.scoreFour = 0;
+-        s.scoreFive = 0;
+-      //  return;
+-    //}
+-
+-    if (feof(best_scores))
+-        return;
+-
+-    char score[5];
+-    fgets(score, 5, best_scores);
+-    s.scoreOne = atoi(score);
+-    fgets(s.scoreOneDate, 20, best_scores);
+-    if (feof(best_scores)){
+-        s.scoreTwo = 0;
+-        s.scoreThree = 0;
+-        s.scoreFour = 0;
+-        s.scoreFive = 0;
+-        return;
++    for (unsigned i = 0; i < 5; i++) {
++        char line[32];
++        if (fgets(line, sizeof line, best_scores) == NULL)
++            break;
++        char *end;
++        long value = strtol(line, &end, 10);
++        if (end == line || value < 0 || value > INT_MAX || (*end != ';' && *end != '\n'))
++            break;
++        if (fgets(dates[i], sizeof dates[i], best_scores) == NULL)
++            break;
++        *values[i] = (int)value;
++        *targets[i] = dates[i];
+     }
+-
+-    printf("Read 1");
+-
+-    fgets(score, 5, best_scores);
+-    s.scoreTwo = atoi(score);
+-    fgets(s.scoreTwoDate, 20, best_scores);
+-    if (feof(best_scores)){
+-        s.scoreThree = 0;
+-        s.scoreFour = 0;
+-        s.scoreFive = 0;
+-        return;
+-    }
+-    
+-    printf("Read 2");
+-
+-
+-    fgets(score, 5, best_scores);
+-    s.scoreThree = atoi(score);
+-    fgets(s.scoreThreeDate, 20, best_scores);
+-    if (feof(best_scores)){
+-        s.scoreFour = 0;
+-        s.scoreFive = 0;
+-        return;
+-    }
+-
+-    printf("Read 3");
+-
+-    fgets(score, 5, best_scores);
+-    s.scoreFour = atoi(score);
+-    fgets(s.scoreFourDate, 20, best_scores);
+-    if (feof(best_scores)){
+-        s.scoreFive = 0;
+-        return;
+-    }
+-    
+-    printf("Read 4");
+-
+-    fgets(score, 5, best_scores);
+-    s.scoreFive = atoi(score);
+-    fgets(s.scoreFiveDate, 20, best_scores);
+-    if (feof(best_scores))
+-        return;
+-    printf("Read 5");
++    fclose(best_scores);
+ }
+ 
+ void saveScores(){
+@@ -96,12 +43,12 @@
+     }
+ 
+     printf("sc 1");
+-    char *score = NULL;
++    char score[32];
+     if (s.scoreOne != 0){
+         printf("sc 2");
+         sprintf(score, "%d;\n", s.scoreOne);
+         printf("sc 3");
+-        printf(score);
++        printf("%s", score);
+ 
+         
+         fputs(score, best_scores);

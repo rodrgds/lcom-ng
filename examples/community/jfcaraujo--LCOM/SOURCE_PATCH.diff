@@ -1,0 +1,150 @@
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -254,7 +254,7 @@
+   game->numFireballs = 0;
+ 
+   game->name->size = 0;
+-  memset(game->name->name, ' ', 13);
++  memset(game->name->name, 0, 13);
+   game->name->letter = '.';
+ }
+ 
+@@ -264,11 +264,12 @@
+   }
+   else if (game->name->letter == '-' && game->name->size > 0) {
+     game->name->size--;
+-    game->name->name[game->name->size] = ' ';
++    game->name->name[game->name->size] = '\0';
+   }
+   else if (game->name->size < 12) {
+     game->name->name[game->name->size] = game->name->letter;
+     game->name->size++;
++    game->name->name[game->name->size] = '\0';
+   } 
+ }
+ 
+@@ -305,7 +306,6 @@
+   free(game->C.bytes);
+   free(game->D.bytes);
+   free(game->E.bytes);
+-  free(game->F.bytes);
+   free(game->F.bytes);
+   free(game->G.bytes);
+   free(game->H.bytes);
+--- a/proj/src/graphics.c
++++ b/proj/src/graphics.c
+@@ -101,39 +101,17 @@
+ 
+ int (print_sprite)(int16_t x, int16_t y, xpm_image_t xpm)
+ {
+-  uint16_t width = xpm.width, height = xpm.height;
+-  uint8_t* sprite = xpm.bytes;
+-  uint8_t* pixel_mem;
+-
+-  uint8_t blue = 0;
+-  uint8_t green = 0;
+-  uint8_t red = 0;
+-  uint32_t color = 0;
+-
+-  //Copys the sprite to the VRAM
+-  for(unsigned int line = 0; line < height; line++) {
+-    pixel_mem = second_buffer + (x + h_res * (y + line)) * bytesPerPixel; //Calculates the VRAM address for the pixel at line and col 
+-    for(unsigned int col = 0; col < width; col++) {
+-
+-      blue = *sprite;
+-      green = *(sprite + 1);
+-      red = *(sprite + 2);
+-
+-      color = red<<16 | green<<8 | blue;
+-
+-      if(color != IGNORE_COLOR) {
+-        for(int byteNo = 0; byteNo < bytesPerPixel; byteNo++) {
+-          *pixel_mem = *sprite;
+-          sprite++;
+-          pixel_mem++;
+-        }
+-      }
+-      else {
+-        for(int byteNo = 0; byteNo < bytesPerPixel; byteNo++) {
+-          sprite++;
+-          pixel_mem++;
+-        }
+-      }
++  for (unsigned line = 0; line < xpm.height; ++line) {
++    int screen_y = y + (int)line;
++    if (screen_y < 0 || screen_y >= (int)v_res) continue;
++    for (unsigned col = 0; col < xpm.width; ++col) {
++      int screen_x = x + (int)col;
++      if (screen_x < 0 || screen_x >= (int)h_res) continue;
++      const uint8_t *pixel = xpm.bytes + (line * xpm.width + col) * bytesPerPixel;
++      uint32_t color = pixel[0] | ((uint32_t)pixel[1] << 8) | ((uint32_t)pixel[2] << 16);
++      if (color != IGNORE_COLOR)
++        memcpy(second_buffer + (screen_x + h_res * screen_y) * bytesPerPixel,
++               pixel, bytesPerPixel);
+     }
+   }
+   return 0;
+--- a/proj/src/highscores.c
++++ b/proj/src/highscores.c
+@@ -212,12 +212,12 @@
+ 
+ void (print_date)(Game* game, Date* date, int x, int y)
+ {
+-  char number[2];
++  char number[11];
+   if ((get_number_length((int) date->month)+(get_number_length((int) date->day)))==4)
+     x=545;
+ 
+   //Day
+-  sprintf(number, "%d", date->day);
++  snprintf(number, sizeof(number), "%u", date->day);
+   print_string(game, x, y, number, get_number_length(date->day));
+ 
+   //Slash
+@@ -226,7 +226,7 @@
+ 
+   //Month
+   x += 11;
+-  sprintf(number, "%d", date->month);
++  snprintf(number, sizeof(number), "%u", date->month);
+   print_string(game, x, y, number, get_number_length((int) date->month));
+ 
+   //Slash
+@@ -235,7 +235,7 @@
+ 
+   //Year
+   x += 11;
+-  sprintf(number, "%d", date->year);
++  snprintf(number, sizeof(number), "%u", date->year);
+   print_string(game, x, y, number, get_number_length((int) date->year));
+   
+   //Trace
+@@ -244,7 +244,7 @@
+ 
+   //Hour
+   x += 11;
+-  sprintf(number, "%d", date->hour);
++  snprintf(number, sizeof(number), "%u", date->hour);
+   if (get_number_length((int) date->hour)==1){
+     number[1] = number[0];
+     number[0] = '0';
+@@ -258,7 +258,7 @@
+ 
+   //Minute
+   x += 11;
+-  sprintf(number, "%d", date->minute);
++  snprintf(number, sizeof(number), "%u", date->minute);
+   if (get_number_length((int) date->minute)==1){
+     number[1]=number[0];
+     number[0] = '0';
+--- a/proj/src/rotation.c
++++ b/proj/src/rotation.c
+@@ -7,7 +7,7 @@
+   uint16_t height = sprite.height;
+   size_t sprite_size = width * height * game->bytesPerPixel;
+ 
+-  uint8_t* new_sprite = (uint8_t*) malloc(sizeof(sprite_size));
++  uint8_t* new_sprite = (uint8_t*) malloc(sprite_size);
+ 
+   double nx_x = rotate_x(-angle, 1.0, 0.0);
+   double nx_y = rotate_y(-angle, 1.0, 0.0);

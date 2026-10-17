@@ -50,6 +50,42 @@ def sdl_archive():
     return archive
 
 
+def finalize_apk(work, name):
+    """Publish Gradle's APK inside the staging directory and write its checksum."""
+    target = work / name
+    # Staging and Gradle output share a filesystem. Moving avoids a second APK
+    # allocation, which can be hundreds of megabytes for a large collection.
+    (work / 'app/build/outputs/apk/debug/app-debug.apk').replace(target)
+    checksum = hashlib.sha256()
+    with target.open('rb') as apk:
+        for block in iter(lambda: apk.read(1024 * 1024), b''):
+            checksum.update(block)
+    (work / (name + '.sha256')).write_text(checksum.hexdigest() + '  ' + name + '\n')
+
+
+
+def write_asset_manifest(root):
+    """Describe exactly the staged assets that Android is allowed to package."""
+    # Match the explicit metadata exclusions in app/build.gradle. Broad dot-file
+    # and underscore rules stay disabled because original games use those names.
+    metadata = {'.svn', '.git', '.ds_store', 'cvs', 'thumbs.db', 'picasa.ini'}
+    for path in sorted(root.rglob('*'), key=lambda path: len(path.parts), reverse=True):
+        name = path.name.lower()
+        if name in metadata or name.endswith('.scc') or name.endswith('~'):
+            if path.is_dir(): shutil.rmtree(path)
+            else: path.unlink()
+    names = sorted(path.relative_to(root).as_posix() for path in root.rglob('*') if path.is_file())
+    if any('\n' in name or '\r' in name for name in names) or any(
+            name in names for name in ('lcom-assets.txt', 'lcom-assets-version.txt')):
+        raise source_project.compat.BuildError('Asset filenames conflict with the Android asset manifest')
+    digest = hashlib.sha256()
+    for name in names:
+        digest.update(name.encode() + b'\0')
+        digest.update(hashlib.sha256((root / name).read_bytes()).digest())
+    (root / 'lcom-assets.txt').write_text('\n'.join(names) + ('\n' if names else ''))
+    (root / 'lcom-assets-version.txt').write_text(digest.hexdigest())
+
+
 def build(args):
     if (args.project / 'lcom.collection.json').is_file():
         sys.path.insert(0, str(SDK))
@@ -141,15 +177,7 @@ def build(args):
                 app.find('activity').set('{http://schemas.android.com/apk/res/android}screenOrientation', value)
             tree.write(manifest, encoding='utf-8', xml_declaration=True)
         assets = work / 'game-assets'
-        names = sorted(p.relative_to(assets).as_posix() for p in assets.rglob('*') if p.is_file())
-        if any('\n' in name or '\r' in name for name in names) or 'lcom-assets.txt' in names or 'lcom-assets-version.txt' in names:
-            raise source_project.compat.BuildError('Asset filenames conflict with the Android asset manifest')
-        version = hashlib.sha256()
-        for name in names:
-            version.update(name.encode() + b'\0')
-            version.update(hashlib.sha256((assets / name).read_bytes()).digest())
-        (assets / 'lcom-assets.txt').write_text('\n'.join(names) + ('\n' if names else ''))
-        (assets / 'lcom-assets-version.txt').write_text(version.hexdigest())
+        write_asset_manifest(assets)
         (work / 'gradlew').chmod(0o755)
         if settings['preview']:
             shutil.copy2(settings['preview'], work / 'preview.png')
@@ -159,10 +187,8 @@ def build(args):
                     'iconSha256': hashlib.sha256(icon_bytes).hexdigest() if icon_bytes else None}
         if not args.project_only:
             subprocess.run([str(work / 'gradlew'), '--no-daemon', '--console=plain', 'assembleDebug'], cwd=work, check=True)
-            shutil.copy2(work / 'app/build/outputs/apk/debug/app-debug.apk', work / 'game.apk')
+            finalize_apk(work, 'game.apk')
             metadata['apk'] = 'game.apk'
-            digest = hashlib.sha256((work / 'game.apk').read_bytes()).hexdigest()
-            (work / 'game.apk.sha256').write_text(digest + '  game.apk\n')
             for folder in ('.gradle', 'app/build', 'app/.cxx'): shutil.rmtree(work / folder, ignore_errors=True)
         for source, digest in info['sources'].items():
             if hashlib.sha256(Path(source).read_bytes()).hexdigest() != digest:

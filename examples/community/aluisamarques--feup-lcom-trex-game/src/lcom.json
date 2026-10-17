@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "name": "T-Rex Run",
+  "description": "Jump over cacti and duck under birds in the dinosaur runner.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Start / Restart",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Jump",
+          "key": "UP",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Duck",
+          "key": "DOWN",
+          "position": "bottom-left"
+        }
+      ],
+      "pads": []
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "src/high_score.txt"
+    ]
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "T-Rex Runner"
+}

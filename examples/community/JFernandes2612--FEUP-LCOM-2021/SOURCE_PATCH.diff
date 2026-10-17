@@ -1,0 +1,99 @@
+--- a/proj/game_helper.c
++++ b/proj/game_helper.c
+@@ -146,7 +146,7 @@
+   update_mouse_position(game->cursor, mouse_pack.delta_x, mouse_pack.delta_y);
+   if (game->game_state.menu == IN_GAME)
+   {
+-    if (mouse_pack.lb && ((struct SpearMan *)(game->player_1)->entity_info)->channeling_special && game->player_num == PLAYER_1)
++    if (mouse_pack.lb && game->player_num == PLAYER_1 && ((struct SpearMan *)(game->player_1)->entity_info)->channeling_special)
+     {
+       if (!((((struct SpearMan *)(game->player_1)->entity_info)->target_x == ((struct SpearMan *)(game->player_1)->entity_info)->x && ((struct SpearMan *)(game->player_1)->entity_info)->target_y == ((struct SpearMan *)(game->player_1)->entity_info)->y) || (!(((struct SpearMan *)(game->player_1)->entity_info)->target_x == ((struct SpearMan *)(game->player_1)->entity_info)->x && ((struct SpearMan *)(game->player_1)->entity_info)->target_y <= ((struct SpearMan *)(game->player_1)->entity_info)->y + ((struct SpearMan *)(game->player_1)->entity_info)->special_range && ((struct SpearMan *)(game->player_1)->entity_info)->target_y >= (char)(((struct SpearMan *)(game->player_1)->entity_info)->y - ((struct SpearMan *)(game->player_1)->entity_info)->special_range)) && !(((struct SpearMan *)(game->player_1)->entity_info)->target_y == ((struct SpearMan *)(game->player_1)->entity_info)->y && ((struct SpearMan *)(game->player_1)->entity_info)->target_x <= ((struct SpearMan *)(game->player_1)->entity_info)->x + ((struct SpearMan *)(game->player_1)->entity_info)->special_range && ((struct SpearMan *)(game->player_1)->entity_info)->target_x >= (char)(((struct SpearMan *)(game->player_1)->entity_info)->x - ((struct SpearMan *)(game->player_1)->entity_info)->special_range)))))
+       {
+@@ -162,7 +162,7 @@
+           send_data_uart((char)game->action_request_player_1);
+       }
+     }
+-    else if (mouse_pack.lb && ((struct SpearMan *)(game->player_2)->entity_info)->channeling_special && game->player_num == PLAYER_2)
++    else if (mouse_pack.lb && game->player_num == PLAYER_2 && ((struct SpearMan *)(game->player_2)->entity_info)->channeling_special)
+     {
+       if (!((((struct SpearMan *)(game->player_2)->entity_info)->target_x == ((struct SpearMan *)(game->player_2)->entity_info)->x && ((struct SpearMan *)(game->player_2)->entity_info)->target_y == ((struct SpearMan *)(game->player_2)->entity_info)->y) || (!(((struct SpearMan *)(game->player_2)->entity_info)->target_x == ((struct SpearMan *)(game->player_2)->entity_info)->x && ((struct SpearMan *)(game->player_2)->entity_info)->target_y <= ((struct SpearMan *)(game->player_2)->entity_info)->y + ((struct SpearMan *)(game->player_2)->entity_info)->special_range && ((struct SpearMan *)(game->player_2)->entity_info)->target_y >= (char)(((struct SpearMan *)(game->player_2)->entity_info)->y - ((struct SpearMan *)(game->player_2)->entity_info)->special_range)) && !(((struct SpearMan *)(game->player_2)->entity_info)->target_y == ((struct SpearMan *)(game->player_2)->entity_info)->y && ((struct SpearMan *)(game->player_2)->entity_info)->target_x <= ((struct SpearMan *)(game->player_2)->entity_info)->x + ((struct SpearMan *)(game->player_2)->entity_info)->special_range && ((struct SpearMan *)(game->player_2)->entity_info)->target_x >= (char)(((struct SpearMan *)(game->player_2)->entity_info)->x - ((struct SpearMan *)(game->player_2)->entity_info)->special_range)))))
+       {
+@@ -178,9 +178,9 @@
+           send_data_uart((char)game->action_request_player_2);
+       }
+     }
+-    if (mouse_pack.rb && ((struct SpearMan *)(game->player_1)->entity_info)->channeling_special && game->player_num == PLAYER_1)
++    if (mouse_pack.rb && game->player_num == PLAYER_1 && ((struct SpearMan *)(game->player_1)->entity_info)->channeling_special)
+       ((struct SpearMan *)(game->player_1)->entity_info)->channeling_special = false;
+-    else if (mouse_pack.rb && ((struct SpearMan *)(game->player_2)->entity_info)->channeling_special && game->player_num == PLAYER_2)
++    else if (mouse_pack.rb && game->player_num == PLAYER_2 && ((struct SpearMan *)(game->player_2)->entity_info)->channeling_special)
+       ((struct SpearMan *)(game->player_2)->entity_info)->channeling_special = false;
+   }
+   else if (game->game_state.menu == MAIN_MENU && mouse_pack.lb)
+--- a/proj/graphics.c
++++ b/proj/graphics.c
+@@ -323,44 +323,30 @@
+ int file_to_xpm(const char *filepath, xpm_image_t *img)
+ {
+     FILE *file = fopen(filepath, "r");
+-    if (file == NULL)
+-    {
+-        return 1;
+-    }
+-    char *buff = NULL;
++    if (file == NULL) return 1;
++    char line[1152];
+     size_t counter = 0;
+-    size_t total_size = 0;
+     char **xpm = NULL;
+-    while (!feof(file))
+-    {
+-        buff = (char *)malloc(1152); //for our art this should work just fine
+-        fgets(buff, 1152, file);
+-        buff = (char *)realloc(buff, strlen(buff));
+-        for (size_t i = 0; i != strlen(buff); i++)
+-        {
+-            if (buff[i] == '\n' || buff[i] == '\r')
+-            {
+-                buff[i] = '\0';
+-                break;
+-            }
+-        }
+-        total_size += strlen(buff);
+-        xpm = (char **)realloc(xpm, total_size);
+-        xpm[counter] = buff;
+-        counter++;
+-    }
++    int result = 1;
++    while (fgets(line, sizeof(line), file) != NULL)
++    {
++        size_t length = strcspn(line, "\r\n");
++        char *buff = malloc(length + 1);
++        if (buff == NULL) goto cleanup;
++        memcpy(buff, line, length);
++        buff[length] = '\0';
++        char **next = realloc(xpm, (counter + 1) * sizeof(*xpm));
++        if (next == NULL) { free(buff); goto cleanup; }
++        xpm = next;
++        xpm[counter++] = buff;
++    }
++    if (!ferror(file) && counter != 0)
++        result = xpm_load((xpm_map_t)xpm, XPM_8_8_8_8, img) == NULL ? 2 : 0;
++cleanup:
+     fclose(file);
+-
+-    enum xpm_image_type type = XPM_8_8_8_8;
+-    if (xpm_load((xpm_map_t)(xpm), type, img) == NULL)
+-        return 2;
+-
+-    for (size_t i = 0; i != counter; i++)
+-    {
+-        free(xpm[i]);
+-    }
++    for (size_t i = 0; i < counter; i++) free(xpm[i]);
+     free(xpm);
+-    return 0;
++    return result;
+ }
+ 
+ int paint_xpm(const xpm_image_t *img, const uint16_t start_x, const uint16_t start_y, bool background)

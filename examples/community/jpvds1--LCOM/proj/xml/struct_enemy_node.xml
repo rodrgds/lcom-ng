@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="struct_enemy_node" kind="struct" language="C++" prot="public">
+    <compoundname>EnemyNode</compoundname>
+    <includes refid="_enemy_list_8h" local="no">EnemyList.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_enemy" kindref="compound">Enemy</ref> *</type>
+        <definition>struct Enemy* EnemyNode::enemy</definition>
+        <argsstring></argsstring>
+        <name>enemy</name>
+        <qualifiedname>EnemyNode::enemy</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" line="31" column="17" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> *</type>
+        <definition>struct EnemyNode* EnemyNode::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <qualifiedname>EnemyNode::next</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" line="32" column="21" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>Enemy</label>
+        <link refid="struct_enemy"/>
+      </node>
+      <node id="1">
+        <label>EnemyNode</label>
+        <link refid="struct_enemy_node"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>enemy</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" line="29" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" bodystart="30" bodyend="33"/>
+    <listofallmembers>
+      <member refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" prot="public" virt="non-virtual"><scope>EnemyNode</scope><name>enemy</name></member>
+      <member refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" prot="public" virt="non-virtual"><scope>EnemyNode</scope><name>next</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

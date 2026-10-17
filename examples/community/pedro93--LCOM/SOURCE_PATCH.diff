@@ -1,0 +1,32 @@
+--- a/src/video_gr.c
++++ b/src/video_gr.c
+@@ -21,7 +21,7 @@
+ static unsigned v_res;		/* Vertical screen resolution in pixels */
+ static unsigned bits_per_pixel; /* Number of VRAM bits per pixel */
+ 
+-void * vg_init(unsigned long mode)
++void * vg_init(unsigned short mode)
+ {
+ 	struct reg86u reg86;
+ 	struct mem_range mrange;
+@@ -94,16 +94,15 @@
+ 	int pixels;
+ 	ptr=video_mem;
+ 
+-	if((y>v_res)||(x>h_res))
++	if((y>=v_res)||(x>=h_res))
+ 	{
+ 		return -1;
+ 	}
+ 
+ 	if(color == 30)
+-		return;
+-
+-	ptr += y*h_res+x;
+-	ptr++;
++		return 0;
++
++	ptr += ((size_t)y*h_res+x) * (bits_per_pixel/8);
+ 	for(pixels=0;pixels<bits_per_pixel/8;pixels++)
+ 	{
+ 		*ptr=(char)color;

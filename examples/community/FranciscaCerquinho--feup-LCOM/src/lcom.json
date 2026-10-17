@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "name": "Super Mario: Pipe Runner",
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "images"
+    ],
+    "pathAliases": {
+      "/home/lcom/lcom1617-t1g04/proj": ".",
+      "home/lcom/lcom1617-t1g04/proj": "."
+    }
+  },
+  "mobile": {
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "pointer": "off",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "actions": [
+        {
+          "key": "S",
+          "label": "Start",
+          "position": "top-left"
+        },
+        {
+          "key": "SPACE",
+          "label": "Jump",
+          "position": "bottom-right"
+        }
+      ]
+    },
+    "fullscreen": true
+  },
+  "description": "Time each jump to clear the approaching pipes in the original automatically scrolling Mario runner.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

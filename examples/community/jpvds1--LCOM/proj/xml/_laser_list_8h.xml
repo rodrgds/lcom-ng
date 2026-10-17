@@ -1,0 +1,424 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="_laser_list_8h" kind="file" language="C++">
+    <compoundname>LaserList.h</compoundname>
+    <includes local="no">lcom/lcf.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includedby refid="_laser_list_8c" local="yes">C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c</includedby>
+    <includedby refid="proj_8h" local="yes">C:/MINIX-LCOM/shared/g3/proj/src/proj.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h</label>
+        <link refid="_laser_list_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>lcom/lcf.h</label>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="5">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c</label>
+        <link refid="_handlers_8c"/>
+      </node>
+      <node id="4">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h</label>
+        <link refid="_handlers_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.c</label>
+        <link refid="_levels_8c"/>
+      </node>
+      <node id="6">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.h</label>
+        <link refid="_levels_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c</label>
+        <link refid="_laser_list_8c"/>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h</label>
+        <link refid="_laser_list_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.c</label>
+        <link refid="_menu_8c"/>
+      </node>
+      <node id="8">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.h</label>
+        <link refid="_menu_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.c</label>
+        <link refid="_missile_8c"/>
+      </node>
+      <node id="10">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.h</label>
+        <link refid="_missile_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/proj.c</label>
+        <link refid="proj_8c"/>
+      </node>
+      <node id="3">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/proj.h</label>
+        <link refid="proj_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_laser" prot="public">Laser</innerclass>
+    <innerclass refid="struct_laser_node" prot="public">LaserNode</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_laser_list_8h_1a427eb60c29fb865ac84f1a24018cb34a" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> *</type>
+        <definition>struct LaserNode* LaserFirst</definition>
+        <argsstring></argsstring>
+        <name>LaserFirst</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="14" column="23" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c" bodystart="3" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" declline="14" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="_laser_list_8h_1ac65494ef1e75d3aa007f2c787cc50eef" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> *</type>
+        <definition>struct LaserNode* LaserAdded</definition>
+        <argsstring></argsstring>
+        <name>LaserAdded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="15" column="23" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c" bodystart="4" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" declline="15" declcolumn="23"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_laser_list_8h_1ad7bc9888fdba8df448ef03ff735def4e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ll_printNode</definition>
+        <argsstring>(const struct LaserNode *node)</argsstring>
+        <name>ll_printNode</name>
+        <param>
+          <type>const struct <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>prints current position of <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> node </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_laser_node" kindref="compound">LaserNode</ref> to be printed </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="35" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c" bodystart="6" bodyend="16" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" declline="35" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_laser_list_8h_1ab68ef7c381ce3c6546c7b8aaaed598b8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> *</type>
+        <definition>struct LaserNode * ll_getNewNode</definition>
+        <argsstring>(uint16_t x, uint16_t y, int user)</argsstring>
+        <name>ll_getNewNode</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+<para>creates a new node with position x and y (user = 1 if comes from user and 0 if comes from enemy), separated from the list and returns it </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x position of the node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y position of the node </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>set to 1 if laser comes from user and 0 if it comes from an enemy </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>struct LaserNode* Return the new node with the passed position and user values </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="44" column="16" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c" bodystart="18" bodyend="46" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" declline="44" declcolumn="16"/>
+      </memberdef>
+      <memberdef kind="function" id="_laser_list_8h_1a091c6286c8ee046f1133cdf57ef83483" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ll_printList</definition>
+        <argsstring>(const struct LaserNode *list)</argsstring>
+        <name>ll_printList</name>
+        <param>
+          <type>const struct <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+<para>prints whole list of LaserNodes </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>list</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_laser_node" kindref="compound">LaserNode</ref> from where to start printing LaserList </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="50" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c" bodystart="48" bodyend="66" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" declline="50" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_laser_list_8h_1aeb9fc8005b3aefd9b0977d791275c2f0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ll_CleanUp</definition>
+        <argsstring>(struct LaserNode *list)</argsstring>
+        <name>ll_CleanUp</name>
+        <param>
+          <type>struct <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+<para>frees allocated memory of all nodes </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>list</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_laser_node" kindref="compound">LaserNode</ref> from where to start freeing LaserList </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="56" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c" bodystart="68" bodyend="79" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" declline="56" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_laser_list_8h_1afcee78567a6e390acc586b5eeecc49f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ll_CleanNode</definition>
+        <argsstring>(struct LaserNode *cnode)</argsstring>
+        <name>ll_CleanNode</name>
+        <param>
+          <type>struct <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> *</type>
+          <declname>cnode</declname>
+        </param>
+        <briefdescription>
+<para>frees allocated memory of a <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cnode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_laser_node" kindref="compound">LaserNode</ref> whose allocated memory should be freed </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="62" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c" bodystart="81" bodyend="85" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" declline="62" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_laser_list_8h_1add3d53514079b9071c58af71c70ad294" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ll_removeFirst</definition>
+        <argsstring>()</argsstring>
+        <name>ll_removeFirst</name>
+        <briefdescription>
+<para>removes first <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> of the list </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="67" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c" bodystart="87" bodyend="99" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" declline="67" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_laser_list_8h_1aa00f9f85733f216d1682d5cd313726a0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ll_removeNode</definition>
+        <argsstring>(struct LaserNode *rnode)</argsstring>
+        <name>ll_removeNode</name>
+        <param>
+          <type>struct <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> *</type>
+          <declname>rnode</declname>
+        </param>
+        <briefdescription>
+<para>removes selected <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rnode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_laser_node" kindref="compound">LaserNode</ref> to be removed </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="73" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c" bodystart="101" bodyend="137" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" declline="73" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_laser_list_8h_1a1bda90777ba7c3fd7d223f8f665d95b0" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void ll_addNode</definition>
+        <argsstring>(const struct LaserNode *newNode)</argsstring>
+        <name>ll_addNode</name>
+        <param>
+          <type>const struct <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> *</type>
+          <declname>newNode</declname>
+        </param>
+        <briefdescription>
+<para>add a new <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> to the list </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newNode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_laser_node" kindref="compound">LaserNode</ref> to be added to the LaserList </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="79" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c" bodystart="139" bodyend="162" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" declline="79" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Header file containing declarations of functions, variables and structs needed to use the laser list. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>LASERLIST_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LASERLIST_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;lcom/lcf.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_laser_node" kindref="compound">LaserNode</ref><sp/>*<ref refid="_laser_list_8h_1a427eb60c29fb865ac84f1a24018cb34a" kindref="member">LaserFirst</ref>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_laser_node" kindref="compound">LaserNode</ref><sp/>*<ref refid="_laser_list_8h_1ac65494ef1e75d3aa007f2c787cc50eef" kindref="member">LaserAdded</ref><sp/>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="struct_laser" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_laser" kindref="compound">Laser</ref></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="19" refid="struct_laser_1a522693c80445c37cd2d80fe1e9200596" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="struct_laser_1a522693c80445c37cd2d80fe1e9200596" kindref="member">x</ref>;</highlight></codeline>
+<codeline lineno="20" refid="struct_laser_1aa919f2670802c28e00da388378d56e41" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="struct_laser_1aa919f2670802c28e00da388378d56e41" kindref="member">y</ref>;</highlight></codeline>
+<codeline lineno="21" refid="struct_laser_1a4869422397f50e91e94920b2d33e471a" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="struct_laser_1a4869422397f50e91e94920b2d33e471a" kindref="member">user</ref>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="struct_laser_node" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_laser_node" kindref="compound">LaserNode</ref></highlight></codeline>
+<codeline lineno="25"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="26" refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_laser" kindref="compound">Laser</ref>*<sp/><ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>;</highlight></codeline>
+<codeline lineno="27" refid="struct_laser_node_1ad5813af92553bdb32e7b288d61e32c9d" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_laser_node" kindref="compound">LaserNode</ref>*<sp/><ref refid="struct_laser_node_1ad5813af92553bdb32e7b288d61e32c9d" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_laser_list_8h_1ad7bc9888fdba8df448ef03ff735def4e" kindref="member">ll_printNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_laser_node" kindref="compound">LaserNode</ref><sp/>*node);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_laser_node" kindref="compound">LaserNode</ref><sp/>*<ref refid="_laser_list_8h_1ab68ef7c381ce3c6546c7b8aaaed598b8" kindref="member">ll_getNewNode</ref>(uint16_t<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>uint16_t<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>user);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_laser_list_8h_1a091c6286c8ee046f1133cdf57ef83483" kindref="member">ll_printList</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_laser_node" kindref="compound">LaserNode</ref><sp/>*list);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_laser_list_8h_1aeb9fc8005b3aefd9b0977d791275c2f0" kindref="member">ll_CleanUp</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_laser_node" kindref="compound">LaserNode</ref><sp/>*list);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_laser_list_8h_1afcee78567a6e390acc586b5eeecc49f9" kindref="member">ll_CleanNode</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_laser_node" kindref="compound">LaserNode</ref><sp/>*cnode);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_laser_list_8h_1add3d53514079b9071c58af71c70ad294" kindref="member">ll_removeFirst</ref>();</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_laser_list_8h_1aa00f9f85733f216d1682d5cd313726a0" kindref="member">ll_removeNode</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_laser_node" kindref="compound">LaserNode</ref><sp/>*rnode);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_laser_list_8h_1a1bda90777ba7c3fd7d223f8f665d95b0" kindref="member">ll_addNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_laser_node" kindref="compound">LaserNode</ref><sp/>*newNode);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//LASERLIST_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "Minix Vice",
+  "description": "Choose a car and race through the original Minix Vice challenge.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "H"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Select / Fire",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "repeatKeys": [
+        "A",
+        "D",
+        "W",
+        "S"
+      ],
+      "tapDuration": 100
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "minix-vice/res"
+    ],
+    "pathAliases": {
+      "/home/minix-vice": "minix-vice"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

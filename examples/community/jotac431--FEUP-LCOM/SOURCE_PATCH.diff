@@ -1,0 +1,11 @@
+--- a/proj/src/devices/video.c
++++ b/proj/src/devices/video.c
+@@ -55,6 +55,8 @@
+ }
+ 
+ int draw_pixel(uint16_t x, uint16_t y, uint32_t color){
++
++  if (x >= vmi_p.XResolution || y >= vmi_p.YResolution) return 1;
+ 
+   char * adress = (char *) video_mem + (vmi_p.XResolution * y + x)*bytes_per_pixel;
+ 

@@ -1,0 +1,21 @@
+--- a/proj/rtc.c
++++ b/proj/rtc.c
+@@ -197,5 +197,5 @@
+     util_sys_inb(RTC_DATA_REG, &reg_b);
+     reg_b = reg_b & (~BIT(AIE));
+     sys_outb(RTC_ADDR_REG, REGISTER_B);
+-    sys_outb(RTC_DATA_REG, &reg_b);
+-}
++    sys_outb(RTC_DATA_REG, reg_b);
++}
+--- a/proj/highscore.c
++++ b/proj/highscore.c
+@@ -62,7 +62,7 @@
+ 
+ char *getDate()
+ {
+-    char *date = malloc(10 * sizeof(char));
++    char *date = malloc(11 * sizeof(char));
+     struct date d = get_date();
+     int size = 0;
+     int d1, m1, y1;

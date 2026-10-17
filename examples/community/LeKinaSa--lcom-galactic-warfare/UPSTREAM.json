@@ -1,0 +1,97 @@
+{
+  "repository": "https://github.com/LeKinaSa/lcom-galactic-warfare",
+  "revision": "077cd9d1ccce92605e3bfa0bea5e2c2ce11fdbdf",
+  "project": "proj/src",
+  "sourceHashes": {
+    "proj/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/.vscode/c_cpp_properties.json": "6f9a099cc229bd7e9641f3077b756756ecfeb1b19bf7b306134dc3ca2781f99c",
+    "proj/.vscode/extensions.json": "3e09bd46550d511bd92c8d4603eb976dcbc2310583ef905ba96fbb391d8a718c",
+    "proj/.vscode/settings.json": "2bef0d9d638ec0b6483c7e35487150e78bad900f1ffd78387b6e1acc849ae5da",
+    "proj/res/Background.xpm": "f222a71228db27c58aeb961a657e6f3ed61b1d1491edf53876e557d06833f52c",
+    "proj/res/Bullet.xpm": "2eb3a023b2ef8a556c37bdc5a29c8d43dc646623e020d589426f4c1bcf07f733",
+    "proj/res/BulletEnemy.xpm": "ad7fce88049682b3cd222db1210bf882e099f4b728fb240529a61849e8912e25",
+    "proj/res/Cursor.xpm": "8a7159d9540bc289c14366941f49d7b86483b2901f4b6e88691051f2e7cff54a",
+    "proj/res/DamagePowerup.xpm": "a368d5c5030978e836749539365239e19a130285fb49d391ad0249a610fdb63e",
+    "proj/res/GameOverPlayer1.xpm": "03d1039c4cafbb7bdedd82f737ec083c6a41986ff5e6535c8b1429a71e6a349e",
+    "proj/res/GameOverPlayer2.xpm": "28bbceea61a53c1b9283687845c277b665b29fad9dec8323d550c3eb1539b190",
+    "proj/res/ShipE.xpm": "faaf13f934d017284f546a996b5bd862c99048bd8b4dd257bd40074ef43753ca",
+    "proj/res/ShipN.xpm": "79ef79f2ffdfdbdfece49a2137b859e181ef69c91872c8bc2e00f6e31cfafc18",
+    "proj/res/ShipNE.xpm": "02b11b9d0f88a45c98bee0c970d2e87e16cfeecef225f9b7cb4ec0c8db4e315a",
+    "proj/res/ShipNW.xpm": "89d7db20f3c20d229cf2e085b80d93842299088ff5786f154a1e35b0fa8e38d7",
+    "proj/res/ShipS.xpm": "6d663a5fd38411eed26ec5bf52a412c0bdb57459cf5b5274aed3238c60833366",
+    "proj/res/ShipSE.xpm": "1293a99fea4fd2f75c5f2c5788b227aba3f3851391ec02053ab7ef894ebbf030",
+    "proj/res/ShipSW.xpm": "f7c09ba2f30fe8ed14db4ce61f6cd34eb9d841289d9f951e702d28e0ba958d30",
+    "proj/res/ShipW.xpm": "0c3926e40f0f8038d209e48ae2ed5032878e1800cea838ec462daf191f8b3e13",
+    "proj/res/SpeedPowerup.xpm": "21ccd3c1c496cd0a557b7ba9258a899eda0b9bbe38fd58723bb961aa2b102675",
+    "proj/src/Makefile": "48d08b0a5489ce72ca1eb715b8681dcb6eb21c3f6dc6718e0a2c04d8135d4d75",
+    "proj/src/dispatcher.c": "2320227872c13ed3e7c29cde7b9c0559f68d1ad248f99f03c84b20b0f51df007",
+    "proj/src/dispatcher.h": "6561667e281e4aa154590cbd0e8d080906b6420e8d5bc662c26c4dac0dfb6732",
+    "proj/src/game_constants.h": "70fb9d4d0cbf9b1511ae8db3b53f1f060440d22936212e14d87f268996660b11",
+    "proj/src/game_logic.c": "ee5ffa9864555e1377349051d689943c8084e71c1fa7cb328194307917be666c",
+    "proj/src/game_logic.h": "18937aa11e4f76f4e574582a8585083f5bec7d5bf007f48b4dfeb68c30167146",
+    "proj/src/i8042.h": "bfd42033a507eb2f470ecbc1abc6f5ebc1172fd932c482e9750af26069a3e146",
+    "proj/src/i8254.h": "ea05aa8ee7d01c667b3312a942741717550740371486f8025032787af49f9c31",
+    "proj/src/kbc.c": "5b36d3ccc070cbf307c6dd6bfc173c3463fe6c5a0f65fa840b68552ebe62a2f5",
+    "proj/src/kbc.h": "5c8b00dfd6fe9d00feeca054a538e5a4e7ad3eb9032fae0755d81d1af6a76cba",
+    "proj/src/keyboard.c": "de5195be191b945b8f876bf1b556b54abf4b9d575459dbf8750248e1139a47cf",
+    "proj/src/keyboard.h": "eefcd2c5208c1a0dbbd976c87d8e356df2fd0cb5fb0132209fa8863f2618521e",
+    "proj/src/mouse.c": "c50597609f26f284d9806277333cf5134e937ca97e1770e6a5ea6c89fb0b197b",
+    "proj/src/mouse.h": "51b192a1c3ec58cc49a21f0e065d27c328532480ea7e7e94478eb9d2d1cc4c23",
+    "proj/src/proj.c": "a44bdbbf900523f516f6696306b8d7d17e8ce295b3c736877846e2566848cad7",
+    "proj/src/rtc.c": "9947f354ae591fe0c23f7b4ac75c20772968bc9f40dd9f521136e08731b72d65",
+    "proj/src/rtc.h": "10d1aa29683137f31b66216e74ca09011a13ff80ecc8d3723fe750fad5353c33",
+    "proj/src/rtc_constants.h": "d7522a403adac7b85c3f366172e74b341569caa84d24330676769f1524e7e100",
+    "proj/src/serial_port.c": "bbb4bb2621f43c33859a040e08daff5532caebaaa62a0128331816cf3f3a0002",
+    "proj/src/serial_port.h": "3d759ae547052efb4720196f1d0c4d1652a57d86405ce1c0e2a0264bdb74f004",
+    "proj/src/timer.c": "06d340b7c36f9befa46f5bb78f2fb35e4b8771797e2c94538dfc91ac163c0919",
+    "proj/src/uart.h": "41e05ec41905528faebaa51cd4255ad28273b8d5e20e1ad496809b4f91f14a21",
+    "proj/src/utils.c": "bec92a7baf44009ff4d23153e44a71b6640271361bd17be350ca832d2bcef3a2",
+    "proj/src/utils.h": "926c2e8cc78924ed941dfd7367e89eeaa11382601d7f51640ace2363107a1e32",
+    "proj/src/vbe_constants.h": "3c498183f29546cfec9f226f2ad6d7170d227750ef2a3784e9e6918146d78926",
+    "proj/src/video.c": "2cd643f5e1cf9c25a835be36e92218002830a6eef86b48513a560d41ede75386",
+    "proj/src/video.h": "949b69c40e1d84b6b3acbe5caeca8549c50b5440df97b7b8c5476b04291e8ed0"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated docs, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/docs/**",
+    "**/doc/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/../res/ShipN.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "77366c4462a2f2186cb51a9f2367cfde86a5a2286c741b871b2b091d949aae68",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "7640227b5e006285abb37e4a9c6ca0aaaea145650e4c0c4689b406f9e5d47f55",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "controlsRationale": "Panel keeps game artwork unobscured in landscape and portrait. Keys/actions derived from original handlers; relative pointer preserves original cursor initialization, scaling and state changes. ",
+  "verification": {
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence/LeKinaSa--lcom-galactic-warfare",
+    "log": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay7-galactic-target.log",
+    "limits": [
+      "Collection runs stationary-opponent practice. Full moving human opponent requires original desktop pairedUART, not supported by standalone web/mobile collections."
+    ],
+    "androidGameplay": "pending"
+  }
+}

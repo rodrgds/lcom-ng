@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "MOsu",
+  "description": "Aim at shrinking circles and tap the matching letter in the original rhythm challenge.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Q",
+          "key": "Q",
+          "position": "bottom-left"
+        },
+        {
+          "label": "W",
+          "key": "W",
+          "position": "bottom-left"
+        },
+        {
+          "label": "E",
+          "key": "E",
+          "position": "bottom-right"
+        },
+        {
+          "label": "R",
+          "key": "R",
+          "position": "bottom-right"
+        }
+      ],
+      "joystick": false
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "src/highscores.txt"
+    ]
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

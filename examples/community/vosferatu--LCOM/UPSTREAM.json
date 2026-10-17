@@ -1,0 +1,167 @@
+{
+  "repository": "https://github.com/vosferatu/LCOM",
+  "revision": "8785d2087d49967283e16a3d91d680916de1cf07",
+  "project": "proj/src",
+  "sourceHashes": {
+    "proj/res/0big.bmp": "0a386506de2ba5399e754738813c817603bf3ddad3fd5317862b6f61fdf5d03d",
+    "proj/res/0small.bmp": "742f10e505b42ac32866041fbafecfd78d0809177ec6175801412f92bc9bfb6f",
+    "proj/res/1big.bmp": "4f59f230ea01348ccd642830b36e62333c3f8566c581f051d9f25424cbbc4b78",
+    "proj/res/1small.bmp": "e65ccc07acbb1da1855a01a519c52aa975269fa9786752a3131de283bdc1ee50",
+    "proj/res/2big.bmp": "4ceb4d4a57c611ab07b3355eb542ff9f9a7d1a7091557a932e5bcbaff903dfab",
+    "proj/res/2small.bmp": "eaf8b9cf8a3ce6c4cd415d460146c8f21f6034946dc7b30c4f9914865295364f",
+    "proj/res/3big.bmp": "1d0512adaeef700a99e3bb3e5396e179da9c1e232222f0fed9c35336eba6de03",
+    "proj/res/3small.bmp": "d6d875f8b38d34b461513c7adc3b088423291c42091ef7fb7964edfac5358c83",
+    "proj/res/4big.bmp": "5819c4375548fc8d58b706b6d882682c14d0ef391b88e382eef70fbb15993966",
+    "proj/res/4small.bmp": "1f1a003204cd1114508e1b13a5dbdb724162bc852fc5bdc654092bc7f388b723",
+    "proj/res/5big.bmp": "0fa0e3bcd435f5ca2a5fa9e41237c46d1607a14d3ecd243b2b4e7fcf882da2b9",
+    "proj/res/5small.bmp": "bf7cdc2cc43a9736618ca7344c6b13a4a6a6d764d04682cf817509acfdaa2b03",
+    "proj/res/6big.bmp": "42006a4226141a1c0334f5627e605998c195901d6fa47130663cd19a5a3f9e39",
+    "proj/res/6small.bmp": "0769ac0eac51b1c058ea9d07eddc457a77ac332ef6a02598720f1a6bcd9c670f",
+    "proj/res/7big.bmp": "4f17f7ac786c0968b29487d7de89d9eb8564cffabf6e70c74d9d1048bbb7a8aa",
+    "proj/res/7small.bmp": "f7e4609177252c0ab35053c81515b6d1d20bcb0f8d0e324363d8ace4084a1c0a",
+    "proj/res/8big.bmp": "7f7987aa7094b25342e8f9128e4f775c5cf35bfc90038ff7026a1106db190714",
+    "proj/res/8small.bmp": "7ca3c2f141a54b7a7c9f9c1764d0b1bd41f6abf6cca64e68245edf05f61d6ae0",
+    "proj/res/9big.bmp": "5c11690613ffbd27d084b70669813a4f0b8931a109e077101065e6c060fdd5ab",
+    "proj/res/9small.bmp": "f47ebd9593adf46bc29efc6d70ea1874f15369ba47a31748a971770c36381186",
+    "proj/res/background.bmp": "d5351b617090a169cae1e819f703b24ec4fe52940cec2230eefb8fc07fc2a9e4",
+    "proj/res/cactus.bmp": "dea4bce27796dda6b548a20ad792a71a075a807b690837d086c598a65f4aeff4",
+    "proj/res/car.bmp": "da4c4bc2bcb3ad85b9417add77402752cc2358dd8bc8e22a7da01a796e4da5dd",
+    "proj/res/cursor.bmp": "845a166468955c3e93766abd8e0d932b39f23db32cb95141a2781ae530f54575",
+    "proj/res/dots.bmp": "7663bd99e35ae154d51596d477a858c261077dc29e49a474e90aa12e4c06bfe0",
+    "proj/res/game_board.bmp": "28544021214688adb9193b0ea74dbfd38fa6681c168036aaeb94c3dbadcd4641",
+    "proj/res/gamewon.bmp": "0a79fcaf0c01076c60c14c12f3c3ba02ee6d7a0e53dcca7ff0282c8fc09e7358",
+    "proj/res/left_cowboy.bmp": "a78b4bb91767a9104de27eead946e39de0bdb1d9976a4d9fe789f313f165cca2",
+    "proj/res/left_dead.bmp": "8022fa13e1c2c61a8d4dd6efb88da53fee68f724b9207542be62ccf8ce0bdbf8",
+    "proj/res/left_shootin.bmp": "8337beb03425b510b79135bf772b666034743314c37dd9135848b6ca0eb4fdfb",
+    "proj/res/left_shot.bmp": "6c2d15c0f9edb4ad3d995a81fcaa2c343ba7e90d1f6bcf205c2d1b2dfd0d6f20",
+    "proj/res/menu.bmp": "f49e0dabf17d4fdb0835682fe4a65a1ecde0c1808576c5e229fa8abd758368d6",
+    "proj/res/minus.bmp": "0bcbac4d82016aebfb16f0028a1722edd43be6e6ff3d0fc1f8121e7fce0351f7",
+    "proj/res/practice.bmp": "4852eec37558ba2784c015b4c51303d4caebd632b9c6d20aaa31041363e2b684",
+    "proj/res/right_cowboy.bmp": "405ceb4e53edfec9db47a0441e7dfcd9b9a6f1d99bc5404a5f32dc48a4a9ea5e",
+    "proj/res/right_dead.bmp": "39aaf6baa3d440c261dcae9b883fe936be002b0d411ba5b10fe16ad3d3b93a98",
+    "proj/res/right_shootin.bmp": "518b142757c8d75bab5bd7f7c785df6f806a06772b2424536ab2369c90be12f2",
+    "proj/res/right_shot.bmp": "b7fdbbfd6334131095a248dd03139711b2114f49ebcc7c070359a1a7a4792d75",
+    "proj/res/target.bmp": "04bba0f2191b6bb9a5ca34988fc9308068f9d39bd40bfaf29e88e6b021beb1f7",
+    "proj/src/GameState.c": "6796e114da7d60a1293abc7698453e6728ccac5796299ea5fdd6cd0ad65dd185",
+    "proj/src/GameState.h": "cc2375d6ee5b4649af355c14fd340372e436ab85d1e79181779b9949e0799350",
+    "proj/src/MainMenuState.c": "16ee34962fa34b4322cb4adc8c8506d8bd4e887c527bfd879bfcd6336306c94b",
+    "proj/src/MainMenuState.h": "475ef980d1fe49e52ad950c21b2dad946562d294c0d2d46b0d34a71d498706d1",
+    "proj/src/Makefile": "4ccb85bdacd4d3eb7362875bdd415063bf2c9ab65b7328abef12b397cd2a9a0c",
+    "proj/src/Multiplayer.c": "d40c8dc4ee02c7dcd485e0b4e6d95881d01acd7606c4b8f563ed47230153fc06",
+    "proj/src/Multiplayer.h": "9095a4d09fb29eb13041594e3f6369f3d86a17c18278d6530b4cb1c11126e36f",
+    "proj/src/PracticeState.c": "6585b7682bb34bcb40fe5424c582c8e9691222dca78645309b264e80d336e814",
+    "proj/src/PracticeState.h": "af962fc639246570368bca18cbc1564b106a3130e633fb4f084b0b70e6fc23a2",
+    "proj/src/bitmap.c": "442113f025f5aed62ef513f051366687c92f1964bd98f95511b232835c364d77",
+    "proj/src/bitmap.h": "453e51b8607e0476c2807807abeb2c84e3303cbf9a4a4925b7bb33485589afd9",
+    "proj/src/bullet.c": "84b333ea916bed0002e4b11091c896d0a10fb5187ac091fb8b0e6b119953ab72",
+    "proj/src/bullet.h": "aa30a0f8a1c44998191f34a3bff33f016ef1b510d608edb5ceb0ad9d485f4607",
+    "proj/src/compile.sh": "8de9c377421ab4dd53bfbb6f0f74a39f80d0f46f4e884dd8da9920965ad74bd6",
+    "proj/src/cowboy.c": "c666021befa990422ffca109195e39b809318bc8b0a69ca779872ca241c2c11a",
+    "proj/src/cowboy.h": "f05999f9cc6c232c4ab55866ab553d26c82eaad451be1c46fe61bfdbbd9f562e",
+    "proj/src/duelnix.c": "92c464d9ad52f897c04a8af9c6de9726fde526a1f1696c56a29792c0f661b2a8",
+    "proj/src/duelnix.h": "9b540c2be4a137217973632c0c19ee70351d4aa696a2eb5f4937edd8a86678b0",
+    "proj/src/graphics.c": "0a34b5f1586358200f2faff247d82acbff55c4c44a3ea5881af87f869b492266",
+    "proj/src/graphics.h": "0ebeb0f27239e247381dc22e79df47577cd5a6490f82fdd6ef9b664d1dcf5e7f",
+    "proj/src/i8042.h": "12c588b573f6e601012ad25a47196e3b3beb8d82ea81ea4d0620b51cec17b65f",
+    "proj/src/i8254.h": "25eeb4e6789cc6d423bdaa2a86f2733d273d17c03bff96af58d68905c7413333",
+    "proj/src/install.sh": "7bc18e02d63e43fc02ea3b6de0723fa4b5d320cf3bf4abe3ca6ae01da0693a56",
+    "proj/src/kbd_asm.S": "bf2b567d480be0f19e4da2766bc172caf693a65d28f8ab16b79fb617abd105ed",
+    "proj/src/kbdlab3.h": "0f0c2e6a84f9abf64c6a8768fada3dffc6abdbe85a5405192f37b15d8bdef7b8",
+    "proj/src/keyboard.c": "91840fa185eff12a6d288262bd1c6283e0048e221cfa5ace2e84dd6515d01ce2",
+    "proj/src/keyboard.h": "dfad4bd56722d7e4c1c3b76c89caac2c469b9e5bfdb31c5271f1858445849511",
+    "proj/src/lmlib.h": "4a8fcbeac8485592c41eda423d4ef62b6d1c1bbc8b9f54d747c16df13e2922a7",
+    "proj/src/main.c": "66d689637bc8c7bca0ff72bbd6a0b43552ed9e00c6c5c4a4edeb602bea0ed35c",
+    "proj/src/mouse.c": "fdea2dfbd25f50fd7272b2d98d5d41c020a2b26c016a82a85e40b25ae85fa088",
+    "proj/src/mouse.h": "d06fc2ea48e7407066bc31ad0d72f1a762a276ae94cb4c88c8e85bb83901b77d",
+    "proj/src/rectangle.c": "049d2164fa5cf13e25687794172a6a8ea48cd171465ddc206956c0d76be6f335",
+    "proj/src/rectangle.h": "e4807a5f3daad081d30665ff678dffc262f9b56b1d6eba4f69cfea76b0090baf",
+    "proj/src/rtc.c": "74737eafa707d282788a73a53fb61481cf705dcb97c061f7631def064bd38e04",
+    "proj/src/rtc.h": "c26584edb3dbc502cfb0a42003ebef67b48edb0ab29bc8540936cf49605d98de",
+    "proj/src/run.sh": "968634a75a71acb019db778126b42beee14cc6974f919f9258b6627bc712ef42",
+    "proj/src/shield.c": "39859991cd0488d18c6342486b2e27303c9b7fb60ece82d270b13ebb82637a1f",
+    "proj/src/shield.h": "d00d577059417dc6b29ba53b7bf03cb3814573f4670d82fb02bd2e98b01eb95f",
+    "proj/src/table.c": "00c6d550dab727ffaa07b52e18fd91bf62bc2228576b9b772fa84b91f2e198c2",
+    "proj/src/table.h": "3935532fe729061f8c44f28bd2f439636dc7e9bfa94af8d0d1b9488b41218b94",
+    "proj/src/target.c": "33c1c39cb830da6d383daed0df9671a4b4aca1cfb52695923716475848bc93ea",
+    "proj/src/target.h": "929732a3d0c08f5b9cd92630516ddef8d67dcbd9c3b1d6aa820725d458fa877f",
+    "proj/src/timer.c": "c4e5919147e6352d9d3e07757a07171e7e9b093266c8009d667da371c1479ba6",
+    "proj/src/timer.h": "3c9da1b2731253b968c0146e450012cc6a14769fad911b2e984cb1649ca6975d",
+    "proj/src/utils.h": "66a234de60199fda6659c8a246baa44b3943c0de1ad5f1e78c9c0b354ae30ae7",
+    "proj/src/vbe.c": "b04aed1a2556848427e071ff4e95b6b5e7050f8f18fd2ec27094ce1b85c1970d",
+    "proj/src/vbe.h": "327283e5c85c545a2ba867e64533d9cfca3f1ad751aa67d39aa634a85aecce1a"
+  },
+  "selection": "Original project C/H/Makefile/unused keyboard assembly plus original BMP assets. Generated HTML documentation, other labs and binary outputs omitted.",
+  "excludedMetadata": [],
+  "license": {
+    "status": "unknown",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/bitmap.c",
+          "originalSha256": "442113f025f5aed62ef513f051366687c92f1964bd98f95511b232835c364d77",
+          "patchedSha256": "f6501ada2bd0a4c3821aea322fc7b1722c1e6796e22712e09f42c3f934b6031c",
+          "reason": "Reserve one byte for the concatenated asset path NUL terminator.",
+          "verification": "Actual loadBitmap checked allocation independently requires both strings and final NUL; original is one byte short, fixed meets capacity."
+        },
+        {
+          "file": "proj/src/main.c",
+          "originalSha256": "66d689637bc8c7bca0ff72bbd6a0b43552ed9e00c6c5c4a4edeb602bea0ed35c",
+          "patchedSha256": "4ff2bc65d1341ff31933cd345c57f1e63f6e1095b6619af32db2c741e9c8e962",
+          "reason": "Include graphics.h so pointer-returning vg_init and void flip_Display use their actual declared ABI.",
+          "verification": "Actual main strict compile rejects undeclared graphics functions; original LLVM IR calls vg_init as i32 while actual definition returns ptr. Corrected main executes initialize/end/text-restore once and original browser now enters western menu."
+        },
+        {
+          "file": "proj/src/mouse.c",
+          "originalSha256": "fdea2dfbd25f50fd7272b2d98d5d41c020a2b26c016a82a85e40b25ae85fa088",
+          "patchedSha256": "d65c1a356e567833f10bf3dea1e0c4c41cafbb3124032dc222ee129bfd6cf6e3",
+          "reason": "Return the newly constructed mouse singleton and initialize its pending update flag.",
+          "verification": "Actual newMouse return is not the initialized singleton on original optimized code; corrected return equals getMouse/newMouse, centers cursor and starts with update/buttons neutral."
+        },
+        {
+          "file": "proj/src/rtc.c",
+          "originalSha256": "74737eafa707d282788a73a53fb61481cf705dcb97c061f7631def064bd38e04",
+          "patchedSha256": "4449333d5a16e1fd986c8dbdeed45f5b85af90975313d0c8fed5fcbc30854796",
+          "reason": "Write the RTC register value rather than its stack address when changing the update gate.",
+          "verification": "Actual rtc_enable/disable literal register fixtures reject pointer-valued writes; corrected functions write expected eight-bit register values through port71."
+        }
+      ]
+    }
+  ],
+  "buildRationale": "Existing build.sources selects all19 original C units. Authored kbd_asm.S remains pinned and unchanged: its only game call is commented and active keyboard_c_handler is the original C implementation. No assembly translation/rewrite or SDK change.",
+  "controlsRationale": "Original mouse starts400,300. Move to400,340 and release Select/Fire to choose Practice. WASD moves cowboy; touch repeats original makes at ordinary keyboard repeat cadence. Original relative mouse aims; left-button release fires. Move cowboy upward then aim around730,330 to clear original cactus and hit initial target. Escape returns Practice to menu; menu Escape quits. Enter remains available for original gameover continuation.",
+  "artwork": {
+    "icon": "Original left_cowboy.bmp enlarged nearest-neighbor on brown; original green transparency key masked only in derived icon. Original BMP unchanged.",
+    "preview": "Actual current-source browser practice target-hit score1, resized within640pixels."
+  },
+  "verification": {
+    "browser": "Ordinary relative menu selection opens Practice, W moves cowboy up, mouse aim+release fires over cactus, score1 and target relocation observed. Escape returns original menu. Portrait390x844 and landscape844x390 inspected.",
+    "ndk": "All20 selected/generated-entry ARM64 objects compile atO2/FORTIFY2/stack-protector/format-security.",
+    "native": "Pending ROOT actual Android gameplay.",
+    "limitations": "No full match victory, final-level or UART multiplayer qualification claimed.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/duelnix-reviewed-native/results.json",
+      "apkSha256": "b2fbf7d9db0f068617c5cac978f7c5ea5fb052438eaefbc40fe9a4f8d341d087",
+      "demonstrated": "ROOT visually reviewed all four actual Android frames: original western menu, Practice selection through relative touch and released Select, repeated W moves cowboy above cactus, ordinary aim and released Fire hits target for score1 with target relocated, Escape returns to original menu, and Library Home closes isolated native game. ROOT also viewed portrait and landscape browser controls and all three corrected canonical frames including score1.",
+      "limitations": [
+        "Standalone Practice target hit demonstrated. Full duel victory and linked UART multiplayer are not qualified. Native authored menu Exit is not exercised; Library Home cleanup is verified. Original score0 canonical attempt remains recorded separately."
+      ]
+    }
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "0d799c3777cf4e9475f12a75bf39675d4f0442462c264d67b736e92a2c3864e4",
+      "reason": "Original left_cowboy.bmp enlarged nearest-neighbor on brown; original green transparency key masked only in derived icon. Original BMP unchanged."
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "02bfe579fc4abedd61b9547c58b699666bcb47b01e9bd165933240b9abc4940e",
+      "reason": "Actual current-source browser practice target-hit score1, resized within640pixels."
+    }
+  ]
+}

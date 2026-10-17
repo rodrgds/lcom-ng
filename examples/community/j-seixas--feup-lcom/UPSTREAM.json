@@ -1,0 +1,67 @@
+{
+  "repository": "https://github.com/j-seixas/feup-lcom",
+  "commit": "815544b61eb679382d94b3f90b8686b0af6329da",
+  "project": "proj/src",
+  "sha256": {
+    "proj/src/game.c": "288ed8b13688c249824cc57e4aa36f4093ad8e0c67e5e8800093e1943574650b",
+    "proj/src/otherlabs.h": "1b5c59c854d23c515831728ee175879b8b392e9e1ba783a2a598162645cd4fc8",
+    "proj/src/read_bitmap.c": "0cfb011a5864de7992ad3594600755c2dad45b101edb4eef921f94ed1b1ebe51",
+    "proj/src/tools.c": "9e7e90e98cfd519dcd2d6ee6f0b3e8db955e7867089c2c079a3c5465988ec755",
+    "proj/src/Makefile": "8dddb6132ac46466b256c838a395f5aca97b48a54f0a5ce5435c5d1032c88b62",
+    "proj/src/vbe.h": "c2ac9ee2798cedc3f67161d7d58cf7e203072fce05a782b3390e0eee288aee2d",
+    "proj/src/video_gr.h": "28ab63252019444b89f772791cd05efac26ebabe469cab439a41a501206f809e",
+    "proj/src/Tron.c": "436b640aa1c9a41fce636fad7c6c8085defa9775e81983b7076419d5f69b8628",
+    "proj/src/lmlib.h": "b904a10d2f151cf31d7bd5ffef463776e1ad6f700228a6e358035865a0788e73",
+    "proj/src/read_bitmap.h": "a49814f5c958bc3fdc237217d3a0d883d91b5bd8fd0969990b3f09866abec2ca",
+    "proj/src/otherlabs.c": "c02e316e394fe97c2cf51c420c260e256f67c44439030ccbf6aeadc5718c3f60",
+    "proj/src/game.h": "65cb6039cf5cfa20316e123632493f58a974272ed69eb99ba742301888f8bcd9",
+    "proj/src/tools.h": "786d632452cefd484279afac00f405c57642fb480d0344f96fe18e2ff0945b7b",
+    "proj/src/vbe.c": "0997aab4c0eeb66b4c65c45d4f4257f031d20df5f98e0cc66c4e44a3b93e1c97",
+    "proj/src/video_gr.c": "840ae9871da4d8b63788978bfa2d7120e99634fd034999a75dbb56c8cd95ca93",
+    "proj/src/imgs/Game3p_1.bmp": "f572cfdb01260135bf3f0524c91b6abb9f1fa34dec3aa270e23674a6acaff69e",
+    "proj/src/imgs/mouse.bmp": "5276b5ac8563e9d0a0f525063b2f9d92183f8639701ce52aab7ffa7553604bc5",
+    "proj/src/imgs/Game4p.bmp": "5b5358d69e509393fbea3061af4adc593425221b716540fceaf7869114191819",
+    "proj/src/imgs/Menu.bmp": "e7b1ad93e36d9f45ab1ee7a1112d2ab98e61536327f5d7b6b72fe4b58ec131e5",
+    "proj/src/imgs/Pause1.bmp": "686a0e3b9dba1499bf4b9288069e0ae0a8e560bc45d4130fa5ff246ee6e5c732",
+    "proj/src/imgs/Game3p.bmp": "d054a0e5c0962a45a63fa3b7161e931c041a7e369709d20912298ad0227def6c",
+    "proj/src/imgs/Start.bmp": "47568c622a1ecde2f931bbaf6af71575cb20e4614f5a977040e211bce004721b",
+    "proj/src/imgs/Game2p.bmp": "d7088ccdca02d8b690c84a716a0df234dc47a4ee98fddd8a44d62b17253585bc",
+    "proj/src/imgs/Game2p_1.bmp": "7ff4bc614efa99b943ad85d1378b6f0693ea35555d64a9f85560f658a32c5389",
+    "proj/src/imgs/draw.bmp": "5315cf405691fbd374381aa98b91b37c830590a2275ee63c03a0f691215026b1",
+    "proj/src/imgs/win1.bmp": "dc99e37cd0c206d32837552dc8c80798df70911d5caab9ae7a05212addc987fa",
+    "proj/src/imgs/Game4p_1.bmp": "cc4f614723ee4622749030e61d9cb19de931b3623b776ef4f053036f0ba43229",
+    "proj/src/imgs/win3.bmp": "0c8d375520f7b3fa84b0b44cb72fb816651d25239837c4b29753c35bf161b1a7",
+    "proj/src/imgs/win2.bmp": "f940e4a67af11682552fb61301ce94ff826d383478b5a3dba1bb41493ac6399e",
+    "proj/src/imgs/win4.bmp": "bfe690a64f0a88c614d2dcafc7f71262ccd90914edf0fc49293e9d3e904039e1"
+  },
+  "selection": "Authored C/header/Makefile files and original bitmap resources retained; bundled compiled archive/dependencies/VCS/OS metadata omitted.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/video_gr.c",
+          "originalSha256": "840ae9871da4d8b63788978bfa2d7120e99634fd034999a75dbb56c8cd95ca93",
+          "patchedSha256": "5f326a7ab1674a42eb92b52c52fdf92198e829378f335335d08234ee597d15f4",
+          "reason": "Convert bits per pixel to bytes for framebuffer mapping, double-buffer allocation and presentation. Original 1280x1024x16 requested 20971520 bytes rather than 2621440, failing the aperture map and over-copying framebuffer data.",
+          "verification": "Actual initializer RED fails independent exact-byte range assertion. Corrected owning function maps expected1280x1024x2 bytes and presents every byte without crossing a guard page."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original menu number-key releases select two, three or four local players. Space release starts, pauses and resumes; first rider A/D and second rider Left/Right turn counterclockwise/clockwise. Two horizontal direction pads expose these four verified controls; the optional keyboard retains original third/fourth-player menu access. Explicit relative path alias preserves authored bitmap paths.",
+  "artwork": {
+    "icon": "Simple cyan and gold bent lightcycle trails use the original two-player colors and dark grid motif. No upstream art changed.",
+    "preview": "Actual original two-player arena after touch turns, scaled from 1280x1024 to 640x512."
+  },
+  "verification": {
+    "browser": "Real CDP touch in landscape 844x390 and portrait 390x844: two-player menu, Start, both riders turn in both directions, visible independent cyan/gold trails, Pause and Resume; Game running, errors[].",
+    "ndk": "All seven authored Makefile C translation units pass NDK27 ARM64 syntax compilation.",
+    "sourceRegression": "Real vg_init map range is independently 1280*1024*2 bytes; guard-page framebuffer receives all and only declared frame bytes via paint_buff. RED before correction, GREEN after.",
+    "native": "Actual Android gameplay pending."
+  }
+}

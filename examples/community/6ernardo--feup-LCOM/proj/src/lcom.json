@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "name": "VS Draw",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "pointer": "drag",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "quickKeys": [
+        "ESC",
+        "H",
+        "M",
+        "L"
+      ],
+      "actions": [
+        {
+          "label": "Draw",
+          "key": "G",
+          "position": "top-left"
+        },
+        {
+          "label": "Pencil",
+          "key": "P",
+          "position": "top-right"
+        },
+        {
+          "label": "Fill",
+          "key": "B",
+          "position": "top-left"
+        },
+        {
+          "label": "Rectangle",
+          "key": "R",
+          "position": "top-right"
+        },
+        {
+          "label": "Undo",
+          "key": "K",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Brush +",
+          "key": "UP",
+          "position": "top-right"
+        },
+        {
+          "label": "Brush -",
+          "key": "DOWN",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": []
+  },
+  "description": "Draw, fill, undo, invert and convert your own picture with the original brush tools.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

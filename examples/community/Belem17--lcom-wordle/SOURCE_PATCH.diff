@@ -1,0 +1,50 @@
+--- a/project/src/drivers/videogr.c
++++ b/project/src/drivers/videogr.c
+@@ -24,7 +24,7 @@
+   int r;
+   struct minix_mem_range mr;                 /* physical memory range */
+   unsigned int vram_base = info.PhysBasePtr; /* VRAM’s physical addresss */
+-  unsigned int vram_size = info.XResolution * info.YResolution * info.BitsPerPixel;
++  unsigned int vram_size = (unsigned int) info.BytesPerScanLine * info.YResolution;
+ 
+   mr.mr_base = vram_base;
+   mr.mr_limit = mr.mr_base + vram_size *3;
+--- a/project/src/game/gameLogic.c
++++ b/project/src/game/gameLogic.c
+@@ -8,10 +8,17 @@
+ #include <ctype.h>
+ 
+ int chooseWord(struct Game *game){
+-  int random = rand() % 2003;
+-  strncpy(game->target, words[random], MAX_WORD_LEN - 1); // em vez de 6
+-  game->target[MAX_WORD_LEN - 1] = '\0'; // Garante null terminator
+-  return 0;
++  size_t count = sizeof(words) / sizeof(words[0]);
++  size_t start = (size_t)rand() % count;
++  for (size_t i = 0; i < count; i++) {
++    const char *word = words[(start + i) % count];
++    if (word && strlen(word) == MAX_WORD_LEN - 1) {
++      strncpy(game->target, word, MAX_WORD_LEN - 1);
++      game->target[MAX_WORD_LEN - 1] = '\0';
++      return 0;
++    }
++  }
++  return 1;
+ }
+ void wordle_trace(char target[5], char guess[5], int trace[5]) {
+     int used_in_target[5] = {0}; 
+--- a/project/src/proj.c
++++ b/project/src/proj.c
+@@ -86,8 +86,10 @@
+         // Keyboard interrupt: process key press
+         if (msg.m_notify.interrupts & BIT(kbc_bit_no)) {
+           KBC_int_handler(&read);
+-          game.signal.key_code = read;
+-          game.signal.key_pressed = 1;
++          if (!(read & BIT(7)) && read != 0xe0) {
++            game.signal.key_code = read;
++            game.signal.key_pressed = 1;
++          }
+         }
+ 
+         // Mouse interrupt: read and parse mouse packet

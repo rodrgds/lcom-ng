@@ -1,0 +1,130 @@
+{
+  "repository": "https://github.com/BeeMargarida/FEUP-LCOM",
+  "revision": "e1b183d5d3dafa38797f54b3d0d1a108d4bbc355",
+  "project": "proj/src",
+  "sourceHashes": {
+    "lab0/hello.c": "19bbc396d8fcf1fe4caeb40f6240b41b0f88e20eab1a43b6821271f1781e743e",
+    "lab2/Makefile": "4b363d707e7183333570ef12022db8252706ddbe00f01f3ec473ea67f39a74a3",
+    "lab2/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "lab2/lab2.c": "74071a9e9efb9bd8a3036f481dda38d00d2e9ddaf932895c7cc130ef9399d6a5",
+    "lab2/timer.c": "5565d7aa52747959475b2e4373d796b0e486257e21dacbbd51e5bbc8f25e5e75",
+    "lab2/timer.h": "817daa2584fdb452bb30845a87e0d830808086fd50b0727545c1341951190a35",
+    "lab3/Makefile": "0bcb2bd7a06dc11d121d6463997afd17809a94c07a8a5ae99cd37b075d0986a2",
+    "lab3/i8042.h": "922dc74cfa2177de29213ec21f028382b160c7e468f26fa0174ecd08359a7d20",
+    "lab3/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "lab3/keyboard.h": "3de00de9603adc114aea78227ee73adbbe988d061964dc5c201a9a0bd157ded1",
+    "lab3/lab3.c": "d9b555fcbbddadd1f89cd070c92a96d82783e634027780ed99cf85c4455105b5",
+    "lab3/test3.c": "3733809cc7fa2432ed27e5d7f105341d43bc584a31082c02fbddd814a3421f2c",
+    "lab3/test3.h": "9c6845baba5efc01f0b8124c6c1fc5680ff83981bd77f1effbbb9c7c67615671",
+    "lab3/timer.c": "3365aab9667ae03c93d0623942f0388f22a51b3dc89db32055823eb43e88d2bc",
+    "lab3/timer.h": "4028d83e9256d0368d87cb47b62e22104948d74f47d6db8906fac021414f8ac8",
+    "lab4/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "lab4/lab4.c": "72012cbbf434bf6bdf5814e498e8ae07365ca5cac9233b1b70db43355450c3ae",
+    "lab4/mouse.h": "6407a5772067bdd80a95a89b1f05c2f9ac06b28c7a0ba827326ac7246918966e",
+    "lab4/test4.c": "4b307693d5218cde506f4e7614ac5a39123a3cb55a0cb60ad905d64a4c439539",
+    "lab4/test4.h": "ba6079da1a03bd5920a07b188adfea16528abd6e536e2cc87932531e534ece64",
+    "lab4/timer.c": "3365aab9667ae03c93d0623942f0388f22a51b3dc89db32055823eb43e88d2bc",
+    "lab4/timer.h": "4028d83e9256d0368d87cb47b62e22104948d74f47d6db8906fac021414f8ac8",
+    "lab5/Makefile": "34543e540704029748fbf2dd281221adfd5c3857184343a3db4c1211dcdc23f7",
+    "lab5/asprite.h": "e265add568589027f6128b089b34730e0d5c1f457694c78fb3571b06c1f1ebe3",
+    "lab5/i8042.h": "bb1682210d375a701962c55caeda8796a3b6427e94b7443f5d99bf3d0e5a8dc1",
+    "lab5/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "lab5/lab5.c": "3a5c96117343fa8124c9f9d920c62ee9edd2b00d927df3c74ff422c113c91399",
+    "lab5/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "lab5/pixmap.h": "dad8b6d900445c053635f653de588773c1a9c3cf44aa4c78bb1395c24efa58d9",
+    "lab5/read_xpm.c": "330ef81a76a71ae78e7424e8c8072563dd699341842ce6d9f5cea828a681eac3",
+    "lab5/read_xpm.h": "25f381c46324d0ea31a2056209af55433951859794f9e3ee759db25bcadcbd74",
+    "lab5/sprite.c": "e09cba581a46166286d844bcf117cdf7e21f809c455d9437c4fe0d0d8154621a",
+    "lab5/sprite.h": "10b5755cee525f70a6b0b30901bcdfb20dacbd0337e8c5723cf575db46ccda55",
+    "lab5/test5.c": "5feb8911063fcb0c29f8a5b8b5c2cae5fd98e8b85093469132b9ded2fc44435b",
+    "lab5/test5.h": "294587089940908e268e9f546117697df0e95b706270feaefd25d4330019b515",
+    "lab5/timer.c": "3365aab9667ae03c93d0623942f0388f22a51b3dc89db32055823eb43e88d2bc",
+    "lab5/timer.h": "4028d83e9256d0368d87cb47b62e22104948d74f47d6db8906fac021414f8ac8",
+    "lab5/vbe.c": "259e843a711232ebfcdffc937eb32722b136d52cc2cf6695c36af9124ce3874d",
+    "lab5/vbe.h": "7bfde920aca0f1a100712bbadbe27dc0aee41672860b4285e21fd6f24fbdf8d8",
+    "lab5/video_gr.c": "d53a62b706ba34059060dd91043adb4dc40fbb681d97e506d059a47ce7f5c543",
+    "lab5/video_gr.h": "d0140bff99da09c12ba151e334204da9dd3d0c0d6d0404b5569822a2531c74a3",
+    "proj/src/Makefile": "b2688aa77837eb67b55fa2388872136ea6b7232871527346e51056627e8745aa",
+    "proj/src/graphics.c": "93689e587aac05b18eb46b4c9536a408b6756a71d44f5fface536f9384b4c677",
+    "proj/src/graphics.h": "a83a2d2fa0308f6e0e9f268c4cb53500317722324a29e1578571f455df42eb06",
+    "proj/src/handler.c": "99b162398cdef6a52209e2482c101e756185a648cc8b6d5f04195fc59b608779",
+    "proj/src/handler.h": "169c911fc4bdfba37dc4e69de427d2fa536520bb20cc1521633d69f6e8f2e1ad",
+    "proj/src/i8042.h": "4273454d124da9e07c09153f4f4bab2edec22bd46cbf7073c34f568839abada5",
+    "proj/src/i8254.h": "9c0233b959373794427de70c7033b809824aa44e8bded0e4c129e04e0d3fb29a",
+    "proj/src/keyboard.c": "4dbc4e6580d644058c52d07f4690f7baa33789849b538ac6d5da6943b6be649f",
+    "proj/src/keyboard.h": "4819230079dc8191ddd4f7ecf67352530bf7c3c132ee4bf40eeb1870b2adeebc",
+    "proj/src/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "proj/src/mouse.c": "94d8bbf2f2c852ea0c1eab797da7c548593a1a8ca54aca394643e47767c09f9d",
+    "proj/src/mouse.h": "612447af13a7b5a2b2de756f9e2d0bcc2c791cd1f5bf181d84ee4b28a7937919",
+    "proj/src/pixmap.h": "5831981798e27c087f45338e3165feb2a3411c5b7050ca969bc269dc0bd8d3c5",
+    "proj/src/pixmap2.h": "53d6ef448431c624121ad60d8652e293a341c95d2d377a2a8f509afcba17c76e",
+    "proj/src/read_xpm.c": "330ef81a76a71ae78e7424e8c8072563dd699341842ce6d9f5cea828a681eac3",
+    "proj/src/read_xpm.h": "2bce1075d840b3769141fd0481bca1c16173645535df503cf44d39893abc2905",
+    "proj/src/rtc.c": "71aea64eba16add6b127b9eaba0cadc301d60b35beaab17456caa11ca21a0932",
+    "proj/src/rtc.h": "358edb2c2c8ce8a835169c6c4fa3db22fd9514ebb276afcde656609332ad2386",
+    "proj/src/timer.c": "612592c81d1d3ad87528dbbd9e3eb51bc7d0b0f452b320c990c4070099cfaf3a",
+    "proj/src/timer.h": "95109504f658d14508832d916a6eb2e13ed44808cb37440b2edac9285090a4e8"
+  },
+  "selection": "Pinned original selected project C/H/Makefile, embedded original XPM artwork, original saved files and selected README. Unused labs/docs and generated object/dependency files omitted.",
+  "excludedMetadata": [],
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/handler.c",
+          "originalSha256": "99b162398cdef6a52209e2482c101e756185a648cc8b6d5f04195fc59b608779",
+          "patchedSha256": "b6271f5b759448cc029694c386298d2e6b15d5a2b0abac19acdf78774c142051",
+          "reason": "Keep authored notification bit IDs separate from returned Minix control handles, remove each actual subscription on teardown, check positive kernel errors, and update the menu cursor after each complete three-byte mouse packet. Use the authored timer notification bit in the match loop instead of casting a function address to a mask. Initialize vertical ball direction for a new match while preserving its existing valid direction on a scored-ball reset.",
+          "verification": "Original actual subscriptions fail on legal handles10..13 and positive policy errors; corrected notify0/1/12/2 and saved cleanup handles pass. Actual menu loop originally waits for three complete packets before one cursor update; corrected one-complete-packet-to-one-update passes. Actual match owner receives W, sixty timer-bit0 notifications and Escape: original has zero ball/paddle updates and no second countdown; corrected has sixty ball updates, sixty held-paddle updates, time59 and exact three unsubscribes. Actual game_handler with patterned allocation originally exposes an undefined vert field. Corrected fresh-match owner sets vert0. The actual scored-ball reset preserves a valid up direction, retaining authored reset behavior."
+        },
+        {
+          "file": "proj/src/mouse.c",
+          "originalSha256": "94d8bbf2f2c852ea0c1eab797da7c548593a1a8ca54aca394643e47767c09f9d",
+          "patchedSha256": "15fe063309ef361fb231f99f94f81c40cec8dc417c743da4a1052e8c5a5e9d58",
+          "reason": "Read the KBC status register before each mouse command reply, consume exactly one ACK from the output register and bound the reply wait. Preserve original public stream-disable success1 convention.",
+          "verification": "Original actual EA/F4/F5 owner reads output before delayed OBF and mistakes an ACK data bit for status. Independently delayed replies require two status polls before one0xFA read for each of the three commands; corrected exact six writes/three replies pass."
+        },
+        {
+          "file": "proj/src/rtc.c",
+          "originalSha256": "71aea64eba16add6b127b9eaba0cadc301d60b35beaab17456caa11ca21a0932",
+          "patchedSha256": "a5a4c5491530bed3a9fa5d37a1f7018ede292b9f5229ede69af9874ff0652490",
+          "reason": "Poll RTC update status before using it, returnNULL from pointer-returning I/O failure paths, restore interrupts and release allocated dates on failure, and release temporary dates after display.",
+          "verification": "Original getDateOnly has twelve bare returns rejected by actual ARM64 objects and strict owning compile. Actual three date-reading functions under patterned storage check UIP before date fields, decode known BCD values, returnNULL/1 on I/O failure and restore interrupts; corrected test and all8 actual ARM64 build objects pass. Original CLI/STI instruction strings remain unchanged."
+        },
+        {
+          "file": "proj/src/graphics.c",
+          "originalSha256": "93689e587aac05b18eb46b4c9536a408b6756a71d44f5fface536f9384b4c677",
+          "patchedSha256": "ab4cc7917cf31c86046063c67884a9e4adeb776b0d4b9d1865c2de6be271b78a",
+          "reason": "Clip pixel writes at the actual1024x768 framebuffer edge; partially visible balls and paddles must not write outside the allocated buffer.",
+          "verification": "Native ARM64 actual paint_ball+248 crash writes row768. Actual paint_ball/clear_ball under guarded buffers originally overwrite the bottom guard; corrected preserves both guards, clips right edge without row wrap, and draws visible fragments of negative-left coordinates."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original menu cursor0,0 and unit relative motion: move500,190 then separate Select to Play. Reserved panel exposes P1W/S and P2O/K as vertical pads. Escape ends the current match and displays original Winner/Draw for2seconds before returning to menu; collection Home exits. Original top-level main returns1 on normal menu exit; retained, no invented success conversion. Mobile relative mode avoids guessing source clamp/calibration.",
+  "artwork": {
+    "icon": "Simple SVG using original white paddles and square ball geometry on a dark tile. Rasterized to512x512PNG for the shared launcher contract; SVG source retained.",
+    "preview": "Final corrected-source real gameplay canvas scaled640x480."
+  },
+  "verification": {
+    "browser": "Actual normal touch500190+Select opens match. W raises left paddle, K lowers right paddle, ball/rally scoring advances0\u21922. Original RTC date/time rendered, portrait and landscape reserved controls inspected; no page errors.",
+    "ndk": "All8 actual ARM64 build objects passO2/FORTIFY2/stack-protector/format-security, including generated entry wrapper and unchanged source CLI/STI lowered by the reviewed shared compiler bridge.",
+    "native": "Pending ROOT actual Android gameplay.",
+    "assembly": "Original CLI/STI instruction strings remain unchanged.",
+    "limitations": "Menu Exit retains original status1. Escape ends match to Winner/Draw then returns menu after2s. No claim of every60second end or each RTC speed transition.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/pong-shoot-reviewed-native/results.json",
+      "apkSha256": "864efb0e81f569b05b9d7582eccbfe1bdbd17761fc34b02d3e56af2a2722a7d2",
+      "demonstrated": "Current minimal v3b preserves original scored-ball direction. ROOT played a full timed native match with both paddles, natural scores, winner, menu and clean Home.",
+      "limitations": [
+        "One full normal timed match and both players verified. UART-linked play and every competitive outcome are not claimed."
+      ]
+    }
+  }
+}

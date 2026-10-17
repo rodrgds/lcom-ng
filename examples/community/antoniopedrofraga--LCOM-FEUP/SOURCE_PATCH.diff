@@ -1,0 +1,176 @@
+--- a/proj/code/jogo.c
++++ b/proj/code/jogo.c
+@@ -32,12 +32,15 @@
+ }
+ 
+ int draw_mouse(Game*game, int array[3]){
+-	if(array[0] & BIT(0)) game->mouse.lb = 1;
+-	else game->mouse.lb = 0;
+-	if(BIT(7) & array[1]) array[1] = -(array[1]^255);
+-	if(BIT(7) & array[2]) array[2] = -(array[2]^255);
+-	game->mouse.x += 2*array[1];
+-	game->mouse.y -= 2*array[2];
++	/* A clock repaint has no new complete mouse packet. */
++	if(array){
++		if(array[0] & BIT(0)) game->mouse.lb = 1;
++		else game->mouse.lb = 0;
++		int dx = (array[1] & 255) - ((array[0] & BIT(4)) ? 256 : 0);
++		int dy = (array[2] & 255) - ((array[0] & BIT(5)) ? 256 : 0);
++		game->mouse.x += 2*dx;
++		game->mouse.y -= 2*dy;
++	}
+ 	game->mouse.x_max = game->mouse.x + game->mouse.w;
+ 	game->mouse.y_max = game->mouse.y + game->mouse.h;
+ 	if(game->mouse.x < 0) game->mouse.x = 0;
+@@ -92,7 +95,7 @@
+ 
+ int listen_kb(Game*game,int x,int y,int squares,unsigned char**double_buffer){
+ 	int ipc_status;
+-	unsigned short key;
++	unsigned short key = 0;
+ 	message msg;
+ 	long packets;
+ 	while(key != ESC) {
+@@ -305,39 +308,31 @@
+ 
+ int load_sudoku(Game*game,int difficulty){
+ 	srand(time(NULL)); // to get random numbers
+-	char dif[4];
+-	//random
++	const char *dif;
+ 	int r = rand() % 3 + 1;
+-	if(difficulty == 1){
+-		strcpy(dif,"easy");
+-	}else if(difficulty == 2){
+-		strcpy(dif,"medi");
+-	}else if(difficulty == 3){
+-		strcpy(dif,"hard");
+-	}
+-	//strcpy(dif,"test//1.txt");
+-	char dir[] = "//home//lcom1415-t6g09-proj//sudoku//";
+-	strcat(dir, dif);
+-	/*TEST AREA*/
+-	strcat(dir, "//");
+-	char str[15];
+-	sprintf(str, "%d", r);
+-	strcat(dir, str);
+-	strcat(dir, ".txt");
+-	/*TEST AREA*/
++	if(difficulty == 1) dif = "easy";
++	else if(difficulty == 2) dif = "medi";
++	else if(difficulty == 3) dif = "hard";
++	else return 1;
++	char dir[64];
++	int length = snprintf(dir, sizeof(dir), "//home//lcom1415-t6g09-proj//sudoku//%s//%d.txt", dif, r);
++	if(length < 0 || (size_t)length >= sizeof(dir)) return 1;
+ 	printf("Dir: %s\n",dir);
+ 	FILE *file;
+ 	file = fopen(dir, "r");
+ 	if(file != NULL){
+-	char info;
+-	while(!feof(file)){
+-		int x;
+-		int y;
+-		int squares;
+-		int value;
+-		fscanf(file,"%d %d %d %d",&value,&x,&y,&squares);
++	int x, y, squares, value, fields;
++	while((fields = fscanf(file,"%d %d %d %d",&value,&x,&y,&squares)) == 4){
++		if(x < 0 || x >= 3 || y < 0 || y >= 3 || squares < 0 || squares >= 9 || value < 0 || value > 9){
++			fclose(file);
++			return 1;
++		}
+ 		game->sudoku.board[x][y][squares].value = value;
+ 		game->sudoku.board[x][y][squares].hovered = 0;
++	}
++	if(fields != EOF || ferror(file)){
++		fclose(file);
++		return 1;
+ 	}
+ 	fclose(file);
+ 	return 0;
+@@ -366,12 +361,12 @@
+ 
+ 	draw_background(double_buffer);
+ 
+-	if(hover_squares(game,&double_buffer)==1){
++	if(array && hover_squares(game,&double_buffer)==1){
+ 		if(!check_game(game,&double_buffer)) return 2;
+ 		draw_background(double_buffer);
+ 	}
+ 
+-	if(mouse_hover(game->bmps.back,game->bmps.back_glow,game->mouse,800,600)==1){
++	if(array && mouse_hover(game->bmps.back,game->bmps.back_glow,game->mouse,800,600)==1){
+ 		return 1;
+ 	}
+ 
+@@ -386,7 +381,7 @@
+ 	int array_pos = 0;
+ 	int counter_timer = 0;
+ 	int ipc_status;
+-	unsigned short key;
++	unsigned short key = 0;
+ 	message msg;
+ 
+ 	//Drawing winner menu background...
+@@ -453,7 +448,7 @@
+ 	int array[3] = {0,0,0}; //initialize array to 0 to draw_mouse() function first run
+ 	int array_pos = 0;
+ 	int ipc_status;
+-	unsigned short key;
++	unsigned short key = 0;
+ 	message msg;
+ 	//---------------------
+ 	if(load_sudoku(game,difficulty)==1){
+@@ -501,7 +496,7 @@
+ 					game->sudoku.time++;
+ 					if(game->sudoku.time % 60 == 0){
+ 						display_time(game,&double_buffer);
+-						if(draw_game(game,array,double_buffer)==1) key = ESC;
++						if(draw_game(game,NULL,double_buffer)==1) key = ESC;
+ 					}
+ 				}
+ 				if (msg.NOTIFY_ARG & game->irq_set_mouse) {//mouse notification
+@@ -547,7 +542,7 @@
+ 	int array[3] = {0,0,0}; //initialize array to 0 to draw_mouse() function first run
+ 	int array_pos = 0;
+ 	int ipc_status;
+-	unsigned short key;
++	unsigned short key = 0;
+ 	message msg;
+ 	//---------------------
+ 
+@@ -701,7 +696,7 @@
+ 	int array_pos = 0;
+ 	int counter_timer = 0;
+ 	int ipc_status;
+-	unsigned short key;
++	unsigned short key = 0;
+ 	message msg;
+ 	//Drawing first menu background...
+ 
+@@ -780,7 +775,7 @@
+ 				if (msg.NOTIFY_ARG & game->irq_set_rtc) {
+ 					display_date(game,double_buffer);
+ 					draw_background(double_buffer);
+-					draw_mouse(game,array);
++					draw_mouse(game,NULL);
+ 				}
+ 
+ 				break;
+--- a/proj/code/mouse.c
++++ b/proj/code/mouse.c
+@@ -52,11 +52,13 @@
+ 	if(sys_outb(STAT_REG, 0xA8)!=OK) return 1;
+ 	if(sys_outb(STAT_REG, 0xD4)!=OK) return 1;
+ 	if(sys_outb(IN_BUF, 0xF4)!=OK) return 1;
++	if(get_packets()!=ACK) return 1;
+ 	return 0;
+ }
+ 
+ int deactivate_mouse(){
+ 	if(sys_outb(STAT_REG, 0xD4)!=OK) return 1;
+ 	if(sys_outb(IN_BUF,0xF5)!=OK) return 1;
++	if(get_packets()!=ACK) return 1;
+ 	return 0;
+ }

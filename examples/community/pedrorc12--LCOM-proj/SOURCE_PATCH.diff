@@ -1,0 +1,69 @@
+--- a/game.c
++++ b/game.c
+@@ -198,7 +198,7 @@
+ int game_main_loop(){
+   int r, ipc_status;
+   message msg;
+-  uint16_t packet;
++  uint16_t packet = 0;
+   bool close_game = false;
+ 
+   main_menu_initialize();
+--- a/video.c
++++ b/video.c
+@@ -36,7 +36,7 @@
+   int r;
+   struct minix_mem_range mr; /*physical memory range*/
+   unsigned int vram_base = vbe_info->PhysBasePtr;  /*VRAM’s physical addresss*/
+-  unsigned int vram_size = (vbe_info->XResolution)*(vbe_info->YResolution)*(vbe_info->BitsPerPixel);  /*VRAM’s size, but you can usethe frame-buffer size, instead*/
++  unsigned int vram_size = (vbe_info->BytesPerScanLine)*(vbe_info->YResolution);  /*VRAM’s size, but you can usethe frame-buffer size, instead*/
+   unsigned int vram_base_2 = vbe_info->PhysBasePtr + vram_size;
+ 
+   bits_per_pixels = vbe_info->BitsPerPixel;
+@@ -118,7 +118,7 @@
+ }
+ 
+ void draw_pixel(uint16_t x, uint16_t y, uint32_t color){
+-  if((x < 0) || (x > hres) || (y < 0) || (y > vres) ) return;
++  if((x < 0) || (x >= hres) || (y < 0) || (y >= vres) ) return;
+   uint32_t temp;
+   uint8_t *ptr = video_mem_active;
+ 
+@@ -132,7 +132,7 @@
+       temp = color;
+       temp <<= (24 - j*8);
+       temp >>= (24);
+-      if(temp == *ptr) return;
++      if(temp == *ptr) continue;
+       *ptr = temp;
+     }
+   }
+--- a/sprite.c
++++ b/sprite.c
+@@ -78,21 +78,14 @@
+ }
+ 
+ void clear_sprite(Sprite* sp){
+-  uint32_t color;
+-  uint8_t *ptr;
+-  ptr = background;
+-  ptr += (sp->x + sp->y*background_width)*3;
+-  for(int col = sp->y ; col < sp->y  + sp->height; col++){
++  for(int col = sp->y; col < sp->y + sp->height; col++){
++    if(col < 0 || col >= background_height) continue;
+     for(int row = sp->x; row < sp->x + sp->width; row++){
+-      color = *ptr;
+-      ptr++;
+-      color |= *ptr << 8;
+-      ptr++;
+-      color |= *ptr << 16;
+-      ptr++;
++      if(row < 0 || row >= background_width) continue;
++      const uint8_t* ptr = background + (row + col * background_width) * 3;
++      uint32_t color = ptr[0] | ((uint32_t)ptr[1] << 8) | ((uint32_t)ptr[2] << 16);
+       draw_pixel(row, col, color);
+     }
+-    ptr += (background_width - sp->width)*3;
+   }
+ }
+ 

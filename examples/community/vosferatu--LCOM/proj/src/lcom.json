@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "name": "Duelnix",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Fire",
+          "mouseButton": "left",
+          "position": "top-right"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "res"
+    ],
+    "sources": [
+      "main.c",
+      "bitmap.c",
+      "graphics.c",
+      "keyboard.c",
+      "mouse.c",
+      "timer.c",
+      "vbe.c",
+      "duelnix.c",
+      "cowboy.c",
+      "rectangle.c",
+      "target.c",
+      "shield.c",
+      "bullet.c",
+      "table.c",
+      "rtc.c",
+      "PracticeState.c",
+      "MainMenuState.c",
+      "GameState.c",
+      "Multiplayer.c"
+    ],
+    "pathAliases": {
+      "/home/duelnix/res": "res"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "description": "Move the original cowboy, aim past the cactus and hit targets in a western duel."
+}

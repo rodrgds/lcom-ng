@@ -1,0 +1,12 @@
+--- a/proj/src/rtc.c
++++ b/proj/src/rtc.c
+@@ -7,8 +7,7 @@
+   sys_outb(RTC_ADDR_REG, RTC_A);
+   sys_inb(RTC_DATA_REG, &number);
+ 
+-  if(A_UIP & number) return false;
+-  else return true;
++  return (A_UIP & number) != 0;
+ }
+ 
+ 

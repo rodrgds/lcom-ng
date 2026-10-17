@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "name": "Racemania",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "layout": "overlay",
+      "keyboard": false,
+      "pointer": "direct",
+      "touchClick": true,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [],
+      "actions": [
+        {
+          "label": "Accelerate",
+          "key": "W",
+          "icon": "accelerator",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Reverse",
+          "key": "S",
+          "icon": "reverse",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        }
+      ],
+      "touch": "hold-drag",
+      "tapDuration": 120,
+      "cursor": {
+        "x": 200,
+        "y": 22,
+        "minX": 0,
+        "minY": 0,
+        "maxX": 1151,
+        "maxY": 863
+      }
+    }
+  },
+  "build": {
+    "assets": [
+      "assets/records.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/g6/proj/src": "."
+    }
+  },
+  "icon": "icon.png",
+  "description": "Choose either circuit, accelerate and steer a red car with the original drag stick.",
+  "preview": "preview.png"
+}

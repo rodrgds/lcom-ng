@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "name": "Set",
+  "description": "Find three cards whose four features are each all alike or all different.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "touch": "tap",
+      "layout": "overlay",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Start / No sets",
+          "key": "ENTER",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Hint",
+          "key": "H",
+          "position": "top-left"
+        },
+        {
+          "label": "Check Set",
+          "key": "SPACE",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Pause",
+          "key": "P",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "files"
+    ],
+    "pathAliases": {
+      "/home/lcom/proj": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

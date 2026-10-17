@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "Memory: Card Pairs",
+  "description": "Remember the cards and uncover matching pairs.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "P",
+        "I",
+        "E"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Memory",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

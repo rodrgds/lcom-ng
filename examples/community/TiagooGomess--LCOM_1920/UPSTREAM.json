@@ -1,0 +1,98 @@
+{
+  "repository": "https://github.com/TiagooGomess/LCOM_1920",
+  "commit": "76145ddeadb6db7db3baeb88e3e0c30acd5bf4ca",
+  "createdAt": "2020-01-13T15:14:05Z",
+  "project": "proj",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/TiagooGomess/LCOM_1920",
+    "createdAt": "2020-01-13T15:14:05Z"
+  },
+  "sha256": {
+    "proj/video_card.c": "493219fa50783e647f87217249adfc7042bcae2b97feea563be9a4eef1b8a4d3",
+    "proj/game.c": "b72af02e0720bc9e9537ffda7775f21f202f8392d99fae876b5c24e55355de1a",
+    "proj/scancodes.h": "35b4f005fa50edae189777b53e11dd286253b40d4acce3c83932fb1bc70b3f64",
+    "proj/sprite.c": "2debf727be7c27bf8416d8c816a56de39cef6c8015edd536e4ffd4f79945e962",
+    "proj/mouse.c": "9e4bb27bc5b54af11538a2d52caa61af420f6dc9d9d4c433714668cbfa8cdaf4",
+    "proj/timer.c": "7d34e4b67dbf5bd5ad777c3a45a395856fe389f10fd610749b2d198d3301eda6",
+    "proj/RTC.c": "5d760723905bbdd95b08a43a7beb202e0cff799f59bf3824df222ee2e9fc5faf",
+    "proj/keyboard.c": "3735d8456d4007c0e96df30efbf88968eac4fc30dd0dc6cac889a4a6fe50239d",
+    "proj/words.c": "cc99a6fec7c25bbe410e4b3fc37818704504be5f1e9fad4e3b3a66c706867338",
+    "proj/Makefile": "c6c3b8ff294c29f2af938b10c0f7ee95414574226e54d95a72146a3d537a6094",
+    "proj/Numeros.h": "f507743892386938e4bf6647f108e7467972cdccd4aa03c9ffe5984941d037e1",
+    "proj/Leaderboard.txt": "3216fa19f73f79a5b3be8b21fc4a07e3e292c1e0d86fa50f8cb005a81d4347d2",
+    "proj/Leaderboard.h": "8f394b60e597fccf4a941f8efc480b718024659d9064990875dcd28d51f32f69",
+    "proj/cursor.h": "aaa2865b01a6bb26573f5f0b5d120a72f541b6cdbf0a765b6b7162e94ccdc5d7",
+    "proj/mouse.h": "33aa974d1c975614c70761d38222af8747c94b4b108ddf4762567db11f1c4c0c",
+    "proj/timer.h": "2185f0aaa94172560103457d5b3952c6a8c07af7ba303690d538b46af4787f95",
+    "proj/scancodes.c": "23fb1f0f8c4867d9d672faf0511e41dd53efa21658a7a556b8c26de68d44f444",
+    "proj/game.h": "ad1c3f989796fe358d0f21bfd3658ae4981bbf784ce53ae0fb6aa6f74b6ffbf5",
+    "proj/Letras.h": "1c213336aaa9941849aa4ff63167f77b5f86f8b36a741ce6d85e9b9e9b2d9dd0",
+    "proj/sprite.h": "aae0a546ebf91707bf24c3ffb487d9cd6b91b1dac8c65ecc5dcaf7b2536c6c35",
+    "proj/utils.c": "084400ad9f22ca4a0f4a859c4de2ae1471d9c3ebd82000a61750aeb5e1a8f0bc",
+    "proj/video_card.h": "f0e3ea088fe4ea9d83bc6d45d2a14e13988dd2ccfe25630ef7ff9b17fd403720",
+    "proj/keyboard.h": "b8597d55683b3cb6ccb5c1b6e0397b54a9da424f774c7e2abda690231ef00a26",
+    "proj/words.h": "550f6528e2771f1219392641423c5da8a7031ae233a00463ff0130ce1faed0cc",
+    "proj/RTC.h": "13a12eeafd2d5e4cfcac907601553e4e7a3d971492dc18802baaf0b452f1d04d",
+    "proj/words.txt": "b49f7c3c60e137187876b4302333218d1f3f46fed16c64131aa76172a8263c6b",
+    "proj/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/Leaderboard.c": "fa0269131fa0414c522b2c3336b04a9ba96eef5976bc7535b5e485d9a67befdf",
+    "proj/Fundos.h": "9b39062c574f7bcfa326c12f252539c26d12a4ef301bb5e25c04a7da7ec643c7",
+    "proj/proj.c": "8d0c3d5f57364dcce131e3d2daff824f52c53ef563ead65a9bcfd6ab3013a2d3"
+  },
+  "sourceChanges": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Every number renderer caller frees inttostr output. Original zero returned a static literal, so initial score0/timer0 caused Android tagged-pointer abort. Allocate two bytes for zero and retain the original sprintf digits and all rendering. Also correct the random-line range from0..2995 to1..2995 for the pinned2995line dictionary, preventing a freed-buffer return at random index0.",
+      "files": [
+        {
+          "path": "proj/words.c",
+          "originalSha256": "cc99a6fec7c25bbe410e4b3fc37818704504be5f1e9fad4e3b3a66c706867338",
+          "patchedSha256": "c17aafbda90c77269d8cba5bccb7ae3691c3fac3df782e3011a7392369c8b124"
+        }
+      ]
+    }
+  ],
+  "sourcePreservation": "30 pinned original files retained in sha256; one genuine source-defect correction in words.c, separately reversible through cumulative SOURCE_PATCH.diff. Original artwork and all displayed digit values preserved.",
+  "omissions": "Unused labs, generated documentation, VCS/OS metadata and compiler/log outputs omitted.",
+  "licenseStatus": "No license file found in the selected project tree.",
+  "verification": {
+    "browser": {
+      "status": "passed",
+      "demonstrated": [
+        "Direct touch enters original Play menu with actual guest cursor.",
+        "Cursor artwork remains visible at all four authored bounds, including bottom-right.",
+        "Original visible RESPONSE typed through real on-screen keyboard touch keys increments score0 to1; next word COMMERCIAL appears.",
+        "Enter release pauses and resumes original gameplay; keyboard landscape and portrait inspected.",
+        "Normal failure reaches Game Over and direct-touch Play Again starts a fresh word at score0."
+      ],
+      "limits": "Only one scored word demonstrated. Second longer word timed out normally. Full leaderboard save and later difficulty levels not claimed. Fast original120Hz gameplay requires prompt typing."
+    },
+    "fortifiedNdkObjectCompile": {
+      "status": "passed",
+      "units": 12,
+      "detail": "All authored Makefile source units compiled for ARM64 with O2/FORTIFY_SOURCE2/Wformat/Werror=format-security."
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/falling-words-reviewed-native/results.json",
+      "apkSha256": "82df6ac1830030de0f6ba87fff4ada4fc2e3790f2617b802ca3291d11d751f2f",
+      "demonstrated": "Root viewed original visible native word, typed it through actual on-screen touch keyboard, trophy score0\u21921 and next PARTICULAR word at level1. Original Enter pause/resume and clean Home also verified.",
+      "limitations": [
+        "One visible word completed using original120Hz game speed. Sustained typing performance, full round and leaderboard record are not claimed."
+      ]
+    }
+  },
+  "controlsRationale": "Original complete3byte packet path uses unit deltas, initial50/50, clamp x3..1240 and y3..964. Original33x55 opaque cursor extents remain visible within these bounds. Pointer direct plus80ms taps tested in actual menus, all edges and retry. Original Enter breakcode toggles pause; full keyboard remains available for typing.",
+  "derivedAssets": [
+    {
+      "path": "proj/icon.png",
+      "sha256": "0951fd479a7d0ded61e5a4fddf425b7d51b08920f20de628aa9bba141612c1ef",
+      "kind": "Launcher icon derived from unchanged original title/menu artwork"
+    }
+  ],
+  "canonicalPreview": {
+    "path": "proj/../../../../collections/arcade/previews/tiagoogomess-lcom-1920-81ea76c163f5.png",
+    "kind": "Actual original gameplay screenshot, hosted in collection preview assets"
+  }
+}

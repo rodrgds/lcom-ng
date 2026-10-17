@@ -1,0 +1,51 @@
+--- a/proj/src/devices/utils.c
++++ b/proj/src/devices/utils.c
+@@ -28,5 +28,8 @@
+     sys_count++;
+   #endif
+   
+-  return sys_inb(port, (uint32_t *) value);
++  uint32_t result;
++  int status = sys_inb(port, &result);
++  if (status == 0) *value = (uint8_t) result;
++  return status;
+ }
+--- a/proj/src/proj.c
++++ b/proj/src/proj.c
+@@ -436,6 +436,19 @@
+     draw_menu(*state);
+ }
+ 
++static int restore_map_area(sprite_t *map, int x, int y, unsigned width, unsigned height) {
++    for (unsigned row = 0; row < height; row++) {
++        int py = y + row;
++        if (py < 0 || py >= (int)map->height) continue;
++        for (unsigned col = 0; col < width; col++) {
++            int px = x + col;
++            if (px < 0 || px >= (int)map->width) continue;
++            if (set_pixel_color(px, py, map->colors[py * map->width + px])) return 1;
++        }
++    }
++    return 0;
++}
++
+ int (proj_main_loop)(int argc, char *argv[]) {
+     if (subscribe_ints()) {
+         printf("Error subscribing interrupts\n");
+@@ -617,7 +630,15 @@
+                             mouse_y = 767;
+                         }
+ 
+-                        draw_sprite(erase_crosshair, prev_mouse_x, prev_mouse_y);
++                        if (restore_map_area(map, prev_mouse_x, prev_mouse_y,
++                                             erase_crosshair->width, erase_crosshair->height)) return 1;
++                        for (int i = 0; i < 3; i++) {
++                            if (!destroyed[i] && draw_sprite(enemy, enemies[i][0], enemies[i][1])) return 1;
++                        }
++                        if (draw_sprite(player, x, y)) return 1;
++                        for (int i = 0; i < number_bullets; i++) {
++                            if (draw_sprite(bullet, bullets[i][0], bullets[i][1])) return 1;
++                        }
+                         draw_sprite(crosshair, mouse_x, mouse_y);
+                         if (move_buffer_to_video()) {
+                             printf("Error moving double buffer to video memory\n");

@@ -123,8 +123,9 @@ void I8042::injectKeySequence(const std::vector<uint8_t> &bytes) {
   for (uint8_t byte : bytes) injectKeyScancode(byte);
 }
 
-void I8042::resetMouseCounters() {
-  mouse_dx_ = mouse_dy_ = 0;
+void I8042::resetMouseCounters(bool command_reset) {
+  if (command_reset) ++mouse_counter_generation_;
+  mouse_dx_ = mouse_dy_ = mouse_wheel_ = 0;
   mouse_x_overflow_ = mouse_y_overflow_ = false;
 }
 
@@ -141,6 +142,12 @@ void I8042::injectMousePacket(int dx, int dy, uint8_t buttons) {
   if (mouse_reporting_ && !mouse_remote_) queueMousePacket();
 }
 
+void I8042::injectMouseWheel(int delta) {
+  if (mouse_device_id_ != 3 || delta == 0) return;
+  mouse_wheel_ = static_cast<int>(std::clamp<int64_t>(static_cast<int64_t>(mouse_wheel_) + delta, -127, 127));
+  if (mouse_reporting_ && !mouse_remote_) queueMousePacket();
+}
+
 void I8042::queueMousePacket() {
   uint8_t first = MOUSE_SYNC_BIT | mouse_buttons_;
   if (mouse_dx_ < 0) first |= BIT(4);
@@ -150,7 +157,8 @@ void I8042::queueMousePacket() {
   queueOutput(first, true);
   queueOutput(static_cast<uint8_t>(mouse_dx_ & 0xff), true);
   queueOutput(static_cast<uint8_t>(mouse_dy_ & 0xff), true);
-  resetMouseCounters();
+  if (mouse_device_id_ == 3) queueOutput(static_cast<uint8_t>(mouse_wheel_), true);
+  resetMouseCounters(false);
 }
 
 void I8042::handleMouseCommand(uint8_t command) {
@@ -160,7 +168,13 @@ void I8042::handleMouseCommand(uint8_t command) {
       command == 80 || command == 100 || command == 200;
     if (!valid) { queueOutput(MOUSE_NACK, true); return; }
     if (mouse_parameter_ == 0xe8) mouse_resolution_ = command;
-    else mouse_sample_rate_ = command;
+    else {
+      if (mouse_rate_older_ == 200 && mouse_rate_previous_ == 100 && command == 80)
+        mouse_device_id_ = 3;
+      mouse_rate_older_ = mouse_rate_previous_;
+      mouse_rate_previous_ = command;
+      mouse_sample_rate_ = command;
+    }
     mouse_parameter_ = 0;
     resetMouseCounters();
     queueOutput(MOUSE_ACK, true);
@@ -181,6 +195,7 @@ void I8042::handleMouseCommand(uint8_t command) {
   case MOUSE_CMD_RESET:
     mouse_reporting_ = mouse_remote_ = false;
     mouse_sample_rate_ = 100; mouse_resolution_ = 2;
+    mouse_device_id_ = mouse_rate_previous_ = mouse_rate_older_ = 0;
     resetMouseCounters();
     queueOutput(MOUSE_ACK, true);
     if (command == MOUSE_CMD_RESET) {
@@ -207,9 +222,9 @@ void I8042::handleMouseCommand(uint8_t command) {
     queueOutput(mouse_sample_rate_, true);
     resetMouseCounters();
     break;
-  case 0xf2: // Standard three-button device ID.
+  case 0xf2: // Standard mouse, or wheel mouse after the IntelliMouse handshake.
     queueOutput(MOUSE_ACK, true);
-    queueOutput(0, true);
+    queueOutput(mouse_device_id_, true);
     resetMouseCounters();
     break;
   case MOUSE_CMD_READ_DATA:

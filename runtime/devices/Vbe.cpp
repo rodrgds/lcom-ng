@@ -1,4 +1,7 @@
 #include "Vbe.hpp"
+#include "VgaFont.hpp"
+#include "../core/MachineConfig.hpp"
+#include <stdexcept>
 
 #include <lcom/vbe.h>
 
@@ -6,6 +9,7 @@
 #include <cctype>
 #include <cstdio>
 #include <cstring>
+#include <cmath>
 
 namespace lcom {
 
@@ -113,59 +117,94 @@ void drawCaptionRow(const std::string &caption, const std::string &position,
 
 } // namespace
 
-Vbe::Vbe() {
+Vbe::Vbe(uint32_t framebuffer_phys) : framebuffer_phys_(framebuffer_phys) {
+  if (!validPhysicalAperture(framebuffer_phys, LCOM_VBE_VRAM_BYTES))
+    throw std::invalid_argument("Invalid VBE physical framebuffer aperture");
+  resetPalette();
   setMode(LCOM_VBE_MODE_800_600_24);
   graphics_mode_ = false;
-  has_graphics_frame_ = false;
+  has_frame_ = false;
 }
 
-void Vbe::resetPalette() {
-  // The standard VGA BIOS 256-color palette: 16 EGA colors, 16 grays,
-  // nine 24-color hue rings, then eight black entries. Channel values match
-  // SeaBIOS rel-1.16.1 vgasrc/stdvgamodes.c palette3; generate the rings rather
-  // than storing a second 768-byte table.
-  static constexpr uint8_t ega[16][3] = {
-    {0, 0, 0}, {0, 0, 42}, {0, 42, 0}, {0, 42, 42},
-    {42, 0, 0}, {42, 0, 42}, {42, 21, 0}, {42, 42, 42},
-    {21, 21, 21}, {21, 21, 63}, {21, 63, 21}, {21, 63, 63},
-    {63, 21, 21}, {63, 21, 63}, {63, 63, 21}, {63, 63, 63}
-  };
-  static constexpr uint8_t gray[16] = {
-    0, 5, 8, 11, 14, 17, 20, 24, 28, 32, 36, 40, 45, 50, 56, 63
-  };
-  static constexpr uint8_t levels[9][5] = {
-    {0, 16, 31, 47, 63}, {31, 39, 47, 55, 63}, {45, 49, 54, 58, 63},
-    {0, 7, 14, 21, 28}, {14, 17, 21, 24, 28}, {20, 22, 24, 26, 28},
-    {0, 4, 8, 12, 16}, {8, 10, 12, 14, 16}, {11, 12, 13, 15, 16}
-  };
-  palette_ = {};
-  for (size_t i = 0; i < 16; ++i) {
-    std::copy_n(ega[i], 3, palette_[i].begin());
-    palette_[16 + i].fill(gray[i]);
-  }
-  for (size_t ring = 0; ring < 9; ++ring) {
-    const uint8_t *shade = levels[ring];
-    for (size_t step = 0; step < 24; ++step) {
-      const uint8_t ascending = shade[step % 4];
-      const uint8_t descending = shade[4 - step % 4];
-      auto &color = palette_[32 + ring * 24 + step];
-      switch (step / 4) {
-      case 0: color = {ascending, shade[0], shade[4]}; break;
-      case 1: color = {shade[4], shade[0], descending}; break;
-      case 2: color = {shade[4], ascending, shade[0]}; break;
-      case 3: color = {descending, shade[4], shade[0]}; break;
-      case 4: color = {shade[0], shade[4], ascending}; break;
-      case 5: color = {shade[0], descending, shade[4]}; break;
+void Vbe::resetPalette(bool text_mode) {
+  dac_width_ = 6;
+  if (text_mode) {
+    // VirtualBox VGA BIOS mode03 uses palette2, a 64-entry EGA DAC table.
+    // Its VBE path preserves this table instead of loading mode13's palette3.
+    palette_ = {};
+    for (unsigned i = 0; i < 64; ++i) {
+      palette_[i] = {
+        static_cast<uint8_t>(((i & 4) ? 42 : 0) + ((i & 32) ? 21 : 0)),
+        static_cast<uint8_t>(((i & 2) ? 42 : 0) + ((i & 16) ? 21 : 0)),
+        static_cast<uint8_t>(((i & 1) ? 42 : 0) + ((i & 8) ? 21 : 0))
+      };
+    }
+  } else {
+    // The standard VGA BIOS 256-color palette: 16 EGA colors, 16 grays,
+    // nine 24-color hue rings, then eight black entries. Channel values match
+    // SeaBIOS rel-1.16.1 vgasrc/stdvgamodes.c palette3; generate the rings rather
+    // than storing a second 768-byte table.
+    static constexpr uint8_t ega[16][3] = {
+      {0, 0, 0}, {0, 0, 42}, {0, 42, 0}, {0, 42, 42},
+      {42, 0, 0}, {42, 0, 42}, {42, 21, 0}, {42, 42, 42},
+      {21, 21, 21}, {21, 21, 63}, {21, 63, 21}, {21, 63, 63},
+      {63, 21, 21}, {63, 21, 63}, {63, 63, 21}, {63, 63, 63}
+    };
+    static constexpr uint8_t gray[16] = {
+      0, 5, 8, 11, 14, 17, 20, 24, 28, 32, 36, 40, 45, 50, 56, 63
+    };
+    static constexpr uint8_t levels[9][5] = {
+      {0, 16, 31, 47, 63}, {31, 39, 47, 55, 63}, {45, 49, 54, 58, 63},
+      {0, 7, 14, 21, 28}, {14, 17, 21, 24, 28}, {20, 22, 24, 26, 28},
+      {0, 4, 8, 12, 16}, {8, 10, 12, 14, 16}, {11, 12, 13, 15, 16}
+    };
+    palette_ = {};
+    for (size_t i = 0; i < 16; ++i) {
+      std::copy_n(ega[i], 3, palette_[i].begin());
+      palette_[16 + i].fill(gray[i]);
+    }
+    for (size_t ring = 0; ring < 9; ++ring) {
+      const uint8_t *shade = levels[ring];
+      for (size_t step = 0; step < 24; ++step) {
+        const uint8_t ascending = shade[step % 4];
+        const uint8_t descending = shade[4 - step % 4];
+        auto &color = palette_[32 + ring * 24 + step];
+        switch (step / 4) {
+        case 0: color = {ascending, shade[0], shade[4]}; break;
+        case 1: color = {shade[4], shade[0], descending}; break;
+        case 2: color = {shade[4], ascending, shade[0]}; break;
+        case 3: color = {descending, shade[4], shade[0]}; break;
+        case 4: color = {shade[0], shade[4], ascending}; break;
+        case 5: color = {shade[0], descending, shade[4]}; break;
+        }
       }
     }
   }
-  for (size_t i = 0; i < palette_.size(); ++i)
-    for (size_t component = 0; component < 3; ++component)
-      rgb_palette_[i][component] = static_cast<uint8_t>(palette_[i][component] * 255 / 63);
+  refreshPalette();
   pixel_mask_ = 0xff;
   dac_read_index_ = dac_write_index_ = 0;
   dac_read_component_ = dac_write_component_ = 0;
   dac_state_ = 0;
+}
+
+void Vbe::refreshPalette() {
+  text_invalid_ = true;
+  const unsigned mask = dac_width_ == 8 ? 255 : 63;
+  for (size_t i = 0; i < palette_.size(); ++i)
+    for (size_t component = 0; component < 3; ++component)
+      rgb_palette_[i][component] = static_cast<uint8_t>((palette_[i][component] & mask) * 255 / mask);
+}
+
+bool Vbe::dacFormat(uint8_t operation, uint8_t requested, uint8_t &actual) {
+  if ((graphics_mode_ && current_.bpp != 8) || operation > 1) return false;
+  if (operation == 0) {
+    if (requested < 6) return false;
+    // VBE 3.0 4F08: select the next lower hardware-supported width.
+    dac_width_ = requested >= 8 ? 8 : 6;
+    refreshPalette();
+  }
+  actual = dac_width_;
+  return true;
 }
 
 bool Vbe::handles(uint16_t port) const {
@@ -178,7 +217,7 @@ bool Vbe::read8(uint16_t port, uint8_t &value) {
   case 0x3c7: value = dac_state_; return true;
   case 0x3c8: value = dac_write_index_; return true;
   case 0x3c9:
-    value = palette_[dac_read_index_][dac_read_component_];
+    value = palette_[dac_read_index_][dac_read_component_] & (dac_width_ == 8 ? 0xff : 0x3f);
     if (++dac_read_component_ == 3) {
       dac_read_component_ = 0;
       ++dac_read_index_;
@@ -190,7 +229,7 @@ bool Vbe::read8(uint16_t port, uint8_t &value) {
 
 bool Vbe::write8(uint16_t port, uint8_t value) {
   switch (port) {
-  case 0x3c6: pixel_mask_ = value; return true;
+  case 0x3c6: pixel_mask_ = value; text_invalid_ = true; return true;
   case 0x3c7:
     dac_read_index_ = value;
     dac_read_component_ = 0;
@@ -202,8 +241,9 @@ bool Vbe::write8(uint16_t port, uint8_t value) {
     dac_state_ = 0;
     return true;
   case 0x3c9:
-    palette_[dac_write_index_][dac_write_component_] = value & 0x3f;
-    rgb_palette_[dac_write_index_][dac_write_component_] =
+    text_invalid_ = true;
+    palette_[dac_write_index_][dac_write_component_] = value & (dac_width_ == 8 ? 0xff : 0x3f);
+    rgb_palette_[dac_write_index_][dac_write_component_] = dac_width_ == 8 ? value :
         static_cast<uint8_t>((value & 0x3f) * 255 / 63);
     if (++dac_write_component_ == 3) {
       dac_write_component_ = 0;
@@ -235,28 +275,120 @@ bool Vbe::modeInfo(uint16_t mode, VbeModeInfo &out) const {
 
 bool Vbe::setMode(uint16_t mode) {
   if (mode == 3) {
+    resetPalette(true);
     graphics_mode_ = false;
+    if (text_mapped_) enterTextMode();
     return true;
   }
   VbeModeInfo info;
   if (!modeInfo(mode, info)) return false;
   current_ = info;
-  resetPalette();
+  // Every VBE mode set returns the DAC to the standard VGA six-bit width.
+  dac_width_ = 6;
+  refreshPalette();
+  // VBE mode changes preserve the current DAC, including game-written colors.
   framebuffer_.assign(static_cast<size_t>(info.framebuffer_size), 0);
   graphics_mode_ = true;
-  has_graphics_frame_ = true;
+  has_frame_ = true;
   display_offset_ = 0;
+  display_x_ = display_y_ = 0;
   return true;
 }
 
 bool Vbe::setDisplayStart(uint16_t x, uint16_t y) {
-  // Linear page flipping starts on a scanline. Horizontal panning would need
-  // a separate virtual scanline-width BIOS interface.
-  if (!graphics_mode_ || x != 0) return false;
-  size_t offset = static_cast<size_t>(y) * current_.pitch;
-  if (offset > vramSize() || framebuffer_.size() > vramSize() - offset) return false;
-  display_offset_ = offset;
+  if (!graphics_mode_ || static_cast<uint32_t>(x) + current_.width > scanlinePixels() ||
+      static_cast<uint32_t>(y) + current_.height > scanlineLines()) return false;
+  display_x_ = x; display_y_ = y;
+  display_offset_ = static_cast<size_t>(y) * current_.pitch +
+                    static_cast<size_t>(x) * current_.bytes_per_pixel;
   return true;
+}
+
+bool Vbe::scanline(uint8_t operation, uint16_t value) {
+  if (!graphics_mode_ || operation > 2) return false;
+  if (operation == 1) return true;
+  uint32_t pitch = operation == 0 ? static_cast<uint32_t>(value) * current_.bytes_per_pixel : value;
+  if (pitch > UINT16_MAX || pitch < static_cast<uint32_t>(current_.width) * current_.bytes_per_pixel ||
+      static_cast<uint32_t>(display_x_) + current_.width > pitch / current_.bytes_per_pixel ||
+      static_cast<uint32_t>(display_y_) + current_.height > vramSize() / pitch) return false;
+  if (pitch != current_.pitch) {
+    current_.pitch = pitch;
+    current_.framebuffer_size = static_cast<uint64_t>(pitch) * current_.height;
+    framebuffer_.assign(static_cast<size_t>(current_.framebuffer_size), 0);
+    display_offset_ = static_cast<size_t>(display_y_) * pitch +
+                      static_cast<size_t>(display_x_) * current_.bytes_per_pixel;
+  }
+  return true;
+}
+
+void Vbe::advanceTick(uint32_t frequency) {
+  if (!text_mapped_ || !frequency) return;
+  text_elapsed_seconds_ += 1.0 / frequency;
+  bool hidden = std::fmod(text_elapsed_seconds_, 32.0 / 70.0) >= 16.0 / 70.0;
+  if (hidden != text_blink_hidden_) { text_blink_hidden_ = hidden; text_invalid_ = true; }
+}
+
+void Vbe::enterTextMode() {
+  text_invalid_ = true;
+  current_ = {3, 720, 400, 24, 3, 720 * 3, LCOM_VGA_TEXT_PHYS, 720 * 400 * 3};
+  framebuffer_.assign(720 * 400 * 3, 0);
+  has_frame_ = true;
+}
+
+void Vbe::mapTextMemory() {
+  if (text_mapped_) return;
+  text_mapped_ = true;
+  if (!graphics_mode_) { resetPalette(true); enterTextMode(); }
+}
+
+bool Vbe::syncTextFramebuffer(const uint8_t *vram, size_t length) {
+  if (!vram || length < mappedVideoBytes()) return false;
+  const uint8_t *cells = vram + vramSize();
+  bool changed = false;
+  // VGA's default text palette maps logical brown/intensity through the
+  // attribute-controller EGA table. Character bit 7 is blink, not background.
+  static constexpr uint8_t colors[16] = {0,1,2,3,4,5,20,7,56,57,58,59,60,61,62,63};
+  for (unsigned row = 0; row < 25; ++row) {
+    for (unsigned col = 0; col < 80; ++col) {
+      unsigned cell = (row * 80 + col) * 2;
+      uint8_t ch = cells[cell], attr = cells[cell + 1];
+      if (!text_invalid_ && text_cells_[cell] == ch && text_cells_[cell + 1] == attr) continue;
+      text_cells_[cell] = ch; text_cells_[cell + 1] = attr;
+      for (unsigned y = 0; y < 16; ++y) {
+        uint8_t bits = vga_font_8x16[unsigned(ch) * 16 + y];
+        for (unsigned x = 0; x < 9; ++x) {
+          bool ink = x < 8 ? (bits & (0x80 >> x)) != 0 :
+                     (ch >= 0xc0 && ch <= 0xdf && (bits & 1));
+          if ((attr & 0x80) && text_blink_hidden_) ink = false;
+          const auto &rgb = rgb_palette_[colors[ink ? attr & 15 : (attr >> 4) & 7] & pixel_mask_];
+          auto *pixel = framebuffer_.data() + ((row * 16 + y) * 720 + col * 9 + x) * 3;
+          for (unsigned c = 0; c < 3; ++c) {
+            uint8_t value = rgb[2 - c];
+            if (pixel[c] != value) { pixel[c] = value; changed = true; }
+          }
+        }
+      }
+    }
+  }
+  text_invalid_ = false;
+  return changed;
+}
+
+bool Vbe::syncFramebuffer(const uint8_t *vram, size_t length) {
+  if (textMode()) return syncTextFramebuffer(vram, length);
+  if (!graphics_mode_ || !vram) return false;
+  size_t row_bytes = static_cast<size_t>(current_.width) * current_.bytes_per_pixel;
+  size_t span = static_cast<size_t>(current_.height - 1) * current_.pitch + row_bytes;
+  if (display_offset_ > length || span > length - display_offset_) return false;
+  bool changed = false;
+  for (uint16_t y = 0; y < current_.height; ++y) {
+    auto *destination = framebuffer_.data() + static_cast<size_t>(y) * current_.pitch;
+    const auto *source = vram + display_offset_ + static_cast<size_t>(y) * current_.pitch;
+    if (std::memcmp(destination, source, row_bytes) != 0) {
+      std::memcpy(destination, source, row_bytes); changed = true;
+    }
+  }
+  return changed;
 }
 
 bool Vbe::ownsRange(uint64_t phys, uint64_t length) const {
@@ -291,7 +423,7 @@ void Vbe::copyRgb(const uint8_t *pixels, size_t count, uint8_t *rgb) const {
 
 bool Vbe::dumpPpm(const std::string &path, const std::string &caption,
                   const std::string &caption_position) const {
-  if (!has_graphics_frame_ || framebuffer_.empty()) return false;
+  if (!has_frame_ || framebuffer_.empty()) return false;
   FILE *f = std::fopen(path.c_str(), "wb");
   if (f == nullptr) return false;
   // A large frame has hundreds of rows. Combine their writes before entering

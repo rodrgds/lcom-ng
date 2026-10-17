@@ -1,0 +1,390 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="timer_8c" kind="file" language="C++">
+    <compoundname>timer.c</compoundname>
+    <includes local="no">lcom/lcf.h</includes>
+    <includes local="no">lcom/timer.h</includes>
+    <includes local="no">stdint.h</includes>
+    <includes refid="timer_8h" local="yes">timer.h</includes>
+    <incdepgraph>
+      <node id="6">
+        <label>i8254.h</label>
+        <link refid="i8254_8h"/>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c</label>
+        <link refid="timer_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>timer.h</label>
+        <link refid="timer_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>lcom/lcf.h</label>
+      </node>
+      <node id="3">
+        <label>lcom/timer.h</label>
+      </node>
+      <node id="4">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="timer_8c_1a96f78a87d064e47d627d222f67a8d012" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hook_id</definition>
+        <argsstring></argsstring>
+        <name>hook_id</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" line="7" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="timer_8c_1af2c04fa8e97ffa748fd3f612886a92a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() timer_set_frequency</definition>
+        <argsstring>(uint8_t timer, uint32_t freq)</argsstring>
+        <name>timer_set_frequency</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>timer</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>freq</declname>
+        </param>
+        <briefdescription>
+<para>Sets the frequency of a given timer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The timer to be configured. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>freq</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The desired frequency. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success, 1 if error occurs </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" line="11" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" bodystart="11" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="timer_8c_1ac57a7e1140a7e00ad95ac5488d2a671b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() timer_subscribe_int</definition>
+        <argsstring>(uint8_t *bit_no)</argsstring>
+        <name>timer_subscribe_int</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>bit_no</declname>
+        </param>
+        <briefdescription>
+<para>Subscribes and enables Timer 0 interrupts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bit_no</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bit number associated with the timer&apos;s interrupt. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" line="57" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" bodystart="57" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="timer_8c_1afabd21de449be154dd65d5fdb2d8045d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() timer_unsubscribe_int</definition>
+        <argsstring>()</argsstring>
+        <name>timer_unsubscribe_int</name>
+        <briefdescription>
+<para>Unsubscribes Timer 0 interrupts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" line="64" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" bodystart="64" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="timer_8c_1a91a2072306c68353712a6b771287dc2c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void()</type>
+        <definition>void() timer_int_handler</definition>
+        <argsstring>()</argsstring>
+        <name>timer_int_handler</name>
+        <briefdescription>
+<para>Timer 0 interrupt handler. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" line="68" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" bodystart="68" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="timer_8c_1a703c60b40c8c49607d6ecb6fef82d27a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() timer_get_conf</definition>
+        <argsstring>(uint8_t timer, uint8_t *st)</argsstring>
+        <name>timer_get_conf</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>timer</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>st</declname>
+        </param>
+        <briefdescription>
+<para>Reads the configuration of a given timer in a 8-bit variable. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The timer to read. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>st</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pointer to an 8-bit variable that will store the timer&apos;s configuration. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" line="74" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" bodystart="74" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="timer_8c_1a140d8f092c0913cabdca949c4a1cc650" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() timer_display_conf</definition>
+        <argsstring>(uint8_t timer, uint8_t st, enum timer_status_field field)</argsstring>
+        <name>timer_display_conf</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>timer</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>st</declname>
+        </param>
+        <param>
+          <type>enum timer_status_field</type>
+          <declname>field</declname>
+        </param>
+        <briefdescription>
+<para>Displays, in a friendly way, a timer configuration in the specified field, for a given timer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>timer</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The timer whose configuration is going to be displayed. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>st</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The timer configuration. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>field</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The field to be displayed in a friendly way. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" line="87" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c" bodystart="87" bodyend="121"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;lcom/lcf.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;lcom/timer.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="timer_8h" kindref="compound">timer.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="timer_8c_1a96f78a87d064e47d627d222f67a8d012" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="timer_8c_1a96f78a87d064e47d627d222f67a8d012" kindref="member">hook_id</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="timer_8c_1af2c04fa8e97ffa748fd3f612886a92a7" refkind="member"><highlight class="normal">int<sp/>(<ref refid="timer_8c_1af2c04fa8e97ffa748fd3f612886a92a7" kindref="member">timer_set_frequency</ref>)(uint8_t<sp/>timer,<sp/>uint32_t<sp/>freq)<sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>To<sp/>be<sp/>implemented<sp/>by<sp/>the<sp/>students<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(freq<sp/>&gt;<sp/><ref refid="group__i8042_1gacf926951944b6cf370b7229ebd50dd8b" kindref="member">TIMER_FREQ</ref><sp/>||<sp/>freq<sp/>&lt;=<sp/>18)</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/>uint8_t<sp/>st;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="timer_8c_1a703c60b40c8c49607d6ecb6fef82d27a" kindref="member">timer_get_conf</ref>(timer,<sp/>&amp;st))</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/>uint16_t<sp/>div<sp/>=<sp/><ref refid="group__i8042_1gacf926951944b6cf370b7229ebd50dd8b" kindref="member">TIMER_FREQ</ref>/freq;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>uint8_t<sp/>lsb,<sp/>msb;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><ref refid="utils_8c_1a6a880076cd2ec468834438b6e0c58836" kindref="member">util_get_MSB</ref>(div,<sp/>&amp;msb);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><ref refid="utils_8c_1a81621440b3d65680979425e39aa8c789" kindref="member">util_get_LSB</ref>(div,<sp/>&amp;lsb);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/>st<sp/>=<sp/>st<sp/>&amp;<sp/>0x0f;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(timer)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>st<sp/>=<sp/>(st<sp/>|<sp/><ref refid="group__i8254_1ga8c0f1933323274c765e23837e4fbc8c7" kindref="member">TIMER_LSB_MSB</ref><sp/>|<sp/><ref refid="group__i8254_1ga6a4822642d40c248435692324a818010" kindref="member">TIMER_SEL0</ref>);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>st<sp/>=<sp/>(st<sp/>|<sp/><ref refid="group__i8254_1ga8c0f1933323274c765e23837e4fbc8c7" kindref="member">TIMER_LSB_MSB</ref><sp/>|<sp/><ref refid="group__i8254_1ga8349623fd8d99f9cc5d8ae29d78594fc" kindref="member">TIMER_SEL1</ref>);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>st<sp/>=<sp/>(st<sp/>|<sp/><ref refid="group__i8254_1ga8c0f1933323274c765e23837e4fbc8c7" kindref="member">TIMER_LSB_MSB</ref><sp/>|<sp/><ref refid="group__i8254_1ga142a255de0dbc48aeabd45fc10c33672" kindref="member">TIMER_SEL2</ref>);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(sys_outb(<ref refid="group__i8254_1ga282832448fb0281ef53d243c1cd48491" kindref="member">TIMER_CTRL</ref>,st))</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(sys_outb(<ref refid="group__i8042_1gacc9ff9df4a9674a1ce9ba08fc4a4679e" kindref="member">TIMER_0</ref>+timer,<sp/>lsb))</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sys_outb(<ref refid="group__i8042_1gacc9ff9df4a9674a1ce9ba08fc4a4679e" kindref="member">TIMER_0</ref>+timer,<sp/>msb);</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57" refid="timer_8c_1ac57a7e1140a7e00ad95ac5488d2a671b" refkind="member"><highlight class="normal">int<sp/>(<ref refid="timer_8c_1ac57a7e1140a7e00ad95ac5488d2a671b" kindref="member">timer_subscribe_int</ref>)(uint8_t<sp/>*bit_no)<sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/>*bit_no<sp/>=<sp/>BIT(<ref refid="timer_8c_1a96f78a87d064e47d627d222f67a8d012" kindref="member">hook_id</ref>);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sys_irqsetpolicy(<ref refid="group__i8042_1ga30bf84c312af248cb81bb224e09f9ba8" kindref="member">TIMER0_IRQ</ref>,<sp/>IRQ_REENABLE,<sp/>&amp;<ref refid="timer_8c_1a96f78a87d064e47d627d222f67a8d012" kindref="member">hook_id</ref>);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="62"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="timer_8c_1afabd21de449be154dd65d5fdb2d8045d" refkind="member"><highlight class="normal">int<sp/>(<ref refid="timer_8c_1afabd21de449be154dd65d5fdb2d8045d" kindref="member">timer_unsubscribe_int</ref>)()<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sys_irqrmpolicy(&amp;<ref refid="timer_8c_1a96f78a87d064e47d627d222f67a8d012" kindref="member">hook_id</ref>);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="timer_8c_1a91a2072306c68353712a6b771287dc2c" refkind="member"><highlight class="normal">void<sp/>(<ref refid="timer_8c_1a91a2072306c68353712a6b771287dc2c" kindref="member">timer_int_handler</ref>)()<sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><ref refid="timer_8h_1ab9ca10e8d9406f9af7cd8c2a9d471c5c" kindref="member">global_counter</ref>++;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="comment">//<sp/>done,<sp/>no<sp/>bugs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="timer_8c_1a703c60b40c8c49607d6ecb6fef82d27a" refkind="member"><highlight class="normal">int<sp/>(<ref refid="timer_8c_1a703c60b40c8c49607d6ecb6fef82d27a" kindref="member">timer_get_conf</ref>)(uint8_t<sp/>timer,<sp/>uint8_t<sp/>*st)<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(timer<sp/>&lt;<sp/>0<sp/>||<sp/>timer<sp/>&gt;2)</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/>uint8_t<sp/>readBackCommand<sp/>=<sp/>(<ref refid="group__i8254_1ga4c2eecbfb96744a9c2af71dba75ecb18" kindref="member">TIMER_RB_CMD</ref><sp/>|<sp/><ref refid="group__i8254_1ga6c248216df24b5e9d907d126d80bd195" kindref="member">TIMER_RB_COUNT_</ref><sp/>|<sp/><ref refid="group__i8254_1gaf598b17740e07842a0545af512714711" kindref="member">TIMER_RB_SEL</ref>(timer));</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sys_outb(<ref refid="group__i8254_1ga282832448fb0281ef53d243c1cd48491" kindref="member">TIMER_CTRL</ref>,<sp/>readBackCommand))</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Obter<sp/>a<sp/>configuração<sp/>do<sp/>timer<sp/>que<sp/>queremos<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="utils_8c_1a79a031a8611f5b2d6afa4158e92b0fb4" kindref="member">util_sys_inb</ref>(<ref refid="group__i8042_1gacc9ff9df4a9674a1ce9ba08fc4a4679e" kindref="member">TIMER_0</ref>+timer,<sp/>st);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment">//done,<sp/>no<sp/>bugs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87" refid="timer_8c_1a140d8f092c0913cabdca949c4a1cc650" refkind="member"><highlight class="normal">int<sp/>(<ref refid="timer_8c_1a140d8f092c0913cabdca949c4a1cc650" kindref="member">timer_display_conf</ref>)(uint8_t<sp/>timer,<sp/>uint8_t<sp/>st,</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/>timer_status_field<sp/>field)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/></highlight><highlight class="keyword">union<sp/></highlight><highlight class="normal">timer_status_field_val<sp/>friendly_config;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//in_mode<sp/>e<sp/><sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">//<sp/>&quot;1&quot;<sp/>e<sp/>&quot;2&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(field){</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/>friendly_config.byte<sp/>=<sp/>st;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>friendly_config.in_mode<sp/>=<sp/>(st<sp/>&amp;<sp/><ref refid="group__i8254_1ga8c0f1933323274c765e23837e4fbc8c7" kindref="member">TIMER_LSB_MSB</ref>)<sp/>&gt;&gt;<sp/>4;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>count_mode<sp/>=<sp/>(st<sp/>&gt;&gt;<sp/>1)<sp/>&amp;<sp/>7;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(count_mode<sp/>==<sp/>6)</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>friendly_config.count_mode<sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(count_mode<sp/>==<sp/>7)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>friendly_config.count_mode<sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>friendly_config.count_mode<sp/>=<sp/>count_mode;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>friendly_config.bcd<sp/>=<sp/>st<sp/>&amp;<sp/>1;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>timer_print_config(timer,<sp/>field,<sp/>friendly_config);</highlight></codeline>
+<codeline lineno="121"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c"/>
+  </compounddef>
+</doxygen>

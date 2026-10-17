@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "name": "Age of War: Ancient Front",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": true,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "mouseButton": "left",
+          "label": "Select",
+          "position": "top-right"
+        },
+        {
+          "key": "1",
+          "label": "P1 Unit 1",
+          "position": "top-left"
+        },
+        {
+          "key": "2",
+          "label": "P1 Unit 2",
+          "position": "top-left"
+        },
+        {
+          "key": "3",
+          "label": "P1 Unit 3",
+          "position": "top-left"
+        },
+        {
+          "key": "J",
+          "label": "P2 Unit 1",
+          "position": "bottom-left"
+        },
+        {
+          "key": "K",
+          "label": "P2 Unit 2",
+          "position": "bottom-left"
+        },
+        {
+          "key": "L",
+          "label": "P2 Unit 3",
+          "position": "bottom-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "res",
+      "src/HighScores.txt"
+    ],
+    "pathAliases": {
+      "/home/project": ".",
+      "home/lcom/lcom1617-t4g09/project": "."
+    }
+  },
+  "description": "Send opposing armies into battle on the same screen, unlock stronger units, and defend each original fortress.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

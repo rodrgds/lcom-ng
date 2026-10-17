@@ -1,0 +1,88 @@
+--- a/src/mainLoop.c
++++ b/src/mainLoop.c
+@@ -416,9 +416,6 @@
+                     for (int i = 0; i < ENEMY_LIMIT; i++) {
+                       if (enemies[i] != NULL) {
+                         DestroyAnimated(enemies[i]);
+-                        for (int j = 0; j < enemies[i]->num_fig; j++) {
+-                          enemies[i]->sprites[j] = NULL;
+-                        }
+                         enemies[i] = NULL;
+                         if (coins < 99) {
+                           coins++;
+@@ -460,9 +457,6 @@
+                     //if (coins < 99)
+                       //coins++;
+                     DestroyAnimated(enemies[i]);
+-                    for (int j = 0; j < enemies[i]->num_fig; j++) {
+-                      enemies[i]->sprites[j] = NULL;
+-                    }
+                     enemies[i] = NULL;
+                   }
+                   //Checking hitboxes (should be inside processing enemies code)
+@@ -473,9 +467,6 @@
+                           if (coins < 99)
+                             coins++;
+                           DestroyAnimated(enemies[i]);
+-                          for (int j = 0; j < enemies[i]->num_fig; j++) {
+-                            enemies[i]->sprites[j] = NULL;
+-                          }
+                           enemies[i] = NULL;
+                         }
+                       }
+@@ -545,8 +536,6 @@
+                   for (int i = 0; i < ENEMY_LIMIT; i++) {
+                     if (enemies[i] != NULL) {
+                       DestroyAnimated(enemies[i]);
+-                      for (int j = 0; j < enemies[i]->num_fig; j++)
+-                        enemies[i]->sprites[j] = NULL;
+                       enemies[i] = NULL;
+                     }
+                   }
+@@ -636,9 +625,9 @@
+             if (byteNumMouse == 3) {
+               byteNumMouse = 0;
+               set_packet();
+-            }
+-            true_x_mouse += (float) (pp.delta_x);
+-            true_y_mouse -= (float) (pp.delta_y);
++              true_x_mouse += (float) (pp.delta_x);
++              true_y_mouse -= (float) (pp.delta_y);
++            }
+           }
+ 
+           if (msg.m_notify.interrupts & irq_rtc)
+@@ -654,22 +643,14 @@
+   //DESTROY ALL ANIMATEDS
+   //Destroy missile
+   DestroyAnimated(Missile);
+-  for (int j = 0; j < Missile->num_fig; j++) {
+-    Missile->sprites[j] = NULL;
+-  }
+   Missile = NULL;
+   //Destroy Mouse
+   DestroyAnimated(mouse);
+-  for (int j = 0; j < mouse->num_fig; j++) {
+-    mouse->sprites[j] = NULL;
+-  }
+   mouse = NULL;
+   //Destroy enemies
+   for (int i = 0; i < ENEMY_LIMIT; i++) {
+     if (enemies[i] != NULL) {
+       DestroyAnimated(enemies[i]);
+-      for (int j = 0; j < enemies[i]->num_fig; j++)
+-        enemies[i]->sprites[j] = NULL;
+       enemies[i] = NULL;
+     }
+   }
+--- a/src/mainLoop.h
++++ b/src/mainLoop.h
+@@ -30,7 +30,7 @@
+ #include "./Xpms/Sete.xpm"
+ #include "./Xpms/Oito.xpm"
+ #include "./Xpms/Nove.xpm"
+-#include "./Xpms/Dois_Pontos.xpm"
++#include "./Xpms/Dois_pontos.xpm"
+ #include "./Xpms/BeetleUp1.xpm"
+ #include "./Xpms/BeetleUp2.xpm"
+ #include "./Xpms/BeetleUp3.xpm"

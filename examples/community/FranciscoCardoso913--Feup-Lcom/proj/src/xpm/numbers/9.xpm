@@ -1,0 +1,38 @@
+/* XPM */
+static char *n9_xpm[] = {
+/* columns rows colors chars-per-pixel */
+"18 28 4 1 ",
+"  c None",
+". c #CFCFCF",
+"X c #FFFFFF",
+"o c #FFFFFF",
+/* pixels */
+"   XXooo..        ",
+"   XXooo..        ",
+"   XXooo..        ",
+"XXX       XXX     ",
+"XXX       XXX     ",
+"ooo       ooo     ",
+"ooo       ooo     ",
+"ooo       ooo     ",
+"ooo       ooo     ",
+"ooo       ooo     ",
+"ooo       ooo     ",
+"ooo       ooo     ",
+"ooo       ooo     ",
+"...     ..ooo     ",
+"...     ..ooo     ",
+"   XXXXX  ooo     ",
+"   XXXXX  ooo     ",
+"   XXXXX  ooo     ",
+"          ooo     ",
+"          ooo     ",
+"          ooo     ",
+"          ooo     ",
+"          ooo     ",
+"XXX       XXX     ",
+"XXX       XXX     ",
+"   XXooo..        ",
+"   XXooo..        ",
+"   XXooo..        "
+};

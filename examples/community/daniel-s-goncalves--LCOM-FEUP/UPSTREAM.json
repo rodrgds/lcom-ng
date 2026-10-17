@@ -1,0 +1,87 @@
+{
+  "repository": "https://github.com/daniel-s-goncalves/LCOM-FEUP",
+  "commit": "00078772ad62fba6bb75de907215f472b74e115a",
+  "createdAt": "2021-03-30T01:35:45Z",
+  "project": "proj/src",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/daniel-s-goncalves/LCOM-FEUP",
+    "createdAt": "2021-03-30T01:35:45Z"
+  },
+  "sha256": {
+    "proj/src/Makefile": "9d8e2dc63605cf64ee38fd46403d178152432320ff92301cc9b0271368eece67",
+    "proj/src/cursor.c": "9eccbe62999f3e30336873c39a33f648661c0273eee68daec6347f2688e77204",
+    "proj/src/cursor.h": "f6a34f5cd9a57f53c8e932b6170c03529a0b328c2e562f396007392b6fb4cf9b",
+    "proj/src/game.c": "cafff8d826a1ec0b3510ebbed195b82b9cf01867eba6a3bdc4e8696080712093",
+    "proj/src/game.h": "fdab464bac08e56fed8f5e36f12e9f63286d2ae3f1678f655f93c5adab2a5a6f",
+    "proj/src/graphic_management.c": "689cb342895ba4668780a922a528cafe685bf9be495140d2a37826e65af9836b",
+    "proj/src/graphic_management.h": "d60b7f6672795e4665e5b1363efc14baa3a2d7746c9999bca9d06b9adaaf84d3",
+    "proj/src/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/images.h": "f4a060bbf60c179919097b991503bc7c57006a6423a6942c365b8544955a381e",
+    "proj/src/kbd_essentials.c": "ae3c6c5821cbf6ce04bc8529fa7568b091cd48c0989841dd1a180e4e5c364fa4",
+    "proj/src/kbd_essentials.h": "b2c2a43c41befc3a2d6dd275ac9eb7489c281549aaa59bd7fc8a1c77dbdbaab3",
+    "proj/src/mouse_essentials.c": "f2e114bbb552a1de1ea30429e649f302b2184e7dda1a398a1bb902670838f362",
+    "proj/src/mouse_essentials.h": "5fe684eef28cf681365c24fa9b0c80647c82f5afecdc10aad4876543ec6c2ca1",
+    "proj/src/proj.c": "17274238182e3c0f80a8f6d7b8fb3792fcd10e9425b695584989d8932ad41649",
+    "proj/src/proj_essentials.c": "ac22d03a53c8e12cd8ad34c0b888285c3417d4ac35f2c78175ff41cd55c1fd45",
+    "proj/src/proj_essentials.h": "bb518407860a13edb439cb698e744db93de4b4be3bfcdd14a123d0d32638cc39",
+    "proj/src/rtc.c": "10eed3bd0989189eb73892ced44b8ef55528255a50d13a669bbcb41adb7c5b90",
+    "proj/src/rtc.h": "69919ef86558b116a20ba0bdca3214c27af39e73108a52f2ec56663a1cfc92ff",
+    "proj/src/sources/assets.h": "472cbd7aeaadaa042a46e426de9555725aa29a806d9cf0786f99d9ae5a838b69",
+    "proj/src/sources/game_images.h": "5261008a9c50086dfcc77f7300ae53121549cf09baf8326d5c5f325f9d33e403",
+    "proj/src/sources/images.h": "f4a060bbf60c179919097b991503bc7c57006a6423a6942c365b8544955a381e",
+    "proj/src/sources/menu_images.h": "e4903c8efe7770fdd3c6fb42afa21fb080400516038681fa0721491db809691e",
+    "proj/src/sources/numbers.h": "4ecd6dc1de42235fe59ac91ada7d3a4b3308e289d5a4a11f591bf4e4d0ac467f",
+    "proj/src/sources/small_numbers.h": "c3d1a7f7b9c5bd82206431088eed08f5148c8bc2ea93134bea4ff4a059465313",
+    "proj/src/timer.c": "9c5e80b54119b2661872ad2b8128a7075bb8d1d2f6e3910b644d8a20a7f88119",
+    "proj/src/timer.h": "20e562393b7217b06a8a846acf5915a740179e151ce7d060fd0fc9eb61f36638",
+    "proj/src/utils.c": "174b3807689df0e204bc7fea72ad5716821218b12ae31b36fa6a7be3fae8bc89",
+    "proj/src/videocard_essentials.c": "3dd672ef78b970c36fc5e1a49aff3b62373a08b8bb3c82390ef9a835b62d8a7a",
+    "proj/src/videocard_essentials.h": "e2fafebf28b01b4ea43c85a8ee23d1ab309fb5ee4d9fe53b28c9c852c42612f5",
+    "proj/src/xpm_management.c": "7f0a78352552e8cce898e6b60391521857f0f264f9786cebbf627e16e0fffee1",
+    "proj/src/xpm_management.h": "2c6c2d09930ad22f01088d9ba6f7e66290e2de6a691a3e45108e11502b8d2087",
+    "proj/src/xpm_variables.c": "c3c8d01a3cc0472e8bbc08808cb5029d77957b88de410b70f43c463e07ec2aca"
+  },
+  "sourceChanges": [],
+  "sourcePreservation": "All32selected original source/header/data files verified against pinned Git blob identities. No original code or art changed.",
+  "omissions": "Unused labs, generated documentation, VCS/OS metadata and generated outputs omitted.",
+  "licenseStatus": "No license file found in selected tree.",
+  "verification": {
+    "browser": {
+      "status": "passed",
+      "demonstrated": [
+        "Original menu Enter starts the timed board.",
+        "Actual screen-touch arrows and Drop alternate columns0and1 for seven chips.",
+        "The original BLUE PLAYER WINS outcome is reached with four blue chips vertically.",
+        "Restart clears the original board; portrait controls inspected."
+      ],
+      "limits": "Original chip animation needs about2seconds to settle under real Chromium; native replay waits2600ms after each drop. No guest state or artwork was fabricated."
+    },
+    "fortifiedNdkObjectCompile": {
+      "status": "passed",
+      "units": 11,
+      "detail": "All authored source units compiled ARM64 at O2/FORTIFY_SOURCE2/Wformat/Werror=format-security."
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/connect-neon-reviewed-native/results.json",
+      "apkSha256": "82df6ac1830030de0f6ba87fff4ada4fc2e3790f2617b802ca3291d11d751f2f",
+      "demonstrated": "Root viewed seven ordinary alternating-column drops, original four-chip winning ring animation and BLUE PLAYER WINS, then Restart restored empty board and clean Home.",
+      "limitations": [
+        "One complete local two-player vertical win and restart verified. Diagonal/horizontal victories and full timeout behavior are not claimed."
+      ]
+    }
+  },
+  "controlsRationale": "Original Enter confirms and drops, arrow keys choose columns, R restarts and Q returns to menu. Screen pointer off keeps the original physical desktop mouse available. No direct-touch calibration is asserted.",
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "825a0a1c3cb30860cba5f3be59c01876c6f2bf46e14172e0d82f9e3013eb2e66",
+      "kind": "Original blue chip XPM pixels transcoded, resized and fitted to square background"
+    }
+  ],
+  "canonicalPreview": {
+    "path": "proj/src/../../../../../collections/arcade/previews/daniel-s-goncalves-lcom-feup-9abd1f6f744d.png",
+    "kind": "Actual original board framebuffer after six normal drops"
+  }
+}

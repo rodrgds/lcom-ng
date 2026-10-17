@@ -1,0 +1,71 @@
+{
+  "repository": "https://github.com/TiagoAlmeida05/A2_S2-Laboratorio_De_Computadores",
+  "revision": "e1b2bafb905b5372ebf474861c407a1560b91887",
+  "project": "proj",
+  "sourceHashes": {
+    "README.md": "72212ad0a36d1da4a59b76efac78653b453cd1236c4afc851c9fe4e59cc8246e",
+    "proj/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/.gitignore": "fc8663f81e4e932473a5cec64e10854d263208e4898af828507ceff025400d98",
+    "proj/.vscode/c_cpp_properties.json": "3fe7e1e177df7f041ca2e365b9c7bb4b9f89fe64a8dde1f3fe812d07dc7a0111",
+    "proj/Makefile": "36511781ec2367664eb9db65bcf4539a4a1be5c39df844893e926eafc5a5e0d7",
+    "proj/font.h": "28543ef034ebf5f67f2129cda9b31cfcf4f5ad81dafeac566f4597905693c2dd",
+    "proj/functions.c": "89648a8476d79d12da3e061053521edf5a8fd2dd22f7fe019d61cac2481ce672",
+    "proj/functions.h": "0486c770dcf76b2be9fedd87bfcadb63350ff1b91d5254d06b725bcd3c55bd29",
+    "proj/graphic.c": "94690d250c2ba68bc1c782de2d460b190b7eb104356f25bb68c68f02f8933e5c",
+    "proj/graphic.h": "024b696b8eb101145b88031674430b2703cfe51ad9ca4820a28f0774eb770be7",
+    "proj/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/kbd.c": "95f4b96ad523c0093fac2c15e65e3b04af233504a354b918483afed2221350c6",
+    "proj/kbd.h": "7892ee00dc67c1d0339cdc548a564dba9433b2dc765ea1969c0de19807cf68bd",
+    "proj/mouse.c": "fc2a2e66a39bf736b5e8e754211fdd297b462e34545701bb166c015b5278f118",
+    "proj/mouse.h": "f97e47f755981c48f6a1661f41eb8f1828911e13bfeaf315a811c0b33564f67b",
+    "proj/proj": "61f948c6cbd0538252c781679e5f3563d66650107cdca8f7cc9c534f12ec30b9",
+    "proj/proj.c": "47817cb52780f3efc95d83df900d70d125cd245f6ccbfa58d87b1c68cd05e6d6",
+    "proj/proj.o-854681b0": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/proj.o-8906742a": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/proj.o-b16c9779": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/proj.o-f2c36bb3": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "proj/timer.c": "c53cc7096e6b8ee32800634727087c0fdbf0db2e5d306ddce8abb87033f9a840",
+    "proj/timer.h": "2185f0aaa94172560103457d5b3952c6a8c07af7ba303690d538b46af4787f95",
+    "proj/utils.c": "f36060aa68575e22e223e63bbc3d91c74aa19afba6a2a2b35a1e31e7d83c50ed"
+  },
+  "selection": "Pinned original source tree with required assets and README. Omitted generated documentation, binaries, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/docs/**",
+    "**/doc/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*"
+  ],
+  "icon": {
+    "kind": "Original bitmap T glyph on a flat matching palette",
+    "source": "proj/font.h",
+    "codepoint": 84
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/icon.png",
+      "sha256": "861c9d25b75d2d665bffbc997a0efff0e2ac9bf42d32fba2b66a0b37cf61d11b",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/preview.png",
+      "sha256": "0277358530ea04ac5fcd989e7c77f65b68e6ecdf2898af504b4174374d88d2f6",
+      "kind": "gameplay preview"
+    }
+  ],
+  "verification": {
+    "web": "Actual touch Easy enters the typing trial. On-screen letter taps complete THE CAT SAT ON THE WARM WINDOWSILL, turning every letter green and showing completion time6.283 plus return-to-menu prompt.",
+    "evidence": "build/arcade-100/a/evidence/TiagoAlmeida05--A2_S2-Laboratorio_De_Computadores",
+    "native": "Original source native build succeeded before touch profile; current Android gameplay pending."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "name": "Blackjack Table",
+  "description": "Choose a bet, hit or stand, and play the original dealer hand.",
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "pointer": "off",
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad"
+        }
+      ]
+    }
+  },
+  "archetype": "Blackjack",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

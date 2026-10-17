@@ -1,0 +1,30 @@
+--- a/proj/src/grafics.c
++++ b/proj/src/grafics.c
+@@ -148,13 +148,20 @@
+ int draw_background(Background *b){
+ 
+   xpm_image_t img = b->sprite;
+-  uint8_t *temp=(img.bytes);
+-  const int img_pixel = img.width* bytes_per_pixel;
+-  b->x=(b->x)%img.width;
+-  temp+=b->x*bytes_per_pixel;
+-  for(int row=0;row<b->sprite.height;++row){
+-    memcpy(aux_buffer+row*img_pixel,temp+row*img_pixel,img_pixel);
+-    
++  if (!img.width || !img.height) return 1;
++  b->x = ((b->x % img.width) + img.width) % img.width;
++  const unsigned rows = img.height < y_res ? img.height : y_res;
++  for (unsigned row = 0; row < rows; ++row) {
++    unsigned column = 0, source_column = b->x;
++    while (column < x_res) {
++      unsigned count = img.width - source_column;
++      if (count > x_res - column) count = x_res - column;
++      memcpy(aux_buffer + (row * x_res + column) * bytes_per_pixel,
++             img.bytes + (row * img.width + source_column) * bytes_per_pixel,
++             count * bytes_per_pixel);
++      column += count;
++      source_column = 0;
++    }
+   }
+   return 0;
+ }

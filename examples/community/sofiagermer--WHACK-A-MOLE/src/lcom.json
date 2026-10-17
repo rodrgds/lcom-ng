@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "name": "Whack-a-Mole: Burrow Rush",
+  "description": "Hit the moles as they pop out of the ground.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Top left",
+          "key": "A",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Top middle",
+          "key": "S",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Top right",
+          "key": "D",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Bottom left",
+          "key": "J",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Bottom middle",
+          "key": "K",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Bottom right",
+          "key": "L",
+          "position": "bottom-right"
+        }
+      ],
+      "tapDuration": 100
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "src/leaderboard.txt"
+    ]
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Whack-a-Mole"
+}

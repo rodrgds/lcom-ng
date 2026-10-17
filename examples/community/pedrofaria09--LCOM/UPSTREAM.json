@@ -1,0 +1,82 @@
+{
+  "repository": "https://github.com/pedrofaria09/LCOM",
+  "commit": "7d7e2bb4188297abbeae2bc9964e9c2c3ee30bf8",
+  "project": "Trabalho/src",
+  "sha256": {
+    "Trabalho/conf/projeto": "e168ae289b5279123817d1e0b98bbcf25eece7608826e30133e48892893b05f4",
+    "Trabalho/src/Makefile": "42984245485cab652436a82dc1cb60dad7b519679f6caa4d09976e18af217e03",
+    "Trabalho/src/highscore.h": "4030d2b996afa4b9bc9c4be55fe9f55691ed0bb0d073a4899cfb355776a1ec50",
+    "Trabalho/src/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "Trabalho/src/jogo.c": "0adf543cbc3d62c8c64ba8b3d37e3a14c3c4c996b4db10c7b96bda5bc64d4609",
+    "Trabalho/src/jogo.h": "737cec3c6432679a82acd937c7f91f880be085b991da0b135b9678a0f9ba5914",
+    "Trabalho/src/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "Trabalho/src/pixmap.h": "df987f9991ee986d951db03fe51d3ae3acafe1df922323575d0061f00bd5270a",
+    "Trabalho/src/projeto.c": "a3bbbd72501c6ec565a867d686696d5ff98cd1da79576a3320a5874255f80fc1",
+    "Trabalho/src/read_xpm.c": "7f7b03f97beb46665a1081945d1ddaaebbe28801f629b11e7dac9254cffb0799",
+    "Trabalho/src/sprite.c": "03b3967f42a436d297c1fe001f0552c35c9707a0d97bc4909b00d4c34109efa7",
+    "Trabalho/src/sprite.h": "962b781f856b37c0af82512e76dbefd900f98d5b370ac4695c3e4192d5a99ceb",
+    "Trabalho/src/test3.c": "909b25b56729ab3fd1c53c013a62f7f0c8c945b114ef7f1d43d4d13161fc496f",
+    "Trabalho/src/test3.h": "efe6dd0fd6e9b53a4bab7b957114360fb97567dc9c7f8d4ac7b2c380e62f018f",
+    "Trabalho/src/test4.c": "7c25b93bc069d967c9df2777990ab5ab70e31c40e85c330e8c0a46269f6f3701",
+    "Trabalho/src/test4.h": "39b9bad47b9bb89d3b95112b09ba9071cc957bfad01db80efa2c3e76d0a0cb0e",
+    "Trabalho/src/test5.c": "19db31fbb2a37c57134859c798316f966a917d0818c198eedbdeaa0e46725010",
+    "Trabalho/src/test5.h": "8919de0a4109dd874567c6d5b4dc0ba25a1312521069058f62c19523dcf761a9",
+    "Trabalho/src/timer.c": "04c8f0af793ecbba14ecd31109ee210691ae2b9e272fe2b83209591b3dd8667d",
+    "Trabalho/src/timer.h": "f6ecad3d8d1eaa62b7b24608b5e348c943e56d28a0fbfbfb9f02d71798791e9e",
+    "Trabalho/src/userinfo.txt": "2b50312e541abf40746139400965381fd23d04a4936c09dbf0cc61a53cc2e943",
+    "Trabalho/src/vbe.c": "9d962a33434abede7117dc688c48b47c37ad68ac6c5eaae635b3c8905b5c50b0",
+    "Trabalho/src/vbe.h": "c8db80c97e2471e613e280ba6804cbeab50c59f0eb1a7643303944b454b15216",
+    "Trabalho/src/video_gr.c": "3b1f06750287488a6befacadaf08312c7dafdacc29ea7ef7c55f2f0d5e4e1a4c",
+    "Trabalho/src/video_gr.h": "7a6c4f31179a36be730038e52090c22f1592118c6bcaad73be0bd62cd12963e2"
+  },
+  "licenseFiles": [],
+  "sourceSelection": "Original Trabalho C/headers/Makefile, initial userinfo.txt and service configuration. Unrelated labs, generated .depend and VCS ignore metadata omitted.",
+  "excludedMetadata": [
+    ".gitignore",
+    "Trabalho/src/.depend"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "Trabalho/src/highscore.h",
+          "originalSha256": "4030d2b996afa4b9bc9c4be55fe9f55691ed0bb0d073a4899cfb355776a1ec50",
+          "patchedSha256": "a235ec8bddeb294f9f7684f401b928c85067ef6215546638c8b368972dddce48",
+          "reason": "Append the original CSV record without uninitialized concatenation storage or a ten-byte integer buffer; bound the existing thirty-byte username contract and path storage, and return on failed file opens.",
+          "verification": "Original actual score-header append with patterned local storage and stack protector exits by signal. Corrected real-file prefix/append records ANA25 and BOB2147483647 match exactly, and a missing directory returns safely. Original CSV newline/name/comma/score layout is retained."
+        },
+        {
+          "file": "Trabalho/src/jogo.h",
+          "originalSha256": "737cec3c6432679a82acd937c7f91f880be085b991da0b135b9678a0f9ba5914",
+          "patchedSha256": "ba36cabf9f07e5a17c909be60359995c08024c11361350bf75ff0bb35b82588c",
+          "reason": "Import the existing Sprite type owner so the original game declarations can be used by the project entry unit.",
+          "verification": "Same original-entry regression fails before repair and passes with actual void game declarations and the complete Sprite-owned header."
+        },
+        {
+          "file": "Trabalho/src/projeto.c",
+          "originalSha256": "a3bbbd72501c6ec565a867d686696d5ff98cd1da79576a3320a5874255f80fc1",
+          "patchedSha256": "706b650a6c8c8144c9c191fdb4cbbbe7ef08add91d2b2f5a89c2f44f9e24f74b",
+          "reason": "Import the actual Minix startup and game function owners, then call the original void start/menu/viewScore functions before returning success to the CLI.",
+          "verification": "Original browser startup reports unreachable. Actual entry unit fails implicit-function declarations for sef_startup/start/menu/viewScore; corrected owning dispatch harness verifies all three original commands and successful zero status."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original Makefile selects GCC and contains implicit-int C90 globals; explicit build.cStandard gnu89 preserves the authored source. The original start <directory> <name> command launches gameplay directly, avoiding a text-only console menu on mobile. Source W/S make events move the penguin vertically, so authored repeatKeys provides held-button motion. Original relative vertical mouse input remains available; direct touch is not calibrated. Reserved panel keeps W/S, Pause and Escape away from original1024x768 indexed playfield.",
+  "artwork": {
+    "icon": "Original64x64 penguin XPM glyph from pixmap.h rendered as integer-scale SVG pixel rectangles using the preserved EGA DAC palette, on a dark square. No original asset changed.",
+    "preview": "Actual browser up-steering game canvas, scaled640x480."
+  },
+  "verification": {
+    "browser": "Normal touch844x390 and390x844 enters original indexed game through authored start command, moves W/S up/down, pauses/resumes with P, exits via Escape release with original score1 and normal status0. No page errors.",
+    "ndk": "All2 authored Makefile translation units, including their original included driver/game implementation units, compile as actual ARM64 objects with O2,FORTIFY2,stack protector and format-security.",
+    "native": {
+      "status": "passed",
+      "evidence": "build/arcade-100/c32-reviewed-native/results.json",
+      "apkSha256": "4aaaea6f439b33c5c99f2dff8ae6392115a58c0a0ebf45fe8fd1d849138f73cb",
+      "demonstrated": "Root inspected ordinary W/S vertical penguin movement, Pause with byte-identical whole playfield across delayed captures, Resume advancing gates, and original Escape exiting to Library without a crash. Shared pending-notification coalescing fixes the old timer backlog; no game input or pause rewrite."
+    },
+    "limits": "Normal first-session game qualified; alternate spaceship selection/text-menu and long saved-history play unverified."
+  }
+}

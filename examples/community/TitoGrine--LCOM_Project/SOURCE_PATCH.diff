@@ -1,0 +1,16 @@
+--- a/projeto/src/graphics.c
++++ b/projeto/src/graphics.c
+@@ -81,12 +81,7 @@
+   GreenLSB = mode_info.LinGreenFieldPosition;
+   BlueLSB = mode_info.LinBlueFieldPosition;
+ 
+-  if (bits_per_pixel % 4 == 0) {
+-    vram_size = hres * vres * bits_per_pixel;
+-  }
+-  else {
+-    vram_size = hres * vres * (bits_per_pixel + 1);
+-  }
++  vram_size = hres * vres * ((bits_per_pixel + 7) / 8);
+ 
+   mr.mr_base = (phys_bytes) vram_base;
+   mr.mr_limit = mr.mr_base + vram_size;

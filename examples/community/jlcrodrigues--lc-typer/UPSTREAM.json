@@ -1,0 +1,100 @@
+{
+  "repository": "https://github.com/jlcrodrigues/lc-typer",
+  "revision": "e7980414004d794b82a7749081d4160750141663",
+  "createdAt": "2022-07-02T21:42:02Z",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "68e9c3fb6a9983b7113f49a7c9a012fcc8d937d7c8b905bc4179bad29e1931d3",
+    "proj/src/Makefile": "be47f08ab6045b69891b5392481643f3f4095e7de30104accfe5a5c874c99fae",
+    "proj/src/assets/font/alphabet.h": "4dfb93a19ce32c093f5d52ad531605602a7b1fbed56c24729702e92962bd917f",
+    "proj/src/assets/font/digits.h": "4c5c1acfe16bfb7711ead666fbfe1b315f3f93e09c78475c64f23819485cce4e",
+    "proj/src/assets/phrases/phrases.txt": "79e1020cb51d18f4b05e6ffc44a72e403eec1bc9d59c04d8b39b215e3001a6d2",
+    "proj/src/assets/scores/scores.txt": "e95982de4488ae9e9fd01b49d26c851c3e0ad7800b38b7d8ed064a8b63f33062",
+    "proj/src/assets/xpm/mouse_xpm.xpm": "340884f5f54b44d9c70fb2b15c30960fb9e917d3f599b2775599ea5b69e44814",
+    "proj/src/drivers/driver/driver.c": "083e5cde194f22eba4642d8271a4480d11ad9657ff0d38649bb5075a0892bc97",
+    "proj/src/drivers/driver/driver.h": "fdfc936d891aff16cc800389a6ab1bb892bd5ca97280c49042c04e707d56b8fc",
+    "proj/src/drivers/driver/event.h": "03171c5ce5c11db519e2f33a8bbd7ebf8b150f16af4893bf3e23acf543ea4321",
+    "proj/src/drivers/kbc/i8042.h": "a28678e0bc86dc22d231fca0072a3a28d9482d0e73a347098fe54681284c7c70",
+    "proj/src/drivers/kbc/keyboard.c": "48f4cc600275fc5622a94e632ee463bd19586b699b416d0bcd6c8c3764960927",
+    "proj/src/drivers/kbc/keyboard.h": "642cbfbecc9205080b5ad27be541868e46ad45cbe36386637ccd4a97abb2b48e",
+    "proj/src/drivers/kbc/mouse.c": "f276c179da2aff3434957316c32828b877051727ffceb1625bd60e6c7fd3fba9",
+    "proj/src/drivers/kbc/mouse.h": "ac4ba752e2f19634812ecde203ef86a874efef59e7975c612de6a1386194fc4e",
+    "proj/src/drivers/rtc/rtc.c": "5afd3f5525954aa1e35bc0651995557a779b0101676e2684363525d4b2c6d980",
+    "proj/src/drivers/rtc/rtc.h": "472995c0c2387d2de7db41d1c715d1dc3724365be1f2526200597065beaf2378",
+    "proj/src/drivers/timer/i8254.h": "b3af145e13967a8c084935c8a77505de2b26a544928d48d20eb07f85df14275a",
+    "proj/src/drivers/timer/timer.c": "dde19c5869888e41ce5b5f139b04e1234e2df68c94669942bd42760b5ab38504",
+    "proj/src/drivers/timer/timer.h": "eddff1c2e8697a57e409c2faf607ae253bd4a973761750833ccd55dfffcdf2dc",
+    "proj/src/drivers/utils/utils.c": "be13494ad6f8e951845f563ddce28101133ed5be54a33ec18ff41d4da72a257a",
+    "proj/src/drivers/video/sprite.c": "4d4b99d66e78dba0f94fdc14674562292f066cc60282889784e42e6d2939b6c8",
+    "proj/src/drivers/video/sprite.h": "d0d06fc3a2529e159764f02623eac225832ff0162a04b3421e74b161b211b556",
+    "proj/src/drivers/video/video.h": "39b2ddf0f7be9433b1edf539bfd88d32d58336e12558008509e9aeb33f9b1443",
+    "proj/src/drivers/video/video_gr.c": "8c066d6e0e5e58ea366d4d58772f72ebf2c80b9c8902b438d4e8b5a388a5011b",
+    "proj/src/states/button.c": "0862ca1d11a5ee7db1c07f21ac35b65953004fd70b175467b87b2b8e03c8f626",
+    "proj/src/states/game.c": "5adb8caf84e0fae16ef7dfede16313d9a5bf5aa60a38c65999c06f68518669f9",
+    "proj/src/states/game.h": "e2b95521740e666c43919bb8e2744a56f5f81dba2780f9ff3c2462d47067518e",
+    "proj/src/states/game_over.c": "ea2292569db4c5eccc9d3a96c70d5611ef92538a7dcb3c02d00eeeb6c8194311",
+    "proj/src/states/game_over.h": "abbad32f9f7bf7054ac881e03ac019e20b427651bd1a98ccc3339e460fee2c02",
+    "proj/src/states/menu.c": "b272468a6cc2fbd22f5d9ce2426b9ccdb6f68632ab121955367a846f4f6db629",
+    "proj/src/states/menu.h": "eacf94fd7fdf4b5cc52b7d0915f4546d5557f1ee14f36ecea7fd7843481e9190",
+    "proj/src/states/scoreboard.c": "2293026adb999994924bb016afc1125a29dc17026d39cb789e32162d6e3d7c62",
+    "proj/src/states/scoreboard.h": "da90fa2f6f032577a69707cd69e2d39ac63a2ede1de24a42d8a0f28e54d3c0ae",
+    "proj/src/typer/button.h": "f5dc48de5ce4b0858f87486e95cc370dd61c8d38519f27c3252a28e0c63a7e71",
+    "proj/src/typer/mouse_sprite.c": "681c50281740dd4032421bf9536ef30fcdbdc571055800c882eb372115001063",
+    "proj/src/typer/mouse_sprite.h": "d2eee3eb31872cc4d51a18af19a91913c0d757028d544ec7f8cc582a0cb30904",
+    "proj/src/typer/proj.c": "6dcb74a51d5b241d3ad3a72cb2b2058a21b99980f977e12bd1271573e3d27a37",
+    "proj/src/typer/proj.h": "da1c37860d6372517fec32c4513b1a7ef0bcbbe4e952b338148ade1b989e11a1"
+  },
+  "selection": "Pinnedoriginalsource/header/Makefile/requiredart/assets androotREADME. AuthoredXPMheadersunderCoutinhoproj/doc are sourceart, retained. No artworkedits; allgenuine sourcecorrections reversibleandseparatelytested.",
+  "omissions": [],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/drivers/kbc/mouse.c",
+          "originalSha256": "f276c179da2aff3434957316c32828b877051727ffceb1625bd60e6c7fd3fba9",
+          "patchedSha256": "9604304dad2e59b2b512b8ba9996d45ba951f28be2235fb15561ea1bb58213dc",
+          "reason": "Read first AUX byte before validating its packet BIT3, instead of requiring reserved KBC statusBIT3."
+        },
+        {
+          "file": "proj/src/states/game.c",
+          "originalSha256": "5adb8caf84e0fae16ef7dfede16313d9a5bf5aa60a38c65999c06f68518669f9",
+          "patchedSha256": "ca46b69f6ad1523257f2a31915283ac5e9ddcb1ddb7464e1f8faf12f4c46d45d",
+          "reason": "Bound WPM HUD text and text-copy terminator to owned allocations; retain final phrase character after phrase_select already stripsnewline."
+        },
+        {
+          "file": "proj/src/states/game_over.c",
+          "originalSha256": "ea2292569db4c5eccc9d3a96c70d5611ef92538a7dcb3c02d00eeeb6c8194311",
+          "patchedSha256": "a41e0c26dee8c3eada9cb5e0b11c154acb79ea42b23f78c206e339f441aef59c",
+          "reason": "Own result WPM and100%accuracy strings need complete integer/percent/terminator storage; use bounded snprintf."
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Pinnedoriginalsprite/glyphmaskcomposedonflatmatchingpalette",
+    "source": "proj/src/assets/font/alphabet.h:l_xpm,c_xpm, originalglyphmaskswithgamepalette"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "86e7e873513cddc49ed406ba5474a5efcf0ac37ee91a4c9a94daa9233175a552",
+      "kind": "source-derivedlaunchericon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "ada2f5718486f4df2fb7b88302ed19bf6dda694a12bf0008c624b9622eaca198",
+      "kind": "actualcurrent-sourcegameplaypreview"
+    }
+  ],
+  "verification": {
+    "web": "Current normal final source: actual visible pangram typed by real on-screen keyboard through finalg; result85WPM and100%accuracy. Visiblegreenprefix and currentportraitkeyboard inspected.",
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/nas-native-case/a141-qualify-eight/handoffs/lc-web-v4/evidence",
+    "limitations": [
+      "Final result-to-menu exit QA tried a hidden Select button after keyboard toggling and timed out; no clean authoredexit claim for thatrun. Browserprocess remainedhealthy and ROOTHome/nativeexit remainsrequired.",
+      "No native typing qualification yet."
+    ],
+    "native": "Strictproduction-fortifiedARM64sourcecompilationPASS; ROOTAndroidactualgameplaypending.",
+    "wasmSha256": "b799f30df6463347ecce2fb1dd246ead4fa27ade62165de23ea9c8800ba77a9d"
+  }
+}

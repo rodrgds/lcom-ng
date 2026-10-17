@@ -24,12 +24,15 @@ public:
   void injectKeyScancode(uint8_t byte);
   void injectKeySequence(const std::vector<uint8_t> &bytes);
   void injectMousePacket(int dx, int dy, uint8_t buttons);
+  void injectMouseWheel(int delta);
   void refreshIrq();
 
   uint8_t status() const;
   uint8_t commandByte() const { return command_byte_; }
   bool mouseReporting() const { return mouse_reporting_; }
   bool mouseStreaming() const { return mouse_reporting_ && !mouse_remote_; }
+  uint8_t mouseSampleRate() const { return mouse_sample_rate_; }
+  uint64_t mouseCounterGeneration() const { return mouse_counter_generation_; }
 
 private:
   struct OutputByte {
@@ -48,7 +51,7 @@ private:
   void raiseForFront();
   void handleMouseCommand(uint8_t command);
   void queueMousePacket();
-  void resetMouseCounters();
+  void resetMouseCounters(bool command_reset = true);
 
   IrqController &irqs_;
   std::deque<OutputByte> output_;
@@ -58,8 +61,10 @@ private:
   bool mouse_reporting_ = false;
   bool mouse_remote_ = false;
   uint8_t mouse_parameter_ = 0;
+  uint8_t mouse_device_id_ = 0, mouse_rate_previous_ = 0, mouse_rate_older_ = 0;
   uint8_t mouse_sample_rate_ = 100, mouse_resolution_ = 2;
-  int mouse_dx_ = 0, mouse_dy_ = 0;
+  uint64_t mouse_counter_generation_ = 0;
+  int mouse_dx_ = 0, mouse_dy_ = 0, mouse_wheel_ = 0;
   bool mouse_x_overflow_ = false, mouse_y_overflow_ = false;
   uint8_t mouse_buttons_ = 0;
 };

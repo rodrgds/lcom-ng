@@ -1,0 +1,135 @@
+{
+  "repository": "https://github.com/lindirod/L.EIC-LCOM-2223",
+  "revision": "863785594fb32a5bdf01d05332707d93e656e9d6",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "e6b2806e70cd7610879f53ded978a7550ee7fd5ad0eb9fcc132b3b332dcd3aa4",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gitignore": "5bca6838f6403c3b2a934d6895a67fca676a4004ae659c860f08039d45eaa9db",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "proj/src/Doxyfile": "4e307d6077f6c78e38445a1b0d7b14988b2d5617bc3f4d9e4f2abcec83fad4ce",
+    "proj/src/Makefile": "0352294a20be9922841f965e2b27516b4b9dcf120cc527d9ee29578a20f56c69",
+    "proj/src/board.c": "afbbe5f5b0e219f596b5d942991e8599e9c2912d8fd7ae8e7a699823c3cb3d36",
+    "proj/src/board.h": "466bace290d4961778d1a3700e579f16e704a668237e5129e67d7919c17d55fc",
+    "proj/src/game.c": "e2b9608728706d4376a87f48ed1098c0ec33d4ba5fca67a196208e8b13705a37",
+    "proj/src/game.h": "3163a2c5b46075e04480a50ab809a00d06a2028d804bdcfacde404c40a85d10c",
+    "proj/src/game_state.h": "c47c45bb88c41806907bd5fef14f3b4011a210b7717a21a0d19ae583456ea0d8",
+    "proj/src/game_timer.c": "d2e1490fa5c94dd097a3ad61105f772d5351e82b0784cb22a12394416f220b48",
+    "proj/src/game_timer.h": "f8cc835dec118de05082b5972f439b674ae88530c003bf3a4b665b3d0522d690",
+    "proj/src/i8042.h": "4b79320af2e7701ef91f45d34060486eb5df4f29f8ff143b957ddcadcb98c4eb",
+    "proj/src/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/keyboard.c": "b49785fa82ecca6fcf8d72d1ae51dcea368b87f48dd464043672b6ee2c9103c2",
+    "proj/src/keyboard.h": "9a461b93b7f5f31d556867935a255906d8a35883aac869cf37d13e73dc70c91b",
+    "proj/src/keys.h": "75517f3e6e9a8c6b528ad7d8ffa36365f8428a845302770854105681a440329f",
+    "proj/src/menu.c": "2dc1d14af690b687a857f95779aecd48ae8d1005677954dd99706352ea758524",
+    "proj/src/menu.h": "5288e11f187d1530ddb4bf198342be117addf8d9f328764fb0fac22417407223",
+    "proj/src/mouse.c": "fd31bd34a1621cdcbcecd4eb0cf42f5c551b8b246c72882a9d9f7337d090bf58",
+    "proj/src/mouse.h": "c3484565417ee732db355d477ad450eb38d5717f3487560c1102d4da6954e06f",
+    "proj/src/piece_move.c": "ebc7a70ca7bc9c85deb05bfbe1819ad9bc341f3329fd8d55ff5470c080e147c7",
+    "proj/src/piece_move.h": "1ea0fb1ec8fb824f5aab888089c2e41fda00d7ed19ba8522db0f799530107fd2",
+    "proj/src/pixmap.h": "5b259a510e55627552492c73a9c506bd37d08a7c1e47493c1f74507234e9ae23",
+    "proj/src/proj.c": "a821a303aa8b726038dba501c424f3d66bb6de47bdb55ab32ab92381d9da8b61",
+    "proj/src/timer.c": "48daac4813f4bad2cfd60eb33d8c358dcc403974e1b53d9634b144d2bcdeceba",
+    "proj/src/utils.c": "11d562e9e8d179a799896f2c05e40310698649df5be8b2a55bae434412e93553",
+    "proj/src/vbe_graphics.c": "c75d7863f267c6c99d7c1b5f1d67d793d6dfa6c53a1f17ad8f8c68b81af69344",
+    "proj/src/vbe_graphics.h": "e4b937d503bd48deb6b89a55af7cd1689327722bbcde0d26e5d3b99900a434e7",
+    "proj/src/xpm/game/game_over.xpm": "68d16485f52446edbf32bb835dbe79fbd7bb0c223d442935d68d907493d3f0d0",
+    "proj/src/xpm/game/score_t.xpm": "8a0344b889bac9ae109fa6547f25d11fc2034370fa2a50f99c8a7e7ff0ed0a69",
+    "proj/src/xpm/game/tetris_t.xpm": "9c24bb60cdc5ed3d0d9cb09bc6a65833e478404bc048994094d14112c053135a",
+    "proj/src/xpm/instructions/instructions.xpm": "fe021c087fc8211908c3eb8e5d7d4b3220191e360c10f3f439f57150e8d90687",
+    "proj/src/xpm/menu/tetris_logo.xpm": "eb5b6fc1b554bf36eb59d809456c91572cc1aa5c2d8defe37338eb7e5438afb7",
+    "proj/src/xpm/menu/tetris_mouse_pointer.xpm": "886f16ee45751949939c1f27ce30e6cfa818b576c94ea3c04154fd3efab04f37",
+    "proj/src/xpm/menu/txt_instructions.xpm": "d765a374486fbce186b11a59b911592fab51ca9444c8ce44e63af30bc1a59a41",
+    "proj/src/xpm/menu/txt_instructions_selected.xpm": "a3a6fe3421b3c2e8a05952f3fa5e89e5c1aba945da2fd49cff42a273aca9db36",
+    "proj/src/xpm/menu/txt_leaderboard.xpm": "f95984e7408b77be20cf5e8f7ae6ea23aa370198ce09c0ae6db2365c33f78a26",
+    "proj/src/xpm/menu/txt_leaderboard_selected.xpm": "b93ba071ae7ce5ce2f96af491bbb3f02a59fb5a971170dccc20f115aa5c5e451",
+    "proj/src/xpm/menu/txt_play.xpm": "649567c75afc7508e67159313b351f024088486ad6670bcda1d8cc6473066765",
+    "proj/src/xpm/menu/txt_play_selected.xpm": "ac6985fefb65430fc2243fc4bdc5f9d5ba826f078b454095332f4f38bf0f0a88",
+    "proj/src/xpm/menu/txt_quit.xpm": "5f0c6f18ba14e5e91733a4c87fbadfa6a13c0b953665f8bcdd8fc8ee67864056",
+    "proj/src/xpm/menu/txt_quit_selected.xpm": "8fedec92cc1f7cddf159f4b5a7eaffca3d43a2a063fad67ebd1173d873ab1026",
+    "proj/src/xpm/numbers/colon.xpm": "9d8fd36b7150f86315fabdcdc1c9f0e761a697ddef4275d52009bcd296ae10eb",
+    "proj/src/xpm/numbers/eight.xpm": "69c51430be494612c274805334e1ae5b6427a0a90614a977f02aa792b13b7ff1",
+    "proj/src/xpm/numbers/five.xpm": "bab770c4df905b0c1e4dd140ffd35c0bd891a79a4cac01e368c6ae4d3cf16a35",
+    "proj/src/xpm/numbers/four.xpm": "119d28d4625cdddb7b57e66e048c247aaf31038248e7aa2c3f15c0a8fba18cec",
+    "proj/src/xpm/numbers/nine.xpm": "2b2053e1687ec4689f3792d9727c1f7a8e7eb024418630b346e05198c8b88d83",
+    "proj/src/xpm/numbers/one.xpm": "8359bfd8e0ce87110e0645f20bac47105adb3c87a89c9d103d22fd1cb9d2e7e6",
+    "proj/src/xpm/numbers/seven.xpm": "7719f24b15a65a7daa2ac5c0ddd4eabfbd2259bfb51b3889e5b99f322d8442db",
+    "proj/src/xpm/numbers/six.xpm": "564f280e1a16ba537898b8338125fb9ba9aa52f48b106925cf86ba7e9cec96ae",
+    "proj/src/xpm/numbers/three.xpm": "6fc6e7c62b3496a63e84f4db52d1f8c11451c3db87f78799c32ece7c06f841e7",
+    "proj/src/xpm/numbers/two.xpm": "4a41e43d04ca2d1401e353eef35b3f2a3f040b4c24ae45a6ec17627b7455c7ef",
+    "proj/src/xpm/numbers/zero.xpm": "f504d5cfa88b644b0b4a9cc3a52f82a6ae9f12c678f1500c9f37064dcb2e1df5",
+    "proj/src/xpm/scoreboard/leaderboard.xpm": "ae901a6f111a3ed94237934e11675008cf857ca20c9a9f229667044a1acb8edc",
+    "proj/src/xpm/scoreboard/rank.xpm": "803d116d2ac43dd2becbe845944a1ba9ad9737d094bd4c3fc4e507bc09a7cb3a",
+    "proj/src/xpm/scoreboard/score.xpm": "22ad38978cccb5f815cb60ff8c86a5665593fdbebaee4dbe6ea542cbd6940fcc"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.d",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/game.c",
+          "reason": "Keep the caller-owned falling Piece allocation alive across locking/respawn; the main loop uses the same pointer for subsequent timer and keyboard input.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/tetris-respawn-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-green-all.log"
+          },
+          "originalSha256": "e2b9608728706d4376a87f48ed1098c0ec33d4ba5fca67a196208e8b13705a37",
+          "patchedSha256": "2626257cf5b100bc21a6cd1709a5d5d630d6f4d37ea5494140efdb67d9b61708"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a flat palette",
+    "source": "proj/src/xpm/game/tetris_t.xpm"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "00fe57c7c355fb2301af062e51088aeb5a9d3c0fdaffba9d179bd4a3990c2126",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "14da993c662dcc124bd27e20d8970cd3b6326e7846ae1cb20737b20a7e0aae8b",
+      "kind": "Original browser gameplay capture"
+    }
+  ],
+  "verification": {
+    "browser": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay10-final.log",
+    "owningRegressions": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-tests.py",
+    "nativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/lindirod--L.EIC-LCOM-2223.native10-strict.log",
+    "android": "Pending independent parent-owned actual Android gameplay.",
+    "browserResults": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay-results.json",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "2a20937a73366b6700c5ec6c56a0e17f228d6fdbccb1aa8d7dcc6c375f38e733",
+      "evidence": "build/arcade-100/next9-native-gameplay3/results.json",
+      "demonstrated": [
+        "Original board and falling blue O-piece render.",
+        "Blue O-piece has reached and locked at the original board floor.",
+        "Next purple Z-piece descends while the locked blue O-piece remains."
+      ],
+      "limitations": [
+        "Representative local touchscreen gameplay only; complete campaigns and physical-device performance remain untested.",
+        "One piece lock and the following falling piece verified; no second lock or line-clear claim."
+      ]
+    }
+  }
+}

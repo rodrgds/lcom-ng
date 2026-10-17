@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Neon Pong",
+  "description": "Keep the neon ball in play and beat your opponent.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "UP",
+        "DOWN"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "key": "ENTER",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "UP",
+        "DOWN",
+        "LEFT",
+        "RIGHT"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Pong"
+}

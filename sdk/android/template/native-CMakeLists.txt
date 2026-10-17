@@ -26,6 +26,7 @@ target_link_libraries(embedded PUBLIC SDL3::SDL3)
 add_library(compat STATIC
   "${LCOM_SDK}/compat/src/compat.c"
   "${LCOM_SDK}/compat/src/lcf.c"
+  "${LCOM_SDK}/compat/src/printf.c"
   "${LCOM_SDK}/compat/src/xpm.c"
   "${LCOM_SDK}/compat/src/output_log.c")
 target_compile_options(compat PRIVATE -fsigned-char)

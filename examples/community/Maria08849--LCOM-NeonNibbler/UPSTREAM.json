@@ -1,0 +1,60 @@
+{
+  "repository": "https://github.com/Maria08849/LCOM-NeonNibbler",
+  "revision": "f7cc7964f3c3a211ae95b9fbb0c1288ab85f6df1",
+  "project": "src",
+  "sourceHashes": {
+    "src/.clang-format": "66f7a3be551c14980db4ff14cd66a0fcbad862e03ccd4dc4a0d52a715a1082d7",
+    "src/.vscode/c_cpp_properties.json": "4f9cae90fccef10340860f24af82ebbbe7d491a18e67d9962fa7d4d4682797c1",
+    "src/.vscode/extensions.json": "66ae47f8670f9a66e90340e5cf7aa3ad9e46e3257d2fae291b028502b960f049",
+    "src/.vscode/settings.json": "d99a608abe1403bfde0863b68df867308554cb0bd33da597bafcf70c88ac941b",
+    "src/Makefile": "84dc8a38a71aa2b9f1f353b56d8f5af1a05d784f4140ff173cf1fb6f8dee05c4",
+    "src/auxfuncs.c": "2ac48604593550ca3739063d32c89ad487c8112f062c05e622cccd14f97b7bb2",
+    "src/auxfuncs.h": "aa6bacf9afc6ed5ca56dc6f10744874a3abb35f5af72ca7b7b5b3c1e8802e741",
+    "src/background.h": "6827568176f8f176ec1fd35f70e6191b9e068b0669e2031a3fef0b9b86291cd9",
+    "src/defines.h": "2ffe0d625d54bd312f2f8eb75e611a7bb506514a05b52ad9b69d93e27d67b921",
+    "src/kbc.c": "09359a4d644c7e66872cd58b87b4d359ae88761ba71f2e934129b2cb44bd7aa4",
+    "src/kbc.h": "2c8bd0381a280284acf5dc3cead3c9e4217c5db6c517de87fd73582cf0f55dbb",
+    "src/mouse.c": "d542534a500fe60dae79e71193fe54dff20fadd622662bcfeb595e9e9dddb9c0",
+    "src/mouse.h": "efd3792c46e043460ee073a39367e4367d56783dfbf219fa7dbb2c3d53051bc8",
+    "src/pixmap.h": "5c9dd9b9eb807e040994700f9991fa14137de55fb5e181f9083aecd5cba3ac0c",
+    "src/proj.c": "cd839377957545da383511a07352fde51b0794017ce465ac83e2663814d76c31",
+    "src/rtc.c": "94dc1e90c8df7965b6dd2c9deea02684dbd042052284f4183411cc929d3027cd",
+    "src/rtc.h": "8ec0c38510f9e498aa42d07dc19492d625d01fbe90f35b3dfbb71c0803841dc9",
+    "src/sprite.c": "37728610e40abdd039749507e3b963a5081f37adad316d43ba906fbb0f52e78c",
+    "src/sprite.h": "4b1de741072fc68380c145f2425f8498619e682dcc6dd99f752fafc400b3b3f6",
+    "src/timer.c": "019a7428be8d457635f347321ba223ef48acc87141752bb29aa7518ed0f8c406",
+    "src/vg.c": "a6bbee2afe46d4213198016bea0138823a3f9d35a389fa42ae97c3c41fe49bfc",
+    "src/vg.h": "9a712892a9ec40e45145d212b6e68502d034c7b78fdaec009e22c276061512ed"
+  },
+  "selection": "Pinned original project source, original assets and README. Excluded generated documentation, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/.minix-src/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "src/pixmap.h",
+    "array": "pacman_xpm"
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "5f1929edf471f1aa1df91245e906e6e5f079cc6d58fc8484784ccb27503afd37",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "2d0140ebcb29839fc463476da9626db30445720b3ca37f70eda080623c4d3b22",
+      "kind": "actual browser gameplay canvas"
+    }
+  ]
+}

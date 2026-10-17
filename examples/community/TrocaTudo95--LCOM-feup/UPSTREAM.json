@@ -1,0 +1,113 @@
+{
+  "repository": "https://github.com/TrocaTudo95/LCOM-feup",
+  "commit": "146281459e7a2bf8955d3cf2fc761a66e7a19b27",
+  "project": "proj/src",
+  "sha256": {
+    "proj/res/images/difficulty.bmp": "b6d7784374844ce0ae0180845b99bc3e14a85d7f00fa2f8218f19c4b2f990429",
+    "proj/res/images/game_over.bmp": "b3aadf1dbdab05231c2b1350ac5132626bb99e45e6bba0bcd5893d291472c414",
+    "proj/res/images/menu.bmp": "5c471182c0cfa35ea08b8459ecf268a99cfcc9d7b75a59f1964977f561a641e9",
+    "proj/res/images/menu_600.bmp": "479acc3b9d74099530dccc70e326f2e54cbd9749a370e676874d0fdeaba094df",
+    "proj/res/images/menu_options.bmp": "a50fefa3a52b4f10e7024d670183afbd2e1f9bfcfee0880d4db3b5b22b57bae3",
+    "proj/res/images/numbers/num_0.bmp": "a88bd34e1adcc17ad8399d3a887f0769ca340a19b1d6002def36227bdb5fc7bc",
+    "proj/res/images/numbers/num_1.bmp": "2a647ef95d9e3c86325d5f4952b98d80dfd233d56e9fece13936a6921c5e1aa3",
+    "proj/res/images/numbers/num_2.bmp": "9212847b9b18e04bac9493d8b98dac34578fe5c7ffaeca222389cee2aa2b40ec",
+    "proj/res/images/numbers/num_3.bmp": "c9eef1bec5442ceed25de2cd55026637b26bdddd3950dd7bfd3b8dbf97d9ba8a",
+    "proj/res/images/numbers/num_4.bmp": "dea5ae20fa1218f32f41d165403095ae9ccec942eb5e4ac85dc5746e04ebd3a8",
+    "proj/res/images/numbers/num_5.bmp": "632c814c520f6a3bc80fe89681e9eee80f5bb7aa979890e66c0b3a245567b360",
+    "proj/res/images/numbers/num_6.bmp": "ecae37fbcf903db0c1d53caba481a5e7f811809213718969b736d5adcbb99757",
+    "proj/res/images/numbers/num_7.bmp": "250f81f4e3ce324ef57ce658ef2018b9993a936b6d30ef8003e9236d84240249",
+    "proj/res/images/numbers/num_8.bmp": "9de2cdd2930b98b2c268d17a7562cc01e9a5398dc43d6d9206320afaf469b101",
+    "proj/res/images/numbers/num_9.bmp": "ebb6337b2c7ffaab7bc9b7bbec5d6151036450eb3bff8679917d8a695bdd8d15",
+    "proj/res/images/options.bmp": "61ad1d08ebc68cfe475ccc6ff1035f7d5682a32f48d2c35792328c5b783be5ae",
+    "proj/res/images/resolution.bmp": "d5f529f6ce823dfbe5fa3bbb2224f2a77547f31ba3862229e06ebaad053b4ca5",
+    "proj/src/Makefile": "e2a48109387c01cd454354ac34603bee7417e04ee4e8ebeeca60e7ad953bcb09",
+    "proj/src/MiscData.c": "fdbab7e0b4053aab0d61d0efacab5bf9941329e0a1e0f31bf280b6565d1a69f8",
+    "proj/src/MiscData.h": "6c236c18a92ca727792993a5c897f6246cc50d858a6d0618ce066fca89960e74",
+    "proj/src/RTC.c": "79f2fc21e33de4e1dc9211aa0c1d3b6c4d0fd74f213b248f99986b1fc8f2a8ac",
+    "proj/src/RTC.h": "a00417a727170fa4478e4f9aabf5d9aa054ab12d815f37f71fedd9b67150f7ed",
+    "proj/src/Snake.c": "fa937279597e2d8697b098efb0d5dcc21614155707df330de1a4f50747cce400",
+    "proj/src/Snake.h": "6007411396fbb0b755b9751d932ec2578260923be43b0d430d61a487692afa45",
+    "proj/src/bitmap.c": "754069cca1babdc49b3a1121e85f1f2031c0c5f64a0e7bd9203e05f6a3f7a9d5",
+    "proj/src/bitmap.h": "93d8d948b4baeb4e9fa9c12c42e2e0126c450046dd9db867977fbf845e354cce",
+    "proj/src/game.c": "4ac08ee1148b0c368fc1371749566f86c98e79a668ec2d4dffd7dcdc2e821df6",
+    "proj/src/game.h": "9e778675690c58889b5428b4f6a16fa6a611cfed150349461e729be251f97a73",
+    "proj/src/i8042.h": "cb251f513296e64226b66982b4ed5fd99f4c0b6664636574ac8c36cc0b3c722b",
+    "proj/src/i8254.h": "2a33a39cbf62531fa089888b99632cf9126f1c81dee01e575cb02460aa650eb4",
+    "proj/src/keyboard.c": "7c4c60f0968bf1456e14b835d8870260f94270bbdca9376222182e0641a31a62",
+    "proj/src/keyboard.h": "672f121c5e368280f6e88809b5d4340b2037f69d6b9f90f7eebbd16895db98ad",
+    "proj/src/lmlib.h": "9d2db258b85aa0c179c40e3f4febce9677d654b79fae88cd4c63cfa4760a0df7",
+    "proj/src/menu.c": "d36486a670f14b0b164f6b7b43bbba18e9e5b09a8546b7bba9ef51ca8d5604f9",
+    "proj/src/menu.h": "5bbdca58c62cedac05138f5d00fb62182282f3adb88d60876288c5d69c9cdba5",
+    "proj/src/mouse.c": "b1f59201a9ebd74b0a7f46881f79b170c98c532a51b63b8e4fc804a965275916",
+    "proj/src/mouse.h": "79af5f21254a8d848dd4a096c1045cb6220c653383bfe8b9bb1d8db4664389d3",
+    "proj/src/pixmap.h": "b3f33a30c6f18fce19a66a9094cef8f0369f5d9cd99ee75e23b2326be251636e",
+    "proj/src/read_xpm.c": "42bea7bd067f72c3012e8413547989464758d358166c2ebe1cd36bc19d5703ad",
+    "proj/src/read_xpm.h": "8bc077aa42f5d5197a7d33d1141ceaa242ec7c7d3cf8414caff50829127c71f3",
+    "proj/src/snakex3.c": "05bd4e9c4b415e1e1c92b1b198a846169741217a8c6a9fa05eef8aeb26692371",
+    "proj/src/timer.c": "22fa68d5406e145757f525daf0127cd3d52d3949f9401396ef64e03ff4ac19ff",
+    "proj/src/timer.h": "8e051da824ab4a810571dabb8408e8462aa51737f9ea6ead5d9939c3314c3444",
+    "proj/src/vbe.c": "7de202f962cadc2efe511891de22f9b6f00668de15b8d79e84ca5330d6a09996",
+    "proj/src/vbe.h": "0dc3e5c2577a5ecf0bbfd5614851008e0fac08a22af62e484014ee2172c4ef79",
+    "proj/src/video_gr.c": "cac30eab09476494614ffc7c4fac40b1e19d0a5949bbbd6e0d81c819c739ab2d",
+    "proj/src/video_gr.h": "1c45e68064f7bee38cf19772d7ff314972a1846eebb2189e25fd66481ff03f90"
+  },
+  "originalArchiveSha256": "97aec959946667dd237910f7b619ccd40778acde25134d480e69109def88c269",
+  "sourceSelection": "Original project C/headers/Makefile and all original proj/res image assets. Precompiled liblm.a, unrelated labs/docs, generated dependency files and OS metadata are not required source inputs.",
+  "excludedMetadata": [],
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in pinned archive; original comments and attribution retained.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "4ac08ee1148b0c368fc1371749566f86c98e79a668ec2d4dffd7dcdc2e821df6",
+          "patchedSha256": "2ad284c7d31aa59c5269ad54b9d128e9d39d37eb5679b5cca8309a7adf467fb5",
+          "reason": "Decode PS/2 nine-bit deltas arithmetically rather than assuming long is32bits; retain original horizontal/vertical sign selection on ARM64. Button-only packets preserve the current heading and remain available to the original apple-relocation handler.",
+          "verification": "Actual getDirection closure exercises both axes at -255,-128,-1,1,127,128,255: original native negative directions fail, corrected full-range direction/sign table passes. Independent zero-motion/button table covers all4prior headings and8button masks: previous candidate aborts, corrected heading/buttons pass."
+        },
+        {
+          "file": "proj/src/keyboard.c",
+          "originalSha256": "7c4c60f0968bf1456e14b835d8870260f94270bbdca9376222182e0641a31a62",
+          "patchedSha256": "dc9be087c217c526ae3a3e048c61ad4ee1e04deae2f5abac6bed31d3601b2ffa",
+          "reason": "Retain ordered keyboard bytes encountered during mouse commands and check OBF/AUX/error masks before polling the shared output buffer.",
+          "verification": "Actual command/keyboard closure preserves Escape make/break and avoids reads on empty, AUX-only and parity-error status. Browser Escape/menu/Exit passes in both orientations."
+        },
+        {
+          "file": "proj/src/keyboard.h",
+          "originalSha256": "672f121c5e368280f6e88809b5d4340b2037f69d6b9f90f7eebbd16895db98ad",
+          "patchedSha256": "a38f9184423e979513e694ed560b364b3aa67cba32fa2288551edf2bf1324647",
+          "reason": "Declare the keyboard-owned pending-scancode transfer used by the original mouse command owner.",
+          "verification": "Shared owning command/keyboard fixture compiles the declared interface and verifies ordered Escape preservation; all14 authored/generated ARM64 objects compile at O2/FORTIFY2."
+        },
+        {
+          "file": "proj/src/mouse.c",
+          "originalSha256": "b1f59201a9ebd74b0a7f46881f79b170c98c532a51b63b8e4fc804a965275916",
+          "patchedSha256": "7a2ab13bca731469defeee92820f4c7264870fa1d67571b58cb8ad7a0b060f32",
+          "reason": "Wait for the mouse argument acknowledgement after 0xD4, preserve keyboard bytes received while waiting, and bound retries. The forwarding prefix itself has no acknowledgement. Assemble three data bytes across timer notifications, retain valid0xFA payload bytes, bound waiting by three idle timer ticks, and disable reporting when that wait expires.",
+          "verification": "Actual sendCmdToKBC + keyboard poll fixture: original reads OUT_BUF before the argument and aborts; corrected ordered prefix/argument/ACK routing retains Escape make/break. Actual browser touch Escape returns to menu and Exit3 completes. Actual packet owner fails timer/byte interleaving on prior candidate; corrected complete/contiguous0xFA payload, timer-only timeout, partial timeout and receive failure cleanup pass. Actual SDL boundary proves move-only release emits no packet, legitimate button edges survive, and F4 emits ACK only."
+        },
+        {
+          "file": "proj/src/video_gr.c",
+          "originalSha256": "cac30eab09476494614ffc7c4fac40b1e19d0a5949bbbd6e0d81c819c739ab2d",
+          "patchedSha256": "3b6ff30a44f9b45b673a0852876c8865f291622a12e772834ae54398dbad7515",
+          "reason": "Give the private integer pixel-rounding helper a local name rather than conflicting with ISO math.h round(double). Preserve original line and animation quantization.",
+          "verification": "Actual owning line renderer with independently specified diagonal pixels and standard round(2.5): original type conflict RED, corrected compile/pixel results GREEN."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original menu uses1Play/2Options/3Back-or-Exit; game steering follows the dominant axis of mouse movement, any mouse button relocates the apple, Escape release returns to menu. Authored CFLAGS specifies C99, so build.cStandard isgnu99. Original1024x768 menu16bit/gameindexed8bit rendering, unit relative mouse with one mouse stick and explicit New apple action. Reserved panel keeps controls away from original score and clock. Relative touch only, no direct cursor calibration. Declared /home/lcom/proj alias preserves original bitmap strings within packaged proj/res.",
+  "artwork": {
+    "icon": "Original snakeHeadRight pixels from pixmap.h drawn at integer scale on a simple dark square; source glyph/palette unchanged. icon.svg records exact drawing.",
+    "preview": "Actual browser normal-touch apple collected, score1 and original body growth; scaled640x480."
+  },
+  "verification": {
+    "browser": "Normal CDP touch844x390 and390x844 selects original Play, steers to an apple, score0\u21921/body growth, Escape returns original menu,3Exit finishes cleanly, no page errors.",
+    "ndk": "All13 authored C units plus generated build context compile as actual ARM64 objects with O2,FORTIFY2,stack protector and format-security.",
+    "native": "Actual ARM64 Android emulator touch: original Play, Down then Right movement with visible head direction/position, clean Home process exit. APK 863a6fd9f57d498c10b54502c66777d93c4da5697cbf398b80e48cb00ef2c164. Evidence build/arcade-100/snakex3-native-v2-gameplay/results.json.",
+    "limits": "Three authored difficulties/options present; full long-duration play and every options combination unverified."
+  },
+  "primaryMouseContract": "https://pages.up.pt/~up238172/aulas/lcom2019/labs/lab4/lab4_3.html"
+}

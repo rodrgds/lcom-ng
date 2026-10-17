@@ -1,0 +1,14 @@
+--- a/proj/src/video.c
++++ b/proj/src/video.c
+@@ -119,8 +119,9 @@
+   uint32_t * color = (uint32_t *)imt.bytes;
+   for(int i = y0; i < imt.height + y0; i++)
+     for(int j = x0; j < imt.width + x0; j++){
+-      if( *color++ == xpm_transparency_color(imt.type)) continue;
+-      putPixel(j, i, *color);
++      uint32_t pixel = *color++;
++      if( pixel == xpm_transparency_color(imt.type)) continue;
++      putPixel(j, i, pixel);
+     }
+ }
+ 

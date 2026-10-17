@@ -1,0 +1,13 @@
+--- a/proj/src/proj.c
++++ b/proj/src/proj.c
+@@ -186,7 +186,9 @@
+             }
+             else {
+               print_mouse_packet();
+-              update_mouse_position(packet1.delta_x, packet1.delta_y);
++              if (counter == 0) {
++                update_mouse_position(packet1.delta_x, packet1.delta_y);
++              }
+             }
+           }
+ 

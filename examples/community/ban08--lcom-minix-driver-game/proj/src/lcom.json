@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "Dino: Driver Run",
+  "archetype": "Dino",
+  "description": "Jump over the original scrolling obstacles and return to the menu after a collision.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "pointer": "off",
+      "keyboard": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "actions": [
+        {
+          "label": "Play",
+          "key": "S",
+          "position": "top-left"
+        },
+        {
+          "label": "Pause",
+          "key": "P",
+          "position": "top-right"
+        },
+        {
+          "label": "Jump",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false
+    }
+  },
+  "build": {
+    "sources": [
+      "main.c",
+      "timer.c",
+      "game.c",
+      "video_card.c",
+      "keyboard.c",
+      "kb_controller.c"
+    ],
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

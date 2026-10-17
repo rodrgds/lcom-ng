@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "name": "Pong: Power Court",
+  "description": "Play the original two-player Pong court and power-ups.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "SPACE"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad",
+          "axes": "vertical"
+        },
+        {
+          "side": "right",
+          "mode": "arrows",
+          "style": "dpad",
+          "axes": "vertical"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Fire",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "S",
+        "UP",
+        "DOWN"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Pong",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

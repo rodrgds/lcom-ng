@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "name": "MiniPicty",
+  "description": "Draw on the original MiniPicty canvas in standalone mode.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Select / Draw",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [],
+    "arguments": [
+      "host"
+    ],
+    "emulateFunctionPointerCasts": true
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Draw & Guess"
+}

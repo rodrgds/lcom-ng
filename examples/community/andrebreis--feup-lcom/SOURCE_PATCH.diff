@@ -1,0 +1,72 @@
+--- a/proj/src/Keyboard.c
++++ b/proj/src/Keyboard.c
+@@ -36,6 +36,7 @@
+ 		tickdelay(micros_to_ticks(DELAY_US));
+ 		i++;
+ 	}
++	return -1;
+ }
+ char codeToChar(unsigned long breakCode){
+ 	char line0[10] = "QWERTYUIOP";
+@@ -49,4 +50,5 @@
+ 
+ 	else if(breakCode >=0xAC && breakCode <= 0xB2)
+ 		return line2[(breakCode-0xAC)];
++	return 0;
+ }
+--- a/proj/src/Keyboard.h
++++ b/proj/src/Keyboard.h
+@@ -18,5 +18,6 @@
+ int unsubscribeKeyboardInt();
+ 
+ int kbdReadKey(unsigned char* resultKey);
++char codeToChar(unsigned long breakCode);
+ 
+ #endif /* __KEYBOARD_H */
+--- a/proj/src/RTC.c
++++ b/proj/src/RTC.c
+@@ -61,7 +61,7 @@
+ }
+ 
+ char* dateToStr(Date date){
+-	char returnDate[256];
+-	sprintf(returnDate, "%02d:%02d %02d/%02d/%d", date.hour, date.minute, date.day, date.month, date.year);
++	static char returnDate[256];
++	sprintf(returnDate, "%02lu:%02lu %02lu/%02lu/%lu", date.hour, date.minute, date.day, date.month, date.year);
+ 	return returnDate;
+ }
+--- a/proj/src/Scores.c
++++ b/proj/src/Scores.c
+@@ -98,6 +98,11 @@
+ 
+ 	FILE *fhighscores;
+ 	fhighscores = fopen(SCORES_FILE_PATH, "r");
++	if (fhighscores == NULL) {
++		fhighscores = fopen(SCORES_FILE_PATH, "w+");
++		if (fhighscores == NULL)
++			return;
++	}
+ 
+ 	char buffer[BUFFER_SIZE];
+ 
+--- a/proj/src/main.c
++++ b/proj/src/main.c
+@@ -6,6 +6,7 @@
+ #include "Scores.h"
+ #include "utilities.h"
+ #include "RTC.h"
++#include "videoGraphics.h"
+ 
+ int main(){
+ 
+--- a/proj/src/videoGraphics.c
++++ b/proj/src/videoGraphics.c
+@@ -52,7 +52,7 @@
+ 
+ 	if (sys_int86(&r) != OK) {
+ 		printf("set_vbe_mode: sys_int86() failed \n");
+-		return 1;
++		return NULL;
+ 	}
+ 
+ 	vbe_get_mode_info(mode, &vmi_p);

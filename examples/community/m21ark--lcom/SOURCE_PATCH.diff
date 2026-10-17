@@ -1,0 +1,53 @@
+--- a/proj/src/game/views/animation/animation.c
++++ b/proj/src/game/views/animation/animation.c
+@@ -18,24 +18,27 @@
+ }
+ 
+ int draw_animSprite(AnimSprite *animSprite, uint8_t num_fig, int x, int y) {
++  if (!animSprite || !animSprite->sp || !animSprite->sp->map ||
++      !animSprite->num_fig_line || num_fig == 0 || num_fig > animSprite->num_fig)
++    return EXIT_FAILURE;
+ 
+   sprite_t *sprite = animSprite->sp;
++  unsigned frame = num_fig - 1;
++  unsigned col_pos = frame % animSprite->num_fig_line;
++  unsigned line_pos = frame / animSprite->num_fig_line;
++  size_t left = (size_t) col_pos * animSprite->hsize;
++  size_t top = (size_t) line_pos * animSprite->vsize;
++  if (left + animSprite->hsize > sprite->w || top + animSprite->vsize > sprite->h)
++    return EXIT_FAILURE;
+ 
+-  uint8_t col_pos = num_fig % animSprite->num_fig_line;
+-  uint8_t line_pos = (num_fig - 1) / animSprite->num_fig_line;
+-
+-  uint32_t *clr = (uint32_t *) sprite->map;
+-  clr += sprite->w * animSprite->vsize * line_pos;
+-
+-  for (unsigned height = 0; height < animSprite->hsize - 3; height++) {
+-    clr += (col_pos - 1) * animSprite->hsize;
+-    for (unsigned width = 0; width < animSprite->vsize; width++) {
+-      if (!(*clr & 0xff000000) && height > 3)
++  uint32_t *map = (uint32_t *) sprite->map;
++  for (unsigned height = 4; height + 3 < animSprite->vsize; height++) {
++    uint32_t *clr = map + (top + height) * sprite->w + left;
++    for (unsigned width = 0; width < animSprite->hsize; width++) {
++      if (!(*clr & 0xff000000))
+         fill_pixel(x + width, y + height, *clr);
+       clr++;
+     }
+-
+-    clr += animSprite->hsize * (animSprite->num_fig_line - col_pos);
+   }
+ 
+   return EXIT_SUCCESS;
+--- a/proj/src/game/views/font/font.c
++++ b/proj/src/game/views/font/font.c
+@@ -113,7 +113,7 @@
+         return;
+       }
+ 
+-      draw_animSprite(f_small, l, x0 + margin, y0);
++      draw_animSprite(f_small, l + 1, x0 + margin, y0);
+       margin += 10;
+     }
+     return;

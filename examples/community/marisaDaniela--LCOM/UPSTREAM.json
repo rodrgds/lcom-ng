@@ -1,0 +1,172 @@
+{
+  "repository": "https://github.com/marisaDaniela/LCOM",
+  "revision": "7eae959f87f975d8ea86c974540d6c4e71e92c06",
+  "project": "project/src",
+  "sourceHashes": {
+    "project/res/img/board.bmp": "f23e8f0496966bc645cbb63b027ff97818ed58eff1287f94d0d9de3036583094",
+    "project/res/img/cursor.bmp": "f83bf687e796dd1f26e69e9dd9a18ee8d68ea52704b032cf820e48f42f489578",
+    "project/res/img/exit.bmp": "35ccc082cb35b6bd7bb2e8646d03197e1a151c3f5a7f2579cc5cebfc4f550550",
+    "project/res/img/food.bmp": "378ba85a42213c7b52b76c6e33dd78a6f8db2987afad403f74298c532859be0c",
+    "project/res/img/foodspecial.bmp": "d2ba4213d70ff20e6be119fd79448a3f7258d04716fadfe182cad4be688d5952",
+    "project/res/img/menu.bmp": "015c6bc97c1ead33b80d1851ae1f74651288285a0135825350a52315f767cb35",
+    "project/res/img/snakeBody.bmp": "68294158c553534276c1cc4d8e4a04ba45062ea837f70f6b3ed8202cdda64d81",
+    "project/res/img/snakeHead.bmp": "b8af3785459352b3080474f7ed6aefcfbbf79340ecf5871ef9f878765e9c8e8f",
+    "project/res/scores.txt": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "project/src/Makefile": "ea9040d3937d7d1bb65c924e6faca2a761ab2ac0beb05cd3b97583e847d129a5",
+    "project/src/bitmap.c": "bde2d7fae83da569ec73ae8cac5ef23d5c983dd8d22a0a98e81d8c5986577cc3",
+    "project/src/bitmap.h": "ffd8a57c554827af34ba5ac850ffd5eea2507b29de6ea749999ecce06d1fed6d",
+    "project/src/fruit.c": "9c18bac08182d2d3f6a2ce50214608bb84b5f027343c3050a6da3857b08e3ef5",
+    "project/src/fruit.h": "3898de95a46a9399f589b08dc5ae8b332d557e2d968a3aeb5c74cf7ce91e1721",
+    "project/src/game.c": "a6922ab15f116452179a69a4e9280bc3ef43ca5976c0e0857ee2f7f22163262c",
+    "project/src/game.h": "5496b49f97ef75ac1588f132334d920eb2e2ad7e598701edd4899beebd8562b3",
+    "project/src/graphics.c": "5061918aa80dba146d7a00807b527f5019f2dbaa3fbf6f5f031657b71110fa2d",
+    "project/src/graphics.h": "3f3a392147a9d0347b2d4e36357912cea3100d55c2caafb92bb42e3caf5b455c",
+    "project/src/i8042.h": "0f09c51ea55425a4d872e8fd9346a55a5b4b71f88d751168ed21573648d1cfc3",
+    "project/src/i8254.h": "f1c97b15f67a77d87ee23cc52878057597bc7f9c2a7e2f08143a7e5bf346b927",
+    "project/src/kbd.c": "f2fa0782a07f8a540d6f3de7b6c3901e4a0787d5f360c26d105cb9ecf07c45b4",
+    "project/src/kbd.h": "8fe74fec2c0eb8eed841c4fcad0ed19c623c427213de2ba05611263c183c8d71",
+    "project/src/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "project/src/main.c": "6be163f7d0cab5d6c0881d90ab24ea4f8b9b34d02bc50656c8c78360c2d23f76",
+    "project/src/mouse.c": "7d1259eacb73d54215b5e48838efe58879cc187a00ced4fd864cbcc7f3526f5e",
+    "project/src/mouse.h": "f865dd9b766f002a4fd7174fce6271f4e91e1754f7faade11addd137c8a07574",
+    "project/src/point.c": "6d4fbc8e35846f62c3bb944423a9d2350c859a4c4c7cfa58be198c6c74e79972",
+    "project/src/point.h": "3eb707d707cf20819c7619cd081baa144e8e0671743f88b4ff297f1f7e731795",
+    "project/src/snake.c": "251de19f8e2a3773c45d81d11b39a0f7da78f7457e56946877949cebe0c7f497",
+    "project/src/snake.h": "0aba3b7a9967876293683f7c41169fcd1f9976d144e2ddddd6a573c16fa97628",
+    "project/src/timer.c": "817692ef222adda7550b336d2a72a7276842f29153ce700b3b781b7abc8f5588",
+    "project/src/timer.h": "124a8c12843ae87154dfcb78db8a0c5a43f1ba705d14f25e21bff3b6a3ba91dd",
+    "project/src/utils.c": "0d32708cbdef9dcc05f78a5693e9d2ed9d21759e057a86cae39f35ce6583b26d",
+    "project/src/utils.h": "21d350f641e3d444d89df88978733b25a8f946db0d7cc0404dce9d78f55b8fd6",
+    "project/src/vbe.c": "d5369106dd21ba9cc4fccd9fb43a1a849cec6cf496ff0d2e62e79a9266a57ca4",
+    "project/src/vbe.h": "4c7e2f30dbd549ae2fe2e29860bc8d32207fd7b09127f18666f3f409bfa23c6f"
+  },
+  "selection": "Original project C/H/Makefile, original BMP artwork and original score file. Generated HTML documentation, other labs and build outputs omitted.",
+  "excludedMetadata": [],
+  "license": {
+    "status": "unknown",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "project/src/bitmap.c",
+          "originalSha256": "bde2d7fae83da569ec73ae8cac5ef23d5c983dd8d22a0a98e81d8c5986577cc3",
+          "patchedSha256": "2ca3b9b0d8e2922831af245202da5f3b92b05260b8782f73280971a79ba120ff",
+          "reason": "Include the owning standard allocation/string declarations used by the BMP renderer.",
+          "verification": "Actual drawBitmap fixture diagnoses missing standard declarations before correction, then verifies exact16-bit pixel copy/canaries."
+        },
+        {
+          "file": "project/src/game.c",
+          "originalSha256": "a6922ab15f116452179a69a4e9280bc3ef43ca5976c0e0857ee2f7f22163262c",
+          "patchedSha256": "48927d3b968dcec7ad88b5626049212f52d93f77ba08fdad3c5557e42ec7693a",
+          "reason": "Return explicit failure when video initialization fails and success after normal teardown.",
+          "verification": "Actual failed-video game call returns1 after three subscriptions and never loads assets; original bare return is diagnosed. Real normal browser exit follows original Escape."
+        },
+        {
+          "file": "project/src/game.h",
+          "originalSha256": "5496b49f97ef75ac1588f132334d920eb2e2ad7e598701edd4899beebd8562b3",
+          "patchedSha256": "350c899c792dd33a94f171d2f1da3be7f81acfbdc806b3530cb2af823b1783af",
+          "reason": "Declare the actual void snake-movement contract after its Snake/Fruit types are available.",
+          "verification": "Actual game.c strict compile rejects undeclared moveSnake/clear/present/keyboard contracts on original; corrected full source compiles and real browser movement/growth executes."
+        },
+        {
+          "file": "project/src/graphics.c",
+          "originalSha256": "5061918aa80dba146d7a00807b527f5019f2dbaa3fbf6f5f031657b71110fa2d",
+          "patchedSha256": "b4f49cdf03b03715e3041c91e1fdeed5db54d4323f47afdd5a123fed5744c209",
+          "reason": "Remove the invalid early physical map using an uninitialized address and zero length; retain the later correct BIOS-derived map.",
+          "verification": "Actual vg_init rejects original first map with unknown address/zero size; corrected code requests one0xe0000000 mapping of1024x768x2bytes after BIOS mode information and permission."
+        },
+        {
+          "file": "project/src/graphics.h",
+          "originalSha256": "3f3a392147a9d0347b2d4e36357912cea3100d55c2caafb92bb42e3caf5b455c",
+          "patchedSha256": "97e53723f1212475ab15b4b22487ed17645b60b625e0976f61845052f0e7928e",
+          "reason": "Declare framebuffer-pointer, clear and present functions used by the actual bitmap renderer and game loop.",
+          "verification": "Actual drawBitmap strict compile rejects undeclared pointer getter; corrected source copies literal16-bit pixels and preserves adjacent bytes in the framebuffer."
+        },
+        {
+          "file": "project/src/kbd.h",
+          "originalSha256": "8fe74fec2c0eb8eed841c4fcad0ed19c623c427213de2ba05611263c183c8d71",
+          "patchedSha256": "bda280d015a34f42eab1646cb97ec2379e3d686d002035d56ff9edb886c2440e",
+          "reason": "Declare the original keyboard subscribe/unsubscribe and unsigned-short scancode contracts.",
+          "verification": "Actual game.c strict compile rejects undeclared keyboard functions; real browser Start and release-driven WASD steering work after corrected declarations."
+        },
+        {
+          "file": "project/src/main.c",
+          "originalSha256": "6be163f7d0cab5d6c0881d90ab24ea4f8b9b34d02bc50656c8c78360c2d23f76",
+          "patchedSha256": "abff2aed8076d074947ea640e2e5b4a47f6e6901bb29d36b5ce7e7d6a1df5908",
+          "reason": "Return the actual game result instead of returning without a value from int main.",
+          "verification": "Actual entry fixture requires the called game result7 to reach its caller once; original int main bare return fails strict compile."
+        },
+        {
+          "file": "project/src/mouse.c",
+          "originalSha256": "7d1259eacb73d54215b5e48838efe58879cc187a00ced4fd864cbcc7f3526f5e",
+          "patchedSha256": "e514aeb7b0a55d16ac7e570029079f50b2d08dd17696c908d64a32f42122adfc",
+          "reason": "Initialize menu cursor coordinates and pending deltas rather than reading uninitialized heap values.",
+          "verification": "Patterned heap allocation produces out-of-bounds cursor/deltas on original; corrected constructor starts visible with neutral buttons and motion."
+        },
+        {
+          "file": "project/src/point.c",
+          "originalSha256": "6d4fbc8e35846f62c3bb944423a9d2350c859a4c4c7cfa58be198c6c74e79972",
+          "patchedSha256": "e9ba89f0785105888de32b84133912ec346d4001a6ec3078df5100680857e2f7",
+          "reason": "Include the owning allocation declaration used by point constructors.",
+          "verification": "Actual original point.c strict compile diagnoses undeclared malloc; corrected original point constructors participate in the real collision/score-save/reset fixture."
+        },
+        {
+          "file": "project/src/snake.c",
+          "originalSha256": "251de19f8e2a3773c45d81d11b39a0f7da78f7457e56946877949cebe0c7f497",
+          "patchedSha256": "c9a96f36a2e71db5df67b3e85e5287826c71373d1bf1853d2f41de9499f0321f",
+          "reason": "Allocate one old-body pointer slot per segment and release transferred, discarded and replaced point/array ownership across movement, fruit growth and collision reset.",
+          "verification": "Actual original moveSnake allocates one pointer then writes all segment pointers. Owning fixture rejects capacity, corrected fixture verifies normal movement, ordinary and special fruit growth, border collision, score reset and exact live-allocation ownership with no leaked/reused segment storage."
+        },
+        {
+          "file": "project/src/utils.c",
+          "originalSha256": "0d32708cbdef9dcc05f78a5693e9d2ed9d21759e057a86cae39f35ce6583b26d",
+          "patchedSha256": "c8f3b64422be52fea5c47d3ea75d04746cf7633fe337519ff823a0b93209d2c1",
+          "reason": "Include owning allocation/string declarations used by original asset-path and score helpers.",
+          "verification": "Actual original helpers strict compile diagnose undeclared allocation/string APIs; corrected actual score writer saves literal score35 to a real temporary file on collision."
+        },
+        {
+          "file": "project/src/utils.h",
+          "originalSha256": "21d350f641e3d444d89df88978733b25a8f946db0d7cc0404dce9d78f55b8fd6",
+          "patchedSha256": "53e9eb2afba21a56fe166f550c6866aa747e8e4cff6e4bb92ac5eb82b6d470a9",
+          "reason": "Declare the void score-writing contract used by the collision/reset path.",
+          "verification": "Actual original snake.c strict compile diagnoses undeclared writeScore; corrected collision invokes the real void writer, saves score35 and resets original three-segment state."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original Space release starts from menu, WASD releases turn the snake, Escape exits. Mobile Start button emits ordinary Space and WASD is directly accessible; no calibrated direct-pointer preset or unnecessary mouse pad. Original physical mouse menu controls remain available. Source mouse speed1.7 remains unchanged.",
+  "artwork": {
+    "icon": "Original snakeBody/snakeHead BMP tiles enlarged nearest-neighbor on a simple dark-green square. Original assets unchanged.",
+    "preview": "Actual final-source screenshot after visible food consumption and growth, cropped to the original board with20px margin."
+  },
+  "verification": {
+    "browser": "Ordinary mobile Start and WASD steering. Screenshot-only observer reads rendered head/body/fruit cells, sends ordinary touchscreen directions and sees real growth3\u21924 after consuming visible food. Original RNG/clock/art/state unchanged. Portrait/landscape panel inspected.",
+    "ndk": "All13 actual selected/generated-entry ARM64 objects passO2/FORTIFY2/stack-protector/format-security.",
+    "native": "Pending ROOT actual Android gameplay.",
+    "limitations": "No full-board victory or fixed RNG/score promise. Original source saves scores on collision without an in-game score HUD.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/fruit-trail-reviewed-native/results.json",
+      "apkSha256": "636a09d153b68c0b554ea1e1d869763c8650ab8ffe7640e9a4ee7393a2a91863",
+      "demonstrated": "ROOT visually reviewed all five Android frames: original menu, ordinary Start release enters original board with three-cell snake, S turns down, D turns right with visibly four-cell snake after natural food encounter, then authored Escape ends isolated game and returns to same launcher. Independent screenshot component measurements show snake width68 pixels initially and91 pixels after growth, with unchanged23-pixel cell height. ROOT also viewed browser portrait/landscape controls and all three canonical real gameplay frames.",
+      "limitations": [
+        "Representative steering, one natural growth and normal exit demonstrated. Full-board survival, special-food scoring and collision score persistence are not qualified through Android gameplay. Original centered500-pixel board within1024x768 framebuffer is preserved; portrait viewport therefore has a small playing board. No RNG, clock, rules or artwork was changed."
+      ]
+    }
+  },
+  "derivedAssets": [
+    {
+      "path": "project/src/icon.png",
+      "sha256": "801f1917724f1842f2a682ab6fad32daa336b0822893a9df159353ed25475108",
+      "reason": "Original snakeBody/snakeHead BMP tiles enlarged nearest-neighbor on a simple dark-green square. Original assets unchanged."
+    },
+    {
+      "path": "project/src/preview.png",
+      "sha256": "d085c2155aba364e2cc32c643acf173d775f344027c265d2fb7c3453e1dfc7a4",
+      "reason": "Actual final-source screenshot after visible food consumption and growth, cropped to the original board with20px margin."
+    }
+  ]
+}

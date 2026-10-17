@@ -1,0 +1,22 @@
+--- a/src/devices/timer/timer.c
++++ b/src/devices/timer/timer.c
+@@ -12,7 +12,8 @@
+           return 1;
+ 
+      ctrlWord = ctrlWord & 0x0F;
+-     ctrlWord |= TIMER_LSB_MSB;
++     ctrlWord |= TIMER_LSB_MSB | (timer << 6);
++     if(sys_outb(TIMER_CTRL, ctrlWord) != 0) return 1;
+ 
+      uint32_t frequency = TIMER_FREQ / freq;
+      uint8_t LSB, MSB;
+@@ -21,9 +22,6 @@
+ 
+      if(sys_outb(TIMER_0 + timer, LSB) != 0) return 1;
+      if(sys_outb(TIMER_0 + timer, MSB) != 0) return 1;
+-     if(sys_outb(TIMER_CTRL, ctrlWord) != 0) return 1;
+-
+-     ctrlWord |= TIMER_SEL0 + timer;
+ 
+      return 0;
+ }

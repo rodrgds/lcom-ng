@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "Pong: Spin Rally",
+  "description": "Return the ball and score in a local two-player rally.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad",
+          "axes": "vertical"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Player2 Up",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Player2 Down",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Pong",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

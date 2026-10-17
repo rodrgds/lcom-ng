@@ -1,0 +1,84 @@
+{
+  "repository": "https://github.com/leonormsousa/LCOM_1819",
+  "commit": "05ac135ab6c82823273dfbd7c5b3a68343d4d320",
+  "createdAt": "2019-01-20T16:06:36Z",
+  "project": "proj/src",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/leonormsousa/LCOM_1819",
+    "createdAt": "2019-01-20T16:06:36Z"
+  },
+  "sha256": {
+    "proj/src/game.c": "92eadcc133a6e365d7c4cc3492a4479a16d4e41d4f081ca211816b310abcbb39",
+    "proj/src/sprite.c": "a8bfb0a69832dd9569c28979f591a39c2ac77571bddeed3a326cf964aa9d7a7a",
+    "proj/src/mouse.c": "dd40aac47bd955cc35ba3699a11cb79555484a79ff863abb8afc14c96031cc9e",
+    "proj/src/videoCard.c": "c0dfd88cd09e0d992432e118d80e943834ea55a875f2bb54bc17e7408f1efe4f",
+    "proj/src/timer.c": "596491f2f9d368c04bec4a2f691cdb3d981ffcf891c045c30eafbca0ea46ae2b",
+    "proj/src/menu.c": "75119e74edfd9599b98d006dd11a10b6e7e5d999b8151a351c274836bbea38f0",
+    "proj/src/rtc.c": "2e5a88fc5b8e001b634cacdaf5ad070ef431a7160c7f0160cd29006cff4ee242",
+    "proj/src/keyboard.c": "ab949c0d63211e4704809de9b2d9af4ed870c7e42e5b0d96212b8fcb7fb65a3a",
+    "proj/src/utility.c": "9845be53d1ea817320faf4cb82ff472308cd128f1e287986c2fe1691be3a63a6",
+    "proj/src/Makefile": "d43e7ee73c260c7d1be8a7a988d381e768e77e017c72560c55e39231b056252d",
+    "proj/src/files.c": "e85701307584e08732c88c1b3cd7ce554e3a741c629427ad0510f458b270b1f6",
+    "proj/src/serialPort.h": "8bdc8ff9fa2208e15671b40adc992c7fa7e8c21a01077dfa151a0dac0b20ef31",
+    "proj/src/leaderboard.h": "3fbdb62534c00dcd3d1abd465c82ddd47cc28581ebb1c50c677531efef835e61",
+    "proj/src/videoCard.h": "a9836344d0627a761774859178801934febb076e66a4d68d8af15e7e91e2d3d7",
+    "proj/src/mouse.h": "711c0f231d3fcb402fb6bfe3fb0c585a6f4b43187f57d7ef498edf5e2a75f8c2",
+    "proj/src/game.h": "45dd4ddf1931d53c4050a27446942bd4b2e709697647dc31b9505be101769cb0",
+    "proj/src/sprite.h": "384c71335f1a3730bb0e24118d4b4a8cdf5fdac8d0e324e5316663618a624090",
+    "proj/src/keyboard.h": "b4c4868e23d63662326e01793c4a918bfaf07684a63cdd855868499ebcf43775",
+    "proj/src/menu.h": "078a61ea68c968e7c66d1a2c80a9027379852090c6d6d398aecd1374ea9f1a8a",
+    "proj/src/rtc.h": "768417768b34a35038acd8bcc3e394c1e02efb7a9458c23a7324e79b8fcbedc7",
+    "proj/src/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "proj/src/utility.h": "f801fa8416ebeab43d8c6cc6191a9c2021d592bb2342ae8e9a46defc05d076d3",
+    "proj/src/files.h": "249fed7e9369cc620d8dbd52593c9fd97e0fc77ea0a3fdf6088fcd1a4d4fcf5f",
+    "proj/src/leaderboard.c": "232413fc15f07fc0d57446f3ae206ff5a053fe8575afe11c28e96ce213e3f4a9",
+    "proj/src/pixmaps.h": "0eac0d78da79abd266b45140fd5e779c1b698f13a5eebd7f5705dc8a3f5199a2",
+    "proj/src/serialPort.c": "4cb293b3250c3e33f99ac2b9e03353625c69aef978f4d7639e68ce8b79dd0abe",
+    "proj/src/proj.c": "95315c9a207a92bc9dd91fe2152ed35becd9cc6465967c20a996311ba6a5273a"
+  },
+  "sourceChanges": [],
+  "sourcePreservation": "27 selected original source/header files verified against pinned GitHub Git blob identities. No student code or original artwork changed.",
+  "omissions": "Unused labs, generated documentation, VCS/OS metadata and compiler/log outputs omitted.",
+  "licenseStatus": "No license file found in the selected pinned project tree.",
+  "verification": {
+    "browser": {
+      "status": "passed",
+      "demonstrated": [
+        "Menu down then Confirm selects original Start Game, Singleplayer and Classic.",
+        "Original figures rise while the60second timer counts down.",
+        "Ordinary relative screen drags hold the left mouse button, swat original figures and change visible score0 to20.",
+        "Original P pause overlay and unpause retain the scene and score.",
+        "Landscape and portrait input controls inspected."
+      ],
+      "limits": "Short Classic singleplayer trial. Full60second round, highscore name/save, Extreme and local two-player not claimed."
+    },
+    "fortifiedNdkObjectCompile": {
+      "status": "passed",
+      "units": 13,
+      "detail": "All authored Makefile source units compiled for ARM64 with O2/FORTIFY_SOURCE2/Wformat/Werror=format-security."
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/tetris-whack-elemental-reviewed-native/results.json",
+      "apkSha256": "8338daccf2bdf2928c4040eaa8d1015c11d1c86fed676750f688ce38046bda9a",
+      "demonstrated": "Root viewed original Classic game, ordinary one-finger hammer swats reaching score20, pause and resume preserving the score, then clean Home.",
+      "limitations": [
+        "Representative successful swats verified, not the entire round or multiplayer."
+      ]
+    }
+  },
+  "controlsRationale": "Relative screen drag preserves original cursor and left-button swat behavior. No direct-touch calibration or guest cursor synchronization asserted. Menu arrow actions, Confirm, Pause, Back and full keyboard preserve original input. Auto orientation avoids the rotation hint covering portrait menu actions.",
+  "argumentsRationale": "Original proj_main_loop dereferences argv[0] even with argc0. Authored argument1 selects its documented player1 path and supplies valid argv storage without changing the student source.",
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "26dae28dfcc0bbad069670d926c267a8f6f2f607099d3c5697058e8021ccd857",
+      "kind": "Launcher icon fitted from unchanged original menu framebuffer screenshot"
+    }
+  ],
+  "canonicalPreview": {
+    "path": "proj/src/../../../../../collections/arcade/previews/leonormsousa-lcom-1819-7c210c5b0789.png",
+    "kind": "Actual original score20 gameplay framebuffer screenshot"
+  }
+}

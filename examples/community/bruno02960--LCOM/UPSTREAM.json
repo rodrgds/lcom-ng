@@ -1,0 +1,294 @@
+{
+  "repository": "https://github.com/bruno02960/LCOM",
+  "revision": "c61cdc9acd448b3bdaa9e4dec87c06e1577840a2",
+  "project": "proj/src",
+  "sourceHashes": {
+    "proj/src/Makefile": "0e2109a52474eeb933f7aefead09fe79554473d62cb723ec53fdc881e65ff6aa",
+    "proj/src/Space-Invaders": "9ad77166d33da4b68e30b9bda27fe27fe9bbe4469235ab3f65b622bce232fa7b",
+    "proj/src/devices.c": "3905ac84bc2c6aef6a3057d1f0cab34aa5fe2077a9a324e4e9e39a241b54d5e8",
+    "proj/src/devices.h": "415deec9c09722f3d0b3ca8b90535223d6d36d8530d1ae86ba859981b2a2b03d",
+    "proj/src/file_handler.c": "c03f3b3f1fba93635396cb5b9dd96eba6ed92ac2307c52d13c4c6646816dd75e",
+    "proj/src/file_handler.h": "4f8f506c637c9894b0d8da4734089e8cc4bca1ce43a719ab7897c7b645ecc993",
+    "proj/src/game.c": "0549df47785bbd720922f0e96a72dc32976289f92265eb93a77f7e4bcaad5a6d",
+    "proj/src/game.h": "683852fd3b698499cdd8ba7cf7b51af28845088cd5780c8254dacab92eb8f993",
+    "proj/src/keyboard.c": "fb1122c0eea4834689a119cd8ff37eae2321cbb2ce250cac5cb1688073dc984f",
+    "proj/src/keyboard.h": "ba696d954218b45780a11233419452a8f2d9e30a7f3bccbbd5e566f865cdef45",
+    "proj/src/lmlib.h": "0498c5cdb2002324d625e4fdf3c79e4f9802d93505247565d974281fdc8328a4",
+    "proj/src/macros.h": "07024baf901bcccfe541e29f6f8ab305f9f613bedc339f5d211dbc573646b5d3",
+    "proj/src/mouse.c": "85de9e6758ac56db87320c07fc05e240cc506f800c5c80707552367690acad40",
+    "proj/src/mouse.h": "a362661c411eae5c8df6e69f000fad97542bf3743baf7e3d91a368980f8900b5",
+    "proj/src/numbers_pixmap.h": "0e38afe8d2b0c8c36760a9fec38489184e8fc0c642fd02fbb3d17a9127cdb3f2",
+    "proj/src/pixmap.h": "1e05ac66f35463c45fcfbdc30a97d0213dd3b641c0cd51dff386acabe6f88838",
+    "proj/src/print.c": "c62ccaebfcd3f23e83a88e5a229935d2e5a1b7036f8aa74f5b105ba9ffd3a19f",
+    "proj/src/print.h": "f1be32aabc94b1be6f1b61ee064a295a64bafd67d4c26ce7c07cd5a6022b0f5e",
+    "proj/src/rtc.c": "ccb5d937b81be57d843c2b78165091943c308fdcd72fd3adb4668599ee042f6f",
+    "proj/src/rtc.h": "339b643b21ec9f02d8e059515131f9281e9b65503474172f8fa687af455fbb88",
+    "proj/src/spaceinvaders.c": "6e395b33a7ee2ecbcee434cc9200961bbb96b814414e680bfb8084a37eda102c",
+    "proj/src/timer.c": "863ca0b21b3ccfff02d051ae84550fe557162842c098aaf91157f47a9bc9b398",
+    "proj/src/timer.h": "0268a8e1e9943e397138d29151465427c26ace1f3b2b94d9b568d2848872014b",
+    "proj/src/utilities.c": "4e76e53b12db12a126d0249acabc54ce95f56c0ff65e3f657e09f5f079cbd74f",
+    "proj/src/utilities.h": "ac73a64fb336ae273847a9aaa8bab25074126a936a40981dbafb04c32383c78a",
+    "proj/src/variables.h": "05eee7bb4ebd2d66afc338048488c70c6a4b5b3ca052e23356df0740e3186ade",
+    "proj/src/vbe.h": "78c55134e690fa393f94cb442f4552542d0afe3a4821bc56b473d4220b443a9c",
+    "proj/src/video_gr.c": "1bba812cec7ea964da7db07f4bf9d6a14ad65d685763b3c3f84127920d6b34cf",
+    "proj/src/video_gr.h": "028d7eff52689a04e3c2d3a1b8a759f0d6de132c785261cf68f00dc012ef1069",
+    "proj/src/xpm.c": "963d8f4ba318c3a03480b049591a0d431d73f1e726d54fe245731fdf72568ad4",
+    "proj/src/xpm.h": "9afa5e9e5ba0b7a2acfa78019bbf147532f566eb5ced8ca42ce1c8400c8b790e"
+  },
+  "selection": "Original project C/H/Makefile and embedded original XPM artwork. Other labs, generated HTML documentation and build outputs omitted.",
+  "excludedMetadata": [
+    {
+      "file": "proj/src/.depend",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/all-wcprops",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/entries",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/prop-base/Space-Invaders.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/prop-base/liblm.a.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/.depend.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/Makefile.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/Space-Invaders.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/devices.c.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/devices.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/file_handler.c.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/file_handler.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/game.c.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/game.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/keyboard.c.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/keyboard.d.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/keyboard.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/liblm.a.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/lmlib.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/macros.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/mouse.c.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/mouse.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/numbers_pixmap.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/pixmap.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/print.c.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/print.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/rtc.c.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/rtc.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/spaceinvaders.c.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/timer.c.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/timer.d.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/timer.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/utilities.c.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/utilities.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/variables.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/vbe.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/video_gr.c.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/video_gr.d.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/video_gr.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/xpm.c.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/xpm.d.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    },
+    {
+      "file": "proj/src/.svn/text-base/xpm.h.svn-base",
+      "reason": "Upstream SVN administrative data or generated dependency metadata."
+    }
+  ],
+  "license": {
+    "status": "unknown",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "0549df47785bbd720922f0e96a72dc32976289f92265eb93a77f7e4bcaad5a6d",
+          "patchedSha256": "84fcd95285f7da453eeedf597d615fe156407f58e691f393ff7d4400382ed495",
+          "reason": "Include the owning XPM renderer declarations and retain line-array pointers without erasing their type.",
+          "verification": "Real corrected browser menu, keyboard-keyboard mode, ship movement and ordinary Space shots remove aliens and display score30. Actual ARM64 fortified object compilation includes the owning renderer declaration."
+        },
+        {
+          "file": "proj/src/print.c",
+          "originalSha256": "c62ccaebfcd3f23e83a88e5a229935d2e5a1b7036f8aa74f5b105ba9ffd3a19f",
+          "patchedSha256": "b3f8ad5f2812e7c92c55250dae6c65dced5c553359358e525bb72fe5d522adb2",
+          "reason": "Include owning renderer/keyboard declarations and pass XPM line arrays with their actual pointer type.",
+          "verification": "Actual original print_menu strict compile fails undeclared void renderer and keyboard calls; fixed menu renders four original XPMs once, presents once and handles ordinary Escape. Original LLVM IR called title_creator as i32 while its definition returns void; browser trapped before menu."
+        },
+        {
+          "file": "proj/src/print.h",
+          "originalSha256": "f1be32aabc94b1be6f1b61ee064a295a64bafd67d4c26ce7c07cd5a6022b0f5e",
+          "patchedSha256": "6747efae12c43b14f4592580a35cf4052e9dcc428fa54dc46029c3fb0225a380",
+          "reason": "Declare the message pixmap as an array of XPM lines, matching its actual consumer.",
+          "verification": "Real fixed game compilation checks the XPM array across game.c and print.c, without incompatible pointer casts."
+        },
+        {
+          "file": "proj/src/spaceinvaders.c",
+          "originalSha256": "6e395b33a7ee2ecbcee434cc9200961bbb96b814414e680bfb8084a37eda102c",
+          "patchedSha256": "0c65802682c73599edd4d70b4e8b821af68060e2b55c8d1d185ff8acaf1fb2f7",
+          "reason": "Include the owning device/menu declarations, preserving their actual void and integer contracts.",
+          "verification": "Actual original entry strict compile fails undeclared calls; corrected entry executes one startup, subscription, menu and teardown with original PLAYER argument."
+        },
+        {
+          "file": "proj/src/variables.h",
+          "originalSha256": "05eee7bb4ebd2d66afc338048488c70c6a4b5b3ca052e23356df0740e3186ade",
+          "patchedSha256": "a6c6707c5c71a141c9c063fa3927c0cb7206e229b96187dcd61de694ebb06dc0",
+          "reason": "Store XPM line-array pointers as char**, preserving the original pointer-sized structure layout.",
+          "verification": "Real fixed game compilation checks the XPM array across game.c and xpm.c, without incompatible pointer casts."
+        },
+        {
+          "file": "proj/src/xpm.c",
+          "originalSha256": "963d8f4ba318c3a03480b049591a0d431d73f1e726d54fe245731fdf72568ad4",
+          "patchedSha256": "252fb5eb06817ebfbc17fe02d752bdf65f23a0891125143fee3759ad066edc1b",
+          "reason": "Free each temporary decoded pixmap after copying its pixels; repeated frame drawing previously leaked every allocation.",
+          "verification": "Actual object_creator/title_creator replay100 draws copies independently expected pixels but original leaves outstanding allocations; corrected source frees the original allocation address after each copy."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "W/S navigate original menus, Enter selects. Default proof selects Keyboard/Keyboard (one S after opening New Game). A/D move ship and Space release fires. Enter leaves the arena. Reserved panel keeps original score/time HUD visible. Original physical mouse modes remain available but their full packet handling is not claimed verified.",
+  "artwork": {
+    "icon": "Original spaceship art from actual source-rendered arena, isolated against a simple navy square, enlarged nearest-neighbor. Original XPM bytes unchanged.",
+    "preview": "Actual current-source browser game screenshot with score30, resized within640pixels."
+  },
+  "verification": {
+    "browser": "Original New Game then keyboard mode, ship moves right, Space shots remove enemies and score30 appears. Portrait/landscape touch layout reviewed.",
+    "ndk": "All13 actual selected/generated ARM64 objects compile atO2/FORTIFY2/stack-protector/format-security.",
+    "native": "Pending ROOT actual Android gameplay.",
+    "limitations": "No full victory claim; physical mouse modes not qualified.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/star-patrol-reviewed-native/results.json",
+      "apkSha256": "9b9f7f0a93982fcc49b6ba6b08e25c375f02413d754ff38ad21e6772cf131398",
+      "demonstrated": "ROOT viewed actual Android New Game/keyboard-mode selection, five original alien rows and Time Left HUD, visible ship movement, ordinary released Space removing a bottom-row alien with actual score6, and clean Library Home ending the isolated native game process. ROOT also reviewed all3 current browser gallery states including score90.",
+      "limitations": [
+        "A full wave/victory, mouse-control variants, physical-phone performance and native authored Quit are not demonstrated. Native positive score is6, distinct from the separately observed browser score90. No guest timing, RNG, rules or artwork was changed."
+      ]
+    }
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "bc5765af58559714b63a6c5d947f0334666143b7e9624aa58ec5ad54e5f72ce6",
+      "reason": "Original spaceship art from actual source-rendered arena, isolated against a simple navy square, enlarged nearest-neighbor. Original XPM bytes unchanged."
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "4dc8bcaa7c7101c1df229ccf2544a266f0c5bbea2820b9dd0f0997d4e9b5bc62",
+      "reason": "Actual current-source browser game screenshot with score30, resized within640pixels."
+    }
+  ]
+}

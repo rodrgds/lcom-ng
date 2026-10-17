@@ -1,0 +1,55 @@
+{
+  "name": "Legend of LCOM",
+  "build": {
+    "sources": [
+      "LoLCOM.c",
+      "vbe.c",
+      "video_gr.c",
+      "keyboard.c",
+      "timer.c",
+      "logic.c",
+      "helper.c",
+      "RTC.c",
+      "mouse.c",
+      "UART.c",
+      "speaker.c"
+    ],
+    "assetRoot": "..",
+    "assets": [
+      "resources"
+    ],
+    "pathAliases": {
+      "/tmp/resources": "resources"
+    },
+    "arguments": [
+      "player1"
+    ]
+  },
+  "mobile": {
+    "fullscreen": false,
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "off",
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "J"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "style": "dpad",
+          "side": "left"
+        }
+      ]
+    }
+  },
+  "description": "Explore the original overworld, fight roaming enemies with your sword and protect Link\u2019s hearts.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,33 @@
+--- a/proj/src/timer.c
++++ b/proj/src/timer.c
+@@ -16,7 +16,7 @@
+   }
+   *bit_no = TIMER0_IRQ;
+ 
+-  return (timer0_hook_id == TIMER0_IRQ);
++  return 0;
+ }
+ 
+ int(timer_unsubscribe_int)() {
+--- a/proj/src/kbd.c
++++ b/proj/src/kbd.c
+@@ -13,7 +13,7 @@
+   }
+   *bit_no = KBD_IRQ;
+ 
+-  return (kbd_hook_id == KBD_IRQ);
++  return 0;
+ }
+ 
+ int(kbd_unsubscribe_int)() {
+--- a/proj/src/rtc.c
++++ b/proj/src/rtc.c
+@@ -13,7 +13,7 @@
+   }
+   *bit_no = RTC_IRQ;
+ 
+-  return (rtc_hook_id == RTC_IRQ);
++  return 0;
+ }
+ 
+ int(rtc_unsubscribe_int)() {

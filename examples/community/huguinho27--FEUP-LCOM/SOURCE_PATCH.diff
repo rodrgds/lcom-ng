@@ -1,0 +1,145 @@
+--- a/proj/src/kbd.c
++++ b/proj/src/kbd.c
+@@ -1,3 +1,4 @@
++static int keyboard_hook_id;
+ #include "kbd.h"
+ #include "utils.h"
+ #include <minix/syslib.h>
+@@ -6,13 +7,13 @@
+ 
+ int kbd_subscribe_int()
+ {
+-	hook_id = KBD_NOTIFICATION;
+-	if (sys_irqsetpolicy(KBD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id) != OK)
++	keyboard_hook_id = KBD_NOTIFICATION;
++	if (sys_irqsetpolicy(KBD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &keyboard_hook_id) != OK)
+ 	{
+ 		printf("Error while subscribing keyboard - Set Policy\n");
+ 		return 1;
+ 	}
+-	if (sys_irqenable(&hook_id) != OK)
++	if (sys_irqenable(&keyboard_hook_id) != OK)
+ 	{
+ 		printf("Error while subscribing keyboard - Irq Enable\n");
+ 		return 1;
+@@ -22,13 +23,13 @@
+ 
+ int kbd_unsubscribe_int()
+ {
+-	if (sys_irqdisable(&hook_id) != OK)
++	if (sys_irqdisable(&keyboard_hook_id) != OK)
+ 	{
+ 		printf("Error while unsubscribing keyboard - Irq Disable\n");
+ 		return 1;
+ 	}
+ 
+-	if (sys_irqrmpolicy(&hook_id) != OK)
++	if (sys_irqrmpolicy(&keyboard_hook_id) != OK)
+ 	{
+ 		printf("Error while unsubscribing keyboard - Remove Policy\n");
+ 		return 1;
+--- a/proj/src/main.c
++++ b/proj/src/main.c
+@@ -1,6 +1,7 @@
+ #include "bow_and_arrow.h"
+ #include "utils.h"
+ #include "menu.h"
++#include "video_gr.h"
+ 
+ int main()
+ {
+--- a/proj/src/mouse.c
++++ b/proj/src/mouse.c
+@@ -1,3 +1,4 @@
++static int mouse_hook_id;
+ #include "mouse.h"
+ #include "utils.h"
+ #include <minix/syslib.h>
+@@ -144,9 +145,9 @@
+ 
+ int mouse_subscribe_int()
+ {
+-	hook_id = MOUSE_NOTIFICATION;
+-
+-	if (sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id)
++	mouse_hook_id = MOUSE_NOTIFICATION;
++
++	if (sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &mouse_hook_id)
+ 			!= OK)
+ 	{
+ 		printf("Error while subscribing mouse - Set Policy. \n");
+@@ -157,10 +158,10 @@
+ 
+ int mouse_unsubscribe_int()
+ {
+-	if (sys_irqdisable(&hook_id) != OK)
+-		return 1;
+-
+-	if (sys_irqrmpolicy(&hook_id) != OK)
++	if (sys_irqdisable(&mouse_hook_id) != OK)
++		return 1;
++
++	if (sys_irqrmpolicy(&mouse_hook_id) != OK)
+ 		return 1;
+ 	return 0;
+ }
+--- a/proj/src/timer.c
++++ b/proj/src/timer.c
+@@ -1,3 +1,4 @@
++static int timer_hook_id;
+ #include "timer.h"
+ #include <minix/syslib.h>
+ #include <minix/drivers.h>
+@@ -5,14 +6,14 @@
+ 
+ int timer_subscribe_int()
+ {
+-	hook_id = TIMER_NOTIFICATION;
+-	if (sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &hook_id) != OK)
++	timer_hook_id = TIMER_NOTIFICATION;
++	if (sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &timer_hook_id) != OK)
+ 	{
+ 		printf("Error while subscribing - irqsetpolicy().\n");
+ 		return -1;
+ 	}
+ 
+-	if (sys_irqenable(&hook_id) != OK)
++	if (sys_irqenable(&timer_hook_id) != OK)
+ 	{
+ 		printf("Error while subscribing - irqenable().\n");
+ 		return -1;
+@@ -23,10 +24,10 @@
+ 
+ int timer_unsubscribe_int()
+ {
+-	if (sys_irqdisable(&hook_id) != OK)
+-		return 1;
+-
+-	if (sys_irqrmpolicy(&hook_id) != OK)
++	if (sys_irqdisable(&timer_hook_id) != OK)
++		return 1;
++
++	if (sys_irqrmpolicy(&timer_hook_id) != OK)
+ 		return 1;
+ 	return 0;
+ }
+@@ -48,7 +49,7 @@
+ 	}
+ 
+ 	int cpu_time = time * DEFAULT_FREQUENCY; //assuming timer is running on default frequency-60 hz
+-	int irq_set = (1 << hook_id);
++	int irq_set = (1 << timer_hook_id);
+ 	int ipc_status, r;
+ 	message msg;
+ 	int i = 0; //variable to count the number of interruptions
+--- a/proj/src/video_gr.c
++++ b/proj/src/video_gr.c
+@@ -103,7 +103,7 @@
+ 	if (sys_int86(&reg86) != OK)
+ 	{
+ 		printf("set_vbe_mode: sys_int86() failed \n");
+-		return;
++		return NULL;
+ 	}
+ 
+ 	int aux = vbe_get_mode_info(mode, &data);

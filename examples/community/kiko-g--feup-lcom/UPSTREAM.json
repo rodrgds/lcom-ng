@@ -1,0 +1,132 @@
+{
+  "repository": "https://github.com/kiko-g/feup-lcom",
+  "commit": "854c6a9bddb5abce1ddd246ad43869fef8749413",
+  "project": "proj/src",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
+  "sourceChanges": [
+    {
+      "file": "proj/src/rtc.c",
+      "patch": "SOURCE_PATCH.diff",
+      "reason": "RTC is_updating returned the inverse of the update-in-progress bit, so loading a level waits forever while the stable RTC correctly has UIP clear. Return the actual flag before the caller reads the current hour.",
+      "upstreamSha256": "33ffb820ecfe2ef255fb92948653f77cb3a432120c2d737486234f61d105c2da",
+      "patchedSha256": "ec766d66eb227e60432eb4ae4303f36b41ba2b455ae632cb4b55fdf9229eb36d",
+      "verification": "Actual rtc.c compiled regression tests stable0, UIP and unrelated bits. RED then GREEN; actual browser level load retested."
+    }
+  ],
+  "sha256": {
+    "README.md": "471efca02dc948bd02134a17deb76ac87037fa42afeaae540a1c968cf2b6b3de",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/Makefile": "ec638b85cfc485d02e74932715a4f3afc0287a90b13842f50a55e4a886057753",
+    "proj/src/asteroid.c": "ea67080e0bd35376ea810157846e647a7229fa5593f52d90d91659e5c945b70a",
+    "proj/src/asteroid.h": "158d477855dbf6450bac1845d5d69b856361b56b0aad1add22f628d842fc1d7f",
+    "proj/src/graphics.h": "ad67b8acbe36711ab3a2f62a04a2f68e86ba5cbdaa2b7b967cea0b70b94d7d54",
+    "proj/src/highscore.c": "14aec4133bd828d44ddb43c8f3d947669c3800bb6badda7c7d3459db6054eaa6",
+    "proj/src/highscore.h": "8149d597a67e31bd46648011ddc2882d51696af2324d0c84aec05080661d3708",
+    "proj/src/hs.txt": "a09364fd2c623483876356eb444ada95f65bce882e60036e5769fc44f87dab8d",
+    "proj/src/i8042.h": "00d4637f1cbc4553b8fc8bfbe7c0375b079781d50e31e68ca1d77b77d3a820ec",
+    "proj/src/i8254.h": "4f8532b34f2d39a5a676f1fce983757b02457629ad92ec34c293465cad843ded",
+    "proj/src/kbc.c": "c529c07b524cc535325c8e58575b5d782a5180ca1baeddd3578ec66b0df994f5",
+    "proj/src/kbc.h": "a5c85125b4cc3ac64898d6b7fa325f9090304be8f2cdb7850df7cc98cd6c2b48",
+    "proj/src/keyboard.c": "f3a14dc0e9d6012b2c0cd7746fb97947ebbcc333215ca4404e2e32fd88e4ed02",
+    "proj/src/keyboard.h": "dc1e2583fb0a857cc12737577a90f46af8c4fec24dac2c2fd882aaca4ac6cebc",
+    "proj/src/macros.h": "fdb63f87164a171db4f3ca9d53dfef086d90d9ab593ff90e0b6c57a0924d4eeb",
+    "proj/src/mouse.c": "493909b386914d9ba196079c31b75e8a54273f8410a706e05cf89276eceb1211",
+    "proj/src/mouse.h": "16003e44a882430d3a83366c6100ac0b41d9ff7527933610a015a76dce76e392",
+    "proj/src/proj.c": "9d9140d41352c512646f4e296abebda3afab373276aa4354f9857d64ed7b7b13",
+    "proj/src/rtc.c": "33ffb820ecfe2ef255fb92948653f77cb3a432120c2d737486234f61d105c2da",
+    "proj/src/rtc.h": "cf15d8406bb0217a4a22bbafdfe18a1951a53f9b232523e3e15f5390f7b6a2aa",
+    "proj/src/serial_port.c": "5ad88b65fc45d9feaec1b1fd635fbf78a6be876c8dda72208223de1c7ead651b",
+    "proj/src/serial_port.h": "36aed69e2fd9e47bff29299657eef709441045489022cd8a2b5ffd0a18377708",
+    "proj/src/space_lander.c": "b0ecad32965c75101d13645a67dde4f5082334dcfe021bb6f9a130bb3cf2778e",
+    "proj/src/space_lander.h": "f66186ad6ca642f4cd2dddb1fe6d685ff0366f1038423543ca7b8cf889188fb9",
+    "proj/src/spacecraft.c": "32324182555b79fdf3cd23f16a02666f7c9a867b0471b02b3e41274f0d96637a",
+    "proj/src/spacecraft.h": "eb1d40fc57b21033e024796d685ac33c366846de0eddf40683ce01f6098dcf2d",
+    "proj/src/sprite.c": "69c56e521e6f46bfd82fb03165d4183e0661f8b7448965939b21199b229ec3c5",
+    "proj/src/sprite.h": "8e3ab436becc1ae95c200350331bb2ac7f0939d8a6beab30ac3db07d97bac7e2",
+    "proj/src/test.c": "6bf07d06ea12edb2234c7659a2454d33fcabd7d7c2427096ad7779d6c36179a6",
+    "proj/src/timer.c": "cb55919660304d8f534f4e4e894c9dc1fb5bdc32a203029739b0da31a64fe10c",
+    "proj/src/uart.h": "f74beaf4764c08a574a9e8289a7906de57322f58ddf81041280121f36b969c33",
+    "proj/src/uart_protocol.c": "af439d208cc82709ef232945c1d0943dcda7e0d56e282a42b36aab567c373346",
+    "proj/src/uart_protocol.h": "7ca294f3366352afe8d42c5cb1b4ce31b317e23bee58ce1520315c81537537bc",
+    "proj/src/utils.c": "17d52b42050179dc29dc1a9ccebc5d32548123508a4de4f425ddd67824ce9591",
+    "proj/src/utils.h": "7c04e36854fa41be444159b8111f7d1035ad3403f99b95536a7adfc7fb5100fb",
+    "proj/src/video_card.c": "6d756f7c5d06176cdaf2a78439392ee636017a5b7995343ee5fc411901279e39",
+    "proj/src/video_card.h": "8a36360dcb2b90a4a48b3a879bf9cc44ee71807a8d9aea3e6fd62f850f1942c9",
+    "proj/src/xpms/asteroid.xpm": "cdc24faa1488727886556f33e09d024dc8a52b33e30e231ba9b252209eb19307",
+    "proj/src/xpms/cannonball.xpm": "4fb0b26ca120ec2f2a771d7b264a8898ab4530b2ceeb73874cc5a657b5606648",
+    "proj/src/xpms/crosshair.xpm": "d786e39eb49e9b39d5a5ef18c0e8a20ebafb97029d7eb7c9839bd830be154177",
+    "proj/src/xpms/game_over.xpm": "9b689e7f91907cfb57a5a407341d8e443f895b063cd71c2fcbbe0fbc92f4f159",
+    "proj/src/xpms/game_won.xpm": "52528cf4da03d727caf15f9a42d234828ffc7f6465fa6535feb8cd2eceb9d399",
+    "proj/src/xpms/hs.xpm": "2f9a0121cecaa02109416a30a480f2a34985df18b60f163af58ba3e461df29f4",
+    "proj/src/xpms/level1_day.xpm": "2ab57b3c2dec8db65e26e32c6846273e6f8f20ff26e0ab32c22abf7d02ebc829",
+    "proj/src/xpms/level1_night.xpm": "f8637c9bb726a7d3e787f7773bc09f0f187da02eae10df1fb12d1e0ce8da9a59",
+    "proj/src/xpms/level2_day.xpm": "cce920f65ba5cf4eafe702ea5463f70d448cef9164c47d17e479334651e09369",
+    "proj/src/xpms/level2_night.xpm": "3f050ccad1d98f4be12a4155d357f9f43ed0048ab2d12b7a6375d7573e4b3290",
+    "proj/src/xpms/level3_day.xpm": "7cec28e38fceb8a4158b5ee2955f432533fcb232f5161dc44216d475f4e23c01",
+    "proj/src/xpms/level3_night.xpm": "9e71ae9ad4369a838309229b9a6888b4170dbc596e70b73e75cf9e49d814225e",
+    "proj/src/xpms/level_select.xpm": "a5553a677da8d7112bc1bf2344f96555448b03883928784a5ba97305485ce94e",
+    "proj/src/xpms/menu.xpm": "2a7b8e10ecd4ab16d104dc521604784221ccf6db361a87c5bd132d402574960f",
+    "proj/src/xpms/mpwait.xpm": "f9a754821a136a534bf9ce4636e725c09f9e7b443f1a121902284bc579690415",
+    "proj/src/xpms/newcrosshair.xpm": "21f57ce15d771d19c9dd43891002798a394f05d41270db366e609c3e4e72cb54",
+    "proj/src/xpms/numbers/0.xpm": "ea57508caf37cbd29910cb30f322cd3a249dead8d2d038f191ef819a6fa25a2d",
+    "proj/src/xpms/numbers/1.xpm": "9323dee295b2171d4e6b0efda1b81c55ab515b65e1a38262b2282d46d23c2d5e",
+    "proj/src/xpms/numbers/2.xpm": "f42e999d07a3b7ab36ba867f3a1956383376312b4bc329c7616f1674e2815419",
+    "proj/src/xpms/numbers/3.xpm": "58a98b8f159ef554f6a72e1f02bdcc57c0b7c3397345dbf792d1901490f79557",
+    "proj/src/xpms/numbers/4.xpm": "4803422f992ec9e80cbbe2ae8ce8507998d18fda3559dd2dba2bbc8c307359a5",
+    "proj/src/xpms/numbers/5.xpm": "34c09b04e85bd72aa58e3db325d1a0160bbd15c6a782f332f4ab5980fa3ccf25",
+    "proj/src/xpms/numbers/6.xpm": "2afb3d6a3ecfe0bc2037e24968c7dc10c1a8bd0096713e3fecc8ead0831f0be3",
+    "proj/src/xpms/numbers/7.xpm": "d1f0e140e0ac9a1e22519ea274ec173931f0379c609bdd154b7d7e5369262a62",
+    "proj/src/xpms/numbers/8.xpm": "3fe830c8b375f4fb164de0bd39d8b33d6adafac46fa69ff6add1bc4489369fba",
+    "proj/src/xpms/numbers/9.xpm": "ce182c7034cfa53f7c4d36ca891a4d063bae80e033b066d8ffc242306d471596",
+    "proj/src/xpms/numbers/s.xpm": "1b91636f334df5d1112bea0670255f509d0eb5251729f284c3f328f729f4ec07",
+    "proj/src/xpms/rocket.xpm": "fa791368267072d192978d0e93127fd17ef3039b1f2354805055d811ed9ae906",
+    "proj/src/xpms/rocket_light.xpm": "c639956f3b7bcdb2ad2a8577534a7ffe91675395a3df974beb6c3e1a869fc40f",
+    "proj/src/xpms/rules.xpm": "54e14179e17559d7f104dd0c2e358575c693edee4489d6018e0231879da783d7",
+    "proj/src/xpms/ship.xpm": "dd47ffaefe24c46a246538149b7960ad8e5ba09b3030a831473a9801978f2eaf",
+    "proj/src/xpms/spaceship.xpm": "d9d4ecfc13146d9ab995a85d01b4326cf22986e8d3d467ff26a9ebb2ca8c625f"
+  },
+  "selection": "Pinned project source and required artwork/assets plus upstream README. Omitted labs, generated documentation, VCS and OS metadata, build products and core dumps.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata is excluded from required source inventory."
+  },
+  "icon": {
+    "kind": "simple launcher icon derived from original sprite or board palette",
+    "source": "proj/src/xpms/ship.xpm"
+  },
+  "controlsRationale": "Tap Start and select a level; left/right steers and Thrust sends Space. Direct cursor512,200, unit deltas,20x21crosshair bounded1004x747. Actual-source UIP flag polarity defect corrected to unblock stable RTC level loading.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/kiko-g--feup-lcom",
+    "limits": "Short functional gameplay trial, no full campaign completion or physical Android device claim."
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "84bb83c9e96c565a1f7d1e742498a23b2c33fdb9d7a718b9fecbcd19d4cfac09",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "aaa82459b2d42c233eb38a574b0d78f1e3c3a3cbf03e1c5dfbd5bdf66beec1c7",
+      "kind": "actual mobile browser gameplay canvas"
+    }
+  ]
+}

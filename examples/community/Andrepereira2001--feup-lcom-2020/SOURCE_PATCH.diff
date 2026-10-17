@@ -1,0 +1,11 @@
+--- a/src/mouse.c
++++ b/src/mouse.c
+@@ -96,7 +96,7 @@
+             printf("ERROR in utils_sys_inb()\n");
+             return 1;
+         }
+-        if((stat & ST_OBF) == 0 ) {
++        if((stat & ST_OBF) != 0 ) {
+             if(util_sys_inb(OUT_BUFFER, ack) == 0){
+                 return 0;
+             }

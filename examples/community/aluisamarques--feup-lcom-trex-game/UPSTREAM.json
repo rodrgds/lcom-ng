@@ -1,0 +1,97 @@
+{
+  "repository": "https://github.com/aluisamarques/feup-lcom-trex-game",
+  "commit": "f139d0b8cc49a17b451bb1a0c494fde60fb80a11",
+  "project": "src",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
+  "sourceChanges": [],
+  "sha256": {
+    "README.md": "b0068608019749efe933d38c3b5eb1f2b65f0a0cbe4aab766afbfb5aceaba617",
+    "src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "src/.depend": "e3006a2763f337b47be3890feff2967685d4cdcbec950396468cbba23a85a811",
+    "src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/Makefile": "f713f466902b7bde5cccdc433b707b49a435668a13f4dd35a62422903a21b329",
+    "src/file.c": "1b6139b643150dba1aefb01470034bc71f7b687bcd1007a311b1fb77d3605e19",
+    "src/file.h": "feb4543af335d62b369d02aba4d14f176b40a99fedd50d9cbea454fa7615384f",
+    "src/graphic.c": "c65e36e81afa0d361b5f84e280e950c28260ade87cb54baf7a24ebee82b7d3e2",
+    "src/graphic.h": "90826b9d1edb9deed0fc01fa9d0e06781c71dff72cec7e03cc11b8dfb69205c7",
+    "src/high_score.txt": "26ef810eb3f35ebcc2a25a07fadd7b442a1b2227e4a13da120f46b26b1782199",
+    "src/i8042.h": "c0363efee9db2697988c564fc246a678f0f4e671c93b7ff73f2f88a8c885012d",
+    "src/keyboard.c": "64538962ce3bfa212800d4fc14c126b91f6b32ab7cbf05162de173c4db8f91d7",
+    "src/keyboard.h": "39f7ee2f1ecbdeb40c2d000cc83c0be112f72529cdf3af2ad4c4c4a0a73c6246",
+    "src/mouse.c": "2d98c4be355969fb685d53362ec0af07e3d015214ce3233496c144d7b6a3a8b5",
+    "src/mouse.h": "9aeb8e186420a402d42e91c8a76113f75ebc52b53b7b0816a2287c35a1b974f1",
+    "src/proj.c": "e5838d5c5a5406cb90480c5ed9232c0141f54939b2fe60c5f17de301b4c2a3dd",
+    "src/rtc.c": "4c473cdbf12a506c7c46a740a2946978f65a51ae30a9359ea2f4e1dcef723362",
+    "src/rtc.h": "5bf1f026e537e700ec7a1522d8c7929be4467433c9644f25f7a875f6b37e11b5",
+    "src/sprite.c": "40b956f3a8b5273561df0281fff43af6801e17797f11d85f195d105bf04b243e",
+    "src/sprite.h": "cfe7f1107f76362d6c7c8d75e6ee04ede1738ce92abc9043dc0c381fef894013",
+    "src/timer.c": "d10c435a30e5e64d4937b011e8a663b2fc3bccb4edbbe35816455871ef139176",
+    "src/timer.h": "888c6edc3ea68fa03ed3870a9b44e64cb608c9207e86c0f9df9404599158c21f",
+    "src/user.c": "69dad485c40dc76c6144502e7a3b7ecc7b4e9bc8f24c651d3af349f48f7b8cdd",
+    "src/user.h": "b5c252c359a2bd5e5e13b190c208679193383d2d6b3883dc64b40a5d0f3f337b",
+    "src/utils.c": "d4deb213b95338b3103833834483c81465291b56492e3a2c9b4e4997340dcc3b",
+    "src/utils.h": "fc5de306bbe444f24d1b82e25d9229bc5f018e2bba159cec7dc4b6b75a8cfc60",
+    "src/while_game.c": "a627a89e0b10fbf683ad0bf4e259e1bf870961574d27f54c7a324a874c418ccc",
+    "src/while_game.h": "0c3d7f1638d23195bc46431aa3e470a282c4110002fa7747516d937406803a5f",
+    "src/xpm.h": "4be0ff4e5338fc322a32f11d87a0302a0673507b2c73ca35434fbea56af56e8c",
+    "src/xpms/alpha.xpm": "373d42eee3d64eeb71bb6326735b5284c3215fcf0737440ba7373bff716281fd",
+    "src/xpms/avebaixo.xpm": "3af0cd8b31362093aa24b0ab1cd662afc1ace007d3e317da15a5a7cdf69cff39",
+    "src/xpms/avecima.xpm": "46fdefbfa4f5d052753f4d3aeef6d085360e7693c27399383674a0a0a6df67df",
+    "src/xpms/background.xpm": "0eb23493228f9ff37320c2a504e28b60e988bc82238795a6a8f6920cce53751d",
+    "src/xpms/cactus.xpm": "15c0c79dda3faa593608e039c4a87a4f0905434959c15ef12412abd41ca55ced",
+    "src/xpms/cursor.xpm": "88881b9104ea4ea6ef6302282a887c02b7509bcb5e77db16da714c62728fabe9",
+    "src/xpms/dino-baixo-dir.xpm": "505ef2fefdc613c76d20c9b02f3800c38474d1578cf5db3e1fb46d114e9a9b4b",
+    "src/xpms/dino-baixo-esq.xpm": "e8571c1eb3aac0e17c6fd665f14fa5a53b471bdb6f014a395219457a0097b8f0",
+    "src/xpms/dino_leftleg.xpm": "771c66ad1082550a65ffed0aff0e7613c4fac356f425a9173e30e11b92363d80",
+    "src/xpms/dino_normal.xpm": "d9ac37bd84d3a991a22189f8c1e3fef324e677c28866583c3959eefee0e9558d",
+    "src/xpms/dino_rightleg.xpm": "001b3d4474c4497f461ce6f66cb56a6570d602d07639d0bc3419873a304a324b",
+    "src/xpms/gameover.xpm": "1033c427211bb9d920c0ccbac3deb302029059a0fff96d0ddba6ded470d761f3",
+    "src/xpms/init-no-spacebar.xpm": "04f05d260da414b121a96085186bb16ef45d21cb1d06f295ce27507110e6dc05",
+    "src/xpms/init-spacebar.xpm": "592511210bdb142bf60bb37b09eb42ff5a8fb0fa20bfbb17a8c6a4daed4b3d54",
+    "src/xpms/meteor.xpm": "e98504d11f1f3918ac7f9d2ca039f3304097836979a47cdbbaf9011cfd681f0e",
+    "src/xpms/title_menu.xpm": "d9bfd6a4e0b9104a8a383bc76843fb1b5b6f5f3eec975fa340905c0e6966b43d"
+  },
+  "selection": "Pinned project source and required artwork/assets plus upstream README. Omitted labs, generated documentation, VCS and OS metadata, build products and core dumps.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata is excluded from required source inventory."
+  },
+  "icon": {
+    "kind": "launcher icon derived from pinned original sprite",
+    "source": "src/xpms/dino_normal.xpm"
+  },
+  "controlsRationale": "T-Rex Run: enter five-letter nickname with keyboard, then Start / Restart Space. Jump Up and Duck Down named actions match original timer-sampled controls; touch holds verified.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/aluisamarques--feup-lcom-trex-game",
+    "limits": "Short functional gameplay trial, no full campaign completion or physical Android device claim."
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "77e979f9bd0255c430017d90738d3b8be99e34dfa687528633d58d9fd6f9fedd",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "850320997aeec9751812fe9da0b579590294a136e1e64aead81cac895ef20f46",
+      "kind": "actual mobile browser gameplay canvas"
+    }
+  ]
+}

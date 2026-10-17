@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "Gold Miner",
+  "description": "Reveal hidden gold, steer the cart and lower the claw to bring treasure back to the rail.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Select / Reveal",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  },
+  "archetype": "Gold Miner",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

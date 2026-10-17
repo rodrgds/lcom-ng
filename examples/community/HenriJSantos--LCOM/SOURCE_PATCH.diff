@@ -1,0 +1,27 @@
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -777,8 +777,11 @@
+ 
+ void end_game()
+ {
++  if (mainChar == NULL)
++    return;
+   print_score(score);
+   delete_animated_sprite(mainChar);
++  mainChar = NULL;
+   for (unsigned int i = 0; i < ENEMY_ARRAY_SIZE; i++)
+   {
+     if(enemies[i] != NULL)
+--- a/proj/src/text.c
++++ b/proj/src/text.c
+@@ -88,8 +88,8 @@
+ 
+ void free_numbers()
+ {
+-    for (unsigned int i = 0; i <= 10; i++)
+-        free(numbers[i]);
++    for (unsigned int i = 0; i < 10; i++)
++        deleteBitmap(numbers[i]);
+ }
+ 
+ void hide_int(unsigned num, unsigned x, unsigned y)

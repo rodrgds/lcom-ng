@@ -1,0 +1,49 @@
+#pragma once
+#include <lcom/xpm.h>
+
+static xpm_row_t const test_xpm[] = {
+  "60 38 4",
+  "  0",  // Background
+  "x 10",  // Green 
+  "o 7",  // Gray 
+  "+ 15",  // White 
+
+  "                                                            ",
+  "                        ++++++                              ",
+  "                       +xxxxxx+                             ",
+  "                      +xxxxxxxx+                            ",
+  "                     +xxxxxxxxxx+                           ",
+  "                    +xxxxxxxxxxxx+                          ",
+  "                   +xxxxxxxxxxxxxx+                         ",
+  "                  +xxxxxxxxxxxxxxxx+                        ",
+  "                 +xxxxxxxx++++++++xx+                       ",
+  "                +xxxxxx+oooooo+xxxxxx+                      ",
+  "               +xxxxx+oooooooo+xxxxxxx+                     ",
+  "              +xxxxx+oooooooo+xxxxxxxx+                     ",
+  "             +xxxxx+oooooooo+xxxxxxxxx+                     ",
+  "              +xxxx+oooooooo+xxxxxxx+++                     ",
+  "               ++xxx+oooooo+xxxxxxx++                       ",
+  "                 ++xxxxxxxxxxxxxx++                         ",
+  "                  +xxxxxxxxxxxxx+                           ",
+  "                   +xxxxxxxxxxx+                            ",
+  "                    +xxxxxxxxx+                             ",
+  "                     +xxxxxxx+                              ",
+  "                      +xxxxx+                               ",
+  "                       +xxx+                                ",
+  "                        +++                                 ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            ",
+  "                                                            "
+};

@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "name": "HUEtris",
+  "archetype": "Tetris",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "1",
+        "2"
+      ],
+      "joystick": false,
+      "look": false,
+      "dpad": false,
+      "layout": "panel",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Drop",
+          "key": "SPACE",
+          "position": "bottom-left"
+        },
+        {
+          "label": "P2 Left",
+          "mouseButton": "left",
+          "position": "top-left"
+        },
+        {
+          "label": "P2 Right",
+          "mouseButton": "right",
+          "position": "top-right"
+        },
+        {
+          "label": "P2 Rotate",
+          "mouseButton": "middle",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "LEFT",
+        "RIGHT",
+        "DOWN"
+      ]
+    }
+  },
+  "build": {
+    "assets": [],
+    "environment": {
+      "LCOM_VBE_PHYSICAL_BASE": "0xF0000000"
+    }
+  },
+  "description": "Drop colorful pieces, clear lines and race a friend on a second board.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

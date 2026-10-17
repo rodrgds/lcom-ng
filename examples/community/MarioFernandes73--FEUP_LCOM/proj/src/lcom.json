@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Simon Says",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [],
+      "touch": "tap",
+      "cursor": {
+        "x": 20,
+        "y": 20,
+        "maxX": 786,
+        "maxY": 578
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/images"
+    ],
+    "pathAliases": {
+      "/home/lcom/lcom1617-t4g03": "."
+    },
+    "arguments": [
+      "simonsays"
+    ]
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "description": "Build and repeat a growing sequence of shapes with a friend."
+}

@@ -1,0 +1,19 @@
+--- a/proj/src/model/queue/queue.c
++++ b/proj/src/model/queue/queue.c
+@@ -8,7 +8,7 @@
+   unsigned int back; // index of the back element
+ 
+   int element_size;   // size of each element for pointer arithmetic
+-  void **elements; // array of elements
++  uint8_t *elements; // array of elements
+ 
+ };
+ 
+@@ -66,6 +66,6 @@
+   if (is_empty_queue(q)) {
+     return EXIT_FAILURE;
+   }
+-  memcpy(back, q->elements + ((q->back - 1) % q->size) * q->element_size, q->element_size);
++  memcpy(back, q->elements + (q->back == 0 ? q->size - 1 : q->back - 1) * q->element_size, q->element_size);
+   return EXIT_SUCCESS;
+ }

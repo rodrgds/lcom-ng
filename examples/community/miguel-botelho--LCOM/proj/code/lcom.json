@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "Artist Vs Guess",
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "code/images",
+      "code/files"
+    ],
+    "pathAliases": {
+      "home/lcom/proj": "."
+    }
+  },
+  "mobile": {
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "touchClick": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE"
+      ],
+      "keyboard": true,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "pads": [
+        {
+          "mode": "mouse",
+          "sensitivity": 1,
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Draw",
+          "mouseButton": "left",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "description": "Choose Human vs Machine, type your name, then guess the picture as it is revealed.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

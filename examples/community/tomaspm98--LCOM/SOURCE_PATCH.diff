@@ -1,0 +1,60 @@
+--- a/proj/src/graphics/video_gr.c
++++ b/proj/src/graphics/video_gr.c
+@@ -93,16 +93,20 @@
+ }
+ 
+ void allocate_img_buffer(){
+-  imBuffer = (uint8_t*)malloc(vbe.XResolution*vbe.YResolution*bytes);
++  imBuffer = (uint8_t*)calloc(vbe.XResolution*vbe.YResolution,bytes);
+ }
+ 
+ void display_image(){
+   memcpy(vram,imBuffer,vbe.XResolution*vbe.YResolution*bytes);
+ }
+ 
++void clear_im_buffer(){
++  memset(imBuffer,0,vbe.XResolution*vbe.YResolution*bytes);
++}
++
+ void free_im_buffer(){
+-  memset(imBuffer,0,vbe.XResolution*vbe.YResolution*bytes);
+   free(imBuffer);
++  imBuffer = NULL;
+ }
+ 
+ 
+--- a/proj/src/graphics/video_gr.h
++++ b/proj/src/graphics/video_gr.h
+@@ -49,7 +49,10 @@
+ /// @brief Displays the image we want by copying from image buffer to the main buffer
+ void display_image();
+ 
+-/// @brief Sets the buffer with color white (0) and frees its memory
++/// @brief Clears the reusable image buffer between frames
++void clear_im_buffer();
++
++/// @brief Releases the image buffer at shutdown
+ void free_im_buffer();
+ 
+ /// @brief Allocates memory to the image buffer
+--- a/proj/src/interrupts.c
++++ b/proj/src/interrupts.c
+@@ -111,7 +111,7 @@
+                     if (catch_powerup()) return 1;
+                   }
+                   display_image();
+-                  free_im_buffer();
++                  clear_im_buffer();
+                 }
+                 break;
+             default:
+--- a/proj/src/main.c
++++ b/proj/src/main.c
+@@ -49,6 +49,7 @@
+ }
+ 
+ int end(){
++    free_im_buffer();
+     if (vg_exit()) return 1;
+     //terminar sprites
+     //falta interrupts mouse+rtc+serial port

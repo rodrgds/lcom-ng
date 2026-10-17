@@ -1,0 +1,35 @@
+service huetris
+{
+	system
+		UMAP			# 	14
+		INT86		#	20
+		PRIVCTL
+		READBIOS	
+		DEVIO
+		IRQCTL
+		IOPENABLE
+		;
+	ipc
+		SYSTEM	#	to retrieve system information
+        	rs		#	for service initialization
+		vm		#	to map video RAM
+		pm		#	for malloc, if needed
+		vfs
+		;
+	io
+		40:4		#	timer
+		60		#	kbc
+		61		#	idk? but i think its needed
+		64		#	kbc
+		70:2		#	rtc
+		;
+	
+	irq
+		0		#	timer
+		1		#	kbc
+		8		#	rtc
+		12		#	mouse
+		;
+	
+	uid 0;
+};

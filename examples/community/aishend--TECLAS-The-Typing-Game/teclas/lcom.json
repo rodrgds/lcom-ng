@@ -39,5 +39,6 @@
     ]
   },
   "description": "Type the words on screen and keep up with the next challenge.",
-  "preview": "../../../../collections/arcade/previews/teclas-9e9acdbd5fab.png"
+  "preview": "../../../../collections/arcade/previews/teclas-9e9acdbd5fab.png",
+  "archetype": "Typing"
 }

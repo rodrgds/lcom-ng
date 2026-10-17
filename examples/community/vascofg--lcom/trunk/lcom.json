@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "name": "Battleship: Hidden Fleet",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "vertical"
+        }
+      ],
+      "actions": []
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "trunk/res/newgame.xpm",
+      "trunk/res/water.xpm",
+      "trunk/res/exit.xpm",
+      "trunk/res/sunk.xpm",
+      "trunk/res/hit.xpm",
+      "trunk/res/2.xpm",
+      "trunk/res/3.xpm",
+      "trunk/res/1.xpm",
+      "trunk/res/0.xpm",
+      "trunk/res/4.xpm",
+      "trunk/res/5.xpm",
+      "trunk/res/mapa.xpm",
+      "trunk/res/7.xpm",
+      "trunk/res/6.xpm",
+      "trunk/res/y.xpm",
+      "trunk/res/8.xpm",
+      "trunk/res/sideboats.xpm",
+      "trunk/res/9.xpm",
+      "trunk/res/x.xpm",
+      "trunk/res/won.xpm"
+    ],
+    "pathAliases": {
+      "/usr/src/drivers/batalha_naval": "trunk"
+    }
+  },
+  "description": "Choose grid coordinates to uncover and sink a hidden fleet.",
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Battleship"
+}

@@ -1,0 +1,117 @@
+{
+  "repository": "https://github.com/NunoRamos/LCOM-Copter",
+  "revision": "192100c849d454607ecf92f9e7b43b2851ef7fe1",
+  "project": "proj/code",
+  "sourceHashes": {
+    "README.md": "2201f22ca2fadb1e44677301fc52ad1364aadf0f5121c706126e634eba5469ac",
+    "proj/code/Button.c": "6b3c466ee56c783cb015895138c7a276e3e5476f7f68fa5e8f36a1983e8765e6",
+    "proj/code/Button.h": "bf6123528e6b5f14927df3c08dafd47e7591cafbd909213bfaa96ec67e0e5a40",
+    "proj/code/GameState.c": "c0ca056b7f97f4ed6375d0a20167d3e598b978dbe8ad3186699736399bab6179",
+    "proj/code/GameState.h": "47c82932da7fa99d3736695925009e33de9858a34549bfa5f84322360efc4fb5",
+    "proj/code/KBD.h": "9034fe19e8e8de0f49695c672f8b445a07e9d9ba4cab9947b11d5d5d9b2fbe9d",
+    "proj/code/MainMenu.c": "42c067983cef61c84e6f4da7c0940ef22a820c9cf95fde47da80fc28f2c7b210",
+    "proj/code/MainMenu.h": "ac3817254dfa4b68ac8601b3087a04eb9b2d38488132973dc8ce066c99d156b5",
+    "proj/code/Makefile": "d05274e572b9ac47ce83eb887ba334aac7b76326985fcc263b5b96fc069598ce",
+    "proj/code/Margins.c": "021d3e6b364d50be195d5a5bbc502400c1c41edfbf61e3930650a6fde29378b3",
+    "proj/code/Margins.h": "b1b90f2c19884946d5cb21116a491e937ffcad23530b1e566ec72314b7003057",
+    "proj/code/Menu.c": "1653701b41490512238475eb2a2aaa3af61c8f90ae108bddff8596167f01344a",
+    "proj/code/Menu.h": "a56cb7fd8f0e3c0365ff9f64d581ba60298e17fb4e63aaa5e6c61a9b1c327e86",
+    "proj/code/Obstacles.c": "41e5861c623c15a355eaa6a54ea6761171ace6f8a61e874add1b31deade1f3bf",
+    "proj/code/Obstacles.h": "5ec5f0d69bba6f09fe0f748933cc62b0b72da96850236a6c97b260a10d19af37",
+    "proj/code/RTCC.h": "f4f3a42a5f86c67d05cd3317acf2e111c66311ca8bb8095181f89521d8cced7b",
+    "proj/code/Singleplayer.c": "e686f825d3f0b4e537060f5c63398e836f4c76b1bdabb384c18e873d39076884",
+    "proj/code/Singleplayer.h": "d59dc0b490fef32e00ebd2ad0e80f53f65e0f1fac4b44f42234f65898fb71c11",
+    "proj/code/bitmap.c": "3e4eb579c9f3c3efcfb19617732e6ad5f92ce743fc572f631416d14f22577c5a",
+    "proj/code/bitmap.h": "63a536e70aa1685b2e7ac15e72cbbb4f6ee340a1626393351ff47292221ea9ca",
+    "proj/code/copter.c": "6a7390ca3f4f8544d8cc2ca503c85b1948a665bdb02d8078dc8cb2d065e4588c",
+    "proj/code/copter.h": "38e8e39f900b658abad473b2b746ff3015486e79fb206d340b9db5f0fd69ff63",
+    "proj/code/highScore.txt": "e754478c35f2708c5d0bf28696b44f1bcf79832bf716a2bfba665212ba9b4f09",
+    "proj/code/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "proj/code/keyboard.c": "0b5793cbe51c3dede2f0808e2bb2aac4b047cfe4f0c52e92a37c723cba89272d",
+    "proj/code/keyboard.h": "df5e7f6e42591a1daa8234c7b131cf510782e8694ea844bca7fa825ca067039a",
+    "proj/code/lmlib.h": "a28ae792b4f08c193fc20e4b1a4727f46002f3a8b4626e84161874c3ac65e428",
+    "proj/code/main.c": "d91bcbec2c62a50a86bf045dad57f67eb299c575fdc11f29217e24e42041dca4",
+    "proj/code/main.h": "f43abd2e11b1037ccf8d4546683fbb20cbc77493ef188341c17fc262ee0653a7",
+    "proj/code/mouse.c": "7d8a4ed8844b9756c613f5f375bd1af62bb7c5aae16e3ad2255022ec56a6b8f5",
+    "proj/code/mouse.h": "fc357142279dd6e29ce2915f151994f555aa83fb9fd268f48a69d829ed5289f6",
+    "proj/code/proj": "15598b59a293775500f6d6938aa46f275de9af8531091c363cd07c603e486647",
+    "proj/code/read_xpm.c": "ea6f00a431d4ed665d7be5c7ca354eb910e90de3bd641da5d61a545f715d36b2",
+    "proj/code/rtc.c": "907803b18e2c2f2a8bab618de708c767b96997c08be916fe395ba5df13eec690",
+    "proj/code/rtc.h": "1a87734790cb9237dd39dfce69c158c37fce74c1f4f6e0e923bdc5b116cba272",
+    "proj/code/sprite.h": "75f1ab0c8096138b5349a04c35b7412ed611cb82242b3b7b11e2f2a874d23bcb",
+    "proj/code/timer.c": "795be27be76029b3aa0f34528a52c096c1ecb8dea940056d35f09bba242801e2",
+    "proj/code/timer.h": "817daa2584fdb452bb30845a87e0d830808086fd50b0727545c1341951190a35",
+    "proj/code/vbe.c": "7cfc8e1e98f5df817f3d2110e8a1a57fb6bca8f6a8bae676c207c60b83d889d3",
+    "proj/code/vbe.h": "b99654399d4afaf8b6df102455622708736223dd2132dd1394cba6c7f9572a90",
+    "proj/code/video_gr.c": "0d1163d80ef4dc3b7fbe4ba096b98b7f8872fa3b2065ac686d2ea1ad4d4dcf1d",
+    "proj/code/video_gr.h": "14fe6e08816c86d3515889035fc1b553bccb231d6c500c0a98af478f859cb36f",
+    "proj/conf/proj": "15598b59a293775500f6d6938aa46f275de9af8531091c363cd07c603e486647",
+    "proj/images/!.bmp": "e6c5c4e42c7446d54aaebc9dd40ba05b18f2cd6e6bff451d8e21ea94d4ce1910",
+    "proj/images/Captura.de.ecra.2016-03-06.as.10.55.07.png": "ca62a5b590d3afa6388ff45266a507ca4cc1779218b092726cfd5962a8611f13",
+    "proj/images/Menu.bmp": "1b3eff5c82d1aaf168520101265c7d807f67a435bb7e079335980e74a29b0b5c",
+    "proj/images/abcb.bmp": "7a0df2fca9adccf30a2e80fc0fb85903c75ce16b43157f3aebe4fc1a92246d3c",
+    "proj/images/abcp.bmp": "2ee22d0c7fd9a80c8174c5928409172d7aaa38e254c67043ea68c963fe3c5eaf",
+    "proj/images/check.bmp": "e26c35143d64018562dd54f7911c77fa0176fbace636afe55485ea61492d69ce",
+    "proj/images/clock.bmp": "4d9bfb76d62cb87680c27186be08db68bd34e3287c5b8bfc0bcb88d4d402df7d",
+    "proj/images/copter.bmp": "09f18d7a37b7339652eeb08f2d5d62763456607c4cd29c5645e03bfa009449ed",
+    "proj/images/credits.bmp": "af8bcc0633146e4376babc09e0bf8ca8ed90bf7cbb42d3b96bbf6be0f5c256a0",
+    "proj/images/gameOver.bmp": "13b48960a06ae5b99cd6f7acdf7420f58642bc57aecd5aa17b9215b3d0c04c52",
+    "proj/images/hit.bmp": "ae4ed8b81daebb1045894e5d668ff184fabd312e0dce5a01be566acd14a73586",
+    "proj/images/hit.png": "381189a6ccd06ff9460016331d33faa15239b31d6ef6dc234f4f79ef9b93765a",
+    "proj/images/medal.bmp": "dbcf8bbd05a079a7ce1cb3d5f82b21ee1e7702ff4d7063e71155fc02a5ca9620",
+    "proj/images/mouse.bmp": "4666ea0bd21a2406e79d9bbdc8797f5cf614aa130d84adab4cd7988e2458a5f0",
+    "proj/images/option.bmp": "12eaa5ecff5455f97764ec405ed1f01bac2f946626b5497103899b63495c1620",
+    "proj/images/teste.bmp": "74b40e5ca3e5cc6b6406cb6aa801ef38b4157abcc86e4a9e48c6175ca6911cd9",
+    "proj/scripts/compile.sh": "48329c349942dca0be8b38f48aac75806a1d71ae2d5df534debed14cc87d0a78",
+    "proj/scripts/install.sh": "e5fe2a264a98038935e0e86bb0cd27e7700a1fd8eefb5554b3d6abc3d8512fda",
+    "proj/scripts/run.sh": "636ff1b89d1d0a64e958efd0274d77cde2ee37fd3bbd471321c9165ce7075a9a"
+  },
+  "selection": "Pinned project sources and game assets, retaining upstream README; labs, generated documentation, VCS/OS metadata and build products omitted.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "controlsRationale": "Controls derived from unchanged keyboard/mouse handlers; touch gameplay verification pending.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/code/copter.c",
+          "originalSha256": "6a7390ca3f4f8544d8cc2ca503c85b1948a665bdb02d8078dc8cb2d065e4588c",
+          "patchedSha256": "445e236756aa25916d250e4a06a52d09329bdfd52037f49af58b6fd3e92cce96",
+          "reason": "Handle an absent high-score file as a fresh score of zero instead of calling fscanf(NULL).",
+          "verification": "Actual loadHighScore executed with fopen returning ENOENT: original crashes on fscanf(NULL), corrected source sets bestScore=0. Evidence c/copter-score-red.log and copter-score-green.log."
+        },
+        {
+          "file": "proj/code/keyboard.c",
+          "originalSha256": "0b5793cbe51c3dede2f0808e2bb2aac4b047cfe4f0c52e92a37c723cba89272d",
+          "patchedSha256": "21de1f49093e2f643f11ae28d94368a8b1f5e31744c370c0dcbc32a252d7bd8a",
+          "reason": "Each IRQ device must retain its own handle; shared/shadowed hook_id caused incorrect masks and leaked subscriptions.",
+          "verification": "Actual timer, keyboard and mouse driver objects exercised for two subscription/removal rounds; masks identify their independent device handles and all subscriptions are released. Evidence c/copter-hooks-red.log and corresponding green log."
+        },
+        {
+          "file": "proj/code/main.c",
+          "originalSha256": "d91bcbec2c62a50a86bf045dad57f67eb299c575fdc11f29217e24e42041dca4",
+          "patchedSha256": "8f3536e79028c147bab6f98ed35cc07e52c2f8523ce479420a3bf79cd003260f",
+          "reason": "Include the owning API header so pointer/time_t calls have their real declaration.",
+          "verification": "Owning header declaration regression compiles the actual entry source with -Werror=implicit-function-declaration. Original WASM startup trapped; corrected source reaches touch gameplay."
+        },
+        {
+          "file": "proj/code/mouse.c",
+          "originalSha256": "7d8a4ed8844b9756c613f5f375bd1af62bb7c5aae16e3ad2255022ec56a6b8f5",
+          "patchedSha256": "d41190faa40b5eebf52b0955d46df286619fbe21e57ef24a2ae950a0a25ca417",
+          "reason": "Retain a private mouse IRQ handle and consume EA/F4 command acknowledgments before parsing movement packets.",
+          "verification": "Actual timer, keyboard and mouse driver objects exercised for two subscription/removal rounds; masks identify their independent device handles and all subscriptions are released. Evidence c/copter-hooks-red.log and corresponding green log. Actual configure_environment also consumes both queued ACK bytes, original leaves them queued. Evidence c/copter-ack-red.log and copter-ack-green.log. Browser touch selects Play and flies through the cavern."
+        },
+        {
+          "file": "proj/code/timer.c",
+          "originalSha256": "795be27be76029b3aa0f34528a52c096c1ecb8dea940056d35f09bba242801e2",
+          "patchedSha256": "9d96a51701a9268b14f7f3c2c69562ecd3cf0ff4eac8c43a0031c0bfe80f4ed8",
+          "reason": "Each IRQ device must retain its own handle; shared/shadowed hook_id caused incorrect masks and leaked subscriptions.",
+          "verification": "Actual timer, keyboard and mouse driver objects exercised for two subscription/removal rounds; masks identify their independent device handles and all subscriptions are released. Evidence c/copter-hooks-red.log and corresponding green log."
+        }
+      ]
+    }
+  ]
+}

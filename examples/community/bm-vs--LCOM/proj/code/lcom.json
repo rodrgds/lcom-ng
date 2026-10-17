@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "name": "Pew Pew: Platform Duel",
+  "description": "Two players swap shooter and runner roles in a timed platform arena.",
+  "mobile": {
+    "orientation": "landscape",
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pointer": "move",
+      "touchClick": false,
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "stick"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick",
+          "sensitivity": 1
+        }
+      ],
+      "actions": [
+        {
+          "label": "Shoot / Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "P2 Left",
+          "key": "J",
+          "position": "bottom-left"
+        },
+        {
+          "label": "P2 Right",
+          "key": "L",
+          "position": "bottom-right"
+        },
+        {
+          "label": "P2 Jump",
+          "key": "I",
+          "position": "top-left"
+        },
+        {
+          "label": "Jump",
+          "key": "SPACE",
+          "position": "top-right"
+        }
+      ],
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

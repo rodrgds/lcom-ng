@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "Walls: Split the Field",
+  "description": "Build opposing walls around two bouncing balls and reduce each remaining region toward the original10percent goal.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "key": "1",
+          "label": "Start",
+          "position": "top-left"
+        },
+        {
+          "mouseButton": "left",
+          "label": "Draw",
+          "position": "bottom-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

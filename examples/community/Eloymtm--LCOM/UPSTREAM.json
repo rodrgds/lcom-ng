@@ -1,0 +1,116 @@
+{
+  "repository": "https://github.com/Eloymtm/LCOM",
+  "revision": "2e32dc06241c4ff5d17dd792cbbeb0905f745aa8",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "254e184c6f3d9004b9cbfd2c4c25779868942690ef58298f7608202f31b5674a",
+    "proj/src/Makefile": "fb6e21154a35071fa615707d7e7783868a71179184feae2ffa0f3ceb1c5fa9e0",
+    "proj/src/controller/devicesController.c": "0369ab616fe0abce264b57db3eeca4d9ab0cd7b842d49386ea5b29bf340fec66",
+    "proj/src/controller/devicesController.h": "0d7512ccccb413373f1275b2935f8d389793f599f42f4d60a77912a27e977ded",
+    "proj/src/labs/aux.c": "e806ce426a88d959a5917f26fdcfae04ab45cf30511dd857d23f8218ab29e811",
+    "proj/src/labs/aux.h": "93720b274c68f42aa8404bad4d48089ffb92e4b4fabbfac44fceef7a413ba3af",
+    "proj/src/labs/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/labs/keyboard.c": "cad596469a4d247961af21a816a3d64eae384b4b09c52dac0b5a6123dad8af8b",
+    "proj/src/labs/keyboard.h": "fde7bcd9f119181685c40a8877b39083d970556fa57fdcefa0430a84487c850f",
+    "proj/src/labs/mouse.c": "b5d1300bc2002367c308341a719b3adca6e6dac47f0132bbdbb91fbb638b37b8",
+    "proj/src/labs/mouse.h": "250ff4e660daa2db135306546e5d1872a882b89f71591ff809e3f720596dbeae",
+    "proj/src/labs/timer.c": "5d75808f5940ff1809fc8d85283775156f111ea917daca04c387f97965628c16",
+    "proj/src/labs/utils.c": "7c98d126a3905a35afacd77eed5dde608f439bbcee3393fd44d0e385b72f6c20",
+    "proj/src/labs/video.c": "edbe0fd0689afe5f87d9893fb2dc1948140caf8394a1ce023e6edbe761e09e0f",
+    "proj/src/labs/video.h": "964828ec33a9af0f0e0f3e78ea13078119622313adedf7326c274c37fd5807d8",
+    "proj/src/macros.h": "3dbe9c0925196c73aab079824a746f8f99d964f725b46641a1a54ef475767dae",
+    "proj/src/model/board.c": "7186d9fa3323ca4d800e76972f182a8843e6fe03f03e4bf5d62c02a7b39ec9e5",
+    "proj/src/model/board.h": "b56c3583ddaaf327e57b9068f8911f7b142b2c4fd9618f3614f248762aff8c55",
+    "proj/src/model/coordinate.c": "c32544c197edd69af06a7d9f57f92c02f75d0b493da5c19f52f8f9844cc8d1d1",
+    "proj/src/model/coordinate.h": "ec7a3198540ee425386965c03f9286abcf33f2e99948a4cf6d00934a901b39e1",
+    "proj/src/model/game.c": "c021113885a536a32454b9efcf6711ed2a8f2f53ad0877d4100f11ca0b78dcfc",
+    "proj/src/model/game.h": "b58c1172c2372c08208562e6ea30a1cd434b1bf6df4ff7233c4d6272e3ff59a2",
+    "proj/src/model/ship.c": "65ce9d94505d8a8733a1701c7029c95f4146c6658dad1a5cc41416036ad08762",
+    "proj/src/model/ship.h": "d5e355f3b016d7c48e7d0dcaf298e8a3311f660b376cecd0b2c5a1bfb3e2c4de",
+    "proj/src/model/structGame.h": "15296d933ad613de05bc15e3bb0e130703113d4a881ae3e27e9932ca13b71ce7",
+    "proj/src/proj.c": "ba96642d3a5c3a8a40c60ec3be271649664fef9651043b7900a1fcb421587f22",
+    "proj/src/state/state.h": "88a1f73b38ebf7c4f1278e6b80447fd31644c515daf40ba5e819c8c576cec962",
+    "proj/src/viewer/boardViewer.c": "f19f001a73d378769aa9490abd9d42bb707344b71569c4aa0f388cfda29ef367",
+    "proj/src/viewer/boardViewer.h": "ec7afe5dd8e03171e69acade64df1e973f3e2eea23eb19335d82be2d43733986",
+    "proj/src/viewer/instrViewer.c": "daf90895606f3a25420482a4cbfc78022613aae896be36d24180970e84390da2",
+    "proj/src/viewer/instrViewer.h": "fb316badfb797f07d5067bd1c0df372645ac396e997c60eb69bf988630dc1a41",
+    "proj/src/viewer/menuViewer.c": "3b4545ad889d74166922b6a2babfe912d713467dc62f5776ed87491072bd4dce",
+    "proj/src/viewer/menuViewer.h": "681d29531b5a8694971662933dd30f4e4f5d1a9840d68752ef871a5f5b184da6",
+    "proj/src/viewer/waitingViewer.c": "fb50de450b73df4740ab620f9fbd6f58619b203a11e089c20d576823cfd348da",
+    "proj/src/viewer/waitingViewer.h": "597eadcfaaecd46b58a2994553fae68fd95db3ff4eb75f2a68ed3f37edd06973",
+    "proj/src/viewer/winViewer.c": "aae58f655f6cf65b3ff28526eb9a17918cc68f53e1a95061fd1eb6cdbcd4219a",
+    "proj/src/viewer/winViewer.h": "8d7f74d907af3444c490e8feebcdb60d8c012b9312b34a8378f28f21b93a8643",
+    "proj/src/xpm/batalhaNaval.h": "bd5832d997529bdad40ea93608d64ea213c569544d9f796f9b3ddb5306f9e4ce",
+    "proj/src/xpm/batalhaNaval1.h": "372ea72fb96a19172bbe9d67dd0bea3c4b0d69032937e8cb93e48eb75297e47b",
+    "proj/src/xpm/instr.h": "6c6d0a3304b611278679e91de5e064dd9e6d32ab9ba8335b2325950facfd4e20",
+    "proj/src/xpm/mouse.h": "0239649c01a57a7267301c95abb63581f19a3b41a649af98f22779736d7ff746",
+    "proj/src/xpm/mouse1.h": "8d44bbae3fa1c955b06e2560fc5c43aa8d393190800a8a0a73fcc5c5580c32f9",
+    "proj/src/xpm/mouseD.h": "455bd0150521f3a53e6b770383ddc02332aff4f7a3d728e60803c59e8461ef7c",
+    "proj/src/xpm/play.h": "6cee76e97cd09cbdcc63798ae605daf56738ba3508d8c3caa5c3b6f8e11f6492",
+    "proj/src/xpm/player1.h": "7dfbfd89f88686b2a66631d573029183442f9e41287fb800a6812b10418b870b",
+    "proj/src/xpm/player1ships.h": "4574d77b317162c8bd3d87596a61b54095124d1cfd81a36bffc50667ba6bdb5b",
+    "proj/src/xpm/player2.h": "22e524ff762be2e68581cc5decd9e42d2e30c4b8e69c5180686b1eed9972bc0e",
+    "proj/src/xpm/player2ships.h": "e736acd6386c4a2fe5cb7bd4309cda5352058ff0d4d88b73a3d0e0362b7a061a",
+    "proj/src/xpm/quit.h": "dde811e8617439e012ec2816499d001b175b7a9b65509a75fe83ff39322922dd",
+    "proj/src/xpm/rules.h": "55d10d8fcc1625578ff33d11191c7cbbbaf9d7238e9db0f7a08628014e2989d2",
+    "proj/src/xpm/win1.h": "9e0e64eda6c156deef6441d81fea5cba3a88e072a4fc6aa32d1979a6330e613f",
+    "proj/src/xpm/win2.h": "58a1c71dc077c172204d4fda1aa61f43fa10b764763d5e7f25cf63886817ef14",
+    "proj/src/xpmtest.h": "f946baa8c8a9a633c02cc88082576034c71d95bc7d376b6fea98c79611140f9d"
+  },
+  "omissions": [
+    ".minix-src/**",
+    "VCS/OS metadata",
+    "unrelated labs",
+    "compiled binaries",
+    "generated documentation"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/controller/devicesController.h",
+          "reason": "Remove stray un-commented Copiar c\u00f3digo text that makes the public controller header invalid C. Actual owning keyboard-menu controller fixture fails original compilation and passes original menu/rules/quit selection after removal.",
+          "originalSha256": "0d7512ccccb413373f1275b2935f8d389793f599f42f4d60a77912a27e977ded",
+          "patchedSha256": "23c1e0c0c3cf404dc1a6b9c73259b3310127d1482457ff9a3e82e055af2e5325"
+        },
+        {
+          "file": "proj/src/labs/video.c",
+          "reason": "Count bytes per pixel, not bits per pixel, for the mapped VRAM and backing buffer. Original32-bit mode requested31,850,496bytes and failed startup against16MiB VRAM; correct3,981,312bytes matches original1152x864x32pixel data. Actual allocation owner range assertion fails original and passes correction.",
+          "originalSha256": "edbe0fd0689afe5f87d9893fb2dc1948140caf8394a1ce023e6edbe761e09e0f",
+          "patchedSha256": "e87f81a9872c7bb09cb3534878d36132c7af27f11de9c8b1b9867bdde8d7fa14"
+        }
+      ]
+    }
+  ],
+  "createdAt": "2025-02-25T14:42:06Z",
+  "controlsRationale": "Release-driven arrows move selection/ships/shot target through the left pad with repeatReleaseKeys. Enter places then confirms each of eight ships, accepts player handoff, and fires. R rotates and E finds the next free tile for an already placed ship. ESC resets to the menu, whose Down/Down/Enter exits. External panel supports full local two-player play on one device. Pointer off intentionally uses the complete authored keyboard path; original optional mouse driver never completes packet byte1, so mouse control is not claimed.",
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "147c2ce5cea8971ccd625c8304e17faa053ad68edb6f9097f3f9aa31b0fc2031",
+      "kind": "Simple flat fleet and targeting grid icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "2a666298c25e1e1170f931a0510b42fd80cc6a48d097d9bd1f9c80afed022a8b",
+      "kind": "Unmodified actual gameplay canvas with original orange hits and red miss"
+    }
+  ],
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/basic-asm-three/evidence/eloy-08-miss-canvas.png",
+    "captureSha256": "2a666298c25e1e1170f931a0510b42fd80cc6a48d097d9bd1f9c80afed022a8b",
+    "originalSourceArt": true
+  },
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/desktop-batalha-reviewed-native/results.json",
+      "apkSha256": "61c064fadb8c595042299dc6c399453be57387eae49be35d96d0f986eeabcf4f",
+      "demonstrated": "ROOT viewed both eight-ship fleets, normal release-driven arrow movement and rotation, local player handoff, hits on both boards and a red miss, ESC reset, and original Quit returning cleanly to native library.",
+      "limitations": [
+        "Complete keyboard path verified. Original optional mouse path remains incomplete and is not claimed. Full match victory is not claimed."
+      ]
+    }
+  }
+}

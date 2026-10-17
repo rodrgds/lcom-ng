@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Snake x3",
+  "description": "Guide the snake with the mouse, eat apples and choose three difficulty levels.",
+  "archetype": "Snake",
+  "build": {
+    "cStandard": "gnu99",
+    "assetRoot": "..",
+    "assets": [
+      "res"
+    ],
+    "pathAliases": {
+      "/home/lcom/proj": "."
+    }
+  },
+  "mobile": {
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "touchClick": false,
+      "quickKeys": [
+        "1",
+        "2",
+        "3",
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick",
+          "sensitivity": 1
+        }
+      ],
+      "actions": [
+        {
+          "label": "New apple",
+          "mouseButton": "left",
+          "position": "top-left"
+        }
+      ],
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

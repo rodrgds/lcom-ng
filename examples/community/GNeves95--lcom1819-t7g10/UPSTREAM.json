@@ -1,0 +1,154 @@
+{
+  "repository": "https://github.com/GNeves95/lcom1819-t7g10",
+  "commit": "740f94710dcb714ef2e514239619bc1bce4be065",
+  "createdAt": "2019-01-02T18:10:49Z",
+  "project": "proj",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/GNeves95/lcom1819-t7g10",
+    "createdAt": "2019-01-02T18:10:49Z"
+  },
+  "sha256": {
+    "lab3/output.txt": "1e78c731c5abfbe1b3f24c67b81114f779b8f2fd89c89f01e3d9922bfac93375",
+    "lab3/trace.txt": "26b921fa9930221f1bcddbbcbb9d1f712f4e4cec1eb96621a772b587ba049ba7",
+    "lab4/output.txt": "b7e3b75d2dd329846f4b040d187e5b9821f618cc8665c4258ca574fc7a27237e",
+    "lab4/trace.txt": "51fcd0d9304265bd5d4200a80daad2060a38b332af99b22d76f339cbe94292a6",
+    "lab5/log.txt": "32ac1de77aaa957cd10727d1e6e73527c97a8cbe6d739f671179d6e8f13815cb",
+    "lab5/output.txt": "5db28947d9e9f4ca4fd827b983950dcbccc4d887a78ecb22ca38c2e60f833297",
+    "lab5/trace.txt": "6eba8618ef8956fba4f3b21011ab71d2ac5bd00a0d4d86d6cb6e48b71ca4dfc8",
+    "lab6/output.txt": "5392008000f96b48e2bcf07a640876dee210fe03e2a6fa078e2e052f8a96fd8b",
+    "lab6/trace.txt": "6efe52fd00c1ba51f9d1cf7037aec770fecfa010773576fac1399ec605058720",
+    "proj/Makefile": "67447253df4ac1f18d565e0862db3a0c6535c0d488dc61d568d43bd647dc0e17",
+    "proj/bmp.c": "d2e57e230e8c32103d4fd573376ce0d1035654c6c3f3776fcdd7febe97b2ddeb",
+    "proj/bmp.h": "d7e1c6961499e5b94731008617fdba5f3dbf3d19b4e2dd1dd4b8c0b880fd9886",
+    "proj/floor.bmp": "b37f020406cba4fb8b99b214c6706c1fc5d42a16ad8bebb0dc18d058f46194ad",
+    "proj/game.h": "8685517d9959a1c47e17ce10fb97aa7e18f732e8e5199e910381e135834e962a",
+    "proj/i8042.h": "5b28f6456cf97baf6fbaa2164cdf7d13b02759f54b154ac7443217662da9922c",
+    "proj/i8254.h": "9dce0f050f7f90bc59d00c03e4e93d8b9a0f7139a494ba94c25ee36ebd6da42b",
+    "proj/img/alphabet.xpm": "a6a77c0ec95d84e367bb741746981ba4276cac69dde81b41a54cc370feeabc2e",
+    "proj/img/alphabet_backup/0.xpm": "33fd20695bfeee0f9fc178c2ccf42ff9daa713183557182df6041186d26d4354",
+    "proj/img/alphabet_backup/1.xpm": "d04a2555062c8f73932233e007a25ef85c4adfcd660988cc99755c2c23f13ff7",
+    "proj/img/alphabet_backup/2.xpm": "d21abaf7cdc14a25de29a3b03d276fda10c48ba74db76437a46cfd04802682ee",
+    "proj/img/alphabet_backup/3.xpm": "2fb179a15a748554b9110b0067d64c65b14c7bf0768fcba9a4d6e34a9a285a89",
+    "proj/img/alphabet_backup/4.xpm": "92a5a9d9388ede191e5446258c683cbb732f168d76ecae0642de8d4e77eb1819",
+    "proj/img/alphabet_backup/5.xpm": "24a5fab9d1814f7faf1998ff6b684bf2e9e68b74f09f1c9731314c41198728ef",
+    "proj/img/alphabet_backup/6.xpm": "65d1b5fa747107ab7698480bf4191b327a62da404200b9dfa40acac1737b4b46",
+    "proj/img/alphabet_backup/7.xpm": "aae83edf14cd43c2fe4e796515a1776f89c001835411808795e3036c43fe385b",
+    "proj/img/alphabet_backup/8.xpm": "958d4f1df996d0f5c7d72673f19feb4926e99ed4a77895424df3bc6b71d015d3",
+    "proj/img/alphabet_backup/9.xpm": "ae835f73a2dd15f3ee9d7b848518d331ce5c1f7e02b82500e9d3c67658f5dc38",
+    "proj/img/alphabet_backup/B.xpm": "cf5ab62b799da8e7d6f875fe506ad3d30c58b8326a8e17c41da572ea73c9848b",
+    "proj/img/alphabet_backup/C.xpm": "2ef1d5df6f29480e78fe2402cc2d41e78a91924dfbdbf79e119dc331aef93c4c",
+    "proj/img/alphabet_backup/colon.xpm": "37f6df4758c1b0b8cd28e54d00df09945d2545943b33a0d51c53a117946609b5",
+    "proj/img/alphabet_backup/d.xpm": "141f5bb2931a3c7247b44a891204e5596109a3191a439d5230af64205dd00d06",
+    "proj/img/alphabet_backup/dash.xpm": "7450b3b75784ecca20079470cf16ce873d824e3d64884b6a04f25e70cbc42a6e",
+    "proj/img/alphabet_backup/e.xpm": "2dad0b198fa3474ce0998c7e4ebae4825a1168b80f69f14d0e2725e4455e9c75",
+    "proj/img/alphabet_backup/f.xpm": "ca0b81fcc8b9a583ced75f302609a3471a81528ce2526d44d9df49ed6844b9b3",
+    "proj/img/alphabet_backup/g.xpm": "f0cd5ec0a3d729dad7017f9e297befa1f5c8412f0ce8540d79adab06f99da4f3",
+    "proj/img/alphabet_backup/h.xpm": "a0625eb6c7af5bfb9e76677ef842bf5ff054cb2b87d72da344d7b57a7f518655",
+    "proj/img/alphabet_backup/i.xpm": "b869cf3358a42080e7c2022e7f2acdc42abdfba0ac22b7921671865abaf8a7ab",
+    "proj/img/alphabet_backup/j.xpm": "68777f98e88c9cc4cf157828b5454c6c001712dc8de26d2971d9434ccc26d94a",
+    "proj/img/alphabet_backup/k.xpm": "c1ea5a0d16bf0da3bc859efbc2423750b7b04f8edbf8d0ac0893b2f55baced00",
+    "proj/img/alphabet_backup/l.xpm": "95de46e9572901d5db269c1d341d5561228842efdd77f37530efff2a24710576",
+    "proj/img/alphabet_backup/m.xpm": "96a5025b03409e70c28e5f5e8b1ee4d587ec5cfd8c30d591946966aabf024caa",
+    "proj/img/alphabet_backup/n.xpm": "ff857c722c491281d4050e30ff2611d81300e06418193ddc75f9f267106d52d9",
+    "proj/img/alphabet_backup/o.xpm": "059f94619149aa04e57fe298ea1105228ccfa49f2fa3cdaf6c26ed5a917d10d9",
+    "proj/img/alphabet_backup/p.xpm": "f8e1d2d68a15b26e9be109f91ae5fc2eab227a124574dd96136b4f5506dd4a06",
+    "proj/img/alphabet_backup/q.xpm": "086d29a2ce33a4a2602e81d05b37472fe0243ea362dc5e4e5e398d9c16944f3e",
+    "proj/img/alphabet_backup/r.xpm": "86a822179181b99657b65418343b4cbe87b3c0aea94a3ff7834bbb102d8f60e1",
+    "proj/img/alphabet_backup/s.xpm": "3106ee07d882abac664361c905073aa6443120d48b81cae32cda3ce070496067",
+    "proj/img/alphabet_backup/slash.xpm": "d235bcf9ee785baba435ba1612491b086ecb8956ed918790eeac7aeeb30dd970",
+    "proj/img/alphabet_backup/t.xpm": "e5d43661b5e866ccc31e2fdec5f5d29114fcfd79eeb445a4ea1168f748b9fb5f",
+    "proj/img/alphabet_backup/u.xpm": "fb08f1e9984889565efced7b1656b1b56b2aced04b65d07e461d8a05b06543fc",
+    "proj/img/alphabet_backup/v.xpm": "6bb7114b467fa44e399e8f551627c7ee04a5b59ea0c3dd121146a35865f1c97a",
+    "proj/img/alphabet_backup/w.xpm": "ddd51f3380c44450a59f6bc0fa9810287e070a900bb821d904655c25d90460b2",
+    "proj/img/alphabet_backup/x.xpm": "08b113543384e43e3ed07e529a8baa52e0f7e9e962a6b4e4f8da764f86b63efd",
+    "proj/img/alphabet_backup/y.xpm": "5ea66f468b348777fdafbf423d2673eaa500cea650adeaa37845702001861803",
+    "proj/img/alphabet_backup/z.xpm": "cfb652a7702d7a9e4ce4c66c9f549d29611fa9b6ad80f26843a74405f8dc5e87",
+    "proj/img/boost.xpm": "cff11eb7b2578e4c05e0b4316b66babc9c61d8d84d24b285b35bb3d5a0270e0a",
+    "proj/img/buttons/1024x768.xpm": "1e4a051cf74470386788ec3198ba4706946d788a886b716e3f97699a3571ff77",
+    "proj/img/buttons/1280x1024.xpm": "9fe6502458f3648244609e90a2ae14e00e15eb117b70105bcc1f85e4c5bc3173",
+    "proj/img/buttons/320x200.xpm": "9049fa19e300195f6afb1e22ce083c41563660c5debdb01d247be989f7e303dc",
+    "proj/img/buttons/640x480.xpm": "865cf0cf55e5632e6b6bb4cc75e90a7bd88d45fdb410f714571124badab9288a",
+    "proj/img/buttons/800x600.xpm": "3f26a0252265ddaf2a1944b2ad70b0b449aa568ea4d1df9e45645a20736f7261",
+    "proj/img/buttons/back.xpm": "6c2cbae1a4dfef5e156d0cdc3492bb9d9be8df826ba5dd58724a8e15748f1e67",
+    "proj/img/buttons/hisco.xpm": "a928555add406ba5ed70bc812ca8fbbbfc831eb94b954c7a3fa5f8ce5499a9dd",
+    "proj/img/buttons/options.xpm": "7ad3df90478f269badb6510aa8d1c9e3834944d2fc2f45eb24423340e45b5b2a",
+    "proj/img/buttons/quit.xpm": "ff8d176e7cc6217ec746fc88aa310f1c50cebd4a7cc886dbd97961fd3183ae8c",
+    "proj/img/buttons/start.xpm": "73951e92d0eec8371cb61584485c607b3e0ee291745e487a2bfdae349de1452c",
+    "proj/img/dot.xpm": "6cc59c5cfbd26500386532ac0bbcb89a8343d92f939520291048a8054fc07217",
+    "proj/img/floor.bmp": "b37f020406cba4fb8b99b214c6706c1fc5d42a16ad8bebb0dc18d058f46194ad",
+    "proj/img/floor.xpm": "928579f2729c29453734b888c58b13175ca07d4b9fc6d15c330670fade2c6f3b",
+    "proj/img/mouse.xpm": "044d3ddebaf9404498260c27de370079815f04fccac07612157dd319c460f507",
+    "proj/img/souto.bmp": "ed17edb0c2a5ca1ee74b1f89d09b0d49e3ad7f673d714d792cd40f4a4269e7f8",
+    "proj/img/souto.xpm": "280d0b242b79fd5f527617cdd0e4828d51b9e836a447df7564f1d537772710d3",
+    "proj/img/zombie.bmp": "0b6ae94bf267f0b90e73511a0fecabdcab999cb00367bf0f227bd8db9ac78fcb",
+    "proj/img/zombie.xpm": "f55e464ff17b85e54f06c475c6d5a260b2ce3b01e14385d80a08b80ac43b9ec0",
+    "proj/kbd.c": "b70410a2d509f3c538c11a7f534e0aa91455b0f5986fdeacf97849fecfd4bc4e",
+    "proj/kbd.h": "9b0c7c0f55f0352b7a72aef2cb3e47b08004f564dfef1fdeda086227eda6276e",
+    "proj/mouse.c": "55da1256e7030c9b140a70630e73c50e9591eb1476c9234f12efebc2fe2847e3",
+    "proj/mouse.h": "ce7371b0037cac51a08670387d15690ec0873f94f42adc4c6d91495dc77b3ff1",
+    "proj/output.txt": "a915690385d8161c8925403e810f52dc69f4063a9649b5600632dce695e1c2c7",
+    "proj/proj.c": "ce8a16d04e279914993153e2171f7c3ad1cbd66506d5c05caaa38d9cdde69fc8",
+    "proj/ps2.c": "0f1769d33f3c683d4ab5ac1be6ab23f56a34f06e4b08dc42d2b76d9e94529f0b",
+    "proj/ps2.h": "e98e993d242457c07134bd6bdf67ce5f7f91bcd6357694aa9d30a37cb31f5ed6",
+    "proj/rtc.c": "148c08216a3db0b11ae7341c2c52d5c42300e14b8cf8c0ab47f348d2377ba077",
+    "proj/rtc.h": "798bf47de90e6c11da15f496e3c9bf9025865827e153692ad261bf16e2120aaf",
+    "proj/souto.bmp": "ed17edb0c2a5ca1ee74b1f89d09b0d49e3ad7f673d714d792cd40f4a4269e7f8",
+    "proj/timer.c": "964b1b62d2ba51c62fa946b9136c67157f7bfbcf426c1cd56695fa2132685382",
+    "proj/trace.txt": "1a4da0ca7bde9b5b6c554800c956ec633a55e31e33801d37adc14db8fd275e4e",
+    "proj/vga.h": "2c53d1fe6280cf39465b3479fe70d6480c6ceeb847ec3f68be3f0349ac917a14",
+    "proj/video_gr.c": "a1d65fdaa8c8a32c6e8c5ab92a071c8aefb85e9ed4e872a7e04c951958502f4b",
+    "proj/zombie.bmp": "0b6ae94bf267f0b90e73511a0fecabdcab999cb00367bf0f227bd8db9ac78fcb"
+  },
+  "sourceChanges": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "The original postgame Enter path copies3name letters plusNUL and formats19date characters plusNUL into char[3] and char[19], respectively. Actual owning hscore fields and verbatim Enter submission branch reproduce name overflow94, then date overflow95. Reserve4and20bytes so each terminating byte stays in its own field and preserves active state.",
+      "files": [
+        {
+          "path": "proj/game.h",
+          "originalSha256": "8685517d9959a1c47e17ce10fb97aa7e18f732e8e5199e910381e135834e962a",
+          "patchedSha256": "c3044480a005de2bbce9030e965cf6dd6fd86a4723283250db942a6a3d6b425d"
+        }
+      ]
+    }
+  ],
+  "sourcePreservation": "90 original source/header/art and authored asset hashes retained. Two field capacity corrections in one original header are separately reversible. Original code, art, gameplay and unfinished high-score behavior otherwise preserved.",
+  "omissions": "VCS/OS metadata, unused source labs, generated documentation and build outputs omitted. Authored build asset paths retain their selected original files.",
+  "licenseStatus": "No license file found in selected tree.",
+  "verification": {
+    "browser": {
+      "status": "passed",
+      "demonstrated": [
+        "Ordinary relative touch movement and Fire/Select start the original game.",
+        "WASD touch movement changes the arena position.",
+        "Holding Fire at original chasing enemies reaches visible score6; normal death enters the original name form.",
+        "Touch arrow quickkeys change AAA toBBA; holding Enter displays the original timestamp.",
+        "Esc returns to the menu; observed original crosshair plus ordinary relative movement reaches Start; replay resets score0 and movement resumes.",
+        "Portrait mobile controls inspected."
+      ],
+      "limits": "Original high-score listing/storage remains marked TODO upstream. This import does not implement that missing feature. Submission displays the original date while Enter is held. Relative cursor only; no direct calibration claimed."
+    },
+    "fortifiedNdkObjectCompile": {
+      "status": "passed",
+      "units": 8
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/pullball-souto-reviewed-native/results.json",
+      "apkSha256": "3785d7b2a101a4d9b872661028e928e70f0015f072c9800407875ec5bf877982",
+      "demonstrated": "ROOT viewed normal aiming/fire earning score6, natural death, AAA\u2192BBA through authored arrow controls, original date while holding Enter, menu/retry to score0, plus a separate same-APK rapid Start/D movement showing the original camera-following floor shift, with Home cleanup.",
+      "limitations": [
+        "Original high-score table/storage remains an unfinished TODO and is not claimed. Representative survival/aiming, postgame form, movement and retry verified; no full survival or physical-device performance claim."
+      ]
+    }
+  },
+  "controlsRationale": "WASD controls original movement. Relative touch aims the original white crosshair; Fire/Select is left mouse. Arrow quickkeys edit the three-letter postgame name; Enter displays its date; Escape returns to menu. Mouse handler consumes complete packets with unit deltas, but this profile remains relative and does not assert direct bounds calibration.",
+  "derivedAssets": [
+    {
+      "path": "proj/icon.png",
+      "sha256": "87809b962d6f42fafc481fe29a3545a56a318f9e88b30485b2f30ba3eb56ea14",
+      "kind": "Original souto.bmp transcoded/fitted to launcher background"
+    }
+  ]
+}

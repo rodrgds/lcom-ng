@@ -1,0 +1,71 @@
+--- a/proj/src/MouseClass.c
++++ b/proj/src/MouseClass.c
+@@ -29,7 +29,7 @@
+ 	unsigned long i;
+ 
+ 	MouseClass* Mouse;
+-	Mouse = (MouseClass*) malloc(sizeof(MouseClass));
++	Mouse = (MouseClass*) calloc(1, sizeof(MouseClass));
+ 
+ 	for(i = 0; i < 3; i++)
+ 		Mouse->keys[i] = false;
+@@ -59,6 +59,10 @@
+ bool MouseHandleInt(MouseClass* Mouse)
+ {
+ 	if(MouseReadPacket(Mouse) != true)
++		return false;
++
++	/* Only a complete new packet may expose movement and button state. */
++	if(Mouse->count != 0)
+ 		return false;
+ 
+ 	if(Mouse->count == 0)
+--- a/proj/src/MenuClass.c
++++ b/proj/src/MenuClass.c
+@@ -53,6 +53,7 @@
+ 	Menu->size = 0;
+ 	Menu->entries = 0;
+ 	MenuAdjust(Menu);
++	return true;
+ }
+ void MenuShutdown(MenuClass* Menu)
+ {
+--- a/proj/src/RTCClass.c
++++ b/proj/src/RTCClass.c
+@@ -336,19 +336,18 @@
+ 	unsigned long config;
+ 	RTCReadReg(RTC_REG_C, &config);
+ 
+-	rtc_int interrupt;
+-	if(config & RTC_C_AF)
++	rtc_int interrupt = rtc_none;
++	if((config & RTC_C_AF) && (RTC->config[1] & RTC_B_AIE))
+ 		interrupt = rtc_alarm;
+ 
+-	else if(config & RTC_C_PF)
++	else if((config & RTC_C_PF) && (RTC->config[1] & RTC_B_PIE))
+ 		interrupt = rtc_periodic;
+ 
+-	else if(config & RTC_C_UF)
++	else if((config & RTC_C_UF) && (RTC->config[1] & RTC_B_UIE))
+ 	{
+ 		interrupt = rtc_update_ended;
+ 
+-		// Clearing IRQF bit as advised in the DS12887 data-sheet
+-		RTCSetFlag(RTC, RTC_REG_C, RTC_C_IRQF, false);
++		/* The initial Register C read already acknowledged this interrupt. */
+ 	}
+ 
+ 	return interrupt;
+--- a/proj/src/RTCClass.h
++++ b/proj/src/RTCClass.h
+@@ -52,7 +52,8 @@
+ {
+ 	rtc_alarm,
+ 	rtc_periodic,
+-	rtc_update_ended
++	rtc_update_ended,
++	rtc_none = -1
+ } rtc_int;
+ 
+ RTCClass* newRTC();

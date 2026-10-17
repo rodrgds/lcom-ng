@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "name": "Fall Diet",
+  "description": "Catch healthy food and swat away the junk food.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Select / Swat",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": []
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/HighScores.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/g10/proj/src": "proj/src"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

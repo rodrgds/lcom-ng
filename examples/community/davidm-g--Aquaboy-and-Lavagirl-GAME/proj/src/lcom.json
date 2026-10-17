@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "name": "Aquaboy and Lavagirl",
+  "description": "Guide two elemental adventurers through dangerous chambers.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad",
+          "axes": "horizontal"
+        },
+        {
+          "side": "right",
+          "mode": "arrows",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Blue jump",
+          "key": "W",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Red jump",
+          "key": "UP",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        }
+      ],
+      "tapDuration": 80
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "visuals/levels",
+      "visuals/leaderboard_data.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj/src": "."
+    }
+  },
+  "archetype": "Fireboy and Watergirl",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

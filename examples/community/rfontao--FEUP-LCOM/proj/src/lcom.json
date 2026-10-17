@@ -1,0 +1,43 @@
+{
+  "name": "Auto Defense",
+  "description": "Steer the armed car, aim at attackers and protect the money stash through each round.",
+  "archetype": "Shooter",
+  "build": {
+    "arguments": [
+      "single"
+    ],
+    "assets": []
+  },
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "mouseButtons": false,
+      "pointer": "move",
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Fire / Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

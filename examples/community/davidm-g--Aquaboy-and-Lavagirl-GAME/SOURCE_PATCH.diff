@@ -1,0 +1,13 @@
+--- a/proj/src/visuals/model.c
++++ b/proj/src/visuals/model.c
+@@ -170,8 +170,8 @@
+ }
+ 
+ void updateArrayWithLevel(int level) {
+-  char filename[50];
+-  sprintf(filename, "/home/lcom/labs/proj/src/visuals/levels/level%d.txt", level);
++  char filename[64];
++  snprintf(filename, sizeof(filename), "/home/lcom/labs/proj/src/visuals/levels/level%d.txt", level);
+ 
+   FILE *file = fopen(filename, "r");
+   if (file == NULL) {

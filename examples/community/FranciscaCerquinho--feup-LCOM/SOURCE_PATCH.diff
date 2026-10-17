@@ -1,0 +1,57 @@
+--- a/src/Colision.c
++++ b/src/Colision.c
+@@ -8,4 +8,5 @@
+ 
+ 		return 1;
+ 	}
++    return 0;
+ }
+--- a/src/IRQ.c
++++ b/src/IRQ.c
+@@ -14,10 +14,7 @@
+ 
+ void Unsubscribe()
+ {
+-	IRQ *newIrq=(IRQ*)(malloc(sizeof(IRQ)));
+-	newIrq->irq_set_timer=timer_unsubscribe_int();
+-	newIrq->irq_set_kbd=keyboard_unsubscribe_int();
+-	newIrq->irq_set_mouse=mouse_unsubscribe_int();
+-
+-	return newIrq;
++    timer_unsubscribe_int();
++    keyboard_unsubscribe_int();
++    mouse_unsubscribe_int();
+ }
+--- a/src/rtc.c
++++ b/src/rtc.c
+@@ -5,10 +5,10 @@
+ 	char aux;
+ 
+ 	sys_outb(RTC_ADDR_REG, address);
+-	sys_inb(RTC_DATA_REG, &result);
++	sys_inb(RTC_DATA_REG, result);
+ 
+-	aux = (char) result;
+-	return result;
++	aux = (char) *result;
++	return aux;
+ 
+ }
+ 
+--- a/src/vbe.c
++++ b/src/vbe.c
+@@ -62,10 +62,10 @@
+ 	reg86.u.w.es=PB2BASE(aux.phys);
+ 	reg86.u.w.di=PB2OFF(aux.phys);
+ 
+-	info->VESASignature[0]="V";
+-	info->VESASignature[1]="B";
+-	info->VESASignature[2]="E";
+-	info->VESASignature[3]="2";
++	info->VESASignature[0]='V';
++	info->VESASignature[1]='B';
++	info->VESASignature[2]='E';
++	info->VESASignature[3]='2';
+ 
+ 	if(sys_int86(&reg86) != OK)
+ 	{

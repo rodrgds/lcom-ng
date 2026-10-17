@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Jetpack Joyride: LCOM Edition",
+  "description": "Fly past the original obstacles and collect coins.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "UP",
+        "DOWN",
+        "P"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Thrust",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "data"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/project": "."
+    }
+  },
+  "archetype": "Jetpack Joyride",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

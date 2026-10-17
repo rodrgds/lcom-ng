@@ -1,0 +1,11 @@
+--- a/proj/src/project/src/proj_func.c
++++ b/proj/src/project/src/proj_func.c
+@@ -230,7 +230,7 @@
+ 
+ text_timer_t* (text_timer_ctor)(const font_t *fnt){
+     if(fnt == NULL) return NULL;
+-    text_timer_t *ret = malloc(sizeof(timer_t));
++    text_timer_t *ret = malloc(sizeof(*ret));
+     if (ret == NULL) return NULL;
+     ret->time = 0;
+     ret->text = text_ctor(fnt, "000s");

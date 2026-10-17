@@ -1,0 +1,120 @@
+{
+  "repository": "https://github.com/IMS-up2021/FEUP_LCOM",
+  "revision": "5e5416571744303ad8e3b54ec29060dc02ec54b9",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "6c848ec064f516cbc04e2bcdb708d4e43eb91a8dff088d3a647fa8161bfa6ef7",
+    "proj/src/utils.h": "6229fd3812e7c720fb94424decf2df1f534a99b55a3290484c2348681c3ffa6b",
+    "proj/src/mouse.c": "0e7f162f0a82e387dece84b6450d4f2db6e0ff60681eec2ef673c359bfe50402",
+    "proj/src/timer.c": "9de7c58bf5ad375f3614ee0c645a55e5152c3bd66877156c896da9cdb91ba093",
+    "proj/src/ui.h": "75dc98eb6ac98fbbfdb2064f06133a1bdf126ccadcec8a211ff151d260f332d1",
+    "proj/src/timer_event_handler.c": "262b9425a91fb5db85090a1cfbc571eb66aa336d3856db12a19c22c39af5223c",
+    "proj/src/mouse_event_handler.c": "0d4f819af72cb0b4cab3b4a27a8fef07fd6957455cbb85780ce92df4da75862c",
+    "proj/src/entity.c": "8d51787b3c61971ab1f1aba54c671134cf0229238c113964032c0f3ce81675ee",
+    "proj/src/game_state.c": "bfd53fcdb50813cb1bce36e6bee2179d66c542198337d21e9b0a79868bc91620",
+    "proj/src/i8042_mouse.h": "814b4edd1ca973ed8a8466b9fbefbac2f3e48b239d2b3549d1338a05d69bd6e2",
+    "proj/src/Makefile": "60730604f8d73644c6b397aee881fa5f05f6f154a1412431a88daca246dfca70",
+    "proj/src/kbd.h": "6b2311185d187be12a2b4009ac1358bff5d8b5053a617221e961be07b50b6e95",
+    "proj/src/VBE.h": "6ab229e92c7d9a89e3b79489237a27d6bb3439fd64cf8e02b9dbf8936b1c5e24",
+    "proj/src/i8042_kbd.h": "19dc426d6ae548ca11a7cb2d73e1260cba344a6f1add1a3357ac31d70eaaf055",
+    "proj/src/draw.c": "ca479c290b0b3d73d715f81cf76569a313b46ef3433a2e8b7d48b8ed346e9057",
+    "proj/src/kbd_event_handler.h": "adc8d48b2d4bbe4b18356c8622da461139eefef820c3d667e2c02db23f094086",
+    "proj/src/interrupt_manager.h": "ce6137850607c720d52a84ac5a228cf5af398463411de0df9dd1649c2ed978dd",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/graphic.c": "670629d6c5e8b9c5252d17d014bf12bedf9241dc26fc0d85ff9780db9f94762d",
+    "proj/src/mouse.h": "5819f0af85438b0fcd66fffbfd029850da0260f9f8aeb1a5848bc954c3ee3fd2",
+    "proj/src/timer.h": "9a757b6699339ddc11c2cc19e72a352e3702fda633ddf4760328c812c67348aa",
+    "proj/src/utils.c": "bc99265a41c8b1e98fa6ef1db1d63d12b90e5ecdd32d05df14282ea2dc5e9d93",
+    "proj/src/main.c": "b3e88c0b820aa2a051d3fe85239ce1d1cbe52538761e1015f59fa28462e6ef20",
+    "proj/src/mouse_event_handler.h": "d092fd7e40a8fb79ddbb5f2f7522516adf5ca676165cafd0d74353955ad58570",
+    "proj/src/timer_event_handler.h": "0f788286c7f80d8b70b90ca3804cbc82d2b33b957b3d2579f09b1f4457c509a9",
+    "proj/src/game_state.h": "df875a0f2c3831bea283345aed52e2ea295750ed3b805161dbd2a4c1e0c03a34",
+    "proj/src/entity.h": "1c7d9283155b7d9c2a58889469aa3bd1c58ac7b7f80038c031f55e90fd51e396",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/ui.c": "652684808ee19e9a42c1f7367a11e03e3e279f659db95934a5923f5882c4c1d7",
+    "proj/src/kbd.c": "e11e4a63f480730361444f0b024c84f53bd1f0508e5ee2f21cd19cbfc01a270e",
+    "proj/src/i8254.h": "222a6fd256aa70e17bd8eb29ba01847b09ff4c122144052cd9a1e4e2d76bca93",
+    "proj/src/graphic.h": "2fe3e590f165ab98af53114a656480154dfc5da970c57a29857aa77119bd2a15",
+    "proj/src/interrupt_manager.c": "e9549ab4d48d9045941a6ed0200c2d4cf956588b95dbf2b98a5d32f99840a9b4",
+    "proj/src/kbd_event_handler.c": "f0efbc8749f7c69babd20ca1ab83373dfdbdb7b6167494318f842b19f22cf7d7",
+    "proj/src/draw.h": "45385148010e3383c33b04f88d139b0faa55f8affa121925fe8d5dc189604c15",
+    "proj/src/xpm/selected_play.xpm": "1967c88bd624432eee2553404984bcde67f093bfd0687f45959685845b5d6dc1",
+    "proj/src/xpm/background.h": "085bc2952ef8ab9f354a0151981a3529ee2f098e208ff40a98ffc3f2cf39f860",
+    "proj/src/xpm/5.h": "810f75241ee9f871e97d6a71f4bbf4e7362fba149b1f455b537ed2e528633978",
+    "proj/src/xpm/1.h": "a4b457c8059d3626ab6e47774f9700f20bf6e2f599b7a709a53f30e3fa55b036",
+    "proj/src/xpm/title.h": "a8486a6f25a17819411bc8f969bea4b392278ad6d8353af1fc131c721b448cfc",
+    "proj/src/xpm/ball.h": "d0a1452f990e1fe504cdf51ea5455ba8a7d319de95b79b33e186ec5f29818b1b",
+    "proj/src/xpm/6.h": "2e48a674d038370361f5cfc6a810623b0ddaf773f040dce6322e2b6ddae24ef4",
+    "proj/src/xpm/8.h": "9a2c2814b860e9a202b8454baf3dce57829d09716cf345729181ba087e69f991",
+    "proj/src/xpm/2.h": "aafa35cc216ebb0fcce0c17cddb8c7274154b8b351c55ed80adda1de471feeca",
+    "proj/src/xpm/cursor.h": "a032b0ac070909b76e58d563ffeec273bf8004fa98a5395f1db7beaff089b836",
+    "proj/src/xpm/number_player.xpm": "60c1d55e3b38358ce958ce327bacde0ddac9e50b7dfd760941d16f033b749051",
+    "proj/src/xpm/button_instructions.h": "3f4fe2fb59217658a46f3c1f9b210e672306823793e7841cb763ff6d25bf4160",
+    "proj/src/xpm/game.xpm": "ad32c8e69b757f7732c76818403150253fca42afbdb457dd478e1d35c7251a9e",
+    "proj/src/xpm/Instructions.xpm": "bd0735dce976b07010377be1bd22d0836f050e30c8b1b5c858d426b3fe607a1f",
+    "proj/src/xpm/instructions.h": "0103af8be01686a399e42dbd8bf826e59aa9e7d7c2ded1f9e125d731bec590fe",
+    "proj/src/xpm/7.h": "83dfd48179a40c41bf4a8eaa7421a7b546fb6132a1e37a9abc9df4c90388c142",
+    "proj/src/xpm/button_quit.h": "ba2554bedcd73351ad9d5ab6dff040971169b31f0ec3aa72d8da3a75cbdb3d6a",
+    "proj/src/xpm/raquete.xpm": "49ab14f5b421973ed4e844e8b1fe08e15230bef8d890d99994be7e4c8eb6dbb0",
+    "proj/src/xpm/3.h": "d0fcaaedf6228879fbfba9872a37ba558eebdfeef28e4896f6ffa1db664759bf",
+    "proj/src/xpm/9.h": "71afddd6532883fe032c94d7eae414ba7ec391f82f200b8642bc19945a321f78",
+    "proj/src/xpm/button_play.h": "7aa5f856d605e5bcda4af07e47bbc6ca4ccd510fc8aa7e08bff336c952a53113",
+    "proj/src/xpm/selected_quit.xpm": "d75b29cc426fa159625d1dd94bd92c8f193d7235631e257bcc2f0146a847fe94",
+    "proj/src/xpm/4.h": "35fd9d4fc0d556205a79dc8ed0c73c88d699880fa0a6810edea1fbf5614f878e",
+    "proj/src/xpm/0.h": "e3a4d9eef18e43f9482d1643fb39b5b2b82a6206bf4cb2a2b2014722d1de1b9b"
+  },
+  "selection": "Original game source and required original compiled XPM artwork. Invalid C value qualifiers repaired separately.",
+  "omissions": [
+    ".git/**",
+    "**/.gitignore",
+    ".minix-src/**",
+    "unrelated labs",
+    "generated documentation",
+    "compiled binaries",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/.DS_Store"
+  ],
+  "sourcePatches": [
+    {
+      "file": "proj/src/ui.h",
+      "originalSha256": "75dc98eb6ac98fbbfdb2064f06133a1bdf126ccadcec8a211ff151d260f332d1",
+      "patchedSha256": "f1c4739707836116de32b67e93b291b72971a5c2cbf3ea90730d594c76ad5387",
+      "reason": "Struct value fields were declared const but assigned after allocation/global declaration in original constructors. Remove value-field const qualifiers, retaining original readonly sprite pointer types, layout, values and gameplay. Actual constructor/digit initialization compile regression original rejected assignment, fixed all objects initialized."
+    },
+    {
+      "file": "proj/src/entity.h",
+      "originalSha256": "1c7d9283155b7d9c2a58889469aa3bd1c58ac7b7f80038c031f55e90fd51e396",
+      "patchedSha256": "6f2974a78dd6bf4174763212a363ee6354d62d0a81d48e22c3ee07b7b6f544b5",
+      "reason": "Struct value fields were declared const but assigned after allocation/global declaration in original constructors. Remove value-field const qualifiers, retaining original readonly sprite pointer types, layout, values and gameplay. Actual constructor/digit initialization compile regression original rejected assignment, fixed all objects initialized."
+    }
+  ],
+  "controlsRationale": "Arrow make events move left paddle50pixels, so vertical arrow dpad repeats makes during touch holds. Relative screen drag moves right paddle via original delta_y. Menu Select and Esc outside playfield. Original indexed artwork unchanged.",
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence14/IMS-up2021--FEUP_LCOM-04-score-canvas.png",
+    "captureSha256": "a27125ccd4d60846a2c1292dc2f59c833b193891e055b9a0a482699d656405fc",
+    "observed": "Both paddles moved by ordinary touch. Original left score0→3 with moving ball.",
+    "originalSourceArt": true
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "8994db07b018e156b359626ee17cab65ce2ae3e6437b1c700473b56300b3224e",
+      "kind": "Flat source-informed white Pong paddle/ball geometry"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "59bfd9063c6831c45e8f5f89b92025312dd9890aa6d87e3269b44a50f9f9b754",
+      "kind": "Actual ordinary-touch browser gameplay"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/a72-reviewed-native/results.json",
+      "apkSha256": "2a5654617c42becc24abcbc31a646b2b0cd197d9b6e2c1c2b5cb6c0a21ca925c",
+      "demonstrated": "Root inspected native2paddles: correctedobservedDown target movesleftpaddle341pixels, independentrelative dragmovesrightpaddle171pixels, laterpositive score/liveball andHomeclean."
+    }
+  }
+}

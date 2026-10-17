@@ -1,0 +1,649 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="_graphic_card_8c" kind="file" language="C++">
+    <compoundname>GraphicCard.c</compoundname>
+    <includes local="no">lcom/lcf.h</includes>
+    <includes refid="_graphic_card_8h" local="yes">GraphicCard.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c</label>
+        <link refid="_graphic_card_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>GraphicCard.h</label>
+        <link refid="_graphic_card_8h"/>
+      </node>
+      <node id="2">
+        <label>lcom/lcf.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_graphic_card_8c_1a9146a378889939e2387d772f24cb049f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() change_graphics_mode</definition>
+        <argsstring>(uint16_t mode)</argsstring>
+        <name>change_graphics_mode</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+<para>Function that changes the graphics mode to the specified mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The graphics mode to change to. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" line="6" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" bodystart="6" bodyend="18"/>
+      </memberdef>
+      <memberdef kind="function" id="_graphic_card_8c_1a78d147fc7fb3c4f1a4b9dcf8c585b032" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() map_vram</definition>
+        <argsstring>(uint16_t mode)</argsstring>
+        <name>map_vram</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>mode</declname>
+        </param>
+        <briefdescription>
+<para>Function that maps the video RAM to the process&apos; virtual address space. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The graphics mode being used. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" line="20" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" bodystart="20" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="_graphic_card_8c_1abafd756901056383b98cd97d70049e42" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() get_color</definition>
+        <argsstring>(uint32_t color1, uint32_t *color2)</argsstring>
+        <name>get_color</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>color1</declname>
+        </param>
+        <param>
+          <type>uint32_t *</type>
+          <declname>color2</declname>
+        </param>
+        <briefdescription>
+<para>Function that gets the 24-bit color from 32 bits. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>color1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>32-bit color. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>color2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Returns the 24-bit color. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" line="55" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" bodystart="55" bodyend="66"/>
+      </memberdef>
+      <memberdef kind="function" id="_graphic_card_8c_1a5e5b25bd525250f61f40b9e9f212d5e6" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() vg_draw_hline</definition>
+        <argsstring>(uint16_t x, uint16_t y, uint16_t len, uint32_t color)</argsstring>
+        <name>vg_draw_hline</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>len</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Function that draws a horizontal line on the screen. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The x coordinate of the start of the line. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The y coordinate of the start of the line. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>len</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The length of the line. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>color</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The color with which to draw the line. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" line="68" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" bodystart="68" bodyend="78"/>
+      </memberdef>
+      <memberdef kind="function" id="_graphic_card_8c_1a99d2da2559e11200c6b40c469e9977ec" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() vg_draw_rectangle</definition>
+        <argsstring>(uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint32_t color)</argsstring>
+        <name>vg_draw_rectangle</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>width</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>height</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Function that draws a rectangle on the screen. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The x coordinate of the upper-left corner of the rectangle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The y coordinate of the upper-left corner of the rectangle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>width</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The width of the rectangle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>height</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The height of the rectangle. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>color</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The color with which to draw the rectangle. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" line="80" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" bodystart="80" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="_graphic_card_8c_1a08c498ffeb0a3962e3b7711b57397741" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() vg_draw_pixel</definition>
+        <argsstring>(uint16_t x, uint16_t y, uint32_t color)</argsstring>
+        <name>vg_draw_pixel</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>uint32_t</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Function that draws a pixel on the screen. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The x coordinate of the pixel. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The y coordinate of the pixel. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>color</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The color of the pixel. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" line="92" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" bodystart="92" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="_graphic_card_8c_1a92c6ba19c071fafb9e5af9c546d16e4a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t()</type>
+        <definition>uint32_t() get_rgb</definition>
+        <argsstring>(uint32_t first, int i, int j, uint8_t step)</argsstring>
+        <name>get_rgb</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>first</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>step</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" line="109" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" bodystart="109" bodyend="118"/>
+      </memberdef>
+      <memberdef kind="function" id="_graphic_card_8c_1acd945c23aff19b3b2e7752d00c51def7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint32_t()</type>
+        <definition>uint32_t() normalize_color</definition>
+        <argsstring>(uint32_t color)</argsstring>
+        <name>normalize_color</name>
+        <param>
+          <type>uint32_t</type>
+          <declname>color</declname>
+        </param>
+        <briefdescription>
+<para>Function that normalizes a color. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>color</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The color to normalize. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The normalized color. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" line="120" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" bodystart="120" bodyend="126"/>
+      </memberdef>
+      <memberdef kind="function" id="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() draw_xpm</definition>
+        <argsstring>(uint16_t *sprite, xpm_image_t img, uint16_t x, uint16_t y)</argsstring>
+        <name>draw_xpm</name>
+        <param>
+          <type>uint16_t *</type>
+          <declname>sprite</declname>
+        </param>
+        <param>
+          <type>xpm_image_t</type>
+          <declname>img</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Function that draws an XPM image on the screen. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sprite</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to XPM image. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>img</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The image data. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The x coordinate of the upper-left corner of the image. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The y coordinate of the upper-left corner of the image. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" line="128" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" bodystart="128" bodyend="140"/>
+      </memberdef>
+      <memberdef kind="function" id="_graphic_card_8c_1ac138abcd7620b5021137c53bb0f3e6a7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() video_switch</definition>
+        <argsstring>()</argsstring>
+        <name>video_switch</name>
+        <briefdescription>
+<para>Function that switches the front and back buffer, displaying the new frame on the screen. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" line="142" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" bodystart="142" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="_graphic_card_8c_1af7831592ef04114ca9b46e672c0e646b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void()</type>
+        <definition>void() clear_buffer</definition>
+        <argsstring>()</argsstring>
+        <name>clear_buffer</name>
+        <briefdescription>
+<para>Function that clears the back buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="note"><para>This function does not clear the front buffer. </para>
+</simplesect>
+<simplesect kind="return"><para>void </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" line="151" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c" bodystart="151" bodyend="154"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;lcom/lcf.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_graphic_card_8h" kindref="compound">GraphicCard.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="_graphic_card_8c_1a9146a378889939e2387d772f24cb049f" refkind="member"><highlight class="normal">int<sp/>(<ref refid="_graphic_card_8c_1a9146a378889939e2387d772f24cb049f" kindref="member">change_graphics_mode</ref>)(uint16_t<sp/>mode)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>reg86_t<sp/>r86;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(&amp;r86,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(r86));</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>r86.intno<sp/>=<sp/>0x10;<sp/></highlight><highlight class="comment">/*<sp/>BIOS<sp/>video<sp/>services<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>r86.ah<sp/>=<sp/>0x4F;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Set<sp/>Video<sp/>Mode<sp/>function<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>r86.al<sp/>=<sp/>0x02;<sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>80x25<sp/>text<sp/>mode<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>r86.bx<sp/>=<sp/>BIT(14)<sp/>|<sp/>mode;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">(sys_int86(&amp;r86)<sp/>!=<sp/>OK);</highlight></codeline>
+<codeline lineno="18"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="_graphic_card_8c_1a78d147fc7fb3c4f1a4b9dcf8c585b032" refkind="member"><highlight class="normal">int<sp/>(<ref refid="_graphic_card_8c_1a78d147fc7fb3c4f1a4b9dcf8c585b032" kindref="member">map_vram</ref>)(uint16_t<sp/>mode)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(&amp;<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>,<sp/>0,<sp/></highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>));</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(vbe_get_mode_info(mode,<sp/>&amp;<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>))</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;map_memory<sp/>vbe_get_mode_info<sp/>error&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">minix_mem_range<sp/>phys_addr;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>phys_addr.mr_base<sp/>=<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.PhysBasePtr;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>phys_addr.mr_limit<sp/>=<sp/>phys_addr.mr_base<sp/>+<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>*<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.YResolution<sp/>*<sp/>((<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.BitsPerPixel<sp/>+<sp/>7)<sp/>/<sp/>8);</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(sys_privctl(SELF,<sp/>SYS_PRIV_ADD_MEM,<sp/>&amp;phys_addr))</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;map_memory<sp/>sys_privctl<sp/>error&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8h_1aae4af7dd232a354c0fca7b15349f11ba" kindref="member">front_buffer</ref><sp/>=<sp/>vm_map_phys(SELF,<sp/>(</highlight><highlight class="keywordtype">void</highlight><highlight class="normal">*)<sp/>phys_addr.mr_base,<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>*<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.YResolution<sp/>*<sp/>((<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.BitsPerPixel<sp/>+<sp/>7)<sp/>/<sp/>8));</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8h_1ade66029b03e5902ccf0e2133ea1e002e" kindref="member">back_buffer</ref><sp/>=<sp/>(uint8_t<sp/>*)malloc(<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>*<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.YResolution<sp/>*<sp/>((<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.BitsPerPixel<sp/>+<sp/>7)<sp/>/<sp/>8));</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8h_1aae4af7dd232a354c0fca7b15349f11ba" kindref="member">front_buffer</ref><sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8h_1ade66029b03e5902ccf0e2133ea1e002e" kindref="member">back_buffer</ref><sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55" refid="_graphic_card_8c_1abafd756901056383b98cd97d70049e42" refkind="member"><highlight class="normal">int<sp/>(<ref refid="_graphic_card_8c_1abafd756901056383b98cd97d70049e42" kindref="member">get_color</ref>)(uint32_t<sp/>color1,<sp/>uint32_t*<sp/>color2)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.BitsPerPixel<sp/>==<sp/>32)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*color2<sp/>=<sp/>color1;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*color2<sp/>=<sp/>color1<sp/>&amp;<sp/>(BIT(<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.BitsPerPixel)<sp/>-<sp/>1);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68" refid="_graphic_card_8c_1a5e5b25bd525250f61f40b9e9f212d5e6" refkind="member"><highlight class="normal">int<sp/>(<ref refid="_graphic_card_8c_1a5e5b25bd525250f61f40b9e9f212d5e6" kindref="member">vg_draw_hline</ref>)(uint16_t<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>uint16_t<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>,<sp/>uint16_t<sp/>len,<sp/>uint32_t<sp/>color)</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>len;<sp/>i++)</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a08c498ffeb0a3962e3b7711b57397741" kindref="member">vg_draw_pixel</ref>(<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref><sp/>+<sp/>i,<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>,<sp/>color)<sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80" refid="_graphic_card_8c_1a99d2da2559e11200c6b40c469e9977ec" refkind="member"><highlight class="normal">int<sp/>(<ref refid="_graphic_card_8c_1a99d2da2559e11200c6b40c469e9977ec" kindref="member">vg_draw_rectangle</ref>)(uint16_t<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>uint16_t<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>,<sp/>uint16_t<sp/>width,<sp/>uint16_t<sp/>height,<sp/>uint32_t<sp/>color)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>height;<sp/>i++)</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a5e5b25bd525250f61f40b9e9f212d5e6" kindref="member">vg_draw_hline</ref>(<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>+i,<sp/>width,<sp/>color)<sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="_graphic_card_8c_1a08c498ffeb0a3962e3b7711b57397741" refkind="member"><highlight class="normal">int<sp/>(<ref refid="_graphic_card_8c_1a08c498ffeb0a3962e3b7711b57397741" kindref="member">vg_draw_pixel</ref>)(uint16_t<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>uint16_t<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>,<sp/>uint32_t<sp/>color)</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref><sp/>&gt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>||<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref><sp/>&gt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.YResolution)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\nout<sp/>of<sp/>bounds<sp/>pixel&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">unsigned</highlight><highlight class="normal"><sp/>bytes_per_pixel<sp/>=<sp/>(<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.BitsPerPixel<sp/>+<sp/>7)<sp/>/<sp/>8;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(memcpy(&amp;<ref refid="_graphic_card_8h_1ade66029b03e5902ccf0e2133ea1e002e" kindref="member">back_buffer</ref>[(<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>*<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref><sp/>+<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>)<sp/>*<sp/>bytes_per_pixel],<sp/>&amp;color,<sp/>bytes_per_pixel)<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="_graphic_card_8c_1a92c6ba19c071fafb9e5af9c546d16e4a" refkind="member"><highlight class="normal">uint32_t<sp/>(<ref refid="_graphic_card_8c_1a92c6ba19c071fafb9e5af9c546d16e4a" kindref="member">get_rgb</ref>)(uint32_t<sp/>first,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>j,<sp/>uint8_t<sp/>step)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>r<sp/>=<sp/>((1<sp/>&lt;&lt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.RedMaskSize)<sp/>-<sp/>1)<sp/>&amp;<sp/>(first<sp/>&gt;&gt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.RedFieldPosition);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>r<sp/>=<sp/>(r<sp/>+<sp/>i<sp/>*<sp/>step)<sp/>%<sp/>(1<sp/>&lt;&lt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.RedMaskSize);</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>g<sp/>=<sp/>((1<sp/>&lt;&lt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.GreenMaskSize)<sp/>-<sp/>1)<sp/>&amp;<sp/>(first<sp/>&gt;&gt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.GreenFieldPosition);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>g<sp/>=<sp/>(g<sp/>+<sp/>j<sp/>*<sp/>step)<sp/>%<sp/>(1<sp/>&lt;&lt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.GreenMaskSize);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>b<sp/>=<sp/>((1<sp/>&lt;&lt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.BlueMaskSize)<sp/>-<sp/>1)<sp/>&amp;<sp/>(first<sp/>&gt;&gt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.BlueFieldPosition);</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>b<sp/>=<sp/>(b<sp/>+<sp/>(i<sp/>+<sp/>j)<sp/>*<sp/>step)<sp/>%<sp/>(1<sp/>&lt;&lt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.BlueMaskSize);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(r<sp/>&lt;&lt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.RedFieldPosition)<sp/>|<sp/>(g<sp/>&lt;&lt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.GreenFieldPosition)<sp/>|<sp/>(b<sp/>&lt;&lt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.BlueFieldPosition);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120" refid="_graphic_card_8c_1acd945c23aff19b3b2e7752d00c51def7" refkind="member"><highlight class="normal">uint32_t<sp/>(<ref refid="_graphic_card_8c_1acd945c23aff19b3b2e7752d00c51def7" kindref="member">normalize_color</ref>)(uint32_t<sp/>color)</highlight></codeline>
+<codeline lineno="121"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>r<sp/>=<sp/>(color<sp/>&amp;<sp/>0xff0000)<sp/>&gt;&gt;<sp/>16;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>g<sp/>=<sp/>(color<sp/>&amp;<sp/>0x00ff00)<sp/>&gt;&gt;<sp/>8;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>b<sp/>=<sp/>(color<sp/>&amp;<sp/>0x0000ff);</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>((r<sp/>&amp;<sp/>0xf8)<sp/>&lt;&lt;<sp/>8)<sp/>|<sp/>((g<sp/>&amp;<sp/>0xfc)<sp/>&lt;&lt;<sp/>3)<sp/>|<sp/>((b<sp/>&amp;<sp/>0xf8)<sp/>&gt;&gt;<sp/>3);</highlight></codeline>
+<codeline lineno="126"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128" refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" refkind="member"><highlight class="normal">int<sp/>(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>)(uint16_t<sp/>*sprite,<sp/>xpm_image_t<sp/>img,<sp/>uint16_t<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>uint16_t<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>)<sp/></highlight></codeline>
+<codeline lineno="129"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>h<sp/>=<sp/>0<sp/>;<sp/>h<sp/>&lt;<sp/>img.height<sp/>;<sp/>h++)<sp/>{</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>w<sp/>=<sp/>0<sp/>;<sp/>w<sp/>&lt;<sp/>img.width<sp/>;<sp/>w++)<sp/>{</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(*sprite<sp/>!=<sp/>0x000000)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_graphic_card_8c_1a08c498ffeb0a3962e3b7711b57397741" kindref="member">vg_draw_pixel</ref>(<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref><sp/>+<sp/>w,<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref><sp/>+<sp/>h,<sp/>*sprite))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sprite++;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142" refid="_graphic_card_8c_1ac138abcd7620b5021137c53bb0f3e6a7" refkind="member"><highlight class="normal">int<sp/>(<ref refid="_graphic_card_8c_1ac138abcd7620b5021137c53bb0f3e6a7" kindref="member">video_switch</ref>)()</highlight></codeline>
+<codeline lineno="143"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(memcpy(<ref refid="_graphic_card_8h_1aae4af7dd232a354c0fca7b15349f11ba" kindref="member">front_buffer</ref>,<sp/><ref refid="_graphic_card_8h_1ade66029b03e5902ccf0e2133ea1e002e" kindref="member">back_buffer</ref>,<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>*<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.YResolution<sp/>*<sp/>((<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.BitsPerPixel<sp/>+<sp/>7)<sp/>/<sp/>8))<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="149"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"></highlight></codeline>
+<codeline lineno="151" refid="_graphic_card_8c_1af7831592ef04114ca9b46e672c0e646b" refkind="member"><highlight class="normal">void<sp/>(<ref refid="_graphic_card_8c_1af7831592ef04114ca9b46e672c0e646b" kindref="member">clear_buffer</ref>)()</highlight></codeline>
+<codeline lineno="152"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>memset(<ref refid="_graphic_card_8h_1ade66029b03e5902ccf0e2133ea1e002e" kindref="member">back_buffer</ref>,<sp/>0,<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>*<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.YResolution<sp/>*<sp/>((<ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.BitsPerPixel<sp/>+<sp/>7)<sp/>/<sp/>8));</highlight></codeline>
+<codeline lineno="154"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.c"/>
+  </compounddef>
+</doxygen>

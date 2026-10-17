@@ -1,0 +1,42 @@
+--- a/proj/src/Player.c
++++ b/proj/src/Player.c
+@@ -152,7 +152,7 @@
+   else
+     player->direction = LEFT;
+ 
+-  free(&img);
++  /* Animation arrays retain the loaded pixels; img itself is local. */
+ 
+   return player;
+ }
+--- a/proj/src/Game.c
++++ b/proj/src/Game.c
+@@ -544,7 +544,7 @@
+   xpm_load(CleanLever_xpm, XPM_8_8_8_8, &img);
+   CleanLever = img;
+ 
+-  free(&img);
++  /* Lever images retain the loaded pixels; img itself is local. */
+ }
+ 
+ void LoadLever(unsigned int state, Lever * lever) {
+--- a/proj/src/MultiPlayer.c
++++ b/proj/src/MultiPlayer.c
+@@ -313,6 +313,8 @@
+     }
+     x += 40;
+   }
++
++  free(img.bytes);
+ 
+   xpm_load(heart_xpm, XPM_8_8_8_8, &img);
+   map = (uint32_t*)img.bytes;
+@@ -329,7 +331,7 @@
+     x += 40;
+   }
+ 
+-  free(&img);
++  free(img.bytes);
+ }
+ 
+ void clean_heart(int playerNum, int numLives) {

@@ -23,3 +23,5 @@ media/remotion/public/
 # Python-generated cache files
 __pycache__/
 *.py[cod]
+
+/test-results/

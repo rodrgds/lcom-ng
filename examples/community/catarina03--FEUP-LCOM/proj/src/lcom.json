@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "Super Tux",
+  "description": "Jump across icy platforms, collect coins and avoid enemies.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Jump",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "touch": "tap",
+      "tapDuration": 60,
+      "cursor": {
+        "x": 2,
+        "y": 2,
+        "minX": 1,
+        "minY": 1,
+        "maxX": 790,
+        "maxY": 590
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/highscores.txt"
+    ]
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

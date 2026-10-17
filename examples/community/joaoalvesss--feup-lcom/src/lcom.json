@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "Dinosaur Memory",
+  "description": "Find matching dinosaurs across three difficulty levels.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "E",
+        "M",
+        "H",
+        "B",
+        "Q"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Reveal",
+          "key": "ENTER",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Memory"
+}

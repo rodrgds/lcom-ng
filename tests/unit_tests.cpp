@@ -305,6 +305,46 @@ static void test_i8042_remote_mouse_polling() {
   CHECK(machine.readPort8(KBC_ST_REG, status) && !(status & KBC_ST_OBF));
 }
 
+static void test_i8042_wheel_negotiation_and_packet_framing() {
+  lcom::Machine machine;
+  auto send = [&](uint8_t command) {
+    CHECK(machine.writePort8(KBC_CMD_REG, KBC_CMD_WRITE_MOUSE));
+    CHECK(machine.writePort8(KBC_IN_BUF, command));
+    uint8_t byte = 0;
+    CHECK(machine.readPort8(KBC_OUT_BUF, byte) && byte == MOUSE_ACK);
+  };
+  auto expect = [&](uint8_t expected) {
+    uint8_t status = 0, byte = 0;
+    CHECK(machine.readPort8(KBC_ST_REG, status) && (status & KBC_ST_OBF));
+    CHECK(machine.readPort8(KBC_OUT_BUF, byte) && byte == expected);
+  };
+  auto rate = [&](uint8_t value) { send(0xf3); send(value); };
+  send(0xf2); expect(0);
+  // Only the IntelliMouse sample-rate sequence enables four-byte packets.
+  rate(200); rate(80); rate(100); send(0xf2); expect(0);
+  rate(200); rate(100); rate(80); send(0xf2); expect(3);
+  send(MOUSE_CMD_ENABLE_DR);
+  machine.injectMouse(12, -3, 1);
+  expect(0x29); expect(12); expect(0xfd); expect(0);
+  machine.injectMouse(0, 0, 0);
+  expect(0x08); expect(0); expect(0); expect(0);
+  machine.i8042().injectMouseWheel(2);
+  expect(0x08); expect(0); expect(0); expect(2);
+  machine.i8042().injectMouseWheel(-3);
+  expect(0x08); expect(0); expect(0); expect(0xfd);
+  send(MOUSE_CMD_SET_REMOTE);
+  machine.i8042().injectMouseWheel(4);
+  send(MOUSE_CMD_READ_DATA);
+  expect(0x08); expect(0); expect(0); expect(4);
+  send(MOUSE_CMD_RESET); expect(0xaa); expect(0);
+  send(0xf2); expect(0);
+  send(MOUSE_CMD_ENABLE_DR);
+  machine.injectMouse(1, 2, 0);
+  expect(0x08); expect(1); expect(2);
+  uint8_t status = 0;
+  CHECK(machine.readPort8(KBC_ST_REG, status) && !(status & KBC_ST_OBF));
+}
+
 static void test_rtc_cmos_bcd_registers() {
   lcom::Machine machine;
   CHECK(machine.rtc().setIsoTime("2026-06-16T12:34:56"));
@@ -344,6 +384,12 @@ static void test_rtc_register_writes_and_interrupts() {
   CHECK((machine.pendingIrqs() & (1u << 8)) == 0);
   machine.advanceTick();
   CHECK((machine.consumePendingIrqs() & (1u << 8)) != 0);
+  // The RTC holds one output assertion until C is acknowledged. Polling the
+  // edge-triggered PIC must not turn that held output into new notifications.
+  for (int i = 0; i < 100; ++i) {
+    machine.refreshDeviceIrqs();
+    CHECK((machine.consumePendingIrqs() & (1u << 8)) == 0);
+  }
   CHECK(read(0x0c) == 0xd0); // IRQF + default-rate PF + UF.
   machine.refreshDeviceIrqs();
   CHECK((machine.pendingIrqs() & (1u << 8)) == 0 && read(0x0c) == 0);
@@ -391,6 +437,34 @@ static void test_rtc_register_writes_and_interrupts() {
   for (int i = 0; i < 120; ++i) machine.advanceTick();
   CHECK(read(0) == 3); // Internal time continued while the user registers froze.
 
+  // Reading C deasserts the device output, but must not erase an edge already
+  // latched in the PIC. Clearing and restoring an enable rearms a pending cause.
+  write(0x0b, 0x06); (void)read(0x0c); (void)machine.consumePendingIrqs();
+  write(0x0a, 0x2f); write(0x0b, 0x46); // 2 Hz periodic, no UIE/alarm.
+  for (int i=0;i<60;++i) machine.advanceTick(); // Current PIT runs at120 Hz.
+  CHECK((read(0x0c) & 0xc0) == 0xc0);
+  CHECK(machine.consumePendingIrqs() == (1u<<8));
+  machine.refreshDeviceIrqs();
+  CHECK(machine.consumePendingIrqs() == 0);
+  for (int i=0;i<60;++i) machine.advanceTick();
+  write(0x0b, 0x06); // Disable PIE, leaving PF latched in C.
+  CHECK(machine.consumePendingIrqs() == (1u<<8));
+  machine.refreshDeviceIrqs(); CHECK(machine.consumePendingIrqs() == 0);
+  write(0x0b, 0x46); // Reassert the held PF through a fresh enable edge.
+  CHECK(machine.consumePendingIrqs() == (1u<<8));
+  machine.refreshDeviceIrqs(); CHECK(machine.consumePendingIrqs() == 0);
+  CHECK((read(0x0c) & 0xc0) == 0xc0 && read(0x0c) == 0);
+
+  // Keep an initial undelivered RTC cause available when its first handler
+  // subscribes after the flag was set, as with the other device IRQ owners.
+  lcom::Machine late;
+  CHECK(late.writePort8(0x70,0x0b) && late.writePort8(0x71,0x12));
+  for (int i=0;i<60;++i) late.advanceTick();
+  CHECK(late.pendingIrqs()==0);
+  CHECK(late.subscribeIrq(8,subscription));
+  CHECK(late.consumePendingIrqs()==(1u<<8));
+  late.refreshDeviceIrqs(); CHECK(late.consumePendingIrqs()==0);
+
 }
 
 static void test_vbe_mode_and_framebuffer() {
@@ -432,18 +506,22 @@ static void test_vbe_mode_and_framebuffer() {
     {LCOM_VBE_MODE_1024_768_8, {248, 255}, {0, 0, 0, 0, 0, 0}},
     {0x107, {32, 40}, {0, 0, 255, 255, 0, 0}},
     {0x11b, {0, 0, 255, 0, 255, 255}, {255, 0, 0, 255, 255, 0}},
+    {0x143, {0, 0, 255, 0, 0, 255, 255, 0}, {255, 0, 0, 255, 255, 0}},
+    {0x144, {0, 0, 255, 0, 0, 255, 255, 0}, {255, 0, 0, 255, 255, 0}},
+    {0x14b, {0, 0, 255, 0, 255, 255}, {255, 0, 0, 255, 255, 0}},
     {LCOM_VBE_MODE_640_480_15, {0x00, 0x7c, 0xe0, 0x7f}, {255, 0, 0, 255, 255, 0}},
     {0x111, {0x00, 0xf8, 0xe0, 0xff}, {255, 0, 0, 255, 255, 0}},
     {LCOM_VBE_MODE_800_600_24, {0, 0, 255, 0, 255, 255}, {255, 0, 0, 255, 255, 0}},
     {LCOM_VBE_MODE_1280_1024_32, {0, 0, 255, 0, 0, 255, 255, 0}, {255, 0, 0, 255, 255, 0}}
   };
   const char *frame_path = "/tmp/lcom-ng-vbe-colors.ppm";
+  lcom::Machine modern_machine; // Native SDK default, independent of textmode03 above.
   for (const auto &test : color_cases) {
-    CHECK(machine.vbe().setMode(test.mode));
-    const auto &mode = machine.vbe().currentMode();
+    CHECK(modern_machine.vbe().setMode(test.mode));
+    const auto &mode = modern_machine.vbe().currentMode();
     // Exercise row boundaries too, so buffered output cannot repeat or omit rows.
     for (uint16_t y = 0; y < mode.height; ++y) {
-      uint8_t *row = machine.vbe().framebuffer().data() + static_cast<size_t>(y) * mode.pitch;
+      uint8_t *row = modern_machine.vbe().framebuffer().data() + static_cast<size_t>(y) * mode.pitch;
       for (size_t x = 0; x < 2; ++x) {
         const uint8_t *pixel = test.raw + ((x + y) % 2) * mode.bytes_per_pixel;
         std::memcpy(row + x * mode.bytes_per_pixel, pixel, mode.bytes_per_pixel);
@@ -451,7 +529,7 @@ static void test_vbe_mode_and_framebuffer() {
                     pixel, mode.bytes_per_pixel);
       }
     }
-    CHECK(machine.vbe().dumpPpm(frame_path));
+    CHECK(modern_machine.vbe().dumpPpm(frame_path));
     std::ifstream frame(frame_path, std::ios::binary);
     std::string header;
     std::getline(frame, header);
@@ -538,6 +616,15 @@ static void test_vga_dac_ports() {
   CHECK(machine.writePort8(0x3c6, 0x0f));
   machine.vbe().pixelRgb(&index, rgb);
   CHECK(rgb[0] == 255 && rgb[1] == 255 && rgb[2] == 255);
+  CHECK(machine.vbe().setMode(LCOM_VBE_MODE_1024_768_8));
+  CHECK(machine.readPort8(0x3c6, value) && value == 0x0f);
+  machine.vbe().pixelRgb(&index, rgb);
+  CHECK(rgb[0] == 255 && rgb[1] == 255 && rgb[2] == 255);
+  CHECK(machine.writePort8(0x3c6, 0xff));
+  machine.vbe().pixelRgb(&index, rgb);
+  CHECK(rgb[0] == 255 && rgb[1] == 85 && rgb[2] == 0);
+  // VBE preserves the DAC and mask; BIOS textmode03 resets both.
+  CHECK(machine.vbe().setMode(3));
   CHECK(machine.vbe().setMode(LCOM_VBE_MODE_1024_768_8));
   CHECK(machine.readPort8(0x3c6, value) && value == 0xff);
   machine.vbe().pixelRgb(&index, rgb);
@@ -829,6 +916,7 @@ int main() {
   test_mouse_scheduler_bounds_backlog();
   test_i8042_command_byte_and_mouse_packet();
   test_i8042_remote_mouse_polling();
+  test_i8042_wheel_negotiation_and_packet_framing();
   test_rtc_cmos_bcd_registers();
   test_rtc_register_writes_and_interrupts();
   test_vbe_mode_and_framebuffer();

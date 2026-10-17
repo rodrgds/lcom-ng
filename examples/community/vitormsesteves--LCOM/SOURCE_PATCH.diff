@@ -1,0 +1,46 @@
+--- a/proj/code/video_gr.c
++++ b/proj/code/video_gr.c
+@@ -83,7 +83,7 @@
+ 	int i;
+ 	char* vptr;
+ 
+-	if (x > h_res || y > v_res) {
++	if (x >= h_res || y >= v_res) {
+ 		return;
+ 	}
+ 
+@@ -109,6 +109,10 @@
+ 		SWAP(yi, yf);
+ 	}
+ 
++	if (xf > h_res)
++		xf = h_res;
++	if (yf > v_res)
++		yf = v_res;
+ 	unsigned short x, y;
+ 
+ 	for (x = xi; x < xf; x++) {
+@@ -116,6 +120,7 @@
+ 			draw_pixel(x, y, color, buf);
+ 		}
+ 	}
++	return 0;
+ }
+ 
+ // algoritmo http://stackoverflow.com/questions/1201200/fast-algorithm-for-drawing-filled-circles
+--- a/proj/code/mouse.c
++++ b/proj/code/mouse.c
+@@ -41,11 +41,11 @@
+ 	mouse->xSign = X_NEGATIVE(mouse->packet[0]);
+ 	mouse->ySign = Y_NEGATIVE(mouse->packet[0]);
+ 	if (mouse->ySign)
+-		mouse->deltaY = (char)mouse->packet[2]; // | 0xFF00;
++		mouse->deltaY = (int)(unsigned char)mouse->packet[2] - 256;
+ 	else
+ 		mouse->deltaY = mouse->packet[2];
+ 	if (mouse->xSign)
+-		mouse->deltaX = (char)mouse->packet[1];// | 0xFF00;
++		mouse->deltaX = (int)(unsigned char)mouse->packet[1] - 256;
+ 	else
+ 		mouse->deltaX = mouse->packet[1];
+ 	mouse->x = mouse_outH(mouse->x + mouse->deltaX);

@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "PandaType",
+  "description": "Type the displayed words accurately while the panda cheers you on.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE",
+        "SPACE"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "model/highscores.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj/src": "."
+    }
+  },
+  "archetype": "Typing",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

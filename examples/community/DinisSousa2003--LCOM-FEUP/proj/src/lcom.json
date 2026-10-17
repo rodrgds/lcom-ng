@@ -1,0 +1,44 @@
+{
+  "name": "Pong: Powerup Rally",
+  "mobile": {
+    "fullscreen": false,
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "UP",
+        "DOWN",
+        "W",
+        "S"
+      ],
+      "actions": [
+        {
+          "label": "Speed",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Wall",
+          "mouseButton": "right",
+          "position": "bottom-left"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "S"
+      ]
+    }
+  },
+  "description": "Return the ball against the computer and use the original speed and wall powers.",
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Pong"
+}

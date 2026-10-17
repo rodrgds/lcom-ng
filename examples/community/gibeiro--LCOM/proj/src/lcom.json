@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "name": "2048",
+  "description": "Slide and merge matching numbered tiles to reach 2048.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": []
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/res"
+    ],
+    "pathAliases": {
+      "/home/proj": "proj"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,163 @@
+{
+  "repository": "https://github.com/filipecardoso0/LCOM",
+  "revision": "f8212354a4eda0eb9a24bba8b66de12d7d6be82f",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "a501ebc5090e30fe0099f9323ec065ec1429d6a8bedeb4e8cd0514aeb89c4656",
+    "proj/.vscode/c_cpp_properties.json": "a60394091526ccbf4826e3aa8687ef8cf9af95f0a06b76036cf546da94f1ca2e",
+    "proj/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/.vscode/settings.json": "2425659d537ecf5dbe331bb35af3cb380bac16ed0bbfc96254d71f8474ea22cd",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.vscode/settings.json": "ae716fd99db87c13a5ca01f5353de8def4b45ecf8c7a613a8627908040362c4f",
+    "proj/src/Makefile": "6dc67ef4f0dbc489a5f7c0d6c287914c32cd238f2665cd825c7653e45ef8abd8",
+    "proj/src/board_controller.o-ad779bde": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/board_view.o-8f0fa080": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/drivers/graphic/include/graphic.h": "618004039b89d92eb9d69686e06df5d021d0de43ec23af482cabed9517ba5f42",
+    "proj/src/drivers/graphic/include/graphic_macros.h": "20bdf9b3a737db12433813d8ffa6ed834fbb139226069f65e3081627bcdea867",
+    "proj/src/drivers/graphic/src/graphic.c": "58fea4d955540657a6dd5bc942014db20c05e044bc98028258fa1abf46cefd22",
+    "proj/src/drivers/kbd/include/kbd.h": "576e4fce01aa97a26874a9402b5bf4147cf2dc9d7c0240764fcd71ada25b47c7",
+    "proj/src/drivers/kbd/include/kbd_macros.h": "465279a07a443d1bf1ec784fe1d75194c1dd58dbf46aaf9c0ef93d4eadbc6406",
+    "proj/src/drivers/kbd/include/key_keyboard.h": "fc387d31ce89ce216171eb432a90e07439d6ecdb2ed421b65e6d548d6c233834",
+    "proj/src/drivers/kbd/src/kbd.c": "577bcd22f4e9c0937a06fe6092d314dd8b6b948f211af80e909fe2bbb6e9c1ef",
+    "proj/src/drivers/mouse/include/kbc_macros.h": "3a204862ee20d2aa2cc3b69290a780bdc3b68ebb3412a57d3e47889218ba26b5",
+    "proj/src/drivers/mouse/include/mouse.h": "252407448d2633250cea1247e9871db489fbdd9183a85bc762039234e2e7b613",
+    "proj/src/drivers/mouse/include/mouse_bckp.h": "7f4eb5adeb1264bc42788e3e142e539eb6f257330e28cf37b1cbba22e166a609",
+    "proj/src/drivers/mouse/include/mouse_macros.h": "0e9d00ecbf977281e4ef1b533e07e327a1f9a0e159bb7ef9d6a8d0cfa53864da",
+    "proj/src/drivers/mouse/src/mouse.c": "1beaf633900315b84d732a5148feb876330b8fe3d419a9e65ee3def0fa44e590",
+    "proj/src/drivers/mouse/src/mouse_bckp.c": "f30a105790466b86efe35a6b308c5a55e3f96cd766b4cbea108ef9f50623ac7e",
+    "proj/src/drivers/timer/include/timer.h": "29ae89db8fa42399dbcb8646ba22ee01e4f8ecc655c11ef31a08878fe053197a",
+    "proj/src/drivers/timer/include/timer_macros.h": "23da35495b168457ee1db9be8ae8409380b0c5ba1117eb4ea56d067fa8e5e815",
+    "proj/src/drivers/timer/src/timer.c": "41249a74f08f97616534a5ed0dab0cff424b5cb0a265a72392c4697bb47b146e",
+    "proj/src/graphic.o-41c2875c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/images/exitbutton.xpm": "36fdd214da6e5c6116ff240de9916753baca90ddb1cbd6f4cae0a3819d7b05c0",
+    "proj/src/images/exitbutton_selected.xpm": "94dcd24b65c682b18e9ac260745937c6a104e47aa1ddeff9fa3b023651d385e7",
+    "proj/src/images/mouse_cursor.xpm": "7215692b9f368c6b811e252dce5a6dfd5cf52ce4e78ddd73a260686cc77157f8",
+    "proj/src/images/mouse_cursor_update.xpm": "8058eae74e462e208b6ac138727ba0007183e0f8893795bf681cbed8ca19280c",
+    "proj/src/images/snake.io.xpm": "619aa1b03cb17ff87a114cad2b5489782964aa371933ad5e5d667ae19d960459",
+    "proj/src/images/start.xpm": "0593b728603a3b4dff9573aec942027543071ca8142a8ddf60f5e5ab06403f13",
+    "proj/src/images/start_selected.xpm": "05d777417f3705fb2c41cd44c1a5bce28e0625dd8f5767cdb2a1151e3798a99c",
+    "proj/src/lib/controller/include/board_controller.h": "562b6c56583f9ef0b655fcf3841ca7b764bc65cab1f4a3f78edc112380cc954d",
+    "proj/src/lib/controller/include/fruit_controller.h": "ac0d1ac58b6c5db844ff64dadb845f5de030576765a632b3b9539c93070cf75c",
+    "proj/src/lib/controller/include/menu_controller.h": "92aab08bd30213e48e1e8fc0251882bc89a9c5237aeda60fa1aac6f304431908",
+    "proj/src/lib/controller/include/snake_controller.h": "9e8078fc0a99a011b92bd370d7a8f7bdb8c92c17724e1f0bbe6211331c11d0f6",
+    "proj/src/lib/controller/src/board_controller.c": "14b5011183af75d440614fbde4b461a223f44dd764d7e4a619c22dde99e50623",
+    "proj/src/lib/controller/src/fruit_controller.c": "a935dafcd17f5f42cb1c15d30043bcef81bc07c2a56032df64126db26e135bbb",
+    "proj/src/lib/controller/src/menu_controller.c": "e5f0a3db866ea484b888a2bd6843c3fab6dd5a28d7e1faeae360574fad532de3",
+    "proj/src/lib/controller/src/snake_controller.c": "67ecf77a96b12048a47d490393d24290197bf710561de9fd05115545b2a367b0",
+    "proj/src/lib/event/include/event.h": "9f606651a11094ce2eb4c90d4f84f44abf387daa311f6c5b3f6066c36468ed4d",
+    "proj/src/lib/event/include/event_handler.h": "0559571a94e3ef2817e202db20b3f1b1719bcd2092a51190236c399109f5f309",
+    "proj/src/lib/event/src/event.c": "9806e944a86763cb91711c44b8461310d7c7173a1b2c221e1c8e42f6cc485b6b",
+    "proj/src/lib/event/src/event_handler.c": "aa775a234b5b18da9e6084b67c0f1db79a8944bd9fdf150a699886b352445940",
+    "proj/src/lib/model/include/board_model.h": "d5d05596cdc15450af77c66c64bfa9528148dfdda799ee877f306a7b3d091346",
+    "proj/src/lib/model/include/fruit_model.h": "64bf7060f7c084e4d6723c65fde096cd5d221bbf553920c655f4137eb06721f6",
+    "proj/src/lib/model/include/menu_model.h": "da566a23ce521ee141e1cd4fade21e213c7a6a3b4071386fc43cbc761d272cec",
+    "proj/src/lib/model/include/position.h": "3a4fd3baafe61b88edab54afe4b5a1d2c11d1951f516265f613016529b86de31",
+    "proj/src/lib/model/include/snake_model.h": "6e885f5f07dcea8f4ff6737766fd75d9503a68b2a150ee61fb923f18be282b87",
+    "proj/src/lib/model/include/sprite.h": "3b53cfed24ddef7d4a51ee29c3b7aadc601fdc02099ce67154132620b1d081e3",
+    "proj/src/lib/model/include/wall_model.h": "7990e3911cacc27219a2612a9ce15817dd9c42990bccb9529d017a1808ba950d",
+    "proj/src/lib/model/include/xpm.h": "5926fef81c2fa9da6ccebc71de0fd3ef1bc2e6415840252ae016a63b4efd7dd8",
+    "proj/src/lib/model/src/board_model.c": "7f93f60a194a2fa81ce60bb4e868eaf1d130c338386c2d804eb4f43a272ac48a",
+    "proj/src/lib/model/src/fruit_model.c": "e5e0acc487ff1eded74fa210a2a23e93837c23a1a8688e7cf3e3804b9bc82af5",
+    "proj/src/lib/model/src/menu_model.c": "89db7a51de06e9e12114310c95b7821a7f67d457c968f8cb5455eb9d8c8d1188",
+    "proj/src/lib/model/src/position.c": "d2a3e5fb9665565aa770c88a916b93d0ebad645c16b3fe7311a32954470c1024",
+    "proj/src/lib/model/src/snake_model.c": "1a3355adeaa776d0b85cc6ead92ee06e7e3dc05316f03dc53ae3790b7985f119",
+    "proj/src/lib/model/src/sprite.c": "2700d721ffa21bca91d0501e5c0f52c1105d2e82da5cad692bb4cf27cafd8a8c",
+    "proj/src/lib/model/src/wall_model.c": "9b08cb1ed9d9ee56024528b60ace12c49a0c886d574ab0d780e2fd6258783930",
+    "proj/src/lib/model/src/xpm.c": "8bc986e22c7a457c3c5c2afeb6fb2ad7b7ff280d8892c0e2b49ea438f5cf7a7c",
+    "proj/src/lib/state/include/action.h": "36e5feaac74536a362a57c51ecdfdecb38079c8eeff048fdccb68f69fb6f7dcd",
+    "proj/src/lib/state/include/game_state.h": "c9ce2f77d15dfa5b33f3ceb1c09f40e677677aacdd1d383fc37a59f309908f7e",
+    "proj/src/lib/state/include/menu_state.h": "7d1676e82efd7259a5766322d3a0b035ff64b201b8c314e58d67c49cfac2e1b8",
+    "proj/src/lib/state/include/snake_state.h": "0293727e183159ef6a9c8225f53f849bb01c8438fced7446c7e8d8f2609436dd",
+    "proj/src/lib/state/include/state.h": "116eb1fa29c40bc109b51aa560dcea5cc841c9c3bc4c3b7c3be8a67a6050549f",
+    "proj/src/lib/state/src/game_state.c": "302747c072670f37c7cf25a702768a27e208b77a3277eeaeb2a14acc40b7c9b3",
+    "proj/src/lib/state/src/menu_state.c": "3d477e9330782a771b512368024e8ec6b04f11c522b9f0963469cbff7f52b644",
+    "proj/src/lib/state/src/state.c": "91275a54e0fff3a91f7a9c70be01955f29f9d97dd5a07254368d6f9820c99578",
+    "proj/src/lib/view/include/board_view.h": "6663d956f17046c3a0c84ee96276e9118f7a36dd2d9fcc04c7e7bee8877b1a76",
+    "proj/src/lib/view/include/fruit_view.h": "52cd1d7e58f6bb1da436caabf83c749bc8b2dbdecd452bfc65f75113b6bc13ec",
+    "proj/src/lib/view/include/menu_view.h": "54156f103d49b9d89bd3d736ef2fbd3d050df511b1668fb0ccb746a972fff063",
+    "proj/src/lib/view/include/snake_view.h": "87fc6ec2cc29236cab87e52d30a9e7d3f7c551b1be65d441dcdd538e753a6220",
+    "proj/src/lib/view/include/wall_view.h": "2cf8ed0fca2fbe10b3f976551fb8bdd7776ae31f344bd2fecf8bdc482ae71724",
+    "proj/src/lib/view/src/board_view.c": "a0155facb242753b9c797eb0d72dada00c2c84b5a11594fe272eb446ed8adcb8",
+    "proj/src/lib/view/src/fruit_view.c": "b069bdcdf5b77ca3811b1a376f558e35f5a62629c7c96034a075b409586a1865",
+    "proj/src/lib/view/src/menu_view.c": "306f8d7080860e52330ace2c9027863b199e8e6ddaaca1c5b5b1e2823a86bae3",
+    "proj/src/lib/view/src/snake_view.c": "bce2cba323772571e6d0bb92bd059cdccd06ca3fefd6e14595eb3beb244f8324",
+    "proj/src/lib/view/src/wall_view.c": "62fd961613006cb49f326c3f02f12dad4353ddc763fff03d1a82295e8af2b2a6",
+    "proj/src/menu_model.o-47df85d7": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/menu_model.o-9ea568b1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/mouse.o-09f8a0d1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/proj.c": "0d7b07c83b4e5c6371495caac661e761474bb549c8e49ba02627db8f9ab2ec93",
+    "proj/src/proj.o-8e4e7190": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/proj.o-c3abca08": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/proj.o-db48a8b3": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/utils/include/utils.h": "a582906cb4ea23ed72189a67e151b0f8c00f155c9b42d938ea98988db6bbdff4",
+    "proj/src/utils/src/utils.c": "bc9fa21168480142098a76fb1f79245ea43c29c53a23464986fb57117fd486a8",
+    "proj/src/utils.o-833d7e0f": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated docs, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/images/snake.io.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "a24bba072747b4bfcfe6e35e761c9fa7c0d40516f83480d19fc316ee01e22b28",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "163f5f2fd7efee8297031f5f9966c68ff9bdfc4065784b3d12ef266a0deeb652",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/drivers/graphic/src/graphic.c",
+          "originalSha256": "58fea4d955540657a6dd5bc942014db20c05e044bc98028258fa1abf46cefd22",
+          "patchedSha256": "657a88e55caa50ae01ef08b9ce92e7c793b6c261285a57b8d00187f3094b154b",
+          "reason": "Remove premature SYS_PRIV_ADD_MEM call made with an uninitialized range before querying VBE mode. Preserve the later valid permission, map, and mode switch.",
+          "verification": "Actual vg_init RED requests permission before known mode; GREEN requests one exact initialized physical range and maps correct dimensions."
+        },
+        {
+          "file": "proj/src/lib/model/src/snake_model.c",
+          "originalSha256": "1a3355adeaa776d0b85cc6ead92ee06e7e3dc05316f03dc53ae3790b7985f119",
+          "patchedSha256": "06574222e617cc40eb6b65bf791e4e4fbd8bf03bf2625e9729a19c968f33a691",
+          "reason": "Save next body node before freeing current, and remove second free of the already traversed tail. Borrowed board positions remain owned by board.",
+          "verification": "Actual snake_delete RED double frees one-cell tail. GREEN one-cell and multi-cell cleanup releases every owned allocation once and preserves borrowed cells."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Panel keeps original artwork unobscured in portrait and landscape. Source handlers determine every button and held-key behavior. Relative pointer preserves original packet/cursor semantics. ",
+  "verification": {
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "checkpoint": "Original Snake.io menu opens the board; directional touch creates visible turns in the white snake.",
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence/filipecardoso0--LCOM",
+    "log": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay8-current-profiles.log",
+    "limits": [
+      "Food growth and long rounds are not exhaustive."
+    ],
+    "androidGameplay": "pending",
+    "nativeGameplay": {
+      "status": "passed",
+      "apkSha256": "f21e75fdd87c20a43626365d38487effee77b09bbde160cee2017af7e504ae5b",
+      "evidence": "build/arcade-100/next8-native-gameplay2/results.json",
+      "review": "Original menu enters active board, normal arrow inputs move white snake, Escape returns safely to original menu after source cleanup repair. Actual native controls and Home cleanup reviewed."
+    }
+  }
+}

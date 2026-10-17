@@ -7,6 +7,7 @@ Minix system make includes are not host build commands.
 
 import argparse
 import hashlib
+import importlib.util
 import glob
 import json
 import os
@@ -21,6 +22,11 @@ class BuildError(Exception):
     pass
 
 
+_assembly_spec = importlib.util.spec_from_file_location("lcom_compat_assembly", Path(__file__).with_name("assembly.py"))
+assembly = importlib.util.module_from_spec(_assembly_spec)
+_assembly_spec.loader.exec_module(assembly)
+
+
 def words(value):
     return shlex.split(value)
 
@@ -33,14 +39,26 @@ def find_makefile(directory):
 
 
 class Makefile:
-    def __init__(self, directory):
+    def __init__(self, directory, sources=None):
         self.directory = Path(directory).resolve()
-        self.variables = {".CURDIR": shlex.quote(str(self.directory)), "CURDIR": shlex.quote(str(self.directory))}
+        # Minix sys.mk is read before authored Makefiles: DBG?=-O2 and
+        # CFLAGS?=${DBG}. Seed recursive defaults so explicit assignments,
+        # target/recipe flags and the builder's trailing diagnostics still win.
+        self.variables = {".CURDIR": shlex.quote(str(self.directory)),
+                          "CURDIR": shlex.quote(str(self.directory)),
+                          "DBG": "-O2", "CFLAGS": "${DBG}"}
         self.paths = [self.directory]
         self.object_rules = {}
         self.archive_objects = {}
         self.target_flags = {}
         self.target_variables = {}
+        if sources is not None:
+            # Explicit declarative inputs override the Makefile, including when
+            # an archived project has no build file. Keep normal path validation.
+            self.variables["SRCS"] = " ".join(shlex.quote(str(source)) for source in sources)
+            self.variables["PROG"] = "proj"
+            self.project_sources()
+            return
         makefile = find_makefile(self.directory)
         if makefile is None:
             raise BuildError(f"No Makefile in {self.directory}")
@@ -86,10 +104,18 @@ class Makefile:
             line = line.split("#", 1)[0].strip()
             if re.match(r"\.(?:if|ifdef|ifndef|elif|else|endif|for|endfor)\b", line):
                 raise BuildError(f"Unsupported conditional or loop in {makefile}: {line}")
-            match = re.match(r"([\w.]+)\s*(\+=|\?=|:=|=)\s*(.*)", line)
+            match = re.match(r"([\w.]+)\s*(\+=|\?=|:=|!=|=)\s*(.*)", line)
             if match:
                 key, op, value = match.groups()
-                if op == "+=":
+                if op == "!=":
+                    # Evaluate supported source queries immediately, as BSD
+                    # make does. Other shell computations remain opaque until
+                    # a required input references them, then expand rejects
+                    # them. Object-directory bookkeeping is not a build input.
+                    expression = "$(shell " + value + ")"
+                    self.variables[key] = (self.expand(expression)
+                                           if re.match(r"\s*find(?:\s|$)", value) else expression)
+                elif op == "+=":
                     self.variables[key] = self.variables.get(key, "") + " " + value
                 elif op != "?=" or key not in self.variables:
                     self.variables[key] = value
@@ -121,17 +147,45 @@ class Makefile:
                 patterns = words(self.expand(key[len('wildcard '):], seen, overrides))
                 return ' '.join(shlex.quote(name) for pattern in patterns
                                 for name in sorted(glob.glob(pattern, root_dir=self.directory)))
+            if key.startswith('notdir '):
+                names = words(self.expand(key[len('notdir '):], seen, overrides))
+                return ' '.join(shlex.quote(tail) for name in names
+                                if (tail := name.rsplit('/', 1)[-1]))
+            if key.startswith('shell '):
+                # A few GNU Make projects use this fixed find form for SRCS.
+                # Interpret it as a path query, never execute a shell command.
+                command = words(self.expand(key[len('shell '):], seen, overrides))
+                recursive = command[2:] == ['-type', 'f', '-name', '*.c']
+                top_level = command[2:] == ['-maxdepth', '1', '-type', 'f', '-name', '*.c']
+                if not command or command[0] != 'find' or not (recursive or top_level):
+                    raise BuildError('Unsupported shell source discovery; expected find <relative-dir> [-maxdepth 1] -type f -name \"*.c\"')
+                relative = Path(command[1])
+                directory = (self.directory / relative).resolve()
+                if relative.is_absolute() or '..' in relative.parts or not directory.is_relative_to(self.directory):
+                    raise BuildError('Makefile find source directory must remain inside the project')
+                if not directory.is_dir():
+                    raise BuildError(f'Makefile find source directory does not exist: {relative}')
+                candidates = directory.glob('*.c') if top_level else directory.rglob('*.c')
+                sources = sorted(path for path in candidates if path.is_file())
+                if any(not path.resolve().is_relative_to(self.directory) for path in sources):
+                    raise BuildError('Makefile find sources must remain inside the project')
+                return ' '.join(shlex.quote(str(path.relative_to(self.directory))) for path in sources)
             if re.match(r'\w+\s',key):
                 raise BuildError(f"Unsupported Makefile function: {key.split()[0]}")
             # Only the portable input subset is evaluated, never shell expressions.
             if ":" in key:
-                name, modifier = key.split(":", 1)
-                original = self.expand(variables.get(name, ""), (*seen, key), overrides)
-                if "=" in modifier and not modifier.startswith("sh"):
-                    before, after = modifier.split("=", 1)
-                    return " ".join(w[:-len(before)] + after if before and w.endswith(before) else w
-                                    for w in words(original))
-                raise BuildError(f"Unsupported Makefile modifier: {key}")
+                name, *modifiers = key.split(":")
+                result = words(self.expand(variables.get(name, ""), (*seen, key), overrides))
+                for modifier in modifiers:
+                    if modifier == "T":
+                        result = [tail for word in result if (tail := word.rsplit("/", 1)[-1])]
+                    elif "=" in modifier and not modifier.startswith("sh"):
+                        before, after = modifier.split("=", 1)
+                        result = [word[:-len(before)] + after if before and word.endswith(before) else word
+                                  for word in result]
+                    else:
+                        raise BuildError(f"Unsupported Makefile modifier: {key}")
+                return " ".join(shlex.quote(word) for word in result)
             return self.expand(variables.get(key, ""), (*seen, key), overrides)
         pattern = r"\$\{([^${}]+)\}|\$\(([^$()]+)\)"
         while re.search(pattern, value):
@@ -239,9 +293,73 @@ class Makefile:
         return result
 
 
+class IncludeAliases:
+    """Declared absolute include prefixes, using Clang's built-in VFS only."""
+    def __init__(self, aliases, asset_root):
+        self.root = Path(asset_root).resolve()
+        self.aliases = sorted(((origin, (self.root / destination).resolve())
+                               for origin, destination in aliases.items() if origin.startswith('/')),
+                              key=lambda pair: len(pair[0]), reverse=True)
+        self.used = set()
+        self.mapped_headers = set()
+        self.checked_compilers = set()
+
+    def resolve(self, name):
+        for origin, destination in self.aliases:
+            if name.startswith(origin + '/'):
+                suffix = name[len(origin) + 1:]
+                if '..' in Path(suffix).parts:
+                    raise BuildError('Absolute include aliases cannot traverse parent directories')
+                header = (destination / suffix).resolve()
+                if not destination.is_relative_to(self.root) or not header.is_relative_to(destination):
+                    raise BuildError('Absolute include alias escapes its asset directory')
+                self.used.add(origin)
+                return header
+        return None
+
+    def headers(self, source, directories):
+        pending, seen, found = [source], set(), set()
+        while pending:
+            current = pending.pop()
+            if current in seen: continue
+            seen.add(current)
+            for delimiter, name in re.findall(r'^\s*#\s*include\s*(["<])([^">\n]+)[">]', current.read_text(errors='replace'), re.M):
+                mapped = self.resolve(name)
+                candidates = [mapped] if mapped is not None else [
+                    (folder / name).resolve() for folder in ((current.parent, *directories) if delimiter == '"' else directories)]
+                for header in candidates:
+                    if header.is_file():
+                        if mapped is not None: self.mapped_headers.add(header)
+                        found.add(header); pending.append(header)
+                        break
+        return found
+
+    def overlay(self, relocate=str, relative=False):
+        return {'version': 0, 'case-sensitive': True, 'use-external-names': False, 'overlay-relative': relative,
+                'roots': [{'type': 'directory-remap', 'name': origin, 'external-contents': relocate(destination)}
+                          for origin, destination in self.aliases if origin in self.used]}
+
+    def flags(self, source, flags, compiler, output):
+        if not self.aliases: return []
+        directories = tuple(Path(flags[i+1]).resolve() for i, flag in enumerate(flags[:-1]) if flag == '-I')
+        self.headers(source, directories)
+        if not self.used: return []
+        overlay = Path(output) / 'include-aliases.json'
+        overlay.write_text(json.dumps(self.overlay()) + '\n')
+        identity = tuple(compiler)
+        if identity not in self.checked_compilers:
+            probe = subprocess.run([*compiler, '-ivfsoverlay' + str(overlay), '-E', '-x', 'c', '-'],
+                                   input='', text=True, capture_output=True)
+            if probe.returncode:
+                raise BuildError('Absolute include build.pathAliases require Clang (including Emscripten/Android Clang); '
+                                 'select --cc clang. Compiler diagnostic: ' + probe.stderr.strip())
+            self.checked_compilers.add(identity)
+        return ['-ivfsoverlay' + str(overlay)]
+
+
 class Builder:
     def __init__(self, project, sdk, runtime_build, output, compiler, libraries=(), includes=(), asset_root=None,
-                 debug=False, sanitize=None):
+                 debug=False, sanitize=None, c_standard=None, path_aliases=None, source_files=None):
         self.project = project.resolve()
         self.sdk = sdk.resolve()
         self.runtime_build = runtime_build.resolve()
@@ -249,6 +367,16 @@ class Builder:
         self.compiler = words(compiler)
         self.archiver = "ar"
         self.binary = None
+        self.project_no_args = False
+        settings = {}
+        if c_standard is None or path_aliases is None or source_files is None:
+            if (self.project / "lcom.json").is_file():
+                spec = importlib.util.spec_from_file_location("lcom_project_config", self.sdk / "export/config.py")
+                config = importlib.util.module_from_spec(spec)
+                spec.loader.exec_module(config)
+                settings = config.load(self.project)["build"]
+        self.source_files = source_files if source_files is not None else settings.get("sources") or None
+        self.c_standard = c_standard or settings.get("cStandard", "gnu11")
         self.diagnostic_flags = ["-g", "-O0", "-fno-omit-frame-pointer"] if debug or sanitize else []
         if sanitize:
             self.diagnostic_flags.extend(["-fsanitize=" + sanitize, "-fno-sanitize-recover=all"])
@@ -268,7 +396,30 @@ class Builder:
                 if (directory / ".git").exists():
                     self.asset_root = directory
                     break
+        # Pre-LCF projects provide their own VBE/lmlib or text-video declarations. Select
+        # this header generation only with positive legacy evidence, and never
+        # for projects importing the modern course headers.
+        texts = [p.read_text(errors="replace") for p in self.project.rglob("*")
+                 if p.suffix.lower() in (".c", ".h") and p.is_file()]
+        modern = any(re.search(r'#\s*include\s*[<"]lcom/', text) for text in texts)
+        code_texts = [re.sub(r'/\*.*?\*/|//[^\n]*', '', text, flags=re.S) for text in texts]
+        # The original course libvt interface predates LCF. Its header and an
+        # actual old memory-range consumer identify this generation together.
+        text_video = (any(re.search(r'^\s*#\s*include\s*[<"]vt_info\.h[>"]', text, re.M)
+                          for text in code_texts)
+                      and any(re.search(r'\bstruct\s+mem_range\b', text) for text in code_texts))
+        legacy = text_video or any("struct reg86u" in text or re.search(r'void\s*\*\s*lm_init\s*\(\s*void\s*\)', text)
+                                  for text in texts)
+        self.legacy_timer_fields = False
+        for text in code_texts:
+            if re.search(r'\benum\s+timer_status_field\b', text) and all(
+                    re.search(r'\b' + name + r'\b', text)
+                    for name in ("all", "initial", "mode", "base")):
+                self.legacy_timer_fields = True
+        self.legacy = legacy and not modern
+        self.legacy_lm_status = self.legacy and any(re.search(r"int\s+lm_init\s*\(\s*void\s*\)", text) for text in texts)
         self.manifest = {"project": str(self.project), "sources": {}, "commands": []}
+        self.original_sources = {}
         self.manifest["asset_root"] = str(self.asset_root)
         self.archives = {}
         self.active = set()
@@ -297,6 +448,8 @@ class Builder:
                     raise BuildError(f"Library source not found: {source}")
                 sources.append(source)
             self.library_overrides[name] = sources
+        self.include_aliases = IncludeAliases(path_aliases if path_aliases is not None else settings.get("pathAliases", {}),
+                                              self.project / settings.get("assetRoot", ".") if asset_root is None else self.asset_root)
         self.objects = self.output / "objects"
         self.objects.mkdir(parents=True, exist_ok=True)
 
@@ -307,19 +460,42 @@ class Builder:
             raise BuildError(f"Failed while {purpose} (status {result.returncode}). "
                              "Review the compiler diagnostics above. Original sources were not changed.")
 
+    def project_context(self, root):
+        """Immutable launch metadata shared by native, browser and app builds."""
+        return ("const char *lcom_compat_project_root = " + json.dumps(str(root)) + ";\n"
+                "const char *lcom_compat_project_name = " + json.dumps(self.binary.name) + ";\n")
+
     def compile_flags(self, source, makefile):
         flags = makefile.flags(source) + self.includes
         flags = [str(self.project_path(value)) if index and flags[index - 1] == "-I" else value
                  for index, value in enumerate(flags)]
-        return (["-std=gnu11", "-fsigned-char", "-fcommon", "-include", "lcom/paths.h", "-Wno-deprecated-non-prototype",
+        return (["-std=" + self.c_standard, "-fsigned-char", "-fcommon", "-include", "lcom/paths.h", "-Wno-deprecated-non-prototype",
                                 "-Wno-incompatible-pointer-types-discards-qualifiers",
                                 "-I", str(self.sdk / "compat/include"),
                                 "-I", str(self.sdk / "include"), "-I", str(makefile.directory)]
+                + (["-DLCOM_COMPAT_LEGACY=1", "-include", "lcom/libc.h", "-Wno-implicit-function-declaration", "-Wno-return-mismatch"] if self.legacy else [])
+                + (["-DLCOM_COMPAT_LEGACY_LM_STATUS=1"] if self.legacy_lm_status else [])
+                + (["-DLCOM_COMPAT_TIMER_LEGACY_FIELDS=1"] if self.legacy_timer_fields else [])
+                + (["-DLCOM_COMPAT_PROJECT_NO_ARGS=1", "-Dproj_main_loop=lcom_compat_project_main_noargs"]
+                   if self.project_no_args and source != self.output / "project_entry.c" else [])
                 + flags + self.diagnostic_flags)
+
+    def compilation_input(self, source, flags):
+        try:
+            generated, extra = assembly.lower(source, self.output)
+        except assembly.AssemblyError as error:
+            raise BuildError(str(error)) from error
+        if generated != source:
+            self.original_sources[generated] = source
+        return generated, flags + extra
 
     def compile(self, source, makefile):
         self.manifest["sources"][str(source)] = hashlib.sha256(source.read_bytes()).hexdigest()
         flags = self.compile_flags(source, makefile)
+        flags += self.include_aliases.flags(source, flags, self.compiler, self.output)
+        for header in self.include_aliases.mapped_headers:
+            self.manifest["sources"][str(header)] = hashlib.sha256(header.read_bytes()).hexdigest()
+        source, flags = self.compilation_input(source, flags)
         identity = str(source) + "\0" + "\0".join(flags)
         target = self.objects / (hashlib.sha256(identity.encode()).hexdigest()[:20] + ".o")
         args = self.compiler + flags + ["-c", str(source), "-o", str(target)]
@@ -355,6 +531,15 @@ class Builder:
             makefile = Makefile(directory)
             if name in makefile.libraries():
                 return self.local_archive(makefile, name)
+        # The older FEUP image supplied libvt.a for video-text information
+        # (LCOM 2011 lab 1, section 3.2). Graphics games often retain -lvt
+        # without referencing it. Prefer declared sources above; unresolved
+        # video-text calls still fail at the linker, never become fake stubs.
+        # Minix Makefiles also name the LCF/low-memory/XPM dependencies as
+        # archives, sometimes alongside their -l spelling. The runtime already
+        # owns these APIs. As above, explicit project sources still win.
+        if name in ("libvt.a", "liblm.a", "liblcf.a", "libxpm.a"):
+            return None
         raise BuildError(f"Cannot rebuild {name}. Searched: {', '.join(str(d) for d in directories)}. "
                          "Provide --library name=source1.c,source2.c or a source Makefile.")
 
@@ -392,11 +577,14 @@ class Builder:
                     old_binary.unlink(missing_ok=True)
             except (ValueError, TypeError):
                 pass
-        makefile = Makefile(self.project)
+        makefile = Makefile(self.project, self.source_files)
         program = makefile.get("PROG") or "proj"
-        if Path(program).name != program or program in (".", ".."):
+        target = Path(program)
+        if target.is_absolute() or target.name in ("", ".", "..") or "\0" in program:
             raise BuildError(f"Invalid PROG: {program!r}")
-        self.binary = self.output / program
+        # Minix makefiles may place PROG in ../bin. The importer owns the
+        # destination directory, so retain the target name without its path.
+        self.binary = self.output / target.name
         self.binary.unlink(missing_ok=True)
         self.manifest["binary"] = str(self.binary)
         if self.sanitize:
@@ -417,7 +605,21 @@ class Builder:
                 raise BuildError(f"The {self.sanitize} sanitizer runtime did not initialize within 5 seconds. "
                                  f"Use {alternative}; this failure occurs before student code runs.")
         sources = makefile.project_sources()
+        # Match a definition, not a forward declaration or a comment mentioning
+        # the callback. Its ABI is adapted in a separate generated translation unit.
+        definitions = []
+        for source in sources:
+            text = re.sub(r'/\*.*?\*/|//[^\n]*|"(?:\\.|[^"\\])*"', '',
+                          source.read_text(errors="replace"), flags=re.S)
+            definitions.extend(re.findall(r'\bint\b\s*(?:\(\s*)?proj_main_loop\s*\)?\s*\(([^()]*)\)\s*\{', text))
+        self.project_no_args = len(definitions) == 1 and definitions[0].strip() in ("", "void")
         objects = [self.compile(s, makefile) for s in sources]
+        if self.project_no_args:
+            entry = self.output / "project_entry.c"
+            entry.write_text("int lcom_compat_project_main_noargs(void);\n"
+                             "int proj_main_loop(int argc, char **argv) {\n"
+                             "  (void)argc; (void)argv; return lcom_compat_project_main_noargs();\n}\n")
+            objects.append(self.compile(entry, makefile))
         ldflags = words(makefile.get("LDADD") + " " + makefile.get("LDLIBS"))
         directories = [self.project]
         names = []
@@ -456,9 +658,13 @@ class Builder:
         # Makefile forgot that dependency. Matching names still replace its
         # foreign Minix archive instead of linking a second copy.
         names.extend(name for name in self.library_overrides if name not in names)
-        archives = [self.find_archive(n, directories) for n in names]
+        archives = []
+        for name in names:
+            archive = self.find_archive(name, directories)
+            if archive is not None:
+                archives.append(archive)
         context = self.output / "project_context.c"
-        context.write_text("const char *lcom_compat_project_root = " + json.dumps(str(self.asset_root)) + ";\n")
+        context.write_text(self.project_context(self.asset_root))
         objects.append(self.compile(context, makefile))
         binary = self.binary
         self.link(objects, archives, self.runtime_libraries(), system_flags, binary)

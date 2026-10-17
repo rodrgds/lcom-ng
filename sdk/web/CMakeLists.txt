@@ -18,6 +18,7 @@ target_include_directories(machinelab PUBLIC "${LCOM_SDK}/include" "${LCOM_RUNTI
 target_compile_options(machinelab PRIVATE -O2 -Wall -Wextra)
 add_library(lcom_minix STATIC
   "${LCOM_SDK}/compat/src/compat.c" "${LCOM_SDK}/compat/src/lcf.c"
+  "${LCOM_SDK}/compat/src/printf.c"
   "${LCOM_SDK}/compat/src/xpm.c" output_log.c)
 target_include_directories(lcom_minix PUBLIC "${LCOM_SDK}/include" "${LCOM_SDK}/compat/include")
 target_compile_options(lcom_minix PRIVATE -O2 -fsigned-char)

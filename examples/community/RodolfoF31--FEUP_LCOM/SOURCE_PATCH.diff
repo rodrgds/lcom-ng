@@ -1,0 +1,20 @@
+--- a/proj/src/Modules/vg.c
++++ b/proj/src/Modules/vg.c
+@@ -181,7 +181,7 @@
+         number_bytes = 2;
+       }
+       pos = get_horizontal_resolution() * y * number_bytes + x * number_bytes;
+-      memcpy((void *) ((unsigned int) video_buffer + pos), &color, number_bytes);
++      memcpy((uint8_t *) video_buffer + pos, &color, number_bytes);
+       break;
+ 
+     case 24:
+@@ -190,7 +190,7 @@
+         number_bytes = 4;
+       }
+       pos = get_horizontal_resolution() * y * number_bytes + x * number_bytes;
+-      memcpy((void *) ((unsigned int) video_buffer + pos), &color, number_bytes);
++      memcpy((uint8_t *) video_buffer + pos, &color, number_bytes);
+       break;
+   }
+ 

@@ -1,0 +1,91 @@
+{
+  "repository": "https://github.com/filiperecharte/FEUP-LCOM",
+  "commit": "66ff35e12827e096758cda030ce0c660b1c84a48",
+  "project": "proj/src",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
+  "sourceChanges": [],
+  "sha256": {
+    "README.md": "361ecdf22465c34f5af4c7ccd87875fc310d36518e935a73a1fea87a368b0a0c",
+    "proj/src/Game_Over.xpm": "dbb336085e6e805a6e44cfc23abc5514a3005ed93d986bd328fa172826318d31",
+    "proj/src/Makefile": "33f4029c4c6d149f2aadb4a268d3aee39550c1b5bc994c0517235b7c1e85eab8",
+    "proj/src/Snake_game_background.xpm": "5b3058e2e92fa12b31910da8c10010365a39769694fe9a01f2023e8977d0e930",
+    "proj/src/Snake_head.xpm": "46607b90463b692aef1c99c11ad9c62a4da776caed3c1d9b4f8d4c0e20d771b3",
+    "proj/src/apple.xpm": "e260e41a8fe44e9b2a763b581c811e7a435c972c2c572793f47f6bc67d398316",
+    "proj/src/chars.xpm": "373d42eee3d64eeb71bb6326735b5284c3215fcf0737440ba7373bff716281fd",
+    "proj/src/dodge_the_fruits.xpm": "2e0bb594c489ef44435edddd9a6e6732f01d004e08106be983aaea0eaf89e5d8",
+    "proj/src/enter_username.xpm": "4fe4e730cd576a6a2a590952ae04fd3e5b78c704abcfb7aeb61f7b7e6895e0e0",
+    "proj/src/fruit.c": "688bbd66b91f76fd0d0378f57c056cb128da7eacdfb297878fe5baf099950029",
+    "proj/src/fruit.h": "712458420eb1bbb2d695271c0c91a3e922ee63e4a7b03b1ebb87604df4232355",
+    "proj/src/game.c": "8d52d7ff594e5287f2b68d65748b272188cf460f830c2d1f45097d3f13f98667",
+    "proj/src/game.h": "54af1f6265857b2af12cebbda9d49de8cb58b3aec8c221cdf46be0008ab72b88",
+    "proj/src/i8254.h": "bff024788b33418e628062721dd46c798af0486c3e7b487e369a298e9ce875f1",
+    "proj/src/keyboard.c": "76d42d97e97890639b697127ead146c65acf118f791bb40fd031beaa9c2f026b",
+    "proj/src/keyboard.h": "be47e1f02d07a2868a601b9563690f4b66dcfffc831772a3d7313d9decb548a7",
+    "proj/src/leaderboard.c": "5ccbdb64373e1f708413be0ece0b83f653cf282feb26a7025ef23ac06d07cae1",
+    "proj/src/leaderboard.h": "3fb3da021b4e225aa3c765498e328a2e0de0d47c49265a9b720a4a0ffc1500d7",
+    "proj/src/leaderboard.xpm": "9e50b79ba874158f0c53e1feb1e1f4bb440dab4be7dad08532cfef7362a4501c",
+    "proj/src/leaderboard_scores.txt": "b01d71ea79dd3012360909f39770a3eaee47fea743626ebd41f50d65f7df2816",
+    "proj/src/menu_exit_highlighted.xpm": "1c884efbe7d32b84e4dfeb4fe0442f82a52a2d39227e73be552546343e7de7d1",
+    "proj/src/menu_leaderboard_highlighted.xpm": "9a230e5060353537fbc6dd10d30b48d0009d06b25658046d870d32af060116d2",
+    "proj/src/menu_play_highlighted.xpm": "4144592a865e08355d22fa2b06cb42f8d816f98c9f9f0f9ce88441cfddb04917",
+    "proj/src/menusnake.xpm": "137a493cc3f28c14ff5e5cb8473031a8f92de20a1371b3135a646fde7c1171eb",
+    "proj/src/mouse.c": "8e7eba03f01d1b42caa3a3d3eae0194100bb2301300610c4270b5362e7bea881",
+    "proj/src/mouse.h": "f024ac0abf8494cf960686b09c964283814b2bac52a90eae9fe250c598456cf8",
+    "proj/src/mouse_sprite.xpm": "862cbd98bf3decc0d2afe5b818747884c62c82d1d199a105c6e4a1c1701256bd",
+    "proj/src/proj.c": "52fe48079c2e1241f81af97a08449cb574666e16ea13fad4beca1528d9e4214e",
+    "proj/src/rtc.c": "515d40b5e921f4e40e3d8be0cbc873222b4efcab8027023260202145ffd50c98",
+    "proj/src/rtc.h": "bf148ff223793542a17b234c258bfef28e862df739fe249283c2906e80c88008",
+    "proj/src/snake.c": "1df0e9299c27f5e9e12ee51ccaf13cbc82c2ea36e858191f8646b18f4c83fab1",
+    "proj/src/snake.h": "088207769af7d7389ea0e3fa382b720e821cbefa4d4565260450cbd456a23d66",
+    "proj/src/sprites.xpm": "7a8535053ce20c2a34e8ec2e56a4d2cd477a890dcb031f4cbe127a3f6a6a142b",
+    "proj/src/timer.c": "df0b67770c21b44a107d94ee10846e512d30983029f841c4695d6d894cc2e36f",
+    "proj/src/timer.h": "d698948680c12b0986426349e00ee4c8365470143d30a33ef2e53136e9afca60",
+    "proj/src/utils.c": "351f93d69acef6a5a895d136eabeb9f682be7621a2013b840a045189a4522351",
+    "proj/src/utils.h": "31f68a251b7a2669ea7334d24d491415bd683eea8d19fbbf27983573390aeba5",
+    "proj/src/videocard.c": "967280038d34fd66eb23daa65a1421cfd605c10fd4a1de53a78a7b4f2f246d44",
+    "proj/src/videocard.h": "b35c353cb4823c6c96636ae5f8f6476cce30c3ae4cb01ff711dde3219656c717"
+  },
+  "selection": "Pinned project source and required artwork/assets plus upstream README. Omitted labs, generated documentation, VCS and OS metadata, build products and core dumps.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata is excluded from required source inventory."
+  },
+  "icon": {
+    "kind": "simple launcher icon derived from actual original snake artwork during gameplay",
+    "source": "proj/src/Snake_game_background.xpm and gameplay preview"
+  },
+  "controlsRationale": "Tap Play then any arrow to start. Arrow pad turns while dodging falling fruit. Direct cursor625,550 uses unit deltas and bounds1228x945. Keyboard remains available for player name; original expected mouse reporting enabled through authored environment.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/filiperecharte--FEUP-LCOM",
+    "limits": "Short functional gameplay trial, no full campaign completion or physical Android device claim."
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "7cd6b9532ccfc6db1e56263ad3063e4580f750e3b2ecc0a3b089dea0588c7626",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "5f76c5dd6d9190240ed271edfcd0d4ad447ec76b2bb60333d1267abd95b329ac",
+      "kind": "actual mobile browser gameplay canvas"
+    }
+  ]
+}

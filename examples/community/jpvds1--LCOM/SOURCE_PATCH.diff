@@ -1,0 +1,88 @@
+--- a/proj/src/Drivers/GraphicCard.c
++++ b/proj/src/Drivers/GraphicCard.c
+@@ -91,7 +91,7 @@
+ 
+ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color)
+ {
+-    if(x > mode_inf.XResolution || y > mode_inf.YResolution)
++    if(x >= mode_inf.XResolution || y >= mode_inf.YResolution)
+     {
+         printf("\nout of bounds pixel");
+         return 1;
+@@ -131,7 +131,11 @@
+         for (int w = 0 ; w < img.width ; w++) {
+             if(*sprite != 0x000000)
+             {
+-                if (vg_draw_pixel(x + w, y + h, *sprite)) return 1;
++                uint16_t pixel_x = x + w;
++                uint16_t pixel_y = y + h;
++                if (pixel_x < mode_inf.XResolution && pixel_y < mode_inf.YResolution) {
++                    if (vg_draw_pixel(pixel_x, pixel_y, *sprite)) return 1;
++                }
+             }
+             sprite++;
+         }
+--- a/proj/src/Missile.c
++++ b/proj/src/Missile.c
+@@ -150,6 +150,7 @@
+         el_q = EnemyFirst;
+         while(el_q != NULL)
+         {
++            struct EnemyNode *next_enemy = el_q->next;
+             printf("\npassing through enemy");
+             if((el_q->enemy->x > missile.x-100) && (el_q->enemy->x < missile.x+40) && (el_q->enemy->y > missile.y-62) && (el_q->enemy->y < missile.y + 40))
+             {
+@@ -158,7 +159,7 @@
+                 el_removeNode(el_q);
+                 score += 20;
+             }
+-            el_q = el_q->next;
++            el_q = next_enemy;
+         }
+     }
+     return 0;
+--- a/proj/src/Handlers.c
++++ b/proj/src/Handlers.c
+@@ -223,7 +223,8 @@
+ 
+ //Handles what a laser does on each timer interrupt
+ int handle_laser()
+-{   
++{
++    struct LaserNode *next_laser = ll_t->next;
+     if (ll_t->laser->user) {
+         ll_t->laser->y -= 20;
+     }
+@@ -259,12 +260,12 @@
+             }
+             el_t = el_t->next;
+         }
+-        ll_t = ll_t->next;
++        ll_t = next_laser;
+     }
+     else //if laser is out of bounds remove it and clean its position
+     {
+         ll_removeNode(ll_t);
+-        ll_t = ll_t->next;
++        ll_t = next_laser;
+     }
+     //printList(LaserFirst);
+     //printf("\n");
+@@ -381,6 +382,7 @@
+ 
+ int handle_animation()
+ {
++    struct AnimationNode *next_animation = al_t->next;
+     al_t->animation->time_to_change--;
+     if(al_t->animation->time_to_change == 0)
+     {
+@@ -414,6 +416,6 @@
+         al_removeFirst();
+         break;
+     }
+-    al_t = al_t->next;
+-    return 0;
+-}
++    al_t = next_animation;
++    return 0;
++}

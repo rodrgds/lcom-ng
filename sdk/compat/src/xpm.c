@@ -219,18 +219,28 @@ static bool parse_rgb(const char *start, const char *end, struct color *color) {
   if (start == end) return false;
   if (*start == '#') {
     size_t length = (size_t)(end - start - 1);
-    if (length != 3 && length != 6 && length != 9 && length != 12) return false;
-    unsigned digits = (unsigned)(length / 3);
+    /* Preserved LCF xpm_load uses "%02hhx%02hhx%02hhx". Three conversions
+     * accept five digits and ignore trailing digits in older palettes.
+     * Keep standard XPM widths unchanged; the short final byte is not scaled. */
+    if (length == 7 || length == 8) {
+      for (const char *p = start + 1; p < end; ++p)
+        if (!isxdigit((unsigned char)*p)) return false;
+      length = 6;
+    }
+    bool lcf_short = length == 5;
+    if (length != 3 && !lcf_short && length != 6 && length != 9 && length != 12) return false;
+    unsigned digits = lcf_short ? 2 : (unsigned)(length / 3);
     uint32_t rgb = 0;
     ++start;
     for (unsigned component = 0; component < 3; ++component) {
       unsigned value = 0;
-      for (unsigned i = 0; i < digits; ++i) {
+      unsigned component_digits = lcf_short && component == 2 ? 1 : digits;
+      for (unsigned i = 0; i < component_digits; ++i) {
         unsigned char c = (unsigned char)*start++;
         if (!isxdigit(c)) return false;
         value = value * 16 + (isdigit(c) ? c - '0' : (unsigned)(tolower(c) - 'a' + 10));
       }
-      value = digits == 1 ? value * 17 : value >> (4 * digits - 8);
+      if (!lcf_short) value = digits == 1 ? value * 17 : value >> (4 * digits - 8);
       rgb = (rgb << 8) | value;
     }
     color->rgb = rgb;
@@ -464,4 +474,14 @@ bool xpm_free_data(xpm_image_t *img) {
   free(img->data);
   *img = (xpm_image_t){.type = INVALID_XPM};
   return true;
+}
+
+/* Historical indexed-pixmap entry point used before xpm_load. */
+__attribute__((weak)) char *read_xpm(char *map[], int *width, int *height) {
+  xpm_image_t image;
+  if (!width || !height) return NULL;
+  uint8_t *pixels = xpm_load((xpm_map_t)map, XPM_INDEXED, &image);
+  *width = pixels ? image.width : 0;
+  *height = pixels ? image.height : 0;
+  return (char *)pixels;
 }

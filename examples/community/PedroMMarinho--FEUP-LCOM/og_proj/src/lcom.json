@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "name": "Snook: Eight Ball Pool",
+  "description": "Line up your cue and clear the pool table.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "BACKSPACE"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Pool"
+}

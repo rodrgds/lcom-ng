@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Terminix",
+  "description": "Explore the arena and aim at approaching enemies.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "SPACE"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Fire",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "scores.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj/src": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,38 @@
+{
+  "name": "Minix is Lava",
+  "mobile": {
+    "fullscreen": false,
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "D",
+        "UP",
+        "DOWN"
+      ],
+      "actions": [
+        {
+          "label": "Buy (Y)",
+          "key": "Y",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Skip (N)",
+          "key": "N",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "description": "Roll the dice, move around the lava board and buy squares.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

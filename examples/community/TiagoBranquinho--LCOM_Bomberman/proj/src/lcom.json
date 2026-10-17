@@ -1,0 +1,53 @@
+{
+  "name": "Bomberman: Remote Arena",
+  "description": "Move through the original arena, place bombs and click them to clear walls and enemies.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "keyboard": true,
+      "pointer": "move",
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "quickKeys": [
+        "ESC",
+        "SPACE"
+      ],
+      "pads": [
+        {
+          "mode": "arrows",
+          "style": "dpad",
+          "side": "left",
+          "keys": {
+            "up": "W",
+            "down": "S",
+            "left": "A",
+            "right": "D"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "leaderboard.txt"
+    ],
+    "pathAliases": {
+      "home/lcom/labs/proj/src": "."
+    }
+  },
+  "archetype": "Bomberman",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

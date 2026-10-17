@@ -1,0 +1,115 @@
+{
+  "repository": "https://github.com/AmandaTartarotti/bomberman_c",
+  "revision": "f37c6392d4e2be9c2f0287348ef43afc3f0b0d7a",
+  "project": ".",
+  "sourceHashes": {
+    ".gitignore": "3c1e786c525509630704d5adeab780456426acc13d5a2785b616786a461c8f00",
+    "Makefile": "78fa0accf65ef6fcbca7bb764627b68290fb182c66f4b3d91d6ba67f36bac038",
+    "README.md": "17e6a16da3be168791ac80429b8d11bab226ce43673125f257f84b4dcd1b80d0",
+    "images/game.jpg": "0f5905f0998d8edd202fa8eaeb0f361955c03c35ed7bea8d6c61bb0f578cf1be",
+    "images/instructions.jpg": "791ce3a2b585322dec494d693a84a34e3b8a237c7ad8e773c6006b470f70437a",
+    "images/menu.jpg": "1cf7759892a8e3aec95e988e0246b1133c8d26c16addcf9b44426d3447219405",
+    "images/title.jpg": "2020c784d3389fadb3f2a990eb69ed03afd724e4bd257f0600fefac0e97a4840",
+    "inc/controller.h": "5065d00e23e0c550733203689a5e880010bb90173e77cf5eef728d4d34bd34cc",
+    "inc/data_structures.h": "b5f5f80108cd38d035eb5b361064251ad1624ac11e1e10d105736f0fcde4a225",
+    "inc/draw.h": "647534de0ac1945ef577cc806327fa637e4b9c07372a9fd66067458b6cacd9f7",
+    "inc/graphic.h": "9628e50358e83b737e9bd3f50ea8cae5e396b312b7d3c9f9a9085f6e9e664582",
+    "inc/i8042.h": "005599e9d8d2d2b11d9f89e7ed786cb169554225376f274a0e8a260f9e46633a",
+    "inc/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "inc/kbc.h": "2de30f853d67b40ab4046ec3335cd79fe7d8ae68cef564c03f148d480e0b7d8f",
+    "inc/keyboard.h": "0ce57cfa20b4da588baa10c5d4824a0a742da38b14d4da02c2be54de4ca105ec",
+    "inc/mouse.h": "e72349e3a1e82ec0f594956bfeed09b49324df1183a341138c3529dfe4bd0445",
+    "inc/pixmap.h": "c754a8d936a8514d660d0a283de0c355d977871eb11864a1757e21e11a63b8fa",
+    "inc/rtc.h": "652d16c02c2ae00a4458d8aa5a33c42a5fb04fd5faaf52110b01b984531be079",
+    "inc/setup_game.h": "c9a3cf39e0e7a433bcf076fe17be7d3aa75ed09934b60c7c0888d892436e4d4a",
+    "inc/sprite.h": "dabf79a6f153f01838345f674c00f9fbcca9a9b38fb7b5997153d6609e52bef5",
+    "inc/timer.h": "1215ca246deb14421ca933d72d4face9c4680f36db8fe0cb2c23e71a6e42cebc",
+    "inc/video.h": "0e900bbc235f15ac3c69b1f14f8c9e1cee3f9000f12cf7f5ef5d358993c92b1f",
+    "src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/controller.c": "f86affe54b31de842450662018d1ea5c708ebf4e4bd388afc8bfb49d1b647de3",
+    "src/draw.c": "6dcc0e8b8b589728ef7c727bcf9640ab27e1decfa3a828c2b5ca56a4c81ab646",
+    "src/graphics.c": "30097a0d7a1d1211268bb2b6a0446620c6020fb38a8339aab047bfa4aa5c6b2e",
+    "src/kbc.c": "8eebe6678885da1c2c50e5af61c94f37ff4dcf36cd495f5f9b3afe121c1ed4ab",
+    "src/keyboard.c": "76c392f94dbba02e8c2c0eb5c770179fbbed7f9a29c70249f647d0bd5e0d1bc4",
+    "src/main.c": "9c1a72878db65818392e6d08d5e2cae69710c1ce8d7db9e55508588c53c7eeda",
+    "src/mouse.c": "3899c74280b97f320a117e54bd22559db05602aaabae8c530c3ab01f04093ba4",
+    "src/rtc.c": "45af5ffc8b5fa25715e5fd49f479799b399a653785a6e5b906f19b85732b3a62",
+    "src/setup_game.c": "34afe18b4754cce54d6589a87324458a218b9089ac190bfbb9968d71fb3471ff",
+    "src/sprite.c": "7de89db19b38f9fcef023f07b06a7f2980754eaefa1c4cc7eb010d0dd3d4e216",
+    "src/timer.c": "659bb1b95509f0cb289809b77cd2d0f54f82497819d88beca7dd1536fed51009",
+    "src/utils.c": "44386f1de89de08e142eba88deecbaa103e67505e56777e1f47f97e6f31d7f1d"
+  },
+  "selection": "Pinned original project source and required artwork/assets. Generated docs, compiled binaries, unrelated labs and OS/VCS/IDE metadata omitted.",
+  "omissions": [
+    ".git/**",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.d",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "inc/pixmap.h",
+          "reason": "Use canonical LCF includes after this copied header was relocated to project/inc; no sibling project/lcom directory exists. Original library header lived inside include/lcom and used sibling xpm.h.",
+          "originalSha256": "c754a8d936a8514d660d0a283de0c355d977871eb11864a1757e21e11a63b8fa",
+          "patchedSha256": "6539f677557e0a7a7e06feb0efa58a7bab3edf133c37b6d0961b092ecfd56c21",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/bomberman-header-test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/bomberman-header-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/bomberman-header-green.log"
+          }
+        },
+        {
+          "file": "src/utils.c",
+          "reason": "Use the canonical LCF include from project/src instead of an absent sibling project/lcom directory.",
+          "originalSha256": "44386f1de89de08e142eba88deecbaa103e67505e56777e1f47f97e6f31d7f1d",
+          "patchedSha256": "0cbbd4d92fbf9ca740934cb52cc48e725e14030ebdb3800e298cf07a85c4dbc9",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/bomberman-header-test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/bomberman-utils-header-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/bomberman-header-green.log"
+          }
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned sprite centered on a flat palette",
+    "source": "inc/pixmap.h",
+    "array": "steven40",
+    "transparentKey": "#999999 per original game renderer"
+  },
+  "derivedAssets": [
+    {
+      "path": "icon.png",
+      "sha256": "f1e6a895817d989a3951dba37a1fb9c0b85134520c9840581f349e1207fff2cf",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "preview.png",
+      "sha256": "e40514c84f3f91e6920b3adb1786665d368393dd8f89487b59e60b32598e7716",
+      "kind": "actual ordinary-touch browser gameplay"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/a57-native-gameplay/results.json",
+      "apkSha256": "43e911f4b7204c50509d5b43a7cc00a48ed60f1433c8ac4edf8394f1f375ca1c",
+      "demonstrated": "Original bomb placed; hero escapes left and the explosion clears breakable walls with all three hearts intact.",
+      "limits": [
+        "Representative local ARM64 touchscreen gameplay only. Complete campaigns and physical-phone performance remain untested."
+      ]
+    }
+  }
+}

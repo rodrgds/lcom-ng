@@ -1,0 +1,119 @@
+{
+  "repository": "https://github.com/JFSLopes/Racemania",
+  "revision": "8a726be7dd53c043b45ebff1f23af2543707cbcb",
+  "project": "proj/src",
+  "selection": "All29 pinned original README/Makefile/game C and H files, embedded original XPM artwork and empty records.txt. Generated Doxygen pages, PDF report and editor metadata omitted. Only rtc.c and game_loop.c have independently verified source-defect corrections.",
+  "excludedMetadata": [
+    {
+      "file": "proj/src/.vscode",
+      "reason": "Editor-local settings omitted from required source inventory."
+    }
+  ],
+  "license": {
+    "status": "unknown",
+    "files": []
+  },
+  "sourceHashes": {
+    "README.md": "3954be16971e59d6651c7d1542e52afe5113bbc844c4edc85b5e4d6da0d4ef4d",
+    "proj/src/Makefile": "4a54ac03f354755374de46d0548042533a6bcf98b5de3d2c72acdcf9e3497b19",
+    "proj/src/assets/pixmaps.h": "50c07dc27d58d29c650a411e9676dc753be73464ad6ca7302a440e7ce984ef09",
+    "proj/src/assets/records.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/controller.c": "54619f8c3d1e2d09b7df5557ef2e9bc6094ae3a18706daaffbdeb8f475e0faf2",
+    "proj/src/controller.h": "fb63fa224b1e4546eaf03b53431bd57b50149609a308ae8febf083cb97420105",
+    "proj/src/game_loop.c": "a8f1658f76a5f180c4aff488bc93d4766f1459209012bbc2f1d08952f41e7c53",
+    "proj/src/game_loop.h": "c9008af34d7adf6074c5a41930421baac26611002b0a3c1176d524f54a26e8a1",
+    "proj/src/i8042.h": "2f474a05acc738b926a16c528faddbe5f6abe5cc8825bd76a9782d340981b155",
+    "proj/src/i8254.h": "5ca43144ddcd90293d049522ff69e296fd7cef917c86ee1009d20109ace00850",
+    "proj/src/kbd.c": "c1c11a54dcbc5dbb99b1cd7174523dfb1995ae546de2536d511ae0a911da5eb6",
+    "proj/src/kbd.h": "dfe167e35ec52f7f4de9bd37f56fd4f1b22e3072f39880f7225ca957f6340ae1",
+    "proj/src/menu.c": "28bb02fb883481c9240a7e8f9bf33c9e2b6895e66258dee6fa732e8b2044dc97",
+    "proj/src/menu.h": "09c12be5a9c80468688f45f2759e870b60c6c426f5fd42f3c9f524dc5e67fcbf",
+    "proj/src/mouse.c": "c90a700bb2a0cc56123362481fc7fcedbb1b64d175eaec4bb65293b8e3f6bb26",
+    "proj/src/mouse.h": "1527bad4e9630889cc1c47a861f23828c1bd0723c1d3e9f7191b9ffae02549a6",
+    "proj/src/mouse_macros.h": "6e2f0146eaf367bc09c835f353814082a4abc42e6fac22e0dd8af18975a46206",
+    "proj/src/proj.c": "aca1a72da1ede3d64dccf125a1825a066ad0a00e786c98c4c36a21dd0566996b",
+    "proj/src/proj_main_loop.h": "1755d8d44759068bd42dfbcad9d6f8b270fc68102d7cbaf6a5d0952d2aa02229",
+    "proj/src/rtc.c": "1ad18182fd9156312979c3df6841535b85cf03bb1156fb66355f91f04b70ecb9",
+    "proj/src/rtc.h": "44a593648c18ac3fc9c1ba3d075a8b5b2178bfad907c169633a24ef0d6f77f8b",
+    "proj/src/rtc_macros.h": "8eb8f0b3fbe3969094165782bdae4224d14e9308f6b3572da6d9fd34535c3202",
+    "proj/src/sprites.c": "430df0b73aa07b019080ae7c28b1cf4e4017b6fc57f0ebc9ab485858a68e0174",
+    "proj/src/sprites.h": "d16d6be1a304cc52ea4287b5b583bb7ec8c94f62483ccb4ff619ccc1ad273850",
+    "proj/src/timer.c": "80a98c9b0c4ae3d038b7a92c22cb9b1fdfa5e91265a9e7ef1e46ea74ee0f4f31",
+    "proj/src/utils.c": "8e742942dd114604db2d700c381dd289ed3d054d62f4fac33c3a528a42122576",
+    "proj/src/video_card.c": "1b6f322e6f5296db5ca286264846a547a01dc884f77bff0db677bfbe7341cf23",
+    "proj/src/video_card.h": "6b81ce6b9407ba7f74c7a3eab6a6de8dd2c493039011ab9c4c04a014a46074a0",
+    "proj/src/video_card_macros.h": "d30b6037218ac9f280c2f98341b4eac5bb0ddd812eb57a61d3b5d40c3c44c941"
+  },
+  "sourceGitBlobs": {
+    "README.md": "3c883161a01b46035aab0b446f56ec4443b8eab8",
+    "proj/src/Makefile": "4b0c0a62d35a473c22ba92dbc67634da9b7f9291",
+    "proj/src/assets/pixmaps.h": "ae2b4e09f0970bd788063138abe9cf6b4a74ffdc",
+    "proj/src/assets/records.txt": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "proj/src/controller.c": "5a4da9e26ee501661f2a850e8c888abd02e8fd93",
+    "proj/src/controller.h": "2f8d9aca662edba2eabacc9b4c777fb8149b3069",
+    "proj/src/game_loop.c": "e44e5d58ebb024e6a722961471631a45928f6373",
+    "proj/src/game_loop.h": "7f3bc2b0e1e59e4437a9e10b260c45ca6ff6702e",
+    "proj/src/i8042.h": "c81a53bad5b17a0f9fddbf9890035e7e50ec0513",
+    "proj/src/i8254.h": "648c8d7f77a43449662fc01605fbdfcc27e20941",
+    "proj/src/kbd.c": "ff7a547614a4045e624c705f2c7fc6cc3593e127",
+    "proj/src/kbd.h": "878234ad2359270942b85df914ae9861a0b9e32f",
+    "proj/src/menu.c": "eaf499112a8d5ac28cc85f28541f5da7ccedd125",
+    "proj/src/menu.h": "4a59533c02f312f5e9f04ceea390dd4eb48e53ec",
+    "proj/src/mouse.c": "97ab1edc1f01b15c0deea0c6685a4f82c0b749ce",
+    "proj/src/mouse.h": "cf8e05de85f7d1b84e078f3eabb06bf0ef3dc9a3",
+    "proj/src/mouse_macros.h": "cdbad7d7426bbd167a005eaa6fc0c1b3778fb922",
+    "proj/src/proj.c": "623b2ff44bbefb67b37c0e847c4ad420d080b50a",
+    "proj/src/proj_main_loop.h": "4d8246b828a81b906e9f4b58e04edd0ce27fc324",
+    "proj/src/rtc.c": "b524891086803ce82673ec9ada2ffd73d15cf65b",
+    "proj/src/rtc.h": "24e26752ab314c0e2ce09d2c4e00873d00b11a5e",
+    "proj/src/rtc_macros.h": "c866648d1bb503d7713fb1437df1f13e40a90de5",
+    "proj/src/sprites.c": "75daa8bb1f6bf53b4ba9d87dfc1ed5e1e7d3ecce",
+    "proj/src/sprites.h": "77ce513bff061609fa0edab7ab8e8a889d2fe502",
+    "proj/src/timer.c": "b3fe59c9fa825f6da17478a0db1650ea152e9202",
+    "proj/src/utils.c": "1d7f0695d7aa16ac0e369fd752990ff2dde760db",
+    "proj/src/video_card.c": "5ae645f8bbca04f0f111b398713e7787e008aad8",
+    "proj/src/video_card.h": "d5e3a102077705b4904d270e050259304ac84495",
+    "proj/src/video_card_macros.h": "c1ca57c436438742d1521090d9c925700ffa7f66"
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/game_loop.c",
+          "originalSha256": "a8f1658f76a5f180c4aff488bc93d4766f1459209012bbc2f1d08952f41e7c53",
+          "patchedSha256": "c8584711af11f8b7393a8a4354e5a7078c3116b1fea69048573a618011eddf21",
+          "reason": "Measure original drag-stick distance and angle from its visible32pixel sprite center; place the dragged sprite around the pointer. Holding the visible center stays neutral, right/down drags follow original orientation and release recenters.",
+          "verification": "Actual whole game_loop.c control_stick consumer: visible center816,666 over original32pixel sprite800,650 leaves angle90 neutral; right846,666 and down816,696 follow independently derived angles/positions; release recenters. Original SIGABRT at neutral center RED, corrected source GREEN. Final-source ordinary browser neutral center, held steering and both circuits pass."
+        },
+        {
+          "file": "proj/src/rtc.c",
+          "originalSha256": "1ad18182fd9156312979c3df6841535b85cf03bb1156fb66355f91f04b70ecb9",
+          "patchedSha256": "d12ae5ed6636f2e35798e71d7c283679fefa8c78ff9b23cd15be4e029bf1a25f",
+          "reason": "Correct stable-UIP polarity and carry alarm minute overflow through the hour modulo24.",
+          "verification": "Literal80,80,00 status reads and independent BCD calendar fields, stable startup,09:07:15+120s and23:59:50+20s: actual original rtc.c RED; UIP-only intermediate separately exposes missing-hour-carry RED; corrected owning cases GREEN."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Verified initial cursor200,22, exact per-packet unit deltas and inclusive source clamps0..1151/0..863 with no independent warps. Actual four-corner captures retain the original visible arrow hotspot, including the clipped right/bottom glyph. Original hover hand only appears inside internal menu/stick targets. Direct hold-drag with120ms tap contacts selects menus; hold the original pink stick then drag gently to steer while a second finger holds Accelerate. Reverse and Escape retain original controls. Landscape overlay keeps pedals outside the centered guest and original clock/stick clear. No gain override or original cursor redesign.",
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "faed0b3a442f8232f28a0987a198dbbe0f96714a63cbde16de1b176d45270a66",
+      "reason": "Pinned original car1 XPM enlarged with nearest-neighbour sampling on a simple geometric road."
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "4aed9aa7a09e053dcc3ece8fb26efdc81894d76cb776aa7475625cdeaae7f6b1",
+      "reason": "Actual browser held steering/Accelerate frame with rotated car and displaced original pink drag stick."
+    }
+  ],
+  "verification": {
+    "browser": "Final centered-stick source ordinary authored touch selects Play/both circuits, accelerates with visible road scrolling and elapsed clock, steers with visibly rotated car/displaced original stick while Accelerate is held, and uses original Escape/pause/Resume/Exit-to-menu. Portrait390x844 andlandscape844x390 inspected. No game/RNG/time overrides.",
+    "ndk": "All12 selected/generated-entry ARM64 objects PASSO2/FORTIFY2/stack-protector-strong/format-security.",
+    "native": "ROOT visually reviewed actual ARM64 Android touch acceleration, continuous steering drag, pause/menu, both circuits and Home process exit. APK SHA256 3ac12858b78ea7b813d3df188eaedf5f65911f9674f150680c5b3098d1e2b185",
+    "limitations": "No completed lap/record-write claim. Records menu is an original placeholder that returns to main; original120s alarm retained. Steering is via original on-screen drag stick, with keyboard W/S for forward/reverse. Canonical3 current-source frames captured with replay/bundle/canvas hash receipts; raw earlier RTC-only and failed original-black startup evidence preserved separately.",
+    "nativeEvidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/c50-reviewed-native/results.json"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "name": "VBE DAC fixture",
+  "build": {
+    "assets": []
+  },
+  "mobile": {
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "off"
+    }
+  }
+}

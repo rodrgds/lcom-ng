@@ -1,0 +1,44 @@
+--- a/rush/src/stateMachine.c
++++ b/rush/src/stateMachine.c
+@@ -13,7 +13,7 @@
+   stateptr->state = state;
+   stateptr->currentScore = score;
+   stateptr->currentHP = hp;
+-  ObjLayer* objects = ptr_createObjLayer(); //Create array of ObjLayer (each ObjLayer is a z-index)
++  ObjLayer* objects = calloc(Z_INDEX_MAX + 1, sizeof(ObjLayer)); //Create array of ObjLayer (each ObjLayer is a z-index)
+   createActiveObjectsList(objects, Z_INDEX_MAX + 1); //Populate with Z_INDEX_MAX + 1 z-indexes. Each z-index is an ObjLayer
+   stateptr->objects = objects;
+   stateptr->isKeyDown_SPACE = false;
+--- a/rush/src/mainGame.c
++++ b/rush/src/mainGame.c
+@@ -445,10 +445,11 @@
+ }
+ 
+ void resetGame(ev_queue_st* gameEvents) {
+-  ev_queue_free(gameEvents);
++  /* The event loop owns this queue for the whole session. Discard pending
++   * events from the old round without invalidating the caller's pointer. */
++  while(ev_queue_begin(gameEvents) != NULL) ev_queue_pop(gameEvents);
+   stateMachine_free();
+-  ev_queue_st* newGameEvents = ev_queue_create();
+-  startStates(newGameEvents, MAX_HP);
++  startStates(gameEvents, MAX_HP);
+   //Reset global vars
+   lastScore = score;
+   score = 0;
+--- a/rush/src/ev_queue.c
++++ b/rush/src/ev_queue.c
+@@ -69,10 +69,12 @@
+ ev_queue_elem_st * ev_queue_pop(ev_queue_st* ev_queue) {
+ 
+   ev_queue_elem_st * oldBegin = ev_queue_begin(ev_queue);
+-  if(oldBegin == NULL || ev_queue_begin(ev_queue) == ev_queue_end(ev_queue)){
++  if(oldBegin == NULL) return NULL;
++  if(ev_queue_begin(ev_queue) == ev_queue_end(ev_queue)){
+     ev_queue->end = NULL;
+     ev_queue->begin = NULL;
+     ev_queue->size = 0;
++    free(oldBegin);
+     return NULL;
+   }
+ 

@@ -1,0 +1,69 @@
+{
+  "version": 1,
+  "name": "Demon Slayer",
+  "description": "Run through the castle, leap over monsters, fire magic and strike with your sword.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "overlay",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Fire",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Sword",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Jump",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Rage",
+          "key": "R",
+          "position": "top-left"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/res"
+    ],
+    "pathAliases": {
+      "home/lcom/labs/proj": "proj",
+      "/home/lcom/labs/proj": "proj"
+    },
+    "environment": {
+      "LCOM_COMPAT_MOUSE_REPORTING": "1"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

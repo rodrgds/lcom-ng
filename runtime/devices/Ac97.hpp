@@ -2,6 +2,7 @@
 #define MACHINE_LAB_AC97_DEVICE_HPP
 
 #include "../core/PortDevice.hpp"
+#include <lcom/memory_map.h>
 
 #include <array>
 #include <cstddef>
@@ -12,7 +13,7 @@ namespace lcom {
 
 class Ac97 : public PortDevice {
 public:
-  Ac97();
+  explicit Ac97(uint32_t pcm_phys = LCOM_AC97_PCM_PHYS);
 
   bool handles(uint16_t port) const override;
   bool read8(uint16_t port, uint8_t &value) override;
@@ -38,7 +39,7 @@ private:
   uint8_t readBusMaster(uint16_t offset) const;
   void writeBusMaster(uint16_t offset, uint8_t value);
 
-  uint64_t pcm_phys_ = 0xD0000000ull;
+  uint64_t pcm_phys_;
   std::vector<uint8_t> pcm_;
   std::array<uint8_t, 0x80> nam_{};
   std::array<uint8_t, 0x40> bm_{};

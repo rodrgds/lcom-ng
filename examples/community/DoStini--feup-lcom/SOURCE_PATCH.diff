@@ -1,0 +1,12 @@
+--- a/proj/system/file/map.c
++++ b/proj/system/file/map.c
+@@ -38,7 +38,8 @@
+         if (curCol >= map->columns) {
+             curLine++;
+             curCol = 0;
+-            map->matrix[curLine] = (int32_t*)malloc(map->columns * sizeof(int32_t));
++            if (curLine < map->lines)
++                map->matrix[curLine] = (int32_t*)malloc(map->columns * sizeof(int32_t));
+         }
+     }
+ 

@@ -41,5 +41,6 @@
     "assets": []
   },
   "description": "Choose a piece, plan your next move and play a game of chess.",
-  "preview": "../../../../../collections/arcade/previews/migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f.png"
+  "preview": "../../../../../collections/arcade/previews/migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f.png",
+  "archetype": "Chess"
 }

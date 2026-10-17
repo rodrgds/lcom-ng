@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "name": "Dodgem",
+  "description": "Dodge moving blocks with the mouse, manage your energy and survive as long as possible.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "panel",
+      "touchClick": false,
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Grab",
+          "mouseButton": "left",
+          "side": "left"
+        },
+        {
+          "label": "Shield",
+          "key": "1",
+          "side": "left"
+        },
+        {
+          "label": "Freeze",
+          "key": "2",
+          "side": "left"
+        },
+        {
+          "label": "Slow",
+          "key": "3",
+          "side": "left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "res",
+      "scores.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/DODGEM": ".",
+      "home/lcom/DODGEM": "."
+    },
+    "environment": {
+      "LCOM_VBE_PHYSICAL_BASE": "0xF0000000"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

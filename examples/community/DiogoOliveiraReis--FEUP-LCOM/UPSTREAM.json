@@ -1,0 +1,88 @@
+{
+  "repository": "https://github.com/DiogoOliveiraReis/FEUP-LCOM",
+  "commit": "a486bafce3c609315ab235c0d91bdbcb995cef57",
+  "project": "proj/src",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
+  "sourceChanges": [
+    {
+      "file": "proj/src/db.c",
+      "patch": "SOURCE_PATCH.diff",
+      "reason": "Use the record-loop index rather than the last numeric score when filling the ten-element date array. The original bundled last score10 writes past the stack array immediately on game over. Initialize the temporary date before copying it.",
+      "upstreamSha256": "6723ef2a6a5c7b28efd67c6b7cf3949b53be54b0b7173932f9983180aaa808fa",
+      "patchedSha256": "1644dc57aefd875d8ced1f40e494db28040366e377788e94f4f5421d55a720f4",
+      "verification": "Actual writeHighscore compiled with bounds traps fails before correction and passes afterward; verifies descending top10 after inserting score130."
+    }
+  ],
+  "sha256": {
+    "README.md": "00fa9b6576b2467d7b03d5b0e0fddddabd4ee68fce0c4d88da970a758bfab91c",
+    "proj/img/1.jpg": "1fd0d306f0f53969163240727e46461ebd121c26ea975d2f567ec6d0833e28eb",
+    "proj/img/2.jpg": "d9767511c9623f15c2644a4d922d94d34abc3f7be060eb2dfb78294d983e565b",
+    "proj/img/3.jpg": "b0dc418c32597de81e7c79e8c657f428fe8c0a03d61508870a3e73fa8780689e",
+    "proj/src/Makefile": "bb699f9e99fe278e1f320eb6528ed301e56da0f929f14677f9601b80f6aecd8c",
+    "proj/src/db/highscores.txt": "b10628788507651439045edfdae8dbe5c3a256208855ca66c687d4b48cb35f95",
+    "proj/src/db/scores.txt": "9f5db8b9901f24c40c480469ca3688742e672026dd65bc9a2548b7aaecbeaef9",
+    "proj/src/db.c": "6723ef2a6a5c7b28efd67c6b7cf3949b53be54b0b7173932f9983180aaa808fa",
+    "proj/src/db.h": "3f3e48a40319f7508b8739d8278753c15098620a29d62974077140537cb3771f",
+    "proj/src/game.c": "8604a9bb3fdc83c55df38b6b070932f28aacc8233d2cbf23f8adca67e1ea4259",
+    "proj/src/game.h": "bbef9c409a36e17901c42565378e02fe76302da5b451fee6708c67b3d6538537",
+    "proj/src/i8254.h": "82ee0f6b68fa755ae2c3ea20d5eb7399fc70283a25685c672ab5c153aac6aa07",
+    "proj/src/keyboard.c": "07d9145a7aa6954ff5fa1c13dbc0fa9dacab6d7427be25dc9c5c636fc43b6fbd",
+    "proj/src/keyboard.h": "89e6b38694717db3fbaaa38bd41fea6f5ff3034e30e1a3dde25ea8fd00e79117",
+    "proj/src/mouse.c": "1aa86f8a10767e4082eb3ffa0fb70756e4f3743604d5f0ec3a86c0780c09de5a",
+    "proj/src/mouse.h": "637eb91ba002c3caed610d68502217b3bfe6e749626a530100fcc8592a21a6f3",
+    "proj/src/proj.c": "dcdc47f3406f0b217ff3f3024b7281e51fcae7b81618a16495c5ddb8a7d1fdea",
+    "proj/src/proj.h": "8d83e71185df7749222111e70b23023e4b8aa0ad8c5b1eb6b95d984d9eb40dfe",
+    "proj/src/rtc.c": "74afdc631cae3cce15a20e7e51fbed1fdcdf5261513f5ab04181119f6927a225",
+    "proj/src/rtc.h": "49dad44059520a233b3c7d30033fdfe5b193f085c8d57301428bc7a4f85bbd8a",
+    "proj/src/screens.c": "62e7c15bd619725d1453b24f98278786c9187eba0a6e874d1d1075e0749a46b7",
+    "proj/src/screens.h": "e35abdba56c4b18e8644b4fb32cc52b7a70bd677a719b269e92505e84b706132",
+    "proj/src/sprite.h": "e59d1b6b6db06d961335d2e8b73ee82f541b984a35667a882f083ae12c22ead6",
+    "proj/src/timer.c": "effbe8826d62e5dbe923906d743b2dd73070c3cece76d692b65e047c755e9d3c",
+    "proj/src/utils.c": "b3de336c6b318151cb0166ea849c34bda2253f032349f04dc9f691fb5b3843f1",
+    "proj/src/vbe.c": "a40499a42f13a8d7e5dabbddd34bccfb13f5d8d1f6697a7e6b67df36af61a900",
+    "proj/src/vbe.h": "d0c34ed7a109b14bb7f4e54b8ab04c04a6265b36f69ef3c0d46d9b6249b0b785"
+  },
+  "selection": "Pinned project source and required artwork/assets plus upstream README. Omitted labs, generated documentation, VCS and OS metadata, build products and core dumps.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata is excluded from required source inventory."
+  },
+  "icon": {
+    "kind": "simple launcher icon derived from original sprite or board palette",
+    "source": "proj/src/sprite.h"
+  },
+  "controlsRationale": "Left/right moves, Fire holds Space, Play sends P. Original score database bundled; record-index source bug corrected with actual-source bounds-trap regression.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/DiogoOliveiraReis--FEUP-LCOM",
+    "limits": "Short functional gameplay trial, no full campaign completion or physical Android device claim."
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "640347f5b0e5bc94ed16c30854547873572ecf56a426e4a303b98b811b77b825",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "27ddc7257ff1d56983af828e7cf86dd666eb43e946cf71571b97b95ac0165005",
+      "kind": "actual mobile browser gameplay canvas"
+    }
+  ]
+}

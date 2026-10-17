@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "name": "Tank Duel: Ricochet",
+  "description": "Move two tanks through the arena and bounce shots off its walls.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "KP7",
+        "KP9",
+        "KP1",
+        "KP3"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        },
+        {
+          "side": "right",
+          "mode": "arrows",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "P1 Fire",
+          "mouseButton": "left",
+          "position": "bottom-left"
+        },
+        {
+          "label": "P2 Up",
+          "key": "KP8",
+          "position": "bottom-right"
+        },
+        {
+          "label": "P2 Left",
+          "key": "KP4",
+          "position": "bottom-right"
+        },
+        {
+          "label": "P2 Right",
+          "key": "KP6",
+          "position": "bottom-right"
+        },
+        {
+          "label": "P2 Down",
+          "key": "KP2",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D",
+        "UP",
+        "DOWN",
+        "LEFT",
+        "RIGHT"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

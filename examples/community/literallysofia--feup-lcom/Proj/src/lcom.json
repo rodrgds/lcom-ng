@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "name": "Christmas Run",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "R"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Jump",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Crouch",
+          "key": "S",
+          "position": "bottom-right"
+        }
+      ],
+      "touch": "tap",
+      "cursor": {
+        "x": 500,
+        "y": 500,
+        "maxX": 996,
+        "maxY": 726
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "Proj/res"
+    ],
+    "pathAliases": {
+      "/home/proj": "Proj"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "description": "Jump over presents and snowmen in a Christmas endless runner."
+}

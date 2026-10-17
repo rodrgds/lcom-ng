@@ -1,0 +1,4 @@
+LCOM BIOS Latin bitmap font
+Source: https://github.com/dhepper/font8x8/blob/8e279d2d864e79128e96188a6b9526cfa3fbfef9/font8x8_basic.h
+Public Domain, Daniel Hepper, Marcel Sondaar and IBM. Original notice retained in bios_font.h.
+The 8x16 table doubles the rows and reverses bit order to the BIOS leftmost-high-bit format.

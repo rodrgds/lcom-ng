@@ -1,0 +1,92 @@
+{
+  "repository": "https://github.com/RodolfoF31/FEUP_LCOM",
+  "revision": "07bef179a624ab19df05092006bd87d3980dd966",
+  "project": "proj/src",
+  "sourceHashes": {
+    "proj/src/Makefile": "ece71810dd1b5b175f98d964dd59be00f2e49f28b0e4b583a4c6646d33b616d3",
+    "proj/src/main.c": "40908b7a652bb413193aff28f62e78e63d6a0a770f7a77a19fbf47aaf7d9ce42",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/controller/game_controller.h": "1adcd629098a905da46deead5d19b6a946916cf8ddbc1d92fa10970d1634a24c",
+    "proj/src/controller/menu_controller.h": "1baba37549079afec901e68a550d9fc67c285c35e5d582f8dfafb5c06044b0d0",
+    "proj/src/controller/menu_controller.c": "d84ce725245122cc1bdfc63c6b0dd5a601137d39c4f69d4f846224d7d18c4235",
+    "proj/src/controller/game_controller.c": "225965ef933c99d6775ec051386f29bbb7bab9d3c5d2ee4a4dbf34c935aaa64d",
+    "proj/src/view/draw_game.c": "1c76f1d065eecb99230869f2ec055544a0b201e8778f659a7a108b23f538202b",
+    "proj/src/view/draw_functions.c": "cfd919d1ec6ea33e8b4a275987fd04ed1f13c39ef0fa83ab6974fba231318a4a",
+    "proj/src/view/draw_functions.h": "87bb366a47ac8f9dc8b2086ca5e45a7136f6236d44d6b067c612ec62e9379abd",
+    "proj/src/view/draw_game.h": "e2f153b8c47cc3e3e63490763e8799361bbd1c3816f700b1ee51836cd0e8732a",
+    "proj/src/Modules/mouse.c": "523335d0ae9e67f3c26c9bd6c81e0228da174b672214e796851653e2b7269134",
+    "proj/src/Modules/timer.c": "9a6079aea5f3fe366fe3683181c8d7ed7c42fe9c6a258f003a83895784476139",
+    "proj/src/Modules/states.c": "9019a342063df5f5437c6fdc0cd6154d1c80492bea710aa568f0fafc6be8a396",
+    "proj/src/Modules/mouse_macro.h": "1f10c1e23aef802b8f3afafbd47dac7268feaebb9c7b68d513f6862d2323993b",
+    "proj/src/Modules/keyboard.c": "94c1086cae0f3e6d97a07d1c399fa1581c25683b43f497c58916bcb1a524fbbf",
+    "proj/src/Modules/vg.c": "33e6eac8b39878014b08ff6530a9b438135cc127eba6d3d92952b2e7798f10bb",
+    "proj/src/Modules/typeracer.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/Modules/i8042.h": "44434466eeb2883a6d2fdc82b333a982fc5bcb77ff3396947aca9f6ee3e10980",
+    "proj/src/Modules/mouse.h": "9cde2be93a25a85ddcb9d824a9db0ceebb090ecdb29b147ad3f8224fdbe6e9c0",
+    "proj/src/Modules/timer.h": "7da2a116afc4f7ff772c978feb993662a3d964fc945f94d100a20ffdb62f2d4d",
+    "proj/src/Modules/utils.c": "1bcf961179551872c1505c08442d2bbccdaa6e338a0746eea7233b7baa8f6fe6",
+    "proj/src/Modules/keyboard.h": "ea1af9574cbe5b31fa3ca88fb757ff1395291e56c2f39f229294543601cd0ea6",
+    "proj/src/Modules/states.h": "a148fb558f95f1cc61f925edc23cead346b49dadbdb0a98310ad491d734dc271",
+    "proj/src/Modules/sprites.h": "976557299ac435f8287d9f8a41b53057e39dac307dfb9cc07d58372af28e01be",
+    "proj/src/Modules/vg.h": "66d7ecb5741c3e3970d0fe99edb1c088e6ae48ad643085f582615735d774cfd0",
+    "proj/src/Modules/i8254.h": "8091aab73158dd4fdc91d97bf19ad2a32e07271f6d8c451b8e542b3289811d73",
+    "proj/src/Modules/typeracer.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "selection": "Pinned original game source and required original art. Separately recorded 32-bit Minix pixel-pointer portability overlay.",
+  "omissions": [
+    ".git/**",
+    "**/.gitignore",
+    ".minix-src/**",
+    "unrelated labs",
+    "generated documentation",
+    "compiled binaries",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/.DS_Store"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/Modules/vg.c",
+          "reason": "The original indexed8 and packed24 pixel writers convert framebuffer pointers through 32-bit unsigned int. This was valid on original Minix32, but truncates the mapped buffer on ARM64/macOS64 and crashes ordinary menu drawing. Use byte-pointer arithmetic without changing offset, art, mode or WASM32 behavior.",
+          "originalSha256": "33e6eac8b39878014b08ff6530a9b438135cc127eba6d3d92952b2e7798f10bb",
+          "patchedSha256": "85a51312c9aef378411a0bd54932b6794aee02b4ee2f3fbeca5325be164cc5cb",
+          "verification": {
+            "red": "build/arcade-100/a/rodolfo-pointer-red.log",
+            "green": "build/arcade-100/a/rodolfo-pointer-green.log",
+            "wasm32": "build/arcade-100/a/rodolfo-pointer-wasm-results.json"
+          }
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original Makefile PATH target has whitespace beforecolon. Declarative sources reproduce exactly11originaldeclared Cunits, preserving source. Alphabet keyboard andFn punctuation support sentence typing, SPACE checks each word. Menu arrows+ENTER andESC remain quick keys.",
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence14/RodolfoF31--FEUP_LCOM-03-completed-sentence-canvas.png",
+    "captureSha256": "e823bfe0d40cb4824fda703a92b3c23a32188adb84d3eb18f7b03a403a645bc9",
+    "originalSourceArt": true
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "ab3ffa7d9dd510fd4a2858eed688ab71793a2e672594db9e417118e23d43837f",
+      "kind": "Flat geometric icon informed by original virus/hospital, dice/board, poweredPong or keyboard motif"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "4564efceeea11962b2e09e78cb9cab221496216ff3a480921f65e795ac2dded3",
+      "kind": "Actual ordinary touch browser gameplay"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/a76-a77-reviewed-native/results.json",
+      "apkSha256": "de957f9529d9adea67f8410f0b2c3014b514ca0ee4e8a50aeb7d499190749386",
+      "demonstrated": "Root inspected original native sentence and ordinary touch keyboard submitting when/you/face; all three words turn green. Original Escape intentionally ends the partial round with the authored loss screen, followed by clean Home process return."
+    }
+  }
+}

@@ -20,7 +20,8 @@ typedef enum {
   LCOM_OK = 0,
   LCOM_ERR = 1,
   LCOM_TIMEOUT = 2,
-  LCOM_NO_DATA = 3
+  LCOM_NO_DATA = 3,
+  LCOM_UNSUPPORTED = 4
 } lcom_result_t;
 
 typedef struct {
@@ -76,6 +77,20 @@ int lcom_vbe_get_mode_info(uint16_t mode, lcom_vbe_mode_info_t *out);
 int lcom_vbe_set_mode(uint16_t mode);
 int lcom_vbe_present(void);
 int lcom_vbe_set_display_start(uint16_t x, uint16_t y);
+/* Indexed DAC format: operation 0 sets the nearest supported width <= requested;
+ * operation 1 queries. Supported widths are 6 and 8, reset to 6 on each mode set.
+ * Direct-color modes return LCOM_UNSUPPORTED; invalid requests return LCOM_ERR.
+ * Failure leaves output and device state unchanged. */
+int lcom_vbe_dac_format(uint8_t operation, uint8_t requested, uint8_t *actual);
+
+typedef struct {
+  uint16_t bytes;
+  uint16_t pixels;
+  uint16_t lines;
+} lcom_vbe_scanline_info_t;
+/* VBE logical scanline operations: 0 sets pixels, 1 queries, 2 sets bytes.
+ * Visible geometry stays unchanged. Returned lines cover the full VRAM. */
+int lcom_vbe_scanline(uint8_t operation, uint16_t value, lcom_vbe_scanline_info_t *out);
 
 #ifdef __cplusplus
 }

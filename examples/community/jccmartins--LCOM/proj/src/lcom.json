@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "name": "Snake: Martins",
+  "description": "Collect food and grow your snake without crashing.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "actions": [],
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [],
+    "arguments": [
+      "115"
+    ]
+  },
+  "archetype": "Snake",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

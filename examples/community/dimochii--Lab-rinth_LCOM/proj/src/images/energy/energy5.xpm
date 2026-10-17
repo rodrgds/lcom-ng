@@ -1,0 +1,24 @@
+/* XPM */
+static char *energy5_[] = {
+/* columns rows colors chars-per-pixel */
+"17 15 3 1 ",
+"  c None",
+". c #321300",
+"X c #6F3F00",
+/* pixels */
+"   ...........   ",
+"  ..XXXXXXXXX..  ",
+" ..XXXXXX..XXX.. ",
+"..XXXXXX...XXXX..",
+".XXXXXX...XXXXXX.",
+".XXXXX...XXXXXXX.",
+".XXXX........XXX.",
+".XXX........XXXX.",
+".XXXXXXX...XXXXX.",
+".XXXXXX...XXXXXX.",
+"..XXXX...XXXXXX..",
+"...XX...XXXXXX...",
+" ...XXXXXXXXX... ",
+"  .............  ",
+"   ...........   "
+};

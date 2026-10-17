@@ -1,0 +1,107 @@
+{
+  "repository": "https://github.com/th0rz05/Mario-Man-Pokeball_Edition",
+  "revision": "bd03565389d23a8a283ca1ed22489c3a64ab9f95",
+  "project": "src",
+  "sourceHashes": {
+    "README.md": "8f730a4cf4db428eae85624384b0e3a2892b105c04474624bdc80909b5a55d1d",
+    "src/mouse.c": "7e82401e23607acfcb847b2d47541228a09fa7a0ff29f08437c5051f9b006eb4",
+    "src/videocard.c": "a100ca274c96381f8b37d5d74bc889b39215ab80f407e19ec3e2307abbdce6b2",
+    "src/timer.c": "ce61cab3060e7e096d2d40032dc1d41a0832288436efd78192f2faac7142aab0",
+    "src/rtc.c": "281b7da6059c726d2f0d15b40c1a6d9774b5c318e5d2b13f44cdd9e0a8d60021",
+    "src/keyboard.c": "ad7c98314bbdf51b6cd1f3184d977cda0bc00df96777e66b2c4ce363e4e5b6fe",
+    "src/Makefile": "1d7349c388da739c3b7e17c4a6400ac49f7b2983f4f6ae656970085049f0f875",
+    "src/sprites.c": "0a4e6a2fa02e3da8b09110af08b6d67571cf167ac2948519a908f3b7530b54d2",
+    "src/i8042.h": "137b14da81c78dce991a19fabf82b05fda1c6c1a62f399d606083a96f4641b58",
+    "src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/videocard.h": "a753f92336ff286c0a1ebf38ad2d02dd97a4417c1cb8b0ce1eca25a3d661892f",
+    "src/mouse.h": "5978701d196f7997de1293ac7291a5114801f768ffb9033cd61f906259046a04",
+    "src/utils.c": "9cffcce847ab91d6607ffa54f4b2974279badccd60ac7a8e84310b9b4ecadd30",
+    "src/keyboard.h": "2b9708f2385f5213be7c2f8cd41111bf4f8e5491f3782c69b0e117ea59251903",
+    "src/rtc.h": "42949bb99f0c5cfca5bbb44de978147e42d5359736096741b60e2e1c5777b97e",
+    "src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "src/sprites.h": "d86d6723ddb0f4b0e3ef41644db1a4cf387c404724284e00a0077c8e0810cc40",
+    "src/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "src/proj.c": "0cf899f692ca485c9208567ec87f7366ebb228152c153db79a2c6b3c69f19233",
+    "src/assets/number_7.xpm": "bb1a7d31f3d3815380ebe40b7cc58fc6d98b25cc188e67fc18c6653524edd854",
+    "src/assets/number_6.xpm": "1c89d6a8e349821dcd52f77f601b83eea5406520fe66312cb0f2d8ee4400511e",
+    "src/assets/number_4.xpm": "5d7e4e402e83a60cca84f5c90c4f1f07beda9d9bb314590889ca34264aa14f85",
+    "src/assets/number_5.xpm": "987649377dbbd23e85e3458d3aa21be8be23873018f7e72d3511f99d45964ef5",
+    "src/assets/number_1.xpm": "80b15fae2bcfd1ea608a3bfd6f6b1513e5adb3e589337e47f05cea51d18767f5",
+    "src/assets/mouse.xpm": "ab03f57da61f1fdb52357ef4c74c26747c79877e6cc5b0a8339af11e3dc66493",
+    "src/assets/pokeball.xpm": "527a47438b512810e2ab468355af622e059bdfe7f383ab8d93440baa8331f371",
+    "src/assets/number_0.xpm": "5ab13f27e59ec87a10da8c6b64e73e6cda43b4219aa2dccece8f55fef8720e9b",
+    "src/assets/penguin.xpm": "08d44edb5f49fe1263f41cfbd8535e92b8a64cdfcdfc0d10c9fb84ff051922c2",
+    "src/assets/number_2.xpm": "d250ff5fb1f04f3c6f3deeb63b020bb853e2803ae817882892920a5dceb2405f",
+    "src/assets/hover_playagain.xpm": "66589a92c56cbaf71999289ec24ae9d6064a8e16051a231103ddebc3cf3bf2ea",
+    "src/assets/number_3.xpm": "dab980d3afcb0b1fbe48f7aea709df5e2dfcf6407fee0d01745d6e69c6d81bac",
+    "src/assets/hover_gameover_exit.xpm": "e93e0b73a841cc28a823905e935fd9837c22f6cd850edd22833a5444cfc35489",
+    "src/assets/masterball.xpm": "550b70960d8dec8eb6d8ee580e28f909d9a79905a92e4731ff1849bcc8faa38b",
+    "src/assets/game_over.xpm": "d0a077173111f38a46154c8c8b20efe89aad877a616e9333f1737ed6f279a943",
+    "src/assets/mouse_hand.xpm": "b6e38e7d00a5800019e3af28b7b66919bcc695abf7a70ae610e493571eb262ce",
+    "src/assets/dooper_right.xpm": "772d5656bcc79de066454a138d3e7d61652ce6a85ccdd1fcfd9cc7d124f78db3",
+    "src/assets/goomba_left.xpm": "6eef5400644b75b8d430ceb8ba673810bf7cce212809b7488385ab745283ed72",
+    "src/assets/dooper_left.xpm": "a69dec598c3b8bd2d3f1c9beb6892044071839c3495ae95a80a75072c8ed1131",
+    "src/assets/goomba_right.xpm": "9afffd50b1ed64db94b2bc277146eb13cb3d6c37efdc3cae4d1debcb808d9e31",
+    "src/assets/ultraball.xpm": "07e1e46f137793d2e2600fd5060c22cdb8d71c493011dcb00c2ed44a95bc7abb",
+    "src/assets/hover_play.xpm": "80e775f5e3a07db55a238b5e77799c405073082320bd58d796acb5cad0b40706",
+    "src/assets/greatball.xpm": "a934a795dcc76930c54951652903c5a36d80c7a486731d6072cf2bc3981b9958",
+    "src/assets/menu_background.xpm": "a43fa24c6a9f87940935c738b62e84ae03dd2351f7531d0388b933153cb19c10",
+    "src/assets/crosshair.xpm": "9395c9e14d6e811374afe7615099352fbdad22c67039ecc88e1988102b9d4123",
+    "src/assets/background.xpm": "3e3ac9bf4dd32bb103f1b3970bd61c368db72449bcf536f61246b719c3cca89d",
+    "src/assets/hover_exit.xpm": "c8506949c607f3f61bd7c60fcea42854521003e362f1600954be46e2f90ef423",
+    "src/assets/number_8.xpm": "d6902e8df694e36e1444c879308acdef32be57794b55af273cde58478ed53453",
+    "src/assets/number_9.xpm": "30360b1b93d0495e460acd581c8bdd3e14f65f671bec6e14567d565a70da1f95"
+  },
+  "selection": "Pinned original game source, original artwork and required public siblinglab libraries.",
+  "omissions": [
+    ".git/**",
+    ".minix-src/**",
+    "**/.DS_Store",
+    "**/doc/**",
+    "**/docs/**",
+    "compiled ELF/Mach-O executables",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/trace.txt",
+    "**/output.txt"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite on a flat palette",
+    "source": "src/assets/pokeball.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "84077c7fe7e790d7feb05cb0e8d8c6be571b94b4fa33da6f0751560394dc6d57",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "9b67e8302df24ca341d35a23c72088cec6f4d91afae701036bb6a54ee47dcb4f",
+      "kind": "actual browser touch gameplay preview"
+    }
+  ],
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence13/th0rz05--Mario-Man-Pokeball_Edition-03-projectiles-canvas.png",
+    "captureSha256": "3f51f1258e8bd4d5ed0816bb8a1a5b3e24226fada96375669f9ba330a1944941",
+    "originalSourceArt": true
+  },
+  "verification": {
+    "native": {
+      "status": "passed",
+      "apkSha256": "cc055c952c3aa0b46b66598813d818f6aec38bfce59b79a34cd168ee24a16fb4",
+      "evidence": "build/arcade-100/a65-native-gameplay/results.json",
+      "review": "build/arcade-100/a65-reviewed-native/results.json",
+      "checkpoints": [
+        "Original Superman player and Goomba ring appear.",
+        "Player moved right from original x550.",
+        "Original GAME OVER shows positive POINTS after ordinary Pokeball throws. Browser same sequence scored2."
+      ],
+      "limits": [
+        "Representative original touch play and clean Home process exit on ARM64 emulator. Every mode, long sessions, linked UART and physical-phone performance are unclaimed."
+      ]
+    }
+  }
+}

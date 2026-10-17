@@ -1,0 +1,164 @@
+{
+  "repository": "https://github.com/Manjeri998/LCOM25",
+  "revision": "e8256f8b3ee51673c7fe6b79b5ec3ef25da20c93",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "fc0b0cd45f963775040d83b8fae1d7182aa5031b6e7dd17b903b083e370f72a9",
+    "proj/.idea/modules.xml": "85d19a89cd592ca7144e2927ef52244439c2d4c236b98b58c8c1dcf9bd530cb8",
+    "proj/.idea/proj.iml": "c6baed1cb75d59fc70afee45cb20128e77e61f48afe01e5fec2fd0adc6678933",
+    "proj/.idea/vcs.xml": "269064f5ba7307dcd31a03b5c690698b3442c0f0024c1358361542f49f5509ae",
+    "proj/.idea/workspace.xml": "b97295e64544ff4d8873fc85ebfed7cf1e8a18f091f544bc48079d196379a57a",
+    "proj/.vscode/c_cpp_properties.json": "a60394091526ccbf4826e3aa8687ef8cf9af95f0a06b76036cf546da94f1ca2e",
+    "proj/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/.vscode/settings.json": "e7d77dcad515938266ed87c82f8a59bd95d089f03dcf32442f8d5ecc18800c21",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "proj/src/Controller/Devices/Mouse_Keyboard/Keyboard/keyboard.c": "7c3e738b86c3acc12787b309d681f7a007786851848ab01fe0999c887627d54a",
+    "proj/src/Controller/Devices/Mouse_Keyboard/Keyboard/keyboard.h": "6d2ad978a71ce1474aeaff0e48412e31f16dead78cd0df7e3dc54bdd29133256",
+    "proj/src/Controller/Devices/Mouse_Keyboard/Mouse/mouse.c": "301199e671f9e0e143c91e92bc026ed3a18d0e9950baddb21ef5f8633482aac4",
+    "proj/src/Controller/Devices/Mouse_Keyboard/Mouse/mouse.h": "b9e509bb15e02eae0484ef1777d666c719d3517e5178c38ba41f39db1b41c8e7",
+    "proj/src/Controller/Devices/Mouse_Keyboard/kbc.c": "6af4afb8d6942c30b71e3fd4be2c6b367aed97dccda124c35694181c0df92995",
+    "proj/src/Controller/Devices/Mouse_Keyboard/kbc.h": "c23cabe8a403eeba9e3605a4262136a1d788a4ac55549456c78ceb633d97c805",
+    "proj/src/Controller/Devices/Timer/timer.c": "b855401a1def87c5e9f0a66a34eda9dfd60d2aa3c7b3d3892fafb35e7de643cc",
+    "proj/src/Controller/Devices/Timer/timer.h": "9191d0d0bdd34a9202609b4c82d6bf1d9d8f4292906787deeb9486b8e893cdf2",
+    "proj/src/Controller/Devices/VideoCard/video_graphics.c": "619dac258c2d148a2bf292dcc2712a1d176c2ad35ffef2be367f51a06460a72d",
+    "proj/src/Controller/Devices/VideoCard/video_graphics.h": "3f4f7ddf1c26aa9260ab211698a70ea5157f0d9c3131f60a1aa4b36112aa4470",
+    "proj/src/Controller/Devices/func_aux.c": "c2c638976abf7125c191c89d3cc1dde1a403e201c2b00b6bf5132e1d352c255f",
+    "proj/src/Controller/Devices/func_aux.h": "2b22926565ebf3f52639b73a2a82cb2f703844cc30ec9ea737e0c81f285d76a9",
+    "proj/src/Controller/Devices/macros.h": "9f0fc6105db0fe9c27c5c96d4a370b197b9eeb5bf77fee4f163d3ae631b33089",
+    "proj/src/Controller/GameController/gameController.c": "f5d5d124f61e239fc58e6fe8cb2bbe83c131daf94a9801bcc079bbc56f7a2a35",
+    "proj/src/Controller/GameController/gameController.h": "cc9eb45ffebe642112bdad089643b3c5b647af34d65c12fdfcce47312d56d614",
+    "proj/src/Controller/GameOverController/gameOverController.c": "1d503a161e67226aa97e74d2858aa1d8e17978094c0f13c7fcdac567e545d2cb",
+    "proj/src/Controller/GameOverController/gameOverController.h": "b05abe0cb0b701705523a92ed20175881220711addcf311be34d0a351c023901",
+    "proj/src/Controller/MainMenuController/mainMenuController.c": "e13df2a2e07cdae7cc37f6c2113e164000174f91fffa0b7577aaad9a617fc0ae",
+    "proj/src/Controller/MainMenuController/mainMenuController.h": "10ff52f399658c29a10063c023102c177652d2609f95226e1699418b7f5c86f7",
+    "proj/src/Controller/MouseController/mouseController.c": "7b95b8638077367435ffc315c9bb12c0c5938bcb504b4a518e310d0513d6e19f",
+    "proj/src/Controller/MouseController/mouseController.h": "9797b561d04e0c94daa2caa3b594d16bb08cbabb7c588ae86771dd0b98b5abaa",
+    "proj/src/Controller/WinScreenController/winScreenController.c": "cdecf11d4e4f6da0af3463c9213f74f347b45a974d5e96821fbbbf92233e885d",
+    "proj/src/Controller/WinScreenController/winScreenController.h": "9870bdc2c56e5adcd076836edd3d7f5bd61d0773566639c707522a8f37771732",
+    "proj/src/Controller/scancodes.h": "b943df4ca98b069aad1e1b2855abbf0f33015cd1e2da6c8f4ec4817773cb9571",
+    "proj/src/Controller/state.h": "3f22e2ba1f79ef69c66340b961ea3780167561861724813d59490672e4237ed2",
+    "proj/src/Makefile": "fecfdf8d038e9af001aa0e894c941a83908c00e55b1b7d2c2fc95f67a643d736",
+    "proj/src/Model/Background/background.c": "7eb40dc36969ceaac19d037e0feebe339c03c280170fac4b40c00de9c37b71ee",
+    "proj/src/Model/Background/background.h": "2e26cd9ba43504f6614727bc1f459ffed23804ce284f40eb300826e2f013afcf",
+    "proj/src/Model/Mouse/mouseModel.c": "a2bb0d550c47cc1dbdff0d1cd07dcd2c7a44e78c86a12a85a6a6a310dec7e3c4",
+    "proj/src/Model/Mouse/mouseModel.h": "e4964d9b3a0a72d9d8febe0372a49b37c264812accfd95b9ae0a3259eed499c6",
+    "proj/src/Model/SelectorMine/selectorMine.c": "d88587f9ebe545bd2f4381caa8108e14b8ee1a45efa6ca5e63e32515f915b40f",
+    "proj/src/Model/SelectorMine/selectorMine.h": "00dddd64440a7703af2c461101d2b28cc35433fc471d3108f410c9fd28972182",
+    "proj/src/Model/Sprite/sprite.c": "6db564bbdedd84c7c8c45fcc5a67abd79d6a605372abe4874baf90e3b8285d8f",
+    "proj/src/Model/Sprite/sprite.h": "f131dc9d57b332d37ad6a2ee1ca9b82e09ec2a89b34823ff80b6c9727720479e",
+    "proj/src/Model/Square/squareModel.h": "0cb696e77c263c20d799aed78f519b7cd0b6e3339bea267de3386cb4a5ed55fe",
+    "proj/src/Model/XPMs/digits.xpm": "593a5057cc2a925347777c113b4086c3cca4e26db8c4ca0556d8a5af25f9cbe6",
+    "proj/src/Model/XPMs/game.xpm": "cfd6d69b857eae475c0b4c3535e8c246e019ea13b324a55f08a8730dedde4b27",
+    "proj/src/Model/XPMs/gameOver.xpm": "161d50a9c526af1e46a8034224fdc0c5dae8c341d57dde180ea0889f2d5cf937",
+    "proj/src/Model/XPMs/instructions.xpm": "e85a7f347baa5a77de53c1696af92843c4f6ca3bc196245fc736840a8bf9dc99",
+    "proj/src/Model/XPMs/mainMenu.xpm": "99eeb7fe48f7ec774dd2a0a71c72074886ce6b5062cf517406095040fae77e41",
+    "proj/src/Model/XPMs/mine.xpm": "73e2f7d7ef1f62e868205682b306d57f9edb248b382d2d82ea3416d1125ea2f5",
+    "proj/src/Model/XPMs/mouse.xpm": "afbeb5d13b4627719b3dfe784e4ebf5f522a027b5c3479816e9ff7feda4f78aa",
+    "proj/src/Model/XPMs/smallDigits.xpm": "9977b967b1deb218152f53b0daae3aead4090a954fa5b3abac1d327ba46b1915",
+    "proj/src/Model/XPMs/winScreen.xpm": "0d8b25febd8e977d693015c7edcf2451458756d2be73a73ecf3d28b9322e1da1",
+    "proj/src/Model/position.h": "4b170891053d4a9c169fad6269a4ff4cb3e1f05b373ba8b9f65b01c83d171c32",
+    "proj/src/View/GameOverView/gameOverView.c": "f956e5f634ab75a6a5e0ce26c34dcbad29592dda4efb307898f6b7b4de4424db",
+    "proj/src/View/GameOverView/gameOverView.h": "b5e3dd4b3eb563bb66731211173fe6a60a2b785f7312ca4c11f234d5c71d8d14",
+    "proj/src/View/GameView/gameView.c": "69bfb90ce5a2e150ef06c465052079fcf3979c1c4f48fb17c093ba05305a8a49",
+    "proj/src/View/GameView/gameView.h": "ee8a7d38e032acecc8618fa8abe3898b9a1d648e5f82fc023b466806f45c051f",
+    "proj/src/View/InstructionsView/instructionsView.c": "9a0f10df8489532a4915cc0540d8339945fbc2856baa3265efc941911f877567",
+    "proj/src/View/InstructionsView/instructionsView.h": "8220386200e5eb8796de5f8c9969d5737b0102d32329499cab3661f733628d12",
+    "proj/src/View/MainMenuView/mainMenuView.c": "2669fe3a102edbffdfb0e2509a11d7015eadaaf6a86731536a5ba53b8b99e0da",
+    "proj/src/View/MainMenuView/mainMenuView.h": "9d667f0d5fe571289074bae677904a6e4d7cba48a18a7985507fc271d3c3ca8b",
+    "proj/src/View/MouseView/mouseView.c": "c035445f47a837cf8e060e548aad648e3e8ce078b6a9b1a77846b58c9964c521",
+    "proj/src/View/MouseView/mouseView.h": "2b151bf63e6c824dcc6284db9314760c48f7343373cd39b35d23d118ef1b1acd",
+    "proj/src/View/WinScreenView/winScreenView.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/View/WinScreenView/winScreenView.h": "cebd0031e56717fafd4ad4ac7ef9d096c4e00d66523278dc22f72ece03bd99c6",
+    "proj/src/generalMacros.h": "9d7851c61f6653090fb3f1ff84739760f8d0ae28ecd20960b3070a7ac538b77b",
+    "proj/src/mouse.o-192efd82": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/mouse.o-2a4c78b1": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/mouse.o-59157ed8": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/mouse.o-75feed29": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/mouse.o-845c7d96": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/mouse.o-aa8b5f5b": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/mouse.o-eec3c4f5": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/proj.c": "3c4cdf8ab7576d7dada55640192cfbfeb9fba5e8fadef9e80e95712b57845e56"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.d",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/proj.c",
+          "reason": "Enable original PS/2 data reporting during subscribe_int before entering the mouse-driven game loop; original startup never calls its existing command writer, so no input packets or clicks can arrive after device reset.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/green-field-reporting-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-green2.log"
+          },
+          "originalSha256": "3c4cdf8ab7576d7dada55640192cfbfeb9fba5e8fadef9e80e95712b57845e56",
+          "patchedSha256": "a21bda514e7ab131067b8ae87b2a97612b2921e1d8890d047fe4318015b419ee"
+        },
+        {
+          "file": "proj/src/Controller/MouseController/mouseController.c",
+          "reason": "Reject sidebar and outside-grid clicks before first-move mine deployment or board indexing, preserving the first playable click and flag counter.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/green-field-sidebar-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-green9.log"
+          },
+          "originalSha256": "7b95b8638077367435ffc315c9bb12c0c5938bcb504b4a518e310d0513d6e19f",
+          "patchedSha256": "8816b5d7e6c63b42d301cd9f646ecd8056b6867adcbef43cce524fc9f0c5ea9c"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a flat palette",
+    "source": "proj/src/Model/XPMs/mine.xpm"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "bfcda49452130bfc77bda8320236cf2aa87a470ae9bbe868661006a678c9e190",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "2f028f35e302309df20fa7d06497724b8d884aeafe0f6deca852cc8040c55d00",
+      "kind": "Original browser gameplay capture"
+    }
+  ],
+  "verification": {
+    "browser": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay10-final.log",
+    "owningRegressions": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-tests.py",
+    "nativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/Manjeri998--LCOM25.native10-strict.log",
+    "android": "Pending independent parent-owned actual Android gameplay.",
+    "browserResults": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay-results.json",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "2a20937a73366b6700c5ec6c56a0e17f228d6fdbccb1aa8d7dcc6c375f38e733",
+      "evidence": "build/arcade-100/next9-native-gameplay3/results.json",
+      "demonstrated": [
+        "Original green minefield, flag counter35.",
+        "Original connected numbered area is revealed.",
+        "Original flag marker and remaining flags34.",
+        "Clicking outside board in original sidebar neither indexes nor explodes a cell."
+      ],
+      "limitations": [
+        "Representative local touchscreen gameplay only; complete campaigns and physical-device performance remain untested."
+      ]
+    }
+  }
+}

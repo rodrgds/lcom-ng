@@ -1,0 +1,96 @@
+{
+  "repository": "https://github.com/GuilhermeSCP/football-simulator-lcom",
+  "revision": "0b65e30f9842274bfb23c1e0d19902a8d8ad7e02",
+  "project": ".",
+  "sourceHashes": {
+    "Jogo.h": "067a5ee0fd16e9d65af219371748949983c67ae258f5d27ce09404dabfaf7d65",
+    "prospeaker.h": "80d0f3d09b9fdd1207ba54a167dbbd2c1a996340613c88bbfa65649d2a9b6ca0",
+    "kbc.h": "1bcfef095a04fd15a866363057c19838d271b7a4a20290682917627ce401ba55",
+    "TUI.c": "38954d3630135a7cf1a4fc55a0d74e3e76ba07a52b6cde2431807a93ddc30135",
+    "video_txt.h": "20233e44ff3f271a26a977242efd371676b002a8b4e49f4d9929e908d50599a5",
+    "lab5.c": "771262642f0fbc67220738fc857e803ffb02e5bf55e1a5545505f143fc81e8f8",
+    "test5.h": "c409445e2b70b077b5955c74073c302861f4981a7216c6cc97ca395a9dcc10ff",
+    "Makefile": "5d239ad34f78ccfab7923bd28e1916255f3b56ff3f3658c73ed93a187df24241",
+    "Base.c": "234bfbf776eeaa046b9c28bef3e18cae597023a88a55efc4eb826881104ea776",
+    "kbc.c": "ba3b67d5dfd1529494f0ccd00f87dad08c70c7ba7ed9a6ce735d16e8fec8b97f",
+    "README.md": "8be918a63180ae612c9190b4b0e9623d40f74f7f269b4f9716c19f93463861b9",
+    "Jogo.c": "a65b40fcf2dd6912319918876366f6a93d4da0bdf2cb9e46ea26a72d1887c219",
+    "prospeaker.c": "b25acfa593b12a342056afd69b4e172867c5228c3f00f5b88ec5584a5bc7593c",
+    "main.c": "46642c59a531e126d6f10e3bbd5e55ecf70dee4edb6ae315a04743d7e66d249f",
+    "video_txt.c": "c7898f4ed9756a9d143685ca384833fe1974560b3e817c2a5f78b463873a4a99",
+    "TUI.h": "20c58956fb9458523eb2930933e00416ea1869131c5cf55bf249653c54348ff6",
+    "vt_info.h": "7b8df229ddc5e90c16ae15c6ef8405934a05c32ed8ad12733ee98220ed652d24",
+    "i8254.h": "ca50416f4d7a04520ccf43d4383e9f2bdb3b4f1f47abaeec90a2fe6b7656b824",
+    "Base.h": "b76f9c888046593d6745097f9769dbc60af3f7653a40899aa65c4d1940e6ce4e"
+  },
+  "selection": "All19 actual original project C/H files, Makefile and README. Original stale Makefile names absent protimer.c; explicit seven existing C units include its actual timer implementation in kbc.c. Separate lab5.c is not the game entry. PDF report and prebuilt libvt archive omitted, shared SDK rebuilds genuine VT APIs.",
+  "excludedMetadata": [
+    {
+      "file": "desktop.ini",
+      "reason": "OS folder metadata omitted from required source inventory."
+    }
+  ],
+  "license": {
+    "status": "unknown",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "kbc.c",
+          "originalSha256": "ba3b67d5dfd1529494f0ccd00f87dad08c70c7ba7ed9a6ce735d16e8fec8b97f",
+          "patchedSha256": "c1dfa17324e4693b021023249bccad8bffe710c7e369814ed01006156ed53082",
+          "reason": "Consume the original F5/F4 command ACKs before movement packets, and return the existing no-byte sentinel when the controller buffer is empty.",
+          "verification": "Actual owning kbc.c command fixture rejects original unread ACK bytes then passes with exactly two command replies consumed and subsequent movement bytes unchanged. Separate actual empty-reader fixture fails original undefined return and passes no-byte255 without a data-port read. Real original menu/formation/roster/match and authored quit touch route passes; ROOT final overlay Android route and Home return passed."
+        },
+        {
+          "file": "video_txt.c",
+          "originalSha256": "c7898f4ed9756a9d143685ca384833fe1974560b3e817c2a5f78b463873a4a99",
+          "patchedSha256": "5abc733ee749801ba5cb1a2e4e5de7d6a862f455a03b613395cf1c9ed97e3c12",
+          "reason": "The original vt_print_int starts n at16 and writes buf[n]=0 into char buf[16]. Reserve the seventeenth byte for that existing terminator without changing digit formatting or game presentation.",
+          "verification": "Actual Android roster startup aborted in vt_print_int with stack corruption; exact original compiled video_txt.c under bounds sanitizer reports index16 out of bounds. Fixed owning regression renders0,9,99,INT_MAX into real text cells with exact attributes and no adjacent writes. All8 current selected/generated ARM64 objects passO2/FORTIFY2. ROOT final overlay Android roster/match route passed; three fresh canonical gallery frames passed review."
+        }
+      ]
+    }
+  ],
+  "buildRationale": "Original 2011-style Minix text-video consumer uses vt_info.h and struct mem_range. Shared positive legacy detection and course VT support, explicit authored legacy GNU89 dialect, seven real C units. No per-game compiler macro or original source substitutions.",
+  "controlsRationale": "Original cursor advances integer text cells per complete PS/2 packet, x/10 and y/24. Authored landscape overlay with right mouse-stick sensitivity10 and separate Select at top-right. Shared programmed100Hz reporting makes normal vertical travel usable independently of host polling. Overlay retains the original full80-column text width; source interaction buttons end before column60, leaving lower-right space for the pad. No direct preset or assumed uniform pixels-to-cell gain. All original menus reset cursor0,0. Layout is pending final ROOT Android/browser review.",
+  "derivedAssets": [
+    {
+      "path": "icon.png",
+      "sha256": "f5cc4bb75b85e464905390c2520c6909c85105d30d5875477825a4482ea8c6a6",
+      "reason": "Simple geometric football pitch drawn for launcher identity, no original source art changed."
+    },
+    {
+      "path": "preview.png",
+      "sha256": "12189c9c80c979cba29cdb33557c13acb0ee6156d488ec4ea37f928a06e1d79a",
+      "reason": "Actual final-source formation menu after ordinary selection of4-4-2, resized at preserved aspect ratio."
+    }
+  ],
+  "verification": {
+    "browser": "Final overlay profile with ordinary right mouse stick sensitivity10 and Select reaches Quick Match, chooses4-4-2 and reopens confirmation, opens roster ratings, calculates a match, returns to the original main menu and Sair exits normally. Portrait/landscape controls and three freshly captured canonical game frames visually reviewed.",
+    "ndk": "All8 selected/generated-entry ARM64 objects compiled withO2/FORTIFY2/stack-protector-strong/format-security.",
+    "native": "ROOT visually reviewed the final native overlay controls and all seven original game states. Ordinary right mouse pad and Select chose Quick Match, selected4-4-2 and reopened its confirmation, entered the squad positions/ratings, calculated a real1-0 result, returned to the original main menu and used Home to end the isolated game. No environment or argument overrides.",
+    "limitations": [
+      "Original text football manager and statistical match simulation, with landscape recommended. No animated soccer field or full tournament qualification claim.",
+      "Original active roster renderer omits player names; position and overall rating cells are preserved.",
+      "Match results use the original random/statistical logic; no fixed score promise.",
+      "Browser authored Sair exit0 qualified separately; this native trial ends through Home."
+    ],
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/football-reviewed-native/results.json",
+      "apkSha256": "5a55cf98e93bab20cbe31a9210e81c507a6de3228a7fc6fb4ab377cd13e78a34",
+      "profileSha256": "a13fdb4988010bbfd9aab2bb1fa8fc08e8de798b5b081f0d5d041e0a0b5d70f7",
+      "demonstrated": "ROOT visually reviewed the final native overlay controls and all seven original game states. Ordinary right mouse pad and Select chose Quick Match, selected4-4-2 and reopened its confirmation, entered the squad positions/ratings, calculated a real1-0 result, returned to the original main menu and used Home to end the isolated game. No environment or argument overrides.",
+      "limitations": [
+        "Original text football manager and statistical match simulation, with landscape recommended. No animated soccer field or full tournament qualification claim.",
+        "Original active roster renderer omits player names; position and overall rating cells are preserved.",
+        "Match results use the original random/statistical logic; no fixed score promise.",
+        "Browser authored Sair exit0 qualified separately; this native trial ends through Home."
+      ]
+    }
+  }
+}

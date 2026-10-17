@@ -1,0 +1,69 @@
+{
+  "repository": "https://github.com/ban08/lcom-minix-driver-game",
+  "revision": "145c4e319fde20af8382764d9d32372477a798d0",
+  "createdAt": "2026-09-11T20:19:58Z",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "f7d3a86caf9c0d541a596263220b9de1efcf6d6de9239b3ac9eb992fc8c6d019",
+    "proj/src/Makefile": "62a62d7bc65d6fef8e66eb78da3f9db2b418abf7c71e8ebd259cbb17d2126f2a",
+    "proj/src/game.c": "69ffe6e544b5c8070a72067560213e17f19f499e89b45e14df015efd206ccf24",
+    "proj/src/game.h": "9a671acc0e14bd921445e0a5383542ba6b03e148c3fa9a99a1d93351b82641a6",
+    "proj/src/i8042.h": "39407bb3e25808b8db1ef90e064f2203b7a4e41773f29f832ba5654ade5adfa1",
+    "proj/src/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/kb_controller.c": "776e03210ef64b8f9972c9c185b229d55bb134e255b1e3db057139a4832a30ea",
+    "proj/src/kb_controller.h": "387bd6c8ce8d96406512cb59556650aa1f954f5d1dcc5828355fdb2dddd015f7",
+    "proj/src/keyboard.c": "de94a6eb8ec1444cd5b6ed02e8a39334458ad336e3b04303a44cabf4ed144e32",
+    "proj/src/keyboard.h": "3e175cb59953cae577436dbe63bd431ebb9b2bc11e5ff99831e3513b76346237",
+    "proj/src/main.c": "5409991980c40c9d3989c39a260e5c6e7fb7bc87e4b3a5a418e98ecd2a13dac7",
+    "proj/src/timer.c": "ac22bd9c30a32bbac56fcf80b9ac03857b28b51700ce14485f0267e862f03aa4",
+    "proj/src/timer.h": "bb3d63ca7e5c68ebbf65104bf534f033e2694d69ba4f958dfa80576e920c25f3",
+    "proj/src/utils.c": "fc0ee63739256d015c2814f115e313e12df23d3393d6115c21db74ad21fb794e",
+    "proj/src/video_card.c": "27f1b5dd4f14570c50a10f95f46914a342c335e960613aad217a6886ea780b24",
+    "proj/src/video_card.h": "3cbb0c79f8ef36a8d712d4a5f75dd150f0fd63976eb290a7ebe8d364c2ce3e1d"
+  },
+  "selection": "Original project primitive-rendered C/header and Makefile plus README, no assets required. Omit unrelated labs, docs, objects, OS/VCS metadata.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "kind": "student-source-defect",
+      "files": [
+        {
+          "file": "proj/src/video_card.c",
+          "reason": "Reject x>=framebufferWidth and y>=framebufferHeight. Actual renderer fixture original accepts x==width and writes the next row; fixed clips both edges and extreme coordinates while preserving last valid RGB24 pixel bytes and surrounding frame canaries. Original RGB layout/art and gameplay unchanged.",
+          "originalSha256": "27f1b5dd4f14570c50a10f95f46914a342c335e960613aad217a6886ea780b24",
+          "patchedSha256": "147977a39a4b152217538feb8138f6e349687e7b00d183d6024a9e1bfb6358bb"
+        }
+      ]
+    }
+  ],
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "5c5d4037d9c3f8c3f411a36b8221e33214cffa734a24b6afc637bcd6951d8abf",
+      "kind": "Original primitive player/ground gameplay crop on original flat sky color",
+      "source": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/basic-asm-three/evidence/ban08-03-airborne-canvas.png"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "2ee26b0e7a35251a3c1c2e8e35f976937a1250f3e91685b53a14edf26ad3fb46",
+      "kind": "Unmodified actual normal touch primitive Dino gameplay canvas"
+    }
+  ],
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/basic-asm-three/evidence/ban08-03-airborne-canvas.png",
+    "captureSha256": "2ee26b0e7a35251a3c1c2e8e35f976937a1250f3e91685b53a14edf26ad3fb46",
+    "originalSourceArt": true
+  },
+  "controlsRationale": "Auto external panel leaves original800x600 primitive course visible. Named Play(S), Pause(P), Jump(Space) actions and ESC quickkey preserve original keyboard make/break logic; no repeat or invented held jump. Pointeroff because original game uses no mouse. Existing build.sources selects6realoriginalC units, excluding nonexistent unused Makefile mouse.c/sprite.c and separately compiled utils.c because game.c already includes originalutils.c. Original Makefile/source otherwise unchanged. Collision returns to originalmenu; score is originalstdout only, not invented on-screen UI. Unused default mousebuttons/joystick/dpad explicitly disabled, leaving only Play/Pause/Jump/ESC.",
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/dino-reviewed-native/results.json",
+      "apkSha256": "40886eb8045282b6586a93bb61d6d82b87e9c193a23339c81fc238966009b4df",
+      "demonstrated": "ROOT viewed current Android minimal Play/Pause/Jump controls, original menu and primitive course, player airborne with first orange obstacle behind it, subsequent live course and landing, authored Pause menu/Resume, and clean original Escape returning to the same native library.",
+      "limitations": [
+        "Long survival, original stdout score reporting and physical-phone performance are not demonstrated. Earlier normal timing trials jumped too early or after natural collision and are preserved without passing obstacle claims. Current successful ordinary touch sequence uses2350ms after Play; no guest state/timing/rules modification."
+      ]
+    }
+  }
+}

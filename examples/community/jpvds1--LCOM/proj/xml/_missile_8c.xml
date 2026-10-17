@@ -1,0 +1,853 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="_missile_8c" kind="file" language="C++">
+    <compoundname>Missile.c</compoundname>
+    <includes refid="_missile_8h" local="yes">Missile.h</includes>
+    <incdepgraph>
+      <node id="9">
+        <label>Drivers/GraphicCard.h</label>
+        <link refid="_graphic_card_8h"/>
+      </node>
+      <node id="15">
+        <label>Drivers/RTC.h</label>
+        <link refid="_r_t_c_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>i8042.h</label>
+        <link refid="i8042_8h"/>
+      </node>
+      <node id="13">
+        <label>i8254.h</label>
+        <link refid="i8254_8h"/>
+      </node>
+      <node id="10">
+        <label>Drivers/keyboard.h</label>
+        <link refid="keyboard_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Drivers/macros.h</label>
+        <link refid="macros_8h"/>
+      </node>
+      <node id="14">
+        <label>Drivers/mouse.h</label>
+        <link refid="mouse_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Drivers/timer.h</label>
+        <link refid="timer_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="90">
+        <label>Handlers.h</label>
+        <link refid="_handlers_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="88">
+        <label>Levels.h</label>
+        <link refid="_levels_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>Lists/AnimationList.h</label>
+        <link refid="_animation_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="86">
+        <label>Lists/EnemyList.h</label>
+        <link refid="_enemy_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>Lists/LaserList.h</label>
+        <link refid="_laser_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="89">
+        <label>Menu.h</label>
+        <link refid="_menu_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.c</label>
+        <link refid="_missile_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Missile.h</label>
+        <link refid="_missile_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Sprites/xpms.h</label>
+        <link refid="xpms_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>proj.h</label>
+        <link refid="proj_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>lcom/lcf.h</label>
+      </node>
+      <node id="16">
+        <label>minix/sysutil.h</label>
+      </node>
+      <node id="8">
+        <label>stdbool.h</label>
+      </node>
+      <node id="7">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>stdio.h</label>
+      </node>
+      <node id="5">
+        <label>stdlib.h</label>
+      </node>
+      <node id="46">
+        <label>xpms/Menu/Alien_attacks_logo.xpm</label>
+      </node>
+      <node id="47">
+        <label>xpms/Menu/endless.xpm</label>
+      </node>
+      <node id="48">
+        <label>xpms/Menu/endless_selected.xpm</label>
+      </node>
+      <node id="49">
+        <label>xpms/Menu/exit.xpm</label>
+      </node>
+      <node id="50">
+        <label>xpms/Menu/exit_selected.xpm</label>
+      </node>
+      <node id="55">
+        <label>xpms/Menu/inside_instructions.xpm</label>
+      </node>
+      <node id="51">
+        <label>xpms/Menu/instructions.xpm</label>
+      </node>
+      <node id="52">
+        <label>xpms/Menu/instructions_selected.xpm</label>
+      </node>
+      <node id="53">
+        <label>xpms/Menu/levels.xpm</label>
+      </node>
+      <node id="54">
+        <label>xpms/Menu/levels_selected.xpm</label>
+      </node>
+      <node id="56">
+        <label>xpms/Menu/menu.xpm</label>
+      </node>
+      <node id="57">
+        <label>xpms/Menu/menu_selected.xpm</label>
+      </node>
+      <node id="43">
+        <label>xpms/Numbers/eight.xpm</label>
+      </node>
+      <node id="40">
+        <label>xpms/Numbers/five.xpm</label>
+      </node>
+      <node id="39">
+        <label>xpms/Numbers/four.xpm</label>
+      </node>
+      <node id="44">
+        <label>xpms/Numbers/nine.xpm</label>
+      </node>
+      <node id="36">
+        <label>xpms/Numbers/one.xpm</label>
+      </node>
+      <node id="42">
+        <label>xpms/Numbers/seven.xpm</label>
+      </node>
+      <node id="41">
+        <label>xpms/Numbers/six.xpm</label>
+      </node>
+      <node id="38">
+        <label>xpms/Numbers/three.xpm</label>
+      </node>
+      <node id="37">
+        <label>xpms/Numbers/two.xpm</label>
+      </node>
+      <node id="35">
+        <label>xpms/Numbers/zero.xpm</label>
+      </node>
+      <node id="30">
+        <label>xpms/bullet_enemy/bullet_enemy1.xpm</label>
+      </node>
+      <node id="31">
+        <label>xpms/bullet_enemy/bullet_enemy2.xpm</label>
+      </node>
+      <node id="32">
+        <label>xpms/bullet_enemy/bullet_enemy3.xpm</label>
+      </node>
+      <node id="58">
+        <label>xpms/chars/back_slash.xpm</label>
+      </node>
+      <node id="59">
+        <label>xpms/chars/hifen.xpm</label>
+      </node>
+      <node id="27">
+        <label>xpms/enemy/enemy1.xpm</label>
+      </node>
+      <node id="28">
+        <label>xpms/enemy/enemy2.xpm</label>
+      </node>
+      <node id="29">
+        <label>xpms/enemy/enemy3.xpm</label>
+      </node>
+      <node id="20">
+        <label>xpms/explosion/e1.xpm</label>
+      </node>
+      <node id="21">
+        <label>xpms/explosion/e2.xpm</label>
+      </node>
+      <node id="22">
+        <label>xpms/explosion/e3.xpm</label>
+      </node>
+      <node id="23">
+        <label>xpms/explosion/e4.xpm</label>
+      </node>
+      <node id="24">
+        <label>xpms/explosion/e5.xpm</label>
+      </node>
+      <node id="25">
+        <label>xpms/explosion/e6.xpm</label>
+      </node>
+      <node id="26">
+        <label>xpms/explosion/e7.xpm</label>
+      </node>
+      <node id="33">
+        <label>xpms/life/sem_vida.xpm</label>
+      </node>
+      <node id="34">
+        <label>xpms/life/vida.xpm</label>
+      </node>
+      <node id="60">
+        <label>xpms/missil/missil1.xpm</label>
+      </node>
+      <node id="69">
+        <label>xpms/missil/missil10.xpm</label>
+      </node>
+      <node id="70">
+        <label>xpms/missil/missil11.xpm</label>
+      </node>
+      <node id="71">
+        <label>xpms/missil/missil12.xpm</label>
+      </node>
+      <node id="72">
+        <label>xpms/missil/missil13.xpm</label>
+      </node>
+      <node id="73">
+        <label>xpms/missil/missil14.xpm</label>
+      </node>
+      <node id="74">
+        <label>xpms/missil/missil15.xpm</label>
+      </node>
+      <node id="75">
+        <label>xpms/missil/missil16.xpm</label>
+      </node>
+      <node id="76">
+        <label>xpms/missil/missil17.xpm</label>
+      </node>
+      <node id="77">
+        <label>xpms/missil/missil18.xpm</label>
+      </node>
+      <node id="78">
+        <label>xpms/missil/missil19.xpm</label>
+      </node>
+      <node id="61">
+        <label>xpms/missil/missil2.xpm</label>
+      </node>
+      <node id="79">
+        <label>xpms/missil/missil20.xpm</label>
+      </node>
+      <node id="80">
+        <label>xpms/missil/missil21.xpm</label>
+      </node>
+      <node id="81">
+        <label>xpms/missil/missil22.xpm</label>
+      </node>
+      <node id="82">
+        <label>xpms/missil/missil23.xpm</label>
+      </node>
+      <node id="83">
+        <label>xpms/missil/missil24.xpm</label>
+      </node>
+      <node id="62">
+        <label>xpms/missil/missil3.xpm</label>
+      </node>
+      <node id="63">
+        <label>xpms/missil/missil4.xpm</label>
+      </node>
+      <node id="64">
+        <label>xpms/missil/missil5.xpm</label>
+      </node>
+      <node id="65">
+        <label>xpms/missil/missil6.xpm</label>
+      </node>
+      <node id="66">
+        <label>xpms/missil/missil7.xpm</label>
+      </node>
+      <node id="67">
+        <label>xpms/missil/missil8.xpm</label>
+      </node>
+      <node id="68">
+        <label>xpms/missil/missil9.xpm</label>
+      </node>
+      <node id="84">
+        <label>xpms/missil/nuke.xpm</label>
+      </node>
+      <node id="45">
+        <label>xpms/mouse_cursor.xpm</label>
+      </node>
+      <node id="19">
+        <label>xpms/others/nave.xpm</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_missile" kindref="compound">Missile</ref></type>
+        <definition>struct Missile missile</definition>
+        <argsstring></argsstring>
+        <name>missile</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" line="3" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> *</type>
+        <definition>struct EnemyNode* el_q</definition>
+        <argsstring></argsstring>
+        <name>el_q</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" line="4" column="16" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_missile_8c_1a979566d876e6419b445cbfedf6892b5c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void startup_missile</definition>
+        <argsstring>()</argsstring>
+        <name>startup_missile</name>
+        <briefdescription>
+<para>sets default values for missile variables </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" line="6" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" bodystart="6" bodyend="14"/>
+      </memberdef>
+      <memberdef kind="function" id="_missile_8c_1a5b5a854d59acfaad2e1078576f750fcd" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void shoot_missile</definition>
+        <argsstring>()</argsstring>
+        <name>shoot_missile</name>
+        <briefdescription>
+<para>changes missile variables to indicates that it is being shot </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" line="16" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" bodystart="16" bodyend="28"/>
+      </memberdef>
+      <memberdef kind="function" id="_missile_8c_1a856eda9f283058408619fc01647d2966" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void increment_missile</definition>
+        <argsstring>()</argsstring>
+        <name>increment_missile</name>
+        <briefdescription>
+<para>decreases time until missile is available </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" line="30" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" bodystart="30" bodyend="36"/>
+      </memberdef>
+      <memberdef kind="function" id="_missile_8c_1ad9ccdd6041d8cc17f587a1aecd2ada9b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int draw_missile</definition>
+        <argsstring>(uint16_t frame)</argsstring>
+        <name>draw_missile</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>frame</declname>
+        </param>
+        <briefdescription>
+<para>draw missile on a selected frame </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>frame</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>selected frame of missile animation to draw </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" line="38" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" bodystart="38" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="_missile_8c_1a64b076d66f802c908912644971502f68" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool missile_ready</definition>
+        <argsstring>()</argsstring>
+        <name>missile_ready</name>
+        <briefdescription>
+<para>informs if the missile is ready to be shot </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true if the missile is ready to be shot </para>
+</simplesect>
+<simplesect kind="return"><para>false if the missile is not ready to be shot </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" line="121" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" bodystart="121" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="_missile_8c_1abc344be1b88d294708dc361757f1b8d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int handle_missile</definition>
+        <argsstring>()</argsstring>
+        <name>handle_missile</name>
+        <briefdescription>
+<para>Handles missile animation and collision. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" line="126" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c" bodystart="126" bodyend="165"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_missile_8h" kindref="compound">Missile.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_missile" kindref="compound">Missile</ref><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>;</highlight></codeline>
+<codeline lineno="4" refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*<ref refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" kindref="member">el_q</ref>;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="_missile_8c_1a979566d876e6419b445cbfedf6892b5c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_missile_8c_1a979566d876e6419b445cbfedf6892b5c" kindref="member">startup_missile</ref>()</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9baff02d070a9d4d3668bc4cd07cf208" kindref="member">shot</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a734c9a49ddec8539cf267254f0242dd8" kindref="member">time</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a6e50d8487e5b9c020300e8b998949733" kindref="member">frame_time</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a59bd0e5bfa26022a9ee51d04175e6ff1" kindref="member">frame</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="_missile_8c_1a5b5a854d59acfaad2e1078576f750fcd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_missile_8c_1a5b5a854d59acfaad2e1078576f750fcd" kindref="member">shoot_missile</ref>()</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a734c9a49ddec8539cf267254f0242dd8" kindref="member">time</ref><sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9baff02d070a9d4d3668bc4cd07cf208" kindref="member">shot</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>=<sp/><ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>=<sp/><ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a734c9a49ddec8539cf267254f0242dd8" kindref="member">time</ref><sp/>=<sp/>135;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a6e50d8487e5b9c020300e8b998949733" kindref="member">frame_time</ref><sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a59bd0e5bfa26022a9ee51d04175e6ff1" kindref="member">frame</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="_missile_8c_1a856eda9f283058408619fc01647d2966" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_missile_8c_1a856eda9f283058408619fc01647d2966" kindref="member">increment_missile</ref>()</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a734c9a49ddec8539cf267254f0242dd8" kindref="member">time</ref><sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a734c9a49ddec8539cf267254f0242dd8" kindref="member">time</ref>--;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="_missile_8c_1ad9ccdd6041d8cc17f587a1aecd2ada9b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_missile_8c_1ad9ccdd6041d8cc17f587a1aecd2ada9b" kindref="member">draw_missile</ref>(uint16_t<sp/>frame)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(frame)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a8a4b19509dd0a9fee0ec03928822b48c" kindref="member">missile1_sprite</ref>,<sp/><ref refid="xpms_8c_1a77006afb833a9e53f002db0a5cf46685" kindref="member">missile1_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a427bd18ecea1b3b6c26beba50417902e" kindref="member">missile2_sprite</ref>,<sp/><ref refid="xpms_8c_1a06e03f02d745ad79beddc4596b5ae5a8" kindref="member">missile2_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a2ef94bd183d3d6e68ad79a37adae6fe2" kindref="member">missile3_sprite</ref>,<sp/><ref refid="xpms_8c_1ad4139eb96fbfc02b04d55d016d9bfec1" kindref="member">missile3_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1aba845549360b3f220c66ca9ad974a08a" kindref="member">missile4_sprite</ref>,<sp/><ref refid="xpms_8c_1af0dc126de92912fbc60ffc7d66a5b211" kindref="member">missile4_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>4:</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a8658e19a5e03f071b18cb246e527ea11" kindref="member">missile5_sprite</ref>,<sp/><ref refid="xpms_8c_1a46d865a32cfb65804ea8e6a331277c9b" kindref="member">missile5_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>5:</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1afeb1439d2bbd28d1cf8beb895cbff3af" kindref="member">missile6_sprite</ref>,<sp/><ref refid="xpms_8c_1a41a5ee160897fb44d6c6990038e5b184" kindref="member">missile6_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>6:</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a710e99f9acefe1a317d0f9d632dd6fff" kindref="member">missile7_sprite</ref>,<sp/><ref refid="xpms_8c_1af1c371b9bc5574114ff0b0fce7d6982e" kindref="member">missile7_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>7:</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a3bd85e99093f1686d6e6f0fbe83d387c" kindref="member">missile8_sprite</ref>,<sp/><ref refid="xpms_8c_1a5b211caa0730d13fd12a382afad0fbcc" kindref="member">missile8_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>8:</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a7460ab256bf6efb58f3cad399eddca8a" kindref="member">missile9_sprite</ref>,<sp/><ref refid="xpms_8c_1acc90d84e3360bba6c73df6cc2cb64b23" kindref="member">missile9_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>9:</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a3dc9d98f58ae0d30ca62799641899ebf" kindref="member">missile10_sprite</ref>,<sp/><ref refid="xpms_8c_1a50f33af055da42cd1b35612d6f2e01e9" kindref="member">missile10_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>10:</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a095fa8a95025eae5734513a04dcbee50" kindref="member">missile11_sprite</ref>,<sp/><ref refid="xpms_8c_1a609fd7b54ec96ea933244be0baa07178" kindref="member">missile11_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>11:</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a2d3b76e221752aea348b347fc89111f7" kindref="member">missile12_sprite</ref>,<sp/><ref refid="xpms_8c_1a617d1713b87989dd90feba121071af40" kindref="member">missile12_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>12:</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a5fcb3035289f2e613dff68ef4a689a08" kindref="member">missile13_sprite</ref>,<sp/><ref refid="xpms_8c_1ab409f425bcb562678736a01593eeb59a" kindref="member">missile13_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>13:</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1afca9e783d96cbf6b75d343d72ed5251b" kindref="member">missile14_sprite</ref>,<sp/><ref refid="xpms_8c_1ac86b318f7f14f3b4ca392b01dee695af" kindref="member">missile14_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>14:</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a7911a9d55325b8967e4b5718f93b9aee" kindref="member">missile15_sprite</ref>,<sp/><ref refid="xpms_8c_1ada08a2cf54053bb24ef3fec86ed6084e" kindref="member">missile15_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>15:</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a6fcb239fc21728d3223b4a7a540dbb79" kindref="member">missile16_sprite</ref>,<sp/><ref refid="xpms_8c_1ab24d6a9b2248d713737392c0f92e5dbe" kindref="member">missile16_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>16:</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1abca72574508b38f99cc357e78f7d59ca" kindref="member">missile17_sprite</ref>,<sp/><ref refid="xpms_8c_1ae26f312648971df8521a9e150c47fa40" kindref="member">missile17_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>17:</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1ab77ec741371ff8840276db4a4bf1713a" kindref="member">missile18_sprite</ref>,<sp/><ref refid="xpms_8c_1ac1c7fcf2d6f3eb0e36fe859d3179046e" kindref="member">missile18_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>18:</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a8584403dfb79f37472572b3f4e764c08" kindref="member">missile19_sprite</ref>,<sp/><ref refid="xpms_8c_1a6c8d6c2e69f091b8683651313872f0c9" kindref="member">missile19_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>19:</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a49d26805692e9c47cec679edf628020a" kindref="member">missile20_sprite</ref>,<sp/><ref refid="xpms_8c_1a3361d7ae0922ce53cb493b4762b84196" kindref="member">missile20_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>20:</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a2c71393e05d55f0569d46aaca0174a73" kindref="member">missile21_sprite</ref>,<sp/><ref refid="xpms_8c_1a42da49406f6cc28469e0481e05f66486" kindref="member">missile21_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>21:</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a13b188b215ec6d242b3cd64a93d3c59d" kindref="member">missile22_sprite</ref>,<sp/><ref refid="xpms_8c_1a93c9ce0562bc71f05d52bd4b4797db68" kindref="member">missile22_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>22:</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1abc0ea0c0f4f004bd77d4a87f4b88093e" kindref="member">missile23_sprite</ref>,<sp/><ref refid="xpms_8c_1a76c49f673bd7754c6fc31aa0104e6356" kindref="member">missile23_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>23:</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a5e79ba53bc5455049b7f0769a23332c6" kindref="member">missile24_sprite</ref>,<sp/><ref refid="xpms_8c_1ac8adeea256d1e931f0b30d5c94f5cf6b" kindref="member">missile24_img</ref>,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref><sp/>-<sp/>40,<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>-<sp/>40))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121" refid="_missile_8c_1a64b076d66f802c908912644971502f68" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="_missile_8c_1a64b076d66f802c908912644971502f68" kindref="member">missile_ready</ref>()</highlight></codeline>
+<codeline lineno="122"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a734c9a49ddec8539cf267254f0242dd8" kindref="member">time</ref><sp/>==<sp/>0;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="_missile_8c_1abc344be1b88d294708dc361757f1b8d1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_missile_8c_1abc344be1b88d294708dc361757f1b8d1" kindref="member">handle_missile</ref>()</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!<ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9baff02d070a9d4d3668bc4cd07cf208" kindref="member">shot</ref>)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a6e50d8487e5b9c020300e8b998949733" kindref="member">frame_time</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a6e50d8487e5b9c020300e8b998949733" kindref="member">frame_time</ref><sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a59bd0e5bfa26022a9ee51d04175e6ff1" kindref="member">frame</ref>++;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a6e50d8487e5b9c020300e8b998949733" kindref="member">frame_time</ref>--;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a59bd0e5bfa26022a9ee51d04175e6ff1" kindref="member">frame</ref><sp/>==<sp/>24)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9baff02d070a9d4d3668bc4cd07cf208" kindref="member">shot</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_missile_8c_1ad9ccdd6041d8cc17f587a1aecd2ada9b" kindref="member">draw_missile</ref>(<ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a59bd0e5bfa26022a9ee51d04175e6ff1" kindref="member">frame</ref>))<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a59bd0e5bfa26022a9ee51d04175e6ff1" kindref="member">frame</ref><sp/>==<sp/>12<sp/>&amp;&amp;<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a6e50d8487e5b9c020300e8b998949733" kindref="member">frame_time</ref><sp/>==<sp/>3)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\n<sp/>keyframe<sp/>reached&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" kindref="member">el_q</ref><sp/>=<sp/><ref refid="_handlers_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref>;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(<ref refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" kindref="member">el_q</ref><sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\npassing<sp/>through<sp/>enemy&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((<ref refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" kindref="member">el_q</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>&gt;<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref>-100)<sp/>&amp;&amp;<sp/>(<ref refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" kindref="member">el_q</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>&lt;<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" kindref="member">x</ref>+40)<sp/>&amp;&amp;<sp/>(<ref refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" kindref="member">el_q</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref><sp/>&gt;<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref>-62)<sp/>&amp;&amp;<sp/>(<ref refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" kindref="member">el_q</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref><sp/>&lt;<sp/><ref refid="_missile_8c_1ae468daaf5d6686c9c1848427fd4daf83" kindref="member">missile</ref>.<ref refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" kindref="member">y</ref><sp/>+<sp/>40))</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\nenemy<sp/>hit&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_animation_list_8c_1a5cf01ce40d8114bec5d69626642d7c19" kindref="member">al_addNode</ref>(<ref refid="_animation_list_8c_1ae40ab958b1adc6bd8551fa2b5ae80b7f" kindref="member">al_getNewNode</ref>(<ref refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" kindref="member">el_q</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref>,<sp/><ref refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" kindref="member">el_q</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref>));</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1ae181a896008fc5cc34e25c2a68875589" kindref="member">el_removeNode</ref>(<ref refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" kindref="member">el_q</ref>);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1ab0f6ab469e4f27aed971a82e856945b8" kindref="member">score</ref><sp/>+=<sp/>20;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" kindref="member">el_q</ref><sp/>=<sp/><ref refid="_missile_8c_1a6a2cf6345c6d6b17d3ebcb535f8c984d" kindref="member">el_q</ref>-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.c"/>
+  </compounddef>
+</doxygen>

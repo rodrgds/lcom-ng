@@ -2,28 +2,25 @@
 #define LCOM_NG_MINIX_COMPAT_H
 
 #include <lcom/lcom.h>
+/* Minix userland driver headers do not import C99 boolean macros. Modern
+ * LCF does, while pre-LCF projects may own an integer bool typedef or local.
+ * Keep SDK field/argument ABI independent of those student declarations. */
+#ifndef LCOM_COMPAT_LEGACY
 #include <stdbool.h>
-#include <stdio.h>
-#include <lcom/paths.h>
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
-#include <limits.h>
-#include <unistd.h>
-#include <sys/types.h>
+#endif
+#ifdef __cplusplus
+typedef bool lcom_compat_bool_t;
+#else
+typedef _Bool lcom_compat_bool_t;
+#endif
+#include <lcom/libc.h>
 #include <sys/mman.h>
 
-/* The Minix umbrella exposes time helpers, but does not reserve the name
- * clock used by older student graphics modules. Programs needing struct tm
- * members should include <time.h>, as with ordinary host C code. */
-struct tm;
-time_t time(time_t *result);
-char *ctime(const time_t *timer);
-struct tm *localtime(const time_t *timer);
-struct tm *gmtime(const time_t *timer);
-double difftime(time_t end, time_t beginning);
-time_t mktime(struct tm *date);
-size_t strftime(char *buffer, size_t size, const char *format, const struct tm *date);
+/* Minix sys/types.h exposes this signed coordinate type through
+ * machine/int_types.h. Emscripten's libc omits the internal spelling. */
+#ifdef __EMSCRIPTEN__
+typedef int16_t __int16_t;
+#endif
 
 /* Minix 3.4.0 endpoint and notification ABI used by the FEUP image. */
 #define MAX_NR_TASKS 1023
@@ -86,6 +83,9 @@ size_t strftime(char *buffer, size_t size, const char *format, const struct tm *
 #define KBD_AUX_IRQ 12
 #endif
 
+#ifndef CLOCK_IRQ
+#define CLOCK_IRQ 0
+#endif
 #ifndef KEYBOARD_IRQ
 #define KEYBOARD_IRQ 1
 #endif
@@ -100,7 +100,8 @@ typedef int8_t i8_t;
 typedef int16_t i16_t;
 typedef int32_t i32_t;
 typedef int64_t i64_t;
-typedef uintptr_t phys_bytes;
+/* Guest physical addresses are 32-bit, including serialized VBE pointers. */
+typedef uint32_t phys_bytes;
 typedef uintptr_t vir_bytes;
 typedef int endpoint_t;
 typedef uint16_t port_t;
@@ -108,7 +109,18 @@ typedef struct { int m_source; int m_type; struct { uint32_t interrupts; } m_not
 /* Older Minix handouts name the same notification mask NOTIFY_ARG. */
 #define NOTIFY_ARG m_notify.interrupts
 struct minix_mem_range { phys_bytes mr_base, mr_limit; };
-typedef struct { phys_bytes phys; union { void *virt; void *virtual; }; size_t size; } mmap_t;
+#ifndef LCOM_COMPAT_LEGACY
+typedef struct {
+  phys_bytes phys;
+  union {
+    void *virt;
+#ifndef __cplusplus
+    void *virtual;
+#endif
+  };
+  size_t size;
+} mmap_t;
+#endif
 
 /* The BIOS register aliases overlap, as they do in the Minix interface. */
 typedef struct reg86 {
@@ -124,6 +136,10 @@ typedef struct reg86 {
   union { uint32_t ebp; struct { uint16_t bp, _bp_hi; }; };
 } reg86_t;
 
+/* Both register ABI generations occur in LCF-era project drivers. */
+#include <lcom/reg86.h>
+
+#ifndef LCOM_COMPAT_LEGACY
 #pragma pack(push, 1)
 typedef struct {
   uint16_t ModeAttributes;
@@ -160,19 +176,29 @@ int vg_display_vbe_contr_info(struct vg_vbe_contr_info *info);
 
 struct packet {
   uint8_t bytes[3];
-  bool rb, mb, lb;
+  lcom_compat_bool_t rb, mb, lb;
   int16_t delta_x, delta_y;
-  bool x_ov, y_ov;
+  lcom_compat_bool_t x_ov, y_ov;
 };
 enum mouse_ev_t { LB_PRESSED, LB_RELEASED, RB_PRESSED, RB_RELEASED, BUTTON_EV, MOUSE_MOV };
 struct mouse_ev { enum mouse_ev_t type; int16_t delta_x, delta_y; };
-enum timer_status_field { tsf_all, tsf_initial, tsf_mode, tsf_base };
+#ifndef __TIMER_H
+enum timer_status_field {
+  tsf_all, tsf_initial, tsf_mode, tsf_base
+#ifdef LCOM_COMPAT_TIMER_LEGACY_FIELDS
+  , all = tsf_all, initial = tsf_initial, mode = tsf_mode, base = tsf_base
+#endif
+};
 enum timer_init { INVAL_val, LSB_only, MSB_only, MSB_after_LSB };
-union timer_status_field_val { uint8_t byte; enum timer_init in_mode; uint8_t count_mode; bool bcd; };
+union timer_status_field_val { uint8_t byte; enum timer_init in_mode; uint8_t count_mode; lcom_compat_bool_t bcd; };
+#endif /* canonical timer header may already own these types */
+
+#endif /* modern LCF lab types */
 
 int lcom_compat_init(void);
 int sys_inb(int port, uint32_t *value);
 int lcom_compat_sys_inb_ulong(int port, unsigned long *value);
+int lcom_compat_sys_inb_long(int port, long *value);
 int sys_outb(int port, uint32_t value);
 int sys_irqsetpolicy(int irq, int policy, int *hook_id);
 int sys_irqrmpolicy(int *hook_id);
@@ -181,9 +207,11 @@ int sys_irqdisable(int *hook_id);
 int driver_receive(endpoint_t source, message *msg, int *status);
 int sys_privctl(endpoint_t endpoint, int request, void *arg);
 int sys_enable_iop(endpoint_t endpoint);
+int sys_whoami(endpoint_t *endpoint, char *name, int namelen, int *priv_flags);
 void *vm_map_phys(endpoint_t endpoint, void *phys, size_t len);
 int vm_unmap_phys(endpoint_t endpoint, void *ptr, size_t len);
 int sys_int86(reg86_t *regs);
+int sys_readbios(phys_bytes address, void *buffer, size_t size);
 unsigned int sys_hz(void);
 int tickdelay(clock_t ticks);
 int micro_delay(unsigned int micros);
@@ -191,9 +219,10 @@ uint8_t minix_get_dflt_kbc_cmd_byte(void);
 uint32_t micros_to_ticks(uint32_t micros);
 void sef_startup(void);
 void panic(const char *fmt, ...);
-void *lm_init(bool enable);
+#ifndef LCOM_COMPAT_LEGACY
+void *lm_init(lcom_compat_bool_t enable_logging);
 void *lm_alloc(size_t size, mmap_t *mapping);
-bool lm_free(const mmap_t *mapping);
+lcom_compat_bool_t lm_free(const mmap_t *mapping);
 int vbe_get_mode_info(uint16_t mode, vbe_mode_info_t *info);
 int vg_exit(void);
 void *vg_init(uint16_t mode);
@@ -204,28 +233,33 @@ int util_get_MSB(uint16_t value, uint8_t *msb);
 int util_sys_inb(int port, uint8_t *value);
 int timer_print_config(uint8_t timer, enum timer_status_field field, union timer_status_field_val value);
 uint32_t timer_print_elapsed_time(void);
-int kbd_print_scancode(bool make, uint8_t size, uint8_t *bytes);
+int kbd_print_scancode(lcom_compat_bool_t make, uint8_t size, uint8_t *bytes);
 int kbd_print_no_sysinb(uint32_t count);
 int mouse_print_packet(struct packet *packet);
 struct mouse_ev *mouse_detect_event(struct packet *packet);
-unsigned int lcom_compat_sleep(unsigned int seconds);
-int lcom_compat_usleep(unsigned int micros);
+#endif /* modern LCF lab functions */
 #ifndef LCOM_COMPAT_IMPLEMENTATION
 /* Minix's 32-bit unsigned long becomes 64-bit on current host machines.
  * Preserve the original value semantics without leaving stale upper bytes. */
 #ifndef __cplusplus
-#define sys_inb(port, value) _Generic((value), unsigned long *: lcom_compat_sys_inb_ulong, default: sys_inb)((port), (value))
+#define sys_int86(registers) _Generic((registers), struct reg86u *: lcom_compat_legacy_int86, default: sys_int86)(registers)
+#define sys_inb(port, value) _Generic((value), unsigned long *: lcom_compat_sys_inb_ulong, long *: lcom_compat_sys_inb_long, default: sys_inb)((port), (value))
 #endif
-#define sleep lcom_compat_sleep
-#define usleep lcom_compat_usleep
 #endif
-bool lcf_set_language(const char *language);
-bool lcf_trace_calls(const char *path);
-bool lcf_log_output(const char *path);
+#ifdef LCOM_COMPAT_LEGACY
+#include <lcom/legacy.h>
+#endif
+lcom_compat_bool_t lcf_set_language(const char *language);
+lcom_compat_bool_t lcf_trace_calls(const char *path);
+lcom_compat_bool_t lcf_log_output(const char *path);
 int lcf_start(int argc, char **argv);
 int lcf_start_fast(int argc, char **argv);
 int lcf_cleanup(void);
 int lcf_cleanup_fast(void);
+#ifdef LCOM_COMPAT_PROJECT_NO_ARGS
+int proj_main_loop(void);
+#else
 int proj_main_loop(int argc, char **argv);
+#endif
 
 #endif

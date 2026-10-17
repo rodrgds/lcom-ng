@@ -1,0 +1,11 @@
+--- a/proj/src/devices/mouse/mouse.c
++++ b/proj/src/devices/mouse/mouse.c
+@@ -57,7 +57,7 @@
+ 
+ int (mouse_write_input)(uint8_t mouse_command){
+     uint8_t attemps = 10;
+-    uint8_t mouse_answer;
++    uint8_t mouse_answer = 0;
+ 
+     while(attemps && mouse_answer != 0xFA){
+         if(write_KBC_INPUT(0x64, 0xD4) != 0) return 1;

@@ -1,0 +1,5 @@
+need to create mouse event listener
+graphics buffer
+add graphics logic
+add logica de jogo
+ 

@@ -1,0 +1,23 @@
+{
+  "env": {
+    "minix.include": "${workspaceFolder}/../../.minix-src/include"
+  },
+  "configurations": [{
+    "name": "Minix",
+    "compilerPath": "",
+    "cStandard": "c11",
+    "defines": ["__minix", "_MINIX", "_NETBSD_SOURCE", "__i386__"],
+    "includePath": ["${workspaceFolder}/game_core",
+        "${workspaceFolder}/graphics",
+        "${workspaceFolder}/input_devices",
+        "${workspaceFolder}/sprites",
+        "${workspaceFolder}/leaderboard"],
+    "browse": {
+      "path": ["${workspaceFolder}", "${env:minix.include}"],
+      "limitSymbolsToIncludedHeaders": false,
+      "databaseFilename": ""
+    }
+  }],
+  "version": 4
+}
+

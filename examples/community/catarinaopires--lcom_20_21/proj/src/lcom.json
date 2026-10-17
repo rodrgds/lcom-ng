@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "name": "HumanoId",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [],
+      "layout": "overlay",
+      "pointer": "move",
+      "touch": "move",
+      "dpad": {
+        "side": "left",
+        "axes": "horizontal"
+      },
+      "actions": [
+        {
+          "label": "P",
+          "key": "P",
+          "position": "bottom-right"
+        },
+        {
+          "label": "M",
+          "key": "M",
+          "position": "bottom-right"
+        },
+        {
+          "label": "J",
+          "key": "J",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Stop timer",
+          "mouseButton": "middle",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Finish drawing",
+          "mouseButton": "right",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Exit",
+          "key": "ESC",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  },
+  "description": "Prove you are human with the original reaction, drawing, key-chord and timing challenges. Move the cursor by dragging, then use Select.",
+  "preview": "../../../../../collections/arcade/previews/catarinaopires-lcom-20-21-05e58c9827c1.png",
+  "icon": "icon.png"
+}

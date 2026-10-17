@@ -1,0 +1,172 @@
+{
+  "repository": "https://github.com/diogotvf7/feup-lcom-project",
+  "revision": "608ee5178a278fe05ce231c794f792167d5925b2",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "1f71a3338d66cfee702dc86437201c77090436e23554e3950cef1092448894a5",
+    "proj/.vscode/settings.json": "7284338fae4cd521fd29ee56a938e443c3b88bd0ec183bd50c7073e02f98b142",
+    "proj/README.md": "56d92faf0bb214e8eded7c40ff4b33eb483714b7df05ea0dd134c7dd58689d3c",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.gitignore": "e02d4a10971f4188f359218f46bcfbb2350ddf62b2794c2dd6c39b71b63b18ab",
+    "proj/src/.vscode/c_cpp_properties.json": "8cf2f2070cb2ab30e2d524f761efffaaa86a661ace739ce2d6c8f7a7de8d0669",
+    "proj/src/.vscode/settings.json": "96b241acd5412d9b124dec267c1d0a1a6daf6d3973b01a2090a8d41d9c941def",
+    "proj/src/Doxyfile": "f2e97cd973ea2b8b2cc0eab2371571082e01ee051206605f44421d4c74c032f2",
+    "proj/src/Makefile": "d2bdb42e68bf8ee50901036c6751f281a63e7c3bce554013e27e4e14fe5887b2",
+    "proj/src/controller/graphics_card/VBE.h": "0bd0c202f2b7fc4cc9ce7309e5f72e3b409265b1706632e2be2bdd78a943ffab",
+    "proj/src/controller/graphics_card/graphics_card.c": "d8d214095d303d3a67b42512f1dfae5a11c3b00a454f994e55009eea550cbd26",
+    "proj/src/controller/graphics_card/graphics_card.h": "a9c36c47068c88e442deba164c1fdd67b99c1dcf6ad685ee8e49a237dd11e3b9",
+    "proj/src/controller/keyboard/i8042.h": "13ab39f785ff67bd21d9e67e3ed9715f830d9b401663f4987d2ebd26594a781d",
+    "proj/src/controller/keyboard/keyboard.c": "8b33f3a8fb8b1213d7e2258ed42cf9744ea73d26b4bd69c8d67142bcd93ca462",
+    "proj/src/controller/keyboard/keyboard.h": "b665a0069f30c8e36f83992ad59f868b02ea6fca8366f03e5ee93d74d3572abd",
+    "proj/src/controller/mouse/i8042.h": "485ca1ef4bb9f5f81a0ebf3b264abc763960b2de58f6e50a68c5cc55349a07d3",
+    "proj/src/controller/mouse/kbc.c": "67ba24383b22d5607ebfa10f6878a01c3c84c41206f864dab3a722b5d56e8909",
+    "proj/src/controller/mouse/kbc.h": "d6d072d0f8792b7a09d9add735fdc54c409d4cab0b3eb7b76c25a15a5a25bf2b",
+    "proj/src/controller/mouse/mouse.c": "3507e5a4061d0b605ef35b50ade65ea7f9999c58b79a6008f7af1d4ec1f94cf2",
+    "proj/src/controller/mouse/mouse.h": "67cdab9fb0a713221f56914731efa83258ed14416f6e8dee7ff83f72f60bc7c4",
+    "proj/src/controller/rtc/rtc.c": "66ff47bd4f8c101cbf0fc45447955d554edef3b1e2fac8c5ef680a1825965cd0",
+    "proj/src/controller/rtc/rtc.h": "1870d780f323b49d554da11010d2d92ccb911ab1190f9d128e0dc6c0f469b6f2",
+    "proj/src/controller/timer/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/controller/timer/i8254.h": "36bdef82445dc7588f66107c229b605578c9d36100c7a5f1d9cea08a123a5686",
+    "proj/src/controller/timer/timer.c": "f5dfa3991cfbcf7a05470c0bfa02d03350cf060e965fc3cea4bbb62f0c790afc",
+    "proj/src/controller/timer/timer.h": "6787cfa62bf01da6e4c74bf7c4caf0f366d3caa57a411e4b332a4f1e68dd7657",
+    "proj/src/controller/uart/SER.h": "7f67f6e4a9317ab2d031569ef58861778b79193370e797ec2bfdeb1144cea233",
+    "proj/src/controller/uart/ser_port.c": "35080b4ac58435290e2576fe1c3a6db39b0b743fd7c9a9b16d3b438700290246",
+    "proj/src/controller/uart/ser_port.h": "21bc77a01f1c2f20b0ed204a7ceca295e6132f0748d6089168d3ed0427f58054",
+    "proj/src/controller/utils.c": "4198926ea93c534fbce72356bccc5bea9136ba0d296402927293567bedd64541",
+    "proj/src/controller/utils.h": "2ddac5f75b5ac2cc41fcb0a090b545bc61c7a05eb5a242b64072a06b785f0684",
+    "proj/src/global_vars.h": "c51c71cc53b3cd50a9d6b4ee04b6a61832c00e1bb7fbdbd690ba1a6b7f39774a",
+    "proj/src/model/base_frame.c": "120a6dad5a8835470a0980effcd92ba0421a532de0fd629c05e14e0f2204f060",
+    "proj/src/model/base_frame.h": "0c7daa72888ba9ce2444a0888c5daa0aedf41f930235dfee628ba007cf64c702",
+    "proj/src/model/colors.h": "76a0e04469f80cc7b326bc26104cf969a2316c7b5a425281085945387b7ca1ee",
+    "proj/src/model/leaderboard.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/model/model.c": "c1dfc9b1acf405704c8e739b32d3fca95c1ad5aa38a910df6b9e2c982e28579e",
+    "proj/src/model/model.h": "e86463ae3a31ec9f178433f367a300fec42cfb30af024173c2610c7e11636ff4",
+    "proj/src/model/queue.c": "630ab95f7f577f9c45112082d4e668b423273ce280685cc306172bdfa9858a97",
+    "proj/src/model/queue.h": "aa605666f8225f88070a392c7195970ca12f777e82cddaf5d2961ddc01cdc17c",
+    "proj/src/model/sprite.c": "7c330f43154ebb6e5ea36e8e6cd249586051dcf397e5594d3c4dc8d0496053be",
+    "proj/src/model/sprite.h": "5130aafcd9ee48eaee5e067bfa72838a3ec266b0d88dc1e2f046909c4dfee236",
+    "proj/src/model/tempCodeRunnerFile.c": "66b639e89208ff5abb379cb12c31412196658da117b0de7e39002246b4cce5d5",
+    "proj/src/model/test.txt": "d1efedf043d64b5277fcdf13ff6f04a3f4faeb5dc517bb35e72615e68b0a3e8f",
+    "proj/src/model/topBarGameMode.xpm": "47aa13ba1da81883b411a01a392cd44fe6baa13993436d0190107bd3d2107685",
+    "proj/src/model/xpm/Defeat.xpm": "8eb49b6f5448a8357a4b3888b82a5071cfd7370c9ff5fa96adb7c6c0196b293f",
+    "proj/src/model/xpm/Leaderboard.xpm": "eb2ddcc2cfc6dfca710fa7e01e04ba57fbbbabc708f9329900f7b62d31ba2de6",
+    "proj/src/model/xpm/Play_Again.xpm": "d95966cf1d288f574baa390cffc280e41522a28ff140e32a464d8d475695f7c9",
+    "proj/src/model/xpm/Quit.xpm": "cc50bb16fc10805ed984a4eb1ec0ba7e75113e300d29907fa413f92280db491b",
+    "proj/src/model/xpm/Victory.xpm": "7956c237863c60ee125dd4521c8dc89b49f8d07c7b0c6eeeb0511e374bc107b6",
+    "proj/src/model/xpm/coopDrawButton.xpm": "5a5ba6108cc3518f3f0c6228c5fd2da3be9afafdda523f74e632c45b79ee9ccb",
+    "proj/src/model/xpm/coopGuessButton.xpm": "a2735071bfe2b4cda91e3478a56456e4cfb4f792c7ea082cc0ec1d61bc1054c8",
+    "proj/src/model/xpm/dealer.xpm": "4323a26ea719b9c32b9e7e0d8ecddbd73292d06c3faa433faf15601163ab7f47",
+    "proj/src/model/xpm/font.xpm": "da8ac05b9d7337504caf9168d6f828054e7e123efef3b99c81da555c68a5b67d",
+    "proj/src/model/xpm/leaderboardButtonInitialPage.xpm": "59409d7b602d868f941593d23ab63689b292e603d0a971c338cf5745d615f205",
+    "proj/src/model/xpm/leaderboardTable.xpm": "bd24ccd30315f79509ec8767050f5a266bdcbff3d8dd00e55648c5ac27d3ab6f",
+    "proj/src/model/xpm/letters.xpm": "267c17155263235e8a0ee4cd6ce5fb9b9ed9f7c359f649cab3224d4e3249312f",
+    "proj/src/model/xpm/logo.xpm": "bf8d3e1f1b09f647733492fb550ce5b08f40dd78cd1a311cee0bfa71d65890af",
+    "proj/src/model/xpm/mouse.xpm": "d61f1ebe26b68f8c031acd56e8fa3708960d0dda09db309564f842051ef8719d",
+    "proj/src/model/xpm/numbers.xpm": "504c0a58867c40512a947752c666ebb02c1858715e9dbd14a48cf69fab31f978",
+    "proj/src/model/xpm/quitButton.xpm": "0ece6f598d36c62cc7c867f69f2539da080b15415013bfe7c4b50e1a971c4ed9",
+    "proj/src/model/xpm/startButton.xpm": "ffa4945c182c00b5695a3244c2180c557139386a17d18ae7fd95ce5b12c807b1",
+    "proj/src/model/xpm/topBarGameMode.xpm": "34ddd1c7d09ecf52abcf5b6d1e78c1e316206d1d12a60c00fe064e3b4262f495",
+    "proj/src/proj.c": "0f4ea28da7c233e3a4b35d399fa1c1cadd4ed5805199d7b6a6eb0c8c84ca1a4f",
+    "proj/src/view/view.c": "87235c56ad8d925bc3d65c63d0f77cdb6800cd054dbf711c1e3f158a76355ef1",
+    "proj/src/view/view.h": "a75b37c2f325ae6ef521f3633a00338ae6151754fc42d599d1f043c12d694f90"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "reason": "Map two original framebuffer pages using scanline byte size instead of pixel bit count.",
+          "originalSha256": "d8d214095d303d3a67b42512f1dfae5a11c3b00a454f994e55009eea550cbd26",
+          "patchedSha256": "11c71856b90bce7dac2d997e5c38959b95f006b942e0565fa7a827cffc4d7f11",
+          "regression": "build/arcade-100/a/batch9-source-tests.py",
+          "red": "build/arcade-100/a/batch9-source-red.log",
+          "green": "build/arcade-100/a/batch9-source-green.log",
+          "file": "proj/src/controller/graphics_card/graphics_card.c"
+        },
+        {
+          "file": "proj/src/model/model.c",
+          "reason": "Read the selected dictionary line even for random index zero, which previously passed uninitialized bytes to strlen/letter conversion. Include all50 original prompts in selection, including final index49.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch9-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/sketch-prompt-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch9-source-green9.log"
+          },
+          "originalSha256": "c1dfc9b1acf405704c8e739b32d3fca95c1ad5aa38a910df6b9e2c982e28579e",
+          "patchedSha256": "f608c6ac6cb65b37fed44dc8bbcd4adbcf2e83b5d2c0f3efb3c9440b8ed19dcf"
+        },
+        {
+          "file": "proj/src/controller/mouse/mouse.c",
+          "reason": "Initialize ACK state before first loop test. Original indeterminate uint8_t permits optimizer unreachable at startup or skips disable after an enable call, before any command has been sent.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch9-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/sketch-reporting-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch9-source-green10.log"
+          },
+          "originalSha256": "3507e5a4061d0b605ef35b50ade65ea7f9999c58b79a6008f7af1d4ec1f94cf2",
+          "patchedSha256": "e8b156e585433a5282ab0139b64b02eb038dbe256a1e3fb196cfdf22c4242891"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/model/xpm/topBarGameMode.xpm",
+    "array": null,
+    "crop": [
+      790,
+      15,
+      870,
+      105
+    ]
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "965ffe7ef9a356e287b0e729b4e10351b6d30cf89c86913c79f5d72c5cd773f6",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "6540c22f5e8f16db0d27ca7b2bd7905a9033f0780612532b6035d01cf9e0bcb3",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "controlsRationale": "2 starts the original solo recall round,1 returns to menu,4 opens scores,0 quits. Relative pointer with held Select paints; native keyboard enters the recalled prompt and ENTER confirms. Panel preserves palette toolbar and bottom text.",
+  "verification": {
+    "browserBuild": true,
+    "optimization": "normal exporter O2, no diagnostic compiler override",
+    "mobileTouchGameplay": true,
+    "checkpoint": "Normal optimized O2 build: visible ELEPHANT prompt read from rendered pixels; ordinary held mouse action plus touch motion paints a red stroke. After original recall delay, on-screen keyboard types the observed prompt and ENTER yields original VICTORY.",
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence/diogotvf7--feup-lcom-project",
+    "log": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/sketch-full-gameplay.log",
+    "limits": [
+      "Optional paired UART draw/guess modes are unavailable in standalone collection; later prompts and round exhaustion not exhaustive."
+    ],
+    "androidGameplay": "passed: representative actual ARM64 Android emulator objectives; see nativeGameplay proof and limitations.",
+    "strictNativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/diogotvf7--feup-lcom-project.native9-strict.log",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "140a8d855a8ec9c7c764194da021e793b018ff0a5474a25c18937d93f3032e8c",
+      "evidence": "build/arcade-100/a40-native-gameplay2/results.json",
+      "demonstrated": [
+        "Read the original rendered prompt before its authored five-second hiding delay.",
+        "Original red stroke is visible after actual two-finger Draw plus pointer movement.",
+        "Actual native keyboard is open",
+        "Actual native keyboard is closed",
+        "Original VICTORY and green recalled prompt appear."
+      ]
+    }
+  }
+}

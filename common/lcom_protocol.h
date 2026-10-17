@@ -2,6 +2,8 @@
 #define MACHINE_LAB_PROTOCOL_H
 
 #include <stdint.h>
+#include <lcom/vbe_modes.h>
+#include <lcom/memory_map.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -10,7 +12,7 @@ extern "C" {
 #define LCOM_PROTOCOL_VERSION 1u
 #define LCOM_MAX_PAYLOAD 4096u
 #define LCOM_MAX_SHM_NAME 128u
-#define LCOM_VRAM_BYTES (16u * 1024u * 1024u)
+#define LCOM_VRAM_BYTES (LCOM_VBE_VRAM_BYTES + LCOM_VGA_TEXT_BYTES)
 
 typedef enum {
   LCOM_MSG_HELLO = 1,
@@ -35,6 +37,10 @@ typedef enum {
   LCOM_MSG_VBE_SET_MODE = 52,
   LCOM_MSG_VBE_PRESENT = 53,
   LCOM_MSG_VBE_SET_DISPLAY_START = 54,
+  LCOM_MSG_VBE_SCANLINE = 55,
+  LCOM_MSG_VBE_SCANLINE_REPLY = 56,
+  LCOM_MSG_VBE_DAC_FORMAT = 57,
+  LCOM_MSG_VBE_DAC_FORMAT_REPLY = 58,
   LCOM_MSG_AC97_GET_BUFFER = 60,
   LCOM_MSG_AC97_BUFFER_REPLY = 61,
   LCOM_MSG_CLIPBOARD_SET = 70,
@@ -67,6 +73,18 @@ typedef struct {
   int32_t status;
   char text[LCOM_MAX_PAYLOAD - sizeof(int32_t)];
 } lcom_clipboard_reply_t;
+
+typedef struct {
+  uint8_t operation;
+  uint8_t requested;
+  uint8_t reserved[2];
+} lcom_vbe_dac_request_t;
+
+typedef struct {
+  int32_t status;
+  uint8_t width;
+  uint8_t reserved[3];
+} lcom_vbe_dac_reply_t;
 
 typedef struct {
   uint16_t port;
@@ -118,6 +136,20 @@ typedef struct {
   uint16_t x;
   uint16_t y;
 } lcom_vbe_display_start_t;
+
+typedef struct {
+  uint16_t value;
+  uint8_t operation;
+  uint8_t reserved;
+} lcom_vbe_scanline_request_t;
+
+typedef struct {
+  int32_t status;
+  uint16_t bytes;
+  uint16_t pixels;
+  uint16_t lines;
+  uint16_t reserved;
+} lcom_vbe_scanline_reply_t;
 
 typedef struct {
   uint64_t phys;

@@ -1,0 +1,418 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="i8254_8h" kind="file" language="C++">
+    <compoundname>i8254.h</compoundname>
+    <includedby refid="timer_8h" local="yes">C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.h</includedby>
+    <invincdepgraph>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h</label>
+        <link refid="i8254_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.c</label>
+        <link refid="timer_8c"/>
+      </node>
+      <node id="2">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/timer.h</label>
+        <link refid="timer_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c</label>
+        <link refid="_handlers_8c"/>
+      </node>
+      <node id="5">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h</label>
+        <link refid="_handlers_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="8">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.c</label>
+        <link refid="_levels_8c"/>
+      </node>
+      <node id="7">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.h</label>
+        <link refid="_levels_8h"/>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.c</label>
+        <link refid="_menu_8c"/>
+      </node>
+      <node id="9">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.h</label>
+        <link refid="_menu_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.c</label>
+        <link refid="_missile_8c"/>
+      </node>
+      <node id="11">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.h</label>
+        <link refid="_missile_8h"/>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="13">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/proj.c</label>
+        <link refid="proj_8c"/>
+      </node>
+      <node id="4">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/proj.h</label>
+        <link refid="proj_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__i8254_1gacf926951944b6cf370b7229ebd50dd8b" prot="public" static="no">
+        <name>TIMER_FREQ</name>
+        <initializer>1193182</initializer>
+        <briefdescription>
+<para>Clock frequency for timer in PC and AT. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="16" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga30bf84c312af248cb81bb224e09f9ba8" prot="public" static="no">
+        <name>TIMER0_IRQ</name>
+        <initializer>0</initializer>
+        <briefdescription>
+<para>Timer 0 IRQ line. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="20" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1gacc9ff9df4a9674a1ce9ba08fc4a4679e" prot="public" static="no">
+        <name>TIMER_0</name>
+        <initializer>0x40</initializer>
+        <briefdescription>
+<para>Timer 0 count register. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="24" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1gac62c99c2a9289891c1b83052242cca49" prot="public" static="no">
+        <name>TIMER_1</name>
+        <initializer>0x41</initializer>
+        <briefdescription>
+<para>Timer 1 count register. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="28" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga1f34f18ad0ab8cace46b615773b48735" prot="public" static="no">
+        <name>TIMER_2</name>
+        <initializer>0x42</initializer>
+        <briefdescription>
+<para>Timer 2 count register. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="32" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga282832448fb0281ef53d243c1cd48491" prot="public" static="no">
+        <name>TIMER_CTRL</name>
+        <initializer>0x43</initializer>
+        <briefdescription>
+<para>Control register. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="36" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga51b3a5e3d4811ca063fe25e35560ab40" prot="public" static="no">
+        <name>SPEAKER_CTRL</name>
+        <initializer>0x61</initializer>
+        <briefdescription>
+<para>Register for speaker control. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="40" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="40" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga6a4822642d40c248435692324a818010" prot="public" static="no">
+        <name>TIMER_SEL0</name>
+        <initializer>0x00</initializer>
+        <briefdescription>
+<para>Control Word for Timer 0. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Timer selection: bits 7 and 6. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="46" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="46" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga8349623fd8d99f9cc5d8ae29d78594fc" prot="public" static="no">
+        <name>TIMER_SEL1</name>
+        <initializer>BIT(6)</initializer>
+        <briefdescription>
+<para>Control Word for Timer 1. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Timer selection: bits 7 and 6. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="52" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga142a255de0dbc48aeabd45fc10c33672" prot="public" static="no">
+        <name>TIMER_SEL2</name>
+        <initializer>BIT(7)</initializer>
+        <briefdescription>
+<para>Control Word for Timer 2. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Timer selection: bits 7 and 6. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="58" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga4c2eecbfb96744a9c2af71dba75ecb18" prot="public" static="no">
+        <name>TIMER_RB_CMD</name>
+        <initializer>(BIT(7) | BIT(6))</initializer>
+        <briefdescription>
+<para>Read Back Command. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used in conjunction with TIMER_SEL0, TIMER_SEL1, or TIMER_SEL2. Register selection: bits 5 and 4. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="65" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1gac18cb814ebd0d67235392c330e0e3504" prot="public" static="no">
+        <name>TIMER_LSB</name>
+        <initializer>BIT(4)</initializer>
+        <briefdescription>
+<para>Initialize Counter LSB only. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Register selection: bits 5 and 4. Operating mode: bits 3, 2 and 1. Counting mode: bit 0. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="74" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga2a8a6d363c612d756cd8d78480f7cd04" prot="public" static="no">
+        <name>TIMER_MSB</name>
+        <initializer>BIT(5)</initializer>
+        <briefdescription>
+<para>Initialize Counter MSB only. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Register selection: bits 5 and 4. Operating mode: bits 3, 2 and 1. Counting mode: bit 0. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="83" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="83" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga8c0f1933323274c765e23837e4fbc8c7" prot="public" static="no">
+        <name>TIMER_LSB_MSB</name>
+        <initializer>(<ref refid="group__i8254_1gac18cb814ebd0d67235392c330e0e3504" kindref="member">TIMER_LSB</ref> | <ref refid="group__i8254_1ga2a8a6d363c612d756cd8d78480f7cd04" kindref="member">TIMER_MSB</ref>)</initializer>
+        <briefdescription>
+<para>Initialize LSB first and MSB afterwards. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Register selection: bits 5 and 4. Operating mode: bits 3, 2 and 1. Counting mode: bit 0. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="91" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="91" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga4745cbf21da3d3fea5dbb080b2b73bac" prot="public" static="no">
+        <name>TIMER_SQR_WAVE</name>
+        <initializer>(BIT(2) | BIT(1))</initializer>
+        <briefdescription>
+<para>Mode 3: square wave generator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Operating mode: bits 3, 2 and 1. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="97" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga5d4449e0fa1cf4a4d107a48a04a1265f" prot="public" static="no">
+        <name>TIMER_RATE_GEN</name>
+        <initializer>BIT(2)</initializer>
+        <briefdescription>
+<para>Mode 2: rate generator. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Operating mode: bits 3, 2 and 1. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="103" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="103" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga325b992a371d5d981c4eceff42fa5956" prot="public" static="no">
+        <name>TIMER_BCD</name>
+        <initializer>0x01</initializer>
+        <briefdescription>
+<para>Count in BCD. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Counting mode: bit 0. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="109" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="109" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1gad2913dcf2f91453317bd035589ac0a7d" prot="public" static="no">
+        <name>TIMER_BIN</name>
+        <initializer>0x00</initializer>
+        <briefdescription>
+<para>Count in binary. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Counting mode: bit 0. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="115" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="115" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga6c248216df24b5e9d907d126d80bd195" prot="public" static="no">
+        <name>TIMER_RB_COUNT_</name>
+        <initializer>BIT(5)</initializer>
+        <briefdescription>
+<para>Read Back Command for count. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used in conjunction with TIMER_SELx. Register selection: bits 5 and 4. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="123" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="123" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1ga08b4952bb7058684a3f8f66be04dd45e" prot="public" static="no">
+        <name>TIMER_RB_STATUS_</name>
+        <initializer>BIT(4)</initializer>
+        <briefdescription>
+<para>Read Back Command for status. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used in conjunction with TIMER_SELx. Register selection: bits 5 and 4. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="130" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="130" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8254_1gaf598b17740e07842a0545af512714711" prot="public" static="no">
+        <name>TIMER_RB_SEL</name>
+        <param><defname>n</defname></param>
+        <initializer>BIT((n) + 1)</initializer>
+        <briefdescription>
+<para>Read Back Command with select. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Used in conjunction with TIMER_RB_COUNT or TIMER_RB_STATUS. Parameter n: 0-2. Select timer to read. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" line="137" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h" bodystart="137" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Constants and macros for programming the i8254 Timer. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>LCOM_I8254_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>LCOM_I8254_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="group__i8254_1gacf926951944b6cf370b7229ebd50dd8b" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_FREQ<sp/>1193182</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="group__i8254_1ga30bf84c312af248cb81bb224e09f9ba8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER0_IRQ<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="group__i8254_1gacc9ff9df4a9674a1ce9ba08fc4a4679e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_0<sp/>0x40</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28" refid="group__i8254_1gac62c99c2a9289891c1b83052242cca49" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_1<sp/>0x41</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32" refid="group__i8254_1ga1f34f18ad0ab8cace46b615773b48735" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_2<sp/>0x42</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="group__i8254_1ga282832448fb0281ef53d243c1cd48491" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_CTRL<sp/>0x43</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="group__i8254_1ga51b3a5e3d4811ca063fe25e35560ab40" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>SPEAKER_CTRL<sp/>0x61</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46" refid="group__i8254_1ga6a4822642d40c248435692324a818010" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_SEL0<sp/>0x00</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="group__i8254_1ga8349623fd8d99f9cc5d8ae29d78594fc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_SEL1<sp/>BIT(6)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58" refid="group__i8254_1ga142a255de0dbc48aeabd45fc10c33672" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_SEL2<sp/>BIT(7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65" refid="group__i8254_1ga4c2eecbfb96744a9c2af71dba75ecb18" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_RB_CMD<sp/>(BIT(7)<sp/>|<sp/>BIT(6))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="group__i8254_1gac18cb814ebd0d67235392c330e0e3504" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_LSB<sp/>BIT(4)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="group__i8254_1ga2a8a6d363c612d756cd8d78480f7cd04" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_MSB<sp/>BIT(5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="group__i8254_1ga8c0f1933323274c765e23837e4fbc8c7" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_LSB_MSB<sp/>(TIMER_LSB<sp/>|<sp/>TIMER_MSB)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="group__i8254_1ga4745cbf21da3d3fea5dbb080b2b73bac" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_SQR_WAVE<sp/>(BIT(2)<sp/>|<sp/>BIT(1))</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103" refid="group__i8254_1ga5d4449e0fa1cf4a4d107a48a04a1265f" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_RATE_GEN<sp/>BIT(2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="group__i8254_1ga325b992a371d5d981c4eceff42fa5956" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_BCD<sp/>0x01</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115" refid="group__i8254_1gad2913dcf2f91453317bd035589ac0a7d" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_BIN<sp/>0x00</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123" refid="group__i8254_1ga6c248216df24b5e9d907d126d80bd195" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_RB_COUNT_<sp/>BIT(5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="130" refid="group__i8254_1ga08b4952bb7058684a3f8f66be04dd45e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_RB_STATUS_<sp/>BIT(4)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137" refid="group__i8254_1gaf598b17740e07842a0545af512714711" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMER_RB_SEL(n)<sp/>BIT((n)<sp/>+<sp/>1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8254.h"/>
+  </compounddef>
+</doxygen>

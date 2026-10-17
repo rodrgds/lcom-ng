@@ -1,0 +1,13 @@
+--- a/proj/game.h
++++ b/proj/game.h
+@@ -72,8 +72,8 @@
+ 
+ typedef struct hscore{
+ 	unsigned int points;
+-	char player[3];
+-	char date[19];
++	char player[4];
++	char date[20];
+ 	bool active;
+ }hscore;
+ 

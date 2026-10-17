@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "name": "Battleships: Ocean Fleet",
+  "description": "Place your fleet and sink the opposing ships.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "R"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Rotate",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        }
+      ],
+      "touch": "tap",
+      "cursor": {
+        "x": 100,
+        "y": 100,
+        "maxX": 1152,
+        "maxY": 864,
+        "bounds": "reject"
+      }
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Battleship"
+}

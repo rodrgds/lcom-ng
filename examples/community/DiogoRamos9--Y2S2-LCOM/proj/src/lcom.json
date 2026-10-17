@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "name": "SpaceCOM Shooter",
+  "description": "Aim the cannon at incoming asteroids and reload between volleys.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "SPACE"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Fire",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Reload",
+          "key": "DOWN",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatReleaseKeys": [
+        "LEFT",
+        "RIGHT"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

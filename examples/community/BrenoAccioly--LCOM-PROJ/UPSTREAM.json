@@ -1,0 +1,76 @@
+{
+  "repository": "https://github.com/BrenoAccioly/LCOM-PROJ",
+  "commit": "9353a6890217aca00a80ae4723090ef7fe107d1a",
+  "project": "src",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
+  "sourceChanges": [],
+  "sha256": {
+    "README.md": "c51c639dd36d25b233e6219c11e65e1a30eb66cd7b013ba18df6a56d59817226",
+    "src/Makefile": "47d4959e778793c7478b90ff67ede16132b4380ef0336fa53beb0b7295470084",
+    "src/char.h": "31330e60bc7f2b6974e4143cb0a13768193f607667a190342b088082695b7f9b",
+    "src/game.c": "c745884007686c10aeee25d087c1821435f9550fb65db4b460bc46d9c5730b36",
+    "src/game.h": "3572fe2975da7ef0c9d379b236361509a6741020bd757797a592e2657ae661b1",
+    "src/i8042.h": "87f9263de94771de66cf18d42fd12f8eb025a8083d054157f8ec26c9c116a262",
+    "src/i8254.h": "8e781444a1b444d1bfabeddb8e8dca9f0b17fb2e65a3d4921d19d5e0437c63da",
+    "src/kbd.c": "af25f6ec4793ea1c330c41bb08cda8a680c9908e35b2486099a1cea259966361",
+    "src/kbd.h": "913bfe74b4945c327a30669421e2b8629f66a211f83a6701c09014bbb8c62c2c",
+    "src/leaderboard.txt": "467d9d359466c5b07aa9e0407407a3c29eec3007846d9b0460e247c0919e2fb8",
+    "src/mainMenu.c": "d3fe36931985cc722bed18debfd9eb426e70f71211736ba2e5074c2f01732c22",
+    "src/mainMenu.h": "327083c59e8b3616b9dc7ff19bc5b8ccf4e1348aced512318f5296a593bc8d07",
+    "src/maze.c": "8aa9cf5cf3d228335f697103c2f01c649ca5c1ff1d60a282825c4acaf14260e4",
+    "src/maze.h": "cf6dc8ff04e61953901e15e991808e477f766e3a289231d363d8a539af51b055",
+    "src/mouse.c": "15fe5bad09a3c9ba3751cf92d793492696245a54783397189d8f3d1f3aba900c",
+    "src/mouse.h": "a53393eb06ef484b7bbebfd82cfb28055f5daa7ba72548364d29bf1692c97d98",
+    "src/pixelmaps.h": "7050fcecf70c11b1ff65a83547ca1f4408e08323da935592795df3c474095977",
+    "src/proj.c": "eec844471165e7f309eb387c2d4a843ff7e404df1e01228025e7bcb15dc80932",
+    "src/rtc.c": "0d4f5977b434fcfeca494f4c072c58047bf0271cfd29f5243126254638a2ac6d",
+    "src/rtc.h": "be706c95b57ec9754ba4981e05dd7de25616a3a53c40d22eb53a8c8f23f4d0d7",
+    "src/timer.c": "ef50d161b980d47966687646456a57a67a8a534cf472bebd4143509849cb8b5b",
+    "src/utils.c": "39dfbf853c3819c73c4ea9a77cc0dc2c7af9b3d49c2ab42537c3a5334c0414d1",
+    "src/video.c": "82265ad6a93a59c55160b33f6d629d8f7adaf83c9be4c2e4b5a7da055b14d76e",
+    "src/video.h": "626f45c3848794c1ff221c12c518c89e6e3195dba1b88a1458961bad2b9d8d8a"
+  },
+  "selection": "Pinned project source and required artwork/assets plus upstream README. Omitted labs, generated documentation, VCS and OS metadata, build products and core dumps.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata is excluded from required source inventory."
+  },
+  "icon": {
+    "kind": "simple launcher icon derived from original sprite or board palette",
+    "source": "src/pixelmaps.h"
+  },
+  "controlsRationale": "Move the relative cursor to Start Game and Select. WASD pad moves through the generated maze and updates the scrolling view. Keyboard remains available for five-letter highscore entry. No direct cursor calibration because game transitions to a moving maze.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/BrenoAccioly--LCOM-PROJ",
+    "limits": "Short functional gameplay trial, no full campaign completion or physical Android device claim."
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "3c06162762693c8e4ec08506231dc9f87b2ec5da9b375f87e98e307b7e32a880",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "4dd5a9994c9b20620abcc789254a1010d63e23debbd17f0fced07147c96a25dc",
+      "kind": "actual mobile browser gameplay canvas"
+    }
+  ]
+}

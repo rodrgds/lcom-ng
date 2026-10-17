@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "name": "Minigotchi",
+  "description": "Care for your pet and play rock, paper, scissors.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE",
+        "E",
+        "LEFT",
+        "RIGHT"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "tapDuration": 65
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [],
+    "pathAliases": {
+      "/usr/save.txt": "save.txt"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

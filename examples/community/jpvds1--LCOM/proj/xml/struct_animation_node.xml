@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="struct_animation_node" kind="struct" language="C++" prot="public">
+    <compoundname>AnimationNode</compoundname>
+    <includes refid="_animation_list_8h" local="no">AnimationList.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_animation" kindref="compound">Animation</ref> *</type>
+        <definition>struct Animation* AnimationNode::animation</definition>
+        <argsstring></argsstring>
+        <name>animation</name>
+        <qualifiedname>AnimationNode::animation</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="29" column="21" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_animation_node_1af2d2bdd8565ef96845a8633d05b145f4" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> *</type>
+        <definition>struct AnimationNode* AnimationNode::next</definition>
+        <argsstring></argsstring>
+        <name>next</name>
+        <qualifiedname>AnimationNode::next</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="30" column="25" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="2">
+        <label>Animation</label>
+        <link refid="struct_animation"/>
+      </node>
+      <node id="1">
+        <label>AnimationNode</label>
+        <link refid="struct_animation_node"/>
+        <childnode refid="2" relation="usage">
+          <edgelabel>animation</edgelabel>
+        </childnode>
+        <childnode refid="1" relation="usage">
+          <edgelabel>next</edgelabel>
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="27" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" bodystart="28" bodyend="31"/>
+    <listofallmembers>
+      <member refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" prot="public" virt="non-virtual"><scope>AnimationNode</scope><name>animation</name></member>
+      <member refid="struct_animation_node_1af2d2bdd8565ef96845a8633d05b145f4" prot="public" virt="non-virtual"><scope>AnimationNode</scope><name>next</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

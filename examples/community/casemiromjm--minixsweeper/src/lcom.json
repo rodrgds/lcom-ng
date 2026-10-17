@@ -45,5 +45,6 @@
     "assets": []
   },
   "description": "Reveal the board one square at a time. Flag the mines and trust the numbers.",
-  "preview": "../../../../collections/arcade/previews/casemiromjm-minixsweeper-286a5a2780c5.png"
+  "preview": "../../../../collections/arcade/previews/casemiromjm-minixsweeper-286a5a2780c5.png",
+  "archetype": "Minesweeper"
 }

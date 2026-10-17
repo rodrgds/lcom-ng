@@ -1,0 +1,25 @@
+#pragma once
+#include <lcom/xpm.h>
+
+static xpm_row_t const test_bullet[] = {
+  "8 16 2",
+  "  0",      // transparent
+  ". 54",      // yellow
+
+  "    ..  ",
+  "    ..  ",
+  "    ..  ",
+  "    ..  ",
+  "    ..  ",
+  "    ..  ",
+  "    ..  ",
+  "    ..  ",
+  "    ..  ",
+  "    ..  ",
+  "    ..  ",
+  "    ..  ",
+  "    ..  ",
+  "    ..  ",
+  "        ",
+  "        "
+};

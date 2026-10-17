@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "Classic Minix Minesweeper",
+  "description": "Reveal a minefield and use numbered clues to mark the hidden mines.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "R"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "vertical"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick",
+          "sensitivity": 1
+        }
+      ],
+      "actions": [
+        {
+          "label": "Reveal",
+          "mouseButton": "left",
+          "position": "top-left"
+        },
+        {
+          "label": "Flag",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        }
+      ],
+      "toolbar": "auto",
+      "touchClick": false
+    }
+  },
+  "archetype": "Minesweeper",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

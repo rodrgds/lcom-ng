@@ -1,0 +1,131 @@
+{
+  "repository": "https://github.com/SergioEstevao11/FEUP-LCOM",
+  "commit": "bc9ee2e0eeee725aa7e5fdccfd042caa5d83ed0c",
+  "createdAt": "2021-11-24T17:52:36Z",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/SergioEstevao11/FEUP-LCOM",
+    "createdAt": "2021-11-24T17:52:36Z",
+    "detail": "GitHub repository creation timestamp."
+  },
+  "project": "proj",
+  "sha256": {
+    "README.md": "cc9b1db76a6b89d6bad067d38fac87603d3f1e4d4e3293ee142e5feb5c9d43c3",
+    "proj/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/.vscode/c_cpp_properties.json": "4d532a6d7db43061ec44b814a78ac396aaed4cdcb066eec0372ca2afd809259e",
+    "proj/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/.vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "proj/Makefile": "f89282ca7378d182edb11d52ced470691b0997614519221fc18a69dabc107aab",
+    "proj/Pingu_down.xpm": "9f37d1258b207b588c40573455cf47ade9af3926fad83d06fbe05ec2968ae67c",
+    "proj/Pingu_left.xpm": "e9420cb2694a68e9cd704c3e3cd97d6fea46b6ef975451acbfa27e6509d35a65",
+    "proj/Pingu_right.xpm": "83936a9afe483fd4e6b58e13427b40aea8d97fab9774818696a97655a55005b0",
+    "proj/Pingu_up.xpm": "24dec50d26bdbba5814a025c2169e771672fadf4db63c6374ff2597a90119ac8",
+    "proj/bestTimes.txt": "8ac475b33b174f037980ccf27a3cdb4280adaadb345620b788e39614c7b586d0",
+    "proj/finishline.xpm": "e322283e1aedf2d3cb3b7517c528ee4e027d9dc26b9ae4842bab7418d20f6c34",
+    "proj/game.c": "91935b1a9a07f79974c98faf1cc83f9a4baa89dd4a290a3cc2ddb5cb56451876",
+    "proj/game.h": "33bdab2f41a8cfe04bbd6265ded9832fff23465b3f4b4b90a2cc0fe48c5e7515",
+    "proj/graphics.c": "78ae22e68187f84d0e2c6f6890bd7e108a5e001a4574cdb7b1279c67df133e28",
+    "proj/graphics.h": "85d90e2be6720b1648b7cf067dbe6ed28e152638ce9073fa525ffa41c26d1473",
+    "proj/i8042.h": "0530a8c03d3b4501bd1a97a4712363e2d3eb09d559f6e4e70fb2730b45262729",
+    "proj/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/images.xpm": "c593159d8361bf4dc448f3b87804575433e68086d7dcd69bd56b346578605aba",
+    "proj/keyboard.c": "dbd4177aacfa3963754840f9aa07a7591e0d5e5afcb0f584253581a8eb461f4e",
+    "proj/keyboard.h": "2f00dd3887c926d25040634a3ef0813883f6c66e5ef52444808919a9a454638c",
+    "proj/menu.c": "3d0839fc5878197c7403442c6ee355011111c47d2ccb07dc2616b644331795aa",
+    "proj/menu.h": "5a734d059346911927bcb59ffd48a89f30125b60056cbc2e31810639275c64fe",
+    "proj/mouse.c": "59a59d40e15ded97f2c7fab90f2ff95ae4c3ed55c38c232bb568abea08bc55cc",
+    "proj/mouse.h": "603982b08162baa79dc509cf82b87e5f1d128e19dba66ac80ae4b2c0cd289685",
+    "proj/numbers.xpm": "e452226e78a68910d0c4840427650e32dfc9ee2bce1fa81af17373e96e9c9c82",
+    "proj/ponteiro.xpm": "7541cfaf12352ddbef6032c159a4c01b33bdde0a95e2f6442062d064edbea270",
+    "proj/proj.c": "c4330ab4600561ece13d247a1f6510bc482746dbc276817ffe06af5eb6ce72ef",
+    "proj/river.xpm": "95eabdca5968f7cffef72db04047d60e35c37c83396736b5321be098627cd530",
+    "proj/rockwall.xpm": "5ee3eaadc08b61cdbc0b5357d2759188bf5f30054922ad3dbcd5ad266e4279d9",
+    "proj/rtc.c": "345c64de53aa142e0028755f22b56177d5e2e0a530dc9b33027009ccc9a0a14d",
+    "proj/rtc.h": "e92300daad55f3fc444112b527f336620b037874035feacc031e7904268b23bc",
+    "proj/snow.xpm": "fda45737f3b0fec17b25fda97cc513cb3e40b68fa753e62b40c1e75011a66e29",
+    "proj/snow_texture.xpm": "0840d09b86278a5577d16de3b7fb025e6f8ed62dca6a635aea3816df319aa712",
+    "proj/snowman.xpm": "ff3083dda47378a2faf01dab22edfdef3a4e667031b413ff6ba27dc714f52cc9",
+    "proj/sprite.c": "8785cce1bae7a1bb66605ca6ed443d7623a20e416b118bc0ab8a6ec9aa38fb8d",
+    "proj/sprite.h": "731fa6cace88c80be80d93a3f9aae255e52bb902253aae3f1ac213557ffc62d0",
+    "proj/timer.c": "e1a42dc586b5cdf53c530bbbc566d5982067fe34e20182f4006da3bc95375335",
+    "proj/timer.h": "864cef7600c9cd5568aced3496b559fc145c8994f9045d0bc57e52d638bbe7a1",
+    "proj/trunk.xpm": "d632e400eb8ed5e51c794bcad8650d48a5bcfb589bd148744d7f1d6a88e5b62c"
+  },
+  "sourceChanges": [
+    {
+      "file": "proj/graphics.c",
+      "patch": "SOURCE_PATCH.diff",
+      "upstreamSha256": "78ae22e68187f84d0e2c6f6890bd7e108a5e001a4574cdb7b1279c67df133e28",
+      "patchedSha256": "9d158ab49c5a186f3d009b675b7350c3ec6a0cb272e3c3a9c0ab1dd3e11f6a1d",
+      "reason": "Keep framebuffer pixel addresses as byte pointers instead of truncating them to uint32_t on ARM64 or desktop64. Original wasm32 behavior remains identical.",
+      "verification": "Actual owning native pixel write original REDSIGSEGV on high stack address, current GREEN exact RGBbytes and untouched neighboring/transparent pixels."
+    },
+    {
+      "file": "proj/keyboard.c",
+      "patch": "SOURCE_PATCH.diff",
+      "upstreamSha256": "dbd4177aacfa3963754840f9aa07a7591e0d5e5afcb0f584253581a8eb461f4e",
+      "patchedSha256": "b006030bce94d0e0b445be7ac8aac4c27f2190bdf3030380f7e7f448d7920708",
+      "reason": "Return successful subscription status0 while preserving the output notification bit. Original game caller treats status1 as failure, but original implementation returns successful hook1.",
+      "verification": "Actual owning subscription client original RED1==success treated as error, current GREEN success0/failure1/outputbit1."
+    }
+  ],
+  "selection": "All original game C/H/XPM/bestTimes assets and root README selected. Original assets unchanged. Labs/screenshots omitted. Compiled executable and logs omitted with exact hashes.",
+  "omittedBuildArtifacts": [
+    {
+      "path": "proj/output.txt",
+      "reason": "Original generated executable or diagnostic log, not source or game asset.",
+      "sha256": "37a544ea089d14378b6c646e7fed9e73c37880647ed7fded5a0f3d1e6822dc0e"
+    },
+    {
+      "path": "proj/proj",
+      "reason": "Original generated executable or diagnostic log, not source or game asset.",
+      "sha256": "208f05942c54546067d5886a1f2c6480969ccf2726b294e4779c1bc6a53ef594"
+    },
+    {
+      "path": "proj/trace.txt",
+      "reason": "Original generated executable or diagnostic log, not source or game asset.",
+      "sha256": "bef6ecf10ab302243d268227d2b92af114cad485fe8c6c9e80ecb6fe169203f1"
+    }
+  ],
+  "controlsRationale": "Original unit relative mouse starts400,300 and bounds move only when the whole cursor remains valid; relative touch retained. Select clicks original menus. Four-way WASD pad moves original penguin once per make, with configured typematic repeat for held keys. Escape release toggles original pause/resume; no game timing/presentation/mode changes.",
+  "verification": {
+    "browser": {
+      "status": "passed",
+      "evidence": "build/arcade-100/b/freeze-26/browser-evidence",
+      "demonstrated": [
+        "Single Player\u2192Level1 menu selections using relative touch.",
+        "Penguin moves upward60pixels and right40pixels through configured normal WASD controls.",
+        "Original moving ice/log obstacles and collision death display render.",
+        "Escape pauses; actual paused timer00:00:80 remains byte-identical after350ms, then resumes to00:00:90.",
+        "Portrait game/controls remain visible."
+      ],
+      "limits": "Level1 short gameplay/collision/pause verified; full crossing victory and levels2/3 remain unverified."
+    },
+    "fortifiedNdkObjectCompile": true,
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/b26-reviewed-native/results.json",
+      "apkSha256": "4671203a03384352f0d6479dc5238a7c3977d0e880ce6c384574eabc1a2aa7da",
+      "demonstrated": "Root reviewed level1,upward60/right40pixel steps, pausedgamepixels byte-identical across350ms,timer00:02:86unchanged, Resume00:03:06 and resumedobstacles, Homefreshprocesscleanup."
+    }
+  },
+  "licenseStatus": "No license file found in pinned repository tree.",
+  "derivedAssets": [
+    {
+      "path": "proj/icon.svg",
+      "sha256": "561244771edbfd43e5f43cbc703809abee6af68b7902dffcaecf3fa4ea96f9f1",
+      "kind": "Authored simple vector penguin on ice, informed by original game."
+    },
+    {
+      "path": "proj/icon.png",
+      "sha256": "e352839210a9d792e7e1fd47824a6edddd920bcfbe9c32a82c585a5b66c371c9",
+      "kind": "512px rendering of icon.svg."
+    },
+    {
+      "path": "proj/preview.png",
+      "sha256": "4facaa242a6f049617202d77be70125933d17ea8a1dd66acb784f8bf52328057",
+      "kind": "Actual original browser movement frame."
+    }
+  ]
+}

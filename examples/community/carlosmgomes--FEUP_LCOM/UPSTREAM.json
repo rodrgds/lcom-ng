@@ -1,0 +1,95 @@
+{
+  "repository": "https://github.com/carlosmgomes/FEUP_LCOM",
+  "revision": "ed0d1daf594c7e7131374c9ba12d8cfd3b549534",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "45b8b5a700aabd22cb324156784b41ce77744fe8bc5049ae608782052f4ff40c",
+    "proj/src/game.c": "6d9fe71eeee4df9946a66666b67fc145156452d1d3c2b6d4ed74de85f839d4e5",
+    "proj/src/sprite.c": "869183c3318d5f01475ce3c7f67ff2e669690e89aa47d553948eb3ef69cfedd4",
+    "proj/src/utils.h": "dc0a34945047a6a94d85d926ca5d1f74f874f2942752bcf5332f452a44a4c07a",
+    "proj/src/mouse.c": "572868efe08ed631eac7bac34d4e14ac27dae3b440eb6ea098fda4242f56b0ba",
+    "proj/src/timer.c": "45da65b48e413bed98a03b00cd94cee7a6fd43d6003f852573d52c602d3aebaa",
+    "proj/src/keyboard.c": "b426ef39f36e4b2627253fa39189e373e8df7832b4280bc7648fe25d44010d01",
+    "proj/src/Makefile": "33f3b6b0e5ab9429e03f8d74d068cdb9e08d3212e6474f44b88b5aba2c315ded",
+    "proj/src/graphics_mode.h": "77acd1453d75e60f21f92e72996da97eb9e35d6af66d77dd42afb01ea79f2f3a",
+    "proj/src/i8042.h": "9ab3566b718b3a1f97b53bd7d5b37197da9c8606c9d528b5eb9f017446dceb36",
+    "proj/src/xpm.h": "3695d060f12f6f8050bc8df38ddfbcb07ea02714463a8e0320fed64f5823a9e8",
+    "proj/src/vge.h": "a561f4a94b4d85109c8f3b159ef20d797123f0bbace8ca46649ee71440fa13a1",
+    "proj/src/main_menu.c": "0a96198787cf879359380d16fa0cea1d8ff86a10238a4107e4b73a066db78b08",
+    "proj/src/mouse.h": "5a53074e01d914828f55353df6215fb2ab778b4bcd1ac3d15c179680d09f01e4",
+    "proj/src/timer.h": "64ee88a98a9e4b232d9ed7092fadc1c663f528f6695f4126b0b8e3d47da98e2e",
+    "proj/src/game.h": "2b529f30cf4d15737008c17223726e513dd11ec45b10978a4eff3474fe5560f7",
+    "proj/src/sprite.h": "2ae9e54ecf9858f8b8cda90de0b31c68f942baf918b82869f8147e36b3a44dd0",
+    "proj/src/utils.c": "50815bad0e2dbadd101a5ed11c778aa1243ea85cfa9a213fda61469afbaf2056",
+    "proj/src/keyboard.h": "0b93492086b9f1fbdd636cd0697ab36056428ae76690ae1065b6477d52cce625",
+    "proj/src/graphics_mode.c": "2c7ab47ecb049889c7183444e2ba50abf0c0c96332b304435dbde81be7a4ad22",
+    "proj/src/i8254.h": "8e781444a1b444d1bfabeddb8e8dca9f0b17fb2e65a3d4921d19d5e0437c63da",
+    "proj/src/main_menu.h": "5768831bce3665fb9756dc64ddfdd77213dd4eccec62cda847beb574649da5dd",
+    "proj/src/proj.c": "599c4a7b5f0b4b39d3497277bf3929d1fe360fb525ee482cddfc8b86e1e5bbe6",
+    "proj/src/img/yellow_disc.xpm": "826f30a31e6c718c96be53be021acba8f98e309bcb177c06fa20bc8b12764117",
+    "proj/src/img/endgame_red.xpm": "8c855e6ebc5d68042beedddb5b9dab592c8cf63ad7a73ce8a5e0ef691c264ce3",
+    "proj/src/img/red_board.xpm": "02bb63898009d61c96c350e618fb8172fe02cd3bfa8dd8037d1dfab2eebc869f",
+    "proj/src/img/tie.xpm": "628cd5009628f40b6e1d17c005c25d7396238919b1dda7fa933f3d3e7ac3011d",
+    "proj/src/img/endgame.xpm": "eff42a6d050b6894788514c18b5248b7577f5fe6b40c92e809ab8b9894cd2fbf",
+    "proj/src/img/instructions.xpm": "249f343a24df7ba66cb3d3eff4ce975065220ba3efea138dd6e1dc4c6bccde50",
+    "proj/src/img/endgame_yellow.xpm": "13d2e2f31530e92ea01975bc40a975b3813d6807f7a0aaa77a7980a933147241",
+    "proj/src/img/red_disc.xpm": "a1c603e11652bb1afc9165e809d623e9aaa7e4482cfabe3c4581f9b1cfcf9284",
+    "proj/src/img/yellow_board.xpm": "ca125dc07d42ada50dd5c16abc4748b6ca57452fc19426a695417b372af0a277",
+    "proj/src/img/main_menu_bg.xpm": "3ea1e0b3070734860d3a4a0401f080b47d1753986dad7cbad514933cef576b5f",
+    "proj/src/img/game_board.xpm": "2d9e14dc819279b5b971b3870986785ab7416294fdc807808d4adb31573abd38"
+  },
+  "selection": "Pinned original game source, original artwork and required public siblinglab libraries.",
+  "omissions": [
+    ".git/**",
+    ".minix-src/**",
+    "**/.DS_Store",
+    "**/doc/**",
+    "**/docs/**",
+    "compiled ELF/Mach-O executables",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/trace.txt",
+    "**/output.txt"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite on a flat palette",
+    "source": "proj/src/img/yellow_disc.xpm",
+    "array": null,
+    "iconBackgroundRemoved": "#000000",
+    "additionalSource": "proj/src/img/red_disc.xpm"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "e57b005c70130c0a359dee071c1a943e9505bbc324d9ada8d8b31f7cdec7c4f8",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "9bac641aa34d59ec5bfcdab1c7383aa767adb5418faaca65812cc332424df452",
+      "kind": "actual browser touch gameplay preview"
+    }
+  ],
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence13/carlosmgomes--FEUP_LCOM-03-red-canvas.png",
+    "captureSha256": "16cfc7a14353eda4fa33ceede3cea84d87e96df5728d85be8ea29693f69b468c",
+    "originalSourceArt": true
+  },
+  "verification": {
+    "native": {
+      "status": "passed",
+      "apkSha256": "cc055c952c3aa0b46b66598813d818f6aec38bfce59b79a34cd168ee24a16fb4",
+      "evidence": "build/arcade-100/a65-connect-native-observed/results.json",
+      "review": "build/arcade-100/a65-reviewed-native/results.json",
+      "checkpoints": [
+        "Yellow mouse-controlled disc at first column base.",
+        "Red keyboard-controlled disc at second column base.",
+        "Original YELLOW WON screen after four yellow discs in first column."
+      ],
+      "limits": [
+        "Representative original touch play and clean Home process exit on ARM64 emulator. Every mode, long sessions, linked UART and physical-phone performance are unclaimed."
+      ]
+    }
+  }
+}

@@ -50,5 +50,6 @@
     "assets": []
   },
   "description": "Launch the bouncing ball and clear colourful bricks while protecting three lives.",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "archetype": "Breakout"
 }

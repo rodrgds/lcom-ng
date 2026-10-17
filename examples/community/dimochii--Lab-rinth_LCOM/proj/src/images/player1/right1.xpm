@@ -1,0 +1,36 @@
+/* XPM */
+static const char * right1[] = {
+/* columns rows colors chars-per-pixel */
+"15 18 12 1 ",
+"  c #000000",
+". c #21110D",
+"X c #402717",
+"o c #573A23",
+"O c #AC7B5D",
+"+ c #1D438A",
+"@ c #2C65B5",
+"# c #787E97",
+"$ c #85868C",
+"% c #A4A8B5",
+"& c #C1AC8F",
+"* c None",
+
+"**    *  ******",
+"** ooX o   ****",
+"**  ooXoXoo ***",
+"* Xooooooooo **",
+" Xooooooooooo *",
+" XooXoooXXooo *",
+" XXXXoooXOOXoX ",
+" XoXXooXOOOOXX ",
+" XooOXoO.&&. X ",
+" XXoOOX&.&&.  *",
+"* XXOO&&&&&& **",
+"** XXXO&&&&O **",
+"*** XXo###X ***",
+"*** Xoo##%X ***",
+"** &&oo#%%XO **",
+"** &&oo@@@XO **",
+"**$ +@@+@@  $**",
+"*$$ Xo  Xo $$$*"
+};

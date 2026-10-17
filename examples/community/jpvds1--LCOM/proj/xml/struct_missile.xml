@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="struct_missile" kind="struct" language="C++" prot="public">
+    <compoundname>Missile</compoundname>
+    <includes refid="_missile_8h" local="no">Missile.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_missile_1a9baff02d070a9d4d3668bc4cd07cf208" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool Missile::shot</definition>
+        <argsstring></argsstring>
+        <name>shot</name>
+        <qualifiedname>Missile::shot</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" line="17" column="10" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Missile::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>Missile::x</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" line="18" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Missile::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>Missile::y</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" line="19" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_missile_1a734c9a49ddec8539cf267254f0242dd8" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Missile::time</definition>
+        <argsstring></argsstring>
+        <name>time</name>
+        <qualifiedname>Missile::time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" line="20" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_missile_1a6e50d8487e5b9c020300e8b998949733" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Missile::frame_time</definition>
+        <argsstring></argsstring>
+        <name>frame_time</name>
+        <qualifiedname>Missile::frame_time</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" line="21" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_missile_1a59bd0e5bfa26022a9ee51d04175e6ff1" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Missile::frame</definition>
+        <argsstring></argsstring>
+        <name>frame</name>
+        <qualifiedname>Missile::frame</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" line="22" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" line="15" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Missile.h" bodystart="16" bodyend="23"/>
+    <listofallmembers>
+      <member refid="struct_missile_1a59bd0e5bfa26022a9ee51d04175e6ff1" prot="public" virt="non-virtual"><scope>Missile</scope><name>frame</name></member>
+      <member refid="struct_missile_1a6e50d8487e5b9c020300e8b998949733" prot="public" virt="non-virtual"><scope>Missile</scope><name>frame_time</name></member>
+      <member refid="struct_missile_1a9baff02d070a9d4d3668bc4cd07cf208" prot="public" virt="non-virtual"><scope>Missile</scope><name>shot</name></member>
+      <member refid="struct_missile_1a734c9a49ddec8539cf267254f0242dd8" prot="public" virt="non-virtual"><scope>Missile</scope><name>time</name></member>
+      <member refid="struct_missile_1a9cbe6e64ddbcc41f2031b2092119f3cc" prot="public" virt="non-virtual"><scope>Missile</scope><name>x</name></member>
+      <member refid="struct_missile_1a21afced0338ee6a91e14d9bfd0c850f7" prot="public" virt="non-virtual"><scope>Missile</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

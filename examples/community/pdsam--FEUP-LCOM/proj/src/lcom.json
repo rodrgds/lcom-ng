@@ -1,0 +1,67 @@
+{
+  "version": 1,
+  "name": "LTron",
+  "description": "Two players steer light cycles and avoid the glowing trails.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        },
+        {
+          "mode": "arrows",
+          "side": "right",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Orange boost",
+          "key": "SPACE",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Cyan boost",
+          "key": "ENTER",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Insert coin",
+          "mouseButton": "right",
+          "position": "top-left"
+        },
+        {
+          "label": "Start / Pause",
+          "key": "ESC",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [],
+    "environment": {
+      "LCOM_COMPAT_MOUSE_REPORTING": "1"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

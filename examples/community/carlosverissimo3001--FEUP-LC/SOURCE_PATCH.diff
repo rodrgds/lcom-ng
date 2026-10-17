@@ -1,0 +1,26 @@
+--- a/proj/src/words.c
++++ b/proj/src/words.c
+@@ -88,6 +88,7 @@
+ }
+ 
+ void(draw_letter)(char c, int x, int y) {
++  if (c != ' ' && (c < 'A' || c > 'Z')) return;
+   if (c != ' ')
+     draw_pixmap(x, y, &(alphabet[c - 65]), true);
+ 
+@@ -101,6 +102,7 @@
+ }
+ 
+ void(draw_letter_with_color)(char c, int x, int y, uint32_t color){
++  if (c != ' ' && (c < 'A' || c > 'Z')) return;
+   if (c != ' '){
+     draw_pixmap_fixed_color(x, y, &(alphabet[c - 65]), color, true);
+     //add_img_to_frame(&(alphabet[c-65]), x, y);
+@@ -113,6 +115,7 @@
+ 
+ 
+ uint16_t(get_width)(char c) {
++  if (c != ' ' && (c < 'A' || c > 'Z')) return 0;
+   return (c == ' ') ? alphabet[26].width : alphabet[c - 65].width;
+ }
+ 

@@ -1,0 +1,32 @@
+--- a/proj/src/menus.c
++++ b/proj/src/menus.c
+@@ -22,7 +22,7 @@
+   return menus;
+ }
+ 
+-extern uint32_t scancode;
++extern uint8_t scancode;
+ extern uint32_t time_counter;
+ 
+ /*
+--- a/proj/src/tetris.c
++++ b/proj/src/tetris.c
+@@ -1,6 +1,6 @@
+ #include "tetris.h"
+ 
+-extern uint32_t scancode;
++extern uint8_t scancode;
+ extern uint32_t time_counter;
+ extern uint32_t irq_set;
+ extern uint8_t irq_set_timer;
+--- a/proj/src/keyboard.c
++++ b/proj/src/keyboard.c
+@@ -50,7 +50,7 @@
+ }
+ 
+ int keyboard_subscribe_int(uint32_t *bit_no) {
+-    (*bit_no) |= BIT(kbd_id);
++    (*bit_no) = BIT(kbd_id);
+     if(sys_irqsetpolicy(KBD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &kbd_id) == OK) {
+         return 0;
+     } else {

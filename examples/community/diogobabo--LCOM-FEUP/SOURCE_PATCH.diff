@@ -1,0 +1,229 @@
+--- a/proj/src/leaderboard.c
++++ b/proj/src/leaderboard.c
+@@ -9,83 +9,33 @@
+ 
+ extern Character letters[40];
+ 
++static void read_scores(int scores[5]) {
++    for (int i = 0; i < 5; i++) scores[i] = 0;
++    FILE *file = fopen("/home/lcom/labs/g04/proj/src/leaderboard.txt", "r");
++    if (!file) return;
++    for (int i = 0; i < 5; i++) {
++        int rank, value;
++        if (fscanf(file, "%d - %d", &rank, &value) != 2) break;
++        scores[i] = value;
++    }
++    fclose(file);
++}
++
+ void leaderboard(int Score) {
+-
+-    FILE *fptr;
+-    char * buffer1 = 0;
+-    long length;
+-    size_t size;
+     int scores[5];
+-
+-    fptr = fopen("/home/lcom/labs/g04/proj/src/leaderboard.txt","r");
+-
+-   if (fptr){
+-        fseek (fptr, 0, SEEK_END);
+-        length = ftell (fptr);
+-        fseek (fptr, 0, SEEK_SET);
+-        buffer1 = malloc(length);
+-        if (buffer1){
+-            fread (buffer1, 1, length, fptr);
+-        }
+-            fclose(fptr);
+-        }
+-
+-        if (buffer1)
+-        {
+-            int i = 0;
+-            char* auxStr =  malloc(65536);
+-            char *p1, *p2;
+-            while(1) {
+-                p1 = strstr(buffer1, "-");
+-                if (p1) {
+-                    p2 = strstr(buffer1, "\n");
+-                    if (p2){
+-                        size = p2-p1;
+-                        memset(auxStr,0,65536);
+-                        memcpy(auxStr,(p1+2),size-2);
+-                        scores[i] = atoi(auxStr);
+-                        buffer1 = p2+1;
+-                        i++;
+-                    } else {
+-                        size = strlen(p1) - 1;
+-                        memset(auxStr,0,65536);
+-                        memcpy(auxStr,(p1+2),size);
+-                        scores[i] = atoi(auxStr);
+-                        break;
+-                    }
+-                }
+-                else {
+-                    break;
+-                }
+-            }
+-            free(auxStr);
+-            free(p1);
+-            free(p2);
+-        }
+-
+-    fptr = fopen("/home/lcom/labs/g04/proj/src/leaderboard.txt","w");
+-    int j = 0;
+-    int vsize = 5;
+-    for(int i = 0; i < vsize; i++) {
+-        if(Score > scores[i]) {
+-            fprintf(fptr,"%d - %d\n",j+1,Score);
+-            Score = 0;
+-            i--;
+-            j++;
+-            vsize--;
+-        } else {
+-            fprintf(fptr,"%d - %d\n",j+1,scores[i]);
+-            j++;
++    read_scores(scores);
++    for (int i = 0; i < 5; i++) {
++        if (Score > scores[i]) {
++            int displaced = scores[i];
++            scores[i] = Score;
++            Score = displaced;
+         }
+     }
+-
+-    //printf com o resultado do jogador
+-
+-    fclose(fptr);
+-    free(scores);
+-    free(buffer1);
++    FILE *file = fopen("/home/lcom/labs/g04/proj/src/leaderboard.txt", "w");
++    if (!file) return;
++    for (int i = 0; i < 5; i++) fprintf(file, "%d - %d\n", i + 1, scores[i]);
++    fclose(file);
+ }
+-
+ 
+ void BoardTimerHandler() {
+ }
+@@ -107,69 +57,16 @@
+ }
+ 
+ void drawBoard() {
+-    FILE *fptr;
+-    char * buffer1 = 0;
+-    long length;
+-    size_t size;
+     int scores[5];
+-
+-    fptr = fopen("/home/lcom/labs/g04/proj/src/leaderboard.txt","r");
+-
+-    if (fptr){
+-        fseek (fptr, 0, SEEK_END);
+-        length = ftell (fptr);
+-        fseek (fptr, 0, SEEK_SET);
+-        buffer1 = malloc(length);
+-        if (buffer1){
+-            fread (buffer1, 1, length, fptr);
+-        }
+-            fclose(fptr);
+-    }
+-    if (buffer1){
+-        int i = 0;
+-        char* auxStr =  malloc(65536);
+-        char *p1, *p2;
+-        while(1) {
+-            p1 = strstr(buffer1, "-");
+-            if (p1) {
+-                p2 = strstr(buffer1, "\n");
+-                if (p2){
+-                    size = p2-p1;
+-                    memset(auxStr,0,65536);
+-                    memcpy(auxStr,(p1+2),size-2);
+-                    scores[i] = atoi(auxStr);
+-                    buffer1 = p2+1;
+-                    i++;
+-                } else {
+-                    size = strlen(p1) - 1;
+-                    memset(auxStr,0,65536);
+-                    memcpy(auxStr,(p1+2),size);
+-                    scores[i] = atoi(auxStr);
+-                    break;
+-                }
+-            }
+-            else {
+-                break;
+-            }
+-        }
+-            free(auxStr);
+-            free(p1);
+-            free(p2);
+-    }
+-    fclose(fptr);
+-    
++    read_scores(scores);
+     int startPosX = 576;
+     int startPosY = 400;
+-    char score[4];
+-    for(int j = 0;j<5;j++){
+-        char score[4];
+-        sprintf(score,"%d",scores[j]);
+-        for(int i = 0; i < (int) strlen(score); i++) {
+-            draw_letter_map(startPosX - ((int)(score[i] - '0')*37) + i * 20 ,startPosY,font,imgFont,letters[(int)(score[i] - '0') + 26].x,letters[(int)(score[i] - '0') + 26].y);
++    for (int j = 0; j < 5; j++) {
++        char score[12];
++        snprintf(score, sizeof score, "%d", scores[j]);
++        for (int i = 0; i < (int) strlen(score); i++) {
++            draw_letter_map(startPosX - ((int)(score[i] - '0')*37) + i * 20, startPosY, font, imgFont, letters[(int)(score[i] - '0') + 26].x, letters[(int)(score[i] - '0') + 26].y);
+         }
+-        startPosY+=48;
++        startPosY += 48;
+     }
+-    free(score);
+-    free(scores);
+-    free(buffer1);
+ }
+--- a/proj/src/snake.c
++++ b/proj/src/snake.c
+@@ -73,10 +73,8 @@
+   numBlocks = 0;
+   start = true;
+   mouseUsed = 0;
+-  Object reset[5000];
+-  memcpy(&array,&reset,sizeof(sizeof(Object) * 5000));
+-  memcpy(&walls,&reset,sizeof(sizeof(Object) * 5000));
+-  free(reset);
++  memset(array, 0, sizeof array);
++  memset(walls, 0, sizeof walls);
+ }
+ 
+ void spawnFruits() {
+@@ -438,5 +436,5 @@
+   for(int i = 0; i < (int) strlen(score); i++) {
+     draw_letter_map(startPosX - ((int)(score[i] - '0')*37) + i * 20 ,-40,font,imgFont,letters[(int)(score[i] - '0') + 26].x,letters[(int)(score[i] - '0') + 26].y);
+   }
+-  free(score);
+-}
++
++}
+--- a/proj/src/devices/graphics.c
++++ b/proj/src/devices/graphics.c
+@@ -159,9 +159,15 @@
+ }
+ 
+ void cleanBG(unsigned int x, unsigned int y, int width, int height, xpm_image_t img, uint8_t* map) {
+-   for(unsigned int i = x; i < width + x; i++) {
+-    for(unsigned int j = y; j < height + y; j++) {
+-      uint32_t color;
++  if (width <= 0 || height <= 0 || x >= img.width || y >= img.height || x >= h_res || y >= v_res) return;
++  unsigned int columns = width, rows = height;
++  if (columns > img.width - x) columns = img.width - x;
++  if (columns > h_res - x) columns = h_res - x;
++  if (rows > img.height - y) rows = img.height - y;
++  if (rows > v_res - y) rows = v_res - y;
++  for(unsigned int i = x; i < columns + x; i++) {
++    for(unsigned int j = y; j < rows + y; j++) {
++      uint32_t color = 0;
+       uint8_t * pos = map + j*img.width * bytes_per_pixel + i*bytes_per_pixel;
+       memcpy(&color, pos, bytes_per_pixel);
+      if (color != xpm_transparency_color(img.type)) {

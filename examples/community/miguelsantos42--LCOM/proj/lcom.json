@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Crypt Defender",
+  "description": "Explore the original dungeon and defend against monsters.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "UP",
+        "DOWN"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Fire",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "resources"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

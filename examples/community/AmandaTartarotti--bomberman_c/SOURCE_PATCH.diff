@@ -1,0 +1,23 @@
+--- a/inc/pixmap.h
++++ b/inc/pixmap.h
+@@ -1,10 +1,10 @@
+ #pragma once
+ 
+ #include <stddef.h>
+-#include <../lcom/lcf.h>
++#include <lcom/lcf.h>
+ 
+ // needs the typedef xpm_row_t
+-#include "../lcom/xpm.h"
++#include <lcom/xpm.h>
+ 
+ 
+ 
+--- a/src/utils.c
++++ b/src/utils.c
+@@ -1,4 +1,4 @@
+-#include <../lcom/lcf.h>
++#include <lcom/lcf.h>
+ 
+ #include <stdint.h>
+ 

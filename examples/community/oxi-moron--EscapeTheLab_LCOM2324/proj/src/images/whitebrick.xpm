@@ -1,0 +1,28 @@
+/* XPM */
+static const char *whitebrick[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 6 1 ",
+"  c #808080",
+". c #C8BFE7",
+"X c #C9C9C9",
+"o c #D5E6E3",
+"O c #EDFFFC",
+"+ c #FFFFFF",
+/* pixels */
+"+++OOOO.+++OOOO.",
+"OOOOOOO OOOOOOO ",
+"OOOOOoo OOOOOoo ",
+"XXX...  XXX...  ",
+"OOOO.+++OOOO.+++",
+"OOOO OOOOOOO OOO",
+"OOoo OOOOOoo OOO",
+"...  XXX...  XXX",
+"+++OOOO.+++OOOO.",
+"OOOOOOO OOOOOOO ",
+"OOOOOoo OOOOOoo ",
+"......  XXXX..  ",
+"OOOO.+++OOOO.+++",
+"OOOO OOOOOOO OOO",
+"OOoo OOOOOoo OOO",
+"XXX  XXX...  XXX"
+};

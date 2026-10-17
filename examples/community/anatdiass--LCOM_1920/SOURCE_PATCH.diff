@@ -1,0 +1,180 @@
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -419,12 +419,12 @@
+ int gameOver(int positions[], int time){
+ 
+   //records variables
+-  char name[9];
++  char name[10];
+   //int nameSize=0;
+   char jogador[] = "Jogador ";
+   
+   strcpy(name, jogador);
+-  char pos[1];
++  char pos[2];
+   int position = nrRecords+1;
+   sprintf(pos, "%d", position);
+   strcat(name, pos);
+--- a/proj/src/highscores.c
++++ b/proj/src/highscores.c
+@@ -8,6 +8,7 @@
+ int nrRecords=0;
+ 
+ int getMaxTemp(int seconds[], int size){
++    if(size <= 0) return 0;
+     int max = seconds[0];
+ 
+     for(int i=0;i<size;i++){
+@@ -20,7 +21,7 @@
+ void getSecondsArray(int res[]){
+ 
+     for(int i=0;i<nrRecords;i++){
+-        char second[3];
++        char second[sizeof records[0].seconds];
+         int aux;
+ 
+         strcpy(second,records[i].seconds);
+@@ -67,7 +68,7 @@
+     int maxSeconds = getMaxTemp(secs, nrRecords);
+ 
+     //Verify when the table is full max time and compares with highscore time
+-    if(nrRecords>3 && seconds>maxSeconds)
++    if(nrRecords>=3 && seconds>maxSeconds)
+         return false;
+ 
+     return true;
+--- a/proj/src/highscores.h
++++ b/proj/src/highscores.h
+@@ -6,7 +6,7 @@
+  */
+ typedef struct {
+     char name[10];
+-    char seconds[3];
++    char seconds[12];
+ } Record;
+ 
+ /**
+--- a/proj/src/xpmHandler.c
++++ b/proj/src/xpmHandler.c
+@@ -238,113 +238,18 @@
+ }
+ 
+ void printCounter(){
+-
+-    char counter[5];
+-
+-    //Minutes
+-    int minutes = global_counter/3600, minute_dec = minutes/10, minute_un = minutes % 10;
+-
+-    //Seconds
+-    int rest_minutes = global_counter%3600;
+-    int seconds = rest_minutes/60, second_dec = seconds/10, second_un = seconds%10;
+-
+-
+-    /*Strings to store numbers*/
+-    char minuteDec[2];
+-    sprintf(minuteDec, "%d", minute_dec);
+-
+-    char minuteUn[2];
+-    sprintf(minuteUn, "%d", minute_un);
+-
+-    char secondDec[2];
+-    sprintf(secondDec, "%d", second_dec);
+-
+-    char secondUn[2];
+-    sprintf(secondUn, "%d", second_un);
+-
+-    strcat(counter,minuteDec);
+-    strcat(counter, minuteUn);
+-    strcat(counter, ":");
+-    strcat(counter, secondDec);
+-    strcat(counter, secondUn);
+-
+-    /*Print counter*/
++    char counter[16];
++    int minutes = global_counter / 3600;
++    int seconds = (global_counter % 3600) / 60;
++    snprintf(counter, sizeof counter, "%02d:%02d", minutes, seconds);
+     printWord(counter, 640, 180);
+ }
+ 
+ void printDate(){
+-
+-    char day[2], month[2], year[4];
+-    char hours[2], minutes[2];
+-
+-    int Day=getDayRTC();
+-    int Month=getMonthRTC();
+-    int Year=getYearRTC();
+-    int Hours=getHoursRTC();
+-    int Minutes=getMinutesRTC();
+-
+-
+-    char date[10];
+-    char time[8];
+-    //Day
+-    sprintf(day, "%d", Day);
+-    if(Day<10){
+-        char str[] = "0";
+-        strcat(str, day);
+-        strcat(date, str);
+-    }
+-    else
+-        strcat(date, day);
+-
+-
+-    strcat(date, "/");
+-
+-    //Month
+-    sprintf(month, "%d", Month);
+-    if(Month<10){
+-        char str[]="0";
+-        strcat(str, month);
+-        strcat(date, str);
+-    }
+-    else
+-        strcat(date, month);
+-
+-
+-    strcat(date, "/");
+-
+-    //Year
+-    sprintf(year, "%d", Year);
+-    char str1[] = "20";
+-    strcat(str1,year);
+-    strcat(date, str1);
+-
+-
+-    //Print date
++    char date[11];
++    char time[6];
++    snprintf(date, sizeof date, "%02d/%02d/20%02d", getDayRTC(), getMonthRTC(), getYearRTC());
++    snprintf(time, sizeof time, "%02d:%02d", getHoursRTC(), getMinutesRTC());
+     printWord(date, 25, 5);
+-
+-    //Print hours
+-    sprintf(hours, "%d", Hours);
+-    if(Hours<10){
+-        char str[]= "0";
+-        strcat(str, hours);
+-        strcat(time, str);
+-    }
+-    else
+-        strcat(time, hours);
+-
+-        strcat(time, ":");
+-
+-    //Print minutes
+-    sprintf(minutes, "%d", Minutes);
+-    if(Minutes<10){
+-        char str[] = "0";
+-        strcat(str, minutes);
+-        strcat(time, str);
+-    }
+-    else
+-        strcat(time, minutes);
+-
+-
+-    //Print time
+     printWord(time, 630, 5);
+ }

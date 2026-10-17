@@ -1,0 +1,106 @@
+--- a/proj/src/logic/spaceinvaders.c
++++ b/proj/src/logic/spaceinvaders.c
+@@ -20,7 +20,8 @@
+ }
+ 
+ Score* (load_scores)() {
+-  Score* array = (Score*) malloc (sizeof(Score) * 10);
++  Score* array = (Score*) calloc (10, sizeof(Score));
++  if (!array) return NULL;
+ 
+   FILE* fp = fopen("/home/lcom/labs/proj/src/highscores.csv", "r");
+ 
+@@ -35,18 +36,18 @@
+   int row = 0;
+   int column = 0;
+ 
+-  while (fgets(buffer, 1024, fp)) {
++  while (row < 10 && fgets(buffer, 1024, fp)) {
+     column = 0;
+ 
+-    int points;
+-    char datetime[17];
++    int points = 0;
++    char datetime[17] = {0};
+ 
+     char* value = strtok(buffer, ",");
+ 
+     while (value) {
+       switch (column) {
+         case 0: points = atoi(value); break;
+-        case 1: value = strcpy(datetime, value); break;
++        case 1: snprintf(datetime, sizeof(datetime), "%.16s", value); break;
+         default: break;
+       }
+       value = strtok(NULL, ",");
+--- a/proj/src/logic/alien.c
++++ b/proj/src/logic/alien.c
+@@ -7,6 +7,7 @@
+   alien.y_min = y_min;
+   alien.x_max = x_min + 40;
+   alien.y_max = y_min + 32;
++  alien.shots = NULL;
+   alien.shots_no = 0;
+   alien.alive = true;
+ 
+@@ -73,6 +74,7 @@
+ 
+ void (shoot_alien)(Alien* a) {
+   Shot* array = (Shot*) malloc (sizeof(Shot) * (a->shots_no + 1));
++  if (!array) return;
+   for (int i = 0; i < a->shots_no; i++) array[i] = a->shots[i];
+   Shot new_shot = init_shot(a->x_min + 10, a->y_max + 20, alien);
+   a->shots_no++;
+@@ -82,10 +84,12 @@
+ }
+ 
+ void (delete_alien_shot)(Alien* alien, int i) {
+-  Shot* s = &(alien->shots[i]);
+   for (int x = i; x < alien->shots_no - 1; x++) alien->shots[x] = alien->shots[x + 1];
+-  free(s);
+   alien->shots_no--;
++  if (alien->shots_no == 0) {
++    free(alien->shots);
++    alien->shots = NULL;
++  }
+ }
+ 
+ void (shoot_aliens)(AlienGroup* group) {
+--- a/proj/src/logic/player.c
++++ b/proj/src/logic/player.c
+@@ -12,6 +12,7 @@
+   ship->y_max = 580;
+   ship->lives = 6;
+   ship->score = 0;
++  ship->shots = NULL;
+   ship->shots_no = 0;
+ 
+   return ship;
+@@ -35,10 +36,12 @@
+ 
+ void (fire)(Player* ship) {
+   Shot* array = (Shot*) malloc (sizeof(Shot) * (ship->shots_no + 1));
++  if (!array) return;
+   for (int i = 0; i < ship->shots_no; i++) array[i] = ship->shots[i];
+   Shot new_shot = init_shot(ship->x_min + 10, ship->y_min - 60, player);
+   ship->shots_no++;
+   array[ship->shots_no - 1] = new_shot;
++  free(ship->shots);
+   ship->shots = array;
+ }
+ 
+@@ -47,10 +50,12 @@
+ }
+ 
+ void (delete_player_shot)(Player* ship, int i) {
+-  Shot* s = &(ship->shots[i]);
+   for (int x = i; x < ship->shots_no - 1; x++) ship->shots[x] = ship->shots[x + 1];
+-  free(s);
+   ship->shots_no--;
++  if (ship->shots_no == 0) {
++    free(ship->shots);
++    ship->shots = NULL;
++  }
+ }
+ 
+ void (draw_player)(Player* ship) {

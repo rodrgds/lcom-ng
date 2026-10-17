@@ -1,0 +1,153 @@
+{
+  "repository": "https://github.com/HenriJSantos/LCOM",
+  "commit": "440457a7d3fdf8ec4c080fc491efebcfe91c7c04",
+  "createdAt": "2019-09-23T16:27:14Z",
+  "project": "proj/src",
+  "sha256": {
+    "proj/src/VIDEO_MACRO.h": "5beb9297c44b887fb21f6ff2611d6fb59711c88054ce9ceee6b491210a10cdec",
+    "proj/src/game.c": "80d2f5184a0ef23c866f439dba1f0ef312eb068e8f7bc65528e2729eb9ff9c16",
+    "proj/src/mouse.c": "0481570807db71525cd778ccefaea47d658ce2dc06da0356d2819f0f8835da06",
+    "proj/src/timer.c": "e7e3eb7443269b2bdd49adab1034d34c1096d083bb4e706d5dc677280b4abd23",
+    "proj/src/serial_port.c": "102978e4508522327b16ad1acc81d44e04af7af61c71e85c6e7b668adcb1725e",
+    "proj/src/text.h": "11a5a91d9394f47ae062ab6400e5cdcf313a1ae29e0d685b17375582ab01de61",
+    "proj/src/RTC.c": "10b8353f5e5c033052f669c5a3f999c6a3c4e952db6ae5bc9f91775d471eca65",
+    "proj/src/video.c": "5ca190492cce532485cb0408921d03799ca658ab2efe383d5add510837236eec",
+    "proj/src/keyboard.c": "62adc84789fb00dbaaf13e7f84313b23f1e8ddfba932303a09ae4dbc591d7c6d",
+    "proj/src/Makefile": "7e02e3f8575318bd21fb16fe5faf6efabf088df57e63acb7b6f5340eea1f927f",
+    "proj/src/bmp.h": "c2495b278b15ac297fbf3fcd37fa089d4156c72e8353b4daa27550c123b8e15a",
+    "proj/src/sprites.c": "477806d1a3d5e67eeb70b97e4382d37af7ff9d958ff6709fa8a36a8b8fe3f7b2",
+    "proj/src/i8042.h": "9401380db8a8337266f99988e2b3b4ddf46480de27904e71aa43a2f85d06fb6b",
+    "proj/src/scoresFile.txt": "7ece5cf053f92b428ac0a7291c4d41dc2320c9cc483a0ce1d27056b7988881eb",
+    "proj/src/mouse.h": "6660aec65519a394c11051f74a0b2204f7dceba2ca8fd442fadd54a75aab2c2b",
+    "proj/src/serial_port.h": "648fc95d20a324e6069ef5a2347c4ca0d0ccabbd20957a2645d8ad905a6beeb1",
+    "proj/src/game.h": "da29fe08be44138c66fdb0987a3fb54b88340cbd7899affe56f0f6707bf24540",
+    "proj/src/keyboard.h": "9de33356190f7963adc4fd0f9e6817d80a0a601ab8f4f38d76ff80292f29e8fe",
+    "proj/src/video.h": "5fcdfdd6da31ce6a9e71b729b67b69a8d8ebb4e39842745b1f780429b545aaed",
+    "proj/src/RTC.h": "b41cb0f8b40614edbff5d7d035b5335c2eb0515bd1e4dd0f8563735dd99d47d6",
+    "proj/src/UTIL.h": "69703264743f213d5cc938d0bfa63b1e37e99dbab7728c474f2aab7e53d088c6",
+    "proj/src/text.c": "d95624d33b1818f74aa65201210cab341b1ae1af77d3a7ff052c9b4c232d3a96",
+    "proj/src/sprites.h": "e1d0bc66268f270ccc5d6076abab5dc392487dcaf07b0837e873d7e2748d1021",
+    "proj/src/bmp.c": "80ff406361baf1915b0ad7f58a728eae39419f11bda896455f68b28b88198482",
+    "proj/src/i8254.h": "a87c43787f549c4e0d3dba30552f047ed7f13a397796fc1500efd1d7626db6ea",
+    "proj/src/proj.c": "6740ea5a74fb0bca9794f4cbba7f2cd81a70481c1cca3d62f97f0e5b05312f27",
+    "proj/src/bmp/pikachu1.bmp": "9833f710faf3900c008a6914a9220a21dc0a6186b4536cc2c22b96a2bf932ecc",
+    "proj/src/bmp/game_night_background.bmp": "7005e6149f22a286f4e752985dbe4c6e0063ebc7a06f99db7244607f2da64648",
+    "proj/src/bmp/game_day_background.bmp": "25dd5c14ed8cb7ab2959d20b67eeb9bb8589b2fecd696376fe9a4f283886db6a",
+    "proj/src/bmp/pikachu2.bmp": "9d537c0506e9106116be09a90299514831ea3fd8d9ce65ea8728f97cb6f0c310",
+    "proj/src/bmp/waiting_for_player_2_background.bmp": "734b4672bd4803e223fdfe29cb21477a30151784e46e8de20902d3cca4b2f453",
+    "proj/src/bmp/enemy1.bmp": "30b1d4adf9edc92c74b9df46814f91c2a492b627414ac961092ae5d347b10dea",
+    "proj/src/bmp/enemy2.bmp": "c907ea1d830e53c18c4ffb801da885f796090904bed27b0a261f9dcaaa9c9996",
+    "proj/src/bmp/enemy3.bmp": "e24dcef77e8c2fc1a5d8ca810136ae384f0558570c81fd7e2353f245adbaea0b",
+    "proj/src/bmp/pikachu.bmp": "29ed10f24f68cee00ba9a91289bddc23f7e1a2a5af03cc4160d956ebcff369b3",
+    "proj/src/bmp/bullet.bmp": "0ed00bf7d65b1567f4828de3e8507c3def22dbc1c1afe7c8fc6ff947c4d2c937",
+    "proj/src/bmp/crosshair.bmp": "593ba8917232c01dd356c4d0001cf2909d1cd0573b619c31942680aa46c09ef5",
+    "proj/src/bmp/menu_background.bmp": "06167ff4aa0850c91f25b94e0bfdf0b9e9d142242fc444e125f9cbd3fab0c2f6",
+    "proj/src/bmp/game_over_background.bmp": "f4425164a124ce2f191a6d12961c410c93c4ef137b85669ed39185f93e930a71",
+    "proj/src/bmp/Alphabet/Number_6.bmp": "28113dc839a5e7cee1a224a1450a5652a34646e100ab599bbef8ec67a0cc1b13",
+    "proj/src/bmp/Alphabet/V_Letter.bmp": "aece9f930db7adb336aa5f76c1108ecc16ca667df1481da994bc4ba70ef6bf27",
+    "proj/src/bmp/Alphabet/Number_7.bmp": "8486a670e9543c52cc140bc0f5bcf781fe67a7ea714572da509fa0fe90ed31b9",
+    "proj/src/bmp/Alphabet/H_Letter.bmp": "22648963b569b8f03cc603a184aa7fedfe2d54cc590a991502f4984c5cb0ff87",
+    "proj/src/bmp/Alphabet/Number_5.bmp": "19d681f6ad7abe8322a0265f00f09a96b4fc819bac68b1b38afb189333b44740",
+    "proj/src/bmp/Alphabet/E_Letter.bmp": "882d0ee0013c43458ef55afd70ebebdf8f9a3d7e6154e84e34603b993327fae1",
+    "proj/src/bmp/Alphabet/Number_4.bmp": "2ec219e61e92d229165a745b984a1a11676a0dbd8aec5b06661be82ba5207027",
+    "proj/src/bmp/Alphabet/Number_0.bmp": "626da735eb861e0b28721ba59d35caa6c98419f3aabce9a2b2328bc3d51a47b3",
+    "proj/src/bmp/Alphabet/Number_1.bmp": "3332214097b3cf0ffa5f44218af6f0d13c6d3a9c993e06f9555acdd2415b0658",
+    "proj/src/bmp/Alphabet/Number_3.bmp": "4db6b66c983e03b270e7088965aea2d01074981e9c93c2fb45e863d716b0edb6",
+    "proj/src/bmp/Alphabet/S_Letter.bmp": "268829167ce73aed415b2ceb8791ca6d6373c603f5f7ec97ce203b48e12dff6a",
+    "proj/src/bmp/Alphabet/M_Letter.bmp": "c15929261af2383b011f3536d6d815f40ae9b1b86a628cba31218717ed18acb0",
+    "proj/src/bmp/Alphabet/Number_2.bmp": "3c2fd6e9cdec18b8da6fc023d9888721da735e880eb1caed4ae06b0632d10ee3",
+    "proj/src/bmp/Alphabet/J_Letter.bmp": "778f801c51ce0a2409d39f39e9b859bf88d910db620c58c33dc71fd35411b9d2",
+    "proj/src/bmp/Alphabet/T_Letter.bmp": "00314fce925ea430d1c3c89cd6075585134bfc1fd1602ddabd0a663241dca8a0",
+    "proj/src/bmp/Alphabet/G_Letter.bmp": "b133ee2b10a6b33cbe62f99d9b2b3e782af645fa70195470ebe49aa31664a6c7",
+    "proj/src/bmp/Alphabet/Y_Letter.bmp": "c415a2550350bc8f84e05e55703e2a1f169c38200bfbb5dd3081a9f6c0128566",
+    "proj/src/bmp/Alphabet/B_Letter.bmp": "b4457f13497123374364e39d7c016045b42b85ec5ec8cf27234b5c4ab8973588",
+    "proj/src/bmp/Alphabet/O_Letter.bmp": "1b60cb7083d14fda63e769f5a849395f68b55c929357e3b847c17d3d6de658fa",
+    "proj/src/bmp/Alphabet/Q_Letter.bmp": "931cce7321dbe46696152a98031724f1cd709e2119bb18cc19b8bcb8ab18f003",
+    "proj/src/bmp/Alphabet/A_Letter.bmp": "ecfa4c9549c7e570613578d2b7f355e742d85ef394e6ba9b6be2dea73c454a0f",
+    "proj/src/bmp/Alphabet/R_Letter.bmp": "fc60162bcbf979cc0911338181c495c5a3ab404c6a3e4d41d6688166bbfd6638",
+    "proj/src/bmp/Alphabet/L_Letter.bmp": "1c8bd8bcb30886a1c6b96a3c3db2671327ea893bd0367a63e0499e7a694d2965",
+    "proj/src/bmp/Alphabet/W_Letter.bmp": "c7aa444eccabe5f8dbe3847a78be8870ca65dda38960efd50fc5ed0ef5526ebf",
+    "proj/src/bmp/Alphabet/I_Letter.bmp": "c8e465c0d6bc92b39c101aeb6261310571671714b11ae69debeab704f3f4da6f",
+    "proj/src/bmp/Alphabet/Z_Letter.bmp": "0ac0a9a060426577c8fa1d05c3d63d899506cafe8025b66d5c5924876a23673e",
+    "proj/src/bmp/Alphabet/D_Letter.bmp": "5ce461803a4e1c3a34220d0548aa2cc8a1edd815a9c11befa890a3c438b27182",
+    "proj/src/bmp/Alphabet/C_Letter.bmp": "878789cefa691edd5731460c66903464b5b93ed1c654e14dea84a0c474090740",
+    "proj/src/bmp/Alphabet/N_Letter.bmp": "ee2afea2a870e78ced07841e582acdc3a22551eeac2a14dc9931b328047b2653",
+    "proj/src/bmp/Alphabet/P_Letter.bmp": "b7dbb8c1ae377f20aebc032fc09cee7bb1890f7e7a34741af03f60f759f731b8",
+    "proj/src/bmp/Alphabet/Number_9.bmp": "b58b399f283faa6400a1c550e4ccb8ffc58a581eb52ae4f278064af1c2690c18",
+    "proj/src/bmp/Alphabet/K_Letter.bmp": "48065e1400d777e151d545fd80be529b2ea6288249942bfb9c7d608f05f1965c",
+    "proj/src/bmp/Alphabet/Number_8.bmp": "efb49d640f94e6103a49971667f66fa891c1260ac3250b3ada378c7a83dc5d07",
+    "proj/src/bmp/Alphabet/U_Letter.bmp": "0cb8cc0d29daf5e4b1d8ad60e3a359cee7b4e09658297458fbc85efcbe5e7f58",
+    "proj/src/bmp/Alphabet/F_Letter.bmp": "56e69e20478e555c849139b6b9b8febfded8bcae76d820488d2287a985077880",
+    "proj/src/bmp/Alphabet/X_Letter.bmp": "27ed1dca9d41af90e9894dfbfb79851f0565fcbaf420fe70d8ef19c37b39e5c5"
+  },
+  "sourceChanges": [
+    {
+      "file": "proj/src/game.c",
+      "originalSha256": "80d2f5184a0ef23c866f439dba1f0ef312eb068e8f7bc65528e2729eb9ff9c16",
+      "patchedSha256": "e6bbd30754ed531ed39ff9f1890a0d0529b94cab6a9c4f7cfdee4761a1775281",
+      "reason": "An enemy collision calls end_game and frees the round character, then original Game Over Escape calls end_game a second time. Actual complete owning event-handler/sprite lifecycle RED detects the same allocation freed twice. Make round cleanup idempotent, clear the released character pointer and record a score only once. Actual constructor/collision/Exit sequence GREEN; no emulator adaptation or asset changes."
+    },
+    {
+      "file": "proj/src/text.c",
+      "originalSha256": "d95624d33b1818f74aa65201210cab341b1ae1af77d3a7ff052c9b4c232d3a96",
+      "patchedSha256": "c23b2bb6ee528872edcfd055c3a135e0a5b2b248c198a2f7be7eb8d37767c243",
+      "reason": "Original free_numbers iterates0 through10 over a ten-entry bitmap array. Actual ARM64 GameOver Escape aborts freeing0x800000005 from the adjacent GAME_STATE/nextglobal, and extracted APK unrolls the eleventh pointer read. Actual owning text cleanup plus bitmap destructor regression RED rejects the eleventh foreign free; GREEN releases exactly ten pixel-buffer/metadata pairs through existing deleteBitmap. Keep source assets and gameplay unchanged."
+    }
+  ],
+  "selection": "Pinned original project source and original bitmap assets, excluding generated binaries/objects and OS/VCS metadata.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX",
+      "Thumbs.db",
+      "desktop.ini"
+    ],
+    "reason": "OS/VCS metadata excluded from required source inventory."
+  },
+  "yearEvidence": {
+    "kind": "GitHub repository creation timestamp",
+    "url": "https://github.com/HenriJSantos/LCOM",
+    "createdAt": "2019-09-23T16:27:14Z"
+  },
+  "controlsRationale": "Original menu crosshair512384 already overlaps the1Pbutton at510465. Single mouse-left Fire/Select controls menu and click-edge firing. Relative canvas aim preserves original complete-packet handling and cursor warp on entering1P. WASD dpad controls the original movement booleans without typematic. Playfield1024x768 mode0x144 is original. Explicit authored project path alias preserves unchanged BMP and private score paths. Live-round Escape returns menu; GameOver Escape exits. A150-220ms held Fire checkpoint is required to see the authored12pxbullet travel.",
+  "verification": {
+    "browserBuild": true,
+    "nativeBuild": true,
+    "fortifiedNdkObjectCompile": true,
+    "mobileTouchGameplay": true,
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/henri-short",
+    "limits": "Actual short1P Play, Pikachu W/D movement, relative aim, two visible red projectiles, enemy spawn, passive score progression, natural collision Game Over, Escape normal exit and separate live-round Escape menu return. No enemy-kill, multiplayer, full-campaign or actual Android-play claim yet.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "3df929db83bde77daea734dea53f2efabb9f0f404c494b6d8665135e5c613c29",
+      "evidence": "build/arcade-100/b20-reviewed-native/results.json",
+      "demonstrated": [
+        "Pikachu moves above/right of the original center in a separate fresh run of the same APK.",
+        "Original red/pink projectile is visible to the right of Pikachu while Fire is held; passive score22 and approaching Charmander remain visible.",
+        "Original live round renders after early firing.",
+        "Original collision and passive score on Game Over screen."
+      ],
+      "limitations": [
+        "Short local one-player movement, projectile, enemy approach, passive score, collision Game Over and normal exit verified across two fresh sessions of the same APK. Enemy kills, multiplayer, full campaigns and physical-phone performance remain untested."
+      ]
+    },
+    "browser": "Original one-player Play, Pikachu W/D movement, relative aim and visible red projectiles, enemy approach and passive score progression, natural collision Game Over, Escape normal exit and separate live-round Escape menu return."
+  },
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected original root.",
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "c0a3cc96e794665b7fe57968127c4dd712db592daab2b7d93073f94d8c728d84",
+      "kind": "simple source-informed Pikachu icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "2fe2319364285ac44447b23f5f13d124148148880c28f3a3df46ca81f39196bb",
+      "kind": "actual corrected-source browser gameplay"
+    }
+  ]
+}

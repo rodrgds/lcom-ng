@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="dir_f338bbed6c3d047f6a35c41443d88c90" kind="dir">
+    <compoundname>C:/MINIX-LCOM/shared/g3/proj/src/Drivers</compoundname>
+    <innerfile refid="_graphic_card_8c">GraphicCard.c</innerfile>
+    <innerfile refid="_graphic_card_8h">GraphicCard.h</innerfile>
+    <innerfile refid="i8042_8h">i8042.h</innerfile>
+    <innerfile refid="i8254_8h">i8254.h</innerfile>
+    <innerfile refid="keyboard_8c">keyboard.c</innerfile>
+    <innerfile refid="keyboard_8h">keyboard.h</innerfile>
+    <innerfile refid="macros_8h">macros.h</innerfile>
+    <innerfile refid="mouse_8c">mouse.c</innerfile>
+    <innerfile refid="mouse_8h">mouse.h</innerfile>
+    <innerfile refid="_r_t_c_8c">RTC.c</innerfile>
+    <innerfile refid="_r_t_c_8h">RTC.h</innerfile>
+    <innerfile refid="timer_8c">timer.c</innerfile>
+    <innerfile refid="timer_8h">timer.h</innerfile>
+    <innerfile refid="utils_8c">utils.c</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/"/>
+  </compounddef>
+</doxygen>

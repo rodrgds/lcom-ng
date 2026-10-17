@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "name": "Last Survivor",
+  "description": "Survive the Egyptian arena with automatic blade attacks and aimed lightning.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "touch": "move",
+      "actions": [
+        {
+          "label": "Start / Select",
+          "key": "ENTER",
+          "position": "top-right"
+        },
+        {
+          "label": "Lightning",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

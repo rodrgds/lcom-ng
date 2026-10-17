@@ -1,0 +1,98 @@
+--- a/proj/src/video_gr.c
++++ b/proj/src/video_gr.c
+@@ -41,7 +41,7 @@
+   struct minix_mem_range mr, mr_secondary;
+ 
+   unsigned int vram_base = vmi.PhysBasePtr;
+-  unsigned int vram_size = h_res * v_res * (bits_per_pixel+7/8);
++  unsigned int vram_size = h_res * v_res * ((bits_per_pixel+7)/8);
+   
+   unsigned int vram_base_secondary_buffer = vmi.PhysBasePtr + vram_size;
+   int r;
+@@ -129,10 +129,10 @@
+ 
+ 
+ void swap_buffer() {
+- memcpy(video_mem,video_mem_sec,h_res * v_res * (bits_per_pixel+7/8));
+- memset(video_mem_sec,0,h_res * v_res * (bits_per_pixel+7/8));
++ memcpy(video_mem,video_mem_sec,h_res * v_res * ((bits_per_pixel+7)/8));
++ memset(video_mem_sec,0,h_res * v_res * ((bits_per_pixel+7)/8));
+ }
+ 
+ void (double_buffer)() {
+-  memcpy(video_mem, video_mem_sec, v_res * h_res * (bits_per_pixel+7/8));
++  memcpy(video_mem, video_mem_sec, v_res * h_res * ((bits_per_pixel+7)/8));
+ }
+--- a/proj/src/snake.c
++++ b/proj/src/snake.c
+@@ -3,6 +3,7 @@
+ snakepart *snake;
+ int size = 3;
+ int previousmove = RIGHT;
++static uint8_t requestedmove = RIGHT;
+ int speed = 20;
+ int score = 0;
+ 
+@@ -11,6 +12,7 @@
+ void(create_snake)() {
+   size=3;
+   previousmove=RIGHT;
++  requestedmove=RIGHT;
+   speed=20;
+   score=0;
+   snake = malloc(50 * sizeof *snake);
+@@ -118,24 +120,29 @@
+   }
+ }
+ 
++void snake_set_direction(uint8_t key) {
++  if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
++    requestedmove = key;
++}
++
+ void(snake_update_movement)() {
+ 
+-  if (last == UP && previousmove != DOWN) {
++  if (requestedmove == UP && previousmove != DOWN) {
+     snake[size - 1].img = snakeheadup_img;
+     snake[size - 1].y -= speed;
+     previousmove = UP;
+   }
+-  else if (last == DOWN && previousmove != UP) {
++  else if (requestedmove == DOWN && previousmove != UP) {
+     snake[size - 1].img = snakeheaddown_img;
+     snake[size - 1].y += speed;
+     previousmove = DOWN;
+   }
+-  else if (last == RIGHT && previousmove != LEFT) {
++  else if (requestedmove == RIGHT && previousmove != LEFT) {
+     snake[size - 1].img = snakeheadright_img;
+     snake[size - 1].x += speed;
+     previousmove = RIGHT;
+   }
+-  else if (last == LEFT && previousmove != RIGHT) {
++  else if (requestedmove == LEFT && previousmove != RIGHT) {
+     snake[size - 1].img = snakeheadleft_img;
+     snake[size - 1].x -= speed;
+     previousmove = LEFT;
+--- a/proj/src/snake.h
++++ b/proj/src/snake.h
+@@ -43,6 +43,8 @@
+ 
+ void (define_snake_tail_sprite)();
+ 
++void snake_set_direction(uint8_t key);
++
+ void(snake_update_movement)();
+ 
+ void (define_snake_body_sprite)();
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -216,6 +216,7 @@
+      }
+       break;
+     case KEYBOARD:
++      snake_set_direction(last);
+       break;
+     case MOUSE: // NAO FAZER NADA
+       break;

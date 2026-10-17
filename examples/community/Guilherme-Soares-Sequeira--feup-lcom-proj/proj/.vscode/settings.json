@@ -1,0 +1,16 @@
+{
+  "makefile.extensionOutputFolder": "./.vscode",
+  "C_Cpp.errorSquiggles": "Disabled",
+  "files.associations": {
+    "ps2.h": "c",
+    "i8042.h": "c",
+    "video_gr.h": "c",
+    "*.xpm": "c",
+<<<<<<< HEAD
+    "graphics.h": "c"
+=======
+    "future": "c",
+    "color.h": "c"
+>>>>>>> e7660017a2b7d7e2892d5c7196d665e74176ee2c
+  }
+}

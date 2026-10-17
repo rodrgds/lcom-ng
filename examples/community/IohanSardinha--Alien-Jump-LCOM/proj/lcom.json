@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "name": "Alien Jump",
+  "description": "Bounce between asteroids and steer the alien through a rising platform course.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "overlay",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Pause",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Save score",
+          "key": "ENTER",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

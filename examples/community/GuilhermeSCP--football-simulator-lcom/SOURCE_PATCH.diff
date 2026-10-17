@@ -1,0 +1,70 @@
+--- a/kbc.c
++++ b/kbc.c
+@@ -136,20 +136,35 @@
+ 		return 1;
+ }
+ 
+-unsigned long mouse_subscribe_int(void ) {
+-
+-	write_kbc(CMD_REG, 0xD4);
+-	write_kbc(DATA_REG, 0xF5);
+-
++static int mouse_command(unsigned char command) {
++	unsigned char reply;
++	int attempt;
++	if (write_kbc(CMD_REG, 0xD4) != 0 || write_kbc(DATA_REG, command) != 0)
++		return 1;
++	for (attempt = 0; attempt < 10; attempt++) {
++		reply = mouse_read();
++		if (reply == 0xFA) return 0;
++		if (reply != (unsigned char)-1) return 1;
++		tickdelay(micros_to_ticks(WAIT_TIME));
++	}
++	return 1;
++}
++
++unsigned long mouse_subscribe_int(void) {
++	if (mouse_command(0xF5) != 0) return 0;
+ 	MOUSEhook = 2;
+-	sys_irqsetpolicy(12, IRQ_REENABLE | IRQ_EXCLUSIVE, &MOUSEhook);
+-
+-	sys_irqenable(&MOUSEhook);
+-
+-	write_kbc(CMD_REG, 0xD4);
+-	write_kbc(DATA_REG, 0xF4);
+-
+-	return 1<<2;
++	if (sys_irqsetpolicy(12, IRQ_REENABLE | IRQ_EXCLUSIVE, &MOUSEhook) != OK)
++		return 0;
++	if (sys_irqenable(&MOUSEhook) != OK) {
++		sys_irqrmpolicy(&MOUSEhook);
++		return 0;
++	}
++	if (mouse_command(0xF4) != 0) {
++		sys_irqdisable(&MOUSEhook);
++		sys_irqrmpolicy(&MOUSEhook);
++		return 0;
++	}
++	return 1 << 2;
+ }
+ 
+ unsigned char mouse_read()
+@@ -196,6 +211,7 @@
+ 		}
+ 		return -1;
+ 	}
++	return (unsigned char)-1;
+ }
+ 
+ void kbc_clean_buf() {
+--- a/video_txt.c
++++ b/video_txt.c
+@@ -92,7 +92,7 @@
+ 
+ int vt_print_int(int num, int r, int c, char attr)
+ {	int n = 16, j, a=0, num_size = 0;
+-	char buf[16];
++	char buf[17];
+ 	char *numero;
+ 	buf[n]=0;
+ 	do

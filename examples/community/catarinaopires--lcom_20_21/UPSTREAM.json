@@ -1,0 +1,145 @@
+{
+  "repository": "https://github.com/catarinaopires/lcom_20_21",
+  "commit": "39c59020e6c38123a1785f7492f4a516d9afa49e",
+  "createdAt": "2021-02-11T21:15:57Z",
+  "project": "proj/src",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/catarinaopires/lcom_20_21",
+    "createdAt": "2021-02-11T21:15:57Z"
+  },
+  "sha256": {
+    "proj/src/Makefile": "3b28caab8f5cda025c54ba86f82a57b563baa91a17d2dc34c42d2775fd9e1898",
+    "proj/src/proj.c": "7487032c70ff1c071cbb3c272ab4544eb602cf7454944e3c0f1adc48b7579e9e",
+    "proj/src/program_options.h": "5ff2fbed1949f94472ad53a0d90251770c9778dcea5214db3ee12306c61401e3",
+    "proj/src/kbc/mouse.c": "be482b91938146c71f7805e32def62cb8f81a9c527671159620720f5e4ed6a6e",
+    "proj/src/kbc/keyboard.c": "6699dc7a13252bccc93d18f57ac54b59527c17cd8c8a3590cc8c515643dbddf3",
+    "proj/src/kbc/gestureDetection.c": "c5cfd51d96541e19373ff07cfd23a0e6a552fe17448e6aee44a8f86cc46ea768",
+    "proj/src/kbc/i8042.h": "612219a36d98afe9faeaeec5be1492b45e78c980315c1138c79f14c2d3caa63f",
+    "proj/src/kbc/mouse.h": "ee3e59210470e6dfa0bd8e1b3e0f61f9bed96ded50e0733e1a7a298df0c859d2",
+    "proj/src/kbc/keyboard.h": "8924592df9b303e139f700f785b20c485427291a8bc681da8818a45b7500393d",
+    "proj/src/kbc/gestureDetection.h": "fda1e5dd6f706c8249e3f9384f2981bbf1ab2b37432634c122f1bcbafe536f47",
+    "proj/src/kbc/i8042.c": "ab49cfa99a6f11dfc24cdf10adf833d1f47e0fbdee650b0f6ec2f41854dbea99",
+    "proj/src/video/video.c": "4345d30caaae2955dd39003181fbc822b32a7f74b399a75eeb38ee5ecfd4a524",
+    "proj/src/video/extImages.c": "cba20018337b97dab84bc59d577a080076ece51cf98b80a4c3fe44c9c6df4aed",
+    "proj/src/video/video.h": "6fcc6e345dec698dcd71111832eb6264730f79d86066bcb4cfdc447eaf5279a3",
+    "proj/src/video/extImages.h": "2bbe5edaef0bf37fdc8c74b14b7051c73a54b50bdbdd83424f61071ad50ba2d4",
+    "proj/src/video/images/hearts.xpm": "9b9837a30a2c7c9f39e2d791dcca94680c315a2ae431721f2b63d29347bde61c",
+    "proj/src/video/images/gameOver.xpm": "ab63648188badf4e53da0691c2ab3971998dcd3cc37d836455efeeb2b3abb6fa",
+    "proj/src/video/images/clock.xpm": "a46d3b02fa7b6c88e7f23f072cc177602263a07f6b7c1f670bca7ca91607e9e2",
+    "proj/src/video/images/background_keys_game.xpm": "78d510d125a88571f4c2a249bb6c192966696eee17e34d32a68554af74a52bb9",
+    "proj/src/video/images/drawingGameText.xpm": "222662c0d324051096eaa84672ba66ac03064f35d28f9030bbce6a09b62674d4",
+    "proj/src/video/images/MENU.xpm": "beacf7367641ab0999082d88290138afaf0ac50714cad067a479359d0c212045",
+    "proj/src/video/images/logo.xpm": "920e6afeeb6b08e8c0fa276c11b59f8bb534a98672265e0e6c82a3f69c039f7f",
+    "proj/src/video/images/Background_Menu.xpm": "b2d8bc1272219e863c0c4d4fa621934ed38cbf12d6e9e08c6aa432e2a1beaeb8",
+    "proj/src/video/images/desafio_teclas_shift.xpm": "130bd9db90f7a1674b70e2adc3448950955b86498794e96f52b5004fb19e5cc5",
+    "proj/src/video/images/background_explain_time.xpm": "690b75928b8208bc3d96a03e0b6acceaf79dce9cad13ad51231769588e9ee84f",
+    "proj/src/video/images/2.xpm": "727efb5879c6df832b723d7c069c3fab0ca698fb6441114a94c3f3a430bd9ff7",
+    "proj/src/video/images/back.xpm": "267c13acab672e116ee3dd61e341d5b2d5bb8f9a5db131d1ee84f0027f976b13",
+    "proj/src/video/images/3.xpm": "29f88577f715b266a78d9b56075d14516d1d4b563ceedda9c06587c8e02530d6",
+    "proj/src/video/images/desafio_teclas_t.xpm": "0bcc0873db02ff68f24b4e1e09e63f50c7b9a8ccf46260096c3cd172a1490a62",
+    "proj/src/video/images/PLAY.xpm": "8df8ef977aa1804af385e086fc027577e735c45bdf427437ca315631feeb9efc",
+    "proj/src/video/images/desafio_teclas_c.xpm": "a3ed72c7e1dac1ed905248622f4a158bdc1290b07b978ebbf72f33b7ea67802d",
+    "proj/src/video/images/1.xpm": "fa5096d73ae10886229e47199c3267407d87d4bf182e6ececf3e6d80f60f16d4",
+    "proj/src/video/images/bomb1.xpm": "c56ec4f53c817a3f6b5fbea6e5393fa43fe562922483937fcb7d60b6e3532f0a",
+    "proj/src/video/images/0.xpm": "2b41b4d4c870f609a40dba99494e09f6198fbabd072a0fa9ad09f8c1059852b5",
+    "proj/src/video/images/4.xpm": "6fc4ba148ee6b28d35d2a543c14ca41640baaba607a508195a795dd086f5a7af",
+    "proj/src/video/images/pencil.xpm": "280e0eda3e5f933ced54296fa97330ad377cf1ed5d70f55934501cba60140a80",
+    "proj/src/video/images/missel.xpm": "919e854c7e3bb391e52853ce0daa56dd78fa950e60b3353f17a351b31cfc0669",
+    "proj/src/video/images/5.xpm": "654705dc3d85a39afb155e94a80d62d75e8fdf3d59f2e0a52a4fdd4ee6d5ca3b",
+    "proj/src/video/images/desafio_teclas_r.xpm": "7c52a23b6577eeff6f1a20fbe867d88525e428dbc011f2d3d5257062e8cf235b",
+    "proj/src/video/images/desafio_teclas_p.xpm": "6ebf8af0a2ada812933b766852dcefcf324025e72a8e746c39eb11426f65e36d",
+    "proj/src/video/images/player_green.xpm": "1789bd008ab536238238c775955c1d179ed93678b6e9441734d0d90bb16fbcb6",
+    "proj/src/video/images/7.xpm": "918c71a84187344352df4a46f09a1ba9b1eff8cfb1839cac95764eeca3725b6e",
+    "proj/src/video/images/sec_txt.xpm": "dea66bddcc6075a9ffdbeb60393b88567deb9b9c1c523954b0b47fc4b50da9e5",
+    "proj/src/video/images/time_game.xpm": "44e871ffd12e46d02574e819f2ad0d22657c229d2dd6d9d66a417b9e4455ca07",
+    "proj/src/video/images/6.xpm": "0a728245cf3733238f7f84c84cf871fe420acf1738578d24f048ad28f130cd1d",
+    "proj/src/video/images/ball.xpm": "3f1dbaaaff81495d6e3a9c5d84da4f78e91d1fb0ca403008a56418e536c7b979",
+    "proj/src/video/images/keysGameText.xpm": "a227c0bd2793479d7513fe581607960ceac56bb59451335d83c7b5f9edb469c5",
+    "proj/src/video/images/desafio_teclas_j.xpm": "97a0e62dd9677db457149b3620e36c6d2401d54158cc8b9ae15349083af9f275",
+    "proj/src/video/images/reactionGameText.xpm": "bd0d8aaa22eed8a4bfb6ebb3667ebb014218e48311da0ae110fd94f61f1a9bb7",
+    "proj/src/video/images/8.xpm": "7ac0d7c5aa7187d458ccc97554ebcfd7e9ed1148281edd902ae6e021bd01356b",
+    "proj/src/video/images/desafio_teclas_control.xpm": "7c2ab7e29be5098b672c8288af0a33a2a8534530b918bba1212b357cd5812f7b",
+    "proj/src/video/images/9.xpm": "3999f89bb61e82d1107f3d401e314fe44ec8c0d33c7eb01b97df5ca1d681d5a7",
+    "proj/src/video/images/player_red.xpm": "943c0c29421b259096c704bca3edb06c98cb4d9497bdb471d0f89ca4a3e343a3",
+    "proj/src/video/images/desafio_teclas_m.xpm": "27e423a125d100fe234e9250acf055d7725bd83f13c909a04abd908b0abc89af",
+    "proj/src/video/images/wonGame.xpm": "ad5035fad2930090ed35aebbdf4167afbef76fc7f8c4bda9bfcb867691c0983c",
+    "proj/src/video/images/bomb.xpm": "1c2cedd3e24f00a979312840bcaa59a11a90988f03415a46124b723b3bfd4d68",
+    "proj/src/video/images/QUIT.xpm": "42cdd3103a5b0980a83e2d81cb0cddd00de8b71f335ea33feb2038815cf3cec9",
+    "proj/src/video/images/background_drawing_game.xpm": "46bd75e7d6cfbccebe2a5cb49a7f892878acb955eedfeee33bb34a3fa51b799d",
+    "proj/src/video/images/desafio_teclas_enter.xpm": "6f7af4e8233a2719ea3e102fd03143041bf46977dff08594896ac7d3ecc2ca90",
+    "proj/src/video/images/desafio_teclas.xpm": "141f1e5a7ee6fe364f6d6dc61f13a55c9aaa3cbfd3155cc4825a4a3479cc1c57",
+    "proj/src/video/images/pts.xpm": "8ce5967607f98bcdd00bdb5e7ba19c0f45b9c4f0e9f2c7b336c2c78238bb5ecc",
+    "proj/src/video/images/virus.xpm": "58a56d63b153727d7c971d51bdf1a09fd75b0fc92d54d3a58febcd6bea01dc5e",
+    "proj/src/video/images/background.xpm": "2d2f3681f65175403a3b4afbc3bd6bc6b7a280f1cb3821b703bc777e52e6af21",
+    "proj/src/video/images/choose_game.xpm": "ab84fa8a3bfcb645e661c460d1ae34e438efdf93164cf3c069c2096d1775d78d",
+    "proj/src/video/images/background_reaction_game.xpm": "df99a33e5b13da4c76320779f161bff36622becd9daebfcc2c5af93ec26a91c0",
+    "proj/src/video/ui_elements/cursor.xpm": "bece865f915d1a2005232c96ba01259a7b8041b4bb03fc37241b692fe367e8af",
+    "proj/src/video/ui_elements/cursor2.xpm": "a81690150bf7696907fc69d4371c574d2c979b7c854c9464faf10ffaa41a9124",
+    "proj/src/timer/i8254.c": "b5941857eadde25a0983a8b5ef67bf748c031a7c9126386246ffde0c63e6612b",
+    "proj/src/timer/i8254.h": "eaf5994be9a62409c00be740c8e6e2459a79b4df63cb3a2af734068723016483",
+    "proj/src/common/interrupts.h": "663f4b9eb52785e3a10b69db850d92f3ba3b96e47be719c6ef226921db7f4f02",
+    "proj/src/common/utils.h": "0b075c005f3a18fbcbd164f81e13db478cf89152f4e1c56893ff5e2efdcdcebb",
+    "proj/src/common/counters.c": "17be53556470c9c01aacf297c738d3b0e318eec75a8f8eb0248eb62a11476bd0",
+    "proj/src/common/utils.c": "6a94b08101a342a9315dba4d9bbe25a8d1c526a5cca9bd2024aebf26a8fd9107",
+    "proj/src/common/interrupts.c": "46a8c7bfea7ebb36bd1199d86499effd2cd6725e1b0176f7a3dfb16a767c6b22",
+    "proj/src/common/counters.h": "ab624c2df548202d958d218a486879ade9b873a12dce4f6aa32dbbd81a516937",
+    "proj/src/rtc/rtc.c": "046d24261556705a3acb7553382a8ab045967ae5f365ba8f3aa3caf1249e1b71",
+    "proj/src/rtc/rtc.h": "62f7d47895a01f609874dbec557ba82ce65db016e0196439396016b7d1382030"
+  },
+  "sourceChanges": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "All10cursor mouse packet handlers previously replaced pending motion before timer rendering, losing earlier packets and erasing travel on stationary button packets. Accumulate pending cursor xspeed/yspeed at these original call sites until existing timer movement/reset consumes them. Shared change_speed setter and reaction object semantics remain unchanged.",
+      "files": [
+        {
+          "path": "proj/src/proj.c",
+          "originalSha256": "7487032c70ff1c071cbb3c272ab4544eb602cf7454944e3c0f1adc48b7579e9e",
+          "patchedSha256": "5cbea69e4225f45e23990fce26d5c6e468fe0c62742fe884329e09717639f304"
+        }
+      ]
+    }
+  ],
+  "sourcePreservation": "77 pinned original source/header/XPM files retained in sha256. One separately reversible source-defect correction in proj.c across10cursor packet handlers; original art and all other source unchanged.",
+  "omissions": "Unused labs, generated documentation, VCS/OS metadata and compiler/log outputs omitted.",
+  "licenseStatus": "No license file found in the selected pinned project tree.",
+  "verification": {
+    "browser": {
+      "status": "passed",
+      "demonstrated": [
+        "Ordinary relative screen movement and Select navigate original main/mini-game menus.",
+        "Actual three-finger P/M/J touch holds win the original Keys Game, reaching YOU WIN.",
+        "Original Back buttons return through main menu into Time Game.",
+        "After15seconds, the real middle-mouse Stop timer action wins the original Timing Game, reaching YOU WIN.",
+        "Landscape and portrait controls inspected."
+      ],
+      "limits": "Keys and Timing games completed. Reaction and Drawing controls are exposed according to original API but those two challenges are not yet gameplay-qualified. No direct-touch calibration asserted."
+    },
+    "fortifiedNdkObjectCompile": {
+      "status": "passed",
+      "units": 12,
+      "detail": "All authored Makefile source units compiled for ARM64 with O2/FORTIFY_SOURCE2/Wformat/Werror=format-security."
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/humanoid-reviewed-native/results.json",
+      "apkSha256": "864efb0e81f569b05b9d7582eccbfe1bdbd17761fc34b02d3e56af2a2722a7d2",
+      "demonstrated": "Root viewed actual three-finger native P/M/J Keys win, normal fast drag Back/main/minigame routing after cursor-packet fix, original Timing game00:15, timed middle-mouse touchStop and second YOU WIN, then clean Home.",
+      "limitations": [
+        "Keys and Timing games completed on Android. Reaction and Drawing challenges are mapped but not claimed completed."
+      ]
+    }
+  },
+  "controlsRationale": "Original cursor starts576/432 and applies mouse speeds at timer boundaries. Use relative Move gesture plus separate Select; direct touch is deliberately not enabled. P/M/J remain held together for the original chord challenge. Original middle click maps to Stop timer, original right click to Finish drawing, and left/right arrow pad to Reaction movement. Auto orientation avoids unnecessary portrait hint overlap. Pending packet motion is now accumulated at original cursor handler sites, so multiple packets before a frame and stationary button packets preserve normal travel.",
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "9fd4f22818546a7c8da1e47c6e90a7b6fa5df162599d4fb96e380b59d8ed177d",
+      "kind": "Original video/images/logo.xpm pixels transcoded and fitted to square launcher background"
+    }
+  ],
+  "canonicalPreview": {
+    "path": "proj/src/../../../../../collections/arcade/previews/catarinaopires-lcom-20-21-05e58c9827c1.png",
+    "kind": "Actual original Keys Game framebuffer screenshot"
+  }
+}

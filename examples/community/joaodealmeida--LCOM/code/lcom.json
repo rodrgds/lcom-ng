@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "name": "Shark Patrol",
+  "description": "Steer the boat, aim the crosshair and shoot approaching sharks.",
+  "build": {
+    "cStandard": "gnu89"
+  },
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "touchClick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "stick"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick",
+          "sensitivity": 1
+        }
+      ],
+      "actions": [
+        {
+          "label": "Shoot / Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        }
+      ],
+      "tapDuration": 250
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

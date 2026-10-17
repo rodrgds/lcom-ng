@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "name": "Tetris-LCOM",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [],
+      "layout": "overlay",
+      "pointer": "off",
+      "repeatKeys": [
+        "LEFT",
+        "RIGHT",
+        "DOWN"
+      ],
+      "actions": [
+        {
+          "label": "Rotate left",
+          "key": "A",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Rotate right",
+          "key": "D",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Hold",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Start / Confirm",
+          "key": "ENTER",
+          "position": "top-right"
+        },
+        {
+          "label": "Pause / Back",
+          "key": "ESC",
+          "position": "top-left"
+        }
+      ],
+      "dpad": true
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/res"
+    ]
+  },
+  "archetype": "Tetris",
+  "description": "Stack the original colorful blocks, rotate both ways, hold a piece and choose three difficulty levels.",
+  "preview": "../../../../../collections/arcade/previews/goncaloacteixeira-feup-lcom-a992eaca46aa.png",
+  "icon": "icon.png"
+}

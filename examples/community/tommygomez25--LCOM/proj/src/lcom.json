@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "Snake: Grass Garden",
+  "description": "Collect apples through the original grass garden.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "highscores.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj/src": "."
+    }
+  },
+  "archetype": "Snake",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

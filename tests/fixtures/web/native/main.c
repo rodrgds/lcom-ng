@@ -25,10 +25,20 @@ int main(int argc, char **argv) {
     pixels[i] = 51; pixels[i + 1] = 34; pixels[i + 2] = 17;
   }
   lcom_vbe_present();
+  unsigned release_actions = 0;
   lcom_irq_t timer, keyboard, mouse;
   if (lcom_irq_subscribe(TIMER0_IRQ, 0, &timer) ||
       lcom_irq_subscribe(KBC_IRQ, 0, &keyboard) ||
       lcom_irq_subscribe(MOUSE_IRQ, 0, &mouse)) return 5;
+  if (argc > 1 && !strcmp(argv[1], "--wheel")) {
+    const uint8_t commands[] = {0xf3, 200, 0xf3, 100, 0xf3, 80};
+    for (size_t i = 0; i < sizeof commands; ++i) {
+      uint8_t ack = 0;
+      lcom_port_write8(KBC_CMD_REG, KBC_CMD_WRITE_MOUSE);
+      lcom_port_write8(KBC_IN_BUF, commands[i]);
+      if (lcom_port_read8(KBC_OUT_BUF, &ack) || ack != 0xfa) return 10;
+    }
+  }
   lcom_port_write8(KBC_CMD_REG, KBC_CMD_WRITE_MOUSE);
   lcom_port_write8(KBC_IN_BUF, 0xf4);
   lcom_ac97_buffer_info_t sound;
@@ -47,6 +57,7 @@ int main(int argc, char **argv) {
       if (lcom_port_read8(KBC_ST_REG, &status) || !(status & KBC_ST_OBF)) break;
       if (lcom_port_read8(KBC_OUT_BUF, &byte)) return 8;
       printf("%s:%02x\n", status & KBC_ST_AUX ? "mouse" : "key", byte);
+      if (!(status & KBC_ST_AUX) && byte == 0x91) printf("release-action:%u\n", ++release_actions);
       if (!(status & KBC_ST_AUX) && byte == 0x2d) {
         lcom_exit(); exit(9);
       }

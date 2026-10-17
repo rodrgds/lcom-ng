@@ -1,0 +1,313 @@
+--- a/DODGEM/src/graphics.c
++++ b/DODGEM/src/graphics.c
+@@ -1,5 +1,6 @@
+ #include "DODGEM.h"
+ #include "graphics.h"
++#include "video_gr.h"
+ #include "utilities.h"
+ #include "minix/syslib.h"
+ #include "bitmap.h"
+--- a/DODGEM/src/mouse.c
++++ b/DODGEM/src/mouse.c
+@@ -129,19 +129,22 @@
+ 
+ void print_mouse(unsigned char *packets) {
+ 
+-	if (rato->x + (char)packets[1] < 0)
++	int dx = (packets[0] & BIT(4)) ? (int)packets[1] - 256 : packets[1];
++	int dy = (packets[0] & BIT(5)) ? (int)packets[2] - 256 : packets[2];
++
++	if (rato->x + dx < 0)
+ 		rato->x = 0;
+-	else if (rato->x + (char)packets[1] > (MODE1024_H_RES - 20))
++	else if (rato->x + dx > (MODE1024_H_RES - 20))
+ 		rato->x = (MODE1024_H_RES - 20);
+ 	else
+-		rato->x += (char)packets[1];
++		rato->x += dx;
+ 
+-	if (rato->y - (char)packets[2] < 0)
++	if (rato->y - dy < 0)
+ 		rato->y = 0;
+-	else if (rato->y - (char)packets[2] > (MODE1024_V_RES - 20))
++	else if (rato->y - dy > (MODE1024_V_RES - 20))
+ 		rato->y = (MODE1024_V_RES - 20);
+ 	else
+-		rato->y -= (char)packets[2];
++		rato->y -= dy;
+ 
+ //	rato->x = xcoord;
+ //	rato->y = ycoord;
+--- a/DODGEM/src/DODGEM.c
++++ b/DODGEM/src/DODGEM.c
+@@ -1154,182 +1154,81 @@
+ 	Poderes->Energy = 100;
+ }
+ 
+-int loadScores()// faz update para o jogo de todos os scores
++static int readScoreLine(FILE *file, char *line, size_t capacity)
+ {
+-	int i_border = 0;
+-	int i_noborder = 0;
++	if (fgets(line, capacity, file) == NULL)
++		return 1;
++	if (strchr(line, '\n') == NULL && !feof(file))
++		return 1;
++	line[strcspn(line, "\r\n")] = '\0';
++	return 0;
++}
+ 
++int loadScores()// faz update para o jogo de todos os scores
++{
+ 	borderSize = 0;
+ 	noborderSize = 0;
+-
+-	FILE * file;
+-
+-	file =fopen(FILENAME, "r");
+-
+-	if(file == NULL)
++	FILE *file = fopen(FILENAME, "r");
++	if (file == NULL)
+ 	{
+ 		printf("não abriu o ficheiro!\n");
+ 		return 1;
+ 	}
+ 
+-	while (!feof(file))
++	int result = 0;
++	char line[100];
++	while (fgets(line, sizeof line, file) != NULL)
+ 	{
+-		char border[100];
+-
+-		fgets(border,100,file); //O primeiro caracter (linha) possui a info se tem border ou nao
+-
+-		if(border[0]== '1') // tem border
++		int with_border = line[0] == '1';
++		PLAYER p = {0};
++		if ((line[0] != '0' && line[0] != '1') ||
++			readScoreLine(file, line, sizeof line) != 0)
+ 		{
+-			char time[2];
+-			char lido;
+-			char trash;
+-			char score[10];
+-
+-			char name[15];
+-
+-			PLAYER p;
+-
+-			fgets(name,100,file); //2ª linha - Nome do jogador
+-
+-			if (strncmp(name, "0s2", strlen("0s2"))==0) //se for "lixo" termina
+-				return -1;
+-
+-			int i = 0;
+-
+-			if (name[strlen(name) - 1] == '\n') //Se encontrar newline, substitui por fim de string
+-			{
+-				name[strlen(name) - 1] = '\0';
+-			}
+-
+-			strcpy(p.nickname, name);
+-
+-
+-			fgets(score,100,file); //3ª linha possui os segundos do score
+-			p.segundos = atoi(score);
+-
+-			fgets(score,100,file); //4ª linha possui as centesimas do score
+-			p.centesimas = atoi(score);
+-
+-			int j = 0;
+-			for (j; j < 6; j++){
+-				lido = fgetc(file); //le o primeiro caracter do numero da data
+-				time[0] = lido;
+-				lido = fgetc(file); //le o segundo caracter do numero
+-				time[1] = lido;
+-				trash = fgetc(file); //le o espaço
+-				switch (j){
+-				case 0:
+-					p.data.day = atoi(time);
+-					break;
+-				case 1:
+-					p.data.month = atoi(time);
+-					break;
+-				case 2:
+-					p.data.year = atoi(time);
+-					break;
+-				case 3:
+-					p.data.hours = atoi(time);
+-					break;
+-				case 4:
+-					p.data.min = atoi(time);
+-					break;
+-				case 5:
+-					p.data.sec = atoi(time);
+-					break;
+-				}
+-			}
+-			trash = fgetc(file); //le o newline no fim da linha
+-
+-
+-			players_border[i_border] = p; //guarda no array
+-			i_border++;
+-			borderSize++;
+-
++			result = 1;
++			break;
+ 		}
+-		else                        // não tem border
++		if (strncmp(line, "0s2", 3) == 0)
+ 		{
+-			char time[2];
+-			char lido;
+-			char trash;
+-			char score[10];
+-
+-			char name[100];
+-
+-			PLAYER p;
+-
+-			fgets(name,100,file);
+-
+-			if (strncmp(name, "0s2", strlen("0s2"))==0)
+-				return -1;
+-			int i = 0;
+-
+-			if (name[strlen(name) - 1] == '\n')
+-			{
+-				name[strlen(name) - 1] = '\0';
+-			}
+-
+-			strcpy(p.nickname, name);
+-
+-			for(i; i< 11;i++){
+-				if (name[i] == '\n' || name[i] == '0')
+-					break;
+-				p.nickname[i]=name[i];
+-			}
+-
+-			for(i=0; i< 15;i++){
+-				name[i] = '0';
+-			}
+-
+-
+-			fgets(score,100,file);
+-			p.segundos = atoi(score);
+-
+-			fgets(score,100,file);
+-			p.centesimas = atoi(score);
+-
+-			int j = 0;
+-			for (j; j < 6; j++){
+-				lido = fgetc(file);
+-				time[0] = lido;
+-				lido = fgetc(file);
+-				time[1] = lido;
+-				trash = fgetc(file);
+-				switch (j){
+-				case 0:
+-					p.data.day = atoi(time);
+-					break;
+-				case 1:
+-					p.data.month = atoi(time);
+-					break;
+-				case 2:
+-					p.data.year = atoi(time);
+-					break;
+-				case 3:
+-					p.data.hours = atoi(time);
+-					break;
+-				case 4:
+-					p.data.min = atoi(time);
+-					break;
+-				case 5:
+-					p.data.sec = atoi(time);
+-					break;
+-				}
+-			}
+-			trash = fgetc(file);
+-
+-
+-
+-			players_noborder[i_noborder] = p;
+-			i_noborder++;
+-			noborderSize++;
+-
++			result = -1;
++			break;
+ 		}
+-
++		if (strlen(line) >= sizeof p.nickname)
++		{
++			result = 1;
++			break;
++		}
++		strcpy(p.nickname, line);
++		if (readScoreLine(file, line, sizeof line) != 0)
++		{
++			result = 1;
++			break;
++		}
++		p.segundos = atoi(line);
++		if (readScoreLine(file, line, sizeof line) != 0)
++		{
++			result = 1;
++			break;
++		}
++		p.centesimas = atoi(line);
++		if (readScoreLine(file, line, sizeof line) != 0 ||
++			sscanf(line, "%lu %lu %lu %lu %lu %lu", &p.data.day, &p.data.month,
++				&p.data.year, &p.data.hours, &p.data.min, &p.data.sec) != 6)
++		{
++			result = 1;
++			break;
++		}
++		if (with_border)
++		{
++			if (borderSize < sizeof players_border / sizeof players_border[0])
++				players_border[borderSize++] = p;
++		}
++		else if (noborderSize < sizeof players_noborder / sizeof players_noborder[0])
++			players_noborder[noborderSize++] = p;
+ 	}
+-
+-
+-	return 0;
+-
++	if (ferror(file))
++		result = 1;
++	fclose(file);
++	return result;
+ }
+ 
+ void addScore(PLAYER p)
+--- a/DODGEM/src/timer.c
++++ b/DODGEM/src/timer.c
+@@ -19,7 +19,7 @@
+ int timer_set_square(unsigned long timer, unsigned long freq)
+ {
+ 	unsigned long div = TIMER_FREQ/freq;
+-	char conf;
++	unsigned char conf;
+ 		if(freq == 0 || freq > TIMER_FREQ || div >= (1 << 16))
+ 		{
+ 			return 1;
+@@ -95,10 +95,12 @@
+ 		return 1;
+ 	}
+ 
+-	if(sys_inb(TIMER_0+timer, (unsigned long *) st )!= 0)
+-	{
+-		return 1;
+-	}
++	unsigned long status;
++	if(sys_inb(TIMER_0+timer, &status)!= 0)
++	{
++		return 1;
++	}
++	*st = (unsigned char) status;
+ 	//printf("%X",*st);
+ 	//printf("\n");
+ 	return 0;

@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "name": "Battalion Tanks",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Shoot / Select",
+          "mouseButton": "left",
+          "position": "top-left"
+        },
+        {
+          "label": "Fire",
+          "position": "bottom-right",
+          "mouseButton": "left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "Tanks/log.txt",
+      "Tanks/res/MiniTank.bmp",
+      "Tanks/res/Selection2.bmp",
+      "Tanks/res/Exit.bmp",
+      "Tanks/res/Wall.bmp",
+      "Tanks/res/Grass.bmp",
+      "Tanks/res/Score.bmp",
+      "Tanks/res/Live.bmp",
+      "Tanks/res/Enemy4.bmp",
+      "Tanks/res/Explosion5.bmp",
+      "Tanks/res/Tank.bmp",
+      "Tanks/res/Start.bmp",
+      "Tanks/res/Explosion4.bmp",
+      "Tanks/res/MultiPlayer.bmp",
+      "Tanks/res/SinglePlayer.bmp",
+      "Tanks/res/Enemy1.bmp",
+      "Tanks/res/Explosion1.bmp",
+      "Tanks/res/Enemy2.bmp",
+      "Tanks/res/Battalion.bmp",
+      "Tanks/res/Explosion3.bmp",
+      "Tanks/res/Explosion2.bmp",
+      "Tanks/res/Enemy3.bmp",
+      "Tanks/res/spark5.bmp",
+      "Tanks/res/Selection.bmp",
+      "Tanks/res/spark4.bmp",
+      "Tanks/res/Spark3.bmp",
+      "Tanks/res/Cursor.bmp",
+      "Tanks/res/Spark2.bmp",
+      "Tanks/res/Highscores.bmp",
+      "Tanks/res/Spark1.bmp",
+      "Tanks/res/Bullet2.bmp",
+      "Tanks/res/Cannon2.bmp",
+      "Tanks/res/Tanks.bmp",
+      "Tanks/res/Bullet1.bmp",
+      "Tanks/res/Resume.bmp",
+      "Tanks/res/Cannon1.bmp",
+      "Tanks/res/Live2.bmp",
+      "Tanks/res/font/s8.bmp",
+      "Tanks/res/font/s9.bmp",
+      "Tanks/res/font/null.bmp",
+      "Tanks/res/font/E.bmp",
+      "Tanks/res/font/3.bmp",
+      "Tanks/res/font/R.bmp",
+      "Tanks/res/font/S.bmp",
+      "Tanks/res/font/2.bmp",
+      "Tanks/res/font/D.bmp",
+      "Tanks/res/font/F.bmp",
+      "Tanks/res/font/0.bmp",
+      "Tanks/res/font/Q.bmp",
+      "Tanks/res/font/P.bmp",
+      "Tanks/res/font/1.bmp",
+      "Tanks/res/font/G.bmp",
+      "Tanks/res/font/5.bmp",
+      "Tanks/res/font/T.bmp",
+      "Tanks/res/font/C.bmp",
+      "Tanks/res/font/B.bmp",
+      "Tanks/res/font/U.bmp",
+      "Tanks/res/font/4.bmp",
+      "Tanks/res/font/6.bmp",
+      "Tanks/res/font/W.bmp",
+      "Tanks/res/font/A.bmp",
+      "Tanks/res/font/V.bmp",
+      "Tanks/res/font/7.bmp",
+      "Tanks/res/font/L.bmp",
+      "Tanks/res/font/M.bmp",
+      "Tanks/res/font/Z.bmp",
+      "Tanks/res/font/9.bmp",
+      "Tanks/res/font/X.bmp",
+      "Tanks/res/font/O.bmp",
+      "Tanks/res/font/N.bmp",
+      "Tanks/res/font/Y.bmp",
+      "Tanks/res/font/8.bmp",
+      "Tanks/res/font/dash.bmp",
+      "Tanks/res/font/J.bmp",
+      "Tanks/res/font/K.bmp",
+      "Tanks/res/font/I.bmp",
+      "Tanks/res/font/H.bmp",
+      "Tanks/res/font/s1.bmp",
+      "Tanks/res/font/s0.bmp",
+      "Tanks/res/font/colon.bmp",
+      "Tanks/res/font/s2.bmp",
+      "Tanks/res/font/s3.bmp",
+      "Tanks/res/font/s7.bmp",
+      "Tanks/res/font/s6.bmp",
+      "Tanks/res/font/s4.bmp",
+      "Tanks/res/font/s5.bmp",
+      "Tanks/src/Highscores.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/Tanks": "Tanks"
+    }
+  },
+  "description": "Drive your tank, aim its cannon and defend against enemy waves.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

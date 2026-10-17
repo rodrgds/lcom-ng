@@ -39,5 +39,6 @@
     "assets": []
   },
   "description": "Pilot your ship through an asteroid field. Turn, thrust and fire to stay alive.",
-  "preview": "../../../../../collections/arcade/previews/andrenasx-feup-lcom-3c62b99c6b04.png"
+  "preview": "../../../../../collections/arcade/previews/andrenasx-feup-lcom-3c62b99c6b04.png",
+  "archetype": "Asteroids"
 }

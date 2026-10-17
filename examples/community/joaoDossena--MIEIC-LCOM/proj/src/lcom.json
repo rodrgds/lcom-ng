@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "Jogo da Memoria com Cartas",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "pointer": "off",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": {
+        "keys": "wasd"
+      },
+      "quickKeys": [
+        "ESC",
+        "I",
+        "H",
+        "S",
+        "N"
+      ],
+      "actions": [
+        {
+          "label": "Play",
+          "key": "J",
+          "position": "top-right"
+        },
+        {
+          "label": "Reveal",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assets": []
+  },
+  "description": "Reveal coloured cards with WASD and Space, then remember all five pairs.",
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Memory"
+}

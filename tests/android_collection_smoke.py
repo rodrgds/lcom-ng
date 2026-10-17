@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Real-device collection launch, return, process isolation and saved-file smoke test."""
 import argparse
+import hashlib
 import io
 import json
 import os
@@ -10,6 +11,7 @@ import shutil
 import shlex
 import subprocess
 import time
+import uuid
 import xml.etree.ElementTree as ET
 from PIL import Image, ImageDraw, ImageFont
 
@@ -28,8 +30,12 @@ sdk_home = os.environ.get('ANDROID_HOME') or os.environ.get('ANDROID_SDK_ROOT')
 adb_path = shutil.which('adb') or (str(Path(sdk_home) / 'platform-tools/adb') if sdk_home else 'adb')
 
 def adb(*command, check=True):
-    return subprocess.run([adb_path, '-s', args.serial, *command], stdout=subprocess.PIPE,
-                          stderr=subprocess.STDOUT, check=check).stdout
+    result = subprocess.run([adb_path, '-s', args.serial, *command], stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT)
+    if check and result.returncode:
+        (args.output / f'adb-failure-{time.time_ns()}.txt').write_bytes(result.stdout)
+        result.check_returncode()
+    return result.stdout
 
 def wait(probe, message, timeout=15):
     deadline = time.monotonic() + timeout
@@ -43,14 +49,9 @@ def wait(probe, message, timeout=15):
 def pid(process):
     return adb('shell', 'pidof', process, check=False).decode().strip()
 
-last_library = None
-
 def ui():
-    global last_library
     adb('shell', 'uiautomator', 'dump', '/sdcard/lcom-collection-ui.xml')
     tree = ET.fromstring(adb('exec-out', 'cat', '/sdcard/lcom-collection-ui.xml'))
-    if any(n.get('content-desc', '').startswith('Play ') for n in tree.iter('node')):
-        last_library = tree
     return tree
 
 def find(description):
@@ -64,9 +65,24 @@ def click(description):
     click_node(wait(lambda: find(description), f'Missing control: {description}'))
 
 def screenshot(name):
-    data = adb('exec-out', 'screencap', '-p')
-    (args.output / (name + '.png')).write_bytes(data)
-    return Image.open(io.BytesIO(data)).convert('RGB')
+    for attempt in range(3):
+        try:
+            data = adb('exec-out', 'screencap', '-p')
+        except subprocess.CalledProcessError as error:
+            data = error.output or b''
+        try:
+            assert data.endswith(b'\x00\x00\x00\x00IEND\xaeB`\x82'), 'Incomplete screencap PNG'
+            image = Image.open(io.BytesIO(data)).convert('RGB')
+        except (OSError, AssertionError):
+            (args.output / f'{name}-attempt{attempt + 1}-rejected.png').write_bytes(data)
+            if attempt == 2:
+                raise
+            # The emulator transport reconnects after a truncated bulk read.
+            # Give that reconnect time to finish before the next capture.
+            time.sleep(1)
+            continue
+        (args.output / (name + '.png')).write_bytes(data)
+        return image
 
 def library_visible():
     return any(node.get('content-desc', '').startswith('Play ') for node in ui().iter('node'))
@@ -74,12 +90,12 @@ def library_visible():
 def click_game(game):
     # Use the persistent native search rather than making the size of artwork
     # determine whether a game near the end of a large catalog is reachable.
-    word = max(re.findall(r'[A-Za-z]+', game['name']), key=len)
+    word = max(re.findall(r'[A-Za-z0-9]+', game['name']), key=len)
     search_library(word)
     description = 'Play ' + game['name']
     order = {'Play ' + entry['name']: index for index, entry in enumerate(catalog['games'])}
     for attempt in range(24):
-        tree = last_library if attempt == 0 and last_library is not None else ui()
+        tree = ui()
         node = next((node for node in tree.iter('node') if node.get('content-desc') == description), None)
         if node is not None:
             x1, y1, x2, y2 = map(int, re.findall(r'\d+', node.get('bounds')))
@@ -95,7 +111,20 @@ def click_game(game):
         adb('shell', 'input', 'swipe', str(width//2), str(start), str(width//2), str(end), '650')
     raise AssertionError('Game tile is not reachable: ' + game['name'])
 
-adb('install', '-r', str(args.export / metadata['apk']))
+# Reinstalling a large identical APK needlessly expands read-only emulator disks.
+# Compare the installed bytes so every run still proves which binary it tests.
+apk = args.export / metadata['apk']
+with apk.open('rb') as stream:
+    expected_apk = hashlib.file_digest(stream, 'sha256').hexdigest()
+installed = adb('shell', 'pm', 'path', package, check=False).decode().strip()
+installed_hash = ''
+if installed.startswith('package:') and '\n' not in installed:
+    remote_apk = installed.removeprefix('package:')
+    result = adb('shell', 'sha256sum', shlex.quote(remote_apk), check=False).decode().split()
+    installed_hash = result[0] if result else ''
+if installed_hash != expected_apk:
+    adb('install', '-r', str(apk))
+print('Testing native APK SHA-256 ' + expected_apk, flush=True)
 adb('shell', 'am', 'force-stop', package)
 adb('logcat', '-c')
 adb('shell', 'input', 'keyevent', 'KEYCODE_WAKEUP')
@@ -110,16 +139,22 @@ assert launcher_pid, 'No launcher process'
 search_query = ''
 def search_library(value):
     global search_query
+    clear_search = find('Clear search')
+    if clear_search is not None:
+        click_node(clear_search)
     click('Find a game')
-    adb('shell', 'input', 'keyevent', 'KEYCODE_MOVE_END')
-    if search_query:
-        adb('shell', 'input', 'keyevent', *(['KEYCODE_DEL'] * len(search_query)))
     if value:
         adb('shell', 'input', 'text', value)
     search_query = value
     adb('shell', 'input', 'keyevent', 'KEYCODE_ENTER')
+    entered = find('Find a game').get('text', '')
+    if value:
+        assert entered == value, ('Search changed the literal game name', value, entered)
+    else:
+        assert entered in ('', 'Find a game') and find('Clear search') is None, 'Empty search retained text'
 
-query = max(re.findall(r'[A-Za-z]+', catalog['games'][0]['name']), key=len).upper()
+search_game = next(game for game in catalog['games'] if not args.game or game['id'] in args.game)
+query = max(re.findall(r'[A-Za-z0-9]+', search_game['name']), key=len)
 expected = {'Play ' + game['name'] for game in catalog['games'] if query.lower() in game['name'].lower()}
 search_library(query)
 filtered = {node.get('content-desc') for node in ui().iter('node') if node.get('content-desc', '').startswith('Play ')}
@@ -144,6 +179,9 @@ if len(catalog['games']) > 12:
     click('Clear search')
     search_query = ''
     wait(library_visible, 'Clearing sticky search did not restore the library')
+# Submit the empty query through the launcher's normal search action, which
+# dismisses its keyboard, before checking the unobstructed fullscreen library.
+search_library('')
 # am start can retain keyboard navigation from a previous Back-key probe.
 # Enter touch mode on empty title padding before checking authored colors.
 adb('shell', 'input', 'tap', '1', '1')
@@ -153,14 +191,41 @@ assert menu.getpixel((menu.width-1, menu.height-1)) == (8, 10, 9), 'Launcher lea
 selected = args.game or [entry['id'] for entry in (catalog['games'] if args.all else catalog['games'][:2])]
 by_id = {game['id']: game for game in catalog['games']}
 # Independently inspect actual native hit rectangles, not the declared column count.
-visible = [node for node in ui().iter('node') if node.get('content-desc', '').startswith('Play ')]
+tree = ui()
+visible = [node for node in tree.iter('node') if node.get('content-desc', '').startswith('Play ')]
 if len(catalog['games']) >= 3:
-    rectangles = [list(map(int,re.findall(r'\d+',node.get('bounds')))) for node in visible]
-    first_row = [rect for rect in rectangles if rect[1] == rectangles[0][1]]
-    assert 2 <= len(first_row) <= 6, 'Native library lost its adaptive columns'
-    assert all(left[2] <= right[0] for left,right in zip(first_row,first_row[1:])), 'Native game tiles overlap'
+    def bounds(node):
+        return list(map(int, re.findall(r'\d+', node.get('bounds'))))
+
+    grid = next(node for node in tree.iter('node')
+                if node.get('class') == 'android.widget.GridLayout'
+                and any(child.get('content-desc', '').startswith('Play ') for child in node.iter('node')))
+    blocks = list(grid)
+    first_row = [node for node in blocks if bounds(node)[1] == bounds(blocks[0])[1]]
+    assert 1 <= len(first_row) <= 6, 'Native library lost its adaptive columns'
+    if len(first_row) == 1:
+        assert first_row[0].get('class') == 'android.widget.GridLayout', 'Only one ordinary game column'
+    rectangles = [bounds(node) for node in visible]
+    for index, left in enumerate(rectangles):
+        for right in rectangles[index + 1:]:
+            assert min(left[2], right[2]) <= max(left[0], right[0]) or min(left[3], right[3]) <= max(left[1], right[1]), 'Native game tiles overlap'
+    by_name = {game['name']: game for game in catalog['games']}
+    normal_widths = [bounds(node)[2] - bounds(node)[0] for node in blocks
+                     if node.get('class') != 'android.widget.GridLayout']
+    for cluster in (node for node in blocks if node.get('class') == 'android.widget.GridLayout'):
+        members = [node for node in cluster.iter('node') if node.get('content-desc', '').startswith('Play ')]
+        assert len(members) == 9, 'A compact game family must retain nine launch targets'
+        families = {by_name[node.get('content-desc')[5:]].get('archetype') for node in members}
+        assert len(families) == 1 and next(iter(families)), 'Compact group mixes unrelated games'
+        cells = [bounds(node) for node in members]
+        assert len({rect[0] for rect in cells}) == 3 and len({rect[1] for rect in cells}) == 3, 'Compact family lost its three-by-three layout'
+        if normal_widths:
+            normal = max(normal_widths)
+            assert 1.8 <= (bounds(cluster)[2] - bounds(cluster)[0]) / normal <= 2.2, 'Family does not span two ordinary cards'
+            assert all(.6 <= (rect[2] - rect[0]) / normal <= .75 for rect in cells), 'Compact games lost their two-thirds width'
 previous_pids = set()
 shots = []
+save_proof_name = '.collection-save-proof-' + uuid.uuid4().hex + '.txt'
 for index, identifier in enumerate([*selected, selected[0]]):
     game = by_id[identifier]
     if index == len(selected):
@@ -178,13 +243,17 @@ for index, identifier in enumerate([*selected, selected[0]]):
     time.sleep(1)
     image = screenshot(identifier + '-' + str(index))
     assert len(image.getcolors(image.width * image.height)) > 2, 'Game did not render pixels'
-    shots.append((game['name'], image.copy()))
+    if args.all:
+        preview = image.copy()
+        preview.thumbnail((368, 194))
+        shots.append((game['name'], preview))
     assert pid(package) == launcher_pid, 'Launching a game replaced the launcher process'
-    marker = 'files/games/' + identifier + '/collection-save-proof.txt'
+    marker = 'files/games/' + identifier + '/' + save_proof_name
     if index == 0:
         adb('shell', 'run-as ' + package + ' sh -c ' + shlex.quote('printf saved > ' + marker))
     if index == len(selected):
         assert adb('shell', 'run-as', package, 'cat', marker).strip() == b'saved', 'Relaunch discarded saved files'
+        adb('shell', 'run-as', package, 'rm', marker)
         # SIGKILL models a student abort/exit without a cooperative SDL shutdown.
         adb('shell', 'run-as', package, 'kill', '-9', game_pid)
     elif index % 2 == 0:

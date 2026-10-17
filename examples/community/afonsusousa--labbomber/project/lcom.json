@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Bomberlab",
+  "description": "Drop bombs, clear the arena and outwit your opponents.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Bomb",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        }
+      ],
+      "touch": "tap",
+      "cursor": {
+        "x": 852,
+        "y": 682,
+        "maxX": 1280,
+        "maxY": 1024
+      }
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Bomberman"
+}

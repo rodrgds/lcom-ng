@@ -1,0 +1,77 @@
+--- a/proj/src/drivers/kbc/mouse.c
++++ b/proj/src/drivers/kbc/mouse.c
+@@ -37,9 +37,9 @@
+ 
+   util_sys_inb(KBC_STATUS, &st);
+ 
+-  if (!(st & BIT(3)) && packets_count == 0) return;
+   if ((st & MOUSE_READ_MASK) == MOUSE_READ_MASK) {
+     util_sys_inb(KBC_OUT_BUFF, &buff);
++    if (packets_count == 0 && !(buff & BIT(3))) return;
+     packets[packets_count] = buff;
+     packets_count++;
+   }
+--- a/proj/src/states/game.c
++++ b/proj/src/states/game.c
+@@ -19,7 +19,7 @@
+   char * phrase = phrase_select("/home/lcom/labs/proj/src/assets/phrases/phrases.txt");
+   game->player_position = 0;
+   game->text = phrase;
+-  game->text_size = strlen(phrase) - 1;
++  game->text_size = strlen(phrase);
+   game->time_elapsed = 0;
+   game->typo_offset = 0;
+   game->typo_count = 0;
+@@ -99,7 +99,8 @@
+   if (game->player_position > next_y && !last_line)
+     base_y -= LINE_HEIGHT;
+   int y_pos = base_y;
+-  char* text_copy = malloc(game->text_size * sizeof(char));
++  char* text_copy = malloc(strlen(game->text) + 1);
++  if (text_copy == NULL) return;
+   for (int i = 0; i < game->text_size; i++) {
+     if (y_pos >= TEXT_Y_START && y_pos < TEXT_Y_MAX) {
+       if (i < game->player_position) {
+@@ -132,6 +133,7 @@
+     }
+   }
+   if (y_pos == TEXT_Y_MAX - LINE_HEIGHT) last_line = 1;
++  free(text_copy);
+ }
+ 
+ void draw_wpm(Game* game) {
+@@ -141,9 +143,8 @@
+      / ((double)(rtc_get_time_elapsed()) / 60) 
+     );
+   game->wpm = wpm;
+-  char wpm_str[4];
+-  sprintf(wpm_str, "%d", wpm);
+-  strcat(wpm_str, " wpm");
++  char wpm_str[16];
++  snprintf(wpm_str, sizeof(wpm_str), "%d wpm", wpm);
+   draw_sentence(wpm_str, MARGIN, MARGIN, PRIMARY_COLOR);
+ }
+ 
+--- a/proj/src/states/game_over.c
++++ b/proj/src/states/game_over.c
+@@ -26,16 +26,15 @@
+     );
+   width = get_sentence_width("wpm");
+   draw_sentence("wpm", h_res / 4 - width / 2, TEXT_Y_POS, PRIMARY_COLOR);
+-  char wpm_str[4];
+-  sprintf(wpm_str, "%d", wpm);
++  char wpm_str[16];
++  snprintf(wpm_str, sizeof(wpm_str), "%d", wpm);
+   width = get_sentence_width(wpm_str);
+   draw_sentence(wpm_str, h_res / 4 - width / 2, TEXT_Y_POS + LINE_HEIGHT, PRIMARY_COLOR);
+ 
+   width = get_sentence_width("acc");
+   draw_sentence("acc", 3 * h_res / 4 - width / 2, TEXT_Y_POS, PRIMARY_COLOR);
+-  char acc_str[4];
+-  sprintf(acc_str, "%d", acc);
+-  strcat(acc_str, "%");
++  char acc_str[8];
++  snprintf(acc_str, sizeof(acc_str), "%d%%", acc);
+   width = get_sentence_width(acc_str);
+   draw_sentence(acc_str, 3 * h_res / 4 - width / 2, TEXT_Y_POS + LINE_HEIGHT, PRIMARY_COLOR);
+ }

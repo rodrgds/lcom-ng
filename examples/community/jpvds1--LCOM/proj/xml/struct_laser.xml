@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="struct_laser" kind="struct" language="C++" prot="public">
+    <compoundname>Laser</compoundname>
+    <includes refid="_laser_list_8h" local="no">LaserList.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_laser_1a522693c80445c37cd2d80fe1e9200596" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Laser::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>Laser::x</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="19" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_laser_1aa919f2670802c28e00da388378d56e41" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Laser::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>Laser::y</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="20" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_laser_1a4869422397f50e91e94920b2d33e471a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Laser::user</definition>
+        <argsstring></argsstring>
+        <name>user</name>
+        <qualifiedname>Laser::user</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="21" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" line="17" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.h" bodystart="18" bodyend="22"/>
+    <listofallmembers>
+      <member refid="struct_laser_1a4869422397f50e91e94920b2d33e471a" prot="public" virt="non-virtual"><scope>Laser</scope><name>user</name></member>
+      <member refid="struct_laser_1a522693c80445c37cd2d80fe1e9200596" prot="public" virt="non-virtual"><scope>Laser</scope><name>x</name></member>
+      <member refid="struct_laser_1aa919f2670802c28e00da388378d56e41" prot="public" virt="non-virtual"><scope>Laser</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

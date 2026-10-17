@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "name": "Ultimate Pixel Racer",
+  "description": "Type the displayed letters to accelerate through the original racing circuits.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "touchClick": false,
+      "keyboard": true,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

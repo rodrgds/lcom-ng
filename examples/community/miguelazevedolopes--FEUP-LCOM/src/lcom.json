@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Pong: Five Points",
+  "description": "Two players race to five points in the original keyboard-controlled Pong match.",
+  "archetype": "Pong",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "vertical"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-left"
+        },
+        {
+          "label": "P2 Up",
+          "key": "UP",
+          "position": "top-right"
+        },
+        {
+          "label": "P2 Down",
+          "key": "DOWN",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": [
+      "file1.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj/src": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

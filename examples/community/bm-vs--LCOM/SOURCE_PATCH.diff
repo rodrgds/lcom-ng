@@ -1,0 +1,68 @@
+--- a/proj/code/game.c
++++ b/proj/code/game.c
+@@ -1,4 +1,5 @@
+ #include "game.h"
++#include "xpm.h"
+ 
+ // GAME SLIDERS
+ #define SHOT_SPEED 20
+--- a/proj/code/mouse.c
++++ b/proj/code/mouse.c
+@@ -22,6 +22,15 @@
+ 	return 1;
+ }
+ 
++static int mouse_command_ack(void) {
++    unsigned long status, reply;
++    do {
++        if (sys_inb(STAT_REG, &status) != OK) return 1;
++    } while ((status & OBF) == 0);
++    if (sys_inb(OUT_BUFF, &reply) != OK) return 1;
++    return reply == 0xFA ? 0 : 1;
++}
++
+ int mouse_set_stream_mode() {
+ 	unsigned long stat = 0;
+ 	int cmd_receive = 0;
+@@ -42,8 +51,8 @@
+ 	while(1) {
+ 		sys_inb(STAT_REG, &stat);
+ 		if ((stat & IBF) == 0) {
+-			if (sys_outb(STAT_REG, SET_STREAM_MODE) == OK) {
+-				return 0;
++			if (sys_outb(OUT_BUFF, SET_STREAM_MODE) == OK) {
++				return mouse_command_ack();
+ 			}
+ 
+ 			return 1;
+@@ -74,7 +83,7 @@
+ 		sys_inb(STAT_REG, &stat);
+ 		if ((stat & IBF) == 0) {
+ 			if (sys_outb(OUT_BUFF, DATA_STREAM_ON) == OK) {
+-				return 0;
++				return mouse_command_ack();
+ 			}
+ 
+ 			return 1;
+@@ -135,8 +144,8 @@
+ 		}
+ 	// MOVE RIGHT
+ 	} else {
+-		if (sprite->x + sprite->width + data_packet[1] < H_RES) {
+-			sprite->x += data_packet[1];
++		if (sprite->x + sprite->width + (unsigned char)data_packet[1] < H_RES) {
++			sprite->x += (unsigned char)data_packet[1];
+ 		}
+ 	}
+ 
+@@ -147,8 +156,8 @@
+ 		}
+ 	// MOVE UP
+ 	} else {
+-		if (sprite->y - data_packet[2] >= 0) {
+-			sprite->y -= data_packet[2];
++		if (sprite->y - (unsigned char)data_packet[2] >= 0) {
++			sprite->y -= (unsigned char)data_packet[2];
+ 		}
+ 	}
+ 

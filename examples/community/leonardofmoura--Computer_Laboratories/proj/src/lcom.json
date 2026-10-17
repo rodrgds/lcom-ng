@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "name": "Foolish Chaos",
+  "description": "Fight waves of enemies across a generated roguelike map.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Attack",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "joystick": false,
+      "look": false,
+      "dpad": false
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [],
+    "pathAliases": {
+      "/home/lcom/labs/proj": "proj"
+    },
+    "arguments": [
+      "play"
+    ]
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,136 @@
+{
+  "repository": "https://github.com/GilTeixeira/feup-lcom",
+  "commit": "1edf6d1efb278cf90c5e39f4c9ac65e070df1107",
+  "project": "prisonBreaker/src",
+  "sha256": {
+    "README.md": "349e94c049282b5d2191460900c55797f48322ff999f8012fcf8e02960f8a812",
+    "prisonBreaker/compile.sh": "d670914daba2db9656e4c5206b332c8a3db9a814e8186f559162be696c92cec5",
+    "prisonBreaker/install.sh": "3ee1273257e01711d5b38790996b0dec6ed890c5b8baeab279ae3cc086f9bf81",
+    "prisonBreaker/run.sh": "9419176251475453561422feab08f812235515ab7e48dc4e5c51ece3d4cb3b2a",
+    "prisonBreaker/res/left.bmp": "1e33c2fb22c60e51e962bb712396168a01d5d8a1b72fde9042e6fa9b3e60839a",
+    "prisonBreaker/res/notdown.bmp": "7b188cbcfa47950e89298e4a1a9a717ed3ce7dfa7cf4765942b90952d685f148",
+    "prisonBreaker/res/menu.bmp": "2ae703312c2a24a9e0d1ab437a8331fdc37b49b15adcf268a50324c8ee8b4843",
+    "prisonBreaker/res/square.bmp": "f742f3df2866897fe5e201a109f7e72d2c88a4b960c0af611062fe5f88758ef3",
+    "prisonBreaker/res/3.bmp": "e40c8ef0027b45047076d2cf63c27ee14cdcdd69720b3263f43cf61c0940ec93",
+    "prisonBreaker/res/2.bmp": "c588272e3deffa0cc68ba04631c59d94e7013e819a17b41799e221da706159db",
+    "prisonBreaker/res/0.bmp": "6aa05ac8118d07da1d3052eb68d43e767a621c5bf58fb53ad73d9862d6ad8678",
+    "prisonBreaker/res/1.bmp": "f0088f83cb2c15b3e221ccd78d7c67eb1ed448140398894ae8026e934ca32e2a",
+    "prisonBreaker/res/right.bmp": "91069aaa6ccdb72116472d72c4919d6a9b1b63ad3988d1e28a6c90fea47a8844",
+    "prisonBreaker/res/notnotdown.bmp": "bb3cc47bf7e52bb54ea30e12dc56accbf9736647d21dd1934a284b5156713053",
+    "prisonBreaker/res/5.bmp": "152c575dc38a005e821faf1534c62c206499cc8c7d985f578aef5d7866ddf48e",
+    "prisonBreaker/res/notup.bmp": "2e3c6a143a9a61f62ba6f82d4fa28daa86e48c622a54bc9f5fb2e0130958b14c",
+    "prisonBreaker/res/4.bmp": "5f3a94516dc6191f11e1a2b65af4cf9473d7cca13d1322260f320b797fcdb5e9",
+    "prisonBreaker/res/6.bmp": "cfcfe0a675a98ef76b11dc4bd64d7336735d6d44b30d558c475f8378389906a8",
+    "prisonBreaker/res/7.bmp": "b9ee4317cb0be563e6c8d8ee9597fc9b687c490619298c42fb6b68622c9a60cc",
+    "prisonBreaker/res/fundo.bmp": "3745506ae422c56adc33bbc127ec838d5d6e51d164559ecae1d582bfaf9e2ba6",
+    "prisonBreaker/res/notnotright.bmp": "87d7ade23acb46b871f8f969d5f68dde5b5e582d48146c7af1231c8d4cad8c48",
+    "prisonBreaker/res/notnotnothing.bmp": "e126657c966c430fe5487d1949497e309b8b8e2c1f3314844538f6b4e2388f7a",
+    "prisonBreaker/res/notnotleft.bmp": "650bc068ce0648b122f71c350dc3963f31aa9e390cc674ed2421b7af93c5b977",
+    "prisonBreaker/res/up.bmp": "86dd943beb51b3acf1c7cfc2dc44638cda60146ee197d7add0ee15c2ead6c18b",
+    "prisonBreaker/res/9.bmp": "93a81819460fe656c5329f908067d48d9ca8279d07e72903d8fd31581735532b",
+    "prisonBreaker/res/8.bmp": "3ec180fbf9cc4f43830e12eea6ae038a97590f4825c7a366d8164f24a602b44d",
+    "prisonBreaker/res/logo.png": "74f3aac7bb0597517d14db5932c80856033786c1c0cd7d8bdb635aa5c5f584a5",
+    "prisonBreaker/res/notnothing.bmp": "5a7527f9ff12feb4b46e9def285c0f9b44fcf7e4db90964dc9c290d717925723",
+    "prisonBreaker/res/nothing.bmp": "d8769e4ffdeb3eaf24e5ee848af533649936983eaa9a20a06220259181f9bba2",
+    "prisonBreaker/res/lose.bmp": "6cc915f6d08d320adcf5287d3007e1d2461b99cd29bb55d01288260d1da6d0f4",
+    "prisonBreaker/res/notnotup.bmp": "f4818fb5a0d09040d9a3d15e185df1cca5544924017e07e8956df0a09f4c3799",
+    "prisonBreaker/res/barra.bmp": "e626d960bf9130c7433bb1e8a00850129d330d305a4f3a63eb8f9a9c0483ded9",
+    "prisonBreaker/res/notright.bmp": "5482a6096b0ee1df97057f15d61762754122db8cd6517dbbfca2fae1e3193ce7",
+    "prisonBreaker/res/notleft.bmp": "40d82a41d75fafd0d4625cfba96b99158dad5bcf511db631f3ae78b91654a12d",
+    "prisonBreaker/res/down.bmp": "42ab38d1c763fdd4013e5fdcf2abd645598f1d02415ac7c802bd1877dc54efbc",
+    "prisonBreaker/conf/prisonBreaker": "b51d3570b8b045bf72b991a9f8a4a3e9d0a76651fbee75c0420721686d65f17f",
+    "prisonBreaker/src/game.c": "8abd0fe8187697d7829e5d2aefb2b096246b94ed9f08f86651375d1ab943839e",
+    "prisonBreaker/src/level.c": "9beb93651c4492f123700c3114e992811e16a73a91afdb48fe2e057f89edfa7f",
+    "prisonBreaker/src/mouse.c": "6a5b42c9113a5f77ccbcae9836f8e8b043886f02e6f5a4d732c82cdc62aae239",
+    "prisonBreaker/src/defs.h": "92b7e919d43bccfef2843898c49d6cc0a6a8665a2634f08e5ba742416630fed9",
+    "prisonBreaker/src/timer.c": "4ca749e2a055940f6892b40af79830e8479f70abed2d06edeb93beca4ef9e512",
+    "prisonBreaker/src/gameState.h": "f3b0afae0e76cf221a96c316138648811a30b4d10bcf99dccdcbe4d544a01561",
+    "prisonBreaker/src/square.c": "a8edaa2d395dfb9aea113a87ea2bc91b287b8ca78ba57737cfadb5fa26f33761",
+    "prisonBreaker/src/prisonBreaker.c": "b47ccc6f861173e1fb3a076cc7db85a2d272d2f637ad23ce4982d23c83dfa956",
+    "prisonBreaker/src/bitmap.c": "57f7fc6a87928babb4180231056fb5aeec46e46dfd9c75ac7694508b311acaf1",
+    "prisonBreaker/src/Makefile": "2a255ac0e75e4512b9104c3181f1872c93edab51a501824b703f6a32a1403e1f",
+    "prisonBreaker/src/kbd.h": "b0faf5b0f2ee5162ca74de817969c0077bc58ce32ff11369bf2416e1ee501b1c",
+    "prisonBreaker/src/vbe.h": "0a421fa937a70ff94e189257a99701225c64e77eae6126cb3aed01e548117731",
+    "prisonBreaker/src/video_gr.h": "3df691e7b45e6d3de9d2bfac3a830ab7ebd46cc25b7baf01831699d9c2695323",
+    "prisonBreaker/src/i8042.h": "59403caefadc8e2867a7a8c1b37eee2229afce9e2bfd4140471bf3041c76b52a",
+    "prisonBreaker/src/lmlib.h": "25eb7ea11221c1c2ae1eb8dd5e4bbb6aef97d13a4c0dd2680e528f432a65e6ec",
+    "prisonBreaker/src/mouse.h": "3038f6956ea8f890c38d3ccae38532b899fe82e84825868d98e5f8de33f7ccf3",
+    "prisonBreaker/src/timer.h": "6d955b2830eb3718b0c6b0bba1ae81c7e16d1750bb89aa50d5960d93b1f89e64",
+    "prisonBreaker/src/level.h": "bd1ab93dff7e7d73efd553f2db2dd37d6dcec87f04494974b3df0fab2fa1ce6b",
+    "prisonBreaker/src/game.h": "8c18ce4cb03a8034777a378c8675c559c4f7a21044f273bc75c78e66281fba09",
+    "prisonBreaker/src/main.c": "c0b9996e2e5f55b570f399736bb6bab1a82143bd9ec42bbc7861c007f968f3e2",
+    "prisonBreaker/src/square.h": "5db629f3a2f9638f6a92e28daafc2bc1fa912fc535706fb2020691bc90e4bd49",
+    "prisonBreaker/src/gameState.c": "9ee5e49ecc00ca0af7ab01302ad48dfcc5f55c286fe3b203922e6b9d84dca30d",
+    "prisonBreaker/src/vbe.c": "4f399aff7ad7e0b9742dfcf81c2a54ce386121add7ec4fada0788e014a7274b4",
+    "prisonBreaker/src/video_gr.c": "a5ff87767f8a83da49c2ff63d89b51dd43eebad15725e4d5be21578c703e13f6",
+    "prisonBreaker/src/kbd.c": "df23e7747ddaed8ce2014473ed9c1b9ada80b0b2937df91a1c24791b9291f39c",
+    "prisonBreaker/src/i8254.h": "fd389b245b2e7a6f0e41c1db6d28ea273f74ebfae6af35e42103a314c800dabf",
+    "prisonBreaker/src/prisonBreaker.h": "b2eb21ce1df561fedec4dd98209d165d99d6a5652cc63d2d5e1766d60d10af34",
+    "prisonBreaker/src/bitmap.h": "b70983c67022f2af0531f0002fbe702e7d3707c84f1e01a5f49c990a6cf16b24"
+  },
+  "sourceChanges": [],
+  "selection": "Pinned original prisonBreaker project and bitmap resources, unrelated labs/build/VCS metadata omitted.",
+  "createdAt": "2019-07-13T17:58:47Z",
+  "yearEvidence": {
+    "source": "GitHub repository REST API created_at",
+    "url": "https://api.github.com/repos/GilTeixeira/feup-lcom",
+    "retrievedAt": "2026-10-17"
+  },
+  "controlsRationale": "Original Enter starts/retries. First instruction is UP and W make triggers the original moving square; after it returns a random instruction is selected and score increments. FullWASDpad maps the authored direction keys without repeats, preventing accidental multiple replies. Screen pointer is off because original mouse gestures are another direction input and accidental touch movement can lose the timed round. Actual touch Enter/W, changed next instruction, deadline loss score1 and Retry back toUP verified. Escape retains original menu behavior; no pause claim. Exact path alias preserves all original bitmap paths.",
+  "verification": {
+    "browserBuild": true,
+    "nativeBuild": true,
+    "fortifiedNdkObjectCompile": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/prison-breaker",
+    "limits": "One correct firstUP response, square animation, random next instruction, deadline loss score1 and Retry, plus portrait controls. No full15instruction coverage. Original C/headers/assets unchanged.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "80b7a529f6390a53f8fa01caa9e1f7299b08aa907985178fa4acb94612b057ac",
+      "evidence": "build/arcade-100/extra4-native-gameplay/results.json",
+      "demonstrated": [
+        "Original first instructionUP and white square.",
+        "Original square moved upward after correct W response.",
+        "Original square has returned and a randomized next instruction replacesUP; first correct response awarded1point.",
+        "Inspect actual result: a required-motion instruction times out to loss, a no-move instruction can automatically advance. Do not infer loss from waiting alone."
+      ]
+    }
+  },
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS/VCS metadata excluded from required source inventory."
+  },
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream root.",
+  "sourceFingerprint": {
+    "kind": "sorted original C unit SHA256 multiset",
+    "sha256": "bbba82f797a65436c024ecef928e5c7c2f079809d1a3fdd48ad4a943c0e8b602",
+    "duplicateOf": null
+  },
+  "derivedAssets": [
+    {
+      "path": "prisonBreaker/src/icon.png",
+      "sha256": "c35635e5c15e8c29a630e7c55f77156b6930bbf08d341a057136c2bded013cf1",
+      "kind": "simple source-informed directional-cross launcher icon"
+    },
+    {
+      "path": "prisonBreaker/src/preview.png",
+      "sha256": "6497312a5212bfc9ce07e273fea8ff64e354c005f796e030653868e0476641a8",
+      "kind": "actual browser gameplay canvas"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="dir_d62c30e309da477c07cdc4168f30ac21" kind="dir">
+    <compoundname>C:/MINIX-LCOM/shared/g3/proj/src</compoundname>
+    <innerdir refid="dir_f338bbed6c3d047f6a35c41443d88c90">C:/MINIX-LCOM/shared/g3/proj/src/Drivers</innerdir>
+    <innerdir refid="dir_dc9dd9ec11940dbad1052d4c9de32559">C:/MINIX-LCOM/shared/g3/proj/src/Lists</innerdir>
+    <innerdir refid="dir_53a9fab1d88a76032cd1c87e51242ee2">C:/MINIX-LCOM/shared/g3/proj/src/Sprites</innerdir>
+    <innerfile refid="_handlers_8c">Handlers.c</innerfile>
+    <innerfile refid="_handlers_8h">Handlers.h</innerfile>
+    <innerfile refid="_levels_8c">Levels.c</innerfile>
+    <innerfile refid="_levels_8h">Levels.h</innerfile>
+    <innerfile refid="_menu_8c">Menu.c</innerfile>
+    <innerfile refid="_menu_8h">Menu.h</innerfile>
+    <innerfile refid="_missile_8c">Missile.c</innerfile>
+    <innerfile refid="_missile_8h">Missile.h</innerfile>
+    <innerfile refid="proj_8c">proj.c</innerfile>
+    <innerfile refid="proj_8h">proj.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/"/>
+  </compounddef>
+</doxygen>

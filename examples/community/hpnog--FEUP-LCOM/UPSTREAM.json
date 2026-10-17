@@ -1,0 +1,160 @@
+{
+  "repository": "https://github.com/hpnog/FEUP-LCOM",
+  "revision": "c7d4b96b0e04141ebf0d2fe0ccc18e3b03468517",
+  "project": "code",
+  "sourceHashes": {
+    "README.md": "6935667cd7dbb9f60be29d8164c8519254bd958c99cf3d063bb11be583f321aa",
+    "code/Makefile": "629a060695876cf7a26337d59ebee75b5e0ba0cd9273bc1758193d60eeab6611",
+    "code/bitmap.c": "9c970afb884c7cc994c5105605ca9aa7ed87e7499ff332b4d40664fe7be86e17",
+    "code/bitmap.h": "3755067f839229bceb4e2509e554d996efaa68ece781c3737cae20bdae5279cc",
+    "code/clean.sh": "4e4ddcc189161ed0844624f9b973a7c818621c97c5d795427ac2ab06ca5d3c39",
+    "code/game.c": "0769dddaf308bf06e3601ed5285843fdc4c72444d596fc8a4e957fe58e51993a",
+    "code/game.h": "62db410b9aef3b948828cc0e08d98ac4742fee129e9ffa079727141f59a235d1",
+    "code/i8042.h": "fe3df974e7d17163a4fd0c9bfbb6e38db2e9c2ba5fc4dc795a1070c2e14d3cdb",
+    "code/i8254.h": "265975e2d1d925c6427b03ba82b3248381c19965f689fb1fd3b2146cb1a486d1",
+    "code/images/blank.bmp": "e832a4fdadd59a8a855d6bd25dd5208b058d092c07419973b9e1b71d9d3c2922",
+    "code/images/credits.bmp": "ec7e6034e6bb81a772ce5d170a4143d0bc5ffa63b0efbf4bab8af48e339c1699",
+    "code/images/draw.bmp": "e14dfe12ae97c4e3b8d2960b495ead4792bd4d3a2b0ed540287968b6fa7ed29d",
+    "code/images/maintitle.bmp": "04ff8e46345affb19c43453e48c8d91d77a28a4cd683018837cc8aeed0ebe07f",
+    "code/images/p1wins.bmp": "9d8cefabc50d1ab45da8371de79dc71b34d0b62768315a0d7516ea0416ea6ec3",
+    "code/images/p2wins.bmp": "0f80d346133076f54fd2720f74579b589f74c643294bedee327f80c0a1de33ee",
+    "code/images/player1.bmp": "f52b4ce23a5766694375e70f6a54e93770924d166b6216ea312248410cf1d076",
+    "code/images/player2.bmp": "eeae1b41dea4ef6e4cdebd5010cc97bf0f01ef2b7b8cdfca989ab9b64bd527f8",
+    "code/images/pokemon/arrow.bmp": "a99483abe06faf1944b1c39aed60e451e1a1aa5d9b3bb2676b982b1de180cf17",
+    "code/images/pokemon/arrowCleaner.bmp": "cba2431f3bc30512bfa3fdd9316a5a542f9fba12dc1f058ea6c509d89f6d1625",
+    "code/images/pokemon/continue.bmp": "b00b0adedcc7614589ab5ae9e888aa8f0af733c029b05cd3a794d1907dcec701",
+    "code/images/pokemon/credits.bmp": "d80d0400ba7187144c683aa0c0efb0eee8d19fafd50892c6845fccb709e149ab",
+    "code/images/pokemon/exit.bmp": "545a203ad8da01333b6bfdd21f47432061e3769c5bcbd589a2c6d7ba53ce9ed3",
+    "code/images/pokemon/fundo.bmp": "e7a13bb00089189906dd33029553a6d06359e3c8ac6cee171340272b2881b1bd",
+    "code/images/pokemon/gamearrow.bmp": "026c919987839ca91bd3fe5db8673952dbadc6f947964625d924b09b116b0cf5",
+    "code/images/pokemon/gamearrowCleaner.bmp": "0b98410a3f442caf4478ea16a80e3b8ff31041efaef42baf92bbdc5768709af4",
+    "code/images/pokemon/grid.bmp": "53acb8e26f50d80e4d659764d3c92fb094ebac75f6ce5d7d18428b0f8c92676a",
+    "code/images/pokemon/options.bmp": "cf8ba30bf29b0a87261ec853caac8cac51286d6d0869033122c4662a9a1e71ef",
+    "code/images/pokemon/pecaamarela.bmp": "c9ac166992a2dcd0bf54e7f99af476316e8129a93104a2b15b4bb0f7d7eb5bb8",
+    "code/images/pokemon/pecacleaner.bmp": "ccae3e834379f8bc2228ace42d8200ef15281e1aa48a70883aad62555a5194b7",
+    "code/images/pokemon/pecavermelha.bmp": "a9296cf6793331d2659d726f4a099821f51b9b2eda2995415520f7ad2123d244",
+    "code/images/pokemon/play.bmp": "1a49f33457ed0af823d9f34d44e720b249208977b48df87b9833e3c250287a90",
+    "code/images/progressBar.bmp": "c9ca18968527d357bd130a9c58844a2d29306a921c6beb66693936e54cd2f3f0",
+    "code/images/progressBar_15sec.bmp": "59d6f873c5df8a177bf6e40b7e3e6d7c02e139313a58b93bdeb8354bb333b379",
+    "code/images/rocket.bmp": "a7f1a9da2032313db7e8ac3cf8cd01196da1c2b640e4a142de6f6cdf5e2319da",
+    "code/images/rtc/0.bmp": "cfd71a466a3f19d276ab4d5b8a2c70cd1eb25bbaf793a394cce01d0a44b1d428",
+    "code/images/rtc/1.bmp": "ff26cb5cf6b19df9ebe9c8a7137d80bc9a172f3feb1b0475cbaa82ad5728ef35",
+    "code/images/rtc/2.bmp": "10dbeef426b24f6bd741c936060fe2512444599e94c5b5015df45f28a3aa948a",
+    "code/images/rtc/3.bmp": "4222e5114126d5ba602cc1ad33505f13a7c4280f0e2c85d1223fd0d04b5a61a2",
+    "code/images/rtc/4.bmp": "a7fa7cbf86a8a4e9541be7392172e2737712996f2854a11583f326bd6dc1a396",
+    "code/images/rtc/5.bmp": "6ae87924513842cd2130b3ce0b32ed59a9f547d3f3c745ceaadd0d8774e6ecfe",
+    "code/images/rtc/6.bmp": "50148ee35c6c13cb9a7b49407b3c1bcbc3bc037780b5584f0de5a84bb41a5251",
+    "code/images/rtc/7.bmp": "5fe3548849c4d9728fbec3c99506599fc9d817678189aa258d2c19f30976552a",
+    "code/images/rtc/8.bmp": "1611898fdff39c883cb6f6bc7d3c42b8b4db380beab50bf7ae626894869381f1",
+    "code/images/rtc/9.bmp": "70ddbf8dcebc0adaab939b385f074b8d948b0742db4621672d97ff87db104672",
+    "code/images/rtc/Friday.bmp": "2b3652c33f39aff658842203d3f0ef923bf6c3b72d781bbd9435bd1a10a656d6",
+    "code/images/rtc/Monday.bmp": "d55dbbd8b132165e64e1c2363689ffe9c22a69e8354b5f8fbdf6746e0280fc90",
+    "code/images/rtc/Saturday.bmp": "cbc64e4d92ef6cbd8e26b6c3787670cd1ce4024cf6b86801a6394bfc3045879b",
+    "code/images/rtc/Sunday.bmp": "e44852ee2a9479f2635df66e0e3124b1d19031c1b7d4af126d9cb7224c66d8c1",
+    "code/images/rtc/Thursday.bmp": "f710f36438ca72557a602737418c815f31cf3b69c4393ac891374f55540401de",
+    "code/images/rtc/Tuesday.bmp": "152aa7ac2837d7743ba28ce897f6535c07841f956e8ce07105807d812e52e7af",
+    "code/images/rtc/Wednesday.bmp": "7aff729ddff91ba84aa475550214b9bfb3c18058efe0ab4f9d3cba633f60f1ff",
+    "code/images/rtc/doispontos.bmp": "d9f7d6acc88a53712ca96100f7ffe3a28aac32f120e6a70c0f97ecc879d03aa1",
+    "code/images/rtc/slash.bmp": "c624f23730a015d2adcbd841e10d4a532a61f0d0d06b297aab477c95b48b3bd4",
+    "code/images/secondtitle.bmp": "3688b334c2bfb2a29a661d5a02ca52d8c9cf16781313e8cdda3d1d47f3675bc4",
+    "code/images/squirtle.bmp": "516297265148f4d7f37d6d981a8dcfeb991d4a718202d5e79ee430388ec5bb4e",
+    "code/images/universe/arrow.bmp": "97ae087eef7e4dc55fbef6498bca356f6a792d25859b4bd41714e7c71c153684",
+    "code/images/universe/arrowCleaner.bmp": "51b362a0289ea87651c109051d61f511fa9bfeba8b89962da6abba743065871a",
+    "code/images/universe/continue.bmp": "fbb4107423749c4b89874646075292e7bd8ac13a32cfa93a1463a3fea1ca5d84",
+    "code/images/universe/credits.bmp": "6f329855644f68ec00f4d32c5ad53b396dc19752e8669cb0cefcacd8303a10a2",
+    "code/images/universe/exit.bmp": "970b71e6a61f37f1a73987320533b908bcd574f055f6495a4cca599557b83db3",
+    "code/images/universe/fundo.bmp": "5bdaf3009503964015fe517f92e4771117dba31a4fbd97ca8162b7659d694c0c",
+    "code/images/universe/gamearrow.bmp": "06e1b668472353927ff2ea56420a9862537fd59c707ffdd64f7ad1f3aa1b2021",
+    "code/images/universe/gamearrowCleaner.bmp": "c4e947a198e71f4438feab10343e17deca410fa9c5e4c855f68e417cc211b4cf",
+    "code/images/universe/grid.bmp": "76980e9207eb5f7d1aacffda2f0025956808d23aebe4b3c337bfab3c0fa4a3c5",
+    "code/images/universe/options.bmp": "8eef03ba13e089d11752c45525d947c9f7f9d7384b9de715cef01915c8182cd7",
+    "code/images/universe/pecaamarela.bmp": "6078c59f60fa21701670f1bf7df5ab884a2ebcca6b43a4c46e2410a365afd1ed",
+    "code/images/universe/pecacleaner.bmp": "123d8c6a30227f2746706ef47cb3737a1265d2022c7e2f0628498c620d237743",
+    "code/images/universe/pecavermelha.bmp": "df01a1b05ce548946c8264e9b0fc51c108b6b17058a32d99b967423b5b2e486f",
+    "code/images/universe/play.bmp": "3091c959c1af94ca1fd2f04ccdbf8fb783604ea826929996858e85935820d42e",
+    "code/install.sh": "89af1d25031b2b3a556b0d529759bfce361db48252bcfa9855b8317ccf971034",
+    "code/interface.c": "d854dd9b69d24205169669dfbfae5fa6d0fd114e067764a97bd4a426ebb2bd63",
+    "code/interface.h": "ec1956e0200056bc5644e604330d24521d7d58519e2e5ee9659c60c28c42ee0a",
+    "code/keyboard.c": "565e7b61ee7108439e1574694439c721d6ce3b895c7d33b1297093148b96dc98",
+    "code/keyboard.h": "d7a74def9aac4ea782bc0f1cb03b77c262434f63a601c98e2d8b2c9510951ca5",
+    "code/keyboardMacros.h": "c094d277b925328527be31f6df328406a166a7676a6cef442ad839fe5752ca8f",
+    "code/lmlib.h": "3263cf6a2e4b4df0e2e2763fe05e6f7cc8d0612a5fbc910e78f6a69518d869fa",
+    "code/mouse.c": "7c5dde9de195543dc979281272e3614fc396782984e7d0634bde2c775c8aa76d",
+    "code/mouse.h": "fcde797bdaf3e4537a55d6dde810b75ee88268effe00801fafe2ebfa941cf402",
+    "code/proj.c": "54df213e87fd6d69ca8f9de47ada0895bbebb9279099efece37e9d111b911eae",
+    "code/rtc.c": "5ee9cf88117a1af5fb0d7546ee01da887197e65acf5a59f45e71d0bd0e899891",
+    "code/rtc.h": "9f21ba40cb5a21953185929cf9a6579861f19d6f4d0c1e8c8b1078fd15231889",
+    "code/run.sh": "737a74f4ec7f4ea57beb83abd280c86c4745408447831f9235eb1c31e66b46cd",
+    "code/timer.c": "2ff0ddd8afc42e86b64a0b281bca96910714183ab89e4aa5354778b16a9b43bf",
+    "code/timer.h": "48739835b11cbf1dff0b834a48043c7443ff5754a04ac926bd019dfd6b496382",
+    "code/vbe.c": "e0750a104ea1da6df95c2785bf90f3c113e0e2acf9e948bf5dc29d8eee9cba40",
+    "code/vbe.h": "51a7dcb8728f4a6abfd329f71123c5dbe1ac65d9e9814c09f9e40dad6f25368f",
+    "code/video_gr.c": "9e15abf07216124070d01b8e75966142c1947b22a87d2687a74bff1d60180d75",
+    "code/video_gr.h": "af733196bcfc1ac5266ce745cbf0ddf68dcef35cb4239afd6a07912c775a486e"
+  },
+  "selection": "Pinned project sources and game assets, retaining upstream README; labs, generated documentation, VCS/OS metadata and build products omitted.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "controlsRationale": "Original Space releases advance the startup and welcome screen. Arrow releases select a menu/board column; Enter drops the active player piece. Panel keeps the board, turn timer and artwork unobscured.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "code/keyboard.c",
+          "originalSha256": "565e7b61ee7108439e1574694439c721d6ce3b895c7d33b1297093148b96dc98",
+          "patchedSha256": "1a96612df4661f03fbc7e96ac22c9619ad86a6b41e04ea1e380edfdd41b8c4d4",
+          "reason": "Consume the notified keyboard byte once, after dispatch, and return0 for unrelated notifications in both interrupt handlers. Preserve the requested keyboard notification bit before sys_irqsetpolicy overwrites its argument with an opaque control handle.",
+          "verification": "Original compiled handlers discard Space release0xb9 or return an indeterminate unrelated result. Corrected actual handlers dispatch Space0xb9/Enter0x9c with one data-port read, unrelated notifications with zero reads/result0. Real browser touch enters menu and drops alternating pieces. Actual keyboard subscription source originally returns BIT(24) after requesting notify9, assertion RED; corrected source returns BIT(9) while enable/disable/remove all receive returned handle24."
+        },
+        {
+          "file": "code/interface.c",
+          "originalSha256": "d854dd9b69d24205169669dfbfae5fa6d0fd114e067764a97bd4a426ebb2bd63",
+          "patchedSha256": "484b4c78cd264306577764bb90246da1bdf1a8d3f5835ef8fbc20ddd0c272626",
+          "reason": "Include the owning keyboard.h before calling its char-returning menu selectors; implicit int declarations have an incompatible function ABI.",
+          "verification": "Original actual interface.c plus owning keyboard.h fails conflicting return-type declarations; browser traps at the invalid waitForArrowsMenu function-pointer bitcast. Corrected compiled real menu calls startGame once and browser touch enters the board."
+        },
+        {
+          "file": "code/proj.c",
+          "originalSha256": "54df213e87fd6d69ca8f9de47ada0895bbebb9279099efece37e9d111b911eae",
+          "patchedSha256": "bad9286adb4742974039db934d9110ac5662e30ea17b0978048d78fc60e67ca5",
+          "reason": "Return failure status1 when a required timer, keyboard or mouse interrupt subscription fails. The original int entry returned without a value.",
+          "verification": "Original source fails required nonvoid-return diagnostics. Corrected compiled actual entry returns1 at each of three failed subscriptions, stops at that subscription and never initializes the game; actual NDK27 ARM64 source compile passes."
+        },
+        {
+          "file": "code/video_gr.c",
+          "originalSha256": "9e15abf07216124070d01b8e75966142c1947b22a87d2687a74bff1d60180d75",
+          "patchedSha256": "f57da60c1ee98ca5d6e1e9b9d248165b32bd31ec81b1edf8bdc63d210278c227",
+          "reason": "Return NULL from the pointer-returning graphics initializer when BIOS setup fails.",
+          "verification": "Original source fails required nonvoid-return diagnostics. Corrected actual vg_init returnsNULL after failed sys_int86, without querying or mapping the framebuffer; actual NDK27 ARM64 source compile passes."
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "browser": "Actual CDP touch Continue twice, Select and alternating column moves/drops render the original universe board; errors[].",
+    "native": "Actual NDK27 ARM64 syntax passes all10 project translation units; gameplay pending.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/irq-impact-reviewed-native/results.json",
+      "apkSha256": "4aaaea6f439b33c5c99f2dff8ae6392115a58c0a0ebf45fe8fd1d849138f73cb",
+      "demonstrated": "Original planet board, three alternating native touch piece drops, Player1/2 turn changes, clean Home process return.",
+      "limits": "Representative original play on Android emulator. Full matches, physical phones and network play not qualified."
+    }
+  },
+  "artwork": {
+    "icon": "Simple four-in-a-row board motif, derived from the original7x6 board and its two piece colors; original bitmaps unchanged.",
+    "preview": "Real browser gameplay canvas showing original universe board and dropped planet pieces."
+  },
+  "excludedMetadata": {
+    "reason": "Upstream Windows thumbnail caches are OS metadata, unused by game sources and omitted from required packaged game inventory.",
+    "files": {
+      "code/images/Thumbs.db": "9f2db2bd6424d5460c75c25f15a904e9bda333b5ba1f941bfb69b6251a4c15c9",
+      "code/images/pokemon/Thumbs.db": "b489e5c8d1dbb30fa83dfe8ffcf5b777113c81fbc24715ba2882a1292348d153",
+      "code/images/rtc/Thumbs.db": "861352d00b83d2d2d3a8cfd88c0c198f5f8114d1ae83bdc622d79acabc6f3b82",
+      "code/images/universe/Thumbs.db": "d76d94aa8674c42fad8db59535a801e5cfc14e4656a3ac0855d43f6b7b9fe015"
+    }
+  }
+}

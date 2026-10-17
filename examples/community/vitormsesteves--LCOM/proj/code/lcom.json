@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "name": "Mouse Maze",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "P",
+        "M"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-left"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/rec/images/YOU_WIN_100s.bmp",
+      "proj/rec/images/GAME_MODE.bmp",
+      "proj/rec/images/YOU_LOSE_NORMAL_100S.bmp",
+      "proj/rec/images/MAIN_TITLE.bmp",
+      "proj/rec/images/YOU_LOSE_NORMAL_0S.bmp",
+      "proj/rec/images/YOU_WIN_0S.bmp",
+      "proj/rec/images/game-background.bmp",
+      "proj/rec/images/Main/ExitButtonRed.bmp",
+      "proj/rec/images/Main/PlayButtonRed.bmp",
+      "proj/rec/images/Main/ExitButtonBlue.bmp",
+      "proj/rec/images/Main/PlayButtonBlue.bmp",
+      "proj/rec/images/Choose/BLUE_BUTTONS/NORMAL_WITH_KBD_BLUE.bmp",
+      "proj/rec/images/Choose/BLUE_BUTTONS/NIGHT_WITH_MOUSE_BLUE.bmp",
+      "proj/rec/images/Choose/BLUE_BUTTONS/NIGHT_WITH_KBD_BLUE.bmp",
+      "proj/rec/images/Choose/BLUE_BUTTONS/NORMAL_WITH_MOUSE_BLUE.bmp",
+      "proj/rec/images/Choose/RED_BUTTONS/NIGHT_WITH_MOUSE_RED.bmp",
+      "proj/rec/images/Choose/RED_BUTTONS/NIGHT_WITH_KBD_RED.bmp",
+      "proj/rec/images/Choose/RED_BUTTONS/NORMAL_WITH_KBD_RED.bmp",
+      "proj/rec/images/Choose/RED_BUTTONS/NORMAL_WITH_MOUSE_RED.bmp"
+    ],
+    "pathAliases": {
+      "/home/lcom/lcom1415-t3g07": "."
+    }
+  },
+  "description": "Guide a blue square along a winding path before the time runs out.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

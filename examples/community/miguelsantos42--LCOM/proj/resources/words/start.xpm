@@ -1,0 +1,25 @@
+/* XPM – palavra START em branco, 80 × 16 píxeis */
+const xpm_row_t word_START[] = {
+/* columns rows colors */
+"80 16 2",
+"  0",   /* fundo (preto/transparente) */
+"X 14",  /* letras (branco) */
+/* pixels (80 caracteres por linha) */
+"                                                                                ",
+"   XXXXXX         XXXXXXX              XX        XXXXXX           XXXXXXX       ",
+"  XX    XX           XX                XX        XX   XX             XX         ",
+" XX                  XX              XX  XX      XX   XX             XX         ",
+" XX                  XX              XX  XX      XXXXXX              XX         ",
+"  XXXXXX             XX            XX      XX    XX  XX              XX         ",
+"       XX            XX            XX      XX    XX   XX             XX         ",
+"        XX           XX            XXXXXXXXXX    XX    XX            XX         ",
+"        XX           XX            XXXXXXXXXX    XX    XX            XX         ",
+" XX    XX            XX            XX      XX    XX    XX            XX         ",
+"  XX  XX             XX            XX      XX    XX    XX            XX         ",
+"   XXXX              XX            XX      XX    XX    XX            XX         ",
+"                                                                                ",
+"                                                                                ",
+"                                                                                ",
+"                                                                                "
+};
+

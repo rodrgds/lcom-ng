@@ -47,7 +47,7 @@ void setNonBlocking(int fd) {
 } // namespace
 
 PairRuntimeServer::PairRuntimeServer(PairRuntimeOptions options)
-    : options_(std::move(options)) {
+    : options_(std::move(options)), left_(options_.machine_config), right_(options_.machine_config) {
   left_.name = "left";
   left_.program = options_.left_program;
   left_.script_path = options_.left_script_path;
@@ -205,9 +205,11 @@ int PairRuntimeServer::run() {
 
     advanceRealtimeIfDue();
     if (left_.display != nullptr && !left_.machine.vbe().graphicsMode()) {
+      if (left_.machine.vbe().textMode()) syncFramebufferFromSharedMemory(left_);
       left_.display->present(left_.machine);
     }
     if (right_.display != nullptr && !right_.machine.vbe().graphicsMode()) {
+      if (right_.machine.vbe().textMode()) syncFramebufferFromSharedMemory(right_);
       right_.display->present(right_.machine);
     }
   }
@@ -496,7 +498,7 @@ bool PairRuntimeServer::handleClientMessage(Slot &slot) {
     lcom_phys_map_t req{};
     if (!protocol::decodePayload(payload, hdr.size, req)) return false;
     lcom_phys_map_reply_t reply{};
-    auto range = slot.machine.physicalRange(req.phys, req.length);
+    auto range = slot.machine.mapPhysicalRange(req.phys, req.length);
     if (range) {
       reply.status = 0;
       std::snprintf(reply.shm_name, sizeof(reply.shm_name), "%s", slot.shm_name.c_str());
@@ -534,8 +536,32 @@ bool PairRuntimeServer::handleClientMessage(Slot &slot) {
     if (!protocol::decodePayload(payload, hdr.size, req)) return false;
     bool ok = slot.machine.vbe().setMode(req.mode);
     if (ok && req.mode != 3 && slot.shm_data != nullptr)
-      std::memset(slot.shm_data, 0, kFramebufferShmBytes);
+      std::memset(slot.shm_data, 0, Vbe::vramSize());
     sendStatus(slot, hdr.request_id, ok ? 0 : -1);
+    return true;
+  }
+  case LCOM_MSG_VBE_DAC_FORMAT: {
+    lcom_vbe_dac_request_t req{};
+    if (!protocol::decodePayload(payload, hdr.size, req)) return false;
+    lcom_vbe_dac_reply_t reply{};
+    auto &vbe = slot.machine.vbe();
+    reply.status = vbe.graphicsMode() && vbe.currentMode().bpp != 8 ? LCOM_UNSUPPORTED :
+        (vbe.dacFormat(req.operation, req.requested, reply.width) ? LCOM_OK : LCOM_ERR);
+    protocol::sendMessage(slot.client_fd, LCOM_MSG_VBE_DAC_FORMAT_REPLY, hdr.request_id, &reply, sizeof(reply));
+    return true;
+  }
+  case LCOM_MSG_VBE_SCANLINE: {
+    lcom_vbe_scanline_request_t req{};
+    if (!protocol::decodePayload(payload, hdr.size, req)) return false;
+    auto &vbe = slot.machine.vbe();
+    lcom_vbe_scanline_reply_t reply{};
+    bool ok = vbe.scanline(req.operation, req.value);
+    reply.status = ok ? 0 : -1;
+    if (ok) {
+      reply.bytes = static_cast<uint16_t>(vbe.currentMode().pitch);
+      reply.pixels = vbe.scanlinePixels(); reply.lines = vbe.scanlineLines();
+    }
+    protocol::sendMessage(slot.client_fd, LCOM_MSG_VBE_SCANLINE_REPLY, hdr.request_id, &reply, sizeof(reply));
     return true;
   }
   case LCOM_MSG_VBE_SET_DISPLAY_START: {
@@ -644,11 +670,7 @@ void PairRuntimeServer::applyScriptEvents(Slot &slot, const std::vector<ScriptEv
 
 void PairRuntimeServer::syncFramebufferFromSharedMemory(Slot &slot) {
   Vbe &vbe = slot.machine.vbe();
-  size_t n = std::min(vbe.framebuffer().size(), kFramebufferShmBytes);
-  if (slot.shm_data != nullptr && n != 0) {
-    std::copy(slot.shm_data + vbe.displayOffset(), slot.shm_data + vbe.displayOffset() + n,
-              vbe.framebuffer().begin());
-  }
+  vbe.syncFramebuffer(slot.shm_data, kFramebufferShmBytes);
 }
 
 bool PairRuntimeServer::dumpFrameArtifacts() {

@@ -48,5 +48,6 @@
     "assets": []
   },
   "description": "Aim and bounce through advancing bricks, then fire collected missile power-ups.",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "archetype": "Breakout"
 }

@@ -1,0 +1,68 @@
+{
+  "version": 1,
+  "name": "Whack-a-Mole: Classic Board",
+  "description": "Hit the original timed mole targets.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "0",
+        "1",
+        "2",
+        "3"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Select / white",
+          "mouseButton": "left",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Yellow",
+          "key": "W",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Red",
+          "key": "A",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Green",
+          "key": "S",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Blue",
+          "key": "D",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatReleaseKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Whack-a-Mole",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

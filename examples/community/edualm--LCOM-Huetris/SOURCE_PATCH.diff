@@ -1,0 +1,130 @@
+--- a/code/scene.c
++++ b/code/scene.c
+@@ -180,9 +180,9 @@
+ }
+ 
+ int scene_initMouse() {
++    int subscription = int_subscribe(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &board_mouseHandler);
+     mouse_enable();
+-    
+-    return int_subscribe(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &board_mouseHandler);
++    return subscription;
+ }
+ 
+ int scene_cleanTimer() {
+--- a/code/mouse.c
++++ b/code/mouse.c
+@@ -17,5 +17,7 @@
+     if ((reply = keyboard_write(KBC_REG_DATA, MOUSE_ENABLE)))
+         return reply;
+ 
++    if (keyboard_read() != 0xFA)
++        return 1;
+     return 0;
+ }
+--- a/code/interrupt.c
++++ b/code/interrupt.c
+@@ -9,6 +9,7 @@
+ 
+ #include "i8254.h"
+ #include "kbc.h"
++#include "mouse.h"
+ 
+ static int subscribed[MAX_INTERRUPTS];
+ 
+@@ -59,16 +60,15 @@
+         return 1;
+     }
+     
+-    subscribed[subpos] = 1;
+-    
+-    if (sys_irqsetpolicy(irq_line, policy, &subpos))
+-        return 1;
+-    
+-    if (sys_irqenable(&subpos)) {
+-        subscribed[subpos] = 0;
+-        
+-        return 1;
+-    }
++    int hook = (int)subpos;
++    if (sys_irqsetpolicy(irq_line, policy, &hook))
++        return 1;
++    
++    if (sys_irqenable(&hook)) {
++        sys_irqrmpolicy(&hook);
++        return 1;
++    }
++    subscribed[subpos] = hook;
+     
+ /*#warning TODO fix callbacks
+     
+@@ -81,14 +81,17 @@
+ 
+ int int_unsubscribe(int subpos) {
+     unsigned int errored = 0;
+-    
+-    if (sys_irqdisable(&subpos))
++    if (subpos < 0 || subpos >= MAX_INTERRUPTS || !subscribed[subpos])
++        return 3;
++    int hook = subscribed[subpos];
++    
++    if (sys_irqdisable(&hook))
+         errored++;
+     
+-    if (sys_irqrmpolicy(&subpos))
++    if (sys_irqrmpolicy(&hook))
+         errored += 2;
+-    
+-    _int_reset(subpos);
++    else
++        _int_reset(subpos);
+     
+     /*
+      *  +---------------+
+@@ -140,6 +143,11 @@
+                         if (bit_isset(msg.NOTIFY_ARG, i)) {
+                             printf("got message for %d\n", i);
+                             if (subscribed[i] != 0) {
++                                if (i == 2 && irqm != kInterruptModeInGame) {
++                                    unsigned long ignored;
++                                    mouse_read(&ignored);
++                                    continue;
++                                }
+                                 switch (irqm) {
+                                     case kInterruptModeMainMenu: {
+                                         if (i == 1)
+--- a/code/board.c
++++ b/code/board.c
+@@ -519,8 +519,8 @@
+ }
+ 
+ void board_keyboardHandler() {
++    unsigned long kb_read = keyboard_read();
+ 	if (board_pieceInGame(kBoardOne)) {
+-        unsigned long kb_read = keyboard_read();
+         
+ 		switch (kb_read) {
+ 			case kKeyboardKeyUpArrow:
+@@ -594,13 +594,11 @@
+ static int _pb254 = 0;
+ 
+ void board_mouseHandler() {
++    unsigned long rcv_data;
++    mouse_read(&rcv_data);
+     if (players == 2) {
+         static unsigned char full_pack[] = { 0, 0, 0 };
+         static int counter = 0;
+-        
+-        unsigned long rcv_data;
+-        
+-        mouse_read(&rcv_data);
+         
+         full_pack[counter] = rcv_data;
+         
+--- a/code/main.c
++++ b/code/main.c
+@@ -1,3 +1,4 @@
++#include <minix/drivers.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ 

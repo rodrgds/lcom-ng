@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "name": "Lerbirinto",
+  "description": "Explore the maze, read clues and defuse bombs to find the exit.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "touch": "tap",
+      "tapDuration": 60,
+      "cursor": {
+        "x": 500,
+        "y": 500,
+        "maxX": 1151,
+        "maxY": 863,
+        "bounds": "reject"
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "../../..",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,11 @@
+--- a/proj/src/sprite.c
++++ b/proj/src/sprite.c
+@@ -11,7 +11,7 @@
+ #include "sprite.h"
+ 
+ Sprite_t *sprite_create(xpm_map_t sprite) {
+-  Sprite_t *sp = (Sprite_t *) malloc(sizeof(sprite));
++  Sprite_t *sp = (Sprite_t *) malloc(sizeof(*sp));
+ 
+   xpm_image_t img;
+   sp->colors = (uint32_t *) xpm_load(sprite, XPM_8_8_8_8, &img);

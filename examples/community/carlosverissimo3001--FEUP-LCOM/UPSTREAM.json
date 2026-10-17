@@ -1,0 +1,97 @@
+{
+  "repository": "https://github.com/carlosverissimo3001/FEUP-LCOM",
+  "revision": "137579fc46b37275ab5fb7b882bdac1d4a292cd4",
+  "project": "proj",
+  "sourceHashes": {
+    "README.md": "17d70fd60789cb9aa8e6d9ebda96f99d5aadff0fa13460bfdb9b68193260885e",
+    "proj/sprite.c": "32fb2f79a828cc919ecb5f4155d84d6a967d13c6cd478b385ca7feabf9df4792",
+    "proj/utils.h": "97d30388ab8b24d45ca84a92690b354330ad43886d97a1e4f63066618266acdc",
+    "proj/timer_int.h": "8a924ba90eac37be37b81cc5d761cf2796a22469261b00df0724a0ff59ebd29a",
+    "proj/Makefile": "0d904a3680ae4f0131989a47512961b2b7963212400a9458b47e0aeda017211f",
+    "proj/covid_escape.c": "0914910569e35656bcb90a74914f622a295da60a9fd2a007607925fd8efdcbd6",
+    "proj/i8042.h": "1fc85a0d104f15dce8e5e108927ca5d7d6446669ab103b6e9ea6608ee6ed0ad4",
+    "proj/kbc_int.h": "50fe4a74c185b8f61164e5792b7dc29b0d281e7d657ff571aeb22ac51f16d247",
+    "proj/kbc_verification.c": "029b42fd97e2deb8755a70cbeea47e1fd059ac88454dfdabbc833e80413807ae",
+    "proj/vcard.h": "64e964b5e23a4efa14347fc986b140c718aac5b94b154830e6085d3f377256bf",
+    "proj/kbc_io.c": "5009a603b21dd6f5c2274f22ffe1a14ac758b480339bcafd34107318be1a6d9b",
+    "proj/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/timer_int.c": "a7fac69c33c9b6b98dd1cc6623a700362bba48343cab8f13b2d399afdcaa9724",
+    "proj/sprite.h": "cb1fd963ce215110946a910c0fdbbcbcc74d5cdcd6a526a1be2debd20a3ec809",
+    "proj/utils.c": "c165641046bc41eb13f5d062cdabdb67a616c43851e85bf8d08a293f321f2016",
+    "proj/kbc_sc.h": "f2c779982e278df86525f151ec69f41117b29dd28c79c22d25223cd3ffe672a9",
+    "proj/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/xpms.h": "714c3197ec6df3942506628dc812b04d7413f5bf399a64263c6995a64537511d",
+    "proj/covid_escape.h": "00238076710e395fc2eeb39619c477aa0d8bd73483537794c43fe1bd1115b79e",
+    "proj/i8254.h": "949600603cc9fbe3b6038ad4eaa2e5bc9fcec19c53da6acab55f5b10d59c7b8f",
+    "proj/kbc_io.h": "2d5a8db326c8fb37f7c48a638199e383a12255fa2013a8d445aee39c33bc7189",
+    "proj/kbc_verification.h": "63ce56e9e4eb873f4c9bc5c4c174d97d8bc28a3acda0232f9477085455b85dc3",
+    "proj/kbc_int.c": "0e3892d5678c2b0836cf573ab2fda9cf6ddc8cbe83ad107bb479da6287a9cefd",
+    "proj/vcard.c": "7df18803cf6cd62a6c5a1f51bb9f38828ecf9af88191b95ee3866a19f74d8fd6",
+    "proj/proj.c": "1d4fd2f9ffb82623ed89a1acd8aa1ac6a3574719d598ba154c98fc752bb0587e",
+    "proj/img/xpm/h3.xpm": "7f5ca5bd4c3614f8fad547cca5bb969eda3dc92757fea1929e386738b377ef50",
+    "proj/img/xpm/h2.xpm": "9b22b4eca105ec0f7a382372fd381197a03f4d70ea48e069fe5e3ecff2de0b23",
+    "proj/img/xpm/covid.xpm": "5535b2d01a724b5a7925b68f2bf85b571ac96f03471031e4b03076631033e9e6",
+    "proj/img/xpm/best_score.xpm": "6befd419845fb35ad166f815732de15f803158c591ac9c04e2c4c315c6ae3b1d",
+    "proj/img/xpm/main_menu.xpm": "4576ef287de476b7b68642bbcebed77119425b3f0d974f8aa6a295c0f4906307",
+    "proj/img/xpm/h0.xpm": "f1088760a955a755a1bbd263bdc3c51f8b294c7c92449b8d009c3e49917c77d3",
+    "proj/img/xpm/h1.xpm": "fcc7070b7f81ce70e49fcd759ca52af8b0b48f570d7a2cbc0e605f5d4a8fd392",
+    "proj/img/xpm/background_left.xpm": "aebc512ea109f48d0b8d7063663857a0b731498519f31f119f2aa78e8ca8a8c0",
+    "proj/img/xpm/h5.xpm": "50b847ba80c992a77e0a74fcb4f872a343310c517718fc743a1ce798088aaf25",
+    "proj/img/xpm/h4.xpm": "375901f0863b60675f271d630c5bbc1622a84a0d364c24879243bbf159bb48e1",
+    "proj/img/xpm/n0.xpm": "12a6813e7894e4f31279ff81644bef9026ffda6e61dc13d7bbc50d951ea3f432",
+    "proj/img/xpm/n1.xpm": "502027b73bab267e5c40b20afdb72599ce8ad8b2f52049806cf93eadb6982ff6",
+    "proj/img/xpm/your_score.xpm": "694e62537d1c738925201651e280cdfcbeadbc78a2f2f8c1294e6410a9dc2c7b",
+    "proj/img/xpm/n3.xpm": "5583a93812285dacf55e70b0d6e45bb27a62d749db8daa68a091a802556f4794",
+    "proj/img/xpm/n2.xpm": "fac6e995ed6f98690cceeeac4c7ff4a0a25a690868055acd4b2099355d3a49af",
+    "proj/img/xpm/n6.xpm": "4d7aaee4556a0fc90232ca9f0b44d62595886d2fc5f8f241ec9fd0b9df106c95",
+    "proj/img/xpm/n7.xpm": "3c9fc2358e0052f8c6982e5b41ff446032f299bcdbe2cc562415a667a5950e6c",
+    "proj/img/xpm/game_over.xpm": "1cbc97f48e11679cbf6539c5754628cbc82459ff402031721bb7c817f853e3f6",
+    "proj/img/xpm/n5.xpm": "280dc9e75dbc68d829a84a67e27b3a5c2ba59de6b0ac29bb074e1b6b53b28e7a",
+    "proj/img/xpm/n4.xpm": "e1aad927cd8d279405fd6af7fd546cbc16e28e11fde814339a9765cf1e59b700",
+    "proj/img/xpm/n9.xpm": "b3ac6f747b38e6c1318751a977aeadd9e1cee8c68f0374fe995d23d463ab0b9a",
+    "proj/img/xpm/n8.xpm": "a2d8376b294bddeeb9d456fbf8cac6df178c6680c33778a882da490bf3415fa4",
+    "proj/img/xpm/how_to_play.xpm": "eebf60fae62787dc416c369d990df2dde3ea2e4722707dc3c22a48ec9f62fbb4",
+    "proj/img/xpm/wait5.xpm": "ca6ec1096cf0648bbda8437df8c149208fd6847f7755c0b6ed6646dc4ad55702",
+    "proj/img/xpm/background.xpm": "f049d5273c9797ca4db521983c4a9f1c0d4dce8e44d5e0e4ae3b3981474316ca"
+  },
+  "selection": "Pinned original game source and required original art. All source bytes unchanged.",
+  "omissions": [
+    ".git/**",
+    "**/.gitignore",
+    ".minix-src/**",
+    "unrelated labs",
+    "generated documentation",
+    "compiled binaries",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/.DS_Store"
+  ],
+  "sourcePatches": [],
+  "controlsRationale": "Original1/2/3 release selects menus, A/D held states and SPACE jump use panel quick keys; no make repeat. Original indexed artwork untouched.",
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence14/carlosverissimo3001--FEUP-LCOM-03-progress-canvas.png",
+    "captureSha256": "e70309ae3d284625ef04ba47f881532afac3b2e8174e47e7a41f4908ac20c466",
+    "originalSourceArt": true
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/icon.png",
+      "sha256": "e666bf33cd095213b7abff81e559c32127f2e7856696fdc53dfc0161538f2ab9",
+      "kind": "Flat geometric icon informed by original virus/hospital, dice/board, poweredPong or keyboard motif"
+    },
+    {
+      "path": "proj/preview.png",
+      "sha256": "e2d2f07a26f959816bcd774d8837876827b311b8c19b225ed4b1c062e9357b4e",
+      "kind": "Actual ordinary touch browser gameplay"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/a75-reviewed-native/results.json",
+      "apkSha256": "0eb52ac47b13b323ab9b9fae4e5027e4b4acfb43b625045f13b78b324465c2c6",
+      "demonstrated": "Root inspected original native menu and normal1/D/Space input leading to original GAME OVER YOUR SCORE02/BEST SCORE02; Home terminates isolated game."
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "name": "Skane Royale",
+  "description": "Grow a snake, shoot enemy waves and collect strawberries to replace spent body segments.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "panel",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Fire / Select",
+          "mouseButton": "left",
+          "side": "right"
+        }
+      ],
+      "touchClick": false,
+      "toolbar": "auto"
+    }
+  },
+  "build": {
+    "include": [
+      "include"
+    ],
+    "assetRoot": ".",
+    "assets": [
+      "resources"
+    ],
+    "arguments": [
+      "resources"
+    ],
+    "pathAliases": {
+      "/tmp": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

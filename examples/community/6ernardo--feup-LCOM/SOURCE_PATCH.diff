@@ -1,0 +1,64 @@
+--- a/proj/src/controller/video/graphics.c
++++ b/proj/src/controller/video/graphics.c
+@@ -136,21 +136,11 @@
+   unsigned int index = (mode_info.XResolution * y + x) * BytesPerPixel;
+ 
+   // Ponteiro para a cor atual do pixel no frame_buffer
+-  uint32_t *pixel_color = (uint32_t*)(frame_buffer + index);
+-
+-  // Extrair os componentes de cor (vermelho, verde, azul) do pixel
+-  uint8_t red = (*pixel_color >> 16) & 0xFF;
+-  uint8_t green = (*pixel_color >> 8) & 0xFF;
+-  uint8_t blue = *pixel_color & 0xFF;
+-
+-  // Calcular o valor médio dos componentes de cor para obter o tom de cinza
+-  uint8_t gray = (red + green + blue) / 3;
+-
+-  // Criar uma cor em tons de cinza com os mesmos valores para os componentes de cor
+-  uint32_t gray_color = (gray << 16) | (gray << 8) | gray;
+-
+-  // Substituir a cor original no pixel pela cor em tons de cinza
+-  *pixel_color = gray_color;
++  uint8_t *pixel_color = frame_buffer + index;
++  uint8_t gray = ((unsigned)pixel_color[0] + pixel_color[1] + pixel_color[2]) / 3;
++  pixel_color[0] = gray;
++  pixel_color[1] = gray;
++  pixel_color[2] = gray;
+ 
+   return 0;
+ }
+--- a/proj/src/main.c
++++ b/proj/src/main.c
+@@ -16,8 +16,8 @@
+  * Contains the main(), proj_main_loop() funtions.
+  */
+ 
+-extern int mouse_bytes[3];
+-extern int byte_index;
++extern uint8_t mouse_bytes[3];
++extern uint8_t byte_index;
+ extern uint8_t scancode;
+ extern uint32_t drawingColor;
+ int prevX, prevY;
+@@ -151,6 +151,7 @@
+             if (byte_index == 3) {
+               byte_index = 0;
+               mouse_bytes_to_packet();
++              leftButtonPressed = mouse_info.left_click;
+               int x = getX();
+               int y = getY();
+ 
+@@ -219,12 +220,7 @@
+               }
+               prevX = x;
+               prevY = y;
+-              if (mouse_bytes[0] & BIT(0)) {
+-                leftButtonPressed = 1;
+-              }
+-              else {
+-                leftButtonPressed = 0;
+-              }
++
+             }
+           }
+ 

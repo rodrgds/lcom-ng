@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "name": "Blackjack: Royal Table",
+  "description": "Place your bet, hit or stand and play a hand against the dealer.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "S",
+        "M",
+        "UP",
+        "DOWN",
+        "D"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Bet",
+          "key": "B",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Deal",
+          "key": "P",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Hit",
+          "key": "H",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Stand",
+          "key": "K",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Blackjack",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

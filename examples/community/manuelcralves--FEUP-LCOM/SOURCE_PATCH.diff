@@ -1,0 +1,51 @@
+--- a/proj/src/player.c
++++ b/proj/src/player.c
+@@ -1,6 +1,6 @@
+ #include "player.h"
+ 
+-extern unsigned int xRes, yRes;
++extern uint16_t xRes, yRes;
+ extern uint8_t scancode;
+ extern Level * level;
+ extern GameState gameState;
+@@ -18,7 +18,7 @@
+   xpm_load(player_xpm, XPM_8_8_8_8, &img);
+   player->img = img;
+ 
+-  free(&img);
++  /* img owns no heap storage itself; player retains img.bytes. */
+ 
+   return player;
+ }
+--- a/proj/src/level.c
++++ b/proj/src/level.c
+@@ -1,6 +1,6 @@
+ #include "level.h"
+ 
+-extern unsigned int xRes, yRes;
++extern uint16_t xRes, yRes;
+ 
+ Level * level;
+ 
+--- a/proj/src/button.c
++++ b/proj/src/button.c
+@@ -2,7 +2,7 @@
+ 
+ extern xpm_image_t background_menu;
+ extern xpm_image_t pause_menu;
+-extern unsigned int xRes, yRes;
++extern uint16_t xRes, yRes;
+ 
+ Button * createButton(ButtonType t_button, unsigned int x, unsigned int y) {
+   Button * button = (Button *) malloc (sizeof(Button));
+--- a/proj/src/controllers/mouse/mouse.c
++++ b/proj/src/controllers/mouse/mouse.c
+@@ -4,7 +4,7 @@
+ uint8_t scancode;
+ uint8_t stat;
+ 
+-extern unsigned int xRes, yRes;
++extern uint16_t xRes, yRes;
+ extern xpm_image_t background_menu;
+ 
+ uint16_t convert_2_complement(uint8_t number, uint8_t msb, struct packet * pacote){

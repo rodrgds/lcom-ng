@@ -65,5 +65,6 @@
     }
   },
   "description": "Reveal the hidden pictures and find the matching cards.",
-  "preview": "../../../../collections/arcade/previews/luizhqueiroz-lcom-memorygame-4540b5424a79.png"
+  "preview": "../../../../collections/arcade/previews/luizhqueiroz-lcom-memorygame-4540b5424a79.png",
+  "archetype": "Memory"
 }

@@ -1,0 +1,97 @@
+--- a/Trabalho/src/highscore.h
++++ b/Trabalho/src/highscore.h
+@@ -41,35 +41,22 @@
+  * @param pont pontuation of the user
+  */
+ void addUserInfo(char *dataDir, char *name, int pont) {
+-	char newLine[2] = "\n";
+ 	char path[200];
+-	char line[110];
+-	char pontuatuion[10];
+-	FILE *fd;
+-
+-	strcpy(path, dataDir);
+-	strcat(path, "/userinfo.txt");
+-
+-	fd = fopen(path, "a");
+-
++	int length = snprintf(path, sizeof(path), "%s/userinfo.txt", dataDir);
++	if (length < 0 || (size_t)length >= sizeof(path)) {
++		printf("ERROR opening file\n\n");
++		return;
++	}
++	FILE *fd = fopen(path, "a");
+ 	if (fd == NULL) {
+ 		printf("ERROR opening file\n\n");
++		return;
+ 	}
+-
+-	sprintf(pontuatuion, "%d", pont);
+-	strcat(line, name);
+-	strcat(line, ",");
+-	strcat(line, pontuatuion);
+-
+-	//Write to file!!!
+-	fputs(newLine, fd);
+-	fputs(line, fd);
+-
+-	int closing = fclose(fd);
+-
+-	if (closing) {
++	/* userInfo reserves thirty bytes including the name terminator. */
++	if (fprintf(fd, "\n%.29s,%d", name, pont) < 0)
++		printf("error writing file \n");
++	if (fclose(fd))
+ 		printf("error closing file \n");
+-	}
+ }
+ 
+ 
+--- a/Trabalho/src/jogo.h
++++ b/Trabalho/src/jogo.h
+@@ -1,5 +1,6 @@
+ #ifndef __JOGO_H
+ #define __JOGO_H
++#include "sprite.h"
+ 
+ 
+ /**
+--- a/Trabalho/src/projeto.c
++++ b/Trabalho/src/projeto.c
+@@ -2,6 +2,8 @@
+ #include <string.h>
+ #include <errno.h>
+ #include "pixmap.h"
++#include <minix/drivers.h>
++#include "jogo.h"
+ 
+ static int proc_args(int argc, char **argv);
+ static unsigned long parse_ulong(char *str, int base);
+@@ -34,21 +36,24 @@
+ 			return 1;
+ 		}
+ 		printf("start::start(%s - %s)\n", argv[2], argv[3]);
+-		return start(argv[2], argv[3]);
++		start(argv[2], argv[3]);
++		return 0;
+ 	} else if (strncmp(argv[1], "score", strlen("score")) == 0) {
+ 		if (argc != 3) {
+ 			printf("score: wrong no. of arguments for viewScore()\n");
+ 			return 1;
+ 		}
+ 		printf("score::viewScore(%s)\n", argv[2]);
+-		return viewScore(argv[2]);
++		viewScore(argv[2]);
++		return 0;
+ 	} else if (strncmp(argv[1], "menu", strlen("menu")) == 0) {
+ 		if (argc != 4) {
+ 			printf("menu: wrong no. of arguments for menu()\n");
+ 			return 1;
+ 		}
+ 		printf("menu::menu(%s - %s)\n", argv[2], argv[3]);
+-		return menu(argv[2], argv[3]);
++		menu(argv[2], argv[3]);
++		return 0;
+ 	} else if (strncmp(argv[1], "teste", strlen("teste")) == 0) {
+ 		if (argc != 2) {
+ 			printf("menu: wrong no. of arguments for menu()\n");

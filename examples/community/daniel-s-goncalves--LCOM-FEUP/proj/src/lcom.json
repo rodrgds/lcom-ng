@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "Connect Four: Neon",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [],
+      "layout": "overlay",
+      "pointer": "off",
+      "dpad": true,
+      "repeatKeys": [
+        "LEFT",
+        "RIGHT"
+      ],
+      "actions": [
+        {
+          "label": "Drop / Confirm",
+          "key": "ENTER",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Restart",
+          "key": "R",
+          "position": "top-right"
+        },
+        {
+          "label": "Menu",
+          "key": "Q",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  },
+  "archetype": "Connect Four",
+  "description": "Choose a column and drop your chip. Connect four blue or red chips before the turn timer expires.",
+  "preview": "../../../../../collections/arcade/previews/daniel-s-goncalves-lcom-feup-9abd1f6f744d.png",
+  "icon": "icon.png"
+}

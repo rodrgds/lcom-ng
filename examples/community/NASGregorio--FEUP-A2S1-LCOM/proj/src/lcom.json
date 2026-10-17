@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "name": "Minix Arcade: Frontal Collision",
+  "description": "Steer the car, avoid approaching traffic and collect fuel, with the original Hold Your Ground and Wolf & Stein modes.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "touchClick": false,
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "P",
+        "1",
+        "2",
+        "3"
+      ],
+      "joystick": false,
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Spawn",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Clear Marks",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/bitmaps"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj": "proj"
+    },
+    "environment": {
+      "LCOM_COMPAT_MOUSE_REPORTING": "1"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

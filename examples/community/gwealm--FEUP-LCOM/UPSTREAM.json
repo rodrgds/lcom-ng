@@ -1,0 +1,158 @@
+{
+  "repository": "https://github.com/gwealm/FEUP-LCOM",
+  "revision": "7ad8a4e97ced30e89c0db63daf1cc89fb4bc0ddb",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "899f250951121049b822bf90117c9ff5ae20321dca20277ed57cbcf3b13e18eb",
+    "proj/src/.vsls.json": "1f3153cc179ee27ac1c02865cb2c03c5a0dc1663ba1a740a1a217351c26a8799",
+    "proj/src/Makefile": "b5896c16a17ef87b84be7599dad131365a5756650fa5434e56165aff0a768830",
+    "proj/src/wordlist.txt": "ad7700e1a7b8f8f3953b52659f3dab6a9eebe0a31adf60e6e57556c256019bfa",
+    "proj/src/utils.c": "da7afb11c020aecd688a3bfa2d4037be352d01c005a9bbe6de2796bda9a8497a",
+    "proj/src/main.c": "c3edf43471477fe12a9d15be73e5d680f33df0a6a4773ead1412aea422d8e0e2",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/include/utils.h": "457830df03db17cbb885726748b0ec83ac16ac7419bd1823ddd906263fe981ed",
+    "proj/src/include/errors.h": "5f59bd545008951d1ceda52aabe403f183bc3111162a4f50285c82a9a8d3713f",
+    "proj/src/scheduler/scheduler.c": "42761489c4ad115aacbbcd9e1a55c09651dd171cd11413e94c4bb4950de9b5bc",
+    "proj/src/protocol/protocol.c": "cfdcb214fb517062e700b3e3dd4a5b63eef95a2100240055da9aa38cd634d3ed",
+    "proj/src/game/state.c": "21b085601fd03426f583974172ec8a7e3e4fb5da6933b6871f2a1f6cc47a7f26",
+    "proj/src/game/wordlist.c": "49b174c01357ad1cedfbfd59cdce404fbfca64c9e8def0d30e77bbc9171420fc",
+    "proj/src/state/state.c": "87ded1673f87a2eb5b159db0e10f0516c5087158ba45333277301cc8e28ef43f",
+    "proj/src/menu/state.c": "f0d7c0a8775f04f91972a865b3dd271f52c782684a6cd05cf19d983f923365fe",
+    "proj/src/queue/queue.c": "54286773dc8919ac463bc13006e89dfa837648319c30c0eb8589308adbd0a699",
+    "proj/src/events/events.c": "0c770afbc6cbb9431641eb7df85966d42d38b4b5c197451cbb4baf9eb0ceb8c8",
+    "proj/src/graphics/graphics.c": "c2ef29d5d5a0b142db493755bb37489dfb5faacda7ca1809bf1e85719599eafe",
+    "proj/src/vector/vector.c": "7b2e3b6f45a542c755532ede0b6e036d8607f1a93f766eb0094090a5054e8388",
+    "proj/src/multiplayer/state.c": "8c5c50b66d24829244a531a58ce05d8057eedba1af55ecfb5ff1665a81ed818e",
+    "proj/src/devices/serial.c": "4ed72628f6691d62b6ea13744d30fa84cb82e73a22e8c903be575a5ebd3f8ed8",
+    "proj/src/devices/mouse.c": "60fc611652c2b336cbb127d91269aaff298110a9cabe0ede5f5414f043bffc05",
+    "proj/src/devices/timer.c": "77901fa004bac813ec2b227928ec68143cd106e097c3e6173a85de809be0a54e",
+    "proj/src/devices/keyboard.c": "ac30632ade8c492dfb78a018393d88da69f7deb67867fa24ee906587ae3c90c5",
+    "proj/src/devices/kbc.c": "057310bdc33ffa204549a6a2f8ffaa0dad267b39fab9a1166526ee558110e4fa",
+    "proj/src/devices/vbe.c": "a570183a69499edad7a4291a46462ecb85fc733ef897af31e56ff9e1391933d6",
+    "proj/src/multiplayer/controller/multiplayer.c": "58f6a21f31a7daa85f47597a16ba93d9a66eac9136e3c1150aac5461c5008c23",
+    "proj/src/multiplayer/controller/remote_player.c": "c6d40bb00f41e8b8c64fda3566b4cbaa7c6bfb84ef789e4eab9a4d8b5c3cc788",
+    "proj/src/multiplayer/model/multiplayer.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/multiplayer/model/remote_player.c": "ea0ff6bd8e50d582689e709cf4fc49e4fd411fc49998afdd845a0a3960391ed1",
+    "proj/src/multiplayer/view/multiplayer.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/multiplayer/view/remote_player.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/menu/controller/menu.c": "09ae3459a8e4ae53555b9a6645e170e681dd0d493439b6868a13f615685b01ac",
+    "proj/src/menu/model/menu.c": "0a8c5c0423c2a75a6e7e3e705c4aba2128ef2af2d6ca4c70ed422b78ac8dabf4",
+    "proj/src/menu/view/menu.c": "7d506fc9803c5d71810f3a564b341c30b69df917514c0c55f40fa9deea21f0f2",
+    "proj/src/game/controller/game.c": "a60d10300cfa4efd8d8cbfe7e21bf307be899270008e25c33701378e00b39240",
+    "proj/src/game/controller/local_player.c": "a05b9d4158808f634fff05012a990ee04c7a46037cfe46bac24da0575dae3bb1",
+    "proj/src/game/model/game.c": "ac0592dfe93f400d24436fadf7af6b735cb1c54059e64b31cc986a2f2254df8c",
+    "proj/src/game/model/local_player.c": "c592cb9617053a1a2ea2e9e8ef69db2e18d9cf9ff97487fa724963ddd3ae7034",
+    "proj/src/game/view/game.c": "396335bea4adee2a99edf20a2d7438c07a97d1d98daf7b56d477969a813baf48",
+    "proj/src/game/view/local_player.c": "193afc18ddafc4c175b3ada7978cf0dcbb4a6405df25e8729e57e56cd978f7d1",
+    "proj/src/include/scheduler/scheduler.h": "5856466cfed75581563a733ab28720db777e6ecf90cfc9b952d078b1e78c50d1",
+    "proj/src/include/protocol/protocol.h": "c1427959a3ce54f80a5c0cee66b579e9e2715558d60703ade142c55c9c7582e8",
+    "proj/src/include/game/wordlist.h": "8f22b856ab7b7ce190b4732ab2f8c321f434ec4bdb8a81f21fef76d8ba9ea5f4",
+    "proj/src/include/game/layout.h": "4ac2c9cad68724ad8f35989fd4cb32895ceda9066b94419b3d74b6ffc44b418b",
+    "proj/src/include/game/state.h": "c2e698f5cb4c0412e18e4687c5acc8203d5e93e99183fc4b76f700ffe3b05d98",
+    "proj/src/include/state/state.h": "9ac5b2b66c1199e44669c3da7df00e136db94e00796cf7fdd6c59d4aa0d8bddf",
+    "proj/src/include/menu/layout.h": "ee5b0fe3777ad33a94f0e6799fc1a507909b7b658f25dc1e924820224700b985",
+    "proj/src/include/menu/state.h": "e780a01e7df1ba952cef16fd0ceb0c16f9f1cb328b0048ca47141146ace62d58",
+    "proj/src/include/queue/queue.h": "77352e4c9d59c4575fa23ceab2a822b09b2e7192800eb2987f1b18073229a03d",
+    "proj/src/include/events/events.h": "9b256fa786098e68e7843d0140e889a2db2a28c09f1773338e8819911053cf88",
+    "proj/src/include/graphics/graphics.h": "ca7cdfccbf0423b08b58618262f116d37fe7cec0593f3b5c2011c207eaff0567",
+    "proj/src/include/xpm/xpm.h": "4319f05e050683763773f00cade5d2b60fe5dc4e746d26316c6007d5c987dfdc",
+    "proj/src/include/vector/vector.h": "a2b6dbe86bbce39088f9a3f06601a0bd1b4fd04c4c4f04fe4b184fd7c7c03ef1",
+    "proj/src/include/multiplayer/layout.h": "db5ca52148d2ebc3f55386bc7306852c65b43e19461c60ebb96d23dd782f71d7",
+    "proj/src/include/multiplayer/state.h": "f2d19f2b31bc20e87844e8bd95ec0424167aeb368f184082f622fab6d5bc6625",
+    "proj/src/include/devices/kbc.h": "f2b6ecad62b677410ac21a77490c570ea8acd059b560a4ad86b7b5a970b11b2a",
+    "proj/src/include/devices/vbe.h": "d3320940a9e32421e667300b3728155233a7540f2f4484124fae91f9f36833ae",
+    "proj/src/include/devices/mouse.h": "347b5061b310dca0d49708ad74dd16ebd6415d996c788426695a0aa8b09d4329",
+    "proj/src/include/devices/serial.h": "5a8bc673f5f15d17c09c853114509b1fc442bdb365590aad388bf5081a714649",
+    "proj/src/include/devices/timer.h": "190022f02fcbee1a3db7f0fc344a77890070230017e77c31d6656a645ca61623",
+    "proj/src/include/devices/keyboard.h": "0b4f5ec9f68c8664d0dcd94912d6d682249711cfc8d0c8000757b337e3920d19",
+    "proj/src/include/multiplayer/controller/multiplayer.h": "f877197dda076f402b898a572b68eb99cbc43d25db5b8a4ec3fc6b571bfc6311",
+    "proj/src/include/multiplayer/controller/remote_player.h": "8a7d5e9cb4236411ffc1f04bcd0371c48e5c82dc6a3fea1f13f680f9a85454b6",
+    "proj/src/include/multiplayer/model/multiplayer.h": "20126f3d0836bd0f242d207693fd14559c93f977eb610e115b3a1d70f0acff9d",
+    "proj/src/include/multiplayer/model/remote_player.h": "54efa23b3643725fbd7d67bb7f67bcc1086b84f6d3b8bf63aef9c9f2e4e330be",
+    "proj/src/include/multiplayer/view/multiplayer.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/include/multiplayer/view/remote_player.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/include/menu/controller/menu.h": "574f786aab57d35a040e6c97bde1dc24d4256815d865fec301ccb5a5817ef347",
+    "proj/src/include/menu/model/menu.h": "440f89236e2087760b95a08cbd1cbdd64c96b121a5d3456adfd03ead8c23d210",
+    "proj/src/include/menu/view/menu.h": "e26d38fcd1887b05ee2ce57d5ef766a5172f165355367731537925e9a79f1241",
+    "proj/src/include/game/controller/local_player.h": "2514b640ba540136d6500d01a8e1ac36c1ed7ffd4433c26f1bc59fed886d20ad",
+    "proj/src/include/game/controller/game.h": "d16a366c07e2599fb458c4ddedce15cc26de52d570649d41307c40147d46ad8a",
+    "proj/src/include/game/model/local_player.h": "e173234379427782cc8dc289a7bd59070ea4cb77f3b5f7184c3107952bf41d01",
+    "proj/src/include/game/model/cell_background.h": "869ea97b57179d5214317ebd45fccf77459f526961733746d72a65c4229ea592",
+    "proj/src/include/game/model/game.h": "6417bc54186032c0d4608876ffbc3168c4634aae04f7079b3a3dab1237cce8fd",
+    "proj/src/include/game/view/local_player.h": "3837c0bf336484dd3ed25f25dd0dc82c8f16069036c3068f47a690d61a58c369",
+    "proj/src/include/game/view/game.h": "c675831c807f068afbc3d2649ccc953181857d5bbd49af01019e46bb98d6a9db"
+  },
+  "selection": "Pinned original game source and original required compiled artwork/dictionary. Source defects are separate overlays.",
+  "omissions": [
+    ".git/**",
+    "**/.gitignore",
+    ".minix-src/**",
+    "unrelated labs",
+    "**/doc/**",
+    "**/docs/**",
+    "generated documentation",
+    "compiled binaries",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/game/wordlist.c",
+          "reason": "Original loader frees its local stack buffer, causing native SIGABRT during dictionary load. Original inclusive unsigned binary search accesses len and underflows below the first word, causing SIGSEGV for ordinary invalid guesses. Remove only the invalid free and keep the search half-open.",
+          "originalSha256": "49b174c01357ad1cedfbfd59cdce404fbfca64c9e8def0d30e77bbc9171420fc",
+          "patchedSha256": "a31f199472bccde43a91da416e4b1617f7af4ec1230454c2301fc01d48c9b196",
+          "verification": {
+            "regression": "build/arcade-100/a/gwealm-wordlist-test.py",
+            "redLoad": "build/arcade-100/a/gwealm-wordlist-load-traced-red.log",
+            "greenLoad": "build/arcade-100/a/gwealm-wordlist-load-green.log",
+            "redBounds": "build/arcade-100/a/gwealm-wordlist-bounds-red.log",
+            "greenBounds": "build/arcade-100/a/gwealm-wordlist-bounds-green.log"
+          }
+        },
+        {
+          "file": "proj/src/graphics/graphics.c",
+          "reason": "Original graphics cleanup frees interior xpm_image_t array entries instead of each loaded image pixel allocation, then double frees array storage. Free only owned image.bytes and cursor.bytes, then each owning array once. Actual graphics init/cleanup original SIGABRT and repaired normal completion.",
+          "originalSha256": "c2ef29d5d5a0b142db493755bb37489dfb5faacda7ca1809bf1e85719599eafe",
+          "patchedSha256": "033760087c39f03767adcfda8d10c1bd0751d2fab7f5589e8da083d82cc98728"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Four original rendered Wordlcom tiles, arranged on a flat palette",
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence14/gwealm--FEUP-LCOM-03-second-guess-canvas.png",
+    "captureSha256": "e60f39b37c6c736b7352f73418543b5cdd6be8e70f9b6344110d2e22c34c1088"
+  },
+  "controlsRationale": "Original game requires relative pointer for its mouse-only Start menu, then native alphabet keyboard for five-letter guesses; Enter submits and Backspace edits. Panel keeps controls outside the board. Explicit dictionary argument, original dictionary asset and legacy path alias reproduce the authored launch. Existing callback-cast compatibility option preserves original C event callbacks.",
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence14/gwealm--FEUP-LCOM-03-second-guess-canvas.png",
+    "captureSha256": "e60f39b37c6c736b7352f73418543b5cdd6be8e70f9b6344110d2e22c34c1088",
+    "originalSourceArt": true
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "e7b8972ec29053039b20bb7a41cdd71f8cb8da4b64179e974e0c6c7eac8115e5",
+      "kind": "source-derived launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "8e072779ca2a315fa1a38591743fa5b965894adc1551a3a078fbf12900eeb98d",
+      "kind": "actual ordinary browser touch gameplay preview"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/a70-wordl-reviewed-native/results.json",
+      "apkSha256": "7af83d5fd0ed66cb0ae282ffd441d0321bf2d6de615408e5e91ba2828e893d0e",
+      "demonstrated": "Root reviewed actual two accepted ABACK/ABASE feedbackrows withgreen A, nativekeyboardtouch, authoredguestESCQuit runsoriginalcleanup and cleanlyreturnslibrary, isolatedprocessends/launcheralive."
+    }
+  }
+}

@@ -1,0 +1,121 @@
+{
+  "repository": "https://github.com/dansreis/LCOM-DODGEM",
+  "commit": "dc46e7162fe4d584d9715863d61812cbf2fa5c5f",
+  "project": "DODGEM/src",
+  "sha256": {
+    "DODGEM/res/images/Alfabeto.bmp": "adb4d90b8418d0bfe94a03a1de59bc207217ae630b5dc9e486a0d1c333b59d32",
+    "DODGEM/res/images/Algarismos.bmp": "5001aa2c54bed103b965cd4bf532edc59633dc3969551a36a76851a9c5e3658d",
+    "DODGEM/res/images/AlgarismosPretos.bmp": "ba59c3dfcfe651355243c43154f03a224c9908e95a159ab91d3511fc6a88a586",
+    "DODGEM/res/images/Energy.bmp": "31ac48aa6a3739eff7edb3a821f1bd7def62ec7aa78717369cd3454746671f8e",
+    "DODGEM/res/images/Energy2.bmp": "80a570d6dfabbb485adf1ccb79de7bd9859e246f02baac79077645802a30bf17",
+    "DODGEM/res/images/Fronteira.bmp": "fd63c323da01420104482fe83943a93f9d30ebb72a452875051fd9cadca8d5bb",
+    "DODGEM/res/images/Help.bmp": "9b8ec854bdb5cf747e2615aa342cc89b5e4bc3d1ccccd8fc262f5c5763b6b8e9",
+    "DODGEM/res/images/HighScoresList.bmp": "9af7355def2dbefabcbdc816949fbc3fd6ca37b57fbad4ea739a740956c1f519",
+    "DODGEM/res/images/MainInv.bmp": "b0fa3acb6eda3b571a10916dfa62b461493e46c036205b5b3b90a0c9d34deac8",
+    "DODGEM/res/images/MainSquare.bmp": "5bd7cd01c038a8bcc130858a872bf6e9cd2e4ff1660b6ebc3962e0d33b8fbdf4",
+    "DODGEM/res/images/MenuGame.bmp": "e27a93294e18e7c30b6c5a2b8bf11b4d20c2925f6f6a493f75c97920f792936d",
+    "DODGEM/res/images/MenuHighScores.bmp": "cab6a49f8fcf6ef5cba84bfce77c45c22ae268fe4cb2f31da61cbf6b88dd2f89",
+    "DODGEM/res/images/MenuPrincipal.bmp": "59ae11ac549efaf6283c0e81b90ef0a521536d39a202cc67668886d3cbf2eb90",
+    "DODGEM/res/images/ScoreBackground.bmp": "156bda93eadfed4364b45da00c452d7a086e58b616ee1370bca2a2b3f8e82d0c",
+    "DODGEM/res/images/Separadores.bmp": "a99550af0542f9f4c418492e3ba8fc99b7c6c1e6f4c7db709cf9d66cd43b42bc",
+    "DODGEM/res/images/Submit.bmp": "d35643124a58324c809a5a42ed0c17bf96722de6d4df5657e7b52227d19e19af",
+    "DODGEM/res/images/cursor.bmp": "1f3477fa2ed68dae23fcab7cb1115edf687e7607c93f84c1a0894bad57b60f2e",
+    "DODGEM/res/images/mouse.bmp": "1164af2e15183feb2bd921c8f7af6411ef1c0bbf005a217ec4a99957dec68cb9",
+    "DODGEM/res/images/mouseLeftButton.bmp": "ed9ba2a602c050cf83d673f67e91e168387c20d4f989561eaefabb8e592b25cf",
+    "DODGEM/res/images/mouseRightButton.bmp": "5368dc6e7e6c2cbbaa3745033ad188927f7905bbf31e222e252b1b1b0759aea9",
+    "DODGEM/res/images/rato20.bmp": "c70abfa6889af1c55c60ad19fe7679d23fa671e067efe84a747491b84bbf82fb",
+    "DODGEM/res/images/rato20L.bmp": "a472f7b5b168edfed098ba3ca1c826f163254d4a0bbffe403670b918ce5e37a1",
+    "DODGEM/res/images/rato20LR.bmp": "7174e3098f1e101ad7a3d2f0818841a3beb0b4429bf829a5a9d89fb06a470731",
+    "DODGEM/res/images/rato20LRM.bmp": "a851ee6f7da1992bc4fcd8336f76d5865125122d4192bcdfa1a6aca8646989f7",
+    "DODGEM/res/images/rato20M.bmp": "050f52c85ff25a7c4388b0b9722c98e08e8f9440897ebb7ff4c95a8c69d9d4b6",
+    "DODGEM/res/images/rato20R.bmp": "40c5b69511a4db0101f8a9f24bb84ddf9c8b2afa839d01f4073d015bb4f355dc",
+    "DODGEM/res/images/space.bmp": "b48a752f5cd9f1074e195dee54a66caf1dbb5aefb3029bbf7e21c56f97d923d9",
+    "DODGEM/res/images/squareBL.bmp": "a991e0776288167b7244bf170a7738389ff73d677c10ab4ce6933c0207d0466f",
+    "DODGEM/res/images/squareBR.bmp": "a851feb8c36375b37c21e88a6e7e18005364c297c8ded2faf117665859ab2005",
+    "DODGEM/res/images/squareTL.bmp": "c4446dbdcd5a3ef22d5c61bdc959ee7800b5f1fa2449fe4552fbd82b9d9e170d",
+    "DODGEM/res/images/squareTR.bmp": "30e62ee69fbd405728ba2b4f072feee981c1a642890e261e8a13ad488628e6f6",
+    "DODGEM/scores.txt": "08ec68b7df4b592ea9eecd35c52ccba006ef19fb6a6be556900fe54063470263",
+    "DODGEM/src/DODGEM.c": "cfba3736e38ca21c49984722593a09312d895b6c503fed2ed61f5742ac95e09e",
+    "DODGEM/src/DODGEM.h": "4ac45fba5ce6fea3f2f50b1faebb73df842eba60e12b8e892835aa2d9e455c48",
+    "DODGEM/src/Makefile": "42da431a6aea057ed402fc195a9cfe4fac312adf2306c6c7a6f95b85b928c216",
+    "DODGEM/src/RTC.c": "20f6730f087b0e1a3862f4f38ac83d9c1aefee7c623dc5c6435550d52943455e",
+    "DODGEM/src/RTC.h": "f379732062a40756d755c33de1b1562b052bd46323e6af18b9940cd26cd82c1f",
+    "DODGEM/src/bitmap.c": "751ce936e80e33c80b53954b845855b5765ee9061388c69bcd72c0eb022baa1f",
+    "DODGEM/src/bitmap.h": "798f492d0a8f95e09a571c71be91fc214b0166a9e986ce2dc9079ca8173f9080",
+    "DODGEM/src/graphics.c": "933af4181b8db3545e7a4fb69ae6a02ab93983efd45d23005281e9ef3e74ea1a",
+    "DODGEM/src/graphics.h": "75d6d0432f784b2bce424b20d2cb4dc4b6a89423a52ed43cbb9d7621855c47f6",
+    "DODGEM/src/i8042.h": "a2c73dae00a8d9006fb3a61ce691bea2120e9e0736f1f4da42d14f317f78c145",
+    "DODGEM/src/i8254.h": "b2681be84d387c842719c1f2911d03e0dcf88257baaa384a8204187259e9840b",
+    "DODGEM/src/keyboard.c": "16fdbd7487ac2cccf1646f87d9ce1d32e117f5fcc6020a7c80fe2357e667884c",
+    "DODGEM/src/keyboard.h": "0d2cbe8b89fdc3d89ee97bf2c427fbc34a4fd298696d2b9343f78191f70ebaa6",
+    "DODGEM/src/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "DODGEM/src/main.c": "936e91604d31dd1ef49af20bd5ade1100bc43cc2494daa05260097c9489ee9d5",
+    "DODGEM/src/mouse.c": "a93c240a7c5dca860518fc8f6df0e7e85f0243362e3cda5814480542d7022bbd",
+    "DODGEM/src/mouse.h": "7538f0aad5801f64c85e5954d9d1f721330029ff21787613ad67fc01cf597da7",
+    "DODGEM/src/timer.c": "7fa3e1029b9280e30dcd06eecd4c29e11e5afc04defc120a8e2ffd50ed30a76f",
+    "DODGEM/src/timer.h": "2fd0ffbe4c5b2583d393ca242fba22f37f79cc2e66644bb33d637bf304ad7db7",
+    "DODGEM/src/utilities.c": "dee64e6e41a9a80e49cd1a8ad732b7f44284c04bcb3aaf2325e762b4ee083f07",
+    "DODGEM/src/utilities.h": "d6c2a013008deb029e0c90e60121d8bb9c36ac5b4d1c1845c6552c1b55fabb5b",
+    "DODGEM/src/vbe.c": "12e3a867e33a7483454d8ab56c33f8ef46f6b25239f727ba7e35d8a38a253ed1",
+    "DODGEM/src/vbe.h": "1a470383753b9de130428b323522afe0019975bd39872bc769ddbd30aaf58e67",
+    "DODGEM/src/video_gr.c": "a8d0d7a8aee966f49e44b17d2b0b5eae8c4ba6b9b798985c5fb77dc3f52b7a9b",
+    "DODGEM/src/video_gr.h": "ee2e7cb4412f3c99c183f695e776e055abfd60ea4cc35e09c656bc207e61e217"
+  },
+  "selection": "Authored C/headers/Makefile, original bitmap resources and score file retained. Build products, bundled compiled liblm, generated dependencies, VCS/OS metadata and course documents omitted.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "DODGEM/src/graphics.c",
+          "originalSha256": "933af4181b8db3545e7a4fb69ae6a02ab93983efd45d23005281e9ef3e74ea1a",
+          "patchedSha256": "a81a9dff89a5c539f26955493b29fa945dc092578f2ef8f7fb51dfd1aa45987e",
+          "reason": "Include the existing owning video_gr.h before calling pointer-returning vg_init and vg_exit. Original implicit-int vg_init call causes a real WASM function signature trap and can truncate a 64-bit framebuffer pointer.",
+          "verification": "Original browser traps at .Lvg_init_bitcast_invalid in graphicsStart. Owning graphicsStart regression is RED on undeclared function, GREEN with original header while preserving full returned pointer and writing the mapped framebuffer."
+        },
+        {
+          "file": "DODGEM/src/mouse.c",
+          "originalSha256": "a93c240a7c5dca860518fc8f6df0e7e85f0243362e3cda5814480542d7022bbd",
+          "patchedSha256": "2df02f8d52dda04ecd784d7bcc3afec4052ec20f9e84c921ca6b638b3204eab2",
+          "reason": "Decode full signed PS/2 nine-bit X/Y motion from header sign bits before existing cursor clamp. Original plain-char cast reverses valid movements outside -128..127.",
+          "verification": "Actual print_mouse RED on valid -255 packet, GREEN for -255,-200,-128,-127,-1,0,1,127,128,200,255 on each axis plus existing edge clamps and button transitions."
+        },
+        {
+          "file": "DODGEM/src/DODGEM.c",
+          "originalSha256": "cfba3736e38ca21c49984722593a09312d895b6c503fed2ed61f5742ac95e09e",
+          "patchedSha256": "87a55fd711794df424d39dd4647d638426aba84423c13c06f8128ec30d3211ad",
+          "reason": "loadScores passed100 to fgets destinations15/10bytes; unchecked copies could overflow nickname[12], atoi read unterminateddate[2], feof loop could add a phantom record and arrays of4had no capacity guard. Read the original five-line records through one correctly sized line buffer, validate name length, parse all six dates from the owned full line, stop on actualEOF, cap stored rows4per mode and close the file on every exit.",
+          "verification": "Actual ARM64 FORTIFY optimized compilation RED on five fgets bound violations, GREEN all11Cunits with -D_FORTIFY_SOURCE=2 -O2. Actual owning loadScores real-file regression original SIGTRAP, corrected parses pinned seven originalrecords and exact date/name/score fields, a maximum11character nickname, rejects overlong/truncated/malformed records, preserves0s2sentinel and caps six valid rows to4."
+        },
+        {
+          "file": "DODGEM/src/timer.c",
+          "originalSha256": "7fa3e1029b9280e30dcd06eecd4c29e11e5afc04defc120a8e2ffd50ed30a76f",
+          "patchedSha256": "3fb1496d5ec355878204fc1934389dc53760df06ebf048843e9481b9889e1208",
+          "reason": "Read timer status into an unsigned long local, then assign one byte to the owning unsigned-char destination. Original cast from one-byte st to unsigned long* lets sys_inb overwrite adjacent stack bytes, including timer_set_square canary. Keep caller conf unsigned to match the existing getter signature.",
+          "verification": "Actual ARM64 timer_set_square stack-protector abort. Owning real timer.c -O2 -fstack-protector-all regression RED SIGABRT; GREEN programs60Hz PIT control/divisor correctly, preserves16-byte guards around one-byte status, and leaves status unchanged after a failed read."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original relative mouse steers the block with unit deltas, starts a round by selecting the red block, and selects menus. Panel mouse stick and Select/Grab action preserve those inputs; keys1/2/3 toggle original shield/freeze/slow powers, Escape returns, Enter accepts loss. Explicit F0000000 firmware and absolute/relative asset aliases preserve original hardware assumption and paths.",
+  "artwork": {
+    "icon": "Simple original red player and blue rectangular enemies inside a pale arena. Original bitmap art unchanged.",
+    "preview": "Actual original gameplay with moving enemies, timer and depleted energy after Freeze, scaled to 640x480."
+  },
+  "verification": {
+    "browser": "Actual CDP touch landscape844x390 and portrait390x844: Play menu, click red block, dodge with unit relative motion, Freeze visible energy100 to50 and stationary enemies, move again then Shield green block; timer and energy advance, errors[].",
+    "ndk": "All11authored Makefile C translation units pass actual NDK27 ARM64 object compilation with -D_FORTIFY_SOURCE=2 -O2, matching real Android FORTIFY build.",
+    "sourceRegression": "Owning graphicsStart uses full vg_init pointer with existing header; actual print_mouse handles all signed9bit boundaries and clamp/button transitions. Separate RED/GREEN logs and cumulative reversible source patch. Actual loadScores real-file record/bounds/EOF regression RED/GREEN; originalfile records and six date fields preserved. Timer status guarded byte-destination/60Hz PIT/read-failure regression RED/GREEN with real optimized stack-protected timer.c.",
+    "native": "Original menu enters arena. Freeze spends50 energy and all blue enemy pixels remain identical across three real frames. Shield spends40more energy (50\u219212 including regeneration); green immunity remains beyond initial grace period. Ordinary relative pointer moves player while stopped enemies retain identical masks. Score advances0.53\u21921.96. Home terminates isolated process.",
+    "nativeGameplay": {
+      "status": "passed",
+      "apkSha256": "92a108aaa7c1f5162655b9d0b118675a93e32899baf185e417a4df9343a9f859",
+      "evidence": "build/arcade-100/dodgem-native-safe/results.json",
+      "review": "Original menu enters arena. Freeze spends50 energy and all blue enemy pixels remain identical across three real frames. Shield spends40more energy (50\u219212 including regeneration); green immunity remains beyond initial grace period. Ordinary relative pointer moves player while stopped enemies retain identical masks. Score advances0.53\u21921.96. Home terminates isolated process."
+    }
+  }
+}

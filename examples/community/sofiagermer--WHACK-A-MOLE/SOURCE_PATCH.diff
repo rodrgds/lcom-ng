@@ -1,0 +1,11 @@
+--- a/src/serial_port.c
++++ b/src/serial_port.c
+@@ -161,7 +161,7 @@
+ 
+ int ser_flush_rx(){
+     uint8_t dummy;
+-    while(ser_can_read()){
++    while(ser_can_read() == 0){
+         if(ser_read_byte(&dummy)) return 1;
+         printf("treata  %d\n", dummy);
+     }

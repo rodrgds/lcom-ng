@@ -1,0 +1,140 @@
+--- a/proj/src/libs/graph/src/videocard.c
++++ b/proj/src/libs/graph/src/videocard.c
+@@ -69,7 +69,7 @@
+ 
+ int(vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color){
+   int pos = y * bytes_per_line + x*bytes_per_pixel;
+-  memcpy((void*)((unsigned int)video_buf + pos), &color, bytes_per_pixel);
++  memcpy((uint8_t*)video_buf + pos, &color, bytes_per_pixel);
+   return OK;
+ } 
+ 
+--- a/proj/src/libs/graph/src/font.c
++++ b/proj/src/libs/graph/src/font.c
+@@ -12,13 +12,13 @@
+     font_t *ret = (font_t*)malloc(sizeof(font_t));
+     if (ret == NULL) return NULL;
+     ret->sz = NUM_SYMBOLS;
+-    ret->glyphs = (sprite_t**)malloc((ret->sz * sizeof(sprite_t*)));
++    ret->glyphs = (sprite_t**)calloc(ret->sz, sizeof(sprite_t*));
+     font_load_glyphs(ret);
+     return ret;
+ }
+ 
+ void (font_load_glyphs)(font_t *font){
+-  for(size_t i = 44; i <= font->sz; i++){
++  for(size_t i = 44; i < font->sz; i++){
+     switch (i)
+     {
+     case 44:{
+@@ -207,7 +207,7 @@
+ 
+ void (font_dtor)(font_t *font){
+   for(size_t i = 0; i < font->sz; i++){
+-    sprite_destructor(font->glyphs[i]);
++    if (font->glyphs[i] != NULL) sprite_destructor(font->glyphs[i]);
+   }
+   free(font->glyphs);
+ }
+--- a/proj/src/libs/graph/include/font_macros.h
++++ b/proj/src/libs/graph/include/font_macros.h
+@@ -5,7 +5,7 @@
+  * @{
+  */
+ #define SPACE_BAR_CODE 32
+-#define NUM_SYMBOLS 98
++#define NUM_SYMBOLS 99
+ 
+ /**
+  * @}
+--- a/proj/src/project/src/game.c
++++ b/proj/src/project/src/game.c
+@@ -28,7 +28,7 @@
+   uint8_t keyboard_sel;
+   message msg;  
+ 
+-  menu_t *main_menu = menu_ctor(font, 2);
++  menu_t *main_menu = menu_ctor(font, 3);
+   menu_add_button(main_menu, 225, 200, 350, 75, "PLAY THE GAME");
+   menu_add_button(main_menu, 225, 300, 350, 75, "LEADERBOARD");
+   menu_add_button(main_menu, 225, 400, 350, 75, "EXIT");
+--- a/proj/src/project/src/leaderboard.c
++++ b/proj/src/project/src/leaderboard.c
+@@ -48,11 +48,10 @@
+     font_draw_string(lb->font,"CANNOT OPEN FILE",280,200);
+   } else {
+     char c[50]; int y = 200;
+-    while((fscanf(file, "%[^\n] ", c) != EOF) && y<=500) {
++    while((fscanf(file, "%49[^\n] ", c) == 1) && y<=500) {
+       font_draw_string(lb->font,c,10,y);
+       y+=50;
+     }
+-    free(c);
+     fclose(file);
+   }
+ }
+@@ -73,32 +72,11 @@
+ 
+   if(file==NULL) return;
+ 
+-  char* result = playerName;
+-
+-  char *date = (char *)malloc(14 * sizeof(char));
++  char date[14];
+   rtc_get_date(date);
+-
+-  char* timeCounterString = "";
+-  sprintf(timeCounterString, "%d", (timeCounter/REFRESH_RATE));
+-  strcat(timeCounterString," S");
+-
+-  while(strlen(result) != 16){
+-    strncat(result," ",1);
+-  }
+-
+-  strncat(result,timeCounterString,strlen(timeCounterString));
+-
+-  while((strlen(result)+10) != 36){
+-    strncat(result," ",1);
+-  }
+-
+-  strncat(result,date,10);
+-
+-
+-  fprintf(file, "%s\n", result);
+-  free(result);
+-  free(timeCounterString);
+-  free(date);
++  char elapsed[32];
++  snprintf(elapsed, sizeof(elapsed), "%d S", timeCounter / REFRESH_RATE);
++  fprintf(file, "%-16.15s%-10s%.10s\n", playerName, elapsed, date);
+   fclose(file);
+   
+ }
+@@ -112,15 +90,16 @@
+ void(leaderboard_sort_entries)(leaderboard_t *lb){
+ 
+   FILE *file = fopen(lb->file_location, "r");
++  if (file == NULL) return;
+ 
+   char *line = malloc(sizeof(char)*100);
+   entry_t** entries = malloc(sizeof(entry_t*));
+   int size = 0;
+ 
+-  while(fscanf(file, "%[^\n] ", line) != EOF) {
++  while(fscanf(file, "%99[^\n] ", line) == 1) {
+     char name[100]; char rest[100]; char time[100];
+ 
+-    sscanf(line, "%15[^\n] %s %s", name, time, rest);
++    sscanf(line, "%15[^\n] %99s %99s", name, time, rest);
+     int t = atoi(time);
+ 
+     entries[size] = entry_constructor(t,line);
+@@ -139,7 +118,7 @@
+   }
+   fclose(file);
+ 
+-  for(int l=1 ; l<size; l++){
++  for(int l=0 ; l<size; l++){
+     entry_destructor(entries[l]);
+   }
+   free(entries);

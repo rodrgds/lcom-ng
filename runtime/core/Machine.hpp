@@ -2,6 +2,7 @@
 #define MACHINE_LAB_MACHINE_HPP
 
 #include "Bus.hpp"
+#include "MachineConfig.hpp"
 #include "IrqController.hpp"
 #include "Trace.hpp"
 #include "../devices/Ac97.hpp"
@@ -31,8 +32,9 @@ public:
     enum class Device { Video, Audio } device;
     size_t offset;
   };
-  Machine();
+  explicit Machine(MachineConfig config = {});
   std::optional<PhysicalRange> physicalRange(uint64_t address, uint64_t length) const;
+  std::optional<PhysicalRange> mapPhysicalRange(uint64_t address, uint64_t length);
 
   bool readPort8(uint16_t port, uint8_t &value);
   bool writePort8(uint16_t port, uint8_t value);

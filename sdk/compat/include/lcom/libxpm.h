@@ -5,6 +5,7 @@
 #include <stddef.h>
 #include <stdint.h>
 
+typedef const char *xpm_string_t;
 typedef const char *const xpm_row_t;
 typedef xpm_row_t *const xpm_map_t;
 

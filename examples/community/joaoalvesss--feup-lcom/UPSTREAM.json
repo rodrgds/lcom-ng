@@ -1,0 +1,126 @@
+{
+  "repository": "https://github.com/joaoalvesss/feup-lcom",
+  "revision": "74a9fab9ab2913edd8f2d558ea2cd0eab5617630",
+  "project": "src",
+  "sourceHashes": {
+    "README.md": "349e94c049282b5d2191460900c55797f48322ff999f8012fcf8e02960f8a812",
+    "src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "src/.vscode/settings.json": "5b91248596f9e45a4633130f70a48e547bd4e61c8c825cde76417003ad7779b8",
+    "src/Makefile": "a183a840c4089693163918aa1fcd66f54db465dc51c718936184d28786c7b25c",
+    "src/configuration.h": "a4e01963fa3301f6d8e901fba558a67e35c9319594233c74f9d14e1caa132457",
+    "src/devices/keyboard/i8042.h": "795c4e16fcfb488fba90457fa7b7baf6324e3c46c90fb51843b657bab07fbc0c",
+    "src/devices/keyboard/keyboard.c": "b67eb46b51d647f763c0a48e62317973c57b3244b2041027d7ea395539e898a0",
+    "src/devices/keyboard/keyboard.h": "b3b86918120c14f2bc92809cf54a31d7d179e0349c4b55c2ead13607f0350827",
+    "src/devices/mouse/i8042.h": "bf9b86f5592c6b6d7542b042a35e27eb65406722e2b154848dd96154709381ad",
+    "src/devices/mouse/mouse.c": "8f3f5ae86f4c5064b939c205432269301d56c103ad72b4ea83900c78e93b455c",
+    "src/devices/mouse/mouse.h": "837149f8c100d72273ee1954cee6161257eedc6b22d20f7a0313f030652c6e95",
+    "src/devices/timer/i8254.h": "3f45e8c8025a10d716447323c6ee2b83ed8df6da17e807b95d22c29afe77d5a6",
+    "src/devices/timer/timer.c": "05a795c26c121f6d44eff0cbd2ce4f0f7f183b84c9b1bfbc34c2f8e8d36c2d0b",
+    "src/devices/timer/timer.h": "14931f6cd109c17d794a6d6ee0df1b4599462715cd168aea8eca2630dcc9c2f0",
+    "src/devices/utils.c": "4048cbe2615c47eec71c4b5a546ce553d22867034ac2a3fa6d328c6e1352f179",
+    "src/devices/video/video.c": "06a7026c5d52f453e9de2a14b58c5fdbca486af48529ddcbf341860620ce7f3c",
+    "src/devices/video/video.h": "1d4294d7f7659ba5ed3594ad459a5f167133d541100b04c8839da204afc673c6",
+    "src/keyboard.o-56f56d1d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/keyboard.o-68ca5300": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/keyboard.o-b76b409b": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/keyboard.o-c2761e42": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/keyboard.o-ee5b354d": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/main.c": "c13c5ac1e0853ce4fbda3f7f96f3744eb4b5dbf761610abdbc62aa6bb02821cd",
+    "src/model/images/dinossaurs/back1.xpm": "aaf2f1eb9eba4dd65574800a3c2eedb09321893236aee73d0e0eca1c009728a6",
+    "src/model/images/dinossaurs/back2.xpm": "27ffadc8e51b62a23fa2d72d3daf7059667fb65027600558b6a2052d55cabcbf",
+    "src/model/images/dinossaurs/back3.xpm": "9775d06c36cd5944e45f231877cd8b0d87107595174932128c3ae36d3fc9669e",
+    "src/model/images/dinossaurs/dino1.xpm": "40e35322db889e8c505e5892332b2ff1732c4a4138419fee5c6c2557e974bb1a",
+    "src/model/images/dinossaurs/dino2.xpm": "19637d347d14eae91e0988a288d0ddb6fc78063383e8edfb23326bef117023f3",
+    "src/model/images/dinossaurs/dino3.xpm": "c73e52e3f68906545f3b333f1a0fbba443740af6c0ab52883be1b29245e7a2b4",
+    "src/model/images/dinossaurs/dino4.xpm": "0312b7f39627759c6c2e7ca617c4e0984244ef5844e0ba634782418bac47c204",
+    "src/model/images/dinossaurs/dino5.xpm": "8c9aa3185688ae5559d7d1b76d1929db5f3e87895737f42775af77a2f29c8bb2",
+    "src/model/images/dinossaurs/dino6.xpm": "edc1b6c7f669d747c3131a35dc1fcbae5ebb7823ce89ad09b1d5c3282a982c7a",
+    "src/model/images/dinossaurs/dino7.xpm": "628674c6ce57e24dfa49b0598c3ce45109dbc965eb67c5d92413d1474ea32380",
+    "src/model/images/dinossaurs/dino8.xpm": "3192c9d7d48de985d68fb4244bc5603dd39595719772c0121c60200c7c555ba3",
+    "src/model/images/dinossaurs/frame.xpm": "7dd4051cef5e684a96cff04eebe76e83ad9b10f749b8ade51f885ae8c1f971e6",
+    "src/model/images/menus/background.xpm": "46465c5d2965dc0081c3f17923177f51fa3b6c2573d67095011783946d35a1b9",
+    "src/model/images/menus/mainmenu.xpm": "c9892b3d3240932160e886c039658b5a6f5503fc5bdc59638ec47c7f21110315",
+    "src/model/images/menus/menufinal.xpm": "aa762cc0e1984704225afd4a297397f4aaf8d3429125280d283c140689f81812",
+    "src/model/images/mice/dino_cursor.xpm": "b385928c9955670b0095d5d25e972cb425f2e13a8b560ec45929e8d65eb68958",
+    "src/model/images/mice/dino_mouse.xpm": "6cbce69a4c4b1d071650af42a8a18b9590656cbbb0210a5cf7a13947b47d83de",
+    "src/model/images/numbers/colon.xpm": "624181e3f4513bab05bcab27cc47892f003ce16657545aa6605a9ba9caa3c755",
+    "src/model/images/numbers/digit0.xpm": "1388419036d8bcd14b217274deb570d367cffe1e5cda50ae69d6194b276c450b",
+    "src/model/images/numbers/digit1.xpm": "766fcc620d7f09d21f445aeae8528dc6ef457c99f0b4e630610b1529d94f069d",
+    "src/model/images/numbers/digit2.xpm": "13e51e6fd7b6320e743adf70561fc2959d6e56a76c5a608b1525140ce163175f",
+    "src/model/images/numbers/digit3.xpm": "7f0919ff4749ead3737f7e9363ffa399576388f78b1f9039a1ecee9de6cc926d",
+    "src/model/images/numbers/digit4.xpm": "14bf2f86af839fd67761c62595cdda71063f4e77059f0354773e6a479d0be08c",
+    "src/model/images/numbers/digit5.xpm": "0559c74dc5e9a6acffd0c61012990a13242a9433047cac780956f48e2c8abca9",
+    "src/model/images/numbers/digit6.xpm": "f3fdb2de632e3888d7fb7c1fca18d7ebe5c6b299e3c774d5b895a4a874ebd4da",
+    "src/model/images/numbers/digit7.xpm": "a63f992403cb1ee2c9f29030cfefdf6052922e2a3fa4fa25818b8e0bef631880",
+    "src/model/images/numbers/digit8.xpm": "0fbf1896abc1e3c1741f33cedb7d5d706e91bd8b2e45a5f3909e2ea01285d8f3",
+    "src/model/images/numbers/digit9.xpm": "564dd467ac125bdccbb5a0fb615cf68a52d396f840677f97c68257eddaa1e125",
+    "src/model/model.c": "28b15c2fda20738cc1ed9d160591c47f1cafe6a38cd59f9a296f78b4133afed6",
+    "src/model/model.h": "24c9179bb508e9fd855a4a711efeb47b8f08c2b8f0d2d7e0dde906cf938306da",
+    "src/model/sprites.c": "9f2822fd97c26c7c99a081b54b4f5a8ddc54c59126eb810925834832bf405464",
+    "src/model/sprites.h": "3358f0ed5f012a461be970928391066b5b2f50b1ce7e77fe6de44414be925209",
+    "src/mouse.o-88356eda": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/mouse.o-a20cdc11": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/proj": "c1dd27edf060208f11b47188e9ae2d95edc261a851d7f38e992d182448d8fdb4",
+    "src/view/view.c": "9c8d1e64e23942df8befa0c80fa884c2ce17665ad100b844cd431efec07d6d5f",
+    "src/view/view.h": "6b08c0719979ee754f5cd83abd8a5a558d10d3b06d5d172c641b6179a5ec010a",
+    "src/view.o-2e95a541": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/view.o-43c918d9": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/view.o-512fc540": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/view.o-dd108dda": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "selection": "Original project source tree, headers, required assets and root README. Omitted unrelated labs, generated documentation, logs, compiled objects, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.mov",
+    "**/trace.txt",
+    "**/output.txt",
+    "**/core.*"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "src/devices/timer/timer.c",
+          "originalSha256": "05a795c26c121f6d44eff0cbd2ce4f0f7f183b84c9b1bfbc34c2f8e8d36c2d0b",
+          "patchedSha256": "34f5bfbe6769ac0145d40d27ba2354412d605ab230f16af3f64666f3e85b4cba",
+          "reason": "Select the timer channel and program the PIT control word before writing its divisor. Original writes divisor before control and applies channel selection too late, leaving the game without its expected timer ticks.",
+          "verification": "Compiled actual timer_set_frequency with captured bus writes RED control order assertion; GREEN correct channel0/1/2 command then0xae,0x4d divisor for60Hz. Evidence a/joao-red.log and joao-green.log."
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "src/model/images/dinossaurs/dino5.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "ad2c6fa730b710595515fea5672276f91497c084f12182081ecfecfa83350d09",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "5334d177c3473bdab05b453e7aaa96f7a75a7e9815d839f416d92e358195f349",
+      "kind": "gameplay preview"
+    }
+  ],
+  "verification": {
+    "web": "Real Chromium mobile touch gameplay in landscape and portrait; no JavaScript errors. Controls, menu transitions and game actions exercised.",
+    "evidence": "build/arcade-100/a/evidence/joaoalvesss--feup-lcom",
+    "native": "Original sources compiled against compatibility SDK; final native collection build pending integration."
+  }
+}

@@ -1,0 +1,746 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="mouse_8c" kind="file" language="C++">
+    <compoundname>mouse.c</compoundname>
+    <includes refid="mouse_8h" local="yes">mouse.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>i8042.h</label>
+        <link refid="i8042_8h"/>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c</label>
+        <link refid="mouse_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>mouse.h</label>
+        <link refid="mouse_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>lcom/lcf.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="mouse_8c_1a81c0f94add844b0761bd142f7f708431" prot="public" static="no">
+        <name>MOUSE_LB</name>
+        <initializer>BIT(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="5" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a5f47c1d60579c8691054c939c1d7c20e" prot="public" static="no">
+        <name>MOUSE_RB</name>
+        <initializer>BIT(1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="6" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="6" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a5a934eaadd3536aabe6df0adf6728e8e" prot="public" static="no">
+        <name>MOUSE_MB</name>
+        <initializer>BIT(2)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="7" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="7" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a21b57727e5ecc7456b2017ec629a4cf5" prot="public" static="no">
+        <name>MOUSE_X_DELTA</name>
+        <initializer>BIT(4)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="8" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="8" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a8630bdfa4e872f18dc4943f466e60f97" prot="public" static="no">
+        <name>MOUSE_Y_DELTA</name>
+        <initializer>BIT(5)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="9" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="9" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a726368c7d58dac5edc608a58e2e92660" prot="public" static="no">
+        <name>MOUSE_X_SIGNAL</name>
+        <initializer>BIT(6)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="10" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="10" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a4b664cf12fa3048513e4c8b856aefd65" prot="public" static="no">
+        <name>MOUSE_Y_SIGNAL</name>
+        <initializer>BIT(7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="11" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="11" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a7e6cae4fe17dde88de0d8f4a0380c212" prot="public" static="no">
+        <name>KBC_WRITE_PORT</name>
+        <initializer>0x64</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="15" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a15f59c411a69ceb7e54f6ca7edb93fe5" prot="public" static="no">
+        <name>KBC_PORT</name>
+        <initializer>0x60</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="16" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1afa9a46730bdfc6bfc06a0f69ae748f5a" prot="public" static="no">
+        <name>WRITE_TO_MOUSE</name>
+        <initializer>0xD4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="17" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a6f6489887e08bff4887d0bc5dcf214d8" prot="public" static="no">
+        <name>ACK</name>
+        <initializer>0xFA</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="18" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a57b2d84fe9fb15bee8b83e8d52e785aa" prot="public" static="no">
+        <name>ENABLE_STREAM</name>
+        <initializer>0xEA</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="19" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a0be5107de1323fcc692f8a2e6002e41e" prot="public" static="no">
+        <name>ENABLE_DATA_REP</name>
+        <initializer>0XF4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="20" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a3c6dc8b3a0f24d91b231d52682929a66" prot="public" static="no">
+        <name>IS_MOUSE</name>
+        <initializer>BIT(5)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="21" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a848905eb7d1319dd083ae64e39d64062" prot="public" static="no">
+        <name>IS_FIRST_BYTE</name>
+        <initializer>BIT(3)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="22" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1aefc48d416c882f06edaf6d01779d4d74" prot="public" static="no">
+        <name>TIMEOUT_ERROR</name>
+        <initializer>BIT(6)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="23" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1a81d2ca6759f3f3bf04556b7558aea6bc" prot="public" static="no">
+        <name>PARITY_ERROR</name>
+        <initializer>BIT(7)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="24" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="mouse_8c_1ae8e1778d112a24330f02252c2328a434" prot="public" static="no">
+        <name>OUT_BUFFER_FULL</name>
+        <initializer>BIT(0)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="25" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t mouseBytes[3]</definition>
+        <argsstring>[3]</argsstring>
+        <name>mouseBytes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="27" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mouse_counter</definition>
+        <argsstring></argsstring>
+        <name>mouse_counter</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="28" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="mouse_8c_1a56324bcf9340dda5c3623c9ba0ba0ad9" prot="public" static="no" mutable="no">
+        <type>uint32_t</type>
+        <definition>uint32_t byte</definition>
+        <argsstring></argsstring>
+        <name>byte</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="29" column="10" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" prot="public" static="no" mutable="no">
+        <type>struct packet</type>
+        <definition>struct packet mousePacket</definition>
+        <argsstring></argsstring>
+        <name>mousePacket</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="30" column="13" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mouse_x</definition>
+        <argsstring></argsstring>
+        <name>mouse_x</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="31" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int mouse_y</definition>
+        <argsstring></argsstring>
+        <name>mouse_y</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="32" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="mouse_8c_1abc3bcc5b60108e381a2d51468313a984" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hook_mouse</definition>
+        <argsstring></argsstring>
+        <name>hook_mouse</name>
+        <initializer>= 5</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="33" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="mouse_8c_1acca70c2a37ad14beac4c0f3c652c5143" prot="public" static="no" mutable="no">
+        <type>vbe_mode_info_t</type>
+        <definition>vbe_mode_info_t mode_inf</definition>
+        <argsstring></argsstring>
+        <name>mode_inf</name>
+        <briefdescription>
+<para>Struct containing information about the graphics mode. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="35" column="24" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/GraphicCard.h" bodystart="13" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" declline="35" declcolumn="24"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="mouse_8c_1a0cee9b230b812d6261cfe0c72be343a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() write_to_mouse</definition>
+        <argsstring>(uint8_t command)</argsstring>
+        <name>write_to_mouse</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>command</declname>
+        </param>
+        <briefdescription>
+<para>Writes a given command to the mouse controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>command</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The command to be sent to the mouse controller. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="40" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="40" bodyend="58"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8c_1a9edadb46fd99126261a177c77f65a935" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() proj_enable_data_reporting</definition>
+        <argsstring>()</argsstring>
+        <name>proj_enable_data_reporting</name>
+        <briefdescription>
+<para>Enables data reporting from the mouse and sets the appropriate packet format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="61" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="61" bodyend="67"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8c_1ac2b472a8ebdd3f12cadeb371e0c3ddbf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() mouse_write_to_KBC</definition>
+        <argsstring>(uint8_t port, uint8_t command)</argsstring>
+        <name>mouse_write_to_KBC</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>command</declname>
+        </param>
+        <briefdescription>
+<para>Writes a given command to the keyboard controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The controller&apos;s port where the command has to be written. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>command</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The command to be sent to the keyboard controller. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="70" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="70" bodyend="83"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8c_1a210374b50462acdedab00df64d5cea3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void()</type>
+        <definition>void() mouse_ih</definition>
+        <argsstring>()</argsstring>
+        <name>mouse_ih</name>
+        <briefdescription>
+<para>Interrupt handler for mouse events. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="89" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="89" bodyend="107"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8c_1ac4a1224a9d9def665116e4011969f4d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() mouse_read_output</definition>
+        <argsstring>(uint32_t *output)</argsstring>
+        <name>mouse_read_output</name>
+        <param>
+          <type>uint32_t *</type>
+          <declname>output</declname>
+        </param>
+        <briefdescription>
+<para>Reads output information from the mouse controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 32-bit variable where the output data is going to be stored. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="109" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="109" bodyend="129"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8c_1a9571698f3d39b3820ff2fc8877fbb63f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() mouse_write_to_packet</definition>
+        <argsstring>()</argsstring>
+        <name>mouse_write_to_packet</name>
+        <briefdescription>
+<para>Sends a command to the mouse controller to request data from it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="132" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="132" bodyend="155"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8c_1a95040f52f6beeba67119b8b66857c52e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void()</type>
+        <definition>void() mouse_update_coords</definition>
+        <argsstring>()</argsstring>
+        <name>mouse_update_coords</name>
+        <briefdescription>
+<para>Updates the mouse coordinates and sets the corresponding events based on the mouse packet received. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="158" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="158" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8c_1a7f3b77231478e68e5f99bfbb96c081eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() mouse_subscribe_int</definition>
+        <argsstring>(uint8_t *irq_set)</argsstring>
+        <name>mouse_subscribe_int</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>irq_set</declname>
+        </param>
+        <briefdescription>
+<para>Subscribes and enables interrupts from the mouse controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>irq_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bit number associated with the mouse controller&apos;s interrupt. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="175" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="175" bodyend="180"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8c_1a3ecf823d80520009ae5e0d76ae40a3c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() mouse_unsubscribe_int</definition>
+        <argsstring>()</argsstring>
+        <name>mouse_unsubscribe_int</name>
+        <briefdescription>
+<para>Unsubscribes interrupts from the mouse controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" line="182" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="182" bodyend="185"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="mouse_8h" kindref="compound">mouse.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Mouse<sp/>packet<sp/>macros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="mouse_8c_1a81c0f94add844b0761bd142f7f708431" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MOUSE_LB<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BIT(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="mouse_8c_1a5f47c1d60579c8691054c939c1d7c20e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MOUSE_RB<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BIT(1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="mouse_8c_1a5a934eaadd3536aabe6df0adf6728e8e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MOUSE_MB<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BIT(2)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8" refid="mouse_8c_1a21b57727e5ecc7456b2017ec629a4cf5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MOUSE_X_DELTA<sp/><sp/><sp/>BIT(4)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="mouse_8c_1a8630bdfa4e872f18dc4943f466e60f97" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MOUSE_Y_DELTA<sp/><sp/><sp/>BIT(5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="mouse_8c_1a726368c7d58dac5edc608a58e2e92660" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MOUSE_X_SIGNAL<sp/><sp/>BIT(6)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11" refid="mouse_8c_1a4b664cf12fa3048513e4c8b856aefd65" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MOUSE_Y_SIGNAL<sp/><sp/>BIT(7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Other<sp/>mouse<sp/>macros</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="mouse_8c_1a7e6cae4fe17dde88de0d8f4a0380c212" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KBC_WRITE_PORT<sp/><sp/><sp/><sp/>0x64</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="mouse_8c_1a15f59c411a69ceb7e54f6ca7edb93fe5" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>KBC_PORT<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0x60</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="mouse_8c_1afa9a46730bdfc6bfc06a0f69ae748f5a" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>WRITE_TO_MOUSE<sp/><sp/><sp/><sp/>0xD4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18" refid="mouse_8c_1a6f6489887e08bff4887d0bc5dcf214d8" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ACK<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>0xFA</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="mouse_8c_1a57b2d84fe9fb15bee8b83e8d52e785aa" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ENABLE_STREAM<sp/><sp/><sp/><sp/><sp/>0xEA</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20" refid="mouse_8c_1a0be5107de1323fcc692f8a2e6002e41e" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ENABLE_DATA_REP<sp/><sp/><sp/>0XF4</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21" refid="mouse_8c_1a3c6dc8b3a0f24d91b231d52682929a66" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IS_MOUSE<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BIT(5)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="22" refid="mouse_8c_1a848905eb7d1319dd083ae64e39d64062" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>IS_FIRST_BYTE<sp/><sp/><sp/><sp/><sp/>BIT(3)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23" refid="mouse_8c_1aefc48d416c882f06edaf6d01779d4d74" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>TIMEOUT_ERROR<sp/><sp/><sp/><sp/><sp/>BIT(6)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="mouse_8c_1a81d2ca6759f3f3bf04556b7558aea6bc" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>PARITY_ERROR<sp/><sp/><sp/><sp/><sp/><sp/>BIT(7)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="mouse_8c_1ae8e1778d112a24330f02252c2328a434" refkind="member"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>OUT_BUFFER_FULL<sp/><sp/><sp/>BIT(0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[3];</highlight></codeline>
+<codeline lineno="28" refid="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" kindref="member">mouse_counter</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="29" refid="mouse_8c_1a56324bcf9340dda5c3623c9ba0ba0ad9" refkind="member"><highlight class="normal">uint32_t<sp/><ref refid="mouse_8c_1a56324bcf9340dda5c3623c9ba0ba0ad9" kindref="member">byte</ref>;</highlight></codeline>
+<codeline lineno="30" refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">packet<sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>;</highlight></codeline>
+<codeline lineno="31" refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref><sp/>=<sp/>5;</highlight></codeline>
+<codeline lineno="32" refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>=<sp/>5;</highlight></codeline>
+<codeline lineno="33" refid="mouse_8c_1abc3bcc5b60108e381a2d51468313a984" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="mouse_8c_1abc3bcc5b60108e381a2d51468313a984" kindref="member">hook_mouse</ref><sp/>=<sp/>5;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/>vbe_mode_info_t<sp/><ref refid="mouse_8c_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40" refid="mouse_8c_1a0cee9b230b812d6261cfe0c72be343a8" refkind="member"><highlight class="normal">int<sp/>(<ref refid="mouse_8c_1a0cee9b230b812d6261cfe0c72be343a8" kindref="member">write_to_mouse</ref>)(uint8_t<sp/>command)<sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>response;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>10;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1ac2b472a8ebdd3f12cadeb371e0c3ddbf" kindref="member">mouse_write_to_KBC</ref>(<ref refid="mouse_8c_1a7e6cae4fe17dde88de0d8f4a0380c212" kindref="member">KBC_WRITE_PORT</ref>,<sp/><ref refid="mouse_8c_1afa9a46730bdfc6bfc06a0f69ae748f5a" kindref="member">WRITE_TO_MOUSE</ref>))<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">//Allow<sp/>writing<sp/>to<sp/>mouse</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1ac2b472a8ebdd3f12cadeb371e0c3ddbf" kindref="member">mouse_write_to_KBC</ref>(<ref refid="mouse_8c_1a15f59c411a69ceb7e54f6ca7edb93fe5" kindref="member">KBC_PORT</ref>,<sp/>command))<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sys_inb(<ref refid="mouse_8c_1a15f59c411a69ceb7e54f6ca7edb93fe5" kindref="member">KBC_PORT</ref>,<sp/>&amp;response))<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(response<sp/>==<sp/><ref refid="mouse_8c_1a6f6489887e08bff4887d0bc5dcf214d8" kindref="member">ACK</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61" refid="mouse_8c_1a9edadb46fd99126261a177c77f65a935" refkind="member"><highlight class="normal">int<sp/>(<ref refid="mouse_8c_1a9edadb46fd99126261a177c77f65a935" kindref="member">proj_enable_data_reporting</ref>)()<sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1a0cee9b230b812d6261cfe0c72be343a8" kindref="member">write_to_mouse</ref>(<ref refid="mouse_8c_1a57b2d84fe9fb15bee8b83e8d52e785aa" kindref="member">ENABLE_STREAM</ref>))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/></highlight><highlight class="comment">//Enable<sp/>stream<sp/>mode<sp/>for<sp/>mouse</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1a0cee9b230b812d6261cfe0c72be343a8" kindref="member">write_to_mouse</ref>(<ref refid="mouse_8c_1a0be5107de1323fcc692f8a2e6002e41e" kindref="member">ENABLE_DATA_REP</ref>))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/></highlight><highlight class="comment">//Enable<sp/>data<sp/>reporting</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70" refid="mouse_8c_1ac2b472a8ebdd3f12cadeb371e0c3ddbf" refkind="member"><highlight class="normal">int<sp/>(<ref refid="mouse_8c_1ac2b472a8ebdd3f12cadeb371e0c3ddbf" kindref="member">mouse_write_to_KBC</ref>)(uint8_t<sp/>port,<sp/>uint8_t<sp/>command)<sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>status;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>10;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sys_inb(<ref refid="mouse_8c_1a7e6cae4fe17dde88de0d8f4a0380c212" kindref="member">KBC_WRITE_PORT</ref>,<sp/>&amp;status))<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(status<sp/>&amp;<sp/>(<ref refid="mouse_8c_1aefc48d416c882f06edaf6d01779d4d74" kindref="member">TIMEOUT_ERROR</ref><sp/>|<sp/><ref refid="mouse_8c_1a81d2ca6759f3f3bf04556b7558aea6bc" kindref="member">PARITY_ERROR</ref>))<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sys_outb(port,<sp/>command))<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight><highlight class="comment">//F4<sp/>-<sp/>ENABLES<sp/>DATA<sp/>REPORTING<sp/>IN<sp/>THE<sp/>KBC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89" refid="mouse_8c_1a210374b50462acdedab00df64d5cea3c" refkind="member"><highlight class="normal">void<sp/>(<ref refid="mouse_8c_1a210374b50462acdedab00df64d5cea3c" kindref="member">mouse_ih</ref>)()<sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>output;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1ac4a1224a9d9def665116e4011969f4d1" kindref="member">mouse_read_output</ref>(&amp;output))<sp/>{printf<sp/>(</highlight><highlight class="stringliteral">&quot;Error<sp/>reading<sp/>output<sp/>in<sp/>ih&quot;</highlight><highlight class="normal">);}<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Organizing<sp/>the<sp/>3<sp/>bytes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" kindref="member">mouse_counter</ref><sp/>==<sp/>0<sp/>&amp;&amp;<sp/>(output<sp/>&amp;<sp/><ref refid="mouse_8c_1a848905eb7d1319dd083ae64e39d64062" kindref="member">IS_FIRST_BYTE</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[0]<sp/>=<sp/>output;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" kindref="member">mouse_counter</ref>++;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[<ref refid="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" kindref="member">mouse_counter</ref>]<sp/>=<sp/>output;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" kindref="member">mouse_counter</ref>++;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="107"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"></highlight></codeline>
+<codeline lineno="109" refid="mouse_8c_1ac4a1224a9d9def665116e4011969f4d1" refkind="member"><highlight class="normal">int<sp/>(<ref refid="mouse_8c_1ac4a1224a9d9def665116e4011969f4d1" kindref="member">mouse_read_output</ref>)(uint32_t<sp/>*output)<sp/>{</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/>uint32_t<sp/>status;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>10;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sys_inb(<ref refid="mouse_8c_1a7e6cae4fe17dde88de0d8f4a0380c212" kindref="member">KBC_WRITE_PORT</ref>,<sp/>&amp;status))<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(status<sp/>&amp;<sp/><ref refid="mouse_8c_1ae8e1778d112a24330f02252c2328a434" kindref="member">OUT_BUFFER_FULL</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(status<sp/>&amp;<sp/>(<ref refid="mouse_8c_1aefc48d416c882f06edaf6d01779d4d74" kindref="member">TIMEOUT_ERROR</ref><sp/>|<sp/><ref refid="mouse_8c_1a81d2ca6759f3f3bf04556b7558aea6bc" kindref="member">PARITY_ERROR</ref>))<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!(status<sp/>&amp;<sp/><ref refid="mouse_8c_1a3c6dc8b3a0f24d91b231d52682929a66" kindref="member">IS_MOUSE</ref>))<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sys_inb(<ref refid="mouse_8c_1a15f59c411a69ceb7e54f6ca7edb93fe5" kindref="member">KBC_PORT</ref>,<sp/>output))<sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Out<sp/>of<sp/>attempts&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132" refid="mouse_8c_1a9571698f3d39b3820ff2fc8877fbb63f" refkind="member"><highlight class="normal">int<sp/>(<ref refid="mouse_8c_1a9571698f3d39b3820ff2fc8877fbb63f" kindref="member">mouse_write_to_packet</ref>)()<sp/>{</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>3;<sp/>i++)<sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.bytes[i]<sp/>=<sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[i];</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.lb<sp/>=<sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[0]<sp/>&amp;<sp/><ref refid="mouse_8c_1a81c0f94add844b0761bd142f7f708431" kindref="member">MOUSE_LB</ref>;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.mb<sp/>=<sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[0]<sp/>&amp;<sp/><ref refid="mouse_8c_1a5a934eaadd3536aabe6df0adf6728e8e" kindref="member">MOUSE_MB</ref>;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.rb<sp/>=<sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[0]<sp/>&amp;<sp/><ref refid="mouse_8c_1a5f47c1d60579c8691054c939c1d7c20e" kindref="member">MOUSE_RB</ref>;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.x_ov<sp/>=<sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[0]<sp/>&amp;<sp/><ref refid="mouse_8c_1a726368c7d58dac5edc608a58e2e92660" kindref="member">MOUSE_X_SIGNAL</ref>;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.y_ov<sp/>=<sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[0]<sp/>&amp;<sp/><ref refid="mouse_8c_1a4b664cf12fa3048513e4c8b856aefd65" kindref="member">MOUSE_Y_SIGNAL</ref>;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[0]<sp/>&amp;<sp/><ref refid="mouse_8c_1a21b57727e5ecc7456b2017ec629a4cf5" kindref="member">MOUSE_X_DELTA</ref>)<sp/>{<sp/></highlight><highlight class="comment">//need<sp/>to<sp/>switch<sp/>signal</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.delta_x<sp/>=<sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[1]<sp/>|<sp/>0xFF00;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.delta_x<sp/>=<sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[1];}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[0]<sp/>&amp;<sp/><ref refid="mouse_8c_1a8630bdfa4e872f18dc4943f466e60f97" kindref="member">MOUSE_Y_DELTA</ref>)<sp/>{<sp/></highlight><highlight class="comment">//need<sp/>to<sp/>switch<sp/>signal</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.delta_y<sp/>=<sp/>0XFF00<sp/>|<sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[2];</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.delta_y<sp/>=<sp/><ref refid="mouse_8c_1a22259d9fbf697c6e0d093fcf4a49da75" kindref="member">mouseBytes</ref>[2];}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158" refid="mouse_8c_1a95040f52f6beeba67119b8b66857c52e" refkind="member"><highlight class="normal">void<sp/>(<ref refid="mouse_8c_1a95040f52f6beeba67119b8b66857c52e" kindref="member">mouse_update_coords</ref>)()<sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.x_ov)<sp/>{</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref><sp/>+<sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.delta_x<sp/>&lt;<sp/>0)<sp/>{<ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref><sp/>=<sp/>0;}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref><sp/>+<sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.delta_x<sp/>&gt;<sp/><ref refid="mouse_8c_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>-<sp/>10)<sp/>{<ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref><sp/>=<sp/><ref refid="mouse_8c_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>-<sp/>10;}</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref><sp/>+=<sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.delta_x;}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.y_ov)<sp/>{</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>-<sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.delta_y<sp/>&lt;<sp/>0)<sp/>{<ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>=<sp/>0;}</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>-<sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.delta_y<sp/>&gt;<sp/><ref refid="mouse_8c_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.YResolution<sp/>-<sp/>10)<sp/>{<ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>=<sp/><ref refid="mouse_8c_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.YResolution<sp/>-<sp/>10;}</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>-=<sp/><ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.delta_y;}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"></highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//mouse_print_packet(&amp;mousePacket);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;deltaX<sp/>=<sp/>%d,<sp/>deltaY<sp/>=<sp/>%d\n&quot;,<sp/>mousePacket.delta_x,<sp/>mousePacket.delta_y);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;mouseX<sp/>=<sp/>%d,<sp/>mouseY<sp/>=<sp/>%d,<sp/>deltaX<sp/>=<sp/>%d,<sp/>deltaY<sp/>=<sp/>%d\n&quot;,<sp/>mouse_x,<sp/>mouse_y,<sp/>mousePacket.delta_x,<sp/>mousePacket.delta_y);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"></highlight></codeline>
+<codeline lineno="175" refid="mouse_8c_1a7f3b77231478e68e5f99bfbb96c081eb" refkind="member"><highlight class="normal">int<sp/>(<ref refid="mouse_8c_1a7f3b77231478e68e5f99bfbb96c081eb" kindref="member">mouse_subscribe_int</ref>)(uint8_t<sp/>*irq_set)<sp/>{</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(irq_set<sp/>==<sp/>NULL)<sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;}</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/>*irq_set<sp/>=<sp/>BIT(<ref refid="mouse_8c_1abc3bcc5b60108e381a2d51468313a984" kindref="member">hook_mouse</ref>);</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sys_irqsetpolicy(12,<sp/>IRQ_ENABLE<sp/>|<sp/>IRQ_EXCLUSIVE,<sp/>&amp;<ref refid="mouse_8c_1abc3bcc5b60108e381a2d51468313a984" kindref="member">hook_mouse</ref>);</highlight></codeline>
+<codeline lineno="180"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"></highlight></codeline>
+<codeline lineno="182" refid="mouse_8c_1a3ecf823d80520009ae5e0d76ae40a3c3" refkind="member"><highlight class="normal">int<sp/>(<ref refid="mouse_8c_1a3ecf823d80520009ae5e0d76ae40a3c3" kindref="member">mouse_unsubscribe_int</ref>)()<sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(sys_irqrmpolicy(&amp;<ref refid="mouse_8c_1abc3bcc5b60108e381a2d51468313a984" kindref="member">hook_mouse</ref>))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c"/>
+  </compounddef>
+</doxygen>

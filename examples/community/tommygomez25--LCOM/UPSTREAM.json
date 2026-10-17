@@ -1,0 +1,207 @@
+{
+  "repository": "https://github.com/tommygomez25/LCOM",
+  "revision": "6ea161b56475ef4834774ecad909468c8fbd3f5b",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "d1624234745c2f13c228cffb4bc029a15fc321fe895508ff57f1d10d9208ffd1",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.txt": "393028b104ad7b28ef4a9b526a5103a6c4925e9ee9215cd03565dde2ccbc3eea",
+    "proj/src/Makefile": "0fbfcb6e5f401ba5787bb2d5bca64de388edb7db816e046bd4734a9d2d0c5495",
+    "proj/src/README.md": "dda7e4d6a29c80cc042d10624c243e4971c242179c8a88e94104d79b1647718f",
+    "proj/src/alphabet.h": "b6b9143894429167938b0bc65eb9ed6114ad0996df76e69bc10a57b672082fe5",
+    "proj/src/apple.c": "6b54edf5fa70ca0e1ce3a3c6b8cc99336c8333674cfd702501ea2ba731d4319d",
+    "proj/src/apple.h": "40373edd0a8231755fb5633a62e0e8fc26a8ee5cf17e937be36cea7eb8d101dd",
+    "proj/src/game.c": "49f8b30cab69e7653ac78a72175ac62bdda4039e98be4c2b4d4b28189c38bb63",
+    "proj/src/game.h": "6c164849b702a159345d21b8885aad2d6970a7be9f33e26692788800290231ff",
+    "proj/src/grass.c": "2958d6f0a6af7a15bcb5c1b03fdb6ffc7a02414eb046b0ce9e059b2bc0545d04",
+    "proj/src/grass.h": "66c7ad808f4c997f4c2add8a326d28539facad157fdf0b7768c493a62bfed357",
+    "proj/src/highscores.txt": "12ac66d8630e2cd5e34a4d75604c67db5d588276462391db4eaac8dd9052ff12",
+    "proj/src/i8042.h": "e52a12516f6b106a4de6e678b6aab1e8d8d07fbbb983d28ab803c5affe8be623",
+    "proj/src/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/keyboard.c": "9b31f83d56e0596a52ea9c9cd85367ff4c9353f1e9f6161bf5331b7d346e6ac4",
+    "proj/src/keyboard.h": "93b4ba08857d1d3f32acd67bbd1b706e54d9c9896e123a57eb6f3a1c3c5fb496",
+    "proj/src/menu.c": "07d3a518955c41f7db8158d66f8ecb546346b63e6c219c0cbb5fb15bd326dab3",
+    "proj/src/menu.h": "22fa1ec2c2d76f65941ee36d0292605efe6c326b17e6c6c35bb4c769c19a8bec",
+    "proj/src/mouse.c": "6df0b93bdfc6838599b5f08157924b0d1939eea695d6921510c56fe76e53d485",
+    "proj/src/mouse.h": "1817f7f997e9633ab08f163ec748b3ce25ffc468d637848815a96e45df58b790",
+    "proj/src/proj.c": "b20aba845bc508266ee08460d6badd7bd6dd59b046d31270157b8ffd503e99a3",
+    "proj/src/rtc.c": "bec6ebe64c3f339619adb9182b1fc441db0f31b4189b5db3870585e8ec4fd9cc",
+    "proj/src/rtc.h": "7170e917609b2b6ac8c5be16c3ca5da235846c73037bd835d91066512dff6d0c",
+    "proj/src/snake.c": "59091f89bc6d77f53f80592292bc0c9f015faa713dba3bc83e81f061745f7d13",
+    "proj/src/snake.h": "7bacf4e09bea9db6731577887113eb5a2f0f58cf3766b2626618b71317e4e877",
+    "proj/src/sprites/0.xpm": "542e613fdfa31f0f9f26d03a475c3a37cd3b407bb068395620defe72ba9d1737",
+    "proj/src/sprites/1.xpm": "f9e90a869243440e415d3b9ef4614cb8a5741b85f23d7cd5aa874fdb71aff765",
+    "proj/src/sprites/2.xpm": "db40b352dfac95d9d16a184cf9859ba4249ec06c75d7377635ce14b9a7088597",
+    "proj/src/sprites/3.xpm": "7c13416e23caa723e8f66b749f95b3aa34f2f4c34452418f2c8ef02fc555e68f",
+    "proj/src/sprites/4.xpm": "422790a8030bd97bbda85388886ec68b5b6fab320a1d9d8abdff2722d5e50a1d",
+    "proj/src/sprites/5.xpm": "f95c6c79111a271c4a2b93e8d7bb17ce04cef4a903d206a4194f0aaf7957fa3b",
+    "proj/src/sprites/6.xpm": "7f65be0f721b920f182660ede7f84ce09e90e9914e1ed5da4216143a6a4567f7",
+    "proj/src/sprites/7.xpm": "812d28375fa2483d254f95aea5e5ba7c25090187b964d4830d8877c1d72408ce",
+    "proj/src/sprites/8.xpm": "b08f056d4b56c67d5ef0faa7f1744bd28aa01dff1ddd17005b404c3b60272da2",
+    "proj/src/sprites/9.xpm": "98543cbaf46b0592e02c00067999fee3db6c62a69078a767fbbb91d879416fe3",
+    "proj/src/sprites/ABC/A.xpm": "4a45ffc454d5fda3486289fca38924c59d20bd5f8ba39fc8faf892bde8b43080",
+    "proj/src/sprites/ABC/B.xpm": "6890eba2697d17505ca8728317b71a786b3025e87cdb500af1e105000feb3c9d",
+    "proj/src/sprites/ABC/C.xpm": "b4d3661588e11ba80ba66508df443c5f53b9e810cee958e70f4f840682b26297",
+    "proj/src/sprites/ABC/D.xpm": "3b3d06a83ebfe7987653e70f338551717d64ec8ba0680747ee42b9e54b486247",
+    "proj/src/sprites/ABC/E.xpm": "41f40e97f5aa95ab1acac7022ff67fac2601a1b83a948d54866ea0e151e7be7d",
+    "proj/src/sprites/ABC/F.xpm": "0432cec1ed05a6d7226daa879367cb8a3eaff61d17764cfde4b242c100ef60fa",
+    "proj/src/sprites/ABC/G.xpm": "d7561d93046f573cf4998de55f2db2f9e4d1d71f2ac5c50d1ad115881525071f",
+    "proj/src/sprites/ABC/H.xpm": "51e897c1d682a8a497e12a96152f3b955fbed92f9bb6862eb2c0d6a55e63fb0f",
+    "proj/src/sprites/ABC/I.xpm": "402c78f2b8888606d460ee76a7de11930f6e4be62cbc19d376dfbe75bba18760",
+    "proj/src/sprites/ABC/J.xpm": "e4aef2d10c86e6e34df9cf6a5e279e5cfb8c78d7bd1bf38bae960d1b8d58d382",
+    "proj/src/sprites/ABC/K.xpm": "09070b315eb231e1cead6dbe5c703c7dde48519cb8fe466a7e915e5d8b7e223c",
+    "proj/src/sprites/ABC/L.xpm": "948293b07f700c0036e4231854a6bf0abb1d9124f8b5fd5c0a432177b41387e4",
+    "proj/src/sprites/ABC/M.xpm": "32a41b7d1c6ae89c504daa82b32e7d9fd4e0d18a2dca2ad760b7054fd877826a",
+    "proj/src/sprites/ABC/N.xpm": "bbc197bfea236cce10bf40dd58ca6aae16f19761898e6644c666bc8758bca38d",
+    "proj/src/sprites/ABC/O.xpm": "5519299575fb836bef0192f84fd3266e232194057a6641c0294c1a9d411c9c95",
+    "proj/src/sprites/ABC/P.xpm": "0af5a5c2f5d854f654f04a0f8a00e9c605f16fe76b3458932044dfd6eca2e54f",
+    "proj/src/sprites/ABC/Q.xpm": "ef98564645c1809e3e6ffbafdfd44f17e135c54db90de4d41255b1b4b72b9459",
+    "proj/src/sprites/ABC/R.xpm": "7da7caf20cc36d128efa87599c23f3b7555fecd77a1fdedaa5677fa95c701bc7",
+    "proj/src/sprites/ABC/S.xpm": "0a5dc4041d9e61ccffff8ec6fd23d546970b989477b630e27681684c660f35d8",
+    "proj/src/sprites/ABC/T.xpm": "d3938090bcaadaef450bd97b1a9ff4f43e1298782377712e621823c4e68c648f",
+    "proj/src/sprites/ABC/U.xpm": "0f1b2279a449a75c1a0d24dd46d80a51bffad9442feb3e8f287ffc73c9de916d",
+    "proj/src/sprites/ABC/V.xpm": "daf8ffb671908a8fa8c9ff1d03a453b85534c290eadfbaa5d0a6743e1dc855d6",
+    "proj/src/sprites/ABC/W.xpm": "99c43418961a87cceedf6c0a4b5505d1503e1e377bd5ec3c8660e43471aca7ed",
+    "proj/src/sprites/ABC/X.xpm": "b1576d2813f9d78ac66d4a2f00ad86211203b2765d69e56857be58ce9a8f8565",
+    "proj/src/sprites/ABC/Y.xpm": "4b0b7180594923da6461878546f497fb53b33212d48825b6313111f125275c24",
+    "proj/src/sprites/ABC/Z.xpm": "a603e959b44322d8dbc3bae6296b46879de9090ead2c2a06c58758fbdd419b4e",
+    "proj/src/sprites/afternoonbackground.xpm": "4f4e9ee20371601220dfc4af6642c3272f722b42d4828c2f7fc28fe3931f0d7a",
+    "proj/src/sprites/apple.xpm": "5926cafe5733ddf4bc93faec480078b3e5439d920613202bdf0342ded950521c",
+    "proj/src/sprites/black_background.xpm": "1a0375f55d843091322702ee7e110eb948988f999d10eee0d4d0bb8a446591e2",
+    "proj/src/sprites/cursor.xpm": "e7cecc858cb4f66d1b8894b117a9b93a081da640aee299f0e0272ecf626333e6",
+    "proj/src/sprites/daybackground.xpm": "4671adfc7950680023e107cc5ebb466a306a4f388bdc8e6b1bc798fa7f7aaf8f",
+    "proj/src/sprites/grass.xpm": "52fff712339f074d4df5f4c1855010e0d366758e9db725657d1927f274fefad7",
+    "proj/src/sprites/highlight_button.xpm": "14df65d865cac5f2afdb35992ab89954c7503fa227ae85ecdf57881839bac72a",
+    "proj/src/sprites/logotip.xpm": "ea6fb5bb8b15348c497f171c08b506a9f18cda3213ce8b6a0e30e8316f025239",
+    "proj/src/sprites/menu.xpm": "8fa0128b7d8e04bdcafd3b10a47772e9aa8a934a4d16e3d312eb7f69d5857908",
+    "proj/src/sprites/menu_background.xpm": "7e3175a6606ff69a362e62557e70f0bedde88ce5d6bfbf8e70c5f7fa17fb25e7",
+    "proj/src/sprites/nightbackground.xpm": "5884f95f115260480c64e44e5d464f835d90641aececbc37fb71f712b1e8616f",
+    "proj/src/sprites/scoreboard.xpm": "8a73eddd8bb57ae90c15fefd2d354100c355b5eeba55aad8250b2b498af0d23f",
+    "proj/src/sprites/snakebodyhorizontal.xpm": "93a033a47f3b642aa39e695304d8b326c971de6cc6ed1d29c8be774f52762ec1",
+    "proj/src/sprites/snakebodyvertical.xpm": "866427f3f52208b709370c7296eb15b5a3c6cb45f13227d2e7448cfef542441b",
+    "proj/src/sprites/snakeheaddown.xpm": "7ec4ab64145c0cd627ac2bdba21c44029e6c237a085d0f69ce180691a019c162",
+    "proj/src/sprites/snakeheadleft.xpm": "bb330205e7e5297272e55c837d6c10b8e666d399f24c904f95158feadcb01994",
+    "proj/src/sprites/snakeheadright.xpm": "248526547cf041dfd49a8d203cdc54dc66a6d2ac283a16dde49d8f46e73d03ee",
+    "proj/src/sprites/snakeheadup.xpm": "0e8b00f331acf1695ccbe4298cfe279e443e11505512047947e5db3f224ebd7a",
+    "proj/src/sprites/snaketaildown.xpm": "c4a2846296dea80a78d3eea8b2f785ca3a6e5c4f5295157a889fc28302b00c2d",
+    "proj/src/sprites/snaketailleft.xpm": "8f3f73955997aeb21568c13371519bbc87c034ff78d464ee16d067690a24c1f8",
+    "proj/src/sprites/snaketailright.xpm": "6596d3d8a95cb9b01749ace2b384cf7b3aebd1b02532cb624055d637ec0172b3",
+    "proj/src/sprites/snaketailup.xpm": "2b8e0c1f063aa095b60c3c41ad07ac43f16d1073abf43d82a85e9b4b07565cf5",
+    "proj/src/sprites/snaketurndownleft.xpm": "01b0a9d63d4fa15c8fba72c592f0494426598c0093b0843ca825d8c4ad358dc0",
+    "proj/src/sprites/snaketurndownright.xpm": "3b570ddedeb80dc2376c07252380d8dc7d226c743010b94a58ea9df0da204f2c",
+    "proj/src/sprites/snaketurnupleft.xpm": "30111590a9785b513549922cd858b221d5e227cfd56704dcd7dfbdc7e157a1b6",
+    "proj/src/sprites/snaketurnupright.xpm": "8b28d58f2d8f91b723b8b4d32374dc272722266292b87817dfe8df7f1788bfbd",
+    "proj/src/sprites/writename.xpm": "39dcb1a728b8619c61a3a8b6e6b5f6c35b31f4f8d4c416f78285bd4779946f19",
+    "proj/src/sprites/youLost.xpm": "487ce7be18a46d69384288fcf6e82ef41ebedb5de27de8a087ecbbbf7cf138b6",
+    "proj/src/sprites/yourScoreWas.xpm": "a5df48311faea747e0e181c732838010ba35b4bfde42cce23af11619c17a84cf",
+    "proj/src/timer.c": "b2f6df37c63160368940827aa07606281a65b9fd0cf6346a67b534c157a29d29",
+    "proj/src/timer.h": "06d60338934a7a6e023316c3e9093e205d39eae3741ace90580858c5f32058c8",
+    "proj/src/utils.c": "ef519832588bc16717422951bee06aca58c062d4d36b5b330faeeeaadc920e5d",
+    "proj/src/utils.h": "c371baca58d2475de4a144bd25a5e3076d5129535072e015b9060d466da103b9",
+    "proj/src/video_gr.c": "45fdd4288534dcc98eedb984486ec9501f4d078d0b5f8f08285442cb07b46cd1",
+    "proj/src/video_gr.h": "cfcf5fe0213339a6019a9cbb0debe7688581448303df78edf7d7b1a050d985ba"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS/IDE/OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/video_gr.c",
+          "reason": "Calculate both mapped frame pages and buffer copies in bytes per pixel using(bits+7)/8, rather than adding bits to integer7/8.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/build/arcade-100/a/grass-garden-buffers-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/build/arcade-100/a/batch11-source-green7.log"
+          },
+          "originalSha256": "45fdd4288534dcc98eedb984486ec9501f4d078d0b5f8f08285442cb07b46cd1",
+          "patchedSha256": "e869c0f23938399ae3e26d80e259842adf6651a88981e0e727d85f6ab1f23dec"
+        },
+        {
+          "file": "proj/src/snake.c",
+          "reason": "Retain the authored WASD direction make until the next every-fourth-tick movement update; original reads raw last after its release can overwrite it. Preserve reversal rejection and reset direction for newrounds.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/build/arcade-100/a/grass-garden-direction-latch-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/build/arcade-100/a/batch11-source-green10.log"
+          },
+          "originalSha256": "59091f89bc6d77f53f80592292bc0c9f015faa713dba3bc83e81f061745f7d13",
+          "patchedSha256": "c97b7b5b4fe36c0e73a50ceecd88385f952b3f55ea273f3d8634814619d90891"
+        },
+        {
+          "file": "proj/src/snake.h",
+          "reason": "Declare the game-owned direction request used by the gameplay keyboard event, keeping raw keyboard bytes for menu/name entry.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/build/arcade-100/a/grass-garden-direction-latch-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/build/arcade-100/a/batch11-source-green10.log"
+          },
+          "originalSha256": "7bacf4e09bea9db6731577887113eb5a2f0f58cf3766b2626618b71317e4e877",
+          "patchedSha256": "71da57d63d0b5248339170c69f07c423872e1c5d71ec37eccbd9c98cc29062ab"
+        },
+        {
+          "file": "proj/src/game.c",
+          "reason": "Process direction makes at the actual PLAY keyboard event before a later release; retain every-fourth-tick movement cadence.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/build/arcade-100/a/grass-garden-direction-latch-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/build/arcade-100/a/batch11-source-green10.log"
+          },
+          "originalSha256": "49f8b30cab69e7653ac78a72175ac62bdda4039e98be4c2b4d4b28189c38bb63",
+          "patchedSha256": "829e34ff3615c4efde75b2f4c192d3e98f8756bc3b9083e12a7854e3fa8bd26c"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a flat palette",
+    "source": "proj/src/sprites/snakeheadright.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "c2836f45b138045939e45b9aacfed9df0774d3d3ee9d2e6df7970b34550ad7e6",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "317c00f29f0067ff9ebe6ccb63b32aa36b996ca1e564894c68803159a7ddc037",
+      "kind": "Original browser gameplay capture"
+    }
+  ],
+  "verification": {
+    "browser": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/snake-apple-latched-green.log",
+    "targetedCurrentSnake": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/snake-apple-latched-green.log",
+    "owningRegressions": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+    "nativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/tommygomez25--LCOM.native11-latched.log",
+    "android": "Pending independent parent-owned actual Android gameplay.",
+    "realisticDirectionPhases": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/snake-phase-check-green.log",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "445120d85fbc7d9e7be67654d2c22a383609aa69f134be9ce6844aa4c3b9ee3e",
+      "evidence": "build/arcade-100/snake-native-delay720/results.json",
+      "demonstrated": [
+        "Ordinary S touch turns the original snake through the first apple; HUD shows1 and a new original apple appears.",
+        "Ordinary S touch turns the original snake through the first apple; HUD shows1 and a new original apple appears."
+      ],
+      "limitations": [
+        "First fruit and original score1 verified. Further growth, score entry and long survival remain untested."
+      ]
+    }
+  }
+}

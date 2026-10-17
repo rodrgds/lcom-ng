@@ -11,6 +11,26 @@
 #include <filesystem>
 #define CHECK(value) do { if (!(value)) { std::fprintf(stderr,"line %d: %s (%s)\n",__LINE__,#value,SDL_GetError()); dumpRecentSdlEvents(); std::exit(1); } } while (0)
 
+extern "C" int compat_sleep_frame(unsigned route);
+extern "C" int compat_sleep_finish(void);
+
+static void compatSleepPresentsMappedFrames() {
+  using namespace lcom::embedded;
+  ControlConfig controls;controls.layout="overlay";controls.keyboard=false;
+  controls.mouseButtons=false;controls.joystickMenu=false;controls.quickKeys.clear();controls.pointer="off";
+  configureControls(controls);
+  const std::array<std::array<Uint8,3>,3> expected{{{0,255,255},{0,255,0},{255,0,0}}};
+  for(unsigned route:{2u,1u,0u}) {
+    CHECK(compat_sleep_frame(route)==0);
+    int count=0;auto windows=SDL_GetWindows(&count);CHECK(count==1);
+    auto frame=readPresentedFrame(SDL_GetRenderer(windows[0]));SDL_free(windows);CHECK(frame);
+    Uint8 r,g,b,a;CHECK(SDL_ReadSurfacePixel(frame,frame->w/2,frame->h/2,&r,&g,&b,&a));
+    CHECK(r==expected[route][0] && g==expected[route][1] && b==expected[route][2]);
+    SDL_DestroySurface(frame);
+  }
+  CHECK(compat_sleep_finish()==0);configureControls({});
+}
+
 static void touch(SDL_EventType type, SDL_FingerID id, float x, float y) {
   SDL_Event e{}; e.type = type; e.tfinger.type = type; e.tfinger.fingerID = id;
   e.tfinger.x = x; e.tfinger.y = y;
@@ -20,8 +40,28 @@ static void key(Uint32 type) {
   SDL_Event e{}; e.type=type; e.key.scancode=SDL_SCANCODE_A; e.key.down=type==SDL_EVENT_KEY_DOWN;
   CHECK(SDL_PushEvent(&e)); lcom::embedded::host().pump();
 }
-static uint8_t readKey() { uint8_t b=0; CHECK(lcom_port_read8(KBC_OUT_BUF,&b)==LCOM_OK); return b; }
+static uint8_t readKey() {
+  // Transport delivery can wait for the programmed PS/2 report interval.
+  // Byte assertions retain their original values and ordering.
+  const Uint64 deadline=SDL_GetTicks()+100;
+  uint8_t status=0;
+  do {
+    CHECK(lcom_port_read8(KBC_ST_REG,&status)==LCOM_OK);
+    if((status&KBC_ST_OBF)||SDL_GetTicks()>=deadline) break;
+    SDL_Delay(1);
+  } while(true);
+  CHECK(status&KBC_ST_OBF);
+  uint8_t b=0; CHECK(lcom_port_read8(KBC_OUT_BUF,&b)==LCOM_OK); return b;
+}
 static bool keyReady() { uint8_t status=0; CHECK(lcom_port_read8(KBC_ST_REG,&status)==LCOM_OK); return status & KBC_ST_OBF; }
+static bool mouseReadyWithin(unsigned milliseconds=20) {
+  const Uint64 deadline=SDL_GetTicks()+milliseconds;
+  for(;;) {
+    if(keyReady())return true;
+    if(SDL_GetTicks()>=deadline)return false;
+    SDL_Delay(1);
+  }
+}
 static bool expectedKey(uint8_t expected) {
   uint8_t actual=readKey();
   if(actual==expected)return true;
@@ -37,14 +77,39 @@ static bool expectedKey(uint8_t expected) {
   }
   SDL_free(windows);return false;
 }
+static void wheelControls() {
+  using namespace lcom::embedded;
+  ControlConfig controls; controls.orientation="landscape"; controls.layout="overlay";
+  controls.keyboard=controls.mouseButtons=controls.joystickMenu=false; controls.pointer="off"; controls.quickKeys.clear();
+  controls.actions={{"","Slow time","",0,"top-left"}}; controls.actions[0].wheel=2;
+  configureControls(controls); CHECK(lcom_init()==LCOM_OK);
+  lcom_irq_t mouse; CHECK(lcom_irq_subscribe(MOUSE_IRQ,0,&mouse)==LCOM_OK);
+  auto send=[](uint8_t value) {
+    CHECK(lcom_port_write8(KBC_CMD_REG,KBC_CMD_WRITE_MOUSE)==LCOM_OK);
+    CHECK(lcom_port_write8(KBC_IN_BUF,value)==LCOM_OK); CHECK(readKey()==0xfa);
+  };
+  for(uint8_t rate:{200,100,80}) { send(0xf3); send(rate); }
+  send(0xf2); CHECK(readKey()==3); send(0xf4);
+  touch(SDL_EVENT_FINGER_DOWN,990,34.f/760,34.f/400);
+  CHECK(readKey()==8); CHECK(readKey()==0); CHECK(readKey()==0); CHECK(readKey()==2);
+  touch(SDL_EVENT_FINGER_UP,990,34.f/760,34.f/400); CHECK(!keyReady());
+  SDL_Event event{}; event.type=SDL_EVENT_MOUSE_WHEEL; event.wheel.y=3;
+  CHECK(SDL_PushEvent(&event)); host().pump();
+  CHECK(readKey()==8); CHECK(readKey()==0); CHECK(readKey()==0); CHECK(readKey()==0xfd);
+  lcom_exit(); configureControls({});
+}
+
 static void positionedControls() {
   using namespace lcom::embedded;
   ControlConfig controls;controls.orientation="landscape";controls.layout="overlay";
   controls.keyboard=controls.mouseButtons=controls.joystickMenu=false;controls.pointer="off";controls.quickKeys.clear();
   controls.dpad={true,"wasd","left",1,true};controls.dpad.axes="horizontal";
-  controls.actions={{"","Esc","ESC",0,"top-right"}};
+  controls.actions={{"","Esc","ESC",0,"top-right"},{"","Apostrophe","MINUS",0,"top-left"}};
   configureControls(controls);CHECK(lcom_init()==LCOM_OK);
   lcom_irq_t keyboard;CHECK(lcom_irq_subscribe(KBC_IRQ,0,&keyboard)==LCOM_OK);
+  // Original Portuguese layouts can bind an apostrophe action to physical Minus.
+  touch(SDL_EVENT_FINGER_DOWN,403,34.f/760,34.f/400);CHECK(readKey()==0x0c);
+  touch(SDL_EVENT_FINGER_UP,403,34.f/760,34.f/400);CHECK(readKey()==0x8c);CHECK(!keyReady());
   // Only the horizontal arms exist. The old square's upper region must not
   // claim this touch or deliver an unwanted vertical movement key.
   touch(SDL_EVENT_FINGER_DOWN,400,64.f/760,292.f/400);CHECK(!keyReady());
@@ -92,12 +157,12 @@ static void positionedControls() {
   CHECK(lcom_port_write8(KBC_CMD_REG,KBC_CMD_WRITE_MOUSE)==LCOM_OK);
   CHECK(lcom_port_write8(KBC_IN_BUF,0xf4)==LCOM_OK);CHECK(readKey()==0xfa);
   touch(SDL_EVENT_FINGER_DOWN,429,.5f,.5f);touch(SDL_EVENT_FINGER_UP,429,.5f,.5f);
-  while(keyReady()) {CHECK((readKey()&1)==0);readKey();readKey();}
+  while(mouseReadyWithin()) {CHECK((readKey()&1)==0);readKey();readKey();}
   touch(SDL_EVENT_FINGER_DOWN,430,715.f/760,30.f/400);
   touch(SDL_EVENT_FINGER_UP,430,715.f/760,30.f/400);
   touch(SDL_EVENT_FINGER_DOWN,431,.5f,.5f);touch(SDL_EVENT_FINGER_UP,431,.5f,.5f);
   bool clicked=false;
-  while(keyReady()) {clicked|=(readKey()&1)!=0;readKey();readKey();}
+  while(mouseReadyWithin()) {clicked|=(readKey()&1)!=0;readKey();readKey();}
   CHECK(clicked);
   lcom_exit();
   controls.touchClick=true;
@@ -113,8 +178,15 @@ static void positionedControls() {
   configureControls(controls);CHECK(lcom_init()==LCOM_OK);
   lcom_vbe_mode_info_t mode;CHECK(lcom_vbe_get_mode_info(LCOM_VBE_MODE_800_600_24,&mode)==LCOM_OK);
   CHECK(lcom_vbe_set_mode(mode.mode)==LCOM_OK);uint8_t *pixels=nullptr;
-  CHECK(lcom_phys_map(mode.framebuffer_phys,mode.framebuffer_size,reinterpret_cast<void **>(&pixels))==LCOM_OK);
-  for(size_t i=0;i<mode.framebuffer_size;i+=3){pixels[i]=51;pixels[i+1]=34;pixels[i+2]=17;}
+  CHECK(lcom_phys_map(mode.framebuffer_phys,lcom::Vbe::vramSize(),reinterpret_cast<void **>(&pixels))==LCOM_OK);
+  lcom_vbe_scanline_info_t scanline;
+  CHECK(lcom_vbe_scanline(2,4801,&scanline)==LCOM_OK);
+  // A red hidden page and padded rows must not replace the visible blue page.
+  for(unsigned y=0;y<600;++y) for(unsigned x=0;x<1600;++x) {
+    size_t i=y*4801u+x*3u;
+    pixels[i]=x<800?0:51;pixels[i+1]=x<800?0:34;pixels[i+2]=x<800?255:17;
+  }
+  CHECK(lcom_vbe_set_display_start(800,0)==LCOM_OK);
   windows=SDL_GetWindows(&count);CHECK(count==1);CHECK(SDL_SetWindowSize(windows[0],820,400));
   CHECK(SDL_SyncWindow(windows[0]));
   lcom::embedded::host().pump();CHECK(lcom_vbe_present()==LCOM_OK);
@@ -224,7 +296,7 @@ static void mouseActionTapDuration() {
     CHECK(lcom_port_write8(KBC_IN_BUF,0xf4)==LCOM_OK);CHECK(readKey()==0xfa);buttons=0;
   };
   auto drain=[&] {
-    while(keyReady()) {
+    while(mouseReadyWithin()) {
       uint8_t status=0;CHECK(lcom_port_read8(KBC_ST_REG,&status)==LCOM_OK);CHECK(status&KBC_ST_AUX);
       uint8_t flags=readKey();CHECK((flags&0xc8)==8);CHECK(readKey()==0);CHECK(readKey()==0);buttons=flags&7;transitions.push_back(buttons);
     }
@@ -291,10 +363,41 @@ static void mouseActionTapDuration() {
   c.tapDuration=0;init();contact(SDL_EVENT_FINGER_DOWN,611,634,310);CHECK(buttons==1);
   contact(SDL_EVENT_FINGER_UP,611,634,310);CHECK(buttons==0);lcom_exit();configureControls({});
 }
+static void shortMouseContactsRetainOrderedReports() {
+  using namespace lcom::embedded;
+  ControlConfig controls; controls.orientation="landscape"; controls.layout="overlay";
+  controls.pointer="off"; controls.keyboard=controls.mouseButtons=controls.joystickMenu=false;
+  controls.quickKeys.clear(); controls.actions={{"","Fire","",1,"top-right"}};
+  configureControls(controls); CHECK(lcom_init()==LCOM_OK);
+  auto command=[](uint8_t byte) {
+    CHECK(lcom_port_write8(KBC_CMD_REG,KBC_CMD_WRITE_MOUSE)==LCOM_OK);
+    CHECK(lcom_port_write8(KBC_IN_BUF,byte)==LCOM_OK);CHECK(readKey()==0xfa);
+  };
+  command(0xf3);command(10);command(0xf4);
+  injectMouse(1,0,0); CHECK(readKey()==8&&readKey()==1&&readKey()==0);
+  // Two ordinary contacts finish before their next100ms report opportunity.
+  // They must still appear as an ordered press and release, without motion.
+  touch(SDL_EVENT_FINGER_DOWN,12000,715.f/760,30.f/400);
+  touch(SDL_EVENT_FINGER_UP,12000,715.f/760,30.f/400);
+  std::vector<uint8_t> transitions;
+  const Uint64 deadline=SDL_GetTicks()+600;
+  while(transitions.size()<2&&SDL_GetTicks()<deadline) {
+    if(keyReady()) {
+      uint8_t flags=readKey();CHECK((flags&0xc8)==8);
+      CHECK(readKey()==0&&readKey()==0);transitions.push_back(flags&7);
+    } else SDL_Delay(1);
+  }
+  CHECK((transitions==std::vector<uint8_t>{1,0}));
+  lcom_exit();configureControls({});
+}
+
 int main() {
+  shortMouseContactsRetainOrderedReports();
+  compatSleepPresentsMappedFrames();
   mouseActionTapDuration();
   steeringWheelControls();
   positionedControls();
+  wheelControls();
   CHECK(lcom_init()==LCOM_OK);
   lcom_irq_t keyboard;
   CHECK(lcom_irq_subscribe(KBC_IRQ,0,&keyboard)==LCOM_OK);
@@ -407,7 +510,7 @@ int main() {
   CHECK(travelX>0 && travelY>0);
   touch(SDL_EVENT_FINGER_CANCELED,11,0.95f,0.87f);
   int pendingPackets=0;
-  while(keyReady()) {CHECK(++pendingPackets<=16);sampleLookPacket();}
+  while(mouseReadyWithin()) {CHECK(++pendingPackets<=16);sampleLookPacket();}
   touch(SDL_EVENT_FINGER_CANCELED,10,0.07f,0.916f);
   CHECK(readKey()==0x9e);
   SDL_Delay(30); lcom::embedded::host().pump(); CHECK(!keyReady());
@@ -446,7 +549,7 @@ int main() {
   int cx=400,cy=300;
   auto drain=[&](int press_x,int press_y) {
     int count=0; bool pressed=false;
-    while (keyReady()) {
+    while (mouseReadyWithin()) {
       CHECK(++count<30);
       uint8_t flags=readKey(),dx=readKey(),dy=readKey();
       cx=std::clamp(cx+int(dx)-((flags&16)?256:0),0,799);
@@ -496,7 +599,7 @@ int main() {
   touch(SDL_EVENT_FINGER_UP,26,(113.333333f+80*2.f/3)/760,100.f/400);CHECK(drain(80,150));
   uint8_t last_buttons=1;
   auto heldTravel=[&] {
-    while(keyReady()) {
+    while(mouseReadyWithin()) {
       uint8_t flags=readKey(),dx=readKey(),dy=readKey();last_buttons=flags&7;
       cx+=int(dx)-((flags&16)?256:0);cy-=int(dy)-((flags&32)?256:0);
     }
@@ -626,9 +729,31 @@ int main() {
   touch(SDL_EVENT_FINGER_CANCELED,44,86.f/760,262.f/400);CHECK(readKey()==0x91);
   SDL_Delay(110);lcom::embedded::host().pump();CHECK(!keyReady());
   lcom_exit();
+  controls.repeatKeys.clear();controls.repeatReleaseKeys={"W"};
+  lcom::embedded::configureControls(controls);
+  CHECK(lcom_init()==LCOM_OK);CHECK(lcom_irq_subscribe(KBC_IRQ,0,&keyboard)==LCOM_OK);
+  // A short touch creates one release action; a held touch creates full cycles.
+  touch(SDL_EVENT_FINGER_DOWN,45,86.f/760,262.f/400);CHECK(readKey()==0x11);
+  touch(SDL_EVENT_FINGER_UP,45,86.f/760,262.f/400);CHECK(readKey()==0x91);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_DOWN,46,86.f/760,262.f/400);CHECK(readKey()==0x11);
+  SDL_Delay(370);lcom::embedded::host().pump();CHECK(readKey()==0x91);CHECK(readKey()==0x11);CHECK(!keyReady());
+  SDL_Delay(110);lcom::embedded::host().pump();CHECK(readKey()==0x91);CHECK(readKey()==0x11);CHECK(!keyReady());
+  touch(SDL_EVENT_FINGER_CANCELED,46,86.f/760,262.f/400);CHECK(readKey()==0x91);
+  SDL_Delay(110);lcom::embedded::host().pump();CHECK(!keyReady());
+  // Physical keyboard holds retain their ordinary make/release behavior.
+  SDL_Event physical{};physical.type=SDL_EVENT_KEY_DOWN;physical.key.scancode=SDL_SCANCODE_W;physical.key.down=true;
+  CHECK(SDL_PushEvent(&physical));lcom::embedded::host().pump();CHECK(readKey()==0x11);
+  SDL_Delay(370);lcom::embedded::host().pump();CHECK(!keyReady());
+  physical.type=SDL_EVENT_KEY_UP;physical.key.down=false;
+  CHECK(SDL_PushEvent(&physical));lcom::embedded::host().pump();CHECK(readKey()==0x91);CHECK(!keyReady());
+  lcom_exit();controls.repeatReleaseKeys.clear();
   // A separate panel must keep all controls, including its disclosure and
   // configured pads/actions, outside every playable framebuffer pixel.
   controls.repeatKeys.clear();controls.quickKeys={"ESC"};controls.layout="panel";
+  controls.toolbar="top-right";controls.keyboard=false;controls.mouseButtons=false;controls.joystickMenu=false;
+  controls.pointer="move";controls.dpad={};controls.joystick={};controls.look={};
+  controls.pads={{true,"arrows","left",1,true},{true,"mouse","right",1}};
+  controls.actions={{"","Shoot / Select","",1,"top-left"},{"","Fire","",1,"bottom-right"}};
   lcom::embedded::configureControls(controls);
   CHECK(lcom_init()==LCOM_OK);CHECK(lcom_vbe_set_mode(LCOM_VBE_MODE_800_600_24)==LCOM_OK);
   CHECK(lcom_phys_map(mode.framebuffer_phys,mode.framebuffer_size,reinterpret_cast<void **>(&pixels))==LCOM_OK);
@@ -642,12 +767,28 @@ int main() {
   for(int y=9;y<391;y+=3) for(int x=21;x<531;x+=3) {
     CHECK(SDL_ReadSurfacePixel(frame,x,y,&r,&g,&b,&a));CHECK(r==17 && g==34 && b==51);
   }
+  for(int y=0;y<400;y+=3) for(int x=0;x<960;x+=3) {
+    if((x>=19 && x<=533 && y>=7 && y<=393) || (x>=552 && x<=952 && y>=8 && y<=392)) continue;
+    CHECK(SDL_ReadSurfacePixel(frame,x,y,&r,&g,&b,&a));CHECK(r==0 && g==0 && b==0);
+  }
+  SDL_DestroySurface(frame);
+  CHECK(SDL_SetWindowSize(window,400,800));CHECK(SDL_SyncWindow(window));lcom::embedded::host().pump();
+  frame=readPresentedFrame(SDL_GetRenderer(window));CHECK(frame);
+  CHECK(frame->w==400 && frame->h==800);
+  // The 332px controls panel is below the independently fitted 384x288 guest.
+  for(int y=87;y<373;y+=3) for(int x=9;x<391;x+=3) {
+    CHECK(SDL_ReadSurfacePixel(frame,x,y,&r,&g,&b,&a));CHECK(r==17 && g==34 && b==51);
+  }
+  for(int y=0;y<800;y+=3) for(int x=0;x<400;x+=3) {
+    if((x>=7 && x<=393 && y>=85 && y<=375) || (x>=8 && x<=392 && y>=460 && y<=792)) continue;
+    CHECK(SDL_ReadSurfacePixel(frame,x,y,&r,&g,&b,&a));CHECK(r==0 && g==0 && b==0);
+  }
   SDL_DestroySurface(frame);
   CHECK(SDL_SetWindowSize(window,400,500));CHECK(SDL_SyncWindow(window));lcom::embedded::host().pump();
   frame=readPresentedFrame(SDL_GetRenderer(window));CHECK(frame);
   CHECK(frame->w==400 && frame->h==500);
-  // A short portrait panel reserves its pads/actions below a336x252guest.
-  for(int y=9;y<203;y+=3) for(int x=72;x<328;x+=3) {
+  // The same332px controls panel leaves a192x144 guest on a shorter screen.
+  for(int y=9;y<151;y+=3) for(int x=105;x<295;x+=3) {
     CHECK(SDL_ReadSurfacePixel(frame,x,y,&r,&g,&b,&a));CHECK(r==17 && g==34 && b==51);
   }
   SDL_DestroySurface(frame);

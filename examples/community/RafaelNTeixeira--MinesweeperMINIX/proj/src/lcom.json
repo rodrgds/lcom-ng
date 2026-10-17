@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "Minesweeper: Grid Challenge",
+  "archetype": "Minesweeper",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "off",
+      "joystick": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "R",
+        "ESC"
+      ],
+      "dpad": {
+        "keys": "wasd",
+        "side": "left"
+      },
+      "actions": [
+        {
+          "label": "Reveal",
+          "key": "ENTER",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Flag",
+          "key": "F",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": []
+  },
+  "icon": "icon.png",
+  "description": "Reveal clues and place flags on three original purple minefields, with keyboard selection and a running clock.",
+  "preview": "preview.png"
+}

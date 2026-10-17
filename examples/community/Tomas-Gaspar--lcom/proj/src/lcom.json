@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "name": "Draw Together: Studio",
+  "description": "Sketch freely with a choice of brush colors and sizes.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "drag",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "touch": "hold-drag"
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [],
+    "environment": {
+      "LCOM_COMPAT_MOUSE_REPORTING": "1"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

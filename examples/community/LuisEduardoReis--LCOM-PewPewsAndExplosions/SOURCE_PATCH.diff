@@ -1,0 +1,11 @@
+--- a/scores.c
++++ b/scores.c
+@@ -88,7 +88,7 @@
+ };
+ 
+ 
+-static anim = 0;
++static int anim = 0;
+ /*!
+  * Desenha a lista de pontuacoes mais altas no ecra
+  * \param x coordenada x onde desenhar a lista

@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "name": "Minix Force",
+  "description": "Move through the arena, aim the crosshair and shoot approaching zombies.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "overlay",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Play",
+          "key": "ENTER",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Fire",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Pause",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

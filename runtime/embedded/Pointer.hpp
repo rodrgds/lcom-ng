@@ -43,6 +43,19 @@ class Pointer {
   }
 public:
   void cancelPending() { pending_.clear(); requested_buttons_ = delivered_buttons_ = 0; }
+  // A device command resets unsent motion, but does not release a button that
+  // the guest has already received. Preserve that state for the next edge.
+  void discardPending() { pending_.clear(); requested_buttons_ = delivered_buttons_; }
+  void resetMotion() {
+    // Commands clear X/Y counters, not sampled button transitions. Retain each
+    // edge at zero motion so a short press/release cannot vanish while waiting
+    // for its next report interval.
+    std::deque<Input> edges;
+    for (const auto &input : pending_)
+      if (input.edge) edges.push_back({false,0,0,input.buttons,true});
+    pending_=std::move(edges);
+    requested_buttons_=pending_.empty() ? delivered_buttons_ : pending_.back().buttons;
+  }
   void configure(CursorConfig config) { config_ = config; }
   void reset(int width, int height) {
     pending_.clear(); requested_buttons_ = delivered_buttons_ = 0;
@@ -76,7 +89,10 @@ public:
       int dy = input.absolute ? static_cast<int>((input.y-y_)/config_.pixelsPerUnit) : input.y;
       int step_x = std::clamp(dx,-96,96), step_y = std::clamp(dy,-96,96);
       bool arrived = dx == step_x && dy == step_y;
-      uint8_t buttons = arrived ? input.buttons : delivered_buttons_;
+      // Direct touch arrives before its press. Games that handle a press edge
+      // instead of movement in that sample must still see the target position.
+      bool defer_press = input.absolute && (input.buttons & ~delivered_buttons_) && (step_x || step_y);
+      uint8_t buttons = arrived && !defer_press ? input.buttons : delivered_buttons_;
       auto advance = [&](double position,double step,int minimum,int maximum) {
         double target=position+(config_.fractional ? step : static_cast<int>(step));
         return config_.rejectBounds && (target<minimum || target>maximum) ? position : std::clamp(target,static_cast<double>(minimum),static_cast<double>(maximum));
@@ -85,7 +101,7 @@ public:
       // half-speed games. Relative touch and calibrated mouse share one model.
       x_ = advance(x_,step_x*config_.pixelsPerUnit,min_x_,max_x_);
       y_ = advance(y_,step_y*config_.pixelsPerUnit,min_y_,max_y_);
-      if (arrived) pending_.pop_front();
+      if (arrived && !defer_press) pending_.pop_front();
       else if (!input.absolute) { input.x -= step_x; input.y -= step_y; }
       if (!step_x && !step_y && buttons == delivered_buttons_) continue;
       delivered_buttons_ = buttons;

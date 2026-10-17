@@ -6,6 +6,7 @@
 #include <lcom/vbe.h>
 #include <lcom/ac97.h>
 #include <cstdio>
+#include <cstring>
 #include <cstdlib>
 #include <vector>
 #include <array>
@@ -47,10 +48,18 @@ namespace lcom::embedded { Host &host() { return platform; } }
 
 static std::vector<std::array<int,3>> drainPointer(int &x, int &y) {
   std::vector<std::array<int,3>> positions;
-  for (int i=0;i<100;++i) {
+  unsigned idle=0;
+  for (int i=0;i<400;++i) {
     uint8_t flags, dx, dy;
     CHECK(lcom_port_read8(KBC_ST_REG,&flags)==LCOM_OK);
-    if (!(flags & KBC_ST_OBF)) return positions;
+    if (!(flags & KBC_ST_OBF)) {
+      // Stream reports arrive at100Hz rather than on every controller poll.
+      // A complete20ms idle interval distinguishes the end of queued travel.
+      platform.clock+=2;
+      if (++idle==10) return positions;
+      continue;
+    }
+    idle=0;
     CHECK(flags & KBC_ST_AUX);
     lcom_event_t event;
     CHECK(lcom_event_wait(&event)==LCOM_OK);
@@ -76,7 +85,7 @@ static void directTouchClearsClickGate() {
   pointer.relative(0,0,0);
   pointer.absolute(420,250,1);
   pointer.relative(0,0,0);
-  bool awaiting_release=true;
+  bool awaiting_release=true, held=false;
   int x=400,y=300;
   std::vector<std::array<int,2>> presses;
   while (auto packet=pointer.next()) {
@@ -84,9 +93,14 @@ static void directTouchClearsClickGate() {
       if (!packet->buttons) awaiting_release=false;
       continue;
     }
-    x=std::clamp(x+packet->dx,0,799);
-    y=std::clamp(y-packet->dy,0,599);
-    if (packet->buttons&1) presses.push_back({x,y});
+    // Legacy games may handle a press edge instead of motion in the same
+    // sample. Direct touch must finish travel before producing that edge.
+    if ((packet->buttons&1) && !held) presses.push_back({x,y});
+    else {
+      x=std::clamp(x+packet->dx,0,799);
+      y=std::clamp(y-packet->dy,0,599);
+    }
+    held=packet->buttons&1;
   }
   CHECK((presses==std::vector<std::array<int,2>>{{400,245},{420,250}}));
   }
@@ -116,7 +130,117 @@ static void interruptOnlyMouseDoesNotBlockKeyboard() {
   lcom_exit();unsetenv("LCOM_COMPAT_MOUSE_IRQ_ONLY");
 }
 
+static void configuredFramebufferLivesOnlyForItsSession() {
+  setenv("LCOM_VBE_PHYSICAL_BASE","0xF0000000",1);
+  CHECK(lcom_init()==LCOM_OK);
+  lcom_vbe_mode_info_t info;
+  CHECK(lcom_vbe_get_mode_info(0x105,&info)==LCOM_OK && info.framebuffer_phys==0xf0000000u);
+  CHECK(lcom_vbe_set_mode(0x105)==LCOM_OK);
+  void *video=nullptr,*other=nullptr;
+  CHECK(lcom_phys_map(0xf0000000u,4096,&video)==LCOM_OK && video);
+  CHECK(lcom_phys_map(0xe0000000u,4096,&other)==LCOM_ERR);
+  std::memset(video,0x22,4096);
+  CHECK(lcom_vbe_present()==LCOM_OK && platform.frame[0]==0x22);
+  CHECK(lcom_phys_unmap(video,4096)==LCOM_OK);
+  // A running Machine's aperture never changes through ambient state.
+  setenv("LCOM_VBE_PHYSICAL_BASE","invalid",1);
+  CHECK(lcom_init()==LCOM_OK);
+  CHECK(lcom_vbe_get_mode_info(0x105,&info)==LCOM_OK && info.framebuffer_phys==0xf0000000u);
+  lcom_exit();
+  CHECK(lcom_init()==LCOM_ERR);
+  unsetenv("LCOM_VBE_PHYSICAL_BASE");
+  CHECK(lcom_init()==LCOM_OK);
+  CHECK(lcom_vbe_get_mode_info(0x105,&info)==LCOM_OK && info.framebuffer_phys==0xe0000000u);
+  lcom_exit();
+}
+
+// Embedded hosts must upload logical rows rather than a contiguous page slice.
+static void indexedDacPrecision() {
+  CHECK(lcom_init() == LCOM_OK);
+  CHECK(lcom_vbe_set_mode(0x105) == LCOM_OK);
+  uint8_t actual = 0xcc;
+  CHECK(lcom_vbe_dac_format(0, 8, &actual) == LCOM_OK && actual == 8);
+  CHECK(lcom_vbe_dac_format(1, 0, &actual) == LCOM_OK && actual == 8);
+  CHECK(lcom_port_write8(0x3c8, 254) == LCOM_OK);
+  for (uint8_t c : {uint8_t(227), uint8_t(66), uint8_t(129)}) CHECK(lcom_port_write8(0x3c9, c) == LCOM_OK);
+  lcom_vbe_mode_info_t mode;
+  CHECK(lcom_vbe_get_mode_info(0x105, &mode) == LCOM_OK);
+  uint8_t *pixels = nullptr;
+  CHECK(lcom_phys_map(mode.framebuffer_phys, mode.framebuffer_size, reinterpret_cast<void **>(&pixels)) == LCOM_OK);
+  std::memset(pixels, 254, mode.framebuffer_size);
+  CHECK(lcom_vbe_present() == LCOM_OK);
+  const std::array<uint8_t,3> expected = {227,66,129};
+  CHECK(platform.first_rgb == expected);
+  CHECK(lcom_phys_unmap(pixels, mode.framebuffer_size) == LCOM_OK);
+  CHECK(lcom_vbe_set_mode(0x115) == LCOM_OK);
+  actual = 0xcc;
+  CHECK(lcom_vbe_dac_format(1, 0, &actual) == LCOM_UNSUPPORTED && actual == 0xcc);
+  CHECK(lcom_vbe_set_mode(0x105) == LCOM_OK);
+  CHECK(lcom_vbe_dac_format(1, 0, &actual) == LCOM_OK && actual == 6);
+  lcom_exit();
+}
+
+static void logicalScanlineViewport() {
+  CHECK(lcom_init() == LCOM_OK);
+  CHECK(lcom_vbe_set_mode(LCOM_VBE_MODE_800_600_24) == LCOM_OK);
+  lcom_vbe_mode_info_t mode;
+  CHECK(lcom_vbe_get_mode_info(LCOM_VBE_MODE_800_600_24, &mode) == LCOM_OK);
+  lcom_vbe_scanline_info_t scanline;
+  CHECK(lcom_vbe_scanline(2, 4801, &scanline) == LCOM_OK);
+  uint8_t *vram = nullptr;
+  CHECK(lcom_phys_map(mode.framebuffer_phys, lcom::Vbe::vramSize(), reinterpret_cast<void **>(&vram)) == LCOM_OK);
+  for (unsigned row = 0; row < 600; ++row) {
+    vram[row * 4801u] = 0xaa; // Hidden left page.
+    vram[row * 4801u + 2400] = row % 2 ? 0x77 : 0x33;
+    vram[row * 4801u + 4799] = 0xcc;
+  }
+  CHECK(lcom_vbe_set_display_start(800, 0) == LCOM_OK);
+  CHECK(lcom_vbe_present() == LCOM_OK);
+  for (unsigned row = 0; row < 600; ++row) {
+    CHECK(platform.frame[row * 4801u] == (row % 2 ? 0x77 : 0x33));
+    CHECK(platform.frame[row * 4801u + 2399] == 0xcc);
+  }
+  const auto presentations = platform.presentations;
+  vram[0] = 0xbb;
+  CHECK(lcom_vbe_present() == LCOM_OK && platform.presentations == presentations);
+  vram[599 * 4801u + 4799] = 0xdd;
+  CHECK(lcom_vbe_present() == LCOM_OK && platform.presentations == presentations + 1);
+  CHECK(platform.frame[599 * 4801u + 2399] == 0xdd);
+  CHECK(lcom_phys_unmap(vram, lcom::Vbe::vramSize()) == LCOM_OK);
+  lcom_exit();
+}
+
+static void rtcPendingCauseDoesNotStarveTheTimer() {
+  CHECK(lcom_init()==LCOM_OK);
+  lcom_irq_t rtc,timer;
+  CHECK(lcom_irq_subscribe(8,0,&rtc)==LCOM_OK);
+  CHECK(lcom_irq_subscribe(0,0,&timer)==LCOM_OK);
+  CHECK(lcom_port_write8(0x70,0x0b)==LCOM_OK);
+  CHECK(lcom_port_write8(0x71,0x12)==LCOM_OK); // UIE, 24-hour BCD.
+  lcom_event_t event;
+  do { CHECK(lcom_event_wait(&event)==LCOM_OK); } while (!(event.irq_mask & rtc.mask));
+  double first_update=platform.clock;
+  // Match an original menu that ignores RTC notifications. A second wait
+  // must block for another device event, rather than spinning on the same UF.
+  for (int i=0;i<3;++i) {
+    CHECK(lcom_event_wait(&event)==LCOM_OK);
+    CHECK(event.irq_mask==timer.mask);
+  }
+  CHECK(platform.clock>=first_update+30);
+  CHECK(lcom_port_write8(0x70,0x0c)==LCOM_OK);
+  uint8_t flags;
+  CHECK(lcom_port_read8(0x71,&flags)==LCOM_OK && (flags&0x90)==0x90);
+  do { CHECK(lcom_event_wait(&event)==LCOM_OK); } while (!(event.irq_mask & rtc.mask));
+  CHECK(platform.clock>=first_update+990);
+  CHECK(lcom_port_read8(0x71,&flags)==LCOM_OK && (flags&0x90)==0x90);
+  lcom_exit();
+}
+
 int main() {
+  rtcPendingCauseDoesNotStarveTheTimer();
+  indexedDacPrecision();
+  logicalScanlineViewport();
+  configuredFramebufferLivesOnlyForItsSession();
   directTouchClearsClickGate();
   interruptOnlyMouseDoesNotBlockKeyboard();
   // A fast browser motion must not leave the guest cursor behind at the edge.
@@ -271,6 +395,62 @@ int main() {
   CHECK(lcom_port_read8(KBC_OUT_BUF, &byte) == LCOM_ERR);
   CHECK(lcom_init() == LCOM_OK);
   CHECK(lcom_clipboard_get_text(text, sizeof(text)) == LCOM_OK && text[0] == 0);
+  lcom_exit();
+  // Explicit device windows are per-session, with no retained default aliases.
+#ifdef _WIN32
+  _putenv_s("LCOM_VBE_PHYSICAL_BASE","0xD0000000");
+  _putenv_s("LCOM_AC97_PCM_BASE","0xC0000000");
+#else
+  setenv("LCOM_VBE_PHYSICAL_BASE","0xD0000000",1);
+  setenv("LCOM_AC97_PCM_BASE","0xC0000000",1);
+#endif
+  CHECK(lcom_init()==LCOM_OK);
+  CHECK(lcom_vbe_get_mode_info(0x115,&mode)==LCOM_OK && mode.framebuffer_phys==0xd0000000u);
+  CHECK(lcom_ac97_get_buffer(&audio)==LCOM_OK && audio.pcm_phys==0xc0000000u);
+  CHECK(lcom_vbe_set_mode(0x115)==LCOM_OK);
+  void *relocatedVideo=nullptr,*relocatedAudio=nullptr;
+  CHECK(lcom_phys_map(0xd0000000u,4096,&relocatedVideo)==LCOM_OK);
+  CHECK(lcom_phys_map(0xc0000000u,4096,&relocatedAudio)==LCOM_OK);
+  CHECK(lcom_phys_map(0xe0000000u,4096,&invalid)==LCOM_ERR);
+  auto *rgb=static_cast<uint8_t*>(relocatedVideo);
+  rgb[0]=51;rgb[1]=34;rgb[2]=17;
+  static_cast<uint8_t*>(relocatedAudio)[0]=0x77;
+  CHECK(lcom_vbe_present()==LCOM_OK);
+  CHECK((platform.first_rgb==std::array<uint8_t,3>{17,34,51}));
+  CHECK(static_cast<uint8_t*>(relocatedAudio)[0]==0x77);
+  auto *relocatedSamples=static_cast<int16_t*>(relocatedAudio);
+  relocatedSamples[0]=2345;relocatedSamples[1]=-2345;
+  CHECK(lcom_port_write16(AC97_BM_BASE+AC97_PO_PICB,4)==LCOM_OK);
+  CHECK(lcom_port_write8(AC97_BM_BASE+AC97_PO_CR,AC97_PO_CR_RUN)==LCOM_OK);
+  CHECK(platform.sound.size()==2 && platform.sound[0]==2345 && platform.sound[1]==-2345);
+  CHECK(rgb[0]==51 && rgb[1]==34 && rgb[2]==17);
+  CHECK(lcom_phys_unmap(relocatedVideo,4096)==LCOM_OK);
+  CHECK(lcom_phys_unmap(relocatedAudio,4096)==LCOM_OK);
+  lcom_exit();
+#ifdef _WIN32
+  _putenv_s("LCOM_VBE_PHYSICAL_BASE","");_putenv_s("LCOM_AC97_PCM_BASE","");
+#else
+  unsetenv("LCOM_VBE_PHYSICAL_BASE");unsetenv("LCOM_AC97_PCM_BASE");
+#endif
+  CHECK(lcom_init()==LCOM_OK);
+  CHECK(lcom_vbe_get_mode_info(0x105,&mode)==LCOM_OK && mode.framebuffer_phys==0xe0000000u);
+  CHECK(lcom_ac97_get_buffer(&audio)==LCOM_OK && audio.pcm_phys==0xd0000000u);
+  lcom_exit();
+  CHECK(lcom_init()==LCOM_OK);
+  void *text_memory=nullptr;
+  CHECK(lcom_phys_map(0xB8000,4000,&text_memory)==LCOM_OK);
+  auto *cells=static_cast<uint8_t*>(text_memory);
+  cells[0]=0xDB; cells[1]=0x1e;
+  CHECK(lcom_vbe_present()==LCOM_OK);
+  CHECK((platform.first_rgb==std::array<uint8_t,3>{255,255,85}));
+  unsigned text_presents=platform.presentations;
+  CHECK(lcom_vbe_present()==LCOM_OK && platform.presentations==text_presents);
+  CHECK(lcom_vbe_set_mode(0x115)==LCOM_OK);
+  CHECK(lcom_vbe_set_mode(3)==LCOM_OK);
+  CHECK(cells[0]==0xDB && cells[1]==0x1e);
+  CHECK(lcom_vbe_present()==LCOM_OK);
+  CHECK((platform.first_rgb==std::array<uint8_t,3>{255,255,85}));
+  CHECK(lcom_phys_unmap(text_memory,4000)==LCOM_OK);
   lcom_exit();
   puts("embedded SDK checks passed");
 }

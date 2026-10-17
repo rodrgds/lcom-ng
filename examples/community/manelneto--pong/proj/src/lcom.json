@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "Pong 2.0",
+  "description": "Defend the left side against an accelerating ball.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "P",
+        "1",
+        "2",
+        "3"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad",
+          "axes": "vertical"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Speed up",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "S"
+      ],
+      "tapDuration": 80
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Pong",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

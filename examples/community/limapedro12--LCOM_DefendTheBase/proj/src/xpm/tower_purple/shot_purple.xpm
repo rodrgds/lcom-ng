@@ -1,0 +1,28 @@
+/* XPM */
+static xpm_row_t shot_purple[] = {
+/* columns rows colors chars-per-pixel */
+"15 15 7 1 ",
+"  c #000000",
+". c #4F2F4E",
+"X c #921A8E",
+"o c #D500CD",
+"O c #FF7DFA",
+"+ c #FFB2FC",
+"@ c #FFFFFF",
+/* pixels */
+"@@@@@@@@@@@@@@@",
+"@@@@@     @@@@@",
+"@@@   +Oo   @@@",
+"@@  oooo+oo  @@",
+"@@ Xooooo+oo @@",
+"@  Xoooooo+o  @",
+"@ .XooooooOoo @",
+"@ .XooooooOoo @",
+"@ .XXoooooooo @",
+"@  XXoooOooo  @",
+"@@ .XXoooooo @@",
+"@@  .XXXooo  @@",
+"@@@   ...   @@@",
+"@@@@@     @@@@@",
+"@@@@@@@@@@@@@@@"
+};

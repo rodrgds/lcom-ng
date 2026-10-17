@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "name": "LC Typer",
+  "description": "Type the original practice phrases and improve your typing speed.",
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "assets"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj/src": "."
+    }
+  },
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "keyboard": true,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "pointer": "move",
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "TAB",
+        "BACKSPACE"
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "side": "right"
+        }
+      ]
+    }
+  },
+  "archetype": "Typing",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

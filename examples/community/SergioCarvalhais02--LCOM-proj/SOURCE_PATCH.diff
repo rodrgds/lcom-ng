@@ -1,0 +1,11 @@
+--- a/mouse.c
++++ b/mouse.c
+@@ -87,7 +87,7 @@
+ 
+     else {
+ 
+-      if (!(st & KBC_OUT_BUF_BIT)){
++      if (st & KBC_OUT_BUF_BIT){
+         if ((util_sys_inb(KBC_OUT_BUF, &tmp_ack)) != 0) return 1;
+         
+         *ack = tmp_ack;

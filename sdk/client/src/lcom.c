@@ -350,6 +350,27 @@ int lcom_vbe_set_display_start(uint16_t x, uint16_t y) {
   return reply.status == 0 ? LCOM_OK : LCOM_ERR;
 }
 
+int lcom_vbe_scanline(uint8_t operation, uint16_t value, lcom_vbe_scanline_info_t *out) {
+  if (!out) return LCOM_ERR;
+  lcom_vbe_scanline_request_t req = {value, operation, 0};
+  lcom_vbe_scanline_reply_t reply;
+  if (request_reply(LCOM_MSG_VBE_SCANLINE, &req, sizeof(req), LCOM_MSG_VBE_SCANLINE_REPLY,
+                    &reply, sizeof(reply), NULL) != 0 || reply.status != 0) return LCOM_ERR;
+  *out = (lcom_vbe_scanline_info_t){reply.bytes, reply.pixels, reply.lines};
+  return LCOM_OK;
+}
+
+int lcom_vbe_dac_format(uint8_t operation, uint8_t requested, uint8_t *actual) {
+  if (!actual) return LCOM_ERR;
+  lcom_vbe_dac_request_t req = {operation, requested, {0, 0}};
+  lcom_vbe_dac_reply_t reply;
+  if (request_reply(LCOM_MSG_VBE_DAC_FORMAT, &req, sizeof(req), LCOM_MSG_VBE_DAC_FORMAT_REPLY,
+                    &reply, sizeof(reply), NULL) != 0) return LCOM_ERR;
+  if (reply.status != 0) return reply.status == LCOM_UNSUPPORTED ? LCOM_UNSUPPORTED : LCOM_ERR;
+  *actual = reply.width;
+  return LCOM_OK;
+}
+
 int lcom_vbe_present(void) {
   lcom_status_reply_t reply;
   if (request_reply(LCOM_MSG_VBE_PRESENT, NULL, 0, LCOM_MSG_STATUS,

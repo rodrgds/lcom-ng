@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "name": "Minix 8 Queens",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "R"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Place",
+          "key": "ENTER",
+          "side": "right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  },
+  "description": "Place eight queens on a chessboard without letting them attack one another.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

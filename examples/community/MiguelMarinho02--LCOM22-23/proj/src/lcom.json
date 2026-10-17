@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "name": "Space Invaders: Space Patrol",
+  "description": "Move the original ship and shoot approaching aliens.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "UP",
+        "DOWN"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Fire",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatReleaseKeys": [
+        "A",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "lib/leaderboard.txt"
+    ],
+    "pathAliases": {
+      "leaderboard.txt": "lib/leaderboard.txt"
+    }
+  },
+  "archetype": "Space Invaders",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,108 @@
+{
+  "repository": "https://github.com/ZeJoao8/LCOM-Project",
+  "revision": "aa6fa566c0da358a784b547d9777512b961e7e3b",
+  "project": "project",
+  "sourceHashes": {
+    "README.md": "2adab95895bcd7dd1650c2160b70718d07945a9188085b4a884d50b86ecf6c2b",
+    "project/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "project/.gitignore": "cce8bd2a0dd4503adce832e9a3fa40da83c5c9aa765280dac4528eca931bdd70",
+    "project/Doxyfile": "63b90413706fc52da7e1d8fa4c540bbc0b216ce97d81265040a517ad6349f7ad",
+    "project/Makefile": "cc107cc933bdbe1a83ce14d5e41d20b176dab8819e717ce811ebce9f35004ec3",
+    "project/data/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "project/include/devices/kbc/i8042.h": "19b14fd05e1b5ea8745bf8ba8bd61b00efe38c75568cb17aff3189e434d5708e",
+    "project/include/devices/kbc/kbc.h": "87e743d11eb7f46486a2a1728ab8742ead76915882b32e7073fecf5b40cd1e69",
+    "project/include/devices/mouse/mouse.h": "6e1742710acb4227a670f4cde2f8d632a9bd6318a3cd2cf831939a008c91acfb",
+    "project/include/devices/rtc/rtc.h": "62bdd23298fcf9427c621868fe6095d7acabea94cbe19de43e05200e11cf2cef",
+    "project/include/devices/serial/serial.h": "92897f8dfd7f5fbfda7d904c05f8ee7c913a6371bc86007538a5135e0976f072",
+    "project/include/devices/timer/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "project/include/devices/utils/utils.h": "74d1300b7b77631b8fda01bdb44d8f3785a9316209a6845f886a46ac7f2b2a13",
+    "project/include/devices/video_gr/video_gr.h": "835bbce334074a92672aa7620d0cbbc99cad466d95d490682fca4e480e35a972",
+    "project/include/game/config.h": "66b66d403f8b4413428c87d3b4df0be94ddcc0d8e344571cbfd8213ffaca81e9",
+    "project/include/game/controller.h": "dc40e17930ea164a6a175d995cd6ffeb42c10dc1c50b388c6febdc8c6926f82c",
+    "project/include/game/entities.h": "383710ee885e1b7745fc2dc72e38d6e3c40dc0c31f76544931d509fb5296dc91",
+    "project/include/game/game.h": "ccb03a1b9d2ac11fa3bd4c8e9cf23fecc77a871dd1e20af507d536289fc13cfa",
+    "project/include/game/model.h": "e8cc5e266bcc33cf615c03d05a796664f7b201496b5445be13b8574b4c0963dc",
+    "project/include/game/model_internal.h": "a0a916375268d8ed34c44ff0cc3b32f6a94e1393c0df2aa488a798e606bba60d",
+    "project/include/game/net.h": "2ae0fd055c70f74f3cb506d90eca07a58f53dd7ee33f36123e68adc0f5c10901",
+    "project/include/game/scores.h": "e7a020eee790e87fca9e460b01e1ccaaf981f014e48f988cef761221e2326b34",
+    "project/include/game/settings.h": "f77795f6bae849a8dfce6b07f873a16c829a9b37cb73421d7454f5f33cca418a",
+    "project/include/game/view.h": "02b2bf8c449a6be0179927c479d4bcefb0fee691860d7a52e1dd0576c5946928",
+    "project/include/game/view_internal.h": "3c307a64a2f40986566531098b5422c0e31d21cc6be8365e9a52b0eeedb70877",
+    "project/src/devices/kbc/kbc.c": "e04c3a98c929527672a31dc42207eca0320d030b0cf38c32e60313a5257e2eeb",
+    "project/src/devices/mouse/mouse.c": "953e7b2dd5927f8e0cf560992bd28a80a055e20acd4077b42a738f990aa1a7a9",
+    "project/src/devices/rtc/rtc.c": "e58281da8f1fa54fe832dd354b7eee1a1a39cef022d8ef56dc42e86e4d9d67c6",
+    "project/src/devices/serial/serial.c": "833dcc11c11335aa6e8c2f9dc65ae01c74893c978a3cd0391050cc0ff5f7f164",
+    "project/src/devices/timer/timer.c": "2c764a1481dd33169afec7185b62f926e2798e46b9b8519fd9eb45df39bc311c",
+    "project/src/devices/utils/utils.c": "e971d21992bf44516943d62481ad085bd28fcf58d788ccb9c7d1bed38d512f79",
+    "project/src/devices/video_gr/video_gr.c": "36010c1d22ddce6edf63fea740bce2ebf36a7d67ac7c43b3b6b447f715992115",
+    "project/src/game/controller.c": "34443a65c91fdc646f935d4425970648efb8edd8ae047347e7a786331d3e7cb3",
+    "project/src/game/game.c": "ba1f7518654fbac0fba03ad5a43a36f91033c589b406c60e96826da843ad0577",
+    "project/src/game/main.c": "6e42dc10b1c6ede3595542c9d04fca9cdef776bde6f49dba77bfbe9c278670b5",
+    "project/src/game/model/model.c": "c21f14f3e61e1db1ae9436dd3930f20b3a1dfc5c26d80882e14a7054e1adbe52",
+    "project/src/game/model/model_effects.c": "660732fd700db192077195fa9eb71a9eebbcfe6d10ae1ca43ade5ec93b315405",
+    "project/src/game/model/model_geometry.c": "63a00a5c40ab0bc4bdcae4d70c35fbf7cc0da023a690f3b173c581062e424e31",
+    "project/src/game/model/model_spawn.c": "ba48f07b7727337fdbb6c64feab7f8685627054f1d46a3c75d92e42c8c5f4d38",
+    "project/src/game/net.c": "451c395c4f7ca24ca207a07c98df24e584f36a62d1499f1584165a723b4b5277",
+    "project/src/game/scores.c": "2c1489b2fda3140d8ab4e8cb51973e6b3105f9a445496e2e739f837fa95d5968",
+    "project/src/game/settings.c": "59cbcec4ec3114228b5fdb40f6a64e23c71af23bb28d3e17dc9ccc0efd4229e6",
+    "project/src/game/view/view.c": "3f07cecd3fa19af9b58060058e68bb1ea4f208cdca80d20f00ebe85db450a94c",
+    "project/src/game/view/view_background.c": "498bb76e983f651184d6f5d1fe5f5bc793d51cf80e5167aa6634a820f1158791",
+    "project/src/game/view/view_draw.c": "c86f457518d7ff6ded4cc3dd6943572f3da00e72637d3a8b2fadc65bc2f97545",
+    "project/src/game/view/view_sprites.c": "dc06be21296252f492734c8936f5e11ee63c4d23c9c550e97e1b066b694df5a9",
+    "project/src/game/view/view_ui.c": "ac11b2ca55cde3b28d24548b53d1e739d224eb3cf470b999cd0b6c2749409372",
+    "project/src/game/view/view_world.c": "2d4b59af1e7e5b748e428f3042ce30c868be6575c42b1c9fd2cee4628e0f2513",
+    "project/src/img/coin0.xpm": "66b7fc47bba07714b9a162391a1384fbb3ac8483a41346fce7e96ed4bb121c43",
+    "project/src/img/coin1.xpm": "70543d14340258fdbf9d096289d02a62a14f3c15d5ef67d15dc5f4177c6739ba",
+    "project/src/img/coin2.xpm": "3d1928d454f7f458875d14e289fa273c6d0c72ea6347390019c2df502b6e47ae",
+    "project/src/img/coin3.xpm": "a9652adfe23aef8b16d5f399337f2d032732e28615d5605169b7aaca1ea88d04",
+    "project/src/img/instructions.xpm": "1a4d2ac9242ed6f1868c18b462638f7f26c3286588784f6ed02823158089a60d",
+    "project/src/img/magnet.xpm": "56f509e9e016614840660c972346f14ebc3b3bb157d3d7039d18acc1ad2806e5",
+    "project/src/img/missile.xpm": "f3ecad8594849e9a7f2b0820082bf136fca57cff3ee1c956fd0199d7f880e3cd",
+    "project/src/img/player.xpm": "bb194f48a9fc4b2337644f003149c25ddb8d3a17346a6fb972c2c1f7597963ea",
+    "project/src/img/player_p2.xpm": "19e8230b908fd15c127d241bdebdf1ab6c1336af2b5991a6ef47c693055cc88d",
+    "project/src/img/shield.xpm": "d1037b1d02f0f379bd17e73a832594a8cb17e09750c9a5bd99b33e2b8b2bf55b"
+  },
+  "selection": "Pinned original project source and required artwork/assets. Generated docs, compiled binaries, unrelated labs and OS/VCS/IDE metadata omitted.",
+  "omissions": [
+    ".git/**",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.d",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "icon": {
+    "kind": "Original pinned sprite centered on a flat palette",
+    "source": "project/src/img/player.xpm",
+    "array": null,
+    "transparentKey": "#FF00FF per original game renderer"
+  },
+  "derivedAssets": [
+    {
+      "path": "project/icon.png",
+      "sha256": "6c85ca78656676403c097b26dc7be46e6f2b10f80c65f980a482dfaca1f30217",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "project/preview.png",
+      "sha256": "d2a8a8890bcce889b6c756b7a397ae165923f7912f2aca597cc30108774dd5e7",
+      "kind": "actual ordinary-touch browser gameplay"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/a57-native-gameplay2/results.json",
+      "apkSha256": "43e911f4b7204c50509d5b43a7cc00a48ed60f1433c8ac4edf8394f1f375ca1c",
+      "demonstrated": "Original local ARCADE/GAME login completes. Thrust raises the player, released thrust returns it to the ground, original hazards advance, SCORE29 is visible and P pauses.",
+      "limits": [
+        "Representative local ARM64 touchscreen gameplay only. Complete campaigns and physical-phone performance remain untested."
+      ]
+    }
+  }
+}

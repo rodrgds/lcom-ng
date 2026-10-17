@@ -1,0 +1,25 @@
+/* XPM */
+static const char *wall_texture[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 3 1 ",
+"  c #332727",
+". c #B55B5B",
+"X c #000000",
+/* pixels */
+"XXXXXXXXXXXXXXXX",
+"X .... ... ....X",
+"X .... ... ....X",
+"X              X",
+"X.. .... ... ..X",
+"X.. .... ... ..X",
+"X              X",
+"X .... ... ....X",
+"X .... ... ....X",
+"X              X",
+"X.. .... ... ..X",
+"X.. .... ... ..X",
+"X              X",
+"X ... .... ....X",
+"X ... .... ....X",
+"X              X"
+};

@@ -1,0 +1,35 @@
+{
+  "name": "Covid Escape",
+  "mobile": {
+    "fullscreen": false,
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "quickKeys": [
+        "ESC",
+        "1",
+        "2",
+        "3",
+        "A",
+        "D",
+        "SPACE"
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "description": "Dodge the approaching hospitals with the original jumping virus.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

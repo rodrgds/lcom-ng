@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="struct_animation" kind="struct" language="C++" prot="public">
+    <compoundname>Animation</compoundname>
+    <includes refid="_animation_list_8h" local="no">AnimationList.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_animation_1ac6b606414f2a4b6585ee30cb38d63d7b" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Animation::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>Animation::x</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="21" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_animation_1add557f989cac2a537e049146ebaa3abd" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Animation::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>Animation::y</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="22" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_animation_1a6ec5ecf7cfdd99a84ea65317a779b5d2" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Animation::curr_xpm</definition>
+        <argsstring></argsstring>
+        <name>curr_xpm</name>
+        <qualifiedname>Animation::curr_xpm</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="23" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_animation_1aa488af0f93d17c3c03fa21b66e093a95" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Animation::time_to_change</definition>
+        <argsstring></argsstring>
+        <name>time_to_change</name>
+        <qualifiedname>Animation::time_to_change</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="24" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="19" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" bodystart="20" bodyend="25"/>
+    <listofallmembers>
+      <member refid="struct_animation_1a6ec5ecf7cfdd99a84ea65317a779b5d2" prot="public" virt="non-virtual"><scope>Animation</scope><name>curr_xpm</name></member>
+      <member refid="struct_animation_1aa488af0f93d17c3c03fa21b66e093a95" prot="public" virt="non-virtual"><scope>Animation</scope><name>time_to_change</name></member>
+      <member refid="struct_animation_1ac6b606414f2a4b6585ee30cb38d63d7b" prot="public" virt="non-virtual"><scope>Animation</scope><name>x</name></member>
+      <member refid="struct_animation_1add557f989cac2a537e049146ebaa3abd" prot="public" virt="non-virtual"><scope>Animation</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

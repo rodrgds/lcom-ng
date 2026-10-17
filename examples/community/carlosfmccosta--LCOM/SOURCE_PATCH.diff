@@ -1,0 +1,147 @@
+--- a/proj/src/controller/KBC/mouse/mouse.c
++++ b/proj/src/controller/KBC/mouse/mouse.c
+@@ -76,7 +76,6 @@
+ int(mouse_write_cmd)(uint8_t cmd) {
+   int attempts = 5; // Retry attempts
+   uint8_t ack;
+-  uint8_t temp_byte; // For flushing
+ 
+   while (attempts > 0) {
+     // Tell KBC we want to write to the mouse
+@@ -89,24 +88,6 @@
+     if (write_byte(cmd, KBC_OUT_BUF) != 0) { // Write command to KBC data port (forwarded to mouse)
+       printf("Error: Failed to send command\n");
+       return 1;
+-    }
+-
+-    int flush_attempts = 5; // Try to read a few times with delay
+-    uint8_t stat_check;
+-    while (flush_attempts > 0) {
+-        if (util_sys_inb(KBD_CMD_REG, &stat_check) != 0) {
+-            break;
+-        }
+-        if (stat_check & ST_OUTB) { 
+-            if (util_sys_inb(KBC_OUT_BUF, &temp_byte) != 0) {
+-                break;
+-            }
+-            
+-        } else {
+-            break;
+-        }
+-        tickdelay(micros_to_ticks(DELAY_US / 10)); 
+-        flush_attempts--;
+     }
+ 
+     tickdelay(micros_to_ticks(DELAY_US)); 
+--- a/proj/src/view/menu.c
++++ b/proj/src/view/menu.c
+@@ -32,7 +32,7 @@
+     return NULL;
+   }
+ 
+-  menu_t* menu = malloc(sizeof(menu_t));
++  menu_t* menu = calloc(1, sizeof(menu_t));
+   if (!menu) {
+     return NULL;
+   }
+@@ -74,11 +74,22 @@
+   menu->pos_title = pos;
+   menu->option = opt;
+   menu->background = NULL;
+-  menu->options = options;
+-  menu->callbacks = func;
++  menu->size = size;
++  menu->options = calloc(size, sizeof(*menu->options));
++  menu->callbacks = malloc(size * sizeof(*menu->callbacks));
+   menu->opt = 0;
+-  menu->size = size;
+-  menu->title = title_str;
++  menu->title = strdup(title_str);
++  if (!menu->options || !menu->callbacks || !menu->title) {
++    destroy_menu(menu);
++    return NULL;
++  }
++  for (unsigned int i = 0; i < size; i++) {
++    if (!options[i] || !(menu->options[i] = strdup(options[i]))) {
++      destroy_menu(menu);
++      return NULL;
++    }
++  }
++  memcpy(menu->callbacks, func, size * sizeof(*menu->callbacks));
+   menu->opt_vertical_offset = get_sprite_height(opt) + 10;
+   menu->x_pos = (h_res - get_sprite_width(opt)) / 2; 
+ 
+--- a/proj/src/controller/event.c
++++ b/proj/src/controller/event.c
+@@ -657,7 +657,7 @@
+ }
+ 
+ event_t *create_empty_event() {
+-  event_t *event = (event_t *) malloc(sizeof(event_t));
++  event_t *event = (event_t *) calloc(1, sizeof(event_t));
+   if (event == NULL) {
+     return NULL;
+   }
+@@ -666,7 +666,7 @@
+ }
+ 
+ event_t *new_keyboard_event(struct key *k) {
+-  event_t *event = (event_t *) malloc(sizeof(event_t));
++  event_t *event = (event_t *) calloc(1, sizeof(event_t));
+   if (!event) {
+     return NULL;
+   }
+@@ -683,7 +683,7 @@
+ }
+ 
+ event_t *new_mouse_event(struct packet *pack, unsigned int prev) {
+-  event_t *event = (event_t *) malloc(sizeof(event_t));
++  event_t *event = (event_t *) calloc(1, sizeof(event_t));
+   if (!event) {
+     return NULL;
+   }
+--- a/proj/src/queue.c
++++ b/proj/src/queue.c
+@@ -49,7 +49,7 @@
+  */
+ static int resize_queue(queue_t *q) {
+   //Get more space for queue
+-  int *p = (int *)realloc(q->buf, 2*(q->size)*sizeof(int));
++  int *p = (int *)realloc(q->buf, 2*(q->size)*q->elem_size);
+   if( p == NULL ) {
+     return -1;
+   }
+@@ -78,7 +78,7 @@
+   q->size = size ? size : 1;
+   q->elem_size = elem_size;
+ 
+-  q->buf = (int *)malloc(size * elem_size);
++  q->buf = (int *)malloc(q->size * elem_size);
+   if (q->buf == NULL) {
+     free(q);
+     return NULL;
+@@ -94,7 +94,7 @@
+ 
+ void delete_queue(queue_t *q) {
+   if (q != NULL) {
+-    if (q->buf == NULL) {
++    if (q->buf != NULL) {
+       free(q->buf);
+       q->buf = NULL;
+     }
+@@ -122,6 +122,7 @@
+   //Update queue
+   memcpy((char*)q->buf + q->in*q->elem_size, elem, q->elem_size);
+   q->count++;
++  q->in++;
+   adjust_queue(q);
+   return 0;
+ }
+@@ -130,6 +131,7 @@
+   if(is_not_empty_queue(q)) {
+     memcpy(elem, (char*)q->buf + q->out*q->elem_size, q->elem_size);
+     q->count--;
++    q->out++;
+     adjust_queue(q);
+     return 0;
+   }

@@ -1,0 +1,11 @@
+--- a/src/devices/mouse/mouse.c
++++ b/src/devices/mouse/mouse.c
+@@ -55,7 +55,7 @@
+ }
+ 
+ int(mouse_write_cmd)(uint8_t cmd) {
+-  uint8_t r;
++  uint8_t r = 0;
+   uint8_t attempts = 10; 
+ 
+   while (attempts && r != MOUSE_ACK) {

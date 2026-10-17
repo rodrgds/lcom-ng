@@ -1,0 +1,122 @@
+{
+  "repository": "https://github.com/sirkotal/feup-lcom",
+  "revision": "8bff6e77a89f9c209b24762208575ee7c60994cc",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "3dbf616fdd93bbbae63e4dbf6518c80fb2df82a5c7f87abb12309df77615428c",
+    "proj/README.md": "8ff97ef747b2b279de12bbb163f6ff093ef00a14cdb2c17d82c290a16ce0e5f9",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/Makefile": "688789d034b5a0c25926e8a9000c86735af4df24ee570829bd466c3975d5f920",
+    "proj/src/devices/graphics/graphics.c": "c0f75f533a8f11a6b9561e271e44025aea3ee123fbdb70a2fb5c24e5f14bfddf",
+    "proj/src/devices/graphics/graphics.h": "add69344ced05af4b2425a8cf91a902f92b8723e8f73fe834f4562b452290b2d",
+    "proj/src/devices/graphics/vbe.h": "ea650609dc476e459a388ee7f2884e534c813da6f801fa582b4e33326630f698",
+    "proj/src/devices/kbd_mouse/i8042.h": "0136f6ea36d6c259f148542215df379be513fc2ec193b6eec4eb69d425fa0a34",
+    "proj/src/devices/kbd_mouse/kbc.c": "c607f1a9f75de82e4b9811247f8dfcaf3996a63baa0fa103a68b1ed7797c8de0",
+    "proj/src/devices/kbd_mouse/kbc.h": "787c2897698d3afc6521a7e8729046b3b439ece084dc39f2c6568c4366eebfd0",
+    "proj/src/devices/kbd_mouse/keyboard.c": "b34019cd364e3feb448f502a4e2b96993f98315e983e709a7d2c6ba8ea7cb9e6",
+    "proj/src/devices/kbd_mouse/keyboard.h": "14c350e9fc6e58ce0e3b30b1fc01be384539fd34e16b43d474397d7c262e5dac",
+    "proj/src/devices/kbd_mouse/mouse.c": "54dee70a6cfb9cf98b967058d96f3bcf3d53f9d2ca20e853b8b9b255b2808f58",
+    "proj/src/devices/kbd_mouse/mouse.h": "499a2132dde49f9888e99435ef0180465f360ded55ac9d4bca9708c38ecf25a3",
+    "proj/src/devices/rtc/rtc.c": "0e6df4e3d5b252a2b8bb498859ce115af68743c1fe6b497f8a6ca6d5c48bdb5e",
+    "proj/src/devices/rtc/rtc.h": "60cd6b8b27fbc3b67c0b3be961ffd0de4c0778e72900559383910412d5cfdf9b",
+    "proj/src/devices/timer/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/devices/timer/timer.c": "de79056b163e1b5084073bb094c9df7d4e50ec9363b99ed7fb21f010a6ad4166",
+    "proj/src/devices/utils.c": "b04954e637d3b4fb1392a56d1a0082a4b8b866ad4e4d4ee3d2e7209cb5aa5500",
+    "proj/src/proj.c": "ff29ca8474fcb6e1035fc1413445644c5c7fe9e16e48cb0b70854626ed1459a9",
+    "proj/src/sprites/sprites.c": "786fa72a29fc99679b69b74279a5591741db80f2bab3595ecf8e783e3c2ebb44",
+    "proj/src/sprites/sprites.h": "c827b4c49188d4f9ae673533211245ba8d1d13fdfd786fd6731768429e076d8e",
+    "proj/src/utils/colors.h": "d04b80bdd8cca0aa8c63147ebd651aec0f3cf3eb127514a55807619360fbe2b0",
+    "proj/src/utils/font.c": "44c72da1ac702bc39cb1074f49ac6bb7b57b9a62570b78a8421e6703862e10f5",
+    "proj/src/utils/font.h": "6776b55655ef1d5a32dafcc6022974a8dc270d56eb7109a56b77872d15b14615",
+    "proj/src/utils/utils.c": "e0c1f977469d62f22d099ef809caacd9cb72418b640e8213d2938a8b76631fc3",
+    "proj/src/xpm/bullet.h": "f42d7850dac1cb426dd2d6b5914a6e6e583d4d54a3383934452d17011b351fdf",
+    "proj/src/xpm/crosshair.h": "e5ca43afd77c3db61aea3e294b7b3984d504db3b92ae85e32e57985bde778636",
+    "proj/src/xpm/direct_map.h": "cb570369bbaf64d37e601ca51b64ec8f3c3b9b2c5074faf531ad04aff46cd94f",
+    "proj/src/xpm/fonts_xpm.h": "51ee5b34cfecc9791fbcaada9771147e477f83e63bfd2afe72b97f4a493972c3",
+    "proj/src/xpm/mag.h": "2d18323f7e6ea839be5b44cd63df5fe2877be43e1512b378fa58a0bb662bee92",
+    "proj/src/xpm/map_xpm.h": "cc70b41e2f9d40409a1b6cc490379c06cccda9107c23aee5e431e20b7d6c191c",
+    "proj/src/xpm/player.h": "a06fe3ec88384ee6bbed2c2c5945235ea81945703e409c721d5373384fbdd5ef"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS/IDE/OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/devices/utils.c",
+          "reason": "Read sys_inb32-bit output into actual32-bit storage before narrowing to the callerbyte; original casts uint8_t*to uint32_t* and overwrites three adjacent bytes, corrupting KBC locals/native stack.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/build/arcade-100/a/three-hunters-byte-read-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/build/arcade-100/a/batch11-source-green9.log"
+          },
+          "originalSha256": "b04954e637d3b4fb1392a56d1a0082a4b8b866ad4e4d4ee3d2e7209cb5aa5500",
+          "patchedSha256": "c335ef66ec30d96f536b0eeb25cfea4cda27329e364f3b2ce5efb8a28a2e78ea"
+        },
+        {
+          "file": "proj/src/proj.c",
+          "reason": "Restore the original map pixels beneath the previous crosshair and redraw live foreground sprites before drawing its new position, instead of painting black holes into the original opaque walls.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/build/arcade-100/a/three-hunters-wall-native-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/build/arcade-100/a/batch11-source-green11.log"
+          },
+          "originalSha256": "ff29ca8474fcb6e1035fc1413445644c5c7fe9e16e48cb0b70854626ed1459a9",
+          "patchedSha256": "2a543f522c8f3fb3898c17a64daa5bef8b07da8ca65bcfe8c272bcd8a74762b0"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a flat palette",
+    "source": "proj/src/xpm/player.h",
+    "array": "simple_player_xpm",
+    "additionalArray": "enemy_xpm"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "008510feb84ea7436c3f8efbfa7797cf48c8a3a26af609068c319fc641f1184d",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "685654813d3e58d7bd2a881baea9473c80d0eb0829cf5467ef6ebc2d48882394",
+      "kind": "Original browser gameplay capture"
+    }
+  ],
+  "verification": {
+    "browser": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/arena-final-wall-gameplay-green.log",
+    "owningRegressions": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+    "nativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/sirkotal--feup-lcom.native11-wall.log",
+    "android": "Pending independent parent-owned actual Android gameplay.",
+    "crosshairWallPreservation": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/arena-crosshair-wall-green.log",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "445120d85fbc7d9e7be67654d2c22a383609aa69f134be9ce6844aa4c3b9ee3e",
+      "evidence": "build/arcade-100/a52-native-calibrated/results.json",
+      "demonstrated": [
+        "Original blue player, white maze and three redtargets visible.",
+        "Ordinary arrowtouches navigate maze to original player position700,570.",
+        "Bottommiddle redtarget disappears after original projectile collision; original redcrosshair visible."
+      ],
+      "limitations": [
+        "Representative local ARM64 touchscreen gameplay only; complete campaigns and physical-device performance remain untested."
+      ]
+    }
+  }
+}

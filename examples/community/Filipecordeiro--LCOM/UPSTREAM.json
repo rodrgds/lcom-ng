@@ -1,0 +1,64 @@
+{
+  "repository": "https://github.com/Filipecordeiro/LCOM",
+  "revision": "1638d627232c92a1f0e3d8cbcb426d669d140011",
+  "project": "projeto",
+  "sourceHashes": {
+    "README.md": "b2d3123267d43754749014f35d026c5c9742aef781cf4b1abdcbf1dbc291a051",
+    "projeto/.depend": "9a878e8b9cd085b59a5b7639a02ba15b42f7d4c14be3bb54241330b036b5fb0c",
+    "projeto/Makefile": "51888049fd3e9fd572a97902dcc47da66eb07d999e289834204ddbdb677f72db",
+    "projeto/conf/projeto": "7d979447bf06d8b250b44dd377f91565e45dba5c55991fb713669858bf5dbe39",
+    "projeto/doodlejump2.bmp": "9b845d7f4518eec66e259484ef577f8a52df406ebbe514542c6d50bb0b2e3165",
+    "projeto/i8042.h": "81abfb9c2bf3cbd76a34e9a74a54731f06accb64bba38505a729c1cd6475f32a",
+    "projeto/i8254.h": "2f2da57e5c9de8a0d03742a4d21a6922bbfa402f088636ad0be96788f1c861e8",
+    "projeto/image.c": "fd5a79b2b8f95bd4c564c6f26c7df48b8e64053335df7ba565099a8bb72778d9",
+    "projeto/image.h": "f3827bb7d0d42b8386a27ed6cc273a69a005623eaf424507a078209b02d11d9a",
+    "projeto/jogador.c": "7a5abb99781712c1015851ca993e2713ff8ce2900706cc9b4642955057f46d90",
+    "projeto/jogador.h": "c7b04a96e7a0b245eae1a1921c2217f4751336f4a422fb29ac716a50566011e5",
+    "projeto/jogo.c": "94358183f5c41b020b7bc8616af0e50854e3843cc09180b87675405e3f5e7b04",
+    "projeto/jogo.h": "3dbb78a48e854a2c905ba61870a13a33fd461c246032505b0a31df3e390b6f49",
+    "projeto/kbc.c": "09a95f4832f3082fb6fe2e5cd02ef76c7f328bec7b3029ddbdfb5cc3c82d556f",
+    "projeto/kbc.h": "cbee262348705c97d7573602e9ae1ca69f2220c10868537efe63cf3a331697db",
+    "projeto/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "projeto/log.c": "e3f64c0648bddc0949c1140451fc1adb01dc5190f407d6057de9e5e75912cd29",
+    "projeto/log.h": "61b2668a40cbd9b80b01d8a1c19e66ea1aed468730ac6f1d66f608de9c6debb2",
+    "projeto/main.c": "84f4d775e9287de73f684854ec15e88b0170994b90a1177cefe0df497c37d6be",
+    "projeto/pixmap.h": "df987f9991ee986d951db03fe51d3ae3acafe1df922323575d0061f00bd5270a",
+    "projeto/plataforma.c": "0eceefe2f45a1893d0b01470a5e2a66e6414d708e8019966228c8afe678d5c02",
+    "projeto/plataforma.h": "91a3ca61e9f36fa342dadb7c18248fb5e6e40151ff097ea813d8257db211348f",
+    "projeto/projeto": "852286d41c38582e0040ddd053695697b366a6a88710088e8e960d94f50ea17f",
+    "projeto/read_xpm.c": "9a3179dde46a4342796e26bcc285af3a7a3f54ea6359dc50141eb98bcfaa285f",
+    "projeto/read_xpm.h": "ae6012db4a13667fedb045868d0a3347ccec220e3043cd9f01a1e09eb8375983",
+    "projeto/sprite.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projeto/sprite.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "projeto/vbe.c": "7f28f13a049c5cb43c6c1aa744089c9f9b19ad503fa54e439d604cdf418b2443",
+    "projeto/vbe.h": "fe60fc5721c4da593bf89915563e50a73a13ded92130c375a85a4d1ab26c0dcd",
+    "projeto/video_gr.c": "0d490780c693e1587c77ae6f57d446d26a0fe7ac468165a78961d01ff7109f9d",
+    "projeto/video_gr.h": "9d13a318e92d1cb5c598d257ca877c39fe139f49448fc252c41acf2c7158c785"
+  },
+  "selection": "Pinned project subtree and root README; VCS, OS metadata, generated documentation and compiled objects omitted.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "projeto/log.c",
+          "originalSha256": "e3f64c0648bddc0949c1140451fc1adb01dc5190f407d6057de9e5e75912cd29",
+          "patchedSha256": "a0f1ff469486bfafd8fc70ba08f6899b8819beaab8d51e3574cd713395a587b8",
+          "reason": "Write log messages as literal strings and close each owned FILE once. Original used the message as fprintf format and closed the same stream twice.",
+          "verification": "Actual log.c fails -Werror=format-security, then injected FILE ownership test observes a second close. Corrected code preserves literal100% text and closes exactly once. Evidence c/doodle-log-red.log, doodle-close-red.log and doodle-log-green.log."
+        },
+        {
+          "file": "projeto/kbc.c",
+          "originalSha256": "09a95f4832f3082fb6fe2e5cd02ef76c7f328bec7b3029ddbdfb5cc3c82d556f",
+          "patchedSha256": "a9493a99096da6595b8d7cdb3084a0413797d31eb04c967f85ee334e922722d4",
+          "reason": "Read port values into an unsigned-long temporary before assigning one-byte status/data outputs. The original casts wrote four or eight bytes into a one-byte destination.",
+          "verification": "Actual Android key input aborts in kbc_read_out_buf with stack protection; original actual-source guard-byte regression fails, corrected adjacent bytes, byte values, propagated errors and null destinations pass. Evidence build/arcade-100/c/doodle-kbc-{red,green}.log."
+        }
+      ]
+    }
+  ]
+}

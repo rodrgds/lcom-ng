@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "name": "The Sealed Room",
+  "description": "Find every key in a maze before the timer expires.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "SPACE"
+      ],
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "src/leaderboard.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj": ".",
+      "/home/lcom/proj": ".",
+      "/home/lcom/labs/lcom1819-t4g13/proj": ".",
+      "/home/lcom/lcom1516-t6g15/project": "project"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

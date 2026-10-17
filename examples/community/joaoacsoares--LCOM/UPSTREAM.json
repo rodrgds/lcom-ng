@@ -1,0 +1,122 @@
+{
+  "repository": "https://github.com/joaoacsoares/LCOM",
+  "commit": "6bc5fa02f7a0ea328ef6675be8c0c8f57d67ef81",
+  "project": "lcom1415-t3g15/projeto/src",
+  "sha256": {
+    "README.md": "c2c3bf391c67f075dcf9a7a946ade851ab2e6dddeccb51c1cfab3a6b97051c6b",
+    "lcom1415-t3g15/projeto/res/about-button.bmp": "64197289900a067f3d4d5c2692765a6ed8c0ea7ea8949614933d20ffd0326332",
+    "lcom1415-t3g15/projeto/res/board.bmp": "ff3a2f964073be44a2ad6ffe36c8904acce49a066904ee00642d8748794af68b",
+    "lcom1415-t3g15/projeto/res/90-button.bmp": "8e316954463c6026eb2e3f01cff300c8e51f14bb34049765515892ab9b4eaefe",
+    "lcom1415-t3g15/projeto/res/hit.bmp": "d53a49ca3427f38a17d7b2252f37b11598f31ac4036ec6c521b3a4778aefd78f",
+    "lcom1415-t3g15/projeto/res/play-button.bmp": "b46c54404bae3e3d01179effb4e6ce5cd12b5339142e84d75aaa1a74597122f8",
+    "lcom1415-t3g15/projeto/res/noveBMP.bmp": "6b2a4bf32f9567266e658fe555f437d331f7e0231c7da990f829d384063d515d",
+    "lcom1415-t3g15/projeto/res/doisBMP.bmp": "0fd6c0e239a753c27a29c865f8c6d4bfc167a20f5df99943df08481ea9884483",
+    "lcom1415-t3g15/projeto/res/oitoBMP.bmp": "73c68b70c539ce9cdac622bf29757921e34fdfcaf16f7e6ff961f72bb73e86c7",
+    "lcom1415-t3g15/projeto/res/umBMP.bmp": "2fb8eb391760646f4e7e557f4531ace514403b8fb5491e4f836d80b052e6fbd6",
+    "lcom1415-t3g15/projeto/res/30-button.bmp": "3fcc824d735553f597ad60f21032afdbba957c5b2c1c1f08dec22f3e4c35a67c",
+    "lcom1415-t3g15/projeto/res/cincoBMP.bmp": "427e8cba3a15f1ae8f15e6f1642eab08bccf5b5bb8a86c11c290e8d1ed6ac959",
+    "lcom1415-t3g15/projeto/res/medium-button.bmp": "75896f958900dd7dd4b64bd3cdeb133e80ff45956371d569e61aa605ee706b36",
+    "lcom1415-t3g15/projeto/res/back-button.bmp": "8f905ef3cb197ab1eae34f6364d7c92ad5c23d56fbf9ed5379b24ac309af5255",
+    "lcom1415-t3g15/projeto/res/120-button.bmp": "b612e3d994d762d429eec252c04a8899dbc3364a09a198b9a2de2268f8e27cb9",
+    "lcom1415-t3g15/projeto/res/mallet-down.bmp": "cdae82bfafd4ee3da2d966e284dbc1e8b28652f7f065bae1a9e4473edd9828c9",
+    "lcom1415-t3g15/projeto/res/mallet-up.bmp": "eab74d5f832b2447c5face621d5e6740aa17e2c0d05751b9b91c5a8c654f7ebc",
+    "lcom1415-t3g15/projeto/res/zeroBMP.bmp": "fc9649d6001de552808f37321e53f27f93d4ef46891854bc2eaa343cc07058bf",
+    "lcom1415-t3g15/projeto/res/exit-button.bmp": "84fa6ec4f3ee51c3c3f4f01497b908ab59a47ea8a2f4783f2a91d2290ff68dd6",
+    "lcom1415-t3g15/projeto/res/hard-button.bmp": "bd53454aefb96efa87b35a28a260546990d27f5e33e123bfaf5fa660c7291df1",
+    "lcom1415-t3g15/projeto/res/help-button.bmp": "99042e0fd3c3525aeba7948018c580ff05bed9690edd251fe07cf5410a9da8f3",
+    "lcom1415-t3g15/projeto/res/quatroBMP.bmp": "4ce9c7523015c26f49420609f9d85d8519e2c5670a721f08e6eabca1ce6ecc26",
+    "lcom1415-t3g15/projeto/res/easy-button.bmp": "15d73730cd09b64d8f4d3949f016fbc498344d1075ad4d2f8a46362acbf4b46e",
+    "lcom1415-t3g15/projeto/res/tresBMP.bmp": "1db6e49c95cbbe85714da9056e5d2be6e4921a73861ad9b4f8e4df4213549414",
+    "lcom1415-t3g15/projeto/res/seteBMP.bmp": "eac4542ed3b0f41093e0ac8e62bbc0232024503dcd5aaec919b8f70dc8d871a8",
+    "lcom1415-t3g15/projeto/res/seisBMP.bmp": "e2062792395cac6b4a039d355a7e213e3f6dfec8ee40b4f7516c0d987526da7c",
+    "lcom1415-t3g15/projeto/res/highscores-button.bmp": "29a1e373f7fc667890a9640b580ccc99e553de7e555ffc4133ce11f2beb87e5c",
+    "lcom1415-t3g15/projeto/res/hole.bmp": "b95da72a063252133a7dd9dcb66510c2e0c2f4e6b4364ab6039ad430c593af66",
+    "lcom1415-t3g15/projeto/res/exitBG.bmp": "27b56a789789cb6122e6f71999678cf0261e2f4c767a78db42d4f5fcd1338c5a",
+    "lcom1415-t3g15/projeto/res/options-button.bmp": "16de598206ae0ee98d9b243eed8534e0268cee83b004df4b3ffb88f0f135b4f9",
+    "lcom1415-t3g15/projeto/res/digglet.bmp": "01a3d1748cb239f429456645910ee57d6cd844547e933ceadcea40326b5fb2ee",
+    "lcom1415-t3g15/projeto/src/Game.c": "78a0ae0c3e2324369a84e3031f8778138c2c2b58fe581fccf0a029274b5390bf",
+    "lcom1415-t3g15/projeto/src/Mouse.c": "4527dfa98028625e47cc80a9447957e536584a1274819637b4855838ec537857",
+    "lcom1415-t3g15/projeto/src/MainMenu.h": "277e003407297e24067db6d6b373930ff94e6b91c94c4b32e7201ad4405acfa7",
+    "lcom1415-t3g15/projeto/src/timer.c": "a528964e084efc0f5bde5e00c58395e8c850cff5f62da1ac5006349d21281c11",
+    "lcom1415-t3g15/projeto/src/Numbers.h": "3b468b48ca6f6fd9d4da53429e5b1506b0c9a1a26679ab9570eeef17f2798ffc",
+    "lcom1415-t3g15/projeto/src/Whack.h": "a9c62c1d39cd875e9b2225f9dac1add8ce026db80522dabf0afb9fed1b318086",
+    "lcom1415-t3g15/projeto/src/keyboard.c": "427efd5b680d0219d876596d252ac95c6fecd817fd3d90c14fcf9dcd3b609163",
+    "lcom1415-t3g15/projeto/src/Bitmap.c": "814b7877fe47136f09a785ab659ed62509885859a5931f9d0d994d0183cacb8c",
+    "lcom1415-t3g15/projeto/src/Makefile": "d335a96d0c13eab08d68e4c21deaea96815aaca70cc7349fac32313d17cc91d1",
+    "lcom1415-t3g15/projeto/src/Graphics.c": "f31c5d38e0e852f1e0f2827687fc76e0de25113867506f5ff10028162744e95e",
+    "lcom1415-t3g15/projeto/src/OptionsMenu.c": "12e8d7c9a2f7765f6aaf759935d1104dfe16baa49887a21cd7eee44a96a3091f",
+    "lcom1415-t3g15/projeto/src/Utilities.h": "4d42b3c3c3d31e6389cec8d2d45c4046d6d1dc6f6c326ff5b8b8136fe762c691",
+    "lcom1415-t3g15/projeto/src/VBE.h": "ea613adddd4d507d7e5c03cde1e0e1674af217481eef34c51a974c7428e90629",
+    "lcom1415-t3g15/projeto/src/i8042.h": "e3476047360f76703196bac9a947434b8ee404fb01f1e7faa309964e63ba154a",
+    "lcom1415-t3g15/projeto/src/lmlib.h": "39266674d6e78989c967cd54b2780b0b6b673e595be1ddca927b773074dea5b2",
+    "lcom1415-t3g15/projeto/src/Mouse.h": "96dead5a302f266bf57e873ff803a1c05af056bd72480d639c62884facb630b1",
+    "lcom1415-t3g15/projeto/src/Numbers.c": "dd8fa1b9490c6014a61acc857954cbf8e823c64d653f0c945bb345dde2b15de8",
+    "lcom1415-t3g15/projeto/src/timer.h": "0df634a02dd7d6d7eaeb11c4f7bfb5d01a1a1da39c2b1c9c2b35e7fd00d95388",
+    "lcom1415-t3g15/projeto/src/MainMenu.c": "80e4945ed25555b2fed02aa458aa844fe6fc10b7964b31ab1269d721cb6dd757",
+    "lcom1415-t3g15/projeto/src/Game.h": "26480d2abf3345e0baa09ccdc46b8be460e6e886f6c1c0a349d41801239e61a2",
+    "lcom1415-t3g15/projeto/src/main.c": "78e5dbccf2c4bece593075ef4abe0bb8bc246cb994485060078e096314ab9a46",
+    "lcom1415-t3g15/projeto/src/keyboard.h": "8360687915e5fa27e5c1439e5cbbb63c384ae48a6ad49007e235c728d7f4e825",
+    "lcom1415-t3g15/projeto/src/Whack.c": "2748352051409786c7df10709f68650250edf0dcfc7d84e66a323f78a9ac4324",
+    "lcom1415-t3g15/projeto/src/VBE.c": "c588e934bdc4fad4f9970ad112e056a20acf206717a9c777f7160917e1ce3b69",
+    "lcom1415-t3g15/projeto/src/Utilities.c": "879a4c009fcd0fbe717ee5cb447e942ee1264ad552d256976419e1d72582aa82",
+    "lcom1415-t3g15/projeto/src/OptionsMenu.h": "643b52fe1236109996dceeb4934bc7edbe1ec3c283e4e2dc115aa858d001216a",
+    "lcom1415-t3g15/projeto/src/Graphics.h": "275612e625662febe55e9f5e7c1828d730713639b32b16bca0b3908371a1da71",
+    "lcom1415-t3g15/projeto/src/i8254.h": "0f471345bf26f88f5d9e276e2bc4fbd0e6701f27dc66e583d85d73e7067c360a",
+    "lcom1415-t3g15/projeto/src/Bitmap.h": "23a6c67c1c2843e023a498def7f8730d0641668093abc09960d295edae5458cc"
+  },
+  "selection": "Selected authored projeto C/headers/Makefile, its original BMP resources and root README retained. Duplicate proj variant, labs, generated documents/dependencies, bundled compiled binaries/liblm and VCS/OS metadata excluded; original archived repository remains pinned in lane inventory.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "lcom1415-t3g15/projeto/src/main.c",
+          "originalSha256": "78e5dbccf2c4bece593075ef4abe0bb8bc246cb994485060078e096314ab9a46",
+          "patchedSha256": "fa4a5efb2a630dd3b61a20ce8a7b3d5f16aded9d94d82e247506981d8f24de9f",
+          "reason": "Include existing Graphics.h so the entry point calls vg_init, vg_exit and buffer flips with their owning declarations; original vg_init implicit-int call traps in real WASM.",
+          "verification": "Original .Lvg_init_bitcast_invalid; owning entry compilation RED, GREEN actual original entry calls mode0x114 and normal stop/exit using typed stubs."
+        },
+        {
+          "file": "lcom1415-t3g15/projeto/src/Graphics.c",
+          "originalSha256": "f31c5d38e0e852f1e0f2827687fc76e0de25113867506f5ff10028162744e95e",
+          "patchedSha256": "918b90137b71522a67bec6a18dcb414f7c0ebc8f614f92555ecb533bfe8d1667",
+          "reason": "Use bytes_per_pixel to size the actual framebuffer and both copy buffers, rather than treating vm.BitsPerPixel as bytes. Original800x600x16 allocated/copied7680000bytes instead960000.",
+          "verification": "Independent mode800x600x16 map-range assertion RED, GREEN guard-page save/flip/render roundtrip of exactly960000bytes."
+        },
+        {
+          "file": "lcom1415-t3g15/projeto/src/Bitmap.c",
+          "originalSha256": "814b7877fe47136f09a785ab659ed62509885859a5931f9d0d994d0183cacb8c",
+          "patchedSha256": "0da31838d03cce751299ef9b384082f9101eb81bf3e2656b8fc9ac57bf8b0cab",
+          "reason": "Clip original mallet source columns and destination rows before transparency-keyed framebuffer writes. Original drawBitmapMouse computed drawWidth but ignored it and never clipped vertical rows, corrupting memory at clamped mouse edges.",
+          "verification": "Actual original renderer guard-page RED SIGBUS at bottom-right; GREEN allfour partial edges, wholly outside positions and original transparency bytes. Actual normal joystick edge holds in landscape/portrait remain running without errors."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original Play/Hit is mouse-left release. Cursor begins200,300 and resets300,300 on transitions, with unit signed9bit deltas and original15pixel clamp margin. Panel mouse stick plus Hit/Select and Escape preserve all normal inputs. Direct/calibrated touch is intentionally not enabled. Explicit absolute/relative aliases preserve original bitmap paths.",
+  "artwork": {
+    "icon": "Original Diglett and hole sprite on simple green tile using source colors and original white transparency key. Original BMP bytes unchanged.",
+    "preview": "Actual original gameplay with emerging Diglett, visible hammer and score4, scaled800x600 to640x480."
+  },
+  "verification": {
+    "browser": "Actual touch Play plus18ordinary hole-center clicks scores points in both landscape844x390 and portrait390x844. Real joystick holds reach both clamped corners; original mallet remains partially visible, clipped safely, errors[].",
+    "ndk": "All13authored C translation units compile actual ARM64 objects with -O2 -D_FORTIFY_SOURCE=2 and importer-selected legacy lm_init status ABI.",
+    "native": "passed: representative actual ARM64 Android emulator objectives; see nativeGameplay proof and limitations.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "80b7a529f6390a53f8fa01caa9e1f7299b08aa907985178fa4acb94612b057ac",
+      "evidence": "build/arcade-100/extra4-native-gameplay/results.json",
+      "demonstrated": [
+        "Original green board with nine holes replaces Play menu; cursor resets300,300.",
+        "Original hammer follows the selected hole; emerging Diglett and score progression are visible. Actual hits depend on live targets.",
+        "Original hammer follows the selected hole; emerging Diglett and score progression are visible. Actual hits depend on live targets.",
+        "Original hammer follows the selected hole; emerging Diglett and score progression are visible. Actual hits depend on live targets."
+      ]
+    }
+  }
+}

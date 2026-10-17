@@ -1,0 +1,11 @@
+--- a/proj/src/view/menu.c
++++ b/proj/src/view/menu.c
+@@ -434,7 +434,7 @@
+ 
+     if (menu_bg_buf) free(menu_bg_buf);
+     if (settings_bg_buf) free(settings_bg_buf);
+-    delete_static_background();
++    set_static_background(NULL);
+ 
+     return quit;
+ }

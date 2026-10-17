@@ -1,0 +1,31 @@
+--- a/libs/vbe/src/vbe_functions.c
++++ b/libs/vbe/src/vbe_functions.c
+@@ -153,8 +153,8 @@
+ 
+         unsigned int pos = (x + y * get_xres()) * get_bytes_per_pixel();
+         
+-        memcpy((void*)((unsigned int)video_mem + pos), &color, get_bytes_per_pixel());
+-        memcpy((void*)((unsigned int)buff3 + pos), &color, get_bytes_per_pixel());
++        memcpy((uint8_t*)video_mem + pos, &color, get_bytes_per_pixel());
++        memcpy((uint8_t*)buff3 + pos, &color, get_bytes_per_pixel());
+         return 0;
+     }
+ 
+@@ -167,7 +167,7 @@
+ 
+         unsigned int pos = (x + y * get_xres()) * get_bytes_per_pixel();
+         if(color!=0x663A3A){
+-        memcpy((void*)((unsigned int)buff2 + pos), &color, get_bytes_per_pixel());}
++        memcpy((uint8_t*)buff2 + pos, &color, get_bytes_per_pixel());}
+         return 0;
+     }
+ 
+@@ -215,7 +215,7 @@
+     if (x < get_xres() || y < get_yres()){
+ 
+         unsigned int pos = (x + y * get_xres()) * get_bytes_per_pixel();
+-        memcpy((void*)((unsigned int)video_mem + pos), (void *) xmap, img.size);
++        memcpy((uint8_t*)video_mem + pos, (void *) xmap, img.size);
+         return 0;
+     }
+ 

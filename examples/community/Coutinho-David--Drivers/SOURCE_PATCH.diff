@@ -1,0 +1,59 @@
+--- a/proj/src/controllers/graphics.c
++++ b/proj/src/controllers/graphics.c
+@@ -25,7 +25,7 @@
+ static int mouse_prev_state = -1; // Mouse's own state tracker
+ 
+ xpm_image_t pixmap_list[18];
+-xpm_image_t cards_list[52];
++xpm_image_t cards_list[53];
+ xpm_image_t numbers[10];
+ xpm_image_t cursor;
+ 
+@@ -257,10 +257,7 @@
+                 uint32_t *pixel = video_mem + ((y + y_offset) * vmi.XResolution + (x + x_offset));
+                 uint32_t *src_pixel = (uint32_t*) pixmap_list[state].bytes + (y * pixmap_list[state].width + x);
+                 
+-                for (int i = 0; i < bytespp; i++)
+-                {
+-                    pixel[i] = src_pixel[i];
+-                }
++                *pixel = *src_pixel;
+                 
+                 
+             }
+@@ -318,13 +315,11 @@
+     int x_offset = 481;
+     int move = 47;
+     for (int y = 0; y < cards_list[index].height; y++) {
+-        for (int x = 0; x < cards_list[index].width - 3; x++) {
++        for (int x = 0; x < cards_list[index].width; x++) {
+             uint32_t *pixel = video_mem + ((y + y_offset) * vmi.XResolution + (x + x_offset + move * pos));
+-            uint32_t *src_pixel = (uint32_t*) cards_list[index].bytes + (y * img.width + x);
+-
+-            for (int i = 0; i < bytespp - 1; i++) {
+-                pixel[i] = src_pixel[i];
+-            }
++            uint32_t *src_pixel = (uint32_t*) cards_list[index].bytes + (y * cards_list[index].width + x);
++
++            *pixel = *src_pixel;
+         }
+     }
+    
+@@ -334,14 +329,11 @@
+     int move = 25;
+     for (int y = 0; y < numbers[number].height; y++)
+     {
+-        for (int x = 0; x < numbers[number].width -2 ; x++)
++        for (int x = 0; x < numbers[number].width ; x++)
+         {
+             uint32_t *pixel = video_mem + ((y + y_offset) * vmi.XResolution + (x + x_offset - move * pos));
+-            uint32_t *src_pixel = (uint32_t*)  numbers[number].bytes + (y *  numbers[0].width + x);
+-            for (int i = 0; i < bytespp; i++)
+-            {   
+-                pixel[i] = src_pixel[i];
+-            }
++            uint32_t *src_pixel = (uint32_t*)  numbers[number].bytes + (y *  numbers[number].width + x);
++            *pixel = *src_pixel;
+         }
+     }
+ }

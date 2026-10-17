@@ -1,0 +1,35 @@
+/* XPM */
+static const char * up1[] = {
+/* columns rows colors chars-per-pixel */
+"13 20 9 1 ",
+"  c None",
+". c #000000",
+"X c #402717",
+"o c #573A23",
+"O c #AC7B5D",
+"+ c #1D438A",
+"@ c #2C65B5",
+"# c #85868C",
+"$ c #C1AC8F",
+/* pixels */
+"    .. ....  ",
+"  ...o.Xoo.  ",
+" .XoooXoo..  ",
+" .ooooooooX. ",
+".XoooooooooX.",
+".XoooooooooX.",
+".XoooooooooX.",
+".XXoooooooXX.",
+" .XXXoooXXXX.",
+" .XXXXXXXXX. ",
+" .OXXXXXXXO. ",
+"  .OOXXXOO.  ",
+"  .oOOOOOo.  ",
+"  .ooooooo.. ",
+"  .ooooooo$$.",
+"  .XoooooX$$.",
+"  .@@++@@@.. ",
+"  .XXXoo@@.  ",
+" ##...ooo+.# ",
+"#####.ooo..##"
+};

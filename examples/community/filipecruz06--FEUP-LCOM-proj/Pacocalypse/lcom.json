@@ -39,5 +39,6 @@
     "assets": []
   },
   "description": "Explore the maze, collect dots and keep away from the ghosts.",
-  "preview": "../../../../collections/arcade/previews/pacocalypse-387c0be823e4.png"
+  "preview": "../../../../collections/arcade/previews/pacocalypse-387c0be823e4.png",
+  "archetype": "Pac-Man"
 }

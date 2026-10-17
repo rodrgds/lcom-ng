@@ -1,0 +1,129 @@
+{
+  "repository": "https://github.com/Lantaros/LCOM",
+  "revision": "56d2db8f00718f876097b67e0c2e24270ee230ed",
+  "project": "proj/src",
+  "sourceHashes": {
+    "proj/resources/0.bmp": "c97cbfbcef705335cb76d26dbbb82f7485ac57b595e5a34a8d9a61d7950fb223",
+    "proj/resources/1.bmp": "51f2a637807fef3a5c9eaf93b113bf0c90c520833b78ecea6d266459f502c206",
+    "proj/resources/2.bmp": "61871753c44470526199a71f75fa7bcbabef0c508a788a5c2c40ad1a379649ed",
+    "proj/resources/3.bmp": "54683fd5eb7ca1df4979234d42b39f9333886b8fea17af4f772e19ad58aacb71",
+    "proj/resources/4.bmp": "5b83b0cc7300ccfcfc3ae8dcc19621d0a7ed73dd7bbfbde0b6aabd36df1dcda9",
+    "proj/resources/5.bmp": "f07704e0d7d15b14d713ae71f81d488a2571c2f1b951bc31b191d3378ad506fe",
+    "proj/resources/6.bmp": "77201cbb826365b76508e0414e972d0037d817a9e8561f11b44a908978ba2ff5",
+    "proj/resources/7.bmp": "6d2b1117cbefea1f77cbced28bf34151c1e6f648c691db269a0d8910e540b473",
+    "proj/resources/8.bmp": "6516cfe07b51a9f2ff26874430e40528ca1986154a2e56142ce1b880f3e15765",
+    "proj/resources/9.bmp": "c9685e98043eefc52fd79b9ad98645bba62b2af15c0dc33a40c8a0d0803729ee",
+    "proj/resources/H.bmp": "bf0268a822dd4438ec3ebd0fd42cda3afd606d4d4a2f7cd142a8e23180e2ba97",
+    "proj/resources/P.bmp": "c9d5856e3c358adc188e80e4109c3419c7fe97940c7648bd8c2ef3dfc2edee8a",
+    "proj/resources/blue_ship_E.bmp": "3ec2dddac0c2586e833f6b5ac28dc7cc346cd0877468c772f454ee7a62f50f83",
+    "proj/resources/blue_ship_N.bmp": "2efd7722c4e324922c250e48d7d5135baf49b67159a96817d4550c7f329b5b84",
+    "proj/resources/blue_ship_NE.bmp": "818e209bdbb56576094a451fcb847a15096ad2ec73d1e1a0d6fb57c0ac9b9722",
+    "proj/resources/blue_ship_NW.bmp": "08c320efc8aa035ce13d82c5a50161b22d50268a04aac1c142d38fd829ce9be0",
+    "proj/resources/blue_ship_S.bmp": "bf46d20d5f569f15cf41ab08a41ef43a7da84dd8477f0a9901d65023aca436dd",
+    "proj/resources/blue_ship_SE.bmp": "b4d6257c95ba0bea70332e9d62a73387118edec1138539e8b57e60dd8b8677f6",
+    "proj/resources/blue_ship_SW.bmp": "9a5f0d6838f6f35cce393b300e5b6c1adfdd150733c8d88b9d3bcf505dc8e00e",
+    "proj/resources/blue_ship_W.bmp": "58946724c5d3a2330bbf7222fc56069a1f84a5ffe1f564aa693c331cb14db8bd",
+    "proj/resources/cannonball.bmp": "7f7e67362f1a5663db2f484fe74719e15448a000000cce4bd01352087f84096b",
+    "proj/resources/highscores.bmp": "45d46f6697f5c515059483e992579146707dfcc581d1e8682e3bee9fa3b1264c",
+    "proj/resources/mouse.bmp": "8c3bb199525e6909cfd70d1eef3d3a9e03f4d6447d5841a88d74257b0d16f387",
+    "proj/resources/play.bmp": "a9713c7fdb427ec567baca61e887331200a912239c41e00705b2f2f70f61f2fd",
+    "proj/resources/plunder.bmp": "158a71010552490b646c3d28d0d503691b48345d9d182bc0a5bab588beff607b",
+    "proj/resources/rock_v2.bmp": "9fde0f65cf443d6cc4a28840f10e02e656d945ee2aa7ebb9bb3e7adc545dd9b9",
+    "proj/resources/snake_E.bmp": "121fa7098c5f7a19554a8db2e499658766b61bdcf64a615a2f899e4280040a66",
+    "proj/resources/snake_N.bmp": "fafa103ec88a5060c4bbed12b5fc0661b42f6e453551c42f7935923e37bff0bc",
+    "proj/resources/snake_NE.bmp": "a48e0261d28a825b21405f07d42df7651faaa4ccca18d3da1044c3cfaf989a61",
+    "proj/resources/snake_NW.bmp": "4c639e42436771606c423134c570b9bf11895a87bc1444f7ba4002e14fed1929",
+    "proj/resources/snake_S.bmp": "1ecdcfd2117c28ec7f146d67f4de86886a829252617a0ea17550cc95601b3a45",
+    "proj/resources/snake_SE.bmp": "0a054176c92f8236103551c5058ba3cb709bed67d324a3e0abb52043b2587505",
+    "proj/resources/snake_SW.bmp": "45857d6e6ccc1e00058664e50520d3433dc4b36720a311e0439c5918f368eb2d",
+    "proj/resources/snake_W.bmp": "92bb4e7bc6e58c5b5e46fcfaa89acfde4b182f2ca57cf7f4a7eb9015bacb3bd6",
+    "proj/resources/the_big_sea_v3.bmp": "9cd5a51b4d0cda95c8d1570b4d30b077e21e1ea735f00452928440606b6f864e",
+    "proj/src/Makefile": "2c7ae2ba6608d5d79e469180d63c7d18e64dc1ead28309676aad6bca6fd264ed",
+    "proj/src/assembly.S": "10d83fa4ae59f26cd223238f9b3a5cc7f66054b2e70ba1cbb3dbe1a7285fe20b",
+    "proj/src/bitmap.c": "bdc276fe3e1e59254271e76dde1a71d7b771898fcfa5bfb40072433269c2be9e",
+    "proj/src/bitmap.h": "bdaeba4f629c6448f886012cfb9e726f3aba0e6f8e5048cd5b2e2c0081b3f225",
+    "proj/src/boat.c": "c58318cd18c02687d1111f0d3b586ab0099b3abdc2fcee1c25f3cdbaa423eea1",
+    "proj/src/boat.h": "5b74c53b90021da0c9d59c68a0c2fbbe7e882ddeafb5885d726227e97f1ffad3",
+    "proj/src/cannonball.c": "6405d068284969b41a473d72e6aefe1cedbd35558e22014df9a176312eb37655",
+    "proj/src/cannonball.h": "7019a8a10ca5f445cf1097600bd3cf7a2fb6bab90670dcf94b0bb6b45e5eb1b5",
+    "proj/src/enemy.c": "0d566984048ad885ed07eaada5761ad3ad46823cd2aa448bd8594f4058f3889b",
+    "proj/src/enemy.h": "4b2d3fa9a0aab0c7c979b8bffe8824534615c902d22b91db761b149c088aa52e",
+    "proj/src/game.c": "5c95e6902cd27e5c5d643b2d86e039adf885e9154370b5268c740c131b3f2331",
+    "proj/src/game.h": "37fe29c9da894910eda5ceee45487cc53854b41d5c36ec408791f73896d81f5e",
+    "proj/src/i8042.h": "949efdd0bf2d6b46afd0cf969e3d3e7649947e68919ac204c78e37a707b12307",
+    "proj/src/i8254.h": "89205e3994037bd811525351d50813c6d7b912b68b7e458228cac5381af10212",
+    "proj/src/kbd.c": "50eaf91f2c07dff3c8dbf41fdb4e31d2cd21497147e294990dbe972743426269",
+    "proj/src/kbd.h": "bcefd5d7ae12aa40caacb93771fba6d6dbc924b389cabdaff67c6d0e835ea9b3",
+    "proj/src/liblm.a": "97feaff69073e03eddd6e77818102b4ea1237e04de6813f9192cf263456724f5",
+    "proj/src/lmlib.h": "d8f4a94e38e0227c07fc4ed6aea7bf5c73be8d0c1d962c50acc3afea9c93d720",
+    "proj/src/mouse.c": "1abbb930cc410a7af2303f5aaf4c3773263c347349f0e66cdd8076e73522e7be",
+    "proj/src/mouse.h": "69e29700aeb411c4af2b97c0d1c87c97e88872adc16c0cef9f9691add9afac0a",
+    "proj/src/obstacle.c": "744ad29b0e9472d2cd8e2f2f90bdba0bc8a84977ac719279dec4752884e5cf0b",
+    "proj/src/obstacle.h": "95f0e9f63c384ee18f68b4614341b8edfc7bab5f4de33561ec548bc45723d6a1",
+    "proj/src/proj.c": "5af15bc665971c5bc15d9710e2f40b0b53f792c4750bfa7b851c4f3df91df767",
+    "proj/src/timer.c": "bdc79123f3798884a1efb870b7f5ba3183c5b7a2c657cb4382c90b01bb508658",
+    "proj/src/timer.h": "c14882a0daf87097dd6b79363b12efa2a6019ba0a0c5636dfd879c378557cbe6",
+    "proj/src/utilities.h": "47a10cfc6a42c9ea3fec18859022135e3b838beaa340f2468679454ebc6c612f",
+    "proj/src/vbe.c": "b7a93a34a80740860d65a2f65a62a452ee68cfe961f9a4cc2f1e4c3d1cca445b",
+    "proj/src/vbe.h": "1a44852d73c1e7c456221912c216d180b5a21e73a5677cef45497ee1773fb0f1",
+    "proj/src/video.c": "f6bcb793fa3232e5ce73c62a0d3206d501edfe2ed4c9c44ef2aeb765bafd6477",
+    "proj/src/video.h": "328ff3113bcd20874a5e43e1a2d2eabb421d1bc2188f58ee5f023d7e25ed7c8a",
+    "proj/src/video_gr.c": "e3c3465f297e4e23ce390ec914b4deaa16f6a329a311666a4edd20a0f7401c41",
+    "proj/src/video_gr.h": "a28281de165c3e1fff6f15676e88795797b34c59ccf4cc1819109a617d438eca"
+  },
+  "selection": "All selected original project C/H/Makefile/assembly and all35 original BMP assets. Other labs, generated documents and built binaries omitted.",
+  "excludedMetadata": [],
+  "license": {
+    "status": "unknown",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/bitmap.c",
+          "originalSha256": "bdc276fe3e1e59254271e76dde1a71d7b771898fcfa5bfb40072433269c2be9e",
+          "patchedSha256": "6ce9013642084c9d209b074c51ab974c27c3e7319618ceb994960128af1cf086",
+          "reason": "Draw exactly the visible row width and retain signed clipping arithmetic for wholly offscreen sprites.",
+          "verification": "Actual drawBitmap full-frame fixture overwrites row pixels/canaries; after the first endpoint correction, a wholly off-left sprite still corrupts the page via unsigned wrap. Corrected source preserves all exact visible pixels and protected surrounding storage."
+        },
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "5c95e6902cd27e5c5d643b2d86e039adf885e9154370b5268c740c131b3f2331",
+          "patchedSha256": "bf2e883c238dd1e8a54eb7321a09969407c111e9dcc25b0c797562a2c7240f33",
+          "reason": "Initialize the mouse before the first menu frame; apply each completed relative packet once at packet completion and invert PS2 Y for framebuffer coordinates.",
+          "verification": "Actual game_start with patterned heap fails before the first subscription due to uninitialized deltas/buttons. Actual packet decoder and cursor updater fail screen-Y/idle-frame expectations. Corrected source starts neutral and applies each complete relative movement once. The actual game_start event loop receives two complete mouse packets before a timer notification, retaining both movements without replay during idle frames."
+        },
+        {
+          "file": "proj/src/mouse.h",
+          "originalSha256": "69e29700aeb411c4af2b97c0d1c87c97e88872adc16c0cef9f9691add9afac0a",
+          "patchedSha256": "16f0798fbfd1a00a9bbe362f536312c99c3d1141dd1d347b0078b32f4ac8e8b6",
+          "reason": "Retain the full signed9-bit PS2 delta range instead of truncating it to char.",
+          "verification": "Actual decoder/updater literal positive255 and negative255/128 packets reach independently expected screen coordinates, without truncation; button-only packets leave position unchanged."
+        }
+      ]
+    }
+  ],
+  "buildRationale": "The original Makefile also lists assembly.S, defining ass_handler. Its only C occurrence is an unused declaration in game.c. Explicit existing build.sources lists every original C translation unit; unchanged original assembly is preserved in sourceHashes. Actual native and WASM links need no assembly symbol. No assembly rewrite or SDK change.",
+  "controlsRationale": "Original W accelerates and S slows the boat, A/D turn it by45degrees. Mouse left fires port cannons and selects the menu; right fires starboard. The original menu starts at30,30 and Play is600,600. Reserved panel preserves the complete HP display and sailing arena. No calibrated direct-pointer preset, original relative input remains available. Escape leaves the arena for the original ten-second score presentation and then exits.",
+  "artwork": {
+    "icon": "Pinned blue_ship_N.bmp enlarged nearest-neighbor on a simple blue square; only its derived icon transparency key is masked. Original BMP unchanged.",
+    "preview": "Actual current-source browser sailing screenshot, resized within640pixels."
+  },
+  "verification": {
+    "browser": "Normal touch moves menu cursor to Play, starts the arena, accelerates W, turns D, fires both original cannon sides, shows moving snake enemies and HP. Actual portrait390x844 and landscape844x390 panel screenshots reviewed. Source clock/RNG/physics/art unchanged.",
+    "ndk": "All14 actual selected/generated-entry ARM64 objects pass O2/FORTIFY2/stack-protector/format-security.",
+    "native": "Pending ROOT actual Android gameplay.",
+    "limitations": "No full survival, cannon-hit or high-score victory claim. Original score screen waits ten seconds before normal exit.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/plunder-reviewed-native/results.json",
+      "apkSha256": "a9c3999ce966c88090b1bdc49b61fad40c9c1b6e45e803f02a6217349372b0fb",
+      "demonstrated": "ROOT viewed actual Android original Play menu selection by relative touch, live blue ship/sea/rocks/moving snake enemies, HP80\u219240 damage, acceleration, visible starboard and port cannonballs, original45degree turn, and authored Escape completing its ten-second score exit and returning cleanly to the same library.",
+      "limitations": [
+        "Enemy defeat, victory and physical-phone performance are not demonstrated. Native scene captures occur after ordinary elapsed gameplay and show80/40HP, not an untouched100HP start."
+      ]
+    }
+  }
+}

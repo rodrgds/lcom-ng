@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "name": "Delete Charmander",
+  "description": "Guide Pikachu through the forest, aim at approaching enemies and fire to survive.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "overlay",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Fire / Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/bmp"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj": "proj/src"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

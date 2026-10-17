@@ -1,0 +1,120 @@
+{
+  "repository": "https://github.com/TomasM30/FEUP-LCOM",
+  "revision": "1ba2c1b81e6b857fefa7fc79480c450e19282554",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "901dd9072e3fd6ade7e681b4ab73d429b484c3944172c2a55ddbf6f2b098fef0",
+    "proj/src/Makefile": "e17ee55a1c4f6dbac46c28c4e1abf88d014c0621443d71192f13cab0197ca34f",
+    "proj/src/devices/dispatcher.c": "c394c66995469343943317bc56ccdd9d3d544539fa4cd8e0a6a8f0790057335d",
+    "proj/src/devices/dispatcher.h": "46f2d9ecd79c33300f3d195005511e29fc5339b4936742c8359df9321bfa7e36",
+    "proj/src/devices/keyboard/i8042.h": "d1de1969dd7681a18a7817ea1a5f5456fc67b574046b549d31c82833193d5343",
+    "proj/src/devices/keyboard/kbc.c": "998210834ed7a476c3c8307e61c9fa4e5346cc5a99ab32dd92c39e02c08f6e7d",
+    "proj/src/devices/keyboard/kbc.h": "729fbcb25ca78bc26b7724cc2ebb6927bd52bf8fb707ad5f71ddc29859a083d2",
+    "proj/src/devices/keyboard/key_map.h": "a2d9f38e05b12ce91801e633512001517c2ca6a91843effa7d748600536c33d1",
+    "proj/src/devices/keyboard/keyboard.c": "f9d0b2f416feb1ee5a158e929db02af945c415b555f10c536d2669a7b3100f14",
+    "proj/src/devices/keyboard/keyboard.h": "690ab4a403651538e9e8436db93151a6c8dd912a1a1644fbb8046b444773dc1e",
+    "proj/src/devices/mouse/i8042.h": "d1de1969dd7681a18a7817ea1a5f5456fc67b574046b549d31c82833193d5343",
+    "proj/src/devices/mouse/kbc.c": "998210834ed7a476c3c8307e61c9fa4e5346cc5a99ab32dd92c39e02c08f6e7d",
+    "proj/src/devices/mouse/kbc.h": "729fbcb25ca78bc26b7724cc2ebb6927bd52bf8fb707ad5f71ddc29859a083d2",
+    "proj/src/devices/mouse/mouse.c": "6d86f767b2b9c5c5b0a9fce9a46ae9ff97b27afb7a178d3f4021e92fb16cbcfa",
+    "proj/src/devices/mouse/mouse.h": "8324f4a8f2b2076390762eca5a78e43283d7c37c0161f461ee46e5e40c8f475b",
+    "proj/src/devices/rtc/rtc.c": "d5b1dd46b2976052aca8ff90846ec59ef7e915d7dd2090803f63e21382cf4fa3",
+    "proj/src/devices/rtc/rtc.h": "09aeefc2ecbf6e15d66162804d8eb3cb635cd682859bf2433e1ed0dff6057f18",
+    "proj/src/devices/timer/i8254.h": "238e2dbc1b695f1aa219d5fd78bf7fb41c7f82597d8da27aee1c77a676ae1af5",
+    "proj/src/devices/timer/timer.c": "5e1ac4e176ae7323663aa25f3dc720321118f1277a508e80bbfab6140563ea88",
+    "proj/src/devices/timer/timer.h": "c475494b79dece4245b34ba8e24e051a67a22268c4768cfb75024310247fe54a",
+    "proj/src/devices/utils.c": "b14b77d1c816e719071ab4c9a2125d7ff3ccd3e62d4392d7c3f6a1974d0e849c",
+    "proj/src/devices/video/vbe.h": "bd881a3dbfafd91d118098517b36b3dbbc5b117c6fcad9ee6a485f1d6b0a21aa",
+    "proj/src/devices/video/video.c": "84e17328c7d0ab050b769e96e5b91090f345204e075e0745eb82c55815d1a795",
+    "proj/src/devices/video/video.h": "46bc0222b6da96da2e0f99830851cbb2ff0c24e91005367bb1cc90d8771c8f62",
+    "proj/src/game/board.h": "dee2f062ec2057b1259cf170840129c3fb503d37cae4887835f2ef4e37d4c7b5",
+    "proj/src/game/chess.c": "363d480e04b895b3d59e1377edb983c0e65ea9bed394afed516a1fc90b184550",
+    "proj/src/game/chess.h": "3c3315055c675cbe9f2b9a0795d5c35906b73edd7dc2a339be2e8931a62ad1e7",
+    "proj/src/game/clock.c": "8deb0cba4dfc5de8b5d0b187a82eaa5aae9b982ad842775eb33f73691e47ec82",
+    "proj/src/game/clock.h": "c471e38433213db609c5d1f339ac5537094d2dcf02b3d85a5beebde2f4f01e1a",
+    "proj/src/game/data_types.h": "fa9d875967d5647517b4d1e9ba0792bd113cefbee03957d72e61346ec43b5733",
+    "proj/src/game/game.c": "1a91e0aa3ed691a0dc9db052c970ca6a6089d70a6eda3029495d7f445602bc93",
+    "proj/src/game/game.h": "fe14937cad7d3f0caf69f70ed212737d94127135fca9268ec22102e394c200f1",
+    "proj/src/game/menu.c": "dd913061f87641be31ea89a7e0f161fd10a848a8eb31effc3723a880c8c57d70",
+    "proj/src/game/menu.h": "7a99e0aa0b19e60c02fb5722d9fb6667ce352efc8ba221878547bc6b24a118ec",
+    "proj/src/imgs/background.xpm": "e03a6137b14f92bdb6692a6876aa2b042ad6a3848240cc47aaf838b9f54d9560",
+    "proj/src/imgs/black_wins.xpm": "8693de45433e981979364b59d00fc89ea118a1765c9b7beb6674a48677ed6bfd",
+    "proj/src/imgs/board.xpm": "34e1dbd4c8d87d3423ca1aa775f5cc824953d42b7ec68f3373ac28aa772ad36c",
+    "proj/src/imgs/board_dark.xpm": "9d918d11e780900cf48f9fcf8915c39c2ad8a98016c9a0f19cacdb8cb1dc63d8",
+    "proj/src/imgs/buttons/quit.xpm": "2e8d25254456407967c0dced4a8e06335a86bd771af64784920936a22a2396a0",
+    "proj/src/imgs/buttons/return.xpm": "c9cf31f8695c36bb96ef740403d29bb167e06e426fafc4e8dc234d85374b5b0a",
+    "proj/src/imgs/buttons/single_machine.xpm": "49096658851194c2c3912ea19e00b21f9fa45dd41bde4cee6a253ea9d9e7bf67",
+    "proj/src/imgs/buttons/undo.xpm": "27998ac72af70ce2db754595e02775cb86a629a571dff472cc95e1819c4f9149",
+    "proj/src/imgs/chars/numbers.xpm": "ca77587482f2fcb3fd8bb07e408a435f611b3327494df53587484fef9144f90e",
+    "proj/src/imgs/clock.xpm": "61bb16c62ba7499b80da9708f5aa3485263f9b7ea861fc23439664f595881a7d",
+    "proj/src/imgs/cursor.xpm": "d963b8f88cc42b20efbdcdf021e95a897ea5cd93943b9c0688b01cd59c1c451a",
+    "proj/src/imgs/logo.xpm": "6e3a4cd994f4cab6e3d42fdee33452634e2c3edf3d51f8892835c8febde3642d",
+    "proj/src/imgs/pieces/bB.xpm": "2e7165f2375c69aea4c74463efc14ba9c3ac3e24a542c6078ccbe96a38394c81",
+    "proj/src/imgs/pieces/bK.xpm": "5fa267f4957d410a9e4b47f00dc98a4c4a68ab8ba6410cff3e07fe64937254ef",
+    "proj/src/imgs/pieces/bN.xpm": "36213656a838fcf1dbc84b6ca02cdf0e079f2c58fd07c41976d659c4624d62f3",
+    "proj/src/imgs/pieces/bP.xpm": "9c25dab809204772a0106cfeccd4304eead64925cd690c23761e2fd3fb77d133",
+    "proj/src/imgs/pieces/bQ.xpm": "54bc2642a66c699e96e921d25b46f31e79df75d562d4557bd5f0168fd4e6d8e9",
+    "proj/src/imgs/pieces/bR.xpm": "6d54b7803f6080d7696031f8cc7e02ca95b6ac21b3b35dbf2cd8081811cf283e",
+    "proj/src/imgs/pieces/wB.xpm": "14ed87eba3a0d946091f9008aefda1ed1255798f2e9195dde5fdb1cc32dd5f4e",
+    "proj/src/imgs/pieces/wK.xpm": "9c0f987d60974cdb5a6be892004ab38e7dd72814125ced4192ba06590815e48f",
+    "proj/src/imgs/pieces/wN.xpm": "9980c20229f3649befda24d1933672c778a022f8adea67c6774fab560b1506e2",
+    "proj/src/imgs/pieces/wP.xpm": "7ad082bfb5a572a0affd223cf91cb4cd170c73d4590d4db06fe15f0f49dcb8ca",
+    "proj/src/imgs/pieces/wQ.xpm": "908dbae5e4ba2804a097a5fe2004bc2acdbfe9c1f696973e9cf2b26b7d79f7dd",
+    "proj/src/imgs/pieces/wR.xpm": "7986ae2adfa829516bae5069e1b788e0e1eabcba878b1e1b29736629710e4323",
+    "proj/src/imgs/selected.xpm": "b655074787a728ed514251a345e78dec5ded974d261c2656a8d99eaaf44f4e5a",
+    "proj/src/imgs/white_wins.xpm": "0dba575d06b458ff01d20e9961d8fee6e31b0510b87a7616af71fe1ec5caa010",
+    "proj/src/proj.c": "db75f02bd067d0b86ebe1fb55ea25a2e41cfe4b7a080a8154b59835f88f9a249",
+    "proj/src/sprites/sprite.c": "11472353835faa3ebcc2b0d39852af3b654f7878cbd0bb9210dc25066deb4863",
+    "proj/src/sprites/sprite.h": "8649ae19b6d7b42b0840071e8e8e5862f843091eacfcef93de15a19dd0e4b499"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS/IDE/OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a flat palette",
+    "source": "proj/src/imgs/pieces/wK.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "6ad6cfeb483e4c9e18ac3f66c649b21f4f26b99df2a97f6ee8214abf26a7c54e",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "5059db7e150f3b2d1dc1f53451cbd4ff575e307841a6be83d97a534e1cc2929f",
+      "kind": "Original browser gameplay capture"
+    }
+  ],
+  "verification": {
+    "browser": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay11-final.log",
+    "owningRegressions": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+    "nativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/TomasM30--FEUP-LCOM.native11-strict.log",
+    "android": "Pending independent parent-owned actual Android gameplay.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "445120d85fbc7d9e7be67654d2c22a383609aa69f134be9ce6844aa4c3b9ee3e",
+      "evidence": "build/arcade-100/a52-native-calibrated/results.json",
+      "demonstrated": [
+        "Original chess board and two5minuteclocks.",
+        "Whitepawn E2→E4.",
+        "Blackpawn E7→E5 and both clocks remain active."
+      ],
+      "limitations": [
+        "Representative local ARM64 touchscreen gameplay only; complete campaigns and physical-device performance remain untested."
+      ]
+    }
+  }
+}

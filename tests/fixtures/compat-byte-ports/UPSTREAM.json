@@ -1,0 +1,27 @@
+{
+  "repository": "https://github.com/JPMMaia/lcom",
+  "revision": "726b95eb2e3e42346d17e6262347ee6ecd2b42fc",
+  "description": "The four private port functions in main.c are unchanged excerpts from the pinned original source. The surrounding device assertions and side-effect expressions are SDK regression code.",
+  "unchangedFunctions": [
+    {
+      "function": "RTCReadReg",
+      "source": "proj/src/RTCClass.c",
+      "sha256": "5ecbec63689def930da61ed8edb6c0d77ce69992acd638932fb288f25abaeb56"
+    },
+    {
+      "function": "RTCWriteReg",
+      "source": "proj/src/RTCClass.c",
+      "sha256": "ddb1379846118de8b8e311c3a15f0b70f92d7ae0fa3d787e8b0043ea8efe0b89"
+    },
+    {
+      "function": "SerialPortReadReg",
+      "source": "proj/src/SerialPortClass.c",
+      "sha256": "4c63794343076f82a1c0d068a4a6184bb14284da1582797a754f37bac4a4b6e3"
+    },
+    {
+      "function": "SerialPortWriteReg",
+      "source": "proj/src/SerialPortClass.c",
+      "sha256": "f7c16a219a0548c1bec6fb19bd63f8187e32fb0b985b481da3956412a37e1f33"
+    }
+  ]
+}

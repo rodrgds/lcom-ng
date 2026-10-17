@@ -16,6 +16,7 @@ import android.graphics.drawable.StateListDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
@@ -36,6 +37,10 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import android.graphics.Rect;
+import android.text.TextUtils;
 import java.util.Locale;
 import java.util.Random;
 
@@ -57,7 +62,7 @@ public final class CollectionActivity extends Activity {
     private boolean restorePending, resumed;
 
     private static final class Game {
-        String id, name;
+        String id, name, archetype;
         Bitmap icon;
         View tile;
     }
@@ -110,6 +115,7 @@ public final class CollectionActivity extends Activity {
                     Game game = new Game();
                     game.id = entry.getString("id");
                     game.name = entry.getString("name");
+                    game.archetype = entry.isNull("archetype") ? "" : entry.optString("archetype", "");
                     if (!entry.isNull("icon")) {
                         try (InputStream input = getAssets().open(entry.getString("icon"))) {
                             BitmapFactory.Options options = new BitmapFactory.Options();
@@ -230,6 +236,8 @@ public final class CollectionActivity extends Activity {
         rowSize.leftMargin = compactHeader ? dp(24) : 0;
         header.addView(searchRow, rowSize);
         search = new EditText(this);
+        search.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_FILTER
+            | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         search.setSingleLine(true);
         search.setTextSize(16);
         search.setTextColor(INK);
@@ -338,54 +346,108 @@ public final class CollectionActivity extends Activity {
         for (Game game : games) game.tile = null;
         ArrayList<Game> matches = matchingGames();
         int iconSize = Math.max(dp(64), (getResources().getDisplayMetrics().widthPixels - dp(24) - 2 * sideInset) / columns - dp(12));
-        for (Game game : matches) {
-            LinearLayout tile = new LinearLayout(this);
-            game.tile = tile;
-            tile.setOrientation(LinearLayout.VERTICAL);
-            tile.setBackground(interactive(SURFACE));
-            tile.setClipToOutline(true);
-            tile.setClickable(true);
-            tile.setFocusable(true);
-            tile.setContentDescription("Play " + game.name);
-            tile.setOnClickListener(view -> launch(game));
-            GridLayout.LayoutParams cell = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL), GridLayout.spec(GridLayout.UNDEFINED, 1f));
-            cell.width = 0;
-            cell.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-            cell.setMargins(dp(4), dp(4), dp(4), dp(8));
-            grid.addView(tile, cell);
-            if (game.icon != null) {
-                ImageView artwork = new ImageView(this);
-                artwork.setScaleType(ImageView.ScaleType.FIT_CENTER);
-                artwork.setImageBitmap(game.icon);
-                artwork.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-                tile.addView(artwork, new LinearLayout.LayoutParams(-1, iconSize));
-            } else {
-                TextView initial = text(game.name.isEmpty() ? "?" : game.name.substring(0, 1).toUpperCase(Locale.ROOT), 40, ACCENT);
-                initial.setGravity(Gravity.CENTER);
-                initial.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-                tile.addView(initial, new LinearLayout.LayoutParams(-1, iconSize));
-            }
-            TextView label = text(game.name, 14, INK);
-            label.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-            label.setMinLines(2);
-            label.setPadding(dp(12), dp(10), dp(12), dp(12));
-            label.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-            tile.addView(label, new LinearLayout.LayoutParams(-1, -2));
+        int tileHeight = iconSize + dp(64 * Math.max(1f, getResources().getConfiguration().fontScale));
+        LinkedHashMap<String, ArrayList<Game>> families = new LinkedHashMap<>();
+        if (columns >= 2) for (Game game : matches) if (!game.archetype.isEmpty()) {
+            if (!families.containsKey(game.archetype)) families.put(game.archetype, new ArrayList<>());
+            families.get(game.archetype).add(game);
         }
-        int blanks = (columns - matches.size() % columns) % columns;
-        for (int index = 0; index < blanks; index++) {
-            View blank = new View(this);
-            GridLayout.LayoutParams cell = new GridLayout.LayoutParams(GridLayout.spec(GridLayout.UNDEFINED, GridLayout.FILL), GridLayout.spec(GridLayout.UNDEFINED, 1f));
-            cell.width = 0;
-            cell.height = 0;
-            cell.setMargins(dp(4), 0, dp(4), 0);
-            grid.addView(blank, cell);
+        LinkedHashMap<Game, ArrayList<Game>> clusters = new LinkedHashMap<>();
+        HashSet<Game> grouped = new HashSet<>();
+        for (ArrayList<Game> family : families.values()) for (int start = 0; start + 9 <= family.size(); start += 9) {
+            ArrayList<Game> members = new ArrayList<>(family.subList(start, start + 9));
+            clusters.put(members.get(0), members);
+            grouped.addAll(members);
+        }
+        ArrayList<boolean[]> occupied = new ArrayList<>();
+        int availableWidth = getResources().getDisplayMetrics().widthPixels - dp(24) - 2 * sideInset;
+        for (Game game : matches) {
+            ArrayList<Game> members = clusters.get(game);
+            if (grouped.contains(game) && members == null) continue;
+            int span = members == null ? 1 : 2;
+            int row = 0, column = 0;
+            boolean found = false;
+            while (!found) {
+                while (occupied.size() < row + span) occupied.add(new boolean[columns]);
+                for (column = 0; column + span <= columns; column++) {
+                    boolean free = true;
+                    for (int y = row; y < row + span; y++) for (int x = column; x < column + span; x++)
+                        if (occupied.get(y)[x]) free = false;
+                    if (free) { found = true; break; }
+                }
+                if (!found) row++;
+            }
+            for (int y = row; y < row + span; y++) for (int x = column; x < column + span; x++) occupied.get(y)[x] = true;
+            int blockWidth = availableWidth * span / columns - dp(8);
+            int blockHeight = (tileHeight + dp(8)) * span - dp(8);
+            View block;
+            if (members == null) block = gameTile(game, iconSize, false);
+            else {
+                GridLayout cluster = new GridLayout(this);
+                cluster.setColumnCount(3);
+                cluster.setRowCount(3);
+                int smallHeight = (blockHeight - dp(16)) / 3;
+                int smallIcon = Math.max(dp(24), smallHeight - dp(48 * Math.max(1f, getResources().getConfiguration().fontScale)));
+                for (int index = 0; index < members.size(); index++) {
+                    GridLayout.LayoutParams cell = new GridLayout.LayoutParams(GridLayout.spec(index / 3), GridLayout.spec(index % 3));
+                    cell.width = (blockWidth - dp(16)) / 3;
+                    cell.height = smallHeight;
+                    cell.setMargins(0, 0, index % 3 < 2 ? dp(8) : 0, index / 3 < 2 ? dp(8) : 0);
+                    cluster.addView(gameTile(members.get(index), smallIcon, true), cell);
+                }
+                block = cluster;
+            }
+            GridLayout.LayoutParams cell = new GridLayout.LayoutParams(GridLayout.spec(row, span, GridLayout.FILL), GridLayout.spec(column, span, GridLayout.FILL));
+            cell.width = blockWidth;
+            cell.height = blockHeight;
+            cell.setMargins(dp(4), dp(4), dp(4), dp(4));
+            grid.addView(block, cell);
         }
         empty.setVisibility(matches.isEmpty() ? View.VISIBLE : View.GONE);
         summary.setText(query.trim().isEmpty() ? games.size() + " games" : matches.size() + " of " + games.size() + " games");
         clear.setVisibility(query.isEmpty() ? View.GONE : View.VISIBLE);
         surprise.setEnabled(!matches.isEmpty());
         surprise.setAlpha(matches.isEmpty() ? .4f : 1f);
+    }
+
+    private View gameTile(Game game, int iconSize, boolean compact) {
+        LinearLayout tile = new LinearLayout(this);
+        game.tile = tile;
+        tile.setOrientation(LinearLayout.VERTICAL);
+        tile.setBackground(interactive(SURFACE));
+        tile.setClipToOutline(true);
+        tile.setClickable(true);
+        tile.setFocusable(true);
+        tile.setContentDescription("Play " + game.name);
+        tile.setTooltipText(game.name);
+        tile.setOnClickListener(view -> launch(game));
+        if (game.icon != null) {
+            ImageView artwork = new ImageView(this);
+            artwork.setScaleType(ImageView.ScaleType.FIT_CENTER);
+            artwork.setImageBitmap(game.icon);
+            artwork.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+            tile.addView(artwork, new LinearLayout.LayoutParams(-1, iconSize));
+        } else {
+            TextView initial = text(game.name.isEmpty() ? "?" : game.name.substring(0, 1).toUpperCase(Locale.ROOT), compact ? 28 : 40, ACCENT);
+            initial.setGravity(Gravity.CENTER);
+            initial.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+            tile.addView(initial, new LinearLayout.LayoutParams(-1, iconSize));
+        }
+        TextView label = text(game.name, compact ? 12 : 14, INK);
+        label.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        label.setMinLines(2);
+        label.setMaxLines(2);
+        label.setEllipsize(TextUtils.TruncateAt.END);
+        label.setPadding(dp(compact ? 6 : 12), dp(compact ? 4 : 10), dp(compact ? 6 : 12), dp(8));
+        label.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        tile.addView(label, new LinearLayout.LayoutParams(-1, -2));
+        return tile;
+    }
+
+    private int tileTop(Game game) {
+        Rect bounds = new Rect(0, 0, game.tile.getWidth(), game.tile.getHeight());
+        grid.offsetDescendantRectToMyCoords(game.tile, bounds);
+        return grid.getTop() + bounds.top;
     }
 
     private int columnCount() {
@@ -406,7 +468,7 @@ public final class CollectionActivity extends Activity {
         int viewportTop = scroll.getScrollY();
         for (Game game : games) {
             if (game.tile == null || game.tile.getHeight() == 0) continue;
-            int top = grid.getTop() + game.tile.getTop();
+            int top = tileTop(game);
             if (top + game.tile.getHeight() <= viewportTop) continue;
             anchorId = game.id;
             anchorOffset = top - viewportTop;
@@ -423,7 +485,7 @@ public final class CollectionActivity extends Activity {
                 scroll.getViewTreeObserver().removeOnPreDrawListener(this);
                 restorePending = false;
                 for (Game game : games) if (game.id.equals(anchorId) && game.tile != null) {
-                    int top = grid.getTop() + game.tile.getTop();
+                    int top = tileTop(game);
                     int offset = anchorOffset < 0 && anchorHeight > 0
                         ? Math.round((float) anchorOffset * game.tile.getHeight() / anchorHeight) : anchorOffset;
                     scroll.scrollTo(0, top - offset);

@@ -13,6 +13,7 @@
 namespace lcom {
 
 struct PairRuntimeOptions {
+  MachineConfig machine_config;
   std::vector<std::string> left_program;
   std::vector<std::string> right_program;
   std::string left_script_path;
@@ -40,6 +41,7 @@ public:
 
 private:
   struct Slot {
+    explicit Slot(MachineConfig config = {}) : machine(config) {}
     std::string name;
     std::vector<std::string> program;
     std::string script_path;

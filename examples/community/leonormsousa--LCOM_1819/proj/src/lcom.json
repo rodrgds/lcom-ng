@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "name": "Whack-a-Trump",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [],
+      "layout": "overlay",
+      "pointer": "drag",
+      "tapDuration": 80,
+      "actions": [
+        {
+          "label": "Menu up",
+          "key": "UP",
+          "position": "top-left"
+        },
+        {
+          "label": "Menu down",
+          "key": "DOWN",
+          "position": "top-left"
+        },
+        {
+          "label": "Confirm",
+          "key": "ENTER",
+          "position": "top-right"
+        },
+        {
+          "label": "Pause",
+          "key": "P",
+          "position": "top-right"
+        },
+        {
+          "label": "Back",
+          "key": "ESC",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [],
+    "arguments": [
+      "1"
+    ]
+  },
+  "archetype": "Whack-a-Mole",
+  "description": "Use Menu down and Confirm to choose Start Game, Singleplayer and Classic. Drag to aim and swat the rising figures.",
+  "preview": "../../../../../collections/arcade/previews/leonormsousa-lcom-1819-7c210c5b0789.png",
+  "icon": "icon.png"
+}

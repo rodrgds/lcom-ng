@@ -1,0 +1,113 @@
+{
+  "repository": "https://github.com/JPMMaia/lcom",
+  "revision": "726b95eb2e3e42346d17e6262347ee6ecd2b42fc",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "e9a208de132ec7e662faaea5b023615b4da798af7ed5e741a0987e8e7716fcf8",
+    "proj/src/ClockClass.c": "c60963881a6b44c4710bf5cc6405e7f93aaac81811e562d221a9d8cd4c1e3fd8",
+    "proj/src/ClockClass.h": "635e80884f84db8ab044207e3f24c0b0dbe04ca03d6953be029d3c7407f5c9c1",
+    "proj/src/CoordClass.c": "0696249eb0ce67710fb6848142efd4546567a8175675034fbf591d3b2d81ebfe",
+    "proj/src/CoordClass.h": "5cab9b0b3cc7462130dabe597a6fdace3ee3ea276c9ef1a26d49f5c3e4835c1a",
+    "proj/src/CoordStruct.h": "4ce6c3e5d1099514cbfd45a9502d696a05e1e9bc1685e3ed8925771a12fa7e77",
+    "proj/src/DispatcherClass.c": "eef173fe85dc57ead7108aae90d8705441e2e0d6411a10405b3612279d375f10",
+    "proj/src/DispatcherClass.h": "017ed16fa830d351bb71c4869e1397e65b568491944d09faf8cea7df85b2677d",
+    "proj/src/GameLogicClass.c": "4e79e3bc621270dc46c01c98fcc94eeeb4edb165a70775046b736bd9e5d002c4",
+    "proj/src/GameLogicClass.h": "4b2fbcdca1ce74c50fa4700c4d550dc3e14497e392127aa584954163a703a074",
+    "proj/src/GraphicsClass.c": "37a5bef9e6caa8f049649dbd0f405bd09da910aac1150e04031051df07684e12",
+    "proj/src/GraphicsClass.h": "1c47b0f24ca19b171826616b0135d002426b0543bf92612469e5983ff4bd39f1",
+    "proj/src/InputClass.c": "2206e616e535eca5791df262762bd35fd404013b9ffa82628e69e147050f2092",
+    "proj/src/InputClass.h": "90f8b9d94b7e4d240b925453b017655b3f17f349b94f4c32e2965299f5670601",
+    "proj/src/KeyboardClass.c": "7b07316010316cb2eddd5f21196f87ff811f82db5f2c2ec8ba1e1c4456cac529",
+    "proj/src/KeyboardClass.h": "2dfa3a8f52f1dfdf524d2f18e05ca2b5a45d4f0de151297ab9b4c096da804b8d",
+    "proj/src/ListClass.c": "ca7834f1af33efc09ec4b5821f11042fda90b1e93701b87c770acc64d93dd774",
+    "proj/src/ListClass.h": "9a3610eedc92c62357ab2d417ac26177cacca5919b4c023c195832349eae7351",
+    "proj/src/MenuClass.c": "198e818ca473f4381b106bf2da2a571ef474cba25951c6fb4848603fab581db5",
+    "proj/src/MenuClass.h": "3202a18c137cacf7fbd702dd2c7b29e93808ace989d4933b6d9f63588cf789e7",
+    "proj/src/MenuSprites.h": "0a21c45b2a315a6903a3b08561d23c85cf1bf30dec5e6bcc420c33ebf351c97e",
+    "proj/src/MouseClass.c": "da273c98986085d0309c18ff417ebf18409fcdf1703066661d275ce72efe9492",
+    "proj/src/MouseClass.h": "760aab0e6b4b8bc0fa554df4b51c1531da3afc4a28e5c081b14397ccd51b3738",
+    "proj/src/RTCClass.c": "a49ec93d1d16fd58d40a90349d6e88a4227739241acf757c2e85c69e3d96827c",
+    "proj/src/RTCClass.h": "6f5dc692ba8eba4ec3b8a0088ee2df3fa05dc05540bca6cf13c8517d782b2886",
+    "proj/src/SerialPortClass.c": "e33b05f92f5081709fe2eb03e96e7c8cb7e049c339ad00a5ce54d9dba2c1e570",
+    "proj/src/SerialPortClass.h": "7bb086589de001778aaeaf86a1813f68da0e9fbeb555e35ed0fea89395b256f8",
+    "proj/src/SpriteClass.c": "f4a6fdb4820ae187bc1411acb66e79c2e9972a80c3361915fe8899c3500471a1",
+    "proj/src/SpriteClass.h": "1631d9e3f7305fe66134b22250146572646d93b985657db9d75795ecc58e891c",
+    "proj/src/Sprites.c": "8e78234007080760f6bc94edbbdf4d74f97ff29e514c6ae71f343148efac2aef",
+    "proj/src/Sprites.h": "bf3f7057c2dd43c9024b9fde49ebc66c612ad38463ab51cfe972acffe93023c8",
+    "proj/src/SystemClass.c": "4a1b839f4a3d2d734ed07175212706bf007d4bb191e56942979df14050b183d1",
+    "proj/src/SystemClass.h": "f30beaff29b78b66273900268ce89eee4766486771fdf1bf724c6481948b0def",
+    "proj/src/TimerClass.c": "b52673cb2beac6c932e8ce8d35b09f07bc72119d56cb36345813a000052e7690",
+    "proj/src/TimerClass.h": "9b6226f926e4e93331a4c57f8b6e28c16f5a05857bc14cc0bd0c7640b4bb76ce",
+    "proj/src/VBEClass.c": "7d3ce8cdff224cd28ebf0e6e5a61447054e15f3a7cf59a42829b384afc657f09",
+    "proj/src/VBEClass.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/VBEModeInfoStruct.h": "e6100c5509872d6688adf2e3d3450dd3a864357c29446a7489432c6ce69ec5c9",
+    "proj/src/WallsClass.c": "ff635867707b4f0d10ea629b9bb18acbb1013f2ed671ef07a28eaaf6d7ab1501",
+    "proj/src/WallsClass.h": "2e0e3e1415de064d76d599f3c30d23d19ecb9cc65e375883f0db99dd5d7bf9b7",
+    "proj/src/boolType.h": "48457464d3bfcdb65de2c6769b195ba1cdc747d7c5cd584eb6a5257612a44c43",
+    "proj/src/lmlib.h": "39266674d6e78989c967cd54b2780b0b6b673e595be1ddca927b773074dea5b2",
+    "proj/src/main.c": "00b7922444b07fdca734975eb6dc789d6d1abc8ed803d48261dd2a8b56f8d88b",
+    "proj/src/makefile": "53e77ba2db3cf2f26fdb0015c146d6cb161dcfc1c743ef660e56fdebbbcd6705",
+    "proj/src/numbers.h": "22d2c4e21fc5997f2bb12204c2bcbfc516eca0d3045dfb7242ed1c5771eb73b2"
+  },
+  "selection": "Pinned original complete selected project C/H/Makefile and embedded authored XPM artwork plus README. Unused labs/docs/binaries omitted.",
+  "excludedMetadata": [],
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/MouseClass.c",
+          "originalSha256": "da273c98986085d0309c18ff417ebf18409fcdf1703066661d275ce72efe9492",
+          "patchedSha256": "d29877d94af32d55da5f38e37265626f2c0e19ff437e33da6c9833c2ffce56f3",
+          "reason": "Initialize all packet/motion/button state before the first IRQ, and expose movement to InputHandleMouseInt only after a complete new three-byte packet.",
+          "verification": "Original patterned allocation fails count/delta initialization, and original actual InputClass+MouseClass replays old delta on partial bytes. Both original RED become GREEN with zeroed allocation and complete-packet gating."
+        },
+        {
+          "file": "proj/src/MenuClass.c",
+          "originalSha256": "198e818ca473f4381b106bf2da2a571ef474cba25951c6fb4848603fab581db5",
+          "patchedSha256": "435f5eff679c9155a55712ca279d830574bd68572a3556ec5fbacc9e04340cf3",
+          "reason": "Return the declared boolean success after initializing the original menu.",
+          "verification": "Original actual owning unit fails strict return-type compilation; corrected valid initialization returns true and sprite initialization failure returns false."
+        },
+        {
+          "file": "proj/src/RTCClass.c",
+          "originalSha256": "a49ec93d1d16fd58d40a90349d6e88a4227739241acf757c2e85c69e3d96827c",
+          "patchedSha256": "730a51b2ba3cfa2345d508f3fd36f8b77f54ee7f64dce495a47137a1ba727749",
+          "reason": "Filter latched RTC causes by their enabled B-register bits; acknowledge C once and return an explicit no-cause event for spurious notifications.",
+          "verification": "Actual source owner originally prioritizes disabled PF over enabled UF for C0xd0/B_UIE, freezing the60second countdown. Corrected UIE/PIE/AIE selection and none cases pass; real browser countdown60\u219256 and wall area48% are visible. Original volatile byte IN/OUT templates remain unchanged."
+        },
+        {
+          "file": "proj/src/RTCClass.h",
+          "originalSha256": "6f5dc692ba8eba4ec3b8a0088ee2df3fa05dc05540bca6cf13c8517d782b2886",
+          "patchedSha256": "a3cda8434b442235755044c82a102f05bd6c7ea46dd92ba1e6b5b55edf55c98c",
+          "reason": "Declare a no-cause RTC result while preserving the original three event numbers.",
+          "verification": "Actual source handler returns rtc_none(-1) when no enabled cause is pending. Existing alarm0/periodic1/update-ended2 remain unchanged."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original keyboard1 starts the menu selection. Relative mouse starts30,30 with unit signed deltas; move470,250 to500,280. Hold Draw and move vertically to choose opposing wall directions, then release to build. Mouse pad permits the same operation with two touches. Reserved panel keeps the full arena visible. No direct-pointer calibration or sensitivity workaround. Escape returns to the original menu;2 exits normally.",
+  "artwork": {
+    "icon": "SVG using original green walls, dark-blue balls and red cursor geometry, rasterized to square512PNG for launcher compatibility.",
+    "preview": "Actual final-source browser wall gameplay canvas resized640x480."
+  },
+  "verification": {
+    "browser": "Ordinary touchscreen1/relative movement/heldDraw plus second-finger gesture builds an opposing wall. Portrait and landscape UI reviewed, area48% and countdown60\u219256 visible; no page errors.",
+    "ndk": "All17 actual ARM64 selected-source/generated-context objects passO2/FORTIFY2/stack-protector/format-security with original byte-port templates lowered by the shared compiler bridge.",
+    "native": "Pending ROOT Android gameplay.",
+    "limitations": "No claim of completed10percent win or every60second end; native not yet qualified.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/walls-reviewed-native/results.json",
+      "apkSha256": "82df6ac1830030de0f6ba87fff4ada4fc2e3790f2617b802ca3291d11d751f2f",
+      "demonstrated": "Root viewed normal native Start, unit relative movement and simultaneous Draw/direction, then released to build a full original vertical green wall. Both reduced region values show48 and countdown decreases to54; clean Home verified.",
+      "limitations": [
+        "One completed opposing wall and region update verified. Original10percent goal, full60second game and all winning/losing paths are not claimed. Earlier slower input trial ended through original loss0 and is retained."
+      ]
+    }
+  }
+}

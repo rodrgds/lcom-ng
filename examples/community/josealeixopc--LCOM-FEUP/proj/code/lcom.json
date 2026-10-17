@@ -1,0 +1,37 @@
+{
+  "name": "Daedalus Maze",
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "images"
+    ],
+    "pathAliases": {
+      "/home/lcom/lcom1516-t2g03/proj": "."
+    }
+  },
+  "mobile": {
+    "fullscreen": false,
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "off",
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "style": "dpad",
+          "side": "left"
+        }
+      ]
+    }
+  },
+  "description": "Explore two dark mazes with a small field of view and guide the original character to each green exit.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

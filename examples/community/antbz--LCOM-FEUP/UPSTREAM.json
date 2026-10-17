@@ -1,0 +1,115 @@
+{
+  "repository": "https://github.com/antbz/LCOM-FEUP",
+  "commit": "d66c8a4ab193fb9dbe976b352300be811adda79a",
+  "project": "proj/src",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
+  "sourceChanges": [],
+  "sha256": {
+    "README.md": "f736d304331c67131606e21ad9718c42d469e67c2950de59b48db98b71862b8d",
+    "proj/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/Makefile": "6dccd87fa56bb3fb1b06e1a0e3a96e5d4369b4e3cdbc70cff723833226b6e5af",
+    "proj/src/assets/backgrounds/background.xpm": "6d896466db1ab87b8789074c943b25ef715984845857e0ee163b20b0a5174a4c",
+    "proj/src/assets/backgrounds/helpscreen_1.xpm": "1840a0df15c0334ece52978d5688afc0c58658b9946100c19cfb3151c78213c2",
+    "proj/src/assets/backgrounds/helpscreen_2.xpm": "228ac28ec904497aae454d6bc2ed059e941d2b95369a9f7c11b0453d599dfb87",
+    "proj/src/assets/backgrounds/menu_background.xpm": "1d0e50aa5504335c347805fcd6a43527b9de5f17a031415db6a0c6794117ea73",
+    "proj/src/assets/backgrounds/sp_end_background.xpm": "b26aaaf048aba2774382b104ceda98d9b41b8309e8a8fb0d028673aa57000a77",
+    "proj/src/assets/digits/eight.xpm": "1ec6656da8a40e709ce34b9bf26ec7f4782a06cbfe9d2fb3c7ead3f1ecccb1a1",
+    "proj/src/assets/digits/five.xpm": "08e961e80d78d6a14b4d501a031be2d590ccc782b8b11b3e821596915462d559",
+    "proj/src/assets/digits/four.xpm": "cb30c7ac891b4acddb5d9aa075ad532ebac5b2ebe747f55185127041fbd45cfd",
+    "proj/src/assets/digits/nine.xpm": "1f9752dd7c73f38b547eb5823140378626a9f6fcc21106278601141118ac734e",
+    "proj/src/assets/digits/one.xpm": "a7a76e7c9ef6ce2fba70fee36f4b86694de5ef307b93cdc202057edca97bc65c",
+    "proj/src/assets/digits/seven.xpm": "bd5753fb7d821bbfbd2d93acc7c60bb33c0658735533a7f3a1212c6eb47107d5",
+    "proj/src/assets/digits/six.xpm": "93ea5cd301b8e30908e90d2be031e57556fce753869cf0118274fb335887d209",
+    "proj/src/assets/digits/three.xpm": "ce6969f3dc73f982c3cd0cdec17730bd705c7d19e7f9202dffc5cfb0df13e4ff",
+    "proj/src/assets/digits/two.xpm": "56e54f08681a447ea69fe723f1f225a69821e36719f51e1217cb6711041f7803",
+    "proj/src/assets/digits/zero.xpm": "fc197e8e6144a7cbddaaa9f30df4d89c7619ffc8ef67aa62498f5ef8fe768cc2",
+    "proj/src/assets/elements/canon.xpm": "75f2f82a3b21295f76f2e25c97eab00c4ec8b606ef6606b5ff73a100ec9c1521",
+    "proj/src/assets/elements/choppedmultiplayer.xpm": "f455bffe0fde9a08d0825ff401667740955d5c90b0b72c4b700728ef633688cb",
+    "proj/src/assets/elements/choppedsingleplayer.xpm": "0feda310ef465a68ab25b9107d60483fd48b75ac8ba06213bb701175cf091dfb",
+    "proj/src/assets/elements/combo.xpm": "6c133af0f953989b86be080a2b814db04acaedc2ddb117353996aef04926d452",
+    "proj/src/assets/elements/katana_down.xpm": "cdd8e2c78a3cecab0ebd9acbb471580eab444ac18a15fc908369dda7ffdc2f6f",
+    "proj/src/assets/elements/katana_up.xpm": "f5342e33644365dfd4e34bf72e47d522361becf3b3424b1e285bc1b4c92b2c4e",
+    "proj/src/assets/elements/multiplayer.xpm": "49b0b5424125f1a16d8c81b39081c996712a8a46a9b7163ea6be98a3bafa144d",
+    "proj/src/assets/elements/singleplayer.xpm": "974c431bd3bd0f21bb91d3bce81bb41b8679d681de92df15a3d81b9d7ac88476",
+    "proj/src/assets/fruits/apple.xpm": "f4fea3ab036a60a7d10053a99013a5e858c07c337c5118388c52d4efd6724b3f",
+    "proj/src/assets/fruits/bomb.xpm": "53b46977e8998d2d25e73b354e861693bf42f6071ec881746c659b3aeb5b5f27",
+    "proj/src/assets/fruits/choppedapple.xpm": "2669f71da857402c0f40cef2633ce885dd2caf76f484540d58af16fc80e1bbd7",
+    "proj/src/assets/fruits/choppedpineapple.xpm": "82e40bcd7011a45fbe702111d6c04d71f79be13d84a8317091b6c91fcf77c8c7",
+    "proj/src/assets/fruits/choppedwatermelon.xpm": "c3445802df28e8ae377a38e81ee1fd73545782eeff9a3bb985f5b44db5741086",
+    "proj/src/assets/fruits/pineapple.xpm": "4d7530a60322669e7f8039d7381edc7ae43098e3ba43405077028ca06f1da460",
+    "proj/src/assets/fruits/watermelon.xpm": "2265777030f5b81e50f9e709d2835997539eb7e1e91a3e4388d24409aec51615",
+    "proj/src/headers/fruit.h": "10efc892f6ed2596947df30005da6b415a2783ccc4cb998a408a8407b633d77a",
+    "proj/src/headers/game.h": "f34dc990e3739f3b24cfd93e5bbc9a89c2d62d5fef3c018ae5258b27aee8259c",
+    "proj/src/headers/gestures.h": "ba5bb099c2090bb5e338cc1c6cd2c8b0708206a3e75faf3205a686642f3b8deb",
+    "proj/src/headers/i8254.h": "3cc340559c390bb3918e5e254f29bccc9641309cbfb2c2152fa55622060d5fcc",
+    "proj/src/headers/images.h": "843e511272183a13acd3ccb090af5e8c0a097dcb877fddffe9f7087e65e01ac4",
+    "proj/src/headers/kbd_defs.h": "f5326d7b5f022fae19f41384022ed26ad7dfaeba9b262e24fcab7d7ffd64fd8f",
+    "proj/src/headers/keyboard.h": "69c58b151ced76f56b72e23497cc68342325fcc937c40090ba3c3b34bbd32fec",
+    "proj/src/headers/line.h": "50708b8a70e8b82627a89bf0926c80821938a902a6c0f6be27ef193c26eff2af",
+    "proj/src/headers/mouse.h": "ab26d14bd5a2ada1988d51493a1c51e35a395905b377f168ffde84ddb57529fa",
+    "proj/src/headers/mouse_defs.h": "0a3c823629cfe560832f828a9b2873f2a586692dc02ed3791b12ef2f2fc4a1cb",
+    "proj/src/headers/rtc.h": "c5b3120d9aadad16e7132c44542d40048de70850989106a02ea7375dd207cbcc",
+    "proj/src/headers/screen.h": "00b60fdc76323842a96c9a2d6d41c46dd3b5a332b4a25f5f239a3d28e9a36a06",
+    "proj/src/headers/serialport.h": "9b0a7c068380615927ac63c6c6fafddc755909762df32e14d6b86ff45f30a5e2",
+    "proj/src/headers/vbe_defs.h": "a17a07766baaee3d73ace100d55f2caed2633eb0aabac0adc573e46e5a17e5f1",
+    "proj/src/headers/videocard.h": "820ecb769a911985a32d053aa59e3bec8fb18e09c409d851b75acc7116920940",
+    "proj/src/proj.c": "1401d1961994e64583e7325fa4167fed3c8af58309eff742a152260f7d3e123c",
+    "proj/src/src/fruit.c": "1ec172af7d52f779fc1f15e1d174cd24a4b952a17e120dfcb2505b0c2de09a4c",
+    "proj/src/src/game.c": "b1b6e3c3ff715234065d8c2a8a9f3b3da92b65dd49ee8ece9ed36923d4103d2d",
+    "proj/src/src/gestures.c": "6366f13bbc16dbccd10ecd5629841ea2b4922319d2ee76d983c6d780645fb5b9",
+    "proj/src/src/images.c": "8a8ccc0dc05ca92600e98286e257e6673dfecd02421f70ded547624cbbca2776",
+    "proj/src/src/keyboard.c": "0b31e99a7cc8ce8c7c5d53d3d6205dfa900467704f8f43714689012ff1d93e3f",
+    "proj/src/src/line.c": "9622f814783aa5f202a201e6903d7c7c9e4f099f7764ae194b8c875c9614417b",
+    "proj/src/src/mouse.c": "6a4d42f5beba741b435e6d6e50d4cbad8b09a9ddc94cb6170397355676ca9c62",
+    "proj/src/src/rtc.c": "23458c1b6c18b5e22ea1b1baeafcf3d0e2fe0eff2be996b59f9576e1f07242aa",
+    "proj/src/src/screen.c": "c0835fac277bd4eee7b109fd636a384a84273e9200ace6680679502cb4ee6f82",
+    "proj/src/src/serialport.c": "a0b676fdff2405067e460a2f7a8ba99db5b7937fd626f889ae43f4a34b0da643",
+    "proj/src/src/timer.c": "c1fb36cd81ddefe5e5b373e282b7da68f46402592cdd81c0c0bd28b44a6b70b6",
+    "proj/src/src/utils.c": "3ab3665341e61b6ad73add3238546b4e7831ce51fae40f509e3fe41d451fb013",
+    "proj/src/src/videocard.c": "6e648862dffddb7cfb8e3d21be3dddc3814bdece43c49dc0d44a80a11d81eb6f"
+  },
+  "selection": "Pinned project source and required artwork/assets plus upstream README. Omitted labs, generated documentation, VCS and OS metadata, build products and core dumps.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata is excluded from required source inventory."
+  },
+  "icon": {
+    "kind": "simple launcher icon derived from original sprite or board palette",
+    "source": "proj/src/assets/fruits/pineapple.xpm"
+  },
+  "controlsRationale": "Swipe through the menu pineapple to begin and slice airborne fruit. Direct press matches unit-delta cursor starting0,0; original slice artwork and fruit retained.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/antbz--LCOM-FEUP",
+    "limits": "Short functional gameplay trial, no full campaign completion or physical Android device claim."
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "37da90b4e740300a8c0fc4f41cdf09b757ba8131bc723b043eabd2b52d05c56b",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "e34eec72a1910b65ad1b90ea4f4a5ce25aeb3fac148fd98bc5b8a946d286970e",
+      "kind": "actual mobile browser gameplay canvas"
+    }
+  ]
+}

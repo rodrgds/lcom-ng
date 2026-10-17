@@ -1,0 +1,79 @@
+{
+  "version": 1,
+  "name": "Watt: Circuit Escape",
+  "description": "Jump through circuit-board platforms and adjust powers at the switchboard.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "touch": "move",
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Jump",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ]
+    }
+  },
+  "build": {
+    "sources": [
+      "bitmap.c",
+      "game_manager.c",
+      "geometry.c",
+      "hw_manager.c",
+      "input_events.c",
+      "keyboard.c",
+      "lasers.c",
+      "level.c",
+      "main_menu.c",
+      "math_utils.c",
+      "mouse.c",
+      "mouse_cursor.c",
+      "platforms.c",
+      "player.c",
+      "power_ups.c",
+      "proj.c",
+      "queue.c",
+      "rtc.c",
+      "spikes.c",
+      "sprite.c",
+      "switchboard.c",
+      "timer.c",
+      "uart.c",
+      "ui_elements.c",
+      "utils.c",
+      "video.c"
+    ],
+    "assets": [
+      "assets"
+    ],
+    "assetRoot": "..",
+    "pathAliases": {
+      "home/lcom/labs/proj/assets": "assets"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

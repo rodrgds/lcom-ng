@@ -1,0 +1,17 @@
+--- a/proj/game.c
++++ b/proj/game.c
+@@ -182,10 +182,10 @@
+     for(int i = 0; i < ROW; i++){
+         for(int j = 0; j < COL; j++){
+             if(game->color_map[j][i].player){
+-                if(game->color_map[j-1][i].color == game->color_map[j][i].color && j-1 >= 0 && j-1 <= 9) game->color_map[j-1][i].player = true;
+-                if(game->color_map[j+1][i].color == game->color_map[j][i].color && j+1 >= 0 && j+1 <= 9) game->color_map[j+1][i].player = true;
+-                if(game->color_map[j][i-1].color == game->color_map[j][i].color && i-1 >= 0 && i-1 <= 9) game->color_map[j][i-1].player = true;
+-                if(game->color_map[j][i+1].color == game->color_map[j][i].color && i+1 >= 0 && i+1 <= 9) game->color_map[j][i+1].player = true;
++                if(j > 0 && game->color_map[j-1][i].color == game->color_map[j][i].color) game->color_map[j-1][i].player = true;
++                if(j+1 < COL && game->color_map[j+1][i].color == game->color_map[j][i].color) game->color_map[j+1][i].player = true;
++                if(i > 0 && game->color_map[j][i-1].color == game->color_map[j][i].color) game->color_map[j][i-1].player = true;
++                if(i+1 < ROW && game->color_map[j][i+1].color == game->color_map[j][i].color) game->color_map[j][i+1].player = true;
+             }
+         }
+     }

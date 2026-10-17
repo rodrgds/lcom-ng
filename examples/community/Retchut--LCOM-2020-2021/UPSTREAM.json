@@ -1,0 +1,171 @@
+{
+  "repository": "https://github.com/Retchut/LCOM-2020-2021",
+  "commit": "1df532a9519a7281cdabe5c60b7c199704dd15e1",
+  "project": "proj/src",
+  "sha256": {
+    "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+    "README.md": "bfe80d99937af3a451ca03115afc11a218b1113b8c5e0b40b684863ce001e552",
+    "proj/sprites/enemy1_B.xpm": "5b1c17f9c3c0c2f7d633d1673d5bcdbdae05687a6126996ff4cd88155c9bf6fd",
+    "proj/sprites/enemy1_A.xpm": "b73fe09a5f7223914bb75aaa79e85ac4498a7d3499d0807b5abfb8bbe7b97506",
+    "proj/sprites/highscore_button.xpm": "b624246bdd9ed928a71afcd670ef6bc114441280ef1dfbdb457c2c65f6461ace",
+    "proj/sprites/menu2.xpm": "6b99ff3ac93093f1433ed268a2d1171821e29f937fedcc913c337664086eca04",
+    "proj/sprites/menu1.xpm": "0609bb2b06ca0797924c148d14ab50bc9e30d696d4011eae74218f7ecf8ff3f2",
+    "proj/sprites/LY.xpm": "efe8c4204e2748fb7fb70ad92740ccd1072e521eefdc9f8acc8c29ee6f4bd80d",
+    "proj/sprites/n0.xpm": "9c475932032a2cd4c45c4a3123b6917180e76e7dd1514c27c4a822fe0cf63eb2",
+    "proj/sprites/LN.xpm": "91e3f5557b262e007606bbae2b80c01ec9fa950de4ab63564ba1531ddd8545aa",
+    "proj/sprites/play_button.xpm": "a6d5b4e5733ba33cb331b47446f7b4da34ddb56d4c0a4e904251e0a752389620",
+    "proj/sprites/bonus_enemy_B.xpm": "e737ee505bc2fa8ab110e8325dde11152b2a0e6389fbfff89ce13d6abe339e5b",
+    "proj/sprites/enemy2_B.xpm": "083e19dd0722fc33ddb14bd092e7f889574b6d1d7d6bc038a09d00077948f46c",
+    "proj/sprites/LO.xpm": "692c7b31edb40a257a2f19bdbd9e24f1ad4d51761611a3538be81bd2000428c4",
+    "proj/sprites/n1.xpm": "7cb758ce62f7d07674bc1d788a17bf29037ad4cc6ddc370374cfd5b07198f724",
+    "proj/sprites/LX.xpm": "8605d866a6a8ac14c185fc12c78130a52182f140621e45139b567553a8d95298",
+    "proj/sprites/LZ.xpm": "70416ae0d0540ecb8a39eeea9b4dd538784d71c3f743282071f52203eae246d1",
+    "proj/sprites/LM.xpm": "4850aaff7278ae146fcce66de794499e07ffc3fd94fdfd5771cf9ab46f914264",
+    "proj/sprites/n3.xpm": "3bb6a7fb86f211d4dc7c88a59bac68c85517e013277500eaedea720ed23c162e",
+    "proj/sprites/bonus_enemy_A.xpm": "32f5f89c954200f316ed3eb0f830875babdd49e47b35e7ad54e80788474e9301",
+    "proj/sprites/enemy2_A.xpm": "00ec5d38da99f09c6917bb043492bd961ebd06c0ba9f058b8fa43cf6b548692c",
+    "proj/sprites/n2.xpm": "4920583cc25da0a62fde41ddad76ac3d931dfc13dccbba3bea39a84ec676a46f",
+    "proj/sprites/LL.xpm": "819eee47fbab4061164157803e07d4ca201debb282cc9a975509309d0fd41dca",
+    "proj/sprites/enemy_projectile.xpm": "def48c1107b694cfe8228e2c09ebfeb1c6ad851fea4e63917eca4aa956a44204",
+    "proj/sprites/player.xpm": "e20623d491b22b623809241f792781c8bdd2180a71f1b407c40e026a45d833ac",
+    "proj/sprites/LH.xpm": "5916adde282b5455447f45911723349fe9186f66e90d75734c6c91dc0309bc5e",
+    "proj/sprites/n6.xpm": "abb84fd3b5342d4561e2e5d49c42dec10bff1113aee4a80a35c7852b4f0e4fb1",
+    "proj/sprites/n7.xpm": "b76f60978cadd3404435252e4d1887468ce01873fba91e499e4fadf9eb453b6b",
+    "proj/sprites/LI.xpm": "43d153cd4148f4b3c8675cc8a14755dae0bf4f899df610915e432bc6bf79e365",
+    "proj/sprites/n5.xpm": "12ef012bb87b956ac1162c7992c52af3ca3341daa5f1536fa44cb2646f0dc9af",
+    "proj/sprites/LK.xpm": "8bccd526ae4c3eedb6cd2b4e697808dd8bee2da96b438331178089066a1a1343",
+    "proj/sprites/LJ.xpm": "bf0aadf87054c8ee43163cf7b1b77a1199c46aece5901b4236bfcf70ca1a3a82",
+    "proj/sprites/n4.xpm": "21567676647b81f34a2b89770c95521bff36d369daeae10c0e6feaf9e6ffedcb",
+    "proj/sprites/highscore_background.xpm": "90ffdd6640288ad9fd1a97c73bf627281db81288071b784006d6a5bae29b3746",
+    "proj/sprites/LG.xpm": "b013bc355b65b233efe179e413950d93bed9a74428a5031eac9e8a1f6397d058",
+    "proj/sprites/n9.xpm": "2ca2af173f5dca1327f10b7866749352802d6d019c112afe9db366e3a38f30be",
+    "proj/sprites/LP.xpm": "9232f12c1e9015d57feafc9fa009e85268c19ac46703dcbbca718f9e81486e0f",
+    "proj/sprites/LQ.xpm": "21d5063f70d472d4382dcd4b752849823fb988a8bb079f911b8111aa16b215ed",
+    "proj/sprites/n8.xpm": "0213af3f84a5af625b42a108fe9ff669d1214375b0eba583fa9b2d58d43df738",
+    "proj/sprites/LF.xpm": "9bc56637d1a92d9e2bcae7e10c000c8ea5eaad8215fa5fc07fdaf2efea471375",
+    "proj/sprites/LD.xpm": "c045fe4040ca6f902e650f07ebf3af87cfef0c3be23e5569abef16483bb1f97b",
+    "proj/sprites/LS.xpm": "23562aed9d909627600e31509fd8b8732347c978704005ec6041c40394fe9145",
+    "proj/sprites/LR.xpm": "b057e7ef8f60d51859155c6117fc71cbf3079e09bfdb46356330aa1b0e822d70",
+    "proj/sprites/LE.xpm": "3317cf03a3fdb49043a90391ac50e1f7e4902f26fff3025bf2e5a8ae93232d8b",
+    "proj/sprites/LV.xpm": "a61f95ca7b1ab46e7dd9e23ba2bddac1b43d34d2772f9f94550cfd1e143fa5f4",
+    "proj/sprites/LA.xpm": "1659354600f1632510520942c6eb21ec7befa16ec438332d24cffe2c3ffb0051",
+    "proj/sprites/LW.xpm": "d9312b9228772108b41a9658bbb665e9f36fd82bbff1cd4da848e98c4e40da6b",
+    "proj/sprites/LU.xpm": "06d532991d4333cc566e08fcda93a38ee959c3f65cc63309772fe98f92fb4370",
+    "proj/sprites/LB.xpm": "e6e6ceb7c3cdf682d17248ce486efb37b8f9584763731845ac8d83d80c81137f",
+    "proj/sprites/LC.xpm": "f5a480fe3d102862bbea3e3b9e54483489c22c30a45e4f5dbff16c3c769f816b",
+    "proj/sprites/LT.xpm": "fc90881148bb0e954cdcc234fca55bbc76cc48efba1d20ebabab94d6e8ea3f95",
+    "proj/sprites/dots.xpm": "a934714cd0d71c66ae03e9f6de5993658f4dc29f4ebe1e7fc7260c2c1043c5ca",
+    "proj/sprites/menu_background.xpm": "f72b699935115c6cfea0f0bdb3ed739bee014430cddb8dc05f8bb1a53e386a7a",
+    "proj/sprites/crosshair.xpm": "0374e1ecde2351ffef342c042cb96987bdea8285bf92426a829e8a87759e411d",
+    "proj/sprites/new_highscore.xpm": "d3966bb39e99de8d752d1c0884810497a7d3540938f9c98b365d7fbb46d5347c",
+    "proj/sprites/background.xpm": "6ad6e86e47abd103aa35df5e9436c70118bdc072ad2035ad7bb470fd8318f068",
+    "proj/src/game.c": "9e317c292e5e95b5f70ecea6be1d4fd117dff15679bdb96bcafb9de8958ee901",
+    "proj/src/sprite.c": "f6e8f0305939f04c9ede12a458400fcf559ab3bdb1e11a70f4a3a236604c7c8f",
+    "proj/src/utils.h": "5fa9f02bf40aeaa094209a8e7813719abbbc9b9ba46f031c3770d35b424201a0",
+    "proj/src/mouse.c": "bab1a486d2fcf98a6196d42c2cb899a32aa54547c16a209000cd738f56abf1ae",
+    "proj/src/vbe_standard.h": "1d4fcc714560d1edc9326ad159259da714c08302dd8c307d5e63e0abb9b5bf36",
+    "proj/src/highscore.h": "b21f10d02cffd14b8e5d9290f1172fbee5150e37093f5527ef3f60a3ce629129",
+    "proj/src/menu.c": "2255be213573ee1daae229a521c6c14a70aaeb0cb8c2c533ec55e0154226b0b8",
+    "proj/src/logic.c": "8b94bc9f12dbf204d4b33e8866a3175e1d69b224c25018ca4c0d5f9359bd9b64",
+    "proj/src/vbe_funcs.h": "29233eda66cf1955d278adc0ba0e1d1a461fe6a07c26daa81bd6820ec8421abc",
+    "proj/src/rtc.c": "95d2f0612d4670a16d7d7eb1657a5a6a254d645c0906f4bdb4a17cd6d8158ce9",
+    "proj/src/video.c": "b45254c38d7b5291368158877811144a304fd708391dbb6b061e070b0c0f8d3d",
+    "proj/src/keyboard.c": "0b6e1f1a8a88c1ed82400c29ccee35a6e097375342dbc6d3912acaf33120a735",
+    "proj/src/Makefile": "ce1fd5225282f7bca02f9d902b6e06239bcd1da9f6997f8f09dce8c1cb0829c7",
+    "proj/src/proj_timer.h": "bd51ba443722cddd021a3bc37ce77f28831b28e1f8b4f7bd080f07f0280bc58b",
+    "proj/src/scancode_defines.h": "645cd75ce22003ac31e01bc441605abb9da00f0941420842e34295c3992904ce",
+    "proj/src/i8042.h": "9b809c1c8630a4371c91c0a4a23dbba3853fed516f3fd44ac58835b2a68179f1",
+    "proj/src/mouse.h": "eb28ac3ed50af2c8933a43dd1644831a4f290732bf8b209d0340398068543c2e",
+    "proj/src/game.h": "302c9ee498aa868f26fde42df561d6c9084d2782a82af3ae6bf615f45c4ea9e9",
+    "proj/src/sprite.h": "cfb9197b3678c3ceb329be624ad5b4daf62e68d9fab4a182aef5e840de42aa60",
+    "proj/src/utils.c": "df26c7aeb54096ad13956cf95b8e985204df416e0d9bf8ab1012a635e6e082e2",
+    "proj/src/keyboard.h": "69f1eb7ab88d99201b3a769e12ce9bf37eb5c378b337fa5d4a3e0b697d962cbe",
+    "proj/src/logic.h": "ae61f74992e050e49ac9659f2938bf65423da8921498c78bd86641248b732051",
+    "proj/src/menu.h": "1f5778adbb81d65ab39cf884820f2a683b3e38011acdf7f26d6b4a1110e12081",
+    "proj/src/video.h": "4cb487a76653462de2ef4c7dbd77b876efdf1e8a7f54ca121e68c4e26539c190",
+    "proj/src/rtc.h": "6f2b996fbf78a40ad895945183b4517a439dfeaadf1c64aec1d833916926c2a5",
+    "proj/src/.clang-format": "66f7a3be551c14980db4ff14cd66a0fcbad862e03ccd4dc4a0d52a715a1082d7",
+    "proj/src/vbe_funcs.c": "8ed3671b58ba750c6241cfb29d0d07798b64c66c6452138de5ad2e8355b858e4",
+    "proj/src/highscore.c": "016c6483afd297ca139913705eefa8b6c5b93d0f78fc99aa6a18cc81e71867ce",
+    "proj/src/proj_timer.c": "5a9d9b969a1ab19a117c11a0e512b17a10b886185396b715a7e6fa3ffa127c3d",
+    "proj/src/i8254.h": "946e97af18a0d5aad070e9e6a758e973dd5e61144542ba6cc8218627c62f6a76",
+    "proj/src/logic_defines.h": "7fb6757973b2e00a4a390e0503e666d8f190b5ccba0ba9b6a6f307f7ac28511b",
+    "proj/src/xpm_files.h": "ee6ea6c285ed15f177686759d2e508054b9c70d0a7b54c0cb2819ea0af2048cb",
+    "proj/src/video_defines.h": "7ec6eeb9795568b9e04498b356f911bcc3061d538308dbc24e99c73edf05936f",
+    "proj/src/proj.c": "fe31f0de82e33e96f0fb02589719c189a166461be7d48cbe5f9804b30fa49792"
+  },
+  "sourceChanges": [
+    {
+      "file": "proj/src/logic.c",
+      "originalSha256": "8b94bc9f12dbf204d4b33e8866a3175e1d69b224c25018ca4c0d5f9359bd9b64",
+      "patchedSha256": "23a584d962e652ae78f0e8fa0f4755e8fdad5d7cadf6c577abde6843eeb25134",
+      "reason": "generate_cursor allocated sizeof(cursor_obj), the pointer size, instead of the complete Cursor object. Actual constructor writes beyond its returned allocation into a protected page (RED); allocating sizeof(*cursor_obj) preserves original initialized center/image and passes (GREEN). Original browser cursor/menu interaction failed; corrected actual gameplay works."
+    },
+    {
+      "file": "proj/src/highscore.c",
+      "originalSha256": "016c6483afd297ca139913705eefa8b6c5b93d0f78fc99aa6a18cc81e71867ce",
+      "patchedSha256": "d81b494fa7689b04208b252050050be9d9d689fa9e61f1018444a5a107f4096a",
+      "reason": "load_highscores read names without width and looped beyond its five owned slots, including after normal trailing newline. Bound records to MAX_HIGHSCORES, scan at most5name characters and store only complete triples. Actual owner with real temporary score files and guard pages RED beyond table, GREEN preserving sorted names/times/scores and rejecting incomplete oversized names."
+    }
+  ],
+  "selection": "Pinned original project sources and compiled-in sprite assets, labs and generated documents omitted.",
+  "createdAt": "2021-03-05T00:08:39Z",
+  "yearEvidence": {
+    "source": "GitHub repository REST API created_at",
+    "url": "https://api.github.com/repos/Retchut/LCOM-2020-2021",
+    "retrievedAt": "2026-10-17"
+  },
+  "controlsRationale": "Original menu cursor400300, relative0,+75 and mouseleft opens Play. A/D moves only on make events, so authored repeatKeys A/D supplies normal held typematic on horizontalWASDpad. Physical/touch relative cursor aims; mouseleft fires on packets with cooldown, mouse right/ESC ends round. Actual six taps spend ammo15\u219211, kill aliens score0\u21923; D shifts ship right. Keyboard remains available for original five-character highscore entry. Explicit authored relativehome/lcom/labs/proj alias preserves original highscore save path. No direct/calibrated mapping.",
+  "verification": {
+    "browserBuild": true,
+    "nativeBuild": true,
+    "fortifiedNdkObjectCompile": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/retchut-space",
+    "limits": "Actual browser launch, ship steering, crosshair aiming, shots, ammo consumption and alien kills, plus portrait controls. No full wave, saved highscore, game-over name entry or actual Android gameplay claim.",
+    "nativeGameplay": {
+      "status": "passed",
+      "apkSha256": "925ea83857a47f3ae0d7794106259c78d6c749f7e9ff74d74e09095f6b278efe",
+      "evidence": "build/arcade-100/retry4-native-gameplay/results.json",
+      "review": "Actual native steering, original yellow shots and disappearing aliens; score0\u219240, ammo15\u219212, lives3\u21922. Escape shows original new-highscore name prompt with score80. Native Home cleanup passes. Original art retained."
+    }
+  },
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata excluded from required source inventory."
+  },
+  "licenseFiles": [
+    "LICENSE"
+  ],
+  "licenseStatus": "GPL-3.0 text retained.",
+  "sourceFingerprint": {
+    "kind": "sorted original C unit SHA256 multiset",
+    "sha256": "6e4a819b3901b121d88bd315c747c1a0dc983567a060d1c0d832f27948350355",
+    "duplicateOf": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "bd51ca6a3e49ef9f5d6c31aa0dc24801f1235ff2dc32d89fd7231a04b9873019",
+      "kind": "simple source-informed launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "fb1cacaee658a759f24427847b2c17d7f1af9df8bc9e15a2bb8dd81d5a980e1f",
+      "kind": "actual browser gameplay canvas"
+    }
+  ]
+}

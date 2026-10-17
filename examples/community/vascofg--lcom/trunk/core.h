@@ -1,0 +1,30 @@
+#include <minix/syslib.h>
+#include <minix/drivers.h>
+#include <machine/int86.h>
+#include <sys/mman.h>
+#include <sys/types.h>
+#include "vbe.h"
+#include "interface.h"
+#define WAIT_TIME_S 5
+
+char *battleship1_xpm[665];
+char *battleship2_xpm[665];
+char *map_xpm[665];
+char *won_xpm[665];
+char *zero_xpm[31];
+char *one_xpm[31];
+char *two_xpm[31];
+char *three_xpm[31];
+char *four_xpm[31];
+char *five_xpm[31];
+char *six_xpm[31];
+char *seven_xpm[31];
+char *eight_xpm[31];
+char *nine_xpm[31];
+char *sidebar_xpm[665];
+char *x_xpm[33];
+char *y_xpm[33];
+char *water_xpm[151];
+char *hit_xpm[151];
+char *sunk_xpm[151];
+int attempts;

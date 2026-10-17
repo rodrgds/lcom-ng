@@ -1,0 +1,48 @@
+{
+  "name": "El Memory",
+  "description": "Match every pair of cards in the original memory game.",
+  "archetype": "Memory",
+  "mobile": {
+    "fullscreen": true,
+    "orientation": "auto",
+    "controls": {
+      "pointer": "drag",
+      "touch": "tap",
+      "tapDuration": 60,
+      "keyboard": false,
+      "joystick": false,
+      "mouseButtons": false,
+      "layout": "panel",
+      "quickKeys": [],
+      "touchClick": false,
+      "actions": [
+        {
+          "side": "right",
+          "label": "Reveal",
+          "mouseButton": "left"
+        },
+        {
+          "side": "right",
+          "label": "Menu",
+          "key": "S"
+        },
+        {
+          "side": "right",
+          "label": "New game",
+          "key": "R"
+        },
+        {
+          "side": "right",
+          "label": "Quit",
+          "key": "Q"
+        }
+      ]
+    }
+  },
+  "version": 1,
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "build": {
+    "assets": []
+  }
+}

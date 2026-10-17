@@ -1,0 +1,23 @@
+/* XPM */
+static char *arrow6[] = {
+/* columns rows colors chars-per-pixel */
+"4 13 4 1 ",
+"  c #706D6B",
+". c #8E8B8A",
+"X c #B7B6B5",
+"o c None",
+/* pixels */
+"oooo",
+"oo..",
+"oX  ",
+"oooo",
+"oooo",
+"oooo",
+"oooo",
+"oooo",
+"oooo",
+"oooo",
+"oooo",
+"oo..",
+"oX  "
+};

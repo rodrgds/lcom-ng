@@ -1,0 +1,25 @@
+--- a/proj/src/model/sprite.c
++++ b/proj/src/model/sprite.c
+@@ -67,9 +67,9 @@
+ 
+ 
+ void create_sprites(){
+-game_over_sprite = create_sprite((xpm_map_t)game_over_xpm);
+-apple_sprite = create_sprite((xpm_map_t)apple_xpm);
+-mini_apple_sprite = create_sprite((xpm_map_t)mini_apple_xpm);
++if (!game_over_sprite) game_over_sprite = create_sprite((xpm_map_t)game_over_xpm);
++if (!apple_sprite) apple_sprite = create_sprite((xpm_map_t)apple_xpm);
++if (!mini_apple_sprite) mini_apple_sprite = create_sprite((xpm_map_t)mini_apple_xpm);
+ }
+ 
+ 
+@@ -78,6 +78,9 @@
+     destroy_sprite(game_over_sprite);
+     destroy_sprite(apple_sprite);
+     destroy_sprite(mini_apple_sprite);
++    game_over_sprite = NULL;
++    apple_sprite = NULL;
++    mini_apple_sprite = NULL;
+ }
+ 
+ 

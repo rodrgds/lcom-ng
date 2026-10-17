@@ -21,12 +21,14 @@ struct ActionConfig {
   uint8_t mouseButton = 0;
   std::string position;
   std::string icon;
+  int wheel = 0;
 };
 struct ControlConfig {
   std::string name = "lcom-ng", orientation = "auto", layout = "panel", pointer = "drag", font = "sans";
   bool fullscreen = false, keyboard = true, mouseButtons = true, joystickMenu = true;
   std::vector<std::string> quickKeys{"ESC", "SPACE", "ENTER"};
   std::vector<std::string> repeatKeys;
+  std::vector<std::string> repeatReleaseKeys;
   PadConfig joystick, look, dpad;
   std::string touch = "auto";
   std::vector<PadConfig> pads;

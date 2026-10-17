@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="struct_enemy" kind="struct" language="C++" prot="public">
+    <compoundname>Enemy</compoundname>
+    <includes refid="_enemy_list_8h" local="no">EnemyList.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="struct_enemy_1a71aa469403f28b0821081fd676ceda69" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Enemy::x</definition>
+        <argsstring></argsstring>
+        <name>x</name>
+        <qualifiedname>Enemy::x</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" line="20" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Enemy::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>Enemy::y</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" line="21" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_enemy_1a6e6d01d05e4569b91997322ed08be867" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Enemy::min_x</definition>
+        <argsstring></argsstring>
+        <name>min_x</name>
+        <qualifiedname>Enemy::min_x</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" line="22" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_enemy_1a28e3f5e948fc14f395e8d31ef54f1094" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Enemy::max_x</definition>
+        <argsstring></argsstring>
+        <name>max_x</name>
+        <qualifiedname>Enemy::max_x</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" line="23" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_enemy_1aaa55eced61d73b5d2e9c4ded12fd864a" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Enemy::min_y</definition>
+        <argsstring></argsstring>
+        <name>min_y</name>
+        <qualifiedname>Enemy::min_y</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" line="24" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_enemy_1ab8e401d90b1dd0a07ec6b1b8a344e280" prot="public" static="no" mutable="no">
+        <type>uint16_t</type>
+        <definition>uint16_t Enemy::max_y</definition>
+        <argsstring></argsstring>
+        <name>max_y</name>
+        <qualifiedname>Enemy::max_y</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" line="25" column="14" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Enemy::direction</definition>
+        <argsstring></argsstring>
+        <name>direction</name>
+        <qualifiedname>Enemy::direction</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" line="26" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" line="18" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.h" bodystart="19" bodyend="27"/>
+    <listofallmembers>
+      <member refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" prot="public" virt="non-virtual"><scope>Enemy</scope><name>direction</name></member>
+      <member refid="struct_enemy_1a28e3f5e948fc14f395e8d31ef54f1094" prot="public" virt="non-virtual"><scope>Enemy</scope><name>max_x</name></member>
+      <member refid="struct_enemy_1ab8e401d90b1dd0a07ec6b1b8a344e280" prot="public" virt="non-virtual"><scope>Enemy</scope><name>max_y</name></member>
+      <member refid="struct_enemy_1a6e6d01d05e4569b91997322ed08be867" prot="public" virt="non-virtual"><scope>Enemy</scope><name>min_x</name></member>
+      <member refid="struct_enemy_1aaa55eced61d73b5d2e9c4ded12fd864a" prot="public" virt="non-virtual"><scope>Enemy</scope><name>min_y</name></member>
+      <member refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" prot="public" virt="non-virtual"><scope>Enemy</scope><name>x</name></member>
+      <member refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" prot="public" virt="non-virtual"><scope>Enemy</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

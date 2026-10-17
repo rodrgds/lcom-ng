@@ -1,0 +1,127 @@
+{
+  "repository": "https://github.com/EstevesAndre/LCOM1718",
+  "commit": "2b6d315e6548815a3da158c07564de039dd0de8e",
+  "project": "proj/src",
+  "sha256": {
+    "README.md": "e9ca6cbbf40def2c55184d58d4d80cd97adde2c4a04ad31373d7f8b573ca5ec7",
+    "proj/conf/proj": "f575a97a5ce35834b6821feba23681dd5da0b49e5db31a1cae16f545ebcfe292",
+    "proj/inGamePhotos/GameOverMenu.jpg": "da2f33ebea23f137539bd500c26b54a4933d1c4e362e2f3adcc46827fce467cf",
+    "proj/inGamePhotos/GameOverMenu_GreatScore.jpg": "2d4d3dad9263b10529ab37873952021844ea7f056c0dec83318c1aed201de663",
+    "proj/inGamePhotos/GameOverMenu_GreatScore_withName.jpg": "38e5bffc9ad1c684175741f2d8751cbffe3434a52ce9046c66f1f57b51302503",
+    "proj/inGamePhotos/HighScoreMenu.jpg": "778040f06aa8419d70ab9940b703bda0c0523832103422ebe478edfbfe3c7e9e",
+    "proj/inGamePhotos/InGameDayMode.jpg": "b16a1335b3bccfba15b1d8faa477d1e05328eeaf5fbea239ace0b4b11907c3b8",
+    "proj/inGamePhotos/InGameNightMode.jpg": "f5c05abae40ce33ab351400b51f3ec5f89a29a87a8197d1693e61823480a9e76",
+    "proj/inGamePhotos/MainMenu.jpg": "81a227eea6b245c7ed195d32cf583b8f0b6f4e22f6339924f5adcd6ee4b18f33",
+    "proj/inGamePhotos/MainMenu_HighScore_Selected.jpg": "78fc47f641affc8302e2daa1168d363614c5003672b88ac60959a973b7910715",
+    "proj/src/Makefile": "837a6fbd23b1d8f49e860c6a552b828256cc89f7bfe879b0684e0fe7e4bb5f6d",
+    "proj/src/alphabet.h": "160fe71e1621109d2181f5d0d6f46c4976c776699a0aa1f3603c42dcd8fa42a7",
+    "proj/src/characters.h": "413043ddd66310335e22274ff884b17e41a68edbbe876f43ae9ff1cb19681bd5",
+    "proj/src/characters_name.h": "581feaff0557fffea3e595f9415941cf54375974cf9a515160cf66edc5dfef52",
+    "proj/src/game.c": "91195813a8b1209f2ad886aca30558414592c23691879fcd728d88d6ccf68c9b",
+    "proj/src/game.h": "490c6e5539a65fa31e835d2207935d840ba95d0350a93ac1d17d51fab205de72",
+    "proj/src/high_score.c": "efb50de39478111233413d3c5e012dc5db5c755506ab46c5c17251e08e5d26f8",
+    "proj/src/high_score.h": "f4325962a3ebd8f2545ef50a763c8a6f4c65d6f9ee7d13b3f1d072861a1b594a",
+    "proj/src/high_score.txt": "5f1e17fc88c7796ebc87eb8931bc388f9197af355b50b75740cfda267a5a543d",
+    "proj/src/kbd.c": "9c3192f153ec66b9990502cd8fec13fa4e1632157af37be41e9abfee8681bbb3",
+    "proj/src/kbd.h": "9100519da61870b30c320ec71cb84d5fff916cbcbf7064180bc8f95ef3447157",
+    "proj/src/linked_list.c": "4d774077a2be571068ea83aa7cb9caa8d8da28fed7b6795ec9de7fe5091fae18",
+    "proj/src/linked_list.h": "f71ffd648be269e1e3551c922828601901b7c8dbe7f0ae177e53508c460e4cf0",
+    "proj/src/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "proj/src/main_character.h": "35a57f2c614572e2923c096f1bbe3c970bb03646e3eb7f29e406d8daadc4fcf1",
+    "proj/src/menu.c": "1d988fd8f2258f759b0f854326f531888c43b90f1cf154b4c8357842243ac03d",
+    "proj/src/menu.h": "ea925496b8dbccc7a2a5890e147ff1c9d54b2ec2551ea22d0678dfdf4904d4a6",
+    "proj/src/mouse.c": "d7d322a424933aee8f1f2912e5862c5411cbc76ca707dc1ef968afc187068633",
+    "proj/src/mouse.h": "837e967da48b7f3f70c7abac02ef97a9c18723344ffa410140870ee5ffdae489",
+    "proj/src/mouse_sprite.c": "26e0b8466ed0aa1405c4c4cea0e12a7026c993f0283f1f210aec3f996622024e",
+    "proj/src/mouse_sprite.h": "22fcfa59cee1dcc1f4671ab73222568e1f0bfeab02414de070d263ad657aceb5",
+    "proj/src/mouses.h": "69db3c1c217190a74fb36d91a95794e4622fdf2c59e1938f8c8e5a15ded799aa",
+    "proj/src/numbers.h": "794f4656f20a5303bef2d331d8b54f9dcb86cb47e4bb83849a01c30bf007a8c3",
+    "proj/src/obstacles.h": "4f9f973498511e70d34f21ef8416ebc6e8ca6abb86e7a64f002f904b9016d3c1",
+    "proj/src/proj.c": "058acf4573a7af4b41c4d7738bdcb5596bda9c70a7a894dace31d0bd773d27b7",
+    "proj/src/read_xpm.c": "c8bd52512dc34d1569fe6a6268e38d7ba720cb2a8812c25b16d979d35d3eea05",
+    "proj/src/rtc.c": "c04e1ba07dbbd8b4a65df83e876166de76da308bfce64a65e1ae2b5d61127b06",
+    "proj/src/rtc.h": "70881d3fd6a65c0783bf20a21deb9678f313eb613c8a88ec92fa7372c8fbe3a6",
+    "proj/src/sprite.c": "0b25e4f62fc64dfd9f76c72259cbf4720b7c9498bd547c5d86a3232eb0c51124",
+    "proj/src/sprite.h": "038b766b19998da7d2e8311b31b22c94009b5c2901c8aeb1f1583c2394673a56",
+    "proj/src/sprites_menu.h": "06f1dd0461d8c61c16b06f6427ccb4ed932e76eb019c843cb79bc5f98128ac45",
+    "proj/src/timer.c": "6ee50405e46744bb4500dbe3ffd4cd7f38fec9b6a00501f9f62dce2bc5466158",
+    "proj/src/timer.h": "3b8565c27e15a0e33a9325ed55b62b6ca06b334a13da09d280aaf720386cc4c4",
+    "proj/src/vbe.c": "7fdffb7e9c0f7b78d25bd69964f60a3b5dcfaaf2c65ab8b702e0fc0eadf13f5d",
+    "proj/src/vbe.h": "c8db80c97e2471e613e280ba6804cbeab50c59f0eb1a7643303944b454b15216",
+    "proj/src/video_gr.c": "32f167eb71e3a417a5eda93394339a58065e5c01882405a60f9d2f487dbc0b91",
+    "proj/src/video_gr.h": "b68bdd28b755ec501163c144f765309324f292f6e3fcd63298b7729bac1e65a6"
+  },
+  "sourceChanges": [
+    {
+      "file": "proj/src/game.c",
+      "originalSha256": "91195813a8b1209f2ad886aca30558414592c23691879fcd728d88d6ccf68c9b",
+      "patchedSha256": "5aff43df779181cd714711c648486132b0fdc0034aa80fbf8207f4c84ae4a038",
+      "reason": "A single redraw selector discarded player movement when Minix delivered keyboard/mouse and timer bits together: timer assigned obstacle redraw after input assigned player redraw. Keep independent pending bits and clear only each completed redraw. Actual owning game loop with original sprite, XPM decoder and linked list RED fails movement under combined keyboard/timer; GREEN moves both directions with combined and separate notifications. Actual browser A/D did not move original player before correction, then moves up/down and survives while points advance. No emulator changes."
+    }
+  ],
+  "selection": "Pinned project source and upstream root README/license. Omitted generated documentation, lab exercises, VCS/OS metadata and build products.",
+  "createdAt": "2018-01-28T19:09:38Z",
+  "yearEvidence": {
+    "source": "GitHub repository REST API created_at",
+    "url": "https://api.github.com/repos/EstevesAndre/LCOM1718",
+    "retrievedAt": "2026-10-17"
+  },
+  "controlsRationale": "Original menu hotspot1,1. Relative509314 then Select enters the track. A and D move diagonally along its width, on key make; authored horizontalWASD pad and repeatKeys A/D provide normal held typematic while original per-make lane bounds stay active. Touch Play/A/D/score progression0to3 and Escape original game-over state verified. Relative pointer keeps original menu and mouse gesture input. Explicit /home/lcom/proj alias preserves original high_score.txt. Keyboard retained for original optional game-over name entry, not claimed tested.",
+  "verification": {
+    "browserBuild": true,
+    "nativeBuild": true,
+    "fortifiedNdkObjectCompile": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/avoid-it",
+    "limits": "Original menu, two directions on track, approaching obstacles, points0to3 over5seconds and Escape game-over state. No saved name/leaderboard. Original assets unchanged.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "960e48eb3356b01dc6c29d31c5b142917de51eac814ec454820023a0e2539550",
+      "evidence": "build/arcade-100/avoid-native-final/results.json",
+      "demonstrated": [
+        "Original green runner and orange obstacles on diagonal track.",
+        "Runner moves upward-left across track through authored repeated A makes.",
+        "Runner moves downward-right across track through authored repeated D makes.",
+        "Inspect actual timer, obstacle approach and points. Browser actual points3 after5seconds; native result may differ.",
+        "Original Escape ends gameplay to Game Over, no pause claim."
+      ]
+    }
+  },
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS/VCS metadata excluded from required source inventory."
+  },
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream root.",
+  "sourceFingerprint": {
+    "kind": "sorted original C unit SHA256 multiset",
+    "sha256": "8b84e938496901654784c507348a305efc636e6e372d4043466ce322e66ae067",
+    "duplicateOf": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "d3bdd1b13a598d3ed3c5888b5d8aa1188661093caa0286d2c61b1092a09dab9b",
+      "kind": "simple source-informed runner icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "06fd03e570c85da3053b4d710741de75db0c25c5013e93a0347be519019c1762",
+      "kind": "actual browser gameplay canvas"
+    }
+  ]
+}

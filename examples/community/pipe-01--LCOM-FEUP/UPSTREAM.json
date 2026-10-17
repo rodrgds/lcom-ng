@@ -1,0 +1,91 @@
+{
+  "repository": "https://github.com/pipe-01/LCOM-FEUP",
+  "revision": "0a13c24733a8591a7a686a344506f1ca10e9b856",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "74281d1c63cebb8c9ac5e7945d3c003c28e9cbbd3e50e390b9ec67645d2d217a",
+    "proj/.vscode/settings.json": "3670ee60834f799530973ba9a96d41eee81ae09a71e71cb5d1cb652e7e896f16",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "proj/src/Makefile": "bbeaa586e456f39694e5ce7030d29b6fac8def1e5d32fd095078dee06fcb8a1b",
+    "proj/src/game.c": "06fc58ff3795d54ad9fde7043886b92b594eb57bc1dea80448f633da7acb7412",
+    "proj/src/game.h": "e0f4b43b8b9e3ff236930c0573654479c7a661a4805f96132bfa2dd092f6d08d",
+    "proj/src/i8042.h": "d78413240694f5a65dd2e46757c0c7bb6f18e054083722664f8f9bfdca6493db",
+    "proj/src/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/keyboard.c": "dec0251b36ebd8234bbd61b0c806415b25e117990228eec7944eae49caf54e58",
+    "proj/src/keyboard.h": "fc79b05a97644521cc0c2786c00c519184a089f4a5ee1bf0019f193f5b4b40a0",
+    "proj/src/mouse.c": "4f3209829df24931001594eb8c8e509e83254331484c755ef543eecb6f15e08f",
+    "proj/src/mouse.h": "05fca21ff05bfe4152b45d2f7af4e0f97481a121e3863dfd371ea439fa7c58c1",
+    "proj/src/pixmap.h": "a74746fca73ddad3f801228aff8461c6d557a80c41e0d11842ee1d5f4fa1171a",
+    "proj/src/proj.c": "17f894bddff02bdbfbbb361dba71e64abf96c41090888ea7e77739141d0f2960",
+    "proj/src/rtc.c": "aa1dda60da4098ece8b4bb4709934ad182786ec29ae913f66ea1135882603f7a",
+    "proj/src/rtc.h": "2cf3289bdc6d27f1439109ce2f7610b9cd14c60b243f661f20cf63135378fc28",
+    "proj/src/structs.h": "86381174bba9010e43fa1eec1c6b1837fcdd33124072291dc74ce5bfe1824541",
+    "proj/src/timer.c": "bd2e4c03c1777fa098b123cf149bdc19d58f557b3a95ee2d8be5bc2a7ec18d02",
+    "proj/src/timer.h": "2185f0aaa94172560103457d5b3952c6a8c07af7ba303690d538b46af4787f95",
+    "proj/src/utils.c": "afbb6b61617bd4ade4ab14694a3f1d414cb52082ebd90457213becb221f61d10",
+    "proj/src/utils.h": "dc0a34945047a6a94d85d926ca5d1f74f874f2942752bcf5332f452a44a4c07a",
+    "proj/src/video.c": "859fe2f27505758a6f23372446a39a0e719197819db233385b4ece65dd83aa85",
+    "proj/src/video.h": "d31350728bf14c93a95e323c2bd9652c163abce66a5daef8146528c573847b66"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated docs, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/docs/**",
+    "**/doc/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/pixmap.h",
+    "array": "heart"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "ffc441467ce23c9a319399270967daac65a0d73b4ee617bdecf8bb37ffeeff28",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "936521f05c178edf30729955471450510df0c90824aed1ea976205189fe94934",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/proj.c",
+          "originalSha256": "17f894bddff02bdbfbbb361dba71e64abf96c41090888ea7e77739141d0f2960",
+          "patchedSha256": "4ea383b6cea337cc8406d62b43edbf6d6269aa45dd0ed56b861a762a0dd70456",
+          "reason": "Original IRQ loop replayed prior complete packet motion on partial first/second bytes. Apply motion only after the parser completes a three-byte packet.",
+          "verification": "Actual original proj_main_loop fixture replays stale deltas and fails exactly-once motion; repaired loop passes2complete packets=>2moves. Real touch then retains a matching pair with5lives."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Panel keeps game artwork unobscured in landscape and portrait. Keys/actions derived from original handlers; relative pointer preserves original cursor initialization, scaling and state changes. Authored cursor is half-speed with integer division; no direct-touch preset enabled.",
+  "verification": {
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence/pipe-01--LCOM-FEUP",
+    "log": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay7-typing-memory-fixed.log",
+    "limits": [
+      "One matching pair verified; complete16-card round and day/night transition not exhausted."
+    ],
+    "androidGameplay": "pending"
+  }
+}

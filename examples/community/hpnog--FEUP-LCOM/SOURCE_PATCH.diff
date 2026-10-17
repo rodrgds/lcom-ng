@@ -1,0 +1,88 @@
+--- a/code/keyboard.c
++++ b/code/keyboard.c
+@@ -8,10 +8,11 @@
+ 
+ 
+ int kbd_subscribe_int() {
++	int notify_bit = kbd_hookId;
+ 	if (sys_irqsetpolicy(KBD_IRQ, (IRQ_REENABLE | IRQ_EXCLUSIVE), &kbd_hookId) == OK){
+ 		if (sys_irqenable(&kbd_hookId) == OK) {
+ 			//subscribes the keyboard
+-			return BIT(kbd_hookId);
++			return BIT(notify_bit);
+ 		}
+ 	}
+ 	return -1;
+@@ -47,10 +48,6 @@
+ long interrupt_handler_mouse_kbd(int kbd_irq_set, message msg, int ipc_status, int mouse_irq_set, int timer_irq_set) {
+ 	mouse.handlerCount = 0;
+ 
+-	unsigned long sta, d;
+-	sys_inb(STAT_REG, &sta);
+-	if (sta &= OBF)
+-		sys_inb(OUT_BUF, &d);
+ 
+ 	if (is_ipc_notify(ipc_status)) {
+ 		switch (_ENDPOINT_P (msg.m_source)) {
+@@ -127,14 +124,11 @@
+ 			break;
+ 		}
+ 	}
++	return 0;
+ }
+ 
+ long interrupt_handler(int kbd_irq_set, message msg, int ipc_status) {
+ 
+-	unsigned long sta, d;
+-	sys_inb(STAT_REG, &sta);
+-	if (sta &= OBF)
+-		sys_inb(OUT_BUF, &d);
+ 
+ 	if (is_ipc_notify(ipc_status)) {
+ 		switch (_ENDPOINT_P (msg.m_source)) {
+@@ -166,6 +160,7 @@
+ 			break;
+ 		}
+ 	}
++	return 0;
+ }
+ 
+ int waitForSpaceBar() {
+--- a/code/interface.c
++++ b/code/interface.c
+@@ -1,4 +1,5 @@
+ #include "interface.h"
++#include "keyboard.h"
+ 
+ int clock_time;
+ 
+--- a/code/proj.c
++++ b/code/proj.c
+@@ -10,13 +10,13 @@
+ 	//subscribes timer-kbd-mouse-----------------------
+ 	game.timer_irq = timer_subscribe_int();
+ 	if (game.timer_irq < 0)
+-		return;
++		return 1;
+ 	game.kbd_irq = kbd_subscribe_int();
+ 	if (game.kbd_irq < 0)
+-		return;
++		return 1;
+ 	game.mouse_irq = mouse_subscribe_int();
+ 	if (game.mouse_irq < 0)
+-		return;
++		return 1;
+ 	subscribe_real_time_clock();
+ 	//timer-kbd-mouse----------------------------------
+ 
+--- a/code/video_gr.c
++++ b/code/video_gr.c
+@@ -40,7 +40,7 @@
+ 
+ 	if( sys_int86(&r) != OK ) {
+ 		printf("set_vbe_mode: sys_int86() failed \n");
+-		return;
++		return NULL;
+ 	}
+ 
+ 	vbe_mode_info_t vbeInfo;

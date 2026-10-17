@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Whack\u2019a Diglett",
+  "description": "React quickly and whack the emerging Diglett before they hide.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "UP",
+        "DOWN",
+        "P",
+        "Q",
+        "R",
+        "T",
+        "Y",
+        "F",
+        "G",
+        "H",
+        "V",
+        "B",
+        "N"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Start / Select",
+          "key": "ENTER",
+          "position": "bottom-right"
+        }
+      ],
+      "tapDuration": 80
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Whack-a-Mole",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

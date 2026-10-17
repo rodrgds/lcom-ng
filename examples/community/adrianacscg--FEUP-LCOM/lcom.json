@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "Christmas Tamagotchi",
+  "description": "Choose a festive virtual pet, feed it and play a jumping mini game.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "actions": [],
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "touch": "press",
+      "cursor": {
+        "x": 640,
+        "y": 512,
+        "maxX": 1023,
+        "maxY": 767
+      }
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

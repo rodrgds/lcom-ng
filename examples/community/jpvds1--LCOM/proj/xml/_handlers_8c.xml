@@ -1,0 +1,1369 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="_handlers_8c" kind="file" language="C++">
+    <compoundname>Handlers.c</compoundname>
+    <includes refid="_handlers_8h" local="yes">Handlers.h</includes>
+    <incdepgraph>
+      <node id="9">
+        <label>Drivers/GraphicCard.h</label>
+        <link refid="_graphic_card_8h"/>
+      </node>
+      <node id="15">
+        <label>Drivers/RTC.h</label>
+        <link refid="_r_t_c_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>i8042.h</label>
+        <link refid="i8042_8h"/>
+      </node>
+      <node id="13">
+        <label>i8254.h</label>
+        <link refid="i8254_8h"/>
+      </node>
+      <node id="10">
+        <label>Drivers/keyboard.h</label>
+        <link refid="keyboard_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Drivers/macros.h</label>
+        <link refid="macros_8h"/>
+      </node>
+      <node id="14">
+        <label>Drivers/mouse.h</label>
+        <link refid="mouse_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Drivers/timer.h</label>
+        <link refid="timer_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c</label>
+        <link refid="_handlers_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Handlers.h</label>
+        <link refid="_handlers_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="88">
+        <label>Levels.h</label>
+        <link refid="_levels_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>Lists/AnimationList.h</label>
+        <link refid="_animation_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="86">
+        <label>Lists/EnemyList.h</label>
+        <link refid="_enemy_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>Lists/LaserList.h</label>
+        <link refid="_laser_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="89">
+        <label>Menu.h</label>
+        <link refid="_menu_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+      </node>
+      <node id="90">
+        <label>Missile.h</label>
+        <link refid="_missile_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Sprites/xpms.h</label>
+        <link refid="xpms_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>proj.h</label>
+        <link refid="proj_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>lcom/lcf.h</label>
+      </node>
+      <node id="16">
+        <label>minix/sysutil.h</label>
+      </node>
+      <node id="8">
+        <label>stdbool.h</label>
+      </node>
+      <node id="7">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>stdio.h</label>
+      </node>
+      <node id="5">
+        <label>stdlib.h</label>
+      </node>
+      <node id="46">
+        <label>xpms/Menu/Alien_attacks_logo.xpm</label>
+      </node>
+      <node id="47">
+        <label>xpms/Menu/endless.xpm</label>
+      </node>
+      <node id="48">
+        <label>xpms/Menu/endless_selected.xpm</label>
+      </node>
+      <node id="49">
+        <label>xpms/Menu/exit.xpm</label>
+      </node>
+      <node id="50">
+        <label>xpms/Menu/exit_selected.xpm</label>
+      </node>
+      <node id="55">
+        <label>xpms/Menu/inside_instructions.xpm</label>
+      </node>
+      <node id="51">
+        <label>xpms/Menu/instructions.xpm</label>
+      </node>
+      <node id="52">
+        <label>xpms/Menu/instructions_selected.xpm</label>
+      </node>
+      <node id="53">
+        <label>xpms/Menu/levels.xpm</label>
+      </node>
+      <node id="54">
+        <label>xpms/Menu/levels_selected.xpm</label>
+      </node>
+      <node id="56">
+        <label>xpms/Menu/menu.xpm</label>
+      </node>
+      <node id="57">
+        <label>xpms/Menu/menu_selected.xpm</label>
+      </node>
+      <node id="43">
+        <label>xpms/Numbers/eight.xpm</label>
+      </node>
+      <node id="40">
+        <label>xpms/Numbers/five.xpm</label>
+      </node>
+      <node id="39">
+        <label>xpms/Numbers/four.xpm</label>
+      </node>
+      <node id="44">
+        <label>xpms/Numbers/nine.xpm</label>
+      </node>
+      <node id="36">
+        <label>xpms/Numbers/one.xpm</label>
+      </node>
+      <node id="42">
+        <label>xpms/Numbers/seven.xpm</label>
+      </node>
+      <node id="41">
+        <label>xpms/Numbers/six.xpm</label>
+      </node>
+      <node id="38">
+        <label>xpms/Numbers/three.xpm</label>
+      </node>
+      <node id="37">
+        <label>xpms/Numbers/two.xpm</label>
+      </node>
+      <node id="35">
+        <label>xpms/Numbers/zero.xpm</label>
+      </node>
+      <node id="30">
+        <label>xpms/bullet_enemy/bullet_enemy1.xpm</label>
+      </node>
+      <node id="31">
+        <label>xpms/bullet_enemy/bullet_enemy2.xpm</label>
+      </node>
+      <node id="32">
+        <label>xpms/bullet_enemy/bullet_enemy3.xpm</label>
+      </node>
+      <node id="58">
+        <label>xpms/chars/back_slash.xpm</label>
+      </node>
+      <node id="59">
+        <label>xpms/chars/hifen.xpm</label>
+      </node>
+      <node id="27">
+        <label>xpms/enemy/enemy1.xpm</label>
+      </node>
+      <node id="28">
+        <label>xpms/enemy/enemy2.xpm</label>
+      </node>
+      <node id="29">
+        <label>xpms/enemy/enemy3.xpm</label>
+      </node>
+      <node id="20">
+        <label>xpms/explosion/e1.xpm</label>
+      </node>
+      <node id="21">
+        <label>xpms/explosion/e2.xpm</label>
+      </node>
+      <node id="22">
+        <label>xpms/explosion/e3.xpm</label>
+      </node>
+      <node id="23">
+        <label>xpms/explosion/e4.xpm</label>
+      </node>
+      <node id="24">
+        <label>xpms/explosion/e5.xpm</label>
+      </node>
+      <node id="25">
+        <label>xpms/explosion/e6.xpm</label>
+      </node>
+      <node id="26">
+        <label>xpms/explosion/e7.xpm</label>
+      </node>
+      <node id="33">
+        <label>xpms/life/sem_vida.xpm</label>
+      </node>
+      <node id="34">
+        <label>xpms/life/vida.xpm</label>
+      </node>
+      <node id="60">
+        <label>xpms/missil/missil1.xpm</label>
+      </node>
+      <node id="69">
+        <label>xpms/missil/missil10.xpm</label>
+      </node>
+      <node id="70">
+        <label>xpms/missil/missil11.xpm</label>
+      </node>
+      <node id="71">
+        <label>xpms/missil/missil12.xpm</label>
+      </node>
+      <node id="72">
+        <label>xpms/missil/missil13.xpm</label>
+      </node>
+      <node id="73">
+        <label>xpms/missil/missil14.xpm</label>
+      </node>
+      <node id="74">
+        <label>xpms/missil/missil15.xpm</label>
+      </node>
+      <node id="75">
+        <label>xpms/missil/missil16.xpm</label>
+      </node>
+      <node id="76">
+        <label>xpms/missil/missil17.xpm</label>
+      </node>
+      <node id="77">
+        <label>xpms/missil/missil18.xpm</label>
+      </node>
+      <node id="78">
+        <label>xpms/missil/missil19.xpm</label>
+      </node>
+      <node id="61">
+        <label>xpms/missil/missil2.xpm</label>
+      </node>
+      <node id="79">
+        <label>xpms/missil/missil20.xpm</label>
+      </node>
+      <node id="80">
+        <label>xpms/missil/missil21.xpm</label>
+      </node>
+      <node id="81">
+        <label>xpms/missil/missil22.xpm</label>
+      </node>
+      <node id="82">
+        <label>xpms/missil/missil23.xpm</label>
+      </node>
+      <node id="83">
+        <label>xpms/missil/missil24.xpm</label>
+      </node>
+      <node id="62">
+        <label>xpms/missil/missil3.xpm</label>
+      </node>
+      <node id="63">
+        <label>xpms/missil/missil4.xpm</label>
+      </node>
+      <node id="64">
+        <label>xpms/missil/missil5.xpm</label>
+      </node>
+      <node id="65">
+        <label>xpms/missil/missil6.xpm</label>
+      </node>
+      <node id="66">
+        <label>xpms/missil/missil7.xpm</label>
+      </node>
+      <node id="67">
+        <label>xpms/missil/missil8.xpm</label>
+      </node>
+      <node id="68">
+        <label>xpms/missil/missil9.xpm</label>
+      </node>
+      <node id="84">
+        <label>xpms/missil/nuke.xpm</label>
+      </node>
+      <node id="45">
+        <label>xpms/mouse_cursor.xpm</label>
+      </node>
+      <node id="19">
+        <label>xpms/others/nave.xpm</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_handlers_8c_1ad2952f07cc74b544ce86429006d1bd6e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int current_enemy_sprite</definition>
+        <argsstring></argsstring>
+        <name>current_enemy_sprite</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="3" column="12" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/proj.c" bodystart="104" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" declline="3" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="_handlers_8c_1a769e76ada68b3750f1efd5ff87799e8d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> *</type>
+        <definition>struct EnemyNode* EnemyFirst</definition>
+        <argsstring></argsstring>
+        <name>EnemyFirst</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="4" column="23" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" bodystart="3" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" declline="4" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="_handlers_8c_1a427eb60c29fb865ac84f1a24018cb34a" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_laser_node" kindref="compound">LaserNode</ref> *</type>
+        <definition>struct LaserNode* LaserFirst</definition>
+        <argsstring></argsstring>
+        <name>LaserFirst</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="5" column="23" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/LaserList.c" bodystart="3" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" declline="5" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="_handlers_8c_1a4474c83cbc65ffe56fbded708f1b13f0" prot="public" static="no" mutable="no">
+        <type>struct InputNode *</type>
+        <definition>struct InputNode* InputFirst</definition>
+        <argsstring></argsstring>
+        <name>InputFirst</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="6" column="23" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" declline="6" declcolumn="23"/>
+      </memberdef>
+      <memberdef kind="variable" id="_handlers_8c_1acd047173db926d54ee91589f7ab53492" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool right</definition>
+        <argsstring></argsstring>
+        <name>right</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="7" column="13" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/proj.c" bodystart="22" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" declline="7" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="_handlers_8c_1aef0ceba738a4b7216ac568b5a5c137d3" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool left</definition>
+        <argsstring></argsstring>
+        <name>left</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="8" column="13" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/proj.c" bodystart="23" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" declline="8" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="_handlers_8c_1a7155f867ab504d48e40f4b43a4d9daf6" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool up</definition>
+        <argsstring></argsstring>
+        <name>up</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="9" column="13" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/proj.c" bodystart="24" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" declline="9" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="_handlers_8c_1ac30355235d44e8f7b0a538a510bcbbeb" prot="public" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool down</definition>
+        <argsstring></argsstring>
+        <name>down</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="10" column="13" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/proj.c" bodystart="25" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" declline="10" declcolumn="13"/>
+      </memberdef>
+      <memberdef kind="variable" id="_handlers_8c_1a39ee502745975b6ca48bc6af393daed7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int shootfrequency</definition>
+        <argsstring></argsstring>
+        <name>shootfrequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="11" column="12" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" bodystart="3" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" declline="11" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="_handlers_8c_1aa777fadfda11f54f66b7e97b05bf5b02" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int movementmode</definition>
+        <argsstring></argsstring>
+        <name>movementmode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="12" column="12" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" bodystart="4" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" declline="12" declcolumn="12"/>
+      </memberdef>
+      <memberdef kind="variable" id="_handlers_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" prot="public" static="no" mutable="no">
+        <type><ref refid="structclock__fields__struct" kindref="compound">clock_fields_struct</ref></type>
+        <definition>clock_fields_struct info_rtc</definition>
+        <argsstring></argsstring>
+        <name>info_rtc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="14" column="28" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" bodystart="3" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" declline="14" declcolumn="28"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_handlers_8c_1a68c491a02d132c528f42273289f4678f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() draw_laser</definition>
+        <argsstring>(uint16_t x, uint16_t y, int user)</argsstring>
+        <name>draw_laser</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+<para>Draws laser from either the user or an enemy. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x position for the laser </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y position for the laser </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>set to 1 if the laser comes from the user, 0 if it comes from an enemy </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="16" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="16" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() draw_number</definition>
+        <argsstring>(uint8_t number, uint16_t x, uint16_t y)</argsstring>
+        <name>draw_number</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>number</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Draws a number. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>number</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number to be drawn </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x position of the number </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y position of the number </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="44" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="44" bodyend="82"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8c_1a0ac8a2f8b564a0b003cd6a3fd2785573" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() draw_score</definition>
+        <argsstring>()</argsstring>
+        <name>draw_score</name>
+        <briefdescription>
+<para>Draws user&apos;s score on the top of the screen. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="84" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="84" bodyend="97"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8c_1a78550ae224ae0ca51b3de81c44477a45" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int draw_time</definition>
+        <argsstring>()</argsstring>
+        <name>draw_time</name>
+        <briefdescription>
+<para>Draws the time and date on the top of the screen. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="100" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="100" bodyend="198"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8c_1a56136c73a9d245da9cf52630251b754e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() handle_top_bar</definition>
+        <argsstring>()</argsstring>
+        <name>handle_top_bar</name>
+        <briefdescription>
+<para>Draws the user lives, the real time clock, and the score, located on the top of the screen. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="200" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="200" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8c_1a9f2d428b348d073ee5141e974fc15586" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int handle_laser</definition>
+        <argsstring>()</argsstring>
+        <name>handle_laser</name>
+        <briefdescription>
+<para>Handles all lasers&apos; animation, movement and collisions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="225" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="225" bodyend="272"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8c_1a5edba2de5f0a95faa58211be1bae882d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void enemy_mov_1</definition>
+        <argsstring>()</argsstring>
+        <name>enemy_mov_1</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="274" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="274" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8c_1a89eb1b88f1a68c3d0ab04e18ab0fbcbe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void enemy_mov_2</definition>
+        <argsstring>()</argsstring>
+        <name>enemy_mov_2</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="300" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="300" bodyend="338"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8c_1a537a0fe39a451eda9d87a3e0d931b54f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int handle_enemy</definition>
+        <argsstring>()</argsstring>
+        <name>handle_enemy</name>
+        <briefdescription>
+<para>Handles enemy movements, animation and laser shooting. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="341" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="341" bodyend="354"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8c_1a38f63703c1c32c38e988a3cb65116c58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int handle_user</definition>
+        <argsstring>()</argsstring>
+        <name>handle_user</name>
+        <briefdescription>
+<para>Handles user movement. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="356" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="356" bodyend="380"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8c_1ac1c99d5669c23edc8143a69f334c767c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int handle_animation</definition>
+        <argsstring>()</argsstring>
+        <name>handle_animation</name>
+        <briefdescription>
+<para>Handles enemy explosion animation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" line="382" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="382" bodyend="419"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_handlers_8h" kindref="compound">Handlers.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1ad2952f07cc74b544ce86429006d1bd6e" kindref="member">current_enemy_sprite</ref>;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*<ref refid="_handlers_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref>;<sp/></highlight><highlight class="comment">//first<sp/>node<sp/>of<sp/>the<sp/>list</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_laser_node" kindref="compound">LaserNode</ref><sp/>*<ref refid="_handlers_8c_1a427eb60c29fb865ac84f1a24018cb34a" kindref="member">LaserFirst</ref>;<sp/></highlight><highlight class="comment">//first<sp/>node<sp/>of<sp/>the<sp/>list</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal">InputNode<sp/>*<ref refid="_handlers_8c_1a4474c83cbc65ffe56fbded708f1b13f0" kindref="member">InputFirst</ref>;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1acd047173db926d54ee91589f7ab53492" kindref="member">right</ref>;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1aef0ceba738a4b7216ac568b5a5c137d3" kindref="member">left</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1a7155f867ab504d48e40f4b43a4d9daf6" kindref="member">up</ref>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1ac30355235d44e8f7b0a538a510bcbbeb" kindref="member">down</ref>;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1a39ee502745975b6ca48bc6af393daed7" kindref="member">shootfrequency</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1aa777fadfda11f54f66b7e97b05bf5b02" kindref="member">movementmode</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/><ref refid="structclock__fields__struct" kindref="compound">clock_fields_struct</ref><sp/><ref refid="_handlers_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="_handlers_8c_1a68c491a02d132c528f42273289f4678f" refkind="member"><highlight class="normal">int<sp/>(<ref refid="_handlers_8c_1a68c491a02d132c528f42273289f4678f" kindref="member">draw_laser</ref>)(uint16_t<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>uint16_t<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>user)</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(!user)</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="proj_8c_1a976ff65e5846d840afe26f47a4905655" kindref="member">current_ebullet_sprite</ref>)</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1a02bed98afd03a5cb9d42123fcb73d7b0" kindref="member">eb1_sprite</ref>,<sp/><ref refid="proj_8c_1adbf88a230fa9c622afc31750c7bc610e" kindref="member">eb1_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1a3b3a575e7c3a78a0b05aa4b9ae2fd683" kindref="member">eb2_sprite</ref>,<sp/><ref refid="proj_8c_1acc381432ed87e2cb97ce20b24a0c4d28" kindref="member">eb2_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1a6d9424f1a0fca1432292129086796ece" kindref="member">eb3_sprite</ref>,<sp/><ref refid="proj_8c_1a58785ebf4ced29bfd96c073a4066cd50" kindref="member">eb3_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1a02bed98afd03a5cb9d42123fcb73d7b0" kindref="member">eb1_sprite</ref>,<sp/><ref refid="proj_8c_1adbf88a230fa9c622afc31750c7bc610e" kindref="member">eb1_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_graphic_card_8c_1a99d2da2559e11200c6b40c469e9977ec" kindref="member">vg_draw_rectangle</ref>(<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>,<sp/>4,<sp/>20,<sp/><ref refid="proj_8c_1a9312b0d02c8f9ec226aa9cae68365292" kindref="member">color_laser</ref>))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44" refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" refkind="member"><highlight class="normal">int<sp/>(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>)(uint8_t<sp/>number,<sp/>uint16_t<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>uint16_t<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(number)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a142b36899f6151cc726798ae2f51a494" kindref="member">zero_sprite</ref>,<sp/><ref refid="xpms_8c_1a8d6b586ff9c58e31bb7f89fe593b0496" kindref="member">zero_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a297b99e7209329ae4a79e318a051e23a" kindref="member">one_sprite</ref>,<sp/><ref refid="xpms_8c_1a06a61310265e3b593c52bd2acae6bb5f" kindref="member">one_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a6f45b7853d9c6f4b046741ba2bb6d891" kindref="member">two_sprite</ref>,<sp/><ref refid="xpms_8c_1ac401d5f8271ba289a416e5efb8120e00" kindref="member">two_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a9d48215f26320180b7339ae3c57dea1d" kindref="member">three_sprite</ref>,<sp/><ref refid="xpms_8c_1a640afed91f9bb514084a0e125a06409e" kindref="member">three_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>4:</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a2f1116c1bc9b40917479f14722bc41e4" kindref="member">four_sprite</ref>,<sp/><ref refid="xpms_8c_1adc3540163af153a500a6cfb92cc2e3c9" kindref="member">four_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>5:</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a48c5a62238fb1ba1ca3a5012f7845e13" kindref="member">five_sprite</ref>,<sp/><ref refid="xpms_8c_1a080a61f7d9bc7b8de2c430bf0cc9894d" kindref="member">five_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>6:</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1af3017dbc4ff66e2f082c6f0858af128f" kindref="member">six_sprite</ref>,<sp/><ref refid="xpms_8c_1ac54ea75e82fcce67ecf46d5ef51aba96" kindref="member">six_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>7:</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1aeb93d59544add3cf33509cab780356ac" kindref="member">seven_sprite</ref>,<sp/><ref refid="xpms_8c_1ab8fa08e2054134c1bf943c55820b058c" kindref="member">seven_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>8:</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a07e0c030955dc3350df81d2a2963b177" kindref="member">eight_sprite</ref>,<sp/><ref refid="xpms_8c_1a99da0d80d136a98b4e9e41ffe339b49e" kindref="member">eight_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>9:</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a7cda3822ce3205e81a8be8880488398b" kindref="member">nine_sprite</ref>,<sp/><ref refid="xpms_8c_1a743045a6c44330fc5ca69e36aa59a774" kindref="member">nine_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="_handlers_8c_1a0ac8a2f8b564a0b003cd6a3fd2785573" refkind="member"><highlight class="normal">int<sp/>(<ref refid="_handlers_8c_1a0ac8a2f8b564a0b003cd6a3fd2785573" kindref="member">draw_score</ref>)()</highlight></codeline>
+<codeline lineno="85"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>rest;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>score2<sp/>=<sp/><ref refid="proj_8c_1ab0f6ab469e4f27aed971a82e856945b8" kindref="member">score</ref>;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>drawx<sp/>=<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>-<sp/>200;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(score2<sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rest<sp/>=<sp/>score2<sp/>%<sp/>10;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>score2<sp/>=<sp/>score2<sp/>/<sp/>10;</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(rest,<sp/>drawx,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>drawx<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="97"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100" refid="_handlers_8c_1a78550ae224ae0ca51b3de81c44477a45" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1a78550ae224ae0ca51b3de81c44477a45" kindref="member">draw_time</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>draw_x<sp/>=<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>-<sp/>600;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>current;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>hours<sp/>=<sp/><ref refid="_handlers_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1a2bd736629b3e6418d20e90ca42bdda06" kindref="member">h</ref>;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>minutes<sp/>=<sp/><ref refid="_handlers_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1aa97974f24bd598bab381157eb2899857" kindref="member">min</ref>;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>seconds<sp/>=<sp/><ref refid="_handlers_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1aacbc9bedaa1869359adae36d2c82609b" kindref="member">sec</ref>;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>day<sp/>=<sp/><ref refid="_handlers_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1ac6c0a9c09b5634dd8cb365b712d5ea6a" kindref="member">d</ref>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>month<sp/>=<sp/><ref refid="_handlers_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1a741a9f4334ab733150f2da72a4be249d" kindref="member">m</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>year<sp/>=<sp/><ref refid="_handlers_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1ac74ebfcc16cee3bd65adf52113779422" kindref="member">y</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(year<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>current<sp/>=<sp/>year<sp/>%<sp/>10;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>year<sp/>=<sp/>year<sp/>/<sp/>10;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(current,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1adb366bc6a1e3c00f43cf7cfba2dffc40" kindref="member">back_slash_sprite</ref>,<sp/><ref refid="xpms_8c_1a4f7e3c5c793d6dbf84e4d5424c20469d" kindref="member">back_slash_img</ref>,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(month<sp/>&lt;<sp/>10)</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(month,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(0,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(month<sp/>%<sp/>10,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(month<sp/>/<sp/>10,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1adb366bc6a1e3c00f43cf7cfba2dffc40" kindref="member">back_slash_sprite</ref>,<sp/><ref refid="xpms_8c_1a4f7e3c5c793d6dbf84e4d5424c20469d" kindref="member">back_slash_img</ref>,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(day<sp/>&lt;<sp/>10)</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(day,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(0,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(day<sp/>%<sp/>10,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(day<sp/>/<sp/>10,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>50;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(seconds<sp/>&lt;<sp/>10)</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(seconds,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(0,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(seconds<sp/>%<sp/>10,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(seconds<sp/>/<sp/>10,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1ac4f16ed5a7c7457bdd6a8984cc69fb03" kindref="member">hifen_sprite</ref>,<sp/><ref refid="xpms_8c_1a71314709dfae291c0471e48ba98610c6" kindref="member">hifen_img</ref>,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(minutes<sp/>&lt;<sp/>10)</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(minutes,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(0,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(minutes<sp/>%<sp/>10,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(minutes<sp/>/<sp/>10,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1ac4f16ed5a7c7457bdd6a8984cc69fb03" kindref="member">hifen_sprite</ref>,<sp/><ref refid="xpms_8c_1a71314709dfae291c0471e48ba98610c6" kindref="member">hifen_img</ref>,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(hours<sp/>&lt;<sp/>10)</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(hours,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(0,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(hours<sp/>%<sp/>10,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>(hours<sp/>/<sp/>10,<sp/>draw_x,<sp/>15))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>draw_x<sp/>-=<sp/>25;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200" refid="_handlers_8c_1a56136c73a9d245da9cf52630251b754e" refkind="member"><highlight class="normal">int<sp/>(<ref refid="_handlers_8c_1a56136c73a9d245da9cf52630251b754e" kindref="member">handle_top_bar</ref>)()</highlight></codeline>
+<codeline lineno="201"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/>drawx<sp/>=<sp/>10;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal">(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>3;<sp/>i++)</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(i<sp/>&lt;<sp/><ref refid="proj_8c_1a7d9e91cd37ce7105ec9e90488b88848c" kindref="member">lives</ref>)</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a52cda71c2ca6c5768b88f6b6d60ac37f" kindref="member">vida_sprite</ref>,<sp/><ref refid="xpms_8c_1a859e4ec6661a826eab42e0617230ca15" kindref="member">vida_img</ref>,<sp/>drawx,<sp/>10))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a7f4198ef8a8a167559c6e2dbdd1bbf41" kindref="member">sem_vida_sprite</ref>,<sp/><ref refid="xpms_8c_1a5259d5ebc4579cad81773ab39000f1ef" kindref="member">sem_vida_img</ref>,<sp/>drawx,<sp/>10))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>drawx<sp/>+=<sp/>50;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_missile_8c_1a64b076d66f802c908912644971502f68" kindref="member">missile_ready</ref>())</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1ace1f1c80403bf6c22d570443fd98e646" kindref="member">nuke_sprite</ref>,<sp/><ref refid="xpms_8c_1a5a6b7a5799b53496ec833024265d7cb7" kindref="member">nuke_img</ref>,<sp/>drawx,<sp/>10))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_handlers_8c_1a0ac8a2f8b564a0b003cd6a3fd2785573" kindref="member">draw_score</ref>();</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_handlers_8c_1a78550ae224ae0ca51b3de81c44477a45" kindref="member">draw_time</ref>();</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight><highlight class="comment">//Handles<sp/>what<sp/>a<sp/>laser<sp/>does<sp/>on<sp/>each<sp/>timer<sp/>interrupt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="225" refid="_handlers_8c_1a9f2d428b348d073ee5141e974fc15586" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1a9f2d428b348d073ee5141e974fc15586" kindref="member">handle_laser</ref>()</highlight></codeline>
+<codeline lineno="226"><highlight class="normal">{<sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1a4869422397f50e91e94920b2d33e471a" kindref="member">user</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1aa919f2670802c28e00da388378d56e41" kindref="member">y</ref><sp/>-=<sp/>20;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1aa919f2670802c28e00da388378d56e41" kindref="member">y</ref><sp/>+=<sp/>20;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1aa919f2670802c28e00da388378d56e41" kindref="member">y</ref><sp/>&lt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.YResolution<sp/>-<sp/>20)</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_handlers_8c_1a68c491a02d132c528f42273289f4678f" kindref="member">draw_laser</ref>(<ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1a522693c80445c37cd2d80fe1e9200596" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1aa919f2670802c28e00da388378d56e41" kindref="member">y</ref>,<sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1a4869422397f50e91e94920b2d33e471a" kindref="member">user</ref>);</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref><sp/>=<sp/><ref refid="_handlers_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref>;</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref><sp/>!=<sp/>NULL)<sp/></highlight><highlight class="comment">//check<sp/>for<sp/>collisions</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">((<ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1a522693c80445c37cd2d80fe1e9200596" kindref="member">x</ref><sp/>&gt;<sp/>(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>-<sp/>5)<sp/>&amp;&amp;<sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1a522693c80445c37cd2d80fe1e9200596" kindref="member">x</ref><sp/>&lt;<sp/>(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>+<sp/>55)<sp/>&amp;&amp;<sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1aa919f2670802c28e00da388378d56e41" kindref="member">y</ref><sp/>&lt;<sp/>(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref><sp/>+<sp/>30)<sp/>&amp;&amp;<sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1aa919f2670802c28e00da388378d56e41" kindref="member">y</ref><sp/>&gt;<sp/>(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref><sp/>-<sp/>20))<sp/>&amp;&amp;<sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1a4869422397f50e91e94920b2d33e471a" kindref="member">user</ref>)</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_animation_list_8c_1a5cf01ce40d8114bec5d69626642d7c19" kindref="member">al_addNode</ref>(<ref refid="_animation_list_8c_1ae40ab958b1adc6bd8551fa2b5ae80b7f" kindref="member">al_getNewNode</ref>(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref>));</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1ae181a896008fc5cc34e25c2a68875589" kindref="member">el_removeNode</ref>(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>);</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_laser_list_8c_1aa00f9f85733f216d1682d5cd313726a0" kindref="member">ll_removeNode</ref>(<ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>);</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1ab0f6ab469e4f27aed971a82e856945b8" kindref="member">score</ref><sp/>+=<sp/>20;</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1a522693c80445c37cd2d80fe1e9200596" kindref="member">x</ref><sp/>&gt;<sp/>(<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref><sp/>-<sp/>4)<sp/>&amp;&amp;<sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1a522693c80445c37cd2d80fe1e9200596" kindref="member">x</ref><sp/>&lt;<sp/>(<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref><sp/>+<sp/>164)<sp/>&amp;&amp;<sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1aa919f2670802c28e00da388378d56e41" kindref="member">y</ref><sp/>&gt;<sp/>(<ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref><sp/>-<sp/>20)<sp/>&amp;&amp;<sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1aa1c7c3def5bd6d74a2ab7b5c72d6252b" kindref="member">laser</ref>-&gt;<ref refid="struct_laser_1aa919f2670802c28e00da388378d56e41" kindref="member">y</ref><sp/>&lt;<sp/>(<ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref><sp/>+<sp/>120))</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a7d9e91cd37ce7105ec9e90488b88848c" kindref="member">lives</ref>--;</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a7d9e91cd37ce7105ec9e90488b88848c" kindref="member">lives</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_laser_list_8c_1aa00f9f85733f216d1682d5cd313726a0" kindref="member">ll_removeNode</ref>(<ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>);</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref><sp/>=<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref><sp/>=<sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1ad5813af92553bdb32e7b288d61e32c9d" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="comment">//if<sp/>laser<sp/>is<sp/>out<sp/>of<sp/>bounds<sp/>remove<sp/>it<sp/>and<sp/>clean<sp/>its<sp/>position</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_laser_list_8c_1aa00f9f85733f216d1682d5cd313726a0" kindref="member">ll_removeNode</ref>(<ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>);</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref><sp/>=<sp/><ref refid="proj_8c_1afef318d2981dcd049705f1880b527ab2" kindref="member">ll_t</ref>-&gt;<ref refid="struct_laser_node_1ad5813af92553bdb32e7b288d61e32c9d" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printList(LaserFirst);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;\n&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="272"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight></codeline>
+<codeline lineno="274" refid="_handlers_8c_1a5edba2de5f0a95faa58211be1bae882d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1a5edba2de5f0a95faa58211be1bae882d" kindref="member">enemy_mov_1</ref>()</highlight></codeline>
+<codeline lineno="275"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>&lt;=<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a6e6d01d05e4569b91997322ed08be867" kindref="member">min_x</ref>)<sp/></highlight><highlight class="comment">//changes<sp/>the<sp/>enemy<sp/>direction<sp/>if<sp/>a<sp/>wall<sp/>is<sp/>hit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>+<sp/>6<sp/>+<sp/>50<sp/>&gt;<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a28e3f5e948fc14f395e8d31ef54f1094" kindref="member">max_x</ref>)<sp/></highlight><highlight class="comment">//changes<sp/>the<sp/>enemy<sp/>direction<sp/>if<sp/>a<sp/>wall<sp/>is<sp/>hit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>==<sp/>0)<sp/></highlight><highlight class="comment">//if<sp/>the<sp/>enemy<sp/>goes<sp/>to<sp/>the<sp/>right</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>+<sp/>6<sp/>+<sp/>50<sp/>&gt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution)<sp/>{<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>=<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>-<sp/>50;}</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>+=<sp/>6;}</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>==<sp/>2)<sp/></highlight><highlight class="comment">//if<sp/>the<sp/>enemy<sp/>goes<sp/>to<sp/>the<sp/>left</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>-<sp/>6<sp/>&lt;<sp/>0)<sp/>{<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>=<sp/>0;}</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>-=<sp/>6;}</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="298"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"></highlight></codeline>
+<codeline lineno="300" refid="_handlers_8c_1a89eb1b88f1a68c3d0ab04e18ab0fbcbe" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1a89eb1b88f1a68c3d0ab04e18ab0fbcbe" kindref="member">enemy_mov_2</ref>()</highlight></codeline>
+<codeline lineno="301"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>+=<sp/>6;</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>&gt;=<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a28e3f5e948fc14f395e8d31ef54f1094" kindref="member">max_x</ref>)</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>=<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a28e3f5e948fc14f395e8d31ef54f1094" kindref="member">max_x</ref>;</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>==<sp/>1)</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref><sp/>+=<sp/>6;</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref><sp/>&gt;=<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1ab8e401d90b1dd0a07ec6b1b8a344e280" kindref="member">max_y</ref>)</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref><sp/>=<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1ab8e401d90b1dd0a07ec6b1b8a344e280" kindref="member">max_y</ref>;</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>==<sp/>2)</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>-=<sp/>6;</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>&lt;=<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a6e6d01d05e4569b91997322ed08be867" kindref="member">min_x</ref>)</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>=<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a6e6d01d05e4569b91997322ed08be867" kindref="member">min_x</ref>;</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>==<sp/>3)</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref><sp/>-=<sp/>6;</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref><sp/>&lt;=<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1aaa55eced61d73b5d2e9c4ded12fd864a" kindref="member">min_y</ref>)</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref><sp/>=<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1aaa55eced61d73b5d2e9c4ded12fd864a" kindref="member">min_y</ref>;</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="338"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"></highlight><highlight class="comment">//handles<sp/>what<sp/>an<sp/>enemy<sp/>does<sp/>on<sp/>each<sp/>timer<sp/>interrupt</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="341" refid="_handlers_8c_1a537a0fe39a451eda9d87a3e0d931b54f" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1a537a0fe39a451eda9d87a3e0d931b54f" kindref="member">handle_enemy</ref>()</highlight></codeline>
+<codeline lineno="342"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1aa777fadfda11f54f66b7e97b05bf5b02" kindref="member">movementmode</ref><sp/>==<sp/>1)<sp/><ref refid="_handlers_8c_1a5edba2de5f0a95faa58211be1bae882d" kindref="member">enemy_mov_1</ref>();</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1aa777fadfda11f54f66b7e97b05bf5b02" kindref="member">movementmode</ref><sp/>==<sp/>2)<sp/><ref refid="_handlers_8c_1a89eb1b88f1a68c3d0ab04e18ab0fbcbe" kindref="member">enemy_mov_2</ref>();</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1ad2952f07cc74b544ce86429006d1bd6e" kindref="member">current_enemy_sprite</ref><sp/>==<sp/>0)<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1afd3cb6055c6f4afdb6de8bb41c6c452e" kindref="member">enemy1_sprite</ref>,<sp/><ref refid="proj_8c_1a20317693d285b1b314fc914c235a8270" kindref="member">enemy1_img</ref>,<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref>))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1ad2952f07cc74b544ce86429006d1bd6e" kindref="member">current_enemy_sprite</ref><sp/>==<sp/>1)<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1afde02a17c037a35289f85b887e3a4758" kindref="member">enemy2_sprite</ref>,<sp/><ref refid="proj_8c_1adbbfa8d17a27e1ebd7fbda225fe48db2" kindref="member">enemy2_img</ref>,<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref>))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1ad2952f07cc74b544ce86429006d1bd6e" kindref="member">current_enemy_sprite</ref><sp/>==<sp/>2)<sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1ab9844ff8954338f1659b415883848326" kindref="member">enemy3_sprite</ref>,<sp/><ref refid="proj_8c_1a7b15969a6ebe402c5f9ed7b3b5210ae7" kindref="member">enemy3_img</ref>,<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref>))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"></highlight></codeline>
+<codeline lineno="349"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((rand()<sp/>%<sp/>1000)<sp/>&lt;<sp/><ref refid="_handlers_8c_1a39ee502745975b6ca48bc6af393daed7" kindref="member">shootfrequency</ref>)<sp/>{<ref refid="_laser_list_8c_1a1bda90777ba7c3fd7d223f8f665d95b0" kindref="member">ll_addNode</ref>(<ref refid="_laser_list_8c_1ab68ef7c381ce3c6546c7b8aaaed598b8" kindref="member">ll_getNewNode</ref>(<ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>-<sp/>50,<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref><sp/>+<sp/>22,<sp/>0));}</highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printList(LaserFirst);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;\n&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref><sp/>=<sp/><ref refid="proj_8c_1a1bebe2b2fd59dff515208a912d6e58f4" kindref="member">el_t</ref>-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="354"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"></highlight></codeline>
+<codeline lineno="356" refid="_handlers_8c_1a38f63703c1c32c38e988a3cb65116c58" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1a38f63703c1c32c38e988a3cb65116c58" kindref="member">handle_user</ref>()</highlight></codeline>
+<codeline lineno="357"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1a7155f867ab504d48e40f4b43a4d9daf6" kindref="member">up</ref>)</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref><sp/>-<sp/>15<sp/>&lt;<sp/>750)<sp/>{<ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref><sp/>=<sp/>750;}</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref><sp/>-=<sp/>15;}</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1ac30355235d44e8f7b0a538a510bcbbeb" kindref="member">down</ref>)</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref><sp/>+<sp/>15<sp/>+<sp/>115<sp/>&gt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.YResolution)<sp/>{<ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref><sp/>=<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.YResolution<sp/>-<sp/>115;}</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref><sp/>+=<sp/>15;}</highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1aef0ceba738a4b7216ac568b5a5c137d3" kindref="member">left</ref>)</highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref><sp/>-<sp/>15<sp/>&lt;<sp/>0)<sp/>{<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref><sp/>=<sp/>0;}</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref><sp/>-=<sp/>15;}</highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_handlers_8c_1acd047173db926d54ee91589f7ab53492" kindref="member">right</ref>)</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref><sp/>+<sp/>15<sp/>+<sp/>160<sp/>&gt;<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution)<sp/>{<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref><sp/>=<sp/><ref refid="_graphic_card_8h_1acca70c2a37ad14beac4c0f3c652c5143" kindref="member">mode_inf</ref>.XResolution<sp/>-<sp/>160;}</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{<ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref><sp/>+=<sp/>15;}</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1aba47350d107a2bf653f06c1ea0079bff" kindref="member">user_sprite</ref>,<sp/><ref refid="proj_8c_1adca8f101084f4db825c825cc47cf7610" kindref="member">user_img</ref>,<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="380"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"></highlight></codeline>
+<codeline lineno="382" refid="_handlers_8c_1ac1c99d5669c23edc8143a69f334c767c" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_handlers_8c_1ac1c99d5669c23edc8143a69f334c767c" kindref="member">handle_animation</ref>()</highlight></codeline>
+<codeline lineno="383"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1aa488af0f93d17c3c03fa21b66e093a95" kindref="member">time_to_change</ref>--;</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1aa488af0f93d17c3c03fa21b66e093a95" kindref="member">time_to_change</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1a6ec5ecf7cfdd99a84ea65317a779b5d2" kindref="member">curr_xpm</ref>++;</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1aa488af0f93d17c3c03fa21b66e093a95" kindref="member">time_to_change</ref><sp/>=<sp/>5;</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="390"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1a6ec5ecf7cfdd99a84ea65317a779b5d2" kindref="member">curr_xpm</ref>)</highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1a953fc7dee9ac0e86f1ffdbef6e2e3d31" kindref="member">explosion1_sprite</ref>,<sp/><ref refid="proj_8c_1acee5df9db5bf8c9877779d2cd7b5e6f8" kindref="member">explosion1_img</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1ac6b606414f2a4b6585ee30cb38d63d7b" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1add557f989cac2a537e049146ebaa3abd" kindref="member">y</ref>);</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1a89e0995e3cef2f23f6be5bdf8c74cd5d" kindref="member">explosion2_sprite</ref>,<sp/><ref refid="proj_8c_1a92bdb804361ab5d47a7cfafa9b085d47" kindref="member">explosion2_img</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1ac6b606414f2a4b6585ee30cb38d63d7b" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1add557f989cac2a537e049146ebaa3abd" kindref="member">y</ref>);</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="398"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1ae6a5319aee5197c2613ae6a55a6b7578" kindref="member">explosion3_sprite</ref>,<sp/><ref refid="proj_8c_1aed5565c21cb466b281f936857cff558f" kindref="member">explosion3_img</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1ac6b606414f2a4b6585ee30cb38d63d7b" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1add557f989cac2a537e049146ebaa3abd" kindref="member">y</ref>);</highlight></codeline>
+<codeline lineno="400"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="401"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:</highlight></codeline>
+<codeline lineno="402"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1a5d9a4bb815b67cad2b53d7d7637dd91e" kindref="member">explosion4_sprite</ref>,<sp/><ref refid="proj_8c_1a46c6a90ad070fdcf8dfb966adfa3924c" kindref="member">explosion4_img</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1ac6b606414f2a4b6585ee30cb38d63d7b" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1add557f989cac2a537e049146ebaa3abd" kindref="member">y</ref>);</highlight></codeline>
+<codeline lineno="403"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="404"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>4:</highlight></codeline>
+<codeline lineno="405"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1a27f9c589b0956183a328dc1eecab8c8a" kindref="member">explosion5_sprite</ref>,<sp/><ref refid="proj_8c_1a1550b882abb8cac1f742e195c36ebd73" kindref="member">explosion5_img</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1ac6b606414f2a4b6585ee30cb38d63d7b" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1add557f989cac2a537e049146ebaa3abd" kindref="member">y</ref>);</highlight></codeline>
+<codeline lineno="406"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="407"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>5:</highlight></codeline>
+<codeline lineno="408"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1aeae903a4f4895d038fa5cf36e06e5b41" kindref="member">explosion6_sprite</ref>,<sp/><ref refid="proj_8c_1aa1c36eecefc0a8ed291b241617836d77" kindref="member">explosion6_img</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1ac6b606414f2a4b6585ee30cb38d63d7b" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1add557f989cac2a537e049146ebaa3abd" kindref="member">y</ref>);</highlight></codeline>
+<codeline lineno="409"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="410"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>6:</highlight></codeline>
+<codeline lineno="411"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="proj_8c_1a741c20d5afcc9323f970b793ace88aa8" kindref="member">explosion7_sprite</ref>,<sp/><ref refid="proj_8c_1a7d2e6236e3cd1a72595f9ab18bb86627" kindref="member">explosion7_img</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1ac6b606414f2a4b6585ee30cb38d63d7b" kindref="member">x</ref>,<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>-&gt;<ref refid="struct_animation_1add557f989cac2a537e049146ebaa3abd" kindref="member">y</ref>);</highlight></codeline>
+<codeline lineno="412"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="413"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="414"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_animation_list_8c_1a6cdaee024b5a0251d70f32d12145a447" kindref="member">al_removeFirst</ref>();</highlight></codeline>
+<codeline lineno="415"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="416"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="417"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref><sp/>=<sp/><ref refid="proj_8c_1a28be8474db831de1a6ca9101049eb6a9" kindref="member">al_t</ref>-&gt;<ref refid="struct_animation_node_1af2d2bdd8565ef96845a8633d05b145f4" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="418"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="419"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c"/>
+  </compounddef>
+</doxygen>

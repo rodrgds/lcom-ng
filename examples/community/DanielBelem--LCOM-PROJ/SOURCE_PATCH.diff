@@ -1,0 +1,71 @@
+--- a/proj/src/main.c
++++ b/proj/src/main.c
+@@ -301,7 +301,7 @@
+ const int margin_x = 60;
+ const int line_spacing = 30;
+ const int word_spacing = 15;
+-const int num_words = 25;
++const int num_words = MAX_GAME_WORDS;
+ 
+ int draw_sentence(){
+ 
+@@ -609,7 +609,8 @@
+ 
+                         if (cur_scancode == 0x02) {
+                             if (!button_15_clicked) {
+-                                game_time = 15; 
++                                game_time = 15;
++                                last_game_time = game_time;
+                                 button_15_clicked = true;
+                                 button_30_clicked = false;
+                                 button_60_clicked = false;
+@@ -619,7 +620,8 @@
+                             }
+                         } else if (cur_scancode == 0x03) {
+                             if (!button_30_clicked) {
+-                                game_time = 30; 
++                                game_time = 30;
++                                last_game_time = game_time;
+                                 button_15_clicked = false;
+                                 button_30_clicked = true;
+                                 button_60_clicked = false;
+@@ -629,7 +631,8 @@
+                             }
+                         } else if (cur_scancode == 0x04) {
+                             if (!button_60_clicked) {
+-                                game_time = 60; 
++                                game_time = 60;
++                                last_game_time = game_time;
+                                 button_15_clicked = false;
+                                 button_30_clicked = false;
+                                 button_60_clicked = true;
+@@ -677,6 +680,8 @@
+                         }
+                         else if (cur_scancode == 0x39) { 
+                             if (game_state == WAITING) {
++                                last_game_time = game_time;
++                                timer_counter = 0;
+                                 game_state = STARTED;
+                                 cursor_visible = 0; // Hide cursor when game starts
+                                 printf("Game started with %d seconds\n", game_time);
+@@ -734,6 +739,7 @@
+                             // mouse_print_packet(&mouse_packet);
+ 
+                             time_button_handler(mouse_x, mouse_y);
++                            last_game_time = game_time;
+                             language_button_handler(mouse_x, mouse_y, last_game_time);
+                             
+                             mouse_x += mouse_packet.delta_x;
+@@ -762,9 +768,10 @@
+ 
+         if(game_state==STATS){
+         
+-            int percent = (100 * correct_words) / cur_word_count;
+-            int decimal = (1000 * correct_words) / cur_word_count % 10;
++            int percent = cur_word_count ? (100 * correct_words) / cur_word_count : 0;
++            int decimal = cur_word_count ? (1000 * correct_words) / cur_word_count % 10 : 0;
+             int used_time = last_game_time-final_time;
++            if (used_time < 1) used_time = 1;
+             printf("wrong words: %d\n", wrong_words);
+             printf("correct words: %d\n", correct_words);
+             printf("used time: %d\n",used_time );

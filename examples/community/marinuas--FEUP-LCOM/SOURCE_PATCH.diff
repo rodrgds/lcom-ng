@@ -1,0 +1,429 @@
+--- a/proj/src/mouse.c
++++ b/proj/src/mouse.c
+@@ -121,41 +121,40 @@
+   return false;
+ }
+ 
+-int mouse_write_command(uint32_t command ){
+-  uint8_t st, ackn;
+-  while (1)
+-  {
++static int wait_mouse_buffer(uint8_t mask, uint8_t desired){
++  for(unsigned poll=0; poll<10; poll++){
++    uint8_t st;
+     if(util_sys_inb(STATUS_REG, &st)!=0) return 1;
+-    
++    if((st & mask)==desired) return 0;
++    tickdelay(micros_to_ticks(DELAY_US));
++  }
++  return 1;
++}
+ 
+-    if(st & (AUX | IBF))
+-      if(sys_outb(STATUS_REG, WRITE_BYTE_TO_MOUSE)!=0) return 1;
+-    
+-    if(util_sys_inb(STATUS_REG, &st)!=0) return 1;
++int mouse_write_command(uint32_t command ){
++  for(unsigned attempt=0; attempt<3; attempt++){
++    if(wait_mouse_buffer(IBF,0)!=0) return 1;
++    if(sys_outb(STATUS_REG, WRITE_BYTE_TO_MOUSE)!=0) return 1;
++    if(wait_mouse_buffer(IBF,0)!=0) return 1;
++    if(sys_outb(OUT_BUF, command)!=0) return 1;
++    if(wait_mouse_buffer(OBF,OBF)!=0) return 1;
+ 
+-    if(st & (AUX | IBF))
+-      if(sys_outb(OUT_BUF, command)!=0) return 1;
+-    
++    uint8_t ackn;
+     if(util_sys_inb(OUT_BUF, &ackn)!=0) return 1;
+-    if(ackn==ACK) break;
+-    else if(ackn==ERROR) return 1;
++    if(ackn==ACK) return 0;
++    if(ackn!=NACK) return 1;
+   }
+-
+-  return 0;
++  return 1;
+ }
+ 
+ 
+ int mouse_pos(struct packet *pp, enum game_state *state){
+-  if(mouse_x < 0) mouse_x = 0;
+-
+-	if(mouse_x > 800) mouse_x = 800;
+-
+-	if(mouse_y < 0) mouse_y = 0;
+-
+-	if(mouse_y > 600) mouse_y = 600;
+-  
+   mouse_x += pp->delta_x;
+   mouse_y -= pp->delta_y;
++  if(mouse_x<0) mouse_x=0;
++  if(mouse_x>800-20) mouse_x=800-20;
++  if(mouse_y<0) mouse_y=0;
++  if(mouse_y>600-31) mouse_y=600-31;
+ 
+   if(pp->lb && *state == MENU && mouse_x>250 && mouse_x<540 && mouse_y>205 && mouse_y<295)
+ 		*state = PLAY;
+--- a/proj/src/proj.c
++++ b/proj/src/proj.c
+@@ -64,13 +64,23 @@
+ int asteroide_idx=0;
+ int fogo_idx=0;
+ int et_idx=0;
+-int vidas_idx=4;
++int vidas_idx=3;
+ int coin_idx=0;
+-uint8_t* asteroides[50];
+-uint8_t* fogos[50];
+-uint8_t* ets[50];
++uint8_t* asteroides[51];
++uint8_t* fogos[51];
++uint8_t* ets[51];
+ uint8_t* vidas[3];
+-uint8_t* coins[100];
++uint8_t* coins[101];
++static void remove_object(uint8_t **sprites,int *xs,int *ys,int *count,int index){
++  for(int i=index; i<*count; i++){
++    sprites[i]=sprites[i+1];
++    xs[i]=xs[i+1];
++    ys[i]=ys[i+1];
++  }
++  sprites[*count]=NULL;
++  (*count)--;
++}
++
+ int main(int argc, char *argv[]) {
+   // sets the language of LCF messages (can be either EN-US or PT-PT)
+   lcf_set_language("EN-US");
+@@ -225,11 +235,6 @@
+                 fogos_pos_arr();
+                 ets_pos_arr();
+                 coins_pos_arr();
+-                uint8_t* asteroides[50];
+-                uint8_t* fogos[50];
+-                uint8_t* ets[50];
+-                uint8_t* vidas[3];
+-                uint8_t* coins[100];
+                 vg_draw_xpm_proj(menu_img, 0,0, menu);
+                 vg_draw_xpm_proj(cursor_img, mouse_x, mouse_y, cursor);
+                 change_buffer();
+@@ -258,8 +263,10 @@
+                 //asteroides
+                 if(counter%30==0){
+                   while(asteroide_idx<50){
+-                    asteroides[asteroide_idx]=(xpm_load)(asteroide_xpm, XPM_8_8_8, &asteroides_img);
+                     asteroide_idx++;
++                    asteroide_x[asteroide_idx]=1100;
++                    asteroide_y[asteroide_idx]=rand()%401+50;
++                    asteroides[asteroide_idx]=(xpm_load)(asteroide_xpm, XPM_8_8_8, &asteroides_img);
+                     break;
+                   }
+                 }
+@@ -277,8 +284,10 @@
+                 //ets
+                 if(counter%40==0){
+                   while(et_idx<50){
+-                      ets[et_idx]=(xpm_load)(alien_xpm, XPM_8_8_8, &alien_img);
+                       et_idx++;
++                    et_x[et_idx]=1100;
++                    et_y[et_idx]=rand()%401+50;
++                    ets[et_idx]=(xpm_load)(alien_xpm, XPM_8_8_8, &alien_img);
+                       break;
+                   }
+                 }
+@@ -290,8 +299,10 @@
+                 //coins
+                 if(counter%10==0){
+                   while(coin_idx<100){
+-                    coins[coin_idx]=(xpm_load)(coin_xpm, XPM_8_8_8, &coin_img);
+                     coin_idx++;
++                    coin_x[coin_idx]=1100;
++                    coin_y[coin_idx]=rand()%401+90;
++                    coins[coin_idx]=(xpm_load)(coin_xpm, XPM_8_8_8, &coin_img);
+                     break;
+                   }
+                 }
+@@ -304,14 +315,14 @@
+ 
+                 if(arr[0]==0x11){
+                   up(cao_up_img,cao_up);
+-                  for(int i=fogo_idx+1; i<50; i++){
++                  for(int i=fogo_idx+1; i<=50; i++){
+                       fogo_y[i]=dog_init_pos+40;
+                   }
+                   change_buffer();
+                 }
+                 else if(arr[0]==0x1F){
+                   down(cao_down_img,cao_down);
+-                  for(int i=fogo_idx+1; i<50; i++){
++                  for(int i=fogo_idx+1; i<=50; i++){
+                       fogo_y[i]=dog_init_pos+40;
+                   }
+                   change_buffer();
+@@ -319,8 +330,10 @@
+                 else if(arr[0]==0x39){
+                   vg_draw_xpm_proj(cao_img, 40, dog_init_pos, cao);
+                   while(fogo_idx<50){
+-                    fogos[fogo_idx]=(xpm_load)(fogo_xpm, XPM_8_8_8, &fogo_img);
+                     fogo_idx++;
++                    fogo_x[fogo_idx]=50;
++                    fogo_y[fogo_idx]=dog_init_pos+40;
++                    fogos[fogo_idx]=(xpm_load)(fogo_xpm, XPM_8_8_8, &fogo_img);
+                     break;
+                   }
+                 }
+@@ -329,24 +342,20 @@
+                 }
+ 
+                 //cao e asteroides/coins
+-                for(int k=0; k<asteroide_idx; k++){
++                for(int k=1; k<=asteroide_idx; k++){
+                   if(((dog_init_pos>=asteroide_y[k] && dog_init_pos<=asteroide_y[k]+60) || (dog_init_pos+90>=asteroide_y[k] && dog_init_pos+90<=asteroide_y[k]+60) ||
+                   (asteroide_y[k]>=dog_init_pos && asteroide_y[k]<=dog_init_pos+90) ||
+                   (asteroide_y[k]+60>=dog_init_pos && asteroide_y[k]+60<=dog_init_pos+90)) && (160>=asteroide_x[k])){
+                     
+-                    for(int e = k; e < asteroide_idx; e++){
+-                        asteroides[e] = asteroides[e+1];
+-                        asteroide_x[e] = asteroide_x[e+1];
+-                        asteroide_y[e] = asteroide_y[e+1];
+-                     
+-                    }
++                    remove_object(asteroides,asteroide_x,asteroide_y,&asteroide_idx,k);
++                    k--;
+                     vidas_idx--;
+                     printf("vidas ast:%x\n", vidas_idx);
+                     
+                   }
+                 }
+                 //cao e ets
+-                for(int k=0; k<et_idx; k++){
++                for(int k=1; k<=et_idx; k++){
+                   printf("et_y: %x\n", et_y[k]);
+                   printf("k: %x\n", k);
+                   if(((dog_init_pos>=et_y[k] && dog_init_pos<=et_y[k]+83) || 
+@@ -355,12 +364,7 @@
+                   (et_y[k]+83>=dog_init_pos && et_y[k]+83<=dog_init_pos+90))&& 
+                   (160>=et_x[k])){
+                    
+-                    for(int e = k; e < et_idx; e++){
+-                        ets[e] = ets[e+1];
+-                        et_x[e] = et_x[e+1];
+-                        et_y[e] = et_y[e+1];
+-                     
+-                    }
++                    remove_object(ets,et_x,et_y,&et_idx,k);
+                      vidas_idx--;
+                      break;
+                      printf("vidas et:%x\n", vidas_idx);
+@@ -370,23 +374,21 @@
+                 if(vidas_idx <= 0) state=GAMEOVER;
+ 
+                 //cao e coins
+-                for(int k=0; k<coin_idx; k++){
++                for(int k=1; k<=coin_idx; k++){
+                   if(((dog_init_pos>=coin_y[k] && dog_init_pos<=coin_y[k]+29) ||
+                   (dog_init_pos+102>=coin_y[k] && dog_init_pos+102<=coin_y[k]+29) ||
+                   (coin_y[k]>=dog_init_pos && coin_y[k]<=dog_init_pos+102) ||
+                   (coin_y[k]+29>=dog_init_pos && coin_y[k]+20<=dog_init_pos+102)) && 
+                   (160>=coin_x[k])){
+-                    for(int e = k; e < coin_idx; e++){
+-                        coins[e] = coins[e+1];
+-                        coin_x[e] = coin_x[e+1];
+-                        coin_y[e] = coin_y[e+1];
+-                    }
++                    remove_object(coins,coin_x,coin_y,&coin_idx,k);
++                    k--;
+                     score += 25;
+                   }
+                 }
+               
+-                for(int i=0; i<fogo_idx; i++){
+-                  for(int k=0; k<asteroide_idx; k++){
++                for(int i=1; i<=fogo_idx; i++){
++                  bool projectile_removed=false;
++                  for(int k=1; k<=asteroide_idx; k++){
+                     if(((fogo_x[i]>=asteroide_x[k] && fogo_x[i]<=asteroide_x[k]+70 )||
+                     (fogo_x[i]+65>=asteroide_x[k] && fogo_x[i]+65<=asteroide_x[k]+70 )||
+                     (asteroide_x[k]>=fogo_x[i] && asteroide_x[k]<=fogo_x[i]+65)||
+@@ -395,21 +397,15 @@
+                     (fogo_y[i]+40>=asteroide_y[k] && fogo_y[i]+40<=asteroide_y[k]+70 )||
+                     (asteroide_y[k]>=fogo_y[i] && asteroide_y[k]<=fogo_y[i]+40)||
+                     (asteroide_y[k]+70>=fogo_y[i] && asteroide_y[k]+70<=fogo_y[i]+40))){
+-                      for(int f = i; f < fogo_idx; f++){
+-                          fogos[f] = fogos[f+1];
+-                          fogo_x[f] = fogo_x[f+1];
+-                          fogo_y[f] = fogo_y[f+1];
+-                      }
+-                      for(int e = k; e < asteroide_idx; e++){
+-                          asteroides[e] = asteroides[e+1];
+-                          asteroide_x[e] = asteroide_x[e+1];
+-                          asteroide_y[e] = asteroide_y[e+1];
+-
+-                      }
++                      remove_object(fogos,fogo_x,fogo_y,&fogo_idx,i);
++                      remove_object(asteroides,asteroide_x,asteroide_y,&asteroide_idx,k);
+                       score += 150;
++                      projectile_removed=true;
++                      break;
+                     }
+                   }
+-                  for(int j=0; j<et_idx; j++){
++                  if(projectile_removed){i--;continue;}
++                  for(int j=1; j<=et_idx; j++){
+                     if(((fogo_x[i]>=et_x[j] && fogo_x[i]<=et_x[j]+150 )||
+                     (fogo_x[i]+65>=et_x[j] && fogo_x[i]+65<=et_x[j]+150 )||
+                     (et_x[j]>=fogo_x[i] && et_x[j]<=fogo_x[i]+65)||
+@@ -420,18 +416,11 @@
+                     (et_y[j]+93>=fogo_y[i] && et_y[j]+93<=fogo_y[i]+40))){
+                       printf("faaaaa\n");
+ 
+-                      for(int f = i; f < fogo_idx; f++){
+-                          fogos[f] = fogos[f+1];
+-                          fogo_x[f] = fogo_x[f+1];
+-                          fogo_y[f] = fogo_y[f+1];
+-                      }
+-                      for(int e = j; e < et_idx; e++){
+-                          ets[e] =ets[e+1];
+-                          et_x[e] =et_x[e+1];
+-                          et_y[e] =et_y[e+1];
+-
+-                      }
++                      remove_object(fogos,fogo_x,fogo_y,&fogo_idx,i);
++                      remove_object(ets,et_x,et_y,&et_idx,j);
+                        score += 200;
++                       i--;
++                       break;
+                     }
+                 }
+               }
+@@ -439,30 +428,25 @@
+               for(int i=asteroide_idx; i>0; i--){
+                 asteroide_x[i]-=10;
+                 if(asteroide_x[i]<=90) {
+-                  asteroides[i] = asteroides[i+1];
+-                  asteroide_x[i] = asteroide_x[i+1];
+-                  asteroide_y[i] = asteroide_y[i+1];
++                  remove_object(asteroides,asteroide_x,asteroide_y,&asteroide_idx,i);
+ 
+                 }
+               }
+               for(int i=fogo_idx; i>0; i--){
+                 fogo_x[i]+=20;
++                if(fogo_x[i]>800) remove_object(fogos,fogo_x,fogo_y,&fogo_idx,i);
+               }
+               for(int i=et_idx; i>0; i--){
+                 et_x[i]-=20;
+                 if(et_x[i]<=-150) {
+-                  ets[i] = ets[i+1];
+-                  et_x[i] = et_x[i+1];
+-                  et_y[i] = et_y[i+1];
++                  remove_object(ets,et_x,et_y,&et_idx,i);
+ 
+                 }
+               }
+               for(int i=coin_idx; i>0; i--){
+                 coin_x[i]-=30;
+                 if(coin_x[i]<=-40) {
+-                  coins[i] = coins[i+1];
+-                  coin_x[i] = coin_x[i+1];
+-                  coin_y[i] = coin_y[i+1];
++                  remove_object(coins,coin_x,coin_y,&coin_idx,i);
+ 
+                 }
+               }
+--- a/proj/src/moves.c
++++ b/proj/src/moves.c
+@@ -6,18 +6,18 @@
+ #include "video_gr.h"
+ 
+ extern int dog_init_pos;
+-int fogo_x[50];
+-int fogo_y[50];
+-int et_y[50];
+-int et_x[50];
+-int coin_x[100];
+-int coin_y[100];
+-int asteroide_y[50];
+-int asteroide_x[50];
++int fogo_x[51];
++int fogo_y[51];
++int et_y[51];
++int et_x[51];
++int coin_x[101];
++int coin_y[101];
++int asteroide_y[51];
++int asteroide_x[51];
+ 
+ int asteroides_pos_arr(){
+-  int i=0;
+-  while(i<50){
++  int i=1;
++  while(i<=50){
+     asteroide_y[i]=rand()%401+50;
+     asteroide_x[i]=1100;
+     i++;
+@@ -27,8 +27,8 @@
+ 
+ 
+ int fogos_pos_arr(){
+-  int i=0;
+-  while(i<50){
++  int i=1;
++  while(i<=50){
+     fogo_x[i]=50;
+     fogo_y[i]=dog_init_pos+40;
+     i++;
+@@ -37,8 +37,8 @@
+ }
+ 
+ int ets_pos_arr(){
+-  int i=0;
+-  while(i<50){
++  int i=1;
++  while(i<=50){
+     et_y[i]=rand()%401+50;
+     et_x[i]=1100;
+     i++;
+@@ -47,8 +47,8 @@
+ }
+ 
+ int coins_pos_arr(){
+-  int i=0;
+-  while(i<100){
++  int i=1;
++  while(i<=100){
+     coin_y[i]=rand()%401+90;
+     coin_x[i]=1100;
+     i++;
+@@ -57,22 +57,17 @@
+ }
+ 
+ int up(xpm_image_t image, uint8_t* xpm_loaded){
+-  if (dog_init_pos <= 10)dog_init_pos -=0;
+-  else{
+-    dog_init_pos-=40;
+-  }
+-  vg_draw_xpm_proj(image,  40,  dog_init_pos, xpm_loaded);
++  dog_init_pos-=40;
++  if(dog_init_pos<10) dog_init_pos=10;
++  vg_draw_xpm_proj(image,40,dog_init_pos,xpm_loaded);
+   return 0;
+ }
+ 
+ int down(xpm_image_t image, uint8_t* xpm_loaded){
+-  if (dog_init_pos >= 500) dog_init_pos +=0;
+-  else 
+-    dog_init_pos+=40;
+-  vg_draw_xpm_proj(image,  40,  dog_init_pos, xpm_loaded);
++  int limit=600-image.height;
++  if(limit>500) limit=500;
++  dog_init_pos+=40;
++  if(dog_init_pos>limit) dog_init_pos=limit;
++  vg_draw_xpm_proj(image,40,dog_init_pos,xpm_loaded);
+   return 0;
+ }
+-
+-
+-
+-

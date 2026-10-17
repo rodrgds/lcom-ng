@@ -1,0 +1,22 @@
+/* XPM */
+static char *dot_[] = {
+/* columns rows colors chars-per-pixel */
+"12 12 4 1 ",
+"  c #000000",
+". c #464646",
+"X c #cc9900",
+"o c #FFF9BD",
+/* pixels */
+"..        ..",
+"..        ..",
+"  oooooooo  ",
+"  oooooooo  ",
+"  oooXXXXX  ",
+"  ooXXXXXX  ",
+"  ooXXXXXX  ",
+"  ooXXXXXX  ",
+"  ooXXXXXX  ",
+"  ooXXXXXX  ",
+"..        ..",
+"..        .."
+};

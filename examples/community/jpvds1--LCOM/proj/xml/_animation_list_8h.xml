@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="_animation_list_8h" kind="file" language="C++">
+    <compoundname>AnimationList.h</compoundname>
+    <includes local="no">lcom/lcf.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includedby refid="_animation_list_8c" local="yes">C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c</includedby>
+    <includedby refid="proj_8h" local="yes">C:/MINIX-LCOM/shared/g3/proj/src/proj.h</includedby>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h</label>
+        <link refid="_animation_list_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>lcom/lcf.h</label>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="5">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c</label>
+        <link refid="_handlers_8c"/>
+      </node>
+      <node id="4">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h</label>
+        <link refid="_handlers_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.c</label>
+        <link refid="_levels_8c"/>
+      </node>
+      <node id="6">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.h</label>
+        <link refid="_levels_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c</label>
+        <link refid="_animation_list_8c"/>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h</label>
+        <link refid="_animation_list_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.c</label>
+        <link refid="_menu_8c"/>
+      </node>
+      <node id="8">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.h</label>
+        <link refid="_menu_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.c</label>
+        <link refid="_missile_8c"/>
+      </node>
+      <node id="10">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.h</label>
+        <link refid="_missile_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/proj.c</label>
+        <link refid="proj_8c"/>
+      </node>
+      <node id="3">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/proj.h</label>
+        <link refid="proj_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <innerclass refid="struct_animation" prot="public">Animation</innerclass>
+    <innerclass refid="struct_animation_node" prot="public">AnimationNode</innerclass>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_animation_list_8h_1aaa57cc952344b862b43b18e811e6f814" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> *</type>
+        <definition>struct AnimationNode* AnimationFirst</definition>
+        <argsstring></argsstring>
+        <name>AnimationFirst</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="15" column="27" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c" bodystart="3" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" declline="15" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="variable" id="_animation_list_8h_1aa591d9b96b57f7751315db66276b9a5f" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> *</type>
+        <definition>struct AnimationNode* AnimationAdded</definition>
+        <argsstring></argsstring>
+        <name>AnimationAdded</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="16" column="27" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c" bodystart="4" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" declline="16" declcolumn="27"/>
+      </memberdef>
+      <memberdef kind="variable" id="_animation_list_8h_1a7fd334b892d1b0a7cbef46f8adca88e8" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int AnimationSize</definition>
+        <argsstring></argsstring>
+        <name>AnimationSize</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="17" column="12" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c" bodystart="5" bodyend="-1" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" declline="17" declcolumn="12"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_animation_list_8h_1aad46ff5153b6091add7a91bb8cbff17b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void al_printNode</definition>
+        <argsstring>(const struct AnimationNode *node)</argsstring>
+        <name>al_printNode</name>
+        <param>
+          <type>const struct <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>Prints a specific node of the list in a human friendly way. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The node of type struct <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> to be printed </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="38" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c" bodystart="7" bodyend="17" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" declline="38" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_animation_list_8h_1ae40ab958b1adc6bd8551fa2b5ae80b7f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> *</type>
+        <definition>struct AnimationNode * al_getNewNode</definition>
+        <argsstring>(uint16_t x, uint16_t y)</argsstring>
+        <name>al_getNewNode</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>creates a new node with position x and y separated from the list and returns it </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The x position of the <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The y position of the <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>struct AnimationNode* Return the new node with the passed position </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="46" column="20" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c" bodystart="19" bodyend="47" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" declline="46" declcolumn="20"/>
+      </memberdef>
+      <memberdef kind="function" id="_animation_list_8h_1abc7b4136916ca87a5b0ce1600c19c3b7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void al_printList</definition>
+        <argsstring>(const struct AnimationNode *list)</argsstring>
+        <name>al_printList</name>
+        <param>
+          <type>const struct <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+<para>prints whole list of AnimationNodes </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>list</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> from where to start printing the AnimationList </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="52" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c" bodystart="49" bodyend="67" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" declline="52" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_animation_list_8h_1aa94f8d853ca63310e10fb419a4324aae" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void al_CleanUp</definition>
+        <argsstring>(struct AnimationNode *list)</argsstring>
+        <name>al_CleanUp</name>
+        <param>
+          <type>struct <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+<para>frees allocated memory of all nodes </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>list</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> from where to start freeing allocated memory from AnimationList </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="58" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c" bodystart="69" bodyend="81" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" declline="58" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_animation_list_8h_1a25716ccfa69c798351f68de7df0b8821" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void al_CleanNode</definition>
+        <argsstring>(struct AnimationNode *cnode)</argsstring>
+        <name>al_CleanNode</name>
+        <param>
+          <type>struct <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> *</type>
+          <declname>cnode</declname>
+        </param>
+        <briefdescription>
+<para>frees allocated memory of an <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cnode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> whose allocated memory should be freed </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="64" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c" bodystart="83" bodyend="87" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" declline="64" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_animation_list_8h_1a6cdaee024b5a0251d70f32d12145a447" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void al_removeFirst</definition>
+        <argsstring>()</argsstring>
+        <name>al_removeFirst</name>
+        <briefdescription>
+<para>removes first node of the list </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="69" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c" bodystart="89" bodyend="102" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" declline="69" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_animation_list_8h_1ae926eb9b5def9a3ed6a8e2206c8c9234" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void al_removeNode</definition>
+        <argsstring>(struct AnimationNode *rnode)</argsstring>
+        <name>al_removeNode</name>
+        <param>
+          <type>struct <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> *</type>
+          <declname>rnode</declname>
+        </param>
+        <briefdescription>
+<para>removes selected node </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rnode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> to be removed </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="75" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c" bodystart="104" bodyend="142" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" declline="75" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="_animation_list_8h_1a5cf01ce40d8114bec5d69626642d7c19" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void al_addNode</definition>
+        <argsstring>(const struct AnimationNode *newNode)</argsstring>
+        <name>al_addNode</name>
+        <param>
+          <type>const struct <ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> *</type>
+          <declname>newNode</declname>
+        </param>
+        <briefdescription>
+<para>add a new node to the end of the list </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newNode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref> to be added to the AnimationList </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" line="81" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.c" bodystart="144" bodyend="168" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h" declline="81" declcolumn="6"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Header file containing declarations of functions, variables and structs needed to use the animation list. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>ANIMATION_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>ANIMATION_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;lcom/lcf.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref><sp/>*<ref refid="_animation_list_8h_1aaa57cc952344b862b43b18e811e6f814" kindref="member">AnimationFirst</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref><sp/>*<ref refid="_animation_list_8h_1aa591d9b96b57f7751315db66276b9a5f" kindref="member">AnimationAdded</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="keyword">extern</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_animation_list_8h_1a7fd334b892d1b0a7cbef46f8adca88e8" kindref="member">AnimationSize</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="struct_animation" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_animation" kindref="compound">Animation</ref></highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21" refid="struct_animation_1ac6b606414f2a4b6585ee30cb38d63d7b" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="struct_animation_1ac6b606414f2a4b6585ee30cb38d63d7b" kindref="member">x</ref>;</highlight></codeline>
+<codeline lineno="22" refid="struct_animation_1add557f989cac2a537e049146ebaa3abd" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="struct_animation_1add557f989cac2a537e049146ebaa3abd" kindref="member">y</ref>;</highlight></codeline>
+<codeline lineno="23" refid="struct_animation_1a6ec5ecf7cfdd99a84ea65317a779b5d2" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="struct_animation_1a6ec5ecf7cfdd99a84ea65317a779b5d2" kindref="member">curr_xpm</ref>;</highlight></codeline>
+<codeline lineno="24" refid="struct_animation_1aa488af0f93d17c3c03fa21b66e093a95" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/>uint16_t<sp/><ref refid="struct_animation_1aa488af0f93d17c3c03fa21b66e093a95" kindref="member">time_to_change</ref>;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27" refid="struct_animation_node" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="29" refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_animation" kindref="compound">Animation</ref>*<sp/><ref refid="struct_animation_node_1a3bae0e587737d09ac1b793f2a8d87ced" kindref="member">animation</ref>;</highlight></codeline>
+<codeline lineno="30" refid="struct_animation_node_1af2d2bdd8565ef96845a8633d05b145f4" refkind="member"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref>*<sp/><ref refid="struct_animation_node_1af2d2bdd8565ef96845a8633d05b145f4" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal">};</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_animation_list_8h_1aad46ff5153b6091add7a91bb8cbff17b" kindref="member">al_printNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref><sp/>*node);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref><sp/>*<ref refid="_animation_list_8h_1ae40ab958b1adc6bd8551fa2b5ae80b7f" kindref="member">al_getNewNode</ref>(uint16_t<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>uint16_t<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>);</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_animation_list_8h_1abc7b4136916ca87a5b0ce1600c19c3b7" kindref="member">al_printList</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref><sp/>*list);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_animation_list_8h_1aa94f8d853ca63310e10fb419a4324aae" kindref="member">al_CleanUp</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref><sp/>*list);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_animation_list_8h_1a25716ccfa69c798351f68de7df0b8821" kindref="member">al_CleanNode</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref><sp/>*cnode);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_animation_list_8h_1a6cdaee024b5a0251d70f32d12145a447" kindref="member">al_removeFirst</ref>();</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_animation_list_8h_1ae926eb9b5def9a3ed6a8e2206c8c9234" kindref="member">al_removeNode</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref><sp/>*rnode);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_animation_list_8h_1a5cf01ce40d8114bec5d69626642d7c19" kindref="member">al_addNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_animation_node" kindref="compound">AnimationNode</ref><sp/>*newNode);</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//AnimationLIST_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/AnimationList.h"/>
+  </compounddef>
+</doxygen>

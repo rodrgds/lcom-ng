@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "name": "Super Minix",
+  "description": "Run and jump past the original scrolling pipes and save your score.",
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "images"
+    ],
+    "pathAliases": {
+      "/home/images": "images",
+      "/home/lcom": "."
+    }
+  },
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "keyboard": true,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "pointer": "move",
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "repeatKeys": [
+        "LEFT",
+        "RIGHT"
+      ],
+      "actions": [
+        {
+          "label": "Jump",
+          "key": "SPACE",
+          "side": "right"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "side": "right"
+        }
+      ]
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

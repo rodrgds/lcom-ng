@@ -1,0 +1,98 @@
+{
+  "repository": "https://github.com/gamaamaral98/FEUP-LCOM",
+  "commit": "2a394c08022c1f5a661838de86e286047d9b2a62",
+  "project": "proj",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
+  "sourceChanges": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/game.c",
+          "originalSha256": "8a18007c0c1712e7add28b78dfde777d819f633cefce7e419bdfe9e3bdea5e8a",
+          "patchedSha256": "339ffd0b91212357139a4552cf9e7aea54d44fba03acc1b8bb02c1ba728af097",
+          "reason": "Check neighbor bounds before reading the flood board. Original expressions read negative or past-end indices before their later bounds conditions.",
+          "verification": "Actual source bounds-instrumented four-cell island regression failed before repair and passes after repair; no cells outside the connected island become player cells."
+        }
+      ]
+    }
+  ],
+  "sha256": {
+    "README.md": "9db447900d055088392616897ed8e9233cb90654329a077b10caa03c04c206e8",
+    "proj/Makefile": "58aec97d73c2001b8de9fe8a46e3b2f3b7a428fda6cc80b7232a076ec6c82de8",
+    "proj/game.c": "8a18007c0c1712e7add28b78dfde777d819f633cefce7e419bdfe9e3bdea5e8a",
+    "proj/game.h": "3a54b3c6e460900534a0d7c3328439bca1a196abfdffa58963bbba9656115ae5",
+    "proj/graphics.c": "cd6736366fd6d0efe6d0906089e28a6ecf74a4b38fb1fdacef1778fac5d553e0",
+    "proj/graphics.h": "11f8e61ef96ae56a45ee1d89f7f82af898bcd47787967837ee55bf82890604cf",
+    "proj/i8042.h": "137315d1e41fc5c06d684fe6cc6ad1731e1aa7c58319d821f18859f5ace0b087",
+    "proj/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/keyboard.c": "deb855e2700936640479dbe420861d0b77bf864914d1540704c5a9fc0c0d1ac4",
+    "proj/keyboard.h": "45b42ffe3b03e8d8089476754f631a441728e7162ff9fa615a41ed07d2d85356",
+    "proj/main.c": "1064c895d030db7a32ff47fa92191ab31a2f7cf39d20052f5e1cd21d6d9b8e88",
+    "proj/mouse.c": "69c031b4e43599a81dbf101edd2862443e7de64013ecf7a36a97b6722a8cc8ab",
+    "proj/mouse.h": "1cd758a81201dbbd3111378b6d5c5ee62462cbc3450a1b955d6f7ca6eb4325aa",
+    "proj/sprite.c": "fd2f6428190502edd10a4d132939253376cfc4f3d4b4ca85b987b0f6fdcdcb2c",
+    "proj/sprite.h": "1ceba6c1ee346ec567aae000bbbd0659b0edbef68a545918b0f0bd9902fdc891",
+    "proj/timer.c": "28259c9f1eba9838182b57c865e309964f16a5f856f19ff4fa9df1ebfe7691d9",
+    "proj/utils.c": "a68d3cecd86895fe0bb6712176b8d1b1db8d01a8499f079eb1df7e6b9fe1ce5c",
+    "proj/utils.h": "36110ec0033eebfbe5f751a81752b88a93246e28569d187d59b6c7471893305e",
+    "proj/xpms/cursor.h": "3d75fafe24ac28f4b92c01eb04eb6b801cdf6b74bd59d5c27bfbed85ea821a45",
+    "proj/xpms/exit.h": "3485a6f8a848d242fee605bed891512ea636ac4c4f4bbd86fd225f61db247ae6",
+    "proj/xpms/logo.h": "a5209b94f2298ddef1ba39442c42237c0ba8b13ed1ec197ba95c13b5382bbaa9",
+    "proj/xpms/point.h": "bad79a8ef5dc3d59a354de39cdb6d586a65dad8dcc192b88c90d280b7bdfc740",
+    "proj/xpms/start.h": "5474dab0bfcf266f93ab63695f8810bf21a10613b87b0d932c72e1782c989ec8",
+    "proj/xpms/xp0.h": "039b6212aefcde32db35328e94fd8cb3ecc0b1801142ad20b0a6de7c51824500",
+    "proj/xpms/xp1.h": "cebbf4cb034ddef0eb5533dfaf21bab1469ce0b907600b50bde0cfccc1309e3b",
+    "proj/xpms/xp2.h": "b2810a6f384ffa02c84dd48e0b1236a5f209a9bc093e89c5f6e8abaa184722d1",
+    "proj/xpms/xp3.h": "76d0ec0a81673d1b9da764959917cd18710be98be38761af2c1873450fa331a2",
+    "proj/xpms/xp4.h": "585f6dc3feef3dad0c58ac45d2b576f8f01f722a0109c5a2d6af437f6ec921d2",
+    "proj/xpms/xp5.h": "f1f13004c735cfff1c24b98d3e2dcf36a6a37532a754fd35399d8118f6762bca",
+    "proj/xpms/xp6.h": "c8a3e5b94279a25b4974745abf7ada308c9670db83994ed461b9e636a04229d9",
+    "proj/xpms/xp7.h": "4323ba7905f4632e9172a9fb0246941be30e57dd9274ecb0a9d56fb153596c31",
+    "proj/xpms/xp8.h": "9ebe342942a135d2fef84d8e2d078bc96f40e167b3e5e8a7efb7452fd211e177",
+    "proj/xpms/xp9.h": "518fa935a45a6349104d03b7387491351a58f28d13cd7179c24d8c0c477fe45a"
+  },
+  "selection": "Pinned project source and required artwork/assets plus upstream README. Omitted labs, generated documentation, VCS and OS metadata, build products and core dumps.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata is excluded from required source inventory."
+  },
+  "icon": {
+    "kind": "simple tile icon using original board palette",
+    "source": "proj/game.c"
+  },
+  "controlsRationale": "Color Blox: six named color actions send1..6. Start with Blue, then flood the field with successive colors.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/gamaamaral98--FEUP-LCOM",
+    "limits": "Short functional gameplay trial, no full campaign completion or physical Android device claim."
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/icon.png",
+      "sha256": "8fd49a73864ceb5c93b54f356fc8f1bfa75f66db30c8de644398f1fd7b29d8f8",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/preview.png",
+      "sha256": "e55c43cea8bf06c791cb43e7d8cc6dfcf2c4432e90156c1db85dee6a4d9d1b54",
+      "kind": "actual mobile browser gameplay canvas"
+    }
+  ]
+}

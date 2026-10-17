@@ -1,0 +1,882 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="_levels_8c" kind="file" language="C++">
+    <compoundname>Levels.c</compoundname>
+    <includes refid="_levels_8h" local="yes">Levels.h</includes>
+    <incdepgraph>
+      <node id="9">
+        <label>Drivers/GraphicCard.h</label>
+        <link refid="_graphic_card_8h"/>
+      </node>
+      <node id="15">
+        <label>Drivers/RTC.h</label>
+        <link refid="_r_t_c_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>i8042.h</label>
+        <link refid="i8042_8h"/>
+      </node>
+      <node id="13">
+        <label>i8254.h</label>
+        <link refid="i8254_8h"/>
+      </node>
+      <node id="10">
+        <label>Drivers/keyboard.h</label>
+        <link refid="keyboard_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Drivers/macros.h</label>
+        <link refid="macros_8h"/>
+      </node>
+      <node id="14">
+        <label>Drivers/mouse.h</label>
+        <link refid="mouse_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Drivers/timer.h</label>
+        <link refid="timer_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="88">
+        <label>Handlers.h</label>
+        <link refid="_handlers_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.c</label>
+        <link refid="_levels_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Levels.h</label>
+        <link refid="_levels_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>Lists/AnimationList.h</label>
+        <link refid="_animation_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="86">
+        <label>Lists/EnemyList.h</label>
+        <link refid="_enemy_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>Lists/LaserList.h</label>
+        <link refid="_laser_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="90">
+        <label>Menu.h</label>
+        <link refid="_menu_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="89">
+        <label>Missile.h</label>
+        <link refid="_missile_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Sprites/xpms.h</label>
+        <link refid="xpms_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>proj.h</label>
+        <link refid="proj_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>lcom/lcf.h</label>
+      </node>
+      <node id="16">
+        <label>minix/sysutil.h</label>
+      </node>
+      <node id="8">
+        <label>stdbool.h</label>
+      </node>
+      <node id="7">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>stdio.h</label>
+      </node>
+      <node id="5">
+        <label>stdlib.h</label>
+      </node>
+      <node id="46">
+        <label>xpms/Menu/Alien_attacks_logo.xpm</label>
+      </node>
+      <node id="47">
+        <label>xpms/Menu/endless.xpm</label>
+      </node>
+      <node id="48">
+        <label>xpms/Menu/endless_selected.xpm</label>
+      </node>
+      <node id="49">
+        <label>xpms/Menu/exit.xpm</label>
+      </node>
+      <node id="50">
+        <label>xpms/Menu/exit_selected.xpm</label>
+      </node>
+      <node id="55">
+        <label>xpms/Menu/inside_instructions.xpm</label>
+      </node>
+      <node id="51">
+        <label>xpms/Menu/instructions.xpm</label>
+      </node>
+      <node id="52">
+        <label>xpms/Menu/instructions_selected.xpm</label>
+      </node>
+      <node id="53">
+        <label>xpms/Menu/levels.xpm</label>
+      </node>
+      <node id="54">
+        <label>xpms/Menu/levels_selected.xpm</label>
+      </node>
+      <node id="56">
+        <label>xpms/Menu/menu.xpm</label>
+      </node>
+      <node id="57">
+        <label>xpms/Menu/menu_selected.xpm</label>
+      </node>
+      <node id="43">
+        <label>xpms/Numbers/eight.xpm</label>
+      </node>
+      <node id="40">
+        <label>xpms/Numbers/five.xpm</label>
+      </node>
+      <node id="39">
+        <label>xpms/Numbers/four.xpm</label>
+      </node>
+      <node id="44">
+        <label>xpms/Numbers/nine.xpm</label>
+      </node>
+      <node id="36">
+        <label>xpms/Numbers/one.xpm</label>
+      </node>
+      <node id="42">
+        <label>xpms/Numbers/seven.xpm</label>
+      </node>
+      <node id="41">
+        <label>xpms/Numbers/six.xpm</label>
+      </node>
+      <node id="38">
+        <label>xpms/Numbers/three.xpm</label>
+      </node>
+      <node id="37">
+        <label>xpms/Numbers/two.xpm</label>
+      </node>
+      <node id="35">
+        <label>xpms/Numbers/zero.xpm</label>
+      </node>
+      <node id="30">
+        <label>xpms/bullet_enemy/bullet_enemy1.xpm</label>
+      </node>
+      <node id="31">
+        <label>xpms/bullet_enemy/bullet_enemy2.xpm</label>
+      </node>
+      <node id="32">
+        <label>xpms/bullet_enemy/bullet_enemy3.xpm</label>
+      </node>
+      <node id="58">
+        <label>xpms/chars/back_slash.xpm</label>
+      </node>
+      <node id="59">
+        <label>xpms/chars/hifen.xpm</label>
+      </node>
+      <node id="27">
+        <label>xpms/enemy/enemy1.xpm</label>
+      </node>
+      <node id="28">
+        <label>xpms/enemy/enemy2.xpm</label>
+      </node>
+      <node id="29">
+        <label>xpms/enemy/enemy3.xpm</label>
+      </node>
+      <node id="20">
+        <label>xpms/explosion/e1.xpm</label>
+      </node>
+      <node id="21">
+        <label>xpms/explosion/e2.xpm</label>
+      </node>
+      <node id="22">
+        <label>xpms/explosion/e3.xpm</label>
+      </node>
+      <node id="23">
+        <label>xpms/explosion/e4.xpm</label>
+      </node>
+      <node id="24">
+        <label>xpms/explosion/e5.xpm</label>
+      </node>
+      <node id="25">
+        <label>xpms/explosion/e6.xpm</label>
+      </node>
+      <node id="26">
+        <label>xpms/explosion/e7.xpm</label>
+      </node>
+      <node id="33">
+        <label>xpms/life/sem_vida.xpm</label>
+      </node>
+      <node id="34">
+        <label>xpms/life/vida.xpm</label>
+      </node>
+      <node id="60">
+        <label>xpms/missil/missil1.xpm</label>
+      </node>
+      <node id="69">
+        <label>xpms/missil/missil10.xpm</label>
+      </node>
+      <node id="70">
+        <label>xpms/missil/missil11.xpm</label>
+      </node>
+      <node id="71">
+        <label>xpms/missil/missil12.xpm</label>
+      </node>
+      <node id="72">
+        <label>xpms/missil/missil13.xpm</label>
+      </node>
+      <node id="73">
+        <label>xpms/missil/missil14.xpm</label>
+      </node>
+      <node id="74">
+        <label>xpms/missil/missil15.xpm</label>
+      </node>
+      <node id="75">
+        <label>xpms/missil/missil16.xpm</label>
+      </node>
+      <node id="76">
+        <label>xpms/missil/missil17.xpm</label>
+      </node>
+      <node id="77">
+        <label>xpms/missil/missil18.xpm</label>
+      </node>
+      <node id="78">
+        <label>xpms/missil/missil19.xpm</label>
+      </node>
+      <node id="61">
+        <label>xpms/missil/missil2.xpm</label>
+      </node>
+      <node id="79">
+        <label>xpms/missil/missil20.xpm</label>
+      </node>
+      <node id="80">
+        <label>xpms/missil/missil21.xpm</label>
+      </node>
+      <node id="81">
+        <label>xpms/missil/missil22.xpm</label>
+      </node>
+      <node id="82">
+        <label>xpms/missil/missil23.xpm</label>
+      </node>
+      <node id="83">
+        <label>xpms/missil/missil24.xpm</label>
+      </node>
+      <node id="62">
+        <label>xpms/missil/missil3.xpm</label>
+      </node>
+      <node id="63">
+        <label>xpms/missil/missil4.xpm</label>
+      </node>
+      <node id="64">
+        <label>xpms/missil/missil5.xpm</label>
+      </node>
+      <node id="65">
+        <label>xpms/missil/missil6.xpm</label>
+      </node>
+      <node id="66">
+        <label>xpms/missil/missil7.xpm</label>
+      </node>
+      <node id="67">
+        <label>xpms/missil/missil8.xpm</label>
+      </node>
+      <node id="68">
+        <label>xpms/missil/missil9.xpm</label>
+      </node>
+      <node id="84">
+        <label>xpms/missil/nuke.xpm</label>
+      </node>
+      <node id="45">
+        <label>xpms/mouse_cursor.xpm</label>
+      </node>
+      <node id="19">
+        <label>xpms/others/nave.xpm</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_levels_8c_1a39ee502745975b6ca48bc6af393daed7" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int shootfrequency</definition>
+        <argsstring></argsstring>
+        <name>shootfrequency</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" line="3" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_levels_8c_1aa777fadfda11f54f66b7e97b05bf5b02" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int movementmode</definition>
+        <argsstring></argsstring>
+        <name>movementmode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" line="4" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_levels_8c_1aa87036abc007f09ec63e84009d40ec9a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int gamemode</definition>
+        <argsstring></argsstring>
+        <name>gamemode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" line="5" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_levels_8c_1a86004c5392cf99c502981357e9844448" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int call_3</definition>
+        <argsstring>()</argsstring>
+        <name>call_3</name>
+        <briefdescription>
+<para>sets game variables and spawns enemies for level 3. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" line="7" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" bodystart="7" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="_levels_8c_1a9191d8e1d04433c416031b8615bb0dd5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int call_2</definition>
+        <argsstring>()</argsstring>
+        <name>call_2</name>
+        <briefdescription>
+<para>sets game variables and spawns enemies for level 2. Calls level 3 when completed </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" line="36" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" bodystart="36" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="_levels_8c_1ad0fd9ada05e2410ea3145dc90c551f03" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int call_1</definition>
+        <argsstring>()</argsstring>
+        <name>call_1</name>
+        <briefdescription>
+<para>sets game variables and spawns enemies for level 1. Calls level 2 when completed </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" line="83" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" bodystart="83" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="_levels_8c_1a42497696af39171a706dbb85e08ee7f2" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void spawn_endless</definition>
+        <argsstring>()</argsstring>
+        <name>spawn_endless</name>
+        <briefdescription>
+<para>spawns mob of enemies for the endless mode </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" line="107" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" bodystart="107" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="_levels_8c_1ada95b4ed556d202b3cf0a7f1beb9526e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int call_endless</definition>
+        <argsstring>()</argsstring>
+        <name>call_endless</name>
+        <briefdescription>
+<para>sets game variables and spawns enemies </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" line="126" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" bodystart="126" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="_levels_8c_1a8c514bb03fd46808d309738584e86fc1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int call_level</definition>
+        <argsstring>(int lvl)</argsstring>
+        <name>call_level</name>
+        <param>
+          <type>int</type>
+          <declname>lvl</declname>
+        </param>
+        <briefdescription>
+<para>Sends the user to the menu or a level/mode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lvl</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>chooses mode (0 for levels, 1 for endless, 2 for instructions, 3 to exit, 4 for menu) </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int 0 upon calling another successful mode, 1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" line="143" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c" bodystart="143" bodyend="169"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_levels_8h" kindref="compound">Levels.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="_handlers_8c_1a39ee502745975b6ca48bc6af393daed7" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1a39ee502745975b6ca48bc6af393daed7" kindref="member">shootfrequency</ref>;</highlight></codeline>
+<codeline lineno="4" refid="_handlers_8c_1aa777fadfda11f54f66b7e97b05bf5b02" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1aa777fadfda11f54f66b7e97b05bf5b02" kindref="member">movementmode</ref>;</highlight></codeline>
+<codeline lineno="5" refid="_levels_8c_1aa87036abc007f09ec63e84009d40ec9a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1aa87036abc007f09ec63e84009d40ec9a" kindref="member">gamemode</ref>;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="_levels_8c_1a86004c5392cf99c502981357e9844448" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1a86004c5392cf99c502981357e9844448" kindref="member">call_3</ref>()</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1aa87036abc007f09ec63e84009d40ec9a" kindref="member">gamemode</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1a39ee502745975b6ca48bc6af393daed7" kindref="member">shootfrequency</ref><sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1aa777fadfda11f54f66b7e97b05bf5b02" kindref="member">movementmode</ref><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_laser_list_8c_1aeb9fc8005b3aefd9b0977d791275c2f0" kindref="member">ll_CleanUp</ref>(<ref refid="_handlers_8c_1a427eb60c29fb865ac84f1a24018cb34a" kindref="member">LaserFirst</ref>);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_handlers_8c_1a427eb60c29fb865ac84f1a24018cb34a" kindref="member">LaserFirst</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_laser_list_8c_1ac65494ef1e75d3aa007f2c787cc50eef" kindref="member">LaserAdded</ref><sp/>=<sp/>NULL;<sp/><sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(240,<sp/>300,<sp/>240,<sp/>440,<sp/>300,<sp/>400));</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(440,<sp/>300,<sp/>440,<sp/>640,<sp/>300,<sp/>400));</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(640,<sp/>300,<sp/>640,<sp/>840,<sp/>300,<sp/>400));</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(840,<sp/>300,<sp/>840,<sp/>1040,<sp/>300,<sp/>400));</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(240,<sp/>400,<sp/>240,<sp/>440,<sp/>400,<sp/>500));</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(440,<sp/>400,<sp/>440,<sp/>640,<sp/>400,<sp/>500));</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(640,<sp/>400,<sp/>640,<sp/>840,<sp/>400,<sp/>500));</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(840,<sp/>400,<sp/>840,<sp/>1040,<sp/>400,<sp/>500));</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(240,<sp/>500,<sp/>240,<sp/>440,<sp/>500,<sp/>600));</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(440,<sp/>500,<sp/>440,<sp/>640,<sp/>500,<sp/>600));</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(640,<sp/>500,<sp/>640,<sp/>840,<sp/>500,<sp/>600));</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(840,<sp/>500,<sp/>840,<sp/>1040,<sp/>500,<sp/>600));</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1abffa0619dc6e991b421cad8c54bd45d0" kindref="member">interrupt_loop</ref>())<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="_levels_8c_1a9191d8e1d04433c416031b8615bb0dd5" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1a9191d8e1d04433c416031b8615bb0dd5" kindref="member">call_2</ref>()</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1aa87036abc007f09ec63e84009d40ec9a" kindref="member">gamemode</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1a39ee502745975b6ca48bc6af393daed7" kindref="member">shootfrequency</ref><sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1aa777fadfda11f54f66b7e97b05bf5b02" kindref="member">movementmode</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_laser_list_8c_1aeb9fc8005b3aefd9b0977d791275c2f0" kindref="member">ll_CleanUp</ref>(<ref refid="_handlers_8c_1a427eb60c29fb865ac84f1a24018cb34a" kindref="member">LaserFirst</ref>);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_handlers_8c_1a427eb60c29fb865ac84f1a24018cb34a" kindref="member">LaserFirst</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_laser_list_8c_1ac65494ef1e75d3aa007f2c787cc50eef" kindref="member">LaserAdded</ref><sp/>=<sp/>NULL;<sp/><sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(100,<sp/>200,<sp/>100,<sp/>200,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(200,<sp/>200,<sp/>200,<sp/>300,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(300,<sp/>200,<sp/>300,<sp/>400,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(400,<sp/>200,<sp/>400,<sp/>500,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(500,<sp/>200,<sp/>500,<sp/>600,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(600,<sp/>200,<sp/>600,<sp/>700,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(700,<sp/>200,<sp/>700,<sp/>800,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(800,<sp/>200,<sp/>800,<sp/>900,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(900,<sp/>200,<sp/>900,<sp/>1000,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(1000,<sp/>200,<sp/>1000,<sp/>1100,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(150,<sp/>300,<sp/>150,<sp/>250,<sp/>300,<sp/>300));</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(250,<sp/>300,<sp/>250,<sp/>350,<sp/>300,<sp/>300));</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(350,<sp/>300,<sp/>350,<sp/>450,<sp/>300,<sp/>300));</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(450,<sp/>300,<sp/>450,<sp/>550,<sp/>300,<sp/>300));</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(550,<sp/>300,<sp/>550,<sp/>650,<sp/>300,<sp/>300));</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(650,<sp/>300,<sp/>650,<sp/>750,<sp/>300,<sp/>300));</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(750,<sp/>300,<sp/>750,<sp/>850,<sp/>300,<sp/>300));</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(850,<sp/>300,<sp/>850,<sp/>950,<sp/>300,<sp/>300));</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(950,<sp/>300,<sp/>950,<sp/>1050,<sp/>300,<sp/>300));</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(100,<sp/>400,<sp/>100,<sp/>200,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(200,<sp/>400,<sp/>200,<sp/>300,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(300,<sp/>400,<sp/>300,<sp/>400,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(400,<sp/>400,<sp/>400,<sp/>500,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(500,<sp/>400,<sp/>500,<sp/>600,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(600,<sp/>400,<sp/>600,<sp/>700,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(700,<sp/>400,<sp/>700,<sp/>800,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(800,<sp/>400,<sp/>800,<sp/>900,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(900,<sp/>400,<sp/>900,<sp/>1000,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(1000,<sp/>400,<sp/>1000,<sp/>1100,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1abffa0619dc6e991b421cad8c54bd45d0" kindref="member">interrupt_loop</ref>())<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1a86004c5392cf99c502981357e9844448" kindref="member">call_3</ref>();</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83" refid="_levels_8c_1ad0fd9ada05e2410ea3145dc90c551f03" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1ad0fd9ada05e2410ea3145dc90c551f03" kindref="member">call_1</ref>()</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1aa87036abc007f09ec63e84009d40ec9a" kindref="member">gamemode</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1a39ee502745975b6ca48bc6af393daed7" kindref="member">shootfrequency</ref><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1aa777fadfda11f54f66b7e97b05bf5b02" kindref="member">movementmode</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a63fb9a657ece16e2c0342b6cea35782d" kindref="member">player_defaults</ref>();</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(200,<sp/>200,<sp/>200,<sp/>600,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(300,<sp/>200,<sp/>300,<sp/>700,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(400,<sp/>200,<sp/>400,<sp/>800,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(500,<sp/>200,<sp/>500,<sp/>900,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(600,<sp/>200,<sp/>600,<sp/>1000,<sp/>200,<sp/>200));</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(200,<sp/>400,<sp/>200,<sp/>600,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(300,<sp/>400,<sp/>300,<sp/>700,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(400,<sp/>400,<sp/>400,<sp/>800,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(500,<sp/>400,<sp/>500,<sp/>900,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(600,<sp/>400,<sp/>600,<sp/>1000,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//1280</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1abffa0619dc6e991b421cad8c54bd45d0" kindref="member">interrupt_loop</ref>())<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1a9191d8e1d04433c416031b8615bb0dd5" kindref="member">call_2</ref>();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="_levels_8c_1a42497696af39171a706dbb85e08ee7f2" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1a42497696af39171a706dbb85e08ee7f2" kindref="member">spawn_endless</ref>()</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(100,<sp/>200,<sp/>100,<sp/>250,<sp/>200,<sp/>300));</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(250,<sp/>200,<sp/>250,<sp/>400,<sp/>200,<sp/>300));</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(400,<sp/>200,<sp/>400,<sp/>550,<sp/>200,<sp/>300));</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(550,<sp/>200,<sp/>550,<sp/>700,<sp/>200,<sp/>300));</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(700,<sp/>200,<sp/>700,<sp/>850,<sp/>200,<sp/>300));</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(850,<sp/>200,<sp/>850,<sp/>1000,<sp/>200,<sp/>300));</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(1000,<sp/>200,<sp/>1000,<sp/>1150,<sp/>200,<sp/>300));</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(100,<sp/>500,<sp/>100,<sp/>250,<sp/>500,<sp/>600));</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(250,<sp/>500,<sp/>250,<sp/>400,<sp/>500,<sp/>600));</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(400,<sp/>500,<sp/>400,<sp/>550,<sp/>500,<sp/>600));</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(550,<sp/>500,<sp/>550,<sp/>700,<sp/>500,<sp/>600));</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(700,<sp/>500,<sp/>700,<sp/>850,<sp/>500,<sp/>600));</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(850,<sp/>500,<sp/>850,<sp/>1000,<sp/>500,<sp/>600));</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(1000,<sp/>500,<sp/>1000,<sp/>1150,<sp/>500,<sp/>600));</highlight></codeline>
+<codeline lineno="124"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126" refid="_levels_8c_1ada95b4ed556d202b3cf0a7f1beb9526e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1ada95b4ed556d202b3cf0a7f1beb9526e" kindref="member">call_endless</ref>()</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1aa87036abc007f09ec63e84009d40ec9a" kindref="member">gamemode</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1a39ee502745975b6ca48bc6af393daed7" kindref="member">shootfrequency</ref><sp/>=<sp/>4;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1aa777fadfda11f54f66b7e97b05bf5b02" kindref="member">movementmode</ref><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="proj_8c_1a63fb9a657ece16e2c0342b6cea35782d" kindref="member">player_defaults</ref>();</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_laser_list_8c_1aeb9fc8005b3aefd9b0977d791275c2f0" kindref="member">ll_CleanUp</ref>(<ref refid="_handlers_8c_1a427eb60c29fb865ac84f1a24018cb34a" kindref="member">LaserFirst</ref>);</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_handlers_8c_1a427eb60c29fb865ac84f1a24018cb34a" kindref="member">LaserFirst</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_laser_list_8c_1ac65494ef1e75d3aa007f2c787cc50eef" kindref="member">LaserAdded</ref><sp/>=<sp/>NULL;<sp/><sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1a42497696af39171a706dbb85e08ee7f2" kindref="member">spawn_endless</ref>();</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="proj_8c_1abffa0619dc6e991b421cad8c54bd45d0" kindref="member">interrupt_loop</ref>())<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143" refid="_levels_8c_1a8c514bb03fd46808d309738584e86fc1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1a8c514bb03fd46808d309738584e86fc1" kindref="member">call_level</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>lvl)</highlight></codeline>
+<codeline lineno="144"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(lvl)</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1ad0fd9ada05e2410ea3145dc90c551f03" kindref="member">call_1</ref>();</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_menu_8c_1a3f2ef71198711fcd1e648f6b13e8e8f7" kindref="member">dead_menu_interrupt_loop</ref>();</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_levels_8c_1ada95b4ed556d202b3cf0a7f1beb9526e" kindref="member">call_endless</ref>();<sp/></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_menu_8c_1a3f2ef71198711fcd1e648f6b13e8e8f7" kindref="member">dead_menu_interrupt_loop</ref>();</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1addb5b94a66f4696e4616476264ecc688" kindref="member">instructions_loop</ref>();</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_menu_8c_1aa98b5886fa65e09bb90786a83099a72d" kindref="member">menu_interrupt_loop</ref>();</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>4:</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_menu_8c_1aa98b5886fa65e09bb90786a83099a72d" kindref="member">menu_interrupt_loop</ref>())<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_menu_8c_1a3f2ef71198711fcd1e648f6b13e8e8f7" kindref="member">dead_menu_interrupt_loop</ref>();</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;not<sp/>a<sp/>level&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="172"><highlight class="comment">endless</highlight></codeline>
+<codeline lineno="173"><highlight class="comment">lvl<sp/>1</highlight></codeline>
+<codeline lineno="174"><highlight class="comment">lbl<sp/>2</highlight></codeline>
+<codeline lineno="175"><highlight class="comment">lvl<sp/>3</highlight></codeline>
+<codeline lineno="176"><highlight class="comment">quit</highlight></codeline>
+<codeline lineno="177"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Levels.c"/>
+  </compounddef>
+</doxygen>

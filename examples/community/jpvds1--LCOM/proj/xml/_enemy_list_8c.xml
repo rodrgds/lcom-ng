@@ -1,0 +1,531 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="_enemy_list_8c" kind="file" language="C++">
+    <compoundname>EnemyList.c</compoundname>
+    <includes refid="_enemy_list_8h" local="yes">EnemyList.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c</label>
+        <link refid="_enemy_list_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>EnemyList.h</label>
+        <link refid="_enemy_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>lcom/lcf.h</label>
+      </node>
+      <node id="4">
+        <label>stdio.h</label>
+      </node>
+      <node id="5">
+        <label>stdlib.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> *</type>
+        <definition>struct EnemyNode* EnemyFirst</definition>
+        <argsstring></argsstring>
+        <name>EnemyFirst</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" line="3" column="16" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_enemy_list_8c_1a9fe8904e6c3703f30e25fdeff774df90" prot="public" static="no" mutable="no">
+        <type>struct <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> *</type>
+        <definition>struct EnemyNode* EnemyAdded</definition>
+        <argsstring></argsstring>
+        <name>EnemyAdded</name>
+        <initializer>= NULL</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" line="4" column="16" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_enemy_list_8c_1a7e6f76a05b720a0de0526352b8cd0e4e" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int EnemySize</definition>
+        <argsstring></argsstring>
+        <name>EnemySize</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" line="5" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_enemy_list_8c_1a973d3c44b08b7fefa039fd6b2f979932" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void el_printNode</definition>
+        <argsstring>(const struct EnemyNode *node)</argsstring>
+        <name>el_printNode</name>
+        <param>
+          <type>const struct <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> *</type>
+          <declname>node</declname>
+        </param>
+        <briefdescription>
+<para>prints current position and direction of <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> node </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>node</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> to be printed </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" line="7" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" bodystart="7" bodyend="17"/>
+      </memberdef>
+      <memberdef kind="function" id="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>struct <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> *</type>
+        <definition>struct EnemyNode * el_getNewNode</definition>
+        <argsstring>(uint16_t x, uint16_t y, uint16_t min_x, uint16_t max_x, uint16_t min_y, uint16_t max_y)</argsstring>
+        <name>el_getNewNode</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>min_x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>max_x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>min_y</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>max_y</declname>
+        </param>
+        <briefdescription>
+<para>creates a new node with position x and y and limited to [min_x, max_x] and [min_y, max_y], separated from the list and returns it </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x position of <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y position of <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>minimum x position for <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum x position for <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>min_y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>minimum y position for <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>max_y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum y position for <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>struct EnemyNode* Returns the enemy node created with the passed arguments </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" line="19" column="16" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" bodystart="19" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="_enemy_list_8c_1af536299fe353953f9e6f9ed32f946926" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void el_printList</definition>
+        <argsstring>(const struct EnemyNode *list)</argsstring>
+        <name>el_printList</name>
+        <param>
+          <type>const struct <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+<para>prints whole list of EnemyNodes </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>list</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> from where to start printing EnemyList </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" line="52" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" bodystart="52" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="_enemy_list_8c_1a7f68702689c859fdad67fcfba2ff7628" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void el_CleanUp</definition>
+        <argsstring>(struct EnemyNode *list)</argsstring>
+        <name>el_CleanUp</name>
+        <param>
+          <type>struct <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> *</type>
+          <declname>list</declname>
+        </param>
+        <briefdescription>
+<para>frees allocated memory of all nodes </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>list</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> from where to start freeing allocated memory from EnemyList </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" line="72" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" bodystart="72" bodyend="84"/>
+      </memberdef>
+      <memberdef kind="function" id="_enemy_list_8c_1a071631a2ee8fb8cb57f75bc9e46d6e97" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void el_CleanNode</definition>
+        <argsstring>(struct EnemyNode *cnode)</argsstring>
+        <name>el_CleanNode</name>
+        <param>
+          <type>struct <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> *</type>
+          <declname>cnode</declname>
+        </param>
+        <briefdescription>
+<para>frees allocated memory of an <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>cnode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> whose allocated memory should be free </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" line="86" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" bodystart="86" bodyend="90"/>
+      </memberdef>
+      <memberdef kind="function" id="_enemy_list_8c_1a2a95af7629f63803f491d7bbc7e9f53b" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void el_removeFirst</definition>
+        <argsstring>()</argsstring>
+        <name>el_removeFirst</name>
+        <briefdescription>
+<para>removes first node of the list </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" line="92" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" bodystart="92" bodyend="105"/>
+      </memberdef>
+      <memberdef kind="function" id="_enemy_list_8c_1ae181a896008fc5cc34e25c2a68875589" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void el_removeNode</definition>
+        <argsstring>(struct EnemyNode *rnode)</argsstring>
+        <name>el_removeNode</name>
+        <param>
+          <type>struct <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> *</type>
+          <declname>rnode</declname>
+        </param>
+        <briefdescription>
+<para>removes selected node </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>rnode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> to be removed </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" line="107" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" bodystart="107" bodyend="145"/>
+      </memberdef>
+      <memberdef kind="function" id="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void el_addNode</definition>
+        <argsstring>(const struct EnemyNode *newNode)</argsstring>
+        <name>el_addNode</name>
+        <param>
+          <type>const struct <ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> *</type>
+          <declname>newNode</declname>
+        </param>
+        <briefdescription>
+<para>add a new node to the list </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>newNode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref> to be added to the EnemyList </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" line="147" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c" bodystart="147" bodyend="171"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_enemy_list_8h" kindref="compound">EnemyList.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="_handlers_8c_1a769e76ada68b3750f1efd5ff87799e8d" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*<ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="4" refid="_enemy_list_8c_1a9fe8904e6c3703f30e25fdeff774df90" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*<ref refid="_enemy_list_8c_1a9fe8904e6c3703f30e25fdeff774df90" kindref="member">EnemyAdded</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="5" refid="_enemy_list_8c_1a7e6f76a05b720a0de0526352b8cd0e4e" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_enemy_list_8c_1a7e6f76a05b720a0de0526352b8cd0e4e" kindref="member">EnemySize</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7" refid="_enemy_list_8c_1a973d3c44b08b7fefa039fd6b2f979932" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_enemy_list_8c_1a973d3c44b08b7fefa039fd6b2f979932" kindref="member">el_printNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*node)</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(node<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;This<sp/>node<sp/>is<sp/>NULL&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Current<sp/>position<sp/>is<sp/>%u<sp/>:<sp/>%u<sp/>:<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>node-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref>,<sp/>node-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref>,<sp/>node-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref>);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" refkind="member"><highlight class="normal"></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*<ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(uint16_t<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>uint16_t<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>,<sp/>uint16_t<sp/>min_x,<sp/>uint16_t<sp/>max_x,<sp/>uint16_t<sp/>min_y,<sp/>uint16_t<sp/>max_y)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*newNode<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>newNode<sp/>=<sp/>malloc(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref>));</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(newNode<sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref><sp/>=<sp/>malloc(</highlight><highlight class="keyword">sizeof</highlight><highlight class="normal">(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_enemy" kindref="compound">Enemy</ref>));</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref><sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref><sp/>=<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref><sp/>=<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a6e6d01d05e4569b91997322ed08be867" kindref="member">min_x</ref><sp/>=<sp/>min_x;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a28e3f5e948fc14f395e8d31ef54f1094" kindref="member">max_x</ref><sp/>=<sp/>max_x;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1aaa55eced61d73b5d2e9c4ded12fd864a" kindref="member">min_y</ref><sp/>=<sp/>min_y;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1ab8e401d90b1dd0a07ec6b1b8a344e280" kindref="member">max_y</ref><sp/>=<sp/>max_y;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a1de1605c4b41f74c3b0f4023258323ab" kindref="member">direction</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newNode-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//printf(&quot;New<sp/>Node<sp/>at<sp/>%p\n&quot;,<sp/>newNode);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(newNode);</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newNode<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Allocation<sp/>failure\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Allocation<sp/>Failiure&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>newNode;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52" refid="_enemy_list_8c_1af536299fe353953f9e6f9ed32f946926" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_enemy_list_8c_1af536299fe353953f9e6f9ed32f946926" kindref="member">el_printList</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*list)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Printing<sp/>List:&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*t;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>t<sp/>=<sp/>list;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(t<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;list<sp/>is<sp/>empty\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(t<sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a973d3c44b08b7fefa039fd6b2f979932" kindref="member">el_printNode</ref>(t);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>t<sp/>=<sp/>t-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72" refid="_enemy_list_8c_1a7f68702689c859fdad67fcfba2ff7628" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_enemy_list_8c_1a7f68702689c859fdad67fcfba2ff7628" kindref="member">el_CleanUp</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*list)</highlight></codeline>
+<codeline lineno="73"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*nextInList;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(list<sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextInList<sp/>=<sp/>list-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Cleaning<sp/>%u<sp/>:<sp/>%u\n&quot;</highlight><highlight class="normal">,<sp/>list-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref>,<sp/>list-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(list-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>free(list);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>list<sp/>=<sp/>nextInList;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a7e6f76a05b720a0de0526352b8cd0e4e" kindref="member">EnemySize</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86" refid="_enemy_list_8c_1a071631a2ee8fb8cb57f75bc9e46d6e97" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_enemy_list_8c_1a071631a2ee8fb8cb57f75bc9e46d6e97" kindref="member">el_CleanNode</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*cnode)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>free(cnode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>free(cnode);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92" refid="_enemy_list_8c_1a2a95af7629f63803f491d7bbc7e9f53b" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_enemy_list_8c_1a2a95af7629f63803f491d7bbc7e9f53b" kindref="member">el_removeFirst</ref>()</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref><sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_enemy_list_8c_1a9fe8904e6c3703f30e25fdeff774df90" kindref="member">EnemyAdded</ref><sp/>==<sp/><ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref>)</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a9fe8904e6c3703f30e25fdeff774df90" kindref="member">EnemyAdded</ref><sp/>=<sp/><ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref>-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*tmp<sp/>=<sp/><ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref>;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref><sp/>=<sp/><ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref>-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a071631a2ee8fb8cb57f75bc9e46d6e97" kindref="member">el_CleanNode</ref>(tmp);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a7e6f76a05b720a0de0526352b8cd0e4e" kindref="member">EnemySize</ref>--;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107" refid="_enemy_list_8c_1ae181a896008fc5cc34e25c2a68875589" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_enemy_list_8c_1ae181a896008fc5cc34e25c2a68875589" kindref="member">el_removeNode</ref>(</highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*rnode)</highlight></codeline>
+<codeline lineno="108"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*nextIn<sp/>=<sp/><ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*toDelete<sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(rnode<sp/>==<sp/><ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref>)</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref><sp/>=<sp/><ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref>-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref><sp/>==<sp/>NULL)<sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a9fe8904e6c3703f30e25fdeff774df90" kindref="member">EnemyAdded</ref><sp/>=<sp/>NULL;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a071631a2ee8fb8cb57f75bc9e46d6e97" kindref="member">el_CleanNode</ref>(rnode);</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a7e6f76a05b720a0de0526352b8cd0e4e" kindref="member">EnemySize</ref>--;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(nextIn<sp/>!=<sp/>NULL<sp/>&amp;&amp;<sp/>nextIn-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref><sp/>!=<sp/>rnode)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextIn<sp/>=<sp/>nextIn-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(nextIn<sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>toDelete<sp/>=<sp/>nextIn-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>nextIn-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref><sp/>=<sp/>rnode-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_enemy_list_8c_1a9fe8904e6c3703f30e25fdeff774df90" kindref="member">EnemyAdded</ref><sp/>==<sp/>toDelete)<sp/>{</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a9fe8904e6c3703f30e25fdeff774df90" kindref="member">EnemyAdded</ref><sp/>=<sp/>nextIn;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a071631a2ee8fb8cb57f75bc9e46d6e97" kindref="member">el_CleanNode</ref>(toDelete);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a7e6f76a05b720a0de0526352b8cd0e4e" kindref="member">EnemySize</ref>--;</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Node<sp/>not<sp/>found<sp/>in<sp/>list.\n&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"></highlight></codeline>
+<codeline lineno="147" refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_enemy_list_8c_1aa9c1756e1b90a508f8af52734525a998" kindref="member">el_addNode</ref>(</highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct</highlight><highlight class="normal"><sp/><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*newNode)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref><sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref><sp/>=<sp/><ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref>,<sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref>,<sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a6e6d01d05e4569b91997322ed08be867" kindref="member">min_x</ref>,<sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a28e3f5e948fc14f395e8d31ef54f1094" kindref="member">max_x</ref>,<sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1aaa55eced61d73b5d2e9c4ded12fd864a" kindref="member">min_y</ref>,<sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1ab8e401d90b1dd0a07ec6b1b8a344e280" kindref="member">max_y</ref>);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref><sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a9fe8904e6c3703f30e25fdeff774df90" kindref="member">EnemyAdded</ref><sp/>=<sp/><ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref>;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_enemy_node" kindref="compound">EnemyNode</ref><sp/>*last<sp/>=<sp/><ref refid="_enemy_list_8c_1a769e76ada68b3750f1efd5ff87799e8d" kindref="member">EnemyFirst</ref>;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(last-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref><sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>last<sp/>=<sp/>last-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>last-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref><sp/>=<sp/><ref refid="_enemy_list_8c_1a3faad822e710691eecc5f3f9e60c8ac3" kindref="member">el_getNewNode</ref>(newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a71aa469403f28b0821081fd676ceda69" kindref="member">x</ref>,<sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1acc7dd473d1c3777f5232143d8939c46c" kindref="member">y</ref>,<sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a6e6d01d05e4569b91997322ed08be867" kindref="member">min_x</ref>,<sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1a28e3f5e948fc14f395e8d31ef54f1094" kindref="member">max_x</ref>,<sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1aaa55eced61d73b5d2e9c4ded12fd864a" kindref="member">min_y</ref>,<sp/>newNode-&gt;<ref refid="struct_enemy_node_1a048b2e1c1e748c47c57854a32283c9cc" kindref="member">enemy</ref>-&gt;<ref refid="struct_enemy_1ab8e401d90b1dd0a07ec6b1b8a344e280" kindref="member">max_y</ref>);</highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(last-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref><sp/>!=<sp/>NULL)</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a9fe8904e6c3703f30e25fdeff774df90" kindref="member">EnemyAdded</ref><sp/>=<sp/>last-&gt;<ref refid="struct_enemy_node_1a26fe35d66796516e3f6da271492719d7" kindref="member">next</ref>;</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_enemy_list_8c_1a7e6f76a05b720a0de0526352b8cd0e4e" kindref="member">EnemySize</ref>++;</highlight></codeline>
+<codeline lineno="171"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/EnemyList.c"/>
+  </compounddef>
+</doxygen>

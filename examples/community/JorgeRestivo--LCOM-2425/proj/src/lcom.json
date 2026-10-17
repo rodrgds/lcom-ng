@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "Earth Defender",
+  "description": "Aim at the approaching enemies and defend Earth.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "UP",
+        "DOWN",
+        "P"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Fire / Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "LEFT",
+        "RIGHT"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "leaderboard/leaderboard.txt"
+    ]
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

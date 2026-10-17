@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "name": "Falling Words",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [],
+      "layout": "overlay",
+      "pointer": "direct",
+      "tapDuration": 80,
+      "cursor": {
+        "x": 50,
+        "y": 50,
+        "minX": 3,
+        "minY": 3,
+        "maxX": 1240,
+        "maxY": 964
+      },
+      "actions": [
+        {
+          "label": "Pause",
+          "key": "ENTER",
+          "position": "top-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "proj/words.txt",
+      "proj/Leaderboard.txt"
+    ]
+  },
+  "archetype": "Typing",
+  "description": "Type each falling word before it reaches the bottom. Tap Play, then open the keyboard to type.",
+  "preview": "../../../../collections/arcade/previews/tiagoogomess-lcom-1920-81ea76c163f5.png",
+  "icon": "icon.png"
+}

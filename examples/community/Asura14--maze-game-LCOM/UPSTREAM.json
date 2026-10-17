@@ -1,0 +1,38 @@
+{
+  "repository": "https://github.com/Asura14/maze-game-LCOM",
+  "commit": "0da388b55b1703f448f9e848d04f2152db06cd42",
+  "project": "src",
+  "sha256": {
+    "README.md": "70d3617563c286bb819b23505d33ae52762db630abc466facd727ed784d93771",
+    "src/game.c": "d937535468eae75a37c7aeb27c6293e50df567515054e3cce098a4874680cf09",
+    "src/timer.c": "42df052f3fd645f197691f15de9fb382bf37c87ec716b91f4012bfc55e04d22c",
+    "src/keyboard.c": "9c5ff4447f97a2e6970aba477ab96bd1060e8d006187422b0ac393b1b4f663d0",
+    "src/Makefile": "b82a385255df3dedf43b2cd62a83b52700eee47795c5750dbca29c7bc99cea49",
+    "src/vbe.h": "c8db80c97e2471e613e280ba6804cbeab50c59f0eb1a7643303944b454b15216",
+    "src/video_gr.h": "5a0a14335ff08970968fdc9655997bef56be14f3f849cdf89716c646acd34db4",
+    "src/i8042.h": "75e3ae1e11611305c4e558e4069baa0df2afc2dc8401a0c2e2118137525a6f73",
+    "src/lmlib.h": "39266674d6e78989c967cd54b2780b0b6b673e595be1ddca927b773074dea5b2",
+    "src/timer.h": "692c0c408e07c525d54c76a92658f805325bef82764135654ad6dfedbb5dcbb3",
+    "src/game.h": "4cdae08d441125395115932a747f6567ae9ee90cae2925e2cbaa0d8d20381f71",
+    "src/main.c": "6c1114f294517b54c35749bed01eb83c8d93c3f550e4d49797a3875f841a646c",
+    "src/keyboard.h": "827409e7f39c2c3443d4799bffbacfe148e41c2d4c39a7b4d242ac342b138722",
+    "src/vbe.c": "537ab99a1bfe82444f6be80a9e00c3bb3d19391a55862c0110aa1a5973facaf6",
+    "src/video_gr.c": "1c9ba65d9e15fe21fc4bc423bedb4f8fb8112eb950c153f515dfa2a3eeafa54d",
+    "src/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58"
+  },
+  "selection": "Original root README and C/header/Makefile sources retained; compiled archives, objects, dependencies and VCS/OS metadata omitted.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "controlsRationale": "Original Arrow make codes move one maze cell; Escape release exits. Panel direction pad plus repeatKeys preserves short exact steps and held travel; pointer off disables unused screen mouse only.",
+  "artwork": {
+    "icon": "Simple maze motif using original blue passages, bright green character and gold target colors. Original source unchanged.",
+    "preview": "Declared crop200,10,500,500 of actual rendered original maze gameplay, keeping full authored25x25 board."
+  },
+  "verification": {
+    "browser": "Actual54-direction CDP touch route reaches original Q exit in landscape844x390 and portrait390x844. Both report END GAME and normal finished status, errors[]. Player pixels observed at independently planned cells after6,18,40 moves.",
+    "ndk": "All6 authored Makefile C translation units pass NDK27 ARM64 with importer-selected legacy lm_init status ABI.",
+    "native": "Actual Android gameplay pending."
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "name": "Dr. Minix: Rhythm Tiles",
+  "description": "Match the falling notes to the seven piano keys.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "UP",
+        "DOWN",
+        "LEFT",
+        "RIGHT",
+        "A",
+        "S",
+        "D",
+        "F",
+        "G",
+        "H",
+        "J"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [],
+      "repeatKeys": [
+        "UP",
+        "DOWN",
+        "LEFT",
+        "RIGHT"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

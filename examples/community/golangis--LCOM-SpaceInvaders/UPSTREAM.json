@@ -1,0 +1,123 @@
+{
+  "repository": "https://github.com/golangis/LCOM-SpaceInvaders",
+  "revision": "5d00040833815681522fc468553917e36b097058",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "546138e239724ab87223ef480930b8875177d4083e7e920ff137a0e6bc871500",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.gitignore": "4e5e205d9204c36d7a14c923d0104509415dff356d056167250ee448772f794b",
+    "proj/src/.vscode/c_cpp_properties.json": "a200ef944a7bcd2679a2d5d05ea67a967cfba4972fa995093ae0cdf3b6cf0e7d",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "686b2744e53fd6084eacbc9c9a06cdbc98063ebd0b10aafa536c9cb8ad437aae",
+    "proj/src/Makefile": "1a40bf5b7c40c8a0d9377173f1aaa877d9e8c953dbf76267e31edea334b54a2d",
+    "proj/src/framework/keyboard/kbd.c": "74b9c48e4872a8284ab99caf1984bd59ab67b3392cbe07fc89b1ea50791a1738",
+    "proj/src/framework/keyboard/kbd.h": "24d5677df223d0d72de64ef05649e0742966ba9e295c0490a0a2e18afc566944",
+    "proj/src/framework/mouse/i8042.h": "c54e6673ba57af7a5cadea44d000025970b60bf825178b853069a9671cc022b6",
+    "proj/src/framework/mouse/mouse.c": "0d4c7035f3a25c7776f1109eb01044f132876bae593c207f8f4d6a079d7bc134",
+    "proj/src/framework/mouse/mouse.h": "c81aacf7a4e78756543e789653620932f3ecac14fb2484fbc412d53f2db2b908",
+    "proj/src/framework/rtc/rtc.c": "36c4beeb50a4ca68ef50ec4767dfeda9b35ba7dea2d47e797598e48ba9127aff",
+    "proj/src/framework/rtc/rtc.h": "986b347c74f28749235539e66fc27a85fb82283314484cabf7ff19be07fb9a0d",
+    "proj/src/framework/timer/i8254.h": "dd5fe2d141421202e1617334129208f07132b603d3a39100fa51f4c9c13d8d77",
+    "proj/src/framework/timer/timer.c": "e9fb228e9f224530166081ffa19272d138a33b4b051f8c82117b5c1450aac303",
+    "proj/src/framework/timer/timer.h": "2029d25b5eccd7fda1ba3c9a70091eaf00e61dacc41a606361fd1e7860e2b132",
+    "proj/src/framework/utils/utils.c": "414656ea80e79082e3e74a50fb8db6c0b3d2146e747a50ec202abb8f72b48ba8",
+    "proj/src/framework/utils/utils.h": "064ce99069d6510acef1e634e0b96378860ee8c058c8d7894f1e30afc2dbbb3f",
+    "proj/src/framework/video/video.c": "741edd4afe582161135ef8481d93ccacc58cb9dff94f7748fb3225e87a8300ce",
+    "proj/src/framework/video/video.h": "dda88854391b47040028dd1976ad3bc457dde688e9031dfd128179dfee9472ac",
+    "proj/src/highscores.csv": "8da317a6396d1ca3dbe8f31c1c9a4a76a55fb5aaac5b152c41987579e4405523",
+    "proj/src/logic/alien.c": "3a5873e662582ba8ab7dde71f2bd85c48fd31189eb54701b5202716a4b30db25",
+    "proj/src/logic/alien.h": "0b8bd795f49b01feaa594cbc70732cfefe969012c623b4891ae66c10f5902e6c",
+    "proj/src/logic/direction.h": "87b17380f2578d53b8bb96c0ac1c8fa3ba458bce61c5992aa4443e815fe8234f",
+    "proj/src/logic/player.c": "b8d75b59ed5ccb3f4bcf46fe8469ff890a5dcf9f2ea040daa236c721897fab53",
+    "proj/src/logic/player.h": "4d0bf0aa55decb1e8e08a830541a343d706783142b1378bd05f740de558dfccd",
+    "proj/src/logic/shield.c": "d3b44aec4e2679779866931d261d494dbd740e6bae02fa3bde53bf4766280761",
+    "proj/src/logic/shield.h": "5f99d3261446d8f1c06eddbf2e2ce8cfb7af9cd91f922a8b32437931633445a6",
+    "proj/src/logic/shot.c": "7fa57e9ef080683a2fbbc001723bfe3ae7661541ffd1ef29a689db7e8312b54e",
+    "proj/src/logic/shot.h": "fddfbfd7ffb9eda55b2f794a86dac8272da0e072717416a97ad3e32bdba331b1",
+    "proj/src/logic/spaceinvaders.c": "5c0d23f83ef08c31bfe75b9ca86c2bf4c996e00a9267e349413684c6cc07379f",
+    "proj/src/logic/spaceinvaders.h": "748d60518787303997eb3126c5285c038a5000e74f3cfdf31f80efc4e5180be8",
+    "proj/src/main.c": "2e655653fea9c890733db2ed0b9076de837825cfa80470002e90449e53b42d71",
+    "proj/src/xpm/GameOver.xpm": "3abd189133ac5c860b3d34666683873c50e5b4c30c4639933cc0781c63b0ebfc",
+    "proj/src/xpm/algarisms.xpm": "d77dc953747958148d89e9e13c2d0e6d3e5e40cf068c0f6541064843527db277",
+    "proj/src/xpm/aliens.xpm": "dd32357e10a4fad8331556d8206bdfa1d1af3613562b72c18945d942d80c289a",
+    "proj/src/xpm/alphabet.xpm": "aa52043a0ffa876ff8f8150dabebbd57414b9b403072d0fcc9dd66c653a47e38",
+    "proj/src/xpm/heart.xpm": "a91d8e5b704dd69259ebd84c8310b56197ad957423fa7994056a7bf4adef61c8",
+    "proj/src/xpm/logo.xpm": "2b5bfffaf978f76f495b5b7504506305b52b45aab19f6a014b69f47759b8a2fe",
+    "proj/src/xpm/menu-button.xpm": "4e4ca2b9ac41cdb1ec018a9896f2cf8b5a7a98f4e94576feebf8672100ba599a",
+    "proj/src/xpm/mouse.xpm": "0c16d620fcb279e8c9d13e4cee457a90f25fe427995abc0d44f2a5456916cebf",
+    "proj/src/xpm/play-button.xpm": "36eb97f0ba7c2c9b74185f3bb4de5c676063b569f9aec1ca00d3ccea1e49c622",
+    "proj/src/xpm/ranking-button.xpm": "e3fd1ec2bd491d3b87da55fca81437da737d677baae0e12f017e9a06829f5daa",
+    "proj/src/xpm/replay-button.xpm": "e1dc00920bb68d5cb56b0516f5adb89f7bcb74bf17a026d61a35b663ad506eb4",
+    "proj/src/xpm/rocket.xpm": "3b56a8bd73324dbf9b3cba5ea0a35b5c43b8138ffc6dc2b82ce08917db783d9b",
+    "proj/src/xpm/score.xpm": "59e595bd620de2bb60ba07ea381c131caec1645b71aa4f47789fab2bf9dc31eb",
+    "proj/src/xpm/shield.xpm": "608051c9047e485d7e44dc7816afcf2a2709726310ceb58f67b6e576b569eb20",
+    "proj/src/xpm/shot.xpm": "b7835880bffd27954d8f2f3cd55188dccfe57ed2ec8eaf936d9101d0f1886d55"
+  },
+  "selection": "Original project source tree, headers, required assets and root README. Omitted unrelated labs, generated documentation, logs, compiled objects, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.mov",
+    "**/trace.txt",
+    "**/output.txt",
+    "**/core.*"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/xpm/rocket.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "ee24528c3140ea9d16c97139bb81db3888580d5476837cd0457c00915c3ebfed",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "aab01a192dfb26400c6eec4f30b06f25cdeb38d92e4cc27b095adc28d6d166ab",
+      "kind": "gameplay preview"
+    }
+  ],
+  "verification": {
+    "web": "Real Chromium mobile touch Fire enters arcade round, Fire shoots, held horizontal pad moves ship, aliens and projectiles advance. Landscape and portrait inspected.",
+    "evidence": "build/arcade-100/a/evidence/golangis--LCOM-SpaceInvaders",
+    "native": "Android gameplay exposed original CSV overflow and uninitialized/interior shot frees. Actual source regressions pass after separately recorded repairs; Android gameplay retry pending."
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/logic/spaceinvaders.c",
+          "originalSha256": "5c0d23f83ef08c31bfe75b9ca86c2bf4c996e00a9267e349413684c6cc07379f",
+          "patchedSha256": "276cf8d19c1c2e3c54fa69587d170aa5a0163a0e6ba2f5f3b7297fd05e2c0b6e",
+          "reason": "CSV timestamps include a trailing newline, causing strcpy to write18bytes into a17byte buffer and Android FORTIFY to abort at launch. Copy only the16date characters, initialize missingrecords, and bound reads to the allocated top ten.",
+          "verification": "Actual original source fortify fixture traps on original timestampline; repaired fixture verifies10dates/points plus64unchanged guardbytes after12inputrecords. Android failure-logcat identifies load_scores+260; native retry pending."
+        },
+        {
+          "file": "proj/src/logic/alien.c",
+          "originalSha256": "3a5873e662582ba8ab7dde71f2bd85c48fd31189eb54701b5202716a4b30db25",
+          "patchedSha256": "d84ec9886ea5c7bb5897e9f65b5290ae6bde97a936aceffe075888ac9c06c186",
+          "reason": "init_alien leaves its shots pointer uninitialized and first alien firing frees arbitrary stack data. Both alien shot removal and player shot removal free an interior array element, invalidating live storage or passing a non-allocation address to free. Initialize shots to NULL, retain the compacted array until empty, then free its base.",
+          "verification": "Actual original source regression fails on uninitialized shots; initialization-only variant fails the allocation-base free invariant. Repaired original source passes100 cycles of four shots per side, first/middle/last deletion, preserved coordinates, empty-array cleanup and zero leaked allocations. All9 A source regressions green. Android retry pending."
+        },
+        {
+          "file": "proj/src/logic/player.c",
+          "originalSha256": "b8d75b59ed5ccb3f4bcf46fe8469ff890a5dcf9f2ea040daa236c721897fab53",
+          "patchedSha256": "d010fe95768cbe65ad452ab9a5c256179af1fc73a2865a2599ab647d85404553",
+          "reason": "Player shot deletion frees interior pointers of a contiguous allocation; firing leaks its previous allocation. Initialize the pointer, release only the array base, and preserve remaining shot order. Allocation failure preserves the previous array for both sides.",
+          "verification": "Actual original source regression fails on uninitialized shots; initialization-only variant fails the allocation-base free invariant. Repaired original source passes100 cycles of four shots per side, first/middle/last deletion, preserved coordinates, empty-array cleanup and zero leaked allocations. All9 A source regressions green. Android retry pending."
+        }
+      ]
+    }
+  ]
+}

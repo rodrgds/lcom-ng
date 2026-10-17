@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Pok\u00e9mon Run",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick",
+          "sensitivity": 2
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/res",
+      "proj/source/highscores.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/lcom1516-t2g12": "."
+    }
+  },
+  "description": "Dodge obstacles and collect Pok\u00e9 Balls across three scrolling lanes.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

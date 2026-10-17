@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "name": "Penaltix",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "TAB"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "sensitivity": 2,
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Aim / Shoot",
+          "mouseButton": "right",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/images"
+    ],
+    "pathAliases": {
+      "/home/lcom/proj": "proj"
+    },
+    "arguments": [
+      "1"
+    ]
+  },
+  "description": "Aim your penalty kick, then defend the goal in a five-shot football shootout.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

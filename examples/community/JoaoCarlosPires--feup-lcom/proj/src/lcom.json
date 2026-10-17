@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "Bullet Man",
+  "description": "Aim the cannon and launch the circus performer at the target.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "E"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Aim up",
+          "key": "W",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Aim down",
+          "key": "S",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Launch",
+          "key": "L",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Play / Pause",
+          "key": "P",
+          "position": "top-right"
+        }
+      ],
+      "pads": []
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

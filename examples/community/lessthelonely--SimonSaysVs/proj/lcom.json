@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "name": "Simon Says Vs: Memory Duel",
+  "description": "Remember the growing color sequence in a local two-player memory duel.",
+  "archetype": "Simon Says",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "keyboard": true,
+      "mouseButtons": false,
+      "dpad": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "1",
+        "2",
+        "BACKSPACE"
+      ],
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad",
+          "axes": "vertical"
+        }
+      ],
+      "repeatReleaseKeys": [
+        "UP",
+        "DOWN"
+      ],
+      "actions": [
+        {
+          "side": "right",
+          "mouseButton": "left",
+          "label": "Select"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "leaderboard.txt"
+    ],
+    "pathAliases": {
+      "home/lcom/labs/g06/proj": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

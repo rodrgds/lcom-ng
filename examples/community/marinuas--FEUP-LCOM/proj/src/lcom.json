@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "Space Jetpack",
+  "description": "Fly the jetpack dog, collect coins and dodge or blast space hazards.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Fire / Return",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "vertical"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

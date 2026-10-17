@@ -1,0 +1,93 @@
+{
+  "repository": "https://github.com/vitormsesteves/LCOM",
+  "revision": "23f9c06c7072989ffe701943c4726628a545236d",
+  "project": "proj/code",
+  "sourceHashes": {
+    "proj/code/GameState.c": "a678f879bb1f17ef8c72e687cf8974393377542c450e90e35a4c74fad2543e61",
+    "proj/code/GameState.h": "005676efb63ebb8c2b65e363eb78c0093b7ed360d428e1f1c7497c198f98e990",
+    "proj/code/LoseState.c": "814ddab313da973f56c9435201b3fa60abdc55df2d818462335219fd33357fdb",
+    "proj/code/LoseState.h": "9ce398724a030b52573b055bc4a5f41b31526dc802cd945bb9881c47aec19416",
+    "proj/code/MainMenuState.c": "a52f0cd8577d872651876621b3c1ada3a053be80c1ae574f3385d0ed7c00fecd",
+    "proj/code/MainMenuState.h": "e93b03ffbccb965faa82bdf964da6bddf74d115b58cad4870670ce2aa2c9c28a",
+    "proj/code/Makefile": "27982d16f57ee66461141353960f95888ca432e74cbcd6afc71ac6d6002a2ff3",
+    "proj/code/ModeState.c": "79bf8262927bf6f3c77c05020ee09c23df6308030dd878b40018c8214c459559",
+    "proj/code/ModeState.h": "63107a9f310fa2daefdb832744a0eb30613a80b1ab09b07600a8db7ce443f411",
+    "proj/code/WinState.c": "04b3e20a414c6b88ffc88618f563b34f82d9258462a7bcc082a8e602ba4d5311",
+    "proj/code/WinState.h": "1307faff4fc90a58b27ef7c6f0f0da17b6f9467fa653db680fa482330d03ebf9",
+    "proj/code/bitmap.c": "608c1f25833ad14e2d5f371efe8c2abed2dd638b0ebaf46ec994f21fe2cb6312",
+    "proj/code/bitmap.h": "7ef3d6a0093b032edca27f92317ae5df93fef5190b1dc5ae420d92d1934fb169",
+    "proj/code/i8042.h": "0220846c6ea95e50decfbcf4f83e1787cd433dac680add8cdd3f2a5bf5ffe5bf",
+    "proj/code/i8254.h": "2b770d6c5ca54eb61e66313bc5cc1fdd7f7cae2cd1e4cad47c4a7c955ba0acf5",
+    "proj/code/kbc.c": "388102b9465f7f95c71d9e649e3fcab9cc2b5481b7f91ef4945894dff0ddf82b",
+    "proj/code/kbc.h": "a7f0f3f3eab6e6b7bac179eb246c5bfc49a092a885a721c118ab3d804120d1a3",
+    "proj/code/keyboard.c": "2dd9878405c3a907cbdee3b65f52eef3025cbdbd26165fa2697036f58d39dc93",
+    "proj/code/keyboard.h": "4742901b7351b664b88a3fbe916d63e27c6cdd77c7ccc940efc96965d0ac441e",
+    "proj/code/labyrinth.c": "36309f31617b653cae45e32bd3a223e4977c2c0ac3f46f8522dbcefc768028b6",
+    "proj/code/labyrinth.h": "ce5714171aadfeb50046c328dc124d217bb762d063ea67205f7922cb4660adce",
+    "proj/code/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "proj/code/main.c": "c30313ccbb88f9adfc44d61872520c5334549acaccb011f06cb9ee4379ae322c",
+    "proj/code/mouse-maze.c": "768f18a472c0d6ee152a856ec80f19428692b4f89a4f41a63282c29a5d945b04",
+    "proj/code/mouse-maze.h": "36c723b46068397a2862d2ccc265492cbee59f5d329c1ecbd8a94c85d8f2c1e9",
+    "proj/code/mouse.c": "b6a5563f6fc37b4cbdad1df1469b5e8f54bcc225aa6926dce918cb3291dfbebc",
+    "proj/code/mouse.h": "a85d5c4777f95873b405ae01422976acd96cd8699310aa83fdf2ff2e7ccd7e30",
+    "proj/code/rectangle.c": "12dfb12227d7c5cfa81e8c2415eb868043adaf738a9b4a220b99becf80a9956b",
+    "proj/code/rectangle.h": "13e750c9705b24122ff4a35be724cc0739788e99c1f0c0f3109bf4742c9d538e",
+    "proj/code/rtc.c": "9e7163d902668f96cde5289f3eed0df5f833fd8c0c5891ed87723a206b54f593",
+    "proj/code/rtc.h": "3914ccede2c008d88be5f180ae526521efd290db07967014b401b7cc1add8a29",
+    "proj/code/timer.c": "bfca35efaff9941a4efc5ce4841997a082c344e2a2fd64f41f3fe552e5d7a8f6",
+    "proj/code/timer.h": "1dbc996bab3990c7bed4a7341311fec603ff735449f7483d873d5502d4310d51",
+    "proj/code/vbe.c": "15eee475ead2de72afb3ab327e70e4f412f6c478ce86d849251f727b304180e5",
+    "proj/code/vbe.h": "7d3e85f21856c3a11f8f50232aab15ee2b06599b430e03f191924fc2aa86eff0",
+    "proj/code/video_gr.c": "e3385e63e15c8f9bf48f147ee230c1e6a1348752d14e0feb3f7f2b8fc53acf10",
+    "proj/code/video_gr.h": "0b294bb13a3d23eaa47d11bf3bc707519a8d00d3a725018a7ea802b4eb555107",
+    "proj/conf/mouse-maze": "5bb6b9bee32725f88f40ae765d42913ecd532980631af89f620cd00a1f215145",
+    "proj/rec/images/Choose/BLUE_BUTTONS/NIGHT_WITH_KBD_BLUE.bmp": "66d1d6238db0cfcea08c757c01b1120e81c854e37716109cf6b4d91f984c47fb",
+    "proj/rec/images/Choose/BLUE_BUTTONS/NIGHT_WITH_MOUSE_BLUE.bmp": "f31d626ae3fd94bd9944f69ade19d197b608e0fe8a88f94f0fa760f6db9c1fa9",
+    "proj/rec/images/Choose/BLUE_BUTTONS/NORMAL_WITH_KBD_BLUE.bmp": "f004c3c263f11bdfa6090b06103b0ecbb0f0016c9ef843d2f6fc55ed6eb5eeb2",
+    "proj/rec/images/Choose/BLUE_BUTTONS/NORMAL_WITH_MOUSE_BLUE.bmp": "e5edcaff6917aa4d99d793048058b666d02d86b0332c4696998e9f505ea7b3d8",
+    "proj/rec/images/Choose/RED_BUTTONS/NIGHT_WITH_KBD_RED.bmp": "b09f0e17cb1e32e320411ed454fc7d1cd58fd57f79f8050c29a3371f72572661",
+    "proj/rec/images/Choose/RED_BUTTONS/NIGHT_WITH_MOUSE_RED.bmp": "01dca6292405f6e7cacfc158dda75e64546f7f7a85ef05b18de332fa100ac1e0",
+    "proj/rec/images/Choose/RED_BUTTONS/NORMAL_WITH_KBD_RED.bmp": "50d431277eac0c48bee947c9f9c4131d4d262c4b405a861e904d3808d6c8b58b",
+    "proj/rec/images/Choose/RED_BUTTONS/NORMAL_WITH_MOUSE_RED.bmp": "5669b4f1985e74b397d82455c03a24d6bd2982d8f6a7295e16d84bb1e9866087",
+    "proj/rec/images/GAME_MODE.bmp": "f71a4d1955ed7d6b376698d1b948b1c26a488cde3ef9630e6fb244d3040fb3ff",
+    "proj/rec/images/MAIN_TITLE.bmp": "06f98811ba2b83208b97bb94cf2d89469d7b70d19f8ee6ed85a28a8c96c2a39a",
+    "proj/rec/images/Main/ExitButtonBlue.bmp": "4d40709febc15d60d42355f71d9dfd1ed16093852d5b3bf4ece9c980df419491",
+    "proj/rec/images/Main/ExitButtonRed.bmp": "25f5ff0fbff4dde234abc11c722814c3bd41d5443004691cb7cc2c094b3dc119",
+    "proj/rec/images/Main/PlayButtonBlue.bmp": "d049ab494f6a4bc79c9540419e8d0feabf75cc0be0e35e936034ce7d82c3b81d",
+    "proj/rec/images/Main/PlayButtonRed.bmp": "24a1b716a0cfc827ee9086771a4d4a38968611f04531c0477a8040874ad3e02e",
+    "proj/rec/images/YOU_LOSE_NORMAL_0S.bmp": "a2e752a8b34d6c8584ee25583dc2bbfa46a39cf2d23f86ca500caa764b987ae6",
+    "proj/rec/images/YOU_LOSE_NORMAL_100S.bmp": "9e0b19724801d62b0add920f2c5aeca8bb4faf579efd069f8c5833bc02d02ca8",
+    "proj/rec/images/YOU_WIN_0S.bmp": "b0802fa0fa517e0923649df911e55129a0f43def8a0359cda025047fda894ee3",
+    "proj/rec/images/YOU_WIN_100s.bmp": "11f28c3cae91eddd8261de28c812d5911655ce4282cbfc193b8d0a3fa33a3ab5",
+    "proj/rec/images/game-background.bmp": "022433e6e127faf1887ef1ce4b93bd2012f7c2881e24ad364f9f9e0a654646d6"
+  },
+  "selection": "Pinned project subtree and root README; VCS, OS metadata, generated documentation and compiled objects omitted.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "artwork": {
+    "icon": "Simple vector rendering of the original cyan maze path, blue player and red exit, following the established flat icon style."
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/code/video_gr.c",
+          "originalSha256": "e3385e63e15c8f9bf48f147ee230c1e6a1348752d14e0feb3f7f2b8fc53acf10",
+          "patchedSha256": "8e33cf4fe57c07e24271c0711765741616792543d29ad99b9613a17698a271ee",
+          "reason": "Clip pixel coordinates at the exclusive framebuffer bounds, bound rectangle extents, and return success from the rectangle renderer. Inclusive one-past-edge pixels wrote beyond the buffer when the original cursor reached the edge.",
+          "verification": "Actual Android edge homing SIGSEGV in draw_rectangle; original actual-source pixel/rectangle guard test fails on the inclusive boundary, corrected last visible pixel, offscreen rectangles and adjacent frame guard bytes pass. Evidence build/arcade-100/c/maze-clipping-{red,green}.log."
+        },
+        {
+          "file": "proj/code/mouse.c",
+          "originalSha256": "b6a5563f6fc37b4cbdad1df1469b5e8f54bcc225aa6926dce918cb3291dfbebc",
+          "patchedSha256": "a60945a4925bf5fd8b0e43fce6a226ef665c29e9eb7b782045925484d05485ee",
+          "reason": "Decode the PS/2 sign bit as a nine-bit signed delta. Casting only the low byte to char turns valid large negative movements (-255 through -129) into positive motion.",
+          "verification": "Actual Android homing moved right for a negative swipe. Original actual-source full-range packet regression fails deltaX; corrected signed-char build checks -255,-200,-129,-128,-1,0,1,127,128,200,255 on both axes plus cursor and button state. Evidence build/arcade-100/c/maze-packet-{red,green}.log."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+--- a/code/game.c
++++ b/code/game.c
+@@ -8,6 +8,7 @@
+ #include <minix/sysutil.h>
+ 
+ #include "game.h"
++#include "dispatcher.h"
+ #include "game_static.h"
+ #include "logic.h"
+ #include "i8042.h"
+--- a/code/mouse.c
++++ b/code/mouse.c
+@@ -118,7 +118,7 @@
+ 	int byte;
+ 	byte = (int) mse_read();									/* get next byte */
+ 	if (byte == -1) return;										/* there was some error, discard this info */
+-	if (mouse->first_packet) {									/* this is the first packet, must check synchronization issues */
++	if (mouse->first_packet && mouse->byte_counter == 0) {									/* this is the first packet, must check synchronization issues */
+ 		if (byte & BIT(3)) {									/* if BIT(3) of this byte is on */
+ 			mouse->byte_counter = 1;							/* this is probably the first byte, set byte counter to 1 */
+ 			mouse->bytes[0] = byte;								/* and store this as first byte */

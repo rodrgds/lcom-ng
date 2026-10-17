@@ -1,0 +1,119 @@
+{
+  "repository": "https://github.com/NASGregorio/FEUP-A2S1-LCOM",
+  "commit": "361b30b133bdddc602b31b31382481d07631aff9",
+  "createdAt": "2019-09-29T20:16:11Z",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/NASGregorio/FEUP-A2S1-LCOM",
+    "createdAt": "2019-09-29T20:16:11Z",
+    "detail": "GitHub repository creation timestamp from pinned discovery metadata."
+  },
+  "project": "proj/src",
+  "sha256": {
+    "proj/src/.vscode/c_cpp_properties.json": "946f911beb97a24bf3a321b5599ae9c38d2e296317d7ab6a962982775240d83a",
+    "proj/src/.vscode/extensions.json": "3e09bd46550d511bd92c8d4603eb976dcbc2310583ef905ba96fbb391d8a718c",
+    "proj/src/.vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "proj/src/Makefile": "9db74157292fb0b0843ce0689b5449a64f799872f8815e589ff774386061c42a",
+    "proj/src/bitmaps/background.bmp": "f5429d07f68099f237ee9df4ac120228233c5ed8e3ebff96106abd13a7fac386",
+    "proj/src/bitmaps/cursor.bmp": "33e15b384e51320ec1964f332e6c5102063f5b019730c90cbf3654ababd515b8",
+    "proj/src/bitmaps/enemy.bmp": "30b6e68ec2ca313655df7cbb07dcd909a68f2928dcabda2fb75886238cdf0f20",
+    "proj/src/bitmaps/fuel.bmp": "0e0a0250cc9b3347943695aaec035b9da26fffceb73b4ca584374f57ae8e3437",
+    "proj/src/bitmaps/howto.bmp": "d5b1c9a59aa8dc059b34844850e7348d43d0f1a54c193dfd8a3171a74a15cb91",
+    "proj/src/bitmaps/menu.bmp": "76f61781262d1d87587969307c27192270b6cabb5824d19a65fa3a358eb268bc",
+    "proj/src/bitmaps/player.bmp": "c09a021f8abc3769574bb9879766bb005451392a9c9eacb093a8dc3e65906118",
+    "proj/src/bitmaps/road.bmp": "e98460338ec954ecddd4f59d9ddf1f2c7323af60fc3905fdbd7effff2785503c",
+    "proj/src/bitmaps/tree.bmp": "79dd681afc720c12ccff8f38fe1abb3960821ee1762dd270f31b84fb458c3516",
+    "proj/src/bitmaps/ui_font.bmp": "eea49eb5b44624311059821d91d8b9a348bde48d075dc76d5a47f8524ed74eaf",
+    "proj/src/box.c": "a0c6b744001d5ce857117984d3475800a8696f314616f2783cf596b8fc778335",
+    "proj/src/device_manager.c": "6fcce19b77d5d42409207eccd6700a15a16f0515caa23ebc8103c0f4247f1862",
+    "proj/src/gs_hold_your_ground.c": "2b31f1399a8a9fe760f56c2de9d71cd5b17bbd28754f9c22d48186136307cbfa",
+    "proj/src/gs_inf_runner.c": "7f02b69d16041c429b4fe51e349de32f23b3c97f0686487c65350a25f7bbbca4",
+    "proj/src/gs_menu.c": "e3aa64175848772ee396b95e3fcf8fc8294127498d54f89ae331772162718d5b",
+    "proj/src/gs_wolfenstein.c": "6860404430f015d4f2948d6ecf3935bf0feb4e5294449f0e7742e902c505f596",
+    "proj/src/include/box.h": "7c10ed77bf4654fc96e892025e86eb7fbb331b4d97e0409c0688dd07795f024f",
+    "proj/src/include/device_manager.h": "199516c86bc9b5b0a4cbdd9f0d4b133becb71f6cb21de90eb1faaa5724f3176a",
+    "proj/src/include/game_state.h": "4f47d5e90ed3f9601d314b4a0af746966ba48eafd15762a78d14a0edb4b6ddfd",
+    "proj/src/include/gs_hold_your_ground.h": "cb5a9ca8a7085a0cd1810f835beee4b65558b233c8e169780a97466ebdb76a35",
+    "proj/src/include/gs_inf_runner.h": "1c0145874f0a64256f14298a52a835c21ffb3ad8347e64e91e7bb964b3ebedf0",
+    "proj/src/include/gs_menu.h": "33c158e3f730a076bccc07c124f65221f0b0f24f42c375604a4765c28b67891c",
+    "proj/src/include/gs_wolfenstein.h": "b5693cd520c00b785dfb0dda5d3b154f55c434805065e14f627803f650ee13e6",
+    "proj/src/include/i8042.h": "a32ca83217323b1f06f425fa304ee7a7096f05a091351385ba1f544569035854",
+    "proj/src/include/i8254.h": "64678f8aded0bd92bcd4aa818b935ad4d0b7057e9d2604a49b7cf8f5c2a3bbc2",
+    "proj/src/include/kb_manager.h": "c65f61860c0387ea2fd112ed85d45970d0491bdc33311d9e113c807f75ecce01",
+    "proj/src/include/kbc.h": "c0a7117b5ad2509fdc1b3504e7fc4b39174a7d43ef37d3279a3ffb839e3a1c4f",
+    "proj/src/include/keyboard.h": "fb7d7e3f9aa034362759028b42ee09a7bea061679600bfd6f88616ca40b354a7",
+    "proj/src/include/mouse.h": "97efab0b1765a129dbf7d35eb4c00112bd7c68d4c72ac677484ca935e2f23dd6",
+    "proj/src/include/mouse_manager.h": "638c8b12b47693aec0c1f58d00f162c7a1b1a19920814792d6cacbf99c9f86be",
+    "proj/src/include/rtc.h": "bdcb56c5c7bc17cea657098bf1a0f7144d63bbb3cc5269d3f2be4c3eb757b18a",
+    "proj/src/include/utils.h": "a45ff3c2b2e3394983423fd022f0c70572719dbf9e5b779bac9583a7738935d6",
+    "proj/src/include/vector2d.h": "1c9a4edf24e85e377237cda9879b72ee32d4ae77780d153d63c81ff4b3b4e586",
+    "proj/src/include/video.h": "96fb94cd61388267b607a917e8ad32bd690c7d2b7d85ec10de2178eb4bad3cbc",
+    "proj/src/kb_manager.c": "08148fd395069ed243d02d5c7e044ffab38d126e316cb1ecfc2787764a0230aa",
+    "proj/src/kbc.c": "197f5e12e80a8e3a55c7e55772951280898902c46291846152196ef3966ae50b",
+    "proj/src/keyboard.c": "841696c2ed4cb119aaa01dde2295aea1da951dc0bcd83e68c534f093a57f64d3",
+    "proj/src/mouse.c": "1c227aea067b0269b27a18d416137b33246ff90f0c4630ce8e7adc82953b98c2",
+    "proj/src/mouse_manager.c": "b11845a0f275b832db9edd7c083d03911afdd72932f748ded3895b368a29f8c7",
+    "proj/src/proj.c": "9a343292bef67453a4eef0cd51db4845b0c838a24d6c4a9c83ffea09200f2122",
+    "proj/src/rtc.c": "dd89fdada99e162ab4b4541489ebd87de8ec4c4c2a4b9d63d818c7c6dfdf2866",
+    "proj/src/timer.c": "63fb6f06fae14576ac86726abc82231e824ddaaae90a9ba156ff482455ea56ea",
+    "proj/src/utils.c": "575135cae85b30e34d0a3d8342ce0f3b7373e767b4b2ac0bd3170df01670b8d9",
+    "proj/src/video.c": "0c8f1223e8ba27bfc4fe1816de7e05f51c165fdb7e13473e2dbd76ac97bc7dca"
+  },
+  "sourceChanges": [],
+  "selection": "All 48 selected pinned project files, including sources, headers, Makefile and original BMP assets, are unchanged. Unrelated labs, generated objects, documentation and VCS metadata outside the selected project were omitted.",
+  "controlsRationale": "Relative pointer starts at the original mouse_state (0, 0), with unit deltas and an 800 × 600 menu. No direct or calibrated pointer preset is enabled. The WASD pad steers the car and penguin, or moves and turns the raycast view. Select / Spawn sends the original left mouse button; Clear Marks sends the right button. P pauses globally, Escape returns to the original menu, and 1/2/3 select raycast maps. Auto orientation keeps the 4:3 canvas and panel controls usable in portrait. The original omits F4, so build.environment explicitly selects the existing documented LCOM_COMPAT_MOUSE_REPORTING=1 persistent Minix VM state. The explicit /home/lcom/labs/proj → proj alias preserves original POSIX open/pread bitmap paths through the shared SDK.",
+  "verification": {
+    "nativeBuild": true,
+    "fortifiedNdkObjectCompile": true,
+    "mobileTouchGameplay": true,
+    "browser": {
+      "status": "passed",
+      "evidence": "build/arcade-100/b/retry-current22/evidence/NASGregorio-final",
+      "demonstrated": [
+        "Original Minix Arcade menu and three modes load from unchanged bitmap assets.",
+        "Frontal Collision responds to W/D steering, reaches passive score 20, and shows a blue opponent car spawned by the original mouse action.",
+        "The paused canvas remains byte-identical across 500 ms; resume and Escape menu return work.",
+        "Hold Your Ground shows penguin movement and bouncing rectangles. Left and right mouse controls were exercised, but clearing marks was not independently established.",
+        "Wolf & Stein W/D movement and turning visibly change the original raycast wall geometry.",
+        "Portrait Frontal Collision touch steering reaches score 40; the complete controls remain visible without a rotation gate."
+      ],
+      "limits": "Short local minigame checks. Full survival, fuel collection, opponent collision and raycast map switching were not verified. Android gameplay remains pending."
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "84107f5883190cd5fc09fe96638a944a0316e8e4f7e035f47f1a6fe62e73edfd",
+      "evidence": "build/arcade-100/b22-native-gameplay/results.json",
+      "demonstrated": [
+        "Original road, car, fuel and speed HUD render. Record the initial car position.",
+        "Car visibly moves right/up and the original score progresses.",
+        "An original blue opponent car is visible in another lane; the red player remains live.",
+        "The original scene stops advancing.",
+        "Compare the actual canvas and score across 500 ms of pause.",
+        "The original Minix Arcade menu returns. Then verify Home ends the isolated game."
+      ],
+      "limitations": [
+        "Native Frontal Collision steering, traffic, passive score50, pause and menu return verified. Fuel pickup, collision outcome, long survival and the other two native modes remain untested."
+      ]
+    }
+  },
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in the selected original root.",
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.svg",
+      "sha256": "d042fd01e97f62bd4a3808a0df242f4da360f37575be1a4dc0c45ad7dc7e0d0e",
+      "kind": "Source-informed vector car artwork."
+    },
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "1c88c9b95b23b0be8f099765bee0306dd5872e290e1aa89688e796d1bccd85b9",
+      "kind": "512 px raster rendering of authored icon.svg."
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "3865d468d788d5c75308d78ce75a9deb33af5833ec1429bce4ce02a48028c0b4",
+      "kind": "Actual browser Frontal Collision gameplay from unchanged source."
+    }
+  ]
+}

@@ -1,0 +1,201 @@
+{
+  "repository": "https://github.com/PedroPF1234/Tower-Engineering-LCOM-23-24",
+  "revision": "d406c7e28046ae8f66b844c8a704187e6b64b5aa",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "902e5873797d1be08a8ed2f26c7f70d40bf3938ef2c447fe0b89dfe7b15c4bab",
+    "proj/src/Devices/Graphics/graphics.c": "12bf0b6670213b3ebe7e0e54c999901bfd9eaa895db31205e8ed558a1251482b",
+    "proj/src/Devices/Graphics/graphics.h": "58d57a535ec6cfe42aba9d94e9615c3587413d19389e190653e358905770742b",
+    "proj/src/Devices/Graphics/vbe_interface.h": "da5df3e9f69c0a60fb6d35264bb21ed63b68b578118454fd428f439634da517e",
+    "proj/src/Devices/KeyBoard/i8042.h": "d65ee7c6a6f0787697455a2e9f32f89659d77db1ec388b70676a6be69e888278",
+    "proj/src/Devices/KeyBoard/kbc.c": "c857751c540c4792e49db15e9ffd8d9fa43f1135d66f43c83cb7094fddae9583",
+    "proj/src/Devices/KeyBoard/kbc.h": "54f5b296d1d44443679aa60c252b3adfbfc52068761408f30dcde35cce159956",
+    "proj/src/Devices/KeyBoard/keyboardkeys.c": "8b08d853855325a361bb5a14f51b87eed14639c33a94b1fcafca790135735dfe",
+    "proj/src/Devices/KeyBoard/keyboardkeys.h": "db11efce18d1e8ef54da1640300df87d80fbc01eccbd42028ffafe8d8ad7f625",
+    "proj/src/Devices/Mouse/i8042.h": "ffea123542cc5f93149145ffe062197958234a02afe374598396182bb1c1dc30",
+    "proj/src/Devices/Mouse/mouse.c": "e150d720c779f176ef63555d9dd4af73b1d1218527e401717ef746f00299482b",
+    "proj/src/Devices/Mouse/mouse.h": "d1f98b3bfae241ece1bc3e4c5a0240692a54456012ddc100ceec671264415eac",
+    "proj/src/Devices/RTC/rtc.c": "75329a2d64cb62ae604bd49848536d337e3fc990f3644242f5a6f105b2257765",
+    "proj/src/Devices/RTC/rtc.h": "69d3acf7bd3763f7dbbc11a9ddebf7aa2c597920e4ca8c3225a3da87b331548a",
+    "proj/src/Devices/RTC/rtc_time.h": "45108d8d6196178d929398b38ac820c9b14eb3e2c9762ec3a08a81bf3d4b83d4",
+    "proj/src/Devices/Timer/i8254.h": "bdaddb0684915b4e6519518a5528e9eac2dec52db55852464edd122fb89e0142",
+    "proj/src/Devices/Timer/timer.c": "a04fee820645224b5c85fe524fe485e4d247f8b2f584a7720e3d579f69c27776",
+    "proj/src/Devices/Timer/timer.h": "d4fba48ee12374d5892f7b9a9ae17a89be4d103759d1b1bc20423c2488e64004",
+    "proj/src/Devices/Timer/utils.c": "9c9582c6e58959d2a300585197c571f7b985e115f38dadea53fda1e0d1668891",
+    "proj/src/Devices/device_controller.c": "4fbbfd03926ab9079d6444e8c60250069a8eef712ecc7ed915ed9eba01652a4c",
+    "proj/src/Devices/device_controller.h": "1377bce39125c38bbd8e6dad593a52d59e21257c5c53ac36ef08d255ff8ba1fe",
+    "proj/src/Game/DataStructure/button.c": "28fc75e618940afd548b1a69a51f6254fc85c7a8b64f130e4c88f291ea8dfa49",
+    "proj/src/Game/DataStructure/button.h": "64e11c751866e2b004f0fc2712eb4485db9a4f776f56eeb42151859c07d68e2f",
+    "proj/src/Game/GameOver/gameover.c": "2360ac66cad1326c03db32f7c508602b6473f5e43be8e8b95219f035ed76a7cf",
+    "proj/src/Game/GameOver/gameover.h": "20993eb058b3e73316da383465b3dc92d3f3f3abb0113c4cb9134b851a4b30ac",
+    "proj/src/Game/Gameplay/Arena/arena.c": "08762f41e3b3b7cab6952f0a8188be1e13a89338881f4e4b27b59a4e72737228",
+    "proj/src/Game/Gameplay/Arena/arena.h": "70452a57c1c7cd9f7f670b5387075724c505ed7c0fb94d6bcbfd79176d41fc9a",
+    "proj/src/Game/Gameplay/Bullet/bullet.c": "fad0b258144d637717f731784db5c889270763fafb1a8479582005f84b05610f",
+    "proj/src/Game/Gameplay/Bullet/bullet.h": "bea4539646956e7386ff4b32bab175fd8bf65ed2bf6396084ea37a3358884ba6",
+    "proj/src/Game/Gameplay/Enemy/enemy.c": "94daffb75a8de1bf9b1a8b22a1655fb6ff8ce24989286a4a4e0775802ed6cd64",
+    "proj/src/Game/Gameplay/Enemy/enemy.h": "60a198dd394dcc77a4e4760a104c7303097ea4548020f50b98ebd90493d4ba01",
+    "proj/src/Game/Gameplay/Money/money.c": "6d85140bc7b1abf2c62db35ac0669fdf866d9e164371310d4803c1b17cc64a00",
+    "proj/src/Game/Gameplay/Money/money.h": "f8e12ac8cfe89d88d1456300330d29e2aac6f6c4a1c6109352bf431fcfde8c7d",
+    "proj/src/Game/Gameplay/Player/player.c": "924fb039bdbde3c59c748386129647c4289ec143d27253abcee83300ec80e899",
+    "proj/src/Game/Gameplay/Player/player.h": "d82c56c291ac47e5aca23b5011fa9405d46af989ab6a692726f9a06b75c8d61f",
+    "proj/src/Game/Gameplay/PlayerBase/playerbase.c": "cf6c930cb9d7c2a9dd6ba9100273752a2812964011d1b36a0abaac46ff9efce6",
+    "proj/src/Game/Gameplay/PlayerBase/playerbase.h": "a7a8967000bf197779db9ffe5467bc1e32cfb7bb124bd481fc311d6028f7193f",
+    "proj/src/Game/Gameplay/Tower/towers.c": "983cee635d2bdd84be9a8ec552cece3a485e167d611bf8aa6bba56cb816caa49",
+    "proj/src/Game/Gameplay/Tower/towers.h": "dabae8ce74edad342520b4c11583b16844e98067dbe9f3be2b8d04ced9947953",
+    "proj/src/Game/Gameplay/Weapon/weapon.c": "4a1bffb2fc58880e7e877e91867071ec9fdcb8c8c00ff8c30c2a631cebdf387e",
+    "proj/src/Game/Gameplay/Weapon/weapon.h": "a71c50098f45e4c36c390eb56079c990cf859adba7094329d76e65810a4721bc",
+    "proj/src/Game/Gameplay/economy.c": "6bc47f2fcc7c4daa427a75524f0fb379aa02ad233dbccf8edfa432e4f21f016e",
+    "proj/src/Game/Gameplay/economy.h": "7087a0f07f0c5e548579b67cb59d1985e17bac5e862129e12b49553a6e4f4642",
+    "proj/src/Game/Gameplay/gameplay.c": "ce6fad798fc393a5b7104759bb33d6330d0a3048d92b94050ee4823e78a8d634",
+    "proj/src/Game/Gameplay/gameplay.h": "37bab3f86edea0af10292ef47cea4aaf4b62cf24051fb40675bf5818846a8a71",
+    "proj/src/Game/Gameplay/shop/shop.c": "ae07a98709e9cd8f2d936c3f4785504ef8b1934860bedb4c2c4f3ec2b5248e5d",
+    "proj/src/Game/Gameplay/shop/shop.h": "6ed83043d1e1f536ae1a17061a4a05a765304e41b53fbf54d1b7b26dfd9a5fc9",
+    "proj/src/Game/Instructions/instructions.c": "5cbbea5541eca0fc9b64b52be58d7a26890dceff77f131800f8b294bd3263bcf",
+    "proj/src/Game/Instructions/instructions.h": "a976b1610882123841a7c5aa4a409f7a4831ee3a5b48af289966d91c1e36556d",
+    "proj/src/Game/Menu/menu.c": "cf7fffcb9762d8bdee93c24b60c0b48410daed447e638f47153e7e9fc26abefa",
+    "proj/src/Game/Menu/menu.h": "ccf1f22d85730390629eddc71351b0d11640ce91a8c84f19530a7820cae4ff5a",
+    "proj/src/Game/game.c": "4db67066a31ff1171a31fd53c3705289ec2d9a052c50674a7498f76d8b6e7dac",
+    "proj/src/Game/game.h": "24d8a8dbdae659c92c709df9a71269bd54124ebabe0295ccd3b9225c83e76785",
+    "proj/src/Game/gamestates.h": "e053a29b0f2de8a5e7cfc9091dbce172e56a49d74b15e785355279c98a49e7fb",
+    "proj/src/GameObjects/gameobject.c": "c410cf6d31747297bb12e9c8c57be5ec90925da95cbc978e54560853bde62b22",
+    "proj/src/GameObjects/gameobject.h": "ff656487453d72c9d6943b9f8132aacfd4a71539f8b3a2a203c511e93912a766",
+    "proj/src/ImageAssets/Arena.xpm": "c2bd292ed9725062909ede1abf3497c516c940f26f285508a1143e08f24ea5d8",
+    "proj/src/ImageAssets/Background.xpm": "79b414089f37ff001ea19d23e04941616c4c395093a7152f8008c11c58239cde",
+    "proj/src/ImageAssets/Base.xpm": "29e5259ac839ece2d7f29d99bf936389f8d96c0f7380df34dab145cfeba9516b",
+    "proj/src/ImageAssets/Bullet.xpm": "e43b6ff6692ac2b2365f4520eb1e60a1cd6c5835c5e80838cbca3f15e6a55a83",
+    "proj/src/ImageAssets/Button.xpm": "c821482e28a9624f71725b0dc2e7193b879f590675e71935d9c987170135d034",
+    "proj/src/ImageAssets/Decorations/Drill_Decor.xpm": "547caa34581129a9d6c9275b70242294436d573953b5b2abad4fe171217914fd",
+    "proj/src/ImageAssets/Decorations/Factory_Decor.xpm": "579d7a3514da18f178aecdb2798f27ecf4620e972307a5915e9abae77d33f0ff",
+    "proj/src/ImageAssets/Decorations/Furnace_Decor.xpm": "876b3ca35a43931bbe941a8e95e972e7e0b67d9406ff2ba8d9b8c16095a27fb7",
+    "proj/src/ImageAssets/Enemy.xpm": "dd7b972d2b8cf9fc56fa5bd5eb06e9afd79bf29c1748bb1a2133748c7ce82fc8",
+    "proj/src/ImageAssets/InstructionBackground.xpm": "c968ac2a7ab51c33cdf88efbcc604e2b3eaced079e76481bb26de729aa29bbae",
+    "proj/src/ImageAssets/MiniMaps.xpm": "8f74826e3279907287f1f05a1b5aca20e478a8ef559802eb18678ccd9733b010",
+    "proj/src/ImageAssets/Money.xpm": "cc74807b89cca190aae1bf7763fd01cd4c0c1f23a42b1b3341ac90a50ef60f80",
+    "proj/src/ImageAssets/MouseCursor.xpm": "90934907e1719cf986a25ee496b274982b0ad1fd80eb108663ecfc22a57a59f3",
+    "proj/src/ImageAssets/Pause.xpm": "bbdcb4364b29bf4467547c812f25470287fc400768eb8d0a51425496450064ab",
+    "proj/src/ImageAssets/Player.xpm": "64ae28ce6dab63b71a0c03690aae3894cec1a750b2d7bb4ab9448401a2e55f36",
+    "proj/src/ImageAssets/Shop.xpm": "88d7d071651a95c0f2ea077d771b81bc53ce1bcb6715d72d8922ac9a4479763e",
+    "proj/src/ImageAssets/TowerBase.xpm": "ff066e13e1ea7bf50e45ebe97ce925888a342a6c630f7b21ff27257f8d9de471",
+    "proj/src/ImageAssets/Towers.xpm": "cf575d4f7321357eb558d95391196c28c7daf733555dfeda4a2b2b433cdf00a1",
+    "proj/src/ImageAssets/Weapon.xpm": "b6fea9f05572cb97570f0d1c3d6333370f9f93ec933ffca3b064281a3fa64576",
+    "proj/src/ImageAssets/Words.xpm": "b18de07888d60f34af884fd66c98257138b2818299ad8a829e7c40102674a739",
+    "proj/src/ImageAssets/sprite.c": "f41122b394b81c2aa8335a4a13200043288338d1cfbb419a15d600c1fd6569be",
+    "proj/src/ImageAssets/sprite.h": "6d4e83e791aeee4ec52cc160a171a130add869bfe295b3bdea9dd40f42412f8a",
+    "proj/src/Makefile": "20a3106d8255a53a4148c9ab357345035544ae2a00467c040d391ecde203a8d2",
+    "proj/src/proj.c": "034db49210ecf43682c03c8f639ee99987194eb5298f8cd5009b4412160160d4"
+  },
+  "selection": "Original project source tree, headers, required assets and root README. Omitted unrelated labs, generated documentation, logs, compiled objects, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.mov",
+    "**/trace.txt",
+    "**/output.txt",
+    "**/core.*",
+    "proj/src/proj (original executable preserved in ignored evidence, not imported)"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/ImageAssets/Towers.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "b6c2daadaa72faf158eaf525ae97d9117efe09f823060bbb2f599f6c68109884",
+      "kind": "Existing simple launcher icon derived from pinned tower artwork"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "67b21b436e10002009be4baa3365e7c61a52220b26c6a3c067e36ae2a228243a",
+      "kind": "Unmodified browser canvas with mounted crossbow and visible damaged enemy HP"
+    }
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/Devices/Mouse/mouse.c",
+          "reason": "Read and validate the mouse command ACK before collecting movement packets, preserving mandatory PS/2 byte ownership.",
+          "originalSha256": "e150d720c779f176ef63555d9dd4af73b1d1218527e401717ef746f00299482b",
+          "patchedSha256": "989999600613a36ec916954eb924ac557b287033f7807b1fb5468ed98dc89a12"
+        },
+        {
+          "file": "proj/src/Devices/Graphics/graphics.c",
+          "reason": "Release the two-page mapped framebuffer using vm_unmap_phys instead of passing a non-heap mapping to free.",
+          "originalSha256": "12bf0b6670213b3ebe7e0e54c999901bfd9eaa895db31205e8ed558a1251482b",
+          "patchedSha256": "2ee5369e6f97d84a7cd5a8bc9004a9595948f1433f40f0951c4622b7f635747b"
+        },
+        {
+          "file": "proj/src/GameObjects/gameobject.c",
+          "reason": "Keep every render object exactly once in depth order; animated game objects borrow their animation-owned sprite instead of freeing it.",
+          "originalSha256": "c410cf6d31747297bb12e9c8c57be5ec90925da95cbc978e54560853bde62b22",
+          "patchedSha256": "69b0ba0cb17e931f842639a17b032c137d236f99001d94d835c7e58785b6f227"
+        },
+        {
+          "file": "proj/src/Game/Menu/menu.c",
+          "reason": "Rebind button render pointers after replacing and freeing menu artwork.",
+          "originalSha256": "cf7fffcb9762d8bdee93c24b60c0b48410daed447e638f47153e7e9fc26abefa",
+          "patchedSha256": "80295a5b818d53f037c0416d977aa16100ffce1f12b62ba5b29e37c2d3923d8a"
+        },
+        {
+          "file": "proj/src/Game/Gameplay/gameplay.c",
+          "reason": "Rebind replacement button artwork; retain and hide the reusable weapon between rounds, releasing it only at whole-game destruction.",
+          "originalSha256": "ce6fad798fc393a5b7104759bb33d6330d0a3048d92b94050ee4823e78a8d634",
+          "patchedSha256": "33c3f1fb2ff181b2d9945820458d7b0d2d7630507b98c0481be48333c9a2d4cc"
+        },
+        {
+          "file": "proj/src/Game/Gameplay/Weapon/weapon.c",
+          "reason": "Release rotated artwork through its owning contiguous array and each pixel map, never through an interior selected rotation.",
+          "originalSha256": "4a1bffb2fc58880e7e877e91867071ec9fdcb8c8c00ff8c30c2a631cebdf387e",
+          "patchedSha256": "28f8788b62089ea76254a68682e793e9ec29861f8a14622efe7781411d480555"
+        },
+        {
+          "file": "proj/src/Game/Gameplay/Tower/towers.c",
+          "reason": "Unmount/hide/destroy rotated turrets through their owning contiguous array; detach sprite and game object exactly once.",
+          "originalSha256": "983cee635d2bdd84be9a8ec552cece3a485e167d611bf8aa6bba56cb816caa49",
+          "patchedSha256": "6f08a1f0ac660c47e4541c514f2f0288b4b6d31abbb3869b40317e1a1077ef15"
+        },
+        {
+          "file": "proj/src/ImageAssets/sprite.c",
+          "reason": "Free animation frames once through their owning array, and provide the owning rotated-array cleanup shared by weapons and towers.",
+          "originalSha256": "f41122b394b81c2aa8335a4a13200043288338d1cfbb419a15d600c1fd6569be",
+          "patchedSha256": "1ac4c237d7973d59baf34c092cf589a8c3546a4d9b7b49edf133183df2d4fd70"
+        },
+        {
+          "file": "proj/src/ImageAssets/sprite.h",
+          "reason": "Declare the actual shared rotated-array destructor used by weapons and towers.",
+          "originalSha256": "6d4e83e791aeee4ec52cc160a171a130add869bfe295b3bdea9dd40f42412f8a",
+          "patchedSha256": "434492f77a2a4d990b968ab990486a94931053ea8f37b119ea65384c8c9e3f9e"
+        }
+      ]
+    }
+  ],
+  "createdAt": "2024-07-14T21:41:12Z",
+  "controlsRationale": "Actual held WASD make/break velocity uses the left pad without make-repeat. Relative pointer starts640,512; Select/Fire is left mouse, E interacts with the nearby base, shop or tower. ESC opens pause; arrows/Enter retain original menu navigation. All actions are in an external panel in portrait and landscape. The authored shop/weapon progression remains intact; no state injection, calibration or player-stat changes.",
+  "verification": {
+    "summary": "Five actual-source owner regressions cover PS/2 ACK ownership, sorted render retention, live replacement artwork, single ownership of animated/rotated artwork, and mapped VRAM release. Progressive original failures retained in ignored proof. Actual native GuardMalloc round\u2192tower mount\u2192pause\u2192menu\u2192whole-game quit exits0 after original exitGame fault and later vg_free invalid free. Actual browser mount reduces money99999\u219299799, turret rotates and visible enemy HP decreases; no full-wave victory claim.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/tower-engineering-reviewed-native/results.json",
+      "apkSha256": "0aa53bc3458f6f1b29e32541744d09260aa6559b76511bb9b2b8eb5219ab42ee",
+      "demonstrated": "Root viewed normal native WASD movement to first tower, Interact mount menu, Crossbow purchase decreasing99999\u219299799, mounted defense reducing several enemy health bars, original pause and round Quit returning menu, then authored whole-game Escape quit returning cleanly to native library.",
+      "limitations": [
+        "First tower purchase/defense and full cleanup verified. Complete wave/victory, personal weapon purchase, alternate arenas and second player are not claimed."
+      ]
+    }
+  },
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/basic-asm-three/evidence/tower-engineering-08-defending-canvas.png",
+    "captureSha256": "67b21b436e10002009be4baa3365e7c61a52220b26c6a3c067e36ae2a228243a",
+    "originalSourceArt": true
+  }
+}

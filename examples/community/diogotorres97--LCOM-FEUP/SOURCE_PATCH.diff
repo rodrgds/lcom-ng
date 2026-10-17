@@ -1,0 +1,66 @@
+--- a/Age Of War/src/menu.c
++++ b/Age Of War/src/menu.c
+@@ -158,24 +158,22 @@
+ 	hs->counter = 0;
+ 	hs->flag = 0;
+ 
+-	hs->lines = (char**) malloc (10*sizeof(char*));
++	hs->lines = (char**)calloc(11, sizeof(char*));
+ 
+ 	FILE *file;
+ 	file = fopen("home/lcom/lcom1617-t4g09/project/src/HighScores.txt", "r");
+ 
+-	int i;
+-
+-	for(i = 0; i < 10; i++)
+-		hs->lines[i] = (char*)malloc(100*sizeof(char));
+-
+-	i = 0;
+-	while(fgets(hs->lines[i],256,file) != NULL){
+-		i++;
+-	}
+-
+-	fclose(file);
+-
+-	hs->lines[i]=NULL;
++	int i = 0;
++	while (file && i < 10) {
++		char *line = malloc(100);
++		if (!line) break;
++		if (!fgets(line, 100, file)) {
++			free(line);
++			break;
++		}
++		hs->lines[i++] = line;
++	}
++	if (file) fclose(file);
+ 
+ 	return hs;
+ }
+@@ -200,14 +198,14 @@
+ 		for(j=0; hs->lines[hs->counter][j] != *temp ; j++){
+ 			NAME[j]=hs->lines[hs->counter][j];
+ 		}
+-		NAME[j+1] = '\0';
++		NAME[j] = '\0';
+ 		drawText(hs->font, NAME, Xpos, Ypos, hs->statsBuffer);
+ 		j++;
+ 		int z;
+ 		for(z=0; hs->lines[hs->counter][j] != '\n' ;j++,z++){
+ 			SCORE[z] = hs->lines[hs->counter][j];
+ 		}
+-		SCORE[z+1]='\0';
++		SCORE[z]='\0';
+ 		drawText(hs->font, SCORE, Xpos+600, Ypos, hs->statsBuffer);
+ 		if(Ypos<768)
+ 			Ypos += 50;
+@@ -221,6 +219,9 @@
+ }
+ 
+ void deleteStatistics(Statistics* hs) {
++	for (int i = 0; hs->lines[i] != NULL; i++) free(hs->lines[i]);
++	free(hs->lines);
++	free(hs->statsBuffer);
+ 	deleteBitmap(hs->StatisticsBMP);
+ 	deleteFont(hs->font);
+ 	free(hs);

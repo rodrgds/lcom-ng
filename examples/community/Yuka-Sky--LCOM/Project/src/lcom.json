@@ -34,5 +34,6 @@
     "assets": []
   },
   "description": "Draw a clue or guess the word. A drawing-and-guessing game built for sharing.",
-  "preview": "../../../../../collections/arcade/previews/yuka-sky-lcom-d0ec5dfcc81b.png"
+  "preview": "../../../../../collections/arcade/previews/yuka-sky-lcom-d0ec5dfcc81b.png",
+  "archetype": "Draw & Guess"
 }

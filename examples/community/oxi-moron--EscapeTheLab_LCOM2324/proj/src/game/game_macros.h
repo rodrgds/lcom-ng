@@ -1,0 +1,31 @@
+#ifndef G6_GAME_MACROS_H
+#define G6_GAME_MACROS_H
+
+#define PLAYER_SPEED 10
+
+#define PASSWORD_SIZE 4
+
+#define CURSOR_X_LIMIT 771
+#define CURSOR_Y_LIMIT 571
+#define CURSOR_X_START 400
+#define CURSOR_Y_START 300
+
+#define HOUR_LIMIT 0
+#define MINUTE_LIMIT 10
+#define SECOND_LIMIT 0
+
+#define START_MAP 0
+#define FINAL_MAP 5
+
+#define W_SCANCODE 0x11
+#define A_SCANCODE 0x1E
+#define S_SCANCODE 0x1F
+#define D_SCANCODE 0x20
+#define L_SCANCODE 0x26
+#define C_SCANCODE 0x2E
+#define O_SCANCODE 0x18
+#define M_SCANCODE 0x32
+#define E_SCANCODE 0x12
+#define ESC_SCANCODE 0x01
+
+#endif //G6_GAME_MACROS_H

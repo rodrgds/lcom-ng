@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "name": "Minesweeper: Green Field",
+  "description": "Reveal connected cells and flag mines in the original green field.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Reveal / Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Flag",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Minesweeper",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

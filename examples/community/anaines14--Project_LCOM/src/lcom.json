@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "Desktop Defender",
+  "description": "Protect the original virtual desktop from advancing bugs with pointer-fired missiles.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Login",
+          "key": "ENTER",
+          "position": "top-left"
+        },
+        {
+          "label": "Fire",
+          "mouseButton": "left",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Nuke",
+          "key": "Z",
+          "position": "top-right"
+        },
+        {
+          "label": "Antivirus",
+          "key": "X",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

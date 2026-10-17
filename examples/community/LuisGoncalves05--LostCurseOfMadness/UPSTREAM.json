@@ -1,0 +1,131 @@
+{
+  "repository": "https://github.com/LuisGoncalves05/LostCurseOfMadness",
+  "revision": "3e1a0de7ce0457fb71165d3870b87975c3578219",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "85c183a7883c845c5510fbce1c89438c785a2c4a7fdc90b9aaf01e4952e8fc85",
+    "proj/Doxyfile": "b1bacbc65f87a30931d9749fc901d7e39e869180812c846bf333a228688ff94d",
+    "proj/src/.clang-format": "7875cf4528907e2293dabd782d13b4d4ef3ed4fcc49496cf7ceeab98148078e8",
+    "proj/src/.gitignore": "ba1e6df4869759857c6328e02c529bdba57cbee18f3336916a53ce63a9579a5e",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "b826421b2bb70c7fba9351ebbacb4a765312e1b2f1263d39b6c82906ff7341c4",
+    "proj/src/Makefile": "ad4e93d6f4f3bb6734a74d30db92676fd602a1a48db9db0b98501073a0ab4e44",
+    "proj/src/assets/xpm/crosshair.xpm": "764566a6aee3be6afcc594d076ce6ce0d7c7a17ba498edc1b0b2daba0c874fde",
+    "proj/src/assets/xpm/cursor.xpm": "9967b9de675dddf742aa1e7e215d0c9668254599469b515cc94e157d9d4ede84",
+    "proj/src/assets/xpm/game_over/exit_button.xpm": "ae920407d05a30a3c3b0222f20e933039df0e50d807009f1dc68ef9c4741d47c",
+    "proj/src/assets/xpm/game_over/exit_button_selected.xpm": "ebdf70c58096f4627db2371a51ba813f671188daa38219e55ebafb0eeb98fe23",
+    "proj/src/assets/xpm/game_over/game_over.xpm": "7fc718a69abc12d71573a7f63eaf7da50836e88d095796596752f7817eec18c2",
+    "proj/src/assets/xpm/game_over/menu_button.xpm": "b57dd8b9f55014ea17676df33b22cd15f83aff8dc36f7df0db61562ea7b088fa",
+    "proj/src/assets/xpm/game_over/menu_button_selected.xpm": "2067ef078abf18916a6b5df1174ffb6502884eff27563d65a9632c1631b9e998",
+    "proj/src/assets/xpm/level/bullet.xpm": "66846a193062cd376086efb7d7c7456e97204ad83cbf9942616dfc442f00537a",
+    "proj/src/assets/xpm/level/key.xpm": "04ff5fbb853e676b712eb78d9cf5965de6e83bf4ec74089fe90a4614b782b4d2",
+    "proj/src/assets/xpm/level/mob/attacking.xpm": "858a947c0e54f850b4ed8fd6f014c11ec899342b995a610a27445a740897c03b",
+    "proj/src/assets/xpm/level/mob/idle.xpm": "e3342a93cb613098bafcda58f70083fbbb37e95b851cb29291fcc42cb6ce7549",
+    "proj/src/assets/xpm/level/player/idle.xpm": "3e054e6dcf38b2962c7bf00cc34bf5c9b4eed816a7a27535ebbe9dab9ff246d2",
+    "proj/src/assets/xpm/level/player/walking.xpm": "6300edc51daab464360b37c732dd93fe0fdffdb8f1e554f018d071999bdddb9f",
+    "proj/src/assets/xpm/level/wall.xpm": "b35a07b5eaf7236fa36fef1da26c0ed2c6cf8466d3d6b9b637bba827a0e2e615",
+    "proj/src/assets/xpm/main_menu/exit_button.xpm": "bc462203dc263d0fad4581afac729d8e53288594777d2ed7c6716321462f06d1",
+    "proj/src/assets/xpm/main_menu/exit_button_selected.xpm": "2dc089be3682bd05cea9e5da258dd454f444485942b47171d7becc36f6cbbfbd",
+    "proj/src/assets/xpm/main_menu/lcom.xpm": "ec4472af7f1215ba54c2b29d5b38fb430fbb0c7c6356862c3b7b51a4c37b7e84",
+    "proj/src/assets/xpm/main_menu/play_button.xpm": "09e879c232115a4830d8384763d9bb67b6472f191013399350181f8c87762a60",
+    "proj/src/assets/xpm/main_menu/play_button_selected.xpm": "0c43e1fafea457618caf923125c70b169e534970dd117945b69b949701c95dd1",
+    "proj/src/assets/xpm/victory/exit_button.xpm": "f73101266680253bb080b1a4f2ea52999506fe3729f7a597d97ebfb92e4d76c7",
+    "proj/src/assets/xpm/victory/exit_button_selected.xpm": "ba652382f4619e2c9c30266fa97f207dcfe128859d0e5add77d5e0328931fff8",
+    "proj/src/assets/xpm/victory/next_button.xpm": "b7aa6240f62f0753a955664f555827d1f8f18c3ab6269759d5f6dddc282ad0f6",
+    "proj/src/assets/xpm/victory/next_button_selected.xpm": "ea530052f839e00348cdec28cb38918b7e2030272f6d6e805b2baccad75286fb",
+    "proj/src/assets/xpm/victory/victory.xpm": "43eabb58a825cf0716ee95f0d132bec82d67856235f9fdcac11ae3387dd5ec82",
+    "proj/src/config.h": "48757998c0b9ba21302b40fdac45df3d4dbc05103be77a2f3dbac8523fba92f6",
+    "proj/src/drivers/keyboard/i8042.h": "e3bb039f8457c5eed6f49ff46d2a94d620ee30c4592c0bb25f13e5ad59886591",
+    "proj/src/drivers/keyboard/kbc.c": "059f60408a480b9e2d61eadac384df6dcdc0dbcfd8c220eeb45094bda0242cee",
+    "proj/src/drivers/keyboard/kbc.h": "58763d65b1c5bf73cbba2dce63f8dc2522d01121b4a796eca81a83ba8788c5c2",
+    "proj/src/drivers/keyboard/keyboard.c": "f5bbc2084e9af32344e14a72660a70e58338d225f01c2f168437940ca305abd5",
+    "proj/src/drivers/keyboard/keyboard.h": "ff793dd1e3dcbad5241ac683dc5d5225f14591f0f0b7f343ebc917ec6bf2df95",
+    "proj/src/drivers/mouse/mouse.c": "a39f50931897b0da71a8fb7c4ce2916fa2e293ba519da9c09f2fc552b56c9190",
+    "proj/src/drivers/mouse/mouse.h": "bdee46b087593dc1e694e625175a59a4aa7960d1f5191ffca24201a0ec54cfb8",
+    "proj/src/drivers/timer/i8254.h": "b8a21300d8bbbdca3aaf08f0bab95352e08d426aecb4ff4d773806d8dde8ab27",
+    "proj/src/drivers/timer/timer.c": "28fb25ddb880f13f5c111d58c430c47f485e3df21f31f20a413ddc0c22d1fb75",
+    "proj/src/drivers/utils.c": "50f3d813bc0b2aaef608af8e53e70606dfdedcbd18a8eff87078abe7d6de9268",
+    "proj/src/drivers/video/gpu.c": "8c2a4b7173de27bd59d37309d2bcbceaab5080fb0f0624ca1017c0e87a36a9a5",
+    "proj/src/drivers/video/gpu.h": "7b32b9f88d8a6e34d50310169121cec2513a78af6216fb594294bd69906e43ab",
+    "proj/src/main.c": "a0c264d6b8139f9612c14b879abe9a4eb8bcaa791256e9ab65d8ff5815d239ab",
+    "proj/src/model/game.c": "3c2a02e9815b35535461ef0ebcaaa9238540a7b18f0080a3ae0c79d00b5a037b",
+    "proj/src/model/game.h": "a53772ac0adf20d97a50c42b30705630999e6c892d0152d81f973f6ddd7d00af",
+    "proj/src/model/level/bullet.c": "721ae3269257a86a9f45c4a4e2fff2fec35158990a9d8e2ceeeead5f085173ab",
+    "proj/src/model/level/bullet.h": "c798caecbcb20e1ebb157b6cfe3bc89fcb129d455e06922365d5e122f944215b",
+    "proj/src/model/level/level.c": "2ff6b0c26998f839f2b96549d5d7d63e1503b43f0f0759e18fb60ab0492cd44b",
+    "proj/src/model/level/level.h": "05ac45d709ec13891b71396efb38926aecd54d4dbe3a545296062b33a776f1a6",
+    "proj/src/model/level/maze.c": "f423bc56f373ed9ad2d6b570d256c7852cbb0dfb1d095231665a5441c5cc5885",
+    "proj/src/model/level/maze.h": "8648505fbef91ef2428fcd8086a851da4888a60ca57402f49b4b84c0c30ba5e0",
+    "proj/src/model/level/mob.c": "5522282829f9a577fe05e85b45d2c7df7a1f6fcc31ad576137bb562f41014985",
+    "proj/src/model/level/mob.h": "202b9d5d531bc28406285b1d5dadac00a2fecd406aa96cfce03a810f103bf586",
+    "proj/src/model/level/player.c": "37decdad15076a004b1ac276fa4bab11aae44eacc2b51cad05b413cc0276be23",
+    "proj/src/model/level/player.h": "4169e9fccc4c03b37c677188a8c55127940d67293c7603165eaffdd4686ae4c7",
+    "proj/src/model/menu/button.c": "68997bc7d5dd3f9907fadb5265d63c4b90cd96dd04fcc16cb9c2faec28a3b2b4",
+    "proj/src/model/menu/button.h": "24d69d0af15199b53db425399b839b9a0600333df3f01d1d5287bd367b23c2f5",
+    "proj/src/model/menu/game_over.c": "98c0c5a376ee81b2480638cc5deb6d2903ad1d568483db03666827918f52384a",
+    "proj/src/model/menu/game_over.h": "a1e933bcc2aedde5e789e5b26f09d6f79bb6e00c78bf8e72ad6994030b702d99",
+    "proj/src/model/menu/main_menu.c": "6dd8226cdc6b71fde16d51277242cd8e7cd03f30f6016c3e0c31d8b616800f80",
+    "proj/src/model/menu/main_menu.h": "248c55da91392a41be99dc56deed5fc7bd8ee223698c74e47acacdc84ce1f48e",
+    "proj/src/model/menu/victory.c": "f50bcf57caa1fbeaea1b8cf73cd355b48509b2a60ed645f28e85793703637383",
+    "proj/src/model/menu/victory.h": "3c72f7014457b78d979bc5e127116b8de6d860a5b4fea6b891b9d0abfe4b9f5a",
+    "proj/src/model/utils/animated_sprite.c": "f2484e0e9917129052d126711804057419610fb9860c74fcc1057cd3c38b38af",
+    "proj/src/model/utils/animated_sprite.h": "05e229e88d23c4ac9e8540e7d6b2b0fbfab76accc146379f87d289475423d6d3",
+    "proj/src/model/utils/cursor.c": "7738ebfb4208b88fac1620c40dbd70370b68a2ecd9421d837cbcf2d9aedb3198",
+    "proj/src/model/utils/cursor.h": "d1ca18693dfec66eceb1e4c951e72beb0f55f51884b9a3444d0b47b582defe62",
+    "proj/src/model/utils/keys.h": "6fcb629bf4c421e49e30f892da1a9be9bbdfc823c67b1471f9dfa6a5f6c4793d",
+    "proj/src/model/utils/sprite.c": "fcb94aaf99e64ca14d9e76b0ccb82ceb0e006849c9fee419d6dd191676f7a0c1",
+    "proj/src/model/utils/sprite.h": "39938f22a431d6e110f7496e181369923f74ab16caf59732ca63841e156d0b96"
+  },
+  "selection": "Pinned original source tree with required assets and README. Omitted generated documentation, binaries, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/docs/**",
+    "**/doc/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*"
+  ],
+  "icon": {
+    "kind": "Original indexed key sprite centered on matching flat palette",
+    "source": "proj/src/assets/xpm/level/key.xpm",
+    "array": "key_1",
+    "palette": "VirtualBox BIOS textmode03 EGA64 DAC palette2, preserved by VBE. Numeric38 orange and62 yellow."
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "8e0435699b80e3c4cc2370cce0350be87650d4b47c81f8750d4f8f5dff497133",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "686f509bf08448833f86c3d1df8bafb888b3c442dfe74838286b89dbfef07e7c",
+      "kind": "gameplay preview"
+    }
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/drivers/mouse/mouse.c",
+          "originalSha256": "a39f50931897b0da71a8fb7c4ce2916fa2e293ba519da9c09f2fc552b56c9190",
+          "patchedSha256": "3f6873c7bb3bb2896f49c284a864122150ed2ddfe37dbd18be1eb3cd1793ec85",
+          "reason": "Setup consumes the PS/2 command ACK before its already queued notification is delivered. Original handler polls30times inside30retries on an empty output buffer, freezing first render about18s. Check OBF/AUX before polling an IRQ payload.",
+          "verification": "Original real native120-tick capture black; original compiled mouse handler reads/retries empty FIFO. Repaired regression returns immediately for drained notification and reads real packet once; repaired native120-tick capture shows menu and browser starts maze, moves, aims and shoots."
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "web": "Actual touch selects Play through W/Enter, enters the original field-of-view maze, holds D to move, drags cursor to aim and presses Select to shoot. Native first120ticks now render menu after original drained-notification polling repair.",
+    "evidence": "build/arcade-100/a/evidence/LuisGoncalves05--LostCurseOfMadness",
+    "native": "Native original source compilation succeeded; Lost Curse repaired native first120ticks menu verified. Android actual gameplay pending."
+  }
+}

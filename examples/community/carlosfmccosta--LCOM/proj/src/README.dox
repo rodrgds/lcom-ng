@@ -1,0 +1,12 @@
+/**
+ * \mainpage LCOM Project for group GRUPO_2LEIC13_3
+ *
+ * This project was developed in the "Laboratório de Computadores" UC context and the main goal was to utilize the device drivers and apply the knowledge developed during the semester. To do so, we decided to create a game ‘Eye for an eye’ where the player fights an infinite number of enemies and tries to get the highest score possible by attacking them.
+ *
+ * \section group_section Group members:
+ * 1. Carlos Costa (up202205908@up.pt)
+ * 2. Luís Miranda (up201306340@up.pt)
+ * 3. Leonor Bidarra (up202307719@up.pt)
+ * 4. Cosme Sousa (up202305463@up.pt)
+ *
+ */

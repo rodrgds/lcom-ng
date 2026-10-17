@@ -225,6 +225,12 @@ public:
         if (options_.guest_input) flushMousePacket(machine, true);
         handleKey(machine, ev.key);
         break;
+      case SDL_EVENT_MOUSE_WHEEL:
+        if (canInjectGuestMouse(machine)) {
+          sampleRelativeMouse(machine, true);
+          machine.i8042().injectMouseWheel(static_cast<int>(std::lround(ev.wheel.y * (ev.wheel.direction == SDL_MOUSEWHEEL_FLIPPED ? 1 : -1))));
+        }
+        break;
       case SDL_EVENT_MOUSE_MOTION:
         break;
       case SDL_EVENT_MOUSE_BUTTON_DOWN:
@@ -307,7 +313,7 @@ public:
     }
     text_draw_index_ = 0;
     recordFrameTiming();
-    if (machine.vbe().graphicsMode()) {
+    if (machine.vbe().displayMode()) {
       renderFramebuffer(machine);
     } else {
       renderTerminal();

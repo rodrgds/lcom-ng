@@ -1,0 +1,132 @@
+{
+  "repository": "https://github.com/Wetsao/LCOM",
+  "revision": "19abf99c83991f603777acf49ac0477d292632e1",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "e19fc047ab90c995f478530d3793dd46486cdd6ac7400d8b53caffb527bb2a0a",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/Doxyfile": "d580d4b29ed7a2e2c1ef8fdb226b0dc09cad1e4ca769333ba5edf941b65c9f61",
+    "proj/src/Makefile": "feea7ffb8466e0cada4408049d76e5e48e150ff9ad88715e413fba76a7d02c27",
+    "proj/src/action.c": "e40634ee5b0a1a283766df80f9876f1ced57803b38f3af55eb29fe25432f32fa",
+    "proj/src/action.h": "77e8487c3af12cea390ff201c9ccb3bc74acdf5e99990b1cfd78f81f0c8d32c0",
+    "proj/src/claustro.c": "75537c6739555590cbcac38f6224a8ada917cb2e41bf0594c492404b0ca39cfd",
+    "proj/src/claustro.h": "f82ecf7dc137e04029250fc3807fe5fcd3988f329302eabaf63ff502897c70c6",
+    "proj/src/i8042.h": "578346f3c79337dbcfb5d42a3369c08b44d5b7e752f80ae0700d19a14fe8a622",
+    "proj/src/i8254.h": "d6c3e0dc2835cd8dea652f4b461214322189093f784ecfda7988fef758319109",
+    "proj/src/img/black_pawn.xpm": "babaabdc6d582ced8153d0f021752251eeb5c4d318ec8a746f06156735f6cc62",
+    "proj/src/img/blue_pawn.xpm": "f99e21f908b46341269d1b39e92133b7131e80f0050145bd4ed20893917931da",
+    "proj/src/img/board.xpm": "853f733843fd3e96608283687be19bff07267ad017544c162f895d91bf3a66f7",
+    "proj/src/img/board_dark_mode.xpm": "8040e2e60ad045ded554ea79969bf0e4d163e0baab2898068f38f09958ee7d57",
+    "proj/src/img/current_player.xpm": "3e72a95d46a613b19d65805da5065e9a12c7eddc4ee63bd79d5e7c6b2ddbbd84",
+    "proj/src/img/game_over_player1.xpm": "73312b3596b270b3ccf8ca9bcadaad15bc33b08cda92b6e2950d65e57fee87f9",
+    "proj/src/img/game_over_player2.xpm": "d165edf20b086860a3691d86c1a63f2d4c4fbcbada0345e1be1ece0b677c7271",
+    "proj/src/img/green_pawn.xpm": "a477dd765493a453158a597fca2dca459fa837762b5984c0ffde00bbb811f70d",
+    "proj/src/img/grey_pawn.xpm": "36b00577ab90d70e13e5c1b7935df4574fd3b489fcfe8f6d1d9373460ecde9e7",
+    "proj/src/img/menu.xpm": "9387737f0a95887fbb09e9af7f752132a6566b6a1ce133c1cf90b0568b882c0b",
+    "proj/src/img/mouse_pointer.xpm": "a5794ced1d2989021031ce5f55f702927f5a81f6afdff3ca7f2e3b4b9bddd771",
+    "proj/src/img/play_button.xpm": "1498537be4e60a347677b60f81fc0c658625ef2b1e24a5a1d087601f8a76afd7",
+    "proj/src/img/player1.xpm": "638fba946f1e66902bb321a3beb573041d6e05df6feec2613588da41fc43e298",
+    "proj/src/img/player2.xpm": "7dc10df4238e4277593a11fe6006adff23e391234500413071d77bef7ebc6d4c",
+    "proj/src/img/quit_button.xpm": "f5c7c321a24cef8c3afdc6a97e6fde47324b8a51fdb644d4e30dd4f8df0f6284",
+    "proj/src/img/white_pawn.xpm": "c890de3c5c5a8ada3070c792aa8ee3e018b80df0d986b1ff2dcd19b4576c5b08",
+    "proj/src/kbc.c": "41e5a8bea017557990c5fed72130bec9c6ea138ea057c76df7d9ededd6148e8b",
+    "proj/src/kbc.h": "7604c72d6940b5a108e9450e0ca8c441032c87c0607d1a23c1f34d5bbd662a59",
+    "proj/src/kbd.c": "39260bc6aef3f0409048dd214c35a3ce180214889880b3a70f094642de04c4c5",
+    "proj/src/kbd.h": "2f1100c20144aba091d35af1b9d96ad5c582066c903323f774c5c00cac58adc2",
+    "proj/src/mouse.c": "d8280c5114cb655d6d3c0bf623fbc53e0632d8d3c2d711f8d42222b74f1bca8e",
+    "proj/src/mouse.h": "a8c72d5731f9da6a65948b86e6772bcf4aeb2f01a043a7a636e994bd4aa76b64",
+    "proj/src/proj.c": "085a90553c21c0727b26104efca9eadceae7cd9353f535b422665a9bb2186d48",
+    "proj/src/rtc.c": "ece5e136269d174d44eb9e5bee18101db254c546fcc7bc05c6bcdc232b64db3f",
+    "proj/src/rtc.h": "49cf764123538f0086f7c8c244992089b37c5d708aa4508b43be2c633a4f2acc",
+    "proj/src/sprite.c": "b2d7a8fc797d454f50b18abef4483f6c1bc7c8cc6385df9f22a626b750b8761e",
+    "proj/src/sprite.h": "5ae7991a291c94f1aee1c954e1b1645ea46d55d0fa315b9120b8fc73d5fcbf86",
+    "proj/src/timer.c": "1560944c4ea37d5fbf8ed653e78c471489d6f353703be1e4544f10cb949011f9",
+    "proj/src/utils.c": "629f014fad9accef733051fec7d34fd3d36e9e78dfb91c0e042ca161306417a7",
+    "proj/src/video.c": "cc7d67e13ac82bcedb7643d4399ae6144f129721ec36502197e7bcc88a4baf1d",
+    "proj/src/video.h": "5cb3fe529e1be039f845290675f11cd918ec7830ee4638d2ca2cbbfae781cba9"
+  },
+  "selection": "Pinned original project source and required artwork/assets. Generated docs, compiled binaries, unrelated labs and OS/VCS/IDE metadata omitted.",
+  "omissions": [
+    ".git/**",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.d",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/timer.c",
+          "reason": "Return zero after successful IRQ policy setup, preserving error returns; original callers treat nonzero as failure and otherwise abort startup.",
+          "originalSha256": "1560944c4ea37d5fbf8ed653e78c471489d6f353703be1e4544f10cb949011f9",
+          "patchedSha256": "d5e547c1f6d5135f13df123c30463ec5c51fa0435f36491ce540c2447e4e4f26",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/claustro-subscribe-test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/claustro-subscribe-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/claustro-subscribe-green.log"
+          }
+        },
+        {
+          "file": "proj/src/kbd.c",
+          "reason": "Return zero after successful IRQ policy setup, preserving error returns; original callers treat nonzero as failure and otherwise abort startup.",
+          "originalSha256": "39260bc6aef3f0409048dd214c35a3ce180214889880b3a70f094642de04c4c5",
+          "patchedSha256": "a691b83c8bede2fe6abdaa84e2dae30d6b91e747d94858c2cee14a1bf2ebc93e",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/claustro-subscribe-test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/claustro-subscribe-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/claustro-subscribe-green.log"
+          }
+        },
+        {
+          "file": "proj/src/rtc.c",
+          "reason": "Return zero after successful IRQ policy setup, preserving error returns; original callers treat nonzero as failure and otherwise abort startup.",
+          "originalSha256": "ece5e136269d174d44eb9e5bee18101db254c546fcc7bc05c6bcdc232b64db3f",
+          "patchedSha256": "ddeaa3906e2bb33633e329acc1e3a69492c76c17aaab8447b9e257c1cbc92bec",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/claustro-subscribe-test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/claustro-subscribe-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/claustro-subscribe-green.log"
+          }
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned sprite centered on a flat palette",
+    "source": "proj/src/img/blue_pawn.xpm",
+    "array": null,
+    "additionalSource": "proj/src/img/green_pawn.xpm",
+    "transparentKey": "#000001 per original sprite renderer"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "7e6218c631e959e668a0577ca5bbfae8ba728b114f360a35533aa5c999d2739b",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "285cafe02a8883cdac41979389bfd94ebaac6eb40f0e2f3e9477b9f6ce1d346b",
+      "kind": "actual ordinary-touch browser gameplay"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/a57-native-gameplay/results.json",
+      "apkSha256": "43e911f4b7204c50509d5b43a7cc00a48ed60f1433c8ac4edf8394f1f375ca1c",
+      "demonstrated": "Original board uses its authored RTC night mode with black/white pawns. Player1 moves row0col2\u2192row1col2, then Player2 replies row2col0\u2192row2col1.",
+      "limits": [
+        "Representative local ARM64 touchscreen gameplay only. Complete campaigns and physical-phone performance remain untested."
+      ]
+    }
+  }
+}

@@ -1,0 +1,143 @@
+{
+  "repository": "https://github.com/Belem17/lcom-wordle",
+  "revision": "616fd63e77a28fef794cc48fb78e47c8397a06bf",
+  "project": "project/src",
+  "sourceHashes": {
+    "project/public/README.md": "84da1f90df6e91fa89682fe3bbe74ec3f72f621ffcdb83a7279a4a2d352303be",
+    "project/public/sprites/ALPHABET.h": "2f391b1748af4e336870cd66892789c6ad33c095926d6a45dc16022fba22fd47",
+    "project/public/sprites/Title_stars.xpm": "8f2cfa6130eca661df7a010bb1771dfb63d0b7df31726268795f3c42f41e50f5",
+    "project/public/sprites/cursor.xpm": "52a4025a9747aaf2fb8cdd4ca434694d97d483fab8098ed211e3232709e6cb4e",
+    "project/public/sprites/grid.xpm": "996f26c2e555eebde70a20ef0ba7f1f9a4c8d294ab9fc0a71d7c4e082ccf32c1",
+    "project/public/sprites/letras/A.xpm": "f42c94c8666e6db65a4981c9f0437dad35ece4deff782833679bb91e99580c50",
+    "project/public/sprites/letras/B.xpm": "b1e5f82761b2568cbd28c432d92e7630e5578b0084405e6ea5c7d4469b9915ac",
+    "project/public/sprites/letras/D.xpm": "e1d47ba03d71c8e5cf15db2ebb70f85f06e5b16684f1aaaebdbff21e3f0218da",
+    "project/public/sprites/letras/E.xpm": "d831285e00794978a1309eb3c0748c07715e75a6fd140e13c08b51f94826b30c",
+    "project/public/sprites/letras/F.xpm": "a79699fc7082b21ca9853edaff9400de77be0e6f020bcaf6b3f3dba40de3b9fe",
+    "project/public/sprites/letras/G.xpm": "7a7ff1e4aee21321d22b53ed5404d7bb36c9ec1edba7f75b5b45c56223b71f58",
+    "project/public/sprites/letras/H.xpm": "2e445a512c8e5a24722e55330733f13f3784906d046fbdedb33246399b0b3f8d",
+    "project/public/sprites/letras/I.xpm": "8474b76946e3261d189f549b523387a30fdf9eccfd55eb3529682bc93d2ea8f9",
+    "project/public/sprites/letras/J.xpm": "43f16f5d001d871131b2d5da7125cac1fc50df391eaeed8ebd1a1d6459ca6b17",
+    "project/public/sprites/letras/K.xpm": "57ddd5352bd5da2edc3d63f94073d912e6d2f15e790f7bdd6218936ca4268298",
+    "project/public/sprites/letras/L.xpm": "ae791aa612eade694b4e9d09805ecf3bf4d4a4b14ce56721e6ecf02ba30f61f5",
+    "project/public/sprites/letras/M.xpm": "cc351740f6619321fe056d714f5855f485b5a95f476fda697b7d0ccf72d6499b",
+    "project/public/sprites/letras/N.xpm": "dd167b86131aa9c5f7f15923dd41c1b48c616c18ce67b2b61ec70a2920a7f58c",
+    "project/public/sprites/letras/O.xpm": "31d81e285c050f7eed221fcb9b2ad5730f50d8fdc93ba68a30b94d6246c2ee72",
+    "project/public/sprites/letras/P.xpm": "fc5441f574b7b126d4d177b5235e5032ac16cf7e963c20c43ad791cb792ca966",
+    "project/public/sprites/letras/Q.xpm": "e538c0fd9c5c4a57c1231060d4400ed745be1aa3eab2b4f7634e80681ae8ddc2",
+    "project/public/sprites/letras/R.xpm": "f3111146eca84fd34857149d389dec53082442149f5084565cd249d3f90d7c31",
+    "project/public/sprites/letras/S.xpm": "47100744e9e0d271faa7045d67968015a69ac2248c37f92b7e0d8d631cd695e2",
+    "project/public/sprites/letras/T.xpm": "8e7ac9a953a00ef9826e971878ee384918d7e6dec994f2de3b96207775f480f4",
+    "project/public/sprites/letras/U.xpm": "86b704480507c4c9b6e7e8eb46bce221bcbcb51d994d5cd07bcaa300fbc93f9b",
+    "project/public/sprites/letras/V.xpm": "6ad4560ae5d609471d99e4e7a95d38e596395cb2b95d21a5b297d1cd05d1686b",
+    "project/public/sprites/letras/W.xpm": "fde3c0709826837e1346ed82de9eb208c7d8a5bb9c8918f7c30d4cc1c26107e9",
+    "project/public/sprites/letras/X.xpm": "6beb6a6d2cb5a01704a5dd1d39cc6da27b2b8142144d0a055623100b29fbef95",
+    "project/public/sprites/letras/Y.xpm": "d49ebea70f5f2b540965f422d480ab0fa9c8d3da6b0c90f14ffc169955fb5d87",
+    "project/public/sprites/letras/Z.xpm": "d49fb26f3e42dc7367fa193330eea3cdbf62a84b6b89c540bd57c1f9d96bcc09",
+    "project/public/sprites/letras/c.xpm": "1d9ed108f5dbde8b0e1dfee93ff1605d329dbc590c10a5ef525fa6609fc78a2a",
+    "project/public/sprites/losescreen.xpm": "9da9d8eec8e79f7855f7fe57297b537e6e0662dac7dd0147096aeec31ab4d0a0",
+    "project/public/sprites/settings.xpm": "ae2640fdf5de026978767a8bbca40c4bfe37de2ccb981fff7e0646658f46cdd8",
+    "project/public/sprites/startButton.xpm": "13f7898c5fe9f81b12d4a5d570bf54c4e83ca10a64a709e196eec0afb14c6f3a",
+    "project/public/sprites/startButton_1.xpm": "dd122961d93e4b1e56680dfda4376bcf91fa8949a5b7d5662fc96acd78fe7f0d",
+    "project/public/sprites/winscreen.xpm": "efd63b9f093d193b8f44d905b0e5aca0167b92df6644770727a9e5760d8beb2b",
+    "project/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "project/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "project/src/.vscode/settings.json": "7751a07b19892cfb33d5cf92980c039ecd80103feb35f40ee56e164f45e420ce",
+    "project/src/Makefile": "8ef77a4575ddf0b0cfec10dd8e40003186260629712519823c205f1974130175",
+    "project/src/database/test.csv": "2d66147983be16d83dbf1c9c5d8887995ef6ee2e01e3f2882d6a3927b714a540",
+    "project/src/database/words.h": "54bf1c8d9a6a7c9912e67bf6b2359fa7b2cd59a2f5daca1092a914d5be0904bd",
+    "project/src/database/words.txt": "383fbdaf2bb5409efbe73c2aad77fa46ebf8dad37b852f07942c045e2a136f4d",
+    "project/src/drivers/KBC.c": "a6f5199f1bb2070b4d8af249ad86a3231248504f3646dbed0560d66f00799c3e",
+    "project/src/drivers/MC.c": "731038969c9b933ea07208976d3a9b3811b857f8edb4bb1773392b428cf7bd16",
+    "project/src/drivers/graphics.h": "368f461c2399ab3098e3250a5a32c1050e868caa447617262e62d6d68b4fc5c1",
+    "project/src/drivers/i8042.h": "2487e045a23ad97c8d24ddb93cada226b0162e819f90669a29b5fd4c6e6042d4",
+    "project/src/drivers/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "project/src/drivers/timer.c": "f3937b2dc351541d31fad6ea52e87d9059da53062417b581819ee4fb1d820e0b",
+    "project/src/drivers/utils.c": "3383297d1928fda2c09a6d4139242c03c38630ab463995f6d0343f2b04929844",
+    "project/src/drivers/videogr.c": "54e42764e0780a853649e7f9ac591ebe8c0fb7dc84cabadf85b6f38075d630ff",
+    "project/src/game/controllers/keyboardLogic.c": "6fdd00a5c3e20faf76d7705c7bcfb0b4d9af15777b6afc51865ba43e80d6a77c",
+    "project/src/game/controllers/keyboardLogic.h": "b9209aa28e5fc77d2ca8c433494ac7f6bb5c0085797378c0aa7c8de6a97e862d",
+    "project/src/game/gameLogic.c": "ecab126127f30831e1d9b188b51c52c9a8b0f2def783adb1f8c11271aa13d488",
+    "project/src/game/gameLogic.h": "3e18fa1ad240077370e017d63a7c8e45c1b1a21a89b5f481b64541b90b7ad9a3",
+    "project/src/game/includes/utils.h": "1f21c2b786b01cc78405e011b3bf034aa7e205d55ff33780165a2bc0793cde7c",
+    "project/src/game/viewers/gameviewer.c": "20901edd7750d1e94fed2b8b9de43cee4a1efeecee2f262bfe0377fc61bf55e8",
+    "project/src/game/viewers/gameviewer.h": "692d2bf945fa8861dc1f2e1990afabae39975864ec136ed2b7b5c4bbfa859417",
+    "project/src/game/viewers/menuviewer.c": "ad926d9c3091a67ee5c5bc60bb6e4e632a63ce08bf1942e6d19f070de3e99075",
+    "project/src/game/viewers/menuviewer.h": "b396efe09862cbe34ced92123acef2974d810f5159c78aa763153de5030ec8fc",
+    "project/src/game/viewers/stateviewer.c": "c1caa8353823232792f5a27a4547ae973bc66f414af34edf9967424d7ddd0256",
+    "project/src/game/viewers/stateviewer.h": "1eeb19ee28d3410b634c7e022a7e63f09c8f7d66e703db4a055cf52bc647bce3",
+    "project/src/proj.c": "63119b3de5d14f5b77cf532925ebd15638258e8854f31edba74c19c853f9319a",
+    "project/src/todo.txt": "62f440b1ec145206b969c38ea1076916fa21fe66e28aa7ba19916b0c889bb6a3",
+    "project/src/utils/frames.c": "3db6a56424c43c127f424a52ea95e20cf5727ec0460b6f963c4ac0343762698d",
+    "project/src/utils/frames.h": "57bb713c515d5e6946951fe9a869dbdd5a214add14620af12d7433d492ae313c",
+    "project/src/utils/objects.h": "1be6c2935ea6b0f68d11aee0d10af2a3f06701291b1f7463513defe806320401",
+    "project/src/utils/structs.c": "0d543cd2b65aa1cd1cfca2b6bec81bc068d09abf75860b4cc3ff55b6488a3dd7",
+    "project/src/utils/structs.h": "8512db0385ee0db3b827886c08e0a1896624f8e1a89ea5ff209e33453cfaf307"
+  },
+  "selection": "Pinned original project source, headers, required assets and root README/license. Generated documentation, course labs outside required project, compiled objects, logs, OS/VCS metadata omitted.",
+  "omissions": [
+    ".git/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.mov",
+    "**/.DS_Store",
+    "**/trace.txt",
+    "**/output.txt",
+    "**/core.*"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "project/src/drivers/videogr.c",
+          "originalSha256": "54e42764e0780a853649e7f9ac591ebe8c0fb7dc84cabadf85b6f38075d630ff",
+          "patchedSha256": "5ba414dd0ccc83689ea6423436f626a62acc122186aa26877f5f3718c9c729a9",
+          "reason": "Use VBE byte stride times height for each framebuffer page, instead of multiplying pixels by bits. Authored1024x768x32 mode needs9MiB for3pages, not72MiB.",
+          "verification": "Actual original mapping regression fails:1280x1024x32 fixture requests120MiB instead of15MiB; repaired3pages are contiguous and byte-sized."
+        },
+        {
+          "file": "project/src/game/gameLogic.c",
+          "originalSha256": "ecab126127f30831e1d9b188b51c52c9a8b0f2def783adb1f8c11271aa13d488",
+          "patchedSha256": "c1de8e570a8d4c816b0b20b9975088150c0f899fb7b502dd52f28cf929580702",
+          "reason": "Original rand()%2003 indexes a1751entry dictionary beyond its end. Derive the bound from the array and skip the two entries that do not have five letters.",
+          "verification": "Actual original source crashes at randomvalue2002; repaired regression checks all0..2002 values andINT_MAX select complete five-letter dictionary members."
+        },
+        {
+          "file": "project/src/proj.c",
+          "originalSha256": "63119b3de5d14f5b77cf532925ebd15638258e8854f31edba74c19c853f9319a",
+          "patchedSha256": "4762c60c463a427721130115531be14ff6e178a02c6a4635a4e10f99a8e94a23",
+          "reason": "The original main loop overwrites a pending letter make with its key release before the next timer frame, dropping quick taps. Queue only make codes, ignoring break codes and extended prefixes.",
+          "verification": "Actual original proj_main_loop fixture receives A-make/A-break before one timerframe and fails because pendingkey is0x9e; repaired frame retains0x1e. Real browser touch typesCASAS and submits positionalgreen feedback."
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "project/src/../public/sprites/letras/W.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "project/src/icon.png",
+      "sha256": "03a41031f74115718f8744ed5b84c6f95a92726050e7de3a35bc354aee74b1c4",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "project/src/preview.png",
+      "sha256": "9e0fd6821d586377b2dd2e5e254b4d8268ae6efffbc87c0ce57067a28652fa17",
+      "kind": "gameplay preview"
+    }
+  ],
+  "verification": {
+    "web": "Actual touch Confirm starts Wordle. Native-style on-screen C/A/S/A/S taps form CASAS, Confirm submits it, and original letter-position coloring appears. Random target is a valid five-letter Portuguese dictionary word. Landscape and portrait inspected; no page errors.",
+    "evidence": "build/arcade-100/a/evidence/Belem17--lcom-wordle",
+    "native": "Native compilation against the current shared SDK succeeds after three separately recorded original-source defect repairs. Android touch gameplay pending."
+  }
+}

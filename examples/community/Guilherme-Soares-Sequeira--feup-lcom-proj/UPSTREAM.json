@@ -1,0 +1,128 @@
+{
+  "repository": "https://github.com/Guilherme-Soares-Sequeira/feup-lcom-proj",
+  "revision": "d6fc027e6ebb6b01f4fd0253acc8d28bbcbebfce",
+  "project": "proj",
+  "sourceHashes": {
+    "README.md": "205f91bd50ff8caf06c90ac7217c5eea1c33c75c33b0422f40f567a8c687f56e",
+    "proj/.vscode/c_cpp_properties.json": "1a460fc07063f8bb059e005bd831186e77745ad8d001aa5989b75f935da201c1",
+    "proj/.vscode/settings.json": "0f379d7dfbcf4e71cc6510e94d3d98c2fef681ba261eacaffec9fb02f6da81e0",
+    "proj/Doxyfile": "68f25c042ac9fb933931ba5f4e57ef0369ad1ea5be664a771238dcace793b713",
+    "proj/Makefile": "93984e9bdf93da100300d818664dc5097780813cb9af96cc2aeb77e5789d6b02",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "6200f936d96a22795b2669776e4adb93f6721e9cbe631b85884281c838071041",
+    "proj/src/devices/kbc/PS2.h": "83065cc93b8c0afe966c3b5b4eb31e2bf2e2598a11a429967c89d1e1473ca6d3",
+    "proj/src/devices/kbc/i8042.h": "8ce2255adda45f35eb6963da0ce53f4d99fb9b9ff7c6b61e89a8084d3fda6747",
+    "proj/src/devices/kbc/kbc.c": "482f6d737c531b1e4278c689055577513b38a902f529c40b165d3ca20226aec4",
+    "proj/src/devices/kbc/kbc.h": "da08f8ff624d009392df594295cfbea24e0ff6c795613633b49dcab8e2d25712",
+    "proj/src/devices/kbc/mouse.c": "3bad5e3e4c7a96c47d06dc6b733c5bd0b76036586fee95218f91dd8ceb6eb0c7",
+    "proj/src/devices/kbc/mouse.h": "d570a241b96f05a987d2e3afba64a3fecb130c25ac6bdef6ce3178a97d116264",
+    "proj/src/devices/rtc/rtc.c": "c348c0f6796ee1144cff7e4cbde5f878be7d6e8a8a75cb9b3952db613fed5a92",
+    "proj/src/devices/rtc/rtc.h": "81f3fa1866478ccc63bc0918dfccc2f793c0cbc8e0a910f9e5406480c12cbefb",
+    "proj/src/devices/timer/i8254.h": "a7edf398a07ec4cabbb8a0b3063e478c46fff2345f93745a5ff16e6688fe7561",
+    "proj/src/devices/timer/timer.c": "4d6a0516847ebf7311cc819d36cd4a70c2012fb06eb6c1b93cdde719ca133f2f",
+    "proj/src/devices/timer/timer.h": "a9f67c88eda38faaedde8a9323bf0029e8e0b9a9d5c26fdbd5f2eb844c75941f",
+    "proj/src/devices/video/graphics.c": "57041ef0e93f19ffbe740a259a7b9df65387bb510f4b29b8a31dc5e3de859f62",
+    "proj/src/devices/video/graphics.h": "7675c78b914f2804e21ddf0479d99c02056be9a90943991a9f17f8bf4c1704cc",
+    "proj/src/devices/video/vbe.h": "90d6913fae2c4bba00a0f9ac18d67fe37d25f8d6427801b0cb7713eb230bcf91",
+    "proj/src/devices/video/video_gr.c": "9d5fe85b813428d6cb9f153fe0edde6c6dc951c4a2e5831c8d789211d3b61cb8",
+    "proj/src/devices/video/video_gr.h": "35f5556ba0265a5524861a913ec7b446a572d7a53790e9585a1c2637e879ff3e",
+    "proj/src/game/canvas.c": "b487db5cacc0a045a1b25b45fcabc01966c3259714933546ca6c3d01b0c229d8",
+    "proj/src/game/canvas.h": "e3ce91b9ca551c4bb4e170990de01629d413e9826043dfedbc1c1bfe5b87a19d",
+    "proj/src/game/charset.c": "f62f01e8a0bb74fdbdb83468edcb9642cbed3d5e32ff7f6060c55b2dd594a11a",
+    "proj/src/game/charset.h": "cace6b802ee407b93a8cd2a83ccec24b668f5901c2dbd476f2aab274b2a6d095",
+    "proj/src/game/cursor.c": "b2efab60c274d0fc767aedc11547b29f86c9fcaf6516edf0d606ad6460a16b66",
+    "proj/src/game/cursor.h": "bc12830975d45f4483c83779c68967defa6274215f39fcaf9bf0dc25ec4c8de1",
+    "proj/src/game/draw_buttons.c": "367049a827108c9893176c2f7896c9030e6a2b33115929cb285cfe215ae9916c",
+    "proj/src/game/draw_buttons.h": "ed3a190e50045c0bea4241cfecbacb00126710019c614b869bf6e31cda9bffcc",
+    "proj/src/game/draw_clock.c": "b04d0902e72cf41d64360000817d7ef80546154660ca30e60e0cdb5ffdf2339b",
+    "proj/src/game/draw_clock.h": "68b2f532705252a4d642739b44aaad997afff748e8beed30b08bdddd36e06151",
+    "proj/src/game/draw_text.c": "b8b349f5273d84fb74bb5409b8b53e7925d680896a982d6ae962aa2be5e1e979",
+    "proj/src/game/draw_text.h": "6879fde1cba11d2760deca77eb8c359cb3d95e5d92383300a8603fcddb550420",
+    "proj/src/game/element.c": "a53ad18409a01099e454036933a7ae53fee7824986be8ccd661212cad5744814",
+    "proj/src/game/element.h": "d9501ed2f3377221ff34f58c3af5a60f22c5cb2d95486706a8bd4cc864680268",
+    "proj/src/game/pixel_buffer.c": "182eebf6df6684b1e1b1adf392d65c3b700246047a529df2e7b8c78fe09a7b6b",
+    "proj/src/game/pixel_buffer.h": "da54d40abfeb42d1f82ceea6b4146e9a83d6f435091d1b7e31a95a77b0beb2be",
+    "proj/src/game/text.c": "7c1b56f50f223fc13e7bd79a365a5906045d1a4a54f64d08f8ddac2f0832ce80",
+    "proj/src/game/text.h": "3607d94282cc11cdb87d5e82ccfd8d45659853718df56332694fffc81f13a5ba",
+    "proj/src/game/ui.c": "679166bbb25d442c2fa92d3e24f1e090945dfbdc4f32363eee41ba364896e7da",
+    "proj/src/game/ui.h": "ffb00e989aaaef9a7c84a4064926c7f0e752f8cfb02cb912043179730c98dd39",
+    "proj/src/proj.c": "17b34324975084a7c130a0313b731fe2232ffe6cdaf6e299e392097cee66113b",
+    "proj/src/utils/color.h": "c7fb9b36f58a27591e3d2f9f71242657e246fce85ba5e993f16f5385f48e8bcd",
+    "proj/src/utils/const.h": "0694c9f7ab76fb7a903abe42abe8634c8cd273a375ff5c519ccebb3c1dbf639b",
+    "proj/src/utils/position.h": "2cedfaf81e786dd17806eb7cfbe2574bf3561922d6c1202b94d53771b69070a0",
+    "proj/src/utils/utils.c": "42d09bbe98a8b03e18f284b46eff57a7d045c5addea9267c0f30952211219f43",
+    "proj/src/utils/utils.h": "2faae134cb50f10a317fc7b46b52a71f99b3e29ba95257349815a3ff1ce49b3b",
+    "proj/src/xpm/bucket_cursor.xpm": "c5a08b09b2e504485485797673bbcc234a040e2db7e1fb7532a977668246563a",
+    "proj/src/xpm/buttons/button_bucket.xpm": "fdbf52bf77e7b1d04635d5c6f308b2d96ca1a5f09e80797d97cbebd7c9cfc9be",
+    "proj/src/xpm/buttons/button_clear_canvas.xpm": "36c62ed055c0cb9e994bc14c28e531084e995d9eab4ba05cb5d0188d88fe467a",
+    "proj/src/xpm/buttons/button_eraser.xpm": "5d3313756835c7349a4592aa319df80d6787e774b573c5da6a1d59f13abe9897",
+    "proj/src/xpm/buttons/button_minus_size.xpm": "79035c70b7083003b28c4509415535e36f8cd3e94a5689a88b9898dc05b8e279",
+    "proj/src/xpm/buttons/button_plus_size.xpm": "d683e344bdc9016895fb097e598f080c53823a2c887edac611b57624325501e1",
+    "proj/src/xpm/buttons/button_text.xpm": "6dfff2deb125afd65765cb1d17b8bdbea3c9786ca3a3897faaadc5239ac41312",
+    "proj/src/xpm/clock.xpm": "1110c66c519fc48c67bbabc4c33216ae7510009eee2628d3dd4c0c479ca93d04",
+    "proj/src/xpm/cursor.xpm": "c68a82578a84ce99004c60c492e4665e83a2f53173ef06f30396eeb2ed15a4ec",
+    "proj/src/xpm/eraser_cursor.xpm": "0440476483246adc8226f3681ff547201a419263b3f0c175210bd79345dad829",
+    "proj/src/xpm/font.xpm": "6acfacc6b1973d4bda626faa6d5d8777cd2eb325435bcafc8ecf60f53d6e2a77",
+    "proj/src/xpm/line_cursor.xpm": "92ab0263886164fc1d8ad6ba9003899358d13a4b302bcd9029f52a32ae858a47",
+    "proj/src/xpm/pencil.xpm": "22921f1b9599e4f61b9491c572e52be7fe0472c3191d7e2906e22544b3faca31",
+    "proj/src/xpm/text_cursor.xpm": "4ab2abb4e1d30b49f3897843531546baeeb95a1c4d4128c5acc3f0595ece25bc"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/devices/video/video_gr.c",
+          "reason": "Import netinet/in.h, the original Minix owning header for in_port_t, explicitly. This graphics source used that16bit type without its owning include, relying on incidental host transitive headers. Actual source WASM vg_init owner regression originally fails unknown type, corrected explicit header compiles and executes original BIOS query/map/mode contract. No type alias, parameter, mode or runtime changes.",
+          "originalSha256": "9d5fe85b813428d6cb9f153fe0edde6c6dc951c4a2e5831c8d789211d3b61cb8",
+          "patchedSha256": "ac0d187a1f71f9395f27cff15b65b1e8efbd2d63620c0f062825096e76072698"
+        }
+      ]
+    }
+  ],
+  "createdAt": "2024-02-22T05:23:36Z",
+  "derivedAssets": [
+    {
+      "path": "proj/icon.png",
+      "sha256": "5257be55adbc875e8cbfef88d13a116f0ef750f4bd3f54a1521c672ef8a94f56",
+      "kind": "Original32x32 pencil sprite on a flat icon background",
+      "source": "proj/src/xpm/pencil.xpm",
+      "transparencyKey": 255
+    },
+    {
+      "path": "proj/preview.png",
+      "sha256": "7d08a15279e2a6175dcb18cfaa1ce83f6c550edfefbdb67438889a53b2bfebc2",
+      "kind": "Unmodified actual touch drawing/color/text browser canvas"
+    }
+  ],
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/basic-asm-three/evidence/paint-05-text-canvas.png",
+    "captureSha256": "7d08a15279e2a6175dcb18cfaa1ce83f6c550edfefbdb67438889a53b2bfebc2",
+    "originalSourceArt": true
+  },
+  "controlsRationale": "Auto-orientation external panel keeps original1024x768 painting tools/canvas visible. Relative unit pointer starts512,384, original source clamps to sprite bounds. Draw/Select action can be held with another finger dragging canvas, retaining original mousebutton semantics. Optional complete keyboard enters text; ESC quits. Original colors/tools/art and clock are unchanged; no calibrated/directpointer or shader/palette changes.",
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/paint-studio-reviewed-native/results.json",
+      "apkSha256": "37e2989918dba54b7c3108150c2461e74b7e2914254801ac5317b8e2da4e38ff",
+      "demonstrated": "ROOT viewed normal Android two-finger held Draw/Select with canvas motion producing two connected black strokes, original palette selection producing a red stroke, and authored Escape cleanup returning cleanly to the same native launcher.",
+      "limitations": [
+        "Creative drawing app with original tools; no score or campaign. Browser text hello is demonstrated, while native text entry, bucket and eraser were not individually exercised."
+      ]
+    }
+  }
+}

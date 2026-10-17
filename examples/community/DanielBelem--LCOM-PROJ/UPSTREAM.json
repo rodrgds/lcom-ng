@@ -1,0 +1,89 @@
+{
+  "repository": "https://github.com/DanielBelem/LCOM-PROJ",
+  "revision": "bbb721d0430e8992f49bf6389fd7bf28d93c0440",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "2bf7bf072c637dd41bb95f791fa1c33adb82e26a49f94608eb753bab5977967f",
+    "proj/.gitignore": "9f168bffa25b01776f9db9bf45b9e17e89e50900e80a438aadf295d342e6e7c4",
+    "proj/output.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/Makefile": "c46523920a30099cdb12c8d36bdff72cbaf0b90ee1c775da7f823be6d988373f",
+    "proj/src/graphics.c": "b270743728e598163167845389f7dcfc8a1e65afab001add8addc263123f0430",
+    "proj/src/graphics.h": "fae16149199c7672ce77eea47fc42df32d5198ba00a6edd154bac3ad0c154d6c",
+    "proj/src/i8042.h": "f8b936d3d1a43ed96716192705a7faae6a3ac5f389ac6a425e5ffe1db35fce5c",
+    "proj/src/i8254.h": "3e762941ec616840cdf3576c31319155b402120d466157810ede80d726faf0d5",
+    "proj/src/kbc.c": "49237ca0a6ff2efc7ceb7c9d7db1bf9bf760b8fd84b3ed85da864c49364e2313",
+    "proj/src/kbc.h": "1cecfc1b389f286943e2dbdcfad7bb3a1a7350d4e7566c2712286d6c37ab081b",
+    "proj/src/keyboard.c": "c87fee7396f682b5a9938d7ff28ff2e73d8aab639f1c12e11baf1bc605995021",
+    "proj/src/keyboard.h": "a5b480cab9e03bdf601cf4e115e5449e8073b262eb6ba7d4758ca772b268004c",
+    "proj/src/main.c": "b773d67a85131136c02afdc004cdfc9fb2bbbe24f0f51771877ed3584bc2a5a0",
+    "proj/src/mouse.c": "d16aad6d568eaa29478460dd2ae4e1e7015ee3aedf6607be6b193c762bd88ba3",
+    "proj/src/mouse.h": "14cf08517c62769a9ebdabd8277c45eba7c767bca3d6f6271c565caccb5a3c63",
+    "proj/src/timer.c": "1690c5d91638c8235e359c59c2818b02e11965463e3d6174e6549ffd1b4a2a3a",
+    "proj/src/utils.c": "b845fb5374e75f53da8d701fa78cef7def46bee98c46286cc0a86bd39b7f95b6",
+    "proj/src/words_list.h": "81fc210a2f17c073febc51d20ca44d590cfb39bd962da3d4b0532270a9248d41",
+    "proj/src/xpm.h": "4f849ff14ed72d25a2beb9c513af877d65b1928d4f9b7eb522e55ce677240026",
+    "proj/src/xpm_font.c": "0f712b6729054597722866f268c7e8df9ab0dc1b1b286ae3f4e05d7dddb14d6b",
+    "proj/src/xpm_font.h": "a3cd29906e0c3b61c2bd9d1832f2ae5f8aa11814152a90cb8775fe3dd6282b48",
+    "proj/src/xpm_fonts/eng.xpm": "2b0b5fe7b63ce9a582cd1d6f3a6e72907c1e184618414ac78e54ecd4813e593c",
+    "proj/src/xpm_fonts/esp.xpm": "f5e2e539fba4bf2c0ef02c7c23e153d37bc12bb49721282bdc27baed32d82a57",
+    "proj/src/xpm_fonts/por.xpm": "f818ddb0bc80e7c8385d80cd9f43272d79e59d7f9225db57278ca952984d8803",
+    "proj/src/xpm_fonts/regular_cursor.xpm": "8f27f7e34f28a69dfae77741420e2d52049609c42c9ff7006286067fcf9f0585",
+    "proj/src/xpm_fonts/sec_15.xpm": "4b776eae974543d99cbbfd42a2cc48b844a4087fef8fb311e6043ca977ded4ec",
+    "proj/src/xpm_fonts/sec_30.xpm": "b5226c69d69cbea784bfd21bb27692e991827e2e2ece4433150e4135bae79ca0",
+    "proj/src/xpm_fonts/sec_60.xpm": "6c89f6648dd0d852f73e856637e3573e9c8877e1ecbde9a15e97bc45ba9ecb45",
+    "proj/src/xpm_fonts/xpm_lower/default.xpm": "6c4c5a2f6cb3da3dff5f00e123a4c9fcb7fc893631ef22a7217fffa4fd3e84af",
+    "proj/src/xpm_fonts/xpm_lower/green.xpm": "e5f652c3dd1328d6bfdb80f52e435bb2b39746fabe4e8f309fbe82281f298493",
+    "proj/src/xpm_fonts/xpm_lower/red.xpm": "f5fd77269a55c2ab0a8e1dcb343c7558d749ae9d4b3b694850c35b90a3a60d60",
+    "proj/src/xpm_fonts/xpm_numbers/default.xpm": "8ef750dd60a9d03b83a5f6bbf329be2e26867dacf50be570b3cac33741fedb1c",
+    "proj/src/xpm_fonts/xpm_title/hawktype.xpm": "7f31814c15f6734c76b53c5344ba5f68ee3ef0b3e9af094c3b81cec3fb954ddf",
+    "proj/src/xpm_fonts/xpm_upper/default.xpm": "432fd87cfa1081b088c6d463636f9a365b83ccb8efafa3e51528bdd6482e98b5",
+    "proj/src/xpm_fonts/xpm_upper/green.xpm": "1992658fc118c180fb27cabbc9095eca996509d610abd0016de45819bd2747d9",
+    "proj/src/xpm_fonts/xpm_upper/red.xpm": "0b51b8ffcb74d3569afd5aa6219083575e4cc88e3468a3a9c8fa75ed81fbac9f"
+  },
+  "selection": "Pinned original project source, original assets and README. Excluded generated documentation, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/.minix-src/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/xpm_fonts/xpm_title/hawktype.xpm",
+    "array": "title_H"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "c658bf7b853d9c60206d8787b308ee616ab3299e83ca5eab9f16271e56f4ac32",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "319e3e7084c272d73a21ac71ed57e1c5b82c68db4a0806d914ff3734494b3f7d",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/main.c",
+          "originalSha256": "b773d67a85131136c02afdc004cdfc9fb2bbbe24f0f51771877ed3584bc2a5a0",
+          "patchedSha256": "e4be910d03c4421adeec61894bf41270e5bbcae4c5480224623207462d847ff9",
+          "reason": "Sentence rendering iterated25 words in a5-word array. Selected timer duration was not recorded for results, while empty/instant rounds divided by zero. Bound rendering to MAX_GAME_WORDS, retain the selected round duration and define empty/instant statistics safely.",
+          "verification": "Actual compiled original draw_sentence fails pointer membership; repaired renders exactly5 words. Original actual game-loop fixture reports15 seconds elapsed for a60-second timeout; repaired empty60-second and immediate5-submission rounds have nonnegative finite statistics. Browser mobile touch completes5 correct words:6seconds,50WPM,100% accuracy."
+        }
+      ]
+    }
+  ]
+}

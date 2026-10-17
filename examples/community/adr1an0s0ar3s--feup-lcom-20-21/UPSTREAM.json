@@ -1,0 +1,118 @@
+{
+  "repository": "https://github.com/adr1an0s0ar3s/feup-lcom-20-21",
+  "commit": "888915a21d19f6d7a4f5fa4b2acd260efe5520ec",
+  "project": "proj/src",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
+  "sourceChanges": [],
+  "sha256": {
+    "README.md": "ac4e3388f51192928974cdd958f5cc7310dbc0d10f8ef98ca7b08c0a076cc219",
+    "proj/src/Doxyfile": "9f4c5390b5f3b97cefabbce622b4c40d993402c5ca0534c80b0171674cf8689f",
+    "proj/src/Makefile": "b7a7d5870db6ce238330c0de51d9344a0232911c9b6b0cd2f6ed9c69f8cd79b4",
+    "proj/src/XPMS/Unused/board_bottom.png": "575375836321b8209d170dbeeb6195b0f2d21c7de9023433d2222f967456ac68",
+    "proj/src/XPMS/Unused/board_bottom.psd": "6434d5e819a81c572d74852f1066953e448163075e12490cff8d7308003570b0",
+    "proj/src/XPMS/Unused/board_column_erase.png": "a84a7b5d41ecb00d1bdd07f82a442e07db135548a4a2b8aa68df41778bbaf877",
+    "proj/src/XPMS/Unused/board_column_erase.psd": "7fe12aa22c0241a29d1b9ddf6312e1e1b61a0e94d0b754bb9f255f0a1b9593c4",
+    "proj/src/XPMS/Unused/board_middle.png": "4a0dab13198cffc564a416a2ef2e4202d7ff0a5ab46322c0e1e042a8b5a19424",
+    "proj/src/XPMS/Unused/board_middle.psd": "bc6b8b582d278af2b53e68a6a421ed08d6e25fdef09af46a8c120ae03eb019f2",
+    "proj/src/XPMS/Unused/board_top.png": "3db507bcc39788f6e06fc1a620879c2b3971e7a491732ddc620412f72d631cd3",
+    "proj/src/XPMS/Unused/board_top.psd": "dd56d9bd258688c58529b4251192f450acf1a697b9fb8f65ce4524d141c65a0b",
+    "proj/src/XPMS/Unused/menu_button1.png": "d4f4884c5a37562e1cc8fbe659db5a63cc6574e32ed2d619399b49f4af1f8d94",
+    "proj/src/XPMS/Unused/menu_button2.png": "1c233de2522eaad25ea26763a8ccce34ba7e111cb69d29b3d84391ba2d231f1c",
+    "proj/src/XPMS/Unused/menu_button3.png": "066a513fce045d364cd8e89d82f82518568aee558717fa2cc31bebdb08ca3ac3",
+    "proj/src/XPMS/Unused/menu_button4.png": "c968f6401bfcff001cfd3366724758772c09fa049b011a2c12ead89059f49cda",
+    "proj/src/XPMS/Unused/remove_chip.png": "25dcd149185dedb9fbd9db112537958e3a494c78976c595044f1e3e3e95b3e44",
+    "proj/src/XPMS/Unused/row_erase.png": "65a1aed899dd61e48f9dd09edcdcb84acfff9988f92d37503aca008a42f3de3a",
+    "proj/src/XPMS/Unused/row_erase.psd": "c698ce3753cd4e5aedcbedc30d84cff5ac328e4303bbe0197665bf545ad83733",
+    "proj/src/XPMS/Unused/xpm.h": "feb6fe16240450797b8e1df69bca3671d4baf70da859f275c8c520af92774c66",
+    "proj/src/XPMS/background.png": "5da093cac76505c891f06250630e079c9130e16b89948c20de70d8c8164c17c0",
+    "proj/src/XPMS/background.psd": "85dd29ebb6d103f8a5724b9059064907ca7f315d4c3618d07900ec73dfab873f",
+    "proj/src/XPMS/board.png": "9a016821513f2b9c3370975a5200ecdf2a35e35eadbc1aaae15e8ea30076b9ff",
+    "proj/src/XPMS/board.psd": "b14898f429e0c3572f409639b3532b7876be00f2d40f4af51ba8d883e70f2e5c",
+    "proj/src/XPMS/board_column.png": "39530cd957bd5adceff3bffc5807fc57dd66a218945385c62447d26c1ded8aa2",
+    "proj/src/XPMS/board_column.psd": "fe26451ca575f44d9f65c4354e987bcb3aa1caac822dbb441f2114830a79e8e4",
+    "proj/src/XPMS/button1_highlight.png": "6dd2a4a3dbcae505894d2ed61dc9b30e18a873bfda7bb7f15e939d7f4b55be5f",
+    "proj/src/XPMS/button2_highlight.png": "21e4ed5d99c3374b7ffe6704dbce3e8f68bb123977fd3c6383fae65cdc4a563d",
+    "proj/src/XPMS/button3_highlight.png": "07ce1005d1cc65bacec3603644fdfe34126b4d54edc769d078f296cdab668c36",
+    "proj/src/XPMS/button4_highlight.png": "0788fde3a1f684ea4ab8081abcc05d16ddd5ad0b91a38ce37e724ed1d0ea080c",
+    "proj/src/XPMS/buttons_highlight.psd": "d98a768919d41f3e6296bc27565ee32b26f514d584c2ffb1b6a4767c9b99f372",
+    "proj/src/XPMS/chip.psd": "fb88d6fc83b73b869b8f9920a4e22915a0e67738425ba1b0c255c22e2f164c21",
+    "proj/src/XPMS/cursor.png": "947d878be380a900887e45c5d2ea127336e13a65fb817b78035394515a54387d",
+    "proj/src/XPMS/cursor.psd": "196314df7f5103bbcdb3fcfb9d8b4be22c76a6941c95bfc095f4ff55e4fc49ec",
+    "proj/src/XPMS/instructions.png": "b722a41ceea456473a6d0a3669da5b3a7b6f95eddf1261c4cbebb4d68467859c",
+    "proj/src/XPMS/menu.png": "06a959338098e02d8de9c057c71c3abef3326cdc2b44f2d80674cd4ca6ccbc7a",
+    "proj/src/XPMS/online_waiting_menu.png": "e3d968973554a4bdc5a4ac131781f11c649623e56e1ff22e1e1bc4c10e58124a",
+    "proj/src/XPMS/player1_indicator.png": "608631cec58585fd305fe1db263dba74f1ed901b888d1acb682b437eef64402a",
+    "proj/src/XPMS/player1_won.png": "59b09d9816f397c659356cdad4a58e0c41531b90f7230f02c3ca25841ee43a73",
+    "proj/src/XPMS/player2_indicator.png": "6e5df02fd34cf4a36eeedd0ec01f1ea1df3c91f2a09a429a90e1d9d361667ee9",
+    "proj/src/XPMS/player2_won.png": "4e8b4a970943b9feb9d6d7ce286a8134a86e6eba0faa2a7c67bffef6b53b5b60",
+    "proj/src/XPMS/player_indicator.psd": "1627d52cc5bc69fb57a1bfa70fbf4555398b8fab61b8e4583e7e1624989e2040",
+    "proj/src/XPMS/player_won_indicator.psd": "58f59cfb3ba940a67053c0d4dedabac28f5955a6690b57bdfdd1d83faaa9ea04",
+    "proj/src/XPMS/red_chip.png": "32b84345467099bab8ed1e63ce894a0d343dca6e41393ab8207172e51985cece",
+    "proj/src/XPMS/yellow_chip.png": "28c39d3c2671783dac524a8186b940d92f84e681cb2b911131744221137c25b3",
+    "proj/src/game.c": "30025d39f3e551c0ba1efda485c8a0ec61fe86b7f06b0e565d430a6d1cfd8d04",
+    "proj/src/game.h": "49387c49c7a4db1628fb964689ac569dea0ad0f301304f14d554b65b2b193839",
+    "proj/src/game_xpm.h": "52944840fafd7b6eb5c489f02906fd1e2b305a307d207a938b43a217a5af440b",
+    "proj/src/graph.c": "d88e28fbb927d86ccc44fef9e3d77e4bd21cdb9c463fa42eb16d4f590ae8ff65",
+    "proj/src/graph.h": "90ca622142bb134232cd1d805cea976417538dbde09f141cdd8a7d7d30d3fad3",
+    "proj/src/i8042.h": "f3138d03f36b42e814565253cee818648eb9fd374411cf847ce66706a572e8c4",
+    "proj/src/i8254.h": "ae1a56d0bcc0cea3d2ee3f4335b5c411f53f2dee6cd82ca84cd680cc2c75de1e",
+    "proj/src/keyboard.c": "ddea235144cf010be7ebd5e5e79a75525f5efb48a93c332c1135fbc4772a0d08",
+    "proj/src/keyboard.h": "d4f39991dbf893e166713ab66f8b4f0fbfcefb1152b11731f6dfa39c29f1ac29",
+    "proj/src/menu.c": "220897be2cac095ab5f55b96f0e649a8657469f7567b0f93bbdb78ceed76a6b0",
+    "proj/src/menu.h": "b4b1c539eb8e4784740cc3f286dafdf2883557e0954664326000b8d82de9f22a",
+    "proj/src/menu_xpm.h": "e65bbcfb188d72a6e52477cb474e76dfdcf1a427b784cf697a5546956bbdab54",
+    "proj/src/mouse.c": "197803ac8719323e00797046e7c8f1538f8b27c39da7a3221e55da56a72f9c70",
+    "proj/src/mouse.h": "1517607b3fdef234696d8e491713b2897a357b1d4d1f78a3e659ea4a3bc2f151",
+    "proj/src/proj.c": "cc725cced73f5ede458a4e11d39168d2309d21079977d28aec0b56228bc45f34",
+    "proj/src/rtc.c": "46d85d0f93a92a65d71c9cd9b36cfaf1ef0550f0ec6693569aa1cb53b01ec149",
+    "proj/src/rtc.h": "6f82b2aac787af43555731587b394ed94760a65c5d44c770d69bb198b260dc27",
+    "proj/src/serial.c": "3d1cb213d41286d7ef64b751a1b0ad86b804d59d9d378949b7e91209d134bd0d",
+    "proj/src/serial.h": "43f06fe2310d89432a54e2bb29828443a2158ff4d26eb8d0013ece70701a4e8e",
+    "proj/src/timer.c": "c1091420ad45ac6cb731ff07b516d765b9dd44ab6b903b61d3d16b7ff087e872",
+    "proj/src/util.c": "fcfdd6a777376f9f6ab6f21679bb1d20c72260fe4dc7a3afdcba8aed60b8491c",
+    "proj/src/util.h": "14c71f06ddf456e54c65089f0a2a84275aa72f2ab1e41730122fb4bd59b098b4"
+  },
+  "selection": "Pinned project source and required artwork/assets plus upstream README. Omitted labs, generated documentation, VCS and OS metadata, build products and core dumps.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata is excluded from required source inventory."
+  },
+  "icon": {
+    "kind": "simple connect-four tile icon using original board and chip palette",
+    "source": "proj/src/game_xpm.h"
+  },
+  "controlsRationale": "Connect Four: Adriano: swipe to Local then Select. Horizontal arrow pad chooses red column, Red drop Enter and Yellow drop Space support both turns. Relative pointer retained because cursor resets on menu transitions.100ms mouse pulse prevents timer-loop menu from missing a quick touch.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/adr1an0s0ar3s--feup-lcom-20-21",
+    "limits": "Short functional gameplay trial, no full campaign completion or physical Android device claim."
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "cd5810eb1beb1f41e3afc1627c4af42342a8640686f48cd687955164950a0d38",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "beff839e1561a3e331fa9a7a7f8015bede534080bf9c6244092909abb6e0b2ec",
+      "kind": "actual mobile browser gameplay canvas"
+    }
+  ]
+}

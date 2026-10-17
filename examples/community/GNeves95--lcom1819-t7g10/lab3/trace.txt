@@ -1,0 +1,21 @@
+@lcflib.a:2018, lcf_start
+  kbd_test_scan(assembly)
+> kbd_test_scan(true)
+  @kbd.c:23, kbd_subscribe_int
+    sys_irqsetpolicy(KBD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_kbc_id)
+  > sys_irqsetpolicy(1, 3, addr: 0x8153468 [1])
+  < sys_irqsetpolicy(1, 3, addr: 0x8153468 [10]) -> (ret: 0)
+  @lab3.c:50, kbd_test_scan
+    driver_receive(ANY, &msg, &estado)
+  > driver_receive(ANY, addr: 0xeffff780, addr: 0xeffff7c8)
+  < driver_receive(<[HARDWARE: 0b0000000000000000000000000000000000000000000000000000000000000010]>)
+  @lab3.c:58, kbd_test_scan
+    kbc_asm_ih()
+    "kbc_asm_ih is not defined!"
+  @lab3.c:67, kbd_test_scan
+    kbd_print_scancode(msb, 1, kbc_code_bytes)
+    "Breakcode: 0x00"
+  < kbd_print_scancode(false, 1, addr: 0xeffff77d [0x00]) -> (ret: 0)
+  @lab3.c:50, kbd_test_scan
+    driver_receive(ANY, &msg, &estado)
+  > driver_receive(ANY, addr: 0xeffff780, addr: 0xeffff7c8)

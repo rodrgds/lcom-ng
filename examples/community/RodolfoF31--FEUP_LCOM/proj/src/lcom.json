@@ -1,0 +1,49 @@
+{
+  "build": {
+    "sources": [
+      "main.c",
+      "Modules/vg.c",
+      "Modules/timer.c",
+      "Modules/utils.c",
+      "Modules/keyboard.c",
+      "Modules/mouse.c",
+      "Modules/states.c",
+      "view/draw_functions.c",
+      "controller/menu_controller.c",
+      "controller/game_controller.c",
+      "view/draw_game.c"
+    ]
+  },
+  "name": "TypeRacer: Sentence Sprint",
+  "mobile": {
+    "fullscreen": false,
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "keyboard": true,
+      "pointer": "move",
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE",
+        "UP",
+        "DOWN"
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "description": "Type the original displayed sentence and review your accuracy and score.",
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Typing"
+}

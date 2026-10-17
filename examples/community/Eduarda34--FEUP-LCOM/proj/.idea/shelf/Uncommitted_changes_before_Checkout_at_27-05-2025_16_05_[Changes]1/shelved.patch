@@ -1,0 +1,110 @@
+Index: src/proj.c
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// IMPORTANT: you must include the following line in all your C files\n#include <lcom/lcf.h>\n\n#include <stdint.h>\n#include <stdio.h>\n#include \"keyboard.h\"\n#include \"graphics.h\"\n#include \"kbc.h\"\n#include \"pixmap.h\"\n\n\nint main(int argc, char *argv[]) {\n  // sets the language of LCF messages (can be either EN-US or PT-PT)\n  lcf_set_language(\"EN-US\");\n  lcf_trace_calls(\"/home/lcom/proj/debug/trace.txt\");\n  lcf_log_output(\"/home/lcom/projdebug/output.txt\");\n  if (lcf_start(argc, argv)) return 1;\n  lcf_cleanup();\n  return 0;\n}\n\nextern vbe_mode_info_t mode_info;\nextern uint8_t scancode;\nextern int timer_interrupt_count;\n\n// Define the size of each snake segment\n#define SEGMENT_SIZE 10\n// Define the spacing between segments in pixels\n#define SEGMENT_SPACING 2\n// Define initial snake length\n#define INITIAL_SNAKE_LENGTH 3\n\ntypedef struct {\n    uint16_t x;\n    uint16_t y;\n} Point;\n\n// Global variables for snake state\nPoint *snake_body;\nint snake_length;\ntypedef enum {\n    UP,\n    DOWN,\n    LEFT,\n    RIGHT\n} Direction;\nDirection current_direction = UP;\n\nPoint apple_position; // Global apple position\nbool apple_eaten = true;\n\n// Function to generate a random position for the apple\nvoid generate_apple_position() {\n  int grid_cell_dim = SEGMENT_SIZE + SEGMENT_SPACING;\n  int grid_width = mode_info.XResolution / (SEGMENT_SIZE + SEGMENT_SPACING);\n  int grid_height = mode_info.YResolution / (SEGMENT_SIZE + SEGMENT_SPACING);\n\n  while (true) {\n      int gx = rand() % grid_width;\n      int gy = rand() % grid_height;\n\n      apple_position.x = gx * grid_cell_dim;\n      apple_position.y = gy * grid_cell_dim;\n\n      bool overlap = false;\n      for (int i = 0; i < snake_length; i++) {\n          if (snake_body[i].x == apple_position.x &&\n              snake_body[i].y == apple_position.y) {\n              overlap = true;\n              break;\n          }\n      }\n\n      if (!overlap)\n          break;\n  }\n}\n\nint (proj_main_loop)() {\n\n    int ipc_status;\n    message msg;\n    uint8_t irq_set_TIMER, irq_set_KBC;\n    uint32_t timer_freq = sys_hz();\n    uint32_t ticks_per_frame;\n    ticks_per_frame = timer_freq / 60; // 60 FPS\n\n    // Subscrição das interrupções\n    if (keyboard_subscribe_int(&irq_set_KBC) != 0) return 1;\n    if (timer_subscribe_int(&irq_set_TIMER) != 0) return 1;\n\n    // Atualiza o sistema para a frame rate dada\n    if (timer_set_frequency(0, 60) != 0) return 1;\n\n    // Initialize the graphics mode\n    if (graphic_mode(0x105) != 0) {\n        printf(\"Failed to set graphics mode\\n\");\n        return 1;\n    }\n    // Initialize the frame buffer\n    if (frame_buffer(0x105) != 0) {\n        printf(\"Failed to initialize frame buffer\\n\");\n        if (vg_exit() != 0) {\n            printf(\"Failed to exit graphics mode\\n\");\n        }\n        return 1;\n    }\n\n    // --- Initialize the snake ---\n    snake_length = INITIAL_SNAKE_LENGTH;\n    snake_body = malloc(snake_length * sizeof(Point));\n    if (snake_body == NULL) {\n        printf(\"Failed to allocate memory for snake\\n\");\n        if (vg_exit() != 0) return 1;\n        return 1;\n    }\n\n    // Calculate initial snake position to be grid-aligned\n    // We'll place the snake's head at a grid-aligned center\n    uint16_t grid_cell_width = SEGMENT_SIZE + SEGMENT_SPACING;\n    uint16_t grid_cell_height = SEGMENT_SIZE + SEGMENT_SPACING;\n\n    uint16_t start_grid_x = (mode_info.XResolution / 2) / grid_cell_width;\n    uint16_t start_grid_y = (mode_info.YResolution / 2) / grid_cell_height;\n\n    uint16_t start_x = start_grid_x * grid_cell_width; // Align to grid\n    uint16_t start_y = start_grid_y * grid_cell_height; // Start at the vertical center\n\n    // Calculate the y positions for each segment, adding spacing\n    for (int i = 0; i < snake_length; i++) {\n        snake_body[i].x = start_x;\n        snake_body[i].y = start_y - i * (SEGMENT_SIZE + SEGMENT_SPACING); // Add spacing\n    }\n\n    // Clear the screen\n    if (vg_draw_rectangle(0, 0, mode_info.XResolution, mode_info.YResolution, 0) != 0) {\n        printf(\"Failed to clear the screen\\n\");\n        if (vg_exit() != 0) return 1;\n        return 1;\n    }\n\n\n\n\n    timer_interrupt_count = 0;\n    scancode = 0;\n    srand(time(NULL)); // Seed the random number generator\n  \n    // Generate the initial apple position and draw it\n    generate_apple_position();\n    apple_eaten = false;\n    if (vg_draw_xpm(apple, apple_position.x - SEGMENT_SIZE / 2,\n                          apple_position.y - SEGMENT_SIZE / 2) != 0) {\n        printf(\"Failed to draw initial apple\\n\");\n        goto cleanup;\n    }\n\n    while (scancode != 0x81) {\n      if (driver_receive(ANY, &msg, &ipc_status) != 0) {\n        printf(\"Error: driver_receive failed\\n\");\n        continue;\n      }\n  \n        if (is_ipc_notify(ipc_status)) {\n          switch (_ENDPOINT_P(msg.m_source)) {\n            case HARDWARE: // Hardware interrupt\n  \n                      // interrupção do timer\n              if (msg.m_notify.interrupts & irq_set_TIMER) {\n                timer_int_handler();\n                if (timer_interrupt_count % ticks_per_frame == 0) {\n                  timer_interrupt_count = 0;\n\n\n                  static int frame_counter = 0;\n                  frame_counter++;\n\n                  int snake_speed = 10; // Adjust this value to control the speed of the snake\n\n                  if (frame_counter >= snake_speed) {\n                    frame_counter = 0;\n                    \n                    // Clear the previous snake segments\n                    for (int i = 0; i < snake_length; i++) {\n                      uint16_t clear_x = snake_body[i].x - SEGMENT_SIZE / 2;\n                      uint16_t clear_y = snake_body[i].y - SEGMENT_SIZE / 2;\n\n                      if (vg_draw_rectangle(clear_x, clear_y, SEGMENT_SIZE, SEGMENT_SIZE, 0) != 0) {\n                        printf(\"Failed to clear snake segment\\n\");\n                        goto cleanup;\n                      }\n                    } \n                    \n\n                    // Update the snake's position\n                    for (int i = snake_length - 1; i > 0; i--) {\n                      snake_body[i].x = snake_body[i - 1].x;\n                      snake_body[i].y = snake_body[i - 1].y; // Move each segment to the position of the previous one\n                    }\n\n                     // Store old head position before moving for wraparound logic\n                    int16_t head_x_temp = snake_body[0].x;\n                    int16_t head_y_temp = snake_body[0].y;\n                    uint16_t grid_cell_dim = SEGMENT_SIZE + SEGMENT_SPACING; \n                    // Move the head in the current direction\n                    switch (current_direction) {\n                      case UP:\n                        head_y_temp -= grid_cell_dim;// Move up\n                        break;\n                      case DOWN:\n                        head_y_temp += grid_cell_dim; // Move down\n                        break;\n                      case LEFT:\n                        head_x_temp -= grid_cell_dim; // Move left\n                        break;\n                      case RIGHT:\n                        head_x_temp += grid_cell_dim; // Move right\n                        break;\n                    }\n\n                    if (snake_length > 3) {\n                      // Check for collision with itself\n                      for (int i = 1; i < snake_length; i++) {\n                        if (snake_body[i].x == snake_body[0].x &&\n                            snake_body[i].y == snake_body[0].y) {\n                          printf(\"Game Over: Snake collided with itself\\n\");\n                          goto cleanup;\n                        }\n                      }\n                    }\n\n                    // Check for collision with walls\n                    uint16_t screen_width = (mode_info.XResolution);\n                    uint16_t screen_height = (mode_info.XResolution);\n\n                    head_x_temp = (head_x_temp % screen_width + screen_width) % screen_width;\n                    head_y_temp = (head_y_temp % screen_height + screen_height) % screen_height;\n\n                    snake_body[0].x = (uint16_t)head_x_temp;\n                    snake_body[0].y = (uint16_t)head_y_temp;\n\n                    // Check for collision with apple\n                    if (snake_body[0].x == apple_position.x && snake_body[0].y == apple_position.y) {\n                      apple_eaten = true;\n                      snake_length++;\n                      Point *new_body = realloc(snake_body, snake_length * sizeof(Point));\n                      if (new_body == NULL) {\n                          printf(\"Failed to reallocate memory for snake\\n\");\n                          goto cleanup;\n                      }\n                      snake_body = new_body;\n                      // Add the new segment at the previous tail position\n                      snake_body[snake_length - 1].x = snake_body[snake_length - 2].x;\n                      snake_body[snake_length - 1].y = snake_body[snake_length - 2].y;\n                    }\n\n                    // Generate a new apple position if the apple was eaten\n                    if (apple_eaten) {\n                       // Clear previous apple position\n                       if (vg_draw_rectangle(apple_position.x - SEGMENT_SIZE / 2,\n                                            apple_position.y - SEGMENT_SIZE / 2,\n                                            SEGMENT_SIZE,\n                                            SEGMENT_SIZE,\n                                            0) != 0) {\n                        printf(\"Failed to clear previous apple\\n\");\n                        goto cleanup;\n                      }\n                      \n                      generate_apple_position();\n                      apple_eaten = false;\n                      \n                    }\n\n                    for (int i = 0; i < snake_length; i++) {\n                      uint16_t draw_x = snake_body[i].x - SEGMENT_SIZE / 2;\n                      uint16_t draw_y = snake_body[i].y - SEGMENT_SIZE / 2;\n                      if (vg_draw_xpm(solid_snake_segment, draw_x, draw_y) != 0) { // Use solid segment for all\n                          printf(\"Failed to draw snake segment\\n\");\n                          goto cleanup;\n                      }\n                    }\n\n                    if (vg_draw_xpm(apple, apple_position.x - SEGMENT_SIZE / 2,\n                                          apple_position.y - SEGMENT_SIZE / 2) != 0) {\n                      printf(\"Failed to draw apple\\n\");\n                      goto cleanup;\n                    }\n                  }\n                }\n              }\n              if (msg.m_notify.interrupts & irq_set_KBC) {\n                kbc_ih();\n               \n                switch (scancode) {\n                  \n                  case 0x48:\n                    if (current_direction != DOWN) // Up arrow\n                      current_direction = UP;\n                    else\n                      current_direction = DOWN;\n                      break;\n                  case 0x50:\n                    if (current_direction != UP) // Down arrow\n                      current_direction = DOWN;\n                    else  \n                      current_direction = UP;\n                      break;\n                  case 0x4B:\n                    if (current_direction != RIGHT) // Left arrow\n                      current_direction = LEFT;\n                    else\n                      current_direction = RIGHT;\n                      break;\n                  case 0x4D: // Right arrow\n                    if (current_direction != LEFT) \n                      current_direction = RIGHT;\n                    else\n                      current_direction = LEFT;\n                      break;                   \n                  case 0x81: // ESC key\n                    scancode = 0x81; // Set scancode to exit the loop\n                    break;\n                  default:\n                    break;\n                }\n                break;\n              }\n            default:\n              break;\n          }\n        }\n      }\n\ncleanup: // Unified cleanup label\n    // --- Cleanup ---\n    if (snake_body) free(snake_body);\n    if (vg_exit() != 0) printf(\"vg_exit() failed\\n\");\n\n    if (timer_unsubscribe_int() != 0) printf(\"timer_unsubscribe_int() failed\\n\");\n    if (keyboard_unsubscribe_int() != 0) printf(\"keyboard_unsubscribe_int() failed\\n\");\n  \n    return 0; // Return 0 for successful execution\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/proj.c b/src/proj.c
+--- a/src/proj.c	(revision 7646bbe787a865133c90c36b02ec133600fbea17)
++++ b/src/proj.c	(date 1748358225476)
+@@ -3,11 +3,11 @@
+ 
+ #include <stdint.h>
+ #include <stdio.h>
+-#include "keyboard.h"
+-#include "graphics.h"
+-#include "kbc.h"
+-#include "pixmap.h"
+-
++#include "controller/keyboard.h"
++#include "controller/graphics.h"
++#include "controller/kbc.h"
++#include "pixmap_images/pixmap.h"
++#include "controller/vbe.h"
+ 
+ int main(int argc, char *argv[]) {
+   // sets the language of LCF messages (can be either EN-US or PT-PT)
+@@ -93,7 +93,7 @@
+     if (timer_set_frequency(0, 60) != 0) return 1;
+ 
+     // Initialize the graphics mode
+-    if (graphic_mode(0x105) != 0) {
++    if (graphic_mode(VBE_MODE_1024x768_256) != 0) {
+         printf("Failed to set graphics mode\n");
+         return 1;
+     }
+Index: src/pixmap.h
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/pixmap.h b/src/pixmap_images/pixmap.h
+rename from src/pixmap.h
+rename to src/pixmap_images/pixmap.h
+--- a/src/pixmap.h	(revision 7646bbe787a865133c90c36b02ec133600fbea17)
++++ b/src/pixmap_images/pixmap.h	(date 1747835118305)
+@@ -63,21 +63,48 @@
+     "....."
+ };
+ 
+-const char *const apple[] = {
+-    "10 10 2", /* width height num_colors */
+-    ". 0",
+-    "r 4",     /* red */
+-    "rrrrrrrrrr",
+-    "rrrrrrrrrr",
+-    "rrrrrrrrrr",
+-    "rrrrrrrrrr",
+-    "rrrrrrrrrr",
+-    "rrrrrrrrrr",
+-    "rrrrrrrrrr",
+-    "rrrrrrrrrr",
+-    "rrrrrrrrrr",
+-    "rrrrrrrrrr",
+-    "rrrrrrrrrr"
++const char *const snake_tongue_down[] = {
++    "5 5 2",        /* width height num_colors */
++    ". 0",          /* transparent */
++    "r 4",          /* red */
++    "..r..",
++    "..r..",
++    "..r..",
++    ".r.r.",
++    "r...r"
++};
++
++const char *const snake_tongue_up[] = {
++    "5 5 2",        /* width height num_colors */
++    ". 0",          /* transparent */
++    "r 4",          /* red */
++    "r...r",
++    ".r.r.",
++    "..r..",
++    "..r..",
++    "..r.."
++};
++
++const char *const snake_tongue_left[] = {
++    "5 5 2",        /* width height num_colors */
++    ". 0",          /* transparent */
++    "r 4",          /* red */
++    "r....",
++    ".r...",
++    "..rrr",
++    ".r...",
++    "r...."
++};
++
++const char *const snake_tongue_right[] = {
++    "5 5 2",        /* width height num_colors */
++    ". 0",          /* transparent */
++    "r 4",          /* red */
++    "....r",
++    "...r.",
++    "rrr..",
++    "...r.",
++    "....r"
+ };
+ 
+ #endif /* _PIXMAP_H_ */

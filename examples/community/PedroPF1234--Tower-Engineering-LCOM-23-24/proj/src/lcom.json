@@ -1,0 +1,47 @@
+{
+  "name": "Tower Engineering",
+  "description": "Build defenses and join the fight against advancing enemies.",
+  "mobile": {
+    "fullscreen": false,
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "UP",
+        "DOWN"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "style": "dpad",
+          "side": "left"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Fire",
+          "mouseButton": "left",
+          "side": "right"
+        },
+        {
+          "label": "Interact",
+          "key": "E",
+          "side": "right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

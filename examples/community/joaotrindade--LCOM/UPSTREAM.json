@@ -1,0 +1,83 @@
+{
+  "repository": "https://github.com/joaotrindade/LCOM",
+  "commit": "be3cd7adb6d83cd7a6a9aac79dc8921be5ff935b",
+  "sourcePath": "proj",
+  "sourceHashes": {
+    "proj/KBC.c": "bb613e925b0370252fe1af7094fe4a612c630a1f50e3bde2d49483485cdab90a",
+    "proj/KBC.h": "80a7f749af584fcbe8d2de662d76964952f3a5daee312043bc84fcd57166d894",
+    "proj/Makefile": "6490588cfb39dbc2f30dbc9c67f67eb65729009917ce654043f013c29cd73a93",
+    "proj/RTC.c": "ce1631ba8f02852d89d170adfd8bdc6ba993951ad451b581857d00cb3bacb463",
+    "proj/RTC.h": "7fc8efcd3d58219f67fd6d81b1abc9753e8dd557c0238aac676d74e6dc696618",
+    "proj/alfabeto.h": "57ee3214288d68a21a33c97d461aaeb76ac03f2f7d18e819030e31300bb93c24",
+    "proj/algarismos.h": "cfc8af5434e1d15b7a2cd0e5686cfc031d5713beb76bf3d461fc6d0a99fa9a6d",
+    "proj/algarismos_small.h": "39fb45027864d0ca62989d9bde0bc704555537971ec1074522600b1ed4b4c5a3",
+    "proj/highscores": "e250b446d4b6d85a7738a61a1b959a88a81e98f58adf14772b8cafe25bd67c76",
+    "proj/highscores.c": "df62632f8c6e57de019ee6dbad1ef6d25705b5e7724b50deca07b76568b7a188",
+    "proj/highscores.h": "9ad4f5e906daf019fe2ff41f891e50da53669903d25faa79680b72d7d1bc68e9",
+    "proj/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "proj/interface_xpm.h": "f92a0a510a1c28342c5d9bdd9107eeb1532453b8c6cb1cc406cd3d1c9ebfb34b",
+    "proj/lmlib.h": "39266674d6e78989c967cd54b2780b0b6b673e595be1ddca927b773074dea5b2",
+    "proj/menu.c": "229855841a22e3a35532bad410dec3f1df5a8bfd889acb9d93c865e52a3e1622",
+    "proj/menu.h": "a98754a2dbd013b34132f9ffa88da52fba3eb275ba21e6d0437de2cf9aee70cc",
+    "proj/pixmap.h": "e974609b02a0eeb52c7ad0d014ea05fd22010fb3875bacf822d9c3520b9ddeb7",
+    "proj/proj.c": "6cdb3a42069a7296f1e431910d9d9d68a95db79c3ae2fff83ccdc38ea2c627a9",
+    "proj/proj.conf": "9071c5f88f3dab11e67750f3cf492bc332a94570d2ccafda26e0a6d40d3b8162",
+    "proj/proj.h": "4c50f7f7a286071d99ee36a964d75a897908bbb204935105d063ae0a189fbc53",
+    "proj/read_xpm.c": "2ae7ad6d782048d930e539adb52aedb296a4f6ed56d45ff40fd5808e3f664bca",
+    "proj/timer.c": "1eaef1c1ef4224d76cbfc45c721e023847d8c02e7abf4b73323a5a968f02ca84",
+    "proj/timer.h": "ac89285d661775e7ea719fa4c086e337f1ae596a61f4d2bb13a1510e620bf84f",
+    "proj/vbe.c": "280b6d294ec757ab95a762a5674d23ee640daade655eaa2f82ee4e53888aefca",
+    "proj/vbe.h": "c8db80c97e2471e613e280ba6804cbeab50c59f0eb1a7643303944b454b15216",
+    "proj/video_gr.c": "2259752f599e8b647a797ee69741fa302dac05f50dd5c5c4a60eebdfd12e041c",
+    "proj/video_gr.h": "0f2e3023f57aca500faf23a256423dc8cd39ab5bad5a902214f5c89572acd027"
+  },
+  "sourcePatches": [
+    {
+      "file": "proj/proj.c",
+      "originalSha256": "6cdb3a42069a7296f1e431910d9d9d68a95db79c3ae2fff83ccdc38ea2c627a9",
+      "patchedSha256": "d4dc9c28ad4d6cae000c75d9f95cbea8afb32f6d4c8098d8c1ec0af381911849",
+      "reason": "Preserve the original forty-byte Minix/x86 score-record format explicitly across host long sizes, bound complete-record reads and saved names, and constrain original name entry to its fourteen-character plus NUL capacity.",
+      "verification": "Actual original native reader fails to recover six original records; corrected original-asset decode and exact forty-byte real-file save/partial-tail checks pass. Actual original twenty-letter name entry traps with stack protection/patterned locals; corrected twenty-make-event and empty-name dispatch passes."
+    },
+    {
+      "file": "proj/read_xpm.c",
+      "originalSha256": "2ae7ad6d782048d930e539adb52aedb296a4f6ed56d45ff40fd5808e3f664bca",
+      "patchedSha256": "2a755609ad6af87effd70205c0625c0e112522fbd301bf8cb5ad55f06c358aa8",
+      "reason": "Import the existing graphics interface owning the decoder declaration so its definition and renderer callers share the same full-width pointer contract.",
+      "verification": "The same actual native64 renderer regression passes with the definition and callers checked against the shared owning declaration."
+    },
+    {
+      "file": "proj/video_gr.c",
+      "originalSha256": "2259752f599e8b647a797ee69741fa302dac05f50dd5c5c4a60eebdfd12e041c",
+      "patchedSha256": "f7f5af70e43d42fd331553554b98f4dbfc35fe0212d4e230cf6238584c52ff56",
+      "reason": "Issue the original set-mode BIOS request once, checking its result instead of resubmitting the returned AX004F as a new INT10 request.",
+      "verification": "Actual original vg_init fixture asserts that BIOS output must not become a second request, original RED then corrected GREEN; physical D0000000 constant is unchanged."
+    },
+    {
+      "file": "proj/video_gr.h",
+      "originalSha256": "0f2e3023f57aca500faf23a256423dc8cd39ab5bad5a902214f5c89572acd027",
+      "patchedSha256": "a1db80c8f8232c68c53fdf641dbe37f0ce14021be76944ad431781d5a53d1f9f",
+      "reason": "Declare the project XPM decoder with its actual char-pointer return type in the existing graphics interface.",
+      "verification": "Original actual menu and ship renderers dereference an implicitly truncated >32-bit decoder result and SIGSEGV; with the owning declaration both render their expected pixel on native64."
+    }
+  ],
+  "excludedMetadata": [
+    "Generated .depend/object files and prebuilt Minix executable are omitted; full pinned archive retained in discovery evidence."
+  ],
+  "configuration": "Original hardcoded framebuffer D0000000 selected explicitly; SDK audio PCM relocated to C0000000 as a distinct aperture. Original /usr/src/drivers/proj score directory mapped to packaged asset root. No original graphics constant or asset bytes changed.",
+  "artwork": {
+    "icon": "Original100x99 spaceship XPM, integer-scale pixel rectangles using its indexed EGA DAC colors on the established dark tile.",
+    "preview": "Real browser canvas with original missiles, advancing enemies and score100."
+  },
+  "verification": {
+    "browser": "Normal touch844x390 selects original New Game, moves up/down, fires visible missiles, destroys an enemy for100, exits to name entry, types ANA on the touch keyboard, shows ANA000100 in the original highscore table, and exits normally with no page errors.",
+    "ndk": "All9 original Makefile translation units compile as actual ARM64 objects with O2,FORTIFY2,stack protection and format-security.",
+    "native": {
+      "status": "passed",
+      "evidence": "build/arcade-100/c33-reviewed-native/results.json",
+      "apkSha256": "d98822802ea971f8f1efa9f6140e86adc2f0046d2a7b732910541e79eccc2d55",
+      "demonstrated": "Root inspected original ship moving to upper lane then downward, normal Space-fired missile wave and SCORE000100, ANA000100 saved in original highscore table through touch keyboard, Home isolated-process cleanup."
+    },
+    "limits": "Long multi-wave memory growth and every original keyboard letter are not exhaustively exercised."
+  }
+}

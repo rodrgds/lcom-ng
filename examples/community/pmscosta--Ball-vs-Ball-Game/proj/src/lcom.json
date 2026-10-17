@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "name": "Ball vs. Ball",
+  "description": "Two-player football with original rolling players and a shared ball.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "touch": "move",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        },
+        {
+          "mode": "arrows",
+          "side": "right",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Kick P1",
+          "key": "SPACE",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Kick P2",
+          "key": "KP_ENTER",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Back",
+          "key": "ESC",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": [
+      "resources"
+    ],
+    "pathAliases": {
+      "/home/lcom/proj/src/resources": "resources"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

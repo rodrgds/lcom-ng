@@ -1,0 +1,15 @@
+--- a/proj/src/drivers/mouse/mouse.c
++++ b/proj/src/drivers/mouse/mouse.c
+@@ -26,6 +26,12 @@
+ }
+ 
+ void(mouse_int_handler)(void) {
++    uint8_t status;
++    /* A setup command may have consumed the byte that raised this notification. */
++    if (util_sys_inb(KBC_STATUS_REGISTER, &status) ||
++        !(status & KBC_OUTPUT_BUFFER_FULL) || !(status & KBC_AUX_BIT))
++        return;
++
+     uint8_t attempts = 0;
+     while (attempts < READ_ATTEMPT_LIMIT) {
+         if (mouse_read_packet() == 0)

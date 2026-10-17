@@ -1,0 +1,181 @@
+{
+  "repository": "https://github.com/BSonnemberg/LCOM",
+  "revision": "d21d0fb034b126352af3e6d96853ef6498b5435b",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "99c7c049c5e116ebf59b498a0672f519754a4c9accffaa3f6ca8139178ae662f",
+    "proj/src/controller.c": "eb1a706a66a75e72da91ffe64b4dadceb07c71e0a707b7db7836b0a3a0211d8b",
+    "proj/src/pool.h": "b121714f3a1c12f88f60bbb4d4b94b4cafbcf714178c51745e681911fe67c79a",
+    "proj/src/vector2.h": "0dbf22a6612990443bec99f15b82244e16107d0717236b21d94b639f40443027",
+    "proj/src/Makefile": "9cca44042183de02200b71747ad9096babe84bdeaa85d834372283e129787439",
+    "proj/src/physics.c": "cbcb2df86aab80bea226bdf2b3249dc33ba9769a14bd834dd97b16377b4aed4b",
+    "proj/src/controller.h": "d896a20d73f0fdb5d29c0dcd3a20f00dbd6728da7fedba4d314af0e58fd92b30",
+    "proj/src/.gitignore": "86e388d56c93abd00cca33712797c110e2a8fe64587e56012ae09c10fa17e825",
+    "proj/src/vector2.c": "e516b4a3151d44a46ec8d36144fb4599d2aaa1d26c0d4225e0ebf32308028b3b",
+    "proj/src/pool.c": "b38db800c57223b305f2622f58f2a751e7c0dbee8cba525fb89bed066760fc74",
+    "proj/src/Doxyfile": "03c0123d9a45bd692c2e9c17678ba6fbe7488da6d8c167de54e5bf3cf91ddb5f",
+    "proj/src/physics.h": "192d7b5db1b9488601799d0d72d2e108b048575d941316be67ebe97981806514",
+    "proj/src/proj.c": "8554da394e55d37aeaf23ac26c5c307758452c0f61eb57774b3517c44d24eb67",
+    "proj/src/io/kbc.h": "46c4ea251f10d4a5e18f45b2fe9254e0eff83ab62865a748db70e02c9e195398",
+    "proj/src/io/queue.c": "d68b0cdaa242a960b4f0f5a266ceba45a733db9b154c3768c90e98296350c020",
+    "proj/src/io/i8042.h": "1e623fe76b07e78f4980069121a81ead6038f4890b0587dc0ac1b0d82196df21",
+    "proj/src/io/kbc.c": "17e227b00b91f27bf4bc16815bac65fcbcb002b858dd35e493ab3791a938d466",
+    "proj/src/io/utils.c": "b0c2ca51b796f527f645eb1187cf54f9f220c0a7c701844760a6cf38131da2af",
+    "proj/src/io/queue.h": "917f7cf391849f8e6397e1d1865021420e36ba791fa53d79e82d2a67ecbc804c",
+    "proj/src/view/sprite.c": "2aaeab9aa4a10ed22cd5ade2d11765a61e27282059df5058bd730175de297b38",
+    "proj/src/view/sprite_manager.c": "a3e57fa2a07d99a6b3d354fd66dd98e6ebc3fab62f05cf18d30e3e09d5dd79e9",
+    "proj/src/view/view.h": "b4025a25a2594c8ce35c06681f02526ae5d6674712ee7c0aaf7eec40f56d981d",
+    "proj/src/view/sprite.h": "327bcddd7abca465d42c82dcd55a784e6136039fd101a4205a36d6b9b1468a33",
+    "proj/src/view/sprite_manager.h": "9f19b86d7022c74d0377640e8f5435726dd26d375ba3dda5cc2a1426a6ac1b4e",
+    "proj/src/view/view.c": "ea24005368aadf7d763da7e13441e0d04303f3f25129c9f7faa7bf7688c61aa1",
+    "proj/src/view/xpm/localgame.xpm": "69625c882ac15892c67a189b4fca255023a6e1eb2b433e3ddef3c26be8328b84",
+    "proj/src/view/xpm/player1win.xpm": "7d7ee97e15cc1e203890c79d1565f32cfb04cc238ca465a174325dbbb9203d98",
+    "proj/src/view/xpm/number9.xpm": "63570f6b2a282bd7cdc55af6172a9371b66fad29c6fdb22bf8f9c9cdabf4f240",
+    "proj/src/view/xpm/number8.xpm": "3b5e8bd6a9b57cc8ee609a6788947ca80da99b00fdd74a0684be3b38d2420bfa",
+    "proj/src/view/xpm/ball9.xpm": "a088d94d3cc485a1faac79af6ead57187d3118a9aed8df20e3f7ab3609f0cecb",
+    "proj/src/view/xpm/ball8.xpm": "b8965f7f1a3924beccaaef3b578aee3472744d6d3d3b9851e4d88c761baf116a",
+    "proj/src/view/xpm/onlinegame_arrow.xpm": "28a7438cc5d0da27c04dde2b6359913646ad08dd61d4cddca6ed06b25b02e410",
+    "proj/src/view/xpm/about_arrow.xpm": "0cf9a8571edd7c4ea8d2d5d40249a98921e3ef7ffa9888afb6441ae9025b1e57",
+    "proj/src/view/xpm/menu.xpm": "d40edf3f879aa95da4e9ab703ce761d53481e7c4e1b24d1cff9013f5d9df5be7",
+    "proj/src/view/xpm/table.xpm": "0ca711a0835a462e739a572997c7b9ed817554d6554e847085bbc1a0405297b1",
+    "proj/src/view/xpm/twopoints.xpm": "265370801d93a897d7d86fff82948d5b2d15f04233641cb9462a9620ce7d0af7",
+    "proj/src/view/xpm/ball10.xpm": "ff594aa67dafdf8f96ebc8c025aa2a82a7f3f7964e6b2813bf0f7d53ac581be4",
+    "proj/src/view/xpm/ball11.xpm": "a781c581db9d9b1a3c32161a7c34c4086aa9ab4ad130065f3cba45f7926cff30",
+    "proj/src/view/xpm/localgame_arrow.xpm": "65de85de7691da969dd392d17e3a29a286afcf77dd7ed183f25efa8814566070",
+    "proj/src/view/xpm/ball_turn.xpm": "f1dc5ac5e36fbc9c442b907bed1cd205507bb81d4619116e5d1f7b72106dd67b",
+    "proj/src/view/xpm/ball13.xpm": "fdcdbc2be845192d4cd45a3b60dbd90edddac91ec3721df676c11aa45a891ad3",
+    "proj/src/view/xpm/ball12.xpm": "e7430b78cdb47cf2f93a0a3af1438de573b67a28dee29f31cf579a7435d14396",
+    "proj/src/view/xpm/about_screen.xpm": "b2e74e732138e94d08aecb842f902977115ac99c766f5a7a06c32896d17cd118",
+    "proj/src/view/xpm/ball15.xpm": "6594d17049bfc2f34560065b00a9aeb3aac12a42ac790a9823f30473cb570f75",
+    "proj/src/view/xpm/ball14.xpm": "00dcee87a2e45c525d64e2bd5d29a19375947e48a6233f506b84ba05312f0bd9",
+    "proj/src/view/xpm/about.xpm": "a017dda619b014e0003f7a9f9fe412d40d6635fdd43d783f481c0b54487ba376",
+    "proj/src/view/xpm/player2win.xpm": "3e4bfa73a1460dfac1cdd2f64fef6f5fbc11a72e1e004c452eb4bcb03ec37a4b",
+    "proj/src/view/xpm/cursor.xpm": "3774efaa8b19e145536f624de0bee5d9ac63deb06e6058ff3050a2b2fc97e612",
+    "proj/src/view/xpm/seconds.xpm": "e31bf158cdee2000e9affeda4fe8b9c93be14c580f52c425c4a6f31bc712b643",
+    "proj/src/view/xpm/number3.xpm": "ca5089e5f1a84ba8e44832940d6f92c09711f56e1b7b933a4bd10c01ce708072",
+    "proj/src/view/xpm/ball6.xpm": "0fac7afdd190494b3be2dd99c37f7ffee1ad933c756f8baefc42cf8940296854",
+    "proj/src/view/xpm/onlinegame.xpm": "889dec15f9a68b1d21fb03cde86201ea30517f86b41467c8fdc8e0e230f46ef2",
+    "proj/src/view/xpm/stick1.xpm": "0150426d119d40241400e78f8ab2c44aaa1e5372dac41c656563608bfb4353f9",
+    "proj/src/view/xpm/ball7.xpm": "e380b5de86f7633cc917e420b4bba50c40f2ce9c77deca7e329fb6d903a505b5",
+    "proj/src/view/xpm/number2.xpm": "8204f541d47232c302c0feeff9f1d20040984a3b42bd12ec08a4e44c3009757e",
+    "proj/src/view/xpm/number0.xpm": "aec355f7aec3b23e2e8976ffd3057387626733008029980aa640ad779966abac",
+    "proj/src/view/xpm/ball5.xpm": "bef33f67ebb721758254cdcedc1940e876e13e5d43089de8262139df08e7b12d",
+    "proj/src/view/xpm/stick2.xpm": "c99fac5100a80c146c08bd24f9a47d80ccab19dc78f89078a9a5a18149dad354",
+    "proj/src/view/xpm/ball4.xpm": "270bb1f85311df44b12b3a510cf061cbb79b37948b552ec57d716d5355e6b394",
+    "proj/src/view/xpm/number1.xpm": "0f864ecb898b5e57c336f730986544f09a3e229984148fc1cd22bd125a494a23",
+    "proj/src/view/xpm/number5.xpm": "cc39112d3513101580083179b74255b9ca6dbd2bc944d1a13b49c4c0ab2a981a",
+    "proj/src/view/xpm/ball0.xpm": "0dde2f73b87cfd13ee5290ee7e36b4b7d534611235efd054b4deb874aeb2d332",
+    "proj/src/view/xpm/ball1.xpm": "c04ee835d0915549fd16974d635c7097b4e5c1babab5474a48151a12e2c66070",
+    "proj/src/view/xpm/number4.xpm": "d7dd6078093a388f6222891911f7efc99d94e4466bb57c20859dbbafca6b1543",
+    "proj/src/view/xpm/number6.xpm": "a1129f1a027320f33da04c2ddd7f9305217069387d82ef94246647419b81686d",
+    "proj/src/view/xpm/game_header.xpm": "98f7e41ecd31e8af95c2c10fd9f198546d74a15d4d4db6330badeddf7a719f35",
+    "proj/src/view/xpm/ball3.xpm": "565004b591e26f2934ad5a52dd7afb3994a27b24f51738c515b4d171f9168f8f",
+    "proj/src/view/xpm/ball2.xpm": "5eb0ce77f86558168e1419cea48d6d0c848bf8e6f6541b0ea3468c966dc177d3",
+    "proj/src/view/xpm/number7.xpm": "da5007753e7846639beae2099f550867305615d1800dc88ef8539bcdc63d33bf",
+    "proj/src/io/video/vg.c": "e57779f6d526d9dc4f856de54eb8e03655f03601c02a8ee5a28f026c417c1408",
+    "proj/src/io/video/vbe.h": "07dd5d2c184e11c532caf92e2e1b867c9826faa45c5dd9e33a713c5523d99435",
+    "proj/src/io/video/vbe.c": "4ef529435883dbb0f46ac784a5cb69275f980d07412db56527c491fdfdda75f7",
+    "proj/src/io/video/vg.h": "d590563a738582af817a3168333cd22bd7a8f5dd1a92de18d244ac3cbf77de07",
+    "proj/src/io/timer/timer.c": "ad9a89ba941cd726957711f332522a8e8766275bd7b6e438a944681b340bdd65",
+    "proj/src/io/timer/i8254.h": "9635bdcb02e824cd1baf4482d925e7c2431d18665d660a7726bfb4264c0faf44",
+    "proj/src/io/mouse/mouse.c": "701e630972bdc0b041f151ae982df0e491bb7d403cb8c3a2c6e10b590a31c281",
+    "proj/src/io/mouse/mouse.h": "1218a927ddfea641cc05c7816c8bfb5c1bb2bbe9e38af4f9d2f5f561b7221fb8",
+    "proj/src/io/rtc/rtc.c": "080980df7ee625fc0b2a489de15f6c5a601d78dd4e4b956fbdfcb1837a894091",
+    "proj/src/io/rtc/rtc.h": "ed051bca281ff4a5b9a295f26f4d7eb23ebd19cbc5b941973d8ed806a3ca10ea",
+    "proj/src/io/keyboard/keyboard.c": "ed7f566e868f2b4479b9d175e6162ea562246b4b8f6e780a085ef9aa6f03d540",
+    "proj/src/io/keyboard/keyboard.h": "000cabb4e76e09aaeba3807f64183717f1ca8214614be987af204dfae672e992"
+  },
+  "selection": "Pinned original game source, original artwork and required public siblinglab libraries.",
+  "omissions": [
+    ".git/**",
+    ".minix-src/**",
+    "**/.DS_Store",
+    "**/doc/**",
+    "**/docs/**",
+    "compiled ELF/Mach-O executables",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/trace.txt",
+    "**/output.txt"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/pool.c",
+          "reason": "Include the owning standard float.h header for FLT_MAX used by pocket setup. Original LCF umbrella does not provide it.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/pool-float-test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/pool-float-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/pool-physics-float-green.log"
+          },
+          "originalSha256": "b38db800c57223b305f2622f58f2a751e7c0dbee8cba525fb89bed066760fc74",
+          "patchedSha256": "d4a9f85d400c74e0ce18c5f0caf7c545f34ab5994e81ed24835928d679e079a3"
+        },
+        {
+          "file": "proj/src/physics.c",
+          "reason": "Include float.h for FLT_MAX used by wall-collision calculations.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/pool-float-test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/pool-physics-float-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/pool-physics-float-green.log"
+          },
+          "originalSha256": "cbcb2df86aab80bea226bdf2b3249dc33ba9769a14bd834dd97b16377b4aed4b",
+          "patchedSha256": "13310e2fc251a5306fb3874cefff535a9b059e690db2eb0cb2b460274ce8a41a"
+        },
+        {
+          "file": "proj/src/controller.c",
+          "reason": "Initialize the keyboard scancode before the first ESC loop condition. Original uninitialized read makes the optimized controller trap before its first receive. Actual browser startup was unreachable; actual O2 controller fixture traps before any IRQ.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/pool-controller-test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/pool-controller-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/pool-controller-green.log"
+          },
+          "originalSha256": "eb1a706a66a75e72da91ffe64b4dadceb07c71e0a707b7db7836b0a3a0211d8b",
+          "patchedSha256": "29673e2bca989d75881f7aac81720865d2ad8f58631aa14d332c46e793e7a374"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite on a flat palette",
+    "source": "proj/src/view/xpm/ball8.xpm",
+    "array": null,
+    "transparentIndex": 64
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "6f34c1cc6b98226c5cda225f20cd3cc9f158dedd33d22f3a72c6c7ec0fd3b666",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "4fa43b466e83b8ac1b4b2d5f94191c47085d2eafc8ed24bc8262a61e3152699a",
+      "kind": "actual browser touch gameplay preview"
+    }
+  ],
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence13/BSonnemberg--LCOM-03-break-canvas.png",
+    "captureSha256": "86689eefee3fcada8ca5a2472d28ee9d6b1d304c539f9f78e7af97cf196d8ee9",
+    "originalSourceArt": true
+  },
+  "verification": {
+    "native": {
+      "status": "passed",
+      "apkSha256": "cc055c952c3aa0b46b66598813d818f6aec38bfce59b79a34cd168ee24a16fb4",
+      "evidence": "build/arcade-100/a65-native-gameplay/results.json",
+      "review": "build/arcade-100/a65-reviewed-native/results.json",
+      "checkpoints": [
+        "Original local-game pool rack and cue ball at150,300.",
+        "Cue ball strikes rack and original numbered balls move apart.",
+        "Further ball positions change through original physics."
+      ],
+      "limits": [
+        "Representative original touch play and clean Home process exit on ARM64 emulator. Every mode, long sessions, linked UART and physical-phone performance are unclaimed."
+      ]
+    }
+  }
+}

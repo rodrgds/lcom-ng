@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="dir_4d5346d366606dcce97c68d480026d69" kind="dir">
+    <compoundname>C:/MINIX-LCOM/shared/g3/proj</compoundname>
+    <innerdir refid="dir_d62c30e309da477c07cdc4168f30ac21">C:/MINIX-LCOM/shared/g3/proj/src</innerdir>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,108 @@
+{
+  "repository": "https://github.com/Rockdell/2LCOM-MOsu",
+  "commit": "e51c34cce164dcbea06bcde9f7e44604dead36bb",
+  "project": "src",
+  "licenseFiles": [
+    "LICENSE"
+  ],
+  "licenseStatus": "Upstream LICENSE retained.",
+  "sourceChanges": [
+    {
+      "file": "src/mosu.c",
+      "originalSha256": "befa2fd69a6c76a386e372fb33cad96e96ab856a7d2910ae32d990c6f3ea02ff",
+      "patchedSha256": "282fd23cdf471e06375a4351a57d6597753ff2de5b5831cd7d154a2d9c736e6d",
+      "reason": "Original score-path derivation subtracts sizeof(\"mosu\") from a valid basename argv[0], writing one byte before its stack buffer. Use the last path separator when present and the complete basename buffer otherwise. Actual original main checked-copy-boundary RED/GREEN covers basename, relative path and absolute path launches."
+    },
+    {
+      "file": "src/video_gr.c",
+      "originalSha256": "0690f66eae185842da2d4dc8b688c1859a3375b0dc25ac0379b1b246b64ac978",
+      "patchedSha256": "6eb26c20a19305cb3e5bb92586cea8fd45e9797446499c945931ecfe73263507",
+      "reason": "Original vg_paintPixel accepted x==framebuffer width or y==framebuffer height. Right-edge pixels could wrap into the next row, and bottom-edge pixels wrote beyond the allocated software framebuffer. Clip at or beyond each dimension before computing the address. Coordinates are unsigned, so negative comparisons were ineffective.",
+      "verification": "Actual original renderer initialized through vg_init fails guarded allocation regression. Repaired renderer preserves first/last valid corner colors, clips exact width/height, beyond-edge and unsigned-maximum coordinates, and presents the unchanged valid pixels through vg_nextFrame. RED/GREEN: build/arcade-100/a/mosu-edge-fix/{red,green}.log."
+    }
+  ],
+  "sha256": {
+    "LICENSE": "dab9900d0e2b3a86428bab9bc0a871660bdf3bf37ad8f71d580bf02c467e09dd",
+    "README.md": "e3163e1503d55851475c7ea9aef6df47ec067709971ac0100d6e2fa8f9ea0687",
+    "conf/mosu": "365da1ea79bb2f476d39c25c3ea5d524c6daefd4ecddc7fa39041a8096ed504a",
+    "src/Makefile": "e87db8126e20849b044a838a745f0dedd3210a8a82bcb545f137fd3b3a42143f",
+    "src/circle.c": "4f29d564681aaab091f85981c1f4aab56254d1276a7ab28b5c7d5750785a2d1d",
+    "src/circle.h": "5ee2b5f428207e4b8496f7fa876c7a031f5789dcd3758f4f7b44cbf6b68471a0",
+    "src/cursor.c": "baa0267211ab788754c8ad98c801cc532e27bc344acfbc69718929030bf2c41b",
+    "src/cursor.h": "e6f610b4c4441d5c63466359f1c16be7cb275946a6bd2a028f32c71c3a8c7a9a",
+    "src/game.c": "5469fac948191cd79845cf7130aa630ce1e9f4be8cde2e4d7fbb3804335f2380",
+    "src/game.h": "e60a8820da1967655dc5225777986d5468bd855f59e386db580e110f18b4cf73",
+    "src/game_core_st.c": "c0de884d068f975daea4023df9593d97a763186135849bfeb7648b35f7ca9eab",
+    "src/game_core_st.h": "3530bfef6fa53b7feccb35921865d93a1bdc8f22bdc6164f70e4784124c51c1a",
+    "src/highscores.txt": "493bffa44ab0f770124a1e4a94aeee28d1298e99945e6f2a52b3f8a06324c31e",
+    "src/i8042.c": "b40d8c2546bd3f08cf4fbc8941248b48a9a2dbd2c09bbdf6da7216abb4db322e",
+    "src/i8042.h": "346dcf707a0d7540c7debfc4c35a55a1cd26d6f51536e594e5d27609b98ce83b",
+    "src/i8254.h": "3ed0cd2d124107ba673300fac840b34bf7824ecf02e200b675e7266eea1df8ff",
+    "src/keyboard.c": "27916e6124a7440b3bc493f88610eb97fcc116e3868ff212c308008d9021cd49",
+    "src/keyboard.h": "93820f46e4386d0a7ab4c70c8262b1a5f2103cfc7b00d0a964073bb7a6fb0ae8",
+    "src/lmlib.h": "169fc3831c6995d86a41ee9965223baf9f04ea312f14f940f519ae8024cb1406",
+    "src/mosu.c": "befa2fd69a6c76a386e372fb33cad96e96ab856a7d2910ae32d990c6f3ea02ff",
+    "src/mouse.c": "e55b6d76324fa6e8836e5acde03e39e1f1c8c7ed4d6fabae78597933d52a37c0",
+    "src/mouse.h": "5d2f70edc5bd59d04f947005ebb6c92747d5af7a1dd67c75abd80eff77029e55",
+    "src/pixmap.c": "1642405e5781ebb0d18b1ce5c48380c53822a09dbad0b9f3ccf130422da54103",
+    "src/pixmap.h": "885839006cd9124ab2b5e9a1938880d454c234662928f1a8dc044864001acf68",
+    "src/queue.c": "b45eaa2aada8eb35269a6fa10460db5621fdfd046b9033b277eb23a58078a3aa",
+    "src/queue.h": "f74a6fd1ce6c90dcafd00a6a5942a1c2090f31147ad0c70ffc48f2d8c2fa398f",
+    "src/read_xpm.c": "4ac7bc48b48ac3e401fd69f81a5dfdd01d9827d13ca73f3e1446295375c33fe2",
+    "src/read_xpm.h": "38d53e993f0abb6e5a6f9cc88de11efdb602dcb3bf9bc4b0b0f647135b8dc1ef",
+    "src/rtc.c": "052ffe5a7dac862597e5f973c438e6e1707cff28fe5e830306d3a84fc729f7a8",
+    "src/rtc.h": "534185f100c59c8847594889097109963b0b0032f84c577a677efd0efd6edfab",
+    "src/sprite.c": "fb84339f093ec30e3ea9566af13d26f8549c488c7589af64cceffa00e5de76cd",
+    "src/sprite.h": "007253b1983b0967887f73d7140ac06c9e3ce35389c8fb097797a7ced2a98892",
+    "src/timer.c": "6764aa17eaa3d45c65e06b7ada15725c0b54fafd7561bd22cf4d0afe3f2a7d49",
+    "src/timer.h": "2eed6cac89357476a100ba9fa59a8e392ea6287d660db5eef961192bfde31ac0",
+    "src/vbe.c": "67476df4781b1c41048ea7cafb9f90c098aa28dd7c7d092d9f0fb9a2fad240ca",
+    "src/vbe.h": "007fdc1fc142aa734a09f4a6fea81b0af75c4d82655df58db8642f5fb89c8adf",
+    "src/video_gr.c": "0690f66eae185842da2d4dc8b688c1859a3375b0dc25ac0379b1b246b64ac978",
+    "src/video_gr.h": "c67dc9c02673bfeaa27c5dcd9239ca7c3c38eb48b1024ce99fbbd7cf10c35489"
+  },
+  "selection": "Pinned original project C, compiled artwork, configuration, scores and root README/license. Omitted generated documentation, labs, build outputs and OS/VCS metadata.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata excluded from required source inventory."
+  },
+  "icon": {
+    "kind": "simple original circle motif using original gameplay palette",
+    "source": "src/circle.c and src/pixmap.c"
+  },
+  "controlsRationale": "Relative swipe aims. Select chooses Play, then the next menu shifts the cursor100 pixels left. Easy creates a new cursor500,500; aim at visible circles and tap Q/W/E/R as the outer ring shrinks. Dedicated Q/W left and E/R right controls also support original hard-mode letter prompts. No generic pads or unused keyboard. Actual easy touch hits rendered green checkmarks in4 trials, Escape returned to the original menu. Hard mode is not yet gameplay-verified. One genuine original basename score-path underflow repaired with actual-main checked-copy RED/GREEN.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/Rockdell--2LCOM-MOsu",
+    "limits": "Easy-mode short functional touch gameplay; hard mode, Android gameplay and full score persistence remain unverified."
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "d8d5904548569e092f01bedb065109d8a550fd81d2bed493ff82f781adeaf109",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "0eba1efaa5903a6b43c7c1bab4539bf4b4d65ac3d91be286c9ae4b03b4a1ec49",
+      "kind": "actual successful browser touch hit with original VGA colors",
+      "sourceGallery": "galleries/rockdell-2lcom-mosu-67ee0b67c61f/first-hit.webp",
+      "sourceGallerySha256": "683cdb5a1981a62e6453cf4ee771cd8bb49a7ce3ee1de3691ab1a6886f23f77c"
+    }
+  ]
+}

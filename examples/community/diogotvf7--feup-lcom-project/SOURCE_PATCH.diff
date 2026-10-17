@@ -1,0 +1,41 @@
+--- a/proj/src/controller/graphics_card/graphics_card.c
++++ b/proj/src/controller/graphics_card/graphics_card.c
+@@ -55,7 +55,7 @@
+   int r;
+   struct minix_mem_range mr;
+   unsigned int vram_base = vmi_p.PhysBasePtr;
+-  unsigned int vram_size = vmi_p.XResolution * vmi_p.YResolution * (vmi_p.BitsPerPixel + 7 / 8) * 2; // Double of the size because of page flipping
++  unsigned int vram_size = (unsigned int) vmi_p.BytesPerScanLine * vmi_p.YResolution * 2; // Double of the size because of page flipping
+ 
+   /* Allow memory mapping */
+   mr.mr_base = (phys_bytes) vram_base;
+--- a/proj/src/model/model.c
++++ b/proj/src/model/model.c
+@@ -335,14 +335,14 @@
+         return NULL;
+     }
+     
+-    int random_line_number = (rand() % 49);
++    int random_line_number = (rand() % 50);
+     char* line = malloc(MAX_WORD_LENGTH * sizeof(char));
+     if (line == NULL) {
+         printf("Error allocating memory: \n");
+         fclose(file);
+         return NULL;
+     }
+-    for (int i = 0; i < random_line_number; i++) {
++    for (int i = 0; i <= random_line_number; i++) {
+         if (fgets(line, MAX_WORD_LENGTH, file) == NULL) {
+             printf("Error reading file: \n");
+             fclose(file);
+--- a/proj/src/controller/mouse/mouse.c
++++ b/proj/src/controller/mouse/mouse.c
+@@ -30,7 +30,7 @@
+ 
+ int (set_data_reporting)(bool enable) 
+ {
+-  uint8_t out;
++  uint8_t out = 0;
+   int attempts_left = ATTEMPTS;
+   while (attempts_left-- && out != ACK) {
+     if (mouse_write(KBC_CMD_REG, WRITE_BYTE_MOUSE) != OK) return EXIT_FAILURE;

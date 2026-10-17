@@ -1,0 +1,12 @@
+/* XPM */
+static char * border_xpm[] = {
+"8 6 2 1",
+"N c #808080",
+"B c #000000",
+"NNNNNNNN",
+"NNNNNNNN",
+"NNNNNNNB",
+"NNNNNNBB",
+"NNNNNBBB",
+"NNNNBBBB"
+};

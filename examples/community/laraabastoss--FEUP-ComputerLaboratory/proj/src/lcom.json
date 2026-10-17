@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "name": "Fireboy & Watergirl",
+  "description": "Guide both heroes through three original platform puzzle levels.",
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "levels"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj/src": "."
+    }
+  },
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "pointer": "move",
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        },
+        {
+          "side": "right",
+          "mode": "arrows",
+          "style": "dpad"
+        }
+      ],
+      "repeatKeys": [
+        "A",
+        "D",
+        "LEFT",
+        "RIGHT"
+      ],
+      "actions": [
+        {
+          "label": "Select / Lever",
+          "mouseButton": "left",
+          "side": "right"
+        }
+      ]
+    }
+  },
+  "archetype": "Fireboy and Watergirl",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

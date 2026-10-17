@@ -1,0 +1,22 @@
+--- a/proj/src/jumpingPeanut.c
++++ b/proj/src/jumpingPeanut.c
+@@ -14,7 +14,7 @@
+ startJumpingPeanut() {  // returns a pointer to a JumpingPeanut "object".
+ 
+   // allocate space for a new JumpingPeanut
+-  JumpingPeanut* peanut = (JumpingPeanut*)malloc(sizeof(JumpingPeanut));
++  JumpingPeanut* peanut = (JumpingPeanut*)calloc(1, sizeof(JumpingPeanut));
+ 
+   // subscribe to activate interruptions
+   peanut->kbd_irq = kbd_subscribe();
+--- a/proj/src/mouse.c
++++ b/proj/src/mouse.c
+@@ -19,7 +19,7 @@
+ }
+ 
+ Peanut_mouse* new_mouse() {
+-  Peanut_mouse* mouse = (Peanut_mouse*)malloc(sizeof(Peanut_mouse));
++  Peanut_mouse* mouse = (Peanut_mouse*)calloc(1, sizeof(Peanut_mouse));
+ 
+   mouse->icon = loadBitmap("/home/lcom/proj/res/mouse.bmp");
+   mouse->x = H_RES / 2;

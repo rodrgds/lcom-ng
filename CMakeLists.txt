@@ -58,6 +58,7 @@ add_library(lcom_minix STATIC
   sdk/compat/src/compat.c
   sdk/compat/src/output_log.c
   sdk/compat/src/lcf.c
+  sdk/compat/src/printf.c
   sdk/compat/src/xpm.c
 )
 target_include_directories(lcom_minix PUBLIC
@@ -302,21 +303,40 @@ add_lab_solution_test(lab7
 
 if(BUILD_TESTING)
   find_package(Python3 COMPONENTS Interpreter REQUIRED)
+  add_test(NAME hardware_config
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/hardware_config.py
+      --build ${CMAKE_BINARY_DIR})
+  set_tests_properties(hardware_config PROPERTIES TIMEOUT 45)
+  add_test(NAME native_arguments
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/native_arguments.py
+      --sdk ${CMAKE_CURRENT_SOURCE_DIR}/sdk)
+  add_test(NAME android_apk_finalization
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/android_apk_finalization.py)
   add_test(NAME package_example_inventory
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/package_example_inventory.py)
   add_test(NAME community_source_regressions
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/community_source_regressions.py)
+  add_test(NAME community_a141_regressions
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/community_a141_regressions.py)
+  add_test(NAME community_a141_followup_regressions
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/community_a141_followup_regressions.py)
+  add_test(NAME community_a143_regressions
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/community_a143_regressions.py)
+  add_test(NAME community_expansion_regressions
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/community_expansion_regressions.py)
   if(MACHINE_LAB_WITH_SDL)
     add_executable(sdl_render_tests tests/sdl_render_tests.cpp runtime/backends/SdlBackend.cpp)
     target_compile_definitions(sdl_render_tests PRIVATE MACHINE_LAB_WITH_SDL)
     target_compile_options(sdl_render_tests PRIVATE -Wall -Wextra -Wpedantic)
     target_link_libraries(sdl_render_tests PRIVATE machinelab_core PkgConfig::SDL3 PkgConfig::SDL3_TTF)
     add_executable(embedded_sdl_tests tests/embedded_sdl_tests.cpp
-      tests/embedded_sdl_host.cpp runtime/backends/SdlAudioBackend.cpp)
-    target_compile_definitions(embedded_sdl_tests PRIVATE MACHINE_LAB_WITH_SDL)
-    target_link_libraries(embedded_sdl_tests PRIVATE lcom_embedded PkgConfig::SDL3)
+      tests/embedded_sdl_host.cpp runtime/backends/SdlAudioBackend.cpp
+      tests/fixtures/compat-sleep/main.c sdk/compat/src/compat.c sdk/compat/src/output_log.c)
+    target_include_directories(embedded_sdl_tests PRIVATE "$<$<COMPILE_LANGUAGE:C>:${CMAKE_CURRENT_SOURCE_DIR}/sdk/compat/include>")
+    target_compile_definitions(embedded_sdl_tests PRIVATE MACHINE_LAB_WITH_SDL LCOM_COMPAT_SLEEP_NATIVE_FIXTURE)
+    target_link_libraries(embedded_sdl_tests PRIVATE lcom_embedded PkgConfig::SDL3 Threads::Threads)
     add_test(NAME embedded_sdl COMMAND embedded_sdl_tests)
-    set_tests_properties(embedded_sdl PROPERTIES TIMEOUT 15
+    set_tests_properties(embedded_sdl PROPERTIES TIMEOUT 20
       ENVIRONMENT "SDL_VIDEODRIVER=dummy;SDL_AUDIODRIVER=dummy;SDL_RENDER_DRIVER=software"
       WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
     set_target_properties(sdl_render_tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/tests)
@@ -324,6 +344,27 @@ if(BUILD_TESTING)
     set_tests_properties(sdl_render PROPERTIES
       TIMEOUT 30 ENVIRONMENT "SDL_VIDEODRIVER=dummy;SDL_RENDER_DRIVER=software")
   endif()
+  add_executable(vbe_palette_tests tests/vbe_palette_tests.cpp runtime/devices/Vbe.cpp)
+  target_include_directories(vbe_palette_tests PRIVATE sdk/include)
+  add_test(NAME vbe_palette COMMAND vbe_palette_tests)
+
+  add_executable(machine_config_tests tests/machine_config_tests.cpp)
+  target_link_libraries(machine_config_tests PRIVATE machinelab_core)
+  add_test(NAME machine_config COMMAND machine_config_tests)
+
+  add_executable(compat_printf_tests tests/compat_printf.c sdk/compat/src/printf.c)
+  target_include_directories(compat_printf_tests PRIVATE sdk/compat/include)
+  target_compile_options(compat_printf_tests PRIVATE -Wall -Wextra -Wpedantic)
+  add_test(NAME compat_printf COMMAND compat_printf_tests)
+
+  add_executable(compat_bitmap_tests tests/compat_bitmap.c)
+  target_include_directories(compat_bitmap_tests PRIVATE sdk/compat/include sdk/include)
+  add_test(NAME compat_bitmap COMMAND compat_bitmap_tests)
+
+  add_executable(compat_devio_tests tests/compat_devio.c)
+  target_include_directories(compat_devio_tests PRIVATE sdk/compat/include sdk/include)
+  add_test(NAME compat_devio COMMAND compat_devio_tests)
+
   add_executable(compat_xpm_tests tests/compat_xpm_tests.c)
   target_link_libraries(compat_xpm_tests PRIVATE lcom_minix)
   add_test(NAME compat_xpm COMMAND compat_xpm_tests)
@@ -332,6 +373,16 @@ if(BUILD_TESTING)
   add_test(NAME compat_lcf
     COMMAND $<TARGET_FILE:machinelab> run --headless --max-ticks 600 -- $<TARGET_FILE:compat_lcf>)
   set_tests_properties(compat_lcf PROPERTIES TIMEOUT 15)
+  foreach(timer_variant IN ITEMS fallback override)
+    add_executable(compat_lcf_timer_${timer_variant} tests/compat_lcf_timer.c)
+    target_link_libraries(compat_lcf_timer_${timer_variant} PRIVATE lcom_minix)
+    if(timer_variant STREQUAL "override")
+      target_compile_definitions(compat_lcf_timer_${timer_variant} PRIVATE LCOM_TEST_STRONG_TIMER)
+    endif()
+    add_test(NAME compat_lcf_timer_${timer_variant}
+      COMMAND $<TARGET_FILE:machinelab> run --headless --max-ticks 60 -- $<TARGET_FILE:compat_lcf_timer_${timer_variant}>)
+    set_tests_properties(compat_lcf_timer_${timer_variant} PROPERTIES TIMEOUT 15)
+  endforeach()
   add_executable(compat_ps2_faults tests/compat_ps2_faults.c)
   target_link_libraries(compat_ps2_faults PRIVATE lcom_minix)
   add_test(NAME compat_ps2_faults
@@ -350,6 +401,37 @@ if(BUILD_TESTING)
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_output_log.py
       $<TARGET_FILE:machinelab> $<TARGET_FILE:compat_output_log>)
   set_tests_properties(compat_output_log PROPERTIES TIMEOUT 30)
+  # Feed deterministic runtime events through the real Minix notification owner.
+  # Unused device adapters are discarded, so this fixture needs no runtime server.
+  add_executable(compat_notifications tests/compat_notifications.c sdk/compat/src/compat.c)
+  target_include_directories(compat_notifications PRIVATE sdk/compat/include sdk/include)
+  target_compile_options(compat_notifications PRIVATE -ffunction-sections -fdata-sections)
+  if(APPLE)
+    target_link_options(compat_notifications PRIVATE -Wl,-dead_strip)
+  else()
+    target_link_options(compat_notifications PRIVATE -Wl,--gc-sections)
+  endif()
+  add_test(NAME compat_notifications COMMAND compat_notifications)
+  add_executable(compat_asm_io tests/compat_asm_io.c sdk/compat/src/compat.c)
+  target_include_directories(compat_asm_io PRIVATE sdk/compat/include sdk/include)
+  target_compile_options(compat_asm_io PRIVATE -ffunction-sections -fdata-sections)
+  if(APPLE)
+    target_link_options(compat_asm_io PRIVATE -Wl,-dead_strip)
+  else()
+    target_link_options(compat_asm_io PRIVATE -Wl,--gc-sections)
+  endif()
+  add_test(NAME compat_asm_io
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_asm_io.py $<TARGET_FILE:compat_asm_io>)
+  add_test(NAME compat_byte_ports
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_byte_ports.py
+      $<TARGET_FILE:machinelab> ${CMAKE_CURRENT_SOURCE_DIR}/sdk ${CMAKE_BINARY_DIR}
+      ${CMAKE_BINARY_DIR}/test-output/compat-byte-ports)
+  set_tests_properties(compat_byte_ports PROPERTIES TIMEOUT 30)
+  add_test(NAME compat_interrupts
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_interrupts.py
+      $<TARGET_FILE:machinelab> ${CMAKE_CURRENT_SOURCE_DIR}/sdk ${CMAKE_BINARY_DIR}
+      ${CMAKE_BINARY_DIR}/test-output/compat-interrupts)
+  set_tests_properties(compat_interrupts PROPERTIES TIMEOUT 30)
   add_executable(compat_paths tests/compat_paths.c)
   target_link_libraries(compat_paths PRIVATE lcom_minix)
   add_test(NAME compat_paths COMMAND $<TARGET_FILE:compat_paths>)
@@ -357,16 +439,40 @@ if(BUILD_TESTING)
   # dangling-link save-path fixture. Its sys mode needs no Windows privilege.
   set_tests_properties(compat_paths PROPERTIES
     ENVIRONMENT "MSYS=winsymlinks:sys;CYGWIN=winsymlinks:sys")
+  add_executable(compat_vbe_scanline tests/compat_vbe_scanline.c)
+  target_link_libraries(compat_vbe_scanline PRIVATE lcom_minix)
+  add_test(NAME compat_vbe_scanline
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_vbe_scanline.py
+      $<TARGET_FILE:machinelab> $<TARGET_FILE:compat_vbe_scanline> ${CMAKE_BINARY_DIR}/test-output/scanline)
+  set_tests_properties(compat_vbe_scanline PROPERTIES TIMEOUT 30)
+  add_executable(compat_vbe_dac tests/fixtures/dac-palette/main.c)
+  target_link_libraries(compat_vbe_dac PRIVATE lcom_minix)
+  add_test(NAME compat_vbe_dac
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_vbe_dac.py
+      $<TARGET_FILE:machinelab> $<TARGET_FILE:compat_vbe_dac> ${CMAKE_BINARY_DIR}/test-output/dac)
+  set_tests_properties(compat_vbe_dac PROPERTIES TIMEOUT 30)
   add_executable(compat_client tests/compat_client.c)
   target_link_libraries(compat_client PRIVATE lcom_minix)
   add_test(NAME compat_client
     COMMAND $<TARGET_FILE:machinelab> run --headless --max-ticks 100
       --dump-frame ${CMAKE_BINARY_DIR}/test-output/compat-client.ppm -- $<TARGET_FILE:compat_client>)
+  add_test(NAME compat_irq_policy
+    COMMAND $<TARGET_FILE:machinelab> run --headless --max-ticks 100
+      -- $<TARGET_FILE:compat_client> --irq-policy)
   add_test(NAME compat_client_pair
     COMMAND $<TARGET_FILE:machinelab> run-pair --headless --max-ticks 100
       --left-dump-frame ${CMAKE_BINARY_DIR}/test-output/compat-left.ppm
       --right-dump-frame ${CMAKE_BINARY_DIR}/test-output/compat-right.ppm
       $<TARGET_FILE:compat_client> --right $<TARGET_FILE:compat_client>)
+  add_test(NAME compat_process
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_process.py
+      --sdk ${CMAKE_CURRENT_SOURCE_DIR}/sdk
+      --runtime-build $<TARGET_FILE_DIR:lcom_minix>
+      --runtime $<TARGET_FILE:machinelab>)
+  add_test(NAME compat_legacy
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_legacy.py
+      --sdk ${CMAKE_CURRENT_SOURCE_DIR}/sdk --runtime-build ${CMAKE_BINARY_DIR}
+      --runtime $<TARGET_FILE:machinelab>)
   add_test(NAME compat_import
     COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_import_tests.py)
   foreach(mouse_boot IN ITEMS 0 1)
@@ -416,6 +522,9 @@ if(BUILD_TESTING)
   add_executable(embedded_tests tests/embedded_tests.cpp)
   target_link_libraries(embedded_tests PRIVATE lcom_embedded)
   add_test(NAME embedded_sdk COMMAND embedded_tests)
+  add_executable(embedded_mouse_rate_tests tests/embedded_mouse_rate_tests.cpp)
+  target_link_libraries(embedded_mouse_rate_tests PRIVATE lcom_embedded)
+  add_test(NAME embedded_mouse_rate COMMAND embedded_mouse_rate_tests all)
   add_test(NAME unit COMMAND unit_tests)
   add_test(NAME client_protocol COMMAND client_protocol_tests)
   add_test(NAME host_clipboard COMMAND $<TARGET_FILE:machinelab> run --headless -- $<TARGET_FILE:clipboard_client>)
@@ -453,4 +562,18 @@ if(BUILD_TESTING)
     WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
     TIMEOUT 300
   )
+endif()
+
+if(BUILD_TESTING)
+  add_executable(vga_text_tests tests/vga_text_tests.cpp)
+  target_link_libraries(vga_text_tests PRIVATE machinelab_core)
+  add_test(NAME vga_text COMMAND vga_text_tests)
+
+  add_executable(compat_vga_text_client tests/compat_vga_text.c)
+  target_link_libraries(compat_vga_text_client PRIVATE lcom_minix)
+  add_test(NAME compat_vga_text
+    COMMAND ${Python3_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/tests/compat_vga_text.py
+      $<TARGET_FILE:machinelab> $<TARGET_FILE:compat_vga_text_client>
+      ${CMAKE_BINARY_DIR}/test-output/vga-text)
+  set_tests_properties(compat_vga_text PROPERTIES TIMEOUT 30)
 endif()

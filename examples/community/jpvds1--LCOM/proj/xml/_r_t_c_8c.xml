@@ -1,0 +1,422 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="_r_t_c_8c" kind="file" language="C++">
+    <compoundname>RTC.c</compoundname>
+    <includes refid="_r_t_c_8h" local="yes">RTC.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c</label>
+        <link refid="_r_t_c_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>RTC.h</label>
+        <link refid="_r_t_c_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="4">
+        <label>lcom/lcf.h</label>
+      </node>
+      <node id="3">
+        <label>minix/sysutil.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" prot="public" static="no" mutable="no">
+        <type><ref refid="structclock__fields__struct" kindref="compound">clock_fields_struct</ref></type>
+        <definition>clock_fields_struct info_rtc</definition>
+        <argsstring></argsstring>
+        <name>info_rtc</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" line="3" column="21" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_r_t_c_8c_1ae6c1b515c48367f6c55c7a881a22924a" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hookid_rtc</definition>
+        <argsstring></argsstring>
+        <name>hookid_rtc</name>
+        <initializer>= 4</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" line="4" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_r_t_c_8c_1a6502416e03b5be5c1b6e21836811978d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t rtc_mode</definition>
+        <argsstring></argsstring>
+        <name>rtc_mode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" line="5" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" bodystart="5" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_r_t_c_8c_1a5171a9c0f54940fe60f7500896afcc86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int rtc_subscribe_int</definition>
+        <argsstring>(uint8_t *bit_no)</argsstring>
+        <name>rtc_subscribe_int</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>bit_no</declname>
+        </param>
+        <briefdescription>
+<para>Subscribes the RTC interruptions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bit_no</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>pointer to the variable that will store the IRQ bit number </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success, 1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" line="9" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" bodystart="9" bodyend="16"/>
+      </memberdef>
+      <memberdef kind="function" id="_r_t_c_8c_1ab8f17bf5280c908c8b199a90fefcc758" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int rtc_unsubscribe_int</definition>
+        <argsstring>()</argsstring>
+        <name>rtc_unsubscribe_int</name>
+        <briefdescription>
+<para>Unsubscribes the RTC interruptions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return 0 upon success, 1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" line="19" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" bodystart="19" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="_r_t_c_8c_1a2acfce1797229bca7d98151f6a2b7ee4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void get_rtc_info</definition>
+        <argsstring>()</argsstring>
+        <name>get_rtc_info</name>
+        <briefdescription>
+<para>Gets the current date and time from the RTC hardware. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" line="24" column="6" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" bodystart="24" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="_r_t_c_8c_1aad83275f919da2ecd5b0d44129fb3c9a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int get_rtc_mode</definition>
+        <argsstring>()</argsstring>
+        <name>get_rtc_mode</name>
+        <briefdescription>
+<para>Gets the mode of operation of the RTC. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return 0 if the RTC is in binary mode, 1 if it is in BCD mode </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" line="38" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" bodystart="38" bodyend="49"/>
+      </memberdef>
+      <memberdef kind="function" id="_r_t_c_8c_1aeeca2d83ec4152d762ca633babe54e08" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int extract_rtc_data</definition>
+        <argsstring>(uint8_t reg_to_access, uint8_t *output_data)</argsstring>
+        <name>extract_rtc_data</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>reg_to_access</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>output_data</declname>
+        </param>
+        <briefdescription>
+<para>Extracts the data from a specific register in the RTC hardware. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>reg_to_access</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The address of the register to access </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>output_data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The pointer to the variable that will store the data extracted from the register </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success, 1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" line="62" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" bodystart="62" bodyend="75"/>
+      </memberdef>
+      <memberdef kind="function" id="_r_t_c_8c_1ab6b3cf5202440dc65e4c00e947ff4361" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int rtc_doing_update</definition>
+        <argsstring>()</argsstring>
+        <name>rtc_doing_update</name>
+        <briefdescription>
+<para>Checks if the RTC is doing an update. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return 0 if the RTC is not doing an update, 1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" line="79" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" bodystart="79" bodyend="87"/>
+      </memberdef>
+      <memberdef kind="function" id="_r_t_c_8c_1ad4f97d3a8f0107b1e6c83f9cc6e0a308" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>uint8_t</type>
+        <definition>uint8_t convert_in_binary</definition>
+        <argsstring>(uint8_t bcd_value)</argsstring>
+        <name>convert_in_binary</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>bcd_value</declname>
+        </param>
+        <briefdescription>
+<para>Converts a value in binary-coded decimal (BCD) to binary. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bcd_value</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The BCD value to convert </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The binary value </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" line="91" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" bodystart="91" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="_r_t_c_8c_1a272931fc32881c65344428c0b76419c1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int clock_fields_update</definition>
+        <argsstring>()</argsstring>
+        <name>clock_fields_update</name>
+        <briefdescription>
+<para>Updates the struct that stores the current date and time based on the values returned by the RTC. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return 0 upon success, 1 otherwise </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" line="97" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c" bodystart="97" bodyend="158"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_r_t_c_8h" kindref="compound">RTC.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" refkind="member"><highlight class="normal"><ref refid="structclock__fields__struct" kindref="compound">clock_fields_struct</ref><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>;<sp/><sp/></highlight><highlight class="comment">//<sp/>struct<sp/>que<sp/>contem<sp/>info<sp/>do<sp/>RTC<sp/>em<sp/>segundos,<sp/>minutos,<sp/>etc</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="_r_t_c_8c_1ae6c1b515c48367f6c55c7a881a22924a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_r_t_c_8c_1ae6c1b515c48367f6c55c7a881a22924a" kindref="member">hookid_rtc</ref><sp/>=<sp/>4;<sp/></highlight></codeline>
+<codeline lineno="5" refid="_r_t_c_8c_1a6502416e03b5be5c1b6e21836811978d" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="_r_t_c_8c_1a6502416e03b5be5c1b6e21836811978d" kindref="member">rtc_mode</ref>;<sp/></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//subscribe<sp/>RTC<sp/>interrupts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9" refid="_r_t_c_8c_1a5171a9c0f54940fe60f7500896afcc86" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_r_t_c_8c_1a5171a9c0f54940fe60f7500896afcc86" kindref="member">rtc_subscribe_int</ref>(uint8_t<sp/>*bit_no)<sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(bit_no<sp/>==<sp/>NULL){</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>*bit_no<sp/>=<sp/>BIT(<ref refid="_r_t_c_8c_1ae6c1b515c48367f6c55c7a881a22924a" kindref="member">hookid_rtc</ref>);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*The<sp/>RTC<sp/>has<sp/>only<sp/>one<sp/>IRQ<sp/>line,<sp/>which<sp/>is<sp/>connected<sp/>to<sp/>line<sp/>IRQ0<sp/>of<sp/>PIC2,<sp/>i.e.<sp/>IRQ8*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sys_irqsetpolicy(<ref refid="_r_t_c_8h_1a9a0bb5c8a88e8c78082ba6bbd43dfac7" kindref="member">rtc_irq</ref>,<sp/>IRQ_REENABLE,<sp/>&amp;<ref refid="_r_t_c_8c_1ae6c1b515c48367f6c55c7a881a22924a" kindref="member">hookid_rtc</ref>);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//unsubscribe<sp/>RTC<sp/>interrupts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="_r_t_c_8c_1ab8f17bf5280c908c8b199a90fefcc758" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_r_t_c_8c_1ab8f17bf5280c908c8b199a90fefcc758" kindref="member">rtc_unsubscribe_int</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sys_irqrmpolicy(&amp;<ref refid="_r_t_c_8c_1ae6c1b515c48367f6c55c7a881a22924a" kindref="member">hookid_rtc</ref>);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24" refid="_r_t_c_8c_1a2acfce1797229bca7d98151f6a2b7ee4" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="_r_t_c_8c_1a2acfce1797229bca7d98151f6a2b7ee4" kindref="member">get_rtc_info</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_r_t_c_8c_1aad83275f919da2ecd5b0d44129fb3c9a" kindref="member">get_rtc_mode</ref>()!=0){</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a6502416e03b5be5c1b6e21836811978d" kindref="member">rtc_mode</ref><sp/>=<sp/>1;<sp/></highlight><highlight class="comment">//mode<sp/>is<sp/>binary</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a6502416e03b5be5c1b6e21836811978d" kindref="member">rtc_mode</ref><sp/>=<sp/>0;<sp/></highlight><highlight class="comment">//mode<sp/>is<sp/>BCD</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a272931fc32881c65344428c0b76419c1" kindref="member">clock_fields_update</ref>();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;got<sp/>rtc<sp/>info&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight><highlight class="comment">//determine<sp/>whether<sp/>the<sp/>RTC<sp/>is<sp/>operating<sp/>in<sp/>binary<sp/>mode<sp/>(return<sp/>1)<sp/>or<sp/>not<sp/>(return<sp/>0)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38" refid="_r_t_c_8c_1aad83275f919da2ecd5b0d44129fb3c9a" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_r_t_c_8c_1aad83275f919da2ecd5b0d44129fb3c9a" kindref="member">get_rtc_mode</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>res;<sp/></highlight><highlight class="comment">//stores<sp/>the<sp/>output<sp/>of<sp/>the<sp/>RTC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//REG_B:<sp/>11<sp/>is<sp/>the<sp/>adress<sp/>of<sp/>Control/Status<sp/>RegisterB<sp/>we<sp/>want<sp/>to<sp/>read-&gt;BIT(2)&apos;DM&apos;<sp/>set<sp/>to<sp/>1<sp/>to<sp/>set<sp/>time<sp/>and<sp/>date<sp/>registers<sp/>in<sp/>binary,<sp/>set<sp/>to<sp/>0<sp/>for<sp/>BCD.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1aeeca2d83ec4152d762ca633babe54e08" kindref="member">extract_rtc_data</ref>(<ref refid="_r_t_c_8h_1a28ed75c6727784e56c2bb8d828c876c9" kindref="member">REG_B</ref>,<sp/>&amp;res)){</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;error<sp/>reading<sp/>from<sp/>RTC&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal">{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>res<sp/>&amp;<sp/>BIT(2);<sp/></highlight><highlight class="comment">//BIT(2)<sp/>active<sp/>-&gt;<sp/>means<sp/>rtc<sp/>configuration<sp/>is<sp/>in<sp/>binary</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>PDF<sp/>NOTES:</highlight></codeline>
+<codeline lineno="53"><highlight class="comment">The<sp/>PC<sp/>uses<sp/>two<sp/>ports<sp/>to<sp/>access<sp/>the<sp/>RTC’s<sp/>internal<sp/>registers:</highlight></codeline>
+<codeline lineno="54"><highlight class="comment"><sp/><sp/><sp/><sp/>RTC_ADDR_REG<sp/>on<sp/>port<sp/>0x70,<sp/>which<sp/>must<sp/>be<sp/>loaded<sp/>with<sp/>the<sp/>address<sp/>of<sp/>the<sp/>RTC<sp/>register<sp/>to<sp/>be<sp/>accessed</highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/><sp/><sp/><sp/>RTC_DATA_REG<sp/>on<sp/>port<sp/>0x71,<sp/>which<sp/>is<sp/>used<sp/>to<sp/>transfer<sp/>the<sp/>data<sp/>to/from<sp/>the<sp/>RTC’s<sp/>register<sp/>accessed</highlight></codeline>
+<codeline lineno="56"><highlight class="comment">▶<sp/>To<sp/>read/write<sp/>a<sp/>register<sp/>of<sp/>the<sp/>RTC<sp/>requires<sp/>always:</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"><sp/><sp/><sp/><sp/>1.<sp/>writing<sp/>the<sp/>address<sp/>of<sp/>the<sp/>register<sp/>to<sp/>the<sp/>RTC_ADDR_REG</highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/><sp/><sp/><sp/>2.<sp/>reading/writing<sp/>one<sp/>byte<sp/>from/to<sp/>the<sp/>RTC_DATA_REG</highlight></codeline>
+<codeline lineno="59"><highlight class="comment">*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight><highlight class="comment">//reads<sp/>time<sp/>and<sp/>date<sp/>information<sp/>from<sp/>RTC<sp/>registers<sp/>given<sp/>a<sp/>write<sp/>command</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62" refid="_r_t_c_8c_1aeeca2d83ec4152d762ca633babe54e08" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_r_t_c_8c_1aeeca2d83ec4152d762ca633babe54e08" kindref="member">extract_rtc_data</ref>(uint8_t<sp/>reg_to_access,<sp/>uint8_t<sp/>*output_data)<sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight><highlight class="comment">/*RTC<sp/>has<sp/>several<sp/>registers<sp/>that<sp/>store<sp/>information<sp/>about<sp/>the<sp/>time<sp/>and<sp/>date.<sp/>Each<sp/>register<sp/>is<sp/>identified<sp/>by<sp/>an<sp/>adress.</highlight></codeline>
+<codeline lineno="64"><highlight class="comment">The<sp/>function<sp/>sends<sp/>the<sp/>adress<sp/>to<sp/>the<sp/>RTC<sp/>via<sp/>the<sp/>input<sp/>port<sp/>(0x70)<sp/>and<sp/>reads<sp/>the<sp/>result<sp/>from<sp/>the<sp/>output<sp/>port<sp/>(0x71).*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sys_outb(0x70,<sp/>reg_to_access)<sp/>!=<sp/>0){<sp/></highlight><highlight class="comment">//caso<sp/>haja<sp/>erro<sp/>ao<sp/>escrever<sp/>(load)<sp/>no<sp/>reg<sp/>de<sp/>controlo<sp/>(0x70)<sp/>o<sp/>endereço<sp/>do<sp/>reg<sp/>que<sp/>queremos<sp/>aceder</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Error<sp/>writing<sp/>to<sp/>port<sp/>0x70&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="utils_8c_1a79a031a8611f5b2d6afa4158e92b0fb4" kindref="member">util_sys_inb</ref>(0x71,<sp/>output_data)<sp/>!=<sp/>0){<sp/></highlight><highlight class="comment">//caso<sp/>haja<sp/>erro<sp/>ao<sp/>ler<sp/>do<sp/>registo<sp/>de<sp/>output<sp/>0x71</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Error<sp/>reading<sp/>from<sp/>port<sp/>0x71&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight><highlight class="comment">//check<sp/>if<sp/>RTC<sp/>is<sp/>updating<sp/>registers<sp/>and<sp/>if<sp/>so<sp/>do<sp/>not<sp/>read<sp/>from<sp/>it<sp/>-&gt;<sp/>if<sp/>RTC<sp/>is<sp/>updating<sp/>returns<sp/>1,<sp/>otherwise<sp/>returns<sp/>0.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79" refid="_r_t_c_8c_1ab6b3cf5202440dc65e4c00e947ff4361" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_r_t_c_8c_1ab6b3cf5202440dc65e4c00e947ff4361" kindref="member">rtc_doing_update</ref>()<sp/>{<sp/></highlight><highlight class="comment">//<sp/>if<sp/>rtc<sp/>is<sp/>updating</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight><highlight class="comment">/*When<sp/>the<sp/>RTC<sp/>is<sp/>updating,<sp/>the<sp/>information<sp/>in<sp/>its<sp/>registers<sp/>is<sp/>not<sp/>reliable<sp/>and<sp/>should<sp/>not<sp/>be<sp/>read.</highlight></codeline>
+<codeline lineno="81"><highlight class="comment">The<sp/>function<sp/>sends<sp/>the<sp/>REGISTER_A<sp/>adress<sp/>(adress:<sp/>10)<sp/>to<sp/>the<sp/>RTC<sp/>and<sp/>reads<sp/>the<sp/>response.<sp/>If<sp/>the<sp/>response<sp/>has<sp/>the</highlight></codeline>
+<codeline lineno="82"><highlight class="comment">BIT(7)<sp/>bit<sp/>set,<sp/>it<sp/>means<sp/>that<sp/>the<sp/>RTC<sp/>is<sp/>updating,<sp/>and<sp/>the<sp/>function<sp/>returns<sp/>1.<sp/>Otherwise,<sp/>it<sp/>returns<sp/>0.*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>response;<sp/></highlight><highlight class="comment">//result</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1aeeca2d83ec4152d762ca633babe54e08" kindref="member">extract_rtc_data</ref>(<ref refid="_r_t_c_8h_1aa0e40d1cb9fea79e800aa79b8ca291f7" kindref="member">REG_A</ref>,<sp/>&amp;response))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;<sp/></highlight><highlight class="comment">//REGISTER_UPDATING<sp/><sp/><sp/>10</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>response<sp/>&amp;<sp/>BIT(7);<sp/></highlight><highlight class="comment">//BIT(7)<sp/>active<sp/>means<sp/>RTC<sp/>is<sp/>updating</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Converts<sp/>BCD<sp/>value<sp/>into<sp/>binary</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91" refid="_r_t_c_8c_1ad4f97d3a8f0107b1e6c83f9cc6e0a308" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="_r_t_c_8c_1ad4f97d3a8f0107b1e6c83f9cc6e0a308" kindref="member">convert_in_binary</ref>(uint8_t<sp/>bcd_value)<sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>((bcd_value<sp/>&gt;&gt;<sp/>4)<sp/>*<sp/>10)<sp/>+<sp/>(bcd_value<sp/>&amp;<sp/>0xF);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Actualizar<sp/>os<sp/>campos<sp/>da<sp/>struct<sp/>time_info;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="97" refid="_r_t_c_8c_1a272931fc32881c65344428c0b76419c1" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_r_t_c_8c_1a272931fc32881c65344428c0b76419c1" kindref="member">clock_fields_update</ref>()<sp/>{</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>time_info;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>caso<sp/>o<sp/>RTC<sp/>esteja<sp/>a<sp/>fazer<sp/>update<sp/>e<sp/>a<sp/>actualizar<sp/>os<sp/>registos<sp/>não<sp/>podemos<sp/>ler<sp/>a<sp/>informação</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1ab6b3cf5202440dc65e4c00e947ff4361" kindref="member">rtc_doing_update</ref>()<sp/>!=<sp/>0){</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;action<sp/>failed:<sp/>RTC<sp/>is<sp/>updating!&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>segundos<sp/>address<sp/>location:<sp/>0</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1aeeca2d83ec4152d762ca633babe54e08" kindref="member">extract_rtc_data</ref>(0,<sp/>&amp;time_info)<sp/>!=<sp/>0){</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;action<sp/>failed:<sp/>RTC<sp/>is<sp/>updating!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1a6502416e03b5be5c1b6e21836811978d" kindref="member">rtc_mode</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1aacbc9bedaa1869359adae36d2c82609b" kindref="member">sec</ref><sp/>=<sp/>time_info;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1aacbc9bedaa1869359adae36d2c82609b" kindref="member">sec</ref><sp/>=<sp/><ref refid="_r_t_c_8c_1ad4f97d3a8f0107b1e6c83f9cc6e0a308" kindref="member">convert_in_binary</ref>(time_info);</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>minutos<sp/>address<sp/>location:<sp/>2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1aeeca2d83ec4152d762ca633babe54e08" kindref="member">extract_rtc_data</ref>(2,<sp/>&amp;time_info)<sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1a6502416e03b5be5c1b6e21836811978d" kindref="member">rtc_mode</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1aa97974f24bd598bab381157eb2899857" kindref="member">min</ref><sp/>=<sp/>time_info;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1aa97974f24bd598bab381157eb2899857" kindref="member">min</ref><sp/>=<sp/><ref refid="_r_t_c_8c_1ad4f97d3a8f0107b1e6c83f9cc6e0a308" kindref="member">convert_in_binary</ref>(time_info);</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>horas<sp/>address<sp/>location:<sp/>4<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1aeeca2d83ec4152d762ca633babe54e08" kindref="member">extract_rtc_data</ref>(4<sp/>,<sp/>&amp;time_info)<sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1a6502416e03b5be5c1b6e21836811978d" kindref="member">rtc_mode</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1a2bd736629b3e6418d20e90ca42bdda06" kindref="member">h</ref><sp/>=<sp/>time_info;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1a2bd736629b3e6418d20e90ca42bdda06" kindref="member">h</ref><sp/>=<sp/><ref refid="_r_t_c_8c_1ad4f97d3a8f0107b1e6c83f9cc6e0a308" kindref="member">convert_in_binary</ref>(time_info);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dia<sp/>address<sp/>location:<sp/>7</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1aeeca2d83ec4152d762ca633babe54e08" kindref="member">extract_rtc_data</ref>(7,<sp/>&amp;time_info)<sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1a6502416e03b5be5c1b6e21836811978d" kindref="member">rtc_mode</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1ac6c0a9c09b5634dd8cb365b712d5ea6a" kindref="member">d</ref><sp/>=<sp/>time_info;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1ac6c0a9c09b5634dd8cb365b712d5ea6a" kindref="member">d</ref><sp/>=<sp/><ref refid="_r_t_c_8c_1ad4f97d3a8f0107b1e6c83f9cc6e0a308" kindref="member">convert_in_binary</ref>(time_info);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>mês<sp/>address<sp/>location:<sp/>8</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1aeeca2d83ec4152d762ca633babe54e08" kindref="member">extract_rtc_data</ref>(8,<sp/>&amp;time_info)<sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1a6502416e03b5be5c1b6e21836811978d" kindref="member">rtc_mode</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1a741a9f4334ab733150f2da72a4be249d" kindref="member">m</ref><sp/>=<sp/>time_info;</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1a741a9f4334ab733150f2da72a4be249d" kindref="member">m</ref><sp/>=<sp/><ref refid="_r_t_c_8c_1ad4f97d3a8f0107b1e6c83f9cc6e0a308" kindref="member">convert_in_binary</ref>(time_info);</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>ano<sp/>address<sp/>location:<sp/>9</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1aeeca2d83ec4152d762ca633babe54e08" kindref="member">extract_rtc_data</ref>(9,<sp/>&amp;time_info)<sp/>!=<sp/>0)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_r_t_c_8c_1a6502416e03b5be5c1b6e21836811978d" kindref="member">rtc_mode</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1ac74ebfcc16cee3bd65adf52113779422" kindref="member">y</ref><sp/>=<sp/>time_info;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_r_t_c_8c_1a4649d0bcae4bfc2f4e0a6283da8d5d88" kindref="member">info_rtc</ref>.<ref refid="structclock__fields__struct_1ac74ebfcc16cee3bd65adf52113779422" kindref="member">y</ref><sp/>=<sp/><ref refid="_r_t_c_8c_1ad4f97d3a8f0107b1e6c83f9cc6e0a308" kindref="member">convert_in_binary</ref>(time_info);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="158"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.c"/>
+  </compounddef>
+</doxygen>

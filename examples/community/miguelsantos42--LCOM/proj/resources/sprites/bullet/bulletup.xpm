@@ -1,0 +1,30 @@
+/* XPM – ícone corrigido */
+static const xpm_row_t bulletUP[] = {
+/* columns rows colors */
+"16 16 6",
+"  0", 
+". 2", 
+"X 3", 
+"o 4", 
+"O 5", 
+"+ 6", 
+
+"                ",
+"                ",
+"     ++++++     ",
+"    ++++++++    ",
+"    ++X..X++    ",
+"    ++X..X++    ",
+"    ++oooo++    ",
+"    +++OO+++    ",
+"     ++oo++     ",
+"     ++oo++     ",
+"     ++OO++     ",
+"     ++OO++     ",
+"     ++OO++     ",
+"     ++++++     ",
+"      ++++      ",
+"                "
+};
+
+const xpm_map_t XPMMapBulletUP = (xpm_map_t)bulletUP;

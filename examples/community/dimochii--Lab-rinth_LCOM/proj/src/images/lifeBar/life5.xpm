@@ -1,0 +1,31 @@
+/* XPM */
+static const char * life5[] = {
+/* columns rows colors chars-per-pixel */
+"64 12 13 1 ",
+"  c None",
+". c #400426",
+"X c #410426",
+"o c #410628",
+"O c #84235C",
+"+ c #84255C",
+"@ c #85245D",
+"# c #DF6FB1",
+"$ c #E070B2",
+"% c #E071B2",
+"& c #F1C0DE",
+"* c #F2C0DF",
+"= c #F2C1DF",
+/* pixels */
+"  ++++  ++++                                                    ",
+" +=###++####+                                                   ",
+"+=%%%%##%==%#+oooooooooooooooooooooooooooooooooooooooooooooooo  ",
+"O=%%%%%%%===%OXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXo ",
+"O=%%%%%%%%=%%OXXXXXXXXXXXXXXXXXX..XXXX.XXXXXXXXXXXXXXXXXXXXXXXXo",
+"O=%%%%%%%%%%%OXXXXXXXXXXXXXXXXXX.XXXX..XXXXXXXXXXXXXXXXX..XXXXXX",
+" +=%%%%%%%%%+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX..XXXXXX",
+"  +=%%%%%%%+XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+"   +=%%%%%+XXXXX.XXXX.XXX.XXX...XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+"    +=%%%+XXXXXX.XXXX..XX.XXXXX.XXXX.XXXXXXXXXXX..XXXXXXXX.XXXXX",
+"     +=%+XXXXXXX.XXXXXXXXXXXXXXXXX...XXXXXXXX.XXXXXX.XXXXX..XXX ",
+"      ++XXXXXXXXXXXXXXXXXXXXXXXXXXX..XXXXXXX..XXXXXX...XXXXXXX  "
+};

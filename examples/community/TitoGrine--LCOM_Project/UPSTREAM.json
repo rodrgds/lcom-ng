@@ -1,0 +1,100 @@
+{
+  "repository": "https://github.com/TitoGrine/LCOM_Project",
+  "commit": "59ac34d6476faf26afec7406840a83be38e9a722",
+  "project": "projeto/src",
+  "licenseFiles": [
+    "LICENSE"
+  ],
+  "licenseStatus": "Upstream license files retained.",
+  "sourceChanges": [
+    {
+      "file": "projeto/src/graphics.c",
+      "patch": "SOURCE_PATCH.diff",
+      "reason": "Compute framebuffer capacity in bytes per pixel, rounding bit depth up to a complete byte, before mapping physical memory. Original computation requested eight times the actual framebuffer size.",
+      "upstreamSha256": "26b8a571f57beed3a623c12bc2aac300b35a4754cf94ec2114bd90f3999f5715",
+      "patchedSha256": "859ec4e386aff21ce004a2dcc5fcaa48f500d0d9fdad272c4295443db9fac434",
+      "verification": "Actual vg_init boundary RED rejects mapping byte count 8x expected. GREEN maps1024x768x4 bytes and sets original0x144 mode."
+    }
+  ],
+  "sha256": {
+    "LICENSE": "6fe1ca228741b3dca81f399038db2bc60d66fb73e6e92d44763b4436688e8039",
+    "README.md": "be165038e5b5415602b028545b15befcd2da1f6160d692fd06a4d9a7bcca3449",
+    "projeto/src/Images.h": "5eba7c426e36255d9853ef8a4b5affccb33f056c67c188c29ac12e139e64e141",
+    "projeto/src/MACROS.h": "75b8bfd994e39d1f4cad754f6bf2d62ad945512b0e9a44f630ea62dead7e30a0",
+    "projeto/src/Makefile": "9f6a3068c756ec8d853bee2b3a6da73ebfea82bf9b6e956860bf7d3db7e121e5",
+    "projeto/src/alphabet.h": "d32e2524261e596c27a8efe9290bd7ae971ce2130e8b1eb230271449ff5400df",
+    "projeto/src/avatars.h": "c7fd640971a9327e999e6ff2b3fa955e12c29f96c0c64062ab699881baa228c4",
+    "projeto/src/background.h": "239bc6de88446b5352d659b52cdcbe9b8b0367741bbff189eb2cc25c44e5e10a",
+    "projeto/src/buttons.h": "f79a7ad7b85e383bc158bdd64902fbc9ca5311ba1d0a27ddcf55ccd7abd8a268",
+    "projeto/src/events.c": "825c67daf45b897166ba34b7907fb690632410636de62fd12feed88c322da70a",
+    "projeto/src/events.h": "910f9ec8b5c472eceffcb0077ae52da3ab1f2766c10727ccf22bcb77fdffb2df",
+    "projeto/src/graphics.c": "26b8a571f57beed3a623c12bc2aac300b35a4754cf94ec2114bd90f3999f5715",
+    "projeto/src/graphics.h": "1c082753e20bd672e2b10588a443125d4a06f3b34c03455bf7adcdb3964cdad8",
+    "projeto/src/i8254.h": "a0d51a081352e35de7d9eda11389837f1dbba0fb790b6df11aac2343d812c581",
+    "projeto/src/keyboard.c": "b8af41b5e12f75df4c8413fff5c5ad3e2388f9bf4202de351f87718b33188acb",
+    "projeto/src/keyboard.h": "8baed2e618baaf2001a3ea5994d9c8dad54eb0e1516ee92a4bdc7ac04c73ad4f",
+    "projeto/src/main_menu.h": "f8a9b02cab4c9466b74f8811ccd83023dce725aafa510dce4143e5009b9f97b3",
+    "projeto/src/menu_buttons.h": "54b3e908c9a29460e77f15c98268cb33871bd79426609765094dcc635f4efccb",
+    "projeto/src/mouse.c": "4d5e21bedc76dd42f88381f55e48815db337364e022e24fd1d1f383db3c0f039",
+    "projeto/src/mouse.h": "c24c20016c63fef6a7bb38af09b30b2429197931ee456c0f4d7dbcf85294a2fb",
+    "projeto/src/paint_canvas.h": "4bde7514a844ddad654973725954509b742ae192ad8ba4202e805abbec1c3dd1",
+    "projeto/src/paint_menu.h": "fce2f86970f459dc4552674d4ab951fa703e81f3c822250cb44d18bcf4d6d45e",
+    "projeto/src/pallets.h": "1545b2c522bd7fe901a81ec68441247be6dc20dd2f3e641c0e5858c78b022324",
+    "projeto/src/player.c": "29c4fd0007898be6f8502b8b9bc6ef5d50f6e23705c54399c1a508f5fa6f7315",
+    "projeto/src/player.h": "72c958f8dd816a35114c4362e5ab460fcd9cd0080a441fb6cb8ea5087c8ddae3",
+    "projeto/src/proj.c": "504b038074ecbfc6b575e0ac95a6a8cf04cb5d9d0b4f64dc04e5b3084ead8b65",
+    "projeto/src/queue.c": "dc351253b4cd190b5609f19a41523dfefc8336d35e7d7f43f8a76080a8a07e3d",
+    "projeto/src/queue.h": "551297384c739d971c2e23bca3fc1cfcf7cbd8a795ce42cb175712a3b8500290",
+    "projeto/src/rtc.c": "59f8881ae3ec5c4cade11ce3053b1da659b09b7e8f5897812bfe164a4b7a64da",
+    "projeto/src/rtc.h": "4a2b3fd04fb555f568ba2b864e7b56446dc51a79e1c80868c558d0d37ce6199f",
+    "projeto/src/setup_menu.h": "b55a265d9deb65f2e4d6bc7b5cf3474ec2726d05abe6db1e81485ccafab87376",
+    "projeto/src/sprite.c": "746cc3fad2db9b689290e8eca1ee4758260f9f57e4cb4b9bf1144dc614300272",
+    "projeto/src/sprite.h": "274aeccf97994d900214ff12df9010eecd364661a33670c6e6c3063d829363ac",
+    "projeto/src/timer.c": "ef01deed60b6624683166542ae255b1f6a4dcc3cb05b231367f262e728c5fe23",
+    "projeto/src/victory_menu.h": "2e6bb7ede9f4b009c39abdd36454bd66be100ddee35468bd9c91c07600bc244e",
+    "projeto/src/words.c": "b787d0f90acbb9d62dfc8e2e57d747046144ef0b3c8a83a6c25da20b38407161",
+    "projeto/src/words.h": "89baa717c70611fd3186c0f2d92d130374933b38fd16f297e023aac7ea665bf2"
+  },
+  "selection": "Pinned project source and required artwork/assets plus upstream README. Omitted labs, generated documentation, VCS and OS metadata, build products and core dumps.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata is excluded from required source inventory."
+  },
+  "icon": {
+    "kind": "simple launcher icon derived from original sprite or board palette",
+    "source": "projeto/src/buttons.h"
+  },
+  "controlsRationale": "Swipe to Draw and select, then draw strokes by dragging. Original tools and palette remain available. Retains original0x144 video mode after shared firmware support. Corrected actual framebuffer byte sizing, exact BIOS/map boundary regression RED/GREEN.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/TitoGrine--LCOM_Project",
+    "limits": "Short functional gameplay trial, no full campaign completion or physical Android device claim."
+  },
+  "derivedAssets": [
+    {
+      "path": "projeto/src/icon.png",
+      "sha256": "321cd7e8f3fc12de87e4c49c9bac519202c569e537942cd0fe167e9f4bf3efc7",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "projeto/src/preview.png",
+      "sha256": "d5069a6b17f7c5c110e51050d2a0c8ba2b8c6411587d19dbadf8ff93045cf650",
+      "kind": "actual mobile browser gameplay canvas"
+    }
+  ]
+}

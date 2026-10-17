@@ -1,0 +1,258 @@
+{
+  "repository": "https://github.com/joaocsf/LCOM",
+  "commit": "a561aa79be78926dc5689876626b6a7ddf49ab3b",
+  "project": "proj/code",
+  "sha256": {
+    "README.md": "ef4d76101fe6933224cba60b37a7da7c86460feb3a709bab9bf20ef8f077f82f",
+    "proj/code/Makefile": "606c24032ef058ae3d239f211155ce7ee4f2b3cdb33aceb0689471ef9dc6f655",
+    "proj/code/ball.c": "7a098ccb11e4a6ab39b54b08db87b8b4d5f3bec296b367cbf38e91f608d58111",
+    "proj/code/ball.h": "42ecbe4242fc64b3ffaded0d81a9fdc589289b33a9dbf4ecbd789ae4861fd0a8",
+    "proj/code/bmp.c": "eff7f9349c67d1dafcde1763da8bd7bf32aebc12bf7d2b8edb09db272155693c",
+    "proj/code/bmp.h": "e10beb96e9e6fc09fa1fb7dcc50b11cd2e7a3cf5d07c8eef2548f882b8d578ad",
+    "proj/code/bullet.c": "209cc1dbc2590caefa4ef0d08f5eaea58ed8d5b9fdac33b322574bfe8d2cb84d",
+    "proj/code/bullet.h": "efc782c57ce2e1425771d0485036be479cb35ca7bc27d07f67126b608f071bf2",
+    "proj/code/debug.c": "d29c25a6f481be626508f53fc81e5c98bdd6a0f077f0cee5257e5d9896be0b7a",
+    "proj/code/debug.h": "6de813cc52c50841ed5625945ce660b45948b85124c6c4fdd4a4827bf83f51fc",
+    "proj/code/enemy.c": "cb71dfe3ff1021c19f6c2dc6685c605ac1d1eefae7e96bd6f98dc20260e35bc3",
+    "proj/code/enemy.h": "c5dfe74cfb345d57f79b1802a14ec42af0b90ba41b76fa955aae4930a67a0c24",
+    "proj/code/enemymanager.c": "6bf961deb574a4a438ae3ff3d92e8158eff7c45c1f37ab2c92b28e662c24adeb",
+    "proj/code/enemymanager.h": "a02fc9498b3b75ae5f50cec507277951e81472e157ae0904fda8d93ea54947ac",
+    "proj/code/font.c": "e3f834eabf20c413c8494aaa7d4f0c1949853bba73cdc16b4d1cebbd7c10909f",
+    "proj/code/font.h": "101ca5af684d2f183cc8634d74f2db928ad07fe4a2e70356caef8a2e75c2c1b8",
+    "proj/code/game.c": "9c3ce6de64818e250a8c0edceacd5f0b8769352a3d089a795c34bcab6559b849",
+    "proj/code/graphic_info.h": "b3abd8ec352a241f59dd8966d2fe080c22668aa1038fecc300ce47fd28b1b5cc",
+    "proj/code/i8042.h": "9af885a248f24be3108adae89f5c8810ace68d3660c41fa713c575c8e88a40aa",
+    "proj/code/i8254.h": "9de00a050ddf63cbf613a05963e134ea116af1670bbe66acbda249d6d8b24f17",
+    "proj/code/keyboard.c": "c9bb88b0462e88260bce10d657b326871bac9f27c35cde3a248d851870fa5c28",
+    "proj/code/keyboard.h": "ac811b55ce6492db3497da101fb2bc95853bf8fda02bd3d867754b3aabd31692",
+    "proj/code/list.c": "578437abcd4b8d5d48497353b5fe9ef119b18e9f93ad424b4a55a0d06b43fcff",
+    "proj/code/list.h": "9cc74f7106528fef66f0fefa58678d8a84e0d95364fceaf7d08bfb1123795c48",
+    "proj/code/lmlib.h": "4cb001f011add9bd95587e458ae06c54b13b225530a42bc000e79f8ae0d2a92d",
+    "proj/code/map.c": "5a4b7633a19b1090fb4f3aa43b6447215022d8691e38c5a6d21c5ad72e791fa9",
+    "proj/code/map.h": "c910dd84f4d831f30ec59c508e312caf8b0840fe6c8f359aa988c0f3f991c8f1",
+    "proj/code/menu.c": "2eb89bc2ddab3983db51b0a3cfcf6c71f2d833e2f478abf1f4fa8680636178c5",
+    "proj/code/menu.h": "de5a47ecec6016736c9a12e7454c1af876670ddad7d7b1df409e4c665ac78f80",
+    "proj/code/mouse.c": "b8cb654c1e781f9135471926bdb05b7332d6a4c984095654637029809e04fe43",
+    "proj/code/mouse.h": "b16b94b89f3743d0f3fa15903fc66466e0089298b0cfbba07f478ee6174c7ab0",
+    "proj/code/networkmanager.c": "7b58f86888b49fea65614cad38ba46770f1f95020a6d11b35854d58fb851c2eb",
+    "proj/code/networkmanager.h": "8e659132708dfc3104c4ab724c8dd948b2f7676860e0e1006889dc57c88fb1dd",
+    "proj/code/objmanager.c": "d4fec28fc1d9709a5a9e7883286328ba6db1b1dbad7d15a670c658da9bfd8573",
+    "proj/code/objmanager.h": "08be25e6f9e0efcc56c126a17f19e71d983a50d5b989e9917eadc3315d5d1152",
+    "proj/code/particle.c": "3598e272a6d106416268993538fd3de40bc483c963fc5c87f35dad1f9f2390ce",
+    "proj/code/particle.h": "4339fdc7c0e271e80172eca5826fcccc3dd9a1b0b953dc99d15eaa7dc9a4c051",
+    "proj/code/pixmap.h": "df987f9991ee986d951db03fe51d3ae3acafe1df922323575d0061f00bd5270a",
+    "proj/code/player.c": "fe02888897945ac111fd707d2d456280cddf7253103e46098f19caf027a25f54",
+    "proj/code/player.h": "92f5d26ae1629ce4fe2fea7fa46e3c80d543a9e5f6cbaf6fc6b30a8b1c0a89d9",
+    "proj/code/read_xpm.c": "518d553a6dbba495afffc98c0e11e1d397c13f5b98bef593f8d80a83ed0479b6",
+    "proj/code/rectangle.c": "0b6b6e3e46267683e044193e510abe8b675f1ab97dbc82fcf4c1d2fb44da8443",
+    "proj/code/rectangle.h": "0cc6f174417f9fbfed12b2ef98157ee6c9a95c31933ca5c18ffeef04166fb82c",
+    "proj/code/rtc.c": "c5bba2ee17faf10380266d3e519e780917ce86c314f502de570a51b2e09e8645",
+    "proj/code/rtc.h": "e3c275a768b89e9f38df552293ffcd0bd842f1b000023fa45e3b7fc3b07fc45c",
+    "proj/code/sprite.c": "06c09129b8f8cd58bb32b8a292b7f10e7fed13d68e2d0b85a7246334da9b8b80",
+    "proj/code/sprite.h": "e3989519904855938bfb4559646d9bca6c360fadcbcff2a4af8537f8624a225c",
+    "proj/code/testgame.c": "2c3bd3144b8988c9f2b264321e21d1ccfb5191d876f9bbbfd052339fe5ac5e12",
+    "proj/code/testgame.h": "833869c310b1f8cfc83499faecda0b4ed0a09539bfaff97029c6a1895059c2b3",
+    "proj/code/texturemanager.c": "9993d36d37861f6b539adfd4a5c2f44a90d6433124a649e73a9098e87236c8b2",
+    "proj/code/texturemanager.h": "c02f0d3b734a697bde91ee246365ae6594a8ed1d186529e0dcae622b818110b7",
+    "proj/code/timer.c": "65b5b57b5c9ba884ec48bb732c1e92662cf6725003224a710b14486d98b11c03",
+    "proj/code/timer.h": "f0cb560f3ca17c3d57db3ded24b266ab56f2536470ba31eafed5c6040f7ad054",
+    "proj/code/uart.c": "7e98f0fdcc75bd3f34126f6bb63641c0e32d5d1488efacab591ecf598c4c315d",
+    "proj/code/uart.h": "59f08fe645b6e9019ee54a0af7192b380894b3a8730ad48b31b01a4b44923ba3",
+    "proj/code/vbe.c": "bdf3d4782ce41b3c47d1b5291b76ad270d3752af79c6a984accc967f0202630d",
+    "proj/code/vbe.h": "a4a5161b08d3267c1bc0d87708de3e62edc0be378e013ca24db7235550599e8f",
+    "proj/code/vector.c": "8f6f5210c56f6fcdf0f0d0ec73e2a3c10d9884a4061974f1f969d4170248d9a1",
+    "proj/code/vector.h": "7c345ac974487ab133033c93df746d9765e1cabce9829db65883c72c484235ef",
+    "proj/code/video_gr.c": "73db60096945361c5f3cf644139d7347494231880d1d1b664e82f6e30ffdaeb6",
+    "proj/code/video_gr.h": "7edf72145a2fcf4f353a498580c470b0ea2dbe0b02e8a09bf863d257385405ee",
+    "proj/img/ball.bmp": "7ab6bf2d37e103ccd67f5abbac3b0021cbb6d02eff5def9dfde14c22e9c835cd",
+    "proj/img/bluebirdSheet.bmp": "9ab8c7f87fc4e44ffe4dfef5d365d79f22b4b0d6a19bd1b3e495dd89039b82b8",
+    "proj/img/bullet.bmp": "1213c743564908ae124a790985df514814e74746391e40d415425c56bf654ba7",
+    "proj/img/explosion.bmp": "5b02f368f087d8dd156412fb46ec52999cc2f3040ea4090f5f3c3f4fdb43d7b7",
+    "proj/img/fontnormal.bmp": "6652cef5696cd51a3eee0fa3327e27d973443f704149bb49ca4b7e9c7a3fa2de",
+    "proj/img/healthbar.bmp": "a25b3bf2802b4b5a86574b4b1a2679f306dc1e2f8c4c957d072cc44b80d0a4c8",
+    "proj/img/mainMenuTest.bmp": "9f0e5d2080a35010307c4e36834e4b90b273b87ca60abcae9ce4cde19b45d185",
+    "proj/img/redbirdsheet.bmp": "22ace179b245a094ad8b5d2bb1bbceff425cec8a0205178cd287b70259bb216b",
+    "proj/img/robot.bmp": "e56dc759c101a34076ff41dff9a15d907134dabcceaf9a45637cf1cf30f6acb2",
+    "proj/img/texto.bmp": "c9d3f7133ccae1e2b786cac05263c30b88de4da3eeb41cfcfeb4fdc28fdabbfd",
+    "proj/img/tileset.bmp": "086499895d1e714cc8bb6abade8ac3588afab7a0c3ed0eed03725f4425feb2e2",
+    "proj/img/wormSheet.bmp": "e0c5ef21cf00449f4a4fed20d06a072c85bd3aed6c8e04d7eb63ba56c94652d7"
+  },
+  "originalArchiveSha256": "e2fb903a79254c46eae92c5e6d2db0edf1332b3b439f32a92fae65203c6216fd",
+  "sourceSelection": "Original project C/headers/Makefile, original12BMP images, configuration and README. Precompiled archives, unrelated labs/docs and OS/VCS metadata omitted.",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in the pinned repository archive. Original attribution and comments retained.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/code/ball.c",
+          "originalSha256": "7a098ccb11e4a6ab39b54b08db87b8b4d5f3bec296b367cbf38e91f608d58111",
+          "patchedSha256": "f39024afd9acf1a23f97ea2b8a98a84a745145d706e57c8ae10f6751c07ea989",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        },
+        {
+          "file": "proj/code/bullet.c",
+          "originalSha256": "209cc1dbc2590caefa4ef0d08f5eaea58ed8d5b9fdac33b322574bfe8d2cb84d",
+          "patchedSha256": "4c37eea5876e0e8078e99aaa3fad1086354cbf2a573f9892c2c715eac2bfae90",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts. Return0 for a null projectile, consistently with retired/colliding projectiles.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps. Actual Bullet_Update fixture checks null/retired0, active motion1, collision0; actual Android original compile rejects bare return."
+        },
+        {
+          "file": "proj/code/enemy.c",
+          "originalSha256": "cb71dfe3ff1021c19f6c2dc6685c605ac1d1eefae7e96bd6f98dc20260e35bc3",
+          "patchedSha256": "49443b465903dd1d856acaa533d4194b3d142d52530acb4d169ae93c85ae7f8a",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        },
+        {
+          "file": "proj/code/font.c",
+          "originalSha256": "e3f834eabf20c413c8494aaa7d4f0c1949853bba73cdc16b4d1cebbd7c10909f",
+          "patchedSha256": "d5f7c98018ab24b15b7b253306f9e4d9bfb8873d0a921cbb1a9b4bd9dc803b96",
+          "reason": "Include existing video_gr.h before the void vg_writeFont call.",
+          "verification": "Original strict owning compile fails undeclared renderer and actual WASM traps inside MenuTest. Fixed regression verifies both font dimensions/pointers/coordinates/color delivered to the typed renderer, and actual menu starts."
+        },
+        {
+          "file": "proj/code/font.h",
+          "originalSha256": "101ca5af684d2f183cc8634d74f2db928ad07fe4a2e70356caef8a2e75c2c1b8",
+          "patchedSha256": "ba51ef9dfaad8785ebefc856d0fa27766ff8b2d3bc620d41b79e1c39b5a17e0d",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        },
+        {
+          "file": "proj/code/map.c",
+          "originalSha256": "5a4b7633a19b1090fb4f3aa43b6447215022d8691e38c5a6d21c5ad72e791fa9",
+          "patchedSha256": "61f1f72c7fed4bdfcb6e0c09dc57f021a7cc3ab5af4c9cdf1c66968a81b596fc",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts. Initialize GetLowCost current candidate to NULL, and return0 when a client refuses authoritative map damage.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps. Patterned-storage actual GetLowCost regression originally returns an indeterminate pointer, then passes empty/unordered/first-min cases after initialization. Real arena originally stalls at pathfinding; corrected match advances and enemies approach. Actual Map_Damage owner fixture checks denied damage returns0 and preserves tile."
+        },
+        {
+          "file": "proj/code/map.h",
+          "originalSha256": "c910dd84f4d831f30ec59c508e312caf8b0840fe6c8f359aa988c0f3f991c8f1",
+          "patchedSha256": "3a5c3ad3d98aa42d1ade8fbcf51d87f2f32018340df9090fa8197a9c6420313a",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        },
+        {
+          "file": "proj/code/menu.c",
+          "originalSha256": "2eb89bc2ddab3983db51b0a3cfcf6c71f2d833e2f478abf1f4fa8680636178c5",
+          "patchedSha256": "c570dd1604ade92689366672e0a47c22f3079b438288ed7024406f77380e2258",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        },
+        {
+          "file": "proj/code/mouse.c",
+          "originalSha256": "b8cb654c1e781f9135471926bdb05b7332d6a4c984095654637029809e04fe43",
+          "patchedSha256": "0b2263b93d48239464898d4e70179269813f92077c4adb403822e7de284ef02d",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts. Decode both PS2 motion low bytes using the packet header sign bits, covering full9-bit deltas.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps. Actual mouse_update regression originally fails negative255/positive128 boundaries, then passes independently derived X/Y values -255,-128,-1,0,1,127,128,255. Normal touch menu selection and aiming work in both orientations."
+        },
+        {
+          "file": "proj/code/mouse.h",
+          "originalSha256": "b16b94b89f3743d0f3fa15903fc66466e0089298b0cfbba07f478ee6174c7ab0",
+          "patchedSha256": "2333c830307d73b3a6ade2f57eedab94d061dfbeaf8c328cd5d33d9a2cc17347",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        },
+        {
+          "file": "proj/code/networkmanager.c",
+          "originalSha256": "7b58f86888b49fea65614cad38ba46770f1f95020a6d11b35854d58fb851c2eb",
+          "patchedSha256": "ca5d9b2d6c28aada685b1ec05ce09e3eeebfe8f0e50f1152b0e34b3197dd0f8b",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts. Return0 after removing an empty message node so the parser reports consumed input.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps. Actual NM_Parser fixture checks absent node1 and consumed null-content node0 with exactly one removal; original Android compile rejects bare return."
+        },
+        {
+          "file": "proj/code/networkmanager.h",
+          "originalSha256": "8e659132708dfc3104c4ab724c8dd948b2f7676860e0e1006889dc57c88fb1dd",
+          "patchedSha256": "e1ae59a7dce21b4b69997cf8533e79f6aba60b6fb90cbf648ec0335d2aa556e4",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        },
+        {
+          "file": "proj/code/objmanager.c",
+          "originalSha256": "d4fec28fc1d9709a5a9e7883286328ba6db1b1dbad7d15a670c658da9bfd8573",
+          "patchedSha256": "f0cb937295b065f30793149daae8535ba59a2406a841c1f1c5b4152a56d72726",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        },
+        {
+          "file": "proj/code/particle.c",
+          "originalSha256": "3598e272a6d106416268993538fd3de40bc483c963fc5c87f35dad1f9f2390ce",
+          "patchedSha256": "517a10cf16a0c68508d3ab2af7f50c39838e4fbeb55c2b968d2fd1ccc69895c0",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        },
+        {
+          "file": "proj/code/player.c",
+          "originalSha256": "fe02888897945ac111fd707d2d456280cddf7253103e46098f19caf027a25f54",
+          "patchedSha256": "cd96cdd57405480cfc482b347357398bfa40eeef7f9c70ef30f76bf3fae3e5a0",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts. Return a zero movement vector when a remote position is outside the map.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps. Actual Player_SyncPos early-path fixture checks all four boundaries leave position/rectangle unchanged with zero movement; valid interpolation retains original result."
+        },
+        {
+          "file": "proj/code/rectangle.c",
+          "originalSha256": "0b6b6e3e46267683e044193e510abe8b675f1ab97dbc82fcf4c1d2fb44da8443",
+          "patchedSha256": "e86954a8b23804afa94fdfdb801825c68b559c8f0be6dc7643c2081baa4592cd",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        },
+        {
+          "file": "proj/code/rtc.c",
+          "originalSha256": "c5bba2ee17faf10380266d3e519e780917ce86c314f502de570a51b2e09e8645",
+          "patchedSha256": "f7024564a2973336fde71724f0af7d938abb974eca281f21d7fcbe452a5bc4dd",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        },
+        {
+          "file": "proj/code/texturemanager.c",
+          "originalSha256": "9993d36d37861f6b539adfd4a5c2f44a90d6433124a649e73a9098e87236c8b2",
+          "patchedSha256": "8255ca87bd73e5ab35523d85fe3c24c1a6c4e2b16fad19825d332ba3ce918970",
+          "reason": "Clear the entire owned Sprite* array, with byte-zero fill and sizeof(*sprites)*SI_TOTAL instead of NULL and SI_TOTAL bytes.",
+          "verification": "Poisoned allocation regression originally leaves non-null unused slots and fails. Fixed regression verifies every slot NULL and empty cleanup invokes no destructor."
+        },
+        {
+          "file": "proj/code/uart.c",
+          "originalSha256": "7e98f0fdcc75bd3f34126f6bb63641c0e32d5d1488efacab591ecf598c4c315d",
+          "patchedSha256": "fcaabcf84eefe3a1cd82485b55f7d3893d27351a94ca43afd4a73a6c5b0620d7",
+          "reason": "Return0 for a reserved UART IIR event, preserving existing normal-event success1.",
+          "verification": "Actual UART_IntHandler fixture checks no-pending1, reserved event0, transmitter-empty1 and line-status1; original actual ARM64 compilation rejects bare return."
+        },
+        {
+          "file": "proj/code/uart.h",
+          "originalSha256": "59f08fe645b6e9019ee54a0af7192b380894b3a8730ad48b31b01a4b44923ba3",
+          "patchedSha256": "9b009b59a8a2b310a08acff9b1c9b6f0ab165c81d12b7583fa96e04b455ba93d",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        },
+        {
+          "file": "proj/code/video_gr.c",
+          "originalSha256": "73db60096945361c5f3cf644139d7347494231880d1d1b664e82f6e30ffdaeb6",
+          "patchedSha256": "070f5953a1ee4b45386b9c7cea17716a55ed5cb02cbe91e0fb637829276d4fdf",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts.",
+          "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original800x600x16 mode114 single-player top-down shooter, WASD movement, mouse aim/fire and Esc end-match. Menu cursor0,0, Play rectangle20..220/160..210, Exit20..220/460..510. Camera follows the red bird, so world movement is observed through terrain/enemy displacement. Left WASD stick and right relative mouse stick preserve original unit motion. Shoot/Select uses original left mouse. Reserved panel keeps controls away from field and bottom health HUD in portrait/landscape. Relative touch only, no calibrated direct cursor profile. ExplicitGNU89 matches authored README Minix3.1.8/GNU toolchain and plain-inline emission. Declared relative path aliases preserve original image/debug paths, original code/assets stay otherwise unchanged.",
+  "artwork": {
+    "icon": "Simple authored bird-and-crossroads SVG motif rendered toPNG; original sprites/images unchanged.",
+    "preview": "Actual normal-touch robot kill creates original explosion and damages the terrain, scaled to640x480."
+  },
+  "verification": {
+    "browser": "Actual CDP touch in844x390 and390x844 selects Play, moves using original WASD, aims and fires. Original robot explosion and damaged terrain observed in both orientations, no page errors. Normal touch Esc ends the match, original menu returns, and Exit finishes with the source message Program finalized without errors and no page errors.",
+    "ndk": "All28 authored C units plus generated context compile as actual ARM64 objects with globalC11 before the selected GNU89 game flag, O2,FORTIFY2,stack protector and format-security.",
+    "native": "Actual Android gameplay pending.",
+    "limits": "Single-player qualified. UART multiplayer pairing and full survival duration unverified.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/topdown-native-reviewed/results.json",
+      "apkSha256": "5d59c3108c3902b092cbc3f415006b6a487297844eb3693daf2be8e6a7bcec8d",
+      "demonstrated": "ROOT visual and source-art review: at least one robot-death explosion frame matches1792/1792 original pixels. Separate ordinary right pad hold shifts terrain left around the fixed player camera. Both sessions return Home and exit isolated game processes.",
+      "limitations": [
+        "Representative solo native aiming, firing, one confirmed robot death and right-pad movement. Exact kill count, long survival, complete campaign, UART pairing and physical phone performance are not claimed."
+      ]
+    }
+  }
+}

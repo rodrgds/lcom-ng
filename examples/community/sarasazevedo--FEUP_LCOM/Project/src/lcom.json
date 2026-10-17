@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "name": "Agalag",
+  "description": "Pilot your ship and fight waves of aliens. Tap Stop to hold your position.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "BACKSPACE",
+        "Q"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Fire",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Stop",
+          "key": "S",
+          "position": "bottom-right"
+        }
+      ],
+      "tapDuration": 65,
+      "repeatKeys": [
+        "SPACE"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Galaga"
+}

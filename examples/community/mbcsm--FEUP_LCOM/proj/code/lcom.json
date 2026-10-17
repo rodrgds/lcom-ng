@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "name": "Pullball",
+  "description": "Pull back to aim a bouncing ball at descending blocks in the original mouse-driven board.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC",
+        "BACKSPACE"
+      ],
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-left"
+        },
+        {
+          "label": "Pull",
+          "mouseButton": "right",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Menu Up",
+          "key": "UP",
+          "position": "top-right"
+        },
+        {
+          "label": "Menu Down",
+          "key": "DOWN",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Confirm",
+          "key": "ENTER",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": [],
+    "pathAliases": {
+      "/z.txt": "bestScores.txt"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

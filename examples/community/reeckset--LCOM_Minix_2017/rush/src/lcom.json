@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Rush: Ambulance Run",
+  "description": "Steer an ambulance through the original scrolling traffic.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "left",
+          "style": "stick",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Start / Boost",
+          "key": "SPACE",
+          "position": "top-right"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "res"
+    ],
+    "pathAliases": {
+      "/home/rush/res": "res",
+      "home/rush/res": "res"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

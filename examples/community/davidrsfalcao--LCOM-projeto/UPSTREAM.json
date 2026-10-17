@@ -1,0 +1,162 @@
+{
+  "repository": "https://github.com/davidrsfalcao/LCOM-projeto",
+  "commit": "13e543a9392ce1aaa714406ad1ec66f213ff52f8",
+  "project": "src",
+  "sha256": {
+    "README.md": "49c3dd78ac2a2150a9ae3e2c7d794b5b546ee054b416d57637c9da7abc4a38a8",
+    "src/game.c": "1f817737d51841f9799a92ea4a1c037e6b98390e7ac67c1b6a6312762652955e",
+    "src/asteroid.c": "f3bb9166c9a46731a02378dc18a7cb10b6b1a68cdbd1a6788f9ec47ac963199a",
+    "src/mouse.c": "9eda9392372a682f681558f2270bd41d0cfadb03205bc6bd6cc1237ccb88f2f7",
+    "src/timer.c": "683dc72669756ba8fa2f43962a1b4343323581109f0142067d67375a09c658ab",
+    "src/numbers.h": "f8593c7023814f80e57696f95bd41da2f023e7c59c931ff5f6079796cf1fc6d6",
+    "src/bullets.c": "d06a09ad11f0fd20ab065644f78757c155038980d32b1ea8857fb7b213375d4a",
+    "src/menu.c": "2081175fed9cd5f74b84861ef9b6f16d15abbf4270bf6ff2ae83da78c8d127f9",
+    "src/RTC.c": "2d27333c1d303f455cd90736430b62b213dd4233c5e1edcd0e2a7033a36607f6",
+    "src/collisions.h": "9f2d876644b419ae4b4a056a51fe2c6d917404d43d48ce3ae033de5c63fc4043",
+    "src/keyboard.c": "7dc070a9ddfac1abd8b4687c41f3c95359e22630dfc33cffcf2244bb1d93fcc2",
+    "src/imgs_menu.h": "de4d04a3c00af5376fb68fd55295ec652e86462b20c251be4400c54129c68819",
+    "src/game_over.h": "c652e6e872deede22233bb4df3786328f46d878dc393783d83b3753a8b6c37a3",
+    "src/Makefile": "1918c98240be9787e49142b141e691191343715974d20e020a91be2cd8b1678f",
+    "src/galatic_war.c": "dbd9f3cc9144a04ef1bf45c10342a99365469e9de30e468de7007b2c08539241",
+    "src/vbe.h": "bb61299e0b95e9d8b9b95d9796e24a74f572f0a0bff69d519a4b4913e6721153",
+    "src/video_gr.h": "4f13dda043643ae05d63107f7881e7256d4363f14ac2213eac163f2bc6840a4b",
+    "src/i8042.h": "67b1002582c5cfa9dbf1cfd31799fce837592b238545d415a0247fca9f39582b",
+    "src/space_ship.c": "4a9e801caf555f4dd1c37769010e75aaf195be9e0ff0957d9f71a2676367998a",
+    "src/cursor.h": "e38545b1b135f01473332abf85a9000d709b3b56ca6ba147dd8e999dde58b821",
+    "src/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "src/mouse.h": "a189b4c279a2a7964c429be6d5c69c4ce73bb2e5404fe5e43941f7956db332df",
+    "src/timer.h": "2d496b4d2cd5f00bb337ca8aeb14ca3352d317e90f75efe1e8e4d7cfa2f7c75c",
+    "src/asteroid.h": "767d90d3859cdc31c55d85e1bb00d1790a376c82e9943b6dfe1f026aa6628ebc",
+    "src/game.h": "3eadb4080e3471f6f7bacaeeb240772120f60d049a614bb557dcb1f42c63d031",
+    "src/keyboard.h": "b0f716181049c801817c460aab2b77e2cb7dfd6459e7380a8e5d9912e32f6b14",
+    "src/collisions.c": "5ef61e707dc5f516a5a951641d2a0d788bd11cd6eb8f5b46b144b01d08439df6",
+    "src/menu.h": "81c8239234b716cced9597dc4c0a8349aece6e572abf752ae830bc33ad985c63",
+    "src/RTC.h": "cf8ac6fa4fc4bb358a057fe4cf520cf18bf28e5c0824f7c5dcb05cb473ebc175",
+    "src/bullets.h": "469982f4e3f3cd3f30af2a7402f818f940fd9b2f1ab5dc4e1abb0f2409c98ee2",
+    "src/vbe.c": "f2b19c7b9d74f875157c5921c0e88e560d439e2955c6333b9aee111c7142ae94",
+    "src/video_gr.c": "9e83918b131704e04b2fcaad9b5c5f49ac81788ebb93f7133872a27268461d21",
+    "src/imgs.h": "24cf00cc6bb84f2be2b3dddb4c607f1c0ca6c867abbaeaea45c4aa05c199d820",
+    "src/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "src/imgs_game_over.h": "fdd507a208bc99113d6e1db7fbc0af35d7c58b015268316bcbf5aadadd29ddbd",
+    "src/game_over.c": "1b12c7b1655ca8287b7303eb11855c0e18ed3a4549939c61892bbf10a5e1478c",
+    "src/cursor.c": "1b0c4dabf1a36b47f1b24250bc5166546d2ab79909fbb93c06882c1ac7dabd09",
+    "src/space_ship.h": "51e7b566a0bce192e8763061c50d7dfa8ecf3e7d1bd67f3b4b43fd1d44cd9835"
+  },
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "selection": "Authored project C/headers/Makefile and root README, including original embeddedXPMs. Labs, generateddependencies and compiledbinaries excluded.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "src/vbe.c",
+          "originalSha256": "f2b19c7b9d74f875157c5921c0e88e560d439e2955c6333b9aee111c7142ae94",
+          "patchedSha256": "1e277420f8804f4619fed173c75842af89804e67a876e0cfd50620f17783a37e",
+          "reason": "Include existing video_gr.h before calling the pointer-returning secondary-buffer accessor. Release each read_xpm allocation after its pixels have been copied, instead of leaking a decoded image on every frame.",
+          "verification": "Original actual pointer conversion compileRED and owning2x2 XPM copy/delete regressionGREEN. Actual allocation regression RED retains first decoded image; GREEN50render calls free all50buffers while preserving pixels."
+        },
+        {
+          "file": "src/video_gr.c",
+          "originalSha256": "9e83918b131704e04b2fcaad9b5c5f49ac81788ebb93f7133872a27268461d21",
+          "patchedSha256": "42799167d4d72f558a8d0712edc4d4d4de5e4c8ddaad18beac6d04408ef4b1e4",
+          "reason": "Return mapped video_mem virtual address from vg_init, matching the function’s documented contract, rather than returning an integer physical address.",
+          "verification": "Original modernC/actualWASM compileRED integer-to-pointer return; GREEN owning BIOS/map fixture asserts returned pointer exactly equals mapped framebuffer and secondarybuffer exists."
+        },
+        {
+          "file": "src/game.c",
+          "originalSha256": "1f817737d51841f9799a92ea4a1c037e6b98390e7ac67c1b6a6312762652955e",
+          "patchedSha256": "97750281f2132fcddfe2cc2ba080f5a251dc923d1f3f3fc4cd58dc693797c30d",
+          "reason": "Initialize the ship’s line-array field with spaceship, rather than the address of the entire spaceship array.",
+          "verification": "Original actual WASM rejects incompatible pointer-to-array initializer. Corrected fullWASM and optimized ARM64 object builds pass; original sprite data unchanged."
+        },
+        {
+          "file": "src/vbe.h",
+          "originalSha256": "bb61299e0b95e9d8b9b95d9796e24a74f572f0a0bff69d519a4b4913e6721153",
+          "patchedSha256": "83e1d9f5e277931079f86823abd1608281ac11582acbc9257997b64cd0aa57e7",
+          "reason": "Import existing Minix syslib declarations needed by this header’s phys_bytes fields, so renderer callers can include their owning XPM declarations directly.",
+          "verification": "Strict owning ship/asteroid/cursor renderer compilation and fullWASM/ARM64 builds pass with the shared legacy SDK ABI."
+        },
+        {
+          "file": "src/space_ship.h",
+          "originalSha256": "51e7b566a0bce192e8763061c50d7dfa8ecf3e7d1bd67f3b4b43fd1d44cd9835",
+          "patchedSha256": "541e0ce7b40572cd61ff3ae70aab9f4e95dcbc0a541fe302b24a531545131b50",
+          "reason": "Declare the XPM sprite field as an array-of-lines pointer, char**, matching the original authored map arrays and xpm_cre interface.",
+          "verification": "Original actual WASM rejects char* field initializers with line arrays. Owning typed entity renderer fixture RED→GREEN forwards the original map identity and coordinates for ship, visible asteroid and cursor. FullWASM/ARM64 builds cover menu/game-over types too."
+        },
+        {
+          "file": "src/asteroid.h",
+          "originalSha256": "767d90d3859cdc31c55d85e1bb00d1790a376c82e9943b6dfe1f026aa6628ebc",
+          "patchedSha256": "18cbef8a14a1ac774e2646ea548dda69ee04d286a293b2fb8a415546b2ebcc27",
+          "reason": "Declare the XPM sprite field as an array-of-lines pointer, char**, matching the original authored map arrays and xpm_cre interface.",
+          "verification": "Original actual WASM rejects char* field initializers with line arrays. Owning typed entity renderer fixture RED→GREEN forwards the original map identity and coordinates for ship, visible asteroid and cursor. FullWASM/ARM64 builds cover menu/game-over types too."
+        },
+        {
+          "file": "src/menu.h",
+          "originalSha256": "81c8239234b716cced9597dc4c0a8349aece6e572abf752ae830bc33ad985c63",
+          "patchedSha256": "f6b460a40054158d8057256e2bfd1e80787cb31085e0029f9c86e31d1a51ae3b",
+          "reason": "Declare the XPM sprite field as an array-of-lines pointer, char**, matching the original authored map arrays and xpm_cre interface.",
+          "verification": "Original actual WASM rejects char* field initializers with line arrays. Owning typed entity renderer fixture RED→GREEN forwards the original map identity and coordinates for ship, visible asteroid and cursor. FullWASM/ARM64 builds cover menu/game-over types too."
+        },
+        {
+          "file": "src/game_over.h",
+          "originalSha256": "c652e6e872deede22233bb4df3786328f46d878dc393783d83b3753a8b6c37a3",
+          "patchedSha256": "c51e477b2e36ea0ff244d295d9d2bee48946b52fc63c56b3b38d01c5decb2054",
+          "reason": "Declare the XPM sprite field as an array-of-lines pointer, char**, matching the original authored map arrays and xpm_cre interface.",
+          "verification": "Original actual WASM rejects char* field initializers with line arrays. Owning typed entity renderer fixture RED→GREEN forwards the original map identity and coordinates for ship, visible asteroid and cursor. FullWASM/ARM64 builds cover menu/game-over types too."
+        },
+        {
+          "file": "src/cursor.h",
+          "originalSha256": "e38545b1b135f01473332abf85a9000d709b3b56ca6ba147dd8e999dde58b821",
+          "patchedSha256": "505ddb3a75ab3600d1ac7e112b2c62c11ebd8c94a17bffee2c259f6fe8217d86",
+          "reason": "Declare the XPM sprite field as an array-of-lines pointer, char**, matching the original authored map arrays and xpm_cre interface.",
+          "verification": "Original actual WASM rejects char* field initializers with line arrays. Owning typed entity renderer fixture RED→GREEN forwards the original map identity and coordinates for ship, visible asteroid and cursor. FullWASM/ARM64 builds cover menu/game-over types too."
+        },
+        {
+          "file": "src/space_ship.c",
+          "originalSha256": "4a9e801caf555f4dd1c37769010e75aaf195be9e0ff0957d9f71a2676367998a",
+          "patchedSha256": "5980fa74415f9f0a45207ad1316d2d3ed2f52acaca50d490a3750055387898fb",
+          "reason": "Include the existing vbe.h owning xpm_cre declaration before calling it.",
+          "verification": "Actual original browser trap .Lxpm_cre_bitcast_invalid in draw_spaceship. Strict actual renderer compilation RED missing declaration; GREEN typed calls preserve original map pointer/positions; actual normal touch both orientations now renders and moves ship among live asteroids."
+        },
+        {
+          "file": "src/asteroid.c",
+          "originalSha256": "f3bb9166c9a46731a02378dc18a7cb10b6b1a68cdbd1a6788f9ec47ac963199a",
+          "patchedSha256": "8bccf8e788313010fc5b0a040001ba41612db17b5d77beda7acf4d45cdbed0b2",
+          "reason": "Include the existing vbe.h owning xpm_cre declaration before calling it. Include stdlib.h for rand as well.",
+          "verification": "Actual original browser trap .Lxpm_cre_bitcast_invalid in draw_spaceship. Strict actual renderer compilation RED missing declaration; GREEN typed calls preserve original map pointer/positions; actual normal touch both orientations now renders and moves ship among live asteroids."
+        },
+        {
+          "file": "src/cursor.c",
+          "originalSha256": "1b0c4dabf1a36b47f1b24250bc5166546d2ab79909fbb93c06882c1ac7dabd09",
+          "patchedSha256": "354459c9bf86ec178c0b4bc1cc59ddb8c539a4cc6ee416dfb52fedef7a959d56",
+          "reason": "Include the existing vbe.h owning xpm_cre declaration before calling it.",
+          "verification": "Actual original browser trap .Lxpm_cre_bitcast_invalid in draw_spaceship. Strict actual renderer compilation RED missing declaration; GREEN typed calls preserve original map pointer/positions; actual normal touch both orientations now renders and moves ship among live asteroids."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original first keyboard notification precedes menu rendering; visible Start/Enter wakes it and starts the selected New Game. Left/Right movement is release-based30pixel steps, so repeatReleaseKeys makes held native/browser directions useful. Panel directional controls and Start plus Escape preserve original keyboard inputs. Pointer touch is off because the active game is keyboard-controlled. Original asteroid generation/RNG and game presentation preserved.",
+  "artwork": {
+    "icon": "Original captured asteroid and spaceship on a simple dark tile. Embedded XPM pixel data unchanged.",
+    "preview": "Actual asteroid-dodging round with ship moved right, scaled1024x768 to640x480."
+  },
+  "verification": {
+    "browser": "Normal CDP touch Start/Enter plus held Left500ms/Right900ms produces real ship movement and descending original asteroids in landscape844x390 and portrait390x844, errors[].",
+    "ndk": "All15authored C translation units compile actual ARM64 objects with -O2 -D_FORTIFY_SOURCE=2.",
+    "native": "passed: representative actual ARM64 Android emulator objectives; see nativeGameplay proof and limitations.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "95588a80525a4ab8db2dc0ff3d22c0f26f0b28e4b96c0b98981dc2b69b9b4f73",
+      "evidence": "build/arcade-100/c24-native-gameplay2/results.json",
+      "demonstrated": [
+        "Original spaceship and live asteroid field render after waking original keyboard wait and starting New Game.",
+        "Held release-repeat direction moves original ship left.",
+        "Ship moves right while original asteroids descend."
+      ]
+    }
+  }
+}

@@ -1,0 +1,37 @@
+/* XPM */
+static const char *cursor[] = {
+/* columns rows colors chars-per-pixel */
+"23 28 3 1 ",
+"  c #00303B",
+". c #F1F2DA",
+"X c #FFFFFF",
+/* pixels */
+"XXXXXXXXXXX  XXXXXXXXXX",
+"XXXXXX  XX .. XXXXXXXXX",
+"XXXXX .. X .. XX  XXXXX",
+"XXXXX ..   .. X .. XXXX",
+"XXXX  ..   .. X .. XXXX",
+"XXXX  ..   ..   .. XXXX",
+"XXXX  ..   ..   .. X  X",
+"XXXX  ...  ..  ...  .. ",
+"XXXXX  ..  ..  .. X .. ",
+"XXXXX   .  ..  ..   .. ",
+"XXXXX  .   ..  ..  ... ",
+"X   X   .. ... ..  .. X",
+" . . X . ......... .. X",
+"  .  X  .. ... ...... X",
+" . .   . ......... .. X",
+"  . .   . ........... X",
+"   . ... . .......... X",
+"    . . . . ......... X",
+"X    . . . .......... X",
+"XX    . . . ..... .. XX",
+"XX   . . . . . ... . XX",
+"XXX   . . . . . . .  XX",
+"XXX    . . . . . .  XXX",
+"XXXX    . . . . .   XXX",
+"XXXXX      . . .   XXXX",
+"XXXXXX            XXXXX",
+"XXXXXXX          XXXXXX",
+"XXXXXXXXX      XXXXXXXX"
+};

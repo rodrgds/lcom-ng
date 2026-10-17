@@ -1,0 +1,97 @@
+{
+  "repository": "https://github.com/nmtc01/LCOM-Projects",
+  "commit": "8996fcf17586aae7853396989c68ba7bf5dd1031",
+  "project": "proj/src",
+  "sha256": {
+    "proj/src/Makefile": "593447b018de267ef39457f2de8d91cd13a3fc0a84ef97a98945b3ca59828f5e",
+    "proj/src/enemy.c": "16fe1aae47b6fe0afcd69721bac5905f324d554b1b3d0d7394a8a4d8fbc58888",
+    "proj/src/enemy.h": "5d8434e3649a77d55b2d0847b44a4ae8215694732e901c5c96bb4b3e491a6d9e",
+    "proj/src/graphi.c": "35272134e1dc0e1c6d10ac706ef0be9fceb43542afdfa0e09c611f545c08ff91",
+    "proj/src/graphi.h": "a69cd767de0d7d342d7613453b87dbf9d3e4a0eaf79785effa014be8f0dbacf5",
+    "proj/src/i8254.h": "dac1812816d1dbd406c57bc75900d02753ef295b788ecaa1661fbe8872e1d486",
+    "proj/src/kb.c": "16754fee3c8aad7231ad0e8935675e27ed18a00c6025485d5ccef09bd1f4c87f",
+    "proj/src/kb.h": "2ba89a3d598db5bafe1f2d13b85008f37c041fa7d0c1ef57a2a99e01c6d5cec3",
+    "proj/src/mouse.c": "086472c06458cb721f13e45c737f836cbec511771953b5c74947f4a3af5ed264",
+    "proj/src/mouse.h": "98e4a567e8839bc6f0cfa2d48392ca668c1918be2c23644716fb56203c428421",
+    "proj/src/player.c": "a6bbacfa5a21e132bd27670d28a3b4b0d9ad8499940fa454198e8b7bf0be28db",
+    "proj/src/player.h": "cd50bc43c798bcba5a097a6498266a775623fd424c4178605ac2f209ff148b49",
+    "proj/src/proj.c": "f86e3cafdd17ee716b48c7366b7a3f65c9d0aaa4397d649719777d0dfb14ea76",
+    "proj/src/proj.h": "57e33b843345a9243272977c667194bafac428c4fb4b23b5e656bd19beeb1ad1",
+    "proj/src/rt.c": "1db86addfac3c6c03df32279cda791a2452844049e3362eb7b9ef03cdba55153",
+    "proj/src/rt.h": "29a6b13f3c7928e7e3483589b21f4404c8ddb49847837c5b0ab731d8379c03f6",
+    "proj/src/shot.c": "658252dcb9d9f26c108b5ad1032a388b3c01dcc3878bbec1730eb0d5c38cc7ad",
+    "proj/src/shot.h": "04fc2a99aeb8617644fb1a91785b93df2531938369c0cf6b9aab93474ec1e0b0",
+    "proj/src/timer.c": "e95b3b2f12f20d00e9af99ce99f5cf4327adfd8f17b2e665330d26a7c1700834",
+    "proj/src/xpms.h": "3e77bd86d83e7c64e5d548520412e2f6f78763aab04dfd8eb307f71ca53c69de"
+  },
+  "sourceChanges": [
+    {
+      "file": "proj/src/graphi.c",
+      "originalSha256": "35272134e1dc0e1c6d10ac706ef0be9fceb43542afdfa0e09c611f545c08ff91",
+      "patchedSha256": "6e00f0285e8c57efe87246ee3607b4144d66c8aa312060a1e96f7f34acdbf6a8",
+      "reason": "Original framebuffer mapped pixel bits instead of bytes, extending eight times beyond mode memory. Original print_date wrote four year digits into char date[2], corrupting its stack; use four-byte digit storage. Original sprite loads requested RGB565 numeric2 while this renderer consumes three packed RGB bytes per pixel; request named XPM_8_8_8 matching the original1152x864x24 mode. Actual map boundary, stack-protected four-digit date rendering, and actual startup six-sprite format fixtures observed RED then GREEN. Final original game art, movement, shots, enemy wave, charge, pause/resume verified by browser touch."
+    },
+    {
+      "file": "proj/src/proj.c",
+      "originalSha256": "f86e3cafdd17ee716b48c7366b7a3f65c9d0aaa4397d649719777d0dfb14ea76",
+      "patchedSha256": "fe7aacb1567f4b15b5fddd4d37a6d7a7d0ffc41d5365cf6455b7fd5912b72ae0",
+      "reason": "Original startup requested RGB565 numeric2 for six sprites consumed by the packed24 renderer. Use named XPM_8_8_8 matching original VBE0x14b. Actual proj_main_loop fixture checks mode and all six resulting sprite formats, RED565 then GREEN888."
+    }
+  ],
+  "selection": "Pinned project source and upstream root README/license. Omitted generated documentation, lab exercises, VCS/OS metadata and build products.",
+  "controlsRationale": "Original menu and movement use arrow keys, Enter selects Play/resumes, Space fires a normal shot or holds a charged shot, Escape pauses. Left arrow pad and two right actions; unused generic keyboard/mouse/joystick disabled. Canvas touch disabled because original desktop mouse motion moves the dragon directly, while authored mobile directional buttons provide reliable movement. Actual original art, downward movement, normal blue shot, held yellow charged shot, enemies, score4 to34, Escape pause and Enter resume passed.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/nmtc01--LCOM-Projects",
+    "limits": "Short scrolling shooter gameplay and pause/resume; no full campaign, enemy kill or Android gameplay claim yet."
+  },
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata excluded from required source inventory."
+  },
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream root.",
+  "icon": {
+    "kind": "simple original dragon-face motif",
+    "source": "Original dragon artwork colors and silhouette"
+  },
+  "formatContractEvidence": [
+    {
+      "url": "https://github.com/catarinaopires/lcom_20_21/blob/5bb241b5d179725e4db222b9b76ac0634b29688d/.minix-src/include/lcom/libxpm.h",
+      "date": "2020-12-08",
+      "contract": "RGB565=2,RGB888=3"
+    },
+    {
+      "path": "build/arcade-100/a/timer-sdk/primary/biromiro-xpm-proof.json",
+      "date": "2020-09-25",
+      "contract": "RGB565=2,RGB888=3"
+    }
+  ],
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "4c5417ee3d05e216199bddb7bf9ad72266bcfd1ca4dc57dcc57fb60bd56f0d5f",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "98da2fe6b5e33937c5b4c110da8f629892146cdf7d930a2d4627341a24104b76",
+      "kind": "actual browser charged shot and enemy wave"
+    }
+  ]
+}

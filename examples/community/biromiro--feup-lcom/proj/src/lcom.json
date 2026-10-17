@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "name": "LCOM Last Stand",
+  "description": "Move the original wraith and aim magic blasts at waves of falling enemies.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "touchClick": false,
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Cast",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,11 @@
+--- a/proj/src/interrupts.c
++++ b/proj/src/interrupts.c
+@@ -74,7 +74,7 @@
+     timer_int_handler();//update timer_counter
+ 
+     if(timer_counter%60 == 0 || first_time){//draws date and time 
+-      getRealTime(realtime, numbers_rtc, false, menu_struct);
++      getRealTime(realtime, numbers_rtc, first_time, menu_struct);
+     }
+     
+     first_time = false;

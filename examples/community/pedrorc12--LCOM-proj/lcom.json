@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "name": "Doodle Jump: Platform Climb",
+  "description": "Bounce between platforms and climb as high as you can.",
+  "mobile": {
+    "fullscreen": false,
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "pointer": "off",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "pads": [
+        {
+          "mode": "arrows",
+          "style": "dpad",
+          "side": "left"
+        }
+      ],
+      "repeatKeys": [
+        "LEFT",
+        "RIGHT"
+      ],
+      "actions": [
+        {
+          "key": "UP",
+          "label": "Boost",
+          "side": "right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [],
+    "arguments": [
+      "115"
+    ]
+  },
+  "icon": "icon.png",
+  "archetype": "Doodle Jump",
+  "preview": "preview.png"
+}

@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "name": "Speed Test",
+  "description": "Type the displayed sentences accurately at three difficulty levels.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE",
+        "E",
+        "M",
+        "H",
+        "Q"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Confirm",
+          "key": "ENTER",
+          "position": "bottom-right"
+        }
+      ],
+      "tapDuration": 80
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [],
+    "libraries": [
+      "lcom=utils.c"
+    ]
+  },
+  "archetype": "Typing",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

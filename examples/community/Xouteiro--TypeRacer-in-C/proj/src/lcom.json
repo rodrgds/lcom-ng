@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "name": "Typo Racer",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": true,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC",
+        "BACKSPACE",
+        "SPACE"
+      ],
+      "pads": [
+        {
+          "side": "right",
+          "style": "stick",
+          "sensitivity": 1,
+          "mode": "mouse"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": [
+      "xpm/phrases.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/g3/proj/src": "."
+    }
+  },
+  "icon": "icon.png",
+  "archetype": "Typing",
+  "description": "Type the visible golden sentence, correct red typos and finish with an original WPM and accuracy result.",
+  "preview": "preview.png"
+}

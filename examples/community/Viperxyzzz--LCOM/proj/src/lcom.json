@@ -1,0 +1,52 @@
+{
+  "name": "Breakout: Brick Chase",
+  "build": {
+    "sources": [
+      "animate_sprite.c",
+      "background.c",
+      "ball.c",
+      "bricks.c",
+      "game.c",
+      "keyboard.c",
+      "mouse.c",
+      "proj.c",
+      "rtc.c",
+      "sprite.c",
+      "timer.c",
+      "utils.c",
+      "videocard.c"
+    ],
+    "include": [],
+    "assets": []
+  },
+  "mobile": {
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "quickKeys": [
+        "ESC",
+        "A",
+        "D"
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "toolbar": "top-right"
+    },
+    "orientation": "auto"
+  },
+  "description": "Return the ball and clear the original brick wall.",
+  "archetype": "Breakout",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,145 @@
+{
+  "repository": "https://github.com/marinuas/FEUP-LCOM",
+  "commit": "b5c0986ca0956bedfaa406a129c3d8d9c6a0c3bc",
+  "project": "proj/src",
+  "sha256": {
+    "README.md": "99b679e14a019d9ffc9af4da637417d7c9843b7ace29632be74af0dd94a582fc",
+    "proj/.vscode/c_cpp_properties.json": "4d532a6d7db43061ec44b814a78ac396aaed4cdcb066eec0372ca2afd809259e",
+    "proj/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/.vscode/settings.json": "80d37ad062e9906512ed715b8c10c870138770e349a43477c20ce0c228d73152",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.vscode/c_cpp_properties.json": "4d532a6d7db43061ec44b814a78ac396aaed4cdcb066eec0372ca2afd809259e",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "80d37ad062e9906512ed715b8c10c870138770e349a43477c20ce0c228d73152",
+    "proj/src/Makefile": "d6d3b5dd16b45133f0bb30e4d4ba049bec2aab51d34533e0d026f616adbb0db5",
+    "proj/src/game.h": "ad2b6716ad591d10f7c08b12a553d7896810a60fabc2fff08f7f3a729f8dc33e",
+    "proj/src/i8042.h": "b8372496270774471b43f097985d76ab129cceddc39ffc1bf44cdaf8d35319c6",
+    "proj/src/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/keyboard.c": "c77658c7c079432cb8fef6c579bf32ebcbefc4d24cce5b24618f412a605711b6",
+    "proj/src/keyboard.h": "c0e7bcd1c29c3bfe5bcbcb80b0160557facb7ce66b78930bd2a1a727cbfa0318",
+    "proj/src/mouse.c": "140d9e27cc4a1bcb22b5cb5bbed13dbacea266edfc79a99c581209a501c0a314",
+    "proj/src/mouse.h": "f2e139107e77624050bd8415cea8a1234f1c8aa41898f693825bf00dea113593",
+    "proj/src/moves.c": "2af8c00807232fbeb135e2d6ad32ad6e363b2f593648e452154de5779ff9a9b3",
+    "proj/src/moves.h": "b84dead1ceba1a8d33c0fd6822b0c5c20a820e95125a0fecff62e88b1cad414e",
+    "proj/src/proj.c": "fcef7b4db04857b1a18e68931ab3715ed649bb3b13c069059179a388e0a3c1ad",
+    "proj/src/timer.c": "2c206693febf71ce6b0beeda6f6598b8960f28c67ee794cdf9fc22280178db8b",
+    "proj/src/timer.h": "9cfeb724984755ec4091924796420c5719157488262fd653a1f104ab597ad259",
+    "proj/src/utils.c": "cf73ca3bc4fe8ae9aad519a74f68b966b92ed39440b2070a81dfd2fe06533815",
+    "proj/src/utils.h": "430ced983912477a002df17b4fbeb696bee744c1d3126dd6dc9718236dfce818",
+    "proj/src/video_gr.c": "a5fa81152e83355039fa35071e4c68dc65c4c76c4b511118f9f5b6fb3563991f",
+    "proj/src/video_gr.h": "e119054088ba1d7398900023dca741bad8a5b2b489141cc0c8b1936c85491d1e",
+    "proj/src/xpm/0.xpm": "fabea7b1ef938c67dcd65ae02f487daeb5e958bb9c9731f320cf42d3c3c23c7b",
+    "proj/src/xpm/1.xpm": "73774c79f4db412f9c50d20d42c36ac4abc4184a78b90918d72b45ef355e387b",
+    "proj/src/xpm/2.xpm": "27b3f52edbf3e2951b2d5c88a74f1dfc153b80cc01ee521f40395e8e0b6b6da2",
+    "proj/src/xpm/3.xpm": "9018436eb03a90af3cd896252d881af6a25dd51d1417cea0cd81962b1d059a73",
+    "proj/src/xpm/4.xpm": "7753a48e37f20901adc876a056dd57b5a136191d98d5aa54b0f8bbefbc9dc15e",
+    "proj/src/xpm/5.xpm": "e3cf024f27398b4b3c2a529f0a1e971e96bde74863ada6e05f71d8beec0fe4a7",
+    "proj/src/xpm/6.xpm": "0399bc262d1cfe88588cf5f85583964d18a6dc059c165386017c814036bf8a0f",
+    "proj/src/xpm/7.xpm": "73a9dce56feecfcd0388a2b095099e88557ba14c8fa826bd5c8bcf19dce4d4a4",
+    "proj/src/xpm/8.xpm": "28987a2232690069bd71884e033cf3f3b7b5246fed718217af8e3ec306e81587",
+    "proj/src/xpm/9.xpm": "c0ecd012861b3c43fde4c41fc369bf7cdd8cfc746fdfce197c3b6b28d8fc6c41",
+    "proj/src/xpm/alien.xpm": "c08ef2ba74066713c5aeac452baed714418b6f40455a90ca27060a84fe826989",
+    "proj/src/xpm/asteroides.xpm": "ad82a8030c412e3936eecac2c957189c94814395be4884c9ff7ad8cdd94468e2",
+    "proj/src/xpm/cao.xpm": "244b9b14afc25655d7f647aa8fda81f5cb73228e9e759b1e3288fb305e300075",
+    "proj/src/xpm/cao_down.xpm": "8713b10db0e3af6591446b3f4f615cffad3fe9d7907f8f97ab2ee56ec809c588",
+    "proj/src/xpm/cao_up.xpm": "20b995e9c90d29fb80a7c368a2a1f341e0935a88fcbcfab812ff5e3e168efc8d",
+    "proj/src/xpm/chao.xpm": "7f979da723aaf70cdcf7338b013c2dc9c877dfc203741a2d900bc25468986fae",
+    "proj/src/xpm/coin.xpm": "cbb3daf86f6c46fda69e892809b4a6c9649acda7fc95b8abef257dd54ca9611c",
+    "proj/src/xpm/cursor_mouse.xpm": "5d9229e48557902c53f3a46deccdb0b46d0fb5be0e9154dcbdbe04835bcac5d1",
+    "proj/src/xpm/fogo.xpm": "dc1e1b81507089371278f1f1226fb3997fab025565a3183f3ba7b5bd7b5738ab",
+    "proj/src/xpm/fundo.xpm": "61592ef7d7566fb5b6fa8bf4cd2bc3dcc7536c6a26c9912e5178db980b0b1518",
+    "proj/src/xpm/gameover.xpm": "9a29c5db7848e752684fcbe06ff9f451de5204126f440767baf6a9131711c730",
+    "proj/src/xpm/instrucoes.xpm": "6ae8a6e88fb2c910d92995882733273b13701cba508c2d7df8bebd75769fa18d",
+    "proj/src/xpm/menu.xpm": "bb608d40a01c0f7f876cccd0ea157b363b95bc2c6b3cb40e3156114a8e5ca8ad",
+    "proj/src/xpm/vida.xpm": "9bbc53b7c4b20026d7f3002e3ba0b29b78821bb245477023e3992ed0aad59cff"
+  },
+  "sourceChanges": [
+    {
+      "file": "proj/src/mouse.c",
+      "originalSha256": "140d9e27cc4a1bcb22b5cb5bbed13dbacea266edfc79a99c581209a501c0a314",
+      "patchedSha256": "39832a36dbcaa025f0b113f60c63cad2ad8c576d74aa9c1ead11dc5489ea8ebb",
+      "reason": "Original command writes were gated on busy/AUX status, so idle startup never sent D4/EA/F4 and read an ACK that was never requested. Wait for clear IBF at each write, real OBF before ACK, bounded retries on NACK and bounded errors. Actual owning protocol RED before writes, GREEN idle/busy/resend/error/stuck cases. Mouse position originally clamped before deltas and to the whole800x600screen, allowing the20x31cursor to disappear; clamp after complete packets to780x569. Actual owning corner/selection RED/GREEN and all four real rendered corner photos."
+    },
+    {
+      "file": "proj/src/proj.c",
+      "originalSha256": "fcef7b4db04857b1a18e68931ab3715ed649bb3b13c069059179a388e0a3c1ad",
+      "patchedSha256": "e7c9de190c887f48d964c66118d964eedd0c8bae73c87c135788fb71045c0f53",
+      "reason": "Existing draw/movement code used one-based occupied slots up to count on50/100element arrays, and discarded objects without reducing count. Actual sustained-fire browser UBSan RED proj.c449 index50 outside int[50], plus actual whole-game-loop bounds regression RED. Make one-based slots1..50/100 valid, initialize each spawned slot, reduce counts on collision/retirement, stop testing a removed projectile and retire offscreen shots. Remove automatic MENU arrays that shadowed persistent sprite tables. Initial hearts3 now match the three-entry table even before the first menu timer. Whole real loop GREEN with normal and early-input startup, sustained fire, score/menu/Exit notifications; final instrumented browser GREEN."
+    },
+    {
+      "file": "proj/src/moves.c",
+      "originalSha256": "2af8c00807232fbeb135e2d6ad32ad6e363b2f593648e452154de5779ff9a9b3",
+      "patchedSha256": "48fea5c8d814ba0572e4c33b89bf1dcc82db6b6cd1a7e85d26543ce2d3e9510a",
+      "reason": "Position tables now have the valid one-based slots used by original rendering and initialize1..50/100. Up/down previously overshot the top guard and clipped the102pxdog below the600pxscreen. Clamp resulting motion to10..498 for the original120x102sprites. Actual owning repeated-motion renderer RED/GREEN keeps the complete original artwork visible."
+    }
+  ],
+  "selection": "Pinned project source tree and upstream root README/license files. Omitted generated documentation, lab exercises, VCS/OS metadata and build products.",
+  "createdAt": "2021-08-19T13:29:52Z",
+  "yearEvidence": {
+    "source": "GitHub repository REST API created_at",
+    "url": "https://api.github.com/repos/marinuas/FEUP-LCOM",
+    "retrievedAt": "2026-10-17"
+  },
+  "controlsRationale": "Original menu cursor400220 is already over Comecar. Select leftmouse starts. W/S control vertical flight every timer while held, so verticalWASDpad has no extra key repeats; Space fires and returns from Game Over. Relative pointer preserves original packet handling; full20x31cursor now remains visible at all corners. Actual touch Select/W/S/sustainedFire/Escape/Space verified: projectiles, hazards, coins, visible675score then original menu. Portrait controls inspected. No direct calibration or authored reporting override; original F4 is repaired at the real controller readiness boundary.",
+  "verification": {
+    "browserBuild": true,
+    "nativeBuild": true,
+    "fortifiedNdkObjectCompile": true,
+    "mobileTouchGameplay": true,
+    "boundsInstrumentedBrowserGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/space-dog-current",
+    "limits": "Short actual touch flight, both vertical directions, sustained projectile stream, hazards/coins, Escape game-over score675 and Space menu return. Real four corner canvas captures and actual owning/sanitized regressions. No full campaign, endless-score or actual Android gameplay claim yet. Original assets unchanged."
+  },
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS/VCS metadata excluded from required source inventory."
+  },
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream root.",
+  "sourceFingerprint": {
+    "kind": "sorted original C unit SHA256 multiset",
+    "sha256": "beb2e17bfa056f059098a97eb7ce5a558ac34dfba35765fa3aa1cbc742899498",
+    "duplicateOf": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "e1a039f9c38ba7b7a92bf1bc2a5fa026ed92f8056de8ad19509b039d0e5c76f9",
+      "kind": "simple source-informed jetpack dog icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "b8103bdc163b21b982ca3a62110ca485549df0ae7b3c398167e8f45c1b65b9ee",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "nativeGameplay": {
+    "status": "passed",
+    "surface": "Actual ARM64 Android emulator touchscreen",
+    "apkSha256": "018c6deee0c8bf2f827ecb4c7a67d64d25c546a694f3001817fc49c5129ff262",
+    "evidence": "build/arcade-100/b19-native-gameplay/results.json",
+    "demonstrated": [
+      "Original dog, lava world, three hearts and approaching coins.",
+      "W raises the original dog.",
+      "S lowers the original dog.",
+      "Space held through visible fire and enemies; use held raw photo for transient projectiles.",
+      "Inspect actual hazards/coins/hearts after sustained fire.",
+      "Original Game Over score, browser actual675 but native RNG/timing may differ.",
+      "Original Space returns from Game Over to menu."
+    ]
+  }
+}

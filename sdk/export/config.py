@@ -8,7 +8,7 @@ DEFAULT_MOBILE = {
     'orientation': 'auto', 'fullscreen': False,
     'controls': {'keyboard': True, 'mouseButtons': True, 'quickKeys': ['ESC', 'SPACE', 'ENTER'],
                  'joystick': True, 'look': False, 'dpad': False, 'layout': 'panel', 'pointer': 'drag',
-                 'touch': 'auto', 'touchClick': True, 'pads': [], 'actions': [], 'repeatKeys': [],
+                 'touch': 'auto', 'touchClick': True, 'pads': [], 'actions': [], 'repeatKeys': [], 'repeatReleaseKeys': [],
                  'toolbar': 'auto', 'keyboardPosition': 'auto', 'tapDuration': 0,
                  'cursor': {'x': -1, 'y': -1, 'maxX': -1, 'maxY': -1,
                             'minX': 0, 'minY': 0, 'bounds': 'clamp'}},
@@ -16,7 +16,8 @@ DEFAULT_MOBILE = {
               'text': '#eeeeee', 'font': 'sans'},
 }
 KEYS = {'ESC','SPACE','ENTER','KP_ENTER','BACKSPACE','TAB','UP','DOWN','LEFT','RIGHT','LSHIFT','LCTRL','LALT',
-        'HOME','END','PAGEUP','PAGEDOWN','DELETE','INSERT', *'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+        'HOME','END','PAGEUP','PAGEDOWN','DELETE','INSERT',
+        'MINUS','EQUAL','LBRACKET','RBRACKET','BACKSLASH','SEMICOLON','APOSTROPHE','BACKQUOTE','COMMA','PERIOD','SLASH', *'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
         *(f'F{i}' for i in range(1,13)), *(f'KP{i}' for i in range(10))}
 CORNERS = ['top-left','top-right','bottom-left','bottom-right']
 
@@ -71,15 +72,19 @@ def load(project, explicit=None):
     project = Path(project).resolve()
     path = Path(explicit).resolve(strict=True) if explicit else project / 'lcom.json'
     data = json.loads(path.read_text()) if path.is_file() else {}
-    object_value(data, str(path), ['$schema','version','name','icon','description','preview','mobile','build'])
+    object_value(data, str(path), ['$schema','version','name','icon','description','preview','archetype','mobile','build'])
     if 'version' in data and (type(data['version']) is not int or data['version'] != 1):
         raise ValueError('lcom.json version must be 1')
-    result = {'name': string(data.get('name',project.name),'name'), 'icon': None, 'preview': None, 'description': '',
+    result = {'name': string(data.get('name',project.name),'name'), 'icon': None, 'preview': None, 'description': '', 'archetype': None,
               'mobile': copy.deepcopy(DEFAULT_MOBILE), 'build': {}}
     if 'icon' in data: result['icon'] = icon_path(path.parent / string(data['icon'],'icon'))
     if 'description' in data:
         result['description'] = string(data['description'], 'description').strip()
         if len(result['description']) > 500: raise ValueError('description must contain at most 500 characters')
+    if 'archetype' in data:
+        result['archetype'] = string(data['archetype'], 'archetype').strip()
+        if len(result['archetype']) > 64 or any(ord(char) < 32 for char in result['archetype']):
+            raise ValueError('archetype must contain at most 64 characters on one line')
     if 'preview' in data: result['preview'] = preview_path(path.parent / string(data['preview'], 'preview'))
     mobile = object_value(data.get('mobile',{}),'mobile',['orientation','fullscreen','controls','theme'])
     for key in ('orientation','fullscreen'):
@@ -105,7 +110,7 @@ def load(project, explicit=None):
                     sensitivity=value.get('sensitivity',1)
                     if type(sensitivity) not in (int,float) or not 0.1 <= sensitivity <= 5: raise ValueError(target+'.sensitivity must be between 0.1 and 5')
                     value['sensitivity']=sensitivity
-        elif key in ('quickKeys','repeatKeys'):
+        elif key in ('quickKeys','repeatKeys','repeatReleaseKeys'):
             if not isinstance(value,list) or len(value)>16 or any(not isinstance(v,str) or v not in KEYS for v in value):
                 raise ValueError(target+' must contain up to 16 guest key names, for example ESC or SPACE')
             if len(set(value)) != len(value): raise ValueError(target+' cannot contain duplicate keys')
@@ -127,8 +132,8 @@ def load(project, explicit=None):
                 choice(p['mode'],target+'.mode',['arrows','wasd','keypad','mouse'])
                 choice(p['style'],target+'.style',['dpad','stick','wheel'])
                 choice(p['axes'],target+'.axes',['both','horizontal','vertical'])
-                if type(p['sensitivity']) not in (int,float) or not 0.1<=p['sensitivity']<=5:
-                    raise ValueError(target+'.sensitivity must be between 0.1 and 5')
+                if type(p['sensitivity']) not in (int,float) or not 0.1<=p['sensitivity']<=10:
+                    raise ValueError(target+'.sensitivity must be between 0.1 and 10')
                 if p['mode']=='mouse' and (p['style']!='stick' or 'keys' in p):
                     raise ValueError(target+': mouse pads require stick style and no keys')
                 if p['style']=='wheel':
@@ -151,16 +156,18 @@ def load(project, explicit=None):
             if not isinstance(value,list) or len(value)>8: raise ValueError(target+' must contain up to eight actions')
             positions=[]
             for action in value:
-                object_value(action,target,['side','position','label','key','mouseButton','icon'])
+                object_value(action,target,['side','position','label','key','mouseButton','wheel','icon'])
                 if 'icon' in action: choice(action['icon'],target+'.icon',['accelerator','brake','reverse'])
                 if 'side' in action: choice(action['side'],target+'.side',['left','right'])
                 if 'position' in action: choice(action['position'],target+'.position',CORNERS)
                 elif 'side' not in action: raise ValueError(target+' requires side or position')
                 label=string(action.get('label'),target+'.label')
                 if len(label)>16: raise ValueError(target+'.label must contain up to 16 characters')
-                if ('key' in action)==('mouseButton' in action): raise ValueError(target+' requires either key or mouseButton')
+                if sum(field in action for field in ('key','mouseButton','wheel')) != 1: raise ValueError(target+' requires exactly one of key, mouseButton or wheel')
                 if 'key' in action: choice(action['key'],target+'.key',sorted(KEYS))
-                else: choice(action['mouseButton'],target+'.mouseButton',['left','right','middle'])
+                elif 'mouseButton' in action: choice(action['mouseButton'],target+'.mouseButton',['left','right','middle'])
+                elif type(action['wheel']) is not int or not -127 <= action['wheel'] <= 127 or action['wheel'] == 0:
+                    raise ValueError(target+'.wheel must be a nonzero integer from -127 to 127')
                 positions.append(action.get('position','bottom-'+action.get('side','right')))
             if any(positions.count(position)>4 for position in positions): raise ValueError(target+' allows up to four actions per position')
         elif key=='cursor':
@@ -190,23 +197,27 @@ def load(project, explicit=None):
         elif not isinstance(value,str) or not re.fullmatch('#[0-9a-fA-F]{6}',value): raise ValueError('mobile.theme.'+key+' must be a #RRGGBB color')
         result['mobile']['theme'][key] = value
     if 'accent' in theme and 'keyboardAccent' not in theme: result['mobile']['theme']['keyboardAccent']=theme['accent']
-    build=object_value(data.get('build',{}),'build',['sources','include','assets','assetRoot','arguments','libraries','environment','pathAliases'])
+    build=object_value(data.get('build',{}),'build',['sources','include','assets','assetRoot','arguments','libraries','environment','pathAliases','emulateFunctionPointerCasts','cStandard'])
     for key,value in build.items():
-        if key=='environment':
+        if key=='cStandard':
+            if value not in ('gnu89','gnu99','gnu11','gnu17'): raise ValueError('build.cStandard must be gnu89, gnu99, gnu11 or gnu17')
+        elif key=='emulateFunctionPointerCasts':
+            value=boolean(value,'build.'+key)
+        elif key=='environment':
             if not isinstance(value,dict): raise ValueError('build.environment must be an object of strings')
             for name,setting in value.items():
                 if not re.fullmatch(r'[A-Za-z_][A-Za-z0-9_]*',name) or not isinstance(setting,str) or '\0' in setting:
                     raise ValueError('build.environment must contain valid variable names and string values without NUL')
         elif key=='pathAliases':
             if not isinstance(value,dict) or len(value)>64:
-                raise ValueError('build.pathAliases must be an object with up to 64 absolute roots and relative destinations')
+                raise ValueError('build.pathAliases must be an object with up to 64 directory prefixes and relative destinations')
             aliases={}
             for origin,destination in value.items():
-                if not isinstance(destination,str) or not destination or any(c == '\\' or ord(c) < 32 for c in origin+destination):
+                if not isinstance(origin,str) or not isinstance(destination,str) or not destination or any(c == '\\' or ord(c) < 32 for c in origin+destination):
                     raise ValueError('build.pathAliases requires POSIX paths without control characters')
                 before,after=PurePosixPath(origin),PurePosixPath(destination)
-                if not before.is_absolute() or len(before.parts)<2 or after.is_absolute() or '..' in before.parts or '..' in after.parts:
-                    raise ValueError('build.pathAliases requires absolute roots and relative destinations inside the asset root')
+                if str(before)=='.' or not str(before).strip('/') or after.is_absolute() or '..' in before.parts or '..' in after.parts:
+                    raise ValueError('build.pathAliases requires nonempty directory prefixes and relative destinations inside the asset root')
                 normalized=str(before).rstrip('/')
                 if normalized in aliases: raise ValueError('build.pathAliases contains duplicate normalized roots')
                 aliases[normalized]=str(after)
@@ -215,6 +226,8 @@ def load(project, explicit=None):
         elif not isinstance(value,list) or any(not isinstance(v,str) or not v or '\0' in v for v in value): raise ValueError('build.'+key+' must be an array of strings')
         result['build'][key]=value
     resolved_controls=result['mobile']['controls']
+    if set(resolved_controls['repeatKeys']) & set(resolved_controls['repeatReleaseKeys']):
+        raise ValueError('mobile.controls.repeatReleaseKeys must not overlap repeatKeys')
     other_sides=[resolved_controls[k]['side'] for k in ('look','dpad') if isinstance(resolved_controls[k],dict)]
     other_sides += [p['side'] for p in resolved_controls['pads']]
     if resolved_controls['joystick'] is True and other_sides:
@@ -247,6 +260,8 @@ def resolve(args):
     for attr,key in [('source','sources'),('include','include'),('asset','assets'),('asset_root','assetRoot'),('arg','arguments'),('library','libraries')]:
         if not getattr(args,attr) and key in config['build']:
             setattr(args,attr,Path(config['build'][key]) if attr=='asset_root' else config['build'][key])
+    args.c_standard=config['build'].get('cStandard','gnu11')
+    args.path_aliases=config['build'].get('pathAliases',{})
     config.update(name=args.name, icon=args.icon)
     return config
 
@@ -263,7 +278,7 @@ def runtime_environment(config):
 
 
 def public(config):
-    return {'name':config['name'], 'description':config['description'],
+    return {'name':config['name'], 'description':config['description'], 'archetype':config['archetype'],
             'preview':'preview.png' if config['preview'] else None, 'icon':'icon.png' if config['icon'] else None,'mobile':config['mobile'],
             'environment':runtime_environment(config)}
 
@@ -284,6 +299,7 @@ def write_native(config, path):
             'joystickMenu':c['joystick'] is True}
     for key,value in values.items(): lines.append(f'  c.{key} = ' + (cpp_string(value) if isinstance(value,str) else json.dumps(value)) + ';')
     lines.append('  c.quickKeys = {' + ','.join(json.dumps(v) for v in c['quickKeys']) + '};')
+    lines.append('  c.repeatReleaseKeys = {' + ','.join(json.dumps(v) for v in c['repeatReleaseKeys']) + '};')
     lines.append('  c.repeatKeys = {' + ','.join(json.dumps(v) for v in c['repeatKeys']) + '};')
     lines.append('  c.cursor = {' + ','.join(str(c['cursor'][key]) for key in ('x','y','maxX','maxY','minX','minY')) + ','+str(c['cursor']['bounds']=='reject').lower()+'};')
     for key in ('joystick','look','dpad'):
@@ -304,6 +320,7 @@ def write_native(config, path):
         lines.append('  c.actions.push_back({'+','.join(cpp_string(side if k=='side' else a.get(k,'')) for k in ('side','label','key'))+','+str({'left':1,'right':2,'middle':4}.get(a.get('mouseButton'),0))+'});')
         lines.append('  c.actions.back().position = '+cpp_string(a.get('position',''))+';')
         if a.get('icon'): lines.append('  c.actions.back().icon = '+cpp_string(a['icon'])+';')
+        if a.get('wheel'): lines.append('  c.actions.back().wheel = '+str(a['wheel'])+';')
     for key in ('accent','keyboardAccent','button','text'): lines.append(f'  c.{key} = 0x{t[key][1:]};')
     lines += ['  return c;', '}();']
     environment=runtime_environment(config)

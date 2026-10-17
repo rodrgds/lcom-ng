@@ -1,0 +1,11 @@
+#ifndef _LCOM_GRAPHIC_MACROS_H_
+#define _LCOM_GRAPHIC_MACROS_H_
+
+
+#define VBE_CALL_FNC_2_16 0x4F02
+#define VBE_LINEAR_FRAMEBUFFER (1<<14)
+#define Y_RESOLUTION 1024
+#define  X_RESOLUTION 1280
+#define VIDEO_MODE 0x11A
+
+#endif

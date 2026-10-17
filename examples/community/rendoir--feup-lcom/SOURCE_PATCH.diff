@@ -1,0 +1,15 @@
+--- a/src/graphics.c
++++ b/src/graphics.c
+@@ -487,11 +487,11 @@
+ 	if (OK != (r = sys_privctl(SELF, SYS_PRIV_ADD_MEM, &mr)))
+ 		panic("sys_privctl (ADD_MEM) failed: %d\n", r);
+ 
++	video_mem = vm_map_phys(SELF, (void *) mr.mr_base,h_res*v_res*2);
+ 	if (video_mem == MAP_FAILED) {
+ 		panic("Could not map video memory\n");
+ 		return NULL;
+ 	}
+-	video_mem = vm_map_phys(SELF, (void *) mr.mr_base,h_res*v_res*2);
+ 
+ 	return video_mem;
+ }

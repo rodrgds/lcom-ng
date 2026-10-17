@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "name": "Asteroids: Meteor Shooter",
+  "description": "Move your ship and blast the original falling meteor waves.",
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "pointer": "move",
+      "quickKeys": [
+        "1",
+        "2",
+        "3",
+        "ESC"
+      ],
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Fire",
+          "mouseButton": "left",
+          "side": "right"
+        }
+      ]
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

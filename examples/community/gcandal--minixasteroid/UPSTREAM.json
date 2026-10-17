@@ -1,0 +1,86 @@
+{
+  "repository": "https://github.com/gcandal/minixasteroid",
+  "revision": "4d9efd7af34abca5294c3967bfe0e87217c24c32",
+  "createdAt": "2013-03-20T15:33:16Z",
+  "project": ".",
+  "sourceHashes": {
+    ".gitignore": "2311609dde291bc211740fcdca95b25e0ee41d97ff46a01794c5d2da54df36fb",
+    "Makefile": "9cb88d90754c7a6dd492f9853976c4030daac32b89a823aa54ed78610ccb5b87",
+    "README.md": "12b1167f8518dd5ad46da8fa1384147c3927509b53ea8ca81265be7097d429f2",
+    "control.c": "cf946b4829c851bce1522e272128fa9c79173e71bfe570afb2d987c1516ce51a",
+    "control.h": "f83f807e997c7d1e7cbae5ee15bd4d80844ab8c523db50d37b93501d1b0f7a6f",
+    "i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "kbd.c": "6e7beb57aefadbf0fe6f351b3ac8b1cb308f0506fbe083d399032ea2da310bc9",
+    "kbd.h": "615517c654995eb821563466d3d6f4e960c1417dbc3ccf830ff125b94d902cff",
+    "lmlib.h": "39266674d6e78989c967cd54b2780b0b6b673e595be1ddca927b773074dea5b2",
+    "mouse.c": "d221edf5f83839bfc32be4bb8e644932795928b4b7475ed3ab7d146758ae99bd",
+    "mouse.h": "d9b863c806aca2ec8b6dffc6cc730c9a9b0675cf5563cfa562cf8b9dba01d568",
+    "proj.c": "a0247e24776610efd18ebf2424cf555b61adcc99a88f0b5568cce4e2b241fd45",
+    "proj.h": "a4f31e15ecd94dce6d3490cad045cd3f45bdf491ce56023522de9f96f58b351e",
+    "rtc.c": "91e2be350d7a4c08ab9af18cadd71bc716c8124ab445585548550e623d6418fa",
+    "rtc.h": "a6abe395f005b93b13151db4a5e412a6804ba3edab410dc73bbd436ba6ca61ec",
+    "sprite.c": "d7d7e27785b4314a80e35eee5541efcfa91bf555d4a8338bb32674580d0edf73",
+    "sprite.h": "bd48659ad290feec928ffe71e3e8738dea01733627fe5857a03a705794392eab",
+    "timer.c": "8e2351348d177ff1a3c23deebd63f5bc2e5aea87cd18ea4477afb0bb8204fc79",
+    "timer.h": "e48dd9dcda310a55ebea8dcde48f1583f02eea8a3ca0d50033a8d9f4421eb7b0",
+    "vbe.c": "81853399c85d20f2740d552307525c4b6eba4c6e8998011bc909cf591312e2db",
+    "vbe.h": "c8db80c97e2471e613e280ba6804cbeab50c59f0eb1a7643303944b454b15216",
+    "video_gr.c": "3bc78bfdee66eb7134d3622e6c2399bc442ea11999cb93328a701a8d01a042aa",
+    "video_gr.h": "dae67d9d7a0f449473fc620bf034cb47a354093f9087fc4bd2094c871d477949",
+    "xpm.h": "1a6c5330832a1f1fba96d43a5d5ab1c0f61293e6d247a6d9c242de9fc178b35b"
+  },
+  "selection": "Pinned original required C/header/Makefile/art data plus root README. Narrow source defects are recorded separately; original game art unchanged.",
+  "omissions": [
+    {
+      "file": "proj",
+      "sha256": "608fd4cf27a5125d6882bfc4882de9ed1168c6dc22c53365fcf4ca1e064bb894",
+      "reason": "Pinned compiled Minix binary, not source"
+    }
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj.c",
+          "originalSha256": "a0247e24776610efd18ebf2424cf555b61adcc99a88f0b5568cce4e2b241fd45",
+          "patchedSha256": "bb6c5bc472122a0e3f594157f99908b3a21a0bf7c33a7bc7d3af1ac5beab472d",
+          "reason": "Initialize four shot pointers within their four-slot owning array; provide five destination entries for five timer iterations."
+        },
+        {
+          "file": "sprite.c",
+          "originalSha256": "d7d7e27785b4314a80e35eee5541efcfa91bf555d4a8338bb32674580d0edf73",
+          "patchedSha256": "c12d356f4db2350ed9783370e32b55537fadd8d160094618e3c251b3c3f06092",
+          "reason": "Include existing own video_gr.h to declare the actual pixel-accessor ABI, removing invalid implicit-int WASM call."
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original sprite on flat matching panel",
+    "source": "xpm.h:spaceship"
+  },
+  "derivedAssets": [
+    {
+      "path": "icon.png",
+      "sha256": "1252deb22fb278d582ebb59ee8ae828b9298cd4b2bd5f30e4afd70f686be898f",
+      "kind": "source-derived launcher icon"
+    },
+    {
+      "path": "preview.png",
+      "sha256": "0c8bf9e9d90976027f6d23d6a92a1e92b874e1f59a676d3ca6c20a523ebdbfd2",
+      "kind": "actual current-source gameplay preview"
+    }
+  ],
+  "verification": {
+    "web": "Normal final WASM runs: original ship moves120px through actual canvas touch; release-driven Fire shows green projectiles; held Fire repeats complete cycles, draining ammo. Falling asteroids and survival timer advance. Portrait panel inspected.",
+    "limitations": [
+      "No enemy-hit or victory claim.",
+      "Original round can end in roughly7seconds without evasion; first manual delayed QA reached GameOver before action.",
+      "Optional original RTC alarm mode is unverified."
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/nas-native-case/a141-qualify-eight/handoffs/gc-web-v1/evidence",
+    "native": "Original/current source host link and production-fortified ARM64 source compilation pass; ROOT Android gameplay pending.",
+    "wasmSha256": "33229bc810be5942bce502a4f8ddec109e2e1c59b860216bd03e7fa99284ba07"
+  }
+}

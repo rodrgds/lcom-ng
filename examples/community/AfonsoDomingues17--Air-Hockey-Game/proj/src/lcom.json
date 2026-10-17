@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "name": "Air Hockey: Practice Rink",
+  "description": "Practice paddle strikes and rebounds against a stationary opponent.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "W",
+        "S"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Play / Select",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "tapDuration": 80
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Air Hockey",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

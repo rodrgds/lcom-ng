@@ -1,0 +1,7 @@
+*.o
+*.sh
+proj
+.gdbinit
+
+output.txt
+trace.txt

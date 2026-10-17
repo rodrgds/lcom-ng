@@ -1,0 +1,37 @@
+--- a/proj/src/mvc/model/game.c
++++ b/proj/src/mvc/model/game.c
+@@ -178,17 +178,23 @@
+     if (board->pieces[i].isWhite == isWhite && board->pieces[i].type != EMPTY && board->pieces[i].type != KING) {
+       struct Movelist possible_moves = get_possible_moves(game, &board->pieces[i]);
+ 
++      bool gives_check = false;
+       for (int j = 0; j < possible_moves.index; j++) {
+         struct Move *move = possible_moves.moves[j];
+         struct Position *init_pos = move->init_pos;
+         struct Position *final_pos = move->final_pos;
+ 
+         if (is_movement_legal_without_removing(board, board->pieces[i].type, &board->pieces[i], init_pos, final_pos) && king_pos.x == final_pos->x && king_pos.y == final_pos->y) {
+-          return true;
++          gives_check = true;
++          break;
+         }
+       }
+-      free(possible_moves.moves);
+-      possible_moves.index = 0;
++      for (int j = 0; j < possible_moves.index; j++) {
++        free(possible_moves.moves[j]->init_pos);
++        free(possible_moves.moves[j]->final_pos);
++        free(possible_moves.moves[j]);
++      }
++      if (gives_check) return true;
+     }
+   }
+   return false;
+@@ -334,7 +340,6 @@
+         struct Move *move = malloc(sizeof(struct Move));
+         move->init_pos = malloc(sizeof(struct Position));
+         move->final_pos = malloc(sizeof(struct Position));
+-        move->piece = malloc(sizeof(struct Piece));
+ 
+         move->piece = piece;
+         move->init_pos->x = piece->position.x;

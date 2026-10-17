@@ -58,6 +58,9 @@ EMSCRIPTEN_KEEPALIVE void lcom_web_mouse(int dx, int dy, int buttons) {
   // The JS player supplies PS/2 Y; the shared host interface uses screen Y.
   lcom::embedded::injectMouse(dx, -dy, static_cast<uint8_t>(buttons));
 }
+EMSCRIPTEN_KEEPALIVE void lcom_web_wheel(int delta) {
+  lcom::embedded::injectWheel(delta);
+}
 EMSCRIPTEN_KEEPALIVE void lcom_web_pointer(int x, int y, int buttons) {
   lcom::embedded::injectPointer(x,y,static_cast<uint8_t>(buttons));
 }

@@ -1,0 +1,46 @@
+--- a/proj/scr/game.c
++++ b/proj/scr/game.c
+@@ -195,13 +195,9 @@
+ 
+ void handle_shot(){
+     uint8_t h  = sqrt(pow(cannon->width,2)+pow(cannon->height,2)); 
+-    if (!first) {
+-        first = true; 
+-        return; 
+-    }
+     if(doing_shot){ 
+         cal_trajetory();
+-        drawSprite(ball, ball->x, ball->y); 
++        if (doing_shot) drawSprite(ball, ball->x, ball->y); 
+     }
+ 
+     //the ball needs to consider the angle of the cannon
+@@ -227,6 +223,7 @@
+     
+     if(checkCollision()){
+         destroy_sprite(ball);
++        ball = NULL;
+         doing_shot = false;         //terminou o tiro
+         shot = !shot;               //alterna o canhão
+         segundos = 0; 
+@@ -239,7 +236,8 @@
+ 
+     //destroy the ball 
+     if (ball->y > 704 || ball->x > 1024 || ball->x < 0 ){
+-        destroy_sprite(ball);       //destroy
++        destroy_sprite(ball);
++        ball = NULL;       //destroy
+         doing_shot = false;         //terminou o tiro
+         shot = !shot;               //alterna o canhão
+         segundos = 0; 
+--- a/proj/scr/sprite.c
++++ b/proj/scr/sprite.c
+@@ -130,7 +130,7 @@
+ }
+ 
+ void animateMouse(Sprite* mouse_sprite,int *mouse_x,int*mouse_y,struct packet *pp){
+-    if (pp->delta_y != 0 && pp->delta_x != 0){
++    if (pp->delta_y != 0 || pp->delta_x != 0){
+         if (*mouse_x+pp->delta_x >= 0 && (*mouse_x+pp->delta_x+13) <= 1024)
+             *mouse_x += pp->delta_x;
+         if ((*mouse_y+pp->delta_y-13) >= -768 && *mouse_y+pp->delta_y <= 0) 

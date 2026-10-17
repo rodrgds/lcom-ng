@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "name": "BowCannon",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "keyboard": true,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "SPACE"
+      ],
+      "actions": [
+        {
+          "label": "Fire / Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad",
+          "axes": "horizontal"
+        },
+        {
+          "side": "right",
+          "mode": "arrows",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": []
+  },
+  "description": "Move both original cannons, aim the mouse and take turns firing across the battlefield.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

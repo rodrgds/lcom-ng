@@ -1,0 +1,110 @@
+{
+  "repository": "https://github.com/pedrorc12/LCOM-proj",
+  "revision": "f968c02a72db6671a55a54d307c3ea3f272ffda5",
+  "project": ".",
+  "sourceHashes": {
+    ".clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    ".vscode/c_cpp_properties.json": "c5c6daf63dcc3a7ce8516a2154ecdb3da8d2757ad58708adcf92a743a34d2895",
+    ".vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    ".vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "Assets/Buttons.h": "1f55560f92f9b60489b0a78334a2559fbb04b9d6da2c3e5c1b0a81983bbb2266",
+    "Assets/Doodler.h": "3ba65ea76928bdf526deebe076c871fee367d3589fbd8048bdd45c0a32453d56",
+    "Assets/Doodler.png": "39e7ca4335b3c27ff638dbd81455f78f6374793756021b0e348e9fa9f5f8b535",
+    "Assets/Plataform.h": "a2f378967f6bbc10a54a94da1a0b8377f6fd988c167175cce7a7a45369222753",
+    "Assets/background.h": "2e2ca772569bd3a7726c4c68d681ed94ba053ed356050f1bee49076e0dea7754",
+    "Assets/main_menu_logo.h": "5acbcb8d6bea0e153c1a3ce2711d61186465628b70f38594525db9e3e1264316",
+    "Assets/pixmap.h": "c5a9f60664c6f17fd11d69364cc5d2e78861568ef175e60e30bd0d14e952011c",
+    "Makefile": "1c8da33b6be358693206429ee00225ce98243d6be24d4afad71f1fa3799cb1bf",
+    "Project.odg": "4251bbb66d91742d774030ba88796a6a65a6a1dbfe159df6df0b3f5efb6ded33",
+    "asprite.c": "4c98ffd64389cecde0e2bf0583001308b23599c8ac3b7800edb8e4c6cfb09258",
+    "asprite.h": "482d8fe64cff04fdfbbeafe576c22e6916b4da79d3b5f902415183fb9950b5fb",
+    "game.c": "8d65151dec8d065b0b4f39c57c75d49aa5762dc6d68c6e536b7bbdb3651f39c8",
+    "game.h": "6583168b50a45df6464aa23e18deaa0bb381cca9213c3e38e3406b7cb2e14b71",
+    "i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "kbc.c": "d1613585b60020db718801c8acdf74ac51ed427dc5768683ad30a09aae91fa3a",
+    "kbc.h": "b6f4f100f5b2fb5f800639c512604038cbb73516cbbda8a9dfb45bc3ed4d7b52",
+    "proj.c": "ce926b71d6f7691181cc151372ef33b914b220d7d8b495fba971710ff9ecb163",
+    "sprite.c": "92cc4e42be77a3db5131260739b8a6fd5160b5716d12bab5b2ad6478a227402c",
+    "sprite.h": "656c8e98efd9e21fd385887619c6e6decdb045460f987145cf1c7bdf6d930bae",
+    "timer.c": "142a241c6fbaf2b0c4614ad235551a4cad8f04b6713cf7069729e760680f283d",
+    "utils.c": "701e55eb85a75caf3842c017b8a84c902c25eb1ba0e5ee4d4984958817583708",
+    "video.c": "c5ed961e31b21348aeff152017a2fd2825b9332584a457fffef5fe6709ca6009",
+    "video.h": "4188203bfe289aa28ec3dc0947cde5423e76660500bcd0678d7e19b9eba4f23f"
+  },
+  "selection": "Original project source tree, headers, required assets and root README. Omitted unrelated labs, generated documentation, logs, compiled objects, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.mov",
+    "**/trace.txt",
+    "**/output.txt",
+    "**/core.*"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "game.c",
+          "reason": "Initialize the first keyboard packet before its initial OR. Actual game_main_loop first-Enter/timer movement regression fails original with independently poisoned automatic storage and passes defined zero; ordinary pause/return/confirmation close sequence remains intact.",
+          "originalSha256": "8d65151dec8d065b0b4f39c57c75d49aa5762dc6d68c6e536b7bbdb3651f39c8",
+          "patchedSha256": "8679feb7b336c3e1ba3180e60a2384663bff574127947520389fb05f7f65349a"
+        },
+        {
+          "file": "video.c",
+          "reason": "Size two VRAM pages by row bytes instead of bits; clip inclusive width/height edges before writes, and continue remaining color channels when an earlier channel already matches. Actual allocation/page-spacing and guarded two-page pixel/color owner regressions independently reproduce each original error, including progressive color-only edge failure.",
+          "originalSha256": "c5ed961e31b21348aeff152017a2fd2825b9332584a457fffef5fe6709ca6009",
+          "patchedSha256": "4af248c2e6f2461eacf2064a9df7fa909dffdf3be7aec768568c5bbe87f709db"
+        },
+        {
+          "file": "sprite.c",
+          "reason": "Clip each clear pixel to original background dimensions before reading its RGB bytes. Natural game-over cleanup can extend below the framebuffer; actual guarded-background owner test originally SIGBUS then preserves valid pixels and clips all edges after repair.",
+          "originalSha256": "92cc4e42be77a3db5131260739b8a6fd5160b5716d12bab5b2ad6478a227402c",
+          "patchedSha256": "9433ad3008ee19ecb30b98bc39eaaffeac2eb9a19cf4078dd542693270469ec5"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "Assets/Doodler.h",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "icon.png",
+      "sha256": "41b7e7f9d598d5b30c5a5c9aa9970a860fa711d852e1ed6ffa11c6be48e08239",
+      "kind": "Existing original doodler launcher art"
+    },
+    {
+      "path": "preview.png",
+      "sha256": "f028eb8e59e7b77a4cc8f87494928fb5fb23276dddeb4f114ca651aeab411a34",
+      "kind": "Unmodified actual browser gameplay canvas with moved doodler and scrolling platforms"
+    }
+  ],
+  "createdAt": "2023-05-04T20:59:52Z",
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/basic-asm-three/evidence/doodle-01-moving-canvas.png",
+    "captureSha256": "f028eb8e59e7b77a4cc8f87494928fb5fb23276dddeb4f114ca651aeab411a34",
+    "originalSourceArt": true
+  },
+  "controlsRationale": "External auto-orientation panel exposes original arrow makes. Held Left/Right uses make-repeat for the original impulse/friction movement. Up Boost is a single original upward-velocity adjustment; Down remains on the arrow pad for menus and descent. Enter starts/restarts, ESC opens pause, menu arrows/Enter confirm authored exit. No pointer calibration, no physics/art/level/RNG changes. Boot argument115 preserves original800x600RGB24 mode.",
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/doodle-platform-reviewed-native/results.json",
+      "apkSha256": "2e59161da1e1689a495f209ca6f32fa037c65a2dcf3975731541e094c0b3bc79",
+      "demonstrated": "ROOT viewed original doodler movement, Boost/climb and scrolling platforms, Pause/main menu and confirmation Quit with clean native library return. Separate current-APK untouched gravity reached original GameOver, then normal Enter/Up restarted a visible fresh doodler.",
+      "limitations": [
+        "Representative platform play, natural loss/restart and cleanup verified. Full ascent, high score and long survival are not claimed."
+      ]
+    }
+  }
+}

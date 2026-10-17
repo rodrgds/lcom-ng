@@ -1,0 +1,151 @@
+{
+  "repository": "https://github.com/Andrepereira2001/feup-lcom-2020",
+  "commit": "3d6153876ca9b689d77a39aa0554912b390ea1d3",
+  "project": "src",
+  "sha256": {
+    ".vscode/c_cpp_properties.json": "4d532a6d7db43061ec44b814a78ac396aaed4cdcb066eec0372ca2afd809259e",
+    ".vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    ".vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "README.md": "4434e2a6cc5649305e758ad5617ce8e0bad0db216f37ef0a9614bf5702156435",
+    "src/Makefile": "62b6766bd4896c16f2bb856de0773a585c7ffd396a2d7b35d2fe4facd921e409",
+    "src/game.c": "2c3571219f842d36867e73f81d4eecc86918159f22e588a986e3d16a199eb158",
+    "src/game.h": "3b3ec1748f88374bfc55c7261d86d1c7b927cbd72d9c260dc8ccd6f6287713ce",
+    "src/gameVar.h": "2f544b33564945c8baa8d151b30e45560289909e6cdb9d90a4123d36e7c4c276",
+    "src/gameXpm/background.xpm": "db6f279d7bda581582cd10438a436bf2414aeb08e1c09b80944edd58938072cd",
+    "src/gameXpm/car1.xpm": "c6a1bc7c97710bcdd5d29973b68c838268ce90b85b003803c67d6081579e04bd",
+    "src/gameXpm/car2.1.xpm": "73d1a23bc470166226c82177f503c12b2f7ac5e173d6ede9a8cb44c4c5c24d60",
+    "src/gameXpm/car2.2.xpm": "d222613e6484bf6e9e826740356475ce1cf466b965bc3e974070c280b2254922",
+    "src/gameXpm/car2.3.xpm": "2418f22486ffe83f82cd55ffc9c33f91682af84552712591102120b7349f3c1f",
+    "src/gameXpm/car2.4.xpm": "1209b391db324e0e0cbf8833268677067a883848132641b5ff7fe8c1fe600544",
+    "src/gameXpm/car2.xpm": "2d30f0e834eddbff51817d6b99ce7adba970b315c2d4e5663bee7fcb241ef631",
+    "src/gameXpm/car3.xpm": "b336b45fbd3cc75fc4e874091eac791c2b493ff0754e756d7a798df198c43890",
+    "src/gameXpm/car4.xpm": "8e7ce479d895216b02361ebe3673ca33bc39f23a393683dc82eea6ef354a340b",
+    "src/gameXpm/claw_close.xpm": "f677a0b17eede1ae6657dcb54b5db1d9ccf97f4de60e844e3db38c0bbd226bec",
+    "src/gameXpm/claw_open.xpm": "ee54644e651c0205cdf4749274aeda345bed4d04a283cef67521536f1c8d7298",
+    "src/gameXpm/clock.xpm": "7ee88983c0acff72d3c598204ae42b4e2a0b75341f97544a148a5224043fff1f",
+    "src/gameXpm/gold.xpm": "9a9723ce8c79385552487695ce91275e6fdb0fb2494837665a9408f02c0ec20d",
+    "src/gameXpm/obsidian.xpm": "719c0e9d2d28d88eb1622561af7c95a2ed0cc7b8f9505e7287765b6d5ae94ca3",
+    "src/gameXpm/rope.xpm": "4bc81ec9fcc0bb72900e0cad34c2a71101d3421dc5b86873031e655eac1f854e",
+    "src/gameXpm/rope_end.xpm": "15701e642e51fc3438381c0b3f450866d4e82088441749a3554e3d003ed3dbd7",
+    "src/gameXpm/stone.xpm": "55fc020e28b3e6c9fbf46707b12072a8bc9cbfa1c2530296dbc4bb2b6625a9bf",
+    "src/i8042.h": "733823ea1d2ff7ba9e18726b31156e3ad07377fb03145bf5e90efd1a113a4eb6",
+    "src/i8254.h": "de1688ec7bdcc4e9dbb2cf40a9daa8e77c4ed812247ef5e18cdb1e9d79f206a4",
+    "src/keyboard.c": "f0bc5bd3786e3fd929434495dff289918ec0210d88fb568827e6574d1fc5317d",
+    "src/keyboard.h": "79b01d6c1bd498354985e9b724b80e9b9b371a92bf4588b6a56c57db43c29981",
+    "src/menuXpm/0.xpm": "2b1977c9888478c352bcd8bb35456cb3e08f0bcc5b01784450ad92c217b2413b",
+    "src/menuXpm/1.xpm": "7bc244311c0ea6d00845074d602bef3aecd612129d7cb3e9ab221cd0981247f7",
+    "src/menuXpm/2.xpm": "bdfd5da7759c2c237f0d02ed462c8989621921b3e02ef2b2fa9eed900f98dc95",
+    "src/menuXpm/3.xpm": "a614b60f530d598b6fddb88184f36c611625c3e1a85ea025020d524ff6c9dc9d",
+    "src/menuXpm/4.xpm": "b53929f0abae5445c1e1bd36d1ca543007f488c978fe130cecde7abf893abdc0",
+    "src/menuXpm/5.xpm": "fa85fc89017beb9473d787d5fe7fab8ea3a0b53ebb3ca454840c458225951ca1",
+    "src/menuXpm/6.xpm": "638b73eb04cab82f73618b12541a675bece4f14b0d8019d2f6261008dcdc7dd7",
+    "src/menuXpm/7.xpm": "1af3fb83fd823d73fa5ecfa9475327d366e8c25a91650d6e1253c56cadabd261",
+    "src/menuXpm/8.xpm": "b4695f8f3444c1df59b48b9c593511773dd378175144be81a80270a6ee7547b8",
+    "src/menuXpm/9.xpm": "7e66441e6eefedcba48f0f2bfea8611899e68bebf28c7a1fcc80fe81640400f8",
+    "src/menuXpm/cursor_pick.xpm": "c2fe4ca2bfca638c2d7db54b924d893bcd4013d7b1b407e741a9ed373d814b5b",
+    "src/menuXpm/cursor_pick2.xpm": "e8b2040f91b619d8ed470efefb2374550960cd61dc5002b80dec87e434e9ed7b",
+    "src/menuXpm/exit.xpm": "e376d0f7d5ed779df0c8cd5a87f3de064d08837fdcf88a237343712d4356b7a1",
+    "src/menuXpm/leaderboard.xpm": "189b302454ff873613032c7335bfc0622e534752bc41d3c88230d61b17c9ebbd",
+    "src/menuXpm/leaderboard_menu.xpm": "fd3a74ede80be29f3bca4685f57444bb0ed2f340ecd986754ecdefa3129341fa",
+    "src/menuXpm/loading.xpm": "5070103e2d20792ee19855775fc2e562e5f914acacabadadd961fd7f1046d73b",
+    "src/menuXpm/menu.xpm": "be34eb7ca06b474d251701e99d92b8c21fbd85a2e73661bb97ea8f283c8e8a16",
+    "src/menuXpm/multiplayer.xpm": "056b4ccb3e18c02e0cacead5008f9ebb91cc5d60b22bc2672ec750f481d0b8df",
+    "src/menuXpm/player1.xpm": "2a3dd9f12e2e41de4193bc7ae09ad4324c9f788a1d375d6886c91d8c1d6167b3",
+    "src/menuXpm/player2.xpm": "1fb74a94972c40996f15bbb966a6cbb3d1a83d998f0b888eeaa4b7ac4def8690",
+    "src/menuXpm/score_menu.xpm": "14655195bacd35d4af6121e4447991b915b75e686b6e796e998c805f0756c950",
+    "src/menuXpm/singleplayer.xpm": "96bdaf3df6a875c7ec6d6cf95ceb41a5e47660ddfe4a4d2250dad4497c9fafbb",
+    "src/menuXpm/slash.xpm": "a94f152ebd1ae951623c917c243806918085c27f2e32666f8d582d5de96bc79d",
+    "src/menuXpm/twopoints.xpm": "681cced231b89f4fb1bb91067f94fe815b0b4f75aa33a2490381e952cf69580f",
+    "src/mouse.c": "7e112b6b7ccd39c1e35af6ea5b7e767d30d719b945eda898ab4245f63afbaa1e",
+    "src/mouse.h": "386cb2dfd7d6fc30209c4b267296a444cb915f068dd1b10c42b691b134cfdced",
+    "src/proj.c": "2c10800c92e4b7cf31d0fe436381d23655276345c4b48dea47c1b64ebef404c3",
+    "src/rtc.c": "a1a9c373fe51c516f4e8a0be0cc60704586109a6be9ba4ec6f4b2a2a1b908cc7",
+    "src/rtc.h": "b99271a27f879e1174fa5c6414893efa8728535aec1e5c9bb77a8cc3c7d976f3",
+    "src/rtcVars.h": "a33939dd0f05879ccf6444e7ec542820a519e445f36cdc7d580349ab27467628",
+    "src/sprite.c": "bcea6daab7d73289f1450e4984f09e6c6ad9926e477101d6e27c00149e38595c",
+    "src/sprite.h": "dcf8019607a07a9f0e22251e0262360a6e0b5022f35a0dc2f47405b8af38e1f3",
+    "src/state_machine.c": "98d2478eb13b67e164e0c82b4e44b279db0c9b42099099986aa2ac0ce48c0fbc",
+    "src/state_machine.h": "df4cc83c5954ff42dc1ec3de30ff57a770b036cf3e19294bda9cc04213a84966",
+    "src/timer.c": "5c9881e18537fa1b0bad7e1543d8831b98f67664e255e618536b51db37f30722",
+    "src/uart.c": "110e19a8ef7171d086246bcbd335061c6dc8185cfa0d95ad1a3bef95a2206b9c",
+    "src/uart.h": "eb513d1e546cb600b0a3e3c9e2dd28c6c953765aef0e4b8cd1f4a6c766fe7479",
+    "src/uartVars.h": "4efab953b3737411db09a539ea8682bfdacef1b33db4de29cf53ada69139e28a",
+    "src/utils.c": "eee9e31b72c4d1075e21bfc1cf404cc97cf5019322e25a5a2c42d064ee259fe6",
+    "src/video_gr.c": "49985c2ef94c766f7c4315bac96abd03fb419d7af74b342976c4648c6a8d23b7",
+    "src/video_gr.h": "407e0b4c6d6b7281878096ebdd8e11e5f2bf5fbabe0e0eb145e7630104aa6368",
+    "src/videocardVars.h": "31b66bb141f30779703a8495bd59872ebd323013947a26c9ded5907f2c8152b9"
+  },
+  "sourceChanges": [
+    {
+      "file": "src/mouse.c",
+      "originalSha256": "7e112b6b7ccd39c1e35af6ea5b7e767d30d719b945eda898ab4245f63afbaa1e",
+      "patchedSha256": "63f9fb156b2769a4a73cd2dfc71763b7259ce34220d7e0555f956b4782afb2fc",
+      "reason": "mouse_read_ack polled while the PS/2 output buffer was empty, ignoring a real queued ACK and keeping startup black. Read only when OBF is set. Actual owning ACK/enable/disable functions RED before fix, GREEN with real ACK consumed and no delay; browser then reaches menu and actual score50 gameplay."
+    }
+  ],
+  "selection": "Pinned project source tree and upstream root README/license files. Omitted generated documentation, lab exercises, VCS/OS metadata and build products.",
+  "createdAt": "2021-01-10T21:44:55Z",
+  "yearEvidence": {
+    "source": "GitHub repository REST API created_at",
+    "url": "https://api.github.com/repos/Andrepereira2001/feup-lcom-2020",
+    "retrievedAt": "2026-10-17"
+  },
+  "controlsRationale": "Original menu cursor500500 and whole26x27pick clamp1126x837. Relative+70,-50, holdSelect800ms opens Singleplayer. WASD continuously steer the cart and extend/retract claw; idle cart/world scroll left. Mouseleft reveals stones. Actual visible-pixel observer only locates an onscreen gray stone, normal touch motion+Select reveals gold; D400ms/S700ms/W1000ms collects it and score0→50. Short taps100ms missed menu while800ms heldSelect succeeded. Relative pointer and fullWASDpad retain original controls; ESC ends round rather than pausing.",
+  "verification": {
+    "browserBuild": true,
+    "nativeBuild": true,
+    "fortifiedNdkObjectCompile": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/gold-miner-current",
+    "limits": "Actual browser stone reveal, car steering, claw down/up, gold caught and score50; portrait controls. No full100s round, leaderboard, multiplayer.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "92a108aaa7c1f5162655b9d0b118675a93e32899baf185e417a4df9343a9f859",
+      "evidence": "build/arcade-100/gold-native-observed4/results.json",
+      "demonstrated": [
+        "Original cart, overhead rail, gray stones and100s clock.",
+        "Visible gold aligned beneath raised claw before catch",
+        "Original claw descended into revealed gold; review actual held object",
+        "Review original score for positive50 and returned claw. Captures alone do not assert a pass.",
+        "Escape ends round and shows original score screen, not pause."
+      ]
+    }
+  },
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata excluded from required source inventory."
+  },
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream root.",
+  "sourceFingerprint": {
+    "kind": "sorted original C unit SHA256 multiset",
+    "sha256": "afec68ad06c6cc19c9f8aaf42d32d65ad05d68aacf1902e51ba32f51d92acbf4",
+    "duplicateOf": null
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "f0290045a157cb9e538c00a8ec580a19fc0c569227f8571964c98f2715070a10",
+      "kind": "simple source-informed launcher icon"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "832649998f20346e5c6a7a9a7c84791df7a487b79f45c7f9583c22c0ac31d978",
+      "kind": "actual browser gameplay canvas"
+    }
+  ]
+}

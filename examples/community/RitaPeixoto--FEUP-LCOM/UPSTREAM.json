@@ -1,0 +1,133 @@
+{
+  "repository": "https://github.com/RitaPeixoto/FEUP-LCOM",
+  "commit": "fa66a84f0c8472490549b8e086bbee945df7ee57",
+  "project": "proj/src",
+  "sha256": {
+    "README.md": "b46d7871d4f4442189349e98407d2bdd189bd93c2b90a86e97c2ec3b16c577f9",
+    "proj/menu.c": "4ccb91681299083d6b12dc42b5bf065086e68114146e49239cf9ff374ace5475",
+    "proj/src/interrupts.h": "b9d10511e1e3de7898276df9eb235ff7a028dd1a16b8f422d44c9bbb81580fc5",
+    "proj/src/4_rtc.xpm": "2a03ce7d5164f4b8e73286d9f27a7ce1289f82faba2a51217a0ea9b789e45a20",
+    "proj/src/main_menu.xpm": "b3c25dae25797e37b44750e82e57854acf96c0ec24d533f4790274a42f99933c",
+    "proj/src/play.h": "5f42b6f895a100d3c68d7eda9ad3a820962f50c655411f10ccd89f1ba519036c",
+    "proj/src/mouse.c": "3fc119fa00e8677aced669744ed881245356c8d1cb14c7a3385d5ebe1a26af96",
+    "proj/src/timer.c": "19b5fab7d19dd0c8d2e3884a6309537d2135600f7b406d9eb28a1deb5f2c257a",
+    "proj/src/maze.c": "11c61dc252fa74e32a79a2e17450773f93593828b4821f8b5926b877bb168291",
+    "proj/src/level_completed.xpm": "8b367fc9156e7f4c12acb8ea87ef6aa56e434e0fb06044c856e8fc95e3c37ce8",
+    "proj/src/5_rtc.xpm": "c7abaec451c70a0a4357c58748c179ca38d99867b90b0184012f63f9cac892a6",
+    "proj/src/level_failed.xpm": "925b2acb3e97c0c39c31d07d7ec16d083f3e9b447c424132e2b881c8382a3798",
+    "proj/src/menu.c": "ee8ecb40df45e37a7f0a88bff591626bb65c8971fe368e341270c16ea34984fe",
+    "proj/src/rtc.c": "f6e8106892a549aa961d2e64f658305941daa3d985c3890f9027e026ac0885b7",
+    "proj/src/keyboard.c": "38c35959e5466c5c23edbff3123df533c014a02ea82253afd238062df90e96bb",
+    "proj/src/7_rtc.xpm": "5fa12451d06e3dbc32e2ee055b1101b32a0202eee10aacbb02e77ae4cd154f1d",
+    "proj/src/2.xpm": "7994ab888da272c9800b1dad1765bc71e2090e70d95a9e6e2c172caa33f5d99f",
+    "proj/src/Makefile": "bf87de7ea52921a9296daf91f93fa35786e1289d504ee3f33132f004a314c12f",
+    "proj/src/macros_rtc.h": "79a2ebe5b6e13b7b8a48155ec9db5cbf35786849d3ea4be3d60548f289e0b3ba",
+    "proj/src/3.xpm": "ee1b26060dfd2fa5672d14aa3670feafd58028042c6024a6215865fb5c5f7fb9",
+    "proj/src/all_passed.xpm": "d317151935a47e4563523ef40b09000585a10ad97a58eb24bdd6a6388fba0e00",
+    "proj/src/1.xpm": "cbf7792eb4529e13034a2c9e273edc4fee1378d87c1a003f5c300189586296c9",
+    "proj/src/video_gr_macros.h": "a3f3d72c8b5a322d0b700b97ffbb8a601e868663a77f92689233327f23e88465",
+    "proj/src/0.xpm": "dba9103f69a7001b63ba94a6f3007b59e6af01f3b01639193e6999b326348baf",
+    "proj/src/video_gr.h": "3ec8267c997c597b2d25456073f4e7efe4fd0c2b59d7b8a452d48af59d55d504",
+    "proj/src/instructions_home.xpm": "310b388eeafb220958151f679aa1467383bd935ffc071b1c5c51ef728e7a73dc",
+    "proj/src/player.h": "d40fa65ffa2af70e93d0262deee1518d2c16870de597054bb378959dd7322394",
+    "proj/src/b.xpm": "0e1ae4db863f8229e3c2cf05d3e0fcd6994596b433bfb2702750976a7994edf7",
+    "proj/src/4.xpm": "b0439506ee21b8ab83222b051425d57e735b3ae2f3880307ac74dd2d59f8537f",
+    "proj/src/auxiliar_structs.h": "49a96fce3c784db9e628dddae6afa0c648fb0e14ed40cfd3887cc1b81ebd43d7",
+    "proj/src/game_instructions.xpm": "b255ea2ccc51df88914867953a8205c5f85c2e58c5ee0d3fb6879c6662ea93b7",
+    "proj/src/5.xpm": "7814b8fc51614e677827ecb1d002fdf028369f996df3314ae439c326170eb161",
+    "proj/src/auxiliar_functions.c": "27559e7faee3f701eb4e79c535c68924cddaed14e0dc12209179db1f052d8673",
+    "proj/src/i8042.h": "019b9bf4a93a619e3dc7536d4f90075e9083ba0d16b065b33d25602ca0396212",
+    "proj/src/6_rtc.xpm": "3623a9be480386fd69876e7cb65db586ca38d5e894e2892ff1b0a59b7e11351f",
+    "proj/src/7.xpm": "68f2baaa678625bd41cb92f8445455eb3dbfbaa176118eaf185419b09d3bdef6",
+    "proj/src/star3.xpm": "74e3916e4f9c6da2d763d1b7e27d15da1b32647fa09a7e07d62580885d546efb",
+    "proj/src/star.xpm": "1c3c6e069fcee6518ce471d35cdaaaeab1b1677e23ce2300f432704cbb58d127",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/star2.xpm": "9fa42176c49dba8a9723cf28c866e8bf4bce69b916f168051b3e6b69321d9f05",
+    "proj/src/menu_play.xpm": "396a8533251eca0bd4d3901e07d96c1042b1cc29d78d378449d8d03cbab20aad",
+    "proj/src/6.xpm": "546f594c14d31b421ec009fd79a9e4d69b07decd47a892767ba7579778897efa",
+    "proj/src/mouse.h": "7f4dfb7c68ed408a3db36dbc584f7168888bbc42ab4735b756f89978016d2bc4",
+    "proj/src/play.c": "0f035910f1ab9d6b9a5bdadfa33b0d699bad2572ffca31d7faf6616415c83eb1",
+    "proj/src/level5.xpm": "a3376518fc3fb9870446adddc6d5db27b08cc67a9e175f972b44cc3e54ba0aa7",
+    "proj/src/3_rtc.xpm": "4cfb9424c08bf93c70486b0c4efee7b0dab0af55afe63257a31cf5e4c0f21d7f",
+    "proj/src/level4.xpm": "44753f7aaa7a2cc49fcb41689d4c9ce1f505f196d49cfe2ef159e791e24201d2",
+    "proj/src/menu_quit.xpm": "206ed805af44aea328f91754c2b8839bbee6dbd86cd666a21b9bbc387487e813",
+    "proj/src/8.xpm": "aeedca4b20e0a8e6dd2c5388c521bd3a1701af2276763f594cf71acbe1ef2269",
+    "proj/src/interrupts.c": "2dae5bc80245384c41fbe5b5d4f2a7171c01a1b9235f3ada137dbc2d240eaaed",
+    "proj/src/9.xpm": "06c0ea4de275bc764d331d47c56e8a300a97aeb4ca1ecc59e1e36d5d00564d41",
+    "proj/src/keyboard.h": "4c1d610072984f6d1e0fc4a8be049b0b8cd7e7294330f6c31a92bae27c37ee59",
+    "proj/src/level3.xpm": "8dd1af7d7440d155f34bce554c4b8491b6a8c3eb3d81ab1e84f5cec03eade8e9",
+    "proj/src/level2.xpm": "01b243954414fcdf2e3fcb72cfb5b538fd2f00a79709b265cd4e5d1aeb8ef325",
+    "proj/src/cursor.xpm": "848e3a6ba98965256f430cc6c8ff61d00b32a04e4ac8b9068c4fa992163fada7",
+    "proj/src/menu.h": "6e9ac1dfdb2fbcf0852b772cc40af9a34fb40930dc2e7c9e2ced4c7275d14dc8",
+    "proj/src/rtc.h": "804d1676895afd5e8325198db713822e2332de8d970b04f5f3b4cd7ece511d53",
+    "proj/src/slash.xpm": "8de9f9d5e640891d6305d2b53fceda52a7d95712624f663e2b0501247b6366b1",
+    "proj/src/maze.h": "49ed16a89f2964d7cf98ffd883f4fda754b8e0a5aa3a81c573a48957eeb00bde",
+    "proj/src/level1.xpm": "305a2ded43751d6c142deee4580420211cf17503f640f7371b010142570192eb",
+    "proj/src/2_rtc.xpm": "7560b2877524c6fa365582987a6c387c104250ee0df82e3563384e72e71e1ada",
+    "proj/src/cursor2.xpm": "5e764f3cd5211dc06df6ced720f76d16ccf612eb55ce187255c834e684a1d22d",
+    "proj/src/video_gr.c": "c184a8563e5d1b7b43e4cc6441f0cf69391787e12d79356fead1b1476249d52d",
+    "proj/src/9_rtc.xpm": "7ee21a8f795a02045b751224a33dd43db095fa7e5773e0fbc7001e2c5e4e1b57",
+    "proj/src/i8254.h": "a1d2acbe3dbde6b8ebd35ac0567be24f8680f352ba7351e13bd2eded5b2d85d4",
+    "proj/src/colon.xpm": "fdf5ab3c8ee95a7400268484853939864b1b0a58481a811947e223c4c4ab2b58",
+    "proj/src/0_rtc.xpm": "1660dfe5078dad8b568b3426726f09b24db7dfa3dbcd759a68cc61b470108aad",
+    "proj/src/colon_rtc.xpm": "89aabbd268c1caf19822bba26a6fdda69dfc8dc27b5367bc83e29c3cfc0a41cc",
+    "proj/src/1_rtc.xpm": "2921718f9b1d3d7585dfc7a06a4e54b1fb599d8cd3abd290537d37e3efb876ce",
+    "proj/src/auxiliar_functions.h": "dd7fbbbba9e5e7da283399dde1b99586b9643b35f57379db0ae660837a8162d3",
+    "proj/src/player.c": "846a37cbb1bd4a34ea8601d949916cc2f263c70bf74db3e9340b7727e1e8d51d",
+    "proj/src/8_rtc.xpm": "54fedef558106f41d8c287ddec64707aefa558bd48b533a0360356b7f4af6bfb",
+    "proj/src/proj.c": "473ef05c9118c369a6d067823ff2f0467a70615ce77fcfc6125bc1b0c8058cc6"
+  },
+  "sourceChanges": [
+    {
+      "file": "proj/src/interrupts.c",
+      "originalSha256": "2dae5bc80245384c41fbe5b5d4f2a7171c01a1b9235f3ada137dbc2d240eaaed",
+      "patchedSha256": "3817ee57d70e199542a77d26293b4c0d42a74321731076011096c9327dd62bf9",
+      "reason": "The initial menu timer refresh passed false for getRealTime first-draw flag although first_time was true. It cleaned a clock rectangle using uninitialized malloc RealTime.wt, causing Android startup out-of-bounds bitmap reads. Pass the existing first_time flag. Actual interrupts_state_menu plus getRealTime/clean_time unit fixture, adversarial initial width and guarded original-sized bitmap: RED out-of-range framebuffer coordinate, GREEN first draw without cleanup then subsequent bounded refresh."
+    }
+  ],
+  "selection": "Pinned selected project with required sibling assets; generated docs, labs and OS/VCS/build metadata omitted.",
+  "controlsRationale": "Original menu cursor starts61,763 at1152x864. Relative+500,-350 and Select opens instructions; wait10.5s for authored instructions, next menu resets cursor61,763. Relative+159,-319 selects level1 at220444. Arrow pad moves10 guest pixels per make; repeatKeys enables normal held typematic after350ms. Select stays separate; unused Fire/Enter actions removed. Actual game arrow motion and visible-pixel route with normal directional touches collected one gold star; count3 to2 and HUD firststar gold. No guest state or RNG manipulation.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/RitaPeixoto--FEUP-LCOM",
+    "limits": "Original first maze movement and one star pickup by normal directional controls. Full maze/level progression and Android unverified.",
+    "sourceFix": "Original Android startup crash diagnosed and first-draw flag corrected. Owning menu/clock unit red/green; Android re-verification pending."
+  },
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata excluded from required source inventory."
+  },
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream root.",
+  "icon": {
+    "kind": "simple source-informed original game motif",
+    "source": "Original game artwork palette"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "681eb0f0844408757e95f106d5fc65c538ccbb521c3cae34a0d5c80f738df742",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "ddf764bcf00242f2ade4ab18d17793288c07961bb95b62cde474a139634fe545",
+      "kind": "actual browser first-star gameplay crop395,225,380,395"
+    }
+  ]
+}

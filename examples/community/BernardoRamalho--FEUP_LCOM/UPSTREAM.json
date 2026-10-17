@@ -1,0 +1,179 @@
+{
+  "repository": "https://github.com/BernardoRamalho/FEUP_LCOM",
+  "revision": "58fb8091d2945f57dc929fa71e40a062938ead18",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "fcfd72b5fd29ea0db7972b15065443824ae1df35bc9c5447e4c04e76df11c287",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/Game.c": "ae548c960e049240f0244ec2e31c907506ee85305da490350021e098be3dce72",
+    "proj/src/Game.h": "a2adb1688a7d8740eedefbe459b2f4500e15c283302d7ceec01170b51faad3b8",
+    "proj/src/Hero.c": "e2c24afe2cd963bdcfceb9342ee01c0d99be6457fb87eb2a4a73dedfdb32e940",
+    "proj/src/Hero.h": "58d901ddaebf1089f50509eca9e6d27518167eb9944d0fd7bafcd01ed350562c",
+    "proj/src/Images/Hero.xpm": "ba74786643ccabb6d029b6e4873a61f5369c121268cb15027f97e0dca667d9ca",
+    "proj/src/Images/TERMINIX.xpm": "8eb80ab4fef6372ab7ea65eb75e78b74970c3336ef56f62b39184812c616372c",
+    "proj/src/Images/black_zombie_down.xpm": "edc3e7c86d216b8a27eaea60d8a326e835107f0523df12614d1d60fc3a683b27",
+    "proj/src/Images/black_zombie_left.xpm": "281738ac209c36c924bc78e90b0e764469cd21d46f2abcd87ad8debc33aa9601",
+    "proj/src/Images/black_zombie_right.xpm": "ef645ca8886591fc94712ae3a2f4bb8cad0182c9645b568df9ebc866c7ef98ac",
+    "proj/src/Images/black_zombie_up.xpm": "da63689e698614d26fe72f7bc16eb7c70c7d9aeaca814853e743a3546a88c318",
+    "proj/src/Images/bullet.xpm": "bd28aeced48913b54459284566aa9166a104fabc615c47c64e9dd334e11f7a87",
+    "proj/src/Images/chest.xpm": "40e28e787cd2cf20de5ca7ff9ce77faded707255597a017f77aecdc15440077b",
+    "proj/src/Images/date.xpm": "aaba7aa9ce8533314455cce59e69498f22c49a32f4533f1440ffe05945871340",
+    "proj/src/Images/easter.png": "12989fb21fecf2781433e0bb4360a3819ae4a2abca2d5e2b4e464dad1c537f75",
+    "proj/src/Images/eight.xpm": "18fa781ab935938158a31a739520419d2c6ae36e314abc004184f4f5dc17d96f",
+    "proj/src/Images/five.xpm": "b9e30dbab0acb8126db4eee5f5ec751044ff033673ea4b0d4af17f0866cf3be4",
+    "proj/src/Images/four.xpm": "406d857bc873f28afa87d29f818129c48a5c28e277559f14c3ffacecacf5d54b",
+    "proj/src/Images/game_over.xpm": "bfbe013969cab5e98ee3247373e0b1916dcb2cb463aff747fd025aa2332d614d",
+    "proj/src/Images/garf.png": "22740b32b45a3cbf3fa562a959af65c46163ffac133dbc14fd93704d6e66a423",
+    "proj/src/Images/garf.xpm": "955e3968424fdf8f78378b7908736918d5dd051e0b71144f65592524906fc1c0",
+    "proj/src/Images/hero1_NE.xpm": "309e3d06838901272dd306834ceae7ae6de09ec2584bb881ffbec74589971af8",
+    "proj/src/Images/hero1_NW.xpm": "dc3ebfd973adc7089788a6d0b047d228b59d042fdac33d0f7279b10f8063d50d",
+    "proj/src/Images/hero1_SE.xpm": "f447ce01cd7d55ab36d1f25d697b580cdd945d4db381130123c18850f1fba4d2",
+    "proj/src/Images/hero1_SW.xpm": "9c81f01a93a160e6cb069e2541dadbc841b4a688e6c73e89d0f9ccefc9d44ef2",
+    "proj/src/Images/hero1_down.xpm": "2c27fd3f69ed284c32dff7b85f2166a0e22702b0abde5366d44c18ab7ee19908",
+    "proj/src/Images/hero1_left.xpm": "c0025002fcb93fa391de6109c572f4c4b9bb880359d84509cd90f4fe6a8cf795",
+    "proj/src/Images/hero1_right.xpm": "088ed0215c0a963db1a1df516fe1ef1de27abdc186572eb898350a84792f2ddf",
+    "proj/src/Images/hero1_up.xpm": "beadac7a66b9de8a49217d33f4236f49aab3a78e1912496068ba388fcd1907b0",
+    "proj/src/Images/highscores.xpm": "2974f560f34195e96667fb5d6189f4a1acc61a0611dbeeaaf40b1643418fed8c",
+    "proj/src/Images/highscores1.xpm": "3b6717f4f8666fcb587084e7388e3d6e3f311cc86dc2923a191d7e497ae093b0",
+    "proj/src/Images/main_menu.xpm": "5678e09f3df83d440a3470e4cb1a8d35a143fbb5ccb3a2d4b2af5eb036074593",
+    "proj/src/Images/menu.xpm": "20b61fad1799a5edf4dc068376ea6fb2db67a56a0b3e6e76d3cb40b397ed3231",
+    "proj/src/Images/menu_back.xpm": "d973abdf58172a9facfead72b060eb5b07e396cd5c2d69047f098626bc9c39c6",
+    "proj/src/Images/new_background.xpm": "7f753a8f4004dac45fccb5e3b3e5914d2d6f307b16f657612731425b62a2f599",
+    "proj/src/Images/nine.xpm": "a973fb6198db201cf9708cebf36fbea46e8862d0ca37a85bb479a53b433c6289",
+    "proj/src/Images/numbers": "62a067f434658d1531b55af1116ba00532a5b2cac1879e244dbe971332234dff",
+    "proj/src/Images/one.xpm": "6b19427780f2754b7b784320cc2955ec06951983f594256191d8718721c59a95",
+    "proj/src/Images/pointer.xpm": "abff962bebac21feac42b4b04eee2b55ac1f267e199efe19779f664d42ff5be9",
+    "proj/src/Images/points.xpm": "a223d0496903600c8a51694d84a2e1584495640de7a4cfec081224fd4b28262e",
+    "proj/src/Images/score.xpm": "8c22859378244cc51c1da6e34acd048a257431c723da01b3aee1276efacbed04",
+    "proj/src/Images/seven.xpm": "fc9a3ff0ff0295b792642e87a9978ae9dd9949ea933912826ec1c83940428e1b",
+    "proj/src/Images/six.xpm": "f1e3d0a496aefa519287e152b7f89cea573d0efe4b6a1dd2107fedb8d30ceec0",
+    "proj/src/Images/slash.xpm": "6e51785cdd4fc816c9e200fb69a3394789df38f2b9e5113f73deb5a4159532fd",
+    "proj/src/Images/three.xpm": "1a2235e037d807ada74ac1f994c00aeddbedda8dda1945fee7b4f589ac404e0e",
+    "proj/src/Images/time.xpm": "87dc6954ccadb68874683537ee160439e6aabf5ffad00b66beb79b368edb3628",
+    "proj/src/Images/two.xpm": "62945e6edb273bef5936c3b51589707f1ba79539c6b3a3db7f8f0b0a59a88e38",
+    "proj/src/Images/twon.xpm": "e862a484bc409d7da2782bba7204976eb8502edbd1cddb251033387371bed6c0",
+    "proj/src/Images/waitingScreen.xpm": "2cc4a03d06410d5fb2f5953499f6481eeb9f3f53fc265102dbbd4f0a6c84a769",
+    "proj/src/Images/youLost.xpm": "f4d9929477d7cb5d882ff2001a2da8858202ee015e64d67b6dfd492cd8895640",
+    "proj/src/Images/youWin.xpm": "cafbf24b88fb27232f611947adb8a1e1a57dc2c7c1e473ba155bc643ce97e9bc",
+    "proj/src/Images/zero.xpm": "518d781caeb5261de0ce6223ce0ab45a57565fde705a3f2ebd4e52f0c09e2ec7",
+    "proj/src/Images/zombie.xpm": "cfb04467bd311ca375377bba1894024929d5ffae56b607690779c84cce3d6831",
+    "proj/src/Images/zombie_down.xpm": "7b57e8be297c7b716203daca9bdc7bf75c0ac2838bd9c63454be22f43ba2596e",
+    "proj/src/Makefile": "26ec300ca230929df93909f2c13008e4217a4780109bc793561e6f6757da52ed",
+    "proj/src/Menu.c": "1de29993d7d6b57e3554c854731baee95f901ea26dcd7ebd45e5abf10a9a6524",
+    "proj/src/Menu.h": "f8c77663d6894c63adb2bf92704e79bba04b1a1b4c6bfe6de7b163ea249b50b1",
+    "proj/src/RTC.c": "33cfde9f97d37dc59329accccef99305442197ce27be838b3547b50df6b2d468",
+    "proj/src/RTC.h": "3113a79cf4a9f6ee49763426f5d1c0ffb10bd14df84d82947666db99f86eae1e",
+    "proj/src/Serial_port.c": "e753367b8b5a50393404cd72075382e535c724a852532b91a3e1520376043293",
+    "proj/src/Serial_port.h": "2f57c6dd2232642190761e9fdc613a8884cfe9be134ccc23d35845cc39a5adb6",
+    "proj/src/Sprite.c": "f563611c67ec1cbb0422a50bb8fbda185c0c90c7fa67889e94b6ec6f0f112fa2",
+    "proj/src/Sprite.h": "befdeaf6e36baa56d34d79bf15b55044ec1fcd52595bfe5dcc86f9f404544c31",
+    "proj/src/Terminix.c": "aaa03e1962d267a29af47ba3611045eb2f93362f822fbc2b25a9c1c00bdf0823",
+    "proj/src/Terminix.h": "88ebf8e5169873228c1eaa480c981e8a23a8d1b53f1683d00066effd1a0dd9ec",
+    "proj/src/Zombie.c": "220d522fc8fcff5d169735301901fa02d8e675661d9d30df1d84e6cbbc19c7a8",
+    "proj/src/Zombie.h": "9a786e85114b561d1e30be8bb72c6ba89e8fda3e33f23183ddede458c84ece17",
+    "proj/src/drawing.c": "d2c3d546eebb249c5b4eda97008d2efee7c5c8417d623b1774b441d922403152",
+    "proj/src/drawing.h": "fcbba7582033ffecc7ca591cc0336b70c9504116ad645e0171e7e2859a295b73",
+    "proj/src/highscores.c": "d589b163c099688e6abba0c7cf9aaadf860278e672a376c6674e0ebf51da9dd5",
+    "proj/src/highscores.h": "704d669e5c3ff8d95f1e4f8e95dc8c6c7ac44bb7db7246f7249b74579dae26e5",
+    "proj/src/i8042.h": "5b957dd128ccd7427e5a55829fe6f17613943ef1eb620542bde2d5ea67f1dfa8",
+    "proj/src/i8254.h": "e22ce164a2c3cd0f82cdf527976f6e6aee0300f768a640d82ee885f47ca461fc",
+    "proj/src/keyboard.c": "a5b167419928c17060de82182a82f3cdded9383962536877f68210f61ac2e46f",
+    "proj/src/mouse.c": "9586d38e54e8a3480217a9a2e02340572246ee8df5af2720b8b01fbd9a984e4c",
+    "proj/src/mouse.h": "e1cbcf59e401aec3e85da019c73945e81c2427f49ecf4bda6e7f2309cb0957d4",
+    "proj/src/proj.c": "d2a9d6bff50e9ebeba4bc8e69e843f9483025083d2554ac2c59c4b36520961c6",
+    "proj/src/scores.txt": "8a73077532f58197e37ea3cb0208ba5657f62bba13d0fde041a8ecc49f67f3f7",
+    "proj/src/terminix": "3bed4976dca3fae546a2469b0a78166a07bf3ea598108ba7dfe5438c0a7bee22",
+    "proj/src/timer.c": "bca65b47f4bda89d3736b3e499c91b4e1568f9208127b00026ba457f5aecf313",
+    "proj/src/utils.c": "2188d6d3bd586c917f8bd8ac58deb925b6855167176af6b3d4cf7de4b63be9f6"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated docs, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/Images/hero1_down.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "5a5beb69d1952b5ebd23e5c21e501d8b71270f35bef3ee3bdc1900cad277b420",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "56b28264b781c0873e5acab7f267198bf8aaa72b2784dbc6cd20d9e04ae83875",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "controlsRationale": "Panel keeps original artwork unobscured in portrait and landscape. Source handlers determine every button and held-key behavior. Relative pointer preserves original packet/cursor semantics. ",
+  "verification": {
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "checkpoint": "Original Single Player click, authored two-second intro, live arena with approaching zombies, moved armed hero and aimed projectile.",
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence/BernardoRamalho--FEUP_LCOM",
+    "log": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gallery8-terminix-intro-wait.log",
+    "limits": [
+      "Full zombie-wave completion remains untested. Optional paired UART co-op is unavailable in standalone collection."
+    ],
+    "androidGameplay": "passed: representative actual ARM64 Android emulator objectives; see nativeGameplay proof and limitations.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "ee9d8c9bacf7f813f0a2eb62cf118f455869c9b34aa139c2008d38977c186c05",
+      "evidence": "build/arcade-100/terminix-native-targets-fixed/results.json",
+      "demonstrated": [
+        "Original arena appears after authored sleep2 intro, with hero and enemies.",
+        "Original single-player arena, moved armed hero, approaching zombies and projectile are visible."
+      ]
+    }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/highscores.c",
+          "originalSha256": "d589b163c099688e6abba0c7cf9aaadf860278e672a376c6674e0ebf51da9dd5",
+          "patchedSha256": "f04af785fc2da725320ba40c554c79d2253b0ed4388e87c67ee9a58fa2280dbe",
+          "reason": "Bound the original five-slot leaderboard and stop on incomplete/EOF records. The original sixth pointer overwrote neighboring graphics state, crashing Android at cursor draw during startup.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/terminix-score-fix/test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/terminix-score-fix/red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/terminix-score-fix/green.log"
+          }
+        },
+        {
+          "file": "proj/src/mouse.c",
+          "originalSha256": "9586d38e54e8a3480217a9a2e02340572246ee8df5af2720b8b01fbd9a984e4c",
+          "patchedSha256": "c986c9db0a0a2a15e95ee7c8e9b8c7aca834ee361c407aececebf4bfe6364e19",
+          "reason": "Use completed input coordinates in menu and sprite hit tests. Previous displayed coordinates are updated only by the timer renderer and can reject a click immediately after movement. Retain old x/y for original cursor cleanup.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/terminix-hit-fix/test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/terminix-hit-fix/red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/terminix-hit-fix/green.log"
+          }
+        },
+        {
+          "file": "proj/src/Game.c",
+          "originalSha256": "ae548c960e049240f0244ec2e31c907506ee85305da490350021e098be3dce72",
+          "patchedSha256": "6b5f6078b3c4acb2332e23082953bcb70275e4d737af0409e923544450879d72",
+          "reason": "Select the chest or a present hero at the smallest integer distance. The original tie fallback always selected hero two, which is NULL during solo play or after co-op death, crashing the real zombie movement updater. Preserve original movement, distances and strict-nearest outcomes; ties retain the first present candidate.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/terminix-target-fix/test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/terminix-target-fix/red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/terminix-target-fix/green.log"
+          }
+        }
+      ]
+    }
+  ]
+}

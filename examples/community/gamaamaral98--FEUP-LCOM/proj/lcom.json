@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "name": "Color Blox",
+  "description": "Flood the colorful board by choosing the next color.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Blue",
+          "key": "1",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Green",
+          "key": "2",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Cyan",
+          "key": "3",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Red",
+          "key": "4",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Purple",
+          "key": "5",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Yellow",
+          "key": "6",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": []
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

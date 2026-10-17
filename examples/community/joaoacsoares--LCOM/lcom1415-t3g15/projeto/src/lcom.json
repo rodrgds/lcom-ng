@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "Whack-a-Mole: Diglett",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "toolbar": "auto",
+      "pads": [
+        {
+          "mode": "mouse",
+          "style": "stick",
+          "side": "right"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Hit / Select",
+          "mouseButton": "left",
+          "side": "left"
+        }
+      ],
+      "touchClick": false
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "res"
+    ],
+    "pathAliases": {
+      "/home/lcom/lcom1415-t3g15/projeto": ".",
+      "home/lcom/lcom1415-t3g15/projeto": "."
+    }
+  },
+  "description": "Hit the emerging Diglett, beat the timer and choose the original difficulty and round length.",
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Whack-a-Mole"
+}

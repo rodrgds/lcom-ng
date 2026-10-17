@@ -34,5 +34,6 @@
     "assets": []
   },
   "description": "Watch the holes and tap each mole as it pops up. Be quick with the hammer.",
-  "preview": "../../../../../collections/arcade/previews/duarte-pombo-minix-whack-a-mole-c0b1a146de15.png"
+  "preview": "../../../../../collections/arcade/previews/duarte-pombo-minix-whack-a-mole-c0b1a146de15.png",
+  "archetype": "Whack-a-Mole"
 }

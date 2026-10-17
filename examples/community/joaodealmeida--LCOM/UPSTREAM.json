@@ -1,0 +1,114 @@
+{
+  "repository": "https://github.com/joaodealmeida/LCOM",
+  "commit": "ee573df55b41ac8fe26a2f6a86fc6528c2dece96",
+  "project": "code",
+  "sha256": {
+    "README.md": "b351d78fd7872a9481d92c583e8ff0f77de525ee6567bb97a870b88ce1cbce00",
+    "code/EndScreen.c": "a1d58f47801ecb6f60dbef1c142f42e9179a486e1b010bf3f3cdc6052ce05b43",
+    "code/EndScreen.h": "612bffdadc897dcf58f7b6c5a7bb454a46be8f0d507d965908a7b4bfcafc0233",
+    "code/GameController.c": "55ff15866b4071b1f40b7f70c63744ee3fbd8129cd484eaeac6f238c318fd1e2",
+    "code/GameController.h": "e54aaff5436f83ac2be64f70d621bbeaa00cf8841b779a87a9f3a70f4f67a79b",
+    "code/Makefile": "f5ee277aed9a7fc00d4719d78b8be640abbdc74907393d590750a37b604db27e",
+    "code/Utilities.c": "07ec117a5677c57aa189eee1c74c106a4c4cfe5b86f19782985fd60c3ed7a685",
+    "code/Utilities.h": "8fab990f17385fb47e9a2ffb3d6c030c9c69bb072c3b2ca8a2243c0af4fba9f6",
+    "code/boat.c": "831259dccea3edb1515e3ed8ecbdadd541e16d77ea31a904d45dc2ee3d5980b6",
+    "code/boat.h": "d90a2f255f56fb15304e8415be2e6be85765cfbdbed48420f21175fa86293754",
+    "code/buffer.c": "da92253c661de396ea9dc6b0ad0dad95fcd605a22db74ce80501445052a771cf",
+    "code/buffer.h": "1e22af1137d3175fafebe4b563fbb6e7a2453b01249a0acaed97a5235d1a695a",
+    "code/collision.c": "71cbffffb4cae9e14492ddd765fa40704c9c6d6f07ce797705c6859fcfe2691f",
+    "code/collision.h": "77f87aee20df184c62675a25a3164592c2f3ebb83f37d0e230568a3222a1932b",
+    "code/data_pixmap.c": "3bf9ecb32ab1dcc108aec15f2064b5d92966b60ef646a5fd3e0a64b24586b1cc",
+    "code/data_pixmap.h": "050e9d13a2e6ddd8a70454ca2e19545eb52e545f432a7e11982ece9923c0a12b",
+    "code/graphics.c": "6040d1eac8b14b8d7328684dfe79ed7617b7f48d13a2f73451dfb1dcd56941a1",
+    "code/graphics.h": "48fd66bab4a6ad844ef41f0001befe9f74ea0ebd1d789c3bbdde67011f8135a9",
+    "code/i8042.h": "d284cdebd862e76beb393e4c935898fa4a5ef82acbbd786211bdfd3a83d6664a",
+    "code/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "code/kbd.c": "88c6b2727c29eab5ffc89a2f2ddeb8ef47d42cbb743c4f6301232236593233dd",
+    "code/kbd.h": "c44482f9d6fb8a8f1bdf6c76a30b663f5caa40bfa543269ef991f72f93922d74",
+    "code/keyStates.c": "61d8121ce2f7e425e368a6f230933327579a3b1a17f410915bec51f7e0ea8ac8",
+    "code/keyStates.h": "d123c2212115fe4cf447b67ff191cfb0c4e99a95ca779df3ebec32e20d3c3439",
+    "code/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "code/mouse.c": "f9b09afe370fcd8248ca52a41914cdd181b28070d22301cfa1778c72349c3bfc",
+    "code/mouse.h": "6ec41bae0b976524a406da99707d8d5a96c900e3619827e431c65b7a0e2c7dc1",
+    "code/multiplayerSync.c": "60866e1c962cd2675cdec1cf482f3de506876e251b06a717133c73986e0f0c15",
+    "code/multiplayerSync.h": "95754a920902a40a43034aaba0a1b6c49d3c1968e2788ff8ff0d985940312100",
+    "code/pixmap.c": "2b97bc9a62d082ce011717f228d3cd0869c3a3c53a63d11a0b36621eb3d28cee",
+    "code/pixmap.h": "dbd56e8032275eac06a324544a61eba37bc00faa461a68d8a65ddccb91e55b3b",
+    "code/proj.c": "514a32be11867d970af8eb94fc2eea303fe35ce45b6e4963ac61707da6bfe14f",
+    "code/rtc.c": "422bf28019a2c4f91486e6ddb3e70fe74080edc6622efe8037aab932b4fe814f",
+    "code/rtc.h": "6da6537c6f67ed9eaa4d9ed043c2a2341246417109c3163b2f32922fe7a23c4f",
+    "code/scope.c": "c33d6a6803122854da3f411cf1c0a21e53938ade7e35f864334dd2a60ca24cb0",
+    "code/scope.h": "5131ae19adfcc57752fcf7307d1dc42d854781b820a534e20d546fdd7c307e0e",
+    "code/shark.c": "80a71c1598c65c12775d99db3fd544e25fe10d1a02df3d312c66737b146e654b",
+    "code/shark.h": "e4cc6186ae44440afadce7555dc565157c9099b8981b6fee2826deb666f09169",
+    "code/smart_vector.h": "f83a5183781319f7a022a704c634ece284481d792034b9ae4f4627c77372b2f9",
+    "code/sprite.c": "d40337c0808db2dc5446d8a49cd18d92d84157db17d5c3f074fd82de3b377fe3",
+    "code/sprite.h": "aa0c4927a7b7957ac012ff47940f0fccb1abe49c1e5f7a4c01b981b0a2cb24db",
+    "code/test7.c": "363b51c9f6d6abc5d35304759d575742151d153cec0d96c95b9543706108392b",
+    "code/test7.h": "08bddcbb7bb924e398f26576e8f6e2998e9438894c9a2d5875537a8690df5e65",
+    "code/timer.c": "d4cb5ebd5d78e991482237a0d5a9b7c3822f9bba7950638d8625899e51b7b2a7",
+    "code/timer.h": "84e8290a72ac4e85b95d4fa1f0389b0552f42e25eb45edd6d76ff9495ae8a6b7",
+    "code/uart.c": "42ae85d65e7cbb01d2e610c2b47b8d7acc95fb41f1031e3879d63aaa1c8a2bbb",
+    "code/uart.h": "dbeda6c846fb45bec4db5da8da19c3bec39790e52caccebcac8badd139197d5f",
+    "code/vbe.c": "1fe76bbdc2f25c6cff316bcfce5edcbc15d645c7db09bcd4fd37f0a2469b67e2",
+    "code/vbe.h": "ba7ad218361c7b4b04671df0c40505b2791a4568cbb4e42a8aefe7a2c516a5ee",
+    "code/vector2.c": "467a1caf69e755861f155a4b6cfc5967aefea387080689a537ef38759512ced3",
+    "code/vector2.h": "9252ad0fc8e3454bf501430098e5ec4c83de27e5644aa51897eb28601d2cd5dc",
+    "code/video_gr.c": "1f569f4f30abb263f66a22f0aa3cbb532d4ca7cfe7a3c5d7cda0b5e5d7153daa",
+    "code/video_gr.h": "ae9836e7298ae0b0079e2346f8f9f89c541424fd446b6f4e29b38e6c63fc6c10",
+    "conf/proj": "fc4b343d551808450e1c829bf561afd2fd239c75776c398bdf3dcb37c8b33164"
+  },
+  "sourceSelection": "Original project C/headers/Makefile, configuration and README. Precompiled executables and unrelated lab outputs omitted.",
+  "originalArchiveSha256": "113bbee57d5d33e41001ab47e5e046ed3d07ba473d2084d271a068caff56ddce",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in the pinned source selection; upstream attribution retained.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "code/graphics.c",
+          "originalSha256": "6040d1eac8b14b8d7328684dfe79ed7617b7f48d13a2f73451dfb1dcd56941a1",
+          "patchedSha256": "75f77e7ee85299c9cdc52a8f0b0d0fff3db3a0bab742a4c8836d058c147c99e7",
+          "reason": "Return NULL, as documented by graphics.h, from both failed-subscription and failed-unsubscription paths in pointer-returning test_init.",
+          "verification": "Original source fails int-to-pointer conversion checks; corrected owning function fixture injects each failure and asserts NULL plus expected initialization/exit calls."
+        },
+        {
+          "file": "code/proj.c",
+          "originalSha256": "514a32be11867d970af8eb94fc2eea303fe35ce45b6e4963ac61707da6bfe14f",
+          "patchedSha256": "1f2d88e93f5f4944f56153334963e52766558a8059f50fb38b448fdac282b82e",
+          "reason": "Include the existing video_gr.h and buffer.h owners for graphics pointer/lifecycle and buffer initialization/cleanup declarations.",
+          "verification": "Original strict actual entry compilation fails missing vg_init/initBuffer/freeBuffer/vg_exit declarations and implicit-int pointer conversion. Corrected owning entry fixture checks mode0x105, exact returned framebuffer pointer, original loop exit and full graphics/buffer/device cleanup order."
+        },
+        {
+          "file": "code/timer.c",
+          "originalSha256": "d4cb5ebd5d78e991482237a0d5a9b7c3822f9bba7950638d8625899e51b7b2a7",
+          "patchedSha256": "bb00afc2c7cb24e9ddbe0f663a351228e15a7f2f8824eb386dd77abd9c117215",
+          "reason": "Return failure status1 on driver_receive error instead of a bare return from nonvoid timer_test_int.",
+          "verification": "Original actual ARM64 optimized object compile fails -Wreturn-type at timer.c199. Owning source regression reproduces the diagnostic; corrected real receive-error path returns1 after one subscription and receive attempt. All24 optimized ARM64 source objects compile afterward."
+        }
+      ]
+    }
+  ],
+  "buildRationale": "Explicit GNU89 matches original COMPILER_TYPE=gnu/CC=gcc project and Minix3.1.8 GNU4 toolchain evidence. Original GameController inline definitions remain unchanged. Default GNU11 leaves update_ingame unresolved atO2; GNU89 emits original external definitions and links. Shared SDK sys/video.h and libc namespace fixes supply original platform headers without student-name workarounds.",
+  "controlsRationale": "Original1024\u00d7768 indexed game, boat starts800,500, scope50,50 with0.55 gain. Left WASD stick steers, right mouse stick or relative screen touch aims, separate Shoot/Select clicks.250ms minimum mobile button hold reliably reaches original timer-sampled edges, including game-over restart, after short unprotected taps sometimes missed. Both panels stay outside gameplay. Original art, movement, collisions, spawn RNG and UART code remain unchanged.",
+  "artwork": {
+    "icon": "Original numeric-palette tuba and ship XPM sprites decoded and composited on a simple dark tile; original asset arrays unchanged.",
+    "preview": "Actual original boat moving right among approaching sharks, scaled to640\u00d7480."
+  },
+  "verification": {
+    "browser": "Real CDP touch in844\u00d7390 and390\u00d7844 moves boat left then right, aims/fires, reaches original Game Over, selects Restart, verifies fresh field/cursor/boat reset and exits through Escape. No page errors.",
+    "ndk": "All24 authored source units plus generated context compile through exported CMake as actual ARM64 objects with app-globalC11, selected gameGNU89, O2/FORTIFY2/stack protector/format-security.",
+    "native": "Actual Android gameplay pending.",
+    "limits": "Original UART multiplayer unverified. Authored allocation macros print MALLOC/REALLOC FAILED unconditionally even on successful allocation; those diagnostics are retained.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/shark-native-reviewed/results.json",
+      "apkSha256": "58217dabf196c139a26b2d9739dd0d64fec520df29cc6142648c61dcf564e38c",
+      "demonstrated": "ROOT reviewed actual native v3 attempt3: ordinary aimed Shoot removes the moving shark. Timestamped source-speed bound and raw gray-pixel check exclude motion, clipping, GameOver reset, boat overlap and scope occlusion.",
+      "limits": [
+        "One defensible native shark removal and original Restart verified on current qualification APK. Earlier portrait boat left/right input uses a separately hashed APK with51 identical current source units. Exact kill counts, full survival, UART pairing and physical-phone performance are not claimed."
+      ]
+    }
+  }
+}

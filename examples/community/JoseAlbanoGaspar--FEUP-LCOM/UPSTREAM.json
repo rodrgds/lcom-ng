@@ -1,0 +1,87 @@
+{
+  "repository": "https://github.com/JoseAlbanoGaspar/FEUP-LCOM",
+  "revision": "b8fcf667f848a48a83515969285a24647cb505ab",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "d382a855602b91f1b600838e1bb1673a2eee5638ad5b777fdf268be41d855b4a",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.idea/.gitignore": "700037c6c34a2a55dbd251d71a45c1826f352e5308f4dcfd1e5a1c0cbeed3d29",
+    "proj/src/.idea/codeStyles/Project.xml": "ce88a18f26460f8a757cc6e4ab0f486f5a03c9cf0859a4c03205b1087c013111",
+    "proj/src/.idea/codeStyles/codeStyleConfig.xml": "ee546e9441ecbbb5fdd87776dc403e44f3dccb93ebb43828906ed1f47ebb32ed",
+    "proj/src/.idea/misc.xml": "b91cf693ee461a76ec339c793ce642d08de05a4a794c7bc4cb23e5a41f8acdcb",
+    "proj/src/.idea/vcs.xml": "6ffdfdafcd3bfed04030e4926c8c728d029e66c3585d323efc5093d63dc55ee1",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "proj/src/Makefile": "ee7a0e29fad3914dac7a42242164c93f5cd4ffbdb7f6a5215ad0d6adf6e1e625",
+    "proj/src/assist.c": "0fce3fab26d2fb64a13513ce6f319ad76f64523a6561f956dd2de2e86cb0c117",
+    "proj/src/assist.h": "c4347288b555dadf32a245a91f042ed9b22a34cf777e17aa1c9f3c496524ad32",
+    "proj/src/game.c": "875e4a9f542a02e28ecedcc9cc780e1f9b1794f94fab8bff1352f0ea6d5a15aa",
+    "proj/src/game.h": "4ed68b8b13470b07b13330c212a3c457d3879ed4efc8533b8400ad7f666f2e79",
+    "proj/src/gameOver.c": "9d2117f74965fd6e51243e8b82663e661a4d527a005bd6cadd0ca8bc42ee7e8f",
+    "proj/src/gameOver.h": "6fd4253a962e9119feb8707eaab8f1a874829e7f02b4132e974bf75bb2db7b02",
+    "proj/src/keyboard.c": "8acbe2f67bbfb0ebf30a84595d4f17525f688ce7f907c6d29c82d9f9982d8a89",
+    "proj/src/keyboard.h": "b766d65566f0cd8b6bab9817b219e5beaced56b50b891010ae88e27e4b35ae50",
+    "proj/src/macros/constants.h": "2e11d8a52f4b6952658efcccb16db51d5c32f691dce0e0fe9ad80031ac373096",
+    "proj/src/macros/i8042.h": "b10c04acfe8c32bcff5b9a0a3ebe2c919dc92c6cbc04be791339890c35f4ee5c",
+    "proj/src/macros/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/macros/iMouse.h": "925de6df36410449aea2f95a08a17152663169a006f4bb7d32fb5b8801139fd8",
+    "proj/src/macros/iRTC.h": "8e9ef900cf5f00e6be2282163d775bbcf72ebff919d6b3c2c88612145d8a28b5",
+    "proj/src/macros/int86.h": "4c7947fcb55a78bd72e0e632bd36552bf3380e1e32fa65276a64344dc9148774",
+    "proj/src/menu.c": "334cd5153c023f22901d417bb72c7a8535ce4717d92608a038a2e20d1694122d",
+    "proj/src/menu.h": "3e8f86711fc5438dcc761871c0382d86910be9f5cafe6adec160b9f752f4d4f3",
+    "proj/src/mouse.c": "2d9e18fab63e11471d78288b3eac27df1ff37d3ba297c5058e6852b576597926",
+    "proj/src/mouse.h": "4f4815e630074dfe63277dafaf62fe725a0d0747fc3e88a3d3439a3478a034fc",
+    "proj/src/pause.c": "2e18d75bb925078a0b8e2e31ce5373528ae86eacddf08ed311876e63992ec338",
+    "proj/src/pause.h": "076657a7f1410e0ab63b6e1cf6b8b14e38033cfe87857c616611cc184fc662f6",
+    "proj/src/proj.c": "c712e87c12ef1435637fa8bf3828ee732de7f7bee68c39853ac933e307793f82",
+    "proj/src/rtc.c": "bb03ad784ec424a9930cf65b672c69b9dbcf9d0c61eb8b902abc6fe3851c7264",
+    "proj/src/rtc.h": "cd7e4ae6aa5b053682bceeda91b68ff42fd9ce5184c568ab20529833da497758",
+    "proj/src/snake.c": "be34b60832b19d1c95f55034fa77bfd1477b3da61588e3fae7e0a6f7615c49fa",
+    "proj/src/snake.h": "6c0e2428332a4e81cd3fdb215d32ac28af1f9365e3c7efec41f5ef73f21eca09",
+    "proj/src/sprite.h": "e74c1ff92eb0f5e1019df5c06c58df01cc4f46a8626ac6c27322b27cb6b23fbd",
+    "proj/src/timer.c": "093608c65c97ca2b8dbe7e784320e7648cb2cee50d45125b3112acb78f6d03fd",
+    "proj/src/timer.h": "641c934485e9bcf4a0fd03dde3be4e18dd98e8e55c8bf3274098f8fb8cad5aea",
+    "proj/src/utils.c": "ee0f82eeabd85ccf236112529dac20684e97d9a21689fd413148eec5a5750bcf",
+    "proj/src/vbe.c": "55956e7067fe7b5a0e4ef646ff90193a39dea611cc8ac179c39e11118d9fbfc7",
+    "proj/src/vbe.h": "12f64ac76633d973cf948b61ea95ed6e220a01ab4aecbe97f37509da2c23ffcd"
+  },
+  "selection": "Original project source tree, headers, required assets and root README. Omitted unrelated labs, generated documentation, logs, compiled objects, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.mov",
+    "**/trace.txt",
+    "**/output.txt",
+    "**/core.*"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/sprite.h",
+    "array": "applePix"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "5afc8615e2b4ef6bbc6db465d0f3b33114f308f6ca4cf49c35e3b39271d9f678",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "2bc5ad07a2e0a94efc504fe0850d8906c261ecf2e796d47e13e7b4d3383c8510",
+      "kind": "gameplay preview"
+    }
+  ],
+  "verification": {
+    "web": "Real Chromium mobile touch gameplay in landscape and portrait; no JavaScript errors. Controls, menu transitions and game actions exercised.",
+    "evidence": "build/arcade-100/a/evidence/JoseAlbanoGaspar--FEUP-LCOM",
+    "native": "Original sources compiled against compatibility SDK; final native collection build pending integration."
+  }
+}

@@ -1,0 +1,96 @@
+--- a/lcom1415-t3g15/projeto/src/main.c
++++ b/lcom1415-t3g15/projeto/src/main.c
+@@ -6,6 +6,7 @@
+ #include "OptionsMenu.h"
+ #include "Whack.h"
+ #include "Game.h"
++#include "Graphics.h"
+ #include "Mouse.h"
+ #include "i8042.h"
+ 
+--- a/lcom1415-t3g15/projeto/src/Graphics.c
++++ b/lcom1415-t3g15/projeto/src/Graphics.c
+@@ -59,7 +59,7 @@
+ 
+ 	bytes_per_pixel = pixel_size;
+ 
+-	long memory_size = h_res * v_res * vm.BitsPerPixel;
++	long memory_size = h_res * v_res * bytes_per_pixel;
+ 
+ 	memSize = memory_size;
+ 
+--- a/lcom1415-t3g15/projeto/src/Bitmap.c
++++ b/lcom1415-t3g15/projeto/src/Bitmap.c
+@@ -178,54 +178,37 @@
+ }
+ 
+ void drawBitmapMouse(Bitmap* bmp, int x, int y, Alignment alignment) {
+-
+     if (bmp == NULL)
+         return;
+ 
+     int width = bmp->bitmapInfoHeader.width;
+-    int drawWidth = width;
+     int height = bmp->bitmapInfoHeader.height;
+-
+     if (alignment == ALIGN_CENTER)
+         x -= width / 2;
+     else if (alignment == ALIGN_RIGHT)
+         x -= width;
+ 
+-    if (x + width < 0 || x > getHorRes() || y + height < 0
+-            || y > getVerRes())
+-        return;
+-
+-    int xCorrection = 0;
+-    if (x < 0) {
+-        xCorrection = -x;
+-        drawWidth -= xCorrection;
+-        x = 0;
+-
+-        if (drawWidth > getHorRes())
+-            drawWidth = getHorRes();
+-    } else if (x + drawWidth >= getHorRes()) {
+-        drawWidth = getHorRes() - x;
+-    }
+-
+-    char* bufferStartPos;
+-    char* imgStartPos;
++    int firstX = x < 0 ? -x : 0;
++    int lastX = width;
++    if (x + lastX > (int)getHorRes())
++        lastX = (int)getHorRes() - x;
++    if (firstX >= lastX)
++        return;
+ 
+     int i, j;
+     unsigned long color = 255255;
+-
+-	for (i = 0; i < height; i++) {
+-		for (j = 0; j < width; j++) {
+-			int posY = 2 * getHorRes() * (y + height - 1 - i);
+-			int posX = (x + j) * 2;
+-			bufferStartPos = getVideoMemMouse();
+-			bufferStartPos += posX + posY;
+-
+-			if (getColorFromBuffer(bmp->bitmapData, j, i, width) != color) {
+-				imgStartPos = bmp->bitmapData + xCorrection * 2 + i * width * 2 + j * 2;
+-				memcpy(bufferStartPos, imgStartPos, 2);
+-			}
+-		}
+-	}
++    for (i = 0; i < height; i++) {
++        int screenY = y + height - 1 - i;
++        if (screenY < 0 || screenY >= getVerRes())
++            continue;
++        char* row = getVideoMemMouse() + 2 * getHorRes() * screenY;
++        for (j = firstX; j < lastX; j++) {
++            if (getColorFromBuffer(bmp->bitmapData, j, i, width) != color) {
++                unsigned char* pixel = bmp->bitmapData + (i * width + j) * 2;
++                memcpy(row + (x + j) * 2, pixel, 2);
++            }
++        }
++    }
+ }
+ 
+ unsigned long getColorFromBuffer(unsigned char* buffer, int x, int y, int width) {

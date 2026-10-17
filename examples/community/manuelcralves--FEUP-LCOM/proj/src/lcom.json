@@ -1,0 +1,36 @@
+{
+  "name": "Candy Maze: Ghost Trail",
+  "mobile": {
+    "fullscreen": false,
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "arrows",
+          "style": "dpad",
+          "side": "left"
+        }
+      ]
+    }
+  },
+  "description": "Guide the ghost through three original mazes, collect every sweet and reach each exit.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

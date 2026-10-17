@@ -1,0 +1,32 @@
+/* XPM */
+static xpm_row_t const menuMouseXpm[] = {
+/* columns rows colors chars-per-pixel */
+"17 23 3 1 ",
+"  c None",
+". c #000000",
+"X c #FFFFFF",
+/* pixels */
+"  .              ",
+"  ..             ",
+"  .X.            ",
+"  .XX.           ",
+"  .XXX.          ",
+"  .XXXX.         ",
+"  .XXXXX.        ",
+"  .XXXXXX.       ",
+"  .XXXXXXX.      ",
+"  .XXXXXXXX.     ",
+"  .XXXXXXXXX.    ",
+"  .XXXXXXXXXX.   ",
+"  .XXXXXXXXXXX.  ",
+"  .XXXXXXXXXXXX. ",
+"  .XXXXXXXX..... ",
+"  .XXXXXXXX.     ",
+"  .XXXX.XXX.     ",
+"  .XXX. .XXX.    ",
+"  .XX.  .XXX.    ",
+"  .X.   .XXX.    ",
+"  ..     .XXX.   ",
+"         .XXX.   ",
+"          ...    "
+};

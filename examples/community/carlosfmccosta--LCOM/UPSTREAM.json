@@ -1,0 +1,180 @@
+{
+  "repository": "https://github.com/carlosfmccosta/LCOM",
+  "revision": "fa3b900dd8f0dd947940583e9e6315f508f32a21",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "3c2260b15866ada2368a458032d4c15f0071a4b6844fc6894aae604c382c5c4e",
+    "proj/.vscode/c_cpp_properties.json": "8eb12c4f84f2f56b513b984d66fc1f45b20e07624c61ecc79299dc8f27c45c8a",
+    "proj/.vscode/launch.json": "75bd32b0c369be276ba6d2d604dc1ff8ffcbf730207195a7881351982f7188e0",
+    "proj/.vscode/settings.json": "d03eb650f15fe8b30187dfdeed89d1bca1060effc26cff87ebc78d0dc034632d",
+    "proj/Doxyfile": "d42eb2869fafcc4f331d7bc3d742627b0f76a926171f6f2e53df23eba7cb2350",
+    "proj/src/.clang-format": "66f7a3be551c14980db4ff14cd66a0fcbad862e03ccd4dc4a0d52a715a1082d7",
+    "proj/src/.vscode/c_cpp_properties.json": "4f9cae90fccef10340860f24af82ebbbe7d491a18e67d9962fa7d4d4682797c1",
+    "proj/src/.vscode/extensions.json": "66ae47f8670f9a66e90340e5cf7aa3ad9e46e3257d2fae291b028502b960f049",
+    "proj/src/.vscode/settings.json": "5ccf7012f069180815b6719b7b19414332fa971a62d3172fa6eddc0da2af7158",
+    "proj/src/Makefile": "0b8e1b09767b3851f0558c4b365475988c4dd83e0f12080a5b82f932fc8e497f",
+    "proj/src/README.dox": "27e349dd8b40c45f1b7ccab3e06d08e6a48c4b1b8a9fa4d9f6f145f9dfe1296e",
+    "proj/src/assets/ammo.h": "9cea70698bd70a714aed846851a3bdff91662665ffe1ad7f8870402eb8caa93c",
+    "proj/src/assets/bullet_asset.h": "e352d7295ba8683c8db73b85315af40691cf8bb5f46f5533a78c2b914ebd81ab",
+    "proj/src/assets/cursor.h": "bc90a1971173c46bb18c043cdf87de20cf6dd91f59341fa550f966da4ccf8d83",
+    "proj/src/assets/enemy/idle.h": "ead6e17bdb6e81f77fe601a72803274d998d294fe2fe57bae959dc10894ffd06",
+    "proj/src/assets/enemy/shoot.h": "0e20d15442c6f432a53b8b7d8f4c2bce2a84fc3c4f5157f2a7e88e2913b94a01",
+    "proj/src/assets/enemy/walk.h": "fb8e153b1ecd64fe951395837244f31128d77235dc4fd74dc38a7d1e4fa5cb73",
+    "proj/src/assets/enemy_sprite.h": "4d96c6a338efa03cf33fba6c27e7d1562bb58f48cdfcebc37224059c5fe20ae6",
+    "proj/src/assets/heart.h": "021425a33e2c3f33c070690b16e2e06fe9d408d4395026bee85d398d0546a1fa",
+    "proj/src/assets/leaderboard.txt": "92ea6136e1ad4b1947225368e9431af206db46d1cf14df9a11d8d23903dfeea2",
+    "proj/src/assets/letters.h": "579cd9ebcbfd039440d6b60b68a84409662927109406294ef0abd1c15e4c9f74",
+    "proj/src/assets/letters_big.h": "2c3a42c0b641548f8af21774b084a565a900936c5fcbb6c9325f0c11ec2c4878",
+    "proj/src/assets/numbers.h": "f766167d5ae3fd134ce68e632f286f9938c27298da372bcf7764bc87888bf1dd",
+    "proj/src/assets/player/idle.h": "8929d0e7005bd995fe1e9a4adb7e49ab622d528454999ecefdb2634648d16c1d",
+    "proj/src/assets/player/shoot.h": "04d59c208de7b7abd507163fbb84ed058826a411ba0159cb5c8062ac64bc06b9",
+    "proj/src/assets/player/walk.h": "3fbe6038c0177a46b745b067be4fd0e5f59d5acc5aa7053782eabbd9eabf1c6b",
+    "proj/src/assets/player_sprite.h": "9d103647fca110bcb649c4cff52eed09db8ccfa66a6d9be48df0a51e9a11ac7e",
+    "proj/src/assets/ui.h": "93d2002f461b04c777daeba7337d48656a7dc0ae7e3647182de4b49158bf38d1",
+    "proj/src/assets/wall_sprite.h": "f2ee9c47d27fa2ca2adc8c16b9221602e0dd8845e93a08e3eaf74a680e139c18",
+    "proj/src/controller/KBC/i8042.h": "51aec3777dec0d35a2ca34e0b4a0d7aa5be6fabc29eb6e9aa43f00ebc54f54b4",
+    "proj/src/controller/KBC/keyboard/keyboard.c": "8d6e9e14e0b8c048599a8e8ca3a6c620c491e0f35a8b22d0084ed45597ff190e",
+    "proj/src/controller/KBC/keyboard/keyboard.h": "261a8e8e77604b7e7e08935d444906a6cae6e4d14de23fbb7cb8019a962124f7",
+    "proj/src/controller/KBC/mouse/mouse.c": "ec9cc9e0e9261817714713270e8870f45d9d1420d1dbbceea21b3c326c09e83c",
+    "proj/src/controller/KBC/mouse/mouse.h": "7a3c4e5e638238344804dbe214c9a8afc26c40bb489efad7f0961bc232da9dc5",
+    "proj/src/controller/event.c": "933c40283ca8ab7fe64d4c2ed50c826a527ddc813559271a502e4d058f1b8f5a",
+    "proj/src/controller/event.h": "d53ff700efbb3f0d940d311d15040134a9ee82aef92c95773d06228267e1c9bd",
+    "proj/src/controller/game.c": "8ccf2194fd50c71e2b9886022331f586bd4714834587a3362b091622f15c3293",
+    "proj/src/controller/game.h": "a78b6952993c859af9674ae9266a933661dec2a891e623c7dbfffc841b46c44d",
+    "proj/src/controller/state.h": "fe266b53a72b1cadd186537133c6a399c39d3c3cebee439c49c1bd45db6f35f5",
+    "proj/src/controller/timer/i8254.h": "a9e961314b6661f4bddf7f68bc5e47c5a32e3f77b5a6e989fc449f17e0e0fbe7",
+    "proj/src/controller/timer/timer.c": "7b1d90951c08c978209044108fb05104026c02fe21db732da2c65c16797c920b",
+    "proj/src/controller/timer/timer.h": "d7a4ba8fad78c8de03b1dee08fb1c371ad1f71229957ba977e60520559ecbb4d",
+    "proj/src/controller/utils.c": "a261c24845c5495cdbf387fd6b6a46db18d36dfe5a0be75efc9a3c7aeb071916",
+    "proj/src/controller/video_gr/video_gr.c": "0b27e098bf379b86688418b57822b9283b995c70863a4541be143a5c86173c57",
+    "proj/src/controller/video_gr/video_gr.h": "833985dc5730a1eaedd63ee1f311efd2694cb5fe3c27cb9674d86d170a89b181",
+    "proj/src/main.c": "98b3dd382fd2501a13eb5bca62ba9ab69d16be6a89ec0306ad04b83216e3266d",
+    "proj/src/model/bullet.c": "bc84d246f9d3401f6fa030d3c828a7e297321301c38c11869e560ca49db16a64",
+    "proj/src/model/bullet.h": "2bf588c64d8bdfb225b30faf005f0095ba821ff339b8543f4832bc39abfac2ad",
+    "proj/src/model/enemy.c": "d4e3936681a2d6938921bed2cc5919a950a153bf44db9be6e55621081ea6e57e",
+    "proj/src/model/enemy.h": "3c2d32f71bd5152415baf10a50f54b9146c84b459c2ae8177d3f84f938941eb2",
+    "proj/src/model/player.c": "5795364128557e6e7d81ff62cbbb3431b80276496daabfe071e0048c0918ca46",
+    "proj/src/model/player.h": "49cb35a367f9d2e441f92f410004204f2841485269baa65ced26e1cefb8acc13",
+    "proj/src/model/position.h": "489af80270c032f102d6257421918af21893be5c699a1848a20deb801c0c8063",
+    "proj/src/model/sprite.c": "929b491457f75001f625da60e1fa0cd577ba552ae50d0a125bbd176ec62992c5",
+    "proj/src/model/sprite.h": "7ae77f77126201ef9b6975779cf5baf2c0d33e2fc29493d7250cd3212f6925b9",
+    "proj/src/model/wall.c": "45293e8f30dd11753f85e4e01b23afb9c3c3773de6379357cca5e6470c5433a1",
+    "proj/src/model/wall.h": "f382c11fa8273a3ae6cb2fe532d9ead869862f94a2522a616eaa2a0b342a8abf",
+    "proj/src/queue.c": "bbe60ff61bad734f2cfc5acecf9baf9bae2294649341be27e78ad3c3c52d0429",
+    "proj/src/queue.h": "ca79b1cf7bf30ed8db2c2335f46adc7edf59970ff95822bfd2c26e494dd7256c",
+    "proj/src/view/draw_timer.c": "b648dc5f89f5289bb387a18bd51e90ae2cc4d5c56dddcd9711355ea6107adf46",
+    "proj/src/view/draw_timer.h": "a81c64220318ecde726a116f1c3a3f80f3fc63f238c1a304f9cacb50a12d7ea9",
+    "proj/src/view/health_bar.c": "1630d4b5bef77e9780eb98f10e200d4da5305743e606a2a160e6f531a2fe3cea",
+    "proj/src/view/health_bar.h": "b769ff235e50748e7ade1605f8eddac246e25d9af3c0d30d27895d2dd92eae51",
+    "proj/src/view/leaderboard.c": "3c8eeace062a4f2faa1151962783bc875bc743422a3e33b9b7ea905d344f9916",
+    "proj/src/view/leaderboard.h": "13017e94c689ba39d2d7c0fb76f5e66f2bd7f29295369c4d11bfd6e0f48ae677",
+    "proj/src/view/leaderboard_page.c": "fa67e3687ce62f4bea531e76e82072152ee620ad7df7c2239aafcab307e7f23a",
+    "proj/src/view/leaderboard_page.h": "e4e676ab15156bda88e80959c4cd0ef17b0d7ebaa66d8cc7f31bdc3f994ffafc",
+    "proj/src/view/menu.c": "fd437c6106a902cdd15b8f316c687764b4a49c2e5ebbb3bb483cec8ccdd226a1",
+    "proj/src/view/menu.h": "314de22b49ce8f1f49c73d57e7b14006b5bfd1a776cef1e25dbe44b886dc0cd6",
+    "proj/src/view/text.c": "a1494b102a4cf0d300f8b530af54e29f4ffde276e2088490bee2127dfa63149b",
+    "proj/src/view/text.h": "081329587c3100c3871698cd156b2105d4c9c75578805926c9439b4dd63776e2",
+    "proj/src/view/write_name.c": "1edc303b4db661db8c83776c812bee4468f05be4086faa591338b9cab5bdb90e",
+    "proj/src/view/write_name.h": "59f9548f6803e44b0b20fb368a795d18d2507e639d53ece26095bfc11e50b330"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "reason": "Preserve the command ACK rather than draining it as stale output.",
+          "originalSha256": "ec9cc9e0e9261817714713270e8870f45d9d1420d1dbbceea21b3c326c09e83c",
+          "patchedSha256": "4b2517d9ad8cee64aad4aa76cf23a008ae8f753547e298a2de5015fdaaee73f7",
+          "regression": "build/arcade-100/a/batch9-source-tests.py",
+          "red": "build/arcade-100/a/batch9-source-red.log",
+          "green": "build/arcade-100/a/batch9-source-green.log",
+          "file": "proj/src/controller/KBC/mouse/mouse.c"
+        },
+        {
+          "reason": "Retain owned copies of caller title, option strings and callbacks before destructor releases them; original callers use string literals and local arrays.",
+          "originalSha256": "fd437c6106a902cdd15b8f316c687764b4a49c2e5ebbb3bb483cec8ccdd226a1",
+          "patchedSha256": "4ce393e6495a7b4b6bad95b8e9c6f5eb3c42df37fc6f4dfd2b9988b0d670e1f1",
+          "regression": "build/arcade-100/a/batch9-source-tests.py",
+          "red": "build/arcade-100/a/eye-menu-red.log",
+          "green": "build/arcade-100/a/batch9-source-green4.log",
+          "file": "proj/src/view/menu.c"
+        },
+        {
+          "file": "proj/src/controller/event.c",
+          "reason": "Initialize inactive event payload pointers to NULL so original cleanup only frees owned payloads.",
+          "verification": {
+            "regression": "build/arcade-100/a/batch9-source-tests.py",
+            "red": "build/arcade-100/a/eye-event-red.log",
+            "green": "build/arcade-100/a/batch9-source-green6.log"
+          },
+          "originalSha256": "933c40283ca8ab7fe64d4c2ed50c826a527ddc813559271a502e4d058f1b8f5a",
+          "patchedSha256": "7eec15013a01a1327e581434cc41663b3f319e69e7d8354343d4d82af46f3073"
+        },
+        {
+          "file": "proj/src/queue.c",
+          "reason": "Advance FIFO read/write positions, allocate grown storage using actual event size, honor minimum capacity and free the owned buffer. Original repeated one event pointer and freed it multiple times.",
+          "verification": {
+            "regression": "build/arcade-100/a/batch9-source-tests.py",
+            "red": "build/arcade-100/a/eye-queue-red.log",
+            "green": "build/arcade-100/a/batch9-source-green8.log"
+          },
+          "originalSha256": "bbe60ff61bad734f2cfc5acecf9baf9bae2294649341be27e78ad3c3c52d0429",
+          "patchedSha256": "a7f9c7e0d0d06c5ca3d22fe97db8489f0c7c6cc0d0056de43f3aa250ee3a0f50"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/assets/player/idle.h",
+    "array": "idle1"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "4b45a343e7885fab7d62fc265d7a8640e1f8d7afa51df37aa02a126dc111aeb4",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "e99d4c64989b7bbaaa89053bb3872f6c53dd5c7e40290d5673cbe71869df5dee",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "controlsRationale": "WASD make events consume movement and repeatKeys supports held walking. Relative pointer preserves original menu and aiming semantics; left fires once per press, right reloads. Keyboard remains available for the original name entry.",
+  "verification": {
+    "browserBuild": true,
+    "optimization": "normal exporter O2, no diagnostic compiler override",
+    "mobileTouchGameplay": true,
+    "checkpoint": "Original ENTER starts the arena. Held D moves the player; ordinary aim and fire defeat one visible enemy (five to four enemies), then right-mouse Reload restores three ammo icons.",
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence/carlosfmccosta--LCOM",
+    "log": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/eye-reload-gameplay.log",
+    "limits": [
+      "Later waves and saved leaderboard entry remain untested."
+    ],
+    "androidGameplay": "passed: representative actual ARM64 Android emulator objectives; see nativeGameplay proof and limitations.",
+    "strictNativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/carlosfmccosta--LCOM.native9-strict.log",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "140a8d855a8ec9c7c764194da021e793b018ff0a5474a25c18937d93f3032e8c",
+      "evidence": "build/arcade-100/a40-native-gameplay2/results.json",
+      "demonstrated": [
+        "Original player moved right; original enemies visible.",
+        "Ammo reduces and live shots advance; browser target at this coordinate died, native RNG may place enemies differently.",
+        "Original magazine refills from two to three ammo icons."
+      ]
+    }
+  }
+}

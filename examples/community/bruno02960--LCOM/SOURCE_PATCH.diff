@@ -1,0 +1,258 @@
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -1,3 +1,4 @@
++#include "xpm.h"
+ #include "game.h"
+ #include "video_gr.h"
+ #include "variables.h"
+@@ -7,9 +8,9 @@
+ #include "utilities.h"
+ #include "file_handler.h"
+ 
+-Ship_t ship = {.map = (char *)Spaceship_xpm};
+-Enemy_t enemy = {.map = (char *)Invader_xpm, .destroyed = 0};
+-Pong_t pong = {.map = (char *)Pong_xpm};
++Ship_t ship = {.map = Spaceship_xpm};
++Enemy_t enemy = {.map = Invader_xpm, .destroyed = 0};
++Pong_t pong = {.map = Pong_xpm};
+ 
+ void init() {
+ 	ship.x = SHIP_X_INITIAL;
+@@ -71,12 +72,12 @@
+ 	case NO_ENEMIES: {
+ 		if (time_counter)
+ 			total_score += time_counter;
+-		print_message((char *)YouWin_xpm);
++		print_message(YouWin_xpm);
+ 		print_score();
+ 		break;
+ 	}
+ 	case GAME_OVER:
+-		print_message((char *)YouLose_xpm);
++		print_message(YouLose_xpm);
+ 		print_score();
+ 		break;
+ 	}
+@@ -215,9 +216,9 @@
+ 	time_counter = ENEMY_DOWN_TIME * ENEMY_ROWS * 2.2;
+ 	kbd_code = 0;
+ 
+-	title_creator(ENTER_XPM_X, GAME_TITLES_Y, (char *)Enter_xpm);
+-	title_creator(SCORE_XPM_X, GAME_TITLES_Y, (char *)Score_xpm);
+-	title_creator(TIME_XPM_X, GAME_TITLES_Y, (char *)TimeLeft_xpm);
++	title_creator(ENTER_XPM_X, GAME_TITLES_Y, Enter_xpm);
++	title_creator(SCORE_XPM_X, GAME_TITLES_Y, Score_xpm);
++	title_creator(TIME_XPM_X, GAME_TITLES_Y, TimeLeft_xpm);
+ 
+ 	while (estado != ENTER_PRESSED) {
+ 		if (driver_receive(ANY, &msg, &ipc_status) != 0)
+--- a/proj/src/print.c
++++ b/proj/src/print.c
+@@ -1,3 +1,5 @@
++#include "keyboard.h"
++#include "xpm.h"
+ #include "pixmap.h"
+ #include "print.h"
+ #include "variables.h"
+@@ -14,7 +16,7 @@
+ 
+ void print_score() {
+ 
+-	title_creator(FINAL_SCORE_X, FINAL_SCORE_Y, (char *)Score_xpm);
++	title_creator(FINAL_SCORE_X, FINAL_SCORE_Y, Score_xpm);
+ 	print_number(total_score, 570, 300);
+ 
+ 	copy_to_video_mem();
+@@ -24,11 +26,11 @@
+ 	return;
+ }
+ 
+-void print_message(char *pixmap) {
++void print_message(char *pixmap[]) {
+ 	int counter = 0;
+ 
+ 	clear_buffer();
+-	char *title = pixmap;
++	char **title = pixmap;
+ 
+ 	while (counter != BLINKS) {
+ 		title_creator(WIN_LOSE_X, WIN_LOSE_Y, title);
+@@ -51,34 +53,34 @@
+ 
+ 		switch (digit) {
+ 		case 0:
+-			title_creator(x, y, (char *)Zero_xpm);
++			title_creator(x, y, Zero_xpm);
+ 			break;
+ 		case 1:
+-			title_creator(x, y, (char *)One_xpm);
++			title_creator(x, y, One_xpm);
+ 			break;
+ 		case 2:
+-			title_creator(x, y, (char *)Two_xpm);
++			title_creator(x, y, Two_xpm);
+ 			break;
+ 		case 3:
+-			title_creator(x, y, (char *)Three_xpm);
++			title_creator(x, y, Three_xpm);
+ 			break;
+ 		case 4:
+-			title_creator(x, y, (char *)Four_xpm);
++			title_creator(x, y, Four_xpm);
+ 			break;
+ 		case 5:
+-			title_creator(x, y, (char *)Five_xpm);
++			title_creator(x, y, Five_xpm);
+ 			break;
+ 		case 6:
+-			title_creator(x, y, (char *)Six_xpm);
++			title_creator(x, y, Six_xpm);
+ 			break;
+ 		case 7:
+-			title_creator(x, y, (char *)Seven_xpm);
++			title_creator(x, y, Seven_xpm);
+ 			break;
+ 		case 8:
+-			title_creator(x, y, (char *)Eight_xpm);
++			title_creator(x, y, Eight_xpm);
+ 			break;
+ 		case 9:
+-			title_creator(x, y, (char *)Nine_xpm);
++			title_creator(x, y, Nine_xpm);
+ 			break;
+ 		}
+ 
+@@ -96,8 +98,8 @@
+ 	memset(buffer, 0, getHRes() * getVRes() * getBitsPerPixel() / 8);
+ 	while (kbd_code != SPC_COD) {
+ 		kbd_code = kbd_scan();
+-		title_creator(CONTROLS_X, CONTROLS_Y, (char *)Controls_xpm);
+-		title_creator(SPACEBAR_X, SPACEBAR_Y, (char *)Spacebar_xpm);
++		title_creator(CONTROLS_X, CONTROLS_Y, Controls_xpm);
++		title_creator(SPACEBAR_X, SPACEBAR_Y, Spacebar_xpm);
+ 		copy_to_video_mem();
+ 	}
+ 
+@@ -109,13 +111,13 @@
+ 
+ 	clear_buffer();
+ 
+-	title_creator(230, arrow_y, (char *)Arrow_xpm);
+-
+-	title_creator(NEW_GAME_X, NEW_GAME_Y, (char *)NewGame_xpm);
+-
+-	title_creator(INSTRUCTIONS_X, INSTRUCTIONS_Y, (char *)Instructions_xpm);
+-
+-	title_creator(EXIT_X, EXIT_Y, (char *)Exit_xpm);
++	title_creator(230, arrow_y, Arrow_xpm);
++
++	title_creator(NEW_GAME_X, NEW_GAME_Y, NewGame_xpm);
++
++	title_creator(INSTRUCTIONS_X, INSTRUCTIONS_Y, Instructions_xpm);
++
++	title_creator(EXIT_X, EXIT_Y, Exit_xpm);
+ 
+ 	copy_to_video_mem();
+ 
+@@ -155,11 +157,11 @@
+ 
+ 	clear_buffer();
+ 
+-	title_creator(50, arrow_y, (char *)Arrow_xpm);
+-
+-	title_creator(GAME_MODES_X, GAME_MODES_Y, (char *)game_modes_xpm);
+-
+-	title_creator(EXIT_X, EXIT_Y, (char *)Exit_xpm);
++	title_creator(50, arrow_y, Arrow_xpm);
++
++	title_creator(GAME_MODES_X, GAME_MODES_Y, game_modes_xpm);
++
++	title_creator(EXIT_X, EXIT_Y, Exit_xpm);
+ 
+ 	copy_to_video_mem();
+ 
+--- a/proj/src/print.h
++++ b/proj/src/print.h
+@@ -28,7 +28,7 @@
+  *
+  * @param pixmap Pixmap with the message to be printed
+  */
+-void print_message(char* pixmap);
++void print_message(char* pixmap[]);
+ 
+ /*
+  * @brief Prints a number
+--- a/proj/src/spaceinvaders.c
++++ b/proj/src/spaceinvaders.c
+@@ -5,6 +5,8 @@
+  */
+ 
+ #include "game.h"
++#include "devices.h"
++#include "print.h"
+ #include "variables.h"
+ 
+ /** @defgroup spaceinvaders spaceinvaders
+--- a/proj/src/variables.h
++++ b/proj/src/variables.h
+@@ -77,7 +77,7 @@
+ 	int height;			/**< @brief Height of the XPM */
+ 	int score;			/**< @brief Score obtained by the destruction of the enemy */
+ 	int destroyed;		/**< @brief Flag indicating if the enemy is destroyed */
+-	char* map;			/**< @brief Map of the XPM */
++	char** map;			/**< @brief Map of the XPM */
+ } Enemy_t;
+ 
+ /** @} end of Enemy_t*/
+@@ -102,7 +102,7 @@
+ 	int y;				/**< @brief Upper left corner coordinate Y */
+ 	int width;			/**< @brief Width of the XPM */
+ 	int height;			/**< @brief Height of the XPM */
+-	char* map;			/**< @brief Map of the XPM */
++	char** map;			/**< @brief Map of the XPM */
+ } Ship_t;
+ 
+ /** @} end of Ship_t*/
+@@ -122,7 +122,7 @@
+ 	int y;				/**< @brief Upper left corner coordinate Y */
+ 	int width;			/**< @brief Width of the XPM */
+ 	int height;			/**< @brief Height of the XPM */
+-	char* map;			/**< @brief Map of the XPM */
++	char** map;			/**< @brief Map of the XPM */
+ } Pong_t;
+ 
+ /** @} end of Pong_t*/
+--- a/proj/src/xpm.c
++++ b/proj/src/xpm.c
+@@ -65,6 +65,7 @@
+ 
+ 	char *pixel = read_xpm(xpm, width, height);
+ 
++	char *decoded = pixel;
+ 	int w, h;
+ 
+ 	for (h = 0; h < *height; h++) {
+@@ -77,6 +78,7 @@
+ 		w = 0;
+ 	}
+ 
++	free(decoded);
+ 	return;
+ }
+ 
+@@ -89,6 +91,7 @@
+ 
+ 	char *pixel = read_xpm(xpm, &width, &height);
+ 
++	char *decoded = pixel;
+ 	int w, h;
+ 
+ 	for (h = 0; h < height; h++) {
+@@ -100,6 +103,7 @@
+ 		video = video - width + getHRes();
+ 		w = 0;
+ 	}
++	free(decoded);
+ 	return;
+ }
+ 

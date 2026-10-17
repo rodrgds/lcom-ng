@@ -7,13 +7,80 @@
 
 #define CHECK(condition) do { if (!(condition)) { fprintf(stderr, "compat check failed at line %d: %s\n", __LINE__, #condition); lcf_cleanup(); return 1; } } while (0)
 
+/* Minix IRQ_SETPOLICY consumes a notification-bit index and returns a
+ * separate one-based kernel hook handle. Replacement takes a fresh notify ID. */
+static int set_irq_notify(int irq,int policy,int notify,int *handle) {
+  *handle=notify;
+  return sys_irqsetpolicy(irq,policy,handle);
+}
+
+static int check_irq_handles(void) {
+  /* Exact subscription sequence used by the original Sudoku: one global hook
+   * is passed successively to timer, keyboard and mouse, without resetting it.
+   * Each caller saves BIT(input) before the call and the returned handle after. */
+  int shared=0, handles[3];uint32_t masks[3];
+  const int irqs[]={0,1,12};
+  for(unsigned i=0;i<3;++i) {
+    masks[i]=BIT(shared);
+    CHECK(sys_irqsetpolicy(irqs[i],IRQ_REENABLE,&shared)==OK);
+    handles[i]=shared;
+  }
+  CHECK(masks[0]==BIT(0) && masks[1]==BIT(1) && masks[2]==BIT(2));
+  CHECK(handles[0]==1 && handles[1]==2 && handles[2]==3);
+  int invalid=0;CHECK(sys_irqenable(&invalid)==EINVAL && sys_irqdisable(&invalid)==EINVAL);
+  invalid=33;CHECK(sys_irqrmpolicy(&invalid)==EINVAL);
+  invalid=32;CHECK(sys_irqsetpolicy(0,IRQ_REENABLE,&invalid)==EINVAL && invalid==32);
+  CHECK(sys_outb(0x64,0xd4)==OK && sys_outb(0x60,0xf4)==OK);
+  uint32_t observed=0;
+  for(unsigned i=0;i<4 && observed!=(BIT(0)|BIT(2));++i) {
+    message msg;int status;
+    CHECK(driver_receive(ANY,&msg,&status)==OK);
+    CHECK(!(msg.NOTIFY_ARG&~(BIT(0)|BIT(2))));
+    if(msg.NOTIFY_ARG&BIT(2)) {uint32_t ack;CHECK(sys_inb(0x60,&ack)==OK && ack==0xfa);}
+    observed|=msg.NOTIFY_ARG;
+  }
+  CHECK(observed==(BIT(0)|BIT(2)));
+  CHECK(sys_outb(0x64,0xd4)==OK && sys_outb(0x60,0xf5)==OK);
+  uint32_t disabledAck;CHECK(sys_inb(0x60,&disabledAck)==OK && disabledAck==0xfa);
+  for(unsigned i=0;i<3;++i)CHECK(sys_irqrmpolicy(&handles[i])==OK);
+  /* Notify31 is legal and handle32 is legal. Disabling that handle masks the
+   * whole shared line until reenabled, rather than targeting notify bit32. */
+  int all[32];
+  for(int i=0;i<32;++i) {
+    all[i]=i;
+    CHECK(sys_irqsetpolicy(0,IRQ_REENABLE,&all[i])==OK && all[i]==i+1);
+  }
+  message msg;int status;lcom_event_t event;
+  CHECK(driver_receive(ANY,&msg,&status)==OK && msg.NOTIFY_ARG==UINT32_MAX);
+  CHECK(sys_irqdisable(&all[31])==OK);
+  CHECK(lcom_delay_ticks(2,&event)==LCOM_OK && event.irq_mask==0);
+  CHECK(sys_irqenable(&all[31])==OK);
+  CHECK(driver_receive(ANY,&msg,&status)==OK && msg.NOTIFY_ARG==UINT32_MAX);
+  for(int i=0;i<32;++i)CHECK(sys_irqrmpolicy(&all[i])==OK);
+  CHECK(sys_irqenable(&all[31])==EINVAL);
+  puts("IRQ input bits and opaque handles passed");
+  return 0;
+}
+
 int main(int argc, char **argv) {
   sef_startup();
+  /* A Minix process starts after BIOS textmode03, whose EGA DAC palette
+   * survives VBE graphics selection. Read the real shared DAC ports. */
+  CHECK(sys_outb(0x3c7, 56) == OK);
+  for (unsigned channel = 0; channel < 3; ++channel) {
+    uint32_t value;
+    CHECK(sys_inb(0x3c9, &value) == OK && value == 21);
+  }
+  CHECK(sys_outb(0x3c7, 64) == OK);
+  for (unsigned channel = 0; channel < 3; ++channel) {
+    uint32_t value;
+    CHECK(sys_inb(0x3c9, &value) == OK && value == 0);
+  }
   if (argc == 2 && !strcmp(argv[1], "--mouse-bootstrap")) {
     uint32_t status;
     CHECK(sys_inb(0x64, &status) == OK && !(status & BIT(0)));
     int mouse_hook = 11;
-    CHECK(sys_irqsetpolicy(12, IRQ_REENABLE, &mouse_hook) == OK);
+    CHECK(set_irq_notify(12, IRQ_REENABLE, 11, &mouse_hook) == OK);
     lcom_event_t event;
     CHECK(lcom_delay_ticks(2, &event) == LCOM_OK);
     const char *option = getenv("LCOM_COMPAT_MOUSE_REPORTING");
@@ -30,6 +97,69 @@ int main(int argc, char **argv) {
     }
     CHECK(sys_irqrmpolicy(&mouse_hook) == OK);
     lcf_cleanup(); puts("Mouse startup contract passed"); return 0;
+  }
+  CHECK(check_irq_handles()==0);
+  if(argc==2 && !strcmp(argv[1],"--irq-handles")) {lcf_cleanup();return 0;}
+  if (argc == 2 && (!strcmp(argv[1], "--irq-policy") || !strcmp(argv[1], "--irq-policy-reset"))) {
+    int hook = 7, competing = 9;
+    message msg; int status;
+    lcom_event_t event;
+    CHECK(set_irq_notify(0, IRQ_REENABLE, 7, &hook) == OK);
+    CHECK(set_irq_notify(0, IRQ_REENABLE, 7, &hook) == OK);
+    CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == BIT(7));
+    /* Distinct notify bits share one physical IRQ and both receive it. */
+    CHECK(set_irq_notify(0, IRQ_REENABLE, 9, &competing) == OK);
+    CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == (BIT(7)|BIT(9)));
+    /* An active one-shot handler blocks the whole line, including siblings. */
+    CHECK(set_irq_notify(0, 0, 7, &hook) == OK);
+    CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == (BIT(7)|BIT(9)));
+    CHECK(lcom_delay_ticks(2, &event) == LCOM_OK && event.irq_mask == 0);
+    CHECK(sys_irqenable(&competing) == OK);
+    CHECK(lcom_delay_ticks(2, &event) == LCOM_OK && event.irq_mask == 0);
+    CHECK(sys_irqenable(&hook) == OK);
+    CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == (BIT(7)|BIT(9)));
+    CHECK(lcom_delay_ticks(2, &event) == LCOM_OK && event.irq_mask == 0);
+    /* Replacing that notify mapping clears its active bit in Minix. */
+    CHECK(set_irq_notify(0, IRQ_REENABLE, 7, &hook) == OK);
+    CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == (BIT(7)|BIT(9)));
+    CHECK(sys_irqdisable(&hook) == OK && sys_irqdisable(&competing) == OK);
+    CHECK(lcom_delay_ticks(2, &event) == LCOM_OK && event.irq_mask == 0);
+    CHECK(sys_irqenable(&hook) == OK);
+    CHECK(lcom_delay_ticks(2, &event) == LCOM_OK && event.irq_mask == 0);
+    /* Removing the blocking sibling resumes the remaining handler. */
+    CHECK(sys_irqrmpolicy(&competing) == OK);
+    CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == BIT(7));
+    CHECK(set_irq_notify(0, 0, 9, &competing) == OK);
+    CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == (BIT(7)|BIT(9)));
+    CHECK(sys_irqrmpolicy(&competing) == OK);
+    CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == BIT(7));
+    CHECK(sys_irqdisable(&hook) == OK);
+    CHECK(set_irq_notify(0, IRQ_REENABLE, 7, &hook) == OK);
+    CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == BIT(7));
+    /* Moving a notify bit to another IRQ leaves the remaining mapping live. */
+    CHECK(set_irq_notify(0, IRQ_REENABLE, 9, &competing) == OK);
+    CHECK(set_irq_notify(1, IRQ_REENABLE, 7, &hook) == OK);
+    CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == BIT(9));
+    CHECK(sys_irqrmpolicy(&competing) == OK);
+    CHECK(lcom_delay_ticks(2, &event) == LCOM_OK && event.irq_mask == 0);
+    CHECK(sys_irqrmpolicy(&hook) == OK);
+    CHECK(set_irq_notify(0, 0, 7, &hook) == OK && set_irq_notify(0, 0, 9, &competing) == OK);
+    CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == (BIT(7)|BIT(9)));
+    CHECK(sys_irqrmpolicy(&hook) == OK);
+    CHECK(lcom_delay_ticks(2, &event) == LCOM_OK && event.irq_mask == 0);
+    CHECK(sys_irqrmpolicy(&competing) == OK);
+    CHECK(set_irq_notify(0, IRQ_REENABLE, 7, &hook) == OK);
+    CHECK(set_irq_notify(0, IRQ_REENABLE, 9, &competing) == OK);
+    CHECK(lcf_cleanup() == OK);
+    /* Embedded hosts support reopening the in-process session. A desktop
+     * transport ends its runtime server on disconnect, so reset is separate. */
+    if (!strcmp(argv[1], "--irq-policy-reset")) {
+      CHECK(lcom_compat_init() == OK);
+      CHECK(set_irq_notify(0, IRQ_REENABLE, 7, &hook) == OK);
+      CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == BIT(7));
+      CHECK(sys_irqrmpolicy(&hook) == OK);
+    }
+    lcf_cleanup(); puts("IRQ policy replacement contracts passed"); return 0;
   }
   CHECK(lcf_set_language("EN-US") == true);
   CHECK(lcf_set_language("PT-PT") == true);
@@ -62,7 +192,16 @@ int main(int argc, char **argv) {
   CHECK(IPC_STATUS_FLAGS_TEST(0x10004, IPC_FLG_MSG_FROM_KERNEL));
   unsigned long legacy_port_value = ULONG_MAX;
   CHECK(sys_inb(0x64, &legacy_port_value) == OK && legacy_port_value == 0x10);
-  CHECK(sys_outb(0x70, 256) == EINVAL);
+  long legacy_signed_port_value = LONG_MAX;
+  CHECK(sys_inb(0x64, &legacy_signed_port_value) == OK && legacy_signed_port_value == 0x10);
+  /* Minix byte I/O follows the CPU outb contract: only the low byte is sent,
+   * including signed-char values promoted to the unsigned syscall argument. */
+  CHECK(sys_outb(0x3c8, 256) == OK);
+  uint32_t byte_truncated = 1;
+  CHECK(sys_inb(0x3c8, &byte_truncated) == OK && byte_truncated == 0);
+  CHECK(sys_outb(0x3c8, (uint32_t)(int32_t)(int8_t)0xae) == OK);
+  CHECK(sys_inb(0x3c8, &byte_truncated) == OK && byte_truncated == 0xae);
+  CHECK(sys_outb(-1, 0) == EINVAL && sys_outb(65536, 0) == EINVAL);
   CHECK(sys_privctl(SELF, 999, NULL) == ENOSYS);
   /* Numeric operands come from the FEUP Minix 3.4 headers, not shim macros. */
   struct minix_mem_range actual_range = {0xe0000000u, 0xe0001000u};
@@ -71,6 +210,19 @@ int main(int argc, char **argv) {
   CHECK(sys_enable_iop(0) == ENOSYS);
 
   CHECK(sys_enable_iop(SELF) == OK && sys_enable_iop(ANY) == ENOSYS);
+
+  /* Original liblm's bool selects diagnostics, not whether memory exists.
+   * Switching it must preserve live allocations and their physical addresses. */
+  uint8_t *quiet_low = lm_init(false);
+  CHECK(quiet_low != NULL && quiet_low == lm_init(true));
+  mmap_t quiet_map = {0};
+  CHECK(lm_alloc(32, &quiet_map) != NULL && quiet_map.size == 32);
+  CHECK(quiet_low + quiet_map.phys == (uint8_t *)quiet_map.virt);
+  memset(quiet_map.virt, 0x6d, quiet_map.size);
+  CHECK(lm_init(false) == quiet_low && lm_init(true) == quiet_low);
+  CHECK(((uint8_t *)quiet_map.virt)[0] == 0x6d &&
+        ((uint8_t *)quiet_map.virt)[31] == 0x6d);
+  CHECK(lm_free(&quiet_map));
 
   /* BIOS controller data contains real-mode pointers based at physical zero. */
   mmap_t controller = {0};
@@ -104,7 +256,8 @@ int main(int argc, char **argv) {
     {0x10f, 320, 200, 24}, {0x112, 640, 480, 24}, {0x113, 800, 600, 15},
     {0x114, 800, 600, 16}, {0x116, 1024, 768, 15}, {0x119, 1280, 1024, 15},
     {0x11b, 1280, 1024, 24}, {0x11c, 1600, 1200, 8}, {0x11d, 1600, 1200, 15},
-    {0x11e, 1600, 1200, 16}, {0x11f, 1600, 1200, 24}
+    {0x11e, 1600, 1200, 16}, {0x11f, 1600, 1200, 24},
+    {0x143, 800, 600, 32}, {0x144, 1024, 768, 32}, {0x14b, 1152, 864, 24}
   };
   for (size_t i = 0; i < sizeof(common_modes) / sizeof(common_modes[0]); ++i) {
     bool advertised = false;
@@ -123,7 +276,7 @@ int main(int argc, char **argv) {
   CHECK(lm_free(&controller));
   /* RTC update interrupts cross the same Minix hook mapping as other devices. */
   int rtc_hook = 5; uint32_t rtc_control, rtc_seconds, rtc_after, rtc_flags;
-  CHECK(sys_irqsetpolicy(8, IRQ_REENABLE, &rtc_hook) == OK);
+  CHECK(set_irq_notify(8, IRQ_REENABLE, 5, &rtc_hook) == OK);
   CHECK(sys_outb(0x70, 0x0b) == OK && sys_inb(0x71, &rtc_control) == OK);
   CHECK(sys_outb(0x71, 0x16) == OK); /* UIE, binary, 24-hour. */
   CHECK(sys_outb(0x70, 0) == OK && sys_inb(0x71, &rtc_seconds) == OK);
@@ -138,7 +291,7 @@ int main(int argc, char **argv) {
   CHECK(sys_irqrmpolicy(&rtc_hook) == OK);
   /* Mode 0 must notify once per reload through both runtime transports. */
   int one_shot_hook = 6; uint32_t one_shot_status;
-  CHECK(sys_irqsetpolicy(0, IRQ_REENABLE, &one_shot_hook) == OK);
+  CHECK(set_irq_notify(0, IRQ_REENABLE, 6, &one_shot_hook) == OK);
   CHECK(sys_outb(0x43, 0x30) == OK && sys_outb(0x40, 0xae) == OK && sys_outb(0x40, 0x4d) == OK);
   lcom_event_t one_shot_event;
   CHECK(lcom_delay_ticks(2, &one_shot_event) == LCOM_OK && one_shot_event.irq_mask == BIT(0));
@@ -165,7 +318,9 @@ int main(int argc, char **argv) {
 
   /* Students map both pages before issuing the BIOS mode switch. */
   size_t page = (size_t)info->BytesPerScanLine * info->YResolution;
-  uint8_t *vram = vm_map_phys(SELF, (void *)(uintptr_t)info->PhysBasePtr, page * 2);
+  /* A 32-bit Minix student may store the VBE physical base in signed int. */
+  int32_t signed_base = (int32_t)info->PhysBasePtr;
+  uint8_t *vram = vm_map_phys(SELF, (void *)(intptr_t)signed_base, page * 2);
   CHECK(vram != MAP_FAILED);
   uint8_t *second_page = vm_map_phys(SELF, (void *)((uintptr_t)info->PhysBasePtr + page), page);
   CHECK(second_page != MAP_FAILED);
@@ -186,7 +341,7 @@ int main(int argc, char **argv) {
   CHECK(lm_free(&allocation) && !lm_free(&allocation));
 
   int hook = 7;
-  CHECK(sys_irqsetpolicy(0, IRQ_REENABLE, &hook) == OK && hook == 7);
+  CHECK(set_irq_notify(0, IRQ_REENABLE, 7, &hook) == OK);
   CHECK(tickdelay(3) == OK);
   message msg; int status;
   /* The delay must preserve notifications under the student's requested bit. */
@@ -200,7 +355,7 @@ int main(int argc, char **argv) {
   CHECK(!is_notify(0) && !is_notify(NOTIFY_MESSAGE + 0x100));
   CHECK(msg.NOTIFY_ARG == BIT(7));
   int mouse_hook = 11;
-  CHECK(sys_irqsetpolicy(12, IRQ_REENABLE, &mouse_hook) == OK);
+  CHECK(set_irq_notify(12, IRQ_REENABLE, 11, &mouse_hook) == OK);
   CHECK(sys_outb(0x64, 0xd4) == OK && sys_outb(0x60, 0xf4) == OK);
   /* An unread mouse ACK keeps IRQ12 asserted. A delay must still advance time,
    * and retain both the mouse and timer notification for driver_receive. */
@@ -210,7 +365,7 @@ int main(int argc, char **argv) {
   uint32_t ack;
   CHECK(sys_inb(0x60, &ack) == OK && ack == 0xfa);
   CHECK(sys_irqrmpolicy(&mouse_hook) == OK);
-  CHECK(sys_irqsetpolicy(12, IRQ_REENABLE, &mouse_hook) == OK);
+  CHECK(set_irq_notify(12, IRQ_REENABLE, 11, &mouse_hook) == OK);
   CHECK(sys_outb(0x64, 0xd4) == OK && sys_outb(0x60, 0xf4) == OK);
   CHECK(sys_irqdisable(&mouse_hook) == OK);
   /* A disabled level IRQ cannot starve another device's notification. */
@@ -220,7 +375,7 @@ int main(int argc, char **argv) {
   CHECK(sys_inb(0x60, &ack) == OK && ack == 0xfa);
   CHECK(sys_irqrmpolicy(&mouse_hook) == OK);
   CHECK(sys_irqrmpolicy(&hook) == OK);
-  CHECK(sys_irqsetpolicy(0, 0, &hook) == OK);
+  CHECK(set_irq_notify(0, 0, 7, &hook) == OK);
   CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == BIT(7));
   CHECK(sys_irqenable(&hook) == OK);
   CHECK(driver_receive(ANY, &msg, &status) == OK && msg.m_notify.interrupts == BIT(7));
@@ -229,7 +384,7 @@ int main(int argc, char **argv) {
   /* COM2 loopback with a four-byte FIFO trigger must time out a short
    * message after four 8N1 characters at 300 baud, then clear on RBR. */
   int serial_hook = 3;
-  CHECK(sys_irqsetpolicy(3, IRQ_REENABLE, &serial_hook) == OK);
+  CHECK(set_irq_notify(3, IRQ_REENABLE, 3, &serial_hook) == OK);
   CHECK(sys_outb(0x2fb, 0x83) == OK);
   CHECK(sys_outb(0x2f8, 0x80) == OK && sys_outb(0x2f9, 1) == OK);
   CHECK(sys_outb(0x2fb, 3) == OK && sys_outb(0x2fc, 0x10) == OK);
@@ -245,7 +400,7 @@ int main(int argc, char **argv) {
   CHECK(sys_outb(0x2fa, 7) == OK && sys_outb(0x2f9, 0) == OK);
   CHECK(sys_irqrmpolicy(&serial_hook) == OK);
   /* Minix clock ticks stay at 60 Hz when a student programs PIT0 to 120 Hz. */
-  CHECK(sys_irqsetpolicy(0, IRQ_REENABLE, &hook) == OK);
+  CHECK(set_irq_notify(0, IRQ_REENABLE, 7, &hook) == OK);
   CHECK(sys_outb(0x43, 0x36) == OK);
   const uint16_t divisor = (uint16_t)(1193182u / 120u);
   CHECK(sys_outb(0x40, divisor & 0xff) == OK && sys_outb(0x40, divisor >> 8) == OK);

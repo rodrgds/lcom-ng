@@ -1,0 +1,6 @@
+#ignore .vscode folder
+.vscode
+
+*.o
+
+../trace.txt

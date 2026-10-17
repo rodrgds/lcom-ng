@@ -1,0 +1,572 @@
+--- a/proj/src/handler.c
++++ b/proj/src/handler.c
+@@ -7,20 +7,23 @@
+ int count_int = 0;
+ 
+ unsigned char packets[3];
++static int timer_handle, keyboard_handle, mouse_handle, rtc_handle;
+ 
+ int kbd_subscribe_int(void) {
+ 	int temp = hook_id_kbd;
+ 	if ((sys_irqsetpolicy(KBD_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &temp))
+-			< 0)
+-		return -1;
+-	if(sys_irqenable(&temp) < 0)
+-		return -1;
+-	else
++			!= OK)
++		return -1;
++	if(sys_irqenable(&temp) != OK)
++		return -1;
++	else {
++		keyboard_handle = temp;
+ 		return BIT(hook_id_kbd);
++	}
+ }
+ 
+ int kbd_unsubscribe_int(void) {
+-	int r = sys_irqrmpolicy(&hook_id_kbd);
++	int r = sys_irqrmpolicy(&keyboard_handle);
+ 	if (r != 0)
+ 		return -1;
+ 	else
+@@ -30,42 +33,46 @@
+ int mouse_subscribe_int() {
+ 	int temp = m_hook_id;
+ 	if ((sys_irqsetpolicy(MOUSE_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &temp))
+-			< 0)
+-		return -1;
+-	else
++			!= OK)
++		return -1;
++	else {
++		mouse_handle = temp;
+ 		return BIT(m_hook_id);
++	}
+ }
+ 
+ int mouse_unsubscribe_int() {
+-	if (OK == sys_irqdisable(&hook_id_kbd))
+-		if (OK == sys_irqrmpolicy(&hook_id_kbd))
++	if (OK == sys_irqdisable(&mouse_handle))
++		if (OK == sys_irqrmpolicy(&mouse_handle))
+ 			return 0;
+ 	return -1;
+ }
+ 
+ int timer_subscribe_int(void ) {
+ 	int temp = hook_id_timer;
+-	if(sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &temp) < 0)
++	if(sys_irqsetpolicy(TIMER0_IRQ, IRQ_REENABLE, &temp) != OK)
+ 		return -1;
+ 	sys_irqenable(&temp);
++	timer_handle = temp;
+ 	return BIT(hook_id_timer);
+ }
+ 
+ int timer_unsubscribe_int() {
+-	sys_irqdisable(&hook_id_timer);
+-	return(sys_irqrmpolicy(&hook_id_timer));
++	sys_irqdisable(&timer_handle);
++	return(sys_irqrmpolicy(&timer_handle));
+ }
+ 
+ int rtc_subscribe_int() {
+ 	int temp = hook_id_rtc;
+-	if ((sys_irqsetpolicy(RTC_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &hook_id_rtc)) < 0)
++	if ((sys_irqsetpolicy(RTC_IRQ, IRQ_REENABLE | IRQ_EXCLUSIVE, &temp)) != OK)
+ 		return -1;
+ 	sys_irqenable(&temp);
++	rtc_handle = temp;
+ 	return BIT(hook_id_rtc);
+ }
+ 
+ int rtc_unsubscribe_int() {
+-	int r = sys_irqrmpolicy(&hook_id_rtc);
++	int r = sys_irqrmpolicy(&rtc_handle);
+ 	if (r != 0)
+ 		return -1;
+ 	else
+@@ -136,7 +143,7 @@
+ 	unsigned long irq_set_mouse = BIT(m_hook_id);
+ 	unsigned long data;
+ 	int end = 0;
+-	int count = 3;
++	int count = 1;
+ 	menu_show(menu);
+ 	actVideoMem();
+ 	mouse_set_stream();
+@@ -165,7 +172,7 @@
+ 					int d = mouse_handler(&packets);
+ 					count -= d;
+ 					if(count == 0){
+-						count = 3;
++						count = 1;
+ 						//clear_screen();
+ 						clear_cursor(menu->cursor);
+ 						updateCursor(menu->cursor,packets);
+@@ -313,6 +320,7 @@
+ 	a->y = 374;
+ 	a->speed = 6;
+ 	a->angle = 1;
++	a->vert = 0;
+ 	a->dir = rand()%2;
+ 	a->flag_score = 0;
+ 
+@@ -333,7 +341,7 @@
+ 	message msg;
+ 	rtc_set_alarm();
+ 	unsigned long irq_set_kbd = BIT(hook_id_kbd);
+-	unsigned long irq_set_timer = (int)timer_subscribe_int;
++	unsigned long irq_set_timer = BIT(hook_id_timer);
+ 	unsigned long irq_set_rtc = BIT(hook_id_rtc);
+ 	unsigned long data;
+ 	int end = 0, time = 60;
+--- a/proj/src/mouse.c
++++ b/proj/src/mouse.c
+@@ -4,6 +4,20 @@
+ int count = 0, counter = 0;
+ unsigned char packet[3];
+ 
++
++static int mouse_wait_ack(void) {
++	unsigned long status, reply;
++	unsigned int retries;
++	for (retries = 0; retries < 100; ++retries) {
++		if (sys_inb(KBC_CMD_REG, &status) != OK) return 1;
++		if (status & OBF) {
++			if (sys_inb(OUT_BUF, &reply) != OK) return 1;
++			return reply != 0xFA;
++		}
++		tickdelay(micros_to_ticks(DELAY_US));
++	}
++	return 1;
++}
+ 
+ void mouse_set_stream() {
+ 
+@@ -31,7 +45,7 @@
+ 		tickdelay(micros_to_ticks(DELAY_US));
+ 	}
+ 	//tickdelay(micros_to_ticks(DELAY_US));
+-	sys_inb(OUT_BUF,&stat);
++	if (mouse_wait_ack() != 0) return;
+ 
+ 	//Write command to mouse again
+ 	while(1){
+@@ -53,13 +67,7 @@
+ 		tickdelay(micros_to_ticks(DELAY_US));
+ 	}
+ 	//tickdelay(micros_to_ticks(DELAY_US));
+-	while(1){
+-		sys_inb(OUT_BUF, &stat);
+-		if((stat & OBF) != 0)
+-			break;
+-		else
+-			tickdelay(micros_to_ticks(DELAY_US));
+-	}
++	if (mouse_wait_ack() != 0) return;
+ 
+ 	//sys_inb(OUT_BUF, &stat);
+ }
+@@ -87,7 +95,7 @@
+ 		}
+ 		tickdelay(micros_to_ticks(DELAY_US));
+ 	}
+-	sys_inb(OUT_BUF, &stat);
++	if (mouse_wait_ack() != 0) return 0;
+ 	return 1;
+ }
+ 
+--- a/proj/src/rtc.c
++++ b/proj/src/rtc.c
+@@ -19,72 +19,73 @@
+ 
+ 	Date *d;
+ 	d = (Date *) malloc(sizeof(Date));
+-
+-	rtc_disable_int();
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return;
+-	}
+-	sys_outb(RTC_ADDR_REG, DAY);
+-	sys_inb(RTC_RW_REG, &d->day);
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return;
+-	}
+-	sys_outb(RTC_ADDR_REG, MONTH);
+-	sys_inb(RTC_RW_REG, &d->month);
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return;
+-	}
+-	sys_outb(RTC_ADDR_REG, YEAR);
+-	sys_inb(RTC_RW_REG, &d->year);
++	if (d == NULL) return NULL;
++
++	rtc_disable_int();
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, DAY) ||
++	    sys_inb(RTC_RW_REG, &d->day)) goto io_error;
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, MONTH) ||
++	    sys_inb(RTC_RW_REG, &d->month)) goto io_error;
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, YEAR) ||
++	    sys_inb(RTC_RW_REG, &d->year)) goto io_error;
+ 
+ 	d->day = bcd_to_bin(d->day);
+ 	d->month = bcd_to_bin(d->month);
+ 	d->year = bcd_to_bin(d->year);
+ 
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return;
+-	}
+-	sys_outb(RTC_ADDR_REG, HOUR);
+-	sys_inb(RTC_RW_REG, &d->hours);
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return;
+-	}
+-	sys_outb(RTC_ADDR_REG, MINU);
+-	sys_inb(RTC_RW_REG, &d->minutes);
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return;
+-	}
+-	sys_outb(RTC_ADDR_REG, SEC);
+-	sys_inb(RTC_RW_REG, &d->seconds);
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, HOUR) ||
++	    sys_inb(RTC_RW_REG, &d->hours)) goto io_error;
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, MINU) ||
++	    sys_inb(RTC_RW_REG, &d->minutes)) goto io_error;
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, SEC) ||
++	    sys_inb(RTC_RW_REG, &d->seconds)) goto io_error;
+ 
+ 	d->hours = bcd_to_bin(d->hours);
+ 	d->minutes = bcd_to_bin(d->minutes);
+@@ -92,6 +93,10 @@
+ 
+ 	rtc_enable_int();
+ 	return d; //se estiver tudo bem
++io_error:
++	rtc_enable_int();
++	free(d);
++	return NULL;
+ }
+ 
+ int getDate(){
+@@ -100,38 +105,39 @@
+ 
+ 	Date *d;
+ 	d = (Date *) malloc(sizeof(Date));
+-
+-	rtc_disable_int();
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return 1;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return 1;
+-	}
+-	sys_outb(RTC_ADDR_REG, DAY);
+-	sys_inb(RTC_RW_REG, &d->day);
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return 1;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return 1;
+-	}
+-	sys_outb(RTC_ADDR_REG, MONTH);
+-	sys_inb(RTC_RW_REG, &d->month);
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return 1;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return 1;
+-	}
+-	sys_outb(RTC_ADDR_REG, YEAR);
+-	sys_inb(RTC_RW_REG, &d->year);
++	if (d == NULL) return 1;
++
++	rtc_disable_int();
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, DAY) ||
++	    sys_inb(RTC_RW_REG, &d->day)) goto io_error;
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, MONTH) ||
++	    sys_inb(RTC_RW_REG, &d->month)) goto io_error;
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, YEAR) ||
++	    sys_inb(RTC_RW_REG, &d->year)) goto io_error;
+ 
+ 	d->day = bcd_to_bin(d->day);
+ 	d->month = bcd_to_bin(d->month);
+@@ -139,7 +145,12 @@
+ 
+ 	rtc_enable_int();
+ 	show_date(d);
++	free(d);
+ 	return 0; //se estiver tudo bem
++io_error:
++	rtc_enable_int();
++	free(d);
++	return 1;
+ }
+ int getDateandHours(){
+ 
+@@ -147,72 +158,73 @@
+ 
+ 	Date *d;
+ 	d = (Date *) malloc(sizeof(Date));
+-
+-	rtc_disable_int();
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return 1;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return 1;
+-	}
+-	sys_outb(RTC_ADDR_REG, DAY);
+-	sys_inb(RTC_RW_REG, &d->day);
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return 1;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return 1;
+-	}
+-	sys_outb(RTC_ADDR_REG, MONTH);
+-	sys_inb(RTC_RW_REG, &d->month);
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return 1;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return 1;
+-	}
+-	sys_outb(RTC_ADDR_REG, YEAR);
+-	sys_inb(RTC_RW_REG, &d->year);
++	if (d == NULL) return 1;
++
++	rtc_disable_int();
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, DAY) ||
++	    sys_inb(RTC_RW_REG, &d->day)) goto io_error;
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, MONTH) ||
++	    sys_inb(RTC_RW_REG, &d->month)) goto io_error;
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, YEAR) ||
++	    sys_inb(RTC_RW_REG, &d->year)) goto io_error;
+ 
+ 	d->day = bcd_to_bin(d->day);
+ 	d->month = bcd_to_bin(d->month);
+ 	d->year = bcd_to_bin(d->year);
+ 
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return 1;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return 1;
+-	}
+-	sys_outb(RTC_ADDR_REG, HOUR);
+-	sys_inb(RTC_RW_REG, &d->hours);
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return 1;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return 1;
+-	}
+-	sys_outb(RTC_ADDR_REG, MINU);
+-	sys_inb(RTC_RW_REG, &d->minutes);
+-
+-	while(result & 0x80)
+-	{
+-		if (sys_outb(RTC_ADDR_REG, REGA))
+-			return 1;
+-		if (sys_inb(RTC_RW_REG, &result))
+-			return 1;
+-	}
+-	sys_outb(RTC_ADDR_REG, SEC);
+-	sys_inb(RTC_RW_REG, &d->seconds);
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, HOUR) ||
++	    sys_inb(RTC_RW_REG, &d->hours)) goto io_error;
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, MINU) ||
++	    sys_inb(RTC_RW_REG, &d->minutes)) goto io_error;
++
++	do
++	{
++		if (sys_outb(RTC_ADDR_REG, REGA))
++			goto io_error;
++		if (sys_inb(RTC_RW_REG, &result))
++			goto io_error;
++	} while (result & 0x80);
++	if (sys_outb(RTC_ADDR_REG, SEC) ||
++	    sys_inb(RTC_RW_REG, &d->seconds)) goto io_error;
+ 
+ 	d->hours = bcd_to_bin(d->hours);
+ 	d->minutes = bcd_to_bin(d->minutes);
+@@ -220,7 +232,12 @@
+ 
+ 	rtc_enable_int();
+ 	show_date_and_hours(d);
++	free(d);
+ 	return 0; //se estiver tudo bem
++io_error:
++	rtc_enable_int();
++	free(d);
++	return 1;
+ }
+ 
+ void rtc_set_alarm(){
+--- a/proj/src/graphics.c
++++ b/proj/src/graphics.c
+@@ -59,6 +59,8 @@
+ }
+ 
+ void painter(unsigned short x, unsigned short y, unsigned long color){
++	if(x >= H_RES || y >= V_RES)
++		return;
+ 	long endr = y*(H_RES)+ x;
+ 	*(buffer + endr) = color;
+ }

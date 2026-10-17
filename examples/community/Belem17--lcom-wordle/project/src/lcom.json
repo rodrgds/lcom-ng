@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "name": "Wordle PT",
+  "description": "Find the hidden five-letter word.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Confirm",
+          "key": "ENTER",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "archetype": "Wordle",
+  "preview": "preview.png"
+}

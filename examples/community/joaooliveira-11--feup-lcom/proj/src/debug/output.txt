@@ -1,0 +1,2 @@
+Current working directory: /Users/rgo/dev/lcom-ng
+file cant openerror while reading game map

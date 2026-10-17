@@ -1,0 +1,60 @@
+--- a/code/graphics.c
++++ b/code/graphics.c
+@@ -31,7 +31,7 @@
+ 	//init stuff
+ 		resetIrqSet();
+ 		int irq=0;
+-		if(irq=timer_subscribe_int()<0) return -1;
++		if(irq=timer_subscribe_int()<0) return NULL;
+ 		addIrq(irq);
+ 
+ 	void* vram_adrss=NULL;
+@@ -48,7 +48,7 @@
+ 		//unsubcribe and clean stuff
+ 	if (vg_exit()!=OK) printf("\ntest_init:vg_exit() failed");
+ 	if (vram_adrss==NULL) printf("\ntest_init:vg_init() returned null address");
+-	if(timer_unsubscribe_int()!=OK) return -1;
++	if(timer_unsubscribe_int()!=OK) return NULL;
+ 	return vram_adrss;
+ }
+ 
+@@ -185,7 +185,7 @@
+ 	//subscriptions
+ 	resetIrqSet();
+ 	int irq=0;
+-	if(irq=timer_subscribe_int()<0) return -1;
++	if(irq=timer_subscribe_int()<0) return NULL;
+ 	addIrq(irq);
+ 	if(irq=Kbd_subscribe_int()<0)return-1;
+ 	addIrq(irq);
+@@ -251,7 +251,7 @@
+ 
+ 	//unsubcribe and clean stuff
+ 	freeBuffer();
+-	if(timer_unsubscribe_int()!=OK) return -1;
++	if(timer_unsubscribe_int()!=OK) return NULL;
+ 	if(Kbd_unsubscribe_int()!=OK) return -1;
+ 
+ 	return 0;
+--- a/code/proj.c
++++ b/code/proj.c
+@@ -2,6 +2,8 @@
+ #include <minix/drivers.h>
+ #include "lmlib.h"
+ #include "graphics.h"
++#include "video_gr.h"
++#include "buffer.h"
+ //#include "pixmap.h"
+ 
+ #include "Utilities.h"
+--- a/code/timer.c
++++ b/code/timer.c
+@@ -196,7 +196,7 @@
+ 				if ( (r = driver_receive(ANY, &msg, &ipc_status))  != 0 )
+ 				{
+ 					printf("driver_receive failed with: %d", r);
+-					return;
++					return 1;
+ 				}
+ 				if (is_ipc_notify(ipc_status)) {
+ 					/* received notification */

@@ -1,0 +1,125 @@
+{
+  "repository": "https://github.com/diogoyaguas/FEUP-LCOM",
+  "commit": "2574374290a194800391e73a718e4a00f9ef4a8d",
+  "createdAt": "2018-01-03T15:19:10Z",
+  "project": "proj/src",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/diogoyaguas/FEUP-LCOM",
+    "createdAt": "2018-01-03T15:19:10Z"
+  },
+  "sha256": {
+    "proj/res/0.bmp": "989e36e0dddd70fe07a984faa6aaee1bf2626b744984ff809e3b260544f97356",
+    "proj/res/1.bmp": "ca494a10a58c3e4c3fa8d1038ecb347156459f840c51a075a673d896bafcd62f",
+    "proj/res/2.bmp": "a83cee09029b5ec882b346a576b683c5eee34ac828c707c36eb4d7460b470827",
+    "proj/res/3.bmp": "d20ccbac46a4fab141c172d94c1b0c4f40d9f22c7a027b152c267812ad77c2af",
+    "proj/res/4.bmp": "a12f04bb5dec450471f51554e600950df3e4eec0a03f33a77b8845cd9b1b8e4c",
+    "proj/res/5.bmp": "252ddb72332106ea5b9e69b0c53b748ffd1559c3e9a047ae43f7e9edb44cf4e2",
+    "proj/res/6.bmp": "6ec442bb9b3728b82c98d97032e7f2b4c0bc62921f090e1664c3ab0a7755bd7b",
+    "proj/res/7.bmp": "05d62650f00e1e6cde3c10f4957be6ee1e5c9a8e0ae59c67155ad3bfbb9a8ccf",
+    "proj/res/8.bmp": "8c4097627fed4507ec8ff2625ea01ee026f510e5619573ebb7742f00c727f2e5",
+    "proj/res/9.bmp": "1f72d09727442398d8ee0e5bb7504474b23bffa8a473abf1e401a191e13dcd54",
+    "proj/res/background.bmp": "c1949b0c4d0d4ce17c598dd441419dfca49494ed5c9baf6dda7c23b96faf1d9d",
+    "proj/res/background_night.bmp": "70e48578c8675d88a5b3d83b39119ea08c5aae85085f9376bbf6e1fb83e32634",
+    "proj/res/cloud1.bmp": "ecf58fbbc313db7272f9f1689e2b373264301214a71d7c5b506241d61eabb765",
+    "proj/res/cloud2.bmp": "004eefd73952902a5e2819ecea0521223f37688cc592b5605f8d67eb3a93b9c2",
+    "proj/res/cloud3.bmp": "b04a2c1d1f6219fcfd8431a53dacb54785864b04c625e6bd8c111c294f1157dc",
+    "proj/res/end.bmp": "c6c64624fd7bedc4ab32d9113e9262a34412bd7a5a00594c946b9c56683a6f71",
+    "proj/res/gameover.bmp": "a4a18b87f69461fe88227dfbaf0b4d2495968393097c879d74620c54da54ece3",
+    "proj/res/heart.bmp": "6e4a411b8cd50717dd330e203bfda1fa34694f350ebd0c3ee64347f379b1c8f9",
+    "proj/res/menu.bmp": "e9566ebae15836cfbdf3c175ed84c9d6c273750d33f8136039ca32c5cd5a020f",
+    "proj/res/mouse.bmp": "a5e2844ec509f1c90dee9306b542d6a113d5bdac9f8b9dacef40fdd0a0584219",
+    "proj/res/peanut_p1.bmp": "08bde8603678c8f8505161625af9fd043c477aba2d2bf7274aab5fc316c8068b",
+    "proj/res/peanut_p1_night.bmp": "cbccd171554a2e05a20b8f3f26d784bc19a12c0670fab5a9c530fc7c2bfc2e1e",
+    "proj/res/peanut_p2.bmp": "ac510cf85c8eafa759f283556a8984eee5b85010e1a19891d1413e7ee3cd2270",
+    "proj/res/peanut_p2_night.bmp": "909b733a17da288c5415a65bbd0d500181a1dbd529ac6f84e8dbe1405ff49525",
+    "proj/res/points.bmp": "21067a427c4c57ab941deb43ea616180c26089fd117b7933c673edd395793f84",
+    "proj/src/Makefile": "e1dcb5e514646257354b030afd4a3c003219674620e7cfe6add4400714d5e7ed",
+    "proj/src/bitmap.c": "d48b9efe48daf8ad3f2108d6d083eb341fe93a84f580b7ed6329cbc9b68b52e3",
+    "proj/src/bitmap.h": "2fda3154bbe05455af38269ae820baa5eca077dbdf85863c1b8cf03cf0f31ab9",
+    "proj/src/cloud.c": "20953df3a7cd5ff518e6ebe12db7ef51af54bb578bf0c8d90355d3c0a76161de",
+    "proj/src/cloud.h": "2e08bb575d3f2cc0f04c1d4bb37f1f8c9738e1d56aa3c932317bd7de8cb527ec",
+    "proj/src/game.c": "2040b6caab65d1e28f4eb545f3b4ef75d802fad7a2132c5f8ac1750627b8002d",
+    "proj/src/game.h": "a0bc565f1b01a69d19f458d4d2b731f25ad395f0bb71b71b28b190650e156c81",
+    "proj/src/i8042.h": "21c24126f63eddf5ce9c1a992015e5e3ef902608979c24583751c41f631d6a1f",
+    "proj/src/i8254.h": "d04b2fd64749d9e57d186c41564a703307c1336772b5fabdae9dc3416d91d068",
+    "proj/src/jumpingPeanut.c": "8696edb25c48c1b80c0854fa3a11a637cdfd02ef4175a97bba7cbb549235ce45",
+    "proj/src/jumpingPeanut.h": "5ce0ee5b6f5c898af28a325ccd860af8e851b44526bd35e5de01dd7b712aeb8a",
+    "proj/src/keyboard.c": "8e37a0778ced0a8bc82257841e71181f9bc8c16fc01cae754196092ca6062220",
+    "proj/src/keyboard.h": "05ff26743ac348a4d50035d4f6a429df448c51793db3fb32e3f5510d94e90ad1",
+    "proj/src/lmlib.h": "2fb1d34603d185b3c9d17377d89530be4d6bbb200c724fa5443051b963c4b418",
+    "proj/src/main.c": "46515e649f02558c3aa63270c37dc570b0285381a50adfe74bad0b5f3c3c590c",
+    "proj/src/mouse.c": "09995adce1b51d9607094cc4c6996e461bdbd0346c3a97256143e27185d0b2c2",
+    "proj/src/mouse.h": "6496d51e7241cba3afdbd848659206611d297facf8a95c7a83059c01553af92c",
+    "proj/src/rtc.c": "d47bd266007d8918e65e81272d645e99f02b7716280795f9dc02ec86c15ce2e2",
+    "proj/src/rtc.h": "9d416bb5a103de732486a99b5fccde5e1470c40658e9fb27ccd329b91dc76391",
+    "proj/src/stateMachine.c": "21dac22795b2d77836eb5e61a08628e5b6806290580601105db1027bb153efa0",
+    "proj/src/stateMachine.h": "ed7c24c64013a8bda93f8347bb4ec378620d7b04ce0e33ecf5506026ecbbaa78",
+    "proj/src/timer.c": "9581091dfff02760497f8280353dc5a466a2bf38b0f63fe60afe99ceea0d05f4",
+    "proj/src/timer.h": "b680accd839bed27bfd1e47ac5bc24151741a6017cb5ea3cdfc8bd02f09359a8",
+    "proj/src/vbe.c": "626eafa2bc30b3c5bf8c1bbd800071b4462780ad164ddebb820b13c88c6a972e",
+    "proj/src/vbe.h": "84e4d8e27b3d8365ebc000336e99d08a5d699e518be1b48f4a26d71f5e1d78c7",
+    "proj/src/video_gr.c": "3c1ae7d66a2794b0cc84157512e4a2fd48d81571bba7e19961aea38851528d96",
+    "proj/src/video_gr.h": "6af418baa23e0aee2e51ed3c1ba1f55230bad2355a810ee419dcd1d8f20e40ba"
+  },
+  "sourceChanges": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Zero-initialize newly allocated game and mouse state. The100cloud slots previously contained allocator residue before the first spawn: actual Android Start loaded clouds[7]=-1 and read clouds_speed at offset68, fault address0x43. Mouse buttons/deltas were also indeterminate before the first packet, independently reproduced through the actual constructor.",
+      "files": [
+        {
+          "path": "proj/src/jumpingPeanut.c",
+          "originalSha256": "8696edb25c48c1b80c0854fa3a11a637cdfd02ef4175a97bba7cbb549235ce45",
+          "patchedSha256": "b556a1b91cb45529cc516adb454f4e0fb6d747b4785b6c04024301ce7004235a"
+        },
+        {
+          "path": "proj/src/mouse.c",
+          "originalSha256": "09995adce1b51d9607094cc4c6996e461bdbd0346c3a97256143e27185d0b2c2",
+          "patchedSha256": "6d6936b39be15b277c5fcf622904d9f7ebdcbeaff034c3cbad0f5ca05d59a72e"
+        }
+      ]
+    }
+  ],
+  "sourcePreservation": "52 original source/header/bitmap hashes retained. Two one-line constructor allocation fixes are separately reversible; original game rules, art, input and assets unchanged.",
+  "omissions": "Unused labs, generated documentation, VCS/OS metadata and generated outputs omitted.",
+  "licenseStatus": "No license file found in selected tree.",
+  "verification": {
+    "browser": {
+      "status": "passed",
+      "demonstrated": [
+        "Actual Start screen-touch action enters original game with3hearts andscore0.",
+        "Actual Jump touches keep the original character near the middle while clouds scroll.",
+        "Visible score1, original character and2remaininghearts captured after passing the first cloud group.",
+        "Normal later GameOver and relative-move/Select retry restore score0and3hearts.",
+        "Portrait controls inspected."
+      ],
+      "limits": "Scoring observer reads only the visible original red roof pixels and sends ordinary Jump screen touches. No guest memory, RNG, framebuffer or game assets altered. Relative cursor only: original mouse doubles packet deltas and has asymmetric edge handling; direct touch is not enabled."
+    },
+    "fortifiedNdkObjectCompile": {
+      "status": "passed",
+      "units": 12,
+      "detail": "Actual authored objects compiled ARM64 at O2/FORTIFY_SOURCE2/Wformat/Werror=format-security."
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/peanut-star-reviewed-native/results.json",
+      "apkSha256": "c7b08393029ac9cf6b2430e8d468b1f29445ab18d3321821b0aa2e52c3537e12",
+      "demonstrated": "ROOT viewed original scrolling cloud field, screenshot-guided normal Jump taps keeping the player in play, score1, natural heart loss/GameOver, Retry restoring score0/three hearts, and Home cleanup.",
+      "limitations": [
+        "One point, normal loss/retry and controls verified. Long survival and high scores are not claimed."
+      ]
+    }
+  },
+  "controlsRationale": "P release starts the original menu. Original Space make and break each trigger a hop; repeatKeysSPACE permits held touch. Mouse Select and relative movement reach Try Again after GameOver; no direct calibration or unit mouse deltas asserted.",
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "0574c9c1f346e5110e7ddfb6621b5aa7e4468312295691211b118804da4771d6",
+      "kind": "Original peanut_p1.bmp transcoded and fitted to launcher background with original magenta transparency key"
+    }
+  ],
+  "canonicalPreview": {
+    "path": "proj/src/../../../../../collections/arcade/previews/diogoyaguas-feup-lcom-d7f0289e903c.png",
+    "kind": "Actual original cloud board after first passed group, visible score1andplayer"
+  }
+}

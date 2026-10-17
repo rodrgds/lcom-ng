@@ -1,0 +1,27 @@
+{
+  "git.ignoreLimitWarning": true,
+  "C_Cpp.clang_format_fallbackStyle": "LLVM",
+  "diffEditor.ignoreTrimWhitespace": true,
+  "editor.formatOnSave": false,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "bounded",
+  "editor.wordWrapColumn": 100,
+  "files.associations": {
+    "lcf.h": "c",
+    "stdint.h": "c",
+    "enemyexplosion.h": "c",
+    "sprite.h": "c",
+    "fire.h": "c",
+    "projpixmap.h": "c",
+    "enemy.h": "c",
+    "game.h": "c",
+    "videocard.h": "c",
+    "playership.h": "c",
+    "cursor.h": "c",
+    "spaceship_explosion.h": "c",
+    "vbe.h": "c",
+    "stdbool.h": "c",
+    "i8254.h": "c",
+    "utils.c": "cpp"
+  },
+}

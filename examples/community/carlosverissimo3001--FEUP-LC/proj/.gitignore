@@ -1,0 +1,8 @@
+output.txt
+trace.txt
+*.o
+*.d
+core.*
+proj
+src/img/xcf
+.vscode

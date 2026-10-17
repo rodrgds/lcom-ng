@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "One Shot",
+  "description": "Explore the dungeon, pull its levers and open a path through the original puzzle rooms.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "overlay",
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Fire",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Use",
+          "key": "E",
+          "position": "bottom-right"
+        }
+      ],
+      "touch": "hold-drag"
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

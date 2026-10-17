@@ -1,0 +1,123 @@
+{
+  "repository": "https://github.com/goncaloacteixeira/feup-lcom",
+  "commit": "3d1647afb7871f5e7617f011b3553d1366de97d2",
+  "createdAt": "2019-10-05T09:49:11Z",
+  "project": "proj/src",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/goncaloacteixeira/feup-lcom",
+    "createdAt": "2019-10-05T09:49:11Z"
+  },
+  "sha256": {
+    "proj/res/gameover.bmp": "130c0ed4434ae47085b73cb73aad3ce0cc7c62fd9d961e1091b5589178c9abc8",
+    "proj/res/one.bmp": "389c3608a447ef56093cc3a8fe7dabd346c9e714b9497fb45331c084bcdee96d",
+    "proj/res/five.bmp": "7ccf97fa4a2ebdf317743788184ce724b5f350334cae4bce5a455c773713eedd",
+    "proj/res/easy.bmp": "7bad8fefc6817b830aae5c1bc8211e4b2434844446077c433b4af02f57ef4787",
+    "proj/res/orange.bmp": "b0977421e853e0fb9193b4aa8c60fccc8ca3769e02d81615ebb7540476cf5d72",
+    "proj/res/green.bmp": "000eadb013f0d60f4e808202412ea1ebd7ada4afe34ed60d3aeca764d3727b69",
+    "proj/res/pause.bmp": "43c31d57e9289ae8d5b884050c88f8e6a1a8a72ccf68471c2a50ffbf03bbf82a",
+    "proj/res/eight.bmp": "f083a54aeb122293fcd344d65df8c0b8197bea957228d1a05eb2e6c604a9532b",
+    "proj/res/nine.bmp": "4103d4566b679a180ac2e9e8c65d6ef76df6cbc326293a1bfb0dccda16442969",
+    "proj/res/purple.bmp": "4f02063e91a8170f1d42d19662b0fc7f3bb705b88c75e7e2d29f6b6146df525b",
+    "proj/res/red.bmp": "644e799f9c7af90dbc8df2da3589812de1b6cede3293f16f1fbc95321050ec5d",
+    "proj/res/seven.bmp": "3a32f438a6b6ea12eb031156217f00829a704cecf58ca67623188477d466d885",
+    "proj/res/hard.bmp": "db410d5092943996d840d5ea16e30ea8ea74ea1ba5062a48be57ab699d420807",
+    "proj/res/projTittle1.bmp": "1e85c31caa7364c9e914f4e034e208256973060b2cd3a12a44e77a014fadf8e0",
+    "proj/res/three.bmp": "b6c4bae9993ba4c2c8d90bfe1a025148ab5ed1254999a49a8e070ffd0e4ed025",
+    "proj/res/projTittle0.bmp": "09e93e6b6484dcf737bc842bcd8d3728cbc1355e1462b51c80c22a92638615de",
+    "proj/res/light_blue.bmp": "fd23be4a6e8b35229b248c395018e8d99fac0dedadbca97bac45649f32133164",
+    "proj/res/two.bmp": "a1e48d17230de1312b6211a564da527689ac402e678b81d726890ab66e400d38",
+    "proj/res/six.bmp": "00ffd972eeb820acc79f913d08f7e546cdfcb672e12eba36f665ce1c72297607",
+    "proj/res/medium.bmp": "baca6275b328a9b9aa49aa842e46fa91bf272eb3b492f57f2b2b3941ae9eb698",
+    "proj/res/background.bmp": "4c9d90b52244143c9987ffa4ff0eeafc01f02d3944b6c09809e0a849d6f30ad5",
+    "proj/res/four.bmp": "839af23d6c140b0766e39f4f52c5139b73b23e7d32f6700694f4b0e2ddad64a4",
+    "proj/res/zero.bmp": "44e298a2cca344db2b3dcd761b48b23eb753b05d7d9a51bd514f7f9cb93bf64c",
+    "proj/res/yellow.bmp": "0d3db83a10ff296083d7de690b74e1f1b978dc727a2407c0fee9ad245357a54a",
+    "proj/res/blue.bmp": "48ccab43a1fda163aab5a2b11a3af8208369d70e0675e0e45705c09699607780",
+    "proj/res/diffmenu.bmp": "1783c1d0a16ee17177c61798f6e942995230fed798483279396dbee77f72b7c4",
+    "proj/src/tetris.h": "f93b7d795d1caeaeac3cdeb7f72dbd04bc38a5a614758b705045a82499087a93",
+    "proj/src/mouse.c": "f2db1452d5ecda18620aab8c13663151de26146983e81900d826aeb939fbd93e",
+    "proj/src/timer.c": "8f1f1f751a74c441f2199607428c4ea5fb1ac068838f123a45686689768ce86f",
+    "proj/src/keyboard.c": "a63a6a4b8a81702aff4b0b35dba4c139ea388c74cdcc95056452108485cbf265",
+    "proj/src/Bitmap.c": "f367bd1662fd176ac0083477bcc28ca4522ee970134c8c8c18e2f505bd7fb453",
+    "proj/src/Makefile": "7ac33d91278711ff0b9066b79f1cc60ee399f09a6ac18562dd2169b6a86a9130",
+    "proj/src/menus.c": "0be917753352c2d1be0be77fc1641f3cece4d5bcc1a4efa22dc8c114a633c458",
+    "proj/src/video_gr.h": "29f116dd1ac173c52990c49f2348a2eae1875646f85a1a21f106c1af0351b542",
+    "proj/src/i8042.h": "c8d6f41dd759cf8149d1fab9bb87dc98b6bd0cf41946a8bced15915b47e0740b",
+    "proj/src/mouse.h": "7e8fea3b1eff090ca55f0ff0b71ca8eb2bb4cfda99c3eff36a35549d1010c3a0",
+    "proj/src/timer.h": "f39cf40d1eac5c27873f7d536aaaa96d9d231d49b4714a2d79076cd03a16a9c6",
+    "proj/src/tetris.c": "cb421c1f6e736a2b153e11d96ff27381616809809bd390ca92ddbd8413c470d8",
+    "proj/src/keyboard.h": "2853a9cdbd85464fd8a67a9516ad902d019c06816f66558bd3984f17939e802b",
+    "proj/src/video_gr.c": "374187e956b702fc7384fbfce8dda45add7f07fe18a9bbe020cc3300abc50bc6",
+    "proj/src/menus.h": "813c87344bc6efba8e81625b433ad496e5b7843b54c3ea83c400b9ed30de6098",
+    "proj/src/i8254.h": "8e781444a1b444d1bfabeddb8e8dca9f0b17fb2e65a3d4921d19d5e0437c63da",
+    "proj/src/Bitmap.h": "dc63e42cde11a0a33f6cd4916c7c1236ce915ae2534d5c59a0bb030e3c60000f",
+    "proj/src/proj.c": "a0fb23dfff647269ecec485720aeb114b43167b3aadadd2d51fa3cc745a94449"
+  },
+  "sourceChanges": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/menus.c",
+          "reason": "Match the uint8_t scancode defined by keyboard.c. A uint32_t extern also reads the adjacent nonzero sys_inb_counter, so Enter never leaves the title and arrow keys fail in gameplay.",
+          "originalSha256": "0be917753352c2d1be0be77fc1641f3cece4d5bcc1a4efa22dc8c114a633c458",
+          "patchedSha256": "48c9321d08fac71db3b861252b0fd81dba4a3c59e05da9b51b9832eb522dc3b3"
+        },
+        {
+          "file": "proj/src/tetris.c",
+          "reason": "Match the uint8_t scancode defined by keyboard.c. A uint32_t extern also reads the adjacent nonzero sys_inb_counter, so Enter never leaves the title and arrow keys fail in gameplay.",
+          "originalSha256": "cb421c1f6e736a2b153e11d96ff27381616809809bd390ca92ddbd8413c470d8",
+          "patchedSha256": "c958183ea49448b8c0bd75799da6a0574d1eb52489c3eb9108fc4029831cb536"
+        },
+        {
+          "file": "proj/src/keyboard.c",
+          "reason": "Assign the subscribed IRQ1 notification mask instead of OR-ing it into the caller's uninitialized output value. This prevents spurious timer notifications being treated as keyboard events.",
+          "originalSha256": "a63a6a4b8a81702aff4b0b35dba4c139ea388c74cdcc95056452108485cbf265",
+          "patchedSha256": "bfe0a0d5b2b16e92b7e1f05ce1a2d41489a50ad4a17e415f5db23c70753a57b8"
+        }
+      ]
+    }
+  ],
+  "sourcePreservation": "44 selected source and original bitmap files verified against pinned GitHub Git blob identities; only the separately recorded genuine game defects are patched.",
+  "omissions": "Unused labs, generated documentation, VCS/OS metadata and compiler/log outputs omitted.",
+  "licenseStatus": "No license file in the pinned Git tree.",
+  "verification": {
+    "browser": {
+      "status": "passed",
+      "demonstrated": [
+        "Start selects original difficulty menu and Confirm starts original gameplay.",
+        "Held touch Left repeatedly moves the piece from column7 to column1.",
+        "Original Hold, clockwise/counterclockwise rotation, and instant Drop create two visible settled stacks.",
+        "Pause menu stays open; Confirm resumes with settled board preserved.",
+        "Landscape and portrait controls inspected."
+      ],
+      "limits": "Full line clears, top score and all three difficulty modes not claimed."
+    },
+    "fortifiedNdkObjectCompile": {
+      "status": "passed",
+      "units": 8,
+      "detail": "All authored Makefile source units compiled for ARM64 with O2/FORTIFY_SOURCE2/Wformat/Werror=format-security."
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/tetris-whack-elemental-reviewed-native/results.json",
+      "apkSha256": "8338daccf2bdf2928c4040eaa8d1015c11d1c86fed676750f688ce38046bda9a",
+      "demonstrated": "Root viewed original difficulty selection, normal repeated horizontal movement, hold and rotations, two settled stacks, original pause and preserved-board resume, then clean Home.",
+      "limitations": [
+        "Line clears, top score and all difficulty levels are not claimed."
+      ]
+    }
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "4b330ec208cb23174ef6ec6be51d1deceebf442449c78f9d236b266e0ef351a2",
+      "kind": "Launcher icon derived from unchanged original title/menu artwork"
+    }
+  ],
+  "canonicalPreview": {
+    "path": "proj/src/../../../../../collections/arcade/previews/goncaloacteixeira-feup-lcom-a992eaca46aa.png",
+    "kind": "Actual original gameplay screenshot, hosted in collection preview assets"
+  }
+}

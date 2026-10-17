@@ -1,0 +1,20 @@
+--- a/proj/src/video_gr.c
++++ b/proj/src/video_gr.c
+@@ -40,7 +40,7 @@
+ 	struct mem_range mr;
+ 
+ 	unsigned int vram_base = vmi_p.PhysBasePtr; /*VRAMs physical addresss*/
+-	unsigned int vram_size = v_res * h_res * bits_per_pixel; /*VRAMs size, but you can use the frame-buffer size, instead*/
++	unsigned int vram_size = v_res * h_res * bits_per_pixel / 8; /*VRAMs size, but you can use the frame-buffer size, instead*/
+ 
+ 	/*Allow memory mapping*/
+ 	mr.mr_base = (phys_bytes) vram_base;
+@@ -68,7 +68,7 @@
+ }
+ 
+ void paint_buff(){
+-	 memcpy(vg_vd_get_vmem(), vg_vd_get_vbuff(), v_res * h_res * bits_per_pixel);
++	 memcpy(vg_vd_get_vmem(), vg_vd_get_vbuff(), v_res * h_res * bits_per_pixel / 8);
+ }
+ 
+ int vg_exit() {

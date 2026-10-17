@@ -63,5 +63,6 @@
     "assets": []
   },
   "description": "Move across the terrain, line up a shot and battle the opposing team.",
-  "preview": "../../../../collections/arcade/previews/worms-d4885e74d5cb.png"
+  "preview": "../../../../collections/arcade/previews/worms-d4885e74d5cb.png",
+  "archetype": "Worms"
 }

@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "name": "Dave the Jumper",
+  "description": "Jump over mushrooms and collect crystals while avoiding birds.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Jump",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "vertical"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "proj/scoresRegister.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj": "proj"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

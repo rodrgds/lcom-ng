@@ -1,0 +1,28 @@
+static const xpm_row_t bulletRIGHT[] = {
+"28 16 6",
+"  0", 
+". 2", 
+"X 3", 
+"o 4", 
+"O 5", 
+"+ 6", 
+
+"                            ",
+"                            ",
+"                 + + + + +  ",
+"     + + + + + + + + + + + +",
+"   + + + + + + + + o X X + +",   
+"   + + O O O o o O o . . + +",
+"   + + O O O o o O o . . + +",
+"   + + + + + + + + o X X + +",
+"     + + + + + + + + + + + +",
+"                 + + + + +  ",
+"                            ",
+"                            ",
+"                            ",
+"                            ",
+"                            ",
+"                            "
+};
+
+const xpm_map_t XPMMapBulletRIGHT = (xpm_map_t)bulletRIGHT;

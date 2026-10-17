@@ -1,0 +1,11 @@
+--- a/src/controller/mouse/mouse.c
++++ b/src/controller/mouse/mouse.c
+@@ -13,7 +13,7 @@
+ 
+ int (write_to_mouse)(uint8_t command) {
+   int attempts = 10;
+-  uint8_t ack_byte;
++  uint8_t ack_byte = 0;
+   while ((attempts != 0) && (ack_byte != 0xFA)) {
+     if (write_KBC_command(0x64, 0xD4)) return 1;
+     if (write_KBC_command(0x60, command)) return 1;

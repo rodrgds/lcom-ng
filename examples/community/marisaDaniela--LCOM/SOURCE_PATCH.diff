@@ -1,0 +1,219 @@
+--- a/project/src/bitmap.c
++++ b/project/src/bitmap.c
+@@ -1,3 +1,5 @@
++#include <stdlib.h>
++#include <string.h>
+ #include "bitmap.h"
+ 
+ #include "stdio.h"
+--- a/project/src/game.c
++++ b/project/src/game.c
+@@ -22,7 +22,7 @@
+ 
+ 	if(video_mem == NULL)
+ 	{
+-		return;
++		return 1;
+ 	}
+ 
+ 	initDoubleBuffer();
+@@ -225,4 +225,5 @@
+ 	fclose(fp);
+ 	
+ 	vg_exit();
++	return 0;
+ }
+--- a/project/src/game.h
++++ b/project/src/game.h
+@@ -27,3 +27,5 @@
+ int game();
+ 
+ void printSnakePosition(Snake* snake);
++
++void moveSnake(FILE* fp, Snake* snake, Fruit* fruit, Fruit* specialF);
+--- a/project/src/graphics.c
++++ b/project/src/graphics.c
+@@ -65,7 +65,6 @@
+ 
+ 	vbe_get_mode_info(mode, &vmi_p);
+ 
+-	video_mem = vm_map_phys(SELF, (void *)mr.mr_base, vram_size);
+ 
+ 	h_res = vmi_p.XResolution;
+ 	v_res = vmi_p.YResolution;
+--- a/project/src/graphics.h
++++ b/project/src/graphics.h
+@@ -27,6 +27,10 @@
+  */
+ int vg_exit(void);
+ 
++char *getGraphicsBuffer(void);
++void bufferToVideoMem(void);
++void clearBuffer(void);
++
+  /** @} end of video_gr */
+ 
+ int drawSquare(unsigned short x, unsigned short y, unsigned short size, unsigned short color);
+--- a/project/src/kbd.h
++++ b/project/src/kbd.h
+@@ -1,5 +1,9 @@
+ #ifndef __KBD_H
+ #define __KBD_H
++
++int kbd_subscribe_int(void);
++int kbd_unsubscribe_int(void);
++unsigned short kbd_handler_c(void);
+ 
+ /** @defgroup test3 test3
+  * @{
+--- a/project/src/main.c
++++ b/project/src/main.c
+@@ -8,7 +8,5 @@
+ 
+ 	printf("Entering Game\n");
+ 	srand(time(NULL));
+-	game();
+-
+-	return;
++	return game();
+ }
+--- a/project/src/mouse.c
++++ b/project/src/mouse.c
+@@ -87,14 +87,14 @@
+ {
+ 	Mouse* mouse = (Mouse*) malloc(sizeof(Mouse));
+ 
+-	mouse->x;
+-	mouse->y;
++	mouse->x = 0;
++	mouse->y = 0;
+ 	
+ 	mouse->xSign =0;
+ 	mouse->ySign =0;
+ 	
+-	mouse->xD;
+-	mouse->yD;
++	mouse->xD = 0;
++	mouse->yD = 0;
+ 	
+ 	mouse->speed = 1.7; 
+ 	
+--- a/project/src/point.c
++++ b/project/src/point.c
+@@ -1,3 +1,4 @@
++#include <stdlib.h>
+ #include "point.h"
+ 
+ Point* getPoint(int x, int y)
+--- a/project/src/snake.c
++++ b/project/src/snake.c
+@@ -20,8 +20,16 @@
+ 	return snake;
+ }
+ 
++static void freeBody(Point** body, unsigned int size)
++{
++	unsigned int i;
++	for (i = 0; i < size; i++) free(body[i]);
++	free(body);
++}
++
+ void die(FILE* fp, Snake* snake, Fruit* fruit)
+ {
++	freeBody(snake->snakePosition, snake->size);
+ 	snake->size = INIT_SIZE;
+ 	writeScore(fp, snake->score); 
+ 	
+@@ -46,7 +54,7 @@
+ 	Point* headPosition = snake->snakePosition[snake->size - 1];
+ 
+ 	// Save old body
+-	Point** oldBody = malloc(sizeof(oldBody));
++	Point** oldBody = malloc(snake->size * sizeof(*oldBody));
+ 
+ 	unsigned int i = 0;
+ 	for(i = 0; i < snake->size; i++)
+@@ -82,6 +90,7 @@
+ 	if(headPosition->x < 0 || headPosition->x >= 25 || headPosition->y < 0 || headPosition->y >= 25)
+ 	{
+ 		// Dead
++		freeBody(oldBody, snake->size);
+ 		die(fp, snake, fruit);
+ 		return;
+ 	}
+@@ -94,6 +103,7 @@
+ 		
+ 		if (comparePoints(headPosition, bodyPosition))
+ 		{
++			 freeBody(oldBody, snake->size);
+ 			 die(fp, snake, fruit);	
+ 			return ; 		
+ 		}
+@@ -110,6 +120,7 @@
+ 		Point* head = getPoint(headPosition->x, headPosition->y);
+ 
+ 		// Size increases
++		Point** previousBody = snake->snakePosition;
+ 		snake->size += 1;
+ 		snake->snakePosition = malloc(snake->size * sizeof(snake->snakePosition));
+ 
+@@ -120,6 +131,7 @@
+ 			snake->snakePosition[i] = oldBody[i];
+ 		}
+ 		snake->snakePosition[snake->size - 1] = head;
++		freeBody(previousBody, snake->size - 1);
+ 	}
+ 	// Check if special food eaten
+ 	else if(comparePoints(headPosition, specialF->fruitPosition))
+@@ -132,6 +144,7 @@
+ 		Point* head = getPoint(headPosition->x, headPosition->y);
+ 
+ 		// Size increases
++		Point** previousBody = snake->snakePosition;
+ 		snake->size += 1;
+ 		snake->snakePosition = malloc(snake->size * sizeof(snake->snakePosition));
+ 
+@@ -142,6 +155,7 @@
+ 			snake->snakePosition[i] = oldBody[i];
+ 		}
+ 		snake->snakePosition[snake->size - 1] = head;
++		freeBody(previousBody, snake->size - 1);
+ 	}
+ 	else
+ 	{
+@@ -149,9 +163,12 @@
+ 		unsigned int i;
+ 		for(i = 1; i < snake->size; i++)
+ 		{
++			free(snake->snakePosition[i - 1]);
+ 			snake->snakePosition[i - 1] = oldBody[i];
+ 		}
+-	}
++		free(oldBody[0]);
++	}
++	free(oldBody);
+ }
+ 
+ void printSnakePosition(Snake* snake)
+--- a/project/src/utils.c
++++ b/project/src/utils.c
+@@ -1,3 +1,5 @@
++#include <stdlib.h>
++#include <string.h>
+ #include <stdio.h>
+ #include "utils.h"
+ 
+--- a/project/src/utils.h
++++ b/project/src/utils.h
+@@ -1,4 +1,5 @@
+ #pragma once
++#include <stdio.h>
+ 
+ #define NEWLINE printf("\n");
+ 
+@@ -8,3 +9,5 @@
+ 
+ int fileExists(const char* filename);
+ const char* path(const char* name);
++
++void writeScore(FILE* fp, int score);

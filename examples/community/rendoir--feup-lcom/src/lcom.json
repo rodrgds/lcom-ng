@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "name": "Stick Hero: Bridge Builder",
+  "description": "Hold to grow a bridge and release to cross between the original platforms.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "move",
+      "touch": "move",
+      "layout": "overlay",
+      "actions": [
+        {
+          "label": "Select / Bridge",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Confirm",
+          "key": "ENTER",
+          "position": "top-right"
+        },
+        {
+          "label": "Back",
+          "key": "ESC",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "imgs",
+      "src/scores.txt"
+    ],
+    "arguments": [
+      ".."
+    ]
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

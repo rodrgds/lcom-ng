@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Rebuild a C game as a standalone, static browser export."""
 
+from contextlib import contextmanager
 import hashlib
 import html
 import json
@@ -10,6 +11,7 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 
 WEB = Path(__file__).resolve().parent
 SDK = WEB.parent
@@ -22,13 +24,43 @@ def run(command, **kwargs):
     subprocess.run([str(value) for value in command], check=True, **kwargs)
 
 
-def link(objects, archives, runtime, output, project, assets, compiler="em++"):
+@contextmanager
+def runtime_lock(path):
+    """Serialize one SDK's CMake cache across concurrent game exports."""
+    with path.open("a+b") as handle:
+        if os.name == "nt":
+            import msvcrt
+            handle.write(b"\0"); handle.flush(); handle.seek(0)
+            deadline = time.monotonic() + 300
+            while True:
+                try:
+                    msvcrt.locking(handle.fileno(), msvcrt.LK_NBLCK, 1)
+                    break
+                except OSError:
+                    if time.monotonic() >= deadline: raise
+                    time.sleep(0.1)
+        else:
+            import fcntl
+            fcntl.flock(handle, fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            if os.name == "nt":
+                handle.seek(0)
+                msvcrt.locking(handle.fileno(), msvcrt.LK_UNLCK, 1)
+            else:
+                fcntl.flock(handle, fcntl.LOCK_UN)
+
+
+def link(objects, archives, runtime, output, project, assets, compiler="em++", *, emulate_function_pointer_casts=False):
     command = [compiler, *objects, *archives, *runtime, "-lm", "-O2", "-flto",
                "-sASYNCIFY", "-sASYNCIFY_STACK_SIZE=131072", "-sALLOW_MEMORY_GROWTH",
                "-sSTACK_SIZE=2097152", "-sMODULARIZE", "-sEXPORT_ES6", "-sINVOKE_RUN=0",
                "-sEXIT_RUNTIME", "-sENVIRONMENT=web", "-sFORCE_FILESYSTEM",
                "-sEXPORTED_RUNTIME_METHODS=callMain,ccall,FS,ENV",
                "--js-library", WEB / "library.js", "-o", output]
+    if emulate_function_pointer_casts:
+        command += ["-sEMULATE_FUNCTION_POINTER_CASTS"]
     # An explicit list keeps source, build artifacts and private files out of exports.
     for item in assets:
         source = (project / item).resolve()
@@ -42,10 +74,11 @@ def link(objects, archives, runtime, output, project, assets, compiler="em++"):
 
 
 class WebBuilder(compat.Builder):
-    def __init__(self, *args, assets=(), **kwargs):
+    def __init__(self, *args, assets=(), emulate_function_pointer_casts=False, **kwargs):
         super().__init__(*args, **kwargs)
         self.archiver = "emar"
         self.web_assets = assets
+        self.emulate_function_pointer_casts = emulate_function_pointer_casts
 
     def link(self, objects, archives, runtime, system_flags, binary):
         if "-lpthread" in system_flags:
@@ -53,8 +86,8 @@ class WebBuilder(compat.Builder):
         # The native builder generates the asset-root constant as build context.
         # Set it to the virtual root, without changing any project source file.
         context = self.output / "project_context.c"
-        context.write_text('const char *lcom_compat_project_root = "/project";\n')
-        makefile = compat.Makefile(self.project)
+        context.write_text(self.project_context("/project"))
+        makefile = compat.Makefile(self.project, self.source_files)
         context_object = self.compile(context, makefile)
         objects = [obj for obj in objects if obj != context_object] + [context_object]
         llvm_root = Path(subprocess.check_output(["em-config", "LLVM_ROOT"], text=True).strip())
@@ -90,7 +123,8 @@ class WebBuilder(compat.Builder):
                     break
                 unresolved = remaining
         self.binary = self.output / "game.js"
-        link([merged], [], runtime, self.binary, self.asset_root, self.web_assets)
+        link([merged], [], runtime, self.binary, self.asset_root, self.web_assets,
+             emulate_function_pointer_casts=self.emulate_function_pointer_casts)
 
 
 def argument_parser():
@@ -145,7 +179,7 @@ def build(args):
     cache = Path(os.environ.get("XDG_CACHE_HOME", Path.home() / ".cache")) / "lcom-ng/web"
     output = (args.output or project / ".lcom-ng/web").resolve()
     workspace = source_project.workspace(project)
-    minix = source_project.minix(project)
+    minix = source_project.minix(project, args.source)
     asset_root = (project / (args.asset_root or Path("."))).resolve()
     if not args.assets_configured and (project / "assets").is_dir() and project.is_relative_to(asset_root):
         args.asset = [(project / "assets").relative_to(asset_root).as_posix()]
@@ -161,20 +195,31 @@ def build(args):
     os.environ.setdefault("EM_CACHE", str(cache / "emscripten"))
     identity = hashlib.sha256(str(SDK).encode()).hexdigest()[:12]
     build = cache / identity
-    run(["emcmake", "cmake", "-S", WEB, "-B", build, "-G", "Ninja", "-DCMAKE_BUILD_TYPE=Release"])
-    run(["cmake", "--build", build, "--parallel", "4"])
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".lcom-web-", dir=output.parent) as temporary:
         work = Path(temporary)
-        runtime = [build / "liblcom_minix.a", build / "libmachinelab.a"]
+        with runtime_lock(cache / (identity + ".lock")):
+            run(["emcmake", "cmake", "-S", WEB, "-B", build, "-G", "Ninja", "-DCMAKE_BUILD_TYPE=Release"])
+            run(["cmake", "--build", build, "--parallel", "4"])
+            # A later export may rebuild the cache while this game's compiler
+            # runs. Link this export against its own immutable archive snapshot.
+            runtime = [Path(shutil.copy2(build / name, work / name))
+                       for name in ("liblcom_minix.a", "libmachinelab.a")]
+
         working_directory = "/project"
-        if minix and not args.source:
+        if minix:
             # LTO retains legacy common symbols until the final Wasm link.
             # LLVM's Wasm object writer can crash on -fcommon definitions.
-            builder = WebBuilder(project, SDK, build, work, "emcc -O2 -flto", args.library,
-                                 args.include, args.asset_root or Path("."), assets=args.asset)
+            builder = WebBuilder(project, SDK, work, work, "emcc -O2 -flto", args.library,
+                                 args.include, args.asset_root or Path("."), assets=args.asset,
+                                 emulate_function_pointer_casts=settings["build"].get("emulateFunctionPointerCasts", False),
+                                 c_standard=args.c_standard, path_aliases=args.path_aliases)
             if not project.is_relative_to(builder.asset_root):
                 raise compat.BuildError("The Minix asset root must contain the project directory")
+            if args.source:
+                builder.source_files = args.source
+            elif compat.find_makefile(project) is None:
+                builder.source_files = [str(path.relative_to(project)) for path in source_project.native_sources(args, project)[0]]
             builder.build()
             sources = builder.manifest["sources"]
             working_directory = "/project/" + project.relative_to(builder.asset_root).as_posix()
@@ -184,15 +229,19 @@ def build(args):
             sources = {}
             files, default_includes = source_project.native_sources(args, project)
             objects = []
+            aliases = compat.IncludeAliases(args.path_aliases, asset_root)
             for index, source in enumerate(files):
                 if source.suffix != ".c":
                     raise compat.BuildError(f"Expected a C source: {source}")
                 target = work / f"source-{index}.o"
                 includes = [value for directory in default_includes for value in ("-I", directory)]
-                run(["emcc", "-std=gnu11", "-O2", "-I", SDK / "include", "-I", project,
+                alias_flags = aliases.flags(source, includes, ["emcc"], work)
+                run(["emcc", *alias_flags, "-std=" + args.c_standard, "-O2", "-I", SDK / "include", "-I", project,
                      *includes, "-c", source, "-o", target])
                 sources[str(source)] = hashlib.sha256(source.read_bytes()).hexdigest()
                 objects.append(target)
+            for header in aliases.mapped_headers:
+                sources[str(header)] = hashlib.sha256(header.read_bytes()).hexdigest()
             link(objects, [], runtime, work / "game.js", project, args.asset)
         for source, digest in sources.items():
             if Path(source).is_file() and hashlib.sha256(Path(source).read_bytes()).hexdigest() != digest:

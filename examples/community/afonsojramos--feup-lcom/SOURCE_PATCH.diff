@@ -1,0 +1,92 @@
+--- a/brickbreaker/src/video_gr.c
++++ b/brickbreaker/src/video_gr.c
+@@ -543,11 +543,18 @@
+ 	}
+ 	return;
+ }
+-void moveCursor(char x, char y){
++void moveCursor(int x, int y){
+ 	clearSprite(cursor.x, cursor.y, mouseCursor);
+ 
+-	cursor.x += x * cursor.sensitivity;
+-	cursor.y -= y * cursor.sensitivity;
++	/* Keep the original 21 by 21 cursor artwork inside the framebuffer. */
++	int next_x = cursor.x + x * cursor.sensitivity;
++	int next_y = cursor.y - y * cursor.sensitivity;
++	if (next_x < 0) next_x = 0;
++	if (next_y < 0) next_y = 0;
++	if (next_x > (int)h_res - 21) next_x = (int)h_res - 21;
++	if (next_y > (int)v_res - 21) next_y = (int)v_res - 21;
++	cursor.x = next_x;
++	cursor.y = next_y;
+ 
+ 	return;
+ }
+@@ -1307,7 +1314,7 @@
+ 
+ int getBrickSize(){
+ 	int i;
+-	i = sizeof(allBricks) / sizeof(int);
++	i = sizeof(allBricks) / sizeof(allBricks[0]);
+ 	return i;
+ }
+ 
+--- a/brickbreaker/src/video_gr.h
++++ b/brickbreaker/src/video_gr.h
+@@ -393,7 +393,7 @@
+  * @param x Where the mouse will land in the x axis.
+  * @param y Where the mouse will land in the y axis.
+  */
+-void moveCursor(char x, char y);
++void moveCursor(int x, int y);
+ 
+ /*!
+  * @brief Moves the ball while also testing ball/paddle collision.
+--- a/brickbreaker/src/timer.c
++++ b/brickbreaker/src/timer.c
+@@ -160,6 +160,9 @@
+ }
+ 
+ void mouseProcessing(char packet[3], short option){
++	int dx = (unsigned char)packet[1] - ((packet[0] & 0x10) ? 256 : 0);
++	int dy = (unsigned char)packet[2] - ((packet[0] & 0x20) ? 256 : 0);
++
+ 
+ 	/* MOUSE IN MAIN MENU */
+ 	if (sm.state == GAME_MENU){
+@@ -180,7 +183,7 @@
+ 				highlightOption(9);
+ 			}
+ 		}else{
+-			moveCursor(packet[1], packet[2]);
++			moveCursor(dx, dy);
+ 		}
+ 	}
+ 	/* MOUSE IN HIGHSCORES */
+@@ -192,7 +195,7 @@
+ 				highlightOption(9);
+ 			}
+ 		}else{
+-			moveCursor(packet[1], packet[2]);
++			moveCursor(dx, dy);
+ 		}
+ 	}
+ 	/* MOUSE IN GAME RUN */
+@@ -216,7 +219,7 @@
+ 				highlightOption(9);
+ 			}
+ 		}else{
+-			moveCursor(packet[1], packet[2]);
++			moveCursor(dx, dy);
+ 		}
+ 	}
+ 	return;
+@@ -280,7 +283,7 @@
+ 						if (sm.state == GAME_MENU){
+ 							firstRender();
+ 							if (key == ESC_KEY && mayReturn == 1){
+-								return;
++								return 0;
+ 							}
+ 							int temp = testCursorCol();
+ 

@@ -1,0 +1,93 @@
+{
+  "repository": "https://github.com/joaossousa12/feup-lcom",
+  "revision": "75693a9a080484932bf2ff73e7112e308c126862",
+  "project": "proj_code",
+  "sourceHashes": {
+    "README.md": "3e0b0836d4437b630314438724b7c257c84daf483ec3ec20d847df67c8ff8cec",
+    "proj_code/.idea/.gitignore": "0a5548b173aac0ef943bbb3af850d676f7b651ddedb9f8d7f06735bc2809b3db",
+    "proj_code/.idea/misc.xml": "b91cf693ee461a76ec339c793ce642d08de05a4a794c7bc4cb23e5a41f8acdcb",
+    "proj_code/.idea/vcs.xml": "269064f5ba7307dcd31a03b5c690698b3442c0f0024c1358361542f49f5509ae",
+    "proj_code/MACROS.h": "c499e091a13e4b53234b6739277099203b92626f496e93222f9880c79b3ac52b",
+    "proj_code/Makefile": "752545986b9a26146b9cdd8f41d40adb9512ae67b7c3321b40ee709613ce8291",
+    "proj_code/devices/keyboard/KBC.c": "d94cd8eda29ba3e63694ff1bf09d83e13233efa0cda08263ce0e3bf6c5422ca4",
+    "proj_code/devices/keyboard/KBC.h": "c7deb44f6a59dc644af4d2fab0f8afc3a676c0e71097e565dc7259822d5c6253",
+    "proj_code/devices/keyboard/i8042.h": "5791d5fdfdcdc2876d78fcf1aeb98a073635d860fc2cfc41869f6af790294c68",
+    "proj_code/devices/keyboard/keyboard.c": "156296303c095795cc3d0281a2c620c68498b7b97f15a1ba15dc40efa4ca7956",
+    "proj_code/devices/keyboard/keyboard.h": "345bf6c1d8f249271734023957d5d3973fcd054ccfc41d3e2fcb67dcb22e1400",
+    "proj_code/devices/mouse/KBC_mouse.c": "678866b1535baef7ceafd3b7660e602cef4a84c0452eb8f327322675e97a3e48",
+    "proj_code/devices/mouse/KBC_mouse.h": "f32b8c2d5688500617dfdbe857d64c9d2187cb15362cf4a3475e13c58749c409",
+    "proj_code/devices/mouse/i8042.h": "ae5d567065515399f761104ba45fac5a0b167c2e3e1175fe7a427e182972726f",
+    "proj_code/devices/mouse/mouse.c": "9fec2332a72ce9613a680c4c09f329c693d7d10aba3cb76e28c40c9cf40915bf",
+    "proj_code/devices/mouse/mouse.h": "2cd143a91b1d40dff91b38d2457615f3cbe615b9d3a54ff08c20aba2197336fe",
+    "proj_code/devices/timer/i8254.h": "7b102fa92d22d7b3a4b0d72e108ad7a01208628a311bb94167ff49ebff73c15f",
+    "proj_code/devices/timer/timer.c": "548dcfffaeaca5ec9d9e11ae89baeed9a9f097bbd3506c4a1e9686f3ef25fa6c",
+    "proj_code/devices/timer/timer.h": "32b2238606ffba459a218837c8b1c1a62513514c088148452978993f1c16939a",
+    "proj_code/devices/utils/utils.c": "d48d995992dfdb7ff9c2d65d3ea73608627f9849c6e054613a0d3a3326879bff",
+    "proj_code/devices/video/VBE.h": "06334d432da4bb48ca722fe3da2a2df00986f62e7af8cc725fa690c5669db75c",
+    "proj_code/devices/video/video.c": "6547792a2c04ff9e94615af1b2837327c9d314a6814bc76052d7f9cea84f4141",
+    "proj_code/devices/video/video.h": "60b72597c72f7274f49901fa29027bc2857ad42d6646fbfad83539cd7bee34fa",
+    "proj_code/doxygen/Doxyfile": "af4ab4d121b845cab8cab1975ae3cc551e1096c541c64c70a7ed756206ca79a3",
+    "proj_code/game/game.c": "281c439652179d94afe9577b0de179d0806e246c8e9a2b15dbf995c53f0c326d",
+    "proj_code/game/game.h": "e0a45fd5b891699e4c6d1b092e4a23250bdbaaa52abd31dc59ae3aca12136fd7",
+    "proj_code/game/instructions.c": "acc6b778b13579e9aa7dcf15e0af7f2da86f8a5b497f2fff75992467efce3835",
+    "proj_code/game/instructions.h": "5a69e73a8e7d32410b00886b4bec60afda985676c89bd8876f21e29265f3148f",
+    "proj_code/game/menu.c": "aabd5d46fedab060300a451a666952c5bede076725c85fb8a711f7b450007e4d",
+    "proj_code/game/menu.h": "9a56246e1aba841ded0b48a014269601ec1dc6c73f5de4ff40fffe3d7475a325",
+    "proj_code/images/InitialMenu.xpm": "da5428c56221d3c79df1bdec8804ca895edda4d40ca9dd8a4b94bf8c924f868f",
+    "proj_code/images/ball.xpm": "cedeb3e2ac4081f6075818046d392041f4eef2bcbdedf5d70fb6c9895a3f3e10",
+    "proj_code/images/border.xpm": "0718624e7ab942ecd5f44ff3436c3e936ec6973d2a6c99399dbb17a37f34761a",
+    "proj_code/images/hole.xpm": "211c4625597f180d42990ba263c893ecbe9f6c062de27899dcb08dc146cefcd9",
+    "proj_code/images/instructionsFIrst.xpm": "4542cc886f5a5104e37e825ac0b34840038096d290dcab1932da977cc5a1a03b",
+    "proj_code/images/middle.xpm": "77bb0e4a073f5a40cf3bb575d69379ed9de6ed009df52c6906fddc712bd214b2",
+    "proj_code/images/mouse.xpm": "729ce6e61dbfed29bd9efada0dbfcae6fff3689ec2d6525b0a6344ba7832d545",
+    "proj_code/images/obstacle.xpm": "b37cc0f1670ec8cf5a53ee5ad02af3c163b869f6f774efcac399bc68cf240724",
+    "proj_code/main.c": "ea9e0ad5a00bca24e688a35d48f6216291b46e8b849a6edc9243f3a83be6acfc",
+    "proj_code/sprites/sprites.c": "dcd541f7022d1a61b09df456b697e3c4674db555a6421a3a67c3f0f8805e6b98",
+    "proj_code/sprites/sprites.h": "f9c091002e03bc5a048ac09f0c4fc11af1560fae7193a05488ef637eca76a4b4"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated docs, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/docs/**",
+    "**/doc/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj_code/images/ball.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj_code/icon.png",
+      "sha256": "f2e702fffdf3d0fe0caeec58232defa7cd9d37d7c4ca084c116aafbc5c1384d1",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj_code/preview.png",
+      "sha256": "3927e355635b85d88fa90c0617b4ed20e64058d5d154a401e27ee6fef28e7a8d",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "controlsRationale": "Panel keeps original art unobscured. Turn sends ordinary left-mouse make/release. Original game never issues PS/2 enable-reporting (F4). LCOM_COMPAT_MOUSE_REPORTING=1 models its authored already-enabled VM environment; otherwise the ball moves automatically but Turn receives no packets. Source is unchanged.",
+  "verification": {
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence/joaossousa12--feup-lcom",
+    "log": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/golf-hole-reporting-observed2.log",
+    "limits": [
+      "This timing game cycles automatic direction per click and has no adjustable shot force."
+    ],
+    "androidGameplay": "pending",
+    "checkpoint": "Four observed normal-touch turns guide the ball around original walls into the hole; original game returns to its menu."
+  },
+  "environmentRationale": "Original game never issues PS/2 enable-reporting (F4). LCOM_COMPAT_MOUSE_REPORTING=1 models its authored already-enabled VM environment; otherwise the ball moves automatically but Turn receives no packets. Source is unchanged."
+}

@@ -1,0 +1,870 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="_handlers_8h" kind="file" language="C++">
+    <compoundname>Handlers.h</compoundname>
+    <includes local="no">lcom/lcf.h</includes>
+    <includes local="no">stdio.h</includes>
+    <includes local="no">stdlib.h</includes>
+    <includes refid="proj_8h" local="yes">proj.h</includes>
+    <includedby refid="_handlers_8c" local="yes">C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c</includedby>
+    <includedby refid="proj_8h" local="yes">C:/MINIX-LCOM/shared/g3/proj/src/proj.h</includedby>
+    <incdepgraph>
+      <node id="8">
+        <label>Drivers/GraphicCard.h</label>
+        <link refid="_graphic_card_8h"/>
+      </node>
+      <node id="14">
+        <label>Drivers/RTC.h</label>
+        <link refid="_r_t_c_8h"/>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>i8042.h</label>
+        <link refid="i8042_8h"/>
+      </node>
+      <node id="12">
+        <label>i8254.h</label>
+        <link refid="i8254_8h"/>
+      </node>
+      <node id="9">
+        <label>Drivers/keyboard.h</label>
+        <link refid="keyboard_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="16">
+        <label>Drivers/macros.h</label>
+        <link refid="macros_8h"/>
+      </node>
+      <node id="13">
+        <label>Drivers/mouse.h</label>
+        <link refid="mouse_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>Drivers/timer.h</label>
+        <link refid="timer_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h</label>
+        <link refid="_handlers_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>Levels.h</label>
+        <link refid="_levels_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+      </node>
+      <node id="86">
+        <label>Lists/AnimationList.h</label>
+        <link refid="_animation_list_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>Lists/EnemyList.h</label>
+        <link refid="_enemy_list_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="84">
+        <label>Lists/LaserList.h</label>
+        <link refid="_laser_list_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="88">
+        <label>Menu.h</label>
+        <link refid="_menu_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+      </node>
+      <node id="89">
+        <label>Missile.h</label>
+        <link refid="_missile_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Sprites/xpms.h</label>
+        <link refid="xpms_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>proj.h</label>
+        <link refid="proj_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="1" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>lcom/lcf.h</label>
+      </node>
+      <node id="15">
+        <label>minix/sysutil.h</label>
+      </node>
+      <node id="7">
+        <label>stdbool.h</label>
+      </node>
+      <node id="6">
+        <label>stdint.h</label>
+      </node>
+      <node id="3">
+        <label>stdio.h</label>
+      </node>
+      <node id="4">
+        <label>stdlib.h</label>
+      </node>
+      <node id="45">
+        <label>xpms/Menu/Alien_attacks_logo.xpm</label>
+      </node>
+      <node id="46">
+        <label>xpms/Menu/endless.xpm</label>
+      </node>
+      <node id="47">
+        <label>xpms/Menu/endless_selected.xpm</label>
+      </node>
+      <node id="48">
+        <label>xpms/Menu/exit.xpm</label>
+      </node>
+      <node id="49">
+        <label>xpms/Menu/exit_selected.xpm</label>
+      </node>
+      <node id="54">
+        <label>xpms/Menu/inside_instructions.xpm</label>
+      </node>
+      <node id="50">
+        <label>xpms/Menu/instructions.xpm</label>
+      </node>
+      <node id="51">
+        <label>xpms/Menu/instructions_selected.xpm</label>
+      </node>
+      <node id="52">
+        <label>xpms/Menu/levels.xpm</label>
+      </node>
+      <node id="53">
+        <label>xpms/Menu/levels_selected.xpm</label>
+      </node>
+      <node id="55">
+        <label>xpms/Menu/menu.xpm</label>
+      </node>
+      <node id="56">
+        <label>xpms/Menu/menu_selected.xpm</label>
+      </node>
+      <node id="42">
+        <label>xpms/Numbers/eight.xpm</label>
+      </node>
+      <node id="39">
+        <label>xpms/Numbers/five.xpm</label>
+      </node>
+      <node id="38">
+        <label>xpms/Numbers/four.xpm</label>
+      </node>
+      <node id="43">
+        <label>xpms/Numbers/nine.xpm</label>
+      </node>
+      <node id="35">
+        <label>xpms/Numbers/one.xpm</label>
+      </node>
+      <node id="41">
+        <label>xpms/Numbers/seven.xpm</label>
+      </node>
+      <node id="40">
+        <label>xpms/Numbers/six.xpm</label>
+      </node>
+      <node id="37">
+        <label>xpms/Numbers/three.xpm</label>
+      </node>
+      <node id="36">
+        <label>xpms/Numbers/two.xpm</label>
+      </node>
+      <node id="34">
+        <label>xpms/Numbers/zero.xpm</label>
+      </node>
+      <node id="29">
+        <label>xpms/bullet_enemy/bullet_enemy1.xpm</label>
+      </node>
+      <node id="30">
+        <label>xpms/bullet_enemy/bullet_enemy2.xpm</label>
+      </node>
+      <node id="31">
+        <label>xpms/bullet_enemy/bullet_enemy3.xpm</label>
+      </node>
+      <node id="57">
+        <label>xpms/chars/back_slash.xpm</label>
+      </node>
+      <node id="58">
+        <label>xpms/chars/hifen.xpm</label>
+      </node>
+      <node id="26">
+        <label>xpms/enemy/enemy1.xpm</label>
+      </node>
+      <node id="27">
+        <label>xpms/enemy/enemy2.xpm</label>
+      </node>
+      <node id="28">
+        <label>xpms/enemy/enemy3.xpm</label>
+      </node>
+      <node id="19">
+        <label>xpms/explosion/e1.xpm</label>
+      </node>
+      <node id="20">
+        <label>xpms/explosion/e2.xpm</label>
+      </node>
+      <node id="21">
+        <label>xpms/explosion/e3.xpm</label>
+      </node>
+      <node id="22">
+        <label>xpms/explosion/e4.xpm</label>
+      </node>
+      <node id="23">
+        <label>xpms/explosion/e5.xpm</label>
+      </node>
+      <node id="24">
+        <label>xpms/explosion/e6.xpm</label>
+      </node>
+      <node id="25">
+        <label>xpms/explosion/e7.xpm</label>
+      </node>
+      <node id="32">
+        <label>xpms/life/sem_vida.xpm</label>
+      </node>
+      <node id="33">
+        <label>xpms/life/vida.xpm</label>
+      </node>
+      <node id="59">
+        <label>xpms/missil/missil1.xpm</label>
+      </node>
+      <node id="68">
+        <label>xpms/missil/missil10.xpm</label>
+      </node>
+      <node id="69">
+        <label>xpms/missil/missil11.xpm</label>
+      </node>
+      <node id="70">
+        <label>xpms/missil/missil12.xpm</label>
+      </node>
+      <node id="71">
+        <label>xpms/missil/missil13.xpm</label>
+      </node>
+      <node id="72">
+        <label>xpms/missil/missil14.xpm</label>
+      </node>
+      <node id="73">
+        <label>xpms/missil/missil15.xpm</label>
+      </node>
+      <node id="74">
+        <label>xpms/missil/missil16.xpm</label>
+      </node>
+      <node id="75">
+        <label>xpms/missil/missil17.xpm</label>
+      </node>
+      <node id="76">
+        <label>xpms/missil/missil18.xpm</label>
+      </node>
+      <node id="77">
+        <label>xpms/missil/missil19.xpm</label>
+      </node>
+      <node id="60">
+        <label>xpms/missil/missil2.xpm</label>
+      </node>
+      <node id="78">
+        <label>xpms/missil/missil20.xpm</label>
+      </node>
+      <node id="79">
+        <label>xpms/missil/missil21.xpm</label>
+      </node>
+      <node id="80">
+        <label>xpms/missil/missil22.xpm</label>
+      </node>
+      <node id="81">
+        <label>xpms/missil/missil23.xpm</label>
+      </node>
+      <node id="82">
+        <label>xpms/missil/missil24.xpm</label>
+      </node>
+      <node id="61">
+        <label>xpms/missil/missil3.xpm</label>
+      </node>
+      <node id="62">
+        <label>xpms/missil/missil4.xpm</label>
+      </node>
+      <node id="63">
+        <label>xpms/missil/missil5.xpm</label>
+      </node>
+      <node id="64">
+        <label>xpms/missil/missil6.xpm</label>
+      </node>
+      <node id="65">
+        <label>xpms/missil/missil7.xpm</label>
+      </node>
+      <node id="66">
+        <label>xpms/missil/missil8.xpm</label>
+      </node>
+      <node id="67">
+        <label>xpms/missil/missil9.xpm</label>
+      </node>
+      <node id="83">
+        <label>xpms/missil/nuke.xpm</label>
+      </node>
+      <node id="44">
+        <label>xpms/mouse_cursor.xpm</label>
+      </node>
+      <node id="18">
+        <label>xpms/others/nave.xpm</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c</label>
+        <link refid="_handlers_8c"/>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h</label>
+        <link refid="_handlers_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.c</label>
+        <link refid="_levels_8c"/>
+      </node>
+      <node id="4">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.h</label>
+        <link refid="_levels_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.c</label>
+        <link refid="_menu_8c"/>
+      </node>
+      <node id="6">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.h</label>
+        <link refid="_menu_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.c</label>
+        <link refid="_missile_8c"/>
+      </node>
+      <node id="8">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.h</label>
+        <link refid="_missile_8h"/>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="10">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/proj.c</label>
+        <link refid="proj_8c"/>
+      </node>
+      <node id="3">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/proj.h</label>
+        <link refid="proj_8h"/>
+        <childnode refid="1" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_handlers_8h_1a9f2d428b348d073ee5141e974fc15586" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int handle_laser</definition>
+        <argsstring>()</argsstring>
+        <name>handle_laser</name>
+        <briefdescription>
+<para>Handles all lasers&apos; animation, movement and collisions. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" line="22" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="225" bodyend="272" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" declline="22" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8h_1a56136c73a9d245da9cf52630251b754e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() handle_top_bar</definition>
+        <argsstring>()</argsstring>
+        <name>handle_top_bar</name>
+        <briefdescription>
+<para>Draws the user lives, the real time clock, and the score, located on the top of the screen. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" line="28" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="200" bodyend="222" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" declline="28" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8h_1a537a0fe39a451eda9d87a3e0d931b54f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int handle_enemy</definition>
+        <argsstring>()</argsstring>
+        <name>handle_enemy</name>
+        <briefdescription>
+<para>Handles enemy movements, animation and laser shooting. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" line="34" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="341" bodyend="354" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" declline="34" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8h_1a38f63703c1c32c38e988a3cb65116c58" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int handle_user</definition>
+        <argsstring>()</argsstring>
+        <name>handle_user</name>
+        <briefdescription>
+<para>Handles user movement. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" line="40" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="356" bodyend="380" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" declline="40" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8h_1ac1c99d5669c23edc8143a69f334c767c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int handle_animation</definition>
+        <argsstring>()</argsstring>
+        <name>handle_animation</name>
+        <briefdescription>
+<para>Handles enemy explosion animation. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" line="46" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="382" bodyend="419" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" declline="46" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8h_1a68c491a02d132c528f42273289f4678f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() draw_laser</definition>
+        <argsstring>(uint16_t x, uint16_t y, int user)</argsstring>
+        <name>draw_laser</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>y</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>user</declname>
+        </param>
+        <briefdescription>
+<para>Draws laser from either the user or an enemy. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x position for the laser </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y position for the laser </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>user</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>set to 1 if the laser comes from the user, 0 if it comes from an enemy </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" line="54" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="16" bodyend="42" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" declline="54" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8h_1a0635403a6f2f9a5d2cc60dd5c988cb10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() draw_time</definition>
+        <argsstring>()</argsstring>
+        <name>draw_time</name>
+        <briefdescription>
+<para>Draws the time and date on the top of the screen. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" line="59" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="100" bodyend="198" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" declline="59" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8h_1a0d5f4b4ce4f3a79d22adabea5ca11579" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() draw_number</definition>
+        <argsstring>(uint8_t number, uint16_t x, uint16_t y)</argsstring>
+        <name>draw_number</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>number</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>uint16_t</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+<para>Draws a number. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>number</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>number to be drawn </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>x position of the number </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>y</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>y position of the number </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" line="67" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="44" bodyend="82" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" declline="67" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="_handlers_8h_1a0ac8a2f8b564a0b003cd6a3fd2785573" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() draw_score</definition>
+        <argsstring>()</argsstring>
+        <name>draw_score</name>
+        <briefdescription>
+<para>Draws user&apos;s score on the top of the screen. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" line="72" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c" bodystart="84" bodyend="97" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h" declline="72" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Header file containing declarations of functions used to handle all aspects of the game. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>HANDLERS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>HANDLERS_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;lcom/lcf.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdio.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdlib.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="proj_8h" kindref="compound">proj.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_handlers_8h_1a9f2d428b348d073ee5141e974fc15586" kindref="member">handle_laser</ref>();</highlight></codeline>
+<codeline lineno="28"><highlight class="normal">int<sp/>(<ref refid="_handlers_8h_1a56136c73a9d245da9cf52630251b754e" kindref="member">handle_top_bar</ref>)();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_handlers_8h_1a537a0fe39a451eda9d87a3e0d931b54f" kindref="member">handle_enemy</ref>();</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_handlers_8h_1a38f63703c1c32c38e988a3cb65116c58" kindref="member">handle_user</ref>();</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_handlers_8h_1ac1c99d5669c23edc8143a69f334c767c" kindref="member">handle_animation</ref>();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal">int<sp/>(<ref refid="_handlers_8h_1a68c491a02d132c528f42273289f4678f" kindref="member">draw_laser</ref>)(uint16_t<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>uint16_t<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>user);</highlight></codeline>
+<codeline lineno="59"><highlight class="normal">int<sp/>(<ref refid="_handlers_8h_1a0635403a6f2f9a5d2cc60dd5c988cb10" kindref="member">draw_time</ref>)();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal">int<sp/>(<ref refid="_handlers_8h_1a0d5f4b4ce4f3a79d22adabea5ca11579" kindref="member">draw_number</ref>)(uint8_t<sp/>number,<sp/>uint16_t<sp/><ref refid="proj_8c_1a4dde988b1b2adba65ae3efa69f65d960" kindref="member">x</ref>,<sp/>uint16_t<sp/><ref refid="proj_8c_1ab0580f504a7428539be299fa71565f30" kindref="member">y</ref>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">int<sp/>(<ref refid="_handlers_8h_1a0ac8a2f8b564a0b003cd6a3fd2785573" kindref="member">draw_score</ref>)();</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//HANDLERS_H</highlight><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h"/>
+  </compounddef>
+</doxygen>

@@ -30,7 +30,12 @@ def main():
         work = Path(temporary)
         project = work / 'my game'
         project.mkdir()
-        (project / 'main.c').write_text('#include <lcom/lcom.h>\nint main(void) { return lcom_init(); }\n')
+        plain_source = '#include <lcom/lcom.h>\nint main(void) { return lcom_init(); }\n'
+        (project / 'mapped.h').write_text(''.join(f'#include "/minix/student/art/part{i}.h"\n' for i in range(10)))
+        (project / 'art').mkdir()
+        for i in range(10): (project / f'art/part{i}.h').write_text(f'#define PART{i} {i+1}\n')
+        (project / 'main.c').write_text('#include "mapped.h"\n_Static_assert(' + '+'.join(f'PART{i}' for i in range(10)) + ' == 55, "mapped headers");\n' + plain_source)
+        (project / 'lcom.json').write_text(json.dumps({'build': {'pathAliases': {'/minix/student/art': 'art'}}}))
         (project / 'assets').mkdir()
         (project / 'assets/a').write_text('bc')
         # A small real PNG exercises the user-supplied launcher asset path.
@@ -66,6 +71,7 @@ def main():
         protected.mkdir()
         (protected / 'keep.txt').write_text('keep me')
         project.mkdir()
+        original = plain_source.encode()
         (project / 'main.c').write_bytes(original)
         for extra, expected in [(['--output',str(protected)],'empty directory'),(['--app-id','invalid'],'application ID')]:
             result = subprocess.run([str(v) for v in [*command,'--project-only',*extra]],capture_output=True,text=True)
@@ -104,7 +110,13 @@ def main():
             folder=work/('class game '+str(number)); folder.mkdir()
             (folder/'main.c').write_text('extern const int answer; int main(void) { return answer; }\n')
             (folder/'data.c').write_text('const int answer='+str(number)+';\n')
-            (folder/'lcom.json').write_text(json.dumps({'name':'Game '+str(number)}))
+            settings = {'name':'Game '+str(number)}
+            if number == 42:
+                # A source-only archived Minix game must keep the LCF ABI after
+                # relocation, even without a Makefile to identify that ABI.
+                (folder/'main.c').write_text('#include <lcom/lcf.h>\nextern const int answer;\nint main(int argc,char **argv) { return lcf_start(argc,argv); }\nint proj_main_loop(int argc,char **argv) { (void)argc;(void)argv;return answer+(int)sys_hz()-60; }\n')
+                settings['build'] = {'sources':['main.c','data.c']}
+            (folder/'lcom.json').write_text(json.dumps(settings))
             folders.append(folder)
         (collection/'lcom.collection.json').write_text(json.dumps({'projects':['../'+folder.name for folder in folders]}))
         collection_output=work/'collection export'
@@ -173,6 +185,7 @@ def main():
         run([cli,'export','android',ROOT/'tests/fixtures/android/coordinates',
              '--output',ROOT/'build/android-qa/coordinates','--app-id','pt.rgo.lcomng.smoke.coordinates',
              *[value for abi in args.abi or ['arm64-v8a'] for value in ('--abi',abi)]])
+        run([sys.executable,ROOT / 'tests/android_asset_packaging.py'])
     print('Native Android export checks passed')
 
 

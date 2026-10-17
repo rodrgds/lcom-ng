@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Super Cold",
+  "description": "Move to advance time, aim and fire at approaching enemies.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "dpad": false,
+      "joystick": false,
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "side": "right",
+          "mouseButton": "left",
+          "label": "Fire"
+        }
+      ]
+    }
+  },
+  "build": {
+    "sources": [
+      "sprite.c",
+      "proj.c",
+      "graphics.c",
+      "kbd.c",
+      "mouse.c",
+      "timer.c",
+      "player.c",
+      "linkedEntities.c",
+      "game.c",
+      "enemy.c",
+      "gun.c",
+      "rtc.c",
+      "letters.c"
+    ],
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

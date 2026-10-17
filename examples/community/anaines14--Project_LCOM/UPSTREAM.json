@@ -1,0 +1,153 @@
+{
+  "repository": "https://github.com/anaines14/Project_LCOM",
+  "revision": "284c483925d217da2eff51eb10ecadaa0968bcb8",
+  "project": "src",
+  "sourceHashes": {
+    "src/utils.h": "d523c5777f7e2b6d3a006cd3630601ca4534aee0c828951c3273e92c4d6c1d8e",
+    "src/mainLoop.h": "143689b2d035d73d0bc932ccece1463c058c88a44b6ca57250d33883c1eb2a0b",
+    "src/mouse.c": "84a6408c6c1c8c52fcb133a928f5fd3992397a11be6c3c92f4b49a4a256f2e81",
+    "src/timer.c": "bf3f0e737565a36c92f8e1c06df1e4f21e629faa2a28c8e8a17c9f25e274123a",
+    "src/rtc.c": "69df669cee4d1095644a376c09546fb4cbaa77028e693cc8b245163b54ab18c3",
+    "src/keyboard.c": "9796f24b412306577dde006da9f4ede06f5f0505f3500f665f42a0e547972c3f",
+    "src/Makefile": "62581117ff812c3151ed9e11a4b59443b49c439e9987f2aa68352390e3278ace",
+    "src/animations.c": "4da1f8428037fce761671e9fb1706ee6807201efc8b7eaec2736e7084956874a",
+    "src/VBE.h": "e765abd45387fe2fe8b09c5c7805d1b8b49f9884ae1fb9abd2a97e103f7cb715",
+    "src/sprites.c": "de20085e48375ed0a0c82cecb747ba7e279970af58973564ccaefb287f7582c9",
+    "src/proj.h": "2de05bf9cf89110c07c175f1d8ffdb8ae2aa4f811b678569120a3a5c629cf044",
+    "src/mouse.h": "b873ca9ffda3d585f57b298fd8f5ddf5932be5345cbd29ee0e2e3c6515b6536f",
+    "src/mainLoop.c": "b355173d9b0c26c6c070869efcd01b4497da97d7956a64e9ab1dbfebca745315",
+    "src/timer.h": "6092869a837523166663ff62c14d17471faff40c215a8135574e2dbc8ff92ba4",
+    "src/utils.c": "9f9665c73bd72d3cf90ba8968094f5d14438e26b04b451982e8b07af041ad56b",
+    "src/Macros.h": "02873874b1d0c77469bec562015cbbb8bab289fb46f7ce948ab80467ba4d4365",
+    "src/keyboard.h": "ef5cfd998db61f781d1835d85961929a3976fb5209a1ed71940c1e2d718c4eee",
+    "src/rtc.h": "53b1cfd1996db94b017f984dbf4d42e4656c931cff16da5ff47052aab0670029",
+    "src/VBE.c": "bf82c200898e8c51f991832c6f74cb2268e139219cbf156e5eb91dfec9e802df",
+    "src/sprites.h": "4f5b6ed002cf190c5908b8d3156e34d5e8cdf6265f29202690b18f72f2612ce0",
+    "src/animations.h": "4951a993781b759e6e218c825b1559bfa743d9cf11d4d488d84c152f1425c359",
+    "src/proj.c": "841ced8c107f8a8747e64a2948f928be72d675fd0291e61f710b7ed8de1003c1",
+    "src/Xpms/QuatroMoeda.xpm": "a0a3a59defb39647f8acb21a2025659fb85e0a459a95f77f93a53c6ef191c8ae",
+    "src/Xpms/Tres.xpm": "dad1f810c357f453f2b374ff6ba9784b80a2136a0a294c7a27a5973806b04c0c",
+    "src/Xpms/Cooldown_Bar.xpm": "c29b3f14c5ff16edb56f4791fcfa2d16daff845caf51e2fd1f836683e27f6f0d",
+    "src/Xpms/OitoMoeda.xpm": "3eb08b838f7b6d14791f5c6d851d12596d2e25b192ab04f9884cb597396a6cd6",
+    "src/Xpms/Quatro.xpm": "88fcac66af2391dcf07cc673d4c3faa5d2d72c5e1a67ef15f66356a3011056e6",
+    "src/Xpms/Cursor_Left_Click.xpm": "062f532bb0e931b4361b23bc12753eee0e0a9463c99a4d2c7edda6a6f0fbdc09",
+    "src/Xpms/UmMoeda.xpm": "f0a242bdfaa543a5cab280b280eb5cde1a41ce430645ff02894fc8b81005a448",
+    "src/Xpms/Seis.xpm": "6292c0aac9557450fedf53116f5ac034e1cfb48dedb7b1f534fca5e521e6b11f",
+    "src/Xpms/Menu.xpm": "e5d3c205ee99e914bb259f1383661a4065d3f82fba54098c6891c8d78c2789e0",
+    "src/Xpms/VirtualBox.xpm": "eeef3d92f5c01ccdf240cc8ab79a6f7878ed41cd025c02159b868f33c2218d40",
+    "src/Xpms/Um.xpm": "88fe6e784dc7526b502966bac609ee31a1e47afac22818ea420ca17164dcf4ba",
+    "src/Xpms/Start_Button_Pressed.xpm": "4732410750548260cad0666a0b647a17eb0c8f9beeb312383a421e6e1c978c33",
+    "src/Xpms/Coin1.xpm": "50f010a59f44c24facebcd9d6954557b3c8468140eeac132243cb045085580e6",
+    "src/Xpms/Nove.xpm": "75db35620b46abf9243684142dd03821c6df6f70d56450a0f3d8652ac4ef1587",
+    "src/Xpms/Missil9.xpm": "12f5d2e0b8ac378d41b2d6cef1924ea15c66a9ffec8e09648fcbc7f1bc6008ed",
+    "src/Xpms/Coin3.xpm": "8be488c3a74be1fd8b7381346afa48878a0c0aa734b0a2539b4be09ceda3f7d5",
+    "src/Xpms/Dois.xpm": "2ef2d7d84385799a57c7811ffc824419f36efcffe87dbef469a540159f26ccf8",
+    "src/Xpms/Coin2.xpm": "429eb969660073cc246403bf7f9de80cacb201d72329ec361e4906b3b8551276",
+    "src/Xpms/Missil8.xpm": "23ccf82a6759f6813fa126f36c123be69af744e5ed46b8729c008a68fde5704f",
+    "src/Xpms/Coin6.xpm": "fa57c8b1d87a28a45cb09d2240b752b38a2ab0947277e27c044ea904079acb87",
+    "src/Xpms/BeetleUpR2.xpm": "6b4c6f55e4f0775c712f90d72e7a6a3e0945dfbeb7a4a00ffe498bdc36a9b30b",
+    "src/Xpms/BeetleUpR3.xpm": "cfbaa0bafa44e959e84bdfc614c20b62491dee4695b4b14c0fd9d52e2d242970",
+    "src/Xpms/DoisMoeda.xpm": "65ef0e4a7f954166a5c2a4eb547cb293750b7737fde209b25637ac8d08830778",
+    "src/Xpms/Coin5.xpm": "f734f471f5f27e847499c0a54c400ebc0e07de87c0c75f9f5b8367f6a40fe1fb",
+    "src/Xpms/BeetleUpR1.xpm": "8c13a8f57fa5c12cc7703dad46510956289191c5c697a2c3ff52da774b993d91",
+    "src/Xpms/Coin4.xpm": "4207887885973d5d49c8a5d291a135a095da60f8db860d52dd96be3efcc855f0",
+    "src/Xpms/Antivirus.xpm": "ca04fefd876315ba6cb42df3cf2a188e2feca69f6ed5833178a3e9d1b8bd7f93",
+    "src/Xpms/Missil3.xpm": "1943637800992cefdad85ab33aa377aaa96744962ca9ae5c7c1cf852d3b7a2ac",
+    "src/Xpms/Bug4Up.xpm": "47886f2ec74bba2e11a314eee20daf7af16125904de7803f0dd3d8cf900c12e3",
+    "src/Xpms/Cinco.xpm": "5ad286e64f43b2046233e86cd9cdc6cd2c6647d0c1b12bacab1a83c70d993620",
+    "src/Xpms/BeetleUp2.xpm": "83827d56d5318252bd7b4660086f57d6b3116a7036d2d27de8cd96f1c1c6f53e",
+    "src/Xpms/BeetleUp3.xpm": "6bee70ff668a22f71b38e147867ae5c0b02c3d2be0adad9d189254c170e51e92",
+    "src/Xpms/Missil2.xpm": "37b032656f1ba96ff4404e06ef238dae7e23215378fcf86f4361c3767dec143a",
+    "src/Xpms/TresMoeda.xpm": "89a753de6eaa7b9c188a8b6018e96462fb39023baa1fe667b4a5200f5857eb3e",
+    "src/Xpms/BeetleUp1.xpm": "6ee777f51ed0165be216339bd118826c32c80437e78d83c77cc9d6a6b68751ca",
+    "src/Xpms/Dot.xpm": "017de1e96e8c53d79b409ab49b3dd7190a5740bc48fb08ac512553e92da000ce",
+    "src/Xpms/Nuke.xpm": "0b0481bedc87e7c829407cf6150ba213723d26e60dac72c94758bf36fa9dbc35",
+    "src/Xpms/Missil1.xpm": "5e2558a2aaf73c2348ecff4f97ea5b831bec0672e3c1a2af7ec1ea5302c43d3b",
+    "src/Xpms/Bug2Up.xpm": "605e9123d20fb2b01da22bf9721e8da4039e5638ff6fc8d0ff3874a8be29b1fb",
+    "src/Xpms/Sete.xpm": "ac9822130ff11146ea30aa588cdf0ebded710d76b77d9c03a1c00c0942c4a098",
+    "src/Xpms/Missil5.xpm": "7a6769b03c3ad2c265d7f78137e160d0a8611078d7ba64b6be54d17ffd04fd6c",
+    "src/Xpms/CincoMoeda.xpm": "79d3e9ce3bdcabf092867ffb63980949b9340ae9dbe331bdce337843545c02c1",
+    "src/Xpms/Dois_pontos.xpm": "b3c3a85752a24cd126acc24f2bc06c86aebbf85ebe7715b0e0babd1b0776dba7",
+    "src/Xpms/Cursor.xpm": "6416ce4608d4f5e67515e386786d693412742b662e02029af2a08a70e5af3676",
+    "src/Xpms/Missil4.xpm": "7fabce619b06b9338c9c5b936ba26e9f46a083326cfe8df0a2236f440794f226",
+    "src/Xpms/BeetleUpRight1.xpm": "76450deca060adae2ac17268d3febf5b375f8702f2dc036f8d656e6fe69beec5",
+    "src/Xpms/BeetleUpRight3.xpm": "95fccf4bb4d7f52faee9fbc205de2c3f61bc88b98eabec9c0371f8367d46976c",
+    "src/Xpms/Missil6.xpm": "b7db1adbca753c99fb333fa8552f37cbebca1694707e02060fe751513c0845df",
+    "src/Xpms/login.xpm": "5f4ec204302c8f342ec6375c98ed06e64599c02192b59dfcd98b927518ffd577",
+    "src/Xpms/SeisMoeda.xpm": "46c36176fad533f5e6fffa142514a176c8139dff0c8fd19342b8101a0f3550f2",
+    "src/Xpms/Missil7.xpm": "319ccc60a326708d1bb22c381493602ed70bb76b135fdf0e9fe8d36690684737",
+    "src/Xpms/BeetleUpRight2.xpm": "53b244246d2401ce4a0685744c675b2f71d9bbbfd2a4c643ec88a58caa8cc20f",
+    "src/Xpms/EndScreen.xpm": "8204a6f5e82b2c915e3ef700fd0cfd3286a7ed640c4d74844d5156c48880020b",
+    "src/Xpms/Zero.xpm": "9fa173c796f15d132145b36e9b489837330e741e024aa9bb743a1c077cb81f7a",
+    "src/Xpms/Background.xpm": "e3306696dd122210c1272a418a8fa9a88bc9369f07f2e7c76d6c6fb179acc7d2",
+    "src/Xpms/SeteMoeda.xpm": "7235e2478d8b971ac21cbc4d51a1508bebeb4fcfb76e5a888a4e1199498745bd",
+    "src/Xpms/BeetleURight1.xpm": "12d851715b6718660478e40aef77bc1f2d9e028a4ef5baf8eea6c8b0abb6bdcd",
+    "src/Xpms/Bug1Up.xpm": "3b77c63bf6ad4b4367cbdabadc9f0f027fd49d5b1486b579366c858d67bb3edc",
+    "src/Xpms/Oito.xpm": "a066aeab8bd511480316d32b70c1462c2d50d18faa513465f712e71d9a50ddef",
+    "src/Xpms/BeetleURight2.xpm": "e4074d32057d3e16651524676aa38a9921e8ed866732af4c0664e70a3306824e",
+    "src/Xpms/ZeroMoeda.xpm": "a4e3499c7e3aa450b944bf66b067f254ee86f29c81730447ccea860b3535835e",
+    "src/Xpms/Bug3Up.xpm": "abd92c6e07430a02e2eb9437d84c136d5aa52db2803ed5a2e9691c123a2efe0e",
+    "src/Xpms/NoveMoeda.xpm": "b43f5168c8004dd76c5778d62e539f9305c32383e45dd61538a238a9f15ca43b",
+    "src/Xpms/BeetleURight3.xpm": "4d7851a9810d79c51fe7fd572362bc11cbdce70c2e20a49807dcf06951caf1ff"
+  },
+  "selection": "Complete selected project original C/H/Makefile and embedded XPM assets. Unused object files, .depend, documentation and other projects excluded.",
+  "excludedMetadata": [],
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "src/mainLoop.c",
+          "originalSha256": "b355173d9b0c26c6c070869efcd01b4497da97d7956a64e9ab1dbfebca745315",
+          "patchedSha256": "30e324bb7bdae5b60c986ab5ab58111806dfdc611f49c46c2d43fe567706d14e",
+          "reason": "Apply complete mouse packet motion once and stop dereferencing freed animation objects at all seven cleanup sites.",
+          "verification": "Actual seven source cleanup blocks plus original animation destructor fail with protected freed pages; corrected blocks release every object/sprite/array once. Actual mouse IRQ consumer originally replays stale movement on partial bytes, then passes two signed packets with per-byte expectations after repair."
+        },
+        {
+          "file": "src/mainLoop.h",
+          "originalSha256": "143689b2d035d73d0bc932ccece1463c058c88a44b6ca57250d33883c1eb2a0b",
+          "patchedSha256": "6c2d6fe490fa2c50e8d0d944fdf9ef8c03defdd91a674743f8b72e3b37f56535",
+          "reason": "Match the pinned original Dois_pontos.xpm filename, including case, for case-sensitive platforms.",
+          "verification": "Original actual mainLoop.c compilation fails -Werror=nonportable-include-path on the mis-cased asset include; corrected owning translation unit compiles."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original Enter logs in. Relative pointer starts400,300; the source accumulates raw movement then halves it for the visible cursor. Gameplay gain0.5 is recorded for replay/native recipes, with no source sensitivity changes. Mouse joystick and canvas gestures aim, Fire sends left-button edges. Z costs40coins for Nuke; X costs20coins for Antivirus. Escape exits normally. Reserved panel preserves original desktop/status bar in portrait and landscape.",
+  "artwork": {
+    "icon": "Pinned original BeetleUp1.xpm, enlarged with nearest-neighbor scaling over a simple blue square. Original XPM retained unchanged.",
+    "preview": "Actual corrected browser screenshot after a missile hit raises original coin counter00 to01, resized640x480."
+  },
+  "verification": {
+    "browser": "Ordinary touch Login, screenshot-only source-sprite template observation, relative aim and Fire removes a visible bottom beetle and increases coin counter to01. Portrait and landscape controls reviewed. Normal Escape exit verification recorded separately.",
+    "ndk": "All11 actual selected-source/generated-context ARM64 objects pass O2/FORTIFY2/stack-protector/format-security.",
+    "native": "Pending ROOT Android gameplay.",
+    "limitations": "No full game completion or cost-gated ability claim; no source timing/RNG changes.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/desktop-batalha-reviewed-native/results.json",
+      "apkSha256": "f510c055408b07fa1c4ece670c14e0c5c9103aa406868cf3370e14b0f770f5ba",
+      "demonstrated": "ROOT viewed original Windows desktop, normal interpolated mouse aiming and Fire killing beetles, coin counter increasing00\u219207, original game-over dialog, and Home returning cleanly to library.",
+      "limitations": [
+        "Cost-gated Nuke and Antivirus controls are configured but their use is not claimed. Full survival or all outcomes are not claimed."
+      ]
+    }
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "13bfdf4b1f2a20d19d5310ca97efb3cc79eb1cc27b6ec04e6d44e953a0af636b",
+      "kind": "source-derived icon",
+      "source": "src/Xpms/BeetleUp1.xpm"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "41d8f53d90b2e38f2886bf63bc5f4ce92408553426ba9949339525c7134ceaa3",
+      "kind": "browser gameplay capture"
+    }
+  ]
+}

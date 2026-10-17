@@ -1,0 +1,10 @@
+--- a/src/rtc.c
++++ b/src/rtc.c
+@@ -2,6 +2,7 @@
+ #include <minix/com.h>
+ #include <minix/drivers.h>
+ #include "rtc.h"
++#include "video_gr.h"
+ 
+ date_t init_date()
+ {

@@ -1,0 +1,11 @@
+--- a/proj/src/vbe.c
++++ b/proj/src/vbe.c
+@@ -8,7 +8,7 @@
+     mmap_t mm;
+     if(lm_init(true)== NULL)
+         lm_init(true);
+-    lm_alloc(sizeof(vmi_p), &mm);    
++    lm_alloc(sizeof(*vmi_p), &mm);    
+   
+     memset(&reg86, 0, sizeof(reg86));        /* zero the structure */
+     reg86.u.b.intno = VIDEO_CARD_INT_NO;     /* BIOS video services */

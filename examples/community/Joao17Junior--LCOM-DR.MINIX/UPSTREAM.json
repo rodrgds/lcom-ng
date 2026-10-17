@@ -1,0 +1,101 @@
+{
+  "repository": "https://github.com/Joao17Junior/LCOM-DR.MINIX",
+  "revision": "8fccd0ecfc3053430a23d8b1d06c091d41c34850",
+  "project": "src",
+  "sourceHashes": {
+    "README.md": "b42d15efc14383e9ac66a558024a515e217d8cc8096b1627aa10fefe7b2fdda4",
+    "src/.clang-format": "66f7a3be551c14980db4ff14cd66a0fcbad862e03ccd4dc4a0d52a715a1082d7",
+    "src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/.gitignore": "9ce554244aa62b751fd14d245518a1b6dded7ed0e413c98e1e37a4c03b1028a8",
+    "src/KBC.h": "f96a153f2f649acdd6afb77f9b3bdd8f9523632eb53d0cb8cee5a42d44edd667",
+    "src/Makefile": "d9e8eab9ae9c9f07b4f378cee736991350d77da32179fc863fb5333e60d8335d",
+    "src/conf.h": "75ff7e520e853776860b1e2b3737bc1dcf3e10f5c36d8c1e75d1be058659edf1",
+    "src/game/game.c": "fce4baf149518d86d25fb1a73014c4e4d240f75ca1e5abd11b7946ad1e79c113",
+    "src/game/game.h": "6f874fe81ea64588367962d5082436fdc3d8132261687c81e358acec24cee78d",
+    "src/highscore/highscore.c": "67b71ad667b2983308995b6673f2de1d92908b19c3d15f482a993089c2deb363",
+    "src/highscore/highscore.h": "516abfc146c4026ec4b9b16acaab4fa67d3a351e7bc7b96566a38765b115a37f",
+    "src/keyboard/KBC.c": "7d276d8b6b9e35a057cc63c22f406bf539ce3fe6ddd49057abc7d34901b5843c",
+    "src/keyboard/KBC.h": "2a6b7cb69418aec63eee6fa4984a58ad92b1edcea434d83e0a6711204357749a",
+    "src/keyboard/i8042.h": "98f8d5f43b2a45482da7996e1dd4e498c5e8b4239114f3f93ba7208ebcf51a9a",
+    "src/keyboard/keyboard.c": "46153db954db3abf898e01f36d1072400b8aff1e1909f7661562207ad232e83f",
+    "src/keyboard/keyboard.h": "f36f166d8a346676575dd4dae75ef5f9903cc9d7ebc0a5dfed824a90c7233675",
+    "src/main.c": "58d11bd5d908aad948e0686ed0d13e0f147d257542f2812fed233d19e087d565",
+    "src/menu/menu.c": "ff55ce8c96a9852d8fcb8c366b27f02a9e896a11468061acc131c84db3b48944",
+    "src/menu/menu.h": "83a241eb03cd3b522dee409731e2db3f28136f5dba7822ac93b9a24176492a0c",
+    "src/menu/options.c": "bc7fcbfe0ddcb35253dd697599afacf2eebde22cf64efda6a455b240902f9cf1",
+    "src/menu/options.h": "402e3da6902801cfae09d4b78a9d29e5c350103b98f8fda6c5a3f229f365408f",
+    "src/tile.c": "5f04f156b29cf697ed229c43034116d83ee15a39a3c9e538da04c35bea08b4b8",
+    "src/tile.h": "85e36878ebfe17bbb4eed8c3491946261dae7420443fd04836592fc2afc66040",
+    "src/timer/i8254.h": "bdaddb0684915b4e6519518a5528e9eac2dec52db55852464edd122fb89e0142",
+    "src/timer/timer.c": "aa73627b35b2e089788a6a33786b7b198550f29f1c1a1ec7786fda26777b9141",
+    "src/timer/timer.h": "29d01359d0a4c07ca8275ef76b0826ce7c89ab14e5b61b48c4470803985e831f",
+    "src/utils.c": "1cd0b89dc665a672179f08d9b98c289376263331fcc7c89a97c29ea03027cd26",
+    "src/utils.h": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "src/video/VBE.h": "0e6b2f024f8c3f175b22a490966771afad80eafb9ce9e73eb31dcdf6a90af382",
+    "src/video/font.h": "55ba124c739f6a79eb202a68d4c782db6b099cbc6e4523770ceaf4ff7aeec94e",
+    "src/video/graphics.c": "933331978ee99ace3477fca3e7c38fbbd58e3de36c3189ac933e1eb78ceb18d8",
+    "src/video/graphics.h": "0320fb4a1c5b772d5969e9ffb0564b16c837ed9b457f38d6f3c1d71f93ed54f3"
+  },
+  "selection": "Pinned original project source, headers, required assets and root README/license. Generated documentation, course labs outside required project, compiled objects, logs, OS/VCS metadata omitted.",
+  "omissions": [
+    ".git/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.mov",
+    "**/.DS_Store",
+    "**/trace.txt",
+    "**/output.txt",
+    "**/core.*"
+  ],
+  "icon": {
+    "kind": "Original rendered piano and incoming note pixels",
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence13/Joao17Junior--LCOM-DR.MINIX-03-note-at-line-canvas.png",
+    "captureSha256": "470e2f5b221a1d05573769d23cc54aee9cbf29edca2e37bb507340ea37711dc5",
+    "crop": [
+      457,
+      420,
+      800,
+      600
+    ]
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "f910e1d320b6d888d0b26a3e03c509245701c2a917453f411dfddc04d39ea649",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "3d898bd200fb1e006fb559734578a7a2c3897aa718977d31092b8487091e0713",
+      "kind": "actual browser touch gameplay preview"
+    }
+  ],
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence13/Joao17Junior--LCOM-DR.MINIX-03-note-at-line-canvas.png",
+    "captureSha256": "470e2f5b221a1d05573769d23cc54aee9cbf29edca2e37bb507340ea37711dc5",
+    "originalSourceArt": true
+  },
+  "verification": {
+    "native": {
+      "status": "passed",
+      "apkSha256": "cc055c952c3aa0b46b66598813d818f6aec38bfce59b79a34cd168ee24a16fb4",
+      "evidence": "build/arcade-100/a65-dr-native-glyph-targets/results.json",
+      "review": "build/arcade-100/a65-reviewed-native/results.json",
+      "checkpoints": [
+        "Original options now short tiles, ordinary menu choice.",
+        "Original seven-lane piano board.",
+        "Actual native matching-key hit should show positive SCORE10; review pixels.",
+        "Observed blue note at authored hit line was hit with its matching native ASDFGHJ key; visible SCORE10 expected."
+      ],
+      "limits": [
+        "Representative original touch play and clean Home process exit on ARM64 emulator. Every mode, long sessions, linked UART and physical-phone performance are unclaimed."
+      ]
+    }
+  }
+}

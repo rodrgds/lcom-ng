@@ -1,0 +1,60 @@
+{
+  "name": "FireBoy & WaterGirl: Elemental Labyrinth",
+  "description": "Guide FireBoy and WaterGirl through the original maze, avoid elemental pools and open timed barriers with nearby levers.",
+  "mobile": {
+    "fullscreen": false,
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "quickKeys": [
+        "Q"
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D",
+        "UP",
+        "LEFT",
+        "DOWN",
+        "RIGHT"
+      ],
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        },
+        {
+          "side": "right",
+          "mode": "arrows",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Lever",
+          "mouseButton": "left",
+          "side": "right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "game/draw/map.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/g1/proj/src": "."
+    }
+  },
+  "archetype": "Fireboy and Watergirl",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

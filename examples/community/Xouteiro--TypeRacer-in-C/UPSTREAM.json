@@ -1,0 +1,139 @@
+{
+  "repository": "https://github.com/Xouteiro/TypeRacer-in-C",
+  "revision": "ef71939acb3dc39c3ba559f7bce6f7528b1a968a",
+  "project": "proj/src",
+  "selection": "All39 pinned original game C/H, XPM artwork, ten-phrase text file, Makefile and README. Generated Doxygen pages, report/editor settings omitted. Only the documented WPM zero-time guard and exact directory-case include correction change original sources.",
+  "excludedMetadata": [
+    {
+      "file": "proj/src/.vscode",
+      "reason": "Editor-local settings omitted from required source inventory."
+    }
+  ],
+  "license": {
+    "status": "unknown",
+    "files": []
+  },
+  "sourceHashes": {
+    "README.md": "3372e01647a3a1891a940e82551af89dd17baf6b2d7130a5d45d659b61095e6c",
+    "proj/src/Makefile": "b1ee4dc564ee1657bf6884c39a515b9165841c5d23d99e713b3d501ca615e660",
+    "proj/src/controller/keyboard_mouse/KBC.c": "709401ecd5b2c6930ac5c7dfa8d1be9fa843491787a1b238ce9a691d86412d84",
+    "proj/src/controller/keyboard_mouse/KBC.h": "9cfb2ebc02a923498bd482c07316ca935e3c7865058de2a9f4905952e3f789e8",
+    "proj/src/controller/keyboard_mouse/i8042.h": "42eab1edb1d0e67c43db7f74eec70313ab2cc1e2e7939e150b12006fc6997362",
+    "proj/src/controller/keyboard_mouse/keyboard.c": "b4712acba89094ffc37d5457a407add807927913cd7e0b43e56d76027b8b3117",
+    "proj/src/controller/keyboard_mouse/keyboard.h": "db622b5362fae8f3a1bb9689eb00526323f71432bb8416ffdb8c6cffc4db4d98",
+    "proj/src/controller/keyboard_mouse/mouse.c": "a65e0e230193741147ccd670ec790dbd24079475203cd6e47414c5a5b269b651",
+    "proj/src/controller/keyboard_mouse/mouse.h": "a07b45f2dc7bd302448e4431be12df407ded4f795ead8f34755d0790d0e5c6f2",
+    "proj/src/controller/rtc/rtc.c": "74c0176da5421c26031dca952fc27fc10c7ba5d279b9c90312a94d0c3789c4fd",
+    "proj/src/controller/rtc/rtc.h": "24a4dd24e2f217608b07469a4725e209a2d9d637cc22b4e638af542a2442dc7d",
+    "proj/src/controller/timer/i8254.h": "5d5d15185c36d9d3f3660d0e0df0765dba9c76c2ed178d6686086023244f3799",
+    "proj/src/controller/timer/timer.c": "cd7a865a5f43270353462e976fbe4e629d308de96aa820436d3424eb9ac9164e",
+    "proj/src/controller/timer/timer.h": "415624b5826cfc4c4edf89b2256cd53f71966f92651642ee8719f18813325601",
+    "proj/src/controller/utils.c": "46f6b177aa07ce05623ce0f170e716977e2bc8e41fd2929fd13205528965ecea",
+    "proj/src/controller/video/VBE.h": "140409bcfb717b8734638c2e20a0e34000d0303163b7897d6161070ed89d287f",
+    "proj/src/controller/video/graphics.c": "a998f5c4dfa26209ff6033ecb0ce2b14cbc5f6d1aecd7e721475204eda6cc304",
+    "proj/src/controller/video/graphics.h": "754482d0217151809db64c07b233acda05c1219ce97d45269f53210159ccd06c",
+    "proj/src/game/game.c": "6c76b88591ce99867cb60639739c3130e3ebaf1715ae6ba7d98170501f0efe12",
+    "proj/src/game/game.h": "d8e6ed225c031e7b813915b316eedd2c9777d06a50eb39c41f2a5279c7c0c509",
+    "proj/src/game/proj.c": "1092c9eb5818e63c720793b8e6b5a8c13697e652183ae72ed51e05396d836f56",
+    "proj/src/game/proj.h": "6c94f87c7c005ef06c5cd601f0879a4b7f3e0d1bfd27d7e14953cc4915bd9ee7",
+    "proj/src/sprite/sprite.c": "ed2251cb358c911e4f1fecac946fa635a118d83f9463f14fbb84b1f2cf701a95",
+    "proj/src/sprite/sprite.h": "141b9cf50a55282779e149ca82acedd34e8395a825c31cfe37273967eb846b0f",
+    "proj/src/states_design/design.c": "e73451676d1e491ec1c89e6d96ce6b89a7a36137061639ec53acc4d56363c202",
+    "proj/src/states_design/design.h": "128e054121a907299b94828f2cfb696413cdac41d0639528c5071924574697ac",
+    "proj/src/states_design/states.c": "2dd045f313a5137369679c51dc488c66b6c8d4240cc0adb3e9731da91fe3b9ce",
+    "proj/src/states_design/states.h": "33af773e40c90cf9d3333c451f1793faa143b29a87cded6af27692f82e957e68",
+    "proj/src/xpm/accuracy.xpm": "1ecd6248ffcf3aedf3978b0799d345e06dad3ad31382d994db92cddf6fc63872",
+    "proj/src/xpm/esc_menu.xpm": "5c26f3a35d8012c0ef9f9ce984a368ed7655bdadd05e4839b390230d36e9ec3b",
+    "proj/src/xpm/exit_button.xpm": "fa266407d1d411c7269e3cfef1700a4cb4a32f77e521c8b8a8252b304fac2ef1",
+    "proj/src/xpm/letters.xpm": "e4eb671f749e24dff81459856484a9383927be9cbb72560346641e4cfeaf9158",
+    "proj/src/xpm/mouse.xpm": "2afaebae2322acafccbc9889196f1b01fad76d06e62f04252efd3c286a4d1ed7",
+    "proj/src/xpm/numbers.xpm": "d5460d59d5c077a65b7155056268662300d702df4472d9953c4c46dcc25f5f0c",
+    "proj/src/xpm/phrases.txt": "e408a21e99c70e76aafead55181566b2b9479a40422b94995e043db58018f408",
+    "proj/src/xpm/play_again.xpm": "cade8cd58bc87f5713ad1cfbd8177b15c54fbd7a4f07008daf4cb6bb3f10efe9",
+    "proj/src/xpm/play_button.xpm": "4993b9371f7d6f98b689104645e2c1cbd9abc8e6d7214c1b0d6b09b396684100",
+    "proj/src/xpm/typo_racer.xpm": "1ae1cda173743b6cd874216e75dd27dafacd288807c5ee1716059459a70944d9",
+    "proj/src/xpm/you_win.xpm": "030cc84efb1d6e2791fde13cc3d75206ecf261e83f1d3a54d07d3fb5b2f4f4fa"
+  },
+  "sourceGitBlobs": {
+    "README.md": "087fdc39fdbf0b3b8b85c4a18f192414bf0f1e1c",
+    "proj/src/Makefile": "696538a25fb061b3bec183cb1b6c26d58ae01531",
+    "proj/src/controller/keyboard_mouse/KBC.c": "a5611cc89503737f43af005c05423bac642dfd44",
+    "proj/src/controller/keyboard_mouse/KBC.h": "66d84a4b8379683b9181c9bd5ff247e1ee0107e6",
+    "proj/src/controller/keyboard_mouse/i8042.h": "33e204b1c9f0cf17dc6bb6a2e22d13ce33430a3e",
+    "proj/src/controller/keyboard_mouse/keyboard.c": "4b2650dc1717f69989f326f4ffdf66712825c7cc",
+    "proj/src/controller/keyboard_mouse/keyboard.h": "5d2aab7e318ac94f4079ddec79a8195f8e60e1f4",
+    "proj/src/controller/keyboard_mouse/mouse.c": "ab15f67bb8888f38e9d9f7d72f1a25ea5061ed79",
+    "proj/src/controller/keyboard_mouse/mouse.h": "18c73f09953cf69599e380350306b3381bd365bc",
+    "proj/src/controller/rtc/rtc.c": "e373adfe1764729a0bd9a52145ee84f18f36d320",
+    "proj/src/controller/rtc/rtc.h": "f0a20e9b88dc66ecb5069ce26941137aac5e1124",
+    "proj/src/controller/timer/i8254.h": "67205bb56b7322ff9070d9e1c72a26d0d2475b94",
+    "proj/src/controller/timer/timer.c": "5b0de7f12a8cf6028347322d92867d9616fa1937",
+    "proj/src/controller/timer/timer.h": "0eaa5fb2d77e361f1c303b54826d140a5805aa52",
+    "proj/src/controller/utils.c": "182f9e21280c44d854c7b47ad5725e1b09a52da8",
+    "proj/src/controller/video/VBE.h": "4f3f7ce905de0faddeda38a09a4895d84ddca103",
+    "proj/src/controller/video/graphics.c": "19c3a7527ec8e658d18a8c592419fde0c342d36f",
+    "proj/src/controller/video/graphics.h": "09fc611f4a34827af98bcb9cb3075ee15726e4bf",
+    "proj/src/game/game.c": "84bb8c15fc69c58b645dd1cb481d881a2394a7ba",
+    "proj/src/game/game.h": "b6b49b64361cfdc4d41d65f5394a8d2532d8de57",
+    "proj/src/game/proj.c": "09e1df573629ad9ee8ecbaaa98f49a50c7f58da4",
+    "proj/src/game/proj.h": "69eb2ccf80e96f83602747e147dbd72ac6c11ed0",
+    "proj/src/sprite/sprite.c": "e8d1a244faa0b87f8be110f5a2c6dbd0284a2f11",
+    "proj/src/sprite/sprite.h": "1e63d457778190c34fa3c4f1cab4ca1b7367700a",
+    "proj/src/states_design/design.c": "8afdf0bbef6966875365cc93150b2506ce470b29",
+    "proj/src/states_design/design.h": "c83193bc2b435ad8fbfedaca6440ff93c8fb2d2e",
+    "proj/src/states_design/states.c": "1eaa19b4ebad520eef3c71e37ae4501edb4ecda4",
+    "proj/src/states_design/states.h": "243dd9de93f80432d1c3fe42f9d47f84d0924b30",
+    "proj/src/xpm/accuracy.xpm": "5c47fc00d4c7b26b6fbcb59b99fe66c3691d50e9",
+    "proj/src/xpm/esc_menu.xpm": "bad332e27d5893364672151a6031e35005d4902b",
+    "proj/src/xpm/exit_button.xpm": "d76791783c487e47d5d40fb7b3d4bf8f43b62ab3",
+    "proj/src/xpm/letters.xpm": "82a7d21d12a3babf74e845feb635e04fd498c775",
+    "proj/src/xpm/mouse.xpm": "b7d8958a295184df1ac6ec0df5380710de03c379",
+    "proj/src/xpm/numbers.xpm": "d0133baf43b7ca37b8b09b7da50cb85d38258038",
+    "proj/src/xpm/phrases.txt": "6138580f0fa54e6e5b9f90cf6de88de4e257c1dc",
+    "proj/src/xpm/play_again.xpm": "19a467702c44e357f2b53cb0fee720873cc24d45",
+    "proj/src/xpm/play_button.xpm": "efc9c99cdbc8cce61b1f62435352163e8d31c236",
+    "proj/src/xpm/typo_racer.xpm": "b849484da1405826719ac32364c85483ff6e7ce6",
+    "proj/src/xpm/you_win.xpm": "affbb684cb7dd3da20ef0d61dd920bc4f5be720b"
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/states_design/design.c",
+          "originalSha256": "e73451676d1e491ec1c89e6d96ce6b89a7a36137061639ec53acc4d56363c202",
+          "patchedSha256": "27cddb568b35ed0ea101e152571df552e0c684138c28b396290339e01511e1b4",
+          "reason": "Before the first elapsed second, and on a zero-second finish, keep displayed WPM0 rather than converting an infinite division result to int and indexing digits with it. Positive elapsed-time formula unchanged.",
+          "verification": "Actual whole design.c under float-cast-overflow/bounds sanitizer: original first-letter0second and finish0second paths RED; guarded source GREEN, literal10letters/2seconds still60WPM. Ordinary screen-keyboard typing then reaches original YOU WIN20WPM99accuracy."
+        },
+        {
+          "file": "proj/src/states_design/states.h",
+          "originalSha256": "33af773e40c90cf9d3333c451f1793faa143b29a87cded6af27692f82e957e68",
+          "patchedSha256": "5ce74b568c3f5cbdc072aa7cbf4b280760b11c71eb689104ebdfa69d6e30a427",
+          "reason": "Use exact pinned directory spelling keyboard_mouse in the mouse header include.",
+          "verification": "Actual owning states.c with Clang nonportable-include-path error observed original RED against pinned lowercase directory; corrected exact header path GREEN. All13 current selected/generated ARM64 objects pass fortified compilation; actual WASM full typing win passes."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original mouse menu starts at370,310 inside Play. Relative mouse stick and separate Select preserve the source rejection of out-of-range cursor packets; no direct calibration assumed. Expandable normal screen keyboard supplies letters, Space and Backspace, with Escape for the original menu. Auto orientation/panel keeps the complete phrase and keyboard visible in portrait and landscape.",
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "e2cff455e28abbf576d0e185435640b8f309effad65e8c7f0bbf5d62cd24c019",
+      "reason": "Original golden T/Y/P glyphs cropped/enlarged into simple blue keycaps, original XPM artwork unchanged."
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "31965653ad0f6180a15995c3eab62452331003548553ca9ecc81ab1f686a40ef",
+      "reason": "Actual browser correctly typed green prefix and remaining original gold sentence, after screenshot-only phrase recognition."
+    }
+  ],
+  "verification": {
+    "browser": "Ordinary Select, actual screen-keyboard Z typo/red marker, Backspace correction, first real letter at0elapsed seconds without crash, then the observed original sentence reaches YOU WIN20WPM99accuracy. Screenshot-only ten-phrase matcher scored0.999 versus runner0.664, no game/RNG/clock access. Escape returns original menu. Portrait390x844 andlandscape844x390 with open compact keyboard visually reviewed.",
+    "ndk": "All13 current selected/generated-entry ARM64 objects PASSO2/FORTIFY2/stack-protector-strong/format-security.",
+    "native": "ROOT visually reviewed actual ARM64 Android touch gameplay and Home return. APK SHA256 18ab292cf6ff9d12e7765841b0013c8e45181a65e082d01db7a4edbd7d24f94b",
+    "limitations": "No fixed random sentence or score promised. Original two-digit WPM/accuracy presentation and completion condition retained. Canonical3 frames queued after ROOT browser UI reservation.",
+    "nativeEvidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/c51-c52-reviewed-native/results.json"
+  }
+}

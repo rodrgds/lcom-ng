@@ -1,0 +1,89 @@
+{
+  "repository": "https://github.com/LuisEduardoReis/LCOM-PewPewsAndExplosions",
+  "revision": "dc16d8fa831048da90191df113b5551a2282e1ba",
+  "project": ".",
+  "sourceHashes": {
+    "KBC.c": "34e798ed7829c87398877885c17e4f2444f9c37a4544de2982a38a43d4838565",
+    "KBC.h": "9f957b6fdb09082d7096eb11517b347a7581098a6bc85b5e5ddfa3076e4f7b93",
+    "KBC_mouse.c": "f36bc5147d2e1fad164c4c588aed9a038e66735a21d30fe94cc7354ce0168470",
+    "KBC_mouse.h": "39ec7324bc57559f57fc8d69a9744b5bc0dc4827e700d4e56b6987cae77c3726",
+    "Makefile": "fafc51973b43f82918e9a9335615f5a59ea577d46635c2cbca1954a0b047e3d1",
+    "Player.c": "6dd29bb1caac1d8c3a70fd4d5a2b1315baa7689fce4bef1b82acf0decc07a2de",
+    "Player.h": "09a17b2ee72e337b3107a4647ada310a3802e29355c69b99c3c1b0e99f14c820",
+    "PowerUp.c": "0c6da76745848465a334d1e694658e4498972c7c6556cc1983e556857d145932",
+    "PowerUp.h": "5d87d7f5ac3ab3809316b1e5b8b7bb9cd710f2e17ed190f1cce815412508b271",
+    "RTC.c": "41b6962a89263ba1ead149f06006f6b18dc2d766045e60aafe2c18d286c18001",
+    "RTC.h": "ed29f434acd2c4f920afe5532a46351253e908cda7faf5051dacf5d0b616cb89",
+    "Serial.c": "207dec9342d116b73edc175a8fc65144b001327e208e5cd8448318dd5a172bda",
+    "Serial.h": "0e7733aff1313c21387cbef3e5752d131514e6789579406182676bb2cd9fc239",
+    "collisions.c": "fa2282b4915764385c085dde49bc241b6b2f479c144e57da30e2b892bbbed558",
+    "collisions.h": "1bc506cd9d9bc9f4b946e888887727d7cbc27514a248e38a3b70e5ff78aedbc7",
+    "enemies.c": "8d0bffb255986f88da01dfe25934f4ae965fecd73487e1e905b5507e000834f6",
+    "enemies.h": "610cb688a6feea14f63c878acc7ede707933d80a8a769ad4bbdf9ecead476485",
+    "entities.c": "fb4487c11caec5ced8e065284e88f67d423ed954860ab2284938446b1b805dad",
+    "entities.h": "75778426be70e8ffa490be3bd1a303d0b1289b748ffb9a5ee9410675739ece6b",
+    "game.c": "14a8b2613d46b0ece4d7dd553b4e5b17d88169f873a48849d37146be7efa0b8a",
+    "game.h": "ddd300ac4ef576eb0802b80cd8488a9a9f53bf1c11f032b11320c22d92fdbc3a",
+    "graphics.c": "db8ed79dcee2b2639c6c098c00cc1c454f790125f6e174e6e3419fca8893c319",
+    "graphics.h": "0ae86d0c7bcea6ab34efbdd8b40a4bef8521895fbfb8748b18fd4955125f077b",
+    "i8254.h": "7af89714ca98361a59bd0be644ff59f807b7c28593baea3529492ac9e53ec1cb",
+    "input.c": "e49c65d1b4f47b3aff3602b265c288166d536b257b0f5cfc84e37941b509d3a3",
+    "input.h": "0e5c08d7e8349d509c84011ee2d2c88bff1d5e549bd53d9ba5ab0757e7831e99",
+    "lmlib.h": "39266674d6e78989c967cd54b2780b0b6b673e595be1ddca927b773074dea5b2",
+    "main.c": "fdedc05cec27b9c8a95b0c4acc467aa9cd8b9a845c0f372d83b0845411cf56da",
+    "projectiles.c": "7037cdfe3a966f4606ae25c23d2072f889c8eba9996ce9b916b54842c1097143",
+    "projectiles.h": "2129c0232feecbd94d1630a438dd3b7286ecd0bd623438239dd0095a719b831b",
+    "res/chars.bmp": "f05042b8187499d82611715e3584f62ddc2649c21c62b9c3cfb0b6db8c608ed6",
+    "res/sprites.bmp": "903c264d3afdd7e31f195a76f11c4a106b1f98d0e61cf6e0f330a87293bc710f",
+    "scoreboard/.depend": "0c52f3c7c8b3b0ee389687f005a0ce91407dcfdd5b27a3ecbc7d69383a780250",
+    "scoreboard/Makefile": "f8978cb9c09e5ae0834063bf034f70d18d2a60f042aaff68db6a901d160850b8",
+    "scoreboard/Serial.c": "7bc86151e113657ddee7089fc92bdf3bb9831f972619c4d23e3d2d7403d3ccf2",
+    "scoreboard/Serial.h": "fe1fcfdd2a2a39065c65f3f70a9f36f1aef65448f79f64c6197261be279b8cdd",
+    "scoreboard/lmlib.h": "39266674d6e78989c967cd54b2780b0b6b673e595be1ddca927b773074dea5b2",
+    "scoreboard/main.c": "df711b29deecbf4dc6cf9b7531bcadaaf6a397eb7849f7c9673b98534ac8f756",
+    "scoreboard/vbe.c": "a2276724a9a73344ae92010994fcaaea834310b64889b519a3c82b26341d1b61",
+    "scoreboard/vbe.h": "c8db80c97e2471e613e280ba6804cbeab50c59f0eb1a7643303944b454b15216",
+    "scoreboard/video_gr.c": "a73132810da74cb0ee70b399ee87d5912d86c355bd8d495c197d893788b1c730",
+    "scoreboard/video_gr.h": "b40405fe5425a26c6ed59603f930b9f0273d38696a089fc57801e02218a10c61",
+    "scores.c": "e7527e7d5276627c39a81f4091176990b3e92e3007befbb5484c82bb5dd370d6",
+    "scores.h": "82c2dfe4ee585f352a3b0326f37d4b8f2f68e96160892149146b46fd74fca89e",
+    "sprites.c": "bf0f4d11fdc1e0431c24506daa10242f053409195ebea243bd416ee4a3d98870",
+    "sprites.h": "0ef5e884c7aa55284c80327d34d2be9d410b91878b520d554bb740d3f9d11e08",
+    "timer.c": "12c08b5a8c17e6048f0af9ab31fb2656ae18f6e7fdb4988375363105b3711d1b",
+    "timer.h": "597a28b17dcd0a83f5a3b5e94cfe1f06a241c681a5c5134e22b1a40714402332",
+    "util.h": "9c43d14e887eabdccc393467087a15b440418bbe8cc9876ee64cb3f84ef67aa6",
+    "vbe.c": "ea4e4516006bcabf892a9e8d5329c0d156f1973355eddebfaa4674046e368b9d",
+    "vbe.h": "451fb16484c2265dc4fb36132ed225ba51fb3e8f0c4db19be6fdec648834c5d8",
+    "video_gr.c": "8fda37b5a0ac6200f516f4c746c1e052f64cc585ff47176d3e0211337dd59753",
+    "video_gr.h": "1f2e00328361d18689e79c18c7b0805feaa6bee4ab00f23dd122c14b08514eb4"
+  },
+  "selection": "Pinned project tree and root README; generated documentation, VCS/OS metadata and compiled object files omitted.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "scores.c",
+          "originalSha256": "e7527e7d5276627c39a81f4091176990b3e92e3007befbb5484c82bb5dd370d6",
+          "patchedSha256": "062ebd482a199d0436bb29bbea4d2879409e9be7b52c4e8e216aadfc1b1fbefa",
+          "reason": "Declare the existing score rainbow animation counter as int, the type assumed by the original compiler. Modern C requires an explicit type.",
+          "verification": "Original actual scores.c fails -Werror=implicit-int; corrected source retains ranked highscore and successive animation hues0,5 with compiled regression."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original cursor starts400,300 with unit relative mouse deltas; move down192 and left-click Start. Left arrow pad controls ship in all directions, right mouse stick/screen relative touch operates menus, Select is left mouse and Shoot holds Space. Panel reserves room outside original score/life HUD in landscape and portrait.",
+  "artwork": {
+    "icon": "Original red player ship at0,0..64,64 in res/sprites.bmp, magenta transparency key removed and nearest-neighbor enlarged over plain dark background.",
+    "preview": "Actual browser gameplay canvas after touch menu selection, movement and Space firing against enemies."
+  },
+  "verification": {
+    "browser": "Landscape and portrait real CDP touch enters Start, fires paired bullets and moves ship left, enemies present; Game running/errors[].",
+    "native": "Configured native compile and45-tick presented framebuffer guard reached. Process-only asset alias from absolute binary directory to projectroot was supplied because original derives resource folder from argv0. Embedded export uses/game and authored/res alias.",
+    "android": "All19 actual source translation units compile with NDK27/aarch64 syntax using importer-equivalent legacy LM_STATUS flags; actual Android gameplay pending."
+  }
+}

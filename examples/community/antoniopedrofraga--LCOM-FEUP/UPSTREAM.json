@@ -1,0 +1,134 @@
+{
+  "repository": "https://github.com/antoniopedrofraga/LCOM-FEUP",
+  "commit": "1854f13c82d17ec84a4dcf9dd8bde700937af682",
+  "project": "proj/code",
+  "sha256": {
+    "README.md": "5d9da7f6b04e3e055d290ea54e46907f72fdb723ba12182626336b391fac1c87",
+    "proj/code/jogo.h": "d701824d5b0bac984f1402de4e74c64d25fa63f849e82531644960b0d952cba4",
+    "proj/code/mouse.c": "2d5ef265052ab57b254d196fff4383eea547ca04bcc48303312af62b7f52690c",
+    "proj/code/timer.c": "0d19d5ee08bfeeb585353eaeb9c84cec118c0ee33b1b9afa1be2627a77ce23af",
+    "proj/code/kb.h": "96044d706881a94e7d542ad932b97237501f41297af20325780e26ea2060e825",
+    "proj/code/rtc.c": "4c0b8ec1f9fae60bfb6046283d71cb7c0b0ca339b08a4754cff08c00e5bc4649",
+    "proj/code/Bitmap.c": "5221fd84c3cee92130d22e330a3ebd4263706986dab49935e710e8fa7171374b",
+    "proj/code/makefile": "2766917e2225ca4817edeb3b8e5a9fe698bd85617927b779df040cef8ff79fb7",
+    "proj/code/vbe.h": "9e534763be49f969cdbc6d8dad4161843bd06853f5c649567749e5a58c27cfae",
+    "proj/code/video_gr.h": "fff1a27477b8717f70c47497442accb172785b763abdede5c55c6a8ee4b23da8",
+    "proj/code/proj.h": "a43491f27ca2644b923a64193c8d8523dfbdb82d3e937ef5f70609c31b2f15c9",
+    "proj/code/i8042.h": "9c62ba6bf6d222ca7de232be4cdb81ccedfb2c17d61fb601104022c05b00de2b",
+    "proj/code/sudoku.h": "fd6d756ade6c345bcb91adffa4395b526673f8d856c20bdde249ec4cb586a147",
+    "proj/code/lmlib.h": "39266674d6e78989c967cd54b2780b0b6b673e595be1ddca927b773074dea5b2",
+    "proj/code/mouse.h": "981774fb433d711ef724cc9981b4d1be6b679c2ecbc0601977fa24e394085e01",
+    "proj/code/timer.h": "297bea5e22bbf367f48ac21e2718a6d7904be308abc4201317a9ace2c9e6ec4a",
+    "proj/code/jogo.c": "93973952b7721fa99f2cfbdbdeb0604ba95c18eb3f33ded5231c070d41f3bd00",
+    "proj/code/rtc.h": "1f6bef2e1b9863ed747e1d5211da98908802f44de0b8b4af2fa73e43e129af15",
+    "proj/code/kb.c": "49d59f0bdbbd6ee1764343295d1df3daa2a51927158c8e698f2631986c901cf4",
+    "proj/code/vbe.c": "4f470783d6946654788f8002847f75d2cd5e1f152e5fd705394919fccc540a0a",
+    "proj/code/video_gr.c": "68f43d045e3611f67f483e1a9640190b723129fbb94f68dfdd2b9bbce3d40812",
+    "proj/code/i8254.h": "9667994cd0cd91ff39eadac5e85ecc2d3dc11fecdcf358ec5cb44a3a7f0c84b9",
+    "proj/code/Bitmap.h": "f89aa74ba2c837dcc0510446525db25ded4f61a67ca9d011a5dfdb3b998139cc",
+    "proj/code/proj.c": "09292122c0ceae387e102258bc91c2ae8508b6fc0b87b44080daf9e118c6d796",
+    "proj/code/bmp/mouse.bmp": "6d0116407abd95cfbfcc1487a36d3633835f6803724a40fd9f5c4db9a9725833",
+    "proj/code/bmp/quitglow.bmp": "5de7d4cdde51a34244a63dcf5ca21c30b1bd47b1b6f9dd3e013d3a2ba45dad32",
+    "proj/code/bmp/play.bmp": "29f829802356b0bf1069272ea9c8bee8ecfb39b6c977ff2992775a49fa3840c5",
+    "proj/code/bmp/winmenu.bmp": "86803685866178d208f6654a62799e98956214feb90f3b24bcdc086622e76f59",
+    "proj/code/bmp/time.bmp": "06ca26d304e7c60008b309ce7d6a369be60be43c833254a14ec993f51d64d657",
+    "proj/code/bmp/backgroundmenu.bmp": "e21cf7b0ce2689092a646bfe57ab888e9b0effe03f34aea1b22cfaa62f263575",
+    "proj/code/bmp/slash.bmp": "125955553650b5771627f9e08f1fc1d57c6ce72cc91636874080b8baaec31493",
+    "proj/code/bmp/quit.bmp": "b54b6f787b9095a4daa30f1776060ae2a81fd80907fa37aab80850e9546f6829",
+    "proj/code/bmp/highscores.bmp": "3a9087e86f7bdb111be784b86ffeb000544fd2d0ba2c0c263667b96d5928d807",
+    "proj/code/bmp/playglow.bmp": "d354bfe474e795d639bd4b58c72f5ff347ea782cb84723a83016805341b7ae61",
+    "proj/code/bmp/numbers/9glow.bmp": "cc9f64d2aabae6b4ace8fcf10391a35334b041eb14e615f2bc4834bafbbea46f",
+    "proj/code/bmp/numbers/8glow.bmp": "c50dce6b93694d2ea6904cf2b7b0352d2ed3ce7caf13f63d4e31c354048f882c",
+    "proj/code/bmp/numbers/1glow.bmp": "839fc62a9bc17abf6b9c8d5be148c78a8eae8fdd171834283c47c44c7379b4e6",
+    "proj/code/bmp/numbers/3.bmp": "c610b9298bee0c056c3cfc2031de31cb7e6ea74ff33a4f63b83d128bb0b6e680",
+    "proj/code/bmp/numbers/2.bmp": "af8070e3aa8ed907deae1774cdadb6b8ab779f9b94554de7190e4e56dc289d1e",
+    "proj/code/bmp/numbers/0.bmp": "aabf8a0e30dbb1395bbfe2bc6bed09b62e716d5b98b8b69f6becb302652b1788",
+    "proj/code/bmp/numbers/3glow.bmp": "aa443264f34f0383ef45a9b5b7b2f80db5b985ad86a221939fc460ad6b9ffb12",
+    "proj/code/bmp/numbers/1.bmp": "a6d31f5e2ea867c4bd0600d6e49f8e21b6cb6a2fe30980b4834e9c60ee7738e7",
+    "proj/code/bmp/numbers/5.bmp": "996dea87909e1f131e2da68a2fe356e9dccaa7cf3e48aa8f510456de4232220f",
+    "proj/code/bmp/numbers/4.bmp": "0207e96f3edf265726b7253f245b061a3aa885ae178dbfeac0106906c99ae598",
+    "proj/code/bmp/numbers/2glow.bmp": "e793470ce6a6f87605792d18630b74e3c422287eaaf5c0544ddfc4d675f4ee1a",
+    "proj/code/bmp/numbers/6.bmp": "62096b598bc26af200fc3d3b1767a05dcac17986bd2e2fb2da62e7a07b4591aa",
+    "proj/code/bmp/numbers/7.bmp": "7c6a57a6524446805e7b384eb00ff24e6e1f94ab4c37d9e373e6a1f1cf18272e",
+    "proj/code/bmp/numbers/7glow.bmp": "fa7e3db1cc199b5f64a968c8db66dfa113e2d47f4a11922af3ec581487f0b99d",
+    "proj/code/bmp/numbers/9.bmp": "ba7ffe57d1a260c04012db098342def605cf495228649680690dd9f7d679d725",
+    "proj/code/bmp/numbers/8.bmp": "71472286f390a88e221ea400029bfa137ac95a25a26055aaf606d81cc6fc1956",
+    "proj/code/bmp/numbers/6glow.bmp": "10bc3c9354b0b96e6583f387e4e141a4bb486997627fb91253c7f65d5985e40e",
+    "proj/code/bmp/numbers/4glow.bmp": "c83630d4edffc9dbef50d2a6d384c916fed26361924a6e2fd49342e529982c34",
+    "proj/code/bmp/numbers/dots.bmp": "00eaf53510ad76bd1fcc9d817832d44545e89dd0c1a6b450ba51b3b88455f63a",
+    "proj/code/bmp/numbers/5glow.bmp": "c2199a87b958d138f66dc56091c3d8e28a1193aa1c3735b36a8e42d66beeff58",
+    "proj/code/bmp/dificulty/easy.bmp": "73b5d4e96c90cb076776f0faa54fe23d7bf0b650088f5ecdf9c551109833f175",
+    "proj/code/bmp/dificulty/hardglow.bmp": "b2f5396f3390c4c72b91d09330066423dffe90bda6b06373fbea1762c2e9af4f",
+    "proj/code/bmp/dificulty/easyglow.bmp": "13696176f6bd16342ecaeb373b93e6da1c1afd5bf7d127bdb9a345d5c8a36656",
+    "proj/code/bmp/dificulty/backglow.bmp": "ea77cdf35d86102b357b33f130493b8ae64c67591d9bc85675bf12beeae14da4",
+    "proj/code/bmp/dificulty/back.bmp": "6e413e64f31b6562df27d366a665a882245482b4ab2445dc1ce542ff536b0835",
+    "proj/code/bmp/dificulty/mediumglow.bmp": "387373c75b6cecab9abcd9ed090b7873fb558c6a09570af5c6bbc30b1df9732a",
+    "proj/code/bmp/dificulty/hard.bmp": "966af0d8820ac7ab1bcd30c4a0d899c962ea95e735af27585467f16df52bce48",
+    "proj/code/bmp/dificulty/medium.bmp": "890b142f771fb02197ef0154e089ab7237a411a9fb4090074048e84f64a60792",
+    "proj/code/bmp/board/board.bmp": "8fcb3218a9c3a80c847ae4967b5591ef402901f60e9b87d77706303b0c1610d0",
+    "proj/code/bmp/board/square.bmp": "3892b7115c66e74088005bdb4cf84abc65704dd65f35b29e3c9bf83b5a417942",
+    "proj/code/bmp/board/gamebackground.bmp": "b8290061761e5f6c50c0bf08b79bad3ec13e94991da63d6c0f5981c838b21dc7",
+    "proj/code/sudoku/easy/3.txt": "f61ba5e43512f39efadb0edd8767d5a498f94ab7af08b0a4d04c63f9672b0ca3",
+    "proj/code/sudoku/easy/2.txt": "06a93c53ba4c3db36260f16e4712cb45ca350a0be2333840b1b94405830ca791",
+    "proj/code/sudoku/easy/1.txt": "d3466ac7efd742aaf3717fefb8484ac8876f3fbe864ecacc6de6d28067004f71",
+    "proj/code/sudoku/test/1.txt": "872bc9f846f287418c5e4f5b22f0ff55e899403c625fb949d32ffc9a296d2bde",
+    "proj/code/sudoku/hard/3.txt": "c2d43d146075ad48c1c7ccb844745c44f270cb6d2c69d3a73999b297830cf23c",
+    "proj/code/sudoku/hard/2.txt": "c56cc28281cd69264e5479863aa317e7e413c1051fce97997517c2f57edb4441",
+    "proj/code/sudoku/hard/1.txt": "87abfd2eedc00c236b9fc3c2813f1fd0ea10189e75c81f13df42e807fc435451",
+    "proj/code/sudoku/medi/3.txt": "54f85f3819966a358b7d0b6d300e7cc853a6a99b2d2a0c36d410582d418924f9",
+    "proj/code/sudoku/medi/2.txt": "09a0ba99108fc003244f701c6327f61c33618e771607632bf3565f271e12a9df",
+    "proj/code/sudoku/medi/1.txt": "87af63678050e69d1764eb9371a678d6214fc8244324ec3899b2d7b7f8935bb3"
+  },
+  "selection": "Selected original project C/headers/Makefile, all bitmap art and authored Sudoku puzzle text plus README retained. Labs, install/compile shell scripts and bundled build products omitted.",
+  "excludedMetadata": [],
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/code/jogo.c",
+          "originalSha256": "93973952b7721fa99f2cfbdbdeb0604ba95c18eb3f33ded5231c070d41f3bd00",
+          "patchedSha256": "c5d2229297fdd0c118ee97bcaa9bdff0cac2b64e52b42fb233a68bcef3961ff7",
+          "reason": "Initialize five keyboard loop guards before testing them. Bound difficulty filename construction and load only complete in-range Sudoku records. Decode complete signed9bit mouse deltas with header sign bits. Clock/timer repaints draw the cursor without applying a partially received mouse packet. Timer-only repaints also skip cell/Back click processing, because no new mouse input arrived.",
+          "verification": "Original optimized actual WASM unreachable→corrected real menu after guard initialization; owning compiled menu fixture checks timer then actual Escape. Original difficulty path stack overflow RED SIGTRAP→GREEN allthree difficulties and malformed/out-of-range input rejection. Original full signed9bit delta fixture RED→GREEN121pairs preserving originalgain2 and64x51glyph clamps. Actual menu partialheader+x→RTC→Escape interleaving RED unintended cursor motion→GREEN unchanged cursor until a full packet. Additional owning clock redraw fixture RED requests keyboard input from a held cell without any new mouse packet; GREEN repaints without opening an editor."
+        },
+        {
+          "file": "proj/code/mouse.c",
+          "originalSha256": "2d5ef265052ab57b254d196fff4383eea547ca04bcc48303312af62b7f52690c",
+          "patchedSha256": "6d35e4186026d8695fdce13401702de72bb278c790f0c2cff0d8db4b80830ae7",
+          "reason": "Consume and validate each original F4/F5 command response through existing get_packets before entering game packet processing, so ACK cannot be mistaken for motion.",
+          "verification": "Owning original command fixture RED leaves pending ACK; GREEN enable/disable each consume one ACK and reject RESEND cleanly. Actual ordinary touch now enters Play/Easy and selects/edits a board cell."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original menu cursor starts100,100, gain2, whole64x51glyph clampedx0..959,y0..716. Use panel relative mouse stick and Select mouse-left; number1..9 and Backspace quickkeys match original release-based keyboard cell editor. Escape goes back. Direct/calibrated touch not enabled. Exact original resource alias preserves double-slash filenames; shared SDK matches repeated POSIX separators only for explicit alias fallback, preserving successful original filesystem paths.",
+  "artwork": {
+    "icon": "Original captured Sudoku grid on a simple dark gold tile. All original bitmap bytes unchanged.",
+    "preview": "Actual gameplay with an entered1 and original red conflict highlighting, scaled1024x768 to640x480."
+  },
+  "verification": {
+    "browser": "Actual normal CDP touch Play→Easy→board→top-left blank→9→1 in landscape844x390 and portrait390x844. Live clock advances and original conflicting entries highlightred, errors[]. Puzzle is selected by unchanged original RNG.",
+    "ndk": "All9authored C translation units compile actual ARM64 objects with -O2 -D_FORTIFY_SOURCE=2 and importer-selected lm_init status ABI.",
+    "native": "passed: representative actual ARM64 Android emulator objectives; see nativeGameplay proof and limitations.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "ee9d8c9bacf7f813f0a2eb62cf118f455869c9b34aa139c2008d38977c186c05",
+      "evidence": "build/arcade-100/sudoku-native-final/results.json",
+      "demonstrated": [
+        "Original Easy/Medium/Hard selection replaces Play/Quit.",
+        "Original randomly selected Easy grid and live clock appear.",
+        "Top-left editable blank contains9; rule checks may highlight other nines red.",
+        "Same editable blank changes to1; clock advances and original conflicts highlight red."
+      ]
+    }
+  },
+  "runtimeRequirements": [
+    "Shared explicit alias repeated-separator support, c/path-separators/alias-separators.patch."
+  ]
+}

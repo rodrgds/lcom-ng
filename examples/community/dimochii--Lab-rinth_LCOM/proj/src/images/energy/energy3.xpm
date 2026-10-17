@@ -1,0 +1,26 @@
+/* XPM */
+static char *energy3_[] = {
+/* columns rows colors chars-per-pixel */
+"17 15 5 1 ",
+"  c None",
+". c #321300",
+"X c #6F3F00",
+"o c #C8913E",
+"O c #E8D0AA",
+/* pixels */
+"   ...........   ",
+"  ..XXXXXXXXX..  ",
+" ..XXXXXX..XXX.. ",
+"..XXXXXX...XXXX..",
+".XXXXXX...XXXXXX.",
+".XXXXX...XXXXXXX.",
+".XXXX......OOXXX.",
+".XXX.....oooXXXX.",
+".XXXXXXXOooXXXXX.",
+".XXXXXXOooXXXXXX.",
+"..XXXXOooXXXXXX..",
+"...XXOooXXXXXX...",
+" ...XXXXXXXXX... ",
+"  .............  ",
+"   ...........   "
+};

@@ -1,0 +1,117 @@
+{
+  "repository": "https://github.com/rendoir/feup-lcom",
+  "commit": "7b03b6745d78144fe46d30b03fedec0f0212ecbb",
+  "createdAt": "2019-02-17T20:50:31Z",
+  "project": "src",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/rendoir/feup-lcom",
+    "createdAt": "2019-02-17T20:50:31Z"
+  },
+  "sha256": {
+    "imgs/0.bmp": "1bc1c2bdb2b8b57a10713565486e47484a533e6d91e180f544228f9586f57839",
+    "imgs/0_s.bmp": "6e720b35dbb3d10bc506ee2f16f702b09d9aa30c2f6b91ef59c488c91b62ba0a",
+    "imgs/1.bmp": "06aea629d3ada0e232e9ebfe8ab95dabc53de2229679806373a9cc4f7bcb2437",
+    "imgs/1_s.bmp": "6cfc88f358c66c0987ae4e688e8c23a78acdf3edbb2b2c5eda9423954d922901",
+    "imgs/2.bmp": "d5e4a738c9dd3591be6e7113bbf9ea995fddd9d22d7f3b0c959359192bb87a34",
+    "imgs/2_s.bmp": "edf42c69f508c96aa8e7e0340b84aab62451bd0bbaf30b200792ca3457f89b41",
+    "imgs/3.bmp": "cac79419c81b8efd16f6e983159afc1cd722adbc6d370f55347a8c77cf58a3f4",
+    "imgs/3_s.bmp": "f8a42b4dc0faa984efe0c369f2d6e7ee4e300a4d79a1800c22bd9fd7e065d9d1",
+    "imgs/4.bmp": "c1000c36e95277b5d84fc12351885e2ac06c0cda244e89ecd43a9b6bcdc24a81",
+    "imgs/4_s.bmp": "160732c9b84256bbd812d76aa0deb521b536345ec436bc7617241a6169385b31",
+    "imgs/5.bmp": "6c321fb257d166e3f6034bb71de52881650bdfb52df2367f863cfa540890904f",
+    "imgs/5_s.bmp": "1a6b4c5ea060ed5e408bd21510052b8987d76579aff7be9958f7276de534581b",
+    "imgs/6.bmp": "2cfc3ae5c0e099216cae0e064e3572196dafc80f47372811424b2fc21840ae4d",
+    "imgs/6_s.bmp": "e5170dc16d1096771f0ea71db74e459368ae535bf25855c9d70f88b0714e1bba",
+    "imgs/7.bmp": "5b2d5789920b1f5cf5cca9f812ac6b3000313b97d8d7c50aaa98b372155060e1",
+    "imgs/7_s.bmp": "a5a461958dadf14c05592050409af06423d534953a1958b58e2b2bb8abe512dc",
+    "imgs/8.bmp": "6eb6fb053b402da5e7ce296a1c299b7a8398089277696c7998f7b7fcb2e5d26a",
+    "imgs/8_s.bmp": "91486fe14da362a24cc1c91e8874d63de229ef5f4dabf8570dead67b3343de07",
+    "imgs/9.bmp": "36427dd9fdebbf4e94fed5fa4c5ef412f084eb5f568da9d6a8a2179c165150dd",
+    "imgs/9_s.bmp": "afd9917125ecefc1714bfcc46746fea4ff24a3f73e0f9bd1093cbe4e0348b98c",
+    "imgs/:_s.bmp": "96fb41380c72fc383878dfd5c51b3d6f045fd70c14d6c89448cce75435627ad0",
+    "imgs/Background.bmp": "18cf2cab1563142305b5d89248b3c48c25363cbe8a3ca593a2c58024007bd0a4",
+    "imgs/Exit_Selected.bmp": "665c0b17381331dca85cdfc628e3b937a51f38c35c13e8a53d0852515758fe15",
+    "imgs/Exit_Unselected.bmp": "9af4027d8bdba5f4e3f3fab528ad7cbe9702f1418e355cc05237d0632882fa1d",
+    "imgs/Highscore.bmp": "6c8edf3283c6c194b7374a88f633bc3d003533c1d7a0bf3cf48414a03a3acc19",
+    "imgs/NewHigh.bmp": "ac1de0998fcb4b9dd9e28beb04d592adc4a8b14c6b4e24d057e706f8c43036ac",
+    "imgs/Play_Selected.bmp": "430902446bfcc3a8505c53bf1db1d3f93a93b31265b710891ab2d834cccc100a",
+    "imgs/Play_Unselected.bmp": "d74ac5012fcdd86309e807d677be1d5327ed86d319012124c9fb0f151a509c19",
+    "imgs/Score.bmp": "769fe108f759ba73d64a765d7793fc4dbf2713bff63e951b637b6bf99ee5b17c",
+    "imgs/StickHero.bmp": "dc0328280952c63b0ddeb8b5e48445319fb1e3c1608ddc040ba4369fa8bff856",
+    "imgs/StickHero_BW.bmp": "c6f3ad715e1c1f1c58ffac6bcb206406c1ec351fc36a16566b4d2a9c134dfd19",
+    "imgs/StickHero_Walk.bmp": "92b8c0f186fa33386fe2c781ac57b5484a702578e185cf5234f86ee5f86ffb47",
+    "imgs/cursor.bmp": "2ecc8862d96b2ced6edd968b69c72769c740fcb00fd7acf85c2fea37487d9e7b",
+    "src/files.c": "de130d731f3e291e7399da91ee0db0106cf6e611999f4edada140d5c81972e35",
+    "src/files.h": "8a6e9c0225cf4082b35da184f7f14fd0aa9e65f9ac3712624eb392fad194259c",
+    "src/game.c": "deef08e47ee5352f486e53d60379b6dd1d0dd5ba46c4aea1467ec90969325fc1",
+    "src/game.h": "8a800d71fffe3d02d6d5908c5f9fbbbcf39a1890e840d061917e54fca7fd1b45",
+    "src/graphics.c": "0144aaec0d57e9eb557743bc15da8b8653b5b8a56ce2c7c0144387a22fbe2c31",
+    "src/graphics.h": "e56f8c8e8c7a9628a859b770b4da17dad7d689522b7c96460fbc79a9b02d19dd",
+    "src/keyboard.c": "9c7ec87e5885b892e9a997ef2b0eacc6c9d0929a08b48d401235574c70f09eab",
+    "src/keyboard.h": "3635e8567670d7aba2887e3c7f18772860478a5ccb7d1b3c25e7da1e287164e8",
+    "src/lmlib.h": "fe93144f2fe19e988b5c6ba1c3e6aec5daa243be94e5306f5950dbdd6964cdee",
+    "src/main.c": "9e20325684cbf56ee8478da948842c7be220ed0d475cba1a0a962554e0576e0b",
+    "src/makefile": "c71d5869a56fa2f8a7c0e49889477dfb25aa9b2483d6dc0425a7cb89127264d1",
+    "src/menus.c": "d66b67981fe27492638c9a3c37cde4ff2a094007180d8188e1d45e71a3c8eddf",
+    "src/menus.h": "2141fac701ef5d0853c4f8ceceac8656b0815fc3ab95fc5e83cc41ff908b43d2",
+    "src/mouse.c": "7ec8ab9ac5c3b524d41beb806c482ff4b08307e484e8d55323e4d8de81868228",
+    "src/mouse.h": "e25ffdeed7d1ddd79f54e589d08ed38b6b24868e92f1041da5771f9a69e6796f",
+    "src/rtc.c": "5e0452356ae37a0c980b5587b75a4ad5e854832529b10c5e3acc3205e56f4e6a",
+    "src/rtc.h": "8de6ef9da3017ae8c7d6b02e663b0e9d94a9f2f18e33880a6f8da3a0c4330aa5",
+    "src/scores.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "src/timer.c": "48b4c8369c1bd47f1e0ddcd90e302c18abe18a1b4d670cdfd9293755259f7a22",
+    "src/timer.h": "2519eb2a502cfa88f68a846c3a4f6872d49d0c8d62bb26255a3b6cc7771673c4",
+    "src/vbe.c": "89e14a34589967bf633e620ec750d117d57e2b5d0c9c4e164df2d21d7ef770e3",
+    "src/vbe.h": "c7d0f36ee84ad810f18e9bf8a80b3ce54224b1401cc7883cc8575068b6327cb0"
+  },
+  "sourceChanges": [
+    {
+      "file": "src/graphics.c",
+      "reason": "vramMap checks its actual returned mapping after vm_map_phys, instead of reading an uninitialized local pointer. Real browser startup abort and owning real success/failure fixture RED\u2192GREEN.",
+      "originalSha256": "0144aaec0d57e9eb557743bc15da8b8653b5b8a56ce2c7c0144387a22fbe2c31",
+      "patchedSha256": "fb294ccd04976382b18dcdc70286c828b1c224452308c940fb5d31e517cdd406"
+    }
+  ],
+  "sourcePreservation": "Original project and assets Gitblob-verified. Original basic CLI/STI remain in student files and are lowered only by shared compatibility compiler.",
+  "omissions": "Unused labs, generated documentation, repository metadata, and unused files outside selected project/assets omitted.",
+  "licenseStatus": "No license file in selected pinned tree.",
+  "verification": {
+    "browser": {
+      "status": "passed",
+      "demonstrated": [
+        "Confirm enters original generated-platform game.",
+        "Visible orange platform screenshot determines bounded normal left-button hold using original5pixels/60Hztick.",
+        "Bridge crosses actual platform, original score0\u21921, next original platform appears.",
+        "Portrait original scene and touch actions render."
+      ],
+      "limits": "No full-round/highscore-save or multiplayer claim."
+    },
+    "fortifiedNdkObjectCompile": {
+      "status": "passed",
+      "units": 13,
+      "detail": "Actual exported source traversal plus both clock owners, ARM64 O2/FORTIFY_SOURCE2/Wformat/Werror=format-security."
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/next-four-reviewed-native/results.json",
+      "apkSha256": "53032150ea58fa5b0c4f1fbc2c7dad8c1f3a41a31a9a2d85727ea1f836def884",
+      "demonstrated": "Root viewed the original platform, screenshot-only orange-platform observation, ordinary bridge hold/release, safe crossing, actual score1 and next platform, then clean Home.",
+      "limitations": [
+        "First successful bridge verified. Long scoring runs and every generated span are not qualified."
+      ]
+    }
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "fde05bcd6b7b1e03ed36edb7e4b4e8e49bd3aa5915fb390e2e5199455506df42",
+      "kind": "Authored simple game icon"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "0333be04f7a817ebd0ab4e8ea02761a63507245c3ed4f9e824d5a1057c4d4e72",
+      "kind": "Actual original gameplay canvas screenshot"
+    }
+  ]
+}

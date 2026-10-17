@@ -1,0 +1,11 @@
+--- a/proj/src/ui_elements.c
++++ b/proj/src/ui_elements.c
+@@ -706,7 +706,7 @@
+ 
+ Score_t* new_score(uint16_t x, uint16_t y, uint16_t value, uint8_t size, uint16_t color) {
+ 
+-    Score_t* score = (Score_t*) calloc(1, sizeof(Score_t*));
++    Score_t* score = (Score_t*) calloc(1, sizeof(*score));
+     
+     if (score == NULL) {
+         printf("new_score: Failed to allocate memory for the score\n");

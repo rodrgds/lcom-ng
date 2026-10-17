@@ -1,0 +1,24 @@
+/* XPM */
+static const char * life3[] = {
+/* columns rows colors chars-per-pixel */
+"64 12 5 1 ",
+"  c None",
+". c #400426",
+"X c #84235C",
+"o c #E070B2",
+"O c #F2C1DF",
+/* pixels */
+"  XXXX  XXXX                                                    ",
+" XOoooXXooooX                                                   ",
+"XOoooooooOOooX................................................  ",
+"XOoooooooOOOoX.Xooooooooooooooooooooo.......................... ",
+"XOooooooooOooX.XoOOOOOOOOOOOOOOOOOOOO...........................",
+"XOoooooooooooX.Xooooooooooooooooooooo...........................",
+" XOoooooooooX.XXooooooooooooooooooooo...........................",
+"  XOoooooooX.XXXooooooooooooooooooooo...........................",
+"   XOoooooX.XXXXXoooooooooooooooooooo...........................",
+"    XOoooX.XXXXXXoXoXoXoXoXoXoXoXoXoX...........................",
+"     XOoX.XXXXXXXXXXXXXXXXXXXXXXXXXXX.......................... ",
+"      XX......................................................  "
+};
+

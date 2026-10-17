@@ -1,0 +1,121 @@
+{
+  "repository": "https://github.com/brunogomes30/LCOM",
+  "revision": "bedb2e1dbc9b15ef4690528f236fc46c846d7bc8",
+  "createdAt": "2022-03-31T18:04:06Z",
+  "project": "proj",
+  "sourceHashes": {
+    "README.md": "d942f414540589ad598a080e60d1aa2d4006a5559db5d0e40269d1afa8b81be2",
+    "proj/game.c": "9fa52abecc6ab434dd7de1f88485101368def8bd26d506462cdf4c67cbca787d",
+    "proj/sprite.c": "93450fafff550f4b9e5273668aa84afaa53ceb532e05e721961afddbcb61d84d",
+    "proj/enemy1_xpm.h": "208fad3ea4b41eb9ee0083eea434083a2199f5814f5e32c828b030e244d87de6",
+    "proj/mouse.c": "29dbd31c8a1be636f2479212a9f900b919851ce923d19a8074295cbfe0555140",
+    "proj/bonecoparado.h": "05c0f528fd1504837eff6307ed57d0687fb00eba957589c64de824d03167f2f4",
+    "proj/pistoladeagua.h": "ac99f9509c90dec97f8b09ed5dbcbce29b85b8269144399a128427e51bab986e",
+    "proj/timer.c": "b408ce1ca05d03f6e3be5b9e9103321562cb7cf3c575c9ce2604e0113d10e9cc",
+    "proj/player_left_xpm.h": "ef9fae2c94cc1e1a7612f42cb767443218328276c69a77cfb685370748224855",
+    "proj/enemy.c": "c53f3207ce26e14838315556a6eedad3b3351622b4876027f29a4503613a75ef",
+    "proj/rtc.c": "71802ca4fa17667cb2a9c71ae6cd429ca7245a756ac816413ba259aa81af647f",
+    "proj/Makefile": "b6deedbd42b7284421875de8c52dd4b8d82d0e5406a273a783ea6cde4c72650e",
+    "proj/gun.c": "2e871906b13b92baa34b2d76078e72005cc269aa7a6ccdee300a451044df6c90",
+    "proj/graphics.c": "3c76caffec14b695ff10033c91964bfca4148160403bff5c7df1ad1613146f09",
+    "proj/kbd.h": "3811fd310bc8d343ee4474b0a60bcd63d5b0251fc37d07007f9aee3466212201",
+    "proj/enemy2_xpm.h": "128f68eb82d53e8a951bea640daf1a3f04243afb47c17d96c7cfe068c2e35f59",
+    "proj/player.h": "8e6f78004c1b4e8cb9fad313f6e836fbd8092ad791610fca5454505061852417",
+    "proj/letters.c": "c904715a184fdb591e90ba880ba0f3d44a11d0b5bb3297f1635d1ec59aafcfd8",
+    "proj/i8042.h": "fd45b9c32cdd38faa4aca41a1b01c3608c4bdd9c5fb3302335ab3b76d196322e",
+    "proj/linkedEntities.c": "ec2c4b22132abd6ade1faf3a231f91c0519fefd643987ffeb46d0b4af78d8671",
+    "proj/cursor.h": "60554640dcbcdba7b7d92c78217f5f0466609dbab4b078a4dc8ab2d9dda952db",
+    "proj/mouse.h": "c257f16a1dab686336893e87c49b0bac0e3353c5bca97b6dfe18c7f2b9c3cbc5",
+    "proj/timer.h": "3a379162ab7954e7b55a9b84a9eff823651c234e5543ce6d831444720b3b289c",
+    "proj/bullet.h": "63c9c4ddba74434c397ad7773650f9b2321da58050bfabd1c2b815a6d5e0c40a",
+    "proj/game.h": "1a4d2f7f730820bc87d5f2c8318937f1085929bf34f534d734adf969d672ddbd",
+    "proj/letras.h": "e8e503b9f00e66afc48943871cfd1ba998b45acbd9a7cb1f4654a6df45bbf7c1",
+    "proj/sprite.h": "4350e645b2457a2ec74f7b480fd9fac24ee37f60863ec633ab9f686d0aae6259",
+    "proj/images.h": "00c246db4e183c169f7b93babab65a042669915733c038276753df4cebebf698",
+    "proj/enemy.h": "749f93abdcb1af08ca43ecfae18bacb85a8ec61a687a3c648974ef3a18eedc86",
+    "proj/rtc.h": "7fdea3dc76cd092e55c76481181d770666d1dd21ed18c6352b298c746d7bb534",
+    "proj/graphics.h": "4a59178fec040a1e7083dcb6a0fe00e6479d179c8809834635327d054679a6ac",
+    "proj/gun.h": "81b344b04847aa4c69432b433729133f73a0fef8f27c0cca33e460a5de620965",
+    "proj/kbd.c": "f31f6814144985f8aacc57069fdc8fbe205e5fc2f0af1d139119475f5af9b27b",
+    "proj/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/linkedEntities.h": "df420ebf90085eda5a7c5dbad8157789fef617c3f2fd262ca98ae22c6df10d76",
+    "proj/player_right_xpm.h": "1044185a6da2bba20fda532cfdd85822d44cc10a02031e7d68b944ea372b6af7",
+    "proj/player.c": "acb6e4be3409e7004a38a45cc230cfe1504435ed66a7cc58fe8b61746bde1e9a",
+    "proj/proj.c": "2b84245f0253ea5cbdcd50892b2b4194c6c3adbfefb36b5daf4665728f75f930",
+    "proj/letters.h": "995d1b5ff14b18a44136f907674edd422e41124fd05596b0ae6ccd0de4b12c07",
+    "proj/xpm's/pistolnoshot.h": "453a6af317e7ee0a9d9f18b72d186b2923e894a5541506374a549896547a0454",
+    "proj/xpm's/pistolmidshot.h": "df92660816923ab9356851900afb6226d8efd9dce7fb287195a94cac4ca6ef8a",
+    "proj/xpm's/pistol3.h": "6e67d9bcffbe564f6845bd05ef86d5d6959ddf13555d50b5b49eeeeaf283ac75",
+    "proj/xpm's/numbers.h": "da6448b07c5703331760b9f1c9258979297345d813e7f27d3c7c0766d040ee95",
+    "proj/xpm's/explosion3.h": "01e0cfc4942371da73435b1729b8306cdc840322306054c0c9278d6025321a45",
+    "proj/xpm's/pistolfullshot.h": "e5e84c23b0ebe52667ed706b6438d7c97270a143ac1789aee601530b03c57602",
+    "proj/xpm's/pistol0.h": "3c4af23b7d7082cda23987f33600017a3e896ebd1104b99cf409e4b15c3e4cd1",
+    "proj/xpm's/bar.h": "1a9ab06f3ca6a5932de3557a11ca4d37f53bfbc019ccedae158d7d3426f436ca",
+    "proj/xpm's/explosion0.h": "5fa22c8f740b502ef75ff91648024d7acf36be81ae6880a432011f11e4d62f9c",
+    "proj/xpm's/pistol1.h": "7ca9e27f8ca858eb21e1fc6f822f5ed070d2002fe71aa7e78ac546231ef4ab2c",
+    "proj/xpm's/explosion1.h": "f2a432d9ac69b768f399245f884e49e55f2061766309957383687419c18846b4",
+    "proj/xpm's/pistol2.h": "09809f6248f0912b04ffa33132926f652ae97d048ac754119180cc25227e12ca",
+    "proj/xpm's/explosion2.h": "3164e2753d1bc0d7f1d1e2532c0661a124375eb7032848528b66824449018683",
+    "proj/xpm's/letters.h": "377b69e2eff909ba215a2a98d8309393ca12e60332253811466b2d5747b91949"
+  },
+  "selection": "Original C/header/art source plus Makefile/README. No generated objects/binaries/logs/OS/VCS/docs.",
+  "omissions": [
+    "**/*.o",
+    "**/*.o-*",
+    ".git/**",
+    "**/trace.txt",
+    "**/output.txt"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "kind": "student-source-defect",
+      "files": [
+        {
+          "file": "proj/game.c",
+          "reason": "Stop the collision pair iterator at the list tail before dereferencing the next node, including empty/single lists. Actual owning three-pair/empty/single fixture with null sanitizer traps original; fixed preserves each pair exactly once. Independently initialize missing saved highscore to zero; poisoned Game fixture original exposes uninitialized score, fixed defaults0 and still reads existing150/date. Ordinary optimized native collision code can eliminate the invalid unused read, so this is a proven source UB repair, not a claimed Android crash.",
+          "originalSha256": "9fa52abecc6ab434dd7de1f88485101368def8bd26d506462cdf4c67cbca787d",
+          "patchedSha256": "77f0e0eebc1cf29feb1e4fa7385f349da655ab7a918f8179389fd1125161a664"
+        },
+        {
+          "file": "proj/gun.c",
+          "reason": "Initialize current_image0 in both original gun constructors before updateGunAnimation unconditionally indexes the four-frame table. Independently poisoned malloc makes original constructor-to-animation owner fail its idle-frame precondition; fixed actual idle frame0 and next shooting frame1 pass. Existing gun sprite already starts on pistol0; this guarantees the authored idle frame without depending on fresh zeroed heap. No aiming, projectile, cooldown, movement or art changes. This is a genuine uninitialized source state defect on original Minix too, not an emulator adaptation or proven explanation of current native aiming failure.",
+          "originalSha256": "2e871906b13b92baa34b2d76078e72005cc269aa7a6ccdee300a451044df6c90",
+          "patchedSha256": "9350129747395e38b664bfdaaa3326df69713394cf4caa275c02cb1d93b8a404"
+        }
+      ]
+    }
+  ],
+  "derivedAssets": [
+    {
+      "path": "proj/icon.png",
+      "sha256": "ba023adbc3c7b04ebfa3c6d7148b3ef06b4f28103e5b69914dfad2e9051db3ef",
+      "kind": "Original23x22 player sprite scaled nearest-neighbor on flat background",
+      "source": "proj/bonecoparado.h",
+      "transparencyKey": "#FFFFFF"
+    },
+    {
+      "path": "proj/preview.png",
+      "sha256": "9180b28f469daecbb00dd978c5b7a74330a19e20312e7f212988cb595a945c30",
+      "kind": "Current-source actual gameplay gallery frame decoded to lossless PNG at its gallery resolution, no added artwork"
+    }
+  ],
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/bruno-gallery-observer-a115/current-gun/galleries/brunogomes30-lcom-5bba0d4baf36/hit.webp",
+    "captureSha256": "ec07809488e99003bf9c0270c327ea7b0933ca40c26242dba638e2ab277b67f0",
+    "originalSourceArt": true,
+    "reencoding": "PNG of decoded standardgallery pixels,640x480"
+  },
+  "controlsRationale": "Auto-orientation external panel preserves the original800x600 arena. WASD hold state controls movement; game time advances normally while moving and slows while idle. Relative unit pointer starts at original400,400. Fire is an original tap-to-shoot action, not an invented autofire. Enter starts/restarts, ESC quits. No direct calibration or source movement/fire adaptation. Explicit build.sources selects original letters.c despite the authored Makefile naming a nonexistent letters.cpp; no C++ rewrite or Makefile change.",
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/super-cold-reviewed-native/results.json",
+      "apkSha256": "a9efbfcbef8ba8789e6e1e60776d0e73f2624e3cdf9ecd119f118c4c4c5dca1e",
+      "demonstrated": "ROOT reviewed complementary same-APK Android runs: original Enter/held movement, red enemy and ordinary aiming/Fire producing actual live SCORE100, persisted original Highscore100 on a fresh launch, and a separate normal arena run with clean authored Escape returning to the same library.",
+      "limitations": [
+        "A complete campaign and physical-phone performance are not demonstrated. The successful scored run hit a QA output-path conversion error after its helper captured100; its raw failed QA result is preserved, not relabeled. Clean exit is established by a separate same-APK run. Other ordinary-input trials lost naturally at0 and remain recorded. No rules, aim, projectile speed or enemy behavior was changed."
+      ]
+    }
+  }
+}

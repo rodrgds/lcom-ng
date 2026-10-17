@@ -662,6 +662,14 @@ static PairRuntimeOptions defaultPairRuntimeOptions() {
   return opts;
 }
 
+static bool configureMachine(lcom::MachineConfig &config) {
+  std::string error;
+  if (lcom::parseMachineConfig(std::getenv("LCOM_VBE_PHYSICAL_BASE"),
+                                     std::getenv("LCOM_AC97_PCM_BASE"), config, error)) return true;
+  std::cerr << "lcom-ng: " << error << "\n";
+  return false;
+}
+
 static void applyRunDefaults(RuntimeOptions &opts) {
   if (!opts.headless && !opts.realtime && !opts.no_realtime) opts.realtime = true;
 }
@@ -1727,6 +1735,7 @@ int main(int argc, char **argv) {
       subcommandUsage("run-pair");
       return 1;
     }
+    if (!configureMachine(pair.machine_config)) return 1;
     PairRuntimeServer server(pair);
     return server.run();
   } else if (cmd == "replay") {
@@ -1785,6 +1794,7 @@ int main(int argc, char **argv) {
     return 1;
   }
 
+  if (!configureMachine(opts.machine_config)) return 1;
   RuntimeServer server(opts);
   return server.run();
 }

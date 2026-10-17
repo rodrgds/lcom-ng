@@ -1,0 +1,32 @@
+#ifndef __KEYBOARD_MAPPINGS_H_
+#define __KEYBOARD_MAPPINGS_H_
+
+#define A 0x1E
+#define B 0x30
+#define C 0x2E
+#define D 0x20
+#define E 0x12
+#define F 0x21
+#define G 0x22
+#define H 0x23
+#define I 0x17
+#define J 0x24
+#define K 0x25
+#define L 0x26
+#define M 0x32
+#define N 0x31
+#define O 0x18
+#define P 0x19
+#define Q 0x10
+#define R 0x13
+#define S 0x1F
+#define T 0x14
+#define U 0x16
+#define V 0x2F
+#define W 0x11
+#define X 0x2D
+#define Y 0x15
+#define Z 0x2C
+#define BACKSPACE 0x0e
+
+#endif /* _KEYBOARD_MAPPINGS_H_ */

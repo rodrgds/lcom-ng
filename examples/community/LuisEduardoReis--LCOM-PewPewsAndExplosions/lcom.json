@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "name": "PewPews & Explosions",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-left"
+        },
+        {
+          "label": "Shoot",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "res/sprites.bmp",
+      "res/chars.bmp"
+    ],
+    "pathAliases": {
+      "/home/lcom/projeto": ".",
+      "/res": "res"
+    }
+  },
+  "description": "Fly your ship through enemy waves, dodge bullets and power up your weapons.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

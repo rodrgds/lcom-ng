@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "name": "Type Racer: Sentence Sprint",
+  "description": "Race the car by typing sentences accurately.",
+  "build": {
+    "assets": [
+      "highscores.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj/src": "."
+    }
+  },
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "MINUS"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "touch": "tap",
+      "layout": "overlay",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Apostrophe",
+          "key": "MINUS",
+          "position": "top-right"
+        }
+      ]
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Typing"
+}

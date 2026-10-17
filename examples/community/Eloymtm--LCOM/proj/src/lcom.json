@@ -1,0 +1,52 @@
+{
+  "name": "Batalha Naval: Fleet Duel",
+  "description": "Arrange two fleets on a shared screen, then trade shots in the original local battleship game.",
+  "archetype": "Battleship",
+  "mobile": {
+    "fullscreen": false,
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "pointer": "off",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "pads": [
+        {
+          "mode": "arrows",
+          "style": "dpad",
+          "side": "left"
+        }
+      ],
+      "repeatReleaseKeys": [
+        "UP",
+        "DOWN",
+        "LEFT",
+        "RIGHT"
+      ],
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "actions": [
+        {
+          "key": "E",
+          "label": "Next tile",
+          "side": "right"
+        },
+        {
+          "key": "R",
+          "label": "Rotate",
+          "side": "right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

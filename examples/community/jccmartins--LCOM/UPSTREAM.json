@@ -1,0 +1,84 @@
+{
+  "repository": "https://github.com/jccmartins/LCOM",
+  "commit": "da7c6a4da1e7706f1617e833ab14f73f8f5573e5",
+  "project": "proj/src",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
+  "sourceChanges": [],
+  "sha256": {
+    "proj/res/0.xpm": "0dfab23835a4b126c2ca800e79d84f2d1717025b030d5852cd2b76e68da64128",
+    "proj/res/1.xpm": "d0b505e8f39717a42a4a4b1944e287bcbbd70ac5da70013f4f549ed3134d4a97",
+    "proj/res/2.xpm": "87446d5530cc7be2e45b92eb268ebeb8e352419b0f423b4f7aadb4e237fe4024",
+    "proj/res/3.xpm": "96a8a21ca0b3c53c880a0d688246788ad10e01bf72014f0ae308fbfe1e9dd452",
+    "proj/res/4.xpm": "5f54690fb820fdf9c2f73e5a8f749e6f3247109dbb0c7428a6a2bedcb6f7009b",
+    "proj/res/5.xpm": "9e66709c87b9e78b5f3c33d696b38e18cd3ad003fb498b654ab2d2a1d989a45e",
+    "proj/res/6.xpm": "69d881a944e4ef33cfe770f9a0bf19d1d8d63bf4ec3c3560c99332247198ce56",
+    "proj/res/7.xpm": "ec83297744606945356da597c87de0eab9bf9784ba6808e3bd9086373d94cc76",
+    "proj/res/8.xpm": "c8c1b72adbfaed12b01cd4ff131d4f02e86071ac908456640ffe32dadfe58928",
+    "proj/res/9.xpm": "abef8df6cd28b8a3eddd7fe77d55212de53809271b871dd3b7b8e9b468f943f5",
+    "proj/res/apple.xpm": "c6f162158bc1b9a9176503e23f58e26938884e47f84af8518a897b2e8e2e4c68",
+    "proj/res/exit.xpm": "603d6fd289cdf521a8bf329567263078b14234375e37afbbd0dc6fc7430e0f72",
+    "proj/res/mouse-pointer.xpm": "b3f4c2baa06cad0aa4654ca4f2d137d373c99f91e655ae26efc8653e997cb7f3",
+    "proj/res/play.xpm": "9b9c3db3344ca2001c72bbb3a63be98f20365acbc77be05abad4cbf2183bff42",
+    "proj/res/trophy.xpm": "a6ac34df29db14ddd9b9b366e696d4379414f32763c74b479dd912f52abb1962",
+    "proj/res/two_dots.xpm": "0305a00c383af67a6db2e49b8acf2ef71ce4bec3c84b3b00d99dc7082c82432c",
+    "proj/src/Makefile": "3ae1ba79da4ef37424b4181ecd6b66b6b30fc3f713b8ba0c802ff20668d02abf",
+    "proj/src/graphics.c": "3efd0e4d34cc65ac6b7a1dbaf9719ccea4964978a8fe535296d07084a0112dfe",
+    "proj/src/graphics.h": "e7dd451fdb415190bd2ebe1ae65951d278922cd94f3554dc618ba37d1c8a9a85",
+    "proj/src/i8042.h": "2dbfc8079a57e8db6fd41ffd2bb5af8b4de2707526afda949eb4e5743586e296",
+    "proj/src/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/keyboard.c": "edda527172a54b6c6fd4a905af8efe6e865800d80272b361a65e77c68d309505",
+    "proj/src/keyboard.h": "ba270cc17401b5b14b702f43f46e0c19bd13039c7b4dc1627f573ed7bdc2d8f2",
+    "proj/src/mouse.c": "a3b513f4d23fee3b59a344922408455c0a1e304a8ec4eeb009939f560332fef5",
+    "proj/src/mouse.h": "968144f10d52dbeb7a2607a2dee18aaa370a4429ff88f04295db137f816df396",
+    "proj/src/proj.c": "16f031a2dc45dbda61a7ee40149a1533c02887912ae20e9c1b11947652017987",
+    "proj/src/rtc.c": "8056dd6d25a4bdce4e71aeba45bfe0b6016704d761eda8426632ee4d830f4d28",
+    "proj/src/rtc.h": "cef3563c11c1cd8f3dca3cabc52988118f37b82e9adc289d9ca9554db2821ae6",
+    "proj/src/snake.c": "778db488a1aa74b6281ee7f7aa4dcbd385833b7f055ed8cd6f5aad1da44ad9ab",
+    "proj/src/snake.h": "c10fe5f50794292f638c1ce266dd743bbe14410adf539364f21e3667ff9c4ea6",
+    "proj/src/timer.c": "e5dd58384b886f6f6e1b562446830a324c9a89aa16140ef50b2f7156f3e5c3e6",
+    "proj/src/utils.c": "d941b62ebed0f1a3f02fa3d875187899bb043197e3ea697f733c4995180a692c"
+  },
+  "selection": "Pinned project source and required artwork/assets plus upstream README. Omitted labs, generated documentation, VCS and OS metadata, build products and core dumps.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata is excluded from required source inventory."
+  },
+  "icon": {
+    "kind": "simple launcher icon derived from original sprite or board palette",
+    "source": "proj/src/snake.c"
+  },
+  "controlsRationale": "Arrow pad steers the original wrapping snake. Mode argument115 is supplied through build configuration. Relative pointer kept optional; no pointer calibration required.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/jccmartins--LCOM",
+    "limits": "Short functional gameplay trial, no full campaign completion or physical Android device claim."
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "2070ea4c9bb731340c5c8689b4cdb56300057c116091945ca7e13956246bee60",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "0e035c1be2d5eea4d56df719c524508706f96f5119042caed4bb5a591b78e524",
+      "kind": "actual mobile browser gameplay canvas"
+    }
+  ]
+}

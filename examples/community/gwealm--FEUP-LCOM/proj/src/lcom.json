@@ -1,0 +1,96 @@
+{
+  "name": "Wordlcom",
+  "build": {
+    "sources": [
+      "main.c",
+      "utils.c",
+      "vector/vector.c",
+      "state/state.c",
+      "scheduler/scheduler.c",
+      "queue/queue.c",
+      "menu/controller/menu.c",
+      "menu/model/menu.c",
+      "menu/view/menu.c",
+      "menu/state.c",
+      "graphics/graphics.c",
+      "game/controller/game.c",
+      "game/controller/local_player.c",
+      "game/model/game.c",
+      "game/model/local_player.c",
+      "game/view/game.c",
+      "game/view/local_player.c",
+      "game/state.c",
+      "game/wordlist.c",
+      "events/events.c",
+      "devices/mouse.c",
+      "devices/timer.c",
+      "devices/kbc.c",
+      "devices/keyboard.c",
+      "devices/vbe.c"
+    ],
+    "include": [
+      "include",
+      "include/devices",
+      "include/events",
+      "include/game",
+      "include/game/controller",
+      "include/game/model",
+      "include/game/view",
+      "include/graphics",
+      "include/menu",
+      "include/menu/controller",
+      "include/menu/model",
+      "include/menu/view",
+      "include/multiplayer",
+      "include/multiplayer/controller",
+      "include/multiplayer/model",
+      "include/multiplayer/view",
+      "include/protocol",
+      "include/queue",
+      "include/scheduler",
+      "include/state",
+      "include/vector",
+      "include/xpm"
+    ],
+    "assets": [
+      "wordlist.txt"
+    ],
+    "arguments": [
+      "wordlist.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj/src": "."
+    },
+    "emulateFunctionPointerCasts": true
+  },
+  "mobile": {
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "keyboard": true,
+      "pointer": "move",
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE"
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "toolbar": "top-right"
+    },
+    "orientation": "auto"
+  },
+  "description": "Guess the original hidden word using its English word list.",
+  "archetype": "Wordle",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

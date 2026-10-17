@@ -1,0 +1,10 @@
+--- a/proj/src/lib/devices/rtc.c
++++ b/proj/src/lib/devices/rtc.c
+@@ -1,6 +1,6 @@
+ #include "rtc.h"
+ 
+-static char current_date[20];
++static char current_date[21];
+ static int rtc_hook_id;
+ 
+ int (rtc_subscribe_int)(uint8_t * bit_no) {

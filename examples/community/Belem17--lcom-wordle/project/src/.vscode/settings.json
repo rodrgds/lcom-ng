@@ -1,0 +1,21 @@
+{
+  "git.ignoreLimitWarning": true,
+  "C_Cpp.clang_format_fallbackStyle": "LLVM",
+  "diffEditor.ignoreTrimWhitespace": true,
+  "editor.formatOnSave": false,
+  "editor.tabSize": 2,
+  "editor.wordWrap": "bounded",
+  "editor.wordWrapColumn": 100,
+  "files.associations": {
+    "lcf.h": "c",
+    "i8042.h": "c",
+    "locale": "c",
+    "string": "c",
+    "structs.h": "c",
+    "*.xpm": "c",
+    "gamelogic.h": "c",
+    "string.h": "c",
+    "frames.h": "c",
+    "graphics.h": "c"
+  },
+}

@@ -1,0 +1,17 @@
+--- a/proj/src/video_card.c
++++ b/proj/src/video_card.c
+@@ -114,10 +114,10 @@
+  * @return 0 on success, 1 on failure.
+  */
+ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
+-  if(x > mode_info.XResolution) {
+-    return 1;
+-  }
+-  if (y > mode_info.YResolution) {
++  if(x >= mode_info.XResolution) {
++    return 1;
++  }
++  if (y >= mode_info.YResolution) {
+     return 1;
+   }
+   

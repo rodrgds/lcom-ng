@@ -1,0 +1,113 @@
+{
+  "repository": "https://github.com/carlotaleite/LCOM-Project",
+  "revision": "42d3f992156e0f64173999555bc6c550e2f308be",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "53683caf05aa2d3895d85fb4548bc03006538270190ec620809da74703a9c0b8",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "ecdc7c8f2fdaf13b689230c4132096261be963e02cb6cd7b2ff98c24332fc8f1",
+    "proj/src/Makefile": "8ebf9393dc38bf3980655b76841c51522e36c1a29d411d76d1d3ba3135fdaa07",
+    "proj/src/controller/gpu.c": "7b7b222b1460646c59639b0001b217ba6d266cc061d184c02428be7b07e985a7",
+    "proj/src/controller/gpu.h": "be43e47d0ec8cd284863f6ca7cacd1c8f9395a19b70b8c90d1529ab76ab64fa2",
+    "proj/src/controller/i8042.h": "0a251dac8bbab4d80453f8cf86771a8737eab89132f5fcc30dd35c1c628ea2ad",
+    "proj/src/controller/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/controller/kbc.c": "437729f3943ba3017daa5c2e975ee0da367559ab8aba05a8049f3b4a3d99d987",
+    "proj/src/controller/kbc.h": "6c01c16b02767cff4993a052fb47ef6a41641618b49c23d4b759a71a4f81014b",
+    "proj/src/controller/keyboard.c": "91ed5e3e586e6c6380988970e15e376b2832d35d386ebf179aa37a6119b70519",
+    "proj/src/controller/keyboard.h": "98d1b7b70e0de0dcc49632c163e4779014d5ea32ee57e5c7e7520b46cf3a26bc",
+    "proj/src/controller/mouse.c": "0c89f16b3e8f90cbed02716c7808c0c9b9402c02894895686d4b2c6899d1be01",
+    "proj/src/controller/mouse.h": "f48ddb876f007b79247ba7cb5dc17a49026ed9ee7f51929cc627ed955f0482f4",
+    "proj/src/controller/pixmap.h": "c5a9f60664c6f17fd11d69364cc5d2e78861568ef175e60e30bd0d14e952011c",
+    "proj/src/controller/timer.c": "32ccb541de3cc424c49a55eade5bbc4430ce469948fab6752768ff8ae6998214",
+    "proj/src/controller/utils.c": "32a96873ec8a6155abb38d2600f97d073145e78c8535b3db164be858019f189c",
+    "proj/src/controller/vbe.h": "7f05d742adc30d82d3529b70fefc19296bf3ebf4b5c94762bdc52ccf9fea8c98",
+    "proj/src/main.c": "8ff23d6408967b98fc9e17431930828f09cc541456a621a9c0efd6ac92c29e90",
+    "proj/src/model/game.c": "6fc1081709bc6652e78cee58b69421e55d5e0846ef5071bb3154a37f7693abd2",
+    "proj/src/model/game.h": "efe779187eb7044d8a0e66dd6c6efd7ad53cf77be6d0a5d6aded85c0c7e17773",
+    "proj/src/model/menu.c": "64c6ebc6d2933b6093dfb58d3fc587b8576f43aaf2e69f415c71b155123ed715",
+    "proj/src/model/menu.h": "c304760f883dece68bfb50aa3ba362677c58f2cfdd326fa5d0b76bff144f1384",
+    "proj/src/model/snake.c": "cab7c1e52006334a6bf200be85fb43dbd10ccb72feea013518141c0342f4bc71",
+    "proj/src/model/snake.h": "f9fe26d6d8f3b1473a7083fa45de438eb7a3b26b7591c3d49c0fd56852c54b14",
+    "proj/src/model/sprite.c": "9135343bf8ec116cc6e6ca05892b7b5afcb4c2669718629246eefa32a192662c",
+    "proj/src/model/sprite.h": "b5b4b85398be9bc41c8a50228e7a9c83ca3141962f5d504633cc40190bba7667",
+    "proj/src/model/world.c": "1e27003010b75348312b1a6f28ff2b3d2529cff03a489f7c371f4ac35b6f0ae7",
+    "proj/src/model/world.h": "29ce58860cf5f637f8408503c1eed2ea4de30445fdaa9fd3e545e36063d57216",
+    "proj/src/xpm_images/Exit_selected.xpm": "20a8aca6b12327d782109753bcb1f7b304e138c4b78d22134c9c65486ac9cd28",
+    "proj/src/xpm_images/Exit_unselected.xpm": "ec833c26dba78353a3e2032d2bbe10d11bb72f3734f204d37a3c42f0df5b9205",
+    "proj/src/xpm_images/MainMenu.xpm": "a3d90cf5453f3db26f08bc40f2880a22cedfdfd34e93bdfb2d69ca5a6d599d04",
+    "proj/src/xpm_images/Settings_selected.xpm": "42ac5504f9e3e63cf9e02e5a343049728140309470dd2773a97c8c95248e5e7f",
+    "proj/src/xpm_images/Settings_uselected.xpm": "d5b3c585b8a0c6bf34dc783a20fa3c97e8eeb48c80a62ad85e0f58740c2b8170",
+    "proj/src/xpm_images/StartGame_selected.xpm": "d25369c207aa321a4a053dde9cd44f46357544df7a6051eee05a14eec052d837",
+    "proj/src/xpm_images/StartGame_unselected.xpm": "eb69ca90d87b8eff57225372f302b044b1a3ce6432e4c30ee992a0e07fb85e76",
+    "proj/src/xpm_images/apple.xpm": "2ba01a66f21cf592f5ea89a8c1123d121bf258e6faaadc76f2a096d4ce9f833e",
+    "proj/src/xpm_images/game_over.xpm": "e252a5a86b0163726e4f329ab046e60b0a0ceaf3fd98df42831309533707fa35",
+    "proj/src/xpm_images/leaderboard_selected.xpm": "b1c37ff3c70749da2a7b4ad38a8bbe2becf8e385a5483181a93675b5eafdd3c5",
+    "proj/src/xpm_images/leaderboard_unselected.xpm": "bcef34979896b1e7e30a92634471dc49d3f94d8e1304a47c45d56d0738fba09c",
+    "proj/src/xpm_images/mini_apple.xpm": "2e3d188d687faf88da056cd062931834f87a037d59d17459ba718c0b751a3842",
+    "proj/src/xpm_images/mouse_cursor.xpm": "5661de517dcdf752762d98c1573f02f2e50b6560eeb2c6a5b6f422f50cde6eb2",
+    "proj/src/xpm_images/mouse_hand.xpm": "e93882dacbf452a1718ca1a8757ddaebd2e679849957e599e0fec4ccd2d4f5c9"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated docs, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/xpm_images/apple.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "bff3af89910f0b2401b0865352d31117ff05052ab7eccbbd8fec2fce20dad1e6",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "298000a2342b83f1bec17a9818cf1ea19921cafcbb6186f4f6fe2f894356944d",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/model/sprite.c",
+          "originalSha256": "9135343bf8ec116cc6e6ca05892b7b5afcb4c2669718629246eefa32a192662c",
+          "patchedSha256": "4ac55f4eeaab6610ccce9c730538110897948e1982246323cc4cd9a270054957",
+          "reason": "Reuse already loaded game-over/apple sprites across world repaints instead of leaking six allocations every frame. Clear sprite globals during cleanup so a later round reloads safely.",
+          "verification": "Actual world_render repeated three frames RED allocates three complete sprite sets; GREEN retains exactly one set, cleanup releases all and later rendering reloads correctly."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Panel keeps original artwork unobscured in portrait and landscape. Source handlers determine every button and held-key behavior. Relative pointer preserves original packet/cursor semantics. ",
+  "verification": {
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "checkpoint": "Normal touch directions collect an original apple and grow the snake from three rendered segments to four.",
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence/carlotaleite--LCOM-Project",
+    "log": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay8-final-profiles.log",
+    "limits": [
+      "Long scoring runs and later self-collision lives are not exhaustive."
+    ],
+    "androidGameplay": "pending",
+    "nativeGameplay": {
+      "status": "passed",
+      "apkSha256": "f21e75fdd87c20a43626365d38487effee77b09bbde160cee2017af7e504ae5b",
+      "evidence": "build/arcade-100/next8-native-gameplay2/results.json",
+      "review": "Original blue snake changes direction and moves on checkerboard garden; original apple visible. Actual native controls and Home cleanup reviewed."
+    }
+  }
+}

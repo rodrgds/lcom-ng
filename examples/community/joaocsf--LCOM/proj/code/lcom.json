@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Top Down Shooter",
+  "build": {
+    "cStandard": "gnu89",
+    "assetRoot": "../..",
+    "assets": [
+      "proj/img"
+    ],
+    "pathAliases": {
+      "home/lcom/lcom1516-t6g05": ".",
+      "home/lcom": "."
+    }
+  },
+  "mobile": {
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "mouseButtons": false,
+      "pointer": "move",
+      "touchClick": false,
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "stick"
+        },
+        {
+          "side": "right",
+          "mode": "mouse",
+          "style": "stick",
+          "sensitivity": 1
+        }
+      ],
+      "actions": [
+        {
+          "label": "Shoot / Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        }
+      ]
+    }
+  },
+  "description": "Aim, shoot and survive robots and worms across a destructible crossroads.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

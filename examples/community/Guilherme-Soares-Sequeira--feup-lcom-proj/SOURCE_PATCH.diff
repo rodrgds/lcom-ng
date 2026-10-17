@@ -1,0 +1,10 @@
+--- a/proj/src/devices/video/video_gr.c
++++ b/proj/src/devices/video/video_gr.c
+@@ -3,6 +3,7 @@
+ #include <lcom/video_gr.h>
+ 
+ #include <math.h>
++#include <netinet/in.h>
+ #include <stdbool.h>
+ #include <stdint.h>
+ #include <stdio.h>

@@ -1,0 +1,38 @@
+/* XPM */
+static const char * down2[]  = {
+/* columns rows colors chars-per-pixel */
+"13 20 12 1 ",
+"  c None",
+". c #000000",
+"X c #21110D",
+"o c #402717",
+"O c #573A23",
+"+ c #AC7B5D",
+"@ c #1D438A",
+"# c #2C65B5",
+"$ c #787E97",
+"% c #85868C",
+"& c #A4A8B5",
+"* c #C1AC8F",
+/* pixels */
+"  .... ..    ",
+"  .OOo.O...  ",
+"  ..OOoOOOo. ",
+" .oOOOOOOOO. ",
+".oOOOOoOOOOo.",
+".OOOooooOOOO.",
+".OOOo++++oOO.",
+".OOo++++++oO.",
+".oO+X***X+o. ",
+" .O*X***X*+. ",
+" .+*******+. ",
+" .o+*****+o. ",
+"  .o+++++o.  ",
+" ..oo$$$oo.  ",
+".**oO$&&Oo+. ",
+".**OO###OO+. ",
+" ..@######.  ",
+"  .oOO.###.  ",
+" %%....oOOO. ",
+"%%%%%%%.OOO.o"
+};

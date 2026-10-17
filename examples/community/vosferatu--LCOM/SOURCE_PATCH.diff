@@ -1,0 +1,53 @@
+--- a/proj/src/bitmap.c
++++ b/proj/src/bitmap.c
+@@ -18,7 +18,7 @@
+     // allocating necessary size
+     Bitmap* bmp = (Bitmap*) malloc(sizeof(Bitmap));
+ 
+-    char* file = (char*) malloc((strlen(path_res)+strlen(filename))*sizeof(char));
++    char* file = (char*) malloc(strlen(path_res) + strlen(filename) + 1);
+     strcpy(file, path_res); strcat(file, filename); // file = path + name
+ 
+     // open filename in read binary mode
+--- a/proj/src/main.c
++++ b/proj/src/main.c
+@@ -1,3 +1,4 @@
++#include "graphics.h"
+ #include "duelnix.h"
+ #include "vbe.h"
+ #include "mouse.h"
+--- a/proj/src/mouse.c
++++ b/proj/src/mouse.c
+@@ -22,10 +22,11 @@
+ 	mouse->leftButtonPressed = 0;
+ 	mouse->leftButtonReleased = 0;
+ 	mouse->readingInfo = 0;
+-	mouse->readingInfo = 0;
++	mouse->update = 0;
+ 	mouse->draw = 1;
+ 	mouse->bmp = loadBitmap("cursor.bmp");
+ 	enableMouse();
++	return mouse;
+ }
+ 
+ 
+--- a/proj/src/rtc.c
++++ b/proj/src/rtc.c
+@@ -180,7 +180,7 @@
+ 	regB = (regB & ~BIT(7));    //when set bit is 0 functions normally (datasheet)
+ 
+     sys_outb(RTC_ADDR_REG, REG_B);
+-    sys_outb(RTC_DATA_REG, &regB);
++    sys_outb(RTC_DATA_REG, regB);
+ 
+     return 0;
+ }
+@@ -195,7 +195,7 @@
+ 	regB = (regB | BIT(7));//when SET bit of regB is 1 inhibits updates (datasheet)
+ 
+     sys_outb(RTC_ADDR_REG, REG_B);
+-    sys_outb(RTC_DATA_REG, &regB);
++    sys_outb(RTC_DATA_REG, regB);
+ 
+     return 0;
+ }

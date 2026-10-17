@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="mouse_8h" kind="file" language="C++">
+    <compoundname>mouse.h</compoundname>
+    <includes local="no">lcom/lcf.h</includes>
+    <includes refid="i8042_8h" local="yes">i8042.h</includes>
+    <includedby refid="mouse_8c" local="yes">C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c</includedby>
+    <includedby refid="proj_8h" local="yes">C:/MINIX-LCOM/shared/g3/proj/src/proj.h</includedby>
+    <incdepgraph>
+      <node id="3">
+        <label>i8042.h</label>
+        <link refid="i8042_8h"/>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h</label>
+        <link refid="mouse_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>lcom/lcf.h</label>
+      </node>
+    </incdepgraph>
+    <invincdepgraph>
+      <node id="2">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c</label>
+        <link refid="mouse_8c"/>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h</label>
+        <link refid="mouse_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="5">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.c</label>
+        <link refid="_handlers_8c"/>
+      </node>
+      <node id="4">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Handlers.h</label>
+        <link refid="_handlers_8h"/>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="7">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.c</label>
+        <link refid="_levels_8c"/>
+      </node>
+      <node id="6">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Levels.h</label>
+        <link refid="_levels_8h"/>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="9">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.c</label>
+        <link refid="_menu_8c"/>
+      </node>
+      <node id="8">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.h</label>
+        <link refid="_menu_8h"/>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.c</label>
+        <link refid="_missile_8c"/>
+      </node>
+      <node id="10">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Missile.h</label>
+        <link refid="_missile_8h"/>
+        <childnode refid="11" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/proj.c</label>
+        <link refid="proj_8c"/>
+      </node>
+      <node id="3">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/proj.h</label>
+        <link refid="proj_8h"/>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="mouse_8h_1a0cee9b230b812d6261cfe0c72be343a8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() write_to_mouse</definition>
+        <argsstring>(uint8_t command)</argsstring>
+        <name>write_to_mouse</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>command</declname>
+        </param>
+        <briefdescription>
+<para>Writes a given command to the mouse controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>command</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The command to be sent to the mouse controller. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" line="15" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="40" bodyend="58" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" declline="15" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8h_1ac2b472a8ebdd3f12cadeb371e0c3ddbf" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() mouse_write_to_KBC</definition>
+        <argsstring>(uint8_t port, uint8_t command)</argsstring>
+        <name>mouse_write_to_KBC</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>command</declname>
+        </param>
+        <briefdescription>
+<para>Writes a given command to the keyboard controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The controller&apos;s port where the command has to be written. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>command</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The command to be sent to the keyboard controller. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" line="22" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="70" bodyend="83" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" declline="22" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8h_1a9edadb46fd99126261a177c77f65a935" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() proj_enable_data_reporting</definition>
+        <argsstring>()</argsstring>
+        <name>proj_enable_data_reporting</name>
+        <briefdescription>
+<para>Enables data reporting from the mouse and sets the appropriate packet format. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" line="28" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="61" bodyend="67" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" declline="28" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8h_1a210374b50462acdedab00df64d5cea3c" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void()</type>
+        <definition>void() mouse_ih</definition>
+        <argsstring>()</argsstring>
+        <name>mouse_ih</name>
+        <briefdescription>
+<para>Interrupt handler for mouse events. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" line="33" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="89" bodyend="107" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" declline="33" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8h_1a9571698f3d39b3820ff2fc8877fbb63f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() mouse_write_to_packet</definition>
+        <argsstring>()</argsstring>
+        <name>mouse_write_to_packet</name>
+        <briefdescription>
+<para>Sends a command to the mouse controller to request data from it. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" line="38" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="132" bodyend="155" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" declline="38" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8h_1a95040f52f6beeba67119b8b66857c52e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void()</type>
+        <definition>void() mouse_update_coords</definition>
+        <argsstring>()</argsstring>
+        <name>mouse_update_coords</name>
+        <briefdescription>
+<para>Updates the mouse coordinates and sets the corresponding events based on the mouse packet received. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" line="43" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="158" bodyend="173" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" declline="43" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8h_1a7f3b77231478e68e5f99bfbb96c081eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() mouse_subscribe_int</definition>
+        <argsstring>(uint8_t *irq_set)</argsstring>
+        <name>mouse_subscribe_int</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>irq_set</declname>
+        </param>
+        <briefdescription>
+<para>Subscribes and enables interrupts from the mouse controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>irq_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The bit number associated with the mouse controller&apos;s interrupt. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" line="49" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="175" bodyend="180" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" declline="49" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8h_1a3ecf823d80520009ae5e0d76ae40a3c3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() mouse_unsubscribe_int</definition>
+        <argsstring>()</argsstring>
+        <name>mouse_unsubscribe_int</name>
+        <briefdescription>
+<para>Unsubscribes interrupts from the mouse controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" line="54" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="182" bodyend="185" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" declline="54" declcolumn="1"/>
+      </memberdef>
+      <memberdef kind="function" id="mouse_8h_1ac4a1224a9d9def665116e4011969f4d1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() mouse_read_output</definition>
+        <argsstring>(uint32_t *output)</argsstring>
+        <name>mouse_read_output</name>
+        <param>
+          <type>uint32_t *</type>
+          <declname>output</declname>
+        </param>
+        <briefdescription>
+<para>Reads output information from the mouse controller. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>output</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The 32-bit variable where the output data is going to be stored. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Return 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" line="60" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.c" bodystart="109" bodyend="129" declfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h" declline="60" declcolumn="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This file contains the declarations of functions related to the mouse controller and its interactions with the PC. </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>MOUSE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>MOUSE_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;lcom/lcf.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&quot;<ref refid="i8042_8h" kindref="compound">i8042.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal">int<sp/>(<ref refid="mouse_8h_1a0cee9b230b812d6261cfe0c72be343a8" kindref="member">write_to_mouse</ref>)(uint8_t<sp/>command);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal">int<sp/>(<ref refid="mouse_8h_1ac2b472a8ebdd3f12cadeb371e0c3ddbf" kindref="member">mouse_write_to_KBC</ref>)(uint8_t<sp/>port,<sp/>uint8_t<sp/>command);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal">int<sp/>(<ref refid="mouse_8h_1a9edadb46fd99126261a177c77f65a935" kindref="member">proj_enable_data_reporting</ref>)();</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal">void<sp/>(<ref refid="mouse_8h_1a210374b50462acdedab00df64d5cea3c" kindref="member">mouse_ih</ref>)();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal">int<sp/>(<ref refid="mouse_8h_1a9571698f3d39b3820ff2fc8877fbb63f" kindref="member">mouse_write_to_packet</ref>)();</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal">void<sp/>(<ref refid="mouse_8h_1a95040f52f6beeba67119b8b66857c52e" kindref="member">mouse_update_coords</ref>)();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal">int<sp/>(<ref refid="mouse_8h_1a7f3b77231478e68e5f99bfbb96c081eb" kindref="member">mouse_subscribe_int</ref>)(uint8_t<sp/>*irq_set);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal">int<sp/>(<ref refid="mouse_8h_1a3ecf823d80520009ae5e0d76ae40a3c3" kindref="member">mouse_unsubscribe_int</ref>)();</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal">int<sp/>(<ref refid="mouse_8h_1ac4a1224a9d9def665116e4011969f4d1" kindref="member">mouse_read_output</ref>)(uint32_t<sp/>*output);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#endif<sp/></highlight><highlight class="comment">//MOUSE_H</highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/mouse.h"/>
+  </compounddef>
+</doxygen>

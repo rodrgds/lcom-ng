@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "Penguin Run",
+  "description": "Guide a penguin through icy crossings, moving logs and obstacles across three levels.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "touch": "tap",
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assets": [
+      "bestTimes.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

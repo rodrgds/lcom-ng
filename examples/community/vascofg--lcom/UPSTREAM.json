@@ -1,0 +1,69 @@
+{
+  "repository": "https://github.com/vascofg/lcom",
+  "revision": "69a190fd0112b57694baba6233bc6b202acfabbf",
+  "project": "trunk",
+  "sourceHashes": {
+    "trunk/Makefile": "34a02c62ba69670afe115cc90a646fa467d5df7ab6529ce72da5ff3dbd359529",
+    "trunk/battleship.c": "5a0d75c7de7ceaf34cce919f79957208ebd0069b21076d99c109ed2e3fb867a0",
+    "trunk/battleship.h": "47f10a0b03ff6f4af1b5722db25c1abde4bff6cc20983df894615b09193fb569",
+    "trunk/core.h": "e3dc5648c0be40540f7474069b78935bfe680f0700bece85ad70b6a722082f3a",
+    "trunk/debug.sh": "e1946c5207bb263a445593d21c56102fc9d7a0c214f14b70a0e2d9c6c9d57181",
+    "trunk/interface.c": "395ca860d576d9a68239de4903b14432c9c2828a2e3cfb4e2af538950f4c5af6",
+    "trunk/interface.h": "196f2639f43b2b1f4f36b77d873859ea047218223035a53a40ce50c98f52e79c",
+    "trunk/kbc.c": "d130e01e02674c7442d7ab3db2638bd42728760a6d027637c0f83095d149ea6c",
+    "trunk/kbc.h": "37abc3dd7ddb763eb870fa4aa1b73229acff8fa154efaba4d174a1dba354a22e",
+    "trunk/keyboard.c": "33f8989225f29de2a3703f18b583fb46ec8743784ceccc9406ddfdaf837142f0",
+    "trunk/keyboard.h": "6b9c37e749133953e7be8c8e47b8eb476c25f09b5d550df67b2c0a0da9ced70a",
+    "trunk/lmlib.h": "f40f7e62587b2ad30997ecef3843dbfb0cf72256a0b34c67a0a8ffe308eaee18",
+    "trunk/main.c": "69967ab677b7e5946d636c44045483fbcb0a21ec41d0257b0989204d6e52fda4",
+    "trunk/res/0.xpm": "f64fd06044a197bbf4799c44338241162aead2089c88c622d9941b07aaac952d",
+    "trunk/res/1.xpm": "c444fe7c1f81d0086ea75a234e2480e1496ea48258f0ffb5d4b2234793568085",
+    "trunk/res/2.xpm": "0c1f157d160b26a329f7d5d80e287bff223a21c705d7ecb39385f89940888b56",
+    "trunk/res/3.xpm": "1719fe5df9a50d93680e3fe92008c7a6d229170f358674ed14df08639b658278",
+    "trunk/res/4.xpm": "4f35a14874d852c2cec451c6166d68f651b2f2bc0a1ab5b76655c1b55b76e4b8",
+    "trunk/res/5.xpm": "6dbaa9e38abf18e9e793ed9105ec8e6f479fb461cb25d29f8e1fe4b4d92e411a",
+    "trunk/res/6.xpm": "bb99dfc516363cf2ded78c5b7af88511815fc460156f4923cd8764de986df8c7",
+    "trunk/res/7.xpm": "abcd53ab30ff2195390d7923c01a625599d2b10d0a26a2b65a958408656d8f7c",
+    "trunk/res/8.xpm": "5dfc7c7059d54ab7289a5c50f4606f7873f6c878e6deb502c5e8888588e82c2e",
+    "trunk/res/9.xpm": "98fab453095fbc1ba93f91e03578e1b6587da898be6ef6588513d2c765fe54e4",
+    "trunk/res/exit.xpm": "ab3974712c535cc000f6d4c0ec04dff5a592d7c9cc870f1709ca53bf638dd26e",
+    "trunk/res/hit.xpm": "efd5ebbc8da7613361e061a17e3e9dcc2ea7024c1b56f816f3b952da43c20e79",
+    "trunk/res/mapa.xpm": "609b422e6a3f78531e71faf0f4665eb8e938c5dc5e59e3f8039832f0c853987e",
+    "trunk/res/newgame.xpm": "8a7d04bc88b091e147d6051b2636ed92c58293d747da65c22461fc6156e276f9",
+    "trunk/res/sideboats.xpm": "2df1579ee7a526ae2972f9edf70cba6f923eadceffec60cefdb40215d5b85e3b",
+    "trunk/res/sunk.xpm": "aec1aa30bdfc63f27506749738be50d42b0d258a48f064aaf45d915fe459e9c6",
+    "trunk/res/water.xpm": "b4f8c907578f4b21f8595c5540fbd027dfd953c228f8070af43df6eab892028e",
+    "trunk/res/won.xpm": "55e3103890b59ee494159c39457e0dad4b95fc4f5ef084dff599d27216c0f74f",
+    "trunk/res/x.xpm": "466b64f81c89a2e2091f274eacb1c882a0a15cc688cefd3e54bfe19fcde4bc4d",
+    "trunk/res/y.xpm": "7fd1403fb2c5c1d9b2a48adec25e517cea0a17a097dca2102b7c95b193692a5c",
+    "trunk/system-conf/system.conf": "b8c9680a8c21f559775a76db36ea51c5a3abf4f3d3ebdf02e62ff62a7ccbc98c",
+    "trunk/vbe.c": "44eefe10376aab4923e2a03e34144828c9ea43649fe76ba696c5ba9af06ab460",
+    "trunk/vbe.h": "8a14d44959c73c105c59ec447cea7835d6836e1bdbdfdffffb1b7a289f0fb8ad",
+    "trunk/video_gr.c": "2ff681d72ef7d7177282090cb4e6ec35c98f3330e2debd24bfb7cc695252c6b2",
+    "trunk/video_gr.h": "6236fb6b36729d97e7e0933c6ebbbc4d5bad6a70ce418e39f44c4ccf082da5d7",
+    "trunk/xpm.c": "32874c31f0c5ea25ea4232bd01eae64f012428fd0582288f749e3e47d326d2be"
+  },
+  "selection": "Pinned project tree and root README; generated documentation, VCS/OS metadata and compiled object files omitted.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "artwork": {
+    "icon": "Simple vector battleship silhouette following the original game title screen and fleet theme."
+  },
+  "controlsRationale": "The original menu uses up/down and Enter. Each shot takes one X digit, Enter, one Y digit, Enter. Enable the standard keyboard toggle with numeric row, Enter and Backspace. No mouse is read.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "trunk/xpm.c",
+          "originalSha256": "32874c31f0c5ea25ea4232bd01eae64f012428fd0582288f749e3e47d326d2be",
+          "patchedSha256": "841f00e11554eec64ecfd66b5e62e67aeefb0c7134ed9862cdfc849cfe561837",
+          "reason": "Bound each fgets call by its actual row allocation, with room for the original newline and terminating NUL. The array-of-pointers sizeof requested up to5320bytes into801bytes and aborted under Android FORTIFY.",
+          "verification": "Original actual-source allocation/read-size regression fails the capacity bound; fixed reader checks every original pixel row width across all20 XPM files. Evidence build/arcade-100/c/battleship-xpm-{red,green}.log; actual AndroidFORTIFY reproducer next7-native-gameplay/trunk-8ad6c8f3906e/failure-logcat.txt."
+        }
+      ]
+    }
+  ]
+}

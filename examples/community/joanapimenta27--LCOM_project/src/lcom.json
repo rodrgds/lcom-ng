@@ -1,0 +1,57 @@
+{
+  "version": 1,
+  "name": "Multitasker",
+  "description": "Navigate a maze while shooting moving colored targets.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "P",
+        "Q"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ],
+      "tapDuration": 65
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "logs"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/g2/proj/src": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

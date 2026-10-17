@@ -1,0 +1,43 @@
+--- a/2nd_year/LCOM/proj/src/entities/entities.c
++++ b/2nd_year/LCOM/proj/src/entities/entities.c
+@@ -86,7 +86,8 @@
+ }
+ 
+ void enemy_update() {
+-    if (counter % (25 - timer_update) == 0) { 
++    int spawn_period = timer_update < 25 ? 25 - timer_update : 1;
++    if (counter % spawn_period == 0) { 
+         Enemy* new_list = realloc(enemy_list, sizeof(Enemy) * (enemy_count + 1));
+         if (!new_list) return;
+         enemy_list = new_list;
+--- a/2nd_year/LCOM/proj/src/game/game.c
++++ b/2nd_year/LCOM/proj/src/game/game.c
+@@ -6,7 +6,6 @@
+ #include"entities/score.h"
+ #include "devices/keyboard.h"
+ #include "menu_state.h"
+-#include "menu.h"
+ #include "devices/video.h"
+ #include "devices/mouse.h"
+ #include "entities/entities.h"
+--- a/2nd_year/LCOM/proj/src/game/game.h
++++ b/2nd_year/LCOM/proj/src/game/game.h
+@@ -18,7 +18,6 @@
+ #include "devices/keyboard.h"
+ #include "menu_state.h"
+ #include "info_state.h"
+-#include "menu.h"
+ #include "devices/video.h"
+ #include "entities/entities.h"
+ 
+--- a/2nd_year/LCOM/proj/src/devices/video.c
++++ b/2nd_year/LCOM/proj/src/devices/video.c
+@@ -60,7 +60,7 @@
+ 
+ 
+ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
+-  if(x > mode_info.XResolution || y > mode_info.YResolution) return 1;
++  if(x >= mode_info.XResolution || y >= mode_info.YResolution) return 1;
+   if (color == 0x00000000) return 0; // If color is black, do not draw anything
+   unsigned int index = (mode_info.XResolution * y + x) * n_bytes_per_pixel;
+   if (memcpy(&video_mem2[index], &color, n_bytes_per_pixel) == NULL) return 0;

@@ -47,20 +47,34 @@ through `devenv shell -- ...`.
   directory. `sdk/collection/` owns validation and native Android/responsive web
   launchers; `collections/arcade/` is the example manifest. Browser gameplay
   previews live under `collections/arcade/previews/`, with per-game `preview`
-  paths and `description` in `lcom.json`. Keep original game assets unchanged. Per-game settings stay
+  paths and `description` in `lcom.json`. Keep original game assets unchanged. Use shared `archetype`
+  names for variants of the same game family; keep each variant’s pinned source
+  identity and individual launch controls. Per-game settings stay
   in each game's `lcom.json`. Optional collection `web.json` points to web-only
   `game-metadata.json` and `gallery.json`; year evidence and featured selection
-  belong there. Arcade years use GitHub repository creation timestamps, never
-  last updates or commit dates. Captured gallery frames live in `collections/arcade/galleries/`.
+  belong there. Arcade displays academic school years from original reports/README evidence
+  or game-specific development history. Keep inference confidence in metadata
+  and evidence tooltips; show plain school-year labels and omit unknowns.
+  Keep repository creation timestamps separately as provenance. Source-reviewed
+  genre/player tags describe modes available in the exported surface. Captured gallery frames live in `collections/arcade/galleries/`.
   Pinned student sources under `examples/community/`
   retain `UPSTREAM.json` hashes and separately recorded source-defect patches.
   Keep Android game libraries in the isolated `:game` process, with fresh globals
   on each launch and private saved files preserved. Collection exporters ship in
   the installed SDK via `scripts/package_student.py`.
+  Native source staging must preserve both filename case and exact Unicode bytes.
+  Use case-sensitive APFS for NAS-backed staging on macOS; case-sensitive HFSX
+  normalizes NFC filenames and can break original game asset lookups.
   Stage imported source files hidden by upstream ignore rules explicitly. Run
   `scripts/check_collection_sources.py --require-tracked` before publishing;
   provenance must survive a fresh checkout. Exclude OS and VCS metadata from the
   required source inventory and record those omissions in `UPSTREAM.json`.
+  Preserve case-distinct upstream paths on a case-sensitive checkout. Verify all
+  original hashes after extraction; immediate copy checks can miss later aliases.
+  Such projects also require case-sensitive Android output staging.
+  On synced/NAS storage, recheck a distinct-case probe after an idle interval.
+  If the service renames conflicts, stage inside an opaque case-sensitive image.
+  Leave mounted image backing files and their mount points in place when offloading build artifacts.
 - Embedded app exports: `runtime/embedded/` owns the in-process C SDK; browser
   and SDL hosts supply time, event pumping, graphics and audio. Keep device logic
   in `Machine`. Android export lives in `sdk/android/`, shared source discovery
@@ -83,6 +97,11 @@ through `devenv shell -- ...`.
 - Native exports link selected student source objects directly into the app.
   Keep data-only units in that link, including when legacy headers contain
   tentative globals. An intermediate archive can silently drop initialized tables.
+  NDK candidate checks compile actual objects with `-O2 -D_FORTIFY_SOURCE=2`
+  and the Android toolchain's `-Wformat -Werror=format-security` flags.
+  Source Makefiles alone omit flags added by CMake's NDK toolchain.
+  Verify the resulting APK with
+  actual native gameplay before admitting an import.
 - Minix/LCF compatibility SDK: `sdk/compat/include/` and `sdk/compat/src/`,
   linked through the separate `lcom_minix` library. Keep its legacy declarations
   separate from the native SDK. For legacy project work, read
@@ -94,6 +113,16 @@ through `devenv shell -- ...`.
   to verify the relocated archive outside Devenv.
   The legacy project builder is `sdk/compat/build_project.py`; the CLI dispatches
   it through `lcom-ng compat build`. Keep original project sources unchanged.
+  `sdk/compat/assembly.py` lowers literal basic CLI/STI and the supported single
+  volatile byte IN/OUT templates into generated compiler inputs for native, web
+  and Android. Other assembly keeps explicit diagnostics. Byte operands must be
+  character types and ports must satisfy the original 16-bit/8-bit constraints;
+  verify exact I/O and single expression evaluation with `compat_byte_ports`.
+  Preserve original files, source
+  diagnostics and quoted includes. Its process-local interrupt flag defers and
+  coalesces HARDWARE notifications; it must not drop IRQs or count nested CLI.
+  Keep `sys_irqsetpolicy`'s input notification bit distinct from its returned
+  opaque handle. Verify both with `compat_notifications` and `compat_interrupts`.
 - Student starter contracts: `course/labs/templates/`; reference solutions and
   predefined checks: `dev/lab-solutions/` and `dev/lab-tests/`.
 - Public website source: `docs-site/`. `docs-site/public/assets/` and the
@@ -103,7 +132,11 @@ through `devenv shell -- ...`.
   regenerate with `scripts/generate_example_font.py` (Pillow and DejaVu fonts).
   Help overlays must consume editing input while maintaining button/modifier
   releases. Command is guest input. Right Option on macOS and Right Ctrl release the mouse.
-  Browser input uses no Pointer Lock, so Escape remains game input. Keep
+  Browser physical mouse input uses click-to-capture Pointer Lock with relative
+  movement and retained fractional deltas. Escape unlocks and reaches the game
+  once; Shift+Escape returns to the collection. Native browser unlock can consume
+  Escape before DOM key events, so distinguish it from blur and programmatic
+  release. Touch keeps its authored relative/direct controls. Keep
   shortcuts, hit targets, authored replays and screenshots aligned. See
   `docs/showcase-ui.md` before changing shared UI or help/input behavior.
 - Example galleries: `scripts/showcase-gallery.json` owns the real replay states,

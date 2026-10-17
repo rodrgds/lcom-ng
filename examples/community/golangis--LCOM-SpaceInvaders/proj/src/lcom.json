@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "name": "Space Invaders: Galactic Defense",
+  "description": "Defend Earth from descending alien formations.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Fire",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        }
+      ],
+      "repeatKeys": [],
+      "repeatReleaseKeys": [
+        "LEFT",
+        "RIGHT",
+        "SPACE"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "highscores.csv"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj/src": ".",
+      "/home/lcom/labs/g3/proj/src": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Space Invaders"
+}

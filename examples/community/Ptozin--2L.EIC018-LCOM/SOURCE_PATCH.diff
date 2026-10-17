@@ -1,0 +1,11 @@
+--- a/proj/src/libraries/graphics/src/graphics.c
++++ b/proj/src/libraries/graphics/src/graphics.c
+@@ -126,7 +126,7 @@
+         return 1;
+     }
+     unsigned int pos = (x + y * vbe_mem_info.XResolution) * get_bytes_pixel();
+-    memcpy((void*)((unsigned int)double_buffer + pos), &color, get_bytes_pixel());
++    memcpy((void*)(double_buffer + pos), &color, get_bytes_pixel());
+     return 0;
+ }
+ 

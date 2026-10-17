@@ -1,0 +1,94 @@
+{
+  "repository": "https://github.com/DinisSousa2003/LCOM-FEUP",
+  "revision": "2659c0344dc37e96f16f7e88110c91eecd174d57",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "5dd2692d7e14b988335d11425ab31e3f2d766e180a0be50708646984477ebcab",
+    "proj/Makefile": "cf603e06456f2bb74985ef7780498baab8fd33ecc0de42e407ec15a359f94a8d",
+    "proj/src/Makefile": "334bc072ffb6914ad84be4d904f766ae1430448bb9b3278200fde2ef93ba6abf",
+    "proj/src/utils.c": "d99dce41e31162eed0a845da3c371996d59b45d453712a9859f7fd52079d8d08",
+    "proj/src/proj.c": "2d8b67302f14573c880c4c9e86649608572367efd48b8b8815d75c1597b17a9e",
+    "proj/src/video/video_macros.h": "614c5da12e42becd412797bd88df77937bbb78195c8ea8f5e063c11a221da275",
+    "proj/src/video/video.c": "203f873a47036a3402aadb7b2482d00db6614a853492b0cb03d882da8f66b717",
+    "proj/src/video/video.h": "e6bb19554ac85bbd2c16c9f6f253d768109eaff5fce3a150ffe7f8dc464f78cf",
+    "proj/src/timer/timer.c": "f1c583a08fc45a0cd1510ee3f40f2ff5d961a06063e660d427cafcd7b1c71c5c",
+    "proj/src/timer/moon_2.xpm": "9325266feef1fad97b3d5192712a5b417de9fbe8b7f6aa913c2cc62249e6ea83",
+    "proj/src/timer/timer.h": "e37207e0a2563e3517e2e80ccfae53a5babefa1f77817498ac49a9b9757940e0",
+    "proj/src/timer/i8254.h": "666face6cbe040263e21ceca5137538dd9e715ab321d642e80642d4ad21167c2",
+    "proj/src/game/model.c": "5182a8aa9d111e124949d9d247169dc86691b470bc15f3c25e340abdaab0c1bc",
+    "proj/src/game/images.c": "c8e17e4137378d4541c03b781e98a3c094876454a62e0f2f529b8a6514a965ea",
+    "proj/src/game/handlers.h": "b9b552caa77c6f943ad41c7dc3e3ce713de7f8181fed65479978ae3071daeb81",
+    "proj/src/game/view.h": "16fdc40e53cbcf04cc8437d04325803bf69095968a956afec5cd276e86c29157",
+    "proj/src/game/images.h": "05a5feaaff9c94c5dda256c0a673c169be7e52d68819d7d24e29d313c14200f7",
+    "proj/src/game/model.h": "b320032b51b00d1c0c0a30c4b723427e5c4ad1f955cb64ad257324ae23a1e5f2",
+    "proj/src/game/view.c": "1ba45dbbfbc27b4f10c9c4bb9a633b293a69e78a718a27c8796bbc3ec8c63802",
+    "proj/src/game/handlers.c": "ac789ad9f01d8df0a62d73784248220e7b4d3e5e6f9559562d19348330ec0725",
+    "proj/src/rtc/rtc.c": "ba69aaf7060b422a961ff0b42bf448cdc9badf38afe87cb7f0d52f611a7d6a78",
+    "proj/src/rtc/rtc.h": "fa8dcfdea0c4e73f016e4adeb4dae6c297bd31277a2ff4371afbe434c635c098",
+    "proj/src/sprites/about.h": "3ac8496f6fbfe60d06acfe8e657770e06af99de3fd53734b060d4ccfc8afffed",
+    "proj/src/sprites/wait_menu.h": "73d753209117cacfe111d5530f40f9e905cd86f8fffd1fecce35cbe431a7b185",
+    "proj/src/sprites/discoball.h": "a2cdee13130067724b18e8d877c8f6370f8a914136390fc6e07e2ee307d9ff00",
+    "proj/src/sprites/sun.h": "86c8d09d5f7e21ddba1df6e6e995651a624a3627bb9f809d50567f97b58a3ac4",
+    "proj/src/serialport/serialport.h": "f281568a4b14ddad294935f0e1f00dda8a0bccbc5c70b161325ff1ae9b344a37",
+    "proj/src/serialport/serialport.c": "51c6a355c25dff71520f89ca8930f81bfdc61be39e4346bd5d401b695eea4d9c",
+    "proj/src/keyboard/kbc.h": "12238b3afa742fde146d3a356735653568d8d5bf4835cbf5f74f4f0ea312f322",
+    "proj/src/keyboard/i8042.h": "7c6d6f87e92d06a34f9b692b12feeb100a99597f525f1bb679c3cfd3d9b9d004",
+    "proj/src/keyboard/kbc.c": "31c653eb8f91d9f8ea030c8d0aee83f3520b0fc0f649c18ca11183a4a3dd5236",
+    "proj/src/sprites/numbers/5.h": "0b83b024764646640f1fc9f6dcd9e83037d8934b4ac071ce133a49cdc7729c51",
+    "proj/src/sprites/numbers/1.h": "6f8d004a6b68e175827a5e3de7cf5b6d6d63649bfdd8a4da5176086ce7d916d1",
+    "proj/src/sprites/numbers/2.h": "8daa2d83f1ac258195d7c33606406ee742b972ad90fab6305fcff78b074b2a01",
+    "proj/src/sprites/numbers/3.h": "dec40bfdfb1c0e0a525405d79de4b0236d2a94243c57360399b660ab11ebd919",
+    "proj/src/sprites/numbers/4.h": "192e4f8366c60b35358cb4a35f4bd98d7da9503c8c936164aa79731b4a0d13f3",
+    "proj/src/sprites/numbers/0.h": "73a101be5f3765958fc19911f20952935f312cab70c2fdcf37fcc13c7a3da3e0",
+    "proj/src/sprites/end/Won_p2_menu.h": "40fb385e5ff2f571a227421a4b708c617ad3dadb1c187761ca317c63ad69710f",
+    "proj/src/sprites/end/Lost_menu_player.h": "381c96bf4eb34139e03584f618b6b77e617edab0c629b76a3e6cdf3e87f94615",
+    "proj/src/sprites/end/Lost_menu.h": "d987ab996607d7a82d4c83c9ac7f999ff085f1b6b76d8d0abdcfd0dd3a8ae8b1",
+    "proj/src/sprites/end/Won_p1_menu.h": "f01d9bb426357e581e71713dd931375714e9613ccf3000bf8560f4a7dceacbf3",
+    "proj/src/sprites/powerups/power1.h": "03dd27e0a348b0c2fae89dfe1e7bc51daf9a808f82e395fda4cefb2be4a77be8",
+    "proj/src/sprites/powerups/power2.h": "85ef4ca67dfcb8b99865aad3a92cd7b22d6ef5596b4d15e597f3170868bbcd13",
+    "proj/src/sprites/menu/player2_selected.h": "243d6367e5cc0be7b0d4271c7124142c4afded8b974a10c5d2deb5a8e772de7b",
+    "proj/src/sprites/menu/about_selected.h": "0f5fac6c786ee0dcfb9b323adc8c9b29ce41c549fa4aed426a19fe2c852c0b99",
+    "proj/src/sprites/menu/menu.h": "97c5a04e22e893b3e395962ebd54377754e7d2052d9b3ffe90fe08d4866915b8",
+    "proj/src/sprites/menu/player1_selected.h": "ab0d8d19b266f50237b135d977d9bc17a4344990cece2bd25ffda420050d532d"
+  },
+  "selection": "Pinned original game source and required original art. All source bytes unchanged.",
+  "omissions": [
+    ".git/**",
+    "**/.gitignore",
+    ".minix-src/**",
+    "unrelated labs",
+    "generated documentation",
+    "compiled binaries",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/.DS_Store"
+  ],
+  "sourcePatches": [],
+  "controlsRationale": "Original nested src Makefile is the real game entry. W/S make events need repeat during touch holds. Menu arrows/ENTER, relative pointer and Speed(left)/Wall(right) expose authored solo powers; UART-only two-player mode not promised.",
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence14/DinisSousa2003--LCOM-FEUP-02-score-canvas.png",
+    "captureSha256": "1c7f54becfbf90b0abe814c01482d8525925607c5835e35ea5f242db123ab805",
+    "originalSourceArt": true
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "ec262a7bc855248e6ee1e7dd4f3d6eb3250c8547df70e8403e66961499f333f1",
+      "kind": "Flat geometric icon informed by original virus/hospital, dice/board, poweredPong or keyboard motif"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "540cdd905c9da60ed25849c5bbf474fabe624c6b1515e9f3b0c09a8215dfb14b",
+      "kind": "Actual ordinary touch browser gameplay"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/a75-reviewed-native/results.json",
+      "apkSha256": "0eb52ac47b13b323ab9b9fae4e5027e4b4acfb43b625045f13b78b324465c2c6",
+      "demonstrated": "Root inspected blue paddle after W hold218screenpixels upward and after S131pixels downward, live rally and positive1\u20130 score, visible power buttons, Home isolated-process cleanup."
+    }
+  }
+}

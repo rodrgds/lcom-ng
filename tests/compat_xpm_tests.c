@@ -1,5 +1,7 @@
 #include <lcom/libxpm.h>
 #include <lcom/xpm.h>
+#include <lcom/read_xpm.h>
+#include <stdlib.h>
 #include <assert.h>
 #include <stdio.h>
 #include <string.h>
@@ -30,6 +32,30 @@ static void color_formats(void) {
   assert(xpm_transparency_color(XPM_5_6_5) == 0x0588);
   assert(xpm_transparency_color(XPM_8_8_8) == 0x00b140);
   assert(xpm_transparency_color(XPM_8_8_8_8) == 0xff000000);
+}
+
+static void lcf_hex_suffixes(void) {
+  /* Original LCF xpm_load scans three two-digit bytes with sscanf and accepts
+   * the suffixes found in preserved student font palettes. */
+  static xpm_row_t map[] = {"4 1 4 1", "a c #7E7E7E1", "b c #12345678",
+                            "c c #FFFFFF0", "d c #00000012", "abcd"};
+  const uint8_t rgba[] = {0x7e,0x7e,0x7e,0,0x56,0x34,0x12,0,
+                          255,255,255,0,0,0,0,0};
+  const uint8_t rgb565[] = {0xef,0x7b,0xaa,0x11,0xff,0xff,0,0};
+  check_pixels(map, XPM_8_8_8_8, rgba, sizeof(rgba));
+  check_pixels(map, XPM_5_6_5, rgb565, sizeof(rgb565));
+}
+
+static void lcf_five_digit_colors(void) {
+  /* Three original %02hhx conversions consume two, two and one digits.
+   * The last nibble is a byte value, not an expanded CSS-style channel. */
+  static xpm_row_t map[] = {"4 1 4 1", "a c #D9D9D", "b c #12345",
+                            "c c #abcde", "d c #00000", "abcd"};
+  const uint8_t rgba[] = {0x0d,0xd9,0xd9,0,0x05,0x34,0x12,0,
+                          0x0e,0xcd,0xab,0,0,0,0,0};
+  const uint8_t rgb565[] = {0xc1,0xde,0xa0,0x11,0x61,0xae,0,0};
+  check_pixels(map, XPM_8_8_8_8, rgba, sizeof(rgba));
+  check_pixels(map, XPM_5_6_5, rgb565, sizeof(rgb565));
 }
 
 static void grayscale_and_names(void) {
@@ -71,6 +97,10 @@ static void malformed_maps(void) {
     {"1 1 1 1", "a c red", "aa"},
     {"1 1 1 1", "a c red", "b"},
     {"1 1 1 1", "a c #ggg", "a"},
+    {"1 1 1 1", "a c #1234", "a"},
+    {"1 1 1 1", "a c #12345g7", "a"},
+    {"1 1 1 1", "a c #123456g", "a"},
+    {"1 1 1 1", "a c #1234567g", "a"},
     {"1 1 1 1", "a c mystery", "a"},
     {"1 1 2 1", "a c red", "a c blue", "a"},
     {"1 1 1 2", "a", "aa"},
@@ -94,8 +124,20 @@ static void malformed_maps(void) {
   assert(xpm_transparency_color(INVALID_XPM) == 0);
 }
 
+static void legacy_indexed(void) {
+  char *map[] = {"3 1 2", "a 2", "b 7", "aba"};
+  int width = -1, height = -1;
+  char *pixels = read_xpm(map, &width, &height);
+  assert(pixels && width == 3 && height == 1);
+  assert(pixels[0] == 2 && pixels[1] == 7 && pixels[2] == 2);
+  free(pixels);
+  assert(!read_xpm(NULL, &width, &height));
+  assert(width == 0 && height == 0);
+}
+
 int main(void) {
-  color_formats(); grayscale_and_names(); indexed_maps(); malformed_maps();
+  legacy_indexed();
+  color_formats(); lcf_hex_suffixes(); lcf_five_digit_colors(); grayscale_and_names(); indexed_maps(); malformed_maps();
   puts("compat XPM tests passed");
   return 0;
 }

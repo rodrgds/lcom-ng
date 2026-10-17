@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "name": "MinixRun20",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": {
+        "keys": "arrows"
+      },
+      "quickKeys": [],
+      "layout": "overlay",
+      "pointer": "move",
+      "touch": "move",
+      "actions": [
+        {
+          "label": "Confirm",
+          "key": "ENTER",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Attack",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Escape",
+          "key": "ESC",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Undertale Battle",
+  "description": "Choose Normal, Hard or Extreme, then guide the heart through the original Flowey, Papyrus or Sans attack patterns. Move the crosshair and use Attack when the game offers a turn.",
+  "preview": "../../../collections/arcade/previews/davidrocha9-feup-lcom-6ec407d2e49b.png",
+  "icon": "icon.png"
+}

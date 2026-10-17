@@ -1,9 +1,12 @@
 #ifndef LCOM_VBE_MODES_H
 #define LCOM_VBE_MODES_H
 
+#define LCOM_VBE_VRAM_BYTES (16u * 1024u * 1024u)
+
 /* Standard packed/indexed and direct-color VBE modes. Planar modes require
  * VGA plane/register semantics and are intentionally absent. The FEUP 0x14C
- * mode and existing host 0x200 extension remain supported. */
+ * mode, selected Bochs/SeaBIOS direct-color extensions and host 0x200
+ * extension remain supported. */
 #define LCOM_VBE_MODE_1024_768_8 0x105u
 #define LCOM_VBE_MODE_640_400_8 0x100u
 #define LCOM_VBE_MODE_640_480_8 0x101u
@@ -28,6 +31,9 @@
 #define LCOM_VBE_MODE_1600_1200_15 0x11Du
 #define LCOM_VBE_MODE_1600_1200_16 0x11Eu
 #define LCOM_VBE_MODE_1600_1200_24 0x11Fu
+#define LCOM_VBE_MODE_800_600_32 0x143u
+#define LCOM_VBE_MODE_1024_768_32 0x144u
+#define LCOM_VBE_MODE_1152_864_24 0x14Bu
 #define LCOM_VBE_MODE_1152_864_32 0x14Cu
 /* Host extension. Standard 0x11A is 1280x1024 RGB565. */
 #define LCOM_VBE_MODE_1280_1024_32 0x200u
@@ -59,6 +65,9 @@
   X(LCOM_VBE_MODE_1600_1200_15, 1600, 1200, 15) \
   X(LCOM_VBE_MODE_1600_1200_16, 1600, 1200, 16) \
   X(LCOM_VBE_MODE_1600_1200_24, 1600, 1200, 24) \
+  X(LCOM_VBE_MODE_800_600_32, 800, 600, 32) \
+  X(LCOM_VBE_MODE_1024_768_32, 1024, 768, 32) \
+  X(LCOM_VBE_MODE_1152_864_24, 1152, 864, 24) \
   X(LCOM_VBE_MODE_1152_864_32, 1152, 864, 32) \
   X(LCOM_VBE_MODE_1280_1024_32, 1280, 1024, 32)
 

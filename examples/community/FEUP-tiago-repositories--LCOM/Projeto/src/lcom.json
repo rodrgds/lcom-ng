@@ -1,0 +1,62 @@
+{
+  "version": 1,
+  "name": "Tetr-IO-S",
+  "description": "Rotate and drop falling tetrominoes to clear lines.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "Q"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "off",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Rotate",
+          "key": "UP",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Drop",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Down",
+          "key": "DOWN",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "LEFT",
+        "RIGHT",
+        "DOWN"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Tetris",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

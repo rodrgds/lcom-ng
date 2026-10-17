@@ -1,0 +1,60 @@
+{
+  "version": 1,
+  "name": "Sudoku Samurai",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6",
+        "7",
+        "8",
+        "9",
+        "BACKSPACE"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "toolbar": "auto",
+      "pads": [
+        {
+          "mode": "mouse",
+          "style": "stick",
+          "side": "right"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "side": "left"
+        }
+      ],
+      "touchClick": false
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/code/bmp",
+      "proj/code/sudoku"
+    ],
+    "pathAliases": {
+      "/home/lcom1415-t6g09-proj": "proj/code"
+    }
+  },
+  "archetype": "Sudoku",
+  "description": "Choose a difficulty, fill the original Sudoku board and watch rule checks highlight your entries.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

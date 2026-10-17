@@ -1,0 +1,118 @@
+{
+  "repository": "https://github.com/miguelazevedolopes/FEUP-LCOM",
+  "revision": "6f5978f2b4fe42bcb943583c0fa7b0af182a73b3",
+  "project": "src",
+  "sourceHashes": {
+    "sprites/back_slash.xpm": "a0f5dc6d8a8f5c04d868bbfc1363e239dd671dd246f94b74069b1dd801dc5d87",
+    "sprites/ball.xpm": "245e8617617af42e8f8fb46066ec1d2dbaca7c3181b782432d60be6a7de4c060",
+    "sprites/blank_screen.xpm": "28a66b1caa81a0355d55a1a81675c01dc17eb44cb0862fa5bbd54f2f15b994b8",
+    "sprites/colon.xpm": "0b807d1c0608573446e7f2329ed37f878a8d6fb2e23d57eab8c3cecd881156b8",
+    "sprites/continue_button.xpm": "646ba4c30cbd113e214077d2c8ac057941dd9dc51949a994a15370577dcd113e",
+    "sprites/eight_point.xpm": "d7185ad9887cc04b77a001b1797b7532a7b7e388a233f61954233af0d606f7cd",
+    "sprites/exit_button.xpm": "35ffbbfb81becdb54ac49a78be17ca9fe6dfb566bf31cedf0bb294291428fab1",
+    "sprites/exit_button_main.xpm": "ed07cfd53503d109511033860d9f80395d3d391b9c36dd283b40597e60b725b1",
+    "sprites/five_point.xpm": "aaa979130ce0cf09019d0e142c9f122954cf3b4064d2e7c192e3915c6a5c98f0",
+    "sprites/four_point.xpm": "d5e16626c701ed4702027f4dfc7bbceaf2550a32f474b8125e5e7582b19f720a",
+    "sprites/hand.xpm": "7fceb8b05d69d6145f7bad1031fb6434124eb1185c6508bcc193999b09d24c3d",
+    "sprites/high_score.xpm": "e15e0b80f4d1b5287053249342d2e2fca105dd8d22b8ee331d3474af3fe65e67",
+    "sprites/menu_title.xpm": "46066e4d33bcdd5614cc6805a8ad3befe64b05419d34c1eb9fb69ef6b0275435",
+    "sprites/nine_point.xpm": "1131ab765d7fc473c234c75fea779e8d5ed85a45b56940f7e9c7ef080477eb56",
+    "sprites/one_point.xpm": "7b5c4973b7f9c3810765722e228e75628a3153b9a11669cdebbad47440f3f3c8",
+    "sprites/pause_button.xpm": "82dd54fa5cf7e977fca00e019e4d99a87aa18f253a5662bb48af986ab4fb7666",
+    "sprites/pause_screen.xpm": "a0d6966c86562889613e76a3f154bea539e5ebd9d0aea413d811a209be502ea6",
+    "sprites/pause_title.xpm": "526881fcb458998cb0846d3afa187b107ae33c447fe5fb20b7ab701b1b1a4ced",
+    "sprites/play_button.xpm": "a71fc8363c480a24107991589bd88b4414c218d3fba7b199b7740c32a2819d19",
+    "sprites/player_one_wins.xpm": "555ce45bcdbe602b8265ac07981ac515dafae80b622a7f9cf7bcfbd62a2ad343",
+    "sprites/player_two_wins.xpm": "18f628af03ba7dea1f1152a85b36804f2e739c4bd3598cd983e8a725e47e6f80",
+    "sprites/pointer.xpm": "f61eca2df30e4bbf5da7cd8a7111a01c667a1e5be4b26c213b8ab261047c61ba",
+    "sprites/score_button.xpm": "982f814d0a38089b3d78fd98069cc5272f07c7a4d86f9b6b70ba5cc99ec18947",
+    "sprites/seven_point.xpm": "dc4c437f70b5dd158c2ad92ffea80e79a4252545ffafe4b3d24b0a165add6f0e",
+    "sprites/six_point.xpm": "f340ec183124f3fbe6215c133814b40bd6884511e5ef36243d51c92d859756d9",
+    "sprites/three_point.xpm": "9167b11a725147e654ee756df0a9c005b936b1730ebe52a0e81aac4265a2883f",
+    "sprites/two_point.xpm": "5f1e55630e79a52cb697707ccbf8bec99b3c9aa47ad80bd412b81ef0510e4693",
+    "sprites/vertical_bar.xpm": "62e8cce300caa60d3177ccb95863f05c02b97d0ed031ed5e8d512e5ab8ebebe5",
+    "sprites/vs.xpm": "43106fa5b75c8313c03d90fbefbb344fa46072ef328ba5da04c7b2b86aba592c",
+    "sprites/zero_point.xpm": "e43e488d14a862eefd1d18b12b74c43e2125f13bf8f152f806ea59902025af83",
+    "src/Makefile": "ccf071adafbc985ac1195ffdcb6a2d6b171da666a4fdf6daa2a238e6efde43cb",
+    "src/file1.txt": "ad94f22de41e3fb09c3a47ffe1c7d8dce6e056c861a78ef7973301303f929d33",
+    "src/game.c": "c10bbe6f159375eaf0c5022e1638f5346f07793d6fca04b5217dfff7c1e484e8",
+    "src/game.h": "ac11ab6ff9434fc94247694be190eaa44c0719423730bdded299fe15ce4402b8",
+    "src/gameSprites.c": "da1fd28ebf6db50de1afed67d1cbbdd4455fd109a7ef9aec5671864e320deae2",
+    "src/gameSprites.h": "cde5719c15146bbc345716ce31c20ec18cf886be2de486d2cace9043a6c13566",
+    "src/i8042.h": "b2d0c159c7eec06eb22d1fdf92943423414ede9269e8aed89b474630db7d1d67",
+    "src/i8254.h": "4b6cb458b2e1a554069c306eb768edfa99d8608ac3eb96e3c3817fecc23e8fc5",
+    "src/keyboard.c": "fca7460ad822c5734a65c1715ef61fe056ec883dae6f2410a0376df92ceff400",
+    "src/keyboard.h": "e1de931ab5f5f8b0ca6a78b790bf50c3a6e319e0d31e6f257d2d7a62a0ceefdd",
+    "src/keyboard_state.c": "508b09483617e210dc3d9f8488403599f6dcf8accdb28c2ec25ae26065b18790",
+    "src/keyboard_state.h": "88d559fc096734201c11d825db9cdb041569d6d74dbbf3b074a77ed76ec9d593",
+    "src/menu.c": "8600773c4e6fbdbd77c215e6d8a905f338e38e3fa8b54ae7a783946020f5f51b",
+    "src/menu.h": "2cbee2de04d89bc10aaab4f2d7ac173d0c65580d137fd6cbca60eb9987a4885a",
+    "src/mouse.c": "f0848f1fe48591ca0f67212ae2dab51da324607b7ffad234fa4aac5e5b7069fa",
+    "src/mouse.h": "a5315dd0e01ae1f42f205a537f92a084bd6b9bd0ea58eb720f46279a648af1ef",
+    "src/proj.c": "0909a3e5dca197ea25cc9482c610944454ccb3b67396d08a43ca1efb61f9431a",
+    "src/rtc.c": "87f7254d359d8e8e16d42e7159b8c10d1c0c695b292a4204af3b87314d0fce52",
+    "src/rtc.h": "ab77174bfefef2cf1fc6b5f16ba867ee1569436dd79b550160e5d88438b4c1bd",
+    "src/rtc_macros.h": "a94a88c6814ef70b291bbd4e0e0507281799516d0d13438f6ffc5b672f5832e1",
+    "src/timer.c": "d82e2e54f7942d57fe35b480e4a3b7240bce85606a2a6313f736c5ffcbe9c0dd",
+    "src/timer.h": "078173b0d318c72ce84048e88f4cd26b5500f39c7a74a150ad4bc3d6f35f367b",
+    "src/utils.c": "0d4e74c56224e9e765b28754aee4578f114430d1387c37dc0496b8e93598bd0c",
+    "src/utils.h": "3258997a4e43e56c5ee3cdbcd9de383c643bc961f278408b8501448f3a2f90f4",
+    "src/v.c": "73429f44436452cc0510c4d5ba9b181d6d9685d1155b181af7dfa9d769287949",
+    "src/v.h": "7b9868ec7600c96ba2787dcbe1148aee21a2c4255c7a9585516dddfa443dd942",
+    "README.md": "be5a8f8bde7320c51896d2cd7542b6abc81d9e3b9c69d18fba0a5cf0e43977d4"
+  },
+  "selection": "Complete selected original C/H/Makefile, sibling embedded XPM assets, authored file1.txt settings and README. Build products, reports and other exercises omitted.",
+  "excludedMetadata": [],
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "src/game.c",
+          "originalSha256": "c10bbe6f159375eaf0c5022e1638f5346f07793d6fca04b5217dfff7c1e484e8",
+          "patchedSha256": "83f1c02dce8bec6d60c6ebcd087362c08e8a5514f67a14499dfda50eb3402660",
+          "reason": "Allocate and declare all three bytes consumed by the original mouse IRQ packet assembler.",
+          "verification": "Actual first-menu IRQ block receives the original signed three-byte packet one byte at a time. Original two-byte storage fails bounds sanitizer on byte3; corrected storage applies exactly one full +20,-5 packet and menu selection after completion."
+        },
+        {
+          "file": "src/menu.c",
+          "originalSha256": "8600773c4e6fbdbd77c215e6d8a905f338e38e3fa8b54ae7a783946020f5f51b",
+          "patchedSha256": "50458b415bb0f030230f5507a77cf46f185c5652b467c5f9b12bfd6945ea929a",
+          "reason": "Allocate and declare all three bytes consumed by the original mouse IRQ packet assembler.",
+          "verification": "Actual first-menu IRQ block receives the original signed three-byte packet one byte at a time. Original two-byte storage fails bounds sanitizer on byte3; corrected storage applies exactly one full +20,-5 packet and menu selection after completion."
+        },
+        {
+          "file": "src/v.c",
+          "originalSha256": "73429f44436452cc0510c4d5ba9b181d6d9685d1155b181af7dfa9d769287949",
+          "patchedSha256": "2d991939b88cce315a23b637f7cee71964865f614757d210f33426627427eaf6",
+          "reason": "Preserve native framebuffer pointer width when computing the pixel destination.",
+          "verification": "Actual vg_colour_pixel writes first/last valid pixels into an above-4GiB framebuffer; original truncated address fails the independently bounded copy assertion, corrected native address passes clipping and canaries."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original source cursor starts0,0 with unit deltas; normal relative input and Select choose original menu buttons. Player1 W/S, player2 Up/Down, ESC opens pause. Reserved panel keeps 1024x768 playfield and score/time unobstructed in portrait and landscape. No direct preset because original cursor has no clamp.",
+  "artwork": {
+    "icon": "Simple Pong paddles/ball in original lavender-on-black palette, derived geometry, original XPM assets unchanged.",
+    "preview": "Actual browser match with score1-0, resized640x480."
+  },
+  "verification": {
+    "browser": "Original profile-corrected source also starts normally. Corrected source real touch Play, both paddles, moving ball, actual points, pause/Continue, full original five-point winner5-2, pauseExit/menuExit normal finish. Panel portrait390x844 and landscape844x390 visually reviewed.",
+    "ndk": "All2 selected/generated-context ARM64 objects pass O2/FORTIFY2/stack-protector/format-security.",
+    "native": "Pending ROOT actual Android gameplay.",
+    "limitations": "No source physics/timing/RNG changes. file1.txt is the original required settings input, bundled and explicitly aliased to its authored absolute path for private persistence. No unchecked-file-reader repair claimed. The unused vg_init return remains original.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/fivepointspong-reviewed-native/results.json",
+      "apkSha256": "7ccb075ee1cae484b23f815e1c10e47bcfe8e838e795616cbf52ea44d39bddd0",
+      "demonstrated": "ROOT viewed original Play, both touchscreen paddles moving independently, ball motion and visible score0-0\u21921-0\u21922-0, PAUSED/Continue, return to original menu and authored Exit returning cleanly to native library.",
+      "limitations": [
+        "Browser full natural five-point outcome is separately captured; this short native sequence demonstrates scoring and pause/resume, not a complete native match."
+      ]
+    }
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "repository": "https://github.com/DiogoFerreira2004/Snake",
+  "revision": "8ea921392622e962a25ee310a7ce8e735edf9a55",
+  "project": ".",
+  "sourceHashes": {
+    "Makefile": "493ae5886327bc14b16a8cbd4571849c80912316a5232116f5cddb4814ccd0f0",
+    "README.md": "5d0a3447a3ee007aa460f64050953db1bbe0cdb15225557301eeb82477a9025f",
+    "src/Devices/Utilities/utils.c": "56fdca81ebd26c23ea6a9b7cbcfff9d8ead358812421d29b8273cddbed0d8a90",
+    "src/Devices/graphics/VBE.c": "a97cafb9a3515c71232fce519072768e4619f63c9792377060277606c16fd876",
+    "src/Devices/graphics/VBE.h": "2db7ae35a803986f32d5d6f8f929f86e1b897dfe6276ac306418a70ffbe8eefc",
+    "src/Devices/keyboard/KBC.c": "10e5d26ffbff22584976ba183288a21a772ff4386977524370ecb2fe616ee647",
+    "src/Devices/keyboard/KBC.h": "ccac00643e6c55ebc87cb17af20fbc4bf42559ed6a0ba10c0ad631cf31cc066b",
+    "src/Devices/keyboard/i8042.h": "5cef98466b27791d2d447cb00c1dbef9f262aa6efa9bfa2166d40a7d5dcca5bb",
+    "src/Devices/timer/i8254.h": "899052709006bb3a25b7b616c210e543ca5addfc8e664e9400f4e99d087ca646",
+    "src/Devices/timer/timer.c": "8b4c7adc6b09260b5dbcd572a33c8ee6c2cc2db9f06082f2d04141f1800ea588",
+    "src/button_pixmap.h": "85f3a7d4afe05d131f886021716ae7cc012989ad050375b7d562adb39994e696",
+    "src/main.c": "8b507e408130087137822c579974faf04ea9047aa6d0965f938946ddc016e41c",
+    "src/snake.c": "e8909bb7c0e7bf381936b9ce78b1c109981a2082a01798c522ed7d81daedf406",
+    "src/snake.h": "27199a5198212dc3194acd91d24ecd40c6124a1e4e7c40c203826944eb7ad811"
+  },
+  "selection": "All6 original game C units,6 original H headers including hand-drawn XPM artwork, original Makefile and README. Original prebuilt proj binary/PDF report/editor settings omitted. No original source/asset changes.",
+  "excludedMetadata": [
+    {
+      "file": "src/.vscode",
+      "reason": "Editor-local metadata omitted from required source inventory."
+    }
+  ],
+  "license": {
+    "status": "unknown",
+    "files": []
+  },
+  "controlsRationale": "Arrow keys select original menus and steer Classic/Walls/FruitPower. Swap Arrows intentionally reverses the original directions. Enter selects, original Q backs out of mode/rules screens, Escape returns from active play to main menu and exits from main menu. Reserved landscape panel with arrow pad, Enter/Escape and an explicit Back(Q) action; no unnecessary mouse pad/direct preset.",
+  "derivedAssets": [
+    {
+      "path": "icon.png",
+      "sha256": "37d2325e72ccedfc98bd49e77514ead0786da04a8cf52570d91399bb90898405",
+      "reason": "Simple source-palette blue snake cells and red fruit on original green board color, no original artwork modified."
+    },
+    {
+      "path": "preview.png",
+      "sha256": "fa157a24e1fb4f7471fef2dca32c29c3f22cc2b0577692cb66ba3521a9e3a144",
+      "reason": "Actual unchanged-source browser screenshot showing original score10 after visible fruit pickup and three-to-four-cell growth."
+    }
+  ],
+  "verification": {
+    "browser": "Actual ordinary touchscreen Enter/Enter starts Classic; screenshot-only board observer follows visible fruit and original score rises10 with growth3to4. Ordinary Down/Left steer and Escape returns menu. Walls, SwapArrows and FruitPower selectable, actual Down in SwapArrows sends original snake upward. Source clock/RNG/state unchanged. Portrait390x844/freshlandscape844x390 inspected. Final authored Back(Q) touchscreen action independently returns both Modes and Rules to original main menu; final portrait/landscape profile inspected.",
+    "ndk": "All8 actual selected/generated-entry ARM64 objects passO2/FORTIFY2/stack-protector-strong/format-security.",
+    "native": "Two actual Android touchscreen trials passed and ROOT visually reviewed; see nativeGameplay.",
+    "limitations": "No full-board win claim or deterministic fruit positions. Classic positive pickup and reversed direction observed; special-fruit effect and new-wall-after-pickup not independently claimed yet. Source\u2019s original hand-drawn buttons, palette and presentation preserved.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/c49-reviewed-native/results.json",
+      "apkSha256": "028c325cba4d9ff88d94e216fa9113311c653c72ed615509b7b1c6221684ca20",
+      "demonstrated": "ROOT visually inspected initial full native controls, actual three-cell board, down and left turns and original menu return; separate ordinary Back(Q) trial opened mode/rules screens and returned both to original main menu. Home ended both isolated game processes normally.",
+      "limitations": [
+        "Browser score10 and growth3to4 verified separately. No native fruit pickup or full-round win claim. A later extended capture trial idled through gameover while slow NAS screenshots were written, then original menu Escape exited0; this is retained as a failed QA sequence, not counted as proof."
+      ]
+    }
+  }
+}

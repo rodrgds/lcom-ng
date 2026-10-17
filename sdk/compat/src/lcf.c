@@ -2,6 +2,53 @@
 
 #define WEAK __attribute__((weak))
 
+/* LCF's rand_ uses an independently seeded MT19937 and a uniform 31-bit int.
+ * Keep this separate from libc rand/srand, as in the original LCF library. */
+int rand_(void) {
+  static uint32_t state[624];
+  static unsigned index = 624;
+  static bool seeded;
+  if (!seeded) {
+    uint32_t seed;
+    FILE *entropy = fopen("/dev/urandom", "rb");
+    if (!entropy) abort();
+    size_t count = fread(&seed, sizeof(seed), 1, entropy);
+    int closed = fclose(entropy);
+    if (count != 1 || closed != 0) abort();
+    state[0] = seed;
+    for (unsigned i = 1; i < 624; ++i)
+      state[i] = UINT32_C(1812433253) * (state[i - 1] ^ (state[i - 1] >> 30)) + i;
+    seeded = true;
+  }
+  if (index == 624) {
+    for (unsigned i = 0; i < 624; ++i) {
+      uint32_t bits = (state[i] & UINT32_C(0x80000000)) |
+                      (state[(i + 1) % 624] & UINT32_C(0x7fffffff));
+      state[i] = state[(i + 397) % 624] ^ (bits >> 1) ^
+                 ((bits & 1) ? UINT32_C(0x9908b0df) : 0);
+    }
+    index = 0;
+  }
+  uint32_t value = state[index++];
+  value ^= value >> 11;
+  value ^= (value << 7) & UINT32_C(0x9d2c5680);
+  value ^= (value << 15) & UINT32_C(0xefc60000);
+  value ^= value >> 18;
+  return (int)(value & UINT32_C(0x7fffffff));
+}
+
+/* LCF supplies timer helpers when the project omits a student definition.
+ * Read the actual PIT status, so mode and channel selection remain observable. */
+WEAK int timer_get_conf(uint8_t timer, uint8_t *status) {
+  if (timer > 2 || !status) return EINVAL;
+  int result = sys_outb(0x43, 0xe0 | (1u << (timer + 1)));
+  if (result != OK) return result;
+  uint32_t value;
+  result = sys_inb(0x40 + timer, &value);
+  if (result == OK) *status = (uint8_t)value;
+  return result;
+}
+
 /* Definitions keep optional entry points linkable with both ELF and Mach-O
  * static archives. A student's implementation overrides these defaults. */
 WEAK int proj_main_loop(int argc, char **argv) { (void)argc; (void)argv; return ENOSYS; }
@@ -30,6 +77,43 @@ WEAK int video_test_move(xpm_map_t map, uint16_t xi, uint16_t yi, uint16_t xf, u
   (void)map; (void)xi; (void)yi; (void)xf; (void)yf; (void)speed; (void)frame_rate; return ENOSYS;
 }
 WEAK int video_test_controller(void) { return ENOSYS; }
+
+/* The original LCF starter calls this after its own game loop. Keep a
+ * functional image demonstration, including its requested display and delay. */
+int proj_demo(uint16_t mode, bool logo, bool gray, uint8_t delay) {
+  lcom_vbe_mode_info_t display;
+  if (lcom_compat_init() || lcom_vbe_get_mode_info(mode, &display) != LCOM_OK) return EINVAL;
+  enum xpm_image_type format;
+  switch (display.bpp) {
+    case 8: format = XPM_INDEXED; break;
+    case 15: format = gray ? XPM_GRAY_1_5_5_5 : XPM_1_5_5_5; break;
+    case 16: format = gray ? XPM_GRAY_5_6_5 : XPM_5_6_5; break;
+    case 24: format = gray ? XPM_GRAY_8_8_8 : XPM_8_8_8; break;
+    case 32: format = gray ? XPM_GRAY_8_8_8_8 : XPM_8_8_8_8; break;
+    default: return EINVAL;
+  }
+  xpm_image_t image;
+  uint8_t *pixels = xpm_load(logo ? minix3_xpm : penguin, format, &image);
+  if (!pixels) return EINVAL;
+  void *mapping = NULL;
+  if (lcom_vbe_set_mode(mode) != LCOM_OK ||
+      lcom_phys_map(display.framebuffer_phys, display.framebuffer_size, &mapping) != LCOM_OK) {
+    xpm_free_data(&image); return EIO;
+  }
+  memset(mapping, 0, display.framebuffer_size);
+  unsigned width = image.width < display.width ? image.width : display.width;
+  unsigned height = image.height < display.height ? image.height : display.height;
+  unsigned x = (display.width - width) / 2, y = (display.height - height) / 2;
+  for (unsigned row = 0; row < height; ++row)
+    memcpy((uint8_t *)mapping + (y + row) * display.pitch + x * display.bytes_per_pixel,
+           pixels + (size_t)row * image.width * display.bytes_per_pixel,
+           (size_t)width * display.bytes_per_pixel);
+  int result = tickdelay((clock_t)delay * 60);
+  lcom_phys_unmap(mapping, display.framebuffer_size);
+  xpm_free_data(&image);
+  if (lcom_vbe_set_mode(3) != LCOM_OK) return EIO;
+  return result;
+}
 
 static int number(const char *text, uint32_t limit, uint32_t *out) {
   if (!text || !*text || *text == '-' || *text == '+' || *text == ' ' || *text == '\t' || *text == '\n' || *text == '\r') return EINVAL;

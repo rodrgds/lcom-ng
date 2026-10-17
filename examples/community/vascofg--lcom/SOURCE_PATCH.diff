@@ -1,0 +1,222 @@
+--- a/trunk/xpm.c
++++ b/trunk/xpm.c
+@@ -91,8 +91,8 @@
+ 	FILE *file;
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/newgame.xpm", "r");
+ 	for (i = 0; i < 605; i++) {
+-		battleship1_xpm[i] = malloc(801 * sizeof(char));
+-		fgets(battleship1_xpm[i], sizeof(battleship1_xpm), file);
++		battleship1_xpm[i] = malloc(802 * sizeof(char));
++		fgets(battleship1_xpm[i], 802, file);
+ 		if (battleship1_xpm[i][strlen(battleship1_xpm[i]) - 1] == '\n') {
+ 			battleship1_xpm[i][strlen(battleship1_xpm[i]) - 1] = '\0';
+ 		}
+@@ -100,8 +100,8 @@
+ 	fclose(file);
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/exit.xpm", "r");
+ 	for (i = 0; i < 605; i++) {
+-		battleship2_xpm[i] = malloc(801 * sizeof(char));
+-		fgets(battleship2_xpm[i], sizeof(battleship2_xpm), file);
++		battleship2_xpm[i] = malloc(802 * sizeof(char));
++		fgets(battleship2_xpm[i], 802, file);
+ 		if (battleship2_xpm[i][strlen(battleship2_xpm[i]) - 1] == '\n') {
+ 			battleship2_xpm[i][strlen(battleship2_xpm[i]) - 1] = '\0';
+ 		}
+@@ -110,8 +110,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/mapa.xpm", "r");
+ 	for (i = 0; i < 603; i++) {
+-		map_xpm[i] = malloc(801 * sizeof(char));
+-		fgets(map_xpm[i], sizeof(map_xpm), file);
++		map_xpm[i] = malloc(802 * sizeof(char));
++		fgets(map_xpm[i], 802, file);
+ 		if (map_xpm[i][strlen(map_xpm[i]) - 1] == '\n') {
+ 			map_xpm[i][strlen(map_xpm[i]) - 1] = '\0';
+ 		}
+@@ -120,8 +120,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/won.xpm", "r");
+ 	for (i = 0; i < 603; i++) {
+-		won_xpm[i] = malloc(801 * sizeof(char));
+-		fgets(won_xpm[i], sizeof(won_xpm), file);
++		won_xpm[i] = malloc(802 * sizeof(char));
++		fgets(won_xpm[i], 802, file);
+ 		if (won_xpm[i][strlen(won_xpm[i]) - 1] == '\n') {
+ 			won_xpm[i][strlen(won_xpm[i]) - 1] = '\0';
+ 		}
+@@ -130,8 +130,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/0.xpm", "r");
+ 	for (i = 0; i < 31; i++) {
+-		zero_xpm[i] = malloc(28 * sizeof(char));
+-		fgets(zero_xpm[i], sizeof(zero_xpm), file);
++		zero_xpm[i] = malloc(29 * sizeof(char));
++		fgets(zero_xpm[i], 29, file);
+ 		if (zero_xpm[i][strlen(zero_xpm[i]) - 1] == '\n') {
+ 			zero_xpm[i][strlen(zero_xpm[i]) - 1] = '\0';
+ 		}
+@@ -140,8 +140,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/1.xpm", "r");
+ 	for (i = 0; i < 31; i++) {
+-		one_xpm[i] = malloc(28 * sizeof(char));
+-		fgets(one_xpm[i], sizeof(one_xpm), file);
++		one_xpm[i] = malloc(29 * sizeof(char));
++		fgets(one_xpm[i], 29, file);
+ 		if (one_xpm[i][strlen(one_xpm[i]) - 1] == '\n') {
+ 			one_xpm[i][strlen(one_xpm[i]) - 1] = '\0';
+ 		}
+@@ -150,8 +150,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/2.xpm", "r");
+ 	for (i = 0; i < 31; i++) {
+-		two_xpm[i] = malloc(28 * sizeof(char));
+-		fgets(two_xpm[i], sizeof(two_xpm), file);
++		two_xpm[i] = malloc(29 * sizeof(char));
++		fgets(two_xpm[i], 29, file);
+ 		if (two_xpm[i][strlen(two_xpm[i]) - 1] == '\n') {
+ 			two_xpm[i][strlen(two_xpm[i]) - 1] = '\0';
+ 		}
+@@ -160,8 +160,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/3.xpm", "r");
+ 	for (i = 0; i < 31; i++) {
+-		three_xpm[i] = malloc(28 * sizeof(char));
+-		fgets(three_xpm[i], sizeof(three_xpm), file);
++		three_xpm[i] = malloc(29 * sizeof(char));
++		fgets(three_xpm[i], 29, file);
+ 		if (three_xpm[i][strlen(three_xpm[i]) - 1] == '\n') {
+ 			three_xpm[i][strlen(three_xpm[i]) - 1] = '\0';
+ 		}
+@@ -170,8 +170,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/4.xpm", "r");
+ 	for (i = 0; i < 31; i++) {
+-		four_xpm[i] = malloc(28 * sizeof(char));
+-		fgets(four_xpm[i], sizeof(four_xpm), file);
++		four_xpm[i] = malloc(29 * sizeof(char));
++		fgets(four_xpm[i], 29, file);
+ 		if (four_xpm[i][strlen(four_xpm[i]) - 1] == '\n') {
+ 			four_xpm[i][strlen(four_xpm[i]) - 1] = '\0';
+ 		}
+@@ -180,8 +180,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/5.xpm", "r");
+ 	for (i = 0; i < 31; i++) {
+-		five_xpm[i] = malloc(28 * sizeof(char));
+-		fgets(five_xpm[i], sizeof(five_xpm), file);
++		five_xpm[i] = malloc(29 * sizeof(char));
++		fgets(five_xpm[i], 29, file);
+ 		if (five_xpm[i][strlen(five_xpm[i]) - 1] == '\n') {
+ 			five_xpm[i][strlen(five_xpm[i]) - 1] = '\0';
+ 		}
+@@ -190,8 +190,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/6.xpm", "r");
+ 	for (i = 0; i < 31; i++) {
+-		six_xpm[i] = malloc(28 * sizeof(char));
+-		fgets(six_xpm[i], sizeof(six_xpm), file);
++		six_xpm[i] = malloc(29 * sizeof(char));
++		fgets(six_xpm[i], 29, file);
+ 		if (six_xpm[i][strlen(six_xpm[i]) - 1] == '\n') {
+ 			six_xpm[i][strlen(six_xpm[i]) - 1] = '\0';
+ 		}
+@@ -200,8 +200,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/7.xpm", "r");
+ 	for (i = 0; i < 31; i++) {
+-		seven_xpm[i] = malloc(28 * sizeof(char));
+-		fgets(seven_xpm[i], sizeof(seven_xpm), file);
++		seven_xpm[i] = malloc(29 * sizeof(char));
++		fgets(seven_xpm[i], 29, file);
+ 		if (seven_xpm[i][strlen(seven_xpm[i]) - 1] == '\n') {
+ 			seven_xpm[i][strlen(seven_xpm[i]) - 1] = '\0';
+ 		}
+@@ -210,8 +210,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/8.xpm", "r");
+ 	for (i = 0; i < 31; i++) {
+-		eight_xpm[i] = malloc(28 * sizeof(char));
+-		fgets(eight_xpm[i], sizeof(eight_xpm), file);
++		eight_xpm[i] = malloc(29 * sizeof(char));
++		fgets(eight_xpm[i], 29, file);
+ 		if (eight_xpm[i][strlen(eight_xpm[i]) - 1] == '\n') {
+ 			eight_xpm[i][strlen(eight_xpm[i]) - 1] = '\0';
+ 		}
+@@ -220,8 +220,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/9.xpm", "r");
+ 	for (i = 0; i < 31; i++) {
+-		nine_xpm[i] = malloc(28 * sizeof(char));
+-		fgets(nine_xpm[i], sizeof(nine_xpm), file);
++		nine_xpm[i] = malloc(29 * sizeof(char));
++		fgets(nine_xpm[i], 29, file);
+ 		if (nine_xpm[i][strlen(nine_xpm[i]) - 1] == '\n') {
+ 			nine_xpm[i][strlen(nine_xpm[i]) - 1] = '\0';
+ 		}
+@@ -230,8 +230,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/sideboats.xpm", "r");
+ 	for (i = 0; i < 403; i++) {
+-		sidebar_xpm[i] = malloc(181 * sizeof(char));
+-		fgets(sidebar_xpm[i], sizeof(sidebar_xpm), file);
++		sidebar_xpm[i] = malloc(182 * sizeof(char));
++		fgets(sidebar_xpm[i], 182, file);
+ 		if (sidebar_xpm[i][strlen(sidebar_xpm[i]) - 1] == '\n') {
+ 			sidebar_xpm[i][strlen(sidebar_xpm[i]) - 1] = '\0';
+ 		}
+@@ -240,8 +240,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/x.xpm", "r");
+ 	for (i = 0; i < 33; i++) {
+-		x_xpm[i] = malloc(31 * sizeof(char));
+-		fgets(x_xpm[i], sizeof(x_xpm), file);
++		x_xpm[i] = malloc(32 * sizeof(char));
++		fgets(x_xpm[i], 32, file);
+ 		if (x_xpm[i][strlen(x_xpm[i]) - 1] == '\n') {
+ 			x_xpm[i][strlen(x_xpm[i]) - 1] = '\0';
+ 		}
+@@ -250,8 +250,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/y.xpm", "r");
+ 	for (i = 0; i < 33; i++) {
+-		y_xpm[i] = malloc(31 * sizeof(char));
+-		fgets(y_xpm[i], sizeof(y_xpm), file);
++		y_xpm[i] = malloc(32 * sizeof(char));
++		fgets(y_xpm[i], 32, file);
+ 		if (y_xpm[i][strlen(y_xpm[i]) - 1] == '\n') {
+ 			y_xpm[i][strlen(y_xpm[i]) - 1] = '\0';
+ 		}
+@@ -260,8 +260,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/water.xpm", "r");
+ 	for (i = 0; i < 89; i++) {
+-		water_xpm[i] = malloc(151 * sizeof(char));
+-		fgets(water_xpm[i], sizeof(water_xpm), file);
++		water_xpm[i] = malloc(152 * sizeof(char));
++		fgets(water_xpm[i], 152, file);
+ 		if (water_xpm[i][strlen(water_xpm[i]) - 1] == '\n') {
+ 			water_xpm[i][strlen(water_xpm[i]) - 1] = '\0';
+ 		}
+@@ -270,8 +270,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/hit.xpm", "r");
+ 	for (i = 0; i < 88; i++) {
+-		hit_xpm[i] = malloc(151 * sizeof(char));
+-		fgets(hit_xpm[i], sizeof(hit_xpm), file);
++		hit_xpm[i] = malloc(152 * sizeof(char));
++		fgets(hit_xpm[i], 152, file);
+ 		if (hit_xpm[i][strlen(hit_xpm[i]) - 1] == '\n') {
+ 			hit_xpm[i][strlen(hit_xpm[i]) - 1] = '\0';
+ 		}
+@@ -280,8 +280,8 @@
+ 
+ 	file = fopen("/usr/src/drivers/batalha_naval/res/sunk.xpm", "r");
+ 	for (i = 0; i < 89; i++) {
+-		sunk_xpm[i] = malloc(151 * sizeof(char));
+-		fgets(sunk_xpm[i], sizeof(sunk_xpm), file);
++		sunk_xpm[i] = malloc(152 * sizeof(char));
++		fgets(sunk_xpm[i], 152, file);
+ 		if (sunk_xpm[i][strlen(sunk_xpm[i]) - 1] == '\n') {
+ 			sunk_xpm[i][strlen(sunk_xpm[i]) - 1] = '\0';
+ 		}

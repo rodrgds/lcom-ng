@@ -1,0 +1,70 @@
+{
+  "version": 1,
+  "name": "Plunder",
+  "description": "Sail the original blue ship, fire its cannons and survive the pursuing sea monsters.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        },
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Port / Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Starboard",
+          "mouseButton": "right",
+          "position": "top-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "sources": [
+      "proj.c",
+      "game.c",
+      "boat.c",
+      "timer.c",
+      "kbd.c",
+      "mouse.c",
+      "vbe.c",
+      "video.c",
+      "video_gr.c",
+      "bitmap.c",
+      "obstacle.c",
+      "enemy.c",
+      "cannonball.c"
+    ],
+    "assetRoot": "..",
+    "assets": [
+      "resources"
+    ],
+    "pathAliases": {
+      "/tmp/resources": "resources"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

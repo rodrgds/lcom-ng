@@ -1,0 +1,122 @@
+{
+  "repository": "https://github.com/pmscosta/Ball-vs-Ball-Game",
+  "commit": "f0d29825813b629ccda3a25f652f3ead12de8d71",
+  "createdAt": "2018-11-23T17:43:28Z",
+  "project": "proj/src",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/pmscosta/Ball-vs-Ball-Game",
+    "createdAt": "2018-11-23T17:43:28Z"
+  },
+  "sha256": {
+    "proj/src/Makefile": "90924be7fcc4d56d1b2ba74b63ef094297fede0b8bfb3c490af65fba56d8c8a4",
+    "proj/src/ball.c": "655e4d32a452551d5c909133448d443eb48d721cdf01446600a3e813b91fd987",
+    "proj/src/ball.h": "e9d5ed51000f24b1ab65d65500fda3283e808f60bb2a87e06c809cc8c7b342db",
+    "proj/src/bitmap.c": "4101e682c6fa7890c02eac453449f9fb006c6a999a69f4735b62df62e33fc978",
+    "proj/src/bitmap.h": "e917dab63653d2b6ccfb4e6de917a12dfd46f87b4633ac1150a78b78ba9dc76f",
+    "proj/src/driver_receive.h": "4e075897b8369031ad9ea96cf7476b60589e10ab64508002fb109b8ebde0cfa2",
+    "proj/src/field.h": "077394dba5698f8328b2cae20a5374c889d5e8a8d46e59d4a2a61e2d59452a7f",
+    "proj/src/highscore.c": "9256ea98143d14a5cb0b92dbdf2b05d70a33b562fbae06eed33842c420e227f7",
+    "proj/src/highscore.h": "84eed5d12e3926fc34a0407849d3f384c026a720388b0d688af6cc7296582e10",
+    "proj/src/i8042.h": "586ccddd7e042dc8d46f2f71a6275717d4693d0069276b018980999aa6f4ee32",
+    "proj/src/i8254.h": "b20ea41a964a10536c16c9a87b1c815940ba3bd73b25458349fa32d19ef30d9b",
+    "proj/src/keyboard.c": "07d3f73de2d359e446ce27949488774b160759ece3ba98d618dc222485805226",
+    "proj/src/keyboard.h": "696820f05f6fda52a275dc1fec50a99b9b4083eed51945f78e00a0e3848a0100",
+    "proj/src/lmlib.h": "e1785723d6ee42919efcd79b0da422568633019e3f1102f636143c9ac493fc1b",
+    "proj/src/mouse.c": "6b30ae777b04286e90098f45dff4572959dac1d2abe0e1ceab2968e477918f72",
+    "proj/src/mouse.h": "02f2cf8948194631acbd3a24fa0a744228c7d80173d9deb55e63d813b82daa13",
+    "proj/src/player.c": "bab1311358cfb96d9d52413c9ba8f847e8dd77eb955f9b7afc42ab9b83380780",
+    "proj/src/player.h": "5169b59444af62a6b6edb092c97cb35b9de25035fa8030340cabae509f2d66dc",
+    "proj/src/proj.c": "bd2f35dabd7918c4d210d7e1a1324e33aaa09f92214c93dfb42b7694794b8028",
+    "proj/src/proj.h": "920dd8d5e3591056f1647110918615c0aa292c27a7a511649cde5fdb5340b3fa",
+    "proj/src/rectangle.c": "dc51a552dd7c49620c157c8335bee5eba1177921f1edcb42ace380fb0f893d07",
+    "proj/src/rectangle.h": "47eb1a6f9db863b0f5212f13de596ff9736b6abaea2cf152801a976bfdf0bd69",
+    "proj/src/resources/files/highscores.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/resources/images/0.bmp": "f09e4eb1e83dc02fd69903af06af34092a6424d328a8738297fb7250a01cba97",
+    "proj/src/resources/images/1.bmp": "42a65c5358c161b7673f983c507ceefa0222d279bf2cdcfafab58cb83ca704cf",
+    "proj/src/resources/images/2.bmp": "3561689d256e70192292d5c8ed6dd89433c3d0429cb3b6dd719be4615b70d14f",
+    "proj/src/resources/images/3.bmp": "f1732d727fb2a762f18b8fcb644cb07cfa2c85b9df32209961d0271bf510bd34",
+    "proj/src/resources/images/4.bmp": "40425d134778240693a9f01e1d019fbd6425788ca37ae62e51b2a891db310d90",
+    "proj/src/resources/images/5.bmp": "64e91e187b7085b8d5399d8fefb3190775039f15da2f9a0e57248329a46104ac",
+    "proj/src/resources/images/6.bmp": "01079f330c78ba66f13d6116f4e5011905b3945481cfdd4438f7dd8e012b2580",
+    "proj/src/resources/images/7.bmp": "11bfdf68d8e5c830da2c4e45db836508d2f7228ac503f8338732f2d0a305d06e",
+    "proj/src/resources/images/8.bmp": "74e1a6d9e9facea0dd0428132f757dd4a23dc3a8db8c50d95bfaa29ddb4b7954",
+    "proj/src/resources/images/9.bmp": "8f26780377da39e8162fd5eb22f9ad0d623c00c522fc2770c785928d9584f8a5",
+    "proj/src/resources/images/bar.bmp": "a7cca7fcbae3d763cf8825600111044f2d26cd1ae49b48f132f374a765fcc78e",
+    "proj/src/resources/images/bigger_0.bmp": "5a466f5af2743cb91ebd71c3bfd51c8c97975df470b9ad044765cbaab732444c",
+    "proj/src/resources/images/bigger_1.bmp": "6200cb8de54f14074fda1ffe7c124bc67afc1e9719ca5a5b58e3ed19d67252fb",
+    "proj/src/resources/images/bigger_2.bmp": "f61b50f6ba24801b3b2f058035a9adcd4782aa5dec0129ee2997e848fb16eeac",
+    "proj/src/resources/images/bigger_3.bmp": "fc8791234926eaf81c3cbc37e773a80217b80ad6f5bd599e5d195dc03e2e74a4",
+    "proj/src/resources/images/bigger_two_points.bmp": "a784444d3e932e5b87d6198a7921c3a3f0b1f7d4baaddb59abca3117bbae81ba",
+    "proj/src/resources/images/field.bmp": "9ab3fcf53d894b54c9c5cde24362eee2dfc2d7121e5c88ae60daf8567aaafb7f",
+    "proj/src/resources/images/goal.bmp": "ef996e693fd19cd02151807b495ffc8d73eebf01a0f603e7f3a1ff309585a6e7",
+    "proj/src/resources/images/highscores_with_label.bmp": "b03b5997f09332ccf9802691dbc5bec284a1f8212c9af99eab16b8599adf287b",
+    "proj/src/resources/images/main-menu.bmp": "510d9db807e37b279071337ae2cc1787657946c08216e8a9bc870fff05c1e31a",
+    "proj/src/resources/images/mouse.bmp": "edbe3b55139cfcd3ff55b4109428df05577aaec857430f17502cbf8cc9edb749",
+    "proj/src/resources/images/player_one_won.bmp": "b73d3dc21140caa95c5db0fda32cd71405f52b0e9c8992090ed4b515c06d12a1",
+    "proj/src/resources/images/player_two_won.bmp": "6d7e0f4cf5bedcfe9309d43524f3c0c9eaa9b8f83367c3bc677764f5f21c256f",
+    "proj/src/resources/images/twopoints.bmp": "88251b99fdc01e430659fe8f51ebaf9ea8898ee9e036e29c2bf9f743c2078194",
+    "proj/src/rtc.c": "08b315672be5030d546dc7a8c3072b649d37a075696671ccb03c82c02ac9e1f3",
+    "proj/src/rtc.h": "7a2f5bc020304c85dd52fe8dd04ee641c7d81dd7e82cd67e5eb73d0e797a16fd",
+    "proj/src/time.c": "a0b1926e2fbd07eddf0410bf78e749ad9e9992f77ffbcae1ac294a94dfa2b5d8",
+    "proj/src/time.h": "570d4a82d8e772aa374566ea2b3778534b29132da0add0af9fd7beb030d9ef0a",
+    "proj/src/timer.c": "a7e9a2af437aa277f2792987a1f36a6445875e2dc861e860c85a0932d06ac0db",
+    "proj/src/timer.h": "ec31e335720d8c66a1fbc17141dd4cff1bc4cb8991f1839572f9d0164605ffdc",
+    "proj/src/vbe.c": "c56d3a7fd906e9044f2f3a0c144182feeb745726213e8bef465d0b463f1e4f24",
+    "proj/src/vbe.h": "1b63e456e50e0b626f96e71b35bf2f6a15210e3a2eb137cbe9838e6f1b70e1e8",
+    "proj/src/vector.c": "ebf3042928d07bbb8f22b56c56fd423d68edd9decdc41ef71230f55aa079ad06",
+    "proj/src/vector.h": "65df5ac99e5f0e508b46fd10f3b2475f2d42e9f5221f2c92752b357c332896f0",
+    "proj/src/video_gr.c": "a14105db836045fbb34dbf70e537b2b8c6bd2eb0d4b487e6b23a6baff4e547d3",
+    "proj/src/video_gr.h": "795b6a76a2a07a9dcf351fbcfdb61ddfba6447dfbf44504510ae4a9a4f60c126",
+    "README.md": "f168fa6e464c25cf021ae4275553415f0250857eeef84fecfc348f59ef3824aa",
+    "LICENSE": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+  },
+  "sourceChanges": [],
+  "sourcePreservation": "Selected original project sources and assets independently verified against pinned Git tree blob IDs. Original CLI/STI remain byte-identical; shared compatibility compiler emits generated call bridge. Original external Time *time object retained, shared host wall-clock owners avoid libc time symbol collision.",
+  "omissions": "Unused lab exercises, generated docs, repository metadata and files outside selected proj/src are not imported.",
+  "licenseStatus": "Original LICENSE retained in project wrapper.",
+  "verification": {
+    "browser": {
+      "status": "passed",
+      "demonstrated": [
+        "Start chosen using ordinary relative screen swipe and Select action.",
+        "Left WASD and right arrow touch pads independently move red and brown players.",
+        "Moving brown player up then holding red player right pushes shared ball into right goal; scoreboard0:0\u21921:0.",
+        "Timer advances and original players/ball reset after goal.",
+        "Portrait original match and controls render."
+      ],
+      "limits": "Full five-minute match and highscore save not tested."
+    },
+    "fortifiedNdkObjectCompile": {
+      "status": "passed",
+      "units": 17,
+      "detail": "Actual exported game traversal plus compat and RTC owners; ARM64 O2/FORTIFY_SOURCE2/Wformat/Werror=format-security."
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/ball-auto-reviewed-native/results.json",
+      "apkSha256": "bfbf2ce3ffe65324d1e3a72a3bc59e608ea66a251c43d51be4875ad878d35ae2",
+      "demonstrated": "Root viewed original Start, independent brown upward motion, red player pushing ball through right goal and actual score1:0/reset/timer4:54, then clean Home return.",
+      "limitations": [
+        "Normal-touch goal and independent player motion verified. Kick-specific contact, complete five-minute match and highscore save not qualified."
+      ]
+    }
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.svg",
+      "sha256": "38c2477ab33c8028b7a1ebfcd836cfe1fa86c7f1fe1d72c03ea460b5b8c19c9f",
+      "kind": "Authored simple football field icon"
+    },
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "3d973149eb49569a97fcd935d1756f432bacc346b46be1a817787d11d536aad9",
+      "kind": "512px authored icon rendering"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "54ddb5f883fb103a261144dff4c3526a74e16c772f52a1f411124c98a13f70da",
+      "kind": "Actual touch gameplay after goal1:0"
+    }
+  ]
+}

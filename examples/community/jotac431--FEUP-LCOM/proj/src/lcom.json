@@ -1,0 +1,51 @@
+{
+  "version": 1,
+  "name": "Pong: Neon Court",
+  "description": "Move both paddles through the original Pong court.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "off",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad",
+          "axes": "vertical"
+        },
+        {
+          "side": "right",
+          "mode": "arrows",
+          "style": "dpad",
+          "axes": "vertical"
+        }
+      ],
+      "actions": [],
+      "repeatKeys": [
+        "W",
+        "S",
+        "UP",
+        "DOWN"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Pong",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

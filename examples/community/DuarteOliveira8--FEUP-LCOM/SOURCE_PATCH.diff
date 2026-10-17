@@ -1,0 +1,85 @@
+--- a/proj/src/pixelWings.c
++++ b/proj/src/pixelWings.c
+@@ -1066,36 +1066,40 @@
+ 
+ void loadScores(gameData *game){
+ 	FILE *scoresFile = fopen("/home/lcom/proj/src/scores.txt", "r");
++	game->scoreCounter = 0;
++	if (scoresFile == NULL)
++		return;
+ 
+-	int d, m, y, usernameCounter, k = 0;
+-	while (1)
+-	{
+-		fscanf(scoresFile, "%d[^-]", &usernameCounter);
+-		if (usernameCounter == 13)
+-		{
++	char line[128];
++	while (game->scoreCounter < 10 && fgets(line, sizeof(line), scoresFile) != NULL) {
++		int d, m, y, usernameCounter, value;
++		char username[13], trailing;
++		if (sscanf(line, "%d-%12[^-]-%d-%d/%d/%d %c", &usernameCounter,
++				username, &value, &d, &m, &y, &trailing) != 6)
+ 			break;
+-		}
+-		game->scores[k].usernameCounter = usernameCounter;
+-		fscanf(scoresFile, "%[^-]", game->scores[k].username);
+-		fscanf(scoresFile, "-%d[^-]", &game->scores[k].valor);
+-		fscanf(scoresFile, "%d/%d/%d", &d, &m, &y);
+-		game->scores[k].currentDate[0] = (char) floor((d/(int)pow(10,1))%10);
+-		game->scores[k].currentDate[1] = (char) floor((d/(int)pow(10,0))%10);
+-		game->scores[k].currentDate[2] = '/';
+-		game->scores[k].currentDate[3] = (char) floor((m/(int)pow(10,1))%10);
+-		game->scores[k].currentDate[4] = (char) floor((m/(int)pow(10,0))%10);
+-		game->scores[k].currentDate[5] = '/';
+-		game->scores[k].currentDate[6] = (char) floor((y/(int)pow(10,3))%10);;
+-		game->scores[k].currentDate[7] = (char) floor((y/(int)pow(10,2))%10);;
+-		game->scores[k].currentDate[8] = (char) floor((y/(int)pow(10,1))%10);
+-		game->scores[k].currentDate[9] = (char) floor((y/(int)pow(10,0))%10);
+-		k++;
++		if (usernameCounter < 1 || usernameCounter > 12 ||
++				usernameCounter != (int)strlen(username) ||
++				d < 1 || d > 31 || m < 1 || m > 12 || y < 0 || y > 9999)
++			break;
++		score *entry = &game->scores[game->scoreCounter++];
++		entry->usernameCounter = usernameCounter;
++		strcpy(entry->username, username);
++		entry->valor = value;
++		entry->currentDate[0] = d / 10;
++		entry->currentDate[1] = d % 10;
++		entry->currentDate[2] = '/';
++		entry->currentDate[3] = m / 10;
++		entry->currentDate[4] = m % 10;
++		entry->currentDate[5] = '/';
++		entry->currentDate[6] = y / 1000;
++		entry->currentDate[7] = y / 100 % 10;
++		entry->currentDate[8] = y / 10 % 10;
++		entry->currentDate[9] = y % 10;
+ 	}
+-	game->scoreCounter = k;
+-
+ 	fclose(scoresFile);
+ }
+ 
++
+ void saveScores(gameData *game){
+ 	FILE *scoresFile = fopen("/home/lcom/proj/src/scores.txt", "w");
+ 	int i, k;
+--- a/proj/src/bitmap.c
++++ b/proj/src/bitmap.c
+@@ -137,11 +137,9 @@
+ }
+ 
+ const char* getPath(char* file){
+-	char num[256];
+-
+-	sprintf(num, file);
+-
+-	char* path = (char *) malloc(256);
+-	strcpy(path, num);
++	size_t size = strlen(file) + 1;
++	char* path = malloc(size);
++	if (path != NULL)
++		memcpy(path, file, size);
+ 	return path;
+ }

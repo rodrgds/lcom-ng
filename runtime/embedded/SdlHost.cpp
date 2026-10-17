@@ -20,7 +20,7 @@ namespace lcom::embedded {
 namespace {
 ControlConfig settings;
 struct Pad { SDL_FRect rect; PadConfig config; float x = 0, y = 0, dx = 0, dy = 0; float angle = 0, contactAngle = 0; };
-struct Button { SDL_FRect rect; std::string label, key; int action = 0; uint8_t mouseButton = 0; std::string icon; };
+struct Button { SDL_FRect rect; std::string label, key; int action = 0; uint8_t mouseButton = 0; std::string icon; int wheel = 0; };
 uint8_t buttonMouse(const Button &b) { return b.mouseButton | (b.action==3?1:b.action==4?2:0); }
 struct Finger {
   float x, y; int button = -1; bool game = false; float dx = 0, dy = 0; int pad = -1;
@@ -110,7 +110,7 @@ class SdlHost final : public Host {
   std::map<SDL_FingerID, Finger> fingers_;
   std::set<SDL_Scancode> physical_;
   std::set<std::string> keys_;
-  std::map<std::string,Uint64> repeat_keys_;
+  std::map<std::string,Uint64> repeat_keys_, release_repeat_keys_;
   std::vector<Button> buttons_;
   std::vector<Pad> pads_;
   uint64_t last_pad_time_ = 0;
@@ -149,7 +149,7 @@ class SdlHost final : public Host {
   void color(int r, int g, int b) { SDL_SetRenderDrawColor(renderer_, r, g, b, 255); }
   void release() {
     for (const auto &key : keys_) injectKey(key.c_str(), false);
-    keys_.clear(); repeat_keys_.clear(); fingers_.clear(); physical_.clear();mouse_action_until_.clear();
+    keys_.clear(); repeat_keys_.clear(); release_repeat_keys_.clear(); fingers_.clear(); physical_.clear();mouse_action_until_.clear();
     for (auto &pad : pads_) pad.x = pad.y = pad.dx = pad.dy = pad.angle = pad.contactAngle = 0;
     last_pad_time_ = SDL_GetTicksNS();
     mouse_ = physical_mouse_ = 0; tap_hold_=false;tap_until_=0;
@@ -157,7 +157,7 @@ class SdlHost final : public Host {
   }
   void syncInput() {
     std::set<std::string> next;
-    for (auto code : physical_) { auto key = keyName(code); if (!key.empty()) next.insert(key); }
+
     uint8_t mouse = physical_mouse_;
     bool game_touch = false;
     for (const auto &[id, finger] : fingers_) {
@@ -180,6 +180,9 @@ class SdlHost final : public Host {
       if (!b.key.empty()) next.insert(b.key);
       mouse |= buttonMouse(b);
     }
+    const auto touch_keys = next;
+    std::set<std::string> physical_keys;
+    for (auto code : physical_) { auto key = keyName(code); if (!key.empty()) { next.insert(key); physical_keys.insert(key); } }
     for(const auto &[owner,deadline]:mouse_action_until_) mouse|=owner.second;
     for (auto &[id,finger] : fingers_) if (finger.game && mouse) finger.blocked=true;
     if(mouse&2) {tap_hold_=false;tap_until_=0;}
@@ -196,6 +199,12 @@ class SdlHost final : public Host {
     for(const auto &key:next) if(!keys_.count(key) &&
         std::find(settings.repeatKeys.begin(),settings.repeatKeys.end(),key)!=settings.repeatKeys.end())
       repeat_keys_[key]=SDL_GetTicks()+350;
+    for (auto it=release_repeat_keys_.begin();it!=release_repeat_keys_.end();) {
+      if (!touch_keys.count(it->first) || physical_keys.count(it->first)) it=release_repeat_keys_.erase(it); else ++it;
+    }
+    for (const auto &key : touch_keys) if (!physical_keys.count(key) && !release_repeat_keys_.count(key) &&
+        std::find(settings.repeatReleaseKeys.begin(),settings.repeatReleaseKeys.end(),key)!=settings.repeatReleaseKeys.end())
+      release_repeat_keys_[key]=SDL_GetTicks()+350;
     keys_ = std::move(next);
     bool direct = settings.pointer == "direct" && game_touch;
     if (direct && game_rect_.w > 0) {
@@ -347,7 +356,8 @@ class SdlHost final : public Host {
     game_rect_ = {game_left+(gw-frame_width_*fit)/2, game_top+(gh-frame_height_*fit)/2, frame_width_*fit, frame_height_*fit};
     buttons_.clear();
     auto publish=[&] {
-      placeToggle(left,top,available_w,available_h);
+      if(full_surface) placeToggle(left,top,available_w,available_h);
+      else placeToggle(px,py,panel_w,panel_h);
       std::vector<SDL_FRect> occupied;
       for(const auto &b:buttons_) occupied.push_back(b.rect);
       if(!collapsed_ && !keyboard_) for(const auto &p:pads_) {
@@ -444,7 +454,8 @@ class SdlHost final : public Host {
       if(overlay || settings.toolbar!="auto") {
         std::string corner=settings.toolbar=="auto"?"top-right":settings.toolbar;
         SDL_FRect toolbar{px,py,panel_w,controls_h};
-        auto placed=placeGroup("toolbar",toolbar,corner,left,top,available_w,available_h,occupied);
+        auto placed=overlay ? placeGroup("toolbar",toolbar,corner,left,top,available_w,available_h,occupied)
+                            : placeGroup("toolbar",toolbar,corner,px,py,panel_w,panel_h,occupied);
         for(auto &button:buttons_) if(button.action!=5) {button.rect.x+=placed.x-px;button.rect.y+=placed.y-py;}
       }
       for(const auto &button:buttons_) if(button.action!=5) occupied.push_back(button.rect);
@@ -467,11 +478,11 @@ class SdlHost final : public Host {
             left+available_w-game_rect_.x-game_rect_.w-8:game_rect_.x-left-8;
         if(overlay && gutter>=(actions.size()>1?108:52))action_w=std::min(action_w,gutter);
         SDL_FRect group{0,0,action_w,(action_h+4)*((actions.size()+1)/2)-4};
-        group=placeGroup(corner,group,corner,pad_left,top,pad_width,available_h,occupied);
+        group=placeGroup(corner,group,corner,pad_left,overlay?top:py,pad_width,overlay?available_h:panel_h,occupied);
         for(size_t i=0;i<actions.size();++i) {
           float bw=actions.size()==1 ? action_w : (action_w-4)/2;
           SDL_FRect rect{group.x+(i%2)*(bw+4),group.y+(i/2)*(action_h+4),bw,action_h};
-          buttons_.push_back({rect,actions[i].label,actions[i].key,0,actions[i].mouseButton,actions[i].icon});occupied.push_back(rect);
+          buttons_.push_back({rect,actions[i].label,actions[i].key,0,actions[i].mouseButton,actions[i].icon,actions[i].wheel});occupied.push_back(rect);
         }
       }
       publish(); return;
@@ -673,6 +684,9 @@ class SdlHost final : public Host {
     for(auto &[key,deadline]:repeat_keys_) if(SDL_GetTicks()>=deadline) {
       injectKey(key.c_str(),true);deadline=SDL_GetTicks()+100;
     }
+    for (auto &[key,deadline] : release_repeat_keys_) if (SDL_GetTicks()>=deadline) {
+      injectKey(key.c_str(),false); injectKey(key.c_str(),true); deadline=SDL_GetTicks()+100;
+    }
     for (auto &p : pads_) if (p.config.mode=="mouse") {
       float length=std::hypot(p.x,p.y);
       if (length<=0.15f) continue;
@@ -700,6 +714,7 @@ class SdlHost final : public Host {
       f.originX=x; f.originY=y; f.downAt=SDL_GetTicks(); f.blocked=(mouse_ & ~(tap_hold_?1:0))!=0;
       for (size_t i = 0; i < buttons_.size(); ++i) if (inside(x,y,buttons_[i].rect)) { f.button = i; break; }
       if (f.button >= 0) {
+        if (buttons_[f.button].wheel) injectWheel(buttons_[f.button].wheel);
         int action = buttons_[f.button].action;
         if (action == 1 || action == 2 || action == 5 || action == 6 || action == 7) {
           release();
@@ -827,7 +842,7 @@ public:
     if (renderer_) SDL_DestroyRenderer(renderer_);
     if (window_) SDL_DestroyWindow(window_);
     texture_ = nullptr; renderer_ = nullptr; window_ = nullptr;
-    fingers_.clear(); physical_.clear(); keys_.clear(); repeat_keys_.clear(); pads_.clear();mouse_action_until_.clear();
+    fingers_.clear(); physical_.clear(); keys_.clear(); repeat_keys_.clear(); release_repeat_keys_.clear(); pads_.clear();mouse_action_until_.clear();
     toggle_layout_.clear();group_layout_.clear();
     keyboard_=collapsed_=move_only_=joystick_open_=tap_hold_=false;
     paused_ = false; mouse_ = physical_mouse_ = 0;tap_until_=0;
@@ -876,6 +891,10 @@ public:
           if (e.button.down) physical_mouse_ |= bit; else physical_mouse_ &= ~bit;
           syncInput();
         }
+        break;
+      case SDL_EVENT_MOUSE_WHEEL:
+        if (!paused_ && e.wheel.which != SDL_TOUCH_MOUSEID)
+          injectWheel(static_cast<int>(std::lround(e.wheel.y * (e.wheel.direction == SDL_MOUSEWHEEL_FLIPPED ? 1 : -1))));
         break;
       case SDL_EVENT_MOUSE_MOTION:
         if (e.motion.which != SDL_TOUCH_MOUSEID && game_rect_.w > 0)

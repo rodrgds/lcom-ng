@@ -1,0 +1,35 @@
+/* XPM */
+static const char * right2[]= {
+/* columns rows colors chars-per-pixel */
+"15 17 11 1 ",
+"  c None",
+". c #000000",
+"X c #21110D",
+"o c #402717",
+"O c #573A23",
+"+ c #AC7B5D",
+"@ c #1D438A",
+"# c #2C65B5",
+"$ c #85868C",
+"% c #A4A8B5",
+"& c #C1AC8F",
+/* pixels */
+"  .... ..      ",
+"  .OOo.O...    ",
+"  ..OOoOoOO.   ",
+" .oOOOOOOOOO.  ",
+".oOOOOOOOOOOO. ",
+".oOOoOOOooOOO. ",
+".ooooOOOo++oOo.",
+".oOooOOo++++oo.",
+".oOO+oO+X&&X.o.",
+".ooO++o&X&&X.. ",
+" .oo++&&&&&&.  ",
+"  .++++&&&&+.  ",
+"   .o++++++.   ",
+"  .&&oo%%%o+.  ",
+"  .&&o####o+.  ",
+"  .o@##@##o.$  ",
+" $$.oO..oO.$$$ "
+};
+

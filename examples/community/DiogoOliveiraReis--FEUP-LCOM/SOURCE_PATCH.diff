@@ -1,0 +1,29 @@
+--- a/proj/src/db.c
++++ b/proj/src/db.c
+@@ -51,18 +51,18 @@
+     fptr = fopen("/home/lcom/labs/proj/src/db/scores.txt", "r+");
+     for (int j = 0; j < 10; j++)
+     {
+-        Date date;
+-        topDates[i] = date;
+-        topDates[i].day = 0;
+-        topDates[i].month = 0;
+-        topDates[i].year = 0;
++        Date date = {0};
++        topDates[j] = date;
++        topDates[j].day = 0;
++        topDates[j].month = 0;
++        topDates[j].year = 0;
+         fscanf(fptr, "%i"
+                      "%i"
+                      "%i",
+                &dayT, &monthT, &yearT);
+-        topDates[i].day = dayT;
+-        topDates[i].month = monthT;
+-        topDates[i].year = yearT;
++        topDates[j].day = dayT;
++        topDates[j].month = monthT;
++        topDates[j].year = yearT;
+     }
+     fclose(fptr);
+ 

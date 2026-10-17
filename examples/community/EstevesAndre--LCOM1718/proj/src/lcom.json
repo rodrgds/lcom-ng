@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "Avoid It",
+  "description": "Guide a green runner along the diagonal track and dodge approaching obstacles.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "joystick": false,
+      "repeatKeys": [
+        "A",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/high_score.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/proj": "proj"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

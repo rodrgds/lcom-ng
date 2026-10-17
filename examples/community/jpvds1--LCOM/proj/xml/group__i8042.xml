@@ -1,0 +1,578 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="group__i8042" kind="group">
+    <compoundname>i8042</compoundname>
+    <title>i8042</title>
+      <sectiondef kind="define">
+      <memberdef kind="define" id="group__i8042_1gaa58b06c8d2e76061abcb01b8f2bbf575" prot="public" static="no">
+        <name>KBC_BRK_ESC_KEY</name>
+        <initializer>0x81</initializer>
+        <briefdescription>
+<para>scancode (breakcode) of ESC key </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="15" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="15" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga11d5498a585eee1a6f14aff9eb31ddb3" prot="public" static="no">
+        <name>KBC_W_MAKE_KEY</name>
+        <initializer>0x11</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;W&apos; key pressed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="16" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gafffd63fe8609542637ef43d18222857a" prot="public" static="no">
+        <name>KBC_W_BREAK_KEY</name>
+        <initializer>0x91</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;W&apos; key released. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="17" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gad1cbd4b6fe2d6f6dd7de65c4bf71d5f3" prot="public" static="no">
+        <name>KBC_D_MAKE_KEY</name>
+        <initializer>0x20</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;D&apos; key pressed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="18" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga0ee8409c16296328889170d490c6ad52" prot="public" static="no">
+        <name>KBC_D_BREAK_KEY</name>
+        <initializer>0xa0</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;D&apos; key released. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="19" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga69b3f7f5eb7cf80a2664ebe4385c9038" prot="public" static="no">
+        <name>KBC_A_MAKE_KEY</name>
+        <initializer>0x1e</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;A&apos; key pressed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="20" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga699ebf10a545c2d80f9b9fea24a0086c" prot="public" static="no">
+        <name>KBC_A_BREAK_KEY</name>
+        <initializer>0x9e</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;A&apos; key released. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="21" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga3bb726ee2e00c3d7e86f099497faea23" prot="public" static="no">
+        <name>KBC_S_MAKE_KEY</name>
+        <initializer>0x1f</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;S&apos; key pressed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="22" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="22" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga3729df3f95f4ff7b058907eaa0857ec8" prot="public" static="no">
+        <name>KBC_S_BREAK_KEY</name>
+        <initializer>0x9f</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;S&apos; key released. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="23" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gae51eacdf9465914076a8721287ceba83" prot="public" static="no">
+        <name>KBC_B_MAKE_KEY</name>
+        <initializer>0x30</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;B&apos; key pressed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="24" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="24" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga8dff70e680019b42517416475c1bcc24" prot="public" static="no">
+        <name>KBC_B_BREAK_KEY</name>
+        <initializer>0xb0</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;B&apos; key released. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="25" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga35b22471eb71db999e60689dbcb8e107" prot="public" static="no">
+        <name>KBC_E_MAKE_KEY</name>
+        <initializer>0x12</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;E&apos; key pressed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="26" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="26" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gad1268a1099343a693c05962b3a4c0382" prot="public" static="no">
+        <name>KBC_E_BREAK_KEY</name>
+        <initializer>0x92</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;E&apos; key released. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="27" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga042311ea0e5fecf7253945d35f079eda" prot="public" static="no">
+        <name>KBC_Q_MAKE_KEY</name>
+        <initializer>0x10</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;Q&apos; key pressed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="28" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gac312a01abbcbb7a68fae97d12943e569" prot="public" static="no">
+        <name>KBC_Q_BREAK_KEY</name>
+        <initializer>0x90</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;Q&apos; key released. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="29" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="29" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga2f45709c73cd9308bc7067b94309cde9" prot="public" static="no">
+        <name>KBC_SPACE_MAKE_KEY</name>
+        <initializer>0x39</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;SPACE&apos; key pressed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="30" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gaa42886468cedc73306e47bf0e6da32a9" prot="public" static="no">
+        <name>KBC_SPACE_BREAK_KEY</name>
+        <initializer>0xb9</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;SPACE&apos; key released. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="31" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga9b746737cd81a0ce079a8498c1936011" prot="public" static="no">
+        <name>KBC_ENTER_MAKE_KEY</name>
+        <initializer>0x1c</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;ENTER&apos; key pressed. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="32" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="32" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga4af76ec2ab11d1926eb6444949a60d5b" prot="public" static="no">
+        <name>KBC_ENTER_BREAK_KEY</name>
+        <initializer>0x9c</initializer>
+        <briefdescription>
+<para>Scan code for the &apos;ENTER&apos; key released. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="33" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga12a84af4b9deb45f6a10d7b609725fd8" prot="public" static="no">
+        <name>KBC_MSB_SCNCD</name>
+        <initializer>BIT(7)</initializer>
+        <briefdescription>
+<para>scancode diff (make or break) in BIT 7 </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="34" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gacf926951944b6cf370b7229ebd50dd8b" prot="public" static="no">
+        <name>TIMER_FREQ</name>
+        <initializer>1193182</initializer>
+        <briefdescription>
+<para>clock frequency for timer in PC and AT </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="35" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="35" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga30bf84c312af248cb81bb224e09f9ba8" prot="public" static="no">
+        <name>TIMER0_IRQ</name>
+        <initializer>0</initializer>
+        <briefdescription>
+<para>Timer 0 IRQ line. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="36" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="36" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga16c5827f043d82f87c726c2d4369c11d" prot="public" static="no">
+        <name>KBC_IRQ</name>
+        <initializer>1</initializer>
+        <briefdescription>
+<para>KBC IRQ line. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="37" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gacc9ff9df4a9674a1ce9ba08fc4a4679e" prot="public" static="no">
+        <name>TIMER_0</name>
+        <initializer>0x40</initializer>
+        <briefdescription>
+<para>Timer 0 count register. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="41" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="41" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga34b14687d83496940a236351fbbb1aea" prot="public" static="no">
+        <name>KBC_STAT_REG</name>
+        <initializer>0x64</initializer>
+        <briefdescription>
+<para>KBC status register. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="42" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="42" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga19b698bdf2e0783e04e17153b49128bd" prot="public" static="no">
+        <name>KBC_IN_BUF_CMD</name>
+        <initializer>0x64</initializer>
+        <briefdescription>
+<para>KBC input buffer for commands. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="43" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gaefc1b7a81b128e9722a6d61a5b9d3e58" prot="public" static="no">
+        <name>KBC_IN_BUF_ARG</name>
+        <initializer>0x60</initializer>
+        <briefdescription>
+<para>KBC input buffer for arguments. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="44" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga1ccde68b2b6d4e45b50eef1403e10bb7" prot="public" static="no">
+        <name>KBC_OUT_BUF</name>
+        <initializer>0x60</initializer>
+        <briefdescription>
+<para>KBC output buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="45" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga82a39176e42fe8f48025521b9674cdc6" prot="public" static="no">
+        <name>KBC_PARITY</name>
+        <initializer>BIT(7)</initializer>
+        <briefdescription>
+<para>KBC parity error bit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="51" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="51" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga34599ca5c55cb9be3b235d7422aff45c" prot="public" static="no">
+        <name>KBC_TIMEOUT</name>
+        <initializer>BIT(6)</initializer>
+        <briefdescription>
+<para>KBC timeout error bit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="52" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="52" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gaaa796d09d1e94025da456738295342f2" prot="public" static="no">
+        <name>KBC_AUX</name>
+        <initializer>BIT(5)</initializer>
+        <briefdescription>
+<para>KBC mouse data bit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="53" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="53" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga869c99dd1e3e026e766b3a1c75729df1" prot="public" static="no">
+        <name>KBC_INH</name>
+        <initializer>BIT(4)</initializer>
+        <briefdescription>
+<para>KBC inhibit flag bit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="54" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="54" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga933a8846def486d800a725dc3959a74b" prot="public" static="no">
+        <name>KBC_A2</name>
+        <initializer>BIT(3)</initializer>
+        <briefdescription>
+<para>KBC a2 input line bit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="55" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="55" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga9e3fddced5da8ee918cc20e74ff124d8" prot="public" static="no">
+        <name>KBC_SYS</name>
+        <initializer>BIT(2)</initializer>
+        <briefdescription>
+<para>KBC system flag bit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="56" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gac1649d41f8ba9a02fa70ec4e600d5e4a" prot="public" static="no">
+        <name>KBC_IBF</name>
+        <initializer>BIT(1)</initializer>
+        <briefdescription>
+<para>KBC input buffer full bit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="57" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="57" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga36930de8a703505c95fe133095dcfe06" prot="public" static="no">
+        <name>KBC_OBF</name>
+        <initializer>BIT(0)</initializer>
+        <briefdescription>
+<para>KBC output buffer full bit. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="58" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gaaee8eae833c3cf959324f29862c488a8" prot="public" static="no">
+        <name>KBC_R_CMD_B</name>
+        <initializer>0x20</initializer>
+        <briefdescription>
+<para>KBC command to read command byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="62" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga6c3bb7fed8322058c9a872270e902331" prot="public" static="no">
+        <name>KBC_W_CMD_B</name>
+        <initializer>0x60</initializer>
+        <briefdescription>
+<para>KBC command to write command byte. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="63" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gae138ccd6270f156e7cea18290da10683" prot="public" static="no">
+        <name>KBC_CHK</name>
+        <initializer>0xAA</initializer>
+        <briefdescription>
+<para>KBC command to self-check. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="64" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gacd1c483b30c192cab72b555a6ec8efd1" prot="public" static="no">
+        <name>KBC_CHK_KBD_I</name>
+        <initializer>0xAB</initializer>
+        <briefdescription>
+<para>KBC command to check keyboard interface. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="65" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga6a7645f732e72fc30d5f882fccfa4038" prot="public" static="no">
+        <name>KBC_DIS_KBD_I</name>
+        <initializer>0XAD</initializer>
+        <briefdescription>
+<para>KBC command to disable KBD interface. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="66" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga0a2568cc57d80639792911dd52e82fa9" prot="public" static="no">
+        <name>KBC_EN_KBD_I</name>
+        <initializer>0XAE</initializer>
+        <briefdescription>
+<para>KBC command to enable KBD interface. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="67" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gaa7b58a9223dfb3c191dbd77c0a0881f2" prot="public" static="no">
+        <name>KBC_DIS2</name>
+        <initializer>BIT(5)</initializer>
+        <briefdescription>
+<para>disable mouse interface </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="71" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga9bdab8e245cb5e5a8217cd4465abd5e6" prot="public" static="no">
+        <name>KBC_DIS</name>
+        <initializer>BIT(4)</initializer>
+        <briefdescription>
+<para>disable keyboard interface </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="72" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1gad0c59bfa0e9250d4863516848740cae6" prot="public" static="no">
+        <name>KBC_INT2</name>
+        <initializer>BIT(1)</initializer>
+        <briefdescription>
+<para>enable interrupt on OBF, from mouse </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="73" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga43a8c52761b7ae2c8d67562519b734af" prot="public" static="no">
+        <name>KBC_INT</name>
+        <initializer>BIT(0)</initializer>
+        <briefdescription>
+<para>enable interrupt on OBF, from keyboard </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="74" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="define" id="group__i8042_1ga1a9c1cdc273c69f115e1e77bc1809fe5" prot="public" static="no">
+        <name>KBC_2BYTE_CODE</name>
+        <initializer>0xE0</initializer>
+        <briefdescription>
+<para>the first byte of a 2 byte scancode </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" line="78" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/i8042.h" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Constants for programming the i8042 Keyboard Controller (and useful i8254 Timer constants). </para>
+    </detaileddescription>
+  </compounddef>
+</doxygen>

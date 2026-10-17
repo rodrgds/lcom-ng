@@ -1,0 +1,138 @@
+--- a/src/vbe.c
++++ b/src/vbe.c
+@@ -3,6 +3,7 @@
+ #include <machine/int86.h>
+ #include "lmlib.h"
+ #include "vbe.h"
++#include "video_gr.h"
+ 
+ #define LINEAR_MODEL_BIT (1 << 14)
+ 
+@@ -131,6 +132,7 @@
+ 
+ 	else
+ 	{
++		char *allocation = pixel;
+ 		for (i; i < *altura; i++)
+ 		{
+ 			for (j; j < *largura; j++)
+@@ -143,6 +145,7 @@
+ 			video_copy = video_copy + h_res - *largura;
+ 			j = 0;
+ 		}
++		free(allocation);
+ 	}
+ 	return 0;
+ }
+--- a/src/video_gr.c
++++ b/src/video_gr.c
+@@ -87,7 +87,7 @@
+ 		vg_exit();
+ 		return NULL;
+ 	}
+-	return VRAM_PHYS_ADDR;
++	return video_mem;
+ }
+ 
+ char* getSBuffer()
+--- a/src/game.c
++++ b/src/game.c
+@@ -79,7 +79,7 @@
+ 
+ int game()
+ {
+-	space_ship nv1 = {470,690,0,0,&spaceship}; //criar nave e definir posicao inicial
++	space_ship nv1 = {470,690,0,0,spaceship}; //criar nave e definir posicao inicial
+ 
+ 	short displacement = 30; // movimento mínimo da nave
+ 
+--- a/src/vbe.h
++++ b/src/vbe.h
+@@ -2,6 +2,7 @@
+ #define __VBE_H
+ 
+ #include <stdint.h>
++#include <minix/syslib.h>
+ 
+ 
+ #define VBE_MODE 0x4F02
+--- a/src/space_ship.h
++++ b/src/space_ship.h
+@@ -7,7 +7,7 @@
+ 	unsigned short y;
+ 	int height;
+ 	int width;
+-	char *sprite;
++	char **sprite;
+ 
+ 
+ }space_ship;
+--- a/src/asteroid.h
++++ b/src/asteroid.h
+@@ -8,7 +8,7 @@
+ 	unsigned short y;
+ 	int height;
+ 	int width;
+-	char *sprite;
++	char **sprite;
+ 
+ }asteroid;
+ /**
+--- a/src/menu.h
++++ b/src/menu.h
+@@ -14,7 +14,7 @@
+ 	unsigned short y;
+ 	int height;
+ 	int width;
+-	char *sprite;
++	char **sprite;
+ }img;
+ 
+ 
+--- a/src/game_over.h
++++ b/src/game_over.h
+@@ -15,7 +15,7 @@
+ 	unsigned short y;
+ 	int height;
+ 	int width;
+-	char *sprite;
++	char **sprite;
+ }image;
+ /**
+  * @brief when a player loses the game_over menu will appear
+--- a/src/cursor.h
++++ b/src/cursor.h
+@@ -51,7 +51,7 @@
+ 	int height;
+ 	int width;
+ 	int pressed;
+-	char *sprite;
++	char **sprite;
+ }cursor;
+ 
+ void draw_cursor(cursor r1);
+--- a/src/space_ship.c
++++ b/src/space_ship.c
+@@ -1,4 +1,5 @@
+ #include "space_ship.h"
++#include "vbe.h"
+ 
+ 
+ int move_spaceship(space_ship *nv1, short delta) {
+--- a/src/asteroid.c
++++ b/src/asteroid.c
+@@ -1,4 +1,6 @@
+ #include "asteroid.h"
++#include "vbe.h"
++#include <stdlib.h>
+ 
+ extern unsigned long points;
+ extern unsigned long global_counter;
+--- a/src/cursor.c
++++ b/src/cursor.c
+@@ -1,4 +1,5 @@
+ #include "cursor.h"
++#include "vbe.h"
+ 
+ void draw_cursor(cursor r1)
+ {

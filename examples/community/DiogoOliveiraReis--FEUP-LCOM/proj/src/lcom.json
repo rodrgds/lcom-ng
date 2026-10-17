@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Space Invaders: Reis",
+  "description": "Slide your ship, dodge the aliens and shoot through their formation.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Play",
+          "key": "P",
+          "position": "top-right"
+        },
+        {
+          "label": "Fire",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "repeatKeys": [
+        "SPACE"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/db"
+    ]
+  },
+  "archetype": "Space Invaders",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

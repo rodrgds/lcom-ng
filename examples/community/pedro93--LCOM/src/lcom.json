@@ -1,0 +1,41 @@
+{
+  "name": "Commodore Battleship",
+  "build": {},
+  "mobile": {
+    "fullscreen": false,
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "off",
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "style": "dpad",
+          "side": "left"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D"
+      ]
+    }
+  },
+  "description": "Take turns against the original computer fleet and use volleys, scouting and bombardment.",
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Battleship"
+}

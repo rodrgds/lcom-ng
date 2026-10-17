@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "name": "Suecalandia",
+  "description": "Split the deck, select trump and play Sueca against the original three bots.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": true,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -43,7 +43,7 @@ static void setNonBlocking(int fd) {
   if (flags >= 0) fcntl(fd, F_SETFL, flags | O_NONBLOCK);
 }
 
-RuntimeServer::RuntimeServer(RuntimeOptions options) : options_(std::move(options)) {}
+RuntimeServer::RuntimeServer(RuntimeOptions options) : options_(std::move(options)), machine_(options_.machine_config) {}
 
 RuntimeServer::~RuntimeServer() {
   cleanupChild();
@@ -168,7 +168,10 @@ int RuntimeServer::run() {
 
     advanceRealtimeIfDue();
 
-    if (display_ != nullptr && !machine_.vbe().graphicsMode()) display_->present(machine_);
+    if (display_ != nullptr && !machine_.vbe().graphicsMode()) {
+      if (machine_.vbe().textMode()) syncFramebufferFromSharedMemory();
+      display_->present(machine_);
+    }
 
     childExited();
   }
@@ -376,7 +379,7 @@ bool RuntimeServer::startChild() {
             << "  RTC-CMOS   ports 0x70/0x71  irq 8\n"
             << "  UART16550  ports 0x3F8/0x2F8 irq 4/3\n"
             << "  AC97-lite  ports 0xC000/0xC100 pcm 0xD0000000\n"
-            << "  VBE        framebuffer 0xE0000000\n"
+            << "  VBE        framebuffer 0x" << std::hex << machine_.vbe().framebufferPhys() << std::dec << "\n"
             << "Running " << options_.program[0] << "...\n";
   return true;
 }
@@ -528,7 +531,7 @@ bool RuntimeServer::handleClientMessage() {
     lcom_phys_map_t req{};
     if (!protocol::decodePayload(payload, hdr.size, req)) return false;
     lcom_phys_map_reply_t reply{};
-    auto range = machine_.physicalRange(req.phys, req.length);
+    auto range = machine_.mapPhysicalRange(req.phys, req.length);
     if (range) {
       reply.status = 0;
       std::snprintf(reply.shm_name, sizeof(reply.shm_name), "%s", shm_name_.c_str());
@@ -567,6 +570,30 @@ bool RuntimeServer::handleClientMessage() {
     bool ok = machine_.vbe().setMode(req.mode);
     if (ok && req.mode != 3) zeroSharedFramebuffer();
     sendStatus(hdr.request_id, ok ? 0 : -1);
+    return true;
+  }
+  case LCOM_MSG_VBE_DAC_FORMAT: {
+    lcom_vbe_dac_request_t req{};
+    if (!protocol::decodePayload(payload, hdr.size, req)) return false;
+    lcom_vbe_dac_reply_t reply{};
+    auto &vbe = machine_.vbe();
+    reply.status = vbe.graphicsMode() && vbe.currentMode().bpp != 8 ? LCOM_UNSUPPORTED :
+        (vbe.dacFormat(req.operation, req.requested, reply.width) ? LCOM_OK : LCOM_ERR);
+    protocol::sendMessage(client_fd_, LCOM_MSG_VBE_DAC_FORMAT_REPLY, hdr.request_id, &reply, sizeof(reply));
+    return true;
+  }
+  case LCOM_MSG_VBE_SCANLINE: {
+    lcom_vbe_scanline_request_t req{};
+    if (!protocol::decodePayload(payload, hdr.size, req)) return false;
+    auto &vbe = machine_.vbe();
+    lcom_vbe_scanline_reply_t reply{};
+    bool ok = vbe.scanline(req.operation, req.value);
+    reply.status = ok ? 0 : -1;
+    if (ok) {
+      reply.bytes = static_cast<uint16_t>(vbe.currentMode().pitch);
+      reply.pixels = vbe.scanlinePixels(); reply.lines = vbe.scanlineLines();
+    }
+    protocol::sendMessage(client_fd_, LCOM_MSG_VBE_SCANLINE_REPLY, hdr.request_id, &reply, sizeof(reply));
     return true;
   }
   case LCOM_MSG_VBE_SET_DISPLAY_START: {
@@ -723,11 +750,7 @@ void RuntimeServer::expireCaptionIfNeeded() {
 
 void RuntimeServer::syncFramebufferFromSharedMemory() {
   Vbe &vbe = machine_.vbe();
-  size_t n = std::min(vbe.framebuffer().size(), kFramebufferShmBytes);
-  if (shm_data_ != nullptr && n != 0) {
-    std::copy(shm_data_ + vbe.displayOffset(), shm_data_ + vbe.displayOffset() + n,
-              vbe.framebuffer().begin());
-  }
+  vbe.syncFramebuffer(shm_data_, kFramebufferShmBytes);
 }
 
 void RuntimeServer::syncAudioFromSharedMemory() {
@@ -741,7 +764,7 @@ void RuntimeServer::syncAudioFromSharedMemory() {
 
 void RuntimeServer::zeroSharedFramebuffer() {
   if (shm_data_ != nullptr && shm_size_ != 0) {
-    std::memset(shm_data_, 0, kFramebufferShmBytes);
+    std::memset(shm_data_, 0, Vbe::vramSize());
   }
 }
 

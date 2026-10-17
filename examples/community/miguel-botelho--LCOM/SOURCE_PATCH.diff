@@ -1,0 +1,114 @@
+--- a/proj/code/menu.c
++++ b/proj/code/menu.c
+@@ -1,4 +1,6 @@
+ #include "menu.h"
++#include "keyboard.h"
++#include "mouse.h"
+ 
+ void bitmaps_load(bitmap_struct *t)
+ {
+@@ -1670,6 +1672,8 @@
+ 
+ void printName(bitmap_struct bitmaps, Bitmap ** key_scancode, int key)
+ {
++	/* Key releases do not edit or cancel a full name. */
++	if (key & 0x80) return;
+ 	char * screen_buffer = getScreenBuffer();
+ 	char * mouse_buffer = getMouseBuffer();
+ 	char * video_memory = getVideoMem();
+@@ -1677,8 +1681,10 @@
+ 	{
+ 		if (key == KEY_ENTER || key == KEY_NUM_ENTER)
+ 		{
++			name[length] = '\0';
+ 			length++;
+-			name[length] = '\0';
++			drawBitmap(bitmaps.frame, INITIAL,INITIAL, ALIGN_LEFT, screen_buffer);
++			WriteArrayFrame(name, length, key_scancode, bitmaps);
+ 			if (ai_or_pvp == 1)
+ 			{
+ 				contador_high = 0;
+@@ -1702,8 +1708,8 @@
+ 	}
+ 	else if ((key == KEY_ENTER || key == KEY_NUM_ENTER) && (length > 0))
+ 	{
++		name[length] = '\0';
+ 		length++;
+-		name[length] = '\0';
+ 		drawBitmap(bitmaps.frame, INITIAL,INITIAL, ALIGN_LEFT, screen_buffer);
+ 		WriteArrayFrame(name, length, key_scancode, bitmaps);
+ 		if (ai_or_pvp == 1)
+@@ -1841,7 +1847,7 @@
+ 
+ 		if (key == KEY_TAB)
+ 		{
+-			position_t jogador;
++			position_t jogador = {0};
+ 			int score_conta;
+ 			score_conta = score(contador_high);
+ 			jogador.score = score_conta;
+@@ -2004,7 +2010,7 @@
+ 				}
+ 				else
+ 				{
+-					position_t jogador;
++					position_t jogador = {0};
+ 					int score_conta;
+ 					score_conta = score(contador_high);
+ 					jogador.score = score_conta;
+@@ -2084,7 +2090,7 @@
+ 	}
+ 
+ 	espaco = 0;
+-	for(; i <= 10; i++)
++	for(; i < sizeof(player->name) && player->name[i]; i++)
+ 	{
+ 		switch (player->name[i])
+ 		{
+@@ -2263,7 +2269,7 @@
+ 	}
+ 
+ 	espaco = 0;
+-	for(; i <= 10; i++)
++	for(; i < sizeof(player.name) && player.name[i]; i++)
+ 	{
+ 		switch (player.name[i])
+ 		{
+--- a/proj/code/read_write.c
++++ b/proj/code/read_write.c
+@@ -56,16 +56,13 @@
+ 	// ignores the new line '\n'
+ 	ch1 = fgetc(fp);
+ 
+-	//name
+-	char a[11];
+-	fgets(a, 11, fp);
+-	int i = 0;
+-	while (a[i] != '\0')
+-	{
+-		(t->name)[i] = a[i];
+-		i++;
+-	}
+-	// the new line '\n' is already ignored
++	// Names occupy one complete line and leave room for their terminator.
++	int name_byte;
++	size_t name_size = 0;
++	while ((name_byte = fgetc(fp)) != EOF && name_byte != '\n') {
++		if (name_size + 1 < sizeof(t->name)) t->name[name_size++] = name_byte;
++	}
++	t->name[name_size] = '\0';
+ 
+ 	//word
+ 	/*
+@@ -221,7 +218,10 @@
+ 		fputc(t->name[i], fp);
+ 	}
+ 	*/
+-	fputs(t->name, fp);
++	// New winners contain a terminated name, older records may carry a newline.
++	for (size_t i = 0; i < sizeof(t->name) - 1 && t->name[i] && t->name[i] != '\n'; ++i)
++		fputc(t->name[i], fp);
++	fputc('\n', fp);
+ 
+ 	//word
+ 	//fputs(t->word, fp);

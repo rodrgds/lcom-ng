@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "name": "Target Practice Shooter",
+  "description": "Aim at flying clay disks, shoot and reload before your ammunition runs out.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Reload",
+          "key": "R",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [],
+      "touch": "tap",
+      "cursor": {
+        "x": 576,
+        "y": 432,
+        "maxX": 1111,
+        "maxY": 823
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/res/highscores.txt",
+      "proj/images/xpm sources.txt"
+    ]
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

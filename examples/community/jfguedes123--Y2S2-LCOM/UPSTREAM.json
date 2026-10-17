@@ -1,0 +1,139 @@
+{
+  "repository": "https://github.com/jfguedes123/Y2S2-LCOM",
+  "revision": "a0b92c8cced4b2ab97c336a3d08f126045fea677",
+  "project": "src",
+  "sourceHashes": {
+    "README.md": "28275b5a69acd2ced57fe6583cce53f9bb51fa1266439dfe3947656249cee722",
+    "src/Makefile": "f5984eb6e12f526b4029da98ad9072762958a17f20ff7ec735429264d23c1dc5",
+    "src/controllers/i8042.h": "9c895468678ee96f62c17510244dca980525c12aed9ae06751a85f0119ae0476",
+    "src/controllers/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "src/devices/kbc/KBC.c": "2800edad3f72797824eec8a3efa0ff96b538c93292a8429f49f4d4050830df02",
+    "src/devices/kbc/KBC.h": "25910f5f0d3a0fe588c2e5c42294f6b68ebd5446eb50e0e3020add9feecad760",
+    "src/devices/keyboard/keyboard.c": "c066fd04779cd0238f750740e0db221ce760e1d85a294eff3793f19372aefe40",
+    "src/devices/keyboard/keyboard.h": "07a855aa02cb153b2a55196ba9308726356da8da6e2411c28403fec36c9007eb",
+    "src/devices/mouse/mouse.c": "80f490ac8859d720d1da30899dc5e0b5cc1adc5de2d927a2e2fb1caabae68799",
+    "src/devices/mouse/mouse.h": "d927cfb777c9fc3b7d4a95d2dcdc37a9cc10c8082272578ac7a1d9a1d2810476",
+    "src/devices/timer/timer.c": "aeb4f4051931a581d1b871f544f2a2fa752507953d3283be56e83fea59cfa4d7",
+    "src/devices/video/video.c": "12dc550abce2442e4031d445fdc2ea16e2ff98483fa403bc812b36e48e061a55",
+    "src/devices/video/video.h": "0fde147a0866b2e556b5fa1728499f20cea6c83cfbd0c5bfc7af4f57e7a7c086",
+    "src/game/digits.c": "771ec34b9168b25600239d813d5315ae8e6b77d6d80c0f94c8f97da136422d03",
+    "src/game/digits.h": "81755493ec89385c07ba22bad16da6e39f7d0cd00a73d0b67db136436563df4f",
+    "src/game/game.h": "31a65e5dbdc27460031942089ef9aa3ccc198fc3fb0a3d57fdfc6e6db9391163",
+    "src/game/menu.c": "71417144c3da3f08e09f6589d48b9016d4bb9b6965802338df1a8e57a135e58c",
+    "src/game/menu.h": "0ef2fa3379f53af32f27826a870b8cca1266fc581f560a6002767456bfc6cbfe",
+    "src/game/play.c": "c709ed26462928b0fdecc3bfc245178e7ec43618a387098bd8758be53ed51bc3",
+    "src/game/play.h": "1f35adc5342c327d1ed0b7d522e0f80748d65608ac5218d60d2fedf9c7daa620",
+    "src/game/rules.c": "5b813ea6c1bd802874a5f09d346afcea17dbd3f746696e339d928cb4fb3f4092",
+    "src/game/rules.h": "62abedf8ec10832bedd6f65704c5108a9abc08108a88cf7a7ddc7a19a1865539",
+    "src/game/state.c": "361455f6251109e94605c53876886444bc55ce5c2c76afcfd8d1a4eb21898053",
+    "src/game/state.h": "ff33f35b0539e21bb5aecb4cd7e7f14059a9aabc8a0ea336424d3938b3b052be",
+    "src/main.c": "be61c5a412ecb348323ca393b3610b1e778fb333c85a75f45a4810c4163c4979",
+    "src/utils/utils.c": "15936cb73bbd48572f330a5b923b0398e2686c0a70a15ee2fe2247a52be06e0c",
+    "src/xpm_files/exit.xpm": "ee7cd34b614c3c508081a148ea82ca6655d5a9b1b1984d63c60b606d8d39c4dc",
+    "src/xpm_files/menu.xpm": "9db36e481193a54618024ce0669e1ec72189e7fb0280fb51dc1d01789a7d0786",
+    "src/xpm_files/number0.xpm": "2e8af177fc24f52c4b9f8943b5e39fad51e5076d03995053fc982c1a3e67b476",
+    "src/xpm_files/number1.xpm": "3f9246d588af9800a7dd16a922d1a38be6e44f1171d85f7b627b45e319b5e035",
+    "src/xpm_files/number2.xpm": "4e4064c77c35d67460746ae4c905b9dd31b01149bba7b74c08868ab5a89597b7",
+    "src/xpm_files/number3.xpm": "57396dc81c1092ca43de9b242dc96c8b841bd5c43ecbed4205e45f4a69ba7f62",
+    "src/xpm_files/number4.xpm": "10d35d3877dd97e98c556ff0ab386e0a39b78ba46d166d0f5cd63d51b8607351",
+    "src/xpm_files/number5.xpm": "21f358bd46d1846396d00771fdfaf98aa8d23e9177ebc3194a4b2ce857cb6544",
+    "src/xpm_files/number6.xpm": "006eea326cc70db127adaef255c78d2808b248593fcf2050ebf8c9240ca80dd1",
+    "src/xpm_files/number7.xpm": "48a87c954f81404d08ec5d232d2c8d5d71e203078602e8046d9f7ce196ef898e",
+    "src/xpm_files/number8.xpm": "2f829e5d9bafbfc7608f6d7ff454b28b73cc0ff09668de245ca49ee007c73c89",
+    "src/xpm_files/number9.xpm": "a6153db90544f4842f4c41c13c6b8a93c3634da6830a70c6e307590bbfe18066",
+    "src/xpm_files/play.xpm": "cb199565058feae9eaba5c51c08239f5c9fe3a1c7e0e49650eb044f4ded42223",
+    "src/xpm_files/play_text.xpm": "cb199565058feae9eaba5c51c08239f5c9fe3a1c7e0e49650eb044f4ded42223",
+    "src/xpm_files/player1win.xpm": "6d2ce4c986487961a31f8a63de26daaf310b978dfbc672e6cda974b0b9c55943",
+    "src/xpm_files/player2win.xpm": "b171bd852f48842f6cd57d2186e7065dbcfab63942a744d15e96cbdd50c44fff",
+    "src/xpm_files/rules.xpm": "a06a6de2e14a90d4d6d3a4127b953453835670b8f5ea60a3281898b1cab36a18",
+    "src/xpm_files/rules_menu.xpm": "4913f635342ea713c5ffaaa6b3628fabf583548f8fcaf667ecda0913b37ae0c6"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.d",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "src/devices/mouse/mouse.c",
+          "reason": "Initialize each command ACK before checking it. Original uninitialized r is undefined behavior and traps in optimized native/WASM startup; repeated enable/disable must each send and consume their own ACK.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-ack-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-ack-green.log"
+          },
+          "originalSha256": "80f490ac8859d720d1da30899dc5e0b5cc1adc5de2d927a2e2fb1caabae68799",
+          "patchedSha256": "20a7e6f9a0ae51227c243d3e741ae05913535ee7f266f45dc69a614e1fb6c363"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original captured paddle and ball pixels arranged as a launcher icon",
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/icons10-inputs/jfguedes123--Y2S2-LCOM/original-court.png",
+    "crops": [
+      [
+        20,
+        229,
+        40,
+        329
+      ],
+      [
+        984,
+        229,
+        1004,
+        329
+      ],
+      [
+        250,
+        626,
+        270,
+        646
+      ]
+    ],
+    "captureSha256": "901ea2e98fd5ad525593e7cac2b65b13527911e86a7a1861dd749b2982e2a173"
+  },
+  "derivedAssets": [
+    {
+      "path": "src/icon.png",
+      "sha256": "74534593c5c57c73687060caacceaff37e8d1bc1f4bdb79c0cd8f5d5fb89c826",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "src/preview.png",
+      "sha256": "901ea2e98fd5ad525593e7cac2b65b13527911e86a7a1861dd749b2982e2a173",
+      "kind": "Original browser gameplay capture"
+    }
+  ],
+  "verification": {
+    "browser": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay10-final.log",
+    "owningRegressions": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch10-source-tests.py",
+    "nativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/jfguedes123--Y2S2-LCOM.native10-strict.log",
+    "android": "Pending independent parent-owned actual Android gameplay.",
+    "browserResults": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay-results.json",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "2a20937a73366b6700c5ec6c56a0e17f228d6fdbccb1aa8d7dcc6c375f38e733",
+      "evidence": "build/arcade-100/pacman-spin-native-calibrated/results.json",
+      "demonstrated": [
+        "Original blue/red paddles, ball and scoreboard.",
+        "Blue and red paddles moved independently with ball in flight.",
+        "Original scoreboard changes from 00–00 to 00–01."
+      ],
+      "limitations": [
+        "Representative local touchscreen gameplay only; complete campaigns and physical-device performance remain untested."
+      ]
+    }
+  }
+}

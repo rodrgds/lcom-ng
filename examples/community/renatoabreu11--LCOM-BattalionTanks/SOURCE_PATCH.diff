@@ -1,0 +1,50 @@
+--- a/Tanks/src/font.c
++++ b/Tanks/src/font.c
+@@ -5,6 +5,7 @@
+ 	if (font == NULL)
+ 		return NULL;
+ 	font->character = NULL;
++	return font;
+ }
+ 
+ void drawChar(Font *font, char ch, int x, int y) {
+--- a/Tanks/src/bullet.c
++++ b/Tanks/src/bullet.c
+@@ -6,6 +6,7 @@
+ 	Bullet *b = (Bullet *) malloc(sizeof(Bullet));
+ 	b->inUse = use;
+ 	b->explosion_counter = 0;
++	return b;
+ }
+ 
+ Bullet* InitBullet(int x_pos, int y_pos, int velx, int vely, int cnn_orientation){
+--- a/Tanks/src/main.c
++++ b/Tanks/src/main.c
+@@ -7,6 +7,8 @@
+ FILE* logfd = NULL;
+ void initLog() {
+ 	logfd = fopen(LOG_PATH, "w");
++	if (logfd == NULL)
++		logfd = stderr;
+ 	LOG("initLog", "logging successfully initialized");
+ }
+ 
+--- a/Tanks/src/video_gr.c
++++ b/Tanks/src/video_gr.c
+@@ -40,14 +40,14 @@
+ 	 r.u.b.intno = VIDEO_BIOS;
+ 	 if (sys_int86(&r) != OK) {
+ 	 printf("set_vbe_mode: sys_int86() failed \n");
+-	 return;
++	 return NULL;
+ 	 }
+ 
+ 
+ 	vbe_mode_info_t video_mode_info;
+ 	if (vbe_get_mode_info(mode, &video_mode_info) != 0) {
+ 		printf("\nvbe_get_mode_info error\n");
+-		return;
++		return NULL;
+ 	}
+ 
+ 	h_res = video_mode_info.XResolution;

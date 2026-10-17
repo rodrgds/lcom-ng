@@ -1,0 +1,107 @@
+{
+  "repository": "https://github.com/Viperxyzzz/LCOM",
+  "revision": "08a08837fc475c0dfc1db9d83de342e31959977d",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "1455005cb745d55ff414cfeab64ef40974c73ce2110800415cefd2805efda20d",
+    "proj/assets/heart.xpm": "52495e01f10a10e14436eba33934952a9a28e1949e7fe72cf5cc14dc94bd9216",
+    "proj/assets/logo.xpm": "17a0e285476c57081ce520ed4ad9dbf571059185cbaa9fa72636641f4e4bd282",
+    "proj/assets/play_button.xpm": "f295beff7789734bda0664e43f2eddf8a450417e60675eec236e4d36f4f6b381",
+    "proj/assets/brick.xpm": "d7f41d6d9706a05fea50e80a4e4134f41b035bcd3c79194bd21ed903f8676084",
+    "proj/assets/game_over.xpm": "3a99df3a34dbaff8a234b4e8881bd1452b52882193fbcdfdbb88285d5e82884e",
+    "proj/assets/ball.xpm": "2281fd0161a3fc3c7a9c9592f47a9e993500f8a98961e0193844f7ab4d78f278",
+    "proj/assets/explosao.xpm": "81bb852208ebc3c07c41d383f402548608714448e3c0170c248cddb8ffad6953",
+    "proj/assets/exit_button.xpm": "e18e102ce3c4b7d4552ae68cd68c718faec4c36a20f9c95e2debb262aa97eb10",
+    "proj/assets/cursor.xpm": "513ff96624f0d7ce66d014d9637faf9aac0146752b386df3d2f03452ea49b778",
+    "proj/assets/background.xpm": "53e0d3f57fa33d3be787e0a791c4530fac4d9b5de7330b36a5f19b061983a8f4",
+    "proj/assets/paddle.xpm": "736038eb10082e2b7cfd49629148431c38e6512511b32a40cc4ebd8160ef7c8c",
+    "proj/src/game.c": "8ad107865b0226e2b74a0d7091bae6f5c91227eee768cf2f59c159f0733528bf",
+    "proj/src/sprite.c": "bd6adc7f7537e82ef495d4c58281946e4aa6742459163e8063f1657f3e275fd1",
+    "proj/src/mouse.c": "eca48213563bc9bdf417fc0a1e153846bde2fd2d96f59e788573e5d885e927b3",
+    "proj/src/videocard.c": "618316da010c1e8b7265d87432a093045baaafcd188185a16fdb36c0fe0d6dd5",
+    "proj/src/timer.c": "c91d94ffdbf427376dcc764921736f1d48a0c69f7406817f0cb199c6d29332bb",
+    "proj/src/background.h": "a6f4339d842189d41613c44c981b6175a258a671d41ace5e85a992f2d0de6c51",
+    "proj/src/bricks.c": "ba8d296ed7966e3d252abcfe9babe54ecea1a9084916f84730b9bd2614054dff",
+    "proj/src/rtc.c": "1b8d57168e8fddcd20c263ba1f019bf7c7bcc30a9eb53bc4aab10e4ecdbe18a0",
+    "proj/src/keyboard.c": "f9d109c64cf358a5d2a3956a40b84401a0ff6e2b605e3fc4a3b9cc34cbf1142c",
+    "proj/src/animate_sprite.c": "f1ec0a227ad85443f82ca69eb156eafe8eec970ad9f9eaafd315b5eedc332190",
+    "proj/src/Makefile": "8e94128078dbe9baa484d68d6764927e2eca0cd8dcf88c4b6ccedce3891151ad",
+    "proj/src/ball.h": "484af26da3b0f88d017e94fcdddb37d095d005c23737ca2ac0719cb6846a32ae",
+    "proj/src/i8042.h": "7292e8f7cdff578bd91600088c903d7febfe2a8d245b5819174193e9dee16865",
+    "proj/src/videocard.h": "8ffbec7e53072fc60d49e919604a42bfb8bfa647cafa504c2c63e33e415dd944",
+    "proj/src/mouse.h": "1403e8afe6440e2735aa4e7547361fcde26f49080990b63b588f480d602a1cf8",
+    "proj/src/game.h": "61bd464706f1f6b0925d3bed44baa673058ce4a76fa290d55b13095c3c3af497",
+    "proj/src/sprite.h": "21b471df2dbe0a0a54273e6d5273bd3c33a139c3ce9be3ef2f34d5fc2104fc33",
+    "proj/src/utils.c": "0c4af459ffcb4ef3bdaecd157b62649d1e13ef5d0c29bd8cec6778991a155422",
+    "proj/src/keyboard.h": "52f6fea07d91e5784440a4ebfe9cf734e3cba1576a7c8c2013fb96d414b396d9",
+    "proj/src/animate_sprite.h": "2781e26f1b6e03e168c94fb2f7a743acefea2e35bb6ba87ea5f203cb77fbd9e5",
+    "proj/src/rtc.h": "3e5e4111655606e67eaa0925bf2bd1d1a2347596823e6290828298cbab3f358d",
+    "proj/src/background.c": "04cc7ecfda34e5c12dd0335b6b522a937ecbd537b0a2154ca88d25eb979a0598",
+    "proj/src/bricks.h": "d66eaed6ba26496919a8850c398b1b72edde83518506d5181fb9151b4d8b96d9",
+    "proj/src/ball.c": "62ac1ec4a637a18a6c13b286b4b5f28f9a5837b992a6ce9cdfeffa5742028e96",
+    "proj/src/i8254.h": "83e0852974159b6c25f8cc415210278b5e2f4d8c06a7f5fa088f5f1c8e69d33f",
+    "proj/src/proj.c": "90c6cb4840cd2e929a9e5e752018c5a6be06d61d293be8a4eb39629e3a26784d",
+    "proj/assets/numbers/2.xpm": "81753ceef632869141555803432a04ef3b58d8c37eb0e628e8ca10a3b95953bc",
+    "proj/assets/numbers/3.xpm": "ab6bdde9ce51111f35b027da6cebfb70c4a576c42764def3a49ed52406405ae7",
+    "proj/assets/numbers/1.xpm": "8561e3140f159da396b0352f002c43cab43d987472e20e7349fdd9c185173cbc",
+    "proj/assets/numbers/0.xpm": "17b5d779ad78b0d6bad3c94d07a30bcdd979ee35b6566fd8ec1d9b9cf7737b6b",
+    "proj/assets/numbers/4.xpm": "35740f33eadde2ca8c96ede38d915ca9920e97dc14d27eccc6df6ce457a79921",
+    "proj/assets/numbers/5.xpm": "ef26cabe257ee44a3a0eab282845b4c013d48e8e4c9e6da0ae2451faf437e83d",
+    "proj/assets/numbers/7.xpm": "dda7784483465377666c86024e08cda30f0b19d0305dc96e99fc289f7bb3ea1f",
+    "proj/assets/numbers/6.xpm": "297d5480ff9fc45287329a0e671643818f01cbc4edcc146c2a9ae08e4e5e49e2",
+    "proj/assets/numbers/8.xpm": "f2f02660521f1a30735d39b357f65d0830828cbf7227294e82a2b34b4ecabb19",
+    "proj/assets/numbers/9.xpm": "8f3245374701abd5a9554e9075241c42415c25630b1bd48cf64967f631da3aa6"
+  },
+  "selection": "Pinned original game source and original required compiled artwork/dictionary. Source defects are separate overlays.",
+  "omissions": [
+    ".git/**",
+    "**/.gitignore",
+    ".minix-src/**",
+    "unrelated labs",
+    "**/doc/**",
+    "**/docs/**",
+    "generated documentation",
+    "compiled binaries",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store"
+  ],
+  "icon": {
+    "kind": "Original brick, ball and paddle sprites on flat navy",
+    "sources": [
+      "proj/assets/brick.xpm",
+      "proj/assets/ball.xpm",
+      "proj/assets/paddle.xpm"
+    ],
+    "iconOnlyTransparentColor": "#FF00F0"
+  },
+  "restoredSiblingAssets": "Original proj/assets contains21XPMs. Earlier own project/src-only snapshot omitted them; restored byte-verified pinned assets, not an upstream defect.",
+  "controlsRationale": "Relative pointer selects the original menu; A/D hold the original paddle movement state sampled at timer ticks, so no synthetic repeat is enabled. Panel quick keys and Select remain outside the playfield; original artwork is unchanged.",
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence14/Viperxyzzz--LCOM-04-positive-brick-canvas.png",
+    "captureSha256": "f0f8fa257082bbe5e114b1fe876a55cb1b8cb4c846b49da259cddb530c4bb386",
+    "originalSourceArt": true
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "762971b21b45674d7c2f7c4e7a75c2fa73fdf4322ea02d77f4db391aec53dfa8",
+      "kind": "source-derived launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "46d4b47778304a1cd9d8b7038fff7c87e7996d071d7cee63a258929fd39dd457",
+      "kind": "actual ordinary browser touch gameplay preview"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/a70-brick-reviewed-native/results.json",
+      "apkSha256": "a22d3bca3bd9497d85b52a07b8c5a011126aad34845f495a8fb0fc1a8911f972",
+      "demonstrated": "Root inspected original native SCORE00\u219201 and30\u219229bricks; ordinary A/D touchscreen paddle motion, one remaining heart, Home isolated process cleanup."
+    }
+  }
+}

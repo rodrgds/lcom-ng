@@ -22,19 +22,6 @@ android_export = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(android_export)
 
 
-def _asset_manifest(root):
-    names = sorted(path.relative_to(root).as_posix() for path in root.rglob('*') if path.is_file())
-    if any('\n' in name or '\r' in name for name in names) or any(
-            name in names for name in ('lcom-assets.txt', 'lcom-assets-version.txt')):
-        raise ValueError('Asset filenames conflict with the Android asset manifest')
-    digest = hashlib.sha256()
-    for name in names:
-        digest.update(name.encode() + b'\0')
-        digest.update(hashlib.sha256((root / name).read_bytes()).digest())
-    (root / 'lcom-assets.txt').write_text('\n'.join(names) + ('\n' if names else ''))
-    (root / 'lcom-assets-version.txt').write_text(digest.hexdigest())
-
-
 def build(entries, output: Path, name: str, icon: Path | None, app_id: str,
           abis: list[str], project_only: bool = False) -> Path:
     """Build once, sharing SDK compilation and isolating each game's process/state."""
@@ -119,7 +106,7 @@ def build(entries, output: Path, name: str, icon: Path | None, app_id: str,
             (assets / 'games').mkdir(exist_ok=True)
             (scratch / 'game-assets').rename(assets / 'games' / identifier)
             shutil.rmtree(scratch)
-            _asset_manifest(assets / 'games' / identifier)
+            android_export.write_asset_manifest(assets / 'games' / identifier)
             library = libraries[identifier]
             (game_native / 'CMakeLists.txt').write_text(
                 'include(student.cmake)\n'
@@ -136,7 +123,7 @@ def build(entries, output: Path, name: str, icon: Path | None, app_id: str,
                 icon_name = f'icons/{identifier}.png'
                 shutil.copy2(icon_path, assets / icon_name)
             catalog.append({'id': identifier, 'name': entry['name'], 'icon': icon_name,
-                            'library': library, 'orientation': settings['mobile']['orientation']})
+                            'library': library, 'archetype': settings['archetype'], 'orientation': settings['mobile']['orientation']})
             metadata.append({'id': identifier, **info})
         with (work / 'native/CMakeLists.txt').open('a') as cmake:
             for identifier in ids:
@@ -170,10 +157,8 @@ def build(entries, output: Path, name: str, icon: Path | None, app_id: str,
                   'applicationId': app_id, 'abis': abis, 'games': metadata, 'apk': None}
         if not project_only:
             subprocess.run([str(work / 'gradlew'), '--no-daemon', '--console=plain', 'assembleDebug'], cwd=work, check=True)
-            shutil.copy2(work / 'app/build/outputs/apk/debug/app-debug.apk', work / 'collection.apk')
+            android_export.finalize_apk(work, 'collection.apk')
             result['apk'] = 'collection.apk'
-            digest = hashlib.sha256((work / 'collection.apk').read_bytes()).hexdigest()
-            (work / 'collection.apk.sha256').write_text(digest + '  collection.apk\n')
             for folder in ('.gradle', 'app/build', 'app/.cxx'):
                 shutil.rmtree(work / folder, ignore_errors=True)
         for game in metadata:

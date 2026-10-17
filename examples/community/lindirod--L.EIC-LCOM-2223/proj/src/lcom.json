@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "Tetris: Block Tower",
+  "description": "Rotate and place the falling blocks to clear lines.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "Q",
+        "UP",
+        "DOWN"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "off",
+      "tapDuration": 80,
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Rotate",
+          "key": "W",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatReleaseKeys": [
+        "A",
+        "S",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "archetype": "Tetris",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

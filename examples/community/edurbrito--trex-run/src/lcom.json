@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "name": "T-Rex Run: Brito",
+  "description": "Jump over cacti and duck beneath birds in the Chrome-inspired runner.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Play",
+          "key": "P",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Jump",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Duck",
+          "key": "DOWN",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Scores",
+          "key": "S",
+          "position": "bottom-left"
+        }
+      ],
+      "joystick": false,
+      "look": false,
+      "dpad": false
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "res/bigtree5.bmp",
+      "res/gameover.bmp",
+      "res/bigtree4.bmp",
+      "res/bigtree6.bmp",
+      "res/playbtn.bmp",
+      "res/bigtree3.bmp",
+      "res/mouse.bmp",
+      "res/bigtree2.bmp",
+      "res/moon.bmp",
+      "res/bigtree1.bmp",
+      "res/multiple_trees4.bmp",
+      "res/scorebtn_hoover.bmp",
+      "res/trex_run_title.bmp",
+      "res/3.bmp",
+      "res/2.bmp",
+      "res/bar.bmp",
+      "res/multibtn.bmp",
+      "res/0.bmp",
+      "res/1.bmp",
+      "res/multiple_trees2.bmp",
+      "res/track1.bmp",
+      "res/5.bmp",
+      "res/4.bmp",
+      "res/bird1.bmp",
+      "res/multiple_trees3.bmp",
+      "res/multiple_trees1.bmp",
+      "res/track2.bmp",
+      "res/6.bmp",
+      "res/7.bmp",
+      "res/sun.bmp",
+      "res/bird2.bmp",
+      "res/exitbtn.bmp",
+      "res/time.bmp",
+      "res/9.bmp",
+      "res/8.bmp",
+      "res/scorebtn.bmp",
+      "res/playbtn_hoover.bmp",
+      "res/trex3.bmp",
+      "res/smalltree2.bmp",
+      "res/smalltree3.bmp",
+      "res/trex2.bmp",
+      "res/smalltree1.bmp",
+      "res/exitbtn_hoover.bmp",
+      "res/trex1.bmp",
+      "res/cloud2.bmp",
+      "res/trex5.bmp",
+      "res/smalltree4.bmp",
+      "res/smalltree5.bmp",
+      "res/trex4.bmp",
+      "res/cloud1.bmp",
+      "res/multibtn_hoover.bmp",
+      "res/hi.bmp",
+      "src/highscores.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj": "."
+    },
+    "arguments": [
+      "117"
+    ]
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "T-Rex Runner"
+}

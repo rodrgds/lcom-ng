@@ -1,0 +1,114 @@
+{
+  "repository": "https://github.com/JoaoCarlosPires/feup-lcom",
+  "commit": "ea0f5e093143c2058c3da597215af96180a60ac1",
+  "project": "proj/src",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
+  "sourceChanges": [
+    {
+      "file": "proj/src/vbe.c",
+      "patch": "SOURCE_PATCH.diff",
+      "reason": "Copy the actual pixel byte width into a zero-initialized color; original uint32 dereference reads one byte past each24-bit XPM pixel and Android guard pages abort at finalpixel.",
+      "upstreamSha256": "50b0f878afedca4058e0b25c291352cfc07b4618da0a0ac8d34fcdeff356be56",
+      "patchedSha256": "a4d9d60f3c7b50bc19e5bdab82c16b334d920bf78532c6fcc61fb9dc16993d79",
+      "verification": "Actual opaque and per-channel transparent renderer tested with three-byte RGB at protectedpage boundary. RED SIGBUS, GREEN exactpixels."
+    }
+  ],
+  "sha256": {
+    "README.md": "0a43e9c39fca77d5c8d981b4f61926ee5c2d64c576847a4f3e2174650225d15a",
+    "proj/src/Makefile": "1d79dc10962a03179a1ac6875fd2a2f5d6b83a08af7a403c9de627c3f24290b8",
+    "proj/src/i8254.h": "44551c89c7a3209079ce0f922332268fb552ac28a848ed0b7666f5292061054f",
+    "proj/src/kbd.c": "39b8cc9d3a7c51997b6548a462434a291cc2d8a3228ba05f70da6b7a9e6f7437",
+    "proj/src/kbd.h": "cfe2de680fbccf1308b2eefd82dc158436dae10d5f8db32041397ba4f4a08c27",
+    "proj/src/mouse.c": "72cdc6da4cf1f44d3b0ed9499b85042cd008aab45d31d32997798f719e011028",
+    "proj/src/mouse.h": "01c9cda1b01215b5e200be54e0ae2648f17bbaa1ba0a9c8a9dbd2eb8e0ed32ca",
+    "proj/src/proj.c": "9c18e37a30aaaa716a5a6e60347bc0805aae6be28e3e635b22a2999f1e29d4a1",
+    "proj/src/screen.c": "945f4c1855b9f3fe2de205c058f8d86cc96db92f03ff733268cbd57a33d7b308",
+    "proj/src/screen.h": "db2bd5a4cce032573b452dbcd5fd4978fa9a7ecf35f627b8d78100748d85aaf9",
+    "proj/src/screens/Game_Over.h": "b298d15cbeb71605fb84a0c8f97c40d730965b98a0e1fc773fe6999040f083ec",
+    "proj/src/screens/Paused.h": "254d479ba0fe6722d0112e714b1b0e1cb979de346ecc3b6a1d7a6a90254442f0",
+    "proj/src/screens/Pos1.h": "4bcd46e1d5190fd5bd6a26d648d74cca56285fe0d9d5cd12e4aa12d52f23d86b",
+    "proj/src/screens/Pos2.h": "81f2799f9d5ac5d3160bc19ed66ea054d13ac4869da59d0f0e927985cc121f8f",
+    "proj/src/screens/Pos3.h": "a43b4c17a11d60b8eb808efabc1d2d936990883c3cea860736e4a0c607256d4e",
+    "proj/src/screens/Pos4.h": "666b6d4bfc12387377e48d89f88f8cfd8addc78a9e480a9519fc8d013ec61ab5",
+    "proj/src/screens/Pos5.h": "ecc83af51a8df2286d55e3e947fa3804680235fd4ef8545086b09f30f9700d0d",
+    "proj/src/screens/PosF.h": "9503b83a5fe6508bca7b4c648e86637b961921ef989d6ee92f11738d34575d9b",
+    "proj/src/screens/PosI.h": "4ce4d2ce13cd528115f1dc1a632c3f4c98cc0032c209756dafa6708f92b68128",
+    "proj/src/screens/PosM.h": "372f156f09c66ea0283d96c27a65e601f94d7cae7582d3fc1a31cf0506695a15",
+    "proj/src/screens/Target.h": "cfe466ce79802d0c49da63c7455849054717d93347c6b8a94c44c0c043cefff1",
+    "proj/src/screens/level_1.h": "9d01e7171e8e5838f75006f460d3d5bdb6f87305271446d865532909f37a7b54",
+    "proj/src/screens/level_2.h": "4e5aa1dc62f5d93332cad15e818151c100ff44b1b68cb6e4fb2639c8f644a02d",
+    "proj/src/screens/level_3.h": "257a28962231033d4ddce8c78ebaa19d9166c0bedf5bdb58789dd745fa81b041",
+    "proj/src/screens/level_4.h": "1e0c069cfab6bd244d0e45034a04cd2205cc170b526804ea93997e9ec96ac860",
+    "proj/src/screens/level_5.h": "4cdce90c9edfd4638354aa2e75fa9e20327b3370246b4ae5d011c9e9a3e5c006",
+    "proj/src/screens/mouse_pointer.h": "8f6d60dafcfdd11d635875099648a43646b97888d56ed193a70b65a5c5915b5f",
+    "proj/src/screens/score_000.h": "a19da7eaa6986425bb73314892b3b77d555c4537d2bbf72e0fe2e0fe7f61a9e3",
+    "proj/src/screens/score_050.h": "2a3c2dc5d3805c37f91897bae4c25a69460b5b98f29902579a2e8f505a9e9d22",
+    "proj/src/screens/score_100.h": "72ba41ca8fdf0b356a9c3c3c00f183771dec163e86d45317a5271e4d643209bd",
+    "proj/src/screens/score_150.h": "debfc93776afca97ed64eaf9e2f5181ac9190585b162f32441ffc95271e72b5d",
+    "proj/src/screens/score_200.h": "c19a08f9f5bc9c4b1275ba8d9eaa81d8db7578741e3abd9b9399f379a342fa4a",
+    "proj/src/screens/score_250.h": "31009f8c3023e0c472bd4997690519bf0e49889774368780fa39aeda57c51096",
+    "proj/src/screens/screen_gameScreen.h": "72cc9f14fafcff7bd0850b3c450f44c585d4f8c60372f2a5dd435df93b025bfe",
+    "proj/src/screens/screen_gameScreen2.h": "2ed51f69d4f8a6835f6f30fac8a3e76fe2f2897d041042eb2ec62625fbcf7470",
+    "proj/src/screens/screen_instructions.h": "f37f559e1dfd91793c67b21208b0910b22cdcacebb6ac8b89be8a40b057b2076",
+    "proj/src/screens/screen_mainMenu.h": "db47d52ea55ff610842c74657da3572feba381c196db66a70fe49b8043c655db",
+    "proj/src/screens/time_0.h": "9e3cc9fc668c92a1fcf92a8f6686ce42780a7fb307aa49f81f8f2af995c36d0a",
+    "proj/src/screens/time_1.h": "1b7baa9b51825ff98fe2aee0be33d03ba4598d9fb5dbaa4719990e8b7ffdc36d",
+    "proj/src/screens/time_10.h": "fbdaafdc265d74f2cc8c0f454e11644a8606c2b683bb60b707d59b3790421e2d",
+    "proj/src/screens/time_2.h": "5e2acc7d63be99453e15c086455eed3c5f5d79cbb8698a498e4d5ac1b5e6b079",
+    "proj/src/screens/time_3.h": "c85151d7bce3d1e3625632e1751050708c6b311b47350e3c257c4e3c71ccba6d",
+    "proj/src/screens/time_4.h": "ec7b8ebc45bdd5da568852370d355ca2e5e468eaa1ebee1dfa46aec2791b67e6",
+    "proj/src/screens/time_5.h": "af37f1e9cc3dc69aacaff4f42fb458fdb2709834f148889773d64b825212ed36",
+    "proj/src/screens/time_6.h": "72f4a9d99faac3936ef153c39653b11f2123f8d0aa29fd4709048657540652cd",
+    "proj/src/screens/time_7.h": "6d62e042fcb98fe8173a770c341fcb5e995aae752167d774e21cc5b41abd27d2",
+    "proj/src/screens/time_8.h": "22aac06f0c39a2edf626a61f85c38d36a2b98bf3baf662dc37f16ad3b01f6855",
+    "proj/src/screens/time_9.h": "04f8d9e8122678c43d96a6d1314fa4f6426cbdb5c4ebcb84e75df842434f2736",
+    "proj/src/timer.c": "691e1638f052674b4c716f388e24baab00b372e75f07b8d5fda3ad92d7f0812f",
+    "proj/src/timer.h": "d2fcb7b40c959e8e9f16e5ccc8c06e56140b4dd9770b7d8fa7e19c37b06647b1",
+    "proj/src/vbe.c": "50b0f878afedca4058e0b25c291352cfc07b4618da0a0ac8d34fcdeff356be56",
+    "proj/src/vbe.h": "3af9e965c362d132f0d0f17d98ce5d10a9221bdae9e54462dc8ad16737d7a0c0"
+  },
+  "selection": "Pinned project source and required artwork/assets plus upstream README. Omitted labs, generated documentation, VCS and OS metadata, build products and core dumps.",
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata is excluded from required source inventory."
+  },
+  "icon": {
+    "kind": "launcher icon derived from pinned original sprite",
+    "source": "proj/src/screens/Pos3.h",
+    "detail": "Removed the near-white background matte from the original cannon sprite for a consistent flat launcher tile."
+  },
+  "controlsRationale": "Bullet Man: Play/Pause P, aim W/S, Launch L, Exit E. Touch controls launch the original cannon through level1.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/JoaoCarlosPires--feup-lcom",
+    "limits": "Short functional gameplay trial, no full campaign completion or physical Android device claim."
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "6374d017bcd3c5b5fd1b13086a5493a7cb2343f4a4da459ee847bfe44e84a3c7",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "e4e56c2d23e92f829df21f9c27da117f14a3f741a61515ec14120d877449a03d",
+      "kind": "actual mobile browser gameplay canvas"
+    }
+  ]
+}

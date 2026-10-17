@@ -40,6 +40,11 @@ from Android's Java UI thread. Long computation without SDK calls cannot service
 input. SDL close unwinds to the player entry point, including legacy polling
 loops that ignore SDK errors. A guest crash terminates its app process.
 
+VGA color text uses a separate stable 32 KiB backing at `0xB8000`, appended to
+graphics backing in desktop shared memory and embedded sessions. `Machine` owns
+mapping and `Vbe` decodes character/attribute cells. Hosts present that shared
+frame; graphics clears must preserve mapped text bytes across mode changes.
+
 Mapped C pointers retain stable backing allocations across mode changes. Present
 copies the selected virtual video page into the device framebuffer before giving
 it to the host. Native audio uses SDL's PCM stream. Browser audio and yielding
@@ -63,6 +68,12 @@ pending motion and preserves button edges at their coordinates. Direct mapping
 requires the guest's initial position and clamp or per-axis rejection bounds, unit deltas and no cursor
 warps. `configureCursor` supplies that contract before graphics mode setup.
 Keep packet delivery and cursor tracking here, shared by browser and SDL hosts.
+Embedded host input respects the mouse's programmed F3 report rate, defaulting to
+100 Hz. Faster host polling coalesces pending motion without splitting a queued
+packet or losing short press/release contacts. Counter-reset commands discard
+unsent motion while retaining button transitions; disable/re-enable reconciles
+the current physical button state. Already sampled replay packets and remote
+mode reads keep their device-level behavior.
 Keep platform lifecycle, rendering and assets in the host/exporter. Preserve
 student SDK calls and device behavior. Do not add platform branches to the SDK
 or copy device logic into a new runner.

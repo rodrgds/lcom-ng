@@ -1,0 +1,123 @@
+{
+  "repository": "https://github.com/amadeuppereira/LCOM_FEUP",
+  "commit": "e6c53bc4e7d72059b40e7c7b9b317bad698cf48d",
+  "createdAt": "2018-02-28T17:49:23Z",
+  "project": "proj/src",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/amadeuppereira/LCOM_FEUP",
+    "createdAt": "2018-02-28T17:49:23Z"
+  },
+  "sha256": {
+    "proj/highscores.txt": "5ac514098abc9b75c7c416b5ed91dbd4d2eac39e643b39665d96870e9017ddcd",
+    "proj/src/Makefile": "82d6103304ad0d72105a104a24a6272acda8c1e76b8825235bbc0f3002ef78e7",
+    "proj/src/bitmap.c": "febd6399acf8f5a2bae10463190518452eb5537f85f5c804edd5bd0c28c14dbc",
+    "proj/src/bitmap.h": "d044af4ccafbb364ad191646cd83d493458a727d84da9f589d4686e8b1453866",
+    "proj/src/collisions.c": "20ee539c30144aa5cf38359634a0f1c345c227ddcacc2a6e7bef3bee7b6027dd",
+    "proj/src/collisions.h": "f22f494c51e782f7a7a482c31ba6a6f1eef85722642fb2a8163ef4de62a8a1cc",
+    "proj/src/highscores.c": "eae7f1bed797811043470f299a95a43bbc7bc3c4d880f8b593bdb98a6c658908",
+    "proj/src/highscores.h": "b7456391253860a247bb545ea0f5f4e53ffe8d24a29841ad8f33eabb77a367f4",
+    "proj/src/i8042.h": "a94b4a3de353128a231e30f8050e2528c5afad783f00a3348580f66f200a5987",
+    "proj/src/i8254.h": "65e3f244fe080e33e2072c1a9d6a0d3476d9edf883e992daab0dc0b653af9b59",
+    "proj/src/images/asteroid.bmp": "8477702130247cc0ac905314c2b2adeea59ba3ba539eab6656b067e7838d4537",
+    "proj/src/images/asteroid2.bmp": "21b231c92e57860cadad1e6ac6fc49187373390a8824096d0da4d89eae655a59",
+    "proj/src/images/asteroid3.bmp": "ed5c9042175a9b30453f58f316fccdc10b025238ee747111078943da283c1700",
+    "proj/src/images/barra.bmp": "202754a471ffb6d3538b3f2e8495b06bf660ac98ee94b11294c6fde724e14841",
+    "proj/src/images/bullet.bmp": "bcb74fa9876133de54118aca14f0a9f3a052d7ce2d9b04cd6a69e5ac8c47e155",
+    "proj/src/images/dois_pontos.bmp": "39748fd51bba8ada256359c4d812f6783448ac67b0ccfa478a3a3e7e00866052",
+    "proj/src/images/exit_menu.bmp": "f614b0878bd68928d39a4fb1a7c404a19c03327f61a605b27bb50409ac61c116",
+    "proj/src/images/exit_menu_select.bmp": "941162a929b8ec32534c358d76414ed4f96fddec6239ee64e2009f17707c6512",
+    "proj/src/images/gameover.bmp": "4f71f3f8317126df6db3b1a112d0a51da7b1175fbd85be4e05f3c719a216427a",
+    "proj/src/images/highscores.bmp": "09f86083736d7d8384115639eac967b573e2cf1886ab12a8deea929210c2316f",
+    "proj/src/images/highscores_menu.bmp": "ffa5b1dd969eaa37f41e2a324c1c8ae2dfd7be271d6ab6d213267e3de3af05a0",
+    "proj/src/images/highscores_menu_select.bmp": "6c8f2c45e1514679c1e72a26e9ad42b9825207ca48ccd5b1ba7196d02fe8fdcf",
+    "proj/src/images/main_menu.bmp": "1e1b09bd3f068a4ad327da0cd3a113866a01e68144bdc5a310e4c603cb15d715",
+    "proj/src/images/mousemenu.bmp": "bd2cd0eeefe8f9f88d76d21d24ba51f05008ccc16c171f9790982a279b747c9b",
+    "proj/src/images/multiplayer_menu.bmp": "6479293339e8f0d201aa0986862a0c184d41ec7940f5b57448418f2e4b4c8ad3",
+    "proj/src/images/multiplayer_menu_select.bmp": "ace156f3859d7e9b08c81a42f8f4d298d74ab267b400ea01bb9c7f69382c05b8",
+    "proj/src/images/numbers/0.bmp": "e1109ddf4a76b4b373ca62048ef988d0d3bcd9aaf62a241e6583184d4285dc46",
+    "proj/src/images/numbers/1.bmp": "f0c1357205d715270ffa654e12b59eaa73a40088d9aad3d4d3ac8d5ec6e96f58",
+    "proj/src/images/numbers/2.bmp": "f44c334e10d53e09a0c5a2a319956796d176ab3cc75ce092d534a47668edb196",
+    "proj/src/images/numbers/3.bmp": "a9b1c818f6e49c168d35e77ecf3cd74e26f86c82638328a6e7f25072280e0321",
+    "proj/src/images/numbers/4.bmp": "0ea631d6ab4df51233823ba3093eb49715bb200a50b6535f2782298ba225c72c",
+    "proj/src/images/numbers/5.bmp": "762d3a0d5cdd49e000e0591eb0964fe862167e3ce7a010ef52edd39c6a9aa477",
+    "proj/src/images/numbers/6.bmp": "485bb4b824bdcec6ad69657842f5451bf96016c7ef78d967ed162106984bc0d9",
+    "proj/src/images/numbers/7.bmp": "7c69bbb6a6f209bab619f5d22cc99b8a2185f08bc8c27a1dd8c5d595b1f04e7c",
+    "proj/src/images/numbers/8.bmp": "9b26bcd7b489bd10332b57e15494dcd647c0b29fbc2bbf6baffb54fc359ae17a",
+    "proj/src/images/numbers/9.bmp": "2dbc7e8926a7550ed874660f2f336dded9034fa531fac5e98ce07b7cbc5b374e",
+    "proj/src/images/play_menu.bmp": "7510b1d262ef334eb16c5452f41d265b6a33784434827a1ca51f0cad0b4eaff8",
+    "proj/src/images/play_menu_select.bmp": "fb926c7e09b4f0f4cbc657547108d3bf7806cf416d0835daf85e9d388469effe",
+    "proj/src/images/space.bmp": "879c916882ef0f429cacff08507f635e7bcd3d9266c287c8214045d09ad6f03d",
+    "proj/src/images/spaceship.bmp": "f22a7dfc6911d8f0027f6f6e02d0d35c7e500647c4451634e7d36d6751c3eba7",
+    "proj/src/images/spaceship2.bmp": "039ea0dbcf39e7bff94d063903e471f8bb045f13d233cda1356c761d4b0094c3",
+    "proj/src/images/spaceship_shield.bmp": "1ecc86ad079589b65dda1300cafed584e38156889b3f4d0dbd0b592cdf5f757d",
+    "proj/src/images/tip.bmp": "94e44ad7a1cc11c482da36a45467ad68271f2952e240fa16f06edfaa9a78c30a",
+    "proj/src/input.c": "a31cd6aa95b7c9deaf24229e1498ca7d64f6e42c1f00019bfa6a2d36b5aaaa3f",
+    "proj/src/input.h": "dc20e45b1d49ddb677f0107d041e2222b47bb8e76e1504d6a5671a4267e00fa7",
+    "proj/src/keyboard.c": "ef56ad9313f57c4dc13a85044f10dc94e29850f523cdd17f99eaf0282b64a55c",
+    "proj/src/keyboard.h": "478ea1fa0b7f4a73317efd567f32ccf9bd2f7da316a6f36306ff360093b38aaa",
+    "proj/src/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "proj/src/mouse.c": "3fecf5379c99110f0445e9eaa83722db370f87358b13916dac9cacb30ef391fb",
+    "proj/src/mouse.h": "0f9821040a5089d7e618dbf9f12b0692e4e83744c5c3cc54c8b3fbae9f2111a2",
+    "proj/src/objects.c": "30c01751bec3c33322144bdb505fbff467dda81fbecee9135d422270c0520e62",
+    "proj/src/objects.h": "ec449064fc3f51b7580b5d105fe032677cff9bec69689457f042def26af8315d",
+    "proj/src/pixmap.h": "d06f2705e7a8e6f8bb152ab0c72ad855c97ce59823dc70cfd9d2d6f8da2ae5a0",
+    "proj/src/proj.c": "63cccb7ad4369c0275db4fcc1672704667e6ea039ec3e7919450ce94bb07e211",
+    "proj/src/proj.h": "f3ae04b00129b49c9af7d4b20e12e0c5436ede25ce81cbb2914b2646dea6e0ea",
+    "proj/src/rtc.c": "e21822c28b7404021d7a2088fe43a558a256f9aed65a12a99dbf6651d454303a",
+    "proj/src/rtc.h": "7a396b9e12f48443af3b19875f4a3d1de27cd9bb8ba3eae77238190f36c9d18e",
+    "proj/src/sprite.c": "27c5c8ff63936bad21bc591e00c1f475a2772ea0a4c65e4de6c7e1678000cd68",
+    "proj/src/sprite.h": "9130519177ea53466f2bdc28fc518630b1d75917ac59eb0960764d53c583beeb",
+    "proj/src/timer.c": "1c27577735a636b89a0188b82056b1d05f355f71c74c7585fbccc07a186e3d2a",
+    "proj/src/timer.h": "47654203ad8e4279848af973d7f94ca90eb8bfbf1f6015ef6b75f6582e4273f1",
+    "proj/src/vbe.c": "cda25c89bf9ba49ecb65d5e82a6b46677c64905c10b014702f24f53292009585",
+    "proj/src/vbe.h": "4d1e6110bc85bc7cd72b650558bb6862f8c01b5b64178e31626119a9f29170e2",
+    "proj/src/video_gr.c": "715a110c4f75c44e495040b0d16b42cc5b7c636f47e3b14dd49f41435f39a4b0",
+    "proj/src/video_gr.h": "3991923ec561bbaf40f93054048e700468eb007311d68f8a08df1454219b1046",
+    "proj/src/xpm.c": "5129b7f884a190310360dc3ba45a01b742418efef1cbdded2d223b312e203885",
+    "proj/src/xpm.h": "0cc06be42c76755093987ecccc6f8a562ed9f61cfd54ca041a65b1ce2e6a64d6"
+  },
+  "sourceChanges": [],
+  "sourcePreservation": "Original project and assets Gitblob-verified. Original basic CLI/STI remain in student files and are lowered only by shared compatibility compiler.",
+  "omissions": "Unused labs, generated documentation, repository metadata, and unused files outside selected project/assets omitted.",
+  "licenseStatus": "No license file in selected pinned tree.",
+  "verification": {
+    "browser": {
+      "status": "passed",
+      "demonstrated": [
+        "TwoEnteractions enter original instructions then space play.",
+        "Relative touch moves original ship.",
+        "Fire action produces yellow original projectile.",
+        "Zaction displays original bubble shield.",
+        "Incoming asteroids and score005 survival clock render; portrait usable."
+      ],
+      "limits": "No full-round/highscore-save or multiplayer claim."
+    },
+    "fortifiedNdkObjectCompile": {
+      "status": "passed",
+      "units": 16,
+      "detail": "Actual exported source traversal plus both clock owners, ARM64 O2/FORTIFY_SOURCE2/Wformat/Werror=format-security."
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/next-four-reviewed-native/results.json",
+      "apkSha256": "53032150ea58fa5b0c4f1fbc2c7dad8c1f3a41a31a9a2d85727ea1f836def884",
+      "demonstrated": "Root viewed original title and asteroid arena, normal relative ship movement, yellow projectile and cyan shield during simultaneous Fire/Z, advancing survival counter and clean Home.",
+      "limitations": [
+        "Standalone flight/fire/shield verified. Full survival/highscores and paired UART multiplayer are not qualified."
+      ]
+    }
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "25dbd8117677a1915235bfa11688fe4215bb32e6b86fe1d2cfff5f36f577b05c",
+      "kind": "Authored simple game icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "16f3393db4f7a6b718e04b60001118ca8a1bbc3d55f094a6176f94c5ac1ee72e",
+      "kind": "Actual original gameplay canvas screenshot"
+    }
+  ]
+}

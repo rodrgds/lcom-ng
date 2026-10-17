@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Shoot Monsters",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC",
+        "UP",
+        "DOWN"
+      ],
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "key": "ENTER",
+          "label": "Select",
+          "position": "top-left"
+        },
+        {
+          "mouseButton": "left",
+          "label": "Fire / Select",
+          "position": "bottom-left"
+        },
+        {
+          "key": "SPACE",
+          "label": "Reload",
+          "position": "top-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "pathAliases": {
+      "/home/lcom/lcom/proj/src": "."
+    },
+    "assets": [
+      "highscores.txt"
+    ]
+  },
+  "description": "Aim at the original green monsters, fire before they move, and reload to protect five lives and save a high score.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,14 @@
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -192,8 +192,9 @@
+       score++;
+     }
+     if (game_state == GAME) {
+-      delete_piece(piece);
+-      piece = new_piece(board);
++      Piece *next_piece = new_piece(board);
++      *piece = *next_piece;
++      delete_piece(next_piece);
+     }
+   }
+   if (game_state == GAME) {

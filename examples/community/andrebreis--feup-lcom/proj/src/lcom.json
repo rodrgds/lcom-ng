@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "Duck Hunt: Field Shoot",
+  "mobile": {
+    "orientation": "auto",
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "touchClick": false,
+      "keyboard": true,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE"
+      ],
+      "joystick": false,
+      "mouseButtons": false,
+      "toolbar": "auto",
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick",
+          "sensitivity": 1
+        }
+      ],
+      "actions": [
+        {
+          "label": "Shoot / Select",
+          "position": "bottom-left",
+          "mouseButton": "left"
+        }
+      ]
+    },
+    "fullscreen": true
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "res"
+    ],
+    "pathAliases": {
+      "/home/DuckHuntResources": "."
+    }
+  },
+  "description": "Track flying ducks, aim your shot and build a high score in the original pixel-art field.",
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Duck Hunt"
+}

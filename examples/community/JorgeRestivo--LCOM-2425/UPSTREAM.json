@@ -1,0 +1,101 @@
+{
+  "repository": "https://github.com/JorgeRestivo/LCOM-2425",
+  "revision": "3af19f72e9ffa581e04cdfbd873965adbf792d02",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "142582a0c81cae4874ef196a1d47a7d117e56dce79b8cfd070d7f1627e1d65f8",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.vscode/c_cpp_properties.json": "9ef52cee94441872826bb67fc1f96e2d29936927cb38a05e4f4bcba594c031bf",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "cb076db9825af2416a4c0861315ba7b6dba03cb4c989569cb8df36ff6bee67d5",
+    "proj/src/game_core/game.c": "26d4d0c828b5416755fe8fa2238a0e2b68a02c66630c079156e7e877cd7ff4b1",
+    "proj/src/game_core/game.h": "f38bbf09d15d637a62781faf705d45cd323937d859b810dcf2cb338cc02417c5",
+    "proj/src/game_core/gamestate.h": "e344a4e2d31984b55884dd52a4a38b27125db9972acd2fcc36710167fa36c3ae",
+    "proj/src/game_core/main.c": "502c83065bee5f3da3177ce8962cc00ec4685c33f898e8e45d700b1d9999eefb",
+    "proj/src/game_core/proj.c": "f09384c4af6f2e6ffbf42be0bc9803925272b65d973367f442de15ab89562197",
+    "proj/src/game_core/proj.h": "0136d0a3b9ba291a989d3f396ff084841feac514d39254a1525c2f9cf4d63ac7",
+    "proj/src/game_core/types.h": "032c291e38e04f72fc689663d79b024b3af27d5acda3710424c2b7be3ede0e29",
+    "proj/src/graphics/constants.h": "e4304935ce0040f1bb3507fdc9ae3c107d51d6032c0aca0f99e1d847cdb865f1",
+    "proj/src/graphics/font8x8.c": "901ff610fbb0579072a8f9b728aeaea4c22d49534af42b315b2c80b6c82c8a23",
+    "proj/src/graphics/font8x8.h": "f62834f0fd5e0ca40111dd34a8e399b7d8be89bfd559a4310e598d503c9bf761",
+    "proj/src/graphics/graphics.c": "4f1e1d7cbd091d7d6cea3842d23282f7874eac78196679bdc16d99f2f7823263",
+    "proj/src/graphics/graphics.h": "e6df5e8e6ca8b69ad376f8f9c373adc899225263d44f7e5b85918183da551084",
+    "proj/src/graphics/hud.c": "5eaa967e050d86eca0bf39937b1d19b2482f7d7bf0dd20bcbdcd1d508df2a88d",
+    "proj/src/graphics/hud.h": "05b760c303516065782d2fad2542e6c377c5a6350940b2dc0b5a2a8953fcb237",
+    "proj/src/input_devices/i8042.h": "09f6affc649138f77d71a25410c7446801316e7285fb50da9e435b5f27a44071",
+    "proj/src/input_devices/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/input_devices/kbc.c": "b2cd108f3a86929ed1a56f22d3801f2522708f9419bc4acfa9a9447040936d6a",
+    "proj/src/input_devices/kbc.h": "2aba782291e459fb371c2f3a30d57c5c089e9fa48e6ecf390d61284aba935de4",
+    "proj/src/input_devices/keyboard.c": "e0e66a1363ffb25cfbd10b1972cc71fe22515ef50b21d003ff87237b33d25ebc",
+    "proj/src/input_devices/keyboard.h": "d2f6e51304613d308de189b1fb07dde7b115b866bd7c891dfa729519eca52eae",
+    "proj/src/input_devices/mouse.c": "f59969c5e971f7fd99c5abbd90e8887c9b6323a6defc454c28975ec1c658307f",
+    "proj/src/input_devices/mouse.h": "c83c9a442eed21928f5b41c0b1fba93971edb3e7291e9662d809f53019343324",
+    "proj/src/input_devices/timer.c": "d9372f7edae174e2ca88c6554805245a1ac446ea8e5b048c5eb37bf79fa06274",
+    "proj/src/input_devices/timer.h": "414190ebe38d27554b70496e4e54117fc5b2a229114c6f0e5a44615cfec187a5",
+    "proj/src/input_devices/utils.c": "6a15995cfb59c107800d85454da4a8a000089802e69c2626968e8e5b0f783933",
+    "proj/src/input_devices/utils.h": "d7423dcc13bbf64a3841c5742533f25540832cb5741c841dc59d3dd35ab88d53",
+    "proj/src/leaderboard/leaderboard.c": "5bbc136555eaf3c58019855e4a439db0d7b69f0b4a098877d181103926e1ec38",
+    "proj/src/leaderboard/leaderboard.h": "98b804254ea2ba685cc7b9cdba283915b524dc6c46eaf004137d359507085675",
+    "proj/src/leaderboard/leaderboard.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/makefile": "62e560656ceda8cee09f6bb804ada9d43c343b528599fa018bc28584ea16b7e5",
+    "proj/src/menu/menu.c": "cbff9f85c3b1a96b15d972220e68a92bf13df77843d9952c8d9e396d0cda630a",
+    "proj/src/menu/menu.h": "1259bf81f3330c56cc17c49e273bf98ba99363cdafa0e53fe359ce66e1233074",
+    "proj/src/sprites/background.xpm": "7cf2c95c214786bbe201b8fedb5db3f0ab12a0b15377d7b4707260ddfd00bf18",
+    "proj/src/sprites/bullet.xpm": "9cb0bf60116f3bc027b070ee20cae6b5956e4344d9e107faad7bdf4c3605e7c2",
+    "proj/src/sprites/earthdefender.xpm": "037977138cfa77b70a47329198f2fb7d061fc7ba8023d8ee2d27c46cc0611dbc",
+    "proj/src/sprites/enemy.xpm": "dad6231bac784b7cc997b985636901254a93573a29e4f47f5f94d4bfeb47880c",
+    "proj/src/sprites/instructions.xpm": "91cab79a6f7079c288c737401c551f5358707a3395b2daade2313171db1d7aa1",
+    "proj/src/sprites/leaderboard.xpm": "74c1ea820bef003e95fa3f7276ceed57a2f68c377e5c65a08458dcffe61ce99f",
+    "proj/src/sprites/menu_instructions.xpm": "a1f0f23278fc8dc430a1f38884b8bd8c67f1900f5236cc2a25bd3991447c441f",
+    "proj/src/sprites/pause.xpm": "6138fbfd6469c7ce734af34beb851daf074a3702e4d7d219a73b88398148be0d",
+    "proj/src/sprites/play.xpm": "4294c5c1474cd26565fda29ae04ceee8d1db072fa0ef43d1c8562424e2271226",
+    "proj/src/sprites/player.xpm": "037ea701aff793820de0924facafaab55f30556d5b97d7d416874b6292461a0f",
+    "proj/src/sprites/quit.xpm": "c2d869e8e092fb8500a493860b7882408db541d998badaee027a3452dcb39488",
+    "proj/src/sprites/space.xpm": "4d4a79325bfb53b1ba1e9e85d3e7c8b2df23f5e2b46ffa5e5b29e035266b7404",
+    "proj/src/sprites/sprites.c": "1b9c1176995b0f2cbf3da2b20c3495b71ad0fdf7eba5314592aa998d01572855",
+    "proj/src/sprites/sprites.h": "c4f94edc8a2e9e1049a072274889d2990ad05f5bb5062a9c3c95f77552cb7351"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated docs, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/docs/**",
+    "**/doc/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/sprites/player.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "ac659657dc4ace932fb32650317b5dca158641227c183dbda2f9a82d5eae5f57",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "46d64583a8da43ae64460f9fc3b20ab4df6711333cf75ab3a89e79580839bbcc",
+      "kind": "actual browser gameplay canvas with positive SCORE10 and projectile"
+    }
+  ],
+  "controlsRationale": "Panel keeps game artwork unobscured in landscape and portrait. Keys/actions derived from original handlers; relative pointer preserves original cursor initialization, scaling and state changes. ",
+  "verification": {
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence/JorgeRestivo--LCOM-2425",
+    "log": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/earth-fast-aim-observed-reboot.log",
+    "limits": [
+      "Positive enemy hit, projectile and score10 proven through ordinary touch; Android gameplay pending."
+    ],
+    "androidGameplay": "pending"
+  }
+}

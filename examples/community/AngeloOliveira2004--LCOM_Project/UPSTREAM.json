@@ -1,0 +1,122 @@
+{
+  "repository": "https://github.com/AngeloOliveira2004/LCOM_Project",
+  "revision": "61177f365fe67577e762d7ce1e19868526faa497",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "00d4ca881eff47c881e9680af25e5ae15cc11e3dd7ee6d872173358872290a43",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.gitignore": "a0c30f17601046c29cae16be400720eea645904b8b27b68b6c177e8607fc50c8",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "d0d656a464790157cd6abbb6b67b2721eb07c1c90b6455ff519fe3bcbafa2fee",
+    "proj/src/.vscode/tasks.json": "9e4c8cb66f3eb40e08ef9ef6a39313f0fc86b89ad9b6a89796a3b3ea27315ab5",
+    "proj/src/Makefile": "08b2a864e3b02713773f61a4ed6e07246d3214d85ab19082eb1982e54885caee",
+    "proj/src/README.md": "b70d7558bc9141aa1abc4f1dc33a97fe23bdd718162e20541732351b78017c86",
+    "proj/src/main.c": "c5bb51fe8df2f205b0b892eab685a43838649479bc0cabdbf2aed01e76db8107",
+    "proj/src/mvc/controller/controller.c": "b534f376b45c669c49e7e1ee3d81ddb3d31807477e48b69cffab5de9cdbd765f",
+    "proj/src/mvc/controller/controller.h": "c0818687110ff0189cf3c4aaa54caaf43afc031664fa94794aa6f64250930df1",
+    "proj/src/mvc/controller/graphics/VBE.h": "177f62bdde2f88fc1bcdc54aff46cb885d0661902f410400f9120f52da8ef606",
+    "proj/src/mvc/controller/graphics/graphic.c": "4386a0859f7b438b0d27d17f131d02333fafa25f36d0b04b73389d7ba687675a",
+    "proj/src/mvc/controller/graphics/graphic.h": "a99c66eb15e3fa711c578461312c6401425fd595514967a2218224055a2948ed",
+    "proj/src/mvc/controller/kbc/i8042.h": "60ff24463d659c940b412884ee3d3602aaa5d39849c1a0da039b2b77dbe8df98",
+    "proj/src/mvc/controller/kbc/kbc.c": "0e885ad3f79c70bdd28acfdeff2016f549feef8db9f41dd243003ec6227665d8",
+    "proj/src/mvc/controller/kbc/kbc.h": "0749983e7b302502519e3ef58f399172d0dac6bfaed43684e2c364e7f5b93012",
+    "proj/src/mvc/controller/keyboard/keyboard.c": "875bf97d4086531e42f05001bf28550335acfbf713a4e025cb207b3c33f15792",
+    "proj/src/mvc/controller/keyboard/keyboard.h": "dc7ffabc582ccbefa01c557d8ac1dafe41a1dfd2b9d5fc698c30818367ebbc31",
+    "proj/src/mvc/controller/mouse/mouse.c": "0f6eaeed93df52df46c1fd1607c2059cbb93fdf4b537aaeab0a5a1f85770ae6e",
+    "proj/src/mvc/controller/mouse/mouse.h": "eb03cd880e8fd60e3b20c835755aadfeba480837d4b7e2d180e56af8b1f596f5",
+    "proj/src/mvc/controller/rtc/I_RTC.h": "1297c2c4cdd30325e12cbeb8f60c056341877741c0338f54da804007a39222d8",
+    "proj/src/mvc/controller/rtc/rtc.c": "a1669f5a5297ebc4943c0aed39bbcd11aea940065e97767b61bf728a29d61d57",
+    "proj/src/mvc/controller/rtc/rtc.h": "f9559d95869e2a4d689566f609512aa834c2d11be3b2414f41d38b0479851eda",
+    "proj/src/mvc/controller/timer/i8254.h": "3380504ddbbb1852f84a4e3be22bc30658278bd6cbe1eea2497097ecf68105e4",
+    "proj/src/mvc/controller/timer/timer.c": "54967ea50cf7ecff48d11e634845df7bd662dbb53619fb8afe0e7d225002ebfe",
+    "proj/src/mvc/controller/timer/timer.h": "32ceae3b1373c04ca6af4008c2b8880e95be1dc2111912286712e0a2517b72fb",
+    "proj/src/mvc/model/enum.h": "4ac0431fe70cb1f562219c864f6789a7bb68730cc0df5fe933c7c7411030ee75",
+    "proj/src/mvc/model/game.c": "dede22ad0d883210fbd13b9395a8670810468f87a97e0bcf735d1945b02d37aa",
+    "proj/src/mvc/model/game.h": "95ab9da058d254872407d3e2808bccf2503c2e07c10cf82010238fd750a239df",
+    "proj/src/mvc/view/view.c": "4e5dff0f7b321fbcda508206eecc79fc47f03f5eed59d87a46f5f9f4862b4dd0",
+    "proj/src/mvc/view/view.h": "60c1304459bd8f3b4b982a0d8f9b531b451a39eece92f787eed6f0c2a94f6c1e",
+    "proj/src/proj": "44bde423e798388ef334313ca22ac79c39c7327d902d11bb98f72c7940fffece",
+    "proj/src/sprites/Characters/Characters20x32/0_20.xpm": "3d9be33da47f151646b4aeb430ea45757ca47d8b1044b6d2786d1a7ba9f7eb31",
+    "proj/src/sprites/Characters/Characters20x32/1_20.xpm": "ac15e429b4fb1856b9c3e8c0cdbee5a50fee0fd835d2e770f9c8e96edb484ea8",
+    "proj/src/sprites/Characters/Characters20x32/2_20.xpm": "7a43731a92b1d2358e0cd167d81b374f2de4bbf0f24c192000356188fae3c473",
+    "proj/src/sprites/Characters/Characters20x32/3_20.xpm": "0715178afdaee1c561687b6593631e638e9511e7d7c58406df18572c2af113a7",
+    "proj/src/sprites/Characters/Characters20x32/4_20.xpm": "9d5edd50c74366840f9134278aa824c573eeb7a2c743882b6e0f7d08d85b6bd3",
+    "proj/src/sprites/Characters/Characters20x32/5_20.xpm": "027f8cafac0ea8fc479a4cffb72802a2abb97d46a4aabdf9d552a337aabf01f6",
+    "proj/src/sprites/Characters/Characters20x32/6_20.xpm": "1599bd4a0753ee52e4c4d53ae544a0477741af28d740f5d8227c0ffe32c98b40",
+    "proj/src/sprites/Characters/Characters20x32/7_20.xpm": "f60cd87dc6df9afaa758888de5a585a4313ec33c4cf68f5e77577b542cebc786",
+    "proj/src/sprites/Characters/Characters20x32/8_20.xpm": "d79ce9363c87d7bb4222cb99491f4eaf2883526cf5b284e73b06c5fce66069e9",
+    "proj/src/sprites/Characters/Characters20x32/9_20.xpm": "4cb29b46502f85732a98b228527b5d2870461def526e4265ff888992a027af38",
+    "proj/src/sprites/Characters/Characters20x32/two_point.xpm": "c987afc772cff98db59eee4036705c21c2d5a61979339bb1c85633e47f4c96e5",
+    "proj/src/sprites/Characters/Characters32/letters32.xpm": "8506b3d91e1ebb70f14ddc117f804e6b9c2b9baf4fed585eb3afeb0665e4a472",
+    "proj/src/sprites/Characters/Characters32/numbers32.xpm": "63c3ca7654c07b9971b06ea2a4a276d1e52016cab96c6efd2fcbef0b750b56cb",
+    "proj/src/sprites/Characters/Characters64/letters64.xpm": "41c22473b53584c615db4ecd8130f47cac303833b72a5635ee4d02adca58bb98",
+    "proj/src/sprites/Characters/Characters64/numbers64.xpm": "9430833c82d46f939c50f50fdd903d02b2908cc6353696c4ce545c47dc731299",
+    "proj/src/sprites/Cursor/cursors.xpm": "92646df60588b53d1acdefa2d3189e3ec833335ced852b127baa28e203ba74b0",
+    "proj/src/sprites/GameElements/blackClock_150.xpm": "039b993e24ad32f30c44b2cbc7239ba2058f36f416bd1bb1110f84a511855f6d",
+    "proj/src/sprites/GameElements/blackClock_200.xpm": "15efdddfe12bc94b25dc308240df2b78be6d22ff4c0e9a21c2b845c06ae97454",
+    "proj/src/sprites/GameElements/boad_450.xpm": "d4ebb0bad1ff9d56ec22310014f17ccf4bb59fbe68018d81c21a5039fb125d57",
+    "proj/src/sprites/GameElements/boad_500.xpm": "c2248169010732cf843ac758ff68fc3159a322664e8e2334a1a8b95a9c83613e",
+    "proj/src/sprites/GameElements/clock_100.xpm": "d209da165773c66dbb52212708c83ae3156cdb5b2f8c31ae8aa56cc803d2a5da",
+    "proj/src/sprites/GameElements/clock_150.xpm": "caeaa1a10778d4f921832876d83121f080cb8c1c2ef0748eb82c611f891e74ce",
+    "proj/src/sprites/GameElements/clock_200.xpm": "1cea88e4117c80c654d814f44d0fca8bba1dceb955cac4aee9800381450ef23c",
+    "proj/src/sprites/Menus/background.xpm": "bc1db11e05abdbd56942564bdc5e60e7858e9f4adba0d9b020c02bb43a387fd4",
+    "proj/src/sprites/Menus/black_wins.xpm": "75aa90223aaa7679867641fc1a271b8fab9c95134e51c3bb8f5e0b29ac79f2ff",
+    "proj/src/sprites/Menus/game_type_choice.xpm": "7408c59a1ac2b5bd5f085c14c761eb53b96d22eb3c21ac988865e0bc9b15e9d5",
+    "proj/src/sprites/Menus/go_to_menu.xpm": "0d4f64eb6d5e08416b3eda0a8f6eb46ba4986382c7c3087ccf521b19bd4e67f9",
+    "proj/src/sprites/Menus/instructions.xpm": "732d6b93265715014c15147007dbdbfb3de2882c7ce499bc73dd83b91530981a",
+    "proj/src/sprites/Menus/main_menu.xpm": "a9e5af4ce9e94c4424ded41d857ef73077227558c2fe6ebfa067edc086044077",
+    "proj/src/sprites/Menus/pause_menu.xpm": "0001e0f9621c15856224ce5ae908453776558ef336766c9afe56bc8861e4c625",
+    "proj/src/sprites/Menus/white_wins.xpm": "80f02233b9b26dc9d6b34305f035c84786473e5eee1b675e1da2824aef6ac105",
+    "proj/src/sprites/pieces.xpm": "7bd8b99bb1ddd9ec529fd9bf879597a261d8f386bd19d214b90ac6cc5e1f1b94",
+    "proj/src/utils/linked_list.c": "064db3c2aa96c35a7af9af687418fb94ad92a458fd7d51358f7a7e8e14687ca1",
+    "proj/src/utils/linked_list.h": "51d43f19d711dac679121587b5801745e755106af23c6bee97de9c8df8ee515c",
+    "proj/src/utils/utils.c": "63b8673f72c00b92c48ffa399e2e6d7a5389bb14f85c092601b2f7b55b49c794"
+  },
+  "selection": "Pinned original project source, original assets and README. Excluded generated documentation, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/.minix-src/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/sprites/pieces.xpm",
+    "array": "Chess_nlt45"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "64c73bb86f903cd55471a1f20419dc2410c79a03b7828a33458cdee9fd08bb67",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "cbfc1cabddadb602954bcd2f69c47acb2cbf7b87db38070bcf91564fc89ccda3",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/mvc/model/game.c",
+          "originalSha256": "dede22ad0d883210fbd13b9395a8670810468f87a97e0bcf735d1945b02d37aa",
+          "patchedSha256": "f100c0ad13142dfe3b650850444e6de98837f8c9b43a0002bbf5c42d85b65382",
+          "reason": "is_check freed the inline stack Movelist.moves array, while leaking the individually owned Move/Position allocations. Release only each owned Move and its positions on normal and early-check paths. Remove immediately discarded allocation for borrowed board piece.",
+          "verification": "Original compiled actual source rejects free of non-allocation stack storage. Repaired forty normal +forty checking positions detect correct check state with zero leaks and preserved borrowed pieces. Repaired real browser E2\u2192E4 move passes."
+        }
+      ]
+    }
+  ]
+}

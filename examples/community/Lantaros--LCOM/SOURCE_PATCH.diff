@@ -1,0 +1,78 @@
+--- a/proj/src/bitmap.c
++++ b/proj/src/bitmap.c
+@@ -81,8 +81,8 @@
+         if (bmp == NULL)
+             return;
+ 
+-       unsigned int width = bmp->bitmapInfoHeader.width;
+-       unsigned int drawWidth = width;
++       int width = bmp->bitmapInfoHeader.width;
++       int drawWidth = width;
+         int height = bmp->bitmapInfoHeader.height;
+ 
+         if (alignment == ALIGN_CENTER)
+@@ -127,7 +127,7 @@
+             //printf("A cor a ignorar é %x\n", *shotPtr);//((*imgStartPos) | ((*(imgStartPos + 1)) << 8))) ;
+ 
+         unsigned char* pixel =0;
+-        for(pixel = imgStartPos; pixel <= (imgStartPos + drawWidth*2); pixel+=2){
++        for(pixel = imgStartPos; pixel < (imgStartPos + drawWidth*2); pixel+=2){
+                 if((*(short*)pixel) != TRANSPARENT_PIXEL)
+                 {
+ //                    *bufferStartPos = (*z);
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -111,7 +111,7 @@
+ 	pos_enemy.x = 400;
+ 	pos_enemy.y = 200;
+ 
+-	game->mouse = malloc(sizeof(mouse_t));
++	game->mouse = calloc(1, sizeof(mouse_t));
+ 
+ 	//game->boat = boat_constructor(100.0, test_boat_bmp->bitmapInfoHeader.width, test_boat_bmp->bitmapInfoHeader.height, SOUTH, pos, test_boat_keys);
+ 	game->boat = boat_constructor(100.0, 40, BOAT_LENGTH, SOUTH, pos);
+@@ -243,6 +243,7 @@
+ 				{
+ 					count_packet = 0;
+ 					convert_packet_struct(packet, game->mouse);
++					mouse_update_position(game->mouse, &game->mouse_pos);
+ 					print_mouse_struct(game->mouse);
+ 					//mouse_print_packet(packet);
+ 				}
+@@ -285,7 +286,6 @@
+ 
+ 	memcpy(game->video_mem, game->buffer_video2, game->video_mem_size);
+ 
+-	mouse_update_position(game->mouse, &game->mouse_pos);
+ 
+ 	if(game->mouse->left_button)
+ 	{
+@@ -551,9 +551,12 @@
+ 	if(position->x + mouse->delta_x >  MOUSE_WIDTH && position->x + mouse->delta_x < getHorResolution() - MOUSE_WIDTH)
+ 		position->x += mouse->delta_x;
+ 
+-	if(position->y + mouse->delta_y > MOUSE_WIDTH && position->y + mouse->delta_y < getVerResolution() - MOUSE_WIDTH)
+-		position->y += mouse->delta_y;
+-
++	if(position->y - mouse->delta_y > MOUSE_WIDTH && position->y - mouse->delta_y < getVerResolution() - MOUSE_WIDTH)
++		position->y -= mouse->delta_y;
++
++	/* A relative packet is consumed once, even across idle timer frames. */
++	mouse->delta_x = 0;
++	mouse->delta_y = 0;
+ 	return 0;
+ }
+ 
+--- a/proj/src/mouse.h
++++ b/proj/src/mouse.h
+@@ -17,8 +17,8 @@
+ 	char left_button;
+ 	char right_button;
+ 
+-	char delta_x;
+-	char delta_y;
++	short delta_x;
++	short delta_y;
+ } mouse_t;
+ 
+ int mouse_subscribe_int(void);

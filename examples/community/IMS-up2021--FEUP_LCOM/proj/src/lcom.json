@@ -1,0 +1,64 @@
+{
+  "name": "Pong: Mouse and Arrows",
+  "build": {
+    "sources": [
+      "draw.c",
+      "entity.c",
+      "game_state.c",
+      "graphic.c",
+      "interrupt_manager.c",
+      "kbd.c",
+      "kbd_event_handler.c",
+      "main.c",
+      "mouse.c",
+      "mouse_event_handler.c",
+      "timer.c",
+      "timer_event_handler.c",
+      "ui.c",
+      "utils.c"
+    ],
+    "include": [
+      "xpm"
+    ],
+    "assets": []
+  },
+  "mobile": {
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad",
+          "axes": "vertical"
+        }
+      ],
+      "repeatKeys": [
+        "UP",
+        "DOWN"
+      ],
+      "quickKeys": [
+        "ESC"
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    },
+    "orientation": "auto"
+  },
+  "description": "Move one paddle with the arrows and the other with the mouse in this two-player Pong.",
+  "archetype": "Pong",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

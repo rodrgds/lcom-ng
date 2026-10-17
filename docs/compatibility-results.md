@@ -52,6 +52,31 @@ The initial gate passed all 18 CTests, including native device/unit tests, proto
 
 Regressions were reproduced before fixes for VRAM mapping, disabled IRQ starvation, unread ACK delays, VBE mode/color correctness, XPM lookup performance, importer inputs, and installed SDK discovery. Single and paired runtime frame artifacts independently check the selected VRAM page after text-mode restoration.
 
+## Legacy XPM palette suffixes
+
+The compatibility XPM loader accepts seven or eight hexadecimal digits by reading
+the first six. Five digits follow the original LCF decoder's three two-digit byte
+conversions, so `#D9D9D` becomes RGB `D9 D9 0D`. Four digits remain invalid.
+Existing standard three, six, nine and twelve digit forms retain their behavior.
+Original student artwork stays unchanged.
+
+The preserved [Minix executable](https://github.com/rfontao/FEUP-LCOM/blob/0ccfe55e49da1f3904d23c17492dcbc8bf8a14b6/proj/src/proj)
+contains the original LCF `xpm_load`. At `0x080d6b8d` it calls `sscanf` with
+`%02hhx%02hhx%02hhx`, stored at `0x08b4b98e`, and checks three assignments
+without a trailing-length check. Its Git blob is
+`6f9d2b8b0e6e3da6ae3e82c8bdf2e6bb5fda9a77` and SHA-256 is
+`145774286f78775ad645afb29ab52fc99fa1178fd5801d7f2c73b29253f5dbaa`.
+`compat_xpm` covers the preserved suffix behavior and malformed palette rejection.
+
+## Original LCF random-number calls
+
+Optimized LCF sources map function calls from `rand()` to `rand_()`. The preserved
+Minix executable above contains the original entropy-seeded MT19937 implementation.
+The compatibility SDK supplies that separate generator and checks 1,280 draws
+against the C++ standard generator, including state refills. Ordinary C library
+`rand` calls and function addresses retain their standard declarations. This lets
+Ultimate Pixel Racer keep its original local variable named `rand`.
+
 ## What this establishes
 
 The compatibility SDK preserves source contracts and the tested device/game flows. It adds portable build syntax around unchanged Minix project files. Public documentation, package identity, CLI help, completion and release artifact names now use `lcom-ng`; existing command aliases and hosted URLs remain available.

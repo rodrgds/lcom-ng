@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "name": "Doodle Nix",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": []
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "projeto/doodlejump2.bmp"
+    ],
+    "pathAliases": {
+      "/home/lcom/projeto": "projeto",
+      "/home/lcom/repos/projeto": "projeto"
+    }
+  },
+  "description": "Steer a bouncing doodle left and right to land on the next platform.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

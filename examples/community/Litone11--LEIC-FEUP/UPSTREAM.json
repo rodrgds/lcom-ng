@@ -1,0 +1,136 @@
+{
+  "repository": "https://github.com/Litone11/LEIC-FEUP",
+  "revision": "c09dd25ef1e2afd36082c496b015b5fdb8fe24ad",
+  "createdAt": "2026-08-24T12:08:09Z",
+  "project": "2nd_year/LCOM/proj/src",
+  "sourceHashes": {
+    "2nd_year/LCOM/proj/src/Makefile": "7455ffbf973d92b03e135fef60df33b2a136ed8aa9ae47907d93752d53f81995",
+    "2nd_year/LCOM/proj/src/devices/KBC.c": "0027ec2c3840cdff983cc790fcc9d80d0771773d9082e47d817da2c3aab7058f",
+    "2nd_year/LCOM/proj/src/devices/KBC.h": "898eb0bafd2172489268bd3e99522350c62383ddca7b7bd3ad98057f583eaeaf",
+    "2nd_year/LCOM/proj/src/devices/i8042.h": "04fbb465e3213652fef5ff86c4efb93e187fd573f11c60cea2c6c622cfc5a55d",
+    "2nd_year/LCOM/proj/src/devices/i8254.h": "c6607edba71176230487553dd4752e2f486a798bb323f0059eb37ce5bbb2e3ff",
+    "2nd_year/LCOM/proj/src/devices/keyboard.c": "72ac76c145b05780bc69f505b93d2774ce8552900c44f3cfc153b47f5bca7ff0",
+    "2nd_year/LCOM/proj/src/devices/keyboard.h": "e68c22206b72b5d43e08c0f4fc1a49570ad79381a8fa680cbc93f41f63282d20",
+    "2nd_year/LCOM/proj/src/devices/mouse.c": "b8c963dd247486a85449bc6f0b3e31a223204aa723e9f8782c22280d8e0ecb70",
+    "2nd_year/LCOM/proj/src/devices/mouse.h": "fc9bf838fa02ba7e25192091e931f4f8a362eb501918244540fa63a783989701",
+    "2nd_year/LCOM/proj/src/devices/timer.c": "91e43e6b0c654db0b6e1d0fa3207d9119794c2971753323d469ee06d93898faa",
+    "2nd_year/LCOM/proj/src/devices/timer.h": "cf769e40be425c4e60ba2c3d621ab8081599a9d4cddfb969ee591b080521cd2b",
+    "2nd_year/LCOM/proj/src/devices/utils.c": "c0c7e959a80add7720ce99f174d85be2c86f92f88162d2240d926e7ea4f2d99f",
+    "2nd_year/LCOM/proj/src/devices/video.c": "6d726e9ddad204a7ddf1e712b64802e8de6213f555b71c0ac12fcb9349d4245d",
+    "2nd_year/LCOM/proj/src/devices/video.h": "525cd046247573f9f1bea01e644325416b039e268bca0230d9279a868b09fec7",
+    "2nd_year/LCOM/proj/src/entities/entities.c": "63db8065ea2e847ea5d0cbc8dfb0b271696ea397d9dcd55580912124856235b5",
+    "2nd_year/LCOM/proj/src/entities/entities.h": "6a81046d0d25c8d7d671f6fb5e909e24f40bb003c3c277391b352e9434019e86",
+    "2nd_year/LCOM/proj/src/entities/score.c": "85fccb5f9feeadb62f2bb5f3897b952859561023e36f5ac70144b30559d676be",
+    "2nd_year/LCOM/proj/src/entities/score.h": "2b3260006367094a0be36b87f0d8883ee66860de9e25fd1b41337a1c48785d38",
+    "2nd_year/LCOM/proj/src/game/game.c": "a4c66a882e71ceb7e3210303d277e74755c1056acfd9ad2487a4da61486d2c6e",
+    "2nd_year/LCOM/proj/src/game/game.h": "91d4d554f9f3d2cb6fec1bb1522714594ce5bc5955218affdd5259650d23ebe9",
+    "2nd_year/LCOM/proj/src/game/info_state.c": "f52ff7babb7f80573596bab0f7b7591bd6c3c71b7057a85b5130131b350980a6",
+    "2nd_year/LCOM/proj/src/game/info_state.h": "f9a6977b5fde85c363101744e540f3d39f9bd44a02bbba37a886c107f73e06dc",
+    "2nd_year/LCOM/proj/src/game/menu_state.c": "ab83215b5a397865d3ffd7ba255d9bf75d183caa01a1c04d754b395e8544fb5b",
+    "2nd_year/LCOM/proj/src/game/menu_state.h": "4d53aed6bfb95e64fcdd9e1848330c147402a4566854dc8daa95e833a45e0fbc",
+    "2nd_year/LCOM/proj/src/game/meteors.c": "6474d9fe1630cec730ac17d0b59353fb405f6a9ac44e770996b5733e7869b431",
+    "2nd_year/LCOM/proj/src/game/meteors.h": "c6e998c5d330e09f9842a298fd8e0468756af48421f9f44a9c7b4abbe9e3d366",
+    "2nd_year/LCOM/proj/src/main.c": "9a698b2f3a872514530ac511a19c9b91f3039e8bf081cf916aa745ae62f5df44",
+    "2nd_year/LCOM/proj/src/xpm/files/a.xpm": "4205bd01e17c18d696cae3bdc57470650a75b3582f58daa2d4a54887e4958608",
+    "2nd_year/LCOM/proj/src/xpm/files/back_small.xpm": "b23b01a3d8ba0a9652ef9301c1ab0e3afea78fa2451c4a0e2d83aeaace3618b3",
+    "2nd_year/LCOM/proj/src/xpm/files/background.xpm": "14026ad92c2791ab06aeee7b01be7d4470c675faff4a8d60fd8c402ac8f1fd05",
+    "2nd_year/LCOM/proj/src/xpm/files/background_stars.xpm": "2c5ad7ec40840e0be8be80843c9b1824693476519eb34fc412b47546024ff538",
+    "2nd_year/LCOM/proj/src/xpm/files/cursor.xpm": "aa9b92bfc3592012afa1f6437201f8f378f67a0c738b9309f8ab91569ed4056f",
+    "2nd_year/LCOM/proj/src/xpm/files/d.xpm": "cf8933a39f86feb4c38d5ef1944dab0616e8ec5db0db456fbde83e2458444bff",
+    "2nd_year/LCOM/proj/src/xpm/files/exit_button.xpm": "92d2911f335a72cca28ded877c475a0b84a0b5e1215a7b4165259fbb12524349",
+    "2nd_year/LCOM/proj/src/xpm/files/explosion.xpm": "a36388846135e064ce8c3bc900053ad9d626cb7bda2905350adc18ea7e60165b",
+    "2nd_year/LCOM/proj/src/xpm/files/flaming_meteor.xpm": "9b6f96dee9ae88540370c4dc168cb9d04051baa2f3fe6d89d8ccd156035f943c",
+    "2nd_year/LCOM/proj/src/xpm/files/imagem_dobrada.xpm": "4432d7647f19c411a55f2e952d041da7927be24ffedde8bd5e8c03f536ffc629",
+    "2nd_year/LCOM/proj/src/xpm/files/info(2).xpm": "5f6e1d6f42be9a7423c44562a23d61e2068eb16b6b6255113f76d1a074b1affc",
+    "2nd_year/LCOM/proj/src/xpm/files/info.xpm": "5eb34b1254735f9c5cc24a3f70b4fd17b1037eb680bba5320bd6fbc6676c0c1e",
+    "2nd_year/LCOM/proj/src/xpm/files/info_back.xpm": "e50ad30e4a861b7da70b80e8f55ab1565b9750071d62c6b6a5cc52bc9de215dd",
+    "2nd_year/LCOM/proj/src/xpm/files/info_button.xpm": "508d620b2c2c8bbcd89da6ca7284a3f5da8f1ab4e1afbe6a7fa15d3090af33be",
+    "2nd_year/LCOM/proj/src/xpm/files/infos.xpm": "4e9edf82d2300d49a2fca67f8d4ec2c64f6e0f7926d70973d2c99b9c240b38ba",
+    "2nd_year/LCOM/proj/src/xpm/files/laser.xpm": "004dccc76bf740023673b1c3cbef744987dfcda92bcda938f6445b72db7ffa7e",
+    "2nd_year/LCOM/proj/src/xpm/files/meteor.xpm": "80f5ce9683a36498c3f8f842e4ed8427f4bc8662fc7f53075cbec11659976f08",
+    "2nd_year/LCOM/proj/src/xpm/files/meteor_double.xpm": "e18a014ba118fae60a2785fa597e1ba4ade019f9310a87a13c11935f14bb078a",
+    "2nd_year/LCOM/proj/src/xpm/files/meteoro.xpm": "6d918dff6d6bb0162e9fe0dcd3d9d3d61b43eee75a95fd2285993d8e3e4ec055",
+    "2nd_year/LCOM/proj/src/xpm/files/mouse1.xpm": "ea4700d732677c61d67c7c8ac9fa507cd3fcd63810c46d7204715806e5bf645b",
+    "2nd_year/LCOM/proj/src/xpm/files/n_space.xpm": "4d41579e7a17668f36865c08823245b4636c37d48ad8e9dbaf78752ea3100f61",
+    "2nd_year/LCOM/proj/src/xpm/files/planeta.xpm": "9f71486f3f340a489d33540206aad00656a673f2b1fd4f757e91f3b4b4d63ee9",
+    "2nd_year/LCOM/proj/src/xpm/files/player.xpm": "239ed4be182ef9d1f97def41f9751ee20ba5e54d97f7a45aaa5dbc3525c1ddf0",
+    "2nd_year/LCOM/proj/src/xpm/files/satelite.xpm": "cd4a1d03922d33298254e63f7b384f65115e4cfacc7960098406414f1ed25c58",
+    "2nd_year/LCOM/proj/src/xpm/files/score.xpm": "de94034442091b89d6c0a78085a4e2194cbf344dfc754d5886505c571c6d8088",
+    "2nd_year/LCOM/proj/src/xpm/files/score_frame.xpm": "de94034442091b89d6c0a78085a4e2194cbf344dfc754d5886505c571c6d8088",
+    "2nd_year/LCOM/proj/src/xpm/files/score_frame1.xpm": "bb510f823e8c10cbff30c3d536e9a76112d5933149c250e75fcaa8c040b53668",
+    "2nd_year/LCOM/proj/src/xpm/files/ship_1.xpm": "a9c825052c4ccc99799b7cc9da17f5ebc06c2a2f681e6d24a3089eaf3d87cf18",
+    "2nd_year/LCOM/proj/src/xpm/files/ship_2.xpm": "70326e5dfe23cf2090dfdbf3fcb66e4e5d5df081c25d67d3e77e2c23ca7c4abb",
+    "2nd_year/LCOM/proj/src/xpm/files/ship_3.xpm": "e098dc283f56bea9397e6cd1ad7173d8d26a60c9fe93f2e24902150f8eea682e",
+    "2nd_year/LCOM/proj/src/xpm/files/spaceship.xpm": "4d799f0d84d4a9ce15a06203f3e0d59c0847dbd906d4509980ae660dc653417f",
+    "2nd_year/LCOM/proj/src/xpm/files/start_button.xpm": "0a9c0c4bb57c52f0f00691e313b3228c4d136eb364561b4177063ad4b6f4e04d",
+    "2nd_year/LCOM/proj/src/xpm/files/this_background.xpm": "e123ad3b2b08812f98e714486c62d6763a1065ccb83e80b3c7d36f82f3ead5bd",
+    "2nd_year/LCOM/proj/src/xpm/files/title.xpm": "e54527b5584f5c9a7018e03c0b3e8df72d4f394e55cce8c27df34d111e9bbce4",
+    "2nd_year/LCOM/proj/src/xpm/font.c": "f90d77d7ba5a4599d1e6f32c31ee71f87e6e039041690ef525051e20e6470407",
+    "2nd_year/LCOM/proj/src/xpm/font.h": "8098fe17707b4e2b2ef703122702d0e92f57115e92f50ef0abcd2c5ae7115543",
+    "2nd_year/LCOM/proj/src/xpm/pixmap.h": "c50c110ea01882ea2e2ba1ad2ccd05b507d2e6562deac43c1198d39841ba9650",
+    "2nd_year/LCOM/proj/src/xpm/xpm.c": "3f88add3e18027026727329689d5c79e15876289cacd024156597499a36184c9",
+    "2nd_year/LCOM/proj/src/xpm/xpm.h": "7580373b48731c48ea04ef42fd46bb9ad3c4146d420f0ea701f1dd42805dbdc6",
+    "README.md": "1142465abbeec03355e8746dc28e7f95b53a3097eb0a71cb597c44930aa617e2"
+  },
+  "selection": "Pinnedoriginalsource/header/Makefile/requiredart/assets androotREADME. AuthoredXPMheadersunderCoutinhoproj/doc are sourceart, retained. No artworkedits; allgenuine sourcecorrections reversibleandseparatelytested.",
+  "omissions": [],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "2nd_year/LCOM/proj/src/entities/entities.c",
+          "originalSha256": "63db8065ea2e847ea5d0cbc8dfb0b271696ea397d9dcd55580912124856235b5",
+          "patchedSha256": "36fc469d239fd9043fceb9314d218cfc31d35f6056268fc1d807eb1f2f783db7",
+          "reason": "Authoredtimer_update reaches25, making counter%(25-timer_update) dividebyzero. Keep originaldecreasingspawnperiod abovezero and retainminimumoneframe thereafter."
+        },
+        {
+          "file": "2nd_year/LCOM/proj/src/game/game.c",
+          "originalSha256": "a4c66a882e71ceb7e3210303d277e74755c1056acfd9ad2487a4da61486d2c6e",
+          "patchedSha256": "ca29e33a0345ecbcebd9ac740899f4275e9361030e09b6e484b37129a92ab724",
+          "reason": "Remove secondunusedstale menu.h include from actual game implementation."
+        },
+        {
+          "file": "2nd_year/LCOM/proj/src/game/game.h",
+          "originalSha256": "91d4d554f9f3d2cb6fec1bb1522714594ce5bc5955218affdd5259650d23ebe9",
+          "patchedSha256": "eb0a54b333b6c749a4a5eb01b5fe15cd55a7fc28c2a174e8b942e1b7b0516802",
+          "reason": "Removeunusedstale menu.h include; project uses menu_state.h and shipsno menu.h."
+        },
+        {
+          "file": "2nd_year/LCOM/proj/src/devices/video.c",
+          "originalSha256": "6d726e9ddad204a7ddf1e712b64802e8de6213f555b71c0ac12fcb9349d4245d",
+          "patchedSha256": "e1db5bd2d7f632e1a44543f8bd0bbc55edbbc8ecf0b477f35bf277fd2b20f76d",
+          "reason": "Reject x >= framebuffer width and y >= framebuffer height before computing the backbuffer offset. Actual native enemy rendering reached x784/y864 and wrote 3136 bytes beyond the 1152x864 backbuffer."
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Pinnedoriginalsprite/glyphmaskcomposedonflatmatchingpalette",
+    "source": "2nd_year/LCOM/proj/src/xpm/files/ship_2.xpm",
+    "backgroundMask": "#000000 mask in derived launcher icon only; pinned art unchanged"
+  },
+  "derivedAssets": [
+    {
+      "path": "2nd_year/LCOM/proj/src/icon.png",
+      "sha256": "87f114fa30467d777a9cf60acc48432364c50dc6e3e6f28d5807c7177419caf6",
+      "kind": "source-derivedlaunchericon"
+    },
+    {
+      "path": "2nd_year/LCOM/proj/src/preview.png",
+      "sha256": "40e0dc5d6809a067c843e22edfb1dd70e9850b1a5353cf55549cda40364d0f4c",
+      "kind": "actualcurrent-sourcegameplaypreview"
+    }
+  ],
+  "verification": {
+    "web": "Current normal final source: realtouch1starts, heldA420ms movesleft, heldSelect/Fire2200ms producesvisiblelasers and actual SCORE20. Portraitpanel inspected. Ordinary25second enemyspawn zero-divisor owner repaired separately with RED/GREEN.",
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/nas-native-case/a141-qualify-eight/handoffs/meteor-web-v3/evidence",
+    "limitations": [
+      "No fullsurvivalrun or nativepositivehit yet.",
+      "In-game restart after naturaldeath has notbeen qualified; use libraryHome for a freshprocess."
+    ],
+    "native": "Strictproduction-fortifiedARM64sourcecompilationPASS; ROOTAndroidactualgameplaypending.",
+    "wasmSha256": "fc17ad056252e96aa0f321d7df0643d26e5e671bc117d65a2da00aaf25d4d49b",
+    "rendererSafety": "Actual current-baseline protected-memory renderer regressions: screen image, number glyph and exact Meteor y864 boundary all failed before repair, then passed. Source-only patch, original art unchanged. Current native and browser replay follow parent integration."
+  }
+}

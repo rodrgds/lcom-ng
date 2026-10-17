@@ -1,0 +1,46 @@
+/* XPM */
+static const char * hand[] = {
+/* columns rows colors chars-per-pixel */
+"24 31 7 1 ",
+"  c None",
+". c #2E222F",
+"X c #3E3546",
+"o c #323353",
+"O c #625565",
+"+ c #9BABB2",
+"@ c #FFFFFF",
+/* pixels */
+"    X                   ",
+"   XOX                  ",
+"  XOOOX                 ",
+" XOOXOOX                ",
+"XOO.oXOOX               ",
+"XOO.o@XOOX              ",
+"XOOXo+@XOOX             ",
+"XOO.o++@XOOX            ",
+"XOOXo+++@XOOX           ",
+"XOOXo++++@XOOX          ",
+"XOOXo+++++@XOOX         ",
+"XOO.o++++++@XOOX        ",
+"XOOXo+++++++@XOOX       ",
+"XOOXo++++++++@XOOX      ",
+"XOO.o+++++++++@XOOX     ",
+"XOO.o++++++++++@XOOX    ",
+"XOOXo+++++++++++@XOOX   ",
+"XOOXo++++++++++++@XOOX  ",
+"XOO.o+++++++++++++@XOOX ",
+"XOOXo++++++oooooooo+XOOX",
+"XOO.o+++++o.XX.X.X.X.OOX",
+"XOOXo++++oXOOOOOOOOOOOX ",
+"XOO.o+++o.OOOOOOOOOOOX  ",
+"XOOXo++oXOOXXXXXXXXXX   ",
+"XOO.o+o.OOX             ",
+"XOOXooXOOX              ",
+"XOO.o.OOX               ",
+" XOOXOOX                ",
+"  XOOOX                 ",
+"   XOX                  ",
+"    X                   "
+};
+
+

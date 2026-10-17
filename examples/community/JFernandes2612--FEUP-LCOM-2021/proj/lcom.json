@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "name": "Lowlife Champions of Mosscrest",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": {
+        "keys": "wasd"
+      },
+      "quickKeys": [
+        "ESC"
+      ],
+      "actions": [
+        {
+          "label": "Attack",
+          "key": "SPACE",
+          "position": "top-right"
+        },
+        {
+          "label": "Special",
+          "key": "Q",
+          "position": "top-left"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Cancel",
+          "mouseButton": "right",
+          "position": "bottom-left"
+        }
+      ],
+      "repeatKeys": [
+        "W",
+        "A",
+        "S",
+        "D",
+        "SPACE"
+      ]
+    }
+  },
+  "build": {
+    "assets": [
+      "sprites/xpm_files"
+    ],
+    "arguments": [
+      "sprites/xpm_files/"
+    ]
+  },
+  "description": "Move through the original dungeon, fight green blobs and aim the spearman special attack.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

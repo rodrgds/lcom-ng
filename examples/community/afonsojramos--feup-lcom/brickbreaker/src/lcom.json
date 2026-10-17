@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "name": "Atari Bricket",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "W",
+        "S"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "toolbar": "auto",
+      "pads": [
+        {
+          "mode": "wasd",
+          "axes": "horizontal",
+          "style": "dpad",
+          "side": "left"
+        },
+        {
+          "mode": "mouse",
+          "style": "stick",
+          "side": "right",
+          "sensitivity": 5
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "side": "right"
+        }
+      ],
+      "touchClick": false
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "highscores.txt"
+    ],
+    "pathAliases": {
+      "home/lcom/lcom1617-t1g13/brickbreaker/src": ".",
+      "/tmp": "."
+    }
+  },
+  "description": "Break colorful bricks, collect falling power-ups and keep the ball in play with A and D.",
+  "archetype": "Breakout",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

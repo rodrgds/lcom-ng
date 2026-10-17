@@ -44,5 +44,6 @@
     "assets": []
   },
   "description": "Move the paddle and break bricks, collecting bonuses across three levels.",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "archetype": "Breakout"
 }

@@ -1,0 +1,11 @@
+--- a/proj/scoreboard.c
++++ b/proj/scoreboard.c
+@@ -177,7 +177,7 @@
+   for (int i = 0; (i < 5) && !feof(fileScoresRegister); i++) {
+ 
+     char scoreContent[50] = {0};
+-    fgets(scoreContent, 150, fileScoresRegister);
++    fgets(scoreContent, sizeof scoreContent, fileScoresRegister);
+ 
+     if (strncmp(scoreContent, "\0", 1) == 0) break;
+ 

@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "Space Lander",
+  "description": "Pilot your spacecraft through asteroids and land safely on the platform.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Thrust",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "touch": "tap",
+      "cursor": {
+        "x": 512,
+        "y": 200,
+        "maxX": 1004,
+        "maxY": 747
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/hs.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj": "proj/src"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

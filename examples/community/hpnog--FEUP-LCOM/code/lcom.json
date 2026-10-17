@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "Connect Four: Cosmic Rivals",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "off",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Continue",
+          "key": "SPACE",
+          "position": "top-left"
+        },
+        {
+          "label": "Drop / Select",
+          "key": "ENTER",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "code/images"
+    ],
+    "pathAliases": {
+      "/home/lcom1415-t6g10-proj": "code"
+    }
+  },
+  "description": "Take turns dropping planets into the original space-themed board and connect four before the timer expires.",
+  "archetype": "Connect Four",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

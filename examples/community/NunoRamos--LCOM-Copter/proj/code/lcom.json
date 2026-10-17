@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "LCOM Copter",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "drag",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "left",
+          "style": "stick",
+          "sensitivity": 1
+        }
+      ],
+      "actions": [
+        {
+          "label": "Lift",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/images"
+    ],
+    "pathAliases": {
+      "/home/lcom/repos": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "description": "Keep a helicopter airborne through a scrolling cavern and beat your best distance."
+}

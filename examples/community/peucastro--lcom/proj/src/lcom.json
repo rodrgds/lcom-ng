@@ -50,5 +50,6 @@
     ]
   },
   "description": "Drop bombs, break through the maze and get out of the blast zone.",
-  "preview": "../../../../../collections/arcade/previews/peucastro-lcom-03ab6e7e63db.png"
+  "preview": "../../../../../collections/arcade/previews/peucastro-lcom-03ab6e7e63db.png",
+  "archetype": "Bomberman"
 }

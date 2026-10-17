@@ -1,0 +1,74 @@
+{
+  "repository": "https://github.com/bm-vs/LCOM",
+  "commit": "b3588095e012f80552106b25aa5065cb5d1b87c9",
+  "project": "proj/code",
+  "sha256": {
+    "proj/code/Makefile": "8e0b3dc549e24b63acd43d7ad35254b951b2c3cd5cab773a28216dff7bf1f010",
+    "proj/code/constants.h": "9b8aebc730ca56acf95488add189274e3b5064e561bce96df62698be48c5f287",
+    "proj/code/game.c": "0bf98e402ff059461830ef4ba113d6d4bbe06d6c1e2277793bd3f3e214287a17",
+    "proj/code/game.h": "3939f7eccb36d9f62c5edcf941dc3ae702a03cf7d4a2456de6e8340095490d27",
+    "proj/code/kbd.c": "e09263ad5ce30700d4acfc4b4e3e9f526c9dc171d3284d45a30972355dd69c23",
+    "proj/code/kbd.h": "e791734b09236a89fe015c4c2ae7b201896dd4f3efefb8a5994db79ea917a83f",
+    "proj/code/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "proj/code/mouse.c": "febe96b119ac469b34fbba4e649e1b8fa0235c6918cf76496bab995e8e1b1630",
+    "proj/code/mouse.h": "0bd85372f988cf21dc8f3e765712dc0f2a62a94c9229d1030ef9af80dd5b77e0",
+    "proj/code/proj.c": "b1d33d347359b96eaf1c3a5c09e21b918250619b958f244e0242058b493799e2",
+    "proj/code/sprite.c": "5699b84bcba5229b56082418de4e84a825dc7053d03bfddb16396561583b0ba4",
+    "proj/code/sprite.h": "54cc136eccea05f6574bd0f1b2ecada8eb2274622e8e6aec0b70023fb1c3ccc4",
+    "proj/code/timer.c": "9dc84be2f86feccfa25484feca6f8cb893edd08800e7230b03dbc3766ff6f1f9",
+    "proj/code/timer.h": "2af7e75bfacacfa9a797e3977fa18f12fb56a28f5ec332a6173222c2615cdada",
+    "proj/code/vbe.c": "06eec8a8b156065887b3b2cc44c5f68a053427f4f524e67618924d23c3e8df8d",
+    "proj/code/vbe.h": "68304351b741d6153a627095c2215d0ce100bbf7cb9d2097b13400fb8423f5f4",
+    "proj/code/vector.c": "95ea247b8a11178b123a518bed5d63a3808acedcc156ef8d5643e1e86e0c656e",
+    "proj/code/vector.h": "6c137f0ddcfaf8c11a20d67585de7a7e0c24bc7328d676bb35508d95a0b5fcaf",
+    "proj/code/video_gr.c": "402ae0e493912f9c4a4d719a58b514f46fe24330e3e11f1ddc165eba39e4ab1e",
+    "proj/code/video_gr.h": "94ba47838313f94287b887091d41be953948486b9dacc189a42b058132c4d665",
+    "proj/code/xpm.c": "f9b9a1ce1eae8db4107d69d8e48f9d12b65cdc1a41ec6807df3bba89a7a70bd6",
+    "proj/code/xpm.h": "c57aed120651b6b3635898475060b80f4d13149323d34db3059054de9f6bc940",
+    "proj/conf/readme.txt": "fc65097c05816f1f41b017b43163fa37d1493ffcc3a942d9d89f758a48a51e9c"
+  },
+  "originalArchiveSha256": "f97c1d53f2ddf920febc7e510f11c2a5b1f0444da5728d92c35168781047c248",
+  "sourceSelection": "Original project C/headers/Makefile and service configuration. Precompiled liblm.a and unrelated labs/generated documentation/OS/VCS metadata omitted.",
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected pinned project. Original attribution and comments retained.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/code/game.c",
+          "originalSha256": "0bf98e402ff059461830ef4ba113d6d4bbe06d6c1e2277793bd3f3e214287a17",
+          "patchedSha256": "df26da1ec4448b86628c010cda2bc94da42afd151ab26c56d76548d149710369",
+          "reason": "Include existing xpm.h owning the char**get_xpm return contract before sprite creation.",
+          "verification": "Original actual game.c compilation fails incompatible int-to-pointer conversions at fourteen XPM calls. Corrected actual owning-unit regression passes strict pointer conversion and optimized compilation."
+        },
+        {
+          "file": "proj/code/mouse.c",
+          "originalSha256": "febe96b119ac469b34fbba4e649e1b8fa0235c6918cf76496bab995e8e1b1630",
+          "patchedSha256": "a847eac1441e6cd67a0389449c3492dd2023225d829e225436ddb8967069cd5b",
+          "reason": "Send Set Stream Mode0xEA to PS2 data port0x60 and consume/validate command ACKs before packet decoding. Interpret positive motion low bytes as unsigned for the full9-bit PS2 range.",
+          "verification": "Original real touch+460,+480 missed Start because unread0xFA was consumed as a packet header. Original command fixture fails data-port contract; corrected0xEA/F4 ACK fixtures verify0xFA success and0xFE/FC failure. Original signed-char packet fixture fails positive128 motion; corrected independently checks X/Y deltas\u2212255,\u2212128,\u22121,0,1,127,128,255. Actual normal gesture now starts the arena; portrait/landscape movement and heart-decreasing shot proof recorded separately."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original1024x768 indexed two-human platform duel. Menu cursor50,50 and Start rectangle354..673,500..560. Crosshair resets300,700 when a turn starts. Blue player uses A/D and W/Space; red player uses J/L/I. Left WASD stick plus Jump and P2 movement/jump buttons preserve both players, right relative mouse stick aims, Shoot/Select clicks. Panel keeps action/pad controls outside the field. Relative touch only, no calibrated direct cursor profile. Existing scene rules, original sprites/platforms/timer and player role swaps remain unchanged.",
+  "artwork": {
+    "icon": "Original blue/red trooper numeric-palette XPMs enlarged with nearest-neighbor pixels on a simple dark tile. Original arrays unchanged.",
+    "preview": "Actual first shooter hit reduces one original heart, scaled to640x480."
+  },
+  "verification": {
+    "browser": "Actual CDP touch in844x390 and390x844 selects Start, moves both original troopers, jumps onto the platform and aims/fires. First successful shot reduces original heart pixels3470 to2776, exactly one694-pixel heart, in each orientation. Escape exits normally with no page errors. Shared SDK corner-action hit testing supplies joystick touch alongside action buttons.",
+    "ndk": "All10 authored C units and generated context compiled as actual ARM64 objects with O2, FORTIFY2, stack protector and format-security.",
+    "native": {
+      "status": "passed",
+      "evidence": "build/arcade-100/platform-native-instrumented/results.json",
+      "apkSha256": "ea48c7cb2446787fac0707cc2e03fef53f2462346b5fd5eb14f133ff2c87ac38",
+      "demonstrated": "Original blue and red troopers use independent touch controls. Timed ordinary Jump then left lands blue beside red. Screenshot-guided shot reduces original five red hearts to four (3445\u21922756 sampled red pixels). Clean Home return.",
+      "limits": [
+        "Representative local ARM64 touchscreen gameplay. Full match victory, role-swap completion and physical-phone performance remain untested."
+      ]
+    },
+    "limits": "Two-human local role swaps, no UART networking. Full match victory unverified."
+  }
+}

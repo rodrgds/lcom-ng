@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "name": "PongX",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "vertical"
+        },
+        {
+          "mode": "wasd",
+          "side": "right",
+          "style": "dpad",
+          "axes": "vertical",
+          "keys": {
+            "up": "O",
+            "left": "J",
+            "down": "K",
+            "right": "L"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "mouseButton": "left",
+          "label": "Select",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "archetype": "Pong",
+  "description": "Move both paddles through a timed match with the original ball, scores and RTC-driven speed changes.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,112 @@
+{
+  "version": 1,
+  "name": "Minehunter",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "toolbar": "auto",
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Reveal",
+          "mouseButton": "left",
+          "side": "left"
+        },
+        {
+          "label": "Flag",
+          "mouseButton": "right",
+          "side": "left"
+        }
+      ],
+      "touchClick": false
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/code/res/images/Fundo_Jogo.bmp",
+      "proj/code/res/images/One.bmp",
+      "proj/code/res/images/Five.bmp",
+      "proj/code/res/images/Vazio.bmp",
+      "proj/code/res/images/Main_menu.bmp",
+      "proj/code/res/images/Fundo_menu_multi.bmp",
+      "proj/code/res/images/Bandeira.bmp",
+      "proj/code/res/images/Player1_Won.bmp",
+      "proj/code/res/images/Eight.bmp",
+      "proj/code/res/images/SmileyO.bmp",
+      "proj/code/res/images/Nine.bmp",
+      "proj/code/res/images/Quadrado_Tapado.bmp",
+      "proj/code/res/images/Connecting.bmp",
+      "proj/code/res/images/Quadrado8.bmp",
+      "proj/code/res/images/Smile.bmp",
+      "proj/code/res/images/2Points.bmp",
+      "proj/code/res/images/Player2_Won.bmp",
+      "proj/code/res/images/Seven.bmp",
+      "proj/code/res/images/Back_Button.bmp",
+      "proj/code/res/images/Cron_9.bmp",
+      "proj/code/res/images/Player2_table.bmp",
+      "proj/code/res/images/Bomba.bmp",
+      "proj/code/res/images/Cron_8.bmp",
+      "proj/code/res/images/Cron_5.bmp",
+      "proj/code/res/images/Three.bmp",
+      "proj/code/res/images/Cursor_2.bmp",
+      "proj/code/res/images/Quadrado2.bmp",
+      "proj/code/res/images/Quadrado3.bmp",
+      "proj/code/res/images/Cron_4.bmp",
+      "proj/code/res/images/Tabela_Expert.bmp",
+      "proj/code/res/images/Cron_6.bmp",
+      "proj/code/res/images/Cursor_1.bmp",
+      "proj/code/res/images/Quadrado1.bmp",
+      "proj/code/res/images/Fundo_Lost.bmp",
+      "proj/code/res/images/Cron_7.bmp",
+      "proj/code/res/images/Cron_3.bmp",
+      "proj/code/res/images/Quadrado4.bmp",
+      "proj/code/res/images/You_Lost.bmp",
+      "proj/code/res/images/Cursor.bmp",
+      "proj/code/res/images/Fundo_Won.bmp",
+      "proj/code/res/images/Quadrado5.bmp",
+      "proj/code/res/images/Cron_2.bmp",
+      "proj/code/res/images/Cron_0.bmp",
+      "proj/code/res/images/Quadrado7.bmp",
+      "proj/code/res/images/Player1_table.bmp",
+      "proj/code/res/images/Quadrado6.bmp",
+      "proj/code/res/images/Cron_1.bmp",
+      "proj/code/res/images/Disconnected.bmp",
+      "proj/code/res/images/Two.bmp",
+      "proj/code/res/images/Six.bmp",
+      "proj/code/res/images/Arrow.bmp",
+      "proj/code/res/images/Four.bmp",
+      "proj/code/res/images/Zero.bmp",
+      "proj/code/res/images/You_Lost_Single.bmp",
+      "proj/code/res/images/Arrow_inv.bmp",
+      "proj/code/res/images/Fundo_Main.bmp"
+    ],
+    "pathAliases": {
+      "home/lcom": "."
+    },
+    "environment": {
+      "LCOM_VBE_PHYSICAL_BASE": "0xF0000000"
+    }
+  },
+  "description": "Reveal safe squares, mark mines and clear the original painted Minehunter board.",
+  "archetype": "Minesweeper",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

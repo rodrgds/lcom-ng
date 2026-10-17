@@ -1,0 +1,167 @@
+--- a/proj/proj.c
++++ b/proj/proj.c
+@@ -1,3 +1,4 @@
++#include <stdint.h>
+ 
+ #include "proj.h"
+ #define WAIT_TIME_S 5
+@@ -52,73 +53,65 @@
+ 
+ 
+ 
++/* The shipped Minix/x86 file stores a 16-byte name slot and six little-endian
++ * 32-bit fields, independently of the host's long size or struct padding. */
++static uint32_t score_word(const unsigned char *p)
++{
++    return (uint32_t)p[0] | (uint32_t)p[1]<<8 | (uint32_t)p[2]<<16 | (uint32_t)p[3]<<24;
++}
++
+ void writeHighScores(player_score arrayResultados[])
+ {
+-	int i, fim;
+-	player_score temp;
+-	fim = 15;
+-	FILE *fp;
+-	printf("ENTROU ESCRITA\n");
+-	if(fp = fopen("/usr/src/drivers/proj/highscores", "w"))
+-	{
+-		if (last_highscore < 15) fim  = last_highscore;
+-		for (i = 0; i < fim; i++)
+-		{
+-			temp = arrayResultados[i];
+-			fwrite(&temp,1,sizeof(temp),fp);
+-		}
+-		fclose(fp);
+-	}
+-	else printf("ERRO DE ESCRITA: FICHEIRO NAO EXISTE!");
+-}
+-
++    FILE *fp = fopen("/usr/src/drivers/proj/highscores", "wb");
++    if (!fp) return;
++    int count = last_highscore < 15 ? last_highscore : 15;
++    int i, j;
++    for (i = 0; i < count; ++i) {
++        player_score *entry = &arrayResultados[i];
++        unsigned char record[40] = {0};
++        for (j = 0; j < 14 && entry->nome[j]; ++j) record[j] = entry->nome[j];
++        int32_t fields[6] = {entry->pontuacao, entry->dia, entry->mes,
++                             entry->ano, entry->hora, entry->minuto};
++        for (j = 0; j < 6; ++j) {
++            uint32_t value = (uint32_t)fields[j];
++            int byte;
++            for (byte = 0; byte < 4; ++byte) record[16 + 4*j + byte] = value >> (8*byte);
++        }
++        if (fwrite(record, 1, sizeof record, fp) != sizeof record) break;
++    }
++    fclose(fp);
++}
+ 
+ void readHighScores(player_score arrayResultados[])
+ {
+-	player_score temp, vazio;
+-	strcpy(vazio.nome, "EMPTY");
+-	vazio.pontuacao = 0;
+-
+-	vazio.dia = '0';
+-	vazio.mes = '0';
+-	vazio.ano = '0';
+-	vazio.hora = '0';
+-	vazio.minuto = '0';
+-
+-	int i,numero_entradas = 0 ;
+-
+-	FILE *fp;
+-	//printf("ENTROU LEITURA\n");
+-	if(fp = fopen("/usr/src/drivers/proj/highscores", "r"))
+-	{
+-		last_highscore  = 0;
+-
+-		fread (&temp,sizeof(temp),1,fp);
+-		do
+-		{
+-			arrayResultados[last_highscore] = temp;
+-			numero_entradas++;
+-			last_highscore++;
+-			if (temp.pontuacao < lowestHighscore) lowestHighscore = temp.pontuacao;
+-			//printf("Nome: %s \n",temp.nome);
+-			//printf("Pontuacao: %d \n",temp.pontuacao);
+-			//printf("%x - %x - %x ! %x : %x\n",temp.dia,temp.mes,temp.ano,temp.hora,temp.minuto);
+-			fread (&temp,sizeof(temp),1,fp);
+-
+-		}while(!(feof(fp)));
+-		fclose(fp);
+-	}
+-	else printf("ERRO DE LEITURA: FICHEIRO NAO EXISTE!");
+-	for(i = numero_entradas; i < 15; i++)
+-	{
+-		arrayResultados[i] = vazio;
+-	}
++    player_score empty = {0};
++    strcpy(empty.nome, "EMPTY");
++    empty.dia = empty.mes = empty.ano = empty.hora = empty.minuto = '0';
++    int i;
++    for (i = 0; i < 15; ++i) arrayResultados[i] = empty;
++    last_highscore = 0;
++    FILE *fp = fopen("/usr/src/drivers/proj/highscores", "rb");
++    if (!fp) return;
++    unsigned char record[40];
++    while (last_highscore < 15 && fread(record, 1, sizeof record, fp) == sizeof record) {
++        player_score entry = {0};
++        memcpy(entry.nome, record, sizeof entry.nome - 1);
++        entry.pontuacao = (int32_t)score_word(record + 16);
++        entry.dia = (int32_t)score_word(record + 20);
++        entry.mes = (int32_t)score_word(record + 24);
++        entry.ano = (int32_t)score_word(record + 28);
++        entry.hora = (int32_t)score_word(record + 32);
++        entry.minuto = (int32_t)score_word(record + 36);
++        arrayResultados[last_highscore++] = entry;
++        if (entry.pontuacao < lowestHighscore) lowestHighscore = entry.pontuacao;
++    }
++    fclose(fp);
+ }
+ 
+ void insertNome(player_score jogador, int _irq_set, int _ipc_status, message _msg)
+ {
+ 	int enter_found = 0;
+-	char tempNome[15];
++	char tempNome[15] = {0};
+ 	int nextChar = 0;
+ 	unsigned char scancode2;
+ 	vg_fill(0x00);
+@@ -143,6 +136,7 @@
+ 					{
+ 						//printf("entrou ciclo\n");
+ 						scancode2 = read_scancode();
++                        if (nextChar >= sizeof tempNome - 1 && scancode2 != 0x1c) continue;
+ 						if (scancode2 == 0x1c) {
+ 							enter_found = 1;
+ 						}
+--- a/proj/read_xpm.c
++++ b/proj/read_xpm.c
+@@ -1,3 +1,4 @@
++#include "video_gr.h"
+ /**
+  *  @author Joao Cardoso (jcard@fe.up.pt) ????
+  *  Added by pfs@fe.up.pt
+--- a/proj/video_gr.c
++++ b/proj/video_gr.c
+@@ -32,8 +32,6 @@
+ 	reg.u.w.ax = 0x4F02; // VBE call, function 02 -- set VBE mode
+ 	reg.u.w.bx = 1<<14|0x105; // set bit 14: linear framebuffer
+ 	reg.u.b.intno = 0x10;
+-	sys_int86(&reg);
+-
+ 	if( sys_int86(& reg) != OK ) {
+ 		printf("set_vbe_mode: sys_int86() failed \n");
+ 		return NULL;
+--- a/proj/video_gr.h
++++ b/proj/video_gr.h
+@@ -1,5 +1,8 @@
+ #ifndef __VIDEO_GR_H
+ #define __VIDEO_GR_H
++
++/* Project XPM decoder used by the graphics and menu renderers. */
++char *read_xpm(char *map[], int *width, int *height);
+ 
+ /** @defgroup video_gr video_gr
+  * @{

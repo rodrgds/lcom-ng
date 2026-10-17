@@ -1,0 +1,61 @@
+{
+  "name": "Battleship: Naval Tactics",
+  "description": "Arrange your ships and take turns searching the enemy sea.",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "move",
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "TAB",
+        "R",
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "pads": [
+        {
+          "mode": "arrows",
+          "style": "dpad",
+          "side": "left",
+          "keys": {
+            "up": "UP",
+            "down": "DOWN",
+            "left": "LEFT",
+            "right": "RIGHT"
+          }
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "repeatKeys": [
+        "UP",
+        "DOWN",
+        "LEFT",
+        "RIGHT"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "archetype": "Battleship",
+  "preview": "preview.png"
+}

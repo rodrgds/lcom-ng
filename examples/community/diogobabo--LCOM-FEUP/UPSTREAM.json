@@ -1,0 +1,154 @@
+{
+  "repository": "https://github.com/diogobabo/LCOM-FEUP",
+  "revision": "b970882a8c6407bca6dad2aaba2685391317398a",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "3c572c356168142c41a77b69a8c00fc9da6de890445fa7da16d880ccdf58530d",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.idea/.gitignore": "0a5548b173aac0ef943bbb3af850d676f7b651ddedb9f8d7f06735bc2809b3db",
+    "proj/src/.idea/misc.xml": "b91cf693ee461a76ec339c793ce642d08de05a4a794c7bc4cb23e5a41f8acdcb",
+    "proj/src/.idea/vcs.xml": "6ffdfdafcd3bfed04030e4926c8c728d029e66c3585d323efc5093d63dc55ee1",
+    "proj/src/.vscode/c_cpp_properties.json": "a200ef944a7bcd2679a2d5d05ea67a967cfba4972fa995093ae0cdf3b6cf0e7d",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "bde0be771c5bb46ef8fa779b0756d58cc5de0a6f4f43faf7e8cac33d102bb76e",
+    "proj/src/Makefile": "7e1b9ddc3f2f43b870ee4896f9703d0c0f6948982a8b493db2a23a5bb4c6ae88",
+    "proj/src/devices/graphics.c": "aa984e23f250283b7d8c0bb5b4b58cff11e4c9db95f5eb4a7ad654c378a34ee0",
+    "proj/src/devices/graphics.h": "256f24bc5e9f58c566ccfd0b45617823bd048f5b628368b68ed96f2b27d08619",
+    "proj/src/devices/i8042.h": "49fbc76b4b581adbde49909bdd8b1b3cbde106a7f46e44bb7fc6079f9587a0f6",
+    "proj/src/devices/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/devices/keyboard.c": "49ed1327c0b68be5e53587a78f97152c649535ea0523f7513a4ce155511f8413",
+    "proj/src/devices/keyboard.h": "b03dd80291722a62c4ce41a235a8abb8fa4478cb601983cd1ecc49f42105f4a5",
+    "proj/src/devices/mouse.c": "8382376339b1d2564fbcede0aeb123021124b28c3945d9fbd28a6f8fe53919f8",
+    "proj/src/devices/mouse.h": "99a39359b3d015fdca80ded951d12b47f8e2d52c5912fa0b4a1d9e7b3fceec5b",
+    "proj/src/devices/timer.c": "d58893ca72bfdae41552ddc66808716b6cab18ab1d03637e1e661efa0154758b",
+    "proj/src/devices/utils.c": "415752e0ff7faee43bcd3394c03be35358b3c05236bb02cf6bf95c4ea676107e",
+    "proj/src/devices/vbeMacros.h": "c16781ca023c6f23b811ab9929c77f640a54a685826bb97f43778f9e35cdcc3f",
+    "proj/src/game.c": "18f849d6d3fbbd57f704b3fccb6effef4d6f46ebe752b2cd5d6b27cd1afe0c8a",
+    "proj/src/game.h": "960f4210d11c9943b3febde5f23260c769151103b1451d419f1cb28cbbed16a9",
+    "proj/src/kbcKeys.h": "b48540a249d535288ce65666caa2a7bffcfa1d3400289fcd4e0f30e4e53e569f",
+    "proj/src/leaderboard.c": "696c89c2c0fd6f3313857c0d3d1448306941e73d93f9a84a1ba948f858afe085",
+    "proj/src/leaderboard.h": "3e5e03ba92d0157e2a2c967cda3767b0455c3e14962bbd529f232386206c7927",
+    "proj/src/leaderboard.txt": "af636d44a0c7a680fb30c65f9b0d3ad7464b470883115c14e0c8f3c462041b88",
+    "proj/src/menu.c": "95c32b3afb71b9e800c43cd3f3a229ca69d6e728587e5d6413969b0e561c9dec",
+    "proj/src/menu.h": "599fbddcc7b577432f08ca32206ec477d5b0fbdd1656cf30b8ab001858a0e74a",
+    "proj/src/pause.c": "949e3b8400625829c8f13cf578d8a7b237819574f3a91b9f14b8764763b38c94",
+    "proj/src/pause.h": "65310bd553a81b36b8546455bc3569d312e2614e6f8e4030f57cf93b7978c513",
+    "proj/src/proj.c": "91daf6c1d11ef54469eefca583ee2dfacd5aede5f3daff2f3863b8e49a38b3b8",
+    "proj/src/snake.c": "abbe10de2f5bdb0cb9e5cbf451a9fe5a5ea227431387f8131aa176001b8f42b7",
+    "proj/src/snake.h": "333ac79eb41fd914bb0d52f8af1ac6eda5fa21dfa8347ae7515fba2d972f986b",
+    "proj/src/xpms/bgGame.xpm": "178e07d0f51b6998ad0e09c2972ae087f95c91f596004357bb3f64fbc61384f6",
+    "proj/src/xpms/bodySnake.xpm": "7ab736070afd5b8d4191246ee847188b1a9aefb14f330895ad66e8ed3c843aa9",
+    "proj/src/xpms/brick.xpm": "9071007d5f1d34205fadeca3d0507ae4bcf1889fe4930af280041ff545248c8c",
+    "proj/src/xpms/broken.xpm": "cdd5e2020ed42bd9d5ee3c71617cd0b7c190d69ce9467a51bcc948bebb68859e",
+    "proj/src/xpms/down.xpm": "42759aa50c2cd8449c6876597d1157dccebb82e6c0eb3c3377a1fd40998c3ca1",
+    "proj/src/xpms/exitMenu.xpm": "24b1a1b74087a3174360e84ac8e009dc87782a77d7b4d640dc1439f89c32a133",
+    "proj/src/xpms/exitPart.xpm": "325a76b6ab8885521514df4eda0b9786c31910e6aeb8714c935735b50aa05027",
+    "proj/src/xpms/exitPause.xpm": "ef19c7ddab516c9a66afa9d007e8d7cff0d4399bf1bb72f67fdaba1225000ce6",
+    "proj/src/xpms/fontS.xpm": "e72cc660bbd442aa5d3b761c38ad5fa2ddd85836df76b94ab65e3b76dc6a2504",
+    "proj/src/xpms/fruit.xpm": "e008f248c997f3486553c663e3312fee0916a5f2f2c066e5eddf91736c0249c0",
+    "proj/src/xpms/leaderMenu.xpm": "bc0bf6b8e2adb5f9010085e4784a281acf31f991eccdc8917cdc6f9748166a78",
+    "proj/src/xpms/leaderPart.xpm": "26de248c293867f785f806ae322c4c049ba54f5667e84f03c27093406c7be384",
+    "proj/src/xpms/left.xpm": "794b951b6cba215b5a6da1556be08f0cb7cf23fe69462d7ea78d5cf7c038ba4e",
+    "proj/src/xpms/menu.xpm": "7156d25a0b0ca76fbf6248d452c22afead69c14b2618ba54c0d728f4ffc53b1d",
+    "proj/src/xpms/mouseCursor.xpm": "1b1aae169bf98fb63c52a1f0877baef251ed287d11a27a4aa9cf97d4362c5224",
+    "proj/src/xpms/playMenu.xpm": "ab87ec28652578e12e3cad16667f88a32b3c2f15d14b7996d6a1fc891a5f741c",
+    "proj/src/xpms/playPart.xpm": "af2805904ed994704e112af028a0adfbc9aa54737004f8782cba2eef0ca53d38",
+    "proj/src/xpms/resume.xpm": "63ee386eea4d64a1c54067e252eab2d8b92d67b8ee9bf49fb5db31b248dc75c4",
+    "proj/src/xpms/right.xpm": "645331545006c12f19cd9253b48626313a39956b5a88efa8089cdfd551cd8b39",
+    "proj/src/xpms/up.xpm": "7615b3ae65f5ce92bc07aab25f34830220f9f7586e449c8be8a9c194a5deaac0",
+    "proj/src/xpms/wall.xpm": "41aa1b4df57a64ee072c94f396339c815e7dcb23f9918984427d433a4146849a"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/leaderboard.c",
+          "reason": "Read exactly five score records, preserve a stable owned score array and write the original sorted leaderboard without freeing stack arrays or interior parsing pointers. Keep original glyph positions and artwork.",
+          "verification": {
+            "regression": "build/arcade-100/a/batch9-source-tests.py",
+            "red": "build/arcade-100/a/green-circuit-scores-red.log",
+            "green": "build/arcade-100/a/batch9-source-green7.log"
+          },
+          "originalSha256": "696c89c2c0fd6f3313857c0d3d1448306941e73d93f9a84a1ba948f858afe085",
+          "patchedSha256": "b484cc5ecab9f1d2563ccf49bf5d21094091b0f74d783b35836743e7d43c301c"
+        },
+        {
+          "file": "proj/src/snake.c",
+          "reason": "Reset complete round object arrays, preserve local stack ownership, and render score text without freeing the local score buffer.",
+          "verification": {
+            "regression": "build/arcade-100/a/batch9-source-tests.py",
+            "red": "build/arcade-100/a/green-circuit-scores-red.log",
+            "green": "build/arcade-100/a/batch9-source-green7.log"
+          },
+          "originalSha256": "abbe10de2f5bdb0cb9e5cbf451a9fe5a5ea227431387f8131aa176001b8f42b7",
+          "patchedSha256": "816b7ff8e7263dcdc4246c764f19a0790095cd2a7dbc89c25e2bf1a0907fe9ca"
+        },
+        {
+          "file": "proj/src/devices/graphics.c",
+          "originalSha256": "aa984e23f250283b7d8c0bb5b4b58cff11e4c9db95f5eb4a7ad654c378a34ee0",
+          "patchedSha256": "7fb70476fb43651df1486032186aaeb35ca8e7041300b6b452226335e87f78e8",
+          "reason": "Clip background restoration to the intersection of original image and framebuffer before reading source pixels. The authored menu requests y500+height600 on an864-row background, causing an actual Android source-map read fault before Home. Preserve valid original pixels and transparency.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/green-background-fix/test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/green-background-fix/red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/green-background-fix/green.log"
+          }
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/xpms/down.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "adea7e9089a1913f96a172c49ebf3dea8aa544cd898d5b179a027df33075d872",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "7f5a659ebb457bc8d1a796388b0152316544aaf2f8c6097ed0bd3f41de31bf06",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "controlsRationale": "Arrow inputs set persistent direction and require no repeat. Relative mouse selects original menus. ESC pauses and ENTER resumes; panel preserves the complete original board.",
+  "verification": {
+    "browserBuild": true,
+    "optimization": "normal exporter O2, no diagnostic compiler override",
+    "mobileTouchGameplay": true,
+    "checkpoint": "Rendered-board observer follows ordinary directional touch around original brick walls; apple collection yields SCORE1 plus a new body segment. ESC opens the authored Resume/Exit pause screen.",
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence/diogobabo--LCOM-FEUP",
+    "log": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/green-food-gameplay.log",
+    "limits": [
+      "Long rounds, wall-breaking mouse ability and optional right-mouse food placement remain untested."
+    ],
+    "androidGameplay": "passed: representative actual ARM64 Android emulator objectives; see nativeGameplay proof and limitations.",
+    "strictNativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/diogobabo--LCOM-FEUP.native9-strict.log",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "70deb8710d3f886958d1516747dfc308c7a2a2066167b04f8a14329b442b3710",
+      "evidence": "build/arcade-100/green-native-calibrated/results.json",
+      "demonstrated": [
+        "Original board replaces Play menu after ordinary Select.",
+        "Original snake turned around original brick obstacles.",
+        "Original Resume/Exit pause screen appears."
+      ]
+    }
+  }
+}

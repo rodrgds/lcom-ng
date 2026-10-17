@@ -36,5 +36,6 @@
     "assets": []
   },
   "description": "Drag the paddle, break glowing blocks and catch bonuses before time runs out.",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "archetype": "Breakout"
 }

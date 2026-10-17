@@ -1,4 +1,6 @@
 #include "Ac97.hpp"
+#include "../core/MachineConfig.hpp"
+#include <stdexcept>
 
 #include <lcom/ac97.h>
 
@@ -7,7 +9,9 @@
 
 namespace lcom {
 
-Ac97::Ac97() : pcm_(2u * 1024u * 1024u, 0) {
+Ac97::Ac97(uint32_t pcm_phys) : pcm_phys_(pcm_phys), pcm_(LCOM_AC97_PCM_BYTES, 0) {
+  if (!validPhysicalAperture(pcm_phys, LCOM_AC97_PCM_BYTES))
+    throw std::invalid_argument("Invalid AC97 PCM physical aperture");
   nam_[AC97_EXT_AUDIO_ID] = 0x01;
   nam_[AC97_EXT_AUDIO_CTRL] = 0x01;
   nam_[AC97_PCM_FRONT_DAC_RATE] = static_cast<uint8_t>(sample_rate_ & 0xFFu);

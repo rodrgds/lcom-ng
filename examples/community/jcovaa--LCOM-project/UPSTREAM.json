@@ -1,0 +1,195 @@
+{
+  "repository": "https://github.com/jcovaa/LCOM-project",
+  "revision": "8390371e11e821cedf94a4aee7a61b34bbeebb1a",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "6828d4d2d25739b5a10862fc10e68d8bfea1635c91823408056a76993abc2045",
+    "proj/src/.clang-format": "66f7a3be551c14980db4ff14cd66a0fcbad862e03ccd4dc4a0d52a715a1082d7",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.vscode/c_cpp_properties.json": "4f9cae90fccef10340860f24af82ebbbe7d491a18e67d9962fa7d4d4682797c1",
+    "proj/src/.vscode/extensions.json": "66ae47f8670f9a66e90340e5cf7aa3ad9e46e3257d2fae291b028502b960f049",
+    "proj/src/.vscode/settings.json": "44c566ac7a3295ec9fd6c2e200c7c1da16e2cdbe0f12b2d4e3e52486491a9696",
+    "proj/src/Makefile": "6864a61d00b8c7347b6e7fb86cca0fc02ef082ed252c3be268aaf586fc08b0c2",
+    "proj/src/assets/letters/a.xpm": "233dfb46e5121f16bb1223ef6890fabe9253be749fa13454db08939a5b680110",
+    "proj/src/assets/letters/b.xpm": "78c5dd39a3167eeb9ebab2578f6f1ca2e0a932cabed31c3d9420f9a555019326",
+    "proj/src/assets/letters/c.xpm": "f0a41a68e7ff9e8449e671b574a7814f0a31a9c342641b94f34c50c0d07fd594",
+    "proj/src/assets/letters/d.xpm": "b670fa7adef6697eef1e5c77e69912da633eaa123d6f2fb9ae79731b2dedaf54",
+    "proj/src/assets/letters/e.xpm": "6acb807a8fa89cd0cf298465904d1588d378df7db8febf78d4ee559cb2444657",
+    "proj/src/assets/letters/f.xpm": "d579bc38e8d132f1e944b1aceea2b2c75f5c65ef23ab9e1cbff34ae22c6f2664",
+    "proj/src/assets/letters/g.xpm": "b27c0b018185c42c6b9c9e494af5f6a0fb78faed7832cc7d687375c2a97cdde7",
+    "proj/src/assets/letters/h.xpm": "a62655660b196b1476a344097062158de5ffed87e3adeec42affd7b41e7ef5fc",
+    "proj/src/assets/letters/i.xpm": "ca64d2025f62a3ee8af03f7f3cc55587eb5fa0d79de94d3cbefdc5adafee6390",
+    "proj/src/assets/letters/j.xpm": "3de4821fabeb2acb082122eaac394b7aa9d35febfeea5b1fc07b700c649d1a2b",
+    "proj/src/assets/letters/k.xpm": "7adbd6341c50071b08f9bba12f2bee6428a47f703ef1f747e3170b4ce5c67240",
+    "proj/src/assets/letters/l.xpm": "ff94dbb99ce5464f4d8e3446ca767b2cd50997448b3f96135488c1696e60c8b4",
+    "proj/src/assets/letters/m.xpm": "cc6a532fefc1d594ae10061a2452c1f4d34e4e90fbf5f0963d9e307f81885aa3",
+    "proj/src/assets/letters/n.xpm": "e8eeb9d1ab352e95af5529ed2c751e34ee3a1193b1deb4ab086e3de729d85579",
+    "proj/src/assets/letters/o.xpm": "685a873a839de969ce17d95a3afb55fa890ae4693235231884901a2e69e1c358",
+    "proj/src/assets/letters/p.xpm": "e56eea7c26fae85faa92e4864f2ebd45d13d6fce1f64b5f74e4853fe1c6f5258",
+    "proj/src/assets/letters/q.xpm": "fbbaf8e5dddd795c1b8677562e3cea97f959e40cb511d039ea03feaf80228ffb",
+    "proj/src/assets/letters/r.xpm": "f5425b5626fb6a290e38629a6425c4f952b8efb74d6543cf84e2692e847a8f4c",
+    "proj/src/assets/letters/s.xpm": "d1c1c22e36b9151182cd795fba88dc565ade4f2d2fb47702be93ccd52bba7a61",
+    "proj/src/assets/letters/t.xpm": "3972e9d40baaf5f464a063be1f19803d34495b488ff02c004b245f39acc8bac2",
+    "proj/src/assets/letters/u.xpm": "06a8ac0dc998999ed74918f4e7020187f2a75129c0ddef1f732ca6ba508b7692",
+    "proj/src/assets/letters/v.xpm": "9d6a24875c963b66e527177a855bcdab8aa850f16c7f96720947aa788e6223c1",
+    "proj/src/assets/letters/w.xpm": "dbc997bb3a8943fb040a25a964579d4786f48a2f87e2936286e17a6f41f535d1",
+    "proj/src/assets/letters/x.xpm": "42641b1aefb18cc493b56d9d547b9003838519e80bd0978193e9b964d88ce836",
+    "proj/src/assets/letters/y.xpm": "28c3535112b810c966a05bb71691f6ac6599596a88e7a423c379e1bda68a85d5",
+    "proj/src/assets/letters/z.xpm": "65c62172b3c70f0e182584f9f7a8d39114bb4b2e0fb6d16c4a7c9a514d353597",
+    "proj/src/assets/mouse/cursor.xpm": "152a1cf744d1b195723e404599b0ffebd858f890ccced865e18d026f1702c0de",
+    "proj/src/assets/mouse/mouse_cursor.xpm": "5469fcdf5b0f29031da25cd26ed974dc9b41b65965d9b6b4b77f5afc0bb1ba19",
+    "proj/src/assets/numbers/eight.xpm": "1114f043b7659a0cf40371fdaebb73dca0d0f033b580db1ec6d5e9ec6dbcf290",
+    "proj/src/assets/numbers/five.xpm": "af643e3888e1ade90c4ee2dddb21fbeb6e97c6bf445fa25d868568f4f5ed8f09",
+    "proj/src/assets/numbers/four.xpm": "c581da6a29e8b81e2ac64c957c0d1596c923fbcbcbe2e26eb6034fb20d87ab68",
+    "proj/src/assets/numbers/nine.xpm": "c3a2f37fe6c2467f3f4d9e22438fba3b2272b1aef73ef72750cd873880fb9d5a",
+    "proj/src/assets/numbers/one.xpm": "5b04abe5e6ca3bdf22468843aee101e6aa2bcb4d55e2fc29885d9007f11d00dd",
+    "proj/src/assets/numbers/seven.xpm": "22b9af480735c5f99dfc117492f05ec4dc125a95fcfb5fa92f0b6d72d22ae7a3",
+    "proj/src/assets/numbers/six.xpm": "90afa3d944ee758a34dfb0c13393095f7f09bc9fbe56e6d35000390166533ae7",
+    "proj/src/assets/numbers/three.xpm": "fc46f31e269ad4e578cc427b66b2317696a74a81be7e95fbbf8cfac1c0aa4589",
+    "proj/src/assets/numbers/two.xpm": "1ebc8f6d045a4b6c76212a45028c412d63bd46c86def295fbc4bd3515f13558e",
+    "proj/src/assets/numbers/zero.xpm": "f072df45660cae58afad44a978e307fb751b438af16d4279aa941a7fe014931b",
+    "proj/src/assets/title.xpm": "d35e9a9548bf443f11306ba8ac053a517286d1f666aa1c8736326242595d547f",
+    "proj/src/assets/you_lost.xpm": "e691d7e00126e35e3344f654c006973c752122c5f0fc45e71d3aa208c15f9314",
+    "proj/src/assets/you_won.xpm": "d8f00fe95808f0622385050c1d299ec70b0716e754fed77522f148f683a02a4d",
+    "proj/src/drivers/kbc/i8042.h": "43e950a066713e4115c50915012e5fa15498748fcb09dbf602bd1433757b9f3e",
+    "proj/src/drivers/kbc/kbc_utils.c": "28bb21543df7fbff122b29635a20bc29b4f11fa98c8e5491d7aebf3d6ada633a",
+    "proj/src/drivers/kbc/kbc_utils.h": "680155a2c7e54d010d2b4a6439d9a9485d54dc58f869d33911838fdf906198bb",
+    "proj/src/drivers/kbc/keyboard.c": "c5a2189f8d50af7ece1da8ae28a87961a5ff497491b2b5fc591d84de1f7d4134",
+    "proj/src/drivers/kbc/keyboard.h": "9936b94bc7f42740a81d30d2b1bbae95effb3de3bb2c6529bebca79b89efdf79",
+    "proj/src/drivers/kbc/mouse.c": "6cb80f5eac1da20c93cd0dd7af530ba4e086fedd43f4a62d89a2d0ab8ceecb3b",
+    "proj/src/drivers/kbc/mouse.h": "3bfb70ee208230246d175338262fcf8bd9fe5ed688dfaecd4329cc9392bd505c",
+    "proj/src/drivers/timer/i8254.h": "7b17dfca2ad73bf6521f95f28da863120f2483603b351580744531266206fac7",
+    "proj/src/drivers/timer/timer.c": "54982918ef74ec361d97b55c0c44adfdfb9bc6e4ecc555df6cdb1b82605eeb42",
+    "proj/src/drivers/timer/timer.h": "1bb88d925971f45118e9ea8f9c62563a1e90455c68cae6c73253a4c65b7484ce",
+    "proj/src/drivers/utils.c": "88bf552ba8ccded732cd2e7f96edcab4d091b2c4e8c10400fb98470e7cba11f8",
+    "proj/src/drivers/video/graphics.c": "8ce17111e49cbd57168074a4d1729fd8113277c96d8ebda63e5a6c004d2094b2",
+    "proj/src/drivers/video/graphics.h": "145a3c74123ae8d28bf7e047134c65c9da55abad7fbb6d5f2a2188d127c95144",
+    "proj/src/drivers/video/video.h": "ca2201a8c0fcbcb87e4e40e28c46a881ec9f4aaccf6b2a5de27eb319def7a224",
+    "proj/src/game.c": "e7cd8c0f3e7809d9a4cfa7ba2693d60d046036b369b91e9f502293f58cb4c8f3",
+    "proj/src/game.h": "b93e86c3e3d3903a06b8e2ea00c8d21263f7ac970fe98ff8ab6c676c9951b014",
+    "proj/src/grid.c": "b04271921fe477ce499a90b10fa2cb305ebba0dad3e16ed425e72e3ee28d0390",
+    "proj/src/grid.h": "9ff31d00cbda47dcbfa4e19903739f79834317ae38129911f41d1a4be1dbd254",
+    "proj/src/levels.c": "5f4fdd254b055fff0b3e0aa47cfb66f69d51faea940cabd79cb0649e38d4d6e9",
+    "proj/src/levels.h": "71848dd9c91a13b5bfacc8a82b909adfde47a4e9e8797d463dac1d879a8e5a43",
+    "proj/src/main.c": "806e061356e447b6a2a70d6e8ced4436aa9cc9054ac4b3f8612236f232954a5f",
+    "proj/src/proj": "5be187c62760739645da0dd71d7b3d373c27f5f0232a66b23937b5df4e99e2da",
+    "proj/src/sprite.c": "ed808a28e23cdbbdd633c0cf7bf29aece3e8dcced97e1f9c63d14fc117b748a0",
+    "proj/src/sprite.h": "8c2f9eefecd39e8d5c2142f2d671265252a30e8c3d162abda9f389201d0994ba",
+    "proj/src/states/instructions.c": "00835d83422fc27b238d8861b7dbb14caf88ffe4b7ffba3566c71361e5eb89c1",
+    "proj/src/states/instructions.h": "6dfd364c768d6afb8a1e5039741d1462a1f2dd183c1cd2f8a2eb5a4b476a6da0",
+    "proj/src/states/results.c": "3647622d3e4031ed87fa9110a4d9a2931dc2e292045f1adc0e0ae9bc396bb101",
+    "proj/src/states/results.h": "82a16549b6449d62071d59725e03241dd8305d89de46be6388b917ca2ece3cb9",
+    "proj/src/states/show_original.c": "263cb48d9570813f1ac78909f096759727b63a4c09bfd67e180cc297037f9391",
+    "proj/src/states/show_original.h": "4ab8e4b836cd6bd519f8ef4de78b9e723e6d91dec095445ea6a63858afcc4fcf",
+    "proj/src/states/start_menu.c": "bc3b240bb11c66a3f6c786c5b58ba57a24fd627357d51a6641271cb5ed19cdc0",
+    "proj/src/states/start_menu.h": "0e597bb176bb28dcf999e65cbbe17dcc67e3c003555fd820bb87a3c16102d465",
+    "proj/src/states/user_paint.c": "1939762513c8058d7f29fe9ea24209dc093b7e8f33949d5b52c3dc9b3b207773",
+    "proj/src/states/user_paint.h": "bcce91988b0edf4fc66ef513a853301e9229f149c475c9d225dda39425134282",
+    "proj/src/states/util_states.c": "f8d09a12348a5d049f9a41653cd9e7b1664342914b51842575498924ab237f7e",
+    "proj/src/states/util_states.h": "0976978e5c1d70538536f1a4a764b2d4bdbab9daa8df63db329a94c4ecf6a09a",
+    "proj/src/ui_assets.c": "d877adebdf2fe089e4d430ace44c07aa30c2414cb9d0dcaabb895f96e7521c79",
+    "proj/src/ui_assets.h": "4c90e745731f215544520ef2db788f1c3e86a49909ef4eda16145f2108654530"
+  },
+  "selection": "Pinned original project source, headers, required assets and root README/license. Generated documentation, course labs outside required project, compiled objects, logs, OS/VCS metadata omitted.",
+  "omissions": [
+    ".git/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.mov",
+    "**/.DS_Store",
+    "**/trace.txt",
+    "**/output.txt",
+    "**/core.*"
+  ],
+  "icon": {
+    "kind": "Original visible smiley painted-cell art, without surrounding instruction/grid lines",
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/icons12-inputs/jcovaa--LCOM-project/original-drawing.png",
+    "captureSha256": "0e7116f5239ad803c48e0f1d831b21153d89c7095f3d458eb9fbea384a8426e4",
+    "gridBounds": [
+      240,
+      140,
+      560,
+      460
+    ],
+    "paintedCells": [
+      [
+        1,
+        2
+      ],
+      [
+        1,
+        7
+      ],
+      [
+        2,
+        2
+      ],
+      [
+        2,
+        7
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        5,
+        8
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        6,
+        3
+      ],
+      [
+        6,
+        4
+      ],
+      [
+        6,
+        5
+      ],
+      [
+        6,
+        6
+      ],
+      [
+        6,
+        7
+      ]
+    ]
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "a93b5cf7a4d034d6f7cbfd2ddc018cc7c65fa54855d7183ec4db930a80d09da3",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "2421c720839041fc7c062c212460b78fb78c9bbf036c0e495ea107ade3313458",
+      "kind": "actual ordinary100ms touch-painted original grid"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/pixel-native-fast-sequence/results.json",
+      "apkSha256": "58217dabf196c139a26b2d9739dd0d64fec520df29cc6142648c61dcf564e38c",
+      "demonstrated": "Original level1 template observed, twelve correct cells painted through ordinary touch gestures before the unchanged deadline, original YOU WON result and Home return with game process exit.",
+      "limits": [
+        "Representative local ARM64 touchscreen gameplay only. Complete campaigns and physical-phone performance remain untested.",
+        "Only original level1 completion verified."
+      ]
+    }
+  }
+}

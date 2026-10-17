@@ -1,0 +1,66 @@
+--- a/proj/src/cards.c
++++ b/proj/src/cards.c
+@@ -55,24 +55,34 @@
+     	{
+     		case BLUE_CLR:
+     			map = xpm_load(blue_card_xpm, XPM_8_8_8, &deck[i].frente);
++                break;
+     		case DARK_GREEN_CLR:
+     			map = xpm_load(dark_green_card_xpm, XPM_8_8_8, &deck[i].frente);
++                break;
+     		case GREEN_CLR:
+     			map = xpm_load(green_card_xpm, XPM_8_8_8, &deck[i].frente);
++                break;
+     		case GREY_CLR:
+     			map = xpm_load(grey_card_xpm, XPM_8_8_8, &deck[i].frente);
++                break;
+     		case ORANGE_CLR:
+     			map = xpm_load(orange_card_xpm, XPM_8_8_8, &deck[i].frente);
++                break;
+     		case PINK_CLR:
+     			map = xpm_load(pink_card_xpm, XPM_8_8_8, &deck[i].frente);
++                break;
+     		case PURPLE_CLR:
+     			map = xpm_load(purple_card_xpm, XPM_8_8_8, &deck[i].frente);
++                break;
+     		case SEA_BLUE_CLR:
+     			map = xpm_load(sea_blue_card_xpm, XPM_8_8_8, &deck[i].frente);
++                break;
+     		case WHITE_CLR:
+     			map = xpm_load(white_card_xpm, XPM_8_8_8, &deck[i].frente);
++                break;
+     		case YELLOW_CLR:
+     			map = xpm_load(yellow_card_xpm, XPM_8_8_8, &deck[i].frente);
++                break;
+     	}
+ 
+ 		if(i < NUM_CARDS/2)
+@@ -109,26 +119,14 @@
+ 
+ int drawCartaFrente(card_t card)
+ {
+-    uint8_t *map;
+-    if (card.color == BLUE_CLR) map = xpm_load(blue_card_xpm, XPM_8_8_8, &card.frente);
+-    if (card.color == DARK_GREEN_CLR) map = xpm_load(dark_green_card_xpm, XPM_8_8_8, &card.frente);
+-    if (card.color == GREEN_CLR) map = xpm_load(green_card_xpm, XPM_8_8_8, &card.frente);
+-    if (card.color == GREY_CLR) map = xpm_load(grey_card_xpm, XPM_8_8_8, &card.frente);
+-    if (card.color == ORANGE_CLR) map = xpm_load(orange_card_xpm, XPM_8_8_8, &card.frente);
+-    if (card.color == PINK_CLR) map = xpm_load(pink_card_xpm, XPM_8_8_8, &card.frente);
+-    if (card.color == PURPLE_CLR) map = xpm_load(purple_card_xpm, XPM_8_8_8, &card.frente);
+-    if (card.color == SEA_BLUE_CLR) map = xpm_load(sea_blue_card_xpm, XPM_8_8_8, &card.frente);
+-    if (card.color == WHITE_CLR) map = xpm_load(white_card_xpm, XPM_8_8_8, &card.frente);
+-    if (card.color == YELLOW_CLR) map = xpm_load(yellow_card_xpm, XPM_8_8_8, &card.frente);
+-    if(map == NULL) return 1;
++    if (card.frente.bytes == NULL) return 1;
+     draw_pix_map(card.frente, card.x_pos, card.y_pos);
+     return 0;
+ }
+ 
+ int drawCartaVerso(card_t card)
+ {
+-    uint8_t *map = xpm_load(card_xpm, XPM_8_8_8, &card.verso);
+-    if(map == NULL) return 1;
++    if (card.verso.bytes == NULL) return 1;
+     draw_pix_map(card.verso, card.x_pos, card.y_pos);
+     return 0;
+ }

@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "name": "Jumping Peanut",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": false,
+      "quickKeys": [],
+      "layout": "overlay",
+      "pointer": "move",
+      "touch": "move",
+      "repeatKeys": [
+        "SPACE"
+      ],
+      "actions": [
+        {
+          "label": "Start",
+          "key": "P",
+          "position": "top-right"
+        },
+        {
+          "label": "Jump",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Exit",
+          "key": "ESC",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/res/gameover.bmp",
+      "proj/res/points.bmp",
+      "proj/res/mouse.bmp",
+      "proj/res/heart.bmp",
+      "proj/res/peanut_p2_night.bmp",
+      "proj/res/menu.bmp",
+      "proj/res/3.bmp",
+      "proj/res/2.bmp",
+      "proj/res/0.bmp",
+      "proj/res/1.bmp",
+      "proj/res/5.bmp",
+      "proj/res/4.bmp",
+      "proj/res/6.bmp",
+      "proj/res/7.bmp",
+      "proj/res/peanut_p2.bmp",
+      "proj/res/peanut_p1.bmp",
+      "proj/res/9.bmp",
+      "proj/res/8.bmp",
+      "proj/res/background_night.bmp",
+      "proj/res/end.bmp",
+      "proj/res/background.bmp",
+      "proj/res/cloud2.bmp",
+      "proj/res/cloud3.bmp",
+      "proj/res/cloud1.bmp",
+      "proj/res/peanut_p1_night.bmp"
+    ]
+  },
+  "archetype": "Flappy Bird",
+  "description": "Tap Jump to stay aloft through the clouds. Avoid collisions, then move the cursor onto Try Again and use Select after Game Over.",
+  "preview": "../../../../../collections/arcade/previews/diogoyaguas-feup-lcom-d7f0289e903c.png",
+  "icon": "icon.png"
+}

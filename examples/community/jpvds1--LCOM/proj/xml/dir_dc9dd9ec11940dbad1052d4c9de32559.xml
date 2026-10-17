@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="dir_dc9dd9ec11940dbad1052d4c9de32559" kind="dir">
+    <compoundname>C:/MINIX-LCOM/shared/g3/proj/src/Lists</compoundname>
+    <innerfile refid="_animation_list_8c">AnimationList.c</innerfile>
+    <innerfile refid="_animation_list_8h">AnimationList.h</innerfile>
+    <innerfile refid="_enemy_list_8c">EnemyList.c</innerfile>
+    <innerfile refid="_enemy_list_8h">EnemyList.h</innerfile>
+    <innerfile refid="_laser_list_8c">LaserList.c</innerfile>
+    <innerfile refid="_laser_list_8h">LaserList.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Lists/"/>
+  </compounddef>
+</doxygen>

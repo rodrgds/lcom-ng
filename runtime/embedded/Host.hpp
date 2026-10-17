@@ -33,6 +33,7 @@ Host &host();
 void injectKey(const char *key, bool down);
 void injectMouse(int dx, int screen_dy, uint8_t buttons);
 void injectPointer(int x, int y, uint8_t buttons);
+void injectWheel(int delta);
 void configureCursor(CursorConfig config);
 
 } // namespace lcom::embedded

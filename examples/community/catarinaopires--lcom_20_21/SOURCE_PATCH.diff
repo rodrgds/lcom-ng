@@ -1,0 +1,92 @@
+--- a/proj/src/proj.c
++++ b/proj/src/proj.c
+@@ -329,7 +329,7 @@
+         if (interrupt_flags[2]) {
+           interrupt_flags[2] = 0;
+           mouse_process_packet(&mouse, &pMouse);
+-          change_speed(cursor, pMouse.delta_x, -pMouse.delta_y);
++          change_speed(cursor, cursor->xspeed + pMouse.delta_x, cursor->yspeed - pMouse.delta_y);
+           if (pMouse.lb) {
+             // If chosen option is play
+             if (check_collision_options(cursor->drawing, 460, 430, 180, 60)) {
+@@ -376,7 +376,7 @@
+         if (interrupt_flags[2]) {
+           interrupt_flags[2] = 0;
+           mouse_process_packet(&mouse, &pMouse);
+-          change_speed(cursor, pMouse.delta_x, -pMouse.delta_y);
++          change_speed(cursor, cursor->xspeed + pMouse.delta_x, cursor->yspeed - pMouse.delta_y);
+ 
+           if (pMouse.lb) {
+             // If chosen option is play reaction game
+@@ -424,7 +424,7 @@
+         if (interrupt_flags[2]) {
+           interrupt_flags[2] = 0;
+           mouse_process_packet(&mouse, &pMouse);
+-          change_speed(cursor, pMouse.delta_x, -pMouse.delta_y);
++          change_speed(cursor, cursor->xspeed + pMouse.delta_x, cursor->yspeed - pMouse.delta_y);
+           if (pMouse.lb) {
+             // If chosen option is play reaction game
+             if (check_collision_options(cursor->drawing, 470, 630, 180, 60)) {
+@@ -568,7 +568,7 @@
+         if (interrupt_flags[2]) {
+           interrupt_flags[2] = 0;
+           mouse_process_packet(&mouse, &pMouse);
+-          change_speed(cursor, pMouse.delta_x, -pMouse.delta_y);
++          change_speed(cursor, cursor->xspeed + pMouse.delta_x, cursor->yspeed - pMouse.delta_y);
+           if (pMouse.lb) {
+             // If chosen option is play reaction game
+             if (check_collision_options(cursor->drawing, 470, 630, 180, 60)) {
+@@ -645,7 +645,7 @@
+         if (interrupt_flags[2]) {
+           interrupt_flags[2] = 0;
+           mouse_process_packet(&mouse, &pMouse);
+-          change_speed(cursor, pMouse.delta_x, -pMouse.delta_y);
++          change_speed(cursor, cursor->xspeed + pMouse.delta_x, cursor->yspeed - pMouse.delta_y);
+ 
+           if (pMouse.lb) {
+             // If chosen option is play reaction game
+@@ -691,7 +691,7 @@
+           interrupt_flags[2] = 0;
+           mouse_counter = 0;
+           mouse_process_packet(&mouse, &pMouse);
+-          change_speed(cursor, pMouse.delta_x, -pMouse.delta_y);
++          change_speed(cursor, cursor->xspeed + pMouse.delta_x, cursor->yspeed - pMouse.delta_y);
+           gestureDetection_detect_event(&pMouse, &mouse_current_event);
+           gestureDetection_draw_process_state_H(&hState, &mouse_current_event, 100, 15);
+           if(hState == COMP_H){
+@@ -735,7 +735,7 @@
+         if (interrupt_flags[2]) {
+           interrupt_flags[2] = 0;
+           mouse_process_packet(&mouse, &pMouse);
+-          change_speed(cursor, pMouse.delta_x, -pMouse.delta_y);
++          change_speed(cursor, cursor->xspeed + pMouse.delta_x, cursor->yspeed - pMouse.delta_y);
+ 
+           if (pMouse.lb) {
+             // If chosen option is play reaction game
+@@ -780,7 +780,7 @@
+         if (interrupt_flags[2]) {
+           interrupt_flags[2] = 0;
+           mouse_process_packet(&mouse, &pMouse);
+-          change_speed(cursor, pMouse.delta_x, -pMouse.delta_y);
++          change_speed(cursor, cursor->xspeed + pMouse.delta_x, cursor->yspeed - pMouse.delta_y);
+           if (pMouse.mb) {
+             counters_counter_stop(counters1, counters_time_game);
+             s_counted = (int) counters_get_seconds(counters_time_game, 60);
+@@ -809,7 +809,7 @@
+         if (interrupt_flags[2]) {
+         interrupt_flags[2] = 0;
+         mouse_process_packet(&mouse, &pMouse);
+-        change_speed(cursor, pMouse.delta_x, -pMouse.delta_y);
++        change_speed(cursor, cursor->xspeed + pMouse.delta_x, cursor->yspeed - pMouse.delta_y);
+ 
+         if (pMouse.lb) {
+           // If chosen option is go back
+@@ -842,7 +842,7 @@
+         if (interrupt_flags[2]) {
+         interrupt_flags[2] = 0;
+         mouse_process_packet(&mouse, &pMouse);
+-        change_speed(cursor, pMouse.delta_x, -pMouse.delta_y);
++        change_speed(cursor, cursor->xspeed + pMouse.delta_x, cursor->yspeed - pMouse.delta_y);
+ 
+         if (pMouse.lb) {
+           // If chosen option is play

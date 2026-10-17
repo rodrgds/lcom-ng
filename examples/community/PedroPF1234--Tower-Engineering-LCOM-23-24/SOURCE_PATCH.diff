@@ -1,0 +1,253 @@
+--- a/proj/src/Devices/Mouse/mouse.c
++++ b/proj/src/Devices/Mouse/mouse.c
+@@ -50,7 +50,9 @@
+ 
+   if (kbc_write_cmdb(KBC_INPUT_BUFFER, cmd, true)) return 1;
+ 
+-  return 0;
++  uint8_t ack;
++  if (kbc_read_cmdb(&ack, true)) return 1;
++  return ack == KBC_ACK ? 0 : 1;
+ }
+ 
+ int (mouse_read_cmdb)(uint8_t *info) {
+--- a/proj/src/Devices/Graphics/graphics.c
++++ b/proj/src/Devices/Graphics/graphics.c
+@@ -255,8 +255,9 @@
+ }
+ 
+ int vg_free() {
+-  free(primary_buffer);
+-  return 0;
++  int result = vm_unmap_phys(SELF, primary_buffer, (size_t)h_res * v_res * bytes_per_pixel * 2);
++  if (result == 0) primary_buffer = secondary_buffer = current_buffer = NULL;
++  return result;
+ }
+ 
+ uint16_t* getInfo() {
+--- a/proj/src/GameObjects/gameobject.c
++++ b/proj/src/GameObjects/gameobject.c
+@@ -42,6 +42,7 @@
+   if (array->length == 0) {
+     array->gameObjects[0] = newGameObject;
+     array->length++;
++    return;
+   }
+ 
+   if (array->length >= array->capacity) {
+@@ -68,7 +69,7 @@
+       break;
+     }
+     if (i == array->length - 1) {
+-      array->gameObjects[i] = newGameObject;
++      array->gameObjects[i + 1] = newGameObject;
+       array->length++;
+       break;
+     }
+@@ -260,7 +261,7 @@
+ }
+ 
+ void destroy_animated_gameobject(AnimatedGameObject* animatedGameObject) {
+-  destroy_gameobject(animatedGameObject->gameObject);
++  destroy_gameobject_safe_sprite(animatedGameObject->gameObject);
+   removeAnimatedObjectArray(&animatedSprites, animatedGameObject);
+   free(animatedGameObject);
+ }
+--- a/proj/src/Game/Menu/menu.c
++++ b/proj/src/Game/Menu/menu.c
+@@ -82,6 +82,7 @@
+         destroy_sprite(temp1->no_hovering);
+         temp1->hovering = create_sprite((xpm_map_t)FirstMiniMapSelected, 0, 0, true, true);
+         temp1->no_hovering = create_sprite((xpm_map_t)FirstMiniMapSelected, 0, 0, true, true); 
++        temp1->button->sprite = temp1->no_hovering;
+         break;
+ 
+       case 1:
+@@ -92,6 +93,7 @@
+         destroy_sprite(temp2->no_hovering);
+         temp2->hovering = create_sprite((xpm_map_t)SecondMiniMapSelected, 0, 0, true, true);
+         temp2->no_hovering = create_sprite((xpm_map_t)SecondMiniMapSelected, 0, 0, true, true); 
++        temp2->button->sprite = temp2->no_hovering;
+         break;
+ 
+       case 2:
+@@ -102,6 +104,7 @@
+         destroy_sprite(temp3->no_hovering);
+         temp3->hovering = create_sprite((xpm_map_t)ThirdMiniMapSelected, 0, 0, true, true);
+         temp3->no_hovering = create_sprite((xpm_map_t)ThirdMiniMapSelected, 0, 0, true, true); 
++        temp3->button->sprite = temp3->no_hovering;
+         break;
+       
+       case 4:
+@@ -133,6 +136,7 @@
+       destroy_sprite(temp->no_hovering);
+       temp->hovering = create_sprite((xpm_map_t)PlayButtonHovered, 0, 0, false, true);
+       temp->no_hovering = create_sprite((xpm_map_t)PlayButton, 0, 0, false, true);      
++      temp->button->sprite = temp->no_hovering;
+     }
+   
+     if (just_changed) {
+@@ -144,6 +148,7 @@
+           destroy_sprite(temp->no_hovering);
+           temp->hovering = create_sprite(i == 0 ? (xpm_map_t)FirstMiniMapHovered : i == 1 ? (xpm_map_t)SecondMiniMapHovered : (xpm_map_t)ThirdMiniMapHovered, 0, 0, true, true);
+           temp->no_hovering = create_sprite(i == 0 ? (xpm_map_t)FirstMiniMap : i == 1 ? (xpm_map_t)SecondMiniMap : (xpm_map_t)ThirdMiniMap, 0, 0, true, true);
++          temp->button->sprite = temp->no_hovering;
+         }
+       }
+     }
+--- a/proj/src/Game/Gameplay/gameplay.c
++++ b/proj/src/Game/Gameplay/gameplay.c
+@@ -791,6 +791,7 @@
+           destroy_sprite(button->no_hovering);
+           button->hovering = create_sprite((xpm_map_t)CrossbowButtonSelected, 0, 0, false, true);
+           button->no_hovering = create_sprite((xpm_map_t)CrossbowButtonSelected, 0, 0, false, true);
++          button->button->sprite = button->no_hovering;
+         }
+         break;
+ 
+@@ -822,6 +823,7 @@
+             destroy_sprite(button->no_hovering);
+             button->hovering = create_sprite((xpm_map_t)CannonButtonSelected, 0, 0, false, true);
+             button->no_hovering = create_sprite((xpm_map_t)CannonButtonSelected, 0, 0, false, true);
++            button->button->sprite = button->no_hovering;
+           }
+           
+         }
+@@ -880,6 +882,7 @@
+             destroy_sprite(button->no_hovering);
+             button->hovering = create_sprite((xpm_map_t)LaserButtonSelected, 0, 0, false, true);
+             button->no_hovering = create_sprite((xpm_map_t)LaserButtonSelected, 0, 0, false, true);
++            button->button->sprite = button->no_hovering;
+           }
+         }
+         break;  
+@@ -949,6 +952,7 @@
+     destroy_sprite(button->no_hovering);
+     button->hovering = create_sprite((xpm_map_t)MountButtonHovered, 0, 0, false, true);
+     button->no_hovering = create_sprite((xpm_map_t)MountButton, 0, 0, false, true);      
++    button->button->sprite = button->no_hovering;
+   }
+   
+   if (!type_tower_menu && just_changed_selection) {
+@@ -960,6 +964,7 @@
+         destroy_sprite(button->no_hovering);
+         button->hovering = create_sprite(i == 0 ? (xpm_map_t)CrossbowButtonHovered : i == 1 ? (xpm_map_t)CannonButtonHovered : (xpm_map_t)LaserButtonHovered, 0, 0, false, true);
+         button->no_hovering = create_sprite(i == 0 ? (xpm_map_t)CrossbowButton : i == 1 ? (xpm_map_t)CannonButton : (xpm_map_t)LaserButton, 0, 0, false, true);
++        button->button->sprite = button->no_hovering;
+       }
+     }
+   }
+@@ -1409,8 +1414,10 @@
+ 
+   tempButton1->hovering = create_sprite((xpm_map_t)CannonButtonHovered, 0, 0, false, true);
+   tempButton1->no_hovering = create_sprite((xpm_map_t)CannonButton, 0, 0, false, true);
++  tempButton1->button->sprite = tempButton1->no_hovering;
+   tempButton2->hovering = create_sprite((xpm_map_t)LaserButtonHovered, 0, 0, false, true);
+   tempButton2->no_hovering = create_sprite((xpm_map_t)LaserButton, 0, 0, false, true);
++  tempButton2->button->sprite = tempButton2->no_hovering;
+ 
+   hideButtons(&shop_buttons);
+ 
+@@ -1472,7 +1479,7 @@
+ 
+   hideSprites(&digits);
+ 
+-  destroyWeapon(player_weapon);
++  hideWeapon(player_weapon);
+ 
+   for (int i = 0; i < 360; i++) {
+     rotatedSpriteL[i].is_visible = false;
+@@ -1511,6 +1518,7 @@
+ }
+ 
+ void destroyGame() {
++  destroyWeapon(player_weapon);
+   destroy_gameobject(game_background);
+   destroyPlayer(player1);
+   destroyPlayer(player2);
+--- a/proj/src/Game/Gameplay/Weapon/weapon.c
++++ b/proj/src/Game/Gameplay/Weapon/weapon.c
+@@ -32,8 +32,10 @@
+ }
+ 
+ void destroyWeapon(Weapon* weapon) {
+-  destroy_gameobject(weapon->weaponL);
+-  destroy_gameobject(weapon->weaponR);
++  destroy_gameobject_safe_sprite(weapon->weaponL);
++  destroy_gameobject_safe_sprite(weapon->weaponR);
++  destroy_rotated_sprites(rotatedSpriteL, rotationsL);
++  destroy_rotated_sprites(rotatedSpriteR, rotationsR);
+   free(weapon);
+ }
+ 
+--- a/proj/src/Game/Gameplay/Tower/towers.c
++++ b/proj/src/Game/Gameplay/Tower/towers.c
+@@ -116,11 +116,10 @@
+ void destroyTower(TowerBase* tower) {
+   destroy_sprite(tower->baseNormal);
+   destroy_sprite(tower->baseHovered);
+-  if (tower->turret->sprite != NULL)
+-    destroy_sprite(tower->turret->sprite);
++  unmountTurret(tower);
+   tower->base->sprite = NULL;
+   destroy_gameobject(tower->base);
+-  // Destroy gameobjects for tower turrets.
++  destroy_gameobject_safe_sprite(tower->turret);
+   free(tower);
+ }
+ 
+@@ -193,7 +192,8 @@
+ 
+ void unmountTurret(TowerBase* tower) {
+   if (tower->turret->sprite != NULL) {
+-    destroy_sprite(tower->turret->sprite);
++    destroy_rotated_sprites(tower->turretSprite, rotations);
++    tower->turretSprite = NULL;
+     remove_sprite_from_spriteless_gameobject(tower->turret);
+     tower->target = NULL;
+     tower->level = 0;
+@@ -205,9 +205,7 @@
+   for (uint32_t i = 0; i < array->length; i++) {
+     TowerBase* tower = getTowerArray(array, i);
+     tower->base->sprite->is_visible = false;
+-    if (tower->turret->sprite != NULL)
+-      free(tower->turret->sprite);
+-      remove_sprite_from_spriteless_gameobject(tower->turret);
++    unmountTurret(tower);
+   }
+ }
+ 
+--- a/proj/src/ImageAssets/sprite.c
++++ b/proj/src/ImageAssets/sprite.c
+@@ -114,9 +114,6 @@
+ }
+ 
+ void destroy_animated_sprite(AnimatedSprite* as) {
+-  for (uint32_t i = 0; i < as->sprites.length; i++) {
+-    destroy_sprite(getSpriteArray(&as->sprites, i));
+-  }
+   destroySpriteArray(&as->sprites);
+   free(as);
+ }
+@@ -356,6 +353,12 @@
+   return sp;
+ }
+ 
++void destroy_rotated_sprites(Sprite* sprites, int count) {
++  if (sprites == NULL) return;
++  for (int i = 0; i < count; i++) free(sprites[i].map);
++  free(sprites);
++}
++
+ void destroy_sprite(Sprite *sp) {
+ 
+   // Memory leak if sprite is a series of rotated sprites, needs fixing
+--- a/proj/src/ImageAssets/sprite.h
++++ b/proj/src/ImageAssets/sprite.h
+@@ -340,3 +340,6 @@
+  * @param y2 The y position of the second point.
+ */
+ float* normalize_vector(float x, float y, float x2, float y2);
++
++/* Release a contiguous rotated-sprite array and each owned pixel map. */
++void destroy_rotated_sprites(Sprite* sprites, int count);

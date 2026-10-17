@@ -38,6 +38,10 @@ Use a square PNG at least 48 pixels wide. A 1024×1024 image with the subject ne
 the center works well with Android's adaptive launcher masks. The web export uses
 the icon for the browser tab, home-screen shortcut and web app manifest.
 
+Optional `archetype`, for example `"Snake"` or `"Space Invaders"`, groups related
+games in collection launchers. Full sets of nine use a compact 3×3 block in the
+space of four normal tiles. Each game keeps its own icon, search result and controls.
+
 Paths in `lcom.json` are relative to the project. The icon path is relative to the
 configuration file, including when you select another file with `--config`:
 
@@ -68,7 +72,7 @@ Add a short gameplay description and a screenshot for the browser library:
 PNG of at least 48 pixels in each dimension, relative to the configuration file.
 A gameplay capture around 800×600 works well. The library crops it to a wide tile
 and puts the game name over the image. Without a preview, it uses the icon.
-The loading screen shows the description and actual download progress, then
+The loading modal shows the description and actual download progress, then
 opens the game when its first frame appears. These fields do not alter gameplay
 or native controls.
 
@@ -82,6 +86,7 @@ or native controls.
 | `controls.mouseButtons` | `true` | Show separate left/right mouse buttons |
 | `controls.quickKeys` | `["ESC", "SPACE", "ENTER"]` | Up to sixteen guest keys, or `[]` |
 | `controls.repeatKeys` | `[]` | Keys to repeat while held, after 350 ms then at 10 Hz, for games that move once per key press |
+| `controls.repeatReleaseKeys` | `[]` | Touch keys to repeat as release/press cycles at the same rate, for games that act on key release |
 | `controls.joystick` | `true` | Optional mouse stick menu; `false` hides it; an object shows a configured stick immediately |
 | `controls.dpad` | `false` | `true` or an object enables a directional pad |
 | `controls.look` | `false` | `true` or an object enables a mouse aiming stick |
@@ -96,7 +101,7 @@ or native controls.
 | `controls.cursor.desktopScale` | Unset | Physical browser mouse calibration: guest pixels per PS/2 unit, `0.5`, `1` or `2` |
 | `controls.cursor.desktopFractional` | `false` | The calibrated guest keeps fractional cursor positions, as LCOMaze does |
 | `controls.pads` | `[]` | Up to two directional pads, sticks or steering wheels |
-| `controls.actions` | `[]` | Up to eight named key or mouse actions, at most four per corner |
+| `controls.actions` | `[]` | Up to eight named key, mouse or wheel actions, at most four per corner |
 
 ### Direct touch
 
@@ -199,6 +204,10 @@ Games that move once per key make, rather than keeping a held movement state,
 can set `"repeatKeys": ["W", "A", "S", "D"]`. Those keys repeat after a short
 hold, so a movement pad can travel continuously. Releasing the last finger or
 cancelling stops repeats. Leave this empty for games with their own held-key logic.
+For games that act on key release, use `repeatReleaseKeys` instead. A short tap
+still produces one action. Held touch controls repeat complete key cycles;
+releasing or cancelling stops them. Physical keyboard input stays unchanged.
+A key cannot appear in both repeat lists.
 
 ### Custom and two-player controls
 
@@ -233,9 +242,14 @@ Pad modes are `arrows`, `wasd`, `keypad` (8/4/2/6), and `mouse`. Styles are
 directions through `"keys": {"up":"W","left":"A","down":"S","right":"D"}`.
 Only one pad can occupy each side, including the older joystick, look and dpad
 settings. Explicit pads hide the optional default joystick menu.
+Mouse sticks accept `sensitivity` from `0.1` to `10`. Higher values help older
+text-mode games that divide each mouse packet into coarse cursor steps.
 
 Each action requires a `side` or `position`, a short `label` (up to 16 characters), and either
-`key` or `mouseButton` (`left`, `right`, `middle`). Actions hold while touched,
+`key`, `mouseButton` (`left`, `right`, `middle`), or `wheel` (a nonzero integer
+from -127 to 127). For example, `{"side":"right","label":"Slow time","wheel":2}`
+sends two wheel steps once per tap. The game must enable its IntelliMouse wheel
+protocol. Key and mouse button actions hold while touched,
 including modifier keys. Multiple fingers can hold both pads and both players'
 actions independently. Positions are `top-left`, `top-right`, `bottom-left` and
 `bottom-right`. A legacy `side` places the action by that thumb; an explicit
@@ -270,7 +284,10 @@ while bottom thumb actions keep larger targets.
 Quick keys use guest names: letters `A` to `Z`, digits, `ESC`, `SPACE`, `ENTER`,
 `UP`, `DOWN`, `LEFT`, `RIGHT`, `TAB`, `BACKSPACE`, `LSHIFT`, `LCTRL`, `LALT`, `F1`
 to `F12`, `HOME`, `END`, `PAGEUP`, `PAGEDOWN`, `DELETE`, `INSERT`, `KP_ENTER`
-and `KP0` to `KP9`. Keypad directions produce their original single-byte codes;
+and `KP0` to `KP9`. Actions and quick keys also accept `MINUS`, `EQUAL`,
+`LBRACKET`, `RBRACKET`, `BACKSLASH`, `SEMICOLON`, `APOSTROPHE`, `BACKQUOTE`,
+`COMMA`, `PERIOD` and `SLASH`. These are physical guest keys, so choose the
+key expected by the original game's keyboard layout. Keypad directions produce their original single-byte codes;
 arrow keys retain extended codes. Arrow and
 mouse controls use symbols; web controls retain accessible names and tooltips.
 
@@ -362,8 +379,27 @@ Sources are discovered automatically when `sources` is absent. An `assets/`
 folder is included automatically when `assets` is absent. Use `"assets": []` to
 exclude it explicitly. Original Minix
 Makefiles can also set `"assetRoot": ".."`, `"assets": ["proj/assets"]` and
-`"libraries": ["name=source.c,other.c"]`. Explicit source lists select native
-C projects instead of Makefile discovery.
+`"libraries": ["name=source.c,other.c"]`. Explicit source lists override Makefile discovery. Projects that import the
+original LCF/Minix headers keep the compatibility compiler and entry point,
+including source archives without a Makefile. Other source lists use the native
+SDK. Keep required header directories in `build.include`.
+
+`build.cStandard` selects the game source dialect: `"gnu89"`, `"gnu99"`,
+`"gnu11"` (default), or `"gnu17"`. It applies to desktop compatibility builds,
+browser exports and native game objects, including Android. SDK and runtime
+sources keep their own standard. For example, a Minix 3.1.8 project written for
+GCC's original GNU89 inline rules can declare:
+
+```json
+{"build": {"cStandard": "gnu89"}}
+```
+
+Use the original project's toolchain requirements when choosing a dialect.
+Exporters honor an alternate `--config` file too.
+
+Configured arguments begin at `argv[1]`. Native exports use `./<PROG>` as
+`argv[0]` for Minix Makefiles and `./game` for native sources, independently of
+the display name. Relative asset paths use the exported project's working directory.
 
 Desktop bundles use the configured name and include `icon.png`, referenced in
 `bundle.json`. They retain the existing executable/directory format:
@@ -401,7 +437,7 @@ when your editor supports local JSON schemas.
 ### Runtime environment
 
 `build.environment` sets string environment variables before the game starts in
-browser and Android exports. For a legacy game that never enables PS/2 mouse
+browser, Android and desktop app exports. For a legacy game that never enables PS/2 mouse
 reporting, opt into the compatibility override without changing its source:
 
 ```json
@@ -417,6 +453,35 @@ subscribes to its interrupt. Leave this unset for games that poll the mouse.
 Legacy builds default to signed `char`, matching the original x86 Minix target
 on Android ARM too. An explicit `-funsigned-char` in the original Makefile still wins.
 
+A game written for a graphics card with a fixed framebuffer address can select
+that firmware address while keeping its source unchanged:
+
+```json
+{"build": {"environment": {"LCOM_VBE_PHYSICAL_BASE": "0xF0000000"}}}
+```
+
+The default is `0xE0000000`. The selected address is reported by VBE BIOS calls
+and owns the game's only video-memory aperture. It must be page aligned, fit the
+complete 16 MiB aperture in 32-bit physical space, and avoid the runtime's low
+memory and audio buffer. Invalid values stop initialization. For ordinary CLI
+runs, set the same variable when starting `lcom-ng run`, `replay` or `run-pair`.
+
+If the authored framebuffer occupies the default audio buffer at `0xD0000000`,
+relocate the SDK's 2 MiB PCM memory window explicitly:
+
+```json
+{"build": {"environment": {
+  "LCOM_VBE_PHYSICAL_BASE": "0xD0000000",
+  "LCOM_AC97_PCM_BASE": "0xC0000000"
+}}}
+```
+
+The two page-aligned windows must be disjoint and fit outside low memory in the
+32-bit physical address space. `lcom_ac97_get_buffer` reports the selected PCM
+address. AC97 I/O ports remain unchanged. Each device owns only its selected
+window, with no alias at its previous address. Omitting both options preserves
+the default video and audio addresses.
+
 ### Legacy save-file paths
 
 Some Minix games open files under a hard-coded home directory. Map that directory
@@ -426,11 +491,30 @@ to a folder in the exported assets without editing the game:
 {"build": {"pathAliases": {"/home/lcom/labs/my-project": "."}}}
 ```
 
-Alias keys are absolute POSIX directory prefixes. Values are existing directories
+Alias keys are explicit absolute or relative POSIX directory prefixes. For a game
+that uses `home/lcom/game/assets` without a leading slash, map that exact relative
+prefix to the packaged asset directory. Ordinary relative paths keep their normal
+working-directory behavior when no alias matches. Values are existing directories
 relative to `build.assetRoot`, or the project folder when no asset root is set.
 The compatibility SDK applies the longest matching directory prefix when the
-original `fopen`, `remove` or `rename` path does not exist. Android keeps each game's saved files in
-private storage between launches. Browser writes last for the current game
+original `access`, `open`, `fopen`, `remove` or `rename` path does not exist, or access is denied
+by a host directory such as Android `/tmp`. Successful original operations keep
+precedence. Permission-denied paths require an explicit alias; the default Minix
+home-directory fallback does not apply. If the alias also fails, the original
+permission error is preserved. Explicit aliases accept repeated `/` separators.
+A prefix matches only a complete path component, so `home/lcom/game` does not
+match `home/lcom/game2`.
+Declared absolute prefixes also relocate literal C `#include` paths at build time.
+The importer and both exporters use Clang's built-in VFS overlay, keeping source
+bytes unchanged. Android exports copy the mapped header closure and keep the
+mapping relative to that snapshot, so moving the export does not require the
+original project. This requires Clang, Emscripten or Android NDK Clang only when
+a declared alias matches an absolute include. For a desktop GCC build, select
+`--cc clang`. Relative save-file aliases retain their runtime behavior. Includes
+constructed by preprocessor macros are outside this source-discovery contract.
+
+Android keeps each game's saved files in private storage between launches.
+Browser writes last for the current game
 session. Include any initial save-file assets the game expects.
 
 Browser and Android exports configure these aliases automatically. Plain desktop
@@ -469,3 +553,17 @@ scaled packet delta. Tracking follows delivered packets, so switching between
 touch and physical mouse preserves alignment. Touch gestures and native
 physical mice retain their existing relative behavior. Keep this unset for
 cursors that warp, wrap, accelerate or move independently through other inputs.
+
+### Legacy C callback signatures
+
+Some older C projects assign callbacks with omitted parameters to function pointers
+that accept arguments. Native Minix permits that calling pattern, but WebAssembly
+checks the exact signature. If a browser export stops with a function signature
+mismatch, enable the compatibility option without editing the original sources:
+
+```json
+{"build": {"emulateFunctionPointerCasts": true}}
+```
+
+This affects legacy Minix browser exports only. It adds callback overhead, so leave
+it unset for projects that already use matching signatures.

@@ -1,0 +1,99 @@
+{
+  "repository": "https://github.com/nunoMeloCastro/FEUP-LCOM",
+  "revision": "88fb5ee000b99b51014ec06cf8420ecdbf65a7cd",
+  "project": ".",
+  "sourceHashes": {
+    "Makefile": "653c743e60a675a8cfbb9b3778a0b1d21f0377bb3e700d3cd26ef4a7d3724bdc",
+    "game/include/grid.h": "17d5b387016ac40576f41181c38df0fa2c9196eb74cd5c0f406d0e7e5d5ad999",
+    "game/include/sudoku.h": "5640d37d0e703116aec7fb5266aa3ebcffaa97850860963ca5a96b84c99b2df3",
+    "game/src/grid.c": "364562bd65a8093894288e8bb3988fdfec08836dfc7f248c2f72af63e66441c7",
+    "game/src/proj.c": "c37cde11d7871162c7f993ea0ff6ea9ab7361230aa06ce8bef50156f64be83c8",
+    "game/src/sudoku.c": "0a55d015bf285c5a47a2a20695818da3e30dd66c7ae18c64aea1dffc70bd5389",
+    "libs/kbc/include/event_handler.h": "b9cda4b29fec5d2f1fedee8d1a5ad987ff9a658f39fac2b9bcd75ea9b7b1b756",
+    "libs/kbc/include/i8042.h": "f731d6c26d23e771711bb6c7dff01010e7ea699bdc4db23efd9bf834bc694380",
+    "libs/kbc/include/kbc.h": "c07319e200f9e6fdde78b40771524aacf229c5bd389cc2fad0c232af66fee0b7",
+    "libs/kbc/include/mouse.h": "9f7a119cd84f0590b474a7a5d673a8e1f5cd199db18e977224e4376d1b30e6bb",
+    "libs/kbc/src/event_handler.c": "44a02ff1a49ee1235114c412ecdd8476a32d644dda6a0b1fa2d1c3f5a32c15f0",
+    "libs/kbc/src/kbc.c": "ed332c19af9a5b85116fa964c0f0a4b34a4390dc816a7d5cf98f61cdf6b3ff6e",
+    "libs/kbc/src/mouse.c": "c2d67fe5c45edc16807649d4da673b1b79bc099451314c98b6b3c8d4a3c71e44",
+    "libs/timer/include/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "libs/timer/include/timer.h": "98eec489660dd204d3c35c47f74c017b84f7cdac2f2cd6cdcf6952fb2c763e1c",
+    "libs/timer/src/timer.c": "a9ac19bf369839054543fdf2a03eaff10e7ade804d43fe80eec2b8f1b2fde3e3",
+    "libs/utils/include/utils.h": "cb64164a9d3d6f0c9318f498814c717dece91f01fc4ac2226dc4245507bbb1b4",
+    "libs/utils/src/utils.c": "4289b7609a9a0534610cec7c833c0e73c873f36c4ba92c855e90e43f275a12aa",
+    "libs/vbe/include/vbe_functions.h": "95c0aa908d3f853102c5f4ad38c45c06a69c44938845deb3d162ba10e9afb1c9",
+    "libs/vbe/include/vbe_macros.h": "4bfc068950145af180b62df4b55438530e8b9254fda339361a88022dfda13b02",
+    "libs/vbe/src/vbe_functions.c": "5a33069d1c2cacf2841965f02cb45d46b4e84c32bf9ac5d1f167346c051c0bdb",
+    "xpm/difficulties.h": "0707f434685543a18a40d2de754f68385b15f4fc11b341b6e0f047a130949ffb",
+    "xpm/game_elements.h": "58e1c095a5d2b9234e348e0583ded16ff23bde35fb977d531a6ae466acd472ea",
+    "xpm/highlighted_numbers.h": "6213cb6b92d5396e9e9e013f9e735cdda5a4f0b90b9a2ff7e4e0b67a7abf6bef",
+    "xpm/menu.h": "dd84885f494983bf233c7181cbb0997c66a36090413322ca70425166d2419e89",
+    "xpm/numbers.h": "e11a24d2133f7a6928abc23e86c13ba8a730d090dd71442356d881ec24864c52"
+  },
+  "selection": "Pinned original game sources and required original artwork. Narrow genuine source defects and32-bit Minix-to64-bit pointer portability are separately recorded overlays.",
+  "omissions": [
+    "**/*.a",
+    "**/*.mov",
+    "**/*.mp4",
+    "**/*.o",
+    "**/*.pdf",
+    "**/.DS_Store",
+    "**/.gitignore",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/core.*",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/output.txt",
+    "**/trace.txt",
+    ".git/**",
+    "compiled binaries",
+    "generated documentation",
+    "unused editable *.xcf artwork"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "libs/vbe/src/vbe_functions.c",
+          "reason": "32-bit Minix pointer portability on64-bit hosts: retain byte-pointer offsets for mapped/frame buffers rather than truncating through unsigned int. Original and repaired WASM32 behavior both verified.",
+          "originalSha256": "5a33069d1c2cacf2841965f02cb45d46b4e84c32bf9ac5d1f167346c051c0bdb",
+          "patchedSha256": "f7d0bf28d3af19164d85d250fc150cb000868d01beadd81a99e2155d022801b7"
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original ENTER break selects Practice, arrows/mouse select cells, digits fill an editable cell, BACKSPACE clears. Arrow pad and all9digits stay outside board in panel layout. Original sequential shared hook_id subscriptions require the separately repaired Minix opaque-handle SDK contract, no student input edits.",
+  "omittedSelectedFiles": [],
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence14/nunoMeloCastro--FEUP-LCOM-02-number-canvas.png",
+    "captureSha256": "ae192c79f974e2621e9773e797ab0ddc130c81fe67d1f306c9b7789109b9f113",
+    "originalSourceArt": true
+  },
+  "derivedAssets": [
+    {
+      "path": "icon.png",
+      "sha256": "61fc6657f33ce7690424b0c304528e4fd97d3ad576b09b6e1af975877590ed7a",
+      "kind": "Flat geometric icon informed by original bomb, number-grid or naval theme"
+    },
+    {
+      "path": "preview.png",
+      "sha256": "32e04204c8e2d808a607795f4c30680d32915dc2159a9c2f79356cdf9f4f05ab",
+      "kind": "Actual ordinary input browser gameplay canvas"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/a80-a82-reviewed-native/results.json",
+      "apkSha256": "9813c9e0622010540a600197b0a5031c1e03327a68c81504f2fa5b804839bd55",
+      "demonstrated": "Root viewed Practice board, ordinary Right selecting a blank cell, new black1 entered beside unchanged blue givens and cleared by Backspace, followed by clean Home return.",
+      "limitations": [
+        "Representative editable digit insertion/deletion verified. Full solved puzzle and Time-Attack not qualified."
+      ]
+    }
+  }
+}

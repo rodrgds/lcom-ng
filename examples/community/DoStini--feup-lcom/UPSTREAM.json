@@ -1,0 +1,131 @@
+{
+  "repository": "https://github.com/DoStini/feup-lcom",
+  "commit": "fa8b417db58619a29d8a0536dd82266c2e7203bd",
+  "project": "proj/system",
+  "sha256": {
+    "README.md": "b6c989301708cdba1869bff29b0203203814dd7ea423e3159017d83d02dbad18",
+    "proj/system/Makefile": "b9ad9f747458cbe4788380e40863eb8f6afd5ba14022f086406b8db689a41c8c",
+    "proj/system/main.c": "ca746fb7c5d9ca4fe09b91ebafa3028c1fd3f0fa3cf42dc095d767c75ad99562",
+    "proj/data/maps/map002.mxmap": "5c9c6c193a27e37305b8a7936e1965cc733a587f2a83d0982f5221f2acd84584",
+    "proj/data/maps/map001.mxmap": "7c76b4305e6ec85bb9abb77bf961b618671ab5d75048bb12bd7af28659eda92b",
+    "proj/data/maps/map003.mxmap": "b98fd163ebdf3a780a3ab17e5c8c46f2a1f160e6185b7e613060a97efccb6059",
+    "proj/data/textures/walls.h": "0d279397cb0b49b8759199294a48d11e72b478e5bd6f47521c541bb3ab954acb",
+    "proj/data/textures/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/data/textures/final_door.h": "ec007ac93f405b61811f1a9711566ab475c346fca8c765d0a807b9bd655e1985",
+    "proj/data/sprites/menus_bg.h": "899df02e91603a7e8e87543d7a2e058205e696318b11778fd256deb1abed2918",
+    "proj/data/sprites/inv_sprites.h": "36f9af53d7c5087616bae729e4a8276326d70312fdc4ece69c9d4109613c21e0",
+    "proj/data/sprites/hud_bar_sprite.h": "663ec0c2c5cf1daf6a63361aa31dffe069c3c0fbcb7162f72995f1b7bcab4fec",
+    "proj/data/sprites/menu_sprites.h": "2f4a7c7ed3fa9c0a91a6fa86604114027860a97b7f95dd29f08c9a2b58e1c704",
+    "proj/data/sprites/numbers/numbers.h": "8e895182e3b453e1ac2de2bb753f5e16bdd4dc370c72bdf4f366ba9bb7475f54",
+    "proj/data/sprites/guns/rifle_sprites.h": "e1cf5340ce9062823c3b4642e11c19a91a1a78d94c4a34a6501725de3d8ea224",
+    "proj/data/sprites/guns/pistol_sprites.h": "5839df4b69ecf7e7803b369887ed68f391e224814c2a12c8f323238531f80e23",
+    "proj/data/sprites/guns/ray_sprites.h": "bb7ad269ea6fbbcb041d5a8bb79710a3896d7f01a481cc4837001f3347d1c261",
+    "proj/data/sprites/pickups/pickup_sprites.h": "b2c459e446d58d09d2dc7708706a660daa066444e82ecc83597ebccf0bd9b496",
+    "proj/data/sprites/player/player_sprites.h": "3e1d5ed4b6e7bdf0e99578675462ebf98a53a2962cb2e73d3aa6adc9ddf089d4",
+    "proj/system/file/map.h": "f2f4a2d4e8af76a7f6b9c2aee6546d1ecafd6d9bb31ac2a0499a7ffd437375bd",
+    "proj/system/file/file.h": "6584ace6561900164a32b828ad079e2f155b6ee4528a3f7ed45ce8a03cdbd424",
+    "proj/system/file/map.c": "620545d29c884d274f4d9570e95d0342f10251295c9a198845eaa729a7e871ef",
+    "proj/system/networking/networking.c": "ac506d63458b72f2707714b54f86419034338ecddeb83159fe3c9c8f8e2ce386",
+    "proj/system/networking/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/system/networking/networking.h": "bd69557d54c20e6e21261181152cbf076226b01959cad922825c42422da0fcc1",
+    "proj/system/guns/gun.c": "84d2833580a840b75120d9c788253ddab370517bdcda33548ca4b3f6e5a51d56",
+    "proj/system/guns/gun.h": "26eda08010fbe14118d076d6ad93a70d7765ceb60bb685d2de968b13eccf84d2",
+    "proj/system/utils/utils.h": "7aa6233399e903d00ee426dba27f5cd1ab75f3a8f096807cd969b63140c30b95",
+    "proj/system/utils/data_types.h": "32d830ca990072c0c95e173dc179cc5280588a3b17d11ed3ad718a838ab2a662",
+    "proj/system/utils/utils.c": "7092cfa09549184970e51176e8972ac89936129754e6166204ad9c0fbb554a20",
+    "proj/system/game/game_manager.c": "145639f9455b07b9cfbccf1f54fb72a0dea21ae74246b6f1f326ccdb08066b5b",
+    "proj/system/game/level_manager.h": "15c17f53f07a815c332b6108ddc4d00587629b89db83582d406b577d7be86692",
+    "proj/system/game/main_menu.c": "b511e64c8b86bedbf818ca9951422dd6115950f9329c6136035527662762965c",
+    "proj/system/game/game_manager.h": "64a3e3a7c1408f878f341cf571f7e2f1c0aa65e1c726cbd8e2144781a3b06a8a",
+    "proj/system/game/level_manager.c": "b89be39e7fef7f3632936c7eb94af503f72ef625df39a3295d24e019d4f2417f",
+    "proj/system/game/main_menu.h": "3fce54f1bc13bbe4a1bd384cea6f0a0223fe6d53ae9c1bb3cb8762f6490a8dd0",
+    "proj/system/controls/controls.h": "fac255156335db6615cc6db7a47f9d4013627c38fdfa834d4ed1df6ee458b97b",
+    "proj/system/controls/controls.c": "9b0707a800cd91fd12e01eaa336849fdd742297be21735d65e79035f07c3b85e",
+    "proj/system/controls/kbd_layout.h": "6f8a07cc39337a89e231ae503eb7ecd610f492f3b04bb0683e35f29d50dbe926",
+    "proj/system/ai/enemy_controller.h": "5c79db18ee6164928d24dd6441ad3f1ae920fb7df294d903a9ea2b44472efb4e",
+    "proj/system/ai/enemy_controller.c": "baa7ac2cfdf9acfc20a044c4dc483d794c09c6c5a73304a1f655a522b77aa620",
+    "proj/system/inventory/menu.c": "37e93fefd325ead86667662ecb227e7f029bfba94201d38f0c3b5f818deb6888",
+    "proj/system/inventory/menu.h": "088b3aef5bc7b17f382b144ca88bae2d41b497312ee8b86f69f36d62b982bbbe",
+    "proj/system/lib/video_graphics.c": "7bf4ae9c0575ec9c86a073b07739b74fe3650f65276f6e0d6ef49e97331f9f86",
+    "proj/system/lib/kbc.h": "96caacc17927ecf04a7f4627853dc46fb58751047bbf9f4c2a37caa840b28c33",
+    "proj/system/lib/timer.c": "f65353711bff2912686cca8d7cf77a47f10f3271433fdfd1de57b801b70b8f27",
+    "proj/system/lib/rs232.h": "2f9a1cbd266782017ddef72babae1fc9016c3e093861b66270b0495bc240e3b1",
+    "proj/system/lib/video_cmd.h": "db1b7ee7475587cea78ad699c17f87d90589af6c276ed37802b773d34a62f442",
+    "proj/system/lib/rtc_controller.h": "ac959a6c6cb667a7564f4cf05ee8847f57e20be47b4755d0bd885055d80f1663",
+    "proj/system/lib/sprites.c": "bd0d864391828a6c775fef044347f4ebe6448976c0cce6526f28c0e38a21c9da",
+    "proj/system/lib/errors.h": "8debeca32ac57988da93cc5680c39c2c1391abf937c41df199aec1aaabcdcec3",
+    "proj/system/lib/queue.c": "055fecee73e200dbafcd88a3690457f3a6cc7b00290d075c96e7c3a3f352cae2",
+    "proj/system/lib/i8042.h": "8ea0b8d59a22c538f854bed28eef6295dd3789505f1b3a229322e90b8b1f9aa1",
+    "proj/system/lib/uart.h": "4cef1b9d970b48f354a8932ad105dfc4bc28ac05834cbb3627eb903d02363ef6",
+    "proj/system/lib/kbc.c": "39ef554efdb424b25cecd4b22813260ff48af17526cb2e4baa26ae4e467f992d",
+    "proj/system/lib/timer.h": "92e011f6dc43eba7d027ea22352bbd2a40a677c5f65ccc3d8e6f69f67e5b780d",
+    "proj/system/lib/video_graphics.h": "5e04cb77c98c383e3ec45c5d0f0a6fd197d3344a103b967bf69d7b17faf2a698",
+    "proj/system/lib/rtc.h": "e01b9c40f06821f2479c41298a05311d5e350c5afaae10ad78d63e25a77b7b11",
+    "proj/system/lib/rtc_controller.c": "dbe85761a54c893807f5c56ca6ece3e67274abdc6bd96cb81d63df665a51ecf4",
+    "proj/system/lib/sprites.h": "35b99eff12672c222f4e6bfb426426f7a2bd807f2929cc54961859abbbb3809e",
+    "proj/system/lib/i8254.h": "e5ef9d37515579b6d487461fd150f504bc08e5d978e8a0057cab6db2e3e0371f",
+    "proj/system/lib/queue.h": "3448514d3be0ffaa83a5f6ef5f57057da3d25c830dba43ab5054eaa3a117d5e7",
+    "proj/system/lib/uart.c": "ccf3be446a09ce40d0a4a5fa67839f0f6dad1aa1dc5f3f1eb14e4d98c607c727",
+    "proj/system/graphics/hud.h": "55b16ede0679127735a2c9c27470b0e801c5e59705e09158b16fea4a7a181a54",
+    "proj/system/graphics/render.c": "af13a789315707201f1aae22839ca024bb5044d6b18f92c63fb422bd8a4bc220",
+    "proj/system/graphics/hud.c": "a8d941e1c6878450ea25e0bbf628cbcd0e71e47b47a6545a5adf98d011e684fc",
+    "proj/system/graphics/graphics.h": "93df8dc4fcf797a7f0d2545fbba0e020dabab4a3c3e242b7e60254bdc4bc1b44",
+    "proj/system/graphics/render.h": "7201065d56f3298bc8a4f3b47d5b21e23cd68170336a8463734ee30e1caf95c2",
+    "proj/system/pickups/pickups.c": "1de53ddd22bdff109f5a68b16002805e34c9b568633d7985a5cd023d75171b57",
+    "proj/system/pickups/pickups.h": "05a1ade682c58942ba671dc59a84263d7bb9e7fe4face438e76e0eee6e34d50d",
+    "proj/system/player/player.h": "86d987afd243a4c3b5aa6b810592fbe3b1b022ca04cf71c52f08ddb43b369137",
+    "proj/system/player/player.c": "f16f6858e6eda2b50c3c1b1513080c0837043ab08e3a27405521918546ae33ea"
+  },
+  "sourceChanges": [
+    {
+      "file": "proj/system/file/map.c",
+      "originalSha256": "620545d29c884d274f4d9570e95d0342f10251295c9a198845eaa729a7e871ef",
+      "patchedSha256": "63af9ae2db0e1aac2a43a16482129d9d3015162807d3c7fd212eb6046015130b",
+      "reason": "Original valid map loading allocates a row after incrementing curLine to lines, writing one pointer beyond matrix and leaking the extra row. Allocate the next row only while curLine remains within lines. Actual load_map/close_map guarded-allocation fixture observed original buffer write and green exact2x3 map values with no outstanding allocations."
+    }
+  ],
+  "selection": "Pinned project source and required data maps and compiled artwork. Omitted labs, generated docs and OS/VCS/build metadata.",
+  "controlsRationale": "Menu starts at guest0,0, use relative swipe+576,+230 then Select/Fire. WASD left pad moves and strafes; right mouse stick turns, Q holds original inventory, key2 selects pistol, Shift sprints, Escape returns. Actual source level1 route W450 A800 W100 A500 W150, Pistol2, W500 picks armor20 and pistol ammo, original reload yields11 rounds; two normal fire presses decrease to9. Right-look rotation and both landscape/portrait overlay inspected. Multiplayer and complete campaign unverified.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/DoStini--feup-lcom",
+    "limits": "Short first-person movement, armor/ammunition pickup, pistol selection/reload, two shots and relative look. No enemy kill, complete level, multiplayer or Android gameplay claim yet."
+  },
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata excluded from required source inventory."
+  },
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream root.",
+  "icon": {
+    "kind": "simple maze and crosshair motif",
+    "source": "Original maze wall and red crosshair gameplay palette"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/system/icon.png",
+      "sha256": "868f7d672b44f7270a2d71e8135f656331f6dd755da6d8a502183247f6059946",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/system/preview.png",
+      "sha256": "b9d171c79bf7eeb1a64e879021dcda8dc81e3a6809dc7cef838baacfcac8cf72",
+      "kind": "actual browser first-person gameplay"
+    }
+  ]
+}

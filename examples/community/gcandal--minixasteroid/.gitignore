@@ -1,0 +1,25 @@
+# Object files
+*.o
+
+<<<<<<< HEAD
+*.d
+
+# Libraries
+*.lib
+*.a
+=======
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
+>>>>>>> c7face23708fb85c60e48a2a4485807f9dbf47a7

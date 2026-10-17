@@ -1,0 +1,181 @@
+{
+  "repository": "https://github.com/tomaspm98/LCOM",
+  "revision": "88116a5aa5e70ae2a86708eba30bc92f469ecf92",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "4c4b4e58e166d7072e14ea9f47931657e2ba46538029c64102024382f90c9eda",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/Doxyfile": "8eb6d94b8b5b6b1ef23c9395b6f596f70653cb7b3fda5a34e03051485c1e4489",
+    "proj/src/Makefile": "dd42d726542637650997e80ad6f20a2134e9e4d6e80e239daf6878d23ba2a2e4",
+    "proj/src/ball.c": "fac4b661353f35d96c25edb1c1cf475aec36c43ead33a3b03ec167febed1c223",
+    "proj/src/ball.h": "33d15e0f904e52ed6307124d16bd4767d7d346888896a1643c5770eddc3a6294",
+    "proj/src/colors.h": "b40c2c068202e4c209853d0938a763610c886facb3ad7dd5ddf7646b3452a6f8",
+    "proj/src/entity.c": "4b74b68ed21d3270b68a43d0012ac832c38e9068da6a7254fc3638d8c1412344",
+    "proj/src/entity.h": "dcc80b2b9861277dc1eab908cc7a092060263f6e37472aa687db38a992b0974d",
+    "proj/src/graphics/video_gr.c": "1df36318eb00660520c0459e2f934e63ffc8aff45ee708e61839ffd5a1273e2a",
+    "proj/src/graphics/video_gr.h": "851f25a6b563071586d0a5f7b834d2ed38f0e2f728bf54b24be7f5696123771f",
+    "proj/src/images/game_name.xpm": "615145ec36266875cfad67d119cdce988e76fe607abdbfee38d06cf1ba4aaf67",
+    "proj/src/images/letter_a.xpm": "9cf84ac1d4bc0dae8366146d070a8928487ad7942f673b5544a9c8c9fa797cec",
+    "proj/src/images/letter_g.xpm": "e2856fc5c4a06722a8709111ca40fd7d2bcae5eae9613812d925e6b1ba7c4f5b",
+    "proj/src/images/letter_l.xpm": "f0e1846a29736ca41d813b5979e4aaf0ca07f82fda8d0c67267f88aebe7668fd",
+    "proj/src/images/letter_o.xpm": "113881f80717da2029f9b56e6c38cee9ba7e62f7eb01e08baa8d3c433d37b329",
+    "proj/src/images/nada.xpm": "2e568deabf325df147f3a7b5f1016e61f2408d6ec81dec69977ffee309132c5d",
+    "proj/src/images/number_one.xpm": "e351738e63f608869b83d9e85e3eecc53976dbb24da75e32f784e03c72299691",
+    "proj/src/images/number_three.xpm": "9da25d848fb1aa5765256945ff749ef0db0c7e76ba992808a3279848ec2ac331",
+    "proj/src/images/number_two.xpm": "ad22b165b62f0b5dd582ca672f7da9d193d1c35f548d98d3cda6c399658dcf9b",
+    "proj/src/images/number_zero.xpm": "c670a044b0a6c3535ba1963e132675f8d1f7f7ecd90be5d419f09ac47c9cf1e4",
+    "proj/src/images/piece.xpm": "8daa142098d871532bc166eaba66074e7126719835e074eda30ffa03f4a2e744",
+    "proj/src/images/powerup_ball.xpm": "1a2ece9cd5a2d100e9e1a6dc8b49a06b56305fbcb62f5085bb159be415185bd4",
+    "proj/src/images/powerup_limits.xpm": "f04e59256fbe4e4ad5efe130ced2e3d640b474fe294566db9ace970e9eb90783",
+    "proj/src/images/quit.xpm": "b847182c9bb12fae6c4fc0a91056dad9836a1f684e49f0f38858c458ea8ad807",
+    "proj/src/images/start.xpm": "2effdca606daf230ec34a07f9ba635859ce6a6ee588f242724f95317b76bbe8a",
+    "proj/src/images/transferir.xpm": "68ebd17a7df223d6da1fc170506b9eb91b9c072d15698d8079673162ba09d459",
+    "proj/src/interrupts.c": "5123e612ea7d4f7847495b53da3fd0949e0bec20a1a7aa92f3a513185ce416a7",
+    "proj/src/interrupts.h": "8512c98f425a43f450237b11cb896ed1375d10cb5cd9d821413c4bc86755dfa2",
+    "proj/src/keyboard/i8042.h": "5436edee3f6405a56e6fff51c08bf85cf1661cbe2b473b9e27623c472ee4a4db",
+    "proj/src/keyboard/kbc.c": "3e5fb0a4fd0e4a30d1dc1c594b732c9e6504bfe76a8f8230f64191d60f1d8134",
+    "proj/src/keyboard/kbc.h": "82dc39e4064d7424f5fee5ba76830b75b5f220d966536b401267c0b900f48a49",
+    "proj/src/keyboard/keyboard.c": "2cb0ed9e78a5f3a4e50dd9184c5213150af71e072d415df200e0e3cc8230b95e",
+    "proj/src/keyboard/keyboard.h": "d08ab58dd5249f076203c7ed825c0515a7bc2487748954fe15e5aba1a6e7944c",
+    "proj/src/main.c": "a70d0f684219dc2ad3304b9fa2a3a8a86c1728ed32ea9457b03a21861db47f5a",
+    "proj/src/menu.c": "58a5bcc8f3f05befcd51d1bfe07f50bb1bf984c8a3f004948d7f140bc0dd6961",
+    "proj/src/menu.h": "da18f45c3f34f8de0c195cf58468f3f8ddf666a318af9ad2a72247eb6e94edd9",
+    "proj/src/piece.c": "5dfb571735e12aef73e184e8f32af13fd80679a21f881981435cef958231abbe",
+    "proj/src/piece.h": "c2f9e2c0e3af90b904ed95b8c90f45fc8f7b5e7368dd02b680937d64ad8c42a6",
+    "proj/src/powerups.c": "53234f42643266815e2603d5c531a37526621b3c6a4749af923e62e361b1a541",
+    "proj/src/powerups.h": "0dd763b689bd2a62b07bdaebfd7e0c6c06f469a7d1d970790d49160aa2acf9d9",
+    "proj/src/timer/i8254.h": "fcb3850158bd9d949241bf8585b2f8e00967fcf22501f3f33d52f5bb5e872158",
+    "proj/src/timer/timer.c": "6086b69be29c78de555531ee5b0afc48687bb459a449e81bc59921bf3526acfa",
+    "proj/src/timer/timer.h": "e094935a182223d081d85b0227c14ff974af303610827ae04ba28cb9cba580a5",
+    "proj/src/utils.c": "ffe38ead5ebb5cbe47a62e4012906789181af914c88332e06e9c5e622e753fba"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS/IDE/OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/graphics/video_gr.c",
+          "reason": "Retain and clear one owned zero-initialized framebuffer across timer frames; release and null it only during game shutdown.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/power-court-lifetime-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-green4.log"
+          },
+          "originalSha256": "1df36318eb00660520c0459e2f934e63ffc8aff45ee708e61839ffd5a1273e2a",
+          "patchedSha256": "7cff46d8f18c194643bceb75d6451399d1b4b951e81007241ada653f55fd851f"
+        },
+        {
+          "file": "proj/src/graphics/video_gr.h",
+          "reason": "Declare separate clear and shutdown ownership operations for the original reusable framebuffer.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/power-court-lifetime-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-green4.log"
+          },
+          "originalSha256": "851f25a6b563071586d0a5f7b834d2ed38f0e2f728bf54b24be7f5696123771f",
+          "patchedSha256": "6c3bc6dcecbe94e5c1794545bc04d75b281c173933a826c3eeb145bdfcd860bf"
+        },
+        {
+          "file": "proj/src/interrupts.c",
+          "reason": "Clear the original reusable frame after presenting, instead of freeing storage needed by the next timer redraw.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/power-court-lifetime-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-green4.log"
+          },
+          "originalSha256": "5123e612ea7d4f7847495b53da3fd0949e0bec20a1a7aa92f3a513185ce416a7",
+          "patchedSha256": "a4ba08a537b25cb1549f17ccf195c7fab4b9c5e1d0074e29f066ae5f117d1c38"
+        },
+        {
+          "file": "proj/src/main.c",
+          "reason": "Release the original framebuffer once at the existing shutdown boundary after the interrupt loop ends.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/power-court-lifetime-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-green4.log"
+          },
+          "originalSha256": "a70d0f684219dc2ad3304b9fa2a3a8a86c1728ed32ea9457b03a21861db47f5a",
+          "patchedSha256": "a9f443b63ce3bc324cc011a1b11b2e8ef2c60c2e573b0407314ca14b5434b7a1"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original captured paddle, ball and power-up pixels arranged as a launcher icon",
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/icons11-inputs/tomaspm98--LCOM/original-court.png",
+    "captureSha256": "65bfacaacb7afab3cc751fe421f7b03414489841e10fc6ee6f7e9cf88024aff4",
+    "crops": [
+      [
+        30,
+        255,
+        46,
+        345
+      ],
+      [
+        757,
+        255,
+        773,
+        345
+      ],
+      [
+        690,
+        290,
+        712,
+        312
+      ],
+      [
+        293,
+        128,
+        323,
+        158
+      ]
+    ]
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "4cc6c30ad7f08d7fa353356803382c9cd623a2a427c46e540d9404d4be94355f",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "65bfacaacb7afab3cc751fe421f7b03414489841e10fc6ee6f7e9cf88024aff4",
+      "kind": "Original browser gameplay capture"
+    }
+  ],
+  "verification": {
+    "browser": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay11-final.log",
+    "owningRegressions": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+    "nativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/tomaspm98--LCOM.native11-strict.log",
+    "android": "Pending independent parent-owned actual Android gameplay.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "445120d85fbc7d9e7be67654d2c22a383609aa69f134be9ce6844aa4c3b9ee3e",
+      "evidence": "build/arcade-100/power-native-after-goal/results.json",
+      "demonstrated": [
+        "Original two-paddle court and green power-up, score00.",
+        "Both original white paddles independently moved.",
+        "Original GOAL animation appears while the scoreboard is temporarily00.",
+        "After GOAL, original scoreboard shows10 and ball respawns."
+      ],
+      "limitations": [
+        "Representative local ARM64 touchscreen gameplay only; complete campaigns and physical-device performance remain untested."
+      ]
+    }
+  }
+}

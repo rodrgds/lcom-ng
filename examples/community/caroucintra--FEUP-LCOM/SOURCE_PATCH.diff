@@ -1,0 +1,11 @@
+--- a/proj/src/utils/helpers.c
++++ b/proj/src/utils/helpers.c
+@@ -705,7 +705,7 @@
+ }
+ 
+ 
+-int start_scene(){
++int start_scene(Game game){
+   if (game.state == GAME){
+ 
+     if (draw_bg()) return 1;

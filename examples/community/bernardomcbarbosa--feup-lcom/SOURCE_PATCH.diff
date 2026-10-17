@@ -1,0 +1,57 @@
+--- a/proj/src/Bitmap.h
++++ b/proj/src/Bitmap.h
+@@ -37,7 +37,7 @@
+ /**
+  * @brief bitmap struct
+  */
+-typedef struct {
++typedef struct Bitmap {
+     BitmapInfoHeader bitmapInfoHeader;
+     short* bitmapData;
+     int x,y;
+--- a/proj/src/video_gr.h
++++ b/proj/src/video_gr.h
+@@ -7,6 +7,7 @@
+ #include <sys/mman.h>
+ #include <sys/types.h>
+ #include "vbe.h"
++typedef struct Bitmap Bitmap;
+ #include "Bitmap.h"
+ 
+ static char *video_mem;		/* Process address to which VRAM is mapped */
+@@ -46,7 +47,7 @@
+  * @param background Buffer
+  * @return Return 0 upon success and non-zero otherwise.
+  */
+-//int draw_bitmap(Bitmap *bmp,unsigned short x,unsigned short y,int i,short *background);
++int draw_bitmap(Bitmap *bmp,unsigned short x,unsigned short y,int i,short *background);
+ 
+ /**
+  * @brief Draw Ball Bitmap bmp in Buffer background.
+@@ -57,7 +58,7 @@
+  * @param shoot Shoot ID
+  * @return Return collision value.
+  */
+-//int draw_ball(Bitmap *bmp,unsigned short x,unsigned short y,short *background,int shoot);
++int draw_ball(Bitmap *bmp,unsigned short x,unsigned short y,short *background,int shoot);
+ 
+ /**
+  * @brief Draw Buffer background in VRAM.
+--- a/proj/src/Bitmap.c
++++ b/proj/src/Bitmap.c
+@@ -123,12 +123,12 @@
+ }
+ 
+ int drawBitmap_ball(Bitmap* bmp, int x, int y,short *buffer,int shoot){
++	if (bmp == NULL)
++		return 0;
++
+ 	int width = bmp->bitmapInfoHeader.width;
+ 	int height = bmp->bitmapInfoHeader.height;
+ 	int collision=0;
+-
+-	if (bmp == NULL)
+-		return;
+ 
+ 	short *bmp_map = bmp->bitmapData;
+ 	int i,j,pos;

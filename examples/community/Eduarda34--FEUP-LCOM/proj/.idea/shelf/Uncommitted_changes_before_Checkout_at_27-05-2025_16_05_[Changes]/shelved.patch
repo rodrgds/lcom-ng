@@ -1,0 +1,30 @@
+diff --git a/src/kbc.h b/src/controller/kbc.h
+rename from src/kbc.h
+rename to src/controller/kbc.h
+diff --git a/src/keyboard.h b/src/controller/keyboard.h
+rename from src/keyboard.h
+rename to src/controller/keyboard.h
+diff --git a/src/graphics.c b/src/controller/graphics.c
+rename from src/graphics.c
+rename to src/controller/graphics.c
+diff --git a/src/i8042.h b/src/controller/i8042.h
+rename from src/i8042.h
+rename to src/controller/i8042.h
+diff --git a/src/graphics.h b/src/controller/graphics.h
+rename from src/graphics.h
+rename to src/controller/graphics.h
+diff --git a/src/utils.c b/src/controller/utils.c
+rename from src/utils.c
+rename to src/controller/utils.c
+diff --git a/src/keyboard.c b/src/controller/keyboard.c
+rename from src/keyboard.c
+rename to src/controller/keyboard.c
+diff --git a/src/i8254.h b/src/controller/i8254.h
+rename from src/i8254.h
+rename to src/controller/i8254.h
+diff --git a/src/kbc.c b/src/controller/kbc.c
+rename from src/kbc.c
+rename to src/controller/kbc.c
+diff --git a/src/timer.c b/src/controller/timer.c
+rename from src/timer.c
+rename to src/controller/timer.c

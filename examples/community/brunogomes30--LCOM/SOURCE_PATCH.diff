@@ -1,0 +1,46 @@
+--- a/proj/game.c
++++ b/proj/game.c
+@@ -361,8 +361,8 @@
+ void handleCollisions(Game *game) {
+   DoubleLinkedList list = game->entitiesList;
+   EntitiesLinkedElement *first = list.firstElement;
+-  EntitiesLinkedElement *second = first->next;
+   while (first != NULL) {
++    EntitiesLinkedElement *second = first->next;
+     Sprite *firstSprite = getSprite(first);
+     while (second != NULL) {
+       if (checkColision(firstSprite, getSprite(second))) {
+@@ -371,7 +371,6 @@
+       second = second->next;
+     }
+     first = first->next;
+-    second = first->next;
+   }
+ }
+ 
+@@ -457,6 +456,7 @@
+ }
+ 
+ void loadHighScore(Game *game) {
++  game->highScore = 0;
+   FILE *file = fopen("score.txt", "r");
+   if (file != NULL) {
+     int score;
+--- a/proj/gun.c
++++ b/proj/gun.c
+@@ -12,6 +12,7 @@
+   gun->isEquipped = isEquipped;
+   gun->isShooting = 0;
+   gun->current_animation_tick = 0;
++  gun->current_image = 0;
+   return gun;
+ }
+ 
+@@ -26,6 +27,7 @@
+   gun->isEquipped = isEquipped;
+   gun->isShooting = 0;
+   gun->current_animation_tick = 0;
++  gun->current_image = 0;
+   return gun;
+ }
+ 

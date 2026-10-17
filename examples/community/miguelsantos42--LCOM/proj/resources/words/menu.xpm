@@ -1,0 +1,23 @@
+const xpm_row_t word_MENU[] = {
+/* columns rows colors */
+"64 16 2",
+"  0",   /* fundo (preto/transparente) */
+"X 14",  /* letras (branco) */
+/* pixels */
+"                                                                ",
+" XX    XX        XXXXXXX         XX    XX        XX    XX       ",
+" XXX  XXX        XX              XXX   XX        XX    XX       ",
+" XXXX XXXX       XX              XXXX  XX        XX    XX       ",
+" XX XX XX        XXXXXX          XX XX XX        XX    XX       ",
+" XX    XX        XX              XX  XXXX        XX    XX       ",
+" XX    XX        XX              XX   XXX        XX    XX       ",
+" XX    XX        XXXXXX          XX    XX        XX    XX       ",
+" XX    XX        XX              XX    XX        XX    XX       ",
+" XX    XX        XX              XX    XX        XX    XX       ",
+" XX    XX        XX              XX    XX         XX  XX        ",
+" XX    XX        XXXXXXX         XX    XX          XXXX         ",
+"                                                                ",
+"                                                                ",
+"                                                                ",
+"                                                                "
+};

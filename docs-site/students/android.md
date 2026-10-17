@@ -36,6 +36,10 @@ The output includes `game.apk`, its SHA-256 checksum and a standalone Android
 project. Move the directory to another machine, open it in Android Studio, or run
 `./gradlew assembleDebug` inside it. Build intermediates are omitted.
 
+Projects with distinct filenames such as `A.xpm` and `a.xpm` need a case-sensitive
+source checkout and output filesystem. The exporter rejects destinations that
+would overwrite one name with the other.
+
 Generate the project without local Android build tools:
 
 ```sh

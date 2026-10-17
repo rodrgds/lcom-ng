@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "name": "Sky Attack",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": false,
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": {
+        "keys": "wasd",
+        "axes": "horizontal"
+      },
+      "quickKeys": [
+        "ESC"
+      ],
+      "actions": [
+        {
+          "label": "Jump",
+          "key": "W",
+          "position": "top-right"
+        },
+        {
+          "label": "Fire",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": []
+  },
+  "description": "Run and jump between platforms while aiming at the original attacking helicopter.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

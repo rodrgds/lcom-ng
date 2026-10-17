@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "Pixel Wings",
+  "description": "Fly a pixel dragon, breathe fire and weave through columns of bats.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "layout": "overlay",
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "touch": "tap",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "mouse",
+          "style": "stick",
+          "axes": "vertical",
+          "sensitivity": 1
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select / Fire",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Power",
+          "key": "SPACE",
+          "position": "top-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/bitmaps",
+      "proj/src/scores.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/proj": "proj"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

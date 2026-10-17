@@ -1,0 +1,135 @@
+{
+  "repository": "https://github.com/matilde-silva-21/LCOM",
+  "revision": "51eaac31a6dee287f838fb98c720539f8a96511f",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/Makefile": "7367b75c23b602d5e87b372a2afe8b4634cd844d37f022f88660411af2c9a3cd",
+    "proj/src/alien.c": "bc4191c7fbca8c0b2c36d0149f09b5ac9518ebec12f8e1a0b462e4aa8647fa5f",
+    "proj/src/alien.h": "6e7545999c06f7107d09dc46c19137580c8297f93950336c8ba9606c7f4ff120",
+    "proj/src/alienBullet.c": "a41709cc7fbbbcb0a2fdbe6521bdb145f82ab496cdfb4e3be1819f2cd4723765",
+    "proj/src/alienBullet.h": "a612e84f059421f2be7645e480018d5185d5e4bb5a4744f26add2f7f3b900184",
+    "proj/src/game.c": "8ef1827827cc8c92f4c6988f468f4ee2580041c047630615ddfd05ecdab98862",
+    "proj/src/game.h": "5309b80c6761d99d8bb34475e32c74f8df54468a27f3ff7297fae536908bea22",
+    "proj/src/graphic.c": "a2542d77ebbb0abb5cfff3415e598e96f69f4a332a1017da72ad503ca80c95e9",
+    "proj/src/graphic.h": "25117404122934a4ba945afabc14d6b78ce743a9067ac3462482009fec30a0fe",
+    "proj/src/i8042.h": "2367df5f06b6bc1ac99d66bddbd0ec99eeeabe97b9a18dd3d0435f6979e5e031",
+    "proj/src/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/keyboard.c": "6ba88513a72f7034decaba029740753f856ad4f4ab571e5cf5b154ef765083f5",
+    "proj/src/keyboard.h": "016f8344dbf99867ffac6916c5c7cf6f455cf4c48fd694c1faec2b034e1cad12",
+    "proj/src/macros.h": "2776288c11d17ebf642b8be0fe90d7300861365ad9bbdaaff28fbbbccebeca04",
+    "proj/src/menu.c": "beb516866a7f71e972add3c5ca52350a9fedf8d7f37594a49754f0115bc7c77a",
+    "proj/src/menu.h": "e0744f15646afa7aeb44d6deb1425c3871766c246244fd6bc1d1b1396d7bd486",
+    "proj/src/mouse.c": "6c508e873d723e80508596bd0c881f7eba53380277f49e6b23ea1da38be856e6",
+    "proj/src/mouse.h": "60fbdcb19c0c79e11446b555e87a7516b707e0c9f413044675472b26e554c1fb",
+    "proj/src/proj.c": "922e84f062d8355a662d9435c7bf6d6e350b1c52d8845664506cc28e007a9c5a",
+    "proj/src/resources/0.xpm": "8b1f1eaabe6f13ed69b864670f2f6ca187c7af4682e98e5dca7b9b3344802f9e",
+    "proj/src/resources/1.xpm": "13c4321fecd38a0d8c4f44d056d958737f06a31a0b695ea3380d7ed60cdfef5f",
+    "proj/src/resources/2.xpm": "a68ccd9ce1b121f63a76d9b51490ca85686506b92bdd76adf7c22e8f09d57f70",
+    "proj/src/resources/3.xpm": "7a708c85ae9bf79a8130ca532b4781f2111a1552e867b66efc4b4230465b456f",
+    "proj/src/resources/4.xpm": "64fe38a60e3f6a2d82f4d8804f65b1af0c9424ac0bf26db8469a00bb08a88b0f",
+    "proj/src/resources/5.xpm": "66a48c8e7ab4e3570cadf6cd9aa395663da1502a57e1b1f12077f36779e722a1",
+    "proj/src/resources/6.xpm": "d56445822618c2f12e2d561e576cfc933e17fbaf3f61421f7ce756641b85e658",
+    "proj/src/resources/7.xpm": "e5f785f31bc62b199dc4ab373c7be8d66ae0a8e49cfa357bfd7e1087154dbd2b",
+    "proj/src/resources/8.xpm": "fc8323786fa9ce20b1fc06b47c6ad0d958160ef8e95764cce5925399c96e4efc",
+    "proj/src/resources/9.xpm": "e0c2b3805db7aa683287ad58f18e658a44a90359f46bebc7346179465538e5f4",
+    "proj/src/resources/alien1.xpm": "886bae383a0f465f9c741524af9ed3952efb3935501147bf2256aa9f4811337a",
+    "proj/src/resources/alien1_m.xpm": "21db2e7fe5646b2fff30ca55fc415a50965bfeb6312b4c1f4c0a6c53af37ea07",
+    "proj/src/resources/alien2.xpm": "300fb93ec7648d685e1f1bce8fbbbf6644bc275c4d6f433566ca3a6fb6cc3d3b",
+    "proj/src/resources/alien2_m.xpm": "2c27e98de587afa2362cbf2c026f6389548f7d0d897b68e215ccc3966f431fb9",
+    "proj/src/resources/alien3.xpm": "ea8f9b3ca66e80db9ee8138519b73e2914cf3e5ccf21adcdeead04dc2b763013",
+    "proj/src/resources/alien3_m.xpm": "cd9387d09983da144212ab837f861fdd2430e7a5c15dd0d461937b586a17990e",
+    "proj/src/resources/alien_bullet.xpm": "b0ee5251059159efe38bd94ea298c16ef90bdf2d729f5405ba30a1e6f870c335",
+    "proj/src/resources/background.xpm": "df6c3d6dc098ec0ece4b89341ac924f80b0bece49896fe514a7e69b4ea97652a",
+    "proj/src/resources/initial_screen.xpm": "0e0e4346bd618952bb068e0f3889d85ac5de070d416edb0252cc513b2991c6a5",
+    "proj/src/resources/instructions.xpm": "e7496465aa705ccfe5a0d69853549415c89c9293609493e94362a293f493b9f6",
+    "proj/src/resources/instructions_back.xpm": "a59eb23c62c1c5cfcd59d067a12e651c33535ba1082028889d984b6f30abe6c5",
+    "proj/src/resources/menu.xpm": "75ec59365405b381b2b03e5e696f3a1e61e3dadc77511c20e1eb864688e2c2e4",
+    "proj/src/resources/menu_exit.xpm": "0150a9bca3aaf47f79d42f8d97978ad81a7bec9bc02e026862dd6f2c786171a5",
+    "proj/src/resources/menu_instructions.xpm": "a555f487fdc1fd483441218d5604b4cf200038af84c9f005f90eed613993e364",
+    "proj/src/resources/menu_start.xpm": "0061e842331ddd66bfbc6157fc882f8eb6ad3659ff3e7c9183fa31cf6f84adfa",
+    "proj/src/resources/mouse.xpm": "3f3e4ce1dd9266756a8ef5eb49ac5f32540c114fdf642bff23514cd0e1a40f51",
+    "proj/src/resources/ship.xpm": "c1686e6cd049d1fb4e4403cc1d12fd3691149df35c097fe90d61da3bf32a66cd",
+    "proj/src/resources/ship_bullet.xpm": "f0c8fc17138eeb3f70af2c038bfee5cd8b500dd206fd409a251153271f12028b",
+    "proj/src/rtc.c": "a7b68f49111d0dfe3a98bea0bf0742316e4475ac52e2d66209ad9f5f7b8aafb9",
+    "proj/src/rtc.h": "c01d65cf68c0346fedeefe60f60b48f5fc87ccab2b9fc7a5f990f254c59476ab",
+    "proj/src/ship.c": "c7a13e1feeeb11254a7a1be41c39b40f5c9b45473942053b4995440a36801e89",
+    "proj/src/ship.h": "754c8684e29a79328564cb0a296c5cb5be72182ae9a5b490d3c9731c165b5870",
+    "proj/src/shipBullet.c": "97cb6cec81d933575e6123412fad233f7a012037aa21c68fb1e743f58770f57c",
+    "proj/src/shipBullet.h": "1dbad32b8fd4d3aedf436dce3dbad21aca5985b822d2f86647d2b96e123128cb",
+    "proj/src/timer.c": "5f089b37dab9fe93dc49a21be63478fe6750744b497b1a8d887dcc631d980415",
+    "proj/src/timer.h": "5142db80e6e934e9b514aa856214ee87cb573a24469a9adb83c9f4cd80428cd3",
+    "proj/src/utils.c": "b3d8a0f7f850af18b477164d8499bd8981a2a65f67aa51e505475b24a03826f5",
+    "proj/src/utils.h": "64a6b88a7a83e5eb248c889d88f1e553d76e1c7a08b04893eb3b4e08f3414204"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS/IDE/OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a flat palette",
+    "source": "proj/src/resources/ship.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "20a66b7da6958d2e62d439faa86bea179d2333f50ce0772869c20086e2634827",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "2e138e2ef8f6d41fa42786b5aef4fb6b1b233a4a0dc9bc60da9bbe508880cb9a",
+      "kind": "Original browser gameplay capture"
+    }
+  ],
+  "verification": {
+    "browser": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/star-fleet-browser54-green.log",
+    "owningRegressions": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+    "nativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/star-fleet-native54-strict.log",
+    "android": "Pending independent parent-owned actual Android gameplay.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "98a13a1dcc7cd327bf26d80b211e9a6851ceea89cbe2c9da2d3af993e38c6247",
+      "evidence": "build/arcade-100/starfleet-native-positive/results.json",
+      "demonstrated": [
+        "Original three-row alien wave and ship visible.",
+        "Original distinct projectiles remove aliens and native Score150 is visible after20 ordinary firing touches."
+      ],
+      "limitations": [
+        "Representative local ARM64 touchscreen gameplay only; complete campaigns and physical-device performance remain untested."
+      ]
+    }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/shipBullet.c",
+          "reason": "Own each shot in exactly one of the seven projectile slots; detach retired/colliding shots before freeing them, reject full capacity without leaking, and bound cleanup to the bullet table rather than alien count.",
+          "originalSha256": "97cb6cec81d933575e6123412fad233f7a012037aa21c68fb1e743f58770f57c",
+          "patchedSha256": "8ca90b3b0922c87c9addc610ea33516d451a2b299e516737989b41678dd98285",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/star-fleet-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/star-fleet-bullets-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/star-fleet-bullets-green.log",
+            "androidFailure": "build/arcade-100/a52-native-gameplay/matilde-silva-21-lcom-2c1a7764cbed/failure-logcat.txt:1158"
+          }
+        }
+      ]
+    }
+  ]
+}

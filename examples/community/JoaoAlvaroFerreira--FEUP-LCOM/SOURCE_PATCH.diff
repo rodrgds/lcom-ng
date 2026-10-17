@@ -1,0 +1,83 @@
+--- a/proj/src/util.c
++++ b/proj/src/util.c
+@@ -62,10 +62,10 @@
+ 
+   Objeto_texto *obj = (Objeto_texto *)malloc(sizeof(Objeto_texto));
+ 
+-  obj->string = (char *)malloc(sizeof(char) * 20);
++  obj->string = (char *)malloc(strlen(string) + 1);
+   strcpy(obj->string, string);
+ 
+-  obj->bitmaps = (Bitmap **)malloc(sizeof(Bitmap) * strlen(string));
++  obj->bitmaps = (Bitmap **)malloc(sizeof(*obj->bitmaps) * strlen(string));
+ 
+   for (unsigned int i = 0; i < strlen(string); i++) {
+     sprintf(filename, "/home/lcom/labs/proj/src/images/characters/%c.bmp",
+@@ -351,13 +351,13 @@
+   // draw_bags(bags, number_bags);
+   drawComprimidos(comprimidos, numero_comprimidos);
+ 
+-  char Points[10];
+-  sprintf(Points, "%d", points);
++  char Points[12];
++  sprintf(Points, "%u", points);
+   Objeto_texto *score = create_objeto_texto(Points, 10, 10, ALIGN_LEFT, false);
+   draw_text_singular(score);
+ 
+-  char Tempo[2];
+-  sprintf(Tempo, "%d", tempo);
++  char Tempo[12];
++  sprintf(Tempo, "%u", tempo);
+   Objeto_texto *tempo_jogo =
+       create_objeto_texto(Tempo, 1220, 10, ALIGN_LEFT, false);
+   draw_text_singular(tempo_jogo);
+--- a/proj/src/proj.c
++++ b/proj/src/proj.c
+@@ -26,7 +26,8 @@
+ Bitmap *ghost;
+ unsigned int points = 0;
+ unsigned int tempo = 0;
+-char *name = "AAA";
++static char name_storage[] = "AAA";
++char *name = name_storage;
+ 
+ int main(int argc, char *argv[]) {
+   // sets the language of LCF messages (can be either EN-US or PT-PT)
+@@ -64,7 +65,7 @@
+   bool showBoard = false;
+   // create objects
+   Bitmap *ghost = loadBitmap("/home/lcom/labs/proj/src/images/ghost.bmp");
+-  deseases = (char **)malloc(sizeof(char) * number_deseases);
++  deseases = (char **)malloc(sizeof(*deseases) * number_deseases);
+   for (unsigned int k = 0; k < number_deseases; k++)
+     deseases[k] = (char *)malloc(sizeof(char) * 10);
+   strcpy(deseases[0], "LUNGS");
+@@ -211,7 +212,7 @@
+   int mouse_bit = 12;
+   int state = 0;
+   unsigned int arrow_color = 1;
+-  char Points[10];
++  char Points[40];
+   char Get_name[40];
+ 
+   if (dataReportingEnable() == ERROR) {
+@@ -261,8 +262,8 @@
+             alterName();
+ 
+             if (scanCode == SPACE_BAR_BREAK) {
+-              char pontos[10];
+-              sprintf(pontos, "%d", points);
++              char pontos[12];
++              sprintf(pontos, "%u", points);
+               high = makeHighScore(name, pontos, high, &numero_highscores);
+               writeToFile(high, numero_highscores);
+               high = readFromFile(&numero_highscores);
+@@ -394,7 +395,7 @@
+             break;
+ 
+           case ENTER_NAME:
+-            sprintf(Points, "You got %d points!", points);
++            sprintf(Points, "You got %u points!", points);
+ 
+             break;
+           default:

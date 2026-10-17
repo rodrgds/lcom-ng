@@ -1,0 +1,990 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="_menu_8c" kind="file" language="C++">
+    <compoundname>Menu.c</compoundname>
+    <includes refid="_menu_8h" local="yes">Menu.h</includes>
+    <incdepgraph>
+      <node id="9">
+        <label>Drivers/GraphicCard.h</label>
+        <link refid="_graphic_card_8h"/>
+      </node>
+      <node id="15">
+        <label>Drivers/RTC.h</label>
+        <link refid="_r_t_c_8h"/>
+        <childnode refid="16" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="11">
+        <label>i8042.h</label>
+        <link refid="i8042_8h"/>
+      </node>
+      <node id="13">
+        <label>i8254.h</label>
+        <link refid="i8254_8h"/>
+      </node>
+      <node id="10">
+        <label>Drivers/keyboard.h</label>
+        <link refid="keyboard_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="17">
+        <label>Drivers/macros.h</label>
+        <link refid="macros_8h"/>
+      </node>
+      <node id="14">
+        <label>Drivers/mouse.h</label>
+        <link refid="mouse_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="11" relation="include">
+        </childnode>
+      </node>
+      <node id="12">
+        <label>Drivers/timer.h</label>
+        <link refid="timer_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="13" relation="include">
+        </childnode>
+      </node>
+      <node id="89">
+        <label>Handlers.h</label>
+        <link refid="_handlers_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="88">
+        <label>Levels.h</label>
+        <link refid="_levels_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="87">
+        <label>Lists/AnimationList.h</label>
+        <link refid="_animation_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="86">
+        <label>Lists/EnemyList.h</label>
+        <link refid="_enemy_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="85">
+        <label>Lists/LaserList.h</label>
+        <link refid="_laser_list_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Menu.c</label>
+        <link refid="_menu_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>Menu.h</label>
+        <link refid="_menu_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+      </node>
+      <node id="90">
+        <label>Missile.h</label>
+        <link refid="_missile_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="6" relation="include">
+        </childnode>
+      </node>
+      <node id="18">
+        <label>Sprites/xpms.h</label>
+        <link refid="xpms_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="19" relation="include">
+        </childnode>
+        <childnode refid="20" relation="include">
+        </childnode>
+        <childnode refid="21" relation="include">
+        </childnode>
+        <childnode refid="22" relation="include">
+        </childnode>
+        <childnode refid="23" relation="include">
+        </childnode>
+        <childnode refid="24" relation="include">
+        </childnode>
+        <childnode refid="25" relation="include">
+        </childnode>
+        <childnode refid="26" relation="include">
+        </childnode>
+        <childnode refid="27" relation="include">
+        </childnode>
+        <childnode refid="28" relation="include">
+        </childnode>
+        <childnode refid="29" relation="include">
+        </childnode>
+        <childnode refid="30" relation="include">
+        </childnode>
+        <childnode refid="31" relation="include">
+        </childnode>
+        <childnode refid="32" relation="include">
+        </childnode>
+        <childnode refid="33" relation="include">
+        </childnode>
+        <childnode refid="34" relation="include">
+        </childnode>
+        <childnode refid="35" relation="include">
+        </childnode>
+        <childnode refid="36" relation="include">
+        </childnode>
+        <childnode refid="37" relation="include">
+        </childnode>
+        <childnode refid="38" relation="include">
+        </childnode>
+        <childnode refid="39" relation="include">
+        </childnode>
+        <childnode refid="40" relation="include">
+        </childnode>
+        <childnode refid="41" relation="include">
+        </childnode>
+        <childnode refid="42" relation="include">
+        </childnode>
+        <childnode refid="43" relation="include">
+        </childnode>
+        <childnode refid="44" relation="include">
+        </childnode>
+        <childnode refid="45" relation="include">
+        </childnode>
+        <childnode refid="46" relation="include">
+        </childnode>
+        <childnode refid="47" relation="include">
+        </childnode>
+        <childnode refid="48" relation="include">
+        </childnode>
+        <childnode refid="49" relation="include">
+        </childnode>
+        <childnode refid="50" relation="include">
+        </childnode>
+        <childnode refid="51" relation="include">
+        </childnode>
+        <childnode refid="52" relation="include">
+        </childnode>
+        <childnode refid="53" relation="include">
+        </childnode>
+        <childnode refid="54" relation="include">
+        </childnode>
+        <childnode refid="55" relation="include">
+        </childnode>
+        <childnode refid="56" relation="include">
+        </childnode>
+        <childnode refid="57" relation="include">
+        </childnode>
+        <childnode refid="58" relation="include">
+        </childnode>
+        <childnode refid="59" relation="include">
+        </childnode>
+        <childnode refid="60" relation="include">
+        </childnode>
+        <childnode refid="61" relation="include">
+        </childnode>
+        <childnode refid="62" relation="include">
+        </childnode>
+        <childnode refid="63" relation="include">
+        </childnode>
+        <childnode refid="64" relation="include">
+        </childnode>
+        <childnode refid="65" relation="include">
+        </childnode>
+        <childnode refid="66" relation="include">
+        </childnode>
+        <childnode refid="67" relation="include">
+        </childnode>
+        <childnode refid="68" relation="include">
+        </childnode>
+        <childnode refid="69" relation="include">
+        </childnode>
+        <childnode refid="70" relation="include">
+        </childnode>
+        <childnode refid="71" relation="include">
+        </childnode>
+        <childnode refid="72" relation="include">
+        </childnode>
+        <childnode refid="73" relation="include">
+        </childnode>
+        <childnode refid="74" relation="include">
+        </childnode>
+        <childnode refid="75" relation="include">
+        </childnode>
+        <childnode refid="76" relation="include">
+        </childnode>
+        <childnode refid="77" relation="include">
+        </childnode>
+        <childnode refid="78" relation="include">
+        </childnode>
+        <childnode refid="79" relation="include">
+        </childnode>
+        <childnode refid="80" relation="include">
+        </childnode>
+        <childnode refid="81" relation="include">
+        </childnode>
+        <childnode refid="82" relation="include">
+        </childnode>
+        <childnode refid="83" relation="include">
+        </childnode>
+        <childnode refid="84" relation="include">
+        </childnode>
+      </node>
+      <node id="6">
+        <label>proj.h</label>
+        <link refid="proj_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="5" relation="include">
+        </childnode>
+        <childnode refid="7" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+        <childnode refid="8" relation="include">
+        </childnode>
+        <childnode refid="9" relation="include">
+        </childnode>
+        <childnode refid="10" relation="include">
+        </childnode>
+        <childnode refid="12" relation="include">
+        </childnode>
+        <childnode refid="14" relation="include">
+        </childnode>
+        <childnode refid="15" relation="include">
+        </childnode>
+        <childnode refid="17" relation="include">
+        </childnode>
+        <childnode refid="18" relation="include">
+        </childnode>
+        <childnode refid="85" relation="include">
+        </childnode>
+        <childnode refid="86" relation="include">
+        </childnode>
+        <childnode refid="87" relation="include">
+        </childnode>
+        <childnode refid="88" relation="include">
+        </childnode>
+        <childnode refid="89" relation="include">
+        </childnode>
+        <childnode refid="90" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>lcom/lcf.h</label>
+      </node>
+      <node id="16">
+        <label>minix/sysutil.h</label>
+      </node>
+      <node id="8">
+        <label>stdbool.h</label>
+      </node>
+      <node id="7">
+        <label>stdint.h</label>
+      </node>
+      <node id="4">
+        <label>stdio.h</label>
+      </node>
+      <node id="5">
+        <label>stdlib.h</label>
+      </node>
+      <node id="46">
+        <label>xpms/Menu/Alien_attacks_logo.xpm</label>
+      </node>
+      <node id="47">
+        <label>xpms/Menu/endless.xpm</label>
+      </node>
+      <node id="48">
+        <label>xpms/Menu/endless_selected.xpm</label>
+      </node>
+      <node id="49">
+        <label>xpms/Menu/exit.xpm</label>
+      </node>
+      <node id="50">
+        <label>xpms/Menu/exit_selected.xpm</label>
+      </node>
+      <node id="55">
+        <label>xpms/Menu/inside_instructions.xpm</label>
+      </node>
+      <node id="51">
+        <label>xpms/Menu/instructions.xpm</label>
+      </node>
+      <node id="52">
+        <label>xpms/Menu/instructions_selected.xpm</label>
+      </node>
+      <node id="53">
+        <label>xpms/Menu/levels.xpm</label>
+      </node>
+      <node id="54">
+        <label>xpms/Menu/levels_selected.xpm</label>
+      </node>
+      <node id="56">
+        <label>xpms/Menu/menu.xpm</label>
+      </node>
+      <node id="57">
+        <label>xpms/Menu/menu_selected.xpm</label>
+      </node>
+      <node id="43">
+        <label>xpms/Numbers/eight.xpm</label>
+      </node>
+      <node id="40">
+        <label>xpms/Numbers/five.xpm</label>
+      </node>
+      <node id="39">
+        <label>xpms/Numbers/four.xpm</label>
+      </node>
+      <node id="44">
+        <label>xpms/Numbers/nine.xpm</label>
+      </node>
+      <node id="36">
+        <label>xpms/Numbers/one.xpm</label>
+      </node>
+      <node id="42">
+        <label>xpms/Numbers/seven.xpm</label>
+      </node>
+      <node id="41">
+        <label>xpms/Numbers/six.xpm</label>
+      </node>
+      <node id="38">
+        <label>xpms/Numbers/three.xpm</label>
+      </node>
+      <node id="37">
+        <label>xpms/Numbers/two.xpm</label>
+      </node>
+      <node id="35">
+        <label>xpms/Numbers/zero.xpm</label>
+      </node>
+      <node id="30">
+        <label>xpms/bullet_enemy/bullet_enemy1.xpm</label>
+      </node>
+      <node id="31">
+        <label>xpms/bullet_enemy/bullet_enemy2.xpm</label>
+      </node>
+      <node id="32">
+        <label>xpms/bullet_enemy/bullet_enemy3.xpm</label>
+      </node>
+      <node id="58">
+        <label>xpms/chars/back_slash.xpm</label>
+      </node>
+      <node id="59">
+        <label>xpms/chars/hifen.xpm</label>
+      </node>
+      <node id="27">
+        <label>xpms/enemy/enemy1.xpm</label>
+      </node>
+      <node id="28">
+        <label>xpms/enemy/enemy2.xpm</label>
+      </node>
+      <node id="29">
+        <label>xpms/enemy/enemy3.xpm</label>
+      </node>
+      <node id="20">
+        <label>xpms/explosion/e1.xpm</label>
+      </node>
+      <node id="21">
+        <label>xpms/explosion/e2.xpm</label>
+      </node>
+      <node id="22">
+        <label>xpms/explosion/e3.xpm</label>
+      </node>
+      <node id="23">
+        <label>xpms/explosion/e4.xpm</label>
+      </node>
+      <node id="24">
+        <label>xpms/explosion/e5.xpm</label>
+      </node>
+      <node id="25">
+        <label>xpms/explosion/e6.xpm</label>
+      </node>
+      <node id="26">
+        <label>xpms/explosion/e7.xpm</label>
+      </node>
+      <node id="33">
+        <label>xpms/life/sem_vida.xpm</label>
+      </node>
+      <node id="34">
+        <label>xpms/life/vida.xpm</label>
+      </node>
+      <node id="60">
+        <label>xpms/missil/missil1.xpm</label>
+      </node>
+      <node id="69">
+        <label>xpms/missil/missil10.xpm</label>
+      </node>
+      <node id="70">
+        <label>xpms/missil/missil11.xpm</label>
+      </node>
+      <node id="71">
+        <label>xpms/missil/missil12.xpm</label>
+      </node>
+      <node id="72">
+        <label>xpms/missil/missil13.xpm</label>
+      </node>
+      <node id="73">
+        <label>xpms/missil/missil14.xpm</label>
+      </node>
+      <node id="74">
+        <label>xpms/missil/missil15.xpm</label>
+      </node>
+      <node id="75">
+        <label>xpms/missil/missil16.xpm</label>
+      </node>
+      <node id="76">
+        <label>xpms/missil/missil17.xpm</label>
+      </node>
+      <node id="77">
+        <label>xpms/missil/missil18.xpm</label>
+      </node>
+      <node id="78">
+        <label>xpms/missil/missil19.xpm</label>
+      </node>
+      <node id="61">
+        <label>xpms/missil/missil2.xpm</label>
+      </node>
+      <node id="79">
+        <label>xpms/missil/missil20.xpm</label>
+      </node>
+      <node id="80">
+        <label>xpms/missil/missil21.xpm</label>
+      </node>
+      <node id="81">
+        <label>xpms/missil/missil22.xpm</label>
+      </node>
+      <node id="82">
+        <label>xpms/missil/missil23.xpm</label>
+      </node>
+      <node id="83">
+        <label>xpms/missil/missil24.xpm</label>
+      </node>
+      <node id="62">
+        <label>xpms/missil/missil3.xpm</label>
+      </node>
+      <node id="63">
+        <label>xpms/missil/missil4.xpm</label>
+      </node>
+      <node id="64">
+        <label>xpms/missil/missil5.xpm</label>
+      </node>
+      <node id="65">
+        <label>xpms/missil/missil6.xpm</label>
+      </node>
+      <node id="66">
+        <label>xpms/missil/missil7.xpm</label>
+      </node>
+      <node id="67">
+        <label>xpms/missil/missil8.xpm</label>
+      </node>
+      <node id="68">
+        <label>xpms/missil/missil9.xpm</label>
+      </node>
+      <node id="84">
+        <label>xpms/missil/nuke.xpm</label>
+      </node>
+      <node id="45">
+        <label>xpms/mouse_cursor.xpm</label>
+      </node>
+      <node id="19">
+        <label>xpms/others/nave.xpm</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int selected</definition>
+        <argsstring></argsstring>
+        <name>selected</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" line="3" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="_menu_8c_1a0ea724bccaacf90a1d5f6be79aeab8be" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int dead_selected</definition>
+        <argsstring></argsstring>
+        <name>dead_selected</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" line="4" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="_menu_8c_1a7d771989b41395d6d703f523c6fc22eb" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int draw_menu</definition>
+        <argsstring>()</argsstring>
+        <name>draw_menu</name>
+        <briefdescription>
+<para>draws menu elements </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" line="6" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" bodystart="6" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="_menu_8c_1aa98b5886fa65e09bb90786a83099a72d" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int menu_interrupt_loop</definition>
+        <argsstring>()</argsstring>
+        <name>menu_interrupt_loop</name>
+        <briefdescription>
+<para>deals with the timer, keyboard and mouse interrupts while on the menu </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" line="47" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" bodystart="47" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="_menu_8c_1a382d124fe0ece0c1d3890d6838df6b10" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int dead_draw_menu</definition>
+        <argsstring>()</argsstring>
+        <name>dead_draw_menu</name>
+        <briefdescription>
+<para>draws the menu that appears when the user loses/finishes the game </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" line="144" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" bodystart="144" bodyend="163"/>
+      </memberdef>
+      <memberdef kind="function" id="_menu_8c_1a3f2ef71198711fcd1e648f6b13e8e8f7" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int dead_menu_interrupt_loop</definition>
+        <argsstring>()</argsstring>
+        <name>dead_menu_interrupt_loop</name>
+        <briefdescription>
+<para>deals with the timer, keyboard and mouse interrupts while on the dead user menu </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" line="165" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" bodystart="165" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="_menu_8c_1addb5b94a66f4696e4616476264ecc688" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int instructions_loop</definition>
+        <argsstring>()</argsstring>
+        <name>instructions_loop</name>
+        <briefdescription>
+<para>deals with the timer, keyboard and mouse interrupts while on the instructions screen </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int 0 upon success, non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" line="270" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c" bodystart="270" bodyend="325"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="_menu_8h" kindref="compound">Menu.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" kindref="member">selected</ref>;</highlight></codeline>
+<codeline lineno="4" refid="_menu_8c_1a0ea724bccaacf90a1d5f6be79aeab8be" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_menu_8c_1a0ea724bccaacf90a1d5f6be79aeab8be" kindref="member">dead_selected</ref>;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="_menu_8c_1a7d771989b41395d6d703f523c6fc22eb" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_menu_8c_1a7d771989b41395d6d703f523c6fc22eb" kindref="member">draw_menu</ref>()</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1af7831592ef04114ca9b46e672c0e646b" kindref="member">clear_buffer</ref>();</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" kindref="member">selected</ref>)</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a8b168ffed077fda99184db6cbcc294cf" kindref="member">logo_sprite</ref>,<sp/><ref refid="xpms_8c_1ad973550294f2aabbd126d632d6fb5054" kindref="member">logo_img</ref>,<sp/>0,<sp/>100);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a510734987cf17494dcdc501b08e8ef80" kindref="member">levels_sel_sprite</ref>,<sp/><ref refid="xpms_8c_1a5f37963e0f941b2a0dde249cbe7adffe" kindref="member">levels_sel_img</ref>,<sp/>340,<sp/>350);</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a9468841423b0e0cd17af3a553c1eb0ca" kindref="member">endless_sprite</ref>,<sp/><ref refid="xpms_8c_1a422042b15d34fe4eceb986d2ae46501d" kindref="member">endless_img</ref>,<sp/>340,<sp/>500);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a2d0e51593d629237ac3f114000db2fd3" kindref="member">instructions_sprite</ref>,<sp/><ref refid="xpms_8c_1a512e08b955ba92663ee0fe8d4cfa24ca" kindref="member">instructions_img</ref>,<sp/>340,<sp/>650);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1adf9fb44b29884523eb1e82b8329383ef" kindref="member">exit_sprite</ref>,<sp/><ref refid="xpms_8c_1ad8d029ee6d4968e37a71e73787482047" kindref="member">exit_img</ref>,<sp/>340,<sp/>800);</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a8b168ffed077fda99184db6cbcc294cf" kindref="member">logo_sprite</ref>,<sp/><ref refid="xpms_8c_1ad973550294f2aabbd126d632d6fb5054" kindref="member">logo_img</ref>,<sp/>0,<sp/>100);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1afd3aa7e0365c741a6c9af8993d7d190e" kindref="member">levels_sprite</ref>,<sp/><ref refid="xpms_8c_1aca7f7e80f8b5a7c30e3444a8099aca73" kindref="member">levels_img</ref>,<sp/>340,<sp/>350);</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a357553b28ecf29f3f4f41d95080a7c03" kindref="member">endless_sel_sprite</ref>,<sp/><ref refid="xpms_8c_1aa6d62ad630272ef62d119445071d2502" kindref="member">endless_sel_img</ref>,<sp/>340,<sp/>500);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a2d0e51593d629237ac3f114000db2fd3" kindref="member">instructions_sprite</ref>,<sp/><ref refid="xpms_8c_1a512e08b955ba92663ee0fe8d4cfa24ca" kindref="member">instructions_img</ref>,<sp/>340,<sp/>650);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1adf9fb44b29884523eb1e82b8329383ef" kindref="member">exit_sprite</ref>,<sp/><ref refid="xpms_8c_1ad8d029ee6d4968e37a71e73787482047" kindref="member">exit_img</ref>,<sp/>340,<sp/>800);</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>2:</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a8b168ffed077fda99184db6cbcc294cf" kindref="member">logo_sprite</ref>,<sp/><ref refid="xpms_8c_1ad973550294f2aabbd126d632d6fb5054" kindref="member">logo_img</ref>,<sp/>0,<sp/>100);</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1afd3aa7e0365c741a6c9af8993d7d190e" kindref="member">levels_sprite</ref>,<sp/><ref refid="xpms_8c_1aca7f7e80f8b5a7c30e3444a8099aca73" kindref="member">levels_img</ref>,<sp/>340,<sp/>350);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a9468841423b0e0cd17af3a553c1eb0ca" kindref="member">endless_sprite</ref>,<sp/><ref refid="xpms_8c_1a422042b15d34fe4eceb986d2ae46501d" kindref="member">endless_img</ref>,<sp/>340,<sp/>500);</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a67f750258c87c62215f412241d75ba70" kindref="member">instructions_sel_sprite</ref>,<sp/><ref refid="xpms_8c_1a35304fd9bff6c564c2c0c919544c6e85" kindref="member">instructions_sel_img</ref>,<sp/>340,<sp/>650);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1adf9fb44b29884523eb1e82b8329383ef" kindref="member">exit_sprite</ref>,<sp/><ref refid="xpms_8c_1ad8d029ee6d4968e37a71e73787482047" kindref="member">exit_img</ref>,<sp/>340,<sp/>800);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>3:</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a8b168ffed077fda99184db6cbcc294cf" kindref="member">logo_sprite</ref>,<sp/><ref refid="xpms_8c_1ad973550294f2aabbd126d632d6fb5054" kindref="member">logo_img</ref>,<sp/>0,<sp/>100);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1afd3aa7e0365c741a6c9af8993d7d190e" kindref="member">levels_sprite</ref>,<sp/><ref refid="xpms_8c_1aca7f7e80f8b5a7c30e3444a8099aca73" kindref="member">levels_img</ref>,<sp/>340,<sp/>350);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a9468841423b0e0cd17af3a553c1eb0ca" kindref="member">endless_sprite</ref>,<sp/><ref refid="xpms_8c_1a422042b15d34fe4eceb986d2ae46501d" kindref="member">endless_img</ref>,<sp/>340,<sp/>500);</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a2d0e51593d629237ac3f114000db2fd3" kindref="member">instructions_sprite</ref>,<sp/><ref refid="xpms_8c_1a512e08b955ba92663ee0fe8d4cfa24ca" kindref="member">instructions_img</ref>,<sp/>340,<sp/>650);</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a6606e574ac5d97e604c44e168079e9b4" kindref="member">exit_sel_sprite</ref>,<sp/><ref refid="xpms_8c_1a950c85c71abdd3044d74805d10faea3b" kindref="member">exit_sel_img</ref>,<sp/>340,<sp/>800);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1ac138abcd7620b5021137c53bb0f3e6a7" kindref="member">video_switch</ref>();</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47" refid="_menu_8c_1aa98b5886fa65e09bb90786a83099a72d" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_menu_8c_1aa98b5886fa65e09bb90786a83099a72d" kindref="member">menu_interrupt_loop</ref>()</highlight></codeline>
+<codeline lineno="48"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1a7d771989b41395d6d703f523c6fc22eb" kindref="member">draw_menu</ref>();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>r,i=0;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>bytes[2];</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//interrupt<sp/>loop</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ipc_status;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>message<sp/>msg;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>!=<sp/><ref refid="group__i8042_1gaa58b06c8d2e76061abcb01b8f2bbf575" kindref="member">KBC_BRK_ESC_KEY</ref>)<sp/></highlight><highlight class="comment">//only<sp/>exits<sp/>with<sp/>ESC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">/*<sp/>You<sp/>may<sp/>want<sp/>to<sp/>use<sp/>a<sp/>different<sp/>condition<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Get<sp/>a<sp/>request<sp/>message.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>(r<sp/>=<sp/>driver_receive(ANY,<sp/>&amp;msg,<sp/>&amp;ipc_status))<sp/>!=<sp/>0<sp/>)<sp/>{<sp/></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;driver_receive<sp/>failed<sp/>with:<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>r);</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(is_ipc_notify(ipc_status))<sp/>{<sp/></highlight><highlight class="comment">/*<sp/>received<sp/>notification<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(_ENDPOINT_P(msg.m_source))<sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>HARDWARE:<sp/></highlight><highlight class="comment">/*<sp/>hardware<sp/>interrupt<sp/>notification<sp/>*/</highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg.m_notify.interrupts<sp/>&amp;<sp/><ref refid="proj_8c_1a0b5e8b57b027281fc5c71c2ab3671c92" kindref="member">irq_set_kbc</ref>)<sp/></highlight><highlight class="comment">//keyboard<sp/>interrupts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">/*<sp/>subscribed<sp/>interrupt<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//get<sp/>the<sp/>scanconde</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="keyboard_8c_1aea970a154161a35f6894898a092ed70a" kindref="member">kbc_ih</ref>();</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>==<sp/><ref refid="group__i8042_1ga1a9c1cdc273c69f115e1e77bc1809fe5" kindref="member">KBC_2BYTE_CODE</ref>){</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bytes[i]<sp/>=<sp/><ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref>;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i++;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bytes[i]<sp/>=<sp/><ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i=0;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>==<sp/><ref refid="group__i8042_1ga11d5498a585eee1a6f14aff9eb31ddb3" kindref="member">KBC_W_MAKE_KEY</ref>){</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" kindref="member">selected</ref><sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" kindref="member">selected</ref>--;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>==<sp/><ref refid="group__i8042_1ga3bb726ee2e00c3d7e86f099497faea23" kindref="member">KBC_S_MAKE_KEY</ref>)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" kindref="member">selected</ref><sp/>&lt;<sp/>3)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" kindref="member">selected</ref>++;</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>==<sp/><ref refid="group__i8042_1ga9b746737cd81a0ce079a8498c1936011" kindref="member">KBC_ENTER_MAKE_KEY</ref>)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1a8c514bb03fd46808d309738584e86fc1" kindref="member">call_level</ref>(<ref refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" kindref="member">selected</ref>);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg.m_notify.interrupts<sp/>&amp;<sp/><ref refid="proj_8c_1a8be64d00347cadbd31bf44162c2954eb" kindref="member">irq_set_timer</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1af7831592ef04114ca9b46e672c0e646b" kindref="member">clear_buffer</ref>();</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1a7d771989b41395d6d703f523c6fc22eb" kindref="member">draw_menu</ref>();</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_graphic_card_8c_1a99d2da2559e11200c6b40c469e9977ec" kindref="member">vg_draw_rectangle</ref>(<ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref>,<sp/><ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref>,<sp/>10,<sp/>10,<sp/>0xffffff))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1ac138abcd7620b5021137c53bb0f3e6a7" kindref="member">video_switch</ref>();</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg.m_notify.interrupts<sp/>&amp;<sp/><ref refid="proj_8c_1ac6dcbbdfd0e6816c7d375f5a8ad6dd41" kindref="member">irq_set_mouse</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a210374b50462acdedab00df64d5cea3c" kindref="member">mouse_ih</ref>();</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" kindref="member">mouse_counter</ref><sp/>==<sp/>3)<sp/><sp/>{</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" kindref="member">mouse_counter</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a9571698f3d39b3820ff2fc8877fbb63f" kindref="member">mouse_write_to_packet</ref>();</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a95040f52f6beeba67119b8b66857c52e" kindref="member">mouse_update_coords</ref>();</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref><sp/>&gt;<sp/>200<sp/>&amp;&amp;<sp/><ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref><sp/>&lt;<sp/>1080)</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>&gt;=<sp/>350<sp/>&amp;&amp;<sp/><ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>&lt;=<sp/>450)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" kindref="member">selected</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>&gt;=<sp/>500<sp/>&amp;&amp;<sp/><ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>&lt;=<sp/>600)</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" kindref="member">selected</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>&gt;=<sp/>650<sp/>&amp;&amp;<sp/><ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>&lt;=<sp/>750)</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" kindref="member">selected</ref><sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>&gt;=<sp/>800<sp/>&amp;&amp;<sp/><ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>&lt;=<sp/>900)</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" kindref="member">selected</ref><sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.lb)<sp/><sp/>{</highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1a8c514bb03fd46808d309738584e86fc1" kindref="member">call_level</ref>(<ref refid="_menu_8c_1adab4da51ba40d5a492becdceccccbfcd" kindref="member">selected</ref>);}</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">/*<sp/>no<sp/>other<sp/>notifications<sp/>expected:<sp/>do<sp/>nothing<sp/>*/</highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">/*<sp/>received<sp/>a<sp/>standard<sp/>message,<sp/>not<sp/>a<sp/>notification<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>no<sp/>standard<sp/>messages<sp/>expected:<sp/>do<sp/>nothing<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="142"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144" refid="_menu_8c_1a382d124fe0ece0c1d3890d6838df6b10" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_menu_8c_1a382d124fe0ece0c1d3890d6838df6b10" kindref="member">dead_draw_menu</ref>()</highlight></codeline>
+<codeline lineno="145"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1af7831592ef04114ca9b46e672c0e646b" kindref="member">clear_buffer</ref>();</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="_menu_8c_1a0ea724bccaacf90a1d5f6be79aeab8be" kindref="member">dead_selected</ref>)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>0:</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a451a13b15597a061ebfb7bdb9e557463" kindref="member">menu_selected_sprite</ref>,<sp/><ref refid="xpms_8c_1a9e1fb04c0289c3bb0a8c2fa32ba63068" kindref="member">menu_selected_img</ref>,<sp/>340,<sp/>200);</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1adf9fb44b29884523eb1e82b8329383ef" kindref="member">exit_sprite</ref>,<sp/><ref refid="xpms_8c_1ad8d029ee6d4968e37a71e73787482047" kindref="member">exit_img</ref>,<sp/>340,<sp/>600);</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>1:</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a6f76a4b94df4d242089732e52c27fa7c" kindref="member">menu_sprite</ref>,<sp/><ref refid="xpms_8c_1aca88420a7e1db62dcc8361747eddd85e" kindref="member">menu_img</ref>,<sp/>340,<sp/>200);</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a6606e574ac5d97e604c44e168079e9b4" kindref="member">exit_sel_sprite</ref>,<sp/><ref refid="xpms_8c_1a950c85c71abdd3044d74805d10faea3b" kindref="member">exit_sel_img</ref>,<sp/>340,<sp/>600);</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1ac138abcd7620b5021137c53bb0f3e6a7" kindref="member">video_switch</ref>();</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="163"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165" refid="_menu_8c_1a3f2ef71198711fcd1e648f6b13e8e8f7" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_menu_8c_1a3f2ef71198711fcd1e648f6b13e8e8f7" kindref="member">dead_menu_interrupt_loop</ref>()</highlight></codeline>
+<codeline lineno="166"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1a382d124fe0ece0c1d3890d6838df6b10" kindref="member">dead_draw_menu</ref>();</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>r,i=0;</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>bytes[2];</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//interrupt<sp/>loop</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ipc_status;</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/>message<sp/>msg;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>!=<sp/><ref refid="group__i8042_1gaa58b06c8d2e76061abcb01b8f2bbf575" kindref="member">KBC_BRK_ESC_KEY</ref>)<sp/></highlight><highlight class="comment">//only<sp/>exits<sp/>with<sp/>ESC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">/*<sp/>You<sp/>may<sp/>want<sp/>to<sp/>use<sp/>a<sp/>different<sp/>condition<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Get<sp/>a<sp/>request<sp/>message.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>(r<sp/>=<sp/>driver_receive(ANY,<sp/>&amp;msg,<sp/>&amp;ipc_status))<sp/>!=<sp/>0<sp/>)<sp/>{<sp/></highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;driver_receive<sp/>failed<sp/>with:<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>r);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(is_ipc_notify(ipc_status))<sp/>{<sp/></highlight><highlight class="comment">/*<sp/>received<sp/>notification<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(_ENDPOINT_P(msg.m_source))<sp/></highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>HARDWARE:<sp/></highlight><highlight class="comment">/*<sp/>hardware<sp/>interrupt<sp/>notification<sp/>*/</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg.m_notify.interrupts<sp/>&amp;<sp/><ref refid="proj_8c_1a0b5e8b57b027281fc5c71c2ab3671c92" kindref="member">irq_set_kbc</ref>)<sp/></highlight><highlight class="comment">//keyboard<sp/>interrupts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">/*<sp/>subscribed<sp/>interrupt<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//get<sp/>the<sp/>scanconde</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="keyboard_8c_1aea970a154161a35f6894898a092ed70a" kindref="member">kbc_ih</ref>();</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>==<sp/><ref refid="group__i8042_1ga1a9c1cdc273c69f115e1e77bc1809fe5" kindref="member">KBC_2BYTE_CODE</ref>){</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bytes[i]<sp/>=<sp/><ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref>;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i++;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bytes[i]<sp/>=<sp/><ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref>;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i=0;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>==<sp/><ref refid="group__i8042_1ga11d5498a585eee1a6f14aff9eb31ddb3" kindref="member">KBC_W_MAKE_KEY</ref>){</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_menu_8c_1a0ea724bccaacf90a1d5f6be79aeab8be" kindref="member">dead_selected</ref><sp/>!=<sp/>0)</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1a0ea724bccaacf90a1d5f6be79aeab8be" kindref="member">dead_selected</ref>--;</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>==<sp/><ref refid="group__i8042_1ga3bb726ee2e00c3d7e86f099497faea23" kindref="member">KBC_S_MAKE_KEY</ref>)</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_menu_8c_1a0ea724bccaacf90a1d5f6be79aeab8be" kindref="member">dead_selected</ref><sp/>&lt;<sp/>1)</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1a0ea724bccaacf90a1d5f6be79aeab8be" kindref="member">dead_selected</ref>++;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>==<sp/><ref refid="group__i8042_1ga9b746737cd81a0ce079a8498c1936011" kindref="member">KBC_ENTER_MAKE_KEY</ref>)</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_menu_8c_1a0ea724bccaacf90a1d5f6be79aeab8be" kindref="member">dead_selected</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1a8c514bb03fd46808d309738584e86fc1" kindref="member">call_level</ref>(4);</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1a8c514bb03fd46808d309738584e86fc1" kindref="member">call_level</ref>(3);</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg.m_notify.interrupts<sp/>&amp;<sp/><ref refid="proj_8c_1a8be64d00347cadbd31bf44162c2954eb" kindref="member">irq_set_timer</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1af7831592ef04114ca9b46e672c0e646b" kindref="member">clear_buffer</ref>();</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1a382d124fe0ece0c1d3890d6838df6b10" kindref="member">dead_draw_menu</ref>();</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="_graphic_card_8c_1a99d2da2559e11200c6b40c469e9977ec" kindref="member">vg_draw_rectangle</ref>(<ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref>,<sp/><ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref>,<sp/>10,<sp/>10,<sp/>0xffffff))<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1ac138abcd7620b5021137c53bb0f3e6a7" kindref="member">video_switch</ref>();</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg.m_notify.interrupts<sp/>&amp;<sp/><ref refid="proj_8c_1ac6dcbbdfd0e6816c7d375f5a8ad6dd41" kindref="member">irq_set_mouse</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a210374b50462acdedab00df64d5cea3c" kindref="member">mouse_ih</ref>();</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" kindref="member">mouse_counter</ref><sp/>==<sp/>3)<sp/><sp/>{</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" kindref="member">mouse_counter</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a9571698f3d39b3820ff2fc8877fbb63f" kindref="member">mouse_write_to_packet</ref>();</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a95040f52f6beeba67119b8b66857c52e" kindref="member">mouse_update_coords</ref>();</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref><sp/>&gt;<sp/>200<sp/>&amp;&amp;<sp/><ref refid="mouse_8c_1a6c59af730728bf5260ef828aea2eebee" kindref="member">mouse_x</ref><sp/>&lt;<sp/>1080)</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>&gt;=<sp/>200<sp/>&amp;&amp;<sp/><ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>&lt;=<sp/>300)</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1a0ea724bccaacf90a1d5f6be79aeab8be" kindref="member">dead_selected</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>&gt;=<sp/>600<sp/>&amp;&amp;<sp/><ref refid="mouse_8c_1ab21653e455bbca86826aa5f628a5fdb2" kindref="member">mouse_y</ref><sp/>&lt;=<sp/>700)</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="_menu_8c_1a0ea724bccaacf90a1d5f6be79aeab8be" kindref="member">dead_selected</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1ae23031e882e8e9e04089a46bcba23e6d" kindref="member">mousePacket</ref>.lb)<sp/><sp/>{</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="_menu_8c_1a0ea724bccaacf90a1d5f6be79aeab8be" kindref="member">dead_selected</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1a8c514bb03fd46808d309738584e86fc1" kindref="member">call_level</ref>(4);</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="_levels_8c_1a8c514bb03fd46808d309738584e86fc1" kindref="member">call_level</ref>(3);</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">/*<sp/>no<sp/>other<sp/>notifications<sp/>expected:<sp/>do<sp/>nothing<sp/>*/</highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">/*<sp/>received<sp/>a<sp/>standard<sp/>message,<sp/>not<sp/>a<sp/>notification<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>no<sp/>standard<sp/>messages<sp/>expected:<sp/>do<sp/>nothing<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="268"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"></highlight></codeline>
+<codeline lineno="270" refid="_menu_8c_1addb5b94a66f4696e4616476264ecc688" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="_menu_8c_1addb5b94a66f4696e4616476264ecc688" kindref="member">instructions_loop</ref>()</highlight></codeline>
+<codeline lineno="271"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>end<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1a305573e0b7424458b1716f1874c7bd37" kindref="member">draw_xpm</ref>(<ref refid="xpms_8c_1a3fa69911c555d07188f0fb904ee283b7" kindref="member">inside_instructions_sprite</ref>,<sp/><ref refid="xpms_8c_1ade5ec4033108f4453b9a48d19f77f39d" kindref="member">inside_instructions_img</ref>,<sp/>0,<sp/>0);</highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="_graphic_card_8c_1ac138abcd7620b5021137c53bb0f3e6a7" kindref="member">video_switch</ref>();</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>r,i=0;</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>bytes[2];</highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//interrupt<sp/>loop</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>ipc_status;</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/>message<sp/>msg;</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>!=<sp/><ref refid="group__i8042_1gaa58b06c8d2e76061abcb01b8f2bbf575" kindref="member">KBC_BRK_ESC_KEY</ref><sp/>&amp;&amp;<sp/>!end)<sp/></highlight><highlight class="comment">//only<sp/>exits<sp/>with<sp/>ESC</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">/*<sp/>You<sp/>may<sp/>want<sp/>to<sp/>use<sp/>a<sp/>different<sp/>condition<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>Get<sp/>a<sp/>request<sp/>message.<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<sp/>(r<sp/>=<sp/>driver_receive(ANY,<sp/>&amp;msg,<sp/>&amp;ipc_status))<sp/>!=<sp/>0<sp/>)<sp/>{<sp/></highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;driver_receive<sp/>failed<sp/>with:<sp/>%d&quot;</highlight><highlight class="normal">,<sp/>r);</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(is_ipc_notify(ipc_status))<sp/>{<sp/></highlight><highlight class="comment">/*<sp/>received<sp/>notification<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(_ENDPOINT_P(msg.m_source))<sp/></highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>HARDWARE:<sp/></highlight><highlight class="comment">/*<sp/>hardware<sp/>interrupt<sp/>notification<sp/>*/</highlight><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg.m_notify.interrupts<sp/>&amp;<sp/><ref refid="proj_8c_1a0b5e8b57b027281fc5c71c2ab3671c92" kindref="member">irq_set_kbc</ref>)<sp/></highlight><highlight class="comment">//keyboard<sp/>interrupts</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">/*<sp/>subscribed<sp/>interrupt<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//get<sp/>the<sp/>scanconde</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="keyboard_8c_1aea970a154161a35f6894898a092ed70a" kindref="member">kbc_ih</ref>();</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>==<sp/><ref refid="group__i8042_1ga1a9c1cdc273c69f115e1e77bc1809fe5" kindref="member">KBC_2BYTE_CODE</ref>){</highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bytes[i]<sp/>=<sp/><ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref>;</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i++;</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">continue</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>bytes[i]<sp/>=<sp/><ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref>;</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>i=0;</highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>==<sp/><ref refid="group__i8042_1ga042311ea0e5fecf7253945d35f079eda" kindref="member">KBC_Q_MAKE_KEY</ref>){</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>end<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(msg.m_notify.interrupts<sp/>&amp;<sp/><ref refid="proj_8c_1ac6dcbbdfd0e6816c7d375f5a8ad6dd41" kindref="member">irq_set_mouse</ref>)<sp/>{</highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a210374b50462acdedab00df64d5cea3c" kindref="member">mouse_ih</ref>();</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" kindref="member">mouse_counter</ref><sp/>==<sp/>3)<sp/><sp/>{</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a316744e42bdaf54a1c36cb898ee97d23" kindref="member">mouse_counter</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a9571698f3d39b3820ff2fc8877fbb63f" kindref="member">mouse_write_to_packet</ref>();</highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="mouse_8c_1a95040f52f6beeba67119b8b66857c52e" kindref="member">mouse_update_coords</ref>();</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">default</highlight><highlight class="normal">:</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;<sp/></highlight><highlight class="comment">/*<sp/>no<sp/>other<sp/>notifications<sp/>expected:<sp/>do<sp/>nothing<sp/>*/</highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}<sp/></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{<sp/></highlight><highlight class="comment">/*<sp/>received<sp/>a<sp/>standard<sp/>message,<sp/>not<sp/>a<sp/>notification<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>no<sp/>standard<sp/>messages<sp/>expected:<sp/>do<sp/>nothing<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="325"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Menu.c"/>
+  </compounddef>
+</doxygen>

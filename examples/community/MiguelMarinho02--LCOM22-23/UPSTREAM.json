@@ -1,0 +1,145 @@
+{
+  "repository": "https://github.com/MiguelMarinho02/LCOM22-23",
+  "revision": "26061d898e8977c6c6ef3834191ef7cdddee630c",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "4c57f98d894e5c756865aae3c2e7c0ac712feb8d04343a568f5bfab397913293",
+    "proj/Doxyfile": "7511ad32394e478e6f17b2553b78b5ebe0b2abd2166c59734d93aa83c5b75725",
+    "proj/m.c": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/Makefile": "3869d20451483da814510ee5a9e8f9a85436c2821c818a04ddff6bfa889d62cd",
+    "proj/src/imgs/bullet_blue.png": "011a4d99d7404cd3923d679b04ef5ebb634c3ae691384da9bbe9ed85b3eeb8b5",
+    "proj/src/imgs/bullet_blue.xcf": "2f100e24ae071c6f720e7cd1acc7e5420d5e46145f28eae3c501a3020450a1b1",
+    "proj/src/imgs/bullet_blue10.xpm": "9c66545ebc23b9854acc40d7534be07b6af04baac08be52dd5b064fe72516a46",
+    "proj/src/imgs/bullet_blue32.xpm": "16964eb2bbe19bcc3f714fd4b38ac9dc20e5fc71eb21b5b36e4a9554f754005d",
+    "proj/src/imgs/bullet_red.png": "95f17afb32bc18d11773378babc5afb0847456adf471b62f39347cd734b16458",
+    "proj/src/imgs/bullet_red.xcf": "36eac2c12dd0f8a6d0b928317a2fc2bb84ca2872fa5c670eb5e86f472f278741",
+    "proj/src/imgs/bullet_red10.xpm": "8b339e807106db0833311bd886939ba6ae8021ad9eba40f17594c6fce8edba0b",
+    "proj/src/imgs/bullet_red32.xpm": "58a8d43bea650864b4325a232b987597462f733f1b52be9784710776e27f2f0c",
+    "proj/src/imgs/crossair.xcf": "4a1bec97ba4e09b51f444f852ffd40ac97aba27b64414b1837d6e1b713e39e7f",
+    "proj/src/imgs/crossair22.png": "d1f844a3e2f6162ecea6943581204144855d0d6d4b6b505686406bc52c2c7287",
+    "proj/src/imgs/crossair22.xpm": "c4e2f941547d2d85668933a50c038957334680b2cf2dd89fd2eed5c0e6e9993a",
+    "proj/src/imgs/enemy.png": "a1f72e090538875dd9f20105f854b8e4656df2aefb73acc5c307a49a523b1310",
+    "proj/src/imgs/enemy32_1a.xpm": "ab4baba5c4c7be5c298ca7e9cf7bbf75514b6d03cf44fc7364e31604b99a85b4",
+    "proj/src/imgs/enemy32_1b.xpm": "21c97b3bf6d92fa9e52234bfe69c3b98188e668aea71d50fb2273e465b57217a",
+    "proj/src/imgs/enemy32_1c.xpm": "14d191250db3808ab0b54245111573376b866875843903241f328ba5a2308229",
+    "proj/src/imgs/enemy32_1d.xpm": "89c0bb33b4ced00bcccb90b76cc5436f73752434a0c2f97f769fe29bba3e9db9",
+    "proj/src/imgs/enemy32_4.xcf": "d8058f2db27b5133a3281a19560ce14a8b930b47c6a6efcf6528fdad26f1a0db",
+    "proj/src/imgs/enemy32_4.xpm": "60017282b088247b07d42c75da26f8b71b300a2baff14d60a8968bbcbd9274e6",
+    "proj/src/imgs/ship.png": "d8281ac14f3f5eb3000d54e5aaad80864d5eb110ae3a78b35a7a9c2ae1c9e2e6",
+    "proj/src/imgs/ship.xcf": "de2e1b5b5632a5e002327c11e7c6f91123a25c6b3d594858fe3383727cb2d0ac",
+    "proj/src/imgs/ship32.xpm": "d6489dadb9d6a7103702aacd9c4ae83c3d168225421a859b4f4c08c248dc8b2a",
+    "proj/src/imgs/test.xpm": "2170648e27e5dd02a9cb8760b6a5cfb3b7a1ad85d282586142aedfdebbbfc3f4",
+    "proj/src/imgs/text_font.png": "9d232f66a5e30659a9fcaa38bb8a50230a5d795f378b450ca64ea6d3f144033f",
+    "proj/src/imgs/text_font.xpm": "9f2b92f85be673134227acaf3aaf152fe1607461a5b974a9f81fd64d78d85b37",
+    "proj/src/imgs/text_font_big.png": "5f7f29319c2a7dfab7f9cb7b7463cbe7b7a6cf68b08ad6becbf1dbf87ab374ab",
+    "proj/src/imgs/text_font_big.xpm": "b5524228b88281bd926cf9182c3ee6154348385ab0b13cdfef8135fe7057c446",
+    "proj/src/lib/controller.c": "c384e2c900e82516e36ab9fe812aced6cd58cddb742905aacd15248a5d75ee9d",
+    "proj/src/lib/controller.h": "f5a10bc41b04ee89ec1f87dd431c6e90d18264a7fb27c5c15bb84ebcdc65eb17",
+    "proj/src/lib/draw_elements.c": "0b38b3010543b6860fcfd12f8b516977a7ac8cb21c1aa0006b05b606309eee62",
+    "proj/src/lib/draw_elements.h": "31b064091e2d8849c2d5ac48d5f3260e58b67e5a1fd8beccb106f5985636a471",
+    "proj/src/lib/game_loop.c": "fbe35d705a2046c290a2c049fbc7ad275a470cafc3f9c3b9928ef0c81dbe7d94",
+    "proj/src/lib/game_loop.d": "5075a1574b09239cf9fb4fb7a97d8741c1b8903639ee712d35f38e15d4de0b7c",
+    "proj/src/lib/game_loop.h": "2eac4c26914c799ad416de09fc4ded98c13a4338019ec201051dd1d1a8162f9c",
+    "proj/src/lib/gpu.c": "54eded4fe22b1175a031f5a50ed08c5e227fe9bc9c7e1f68abafa3a0b5072c90",
+    "proj/src/lib/gpu.d": "c4375d9ba3d246a3c9188a1de29e2134ccbe46be1f7ffa97d26a388dac82beef",
+    "proj/src/lib/gpu.h": "19199541b68b664f4c72c613d261a6f8ab6ed80bed8b5b006e8daf31c4453657",
+    "proj/src/lib/i8042.h": "d16592ccb534db8f5c38daa3993152328b3563e41714a868df7c484a11d5f7e6",
+    "proj/src/lib/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/lib/keyboard.c": "4996b2af1e1fa5a89b74ffad53aa7247bb5b451aa18310df6272fac5a715b802",
+    "proj/src/lib/keyboard.d": "ec457ed1ce2bdafe821a564bd28b373dfd3eb915a6b0c31cd807a671ad0d90e0",
+    "proj/src/lib/keyboard.h": "f6dbc8fafd2b4c12be8013519157ce55201d0a871882914ecef9ddeeefe63e54",
+    "proj/src/lib/leaderboard.txt": "333057f88e00dd8239d7091884fc66f6caea0753e046a559b4f8f41fcfdcbc92",
+    "proj/src/lib/mouse.c": "cc8df5243d39b4d15a9444558adc10fca5bfedb2b05e8c18441b0b55430e6ee5",
+    "proj/src/lib/mouse.d": "3c1d98a2a7ddf828397a2fe3078b2dc8bef48f2e85516cdde82c7ffe20fcb18f",
+    "proj/src/lib/mouse.h": "26dca51ba68e46eb00abc613450bc58f4a85dac689b4bffea29507ae5ecd9ba4",
+    "proj/src/lib/rtc.c": "4c25561acd5851574931ac42de56870e5f714671ab676d4298671960ac885f4e",
+    "proj/src/lib/rtc.h": "4ef830d89286ee4ea136c9a4a9b683c33a822c6ad605ac1e9bb4e42e535e644d",
+    "proj/src/lib/sprite.c": "be3662feaebe0195328e08f96279f16e0f3b04bffe6bb67afeb66189cea12cd3",
+    "proj/src/lib/sprite.h": "cd7d0f284df9df07283d7df79d6697830c66d9db7430268f066ba1826dc7ebb6",
+    "proj/src/lib/timer.c": "65dc94fde19bcaadda1a88d0a56644ef5e0e6351b30a03c7c667cf4721d6e6a3",
+    "proj/src/lib/timer.d": "54a5a1a2b4ed748fd2bd98ce4978c408386218d32e294f762cc2d2c6c8afeb12",
+    "proj/src/lib/timer.h": "a0247f9d9840d723dfc2097a06140a2bb5da7b93fedbb7d39398b43471bee7df",
+    "proj/src/lib/utils.c": "9d6b8c415c333c4bbfdde2678e953061c2ba81c652788bd970462b1b9c3dc8b0",
+    "proj/src/lib/utils.d": "5822b6600358479a8758a0337a34edb9239205ba60a1ada9f16917681ef192d8",
+    "proj/src/proj.c": "1da980001de5aaa932e8056101892101fe1b9794dd5337bc4e7eb262fb5d8d3e"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated documentation, compiled executables, unrelated labs, VCS/IDE/OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/lib/draw_elements.c",
+          "reason": "Reserve complete decimal int strings and their terminators for score, timer and HP. Original one/two-byte HUD buffers overflowed even initial180 seconds and HP3 under optimized/FORTIFY builds.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/space-patrol-hud-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/space-patrol-hud-green.log"
+          },
+          "originalSha256": "0b38b3010543b6860fcfd12f8b516977a7ac8cb21c1aa0006b05b606309eee62",
+          "patchedSha256": "1b22e58541276caf76300a564c549c51b326ea85ec0d74281dd1b030cdeedd26"
+        },
+        {
+          "file": "proj/src/lib/keyboard.h",
+          "reason": "Match the authored byte getter and setter definitions in keyboard.c. Original int getter/unspecified byte setter declarations conflict with the C definition and the real WASM call trapped as .LgetData_bitcast_invalid.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/space-patrol-getter-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-green5.log"
+          },
+          "originalSha256": "f6dbc8fafd2b4c12be8013519157ce55201d0a871882914ecef9ddeeefe63e54",
+          "patchedSha256": "fd91f6f0a78f684730783c8b556e60c6593c4f86ffa09960679127c158addd97"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a flat palette",
+    "source": "proj/src/imgs/ship32.xpm",
+    "array": null
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "e27e8ba5e44d08e33e12b5a829882ce6e87ea3262a59ae722c98c7f330751730",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "d63e24731cd8324977893334ff2dbb236289b9ce1298dbf12b6f354066b5ec72",
+      "kind": "Original browser gameplay capture"
+    }
+  ],
+  "verification": {
+    "browser": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay11-final.log",
+    "owningRegressions": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/batch11-source-tests.py",
+    "nativeCompile": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/MiguelMarinho02--LCOM22-23.native11-strict.log",
+    "android": "Pending independent parent-owned actual Android gameplay.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "445120d85fbc7d9e7be67654d2c22a383609aa69f134be9ce6844aa4c3b9ee3e",
+      "evidence": "build/arcade-100/a52-native-gameplay/results.json",
+      "demonstrated": [
+        "Original green aliens/ship with SCORE0/TIME99/HP5.",
+        "Visible player volley and an alien removed with positive SCORE, browser1."
+      ],
+      "limitations": [
+        "Representative local ARM64 touchscreen gameplay only; complete campaigns and physical-device performance remain untested."
+      ]
+    }
+  }
+}

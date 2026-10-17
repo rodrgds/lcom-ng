@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "name": "Bow And Arrow",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "UP",
+        "DOWN"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "left",
+          "style": "stick",
+          "axes": "vertical"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Draw bow",
+          "key": "SPACE",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Reload",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/resources"
+    ],
+    "pathAliases": {}
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "description": "Shoot balloons with a bow, aim by moving vertically, and keep your arrows stocked."
+}

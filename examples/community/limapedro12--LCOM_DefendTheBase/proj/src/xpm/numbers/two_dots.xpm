@@ -1,0 +1,26 @@
+/* XPM */
+static xpm_row_t two_dots[] = {
+/* columns rows colors chars-per-pixel */
+"10 16 4 1 ",
+"  c #000000",
+". c #00FF12",
+"X c #A5A59D",
+"o c #FFFFFF",
+/* pixels */
+"....  ....",
+"... oo ...",
+".. oooo ..",
+".. oooX ..",
+".. ooXX ..",
+"... XX ...",
+"....  ....",
+"..........",
+"..........",
+"....  ....",
+"... oo ...",
+".. oooo ..",
+".. oooX ..",
+".. ooXX ..",
+"... XX ...",
+"....  ...."
+};

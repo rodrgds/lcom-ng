@@ -1,0 +1,129 @@
+{
+  "repository": "https://github.com/reeckset/LCOM_Minix_2017",
+  "revision": "422068bc25d6f50aceb2341e9381af4f4194e6e6",
+  "project": "rush/src",
+  "sourceHashes": {
+    "LICENSE": "cedc4152d529e8f0dfa8f5387f60ad29af8bc08df288521865d7ade0853c08b5",
+    "rush/res/0.bmp": "5accebfe57e734e49b1798c38f3dbc806ca20dd6cfe6e34688f54d8891d5f3da",
+    "rush/res/1.bmp": "9ef8826f4e1c9a56eabecfb7b955ca21cbb10e7f3ac713f3cb90100bf56b2197",
+    "rush/res/2.bmp": "da3685acb0b515b511fbd63e0dfdbc31a405897d67772aefbd91fbb37ee83cd4",
+    "rush/res/3.bmp": "8805e44bb782792308e7022f7ce41143b7cb70fb9d92f104c8dba7cd9e6f71ed",
+    "rush/res/4.bmp": "10af5f2a03d2d7b967ca21dea619b9806d6753ff858f9d958948ac990d93817c",
+    "rush/res/5.bmp": "fa9c1e173ef0ed80d707731d1b7d468251df41b63de381afac6a60652d5a3cd2",
+    "rush/res/6.bmp": "0acdd942eceb777dbe3c08583bff8e3f2df4351d677af3ae6dcedbd0ec42b1db",
+    "rush/res/7.bmp": "39e40d9b83e41630ab75018ffd5a3931fa20a1b26ee1dfcabc3c4f3fcf11dd08",
+    "rush/res/8.bmp": "ca8d389e4efcd6c52bd21a7b4f8883248f839a7e9c03f455b28fe34cf64f27af",
+    "rush/res/9.bmp": "fb4d34c1161acec417d25771b954fc38279b97b897bdfc9c15bf7f427ebaa67e",
+    "rush/res/Ambulance.bmp": "e5ffb58bbd6cb024a125b5804a286b047ed31984a9910faacb3bf0508f049bdf",
+    "rush/res/Audi.bmp": "df6448772f118b51e8d90b57b11e30114dc08904d525396674125b4be5025204",
+    "rush/res/basicCar.bmp": "d42312249f74e39f4dc6ea195ee7efbad853c8e70c158730eb39a1d995cbd42d",
+    "rush/res/basicCarSouth.bmp": "dca76fae351a68237f3cd0021a6901c8299bbfe729753b4892e30bdbc69d0688",
+    "rush/res/cursor.bmp": "3906502e432fc990cd5d8a4504085d0b6cfaddc56838558edb46a7006d9aa405",
+    "rush/res/exit.bmp": "a5962e53b6c3e67c37bd36e657583e4f403f1b231e32e1bdec57271fe18f0de3",
+    "rush/res/gameOver_bg.bmp": "9ad8f95d44cb903f5b847afc5f35330cfc8b45c677dc59dd0b12b67dda4b9cd0",
+    "rush/res/heart.bmp": "f80f1f48144a34eac21859137309c855ed1182458c8719291287f42906be8a59",
+    "rush/res/mainCar.bmp": "98b6af3a59ea188beac384db02928d843d23c0bf78b026cf1d6c5f941c217e9f",
+    "rush/res/mainMenuBtn.bmp": "7174260fe047aa6a8af79591997cc19e3f77f0f54da6bdcfaa678fb7a214bacd",
+    "rush/res/mainMenuBtn_hovered.bmp": "8692dc0a0166eb35154f7ed4ca7846fe09609e31c9cce111aa861ed6bb57f1b2",
+    "rush/res/mainMenu_bg.bmp": "35b8cff26586798c9f992166090a1cd93c5871895b968ff4110c7953375b95e0",
+    "rush/res/menu-bg-day.bmp": "09d2e5d168f4a61d07db35528c1b2e0253be18625b1c86508be29c5d59a72c28",
+    "rush/res/menu-bg-night.bmp": "c3033ebf6b65f6b61a60284aa9bd58bdc5aaf89208539bfad297124cefd3a996",
+    "rush/res/pause.bmp": "9838aeb84fecd96a00ccc65d73b4f51b077cd1af1cd8b07b724e1f3e11145a42",
+    "rush/res/play-btn-hovered-night.bmp": "abf9f63593f514965f44914811af45b5315d51d760cc70a3f7e55fedfea3884a",
+    "rush/res/play-btn-hovered.bmp": "c08c180ea3a281f197bca6be7e68bb954ab4a02312962eb6e4b41952b5159ee5",
+    "rush/res/play-btn-night.bmp": "9281c2c23367a200cb841699a265a12ea2821e702174f8259068a1833fcb5e30",
+    "rush/res/play-btn.bmp": "a55cde94d4ef46e2219268b2a0eeedf7e9d0cb732fd1bd58b82b3dc2792f8c10",
+    "rush/res/road.bmp": "00478a5d26b00cdd900a5039fcdadbdea787dfbe886b4d778997befbd579c064",
+    "rush/res/test.bmp": "7cd486796c1a67fc0bfbdf399a192de1d5123888755a51acf4d4df7a9cca655b",
+    "rush/res/title.bmp": "85ab7f9f39ac15ccb7472ddf8de88ec31e3ba0b03de3d5e50cb72452878ce81a",
+    "rush/src/Makefile": "5dfc01817eb6bdf8bbc1e993c8ea39abde195fb3529acbf5ffca41576f3f0338",
+    "rush/src/bitmap.c": "f0699bb13c71bc2bbb67857cfd0c28e158736f0f38cd450be3dae48d0f07467e",
+    "rush/src/bitmap.h": "5f1b6d6313f5480a0892c2bf76d6ecad70ff9ffaffa2a5b17bd2273344f55b91",
+    "rush/src/ev_queue.c": "4ac510b495bc03bf49861691b2b450a344512f071123ac47aa876a4173745157",
+    "rush/src/ev_queue.h": "7c13f76dab77ed41a76f93056a2b9ff0b726cdfd4b6c0a35c5c2e38c086ba86f",
+    "rush/src/gameEngine.c": "7b775a66aa7118d0f957482da99c3aff9c58e823f39b41f41c38538c67dfb922",
+    "rush/src/gameEngine.h": "086b6361cacba99c3fbec4a80e4922b867160856e93ca19b0ff5bd43e52537bf",
+    "rush/src/gameObjects.c": "70ce56e828f620eacb065a71a983f15d8b59e71bd0815ca5c79d131bd41a70d5",
+    "rush/src/gameObjects.h": "0a6ca6d8ec9c6036a016597019099163ac4573ad2255dd3d7b70c72e80f1c319",
+    "rush/src/i8042.h": "016013e1696b4c38bf7920ebeff110909f4fafd20df3076199553b6ae1f5afd5",
+    "rush/src/keyboard.c": "e8e7b073aa33649c7ff319eaa79e4b5f8a0d13387d1af5865055facc98fbabf7",
+    "rush/src/keyboard.h": "0efd993546437ae700a1e08b4ea5d417b106f5e4c334b4930a13910fdf7b8255",
+    "rush/src/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "rush/src/macros.h": "2be80ad8a2a898de828b458233fe54bdd2631c4a8e1fc2f3f94acfba255a84eb",
+    "rush/src/mainGame.c": "8bf700cd1d651dd0ede1459d566320597e71cfb949af0d631b8eff32aa1fc068",
+    "rush/src/mainGame.h": "d55851b8a0626535522b7249ffa3697c078d65b35d2c1f70948c2849c7325344",
+    "rush/src/mouse.c": "002d28273e241aef7ebb23a9c526ae578ca2b1b1a043a48d26b3b8009f1871b5",
+    "rush/src/mouse.h": "6dd266e69d26b5de3b3d61338c69146c76a3ee60e74000b21ed278c8fe6b0f52",
+    "rush/src/rtc.c": "3e11cbd4819dfa40fcb02f285979b6464f50d014e631dbc954550bf566dd86f7",
+    "rush/src/rtc.h": "a12c4c8da865f767c22decd4903a5ec5f220ae3d36a701a2bfca3ee0abe1837d",
+    "rush/src/rush.c": "ca2ddd1fc59f9e0557f951ea15acb5a42e24df8c1cd298e14e93568e21dc3737",
+    "rush/src/stateMachine.c": "df014bbb4e98140197725952c657666e830155ad2d8b7de5ca1c6156d1cc8e52",
+    "rush/src/stateMachine.h": "71129950bb83eae2fb1d894a877ac3b1dd23229f24da93f3f6f9ac1e139af9d1",
+    "rush/src/test.bmp": "7cd486796c1a67fc0bfbdf399a192de1d5123888755a51acf4d4df7a9cca655b",
+    "rush/src/textRender.c": "3bf901606b98e12b1adb913b59ba93f387a96114a306588197cb6b846d7d8e68",
+    "rush/src/textRender.h": "8aa9381aca956cea19c554be8fb5a5c3934d9684c9e2135c39f1391226a977b0",
+    "rush/src/timer.c": "ed1576e2a18c6df5417d18c7631c1baf63a7ec2f0c9e27fe58d9c253ff61edc7",
+    "rush/src/timer.h": "3bf8dc6f7d4ca520c0dceffa1304f3ad20fc2fc36fdbcc1a14aa9cfcba90a8f5",
+    "rush/src/vbe.c": "ed10f4881d59933085b0a1daaecbacb8778bbbe3e32e06bb8262fd5c205eb2da",
+    "rush/src/vbe.h": "4f0acd3065accd6f9e43b4ce743dd46ef7412041ead8c6228458c88d4ee3ca47",
+    "rush/src/video_gr.c": "0e5c86e344be0cfc7d4867243652dfc2c080bf91b7fadd474335786409680c30",
+    "rush/src/video_gr.h": "5414153bc3fbf8b8a83745f6f4da2bc49f1bd52436bfc520f0e149da76c0d7e6"
+  },
+  "selection": "Complete original selected game C/H/Makefile, all33publicBMPassets andMITLICENSE. Otherlabs/documentation/buildproducts omitted.",
+  "excludedMetadata": [],
+  "license": {
+    "status": "MIT",
+    "files": [
+      "LICENSE"
+    ]
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "rush/src/stateMachine.c",
+          "originalSha256": "df014bbb4e98140197725952c657666e830155ad2d8b7de5ca1c6156d1cc8e52",
+          "patchedSha256": "aaf813f78d0e2febb5b142cf8b02882107d9aaf33b342127bbe6ccc21dd93458",
+          "reason": "Allocate all six configured ObjLayer entries before createActiveObjectsList initializes and rendering indexes them.",
+          "verification": "Actual newGameState/createActiveObjectsList fails an independently bounded allocation assertion in original single-layer storage; full configured array passes initialization and independent last-layer write checks. Original browser stops at Startingstates, corrected normal startup reaches complete originalmenu andtrafficplay."
+        },
+        {
+          "file": "rush/src/mainGame.c",
+          "originalSha256": "8bf700cd1d651dd0ede1459d566320597e71cfb949af0d631b8eff32aa1fc068",
+          "patchedSha256": "9753f8196d2e3467ac0945dc54c46507ba5691d2bbfcd9bea17c88c43c9d1895",
+          "reason": "Keep the session-owned event queue alive when resetting a round, and release all discarded nodes including the final node.",
+          "verification": "Actual processEvents\u2192eventHandler\u2192pausedSpace\u2192resetGame chain originally frees its actively held queue, matching native ev_queue_pop SIGSEGV. Corrected full chain clears old pendingESC, returnsMAIN_MENU, frees both oldnodes once, accepts freshSpace toGAME_PLAY, and frees the queue only after dispatch completes."
+        },
+        {
+          "file": "rush/src/ev_queue.c",
+          "originalSha256": "4ac510b495bc03bf49861691b2b450a344512f071123ac47aa876a4173745157",
+          "patchedSha256": "f01a3439b19f72aecf88fb96acddf52e08b0241b74d08d48d2ec72af58646752",
+          "reason": "Release the last popped event node while preserving the existing empty-queue return contract.",
+          "verification": "Actual processEvents\u2192eventHandler\u2192pausedSpace\u2192resetGame chain originally frees its actively held queue, matching native ev_queue_pop SIGSEGV. Corrected full chain clears old pendingESC, returnsMAIN_MENU, frees both oldnodes once, accepts freshSpace toGAME_PLAY, and frees the queue only after dispatch completes."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original mouse steers ambulance horizontally, with sourcegain0.7. Horizontalmouse-stick andcanvasrelativegestures bothverified. SourceSpace startsfrommenu, boostswhileheldduringplay, returnsmenuwhilepaused. Escape pauses/resumes, exitsfrommainmenu. Select preservesoriginalmousemenu. Reservedpanel keepsroad/hearts/scorevisible inportraitandlandscape. Originalfullglyphmenuclamp retained; no directtouchpreset because gameplay steerscar ratherthancursor.",
+  "artwork": {
+    "icon": "Pinned original Ambulance.bmp enlargednearest-neighbor over simplenavysquare, magenta backing masked only in the derived icon. OriginalBMPunchanged.",
+    "preview": "Actual browsertrafficsteering screenshot with originalscore1, resized640x480."
+  },
+  "verification": {
+    "browser": "Originalstartupheapwrite reproduced atStartingstates. Corrected realtouchSpace entersroad, actualhorizontalmouse-stick movesambulance rightthenleft; canvasrelativegestures alsoverified. Originalboost, ESCpause/resume, Spacebacktomenu, ESCQuit reach normalGamefinished. Portrait390x844/landscape844x390panelvisuallyreviewed.",
+    "ndk": "All15actual selected/generated-context ARM64objects passO2/FORTIFY2/stack-protector/format-security.",
+    "native": "Pending ROOT actualAndroidgameplay.",
+    "limitations": "No fullsurvival/gameoverclaim, no sourceclock/RNG/sensitivity/graphicsredesign. Originalabsolute/home/rush/res andrelativehome/rush/res packagedresourcepaths preserved viaexplicitexistingaliases, nativeSRCbytesunchangedapartfromverifiedallocation.",
+    "queueReset": "Actual original active queue free assertionRED, corrected2cumulativeownersGREEN. ActualtouchpausedSpace returns live menu, newSpace enters freshtraffic, secondpauseSpace returns menu, finalESCQuitsnormally; no pageerrors.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/rush-reviewed-native/results.json",
+      "apkSha256": "e48631d761e47c2f72d55b2d7e4bd4ba8a614d33fb17dc135ba1b817c76b484e",
+      "demonstrated": "ROOT viewed actual Android traffic, steering right/left, held Space boost, score0\u21921\u21922\u21923, original pause/resume, paused Space returning to live menu, fresh round and immediate pause, second successful menu reset, and authored Escape cleanup returning to the same native library.",
+      "limitations": [
+        "Full survival and physical-phone performance are not demonstrated. Earlier original native paused-menu reset SIGSEGV is preserved; the cumulative queue ownership repair was independently reproduced and this rebuilt APK passes two live resets. A slower intermediate QA attempt naturally reached GameOver before its second pause and is retained separately."
+      ]
+    }
+  }
+}

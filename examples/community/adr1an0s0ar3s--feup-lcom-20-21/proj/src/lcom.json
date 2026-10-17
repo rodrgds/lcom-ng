@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "name": "Connect Four: Adriano",
+  "description": "Take turns dropping red and yellow chips to connect four.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Red drop",
+          "key": "ENTER",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Yellow drop",
+          "key": "SPACE",
+          "position": "bottom-left"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "arrows",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "tapDuration": 100
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Connect Four"
+}

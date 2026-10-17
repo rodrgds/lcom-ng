@@ -1,0 +1,83 @@
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -118,7 +118,7 @@
+ 
+ 	float segundos = (float)global_timer_counter / FREQ_TIMER_0;
+ 	int gameover = 0; //1 if gameover
+-	int need_to_draw = -1; //0 if we need to animate player, 1 we need to animate obstacle
++	int need_to_draw = 0; // bit0: player, bit1: obstacles, notifications may contain both
+ 	int generate_obstacles = 0;
+ 	int hit_obs = 0;
+ 
+@@ -161,13 +161,13 @@
+ 							if ((array[0] & XSIGN) && (unsigned char) (~array[1]) + 1 <= 10 && (jogador->y + jogador->height - 1 >= 485))
+ 							{
+ 								set_speed(jogador,-3,-3);
+-								need_to_draw = 0;
++								need_to_draw |= 1;
+ 							}
+ 
+ 							else if (!(array[0] & XSIGN) && array[1] >= 10 && (jogador->y + jogador->height - 1 <= 743))
+ 							{
+ 								set_speed(jogador,3,3);
+-								need_to_draw = 0;
++								need_to_draw |= 1;
+ 							}
+ 
+ 							else set_speed(jogador,0,0);
+@@ -184,13 +184,13 @@
+ 					if(scancode == 0x1e && (jogador->y + jogador->height - 1 >= 485))
+ 					{
+ 						set_speed(jogador,-10,-10);
+-						need_to_draw = 0;
++						need_to_draw |= 1;
+ 					}
+ 
+ 					else if(scancode == 0x20 && (jogador->y + jogador->height - 1 <= 743))
+ 					{
+ 						set_speed(jogador,10,10);
+-						need_to_draw = 0;
++						need_to_draw |= 1;
+ 					}
+ 
+ 					else if(scancode == 0x9e || scancode == 0xa0)
+@@ -222,7 +222,7 @@
+ 					segundos = segundos_temp;
+ 
+ 					if ((int)segundos % (int)1/freq == 0)
+-						need_to_draw = 1;
++						need_to_draw |= 2;
+ 
+ 				}
+ 				break;
+@@ -278,7 +278,7 @@
+ 			generate_obstacles = 0;
+ 		}
+ 
+-		if (need_to_draw == 0)
++		if (need_to_draw & 1)
+ 		{
+ 			int animou_jogador = 0;
+ 			struct list_element * temp = lista->back;
+@@ -306,10 +306,10 @@
+ 				animate_sprite(jogador);
+ 
+ 			copy_to_videomem();
+-			need_to_draw = -1;
++			need_to_draw &= ~1;
+ 		}
+ 
+-		if (need_to_draw == 1)
++		if (need_to_draw & 2)
+ 		{
+ 			int desenhou_jogador = 0;
+ 			struct list_element * temp = lista->back;
+@@ -337,7 +337,7 @@
+ 				draw_sprite(jogador);
+ 
+ 			copy_to_videomem();
+-			need_to_draw = -1;
++			need_to_draw &= ~2;
+ 		}
+ 
+ 		while(lista->front != NULL)

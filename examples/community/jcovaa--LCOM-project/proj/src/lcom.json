@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "name": "PixelMind",
+  "description": "Memorize a pixel drawing and paint it from memory.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "BACKSPACE"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "panel",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [],
+      "actions": [
+        {
+          "label": "Paint",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Erase",
+          "mouseButton": "right",
+          "position": "bottom-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

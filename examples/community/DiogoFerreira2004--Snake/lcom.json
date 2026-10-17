@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "name": "Snake: Four Modes",
+  "archetype": "Snake",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "keyboard": false,
+      "pointer": "off",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "dpad": {
+        "keys": "arrows",
+        "side": "left"
+      },
+      "actions": [
+        {
+          "label": "Back",
+          "key": "Q",
+          "position": "top-right"
+        }
+      ]
+    }
+  },
+  "description": "Eat fruit on the chequered board and try Classic, Walls, Swap Arrows or Fruit Power.",
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

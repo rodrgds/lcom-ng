@@ -1,0 +1,22 @@
+--- a/proj/src/controller/devicesController.h
++++ b/proj/src/controller/devicesController.h
+@@ -51,7 +51,7 @@
+ //Funções auxiliares
+ 
+ 
+-Copiar código
++
+ /**
+  * @brief Handles the menu state interactions based on the keyboard input.
+  * 
+--- a/proj/src/labs/video.c
++++ b/proj/src/labs/video.c
+@@ -44,7 +44,7 @@
+ 
+     createMasks();
+ 
+-    vram_size = info.XResolution * info.YResolution * info.BitsPerPixel; // tamanho do buffer 
++    vram_size = info.XResolution * info.YResolution * ((info.BitsPerPixel + 7) / 8); // tamanho do buffer 
+     vram_base = info.PhysBasePtr; //endereço base do buffer
+ 
+     mr.mr_base = (phys_bytes) vram_base;	// guardar endereço base do buffer

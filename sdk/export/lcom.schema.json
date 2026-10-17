@@ -195,7 +195,11 @@
                 },
                 "desktopScale": {
                   "type": "number",
-                  "enum": [0.5, 1, 2],
+                  "enum": [
+                    0.5,
+                    1,
+                    2
+                  ],
                   "description": "Guest pixels per raw PS/2 unit, for physical browser mouse only. Requires a verified initial position, bounds, and no independent cursor warps."
                 },
                 "bounds": {
@@ -248,7 +252,7 @@
                   "sensitivity": {
                     "type": "number",
                     "minimum": 0.1,
-                    "maximum": 5
+                    "maximum": 10
                   },
                   "keys": {
                     "type": "object",
@@ -421,28 +425,31 @@
                       "reverse"
                     ],
                     "description": "Optional pedal artwork. The label remains the accessible action name."
+                  },
+                  "wheel": {
+                    "type": "integer",
+                    "minimum": -127,
+                    "maximum": 127,
+                    "not": {
+                      "const": 0
+                    }
                   }
                 },
                 "oneOf": [
                   {
                     "required": [
                       "key"
-                    ],
-                    "not": {
-                      "required": [
-                        "mouseButton"
-                      ]
-                    }
+                    ]
                   },
                   {
                     "required": [
                       "mouseButton"
-                    ],
-                    "not": {
-                      "required": [
-                        "key"
-                      ]
-                    }
+                    ]
+                  },
+                  {
+                    "required": [
+                      "wheel"
+                    ]
                   }
                 ],
                 "allOf": [
@@ -470,7 +477,7 @@
               "items": {
                 "$ref": "#/$defs/key"
               },
-              "description": "Guest keys to repeat while held, after350ms then at10Hz. Empty preserves ordinary held-key input."
+              "description": "Guest keys to repeat while held, after 350 ms, then at 10 Hz. Empty preserves ordinary held-key input."
             },
             "toolbar": {
               "enum": [
@@ -499,6 +506,15 @@
               "minimum": 0,
               "maximum": 250,
               "description": "Minimum stationary screen-tap and explicit mouse-action hold in milliseconds, for games sampling buttons in a timer. Zero preserves packet-only taps."
+            },
+            "repeatReleaseKeys": {
+              "type": "array",
+              "maxItems": 16,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/key"
+              },
+              "description": "Touch keys to repeat as complete release/press cycles after 350 ms, then at 10 Hz. For games that act on key release. Must not overlap repeatKeys; physical keyboard input is unchanged."
             }
           }
         },
@@ -588,16 +604,32 @@
         "pathAliases": {
           "type": "object",
           "maxProperties": 64,
-          "description": "Map legacy absolute directory roots to relative locations inside the exported asset root. Longest matching root wins.",
+          "description": "Map explicit legacy absolute or relative directory prefixes to locations inside the exported asset root. Longest matching prefix wins.",
           "propertyNames": {
             "type": "string",
-            "pattern": "^/(?!/+$)(?!\\.\\.(?:/|$))(?!.*?/\\.\\.(?:/|$))[^\\\\\\u0000-\\u001f]+$"
+            "pattern": "^(?!/*(?:\\./?)*$)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\\\\\u0000-\\u001f]+$"
           },
           "additionalProperties": {
             "type": "string",
             "minLength": 1,
             "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\\\\\u0000-\\u001f]+$"
           }
+        },
+        "emulateFunctionPointerCasts": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable browser ABI compatibility for legacy C callbacks whose function pointer signatures differ. Adds runtime overhead; leave unset unless the game needs it."
+        },
+        "cStandard": {
+          "type": "string",
+          "enum": [
+            "gnu89",
+            "gnu99",
+            "gnu11",
+            "gnu17"
+          ],
+          "default": "gnu11",
+          "description": "C dialect for game sources only. Select an older dialect only when required by the original project toolchain."
         }
       }
     },
@@ -611,6 +643,13 @@
       "type": "string",
       "minLength": 1,
       "description": "PNG screenshot, at least 48 pixels in each dimension. Relative to this configuration file."
+    },
+    "archetype": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 64,
+      "pattern": "^[^\\u0000-\\u001f]+$",
+      "description": "Shared game archetype, such as Snake or Space Invaders, used to group related games in a collection."
     }
   },
   "$defs": {
@@ -627,15 +666,20 @@
         "8",
         "9",
         "A",
+        "APOSTROPHE",
         "B",
+        "BACKQUOTE",
+        "BACKSLASH",
         "BACKSPACE",
         "C",
+        "COMMA",
         "D",
         "DELETE",
         "DOWN",
         "E",
         "END",
         "ENTER",
+        "EQUAL",
         "ESC",
         "F",
         "F1",
@@ -670,19 +714,25 @@
         "KP_ENTER",
         "L",
         "LALT",
+        "LBRACKET",
         "LCTRL",
         "LEFT",
         "LSHIFT",
         "M",
+        "MINUS",
         "N",
         "O",
         "P",
         "PAGEDOWN",
         "PAGEUP",
+        "PERIOD",
         "Q",
         "R",
+        "RBRACKET",
         "RIGHT",
         "S",
+        "SEMICOLON",
+        "SLASH",
         "SPACE",
         "T",
         "TAB",

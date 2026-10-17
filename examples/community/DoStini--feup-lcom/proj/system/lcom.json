@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "name": "MinixOP",
+  "description": "Explore textured first-person mazes, fight enemies and reach the exit portal.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "pointer": "move",
+      "layout": "overlay",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ],
+      "look": {
+        "side": "right",
+        "sensitivity": 1
+      },
+      "actions": [
+        {
+          "label": "Select / Fire",
+          "mouseButton": "left",
+          "position": "top-right"
+        },
+        {
+          "label": "Weapons",
+          "key": "Q",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Sprint",
+          "key": "LSHIFT",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Pistol",
+          "key": "2",
+          "position": "bottom-right"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/data/maps"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/minixop": "proj"
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

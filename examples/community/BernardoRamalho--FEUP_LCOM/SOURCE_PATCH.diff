@@ -1,0 +1,90 @@
+--- a/proj/src/highscores.c
++++ b/proj/src/highscores.c
+@@ -132,12 +132,12 @@
+     }
+ 
+ 
+-    while(counter <= 5){
++    while(counter < 5){
+  
+         int day, month, year, hours, mins,secs;
+         int score;
+ 
+-        fscanf(fp,"%d %d %d %d %d %d %d",&score,&day, &month, &year, &hours, &mins, &secs);
++        if (fscanf(fp,"%d %d %d %d %d %d %d",&score,&day, &month, &year, &hours, &mins, &secs) != 7) break;
+ 
+         highscores[counter] = create_highscore(score,day,month,year,hours,mins,secs);
+ 
+--- a/proj/src/mouse.c
++++ b/proj/src/mouse.c
+@@ -432,7 +432,7 @@
+   Terminix * terminix = get_current_terminix();
+   Mouse * mouse = terminix->mouse;
+   
+-  if((mouse->x >= sprite->x) && (mouse->x <= (sprite->x + sprite->img.width)) && (mouse->y >= sprite->y) && (mouse->y <= (sprite->y + sprite->img.height))){
++  if((mouse->new_x >= sprite->x) && (mouse->new_x <= (sprite->x + sprite->img.width)) && (mouse->new_y >= sprite->y) && (mouse->new_y <= (sprite->y + sprite->img.height))){
+     return true;
+   }
+ 
+@@ -445,7 +445,7 @@
+   Terminix * terminix = get_current_terminix();
+   Mouse * mouse = terminix->mouse;
+ 
+-  if(mouse->x > 190 && mouse->x < 460 && mouse->y > 535 && mouse->y < 720){
++  if(mouse->new_x > 190 && mouse->new_x < 460 && mouse->new_y > 535 && mouse->new_y < 720){
+     return true;
+   }
+ 
+@@ -456,7 +456,7 @@
+   Terminix * terminix = get_current_terminix();
+   Mouse * mouse = terminix->mouse;
+ 
+-  if(mouse->x > 715 && mouse->x < 960 && mouse->y > 535 && mouse->y < 720){
++  if(mouse->new_x > 715 && mouse->new_x < 960 && mouse->new_y > 535 && mouse->new_y < 720){
+     return true;
+   }
+ 
+--- a/proj/src/Game.c
++++ b/proj/src/Game.c
+@@ -831,26 +831,21 @@
+ char check_smallest_distance(Terminix * terminix, Zombie * zombie){
+   uint16_t zombie_x = zombie->sprite->x, zombie_y = zombie->sprite->y;
+ 
+-  int distance_to_chest =sqrt(pow(zombie_x - terminix->chest->x, 2) + pow(zombie_y - terminix->chest->y, 2));
+-  int distance_to_hero1 = 1200, distance_to_hero2 = 1200;
+-
+-  if(terminix->heroes[0] != NULL){
+-    distance_to_hero1 =sqrt(pow(zombie_x - terminix->heroes[0]->x, 2) + pow(zombie_y - terminix->heroes[0]->y, 2));
+-  }
+-
+-  if(terminix->heroes[1] != NULL){
+-    distance_to_hero2 =sqrt(pow(zombie_x - terminix->heroes[1]->x, 2) + pow(zombie_y - terminix->heroes[1]->y, 2));
+-  }
+-
+-  if(distance_to_chest < distance_to_hero1 && distance_to_chest < distance_to_hero2){
+-    return 'c';
+-  }
+-  else if(distance_to_hero1< distance_to_chest && distance_to_hero1 < distance_to_hero2){
+-    return 'h';
+-  }
+-  else {
+-    return 'm';
+-  }
++  int smallest_distance = sqrt(pow(zombie_x - terminix->chest->x, 2) + pow(zombie_y - terminix->chest->y, 2));
++  char object = 'c';
++
++  for (int i = 0; i < 2; i++) {
++    if (terminix->heroes[i] == NULL) {
++      continue;
++    }
++    int distance = sqrt(pow(zombie_x - terminix->heroes[i]->x, 2) + pow(zombie_y - terminix->heroes[i]->y, 2));
++    if (distance < smallest_distance) {
++      smallest_distance = distance;
++      object = i == 0 ? 'h' : 'm';
++    }
++  }
++
++  return object;
+ 
+ }
+ 

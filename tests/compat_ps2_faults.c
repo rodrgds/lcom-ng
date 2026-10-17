@@ -4,7 +4,8 @@
 
 int main(void) {
   sef_startup();
-  int keyboard = 8, mouse = 9, dropped = 0, accepted = 0;
+  enum { keyboard_notify = 8, mouse_notify = 9 };
+  int keyboard = keyboard_notify, mouse = mouse_notify, dropped = 0, accepted = 0;
   CHECK(sys_irqsetpolicy(1, IRQ_REENABLE, &keyboard) == OK);
   CHECK(sys_irqsetpolicy(12, IRQ_REENABLE, &mouse) == OK);
   for (int i = 0; i < 5; ++i) {
@@ -12,7 +13,7 @@ int main(void) {
     CHECK(driver_receive(ANY, &notification, &ipc_status) == OK && is_ipc_notify(ipc_status));
     uint32_t status, byte;
     CHECK(sys_inb(0x64, &status) == OK && (status & 1));
-    CHECK(notification.m_notify.interrupts == BIT((status & 0x20) ? mouse : keyboard));
+    CHECK(notification.m_notify.interrupts == BIT((status & 0x20) ? mouse_notify : keyboard_notify));
     CHECK(sys_inb(0x60, &byte) == OK);
     if (status & 0xc0) { dropped++; continue; }
     CHECK(byte == ((status & 0x20) ? 9 : 0x30)); accepted++;

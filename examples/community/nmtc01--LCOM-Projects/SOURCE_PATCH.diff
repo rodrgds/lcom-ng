@@ -1,0 +1,125 @@
+--- a/proj/src/graphi.c
++++ b/proj/src/graphi.c
+@@ -77,7 +77,7 @@
+     byte_per_pixel = bits_per_pixel / 8;
+ 
+   vram_base = info.PhysBasePtr;
+-  vram_size = h_res * v_res * bits_per_pixel;
++  vram_size = h_res * v_res * byte_per_pixel;
+ 
+   struct minix_mem_range mr;
+   mr.mr_base = (phys_bytes)vram_base;
+@@ -255,7 +255,7 @@
+                 int years,
+                 uint16_t x,
+                 uint16_t y) {
+-  char date[2];
++  char date[4];
+ 
+   number_to_array(date, seconds, 2);
+   print_number(date, x + 60, y + 20, 2);
+@@ -767,49 +767,49 @@
+   int s_months;
+   int s_years;
+ 
+-  if (xpm_load(jogar, 2, &jogar_pressed) == NULL)
++  if (xpm_load(jogar, XPM_8_8_8, &jogar_pressed) == NULL)
+     return 1;
+-  if (xpm_load(instru, 2, &instru_pressed) == NULL)
++  if (xpm_load(instru, XPM_8_8_8, &instru_pressed) == NULL)
+     return 1;
+-  if (xpm_load(sair, 2, &sair_pressed) == NULL)
++  if (xpm_load(sair, XPM_8_8_8, &sair_pressed) == NULL)
+     return 1;
+-  if (xpm_load(guia, 2, &guia_show) == NULL)
+-    return 1;
+-  if (xpm_load(game_over, 2, &perdeu) == NULL)
++  if (xpm_load(guia, XPM_8_8_8, &guia_show) == NULL)
+     return 1;
+-  if (xpm_load(three_lives, 2, &tres_vidas) == NULL)
++  if (xpm_load(game_over, XPM_8_8_8, &perdeu) == NULL)
+     return 1;
+-  if (xpm_load(two_lives, 2, &duas_vidas) == NULL)
++  if (xpm_load(three_lives, XPM_8_8_8, &tres_vidas) == NULL)
+     return 1;
+-  if (xpm_load(one_life, 2, &uma_vida) == NULL)
++  if (xpm_load(two_lives, XPM_8_8_8, &duas_vidas) == NULL)
++    return 1;
++  if (xpm_load(one_life, XPM_8_8_8, &uma_vida) == NULL)
+     return 1;
+-  if (xpm_load(menu, 2, &main_menu) == NULL)
++  if (xpm_load(menu, XPM_8_8_8, &main_menu) == NULL)
+     return 1;
+-  if (xpm_load(fundo, 2, &fundo2) == NULL)
++  if (xpm_load(fundo, XPM_8_8_8, &fundo2) == NULL)
+     return 1;
+-  if (xpm_load(barra_xpm, 2, &barra) == NULL)
++  if (xpm_load(barra_xpm, XPM_8_8_8, &barra) == NULL)
+     return 1;
+-  if (xpm_load(pause_menu, 2, &pause) == NULL)
++  if (xpm_load(pause_menu, XPM_8_8_8, &pause) == NULL)
+     return 1;
+-  if (xpm_load(zero_xpm, 2, &bola) == NULL)
++  if (xpm_load(zero_xpm, XPM_8_8_8, &bola) == NULL)
+     return 1;
+-  if (xpm_load(one_xpm, 2, &one) == NULL)
++  if (xpm_load(one_xpm, XPM_8_8_8, &one) == NULL)
+     return 1;
+-  if (xpm_load(two_xpm, 2, &two) == NULL)
++  if (xpm_load(two_xpm, XPM_8_8_8, &two) == NULL)
+     return 1;
+-  if (xpm_load(three_xpm, 2, &three) == NULL)
++  if (xpm_load(three_xpm, XPM_8_8_8, &three) == NULL)
+     return 1;
+-  if (xpm_load(four_xpm, 2, &four) == NULL)
++  if (xpm_load(four_xpm, XPM_8_8_8, &four) == NULL)
+     return 1;
+-  if (xpm_load(five_xpm, 2, &five) == NULL)
++  if (xpm_load(five_xpm, XPM_8_8_8, &five) == NULL)
+     return 1;
+-  if (xpm_load(six_xpm, 2, &six) == NULL)
++  if (xpm_load(six_xpm, XPM_8_8_8, &six) == NULL)
++    return 1;
++  if (xpm_load(seven_xpm, XPM_8_8_8, &seven) == NULL)
+     return 1;
+-  if (xpm_load(seven_xpm, 2, &seven) == NULL)
+-    return 1;
+-  if (xpm_load(eight_xpm, 2, &eight) == NULL)
++  if (xpm_load(eight_xpm, XPM_8_8_8, &eight) == NULL)
+     return 1;
+-  if (xpm_load(nine_xpm, 2, &nine) == NULL)
++  if (xpm_load(nine_xpm, XPM_8_8_8, &nine) == NULL)
+     return 1;
+ 
+   unsigned i = 0;
+--- a/proj/src/proj.c
++++ b/proj/src/proj.c
+@@ -42,22 +42,22 @@
+   xpm_image_t big_shoot;
+   xpm_image_t exploded;
+ 
+-  if (xpm_load(dragon, 2, &dragon2) == NULL)
++  if (xpm_load(dragon, XPM_8_8_8, &dragon2) == NULL)
+     return 1;
+ 
+-  if (xpm_load(shoot, 2, &shoot2) == NULL)
++  if (xpm_load(shoot, XPM_8_8_8, &shoot2) == NULL)
+     return 1;
+ 
+-  if (xpm_load(big_shot, 2, &big_shoot) == NULL)
++  if (xpm_load(big_shot, XPM_8_8_8, &big_shoot) == NULL)
+     return 1;
+ 
+-  if (xpm_load(mouth_open, 2, &dragon_mouth) == NULL)
++  if (xpm_load(mouth_open, XPM_8_8_8, &dragon_mouth) == NULL)
+     return 1;
+ 
+-  if (xpm_load(phantom, 2, &enemy) == NULL)
++  if (xpm_load(phantom, XPM_8_8_8, &enemy) == NULL)
+     return 1;
+ 
+-  if (xpm_load(explosion, 2, &exploded) == NULL)
++  if (xpm_load(explosion, XPM_8_8_8, &exploded) == NULL)
+     return 1;
+ 
+   escape_or_move(&dragon2, &dragon_mouth, &shoot2, &big_shoot, &enemy,

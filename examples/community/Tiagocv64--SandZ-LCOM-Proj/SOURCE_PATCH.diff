@@ -1,0 +1,11 @@
+--- a/src/UI_game.c
++++ b/src/UI_game.c
+@@ -118,7 +118,7 @@
+ }
+ 
+ void drawWave(){
+-  char text_round[25];
++  char text_round[40];
+   uint32_t text_size = sprintf(text_round, "All clear, wave %d incoming!", currentWave);
+   print_string(text_round, text_size, v_res - 200, h_res/2 - 200, WHITE, SMALL, ALIGN_LEFT);
+ }

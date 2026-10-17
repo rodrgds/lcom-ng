@@ -1,0 +1,164 @@
+{
+  "repository": "https://github.com/PedroCarmoPereira/LCOM-FEUP",
+  "commit": "739cee330a657f889e7e0546652e68dd6c22c5de",
+  "createdAt": "2020-02-25T19:39:50Z",
+  "project": "proj/src",
+  "yearEvidence": {
+    "kind": "repository",
+    "url": "https://github.com/PedroCarmoPereira/LCOM-FEUP",
+    "createdAt": "2020-02-25T19:39:50Z"
+  },
+  "sha256": {
+    "proj/src/Enemy.c": "6152861756840a932e3d91e2be654daeacf74ed9dbdb796d0c08c0273e541162",
+    "proj/src/Enemy.h": "683256018749be42226583091ef2be702f88aec2a8a6f245eb8143fded728c80",
+    "proj/src/Entity.c": "2e02e303e1a8da246177aba16c2dc18320ae2f57d91178b3b27ac3652ba9af0e",
+    "proj/src/Entity.h": "ea1041e82267ef3f681ec0cd2c1f781577cfab61114e6326e60fe71e3dcf281e",
+    "proj/src/Game.c": "353c35d4b3d84de29a09f457c6a8e6da034cb672c5c84b6cb39375bb86745aa7",
+    "proj/src/Game.h": "1b588df88a8ba20bc358afc085bb997aa3fa36268170a333e7a65f6ad994f877",
+    "proj/src/GameState.c": "5ed4124de9d05a9c2c518255668866533d7c35144d06f11746f878dfed12d856",
+    "proj/src/GameState.h": "c0af4ecd893e977164fe55b20e12e6bdd9e09550095babc3cdcfe163f35b1fa0",
+    "proj/src/Laser.c": "e37ab51d94646f607ec2618a2549a3e29dd337249deaa6fca50b98a08843bd10",
+    "proj/src/Laser.h": "8690eae3cf94f8aae3bbc108bc1bf749f2be72242ab6720d7fd27a6ca75d3922",
+    "proj/src/Makefile": "5435e91bec4a1d4069f8c4bc46cb64141eb206cf4c42cf1a091d6dc1fb7ac75e",
+    "proj/src/Player.c": "8a4520ba290f104e014a702b6d18e661f4b45878f5f3110401e3773bbc8e2636",
+    "proj/src/Player.h": "c47c94193abc3c8f37f47f18678cf984618744e258e53a58f387ef2029030631",
+    "proj/src/Score.c": "618c4934c3af7691a4c969742a9ca85270a66df4c26486afae6432094813333f",
+    "proj/src/Score.h": "3943f66b06d9a1a841b78836828b56a4a81458572461f5e82047285692ffe02d",
+    "proj/src/assets/0.png": "4cdfdcf69d50df432ed4d42ac8b2bc3857683adad6721781e94d3afecb9faa6a",
+    "proj/src/assets/1.png": "9c337939ea060d6eabce3a6a0cd8ceee1263185f02c9cc7d8cbeb002e69ed2af",
+    "proj/src/assets/10.png": "a8336f9c014ce7f6674d9c5b5464d496d35d9b61d5a3c52c2d54048d5753e235",
+    "proj/src/assets/10B.png": "a8bc1cfe227f7f647e4ae1c37d920558984f6d325f991940253f32b44a4ba734",
+    "proj/src/assets/11.png": "179856259651fada2f26f342df9240b88af26b3567f3d86919aa7a06970ebe12",
+    "proj/src/assets/11B.png": "50ce7537654f22287e0e48339f91d81cb7a98c40ea728011c7c26060336e3d1d",
+    "proj/src/assets/12.png": "b8141bddaa72d6218fa3a9ae4402093a1f1e11fdbfdd30ccf014cc9caf232698",
+    "proj/src/assets/12B.png": "3de789847192330d97a84ad79831454ef493b0319ae13e0c2341b6bb61249856",
+    "proj/src/assets/13.png": "1e3d6d68f8e93f8b5348477593908e2044b9171e63b08c42041ca3f53fcd60cb",
+    "proj/src/assets/13B.png": "7a3270839fcae9f90e22f6adb3852ce668da4b4ecfe20c541e6fbc3e9023f76a",
+    "proj/src/assets/1B.png": "2ceb0e58ba5cde0afd56c0b4c2f1f3e15db998dba57f6b2c0b771291cb6baec7",
+    "proj/src/assets/2.png": "3b982d5383ff4f2aab9b16b06967b80860cb4c92a0ce7ae83ddb333a5c69d426",
+    "proj/src/assets/2B.png": "053e24bc731aa81532b1b4b6010308376e070ff5c4684b059ee01f7b081bac8c",
+    "proj/src/assets/3.png": "af86517163411b7b7423958e8a5610f082666a09cc08f9b19497d98c3efce439",
+    "proj/src/assets/3B.png": "10d491bb7547b2d3dd0b6d0e17087f85659df092c06fd79db243f2441a72a8e9",
+    "proj/src/assets/4.png": "ef4cd566795cf46482d09f83ed9f0f00e4b91348e1e66c47b0726404746a825c",
+    "proj/src/assets/4B.png": "0a558466178678dca2e1fdcf2b21f204baf26d2355e003291188c02433902a06",
+    "proj/src/assets/5.png": "2198f65dfd23213f096cc9d788f5e92b66c23b9d2a692713b4dd9ac9e4c327f6",
+    "proj/src/assets/5B.png": "c5fa757b79f76597e0f06af534dcfe347e39a30654ef9d02016a646a6313fad1",
+    "proj/src/assets/6.png": "a5b9d2e9295f0eff481332389a45111d323cc37996ec8c0d9675d7b8a0d17e38",
+    "proj/src/assets/6B.png": "f2a39699d5110b0bf78c4aff85c61fb83ca093af03210a6f147a741398c25d34",
+    "proj/src/assets/7.png": "72836872435fed0ae2d31ffa009116215fba36f978404c5e73a4d221887f9c47",
+    "proj/src/assets/7B.png": "29209ffea795df9527fa842d713595de1a62c925921b4409fce50bd2d81195c7",
+    "proj/src/assets/8.png": "ea0a3f199f00029e2b83cda5444a1f289e784a0e53fa3cc48114c0961ab550c0",
+    "proj/src/assets/8B.png": "b31ff518fb91eec67334b4d0c6b3e609e83f2d5b6f80aa056369be6474cde8e1",
+    "proj/src/assets/9.png": "d6b87e0c5c8dfebf3bf42d9c673baa5a147f2bd48fa7466975928014a014e772",
+    "proj/src/assets/9B.png": "488d62cfb02296e63210871c25a28e44438cebd463dd0465c65a790810a51d5b",
+    "proj/src/assets/A.png": "e7929870e23719a83928fe0b1ad6e431ec35cd51a941a0770801cd5f45f61817",
+    "proj/src/assets/B.png": "29c8e182c43579ede50815f9021fdc263ce1abb911fe182318a7cbe6bbe7df18",
+    "proj/src/assets/C.png": "909d3ee7a7176e9661356745d77fe489ad7f7ef54d33013e7870df401cf25252",
+    "proj/src/assets/D.png": "f4ddf446d13151d97acb4fa92e6a99721e38c3b7aef79014a155e3832a2982dd",
+    "proj/src/assets/E.png": "c91c1dceba1298490cca70fac2c7b261a04f415edf220aa17521fba85c423403",
+    "proj/src/assets/F.png": "d551be99d728765570085fc26d26064f4d11dd103e5ff2d97e775a3a1caa8596",
+    "proj/src/assets/G.png": "9b8c8bd13063e8b21d60e4c0ac9c413c2808b116f0e8d7fb7c9d434b1d461a9e",
+    "proj/src/assets/H.png": "2243f586b695538dcdc5faf0a94cf6aec850f898b9e188b24570896da96d3b8b",
+    "proj/src/assets/I.png": "f39b87bb9a90a60e69ba888e5ad599f0429b6d6b8a4e1347d084c2ae89c87148",
+    "proj/src/assets/J.png": "8c60cf84f8faa9e8aacf20159c893493894b03fc150ae16450247748b584e578",
+    "proj/src/assets/K.png": "fc15bf89f0f51ee2ed1234773e27dbac0fe30b422b349bb800c115d43f6d18a7",
+    "proj/src/assets/L.png": "aa27a0f61c64dc4fc8bebd42955ef09a0103b9573855ec944424f4608d011604",
+    "proj/src/assets/M.png": "60a88a5cbaf4293e862db2c19ac1d2305f27297ff378fea473d94f9fb8414d94",
+    "proj/src/assets/M484BulletCollection1.png": "52f52ce30f2b932184bce2df03aea9f9d895090707e73730d22cdbc1e1a99124",
+    "proj/src/assets/N.png": "1d2c2d577eb0af5880a82fbae9457108b74d61e28ae591f4fb75ef2a9a618495",
+    "proj/src/assets/O.png": "4cdfdcf69d50df432ed4d42ac8b2bc3857683adad6721781e94d3afecb9faa6a",
+    "proj/src/assets/P.png": "e20c47a981a386eae9f19869f2d0d4149c5dce2e69ba23c3b2452522e0d25ba2",
+    "proj/src/assets/Q.png": "2cc3c278cce17474ddd8195fe262d21cfbdbb91b71954084a485eb9e3ecf574b",
+    "proj/src/assets/R.png": "072c351879650628e75f08d823a97e6150cedc70e069b52d2145b136ce995751",
+    "proj/src/assets/S.png": "b1e310dffbb0f6c37a426add84abd403aaa13461f2e80cf1159c2bd364a14e7a",
+    "proj/src/assets/T.png": "286d4dbf8f099717384d53d3c51ef2b057b7a2c3a8ba7c1a90ffd7dbf78a4c79",
+    "proj/src/assets/U.png": "f04424611f19fc2911ac5d8159a42fb6b70bd92b017bc5949f8ee4d6badde7ba",
+    "proj/src/assets/V.png": "b760484073f917648540ad7aab6ad8169af713f4c52bd15ce0489a656b73b8fa",
+    "proj/src/assets/W.png": "837defe2447c5fb8f804201d37190710df7fe80a50866b1f1b17e567831b8369",
+    "proj/src/assets/X.png": "b8f20d26a5a30fbb0a56fb21bec70272471e3d7f82ebf649b4ff8cca2f14aed0",
+    "proj/src/assets/Y.png": "22688d49dba2f8a98d79acd0ff2aa6eefe5307088cb129e73d2e373cbbeb328d",
+    "proj/src/assets/Z.png": "54987ff38a72b85b73cf49104d56106c2a13f2d834f4f75b1168dd4b124e9c61",
+    "proj/src/assets/arrow.png": "541a06aed75d34d6637971405e9fb41a42d8faef3102528b0024f6a24df8f68c",
+    "proj/src/assets/assets.h": "ab0b0cd4aafb88c5bcfa6e62d6c226cc7ac0be6576512fe6ae75ee38d92385a4",
+    "proj/src/assets/background.h": "5242d486bb5575f025488e91bbc56d07fe0418bad2d5c17d24b47fdcf14ccade",
+    "proj/src/assets/background.jpg": "b17fab08d95cc1abc6e68c2bf641c6b8ef6242dcad48d116b3b4a7f0986b3137",
+    "proj/src/assets/font.h": "4429c276da96f96b96d15aeaeb5fc67f27f3869c3f122ef725c621a5068c8467",
+    "proj/src/assets/gameover.png": "9114ed9b2f641860012d77934ba974d05ed6771db589a172be2841d9fcda24a1",
+    "proj/src/assets/highscores.png": "753ae7c30db7113578ec9b48d61be023bdbdd217357302a4ecc69606325e5497",
+    "proj/src/assets/mainmenu.png": "30cd53ac71dc50a670c28aedcdb94c9725d5ff0e990777c06d0c03f934fca12a",
+    "proj/src/assets/newHighScore.png": "c2f568396e1572a07a5a3786e385b0163c076510bef18da1665cb965d869fed3",
+    "proj/src/assets/play.png": "6628aaed1498e1cd6d4f472a60649ca0ce155bd400222f55bc0e7604507f94bc",
+    "proj/src/assets/quit.png": "3acc37a73735a7ce41e7394fc0815971d3eaff376c1bb9c936ee22ed9a63c697",
+    "proj/src/assets/spr_bullet.png": "0c1bfd9b76b4a4965f353b478179f798cfbb6f4eb9f2923d9d138afa070f5829",
+    "proj/src/assets/spr_bullet_strip02.png": "a3ee8dcdedf5380cd07ec0b8c007208c470cb7e3fbfef77b5ea0344619d6fb26",
+    "proj/src/assets/title.png": "78888c63c3480d918a6ddae1f99f61b86c7572738e45118d26717b1d9c56d47c",
+    "proj/src/assets/writtenAssets.h": "4861f7d986ba335df6fc1143f9b157af33a571672e373637e1f9610d39bc0372",
+    "proj/src/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "proj/src/kbd.c": "5facb56602392206616b955662f7b8c8ef5f655ae0aa11a05ac4d4647164b50f",
+    "proj/src/kbd.h": "1d5c23ac438b187065fe63cf388fef51954ee488b527f5dc8cc40fc7050e7225",
+    "proj/src/mouse.c": "e209ed2151fe76a74a55b78069beba61cb1c2d7e693b1ac5d98100b6c53e70f8",
+    "proj/src/mouse.h": "7b143d615b21e10a71f9c5f6169eb398ef69c7a4db3081f2a0f32871160d9c7b",
+    "proj/src/proj.c": "d9cd7b7a429eab8b9adc58e49a1e341dd7fde699493dcb93f2ab5d3a5ff10abc",
+    "proj/src/rtc.c": "5698b748fbb0a88fe61805a477632a2d31cc715e392a670b4d2110d931e3a87d",
+    "proj/src/rtc.h": "c013227790cd5ee29feafb9f555fff274cc28d03f5b5bef04de9aa4f1b7feb4b",
+    "proj/src/timer.c": "77fddb5da036a95fc0df60c1742e1b92d63374d4f4e2dbf22c701dbbc4b3f138",
+    "proj/src/video.c": "59e590f3278f0e7d98fa7fd182d51da2ba65f5983bdd43ecb49f51ad360a2040",
+    "proj/src/video.h": "a9d917ceecd9dd78dc2c540b9f2f48f4b09fe52e345d2f88c0a87e01ad6789a7"
+  },
+  "sourceChanges": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "draw_sproot incremented the source pointer when checking transparency, then drew the next pixel. This shifted every opaque pixel and read one past the image end. Exact native draw_sproot+224 instruction0x42e910 reads current-source+4; a protected single-pixel source reproduces that read. Read each source pixel once and use the same value for transparency and drawing. Existing framebuffer edge checks remain intact.",
+      "files": [
+        {
+          "path": "proj/src/video.c",
+          "originalSha256": "59e590f3278f0e7d98fa7fd182d51da2ba65f5983bdd43ecb49f51ad360a2040",
+          "patchedSha256": "b013a8e2a9ca0ed47e82bec58c169e6683242d8c64db91630f24b32541dbf34a"
+        }
+      ]
+    }
+  ],
+  "sourcePreservation": "95 original source/header/art hashes retained. One separately reversible renderer correction reads each original pixel once; no art, rules or controls changed.",
+  "omissions": "Unused labs, generated documentation, VCS/OS metadata and generated outputs omitted.",
+  "licenseStatus": "No license file found in selected tree.",
+  "verification": {
+    "browser": {
+      "status": "passed",
+      "demonstrated": [
+        "Actual Fire/Select touch starts original three-enemy board.",
+        "Relative screen drag aims the original crosshair; repeated Fire touches remove the centre enemy.",
+        "Held WASD screen pad moves the original blue ship left/right.",
+        "Separate normal upward steering into enemy fire reaches original GAME OVER.",
+        "Relative movement/Select returns through MAIN MENU and PLAY starts a fresh three-enemy round.",
+        "Portrait overlay controls inspected."
+      ],
+      "limits": "Original PLAYING screen has no visible score HUD. Positive combat outcome is the defeated centre enemy, followed by separate original normal-death/restart proof. No guest state, RNG, framebuffer or original assets modified."
+    },
+    "fortifiedNdkObjectCompile": {
+      "status": "passed",
+      "units": 13,
+      "detail": "Actual authored source units compiled ARM64 at O2/FORTIFY_SOURCE2/Wformat/Werror=format-security."
+    },
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/peanut-star-reviewed-native/results.json",
+      "apkSha256": "c7b08393029ac9cf6b2430e8d468b1f29445ab18d3321821b0aa2e52c3537e12",
+      "demonstrated": "ROOT viewed normal aiming and repeated Fire removing the centre enemy, blue player moving left under held A and back under D; separate current-APK native normal death reaches GameOver, MainMenu and a fresh three-enemy round, with Home cleanup.",
+      "limitations": [
+        "Representative combat and natural death/restart verified. Full campaign and high-score editing/save are not claimed."
+      ]
+    }
+  },
+  "controlsRationale": "Original ship movement occurs on keyboard notifications, so WASD repeat enables held screen pad movement. Relative screen drag moves the original crosshair; left-mouse Fire/Select starts menus and fires when its original cooldown permits. No direct calibration asserted.",
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "e75184b8e5da6e14e29b378d39cfb4ff5d16df3967de13730efcdf7a3496297c",
+      "kind": "Original playerS XPM pixels transcoded using header-declared palette and row counts, cropped and fitted to square launcher background"
+    }
+  ],
+  "canonicalPreview": {
+    "path": "proj/src/../../../../../collections/arcade/previews/pedrocarmopereira-lcom-feup-09ffc7a01a3b.png",
+    "kind": "Actual original combat framebuffer after centre enemy defeat"
+  }
+}

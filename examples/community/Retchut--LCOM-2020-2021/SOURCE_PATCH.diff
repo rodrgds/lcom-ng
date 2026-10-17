@@ -1,0 +1,41 @@
+--- a/proj/src/logic.c
++++ b/proj/src/logic.c
+@@ -26,7 +26,7 @@
+ int generate_cursor(){
+ 
+     //allocate memory for the cursor object
+-    cursor_obj = (Cursor *) malloc(sizeof(cursor_obj));
++    cursor_obj = (Cursor *) malloc(sizeof(*cursor_obj));
+ 
+     //check if we could not successfully alocate the memory
+     if(cursor_obj == NULL){
+--- a/proj/src/highscore.c
++++ b/proj/src/highscore.c
+@@ -37,17 +37,16 @@
+     return 0;
+   }
+ 
+-  //while we can still read
+-  int iteration = 0;
+-  while(!feof(file)){
+-
+-    //load name
+-    fscanf(file, "%s", n[iteration]);
+-    //load time
+-    fscanf(file, "%d", &t[iteration]);
+-    //load score
+-    fscanf(file, "%d", &s[iteration]);
+-    iteration++;
++  //Read complete records only within the five owned table slots.
++  for(int iteration = 0; iteration < MAX_HIGHSCORES; iteration++){
++    char name[HS_NAME_MAX_SIZE];
++    int time, score;
++    if(fscanf(file, "%5s %d %d", name, &time, &score) != 3){
++      break;
++    }
++    strcpy(n[iteration], name);
++    t[iteration] = time;
++    s[iteration] = score;
+   }
+ 
+   //close the file

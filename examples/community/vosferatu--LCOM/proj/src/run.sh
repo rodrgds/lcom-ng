@@ -1,0 +1,1 @@
+service run /home/lcom/proj/duelnix

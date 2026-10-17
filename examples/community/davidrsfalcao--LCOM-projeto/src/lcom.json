@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "name": "Galactic War",
+  "description": "Steer the original spaceship left and right to dodge falling asteroids.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER"
+      ],
+      "pointer": "off",
+      "layout": "panel",
+      "pads": [
+        {
+          "mode": "arrows",
+          "style": "dpad",
+          "side": "left",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Start",
+          "key": "ENTER",
+          "side": "right"
+        }
+      ],
+      "repeatKeys": [],
+      "repeatReleaseKeys": [
+        "LEFT",
+        "RIGHT"
+      ]
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

@@ -1,0 +1,25 @@
+/* XPM */
+static char *wall[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 3 1 ",
+"  c #C0CBDC",
+". c #52607C",
+"X c #8B9BB4",
+/* pixels */
+"................",
+"XXXXX.........XX",
+"XXXXX.........XX",
+"XXXXX.XXXXXXX.XX",
+"................",
+" X.XXXXXXX.X    ",
+"XX.XXXXXXX.XXXXX",
+"XX.XXXXXXX.XXXXX",
+"................",
+"......X     X...",
+"......XXXXXXX...",
+"XXXXX.XXXXXXX.XX",
+"................",
+" X.XXXXXXX.X    ",
+"XX.XXXXXXX.XXXXX",
+"XX.XXXXXXX.XXXXX"
+};

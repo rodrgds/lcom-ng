@@ -1,0 +1,56 @@
+{
+  "version": 1,
+  "name": "Space Defender: Luz",
+  "description": "Steer the spaceship and defend against waves of enemies.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": true,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "ENTER",
+        "SPACE"
+      ],
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Fire / Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Pause",
+          "key": "P",
+          "position": "top-right"
+        }
+      ],
+      "repeatKeys": [
+        "A",
+        "D"
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [
+      "proj/src/users.txt"
+    ],
+    "arguments": [
+      "users.txt"
+    ]
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

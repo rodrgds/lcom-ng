@@ -53,5 +53,6 @@
     "assets": []
   },
   "description": "Outmaneuver another player, plant your bombs and escape before they explode.",
-  "preview": "../../../../../collections/arcade/previews/monsterdied-lcomproj-138166482bfa.png"
+  "preview": "../../../../../collections/arcade/previews/monsterdied-lcomproj-138166482bfa.png",
+  "archetype": "Bomberman"
 }

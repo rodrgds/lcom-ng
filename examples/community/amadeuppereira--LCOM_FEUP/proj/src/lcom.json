@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "name": "Fugix",
+  "description": "Dodge asteroids and fire through space with the original mouse-controlled ship.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "move",
+      "touch": "move",
+      "layout": "overlay",
+      "actions": [
+        {
+          "label": "Start / Continue",
+          "key": "ENTER",
+          "position": "top-right"
+        },
+        {
+          "label": "Fire",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Shield",
+          "key": "Z",
+          "position": "bottom-left"
+        },
+        {
+          "label": "Back",
+          "key": "ESC",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "src/images",
+      "highscores.txt"
+    ],
+    "pathAliases": {
+      "/home/lcom/svn/proj": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

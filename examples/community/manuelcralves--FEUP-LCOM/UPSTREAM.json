@@ -1,0 +1,138 @@
+{
+  "repository": "https://github.com/manuelcralves/FEUP-LCOM",
+  "revision": "b1269689b1eb2dab1626c64d684bc7d204073494",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "71c49aa2bed45c5fab904a090f2802e11cf9418c8e1006a54f0c3d2acf3ecb35",
+    "proj/src/game.c": "545a30a4c21e240a9df0ee0f8dfe350bad8935bdf47ffcb170880da1fcda9ebe",
+    "proj/src/level.c": "1260b3d5c5f7101d5cfba82ea37fafa44b5e2025982599226032f8f4409cbf34",
+    "proj/src/menu.c": "4384f1e827a2199a35d78c5afe0f499a2584804ab1c136666e8ce16119b9249d",
+    "proj/src/button.c": "e26e60040b06b4a2f554720c158e9dd6f068995f4dd55a124e3b87299fe619d1",
+    "proj/src/Makefile": "ba421cff99379923f3c456376924333e68308163aed2f28582c7e900d6a8e249",
+    "proj/src/player.h": "da83beefec6f789e3b84c3bb70a5f6eb586fb4309493ab6f50d05c52b5fbada9",
+    "proj/src/level.h": "368244de65357c956c54ef2477df5c90d0d9a29d848526e23945272dec269765",
+    "proj/src/game.h": "03fedc893815865cae3b28fcac0e11dba6dfe1cfff5cd6eadf01e18abe6ba663",
+    "proj/src/main.c": "cb802484812f22903eeafd3dd4ebbe329b88a88c796cec111b3679ff82ecab72",
+    "proj/src/button.h": "67c6e2049661129ce82811746de75cc0698409da5749fef5fd07f77d76b4ad50",
+    "proj/src/menu.h": "23162dba189adf955260e7f7d6b950fd7cd2babdd26522cf33a168542c63d44b",
+    "proj/src/.clang-format": "66f7a3be551c14980db4ff14cd66a0fcbad862e03ccd4dc4a0d52a715a1082d7",
+    "proj/src/player.c": "e3a2962b23e134878a445e5e8f00caa5788b5f025dc21b03fa49870e1feb4026",
+    "proj/src/images/exit.xpm": "8d2f1b5d8b45e485e3b60b6de270a41d93d3a41be9cf6d27e46417e94544efd0",
+    "proj/src/images/lost_menu.xpm": "7bf21af7947bbc6db0110a7ba96234e596de408baec7f09e54be6028ac3d26d7",
+    "proj/src/images/logo.xpm": "20987a062649273d74ae732fb24fc624e34a412f6a4e557360597e5f3912df26",
+    "proj/src/images/background_menu.xpm": "29f9b8219006628166b179692ed95a43ecaf7736073424f94b257fdd843a9da2",
+    "proj/src/images/help.xpm": "12ea2798e384737f027cc94cf752b084c75d89e8de7d31b6fac94e98d6a8fb6c",
+    "proj/src/images/speed_candy.xpm": "4684caa25f22bf11fa08fdc146317e707d1913b1f5175730f7f75d0efaeb4521",
+    "proj/src/images/2.xpm": "db40b352dfac95d9d16a184cf9859ba4249ec06c75d7377635ce14b9a7088597",
+    "proj/src/images/help_highlighted.xpm": "63de09a606ebe8c2e2d465056013b9c12a8a0e04b3832b61643886f19e6f55b1",
+    "proj/src/images/3.xpm": "7c13416e23caa723e8f66b749f95b3aa34f2f4c34452418f2c8ef02fc555e68f",
+    "proj/src/images/two_points.xpm": "49f819e214ad862af3488c7f094b612726c007503de7ae2e6144b5baaff02499",
+    "proj/src/images/play.xpm": "a214097ac5abfa865f6c766ac6d7554841b605100d319c68adbd71b4644b155a",
+    "proj/src/images/1.xpm": "f9e90a869243440e415d3b9ef4614cb8a5741b85f23d7cd5aa874fdb71aff765",
+    "proj/src/images/.gitkeep": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/images/continue_highlighted.xpm": "9c27ef708faa9eabd892957800c1398ba59e28378f1bb36b088c59a48026e71c",
+    "proj/src/images/0.xpm": "542e613fdfa31f0f9f26d03a475c3a37cd3b407bb068395620defe72ba9d1737",
+    "proj/src/images/player.xpm": "da20105652c7721d6544b1a9f9076ca51dd917aa74cfee9c1ec6a00f30485329",
+    "proj/src/images/4.xpm": "422790a8030bd97bbda85388886ec68b5b6fab320a1d9d8abdff2722d5e50a1d",
+    "proj/src/images/5.xpm": "f95c6c79111a271c4a2b93e8d7bb17ce04cef4a903d206a4194f0aaf7957fa3b",
+    "proj/src/images/help_menu.xpm": "b3c6a55cac244b9e766864cfe5f771368902d206feab425075f6e101a3399944",
+    "proj/src/images/won_menu.xpm": "1f82dc44d941c047e4648e575e456f4199ddf9a9f0deeedd17c27a901f6dc5b7",
+    "proj/src/images/7.xpm": "812d28375fa2483d254f95aea5e5ba7c25090187b964d4830d8877c1d72408ce",
+    "proj/src/images/6.xpm": "7f65be0f721b920f182660ede7f84ce09e90e9914e1ed5da4216143a6a4567f7",
+    "proj/src/images/name.xpm": "5cecf7c25d5a6db2b5d165c5516917fc1c3b1642f6022363eb4d534842dbbc43",
+    "proj/src/images/continue.xpm": "212c2be5559b4ca31bbbb6e501f5fa821b7ca8313b9daee277bd89c64703e480",
+    "proj/src/images/candy.xpm": "4ccefc2bf8dea709efe29a01562afe2e4f8d645958fb6434b99c019c75e55464",
+    "proj/src/images/pause_menu.xpm": "1220bae4219ce784e7fd4be599110f0d8690c76a222551086231afc55acf3d92",
+    "proj/src/images/8.xpm": "b08f056d4b56c67d5ef0faa7f1744bd28aa01dff1ddd17005b404c3b60272da2",
+    "proj/src/images/play_highlighted.xpm": "459756e545129c15c1ea66cbb4b19815b678754b87652b9d8c381ab45fb4a11f",
+    "proj/src/images/9.xpm": "98543cbaf46b0592e02c00067999fee3db6c62a69078a767fbbb91d879416fe3",
+    "proj/src/images/level3.xpm": "fde3e39e0006edffa230617f35e7608a08c0068d2644d4cea297204e1f46f77c",
+    "proj/src/images/level2.xpm": "d8b24713a98e4cea7fbdb1ddeb2a9b0bfdd461cbe0b4b31e6e9fac65adbdabcc",
+    "proj/src/images/cursor.xpm": "909bbda22ed18e49f810aa7efd9c4f1083531793e877e77ab24fba9d8a91d98a",
+    "proj/src/images/level1.xpm": "eb1e4e8237777423b2fd0f0a15c84ae5ffdb1983a2ecb9f0d8cd4fd1f0bb2af8",
+    "proj/src/images/exit_highlighted.xpm": "8f16a94de41462167b324ac83347baf6c0a5004fded489a2891a2a9cc9a31803",
+    "proj/src/images/pause_title.xpm": "edcc6237387a6e97c1d86476626c3495eb1a451254c6caf490de5ec27dd1fa69",
+    "proj/src/controllers/i8042.h": "c9e25b2ab3c53e51ae7f9887712502bd4985bdd40e28be1e9154c298d89be898",
+    "proj/src/controllers/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/controllers/timer/timer.c": "a8719cec2527ce159b3f64856a5c68af77c12ed6d2e204ad9333e547502e7d81",
+    "proj/src/controllers/timer/timer.h": "06d60338934a7a6e023316c3e9093e205d39eae3741ace90580858c5f32058c8",
+    "proj/src/controllers/mouse/mouse.c": "66ce7c09f3f714918189776921cb6017dc6e6a60aa55151399a48088282a3670",
+    "proj/src/controllers/mouse/mouse.h": "3717bca09f1dc311c230494059bf727d8b64a608f353b15c4e728c06104b32a3",
+    "proj/src/controllers/graphics/graphics_const.h": "ad94a8538d17fa40037dab65502243fc980410aa261db604841957171d5ee1a1",
+    "proj/src/controllers/graphics/graphics.c": "1d0286e92f5ec78a5df6e57473c75ca950e2974bce0b94dc2730a78241b369bb",
+    "proj/src/controllers/graphics/graphics.h": "e25c6407639053ba4a932b191ba5b21a18767274f79c2da1e4deae45ba1f929d",
+    "proj/src/controllers/keyboard/keyboard.c": "26798f12ee5fab38bddabe48677b3954c5e5934660457c0a3d3dde51b8146375",
+    "proj/src/controllers/keyboard/keyboard.h": "8215d635a8dc979fe291c85ff819321ef17f89a0a7571037e6ffdcf9496bc94f"
+  },
+  "selection": "Pinned original source and required original artwork. Genuine stack ownership and inconsistent dimension type defects are separate overlays.",
+  "omissions": [
+    ".git/**",
+    "**/.DS_Store",
+    "**/.gitignore",
+    "**/.idea/**",
+    "**/.vscode/**",
+    "compiled binaries",
+    "generated documentation",
+    "unrelated labs"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/player.c",
+          "reason": "Original createPlayer frees local xpm_image_t on stack after copying it into player, causing startup crash; remove invalid free. Original consumer declares xRes/yRes as unsigned int but graphics owner defines uint16_t. Match actual owner widths without altering dimensions, movement, artwork or APIs.",
+          "originalSha256": "e3a2962b23e134878a445e5e8f00caa5788b5f025dc21b03fa49870e1feb4026",
+          "patchedSha256": "1536e81a706242724970471e913e257f3abd3c4539c042b1957ca1b296513522"
+        },
+        {
+          "file": "proj/src/level.c",
+          "reason": "Original consumer declares xRes/yRes as unsigned int but graphics owner defines uint16_t. Match actual owner widths without altering dimensions, movement, artwork or APIs.",
+          "originalSha256": "1260b3d5c5f7101d5cfba82ea37fafa44b5e2025982599226032f8f4409cbf34",
+          "patchedSha256": "4d61348adcbb24bc5aca6702e37b198a3b8e8a076b669b7048aa63be1a5e8ae0"
+        },
+        {
+          "file": "proj/src/button.c",
+          "reason": "Original consumer declares xRes/yRes as unsigned int but graphics owner defines uint16_t. Match actual owner widths without altering dimensions, movement, artwork or APIs.",
+          "originalSha256": "e26e60040b06b4a2f554720c158e9dd6f068995f4dd55a124e3b87299fe619d1",
+          "patchedSha256": "c4bd683e0c68a1d52d3d08f79bcd02fd2ec775cd6ba7778089801c7ed5fc6604"
+        },
+        {
+          "file": "proj/src/controllers/mouse/mouse.c",
+          "reason": "Original consumer declares xRes/yRes as unsigned int but graphics owner defines uint16_t. Match actual owner widths without altering dimensions, movement, artwork or APIs.",
+          "originalSha256": "66ce7c09f3f714918189776921cb6017dc6e6a60aa55151399a48088282a3670",
+          "patchedSha256": "6d40f0435fd984d4e7c7b1ae44ac266b4b028e7cf1130a9b996cb670606ec48c"
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original arrows are held direction state, no repeat. Left arrow pad and Select remain outside artwork; relative menu pointer starts30,30, Play target150,420. Earlier Right-touch failure was shared fullscreen overlap, fixed in SDK CSS, not a source input defect. Actual source-map route uses ordinary arrow touches and screenshot-visible ghost tracking, no hidden state.",
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence14/manuelcralves--FEUP-LCOM-05-level2-final-canvas.png",
+    "captureSha256": "4f7a6805a796ba6e10715f61df21b7113b94343fdf2cbc90f2c29f62aa5a5624",
+    "originalSourceArt": true
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "33b1ff9b8f3a7e284b1f4581d5faaf795b580fab9176ec34d33fe64053309b31",
+      "kind": "Flat geometric ghost and candy motif"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "483d450d1febe509c8ac149a444d43e63cdd406411719e661b82339e8b437c52",
+      "kind": "Actual level2 gameplay after completing level1 through ordinary touches"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/a80-a82-reviewed-native/results.json",
+      "apkSha256": "9813c9e0622010540a600197b0a5031c1e03327a68c81504f2fa5b804839bd55",
+      "demonstrated": "Root viewed original menu/maze, eight normal arrow segments guided by screenshot observations, ghost arriving464,364 and original candy disappearing, followed by clean Home return.",
+      "limitations": [
+        "Native first-maze route and candy collection verified. First exit/second-level transition separately verified in browser. No native complete maze or levels2/3 completion claim."
+      ]
+    }
+  }
+}

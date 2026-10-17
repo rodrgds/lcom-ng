@@ -1,0 +1,10 @@
+.DS_Store
+a.out
+a.exe
+.idea
+.vscode
+*.o
+.clang-format
+.depend
+.gdbinit
+*.d

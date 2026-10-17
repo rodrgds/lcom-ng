@@ -1,0 +1,82 @@
+{
+  "repository": "https://github.com/IohanSardinha/Alien-Jump-LCOM",
+  "commit": "46055885b9768199102ddacc9a49f205a1902c3d",
+  "project": "proj",
+  "sha256": {
+    "proj/game.c": "d69baa6bcc3169cd2a2d26db23827585a5c4dc4e3ddb3693a13293e97e0af429",
+    "proj/utils.h": "788af8ef136c84eabb7fb3fbd2cd4bf0c78d0ff09c3263366609441b080eb870",
+    "proj/mouse.c": "1986d80da2bce55d91e335c408d42b551165c5d91e8e86007faf3c3bcd03827b",
+    "proj/mainmenu.h": "28656914b362b71e83784f6dc76a7dd85e139060332afe3c12c4e98580df7db9",
+    "proj/timer.c": "9f5b6595966a0994f8fce0bfe772a90a9a9cae150a9b2bc8b09fee7a03f6780d",
+    "proj/numbers.h": "a86fef9e10513167037192f240d4ba7f26078a3aec4aaf3cda36506183e32de0",
+    "proj/gameovermenu.c": "ef715ebb095304a4b7e0b492d7dd4a5df27096819e4cccb7e4398c2b3d1e0258",
+    "proj/RTC.c": "4ab685830ae23f460668070b5d640140a741de159746d87d85fe148ba0d0e06b",
+    "proj/keyboard.c": "501b4b6a770e465ad9cfd47674592b980998a4fd450e799949fb5935bfb2f61c",
+    "proj/scoreboardmenu.h": "e3408a3daf7bab0ced0384d830390c8349732727d74ae06f7ee094cca19054a8",
+    "proj/Makefile": "b133486e641cbf89e4f91025229f350e9461ace54fce9f452dabb6ab28126607",
+    "proj/graphics.c": "2270508fd49d18ac536886261af4d28666a19eb66be6a834cc8f2f154fa9d464",
+    "proj/scores": "12171bd16bbc25b03f7a186b438f5b66e8ff450ce8e71187e20f05ab43081383",
+    "proj/i8042.h": "a7dbb90e67ea1b59bbd722d60b5a472ec5438127543bb58d607415d850d7905c",
+    "proj/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/mouse.h": "a607b138bfb7a22ca2d57647af3d9892d11119f93ddc292397ebeb8652044806",
+    "proj/timer.h": "2185f0aaa94172560103457d5b3952c6a8c07af7ba303690d538b46af4787f95",
+    "proj/mainmenu.c": "434faf8475c7d27a9a37aac388e394191a3acb25485699cff48de38944787854",
+    "proj/game.h": "b2f8b105119675a03e46d6a6db6f8f09d7e3a93445b022019c367547a3b85715",
+    "proj/utils.c": "4f78ba4e6f65821b9c199083f7fffcbb385863f35b0109f409a6a303ae61c3ef",
+    "proj/scoreboardmenu.c": "696230b6cb15d505d54d4539fb7d4a8f38b4ccef4815b4caf61a121fc509b35a",
+    "proj/keyboard.h": "3d8791778d8ab20bb6c823da113c15167e73e572e3bc9d26a33a5119ee1aa66d",
+    "proj/gameovermenu.h": "0bb7e67a20bd83b9db74f08e869e1676102d18659e19887c72f47e8a57ba60dd",
+    "proj/RTC.h": "ffb2acb41609e4c19be89ac1565b28ea8601e56683648f4cdbc00372d81b51a3",
+    "proj/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/sprites.h": "c03dd598ec8328288a14ae9dfeefa3bfcd5cffb9ced505729898aec7a1ec8fa2",
+    "proj/graphics.h": "fda3bd0461519fd771994bb6c32bacb7c61397c00f53d26a6c3659c1c41b14cb",
+    "proj/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/proj.c": "7bb852f8514aaf36d93844766fc98ca840158aca7828c9dd9ec618337628a8ee",
+    "proj/letters.h": "8c3d089e8cf98ef9384e307175be73b27a6149123933bc8b680f192f93b320dd"
+  },
+  "sourceChanges": [],
+  "selection": "Pinned selected project with required sibling assets; generated docs, labs and OS/VCS/build metadata omitted.",
+  "controlsRationale": "Relative canvas swipes steer the original alien horizontally; Select clicks menus, Space pauses/resumes, Enter saves a name, optional software keyboard supplies letters. Menu cursor starts512384; source collision tests cursor bottom against Start350..389, so first move y-30 before Select. New round creates randomized asteroid platforms. Actual short touch steering+pause/resume, score2 to16, software keyboardABC and original Top10 save passed; no full endless-run survival claim.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/IohanSardinha--Alien-Jump-LCOM",
+    "limits": "Short functional browser gameplay, pause/resume, software-keyboard name and score save. Android and long survival unverified."
+  },
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata excluded from required source inventory."
+  },
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream root.",
+  "icon": {
+    "kind": "simple source-informed original game motif",
+    "source": "Original game artwork palette"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/icon.png",
+      "sha256": "9e92082d28301a56a7b786329c635ec39cb96e6c0d1253dacfa93f4e8527edd3",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/preview.png",
+      "sha256": "7c6ce3c63798b0c65c841e4bdad0771ce10e8d0feb9d96597d1dcd889e4f047e",
+      "kind": "actual browser asteroid gameplay"
+    }
+  ]
+}

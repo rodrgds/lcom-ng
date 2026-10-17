@@ -1,0 +1,77 @@
+{
+  "repository": "https://github.com/tantch/Minix-MineSweeper",
+  "revision": "7ad9fd533de2d13d260f41ce478b5130edacff6d",
+  "project": "code",
+  "sourceHashes": {
+    "README.md": "d82b16a0e33b1f8736c769e59b84ef09bff8d39813c6c893bec965159af0b3de",
+    "code/Makefile": "4af95d9dd26bd46a03e515d0f3241b4ace1cb1cf243b5bacf8cf802daac4c11a",
+    "code/field.c": "ec62790c621dc52abb224addcded470612f1b8e7e632e78cfeade3a39764f838",
+    "code/field.h": "9b119f412a057d59acd9795d4c9db45b3b7790c52c206df6e963730e7765a666",
+    "code/font.c": "92b4645f2ebcdb31acb4c08b636e533504379e62a29e9169552df98023ba72c1",
+    "code/font.h": "0cdfba8be20aac9d7befff094f3447f34e0a1a0737f671c76d09b89c2e2bbe9b",
+    "code/game.c": "3baae51ba8aec27ac8fa216d9ecaeeb2b146ca09a4221e8f70a9d77717aaecaf",
+    "code/game.h": "1d1b15490e8c71c5030616e545941a53aecb564782219f9dad2ee95c0b663a84",
+    "code/general.h": "fb769123061519fd893165c40a53f565fed59ca7181e04d58fbb74d90bd5162f",
+    "code/keyboard.c": "2e872e97b6f0fd49b9b2948f693baa830b8cb18cd8f472f83f5fd06f4058d584",
+    "code/keyboard.h": "a3831984a8d77b011790f7db6f8671957c8c5e9a4c187f67fddb1c00a276a970",
+    "code/lmlib.h": "39266674d6e78989c967cd54b2780b0b6b673e595be1ddca927b773074dea5b2",
+    "code/mouse.c": "7cc8fabde4837fa44c76410884ba721bceb9c071d76ec3c364a3c4b136afcd79",
+    "code/mouse.h": "1f322610ef3f42d210276c18075885fb8953371f5e249e258d4f75caf8b4e360",
+    "code/multiplayer.c": "ba16226b9a5c0fe0a62b6537ee9e808d59d6b16ca929d06d4b39ed88de979fd0",
+    "code/multiplayer.h": "f84ea7590dccf9495758c0aa960ad26ef7e0ef2387e4419d62df63ef79ea896f",
+    "code/porta.c": "839482fa4a0c03389e7983575c3d5187347d5c12644f490ebe83ef372988bef6",
+    "code/porta.h": "dd249d51f1c93215454c96e08e4bccc9aa6a53246a4fe3a581aaaeb644cca503",
+    "code/rtc.c": "ba74c306d1ff22a2b4dbf4fbc6e977984c8c69c6f374a27b27ebdcf311788c8d",
+    "code/rtc.h": "6fdb9e5802f4e221b7fe1ef19f4a14ec77da14470a8fa6248f3ddec13ea26c88",
+    "code/timer.c": "9dd78b561d5a582c22336a9abf8baaa7af05b46f3f8332ccaddac93f45d06e0d",
+    "code/timer.h": "b1fd6f3e88d2c0beb7779563ea05d8d2de92ac53a79a1ac5d6e9217ef7252432",
+    "code/vbe.c": "c22899951c4768237d9305dcf6a09e625fb21868c3a633538b08d8856a7a4e76",
+    "code/vbe.h": "689abf144819ac24bd800f924be9590e2e6ed53ea8a0fdf5d76b4fc028324b85",
+    "conf/game": "19750d63fa3b146534d05fe1d464b675b48149a90a6ea6542c42c670923d0e38"
+  },
+  "selection": "Pinned game source and README/config; generated docs, reports, VCS/OS metadata omitted.",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "code/game.c",
+          "originalSha256": "3baae51ba8aec27ac8fa216d9ecaeeb2b146ca09a4221e8f70a9d77717aaecaf",
+          "patchedSha256": "823dfb22eb7651ce60ea486edc8efb286854546a42e68a648235640ae7df6b62",
+          "reason": "Apply every complete validated mouse packet instead of discarding the first21, and check neighbor row/column bounds before reading the minefield. Initialize menu timer/prefix state and retain the E0 prefix across keyboard notifications. Initialize the freshly allocated board with existing clear_fields before any solo/multiplayer input reads its flags or revealed cells.",
+          "verification": "Original actual single_play regression discards its first complete packet and fails applied==1; corrected event loop applies it immediately. Original set_fields corner-mine fixture faults against an unreadable guard page; corrected fixture verifies all9 independently derived clue counts and safe first reveal. Actual Android remained in its menu after Enter. Owning optimized event-loop fixture with patterned automatic-variable storage reproduces ignored first Enter and fails its bounded event sequence. Initialized persistent prefix state passes first Enter, complete extended Down/Up make+break sequences, interleaved timer/mouse notifications and Escape. Actual Android initial reveal/flag were ignored, while R then central reveal worked. Exact original entry/clear_fields closure compiled with optimized patterned automatic storage aborts on first solo flag==0 assertion. Adding the existing initializer passes all121 cells: flag, revealed, mine and number are zero before the first input."
+        },
+        {
+          "file": "code/vbe.c",
+          "originalSha256": "c22899951c4768237d9305dcf6a09e625fb21868c3a633538b08d8856a7a4e76",
+          "patchedSha256": "c870c9f3c8bdb1cf5e1085c56fc74ca43d8095bc2a7a0053a6783521d09ab8a8",
+          "reason": "Convert framebuffer bits into bytes for physical permissions and mapping.",
+          "verification": "Original owning vg_init fixture requests3840000 instead of800×600=480000 bytes and fails the exact range assertion. Corrected range and mapping lengths are480000, with first/last pixel writes checked."
+        }
+      ]
+    }
+  ],
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "controlsRationale": "Original cursor starts100,100 with unit PS2 deltas and800×600 graphics. Relative screen touch and right mouse stick preserve original cursor/menu behavior, with separate left Reveal/right Flag clicks, R reset and Escape return. Vertical arrows select original menu entries. Panel controls reserve space outside gameplay in portrait and landscape. Original first-click-safe mine generation, art, rules and RNG are preserved.",
+  "artwork": {
+    "icon": "Three-by-three crop from actual original numbered board, enlarged with nearest-neighbor pixels on a simple dark tile.",
+    "preview": "Actual original11×11 board after normal first reveal and a right-button flag, scaled to640×480."
+  },
+  "verification": {
+    "browser": "Actual CDP touch reveal, flag, R reset, fresh center reveal, Escape and Up/Down menu navigation passed in844×390 and390×844; no page errors.",
+    "ndk": "All10 authored C units compiled as optimized ARM64 objects with FORTIFY=2 and stack protector, using the existing legacy lm-status ABI flag.",
+    "nativeGameplay": {
+      "status": "passed",
+      "surface": "Actual ARM64 Android emulator touchscreen",
+      "apkSha256": "445120d85fbc7d9e7be67654d2c22a383609aa69f134be9ce6844aa4c3b9ee3e",
+      "evidence": "build/arcade-100/c26-native-initialized/results.json",
+      "demonstrated": [],
+      "limitations": [
+        "Standalone solo board and original menu navigation verified. UART multiplayer and physical-phone performance remain untested."
+      ]
+    }
+  }
+}

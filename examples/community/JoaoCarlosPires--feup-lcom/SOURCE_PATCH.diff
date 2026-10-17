@@ -1,0 +1,22 @@
+--- a/proj/src/vbe.c
++++ b/proj/src/vbe.c
+@@ -79,7 +79,8 @@
+ }
+ 
+ int vg_draw_pixel(uint16_t j, uint16_t i, uint32_t *color) {
+-  uint32_t aux = *color;
++  uint32_t aux = 0;
++  memcpy(&aux, color, (bits_per_pixel + 7) / 8);
+   char *pixel = video_mem;
+   pixel += (i * hres + j) * ((bits_per_pixel + 7) / 8);
+   for (int k = 0; k < ((bits_per_pixel + 7) / 8); k++) {
+@@ -93,7 +94,8 @@
+ 
+ int vg_draw_pixel_transparent(uint16_t j, uint16_t i, uint32_t *color) {
+   
+-  uint32_t aux = *color;
++  uint32_t aux = 0;
++  memcpy(&aux, color, (bits_per_pixel + 7) / 8);
+   char *pixel = video_mem;
+   pixel += (i * hres + j) * ((bits_per_pixel + 7) / 8);
+   for (int k = 0; k < ((bits_per_pixel + 7) / 8); k++) {

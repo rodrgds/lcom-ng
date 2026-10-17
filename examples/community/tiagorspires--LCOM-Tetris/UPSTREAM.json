@@ -1,0 +1,110 @@
+{
+  "repository": "https://github.com/tiagorspires/LCOM-Tetris",
+  "revision": "1f9c014013df633118aae7ac315dec1b52f5e20e",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "3b25d5dfc0ba533b0181093b6a4002308cc6d2e22c8873aa87ddbfffbefa3e44",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "proj/src/Doxyfile": "170c693c28454c323dc812589f0634309e753199769babb8d71fb8af0c056d21",
+    "proj/src/Makefile": "0e91dd2cbbb2cb061b45fa4f25eb381d2271195853b80ced2e858690deb140f9",
+    "proj/src/game.c": "a9077a83bc3ebe84f5f8021b8821de0d561f6e16380983343927bf26a242ea42",
+    "proj/src/game.h": "115b84fc30badad549dd0aa0a22f54ad5cda291c1aeedc322c7a542660fc836e",
+    "proj/src/i8042.h": "0d68eb71e2000b7ce60b3253ee5fb6c94c7e0b85433858a9c6296bafe929b06c",
+    "proj/src/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/keyboard.c": "c3812b6a4be1923e9fe82b385ebb968816f204c32568c15e3e16d3b7d988a404",
+    "proj/src/keyboard.h": "f84a8e8b385c16d3c190d0ab1b8c3020d24483df046f17055b3c5c012e065ca7",
+    "proj/src/main.c": "e323441548bfda18c372063f2563dfd4983b021ba79cef1201a15f7301b92535",
+    "proj/src/mouse.c": "f0970d86f548a52474dcb91e3969389998aaa2d298e9fc3c1367656d16dc3818",
+    "proj/src/mouse.h": "5cea21b31c546602f93d14c717001f9f43de4f3edb3251bdfe954003af07df80",
+    "proj/src/pictures.h": "e8bbc6ee5e50ef06fe377d810f933b861b00167f57b40c9fbc8aa1d5b7072f48",
+    "proj/src/timer.c": "68bfc1d79e89a723e44225f387d5732765aafef890378cb92d7c87fee2af7205",
+    "proj/src/utils.c": "8662c07879870d5f2fe05ad7c1d9218467b12e0fb88124bd7de13fddba47c68e",
+    "proj/src/vbe.h": "36327eed35b09866b6dc398e362d7451eca0c60b16727f6f0c832cb0caaef834",
+    "proj/src/video.c": "6ae547c2bc10fdc5e02ac34990d578a75223b4c178990dab5aac48b8625172a5",
+    "proj/src/video.h": "e9f06b03118681aace178426ac17800a3c7f768e6156bbe0a8abb800d2c16004"
+  },
+  "selection": "Original project source tree, headers, required assets and root README. Omitted unrelated labs, generated documentation, logs, compiled objects, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.mov",
+    "**/trace.txt",
+    "**/output.txt",
+    "**/core.*"
+  ],
+  "omittedFiles": [
+    {
+      "path": "proj/src/proj",
+      "sha256": "f6f7b1ce53d6d61e8654bba53a28373c1248e3853b0c2daf532e570b91d6471d",
+      "reason": "Original precompiled Minix executable, preserved in ignored upstream diagnostic evidence; source objects rebuild normally."
+    }
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/main.c",
+          "reason": "Consume cursor movement and menu clicks only when the original parser marks a complete packet ready; clear that ready flag after dispatch. Actual original main+mouse parser regression proves each partial next packet repeats stale20px deltas; corrected loop applies each movement once.",
+          "originalSha256": "e323441548bfda18c372063f2563dfd4983b021ba79cef1201a15f7301b92535",
+          "patchedSha256": "cf21eacf9d3e5c5c163505ca01accabed9422868e22cf21a29e7517adaf50565"
+        },
+        {
+          "file": "proj/src/video.c",
+          "reason": "Reject exact framebuffer width/height edges before writing and release each original xpm_load pixel allocation on success and clipped-error paths. Guarded valid/edge pixels and actual draw_xpm owner regression originally fails inclusive edge, progressive edge-only fix still fails released-art assertion, final passes.",
+          "originalSha256": "6ae547c2bc10fdc5e02ac34990d578a75223b4c178990dab5aac48b8625172a5",
+          "patchedSha256": "ff5ed45ed3b37bfeb800908e740b8b5e382810be1c0552fc38212a834a3639f6"
+        }
+      ]
+    }
+  ],
+  "createdAt": "2024-05-28T16:14:23Z",
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "7a41ea7d5edea1bda0eac3d22089ffb96ca207433ae49bef227f304028dcf528",
+      "kind": "Original rendered blue tetromino pixels on flat icon background",
+      "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/basic-asm-three/evidence/tetris-01-board-canvas.png",
+      "captureSha256": "e14832b07c07c9f0f5f97895d97475e410f06dfb999a861d533a4d85b47b2829",
+      "crop": [
+        192,
+        32,
+        288,
+        96
+      ]
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "cff836e25ce2e33ed622fa3cfa81aa0cd9ea8f0c41dbcec103ccd71d1d13ff0c",
+      "kind": "Unmodified actual browser gameplay canvas after two normal drops"
+    }
+  ],
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/basic-asm-three/evidence/tetris-05-stack-canvas.png",
+    "captureSha256": "cff836e25ce2e33ed622fa3cfa81aa0cd9ea8f0c41dbcec103ccd71d1d13ff0c",
+    "originalSourceArt": true
+  },
+  "controlsRationale": "External auto-orientation panel leaves the original1024x768 indexed board visible. Unit relative pointer starts at10,10 for Play/Restart/Exit menus; Select provides normal left button. Original A/D/S release events move/soft-drop, so repeatReleaseKeys repeats complete touches. W rotates, Space hard drops, Q opens GameOver/restart and ESC exits. No direct calibration, art/palette/gameplay/RNG changes.",
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/tetris-workshop-reviewed-native/results.json",
+      "apkSha256": "9f48f3b2e159eea5dc1c451857d02394f09c21447edf88e7d4439df2e2e2942d",
+      "demonstrated": "ROOT viewed normal pointer Play selection, release-driven horizontal movement, rotation, two hard drops forming a visible bottom stack, Q GameOver/restart, and original ESC cleanup returning cleanly to native library.",
+      "limitations": [
+        "Full row clear is not demonstrated. Original small dark-blue menu text and unused gray half-frame are preserved; matching native/browser palette evidence confirms authored presentation."
+      ]
+    }
+  }
+}

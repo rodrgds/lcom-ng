@@ -1,0 +1,40 @@
+--- a/proj/src/lib/draw_elements.c
++++ b/proj/src/lib/draw_elements.c
+@@ -99,18 +99,18 @@
+         vg_draw_vline(getxRes() - 100 - j,0,getyRes(),0xFFFFFF);
+     }
+ 
+-    char str_score[2];
+-    sprintf(str_score, "%d", score);
++    char str_score[12];
++    snprintf(str_score, sizeof str_score, "%d", score);
+     draw_string("score ",2,2);
+     draw_string(str_score,6*32,0); //lenght of score plus a space times the size of a letter
+ 
+-    char str_timer[2];
+-    sprintf(str_timer, "%d", timer);
++    char str_timer[12];
++    snprintf(str_timer, sizeof str_timer, "%d", timer);
+     draw_string("time" , getxRes() - 230,2);
+     draw_string(str_timer, getxRes() - 70,2);
+ 
+-    char str_hp[1];
+-    sprintf(str_hp, "%d", hp);
++    char str_hp[12];
++    snprintf(str_hp, sizeof str_hp, "%d", hp);
+     draw_string("hp " , 2,40);
+     draw_string(str_hp, 2*32 + 16,40);
+     return 0;
+--- a/proj/src/lib/keyboard.h
++++ b/proj/src/lib/keyboard.h
+@@ -7,8 +7,8 @@
+ 
+ int getError();
+ int getCNT();
+-int getData();
+-void setData();
++uint8_t getData(void);
++void setData(uint8_t val);
+ void logic_for_bytes();
+ 
+ int (keyboard_write_to_KBC)(int port, uint8_t cmd);

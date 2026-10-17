@@ -1,0 +1,46 @@
+{
+  "version": 1,
+  "name": "LabWars",
+  "description": "Fight through top-down campaign stages or survive approaching zombies.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "touch": "move",
+      "actions": [
+        {
+          "label": "Fire / Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        }
+      ],
+      "pads": [
+        {
+          "mode": "wasd",
+          "side": "left",
+          "style": "dpad"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assets": [
+      "media/font/Consolas/xpm2",
+      "data/scoreboard.txt",
+      "maps/xpm2"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/proj/src": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

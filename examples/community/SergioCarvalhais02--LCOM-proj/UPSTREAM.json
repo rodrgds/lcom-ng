@@ -1,0 +1,157 @@
+{
+  "repository": "https://github.com/SergioCarvalhais02/LCOM-proj",
+  "revision": "8e0101df0552f71fc572cb71b11df8d9ae7007c2",
+  "project": ".",
+  "sourceHashes": {
+    ".gitignore": "8d09b640ab6a112312cfeee7f096e34797859cc29163b20d49825717b06ac0e0",
+    "Game.c": "85fba0d26e3b225751ffcf7bd681f41177acabe6bf8f9ff1c711924478d608db",
+    "Game.h": "0767010b77157a545f39e3d8b212e908183c3bde57bb3a5e65710a4d8c4d3283",
+    "Makefile": "f99e50da022ada8757334fa23e96687fb1e646890fbd2ca06683dd0bf16a7986",
+    "elements.c": "0e7de300f30fe13e4fc6576a687ff62c74cd99b1ed3b2d796d0fe58f5d15cef8",
+    "elements.h": "457ac4186d4ca401fc39ce5aa3dfb685c9ab3809b8b0610309b894d6e3f94438",
+    "i8042.h": "60d8230ff300e5b558da7e5c99abf7b65ef68aec199543771df3545f8f0c377c",
+    "i8254.h": "c01992b991a6e89082739028578a69c2999dc7c3cad3af81ca8384d6d507429d",
+    "images/background.h": "be97c7f71f8baf3108b0e93d926d768c352dedfb11fd4e1c5bb3eeb546423ad9",
+    "images/buttons/black_button.h": "bcf778b26a16e0fc6165d5d68db6fc9c126011376f7d2e7807b33e2f73e6cf39",
+    "images/buttons/blue_button.h": "3b155aced10c5f51d6c88e29070e36034c97d1c68390f1520f2fa21d318b9da3",
+    "images/buttons/green_button.h": "6da27a3624283aec717329b6d61d815a3c695e92556ca9cf68b2d9818163583f",
+    "images/buttons/red_button.h": "ef5fa1e11e29255a604d346e063777b78a26b0a758e90007462626673cb4f5c6",
+    "images/buttons/white_button.h": "193aab607a72999f1016e77b0d9b5a10fc80ecc9122621e829d857b27432cc1c",
+    "images/buttons/yellow_button.h": "7cd1b43f261860359ee8730691b6b149c43de69676076b0065cceb154e8f9b26",
+    "images/choose_mode.h": "23cc38d626ed2d4fbcd2fe5c6bb5c4e22ffdc1bcbafc3c78760f00206dd9a105",
+    "images/exit_img.h": "de76521363875a8c8c72e7556b9191f2bcc405297d413041f34dc4205fca3b6f",
+    "images/leaderboard.h": "c0edb9e3f551a0e3dd507b322df45478202ddc06181c73b10324cd478e408343",
+    "images/leaderboard_img.h": "705a941b957fb5af2c77940c18f0650c9b1bdb02542c4a2b7f877a30ba86911f",
+    "images/letters/0.h": "4fd19f94c25b3d11feb75ff8e1a0fe10ebc8852612d3858e2316a5e53dcfa1af",
+    "images/letters/1.h": "d221fc0ef883304f72755b585ccd4ba604fb23f5eab553241861809ac3d60de5",
+    "images/letters/2.h": "89b7bcf5274951de8be4066ac7d8b416946c6833be481603c77adca433b41320",
+    "images/letters/3.h": "45bebc119b981eb4c49e24a854900c72918ffb597e50802424289747d3794b01",
+    "images/letters/4.h": "0dc5a48a1b7d2e68068019cb9cf13a64dd47ab9e3869c4314d73fd29e81ba975",
+    "images/letters/5.h": "12fa24516f26867bf9f0f8748360720d209a13917480c3163d6c3604337bf110",
+    "images/letters/6.h": "f83cebc955171d97dcb3b3bcc195f2c4883db8e7288ec5e8e7379764d96253dc",
+    "images/letters/7.h": "abf0dc3f79d6346249ee096a9fe8d7700d97dfc4b496986bb7a828461ddcf5b2",
+    "images/letters/8.h": "5d57bdf8de13856c3ad54a6632c0d8c3a0cd792b6f085b546641be1f30635d28",
+    "images/letters/9.h": "3120ceb87055f15e483818f0e51f399dbb1ce7b0fd0146e8aafabd91bea3c5b0",
+    "images/letters/a.h": "9e61ef1b5bb22bbe4430221cdec4825fcb07d65edebe807bb5ac3c32adc5e4d7",
+    "images/letters/b.h": "eb85fb0ca1285c3d26cd3b586db2e80fc77dec86629bea0af3b1cdbc58c15238",
+    "images/letters/c.h": "d53ef7afbff6c385eb505dcaf09c59f4b08dafc8dfd0febd60fecbd1c406a589",
+    "images/letters/d.h": "ad89826855193ed6e536079269eca07662377de015af9286292930becef0afbd",
+    "images/letters/e.h": "6989fb569e2856e3771516b144df1d3a15ec9c8e5e60f0697c01454fbd439f2b",
+    "images/letters/f.h": "74186196beb259e06040de49a68b4d42d7b90f4f7f942b53122e26733ef8bcf5",
+    "images/letters/g.h": "0b85139e7d71cbf5845f8f476bab78defa002c51f578a18ac4d2f4546c856c39",
+    "images/letters/h.h": "483d43081b135fd579cb18427f27961278e40d04dfa1fc9650c4a00f8b703d54",
+    "images/letters/i.h": "1caa87a8d1c42b8d0eb9dd76efd5bdb2c066f99b0c6fe30723e2e5ad92bcbba7",
+    "images/letters/j.h": "b9b44c1f5405cd30bfa3b57f464d6474a270fecb651d0086e8b12b9d2b24d13e",
+    "images/letters/k.h": "11fc764025161875c73e04d868ee41890935bfa7f8307247ddd7f64992087431",
+    "images/letters/l.h": "702379a2f597866fb1211418883460b0a459634df949447aef7e09fad161f7a1",
+    "images/letters/m.h": "66485801522ba70baa5878996b2add6ae9e89de95b66d92ac622d27435ae528b",
+    "images/letters/n.h": "81196339db96cbb4431bdaa2058572f9be9db0208e22d2cf77ce2101f034b008",
+    "images/letters/o.h": "233c44ae01c2a4d00ce0dc61c9444476456ddf7794813a0b906502d2ff806726",
+    "images/letters/p.h": "a1dcfcff2815e5336eb0dcaa95d25b93f9f5fd865665bea051bd79153c9a7f51",
+    "images/letters/q.h": "d4c95ce6e0047e8d54e857b3ae109e800f9779f1ab24da393a1295781f5b4ec3",
+    "images/letters/r.h": "3b3b6c2d55c825c4e1bb260058250446a118e714bc0067eb9736d23c2e690139",
+    "images/letters/s.h": "99f55f1a1b298bf5576418f6aa0f248cf26ef3a42c55e2c7e776b2bc184d5ed0",
+    "images/letters/t.h": "92b6d97f18af94ed286a9fc462af568f5b44da02a95339c379cff5d8048ff7f1",
+    "images/letters/u.h": "fb6c231982b485d118be782070f0b244b6b5a86558a971d17e504f4edaa010ad",
+    "images/letters/v.h": "b36f5dba911129518a42f0019b2acc14974d584f9da54a76ca3491278d737ac6",
+    "images/letters/w.h": "5094b45585acec4e23bbbcacd0e5a63ad8c7f360b060728f6b41f524a8b5270d",
+    "images/letters/x.h": "3ec0b0263542925ae51da1eab4375575b6d26f0b2c70e16c5ef99c4698f8813e",
+    "images/letters/y.h": "f4711b0c93d99e8d9df6704122e6331ccee43751f402fdcf2092c7453fbe81ae",
+    "images/letters/z.h": "fc0c9162ecce50f1ea811fb59b831b41724b89281b8c57ff264b383c59f133f4",
+    "images/menu_background.h": "ff4a3a52aab6b17ffbfd8a500cc2ee96f27fc85b5c23e2a16ccf4cbde2640bfd",
+    "images/menu_img.h": "8289c1da72a5e6c97df256fade1f49ac4d61a687584485bee00bdc77db4bb154",
+    "images/play_img.h": "1c4f0a2dcfdfc02aa4d3908f6c3b8daa9eecb9bbef1de0c360907b601c7f3e0e",
+    "images/pontuation.h": "440fe3d64e0e9f27f38cee84777b73064fe487393376c63d5e9f748d831874c7",
+    "images/timer_numbers/number_0.h": "0f60903d0f0b3946d5483e20df7ac3a0fbe2bbd9177ecc2f86578398dd2cb1e0",
+    "images/timer_numbers/number_1.h": "f34ab8ce6bb555baec28cdcc6834642e8a91cefb4c8d31b3f5012b1c8171df1f",
+    "images/timer_numbers/number_2.h": "5a3ea59f60a24c8b59d643137df038f0c62d4b75e636dcbd52f4bb445243dc11",
+    "images/timer_numbers/number_3.h": "d2b1ca0dedb42f124e9e913050b1e01cc515591d54d946a89b0b0d7ac8eccba2",
+    "images/timer_numbers/number_4.h": "979e0e19eafe7517d7c2ba3ab42094adafe4e4ae6ef679830d3929165d527b7e",
+    "images/timer_numbers/number_5.h": "222d3dd0f757c3c620da94509ecebc25eafcc9cb1ecde54864c3da4dbde437b8",
+    "images/timer_numbers/number_6.h": "8062acb22a77a4e22877285d8f1301aaf4d1fddca23e8bf1afe83a54c388748e",
+    "images/timer_numbers/number_7.h": "26fb71a2cccd76b89bf58cf9d9ff65d2d1653458c843049db9c2e24164670752",
+    "images/timer_numbers/number_8.h": "d4977843b4afece19a42d79daac0ac6bd56df3726239a6c9d8e10fa261ae8fe7",
+    "images/timer_numbers/number_9.h": "d2b1c66f7b5b0403e74bcbb8f293a1b2674b5258d180a43f64ab0d1371b39d38",
+    "keyboard.c": "8bc69698f05075434cfa42fa4776c887470b3342fd1b08a82f53910a41794f52",
+    "keyboard.h": "296d064d34d1ec6d57acd788be8bc8086f12ad8f0c8af5152a0474436c75e922",
+    "mouse.c": "ffb557cf2edcb50648ef840caff73447b6dc2692bc85af929b2484c7d8997bc2",
+    "mouse.h": "5a260c1f8d8df3e2b5c48099021609e1e7f05054b74fbfe19f0d84ba23e0e48d",
+    "proj.c": "36feb03039965c06cd1189fe50e17cf0b08217e5c15b05ff05ebde095a2883f3",
+    "src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "timer.c": "1218b5086e842eba10e3590861f0f534386869fdeba3a8a50e492f05de36a210",
+    "utils.c": "a9c72394f3dc9ca7fb206b12d9b2818b7acac37148290f4fe08b0d0377a48d90",
+    "video_gr.c": "81752f4bacb6f4350ad6e0128be57d48557f37952b2eb701dd46caa43b972741",
+    "video_gr.h": "f965434064f1805285fc503ad96e17179c50f58d0877b4b242085d1348ecb902"
+  },
+  "selection": "Pinned original project source, original assets and README. Excluded generated documentation, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/.minix-src/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store"
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "mouse.c",
+          "reason": "Wait for OBF set before reading a mouse acknowledgement. Original inverted status condition reads empty buffer and times out while FA is present, causing ordinary video mode selection to exit before gameplay.",
+          "verification": {
+            "regression": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/sergio-mouse-ack-test.py",
+            "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/sergio-ack-red.log",
+            "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/sergio-ack-green.log"
+          },
+          "originalSha256": "ffb557cf2edcb50648ef840caff73447b6dc2692bc85af929b2484c7d8997bc2",
+          "patchedSha256": "23ba717a793738731af918f0311d5da9f06d7aa5d8835d5fbb6929d329a6b4d7"
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite on a flat palette",
+    "source": "images/buttons/yellow_button.h",
+    "array": null,
+    "iconBackgroundRemoved": "#FFFFF0"
+  },
+  "derivedAssets": [
+    {
+      "path": "icon.png",
+      "sha256": "7d9b045631286a28479506b796257b7c45ac374f3351610a8e09e877e7e58e34",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "preview.png",
+      "sha256": "d38295033171d9daf19ac131e53a544d71fda7ce6f770d5cef84c2eb427a5983",
+      "kind": "actual browser touch gameplay preview"
+    }
+  ],
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence13/SergioCarvalhais02--LCOM-proj-02-hit-canvas.png",
+    "captureSha256": "de34d614b702c33217c2729ec066ca21d046c19088ae055a6c7dfa990a0f7291",
+    "originalSourceArt": true
+  },
+  "verification": {
+    "native": {
+      "status": "passed",
+      "apkSha256": "cc055c952c3aa0b46b66598813d818f6aec38bfce59b79a34cd168ee24a16fb4",
+      "evidence": "build/arcade-100/a65-whack-native-stepped/results.json",
+      "review": "build/arcade-100/a65-reviewed-native/results.json",
+      "checkpoints": [
+        "Original mode0x115 and nine colored targets.",
+        "Top-left active colored target becomes disabled after its matching normal touch key.",
+        "Full original30s round ends positive POINTS; browser50."
+      ],
+      "limits": [
+        "Representative original touch play and clean Home process exit on ARM64 emulator. Every mode, long sessions, linked UART and physical-phone performance are unclaimed."
+      ]
+    }
+  }
+}

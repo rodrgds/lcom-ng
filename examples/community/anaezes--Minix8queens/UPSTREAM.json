@@ -1,0 +1,58 @@
+{
+  "repository": "https://github.com/anaezes/Minix8queens",
+  "revision": "f1d3eacff28a2b417ad986f3462ff5f1aea4f9a2",
+  "project": "src",
+  "sourceHashes": {
+    "README.md": "59a92996ded3ae7dd17950cf534f47659794fbdb8ab910a25f51b91f40a827cd",
+    "src/8queens.c": "fe3ec901bc37387822add60867df285775a671d72bc1166a35ae5c0591a9fbec",
+    "src/8queens.h": "36ae822ddd65068eef70f57cc55554cc471b359430595b6ae33d47275fae0bfb",
+    "src/Common.h": "f82f7bffcbc5a760d154444e8b3e72321eb0aa3ab50371299f4b95955c274ca9",
+    "src/Driver.c": "3ff1456833b3633c2bc770541c6d14e6d999c04d9a17273107ccebbda3cd7b9c",
+    "src/Driver.h": "fca6c9ab9d113da80c53dd6e5bbbbe5b409f004ce20661eeb07df17025a10a98",
+    "src/Keyboard.c": "b189d9ae0a42781998b19dc5f3e44533f4b0ad704116bbe19dac497fe065ce40",
+    "src/Keyboard.h": "eb60c088c26097e1ec385b9cadaa748ca25bb6791cc2a9364720f6bcbc35f258",
+    "src/Makefile": "2be07902535e1274128b9f50501605ba7313cef42f1d720c437ae238c0afbb3e",
+    "src/Mouse.c": "04941551c9703a67692a5cd7f08506b52674dead01f58df707d7b5abf848c661",
+    "src/Mouse.h": "d18b1bd2bdb459650a026081b2dcf4106c4ea85f785f68fa9dcc855eeddb157b",
+    "src/algorithm.c": "fcb8a3f5f03e24050a59c14721056be7c53a6dfd0b8c6e9f76d4e1165df711df",
+    "src/algorithm.h": "71f1d92cc7ff713695beadbc21e17445e8d8ca0366ce84615497c037b068e8d5",
+    "src/digits_pixmap.h": "174b8df87d91dc81ecf824166af01b4872a1452750bd5a64d31a65db7897ceb7",
+    "src/i8042.h": "817643082e85c3d91f94481e1a93c5dae3ddda1d4417e5336cc1d1ad76326d56",
+    "src/i8254.h": "39bdbbe198ea70bc639f6d03e35c2726a5419b8fdc8e7ac139017b61c399f129",
+    "src/lmlib.h": "6ba2a696d8a5e50878d1cf46a12ebedfc4173e079fe387da421df14b9aa1a5c6",
+    "src/main.c": "2bf91a7e6e3905505fed3bcbb81a3b6c5eff5e90b311d40fad4a3b5d6ee4cc47",
+    "src/pixmap.c": "68d8521874d725b1f96d13ee6280ae2cb8218f603f88d7beceb473c20a183691",
+    "src/pixmap.h": "e74c82897ae12f44468dcebfd13272e1e96d1be6f5ddf9b661b1dd65cf8c33b8",
+    "src/rtc.c": "5c236fc23b2926f26fc108b08932a479a4e6116e47da0df8c1cbc2050d9d0b61",
+    "src/rtc.h": "adb0e7279cb084c1ab7f102f13783b460dff78bdd6258cb12da41c343cb41bd0",
+    "src/timer.c": "c90cb9d335527a4d804b4058e3368e776348f67492a25d1a09da5fc26aa59161",
+    "src/timer.h": "cad84635c233d7051788202aa169cde46f7269d1bd6aa127c0cb9ce7b1cf5850",
+    "src/vbe.c": "c5d32ff27135b26f6af43a14a3a0cfff87e71516d51bf84640192dbd565e25b5",
+    "src/vbe.h": "c2e3773dc2b39a9ffc1106e9229041a105609d6fb3947c36579a1af23f235736",
+    "src/video_gr.c": "5bf65c274d887983037b9691a502f1c537d4f30cbf09d206cc979c8bf53a6260",
+    "src/video_gr.h": "d675e3504050929db2262f1615f88db7126721787cf8d5219a20da68ab47774d"
+  },
+  "selection": "Pinned game sources and root README; compiled binaries, generated objects, docs, VCS and OS metadata omitted. Omitted generated upstream build file src/.depend.",
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "artwork": {
+    "icon": "Simple vector depiction of the original crown-shaped queen over its pink and purple board colors."
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "src/rtc.c",
+          "originalSha256": "5c236fc23b2926f26fc108b08932a479a4e6116e47da0df8c1cbc2050d9d0b61",
+          "patchedSha256": "537930a82881d1ce2c149df691e46514a3bc2b30e2f81287a2ad146d6f442ad2",
+          "reason": "Include the owning video_gr.h declaration before calling vg_draw_pixmap. Implicit int/varargs declaration mismatched the actual void/narrow-argument function.",
+          "verification": "Original -Werror=implicit-function-declaration fails; corrected date-render actual-source regression and browser queen placement pass. Evidence build/arcade-100/c."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original game controls mapped to touch and exercised in real browser gameplay; no source input redesign."
+}

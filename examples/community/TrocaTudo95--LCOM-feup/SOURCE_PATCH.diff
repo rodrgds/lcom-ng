@@ -1,0 +1,288 @@
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -23,21 +23,13 @@
+ 		return INV_PACKETS;
+ 	}
+ 	unsigned long miscInfo = packet[0];
+-	long x_delta = 0xFFFFFF00;
+-	long y_delta = 0xFFFFFF00;
+-
+-	if (miscInfo & BIT(4))
+-		x_delta |= packet[1];
+-	else
+-		x_delta = packet[1];
+-
+-	if (miscInfo & BIT(5))
+-		y_delta |= packet[2];
+-	else {
+-		y_delta = packet[2];
+-	}
++	long x_delta = (long)(packet[1] & 0xFF) - ((miscInfo & BIT(4)) ? 256 : 0);
++	long y_delta = (long)(packet[2] & 0xFF) - ((miscInfo & BIT(5)) ? 256 : 0);
+ 
+ 	y_delta = -y_delta;
++
++	/* A button-only sample relocates the apple without changing heading. */
++	if (x_delta == 0 && y_delta == 0) return OK;
+ 
+ //	printf("x_delta = %d\ny_delta = %d\n", x_delta, y_delta);
+ 
+--- a/proj/src/keyboard.c
++++ b/proj/src/keyboard.c
+@@ -88,36 +88,35 @@
+ 	return OK;
+ }
+ 
++/* Keyboard bytes encountered while waiting for a mouse ACK retain order. */
++static unsigned long pendingScancodes[32];
++static unsigned pendingHead, pendingCount;
++
++int kbd_queue_scancode(unsigned long scanCode) {
++    if (pendingCount == 32) return -1;
++    pendingScancodes[(pendingHead + pendingCount) % 32] = scanCode;
++    ++pendingCount;
++    return OK;
++}
++
+ int kbd_pressed_esc() {
+-	if (!isSubscribed) {
+-		printf("kbd_pressed_esc(): Keyboard not subscribed\n");
+-		return -1;
+-	}
+-
+-	unsigned long scanCode, status;
+-
+-	//TODO: Organize.
+-	sys_inb(STAT_REG, &status);
+-	if (status & OBF == 0) { //No data.
+-		return OK;
+-	}
+-	if (status & BIT(5) == 1) { //Mouse data.
+-		return OK;
+-	}
+-	if (status & BIT(6) == 1) { //Timeout.
+-		return OK;
+-	}
+-	if (status & BIT(7) == 1) { //Parity error.
+-		return OK;
+-	}
+-
+-	sys_inb(OUT_BUF, &scanCode);
+-
+-	if (scanCode == ESC_MAKE)
+-		return ESC_PRESSED;
+-	if (scanCode == ESC_BREAK)
+-		return ESC_RELEASED;
+-	return OK;
++    if (!isSubscribed) {
++        printf("kbd_pressed_esc(): Keyboard not subscribed\n");
++        return -1;
++    }
++    unsigned long scanCode, status;
++    if (pendingCount != 0) {
++        scanCode = pendingScancodes[pendingHead];
++        pendingHead = (pendingHead + 1) % 32;
++        --pendingCount;
++    } else {
++        if (sys_inb(STAT_REG, &status) != OK) return -1;
++        if ((status & OBF) == 0 || (status & (BIT(5) | BIT(6) | BIT(7)))) return OK;
++        if (sys_inb(OUT_BUF, &scanCode) != OK) return -1;
++    }
++    if (scanCode == ESC_MAKE) return ESC_PRESSED;
++    if (scanCode == ESC_BREAK) return ESC_RELEASED;
++    return OK;
+ }
+ 
+ int kbd_int_handler(bool *isMakecode, unsigned long *prevScanCode,
+--- a/proj/src/keyboard.h
++++ b/proj/src/keyboard.h
+@@ -51,6 +51,7 @@
+  * and checks for errors with the status register.
+  * @return ESC_PRESSED if ESC was pressed, ESC_RELEASED if ESC was released, OK otherwise.
+  */
++int kbd_queue_scancode(unsigned long scanCode);
+ int kbd_pressed_esc();
+ 
+ /**
+--- a/proj/src/mouse.c
++++ b/proj/src/mouse.c
+@@ -1,44 +1,44 @@
+ #include "mouse.h"
++#include "keyboard.h"
+ 
+ static int mouse_hook_id = 4;
+ static bool isSubscribed = false;
+ 
+ int sendCmdToKBC(unsigned long command, unsigned long arg1) {
+-	unsigned long status, response;
+-
+-	while (true) {
+-		if (sys_inb(STAT_REG, &status) != OK)
+-			return -1;
+-		if ((status & IBF) == 0) {
+-			if (sys_outb(KBC_CMD_REG, command) != OK)
+-				return -1;
+-			if (sys_inb(OUT_BUF, &response) != OK)
+-				return -1;
+-			if (response == RESEND)
+-				continue;
+-			if (response == ERROR)
+-				return -1;
+-			break;
+-		}
+-	}
+-
+-	while (true) {
+-		if (sys_inb(STAT_REG, &status) != OK)
+-			return -1;
+-		if ((status & IBF) == 0) {
+-			if (sys_outb(IN_BUF, arg1) != OK)
+-				return -1;
+-			if (sys_inb(OUT_BUF, &response) != OK)
+-				return -1;
+-			if (response == RESEND)
+-				continue;
+-			if (response == ERROR)
+-				return -1;
+-			break;
+-		}
+-	}
+-
+-	return OK;
++    unsigned long status, response;
++    for (unsigned attempt = 0; attempt < 3; ++attempt) {
++        unsigned wait;
++        for (wait = 0; wait < 32; ++wait) {
++            if (sys_inb(STAT_REG, &status) != OK) return -1;
++            if ((status & IBF) == 0) break;
++            tickdelay(micros_to_ticks(1000));
++        }
++        if (wait == 32 || sys_outb(KBC_CMD_REG, command) != OK) return -1;
++        /* 0xD4 only forwards the next byte. Its argument elicits the ACK. */
++        for (wait = 0; wait < 32; ++wait) {
++            if (sys_inb(STAT_REG, &status) != OK) return -1;
++            if ((status & IBF) == 0) break;
++            tickdelay(micros_to_ticks(1000));
++        }
++        if (wait == 32 || sys_outb(IN_BUF, arg1) != OK) return -1;
++        for (wait = 0; wait < 64; ++wait) {
++            if (sys_inb(STAT_REG, &status) != OK) return -1;
++            if ((status & OBF) == 0) {
++                tickdelay(micros_to_ticks(1000));
++                continue;
++            }
++            if (sys_inb(OUT_BUF, &response) != OK) return -1;
++            if (status & (BIT(6) | BIT(7))) return -1;
++            if ((status & BIT(5)) == 0) {
++                if (kbd_queue_scancode(response) != OK) return -1;
++                continue;
++            }
++            if (response == ACK) return OK;
++            if (response == RESEND) break;
++            if (response == ERROR) return -1;
++        }
++    }
++    return -1;
+ }
+ 
+ int mouse_getConfig(unsigned long *packet) {
+@@ -171,17 +171,19 @@
+ 	}
+ 
+ 
+-	size_t maxIters = 3;
+-	for (size_t iter = 0; iter < maxIters; ++iter) {
++	/* Timer notifications are not packet bytes. Bound inactivity, not IPC count. */
++	size_t idleTimerTicks = 0;
++	while (idleTimerTicks < 3) {
+ 		if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
+ 			printf("mouse_get_packet(): driver_receive() failed with: %d", r);
+-			continue;
++			break;
+ 		}
+ 		if (is_ipc_notify(ipc_status)) {
+ 			switch (_ENDPOINT_P(msg.m_source)) {
+ 			case HARDWARE:
+ 				if (msg.NOTIFY_ARG & irq_timer_set) {
+ 					++(*timeIntCounter);
++					++idleTimerTicks;
+ 				}
+ 				if (msg.NOTIFY_ARG & irq_mouse_set) {
+ 					if (mouse_int_handler(&mouseByte) != OK) {
+@@ -191,17 +193,10 @@
+ 						return -1;
+ 					}
+ 
+-					if (mouseByte == ACK) {
+-						--iter;
+-						continue;
+-					}
+-
+-					if (iter == 0 && !(mouseByte & BIT(3))) {
+-						if (mouse_unsubscribe_int() == -1) {
+-							printf("mouse_get_packet() 2: Mouse unsub error\n");
+-						}
+-						return NO_PACKETS;
+-					}
++					/* X/Y payload bytes may legitimately equal the ACK value. */
++					if (counter == 0 && mouseByte == ACK) continue;
++
++					if (counter == 0 && !(mouseByte & BIT(3))) continue;
+ 
+ 					if (!detectedFirstByte && mouseByte & BIT(3) && mouseByte != ACK) {
+ 						detectedFirstByte = true;
+@@ -209,6 +204,7 @@
+ 					if (detectedFirstByte) {
+ 						packet[counter] = mouseByte;
+ 						++counter;
++						idleTimerTicks = 0;
+ 					}
+ 
+ 					if (counter == 3) {
+@@ -233,12 +229,14 @@
+ 		}
+ 	}
+ 
++	/* No complete sample: leave reporting disabled just as on success. */
++	int disabled = sendCmdToKBC(WRITE_BYTE_MOUSE, DISABLE_DATA_REPORT);
+ 	if (mouse_unsubscribe_int() == -1) {
+ 		printf("mouse_get_packet() 4: Mouse unsub error\n");
+ 		return -1;
+ 	}
+ 
+-	return NO_PACKETS;
++	return disabled == OK ? NO_PACKETS : -1;
+ }
+ 
+ void printMousePacket(short packet[]) {
+--- a/proj/src/video_gr.c
++++ b/proj/src/video_gr.c
+@@ -311,7 +311,7 @@
+ 	return OK;
+ }
+ 
+-short round(double num) {
++static short pixel_round(double num) {
+ 	double decimalPart = num - floor(num);
+ 	if (decimalPart >= 0.5)
+ 		return num + 1;
+@@ -342,7 +342,7 @@
+ 	for (int v = 0; v < steps; v++) {
+ 		x = x + xIncrement;
+ 		y = y + yIncrement;
+-		vPtr = sec_buffer + h_res * round(y) + round(x);
++		vPtr = sec_buffer + h_res * pixel_round(y) + pixel_round(x);
+ 		*vPtr = color;
+ 	}
+ 
+@@ -440,8 +440,8 @@
+ 			else
+ 				exact_y -= pixelsPerFrame;
+ 		}
+-		x = round(exact_x);
+-		y = round(exact_y);
++		x = pixel_round(exact_x);
++		y = pixel_round(exact_y);
+ 		//TODO: Screen not using all pixels.
+ 		if (x < 0 || x >= getHorRes() - 60 || y < 0 || y >= getVertRes() - 25) {
+ 			return OUT_BOUNDS;

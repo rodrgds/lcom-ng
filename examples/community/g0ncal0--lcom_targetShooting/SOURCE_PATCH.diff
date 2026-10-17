@@ -1,0 +1,24 @@
+--- a/src/devices/kbc/mouse.c
++++ b/src/devices/kbc/mouse.c
+@@ -189,7 +189,7 @@
+     return EXIT_FAILURE;
+ }
+ 
+-// can't use the generic write_byte_to_mouse because the output (device id) overwrites the ack
++// Get Device ID replies with an ACK followed by a separate device ID byte.
+ int (write_get_device_id_to_mouse)(uint8_t* id) {
+     int tries = MAX_TRIES;
+ 
+@@ -215,7 +215,11 @@
+ 
+             tickdelay(micros_to_ticks(DELAY));
+ 
+-            if (util_sys_inb(KBC_OUT_BUF, id) == OK) return EXIT_SUCCESS;
++            uint8_t response;
++            if (util_sys_inb(KBC_OUT_BUF, &response) == OK && response == ACK) {
++                tickdelay(micros_to_ticks(DELAY));
++                if (util_sys_inb(KBC_OUT_BUF, id) == OK) return EXIT_SUCCESS;
++            }
+         }
+ 
+         tries--;

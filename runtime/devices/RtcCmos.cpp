@@ -2,6 +2,7 @@
 
 #include <lcom/rtc.h>
 
+#include <chrono>
 #include <cmath>
 #include <cstdio>
 #include <ctime>
@@ -32,7 +33,7 @@ bool RtcCmos::write8(uint16_t port, uint8_t value) {
 }
 
 void RtcCmos::setHostTime() {
-  std::time_t now = std::time(nullptr);
+  std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
 #if defined(_WIN32)
   localtime_s(&tm_, &now);
 #else
@@ -104,7 +105,9 @@ uint8_t RtcCmos::readRegister(uint8_t reg) {
   case RTC_REG_C: {
     uint8_t value = interrupt_flags_;
     if (interrupt_flags_ & register_b_ & (PIE | AIE | UIE)) value |= IRQF;
-    interrupt_flags_ = 0; return value;
+    interrupt_flags_ = 0;
+    refreshIrq();
+    return value;
   }
   case RTC_REG_D: return 0x80;
   default: return ram_[reg];
@@ -189,7 +192,14 @@ void RtcCmos::advanceTick(uint32_t timer_frequency) {
 }
 
 void RtcCmos::refreshIrq() {
-  if (interrupt_flags_ & register_b_ & (PIE | AIE | UIE)) irqs_.raise(8);
+  // The AT PIC is edge-triggered. A pending RTC cause holds IRQ asserted
+  // until C is read or its enable is cleared; polling is not a new edge.
+  bool asserted = (interrupt_flags_ & register_b_ & (PIE | AIE | UIE)) != 0;
+  if (!asserted) irq_delivered_ = false;
+  else if (!irq_delivered_ && irqs_.isSubscribed(8)) {
+    irqs_.raise(8);
+    irq_delivered_ = true;
+  }
 }
 
 } // namespace lcom

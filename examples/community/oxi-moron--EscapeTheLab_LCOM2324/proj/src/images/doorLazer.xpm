@@ -1,0 +1,28 @@
+/* XPM */
+static const char *doorLazer[] = {
+/* columns rows colors chars-per-pixel */
+"16 16 6 1 ",
+"  c #1DFF00",
+". c #BBBBBB",
+"X c #A7D8A1",
+"o c #C1FFB9",
+"O c #F4EBEB",
+"+ c #EEFFED",
+/* pixels */
+"O....X + X......",
+"OO...X + X......",
+".OO..X + XO.....",
+"..OO.X + XOO....",
+"...OOX + X.O....",
+"....Oo + X......",
+".....o + X....O.",
+".....X + X....OO",
+"O....X + X.....O",
+"OO...X + o......",
+".OO..X + oO.....",
+"..OO.X + XOO....",
+"...O.X + X......",
+".....X + X......",
+".....X + X....O.",
+".....X + X....OO"
+};

@@ -1,0 +1,133 @@
+{
+  "repository": "https://github.com/nunottlopes/feup-lcom",
+  "revision": "23b691558b2ae4bcdb76bcd2315ee6e134d8a061",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "a139929219bc1926ddc6aff2ea8da0e1198c411230bea58cab015be2a8ae9542",
+    "lab2/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "lab2/lab2.c": "a336680f0b1bf778184791870344fe9cb43801f1db9cef8b41b9538f8ec1ac12",
+    "lab2/timer.c": "672fe1a5f64d22cc0c3801e22362982816d69ebc2a7d05c2a35dc29e0d46e5ce",
+    "lab2/timer.h": "269dcbe38eab35f2b07c33adfa0c5b53c20d2d6826de21e4a017ad44a365b327",
+    "lab3/Makefile": "539fd2e617a5ac5e355187e7c37eea7ae3525a2e9fce04dbf2857d46aee14878",
+    "lab3/i8042.h": "732f771f557dc0e2f6127d28693029fbf668fce4d943e350310ad2b6bb6ef03f",
+    "lab3/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "lab3/kbd.c": "cff27bc64765f95c02958678bb9cd03ea27104d7105e42420d66978d6f27fbd2",
+    "lab3/kbd.h": "1e726145273d6d012450726f72e38e609f9b9a011baf9fe25c3e2948b1d73e1f",
+    "lab3/lab3.c": "4fbe019c8aae47264ec94e3ca366202f4899f87b82662b40a3effef2c4a4ab7a",
+    "lab3/test3.c": "9db4d4918087501d32707a26a14643c44d9f4fd5af724e0191c5ebc50eef333a",
+    "lab3/test3.h": "c6274c8324fc6da16440ff750e10d875db61cd6925284a3d25752749b1137248",
+    "lab3/timer2.c": "8908f391806f606623809d9896be1a70d411926fb056b56ff7f14a5014b565ea",
+    "lab3/timer2.h": "269dcbe38eab35f2b07c33adfa0c5b53c20d2d6826de21e4a017ad44a365b327",
+    "lab4/Makefile": "90aa89747d1864017373cc258fb99a64b94d85010f3c14de699e7b758bebd091",
+    "lab4/i8042.h": "c15e4361a861ac508c6e621a80514937a0942bf8ffed77cccff555cf42a8438f",
+    "lab4/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "lab4/lab4.c": "551ee72681240261b7edce7ddbac226916bf1b91c45ac61d3bd064aacd94ea8b",
+    "lab4/mouse.c": "8982aa8d2566838c8cedffdab4e90c7cb1d62f5570f61e7379d9afdf68d1d9f0",
+    "lab4/mouse.h": "c7c0a0ddb9ee725a82d7386b633498507a4dd4c9aefc7aae2fecea625d66a403",
+    "lab4/test4.c": "92670f9fc64b9c6f37266d71de2690310268bf14c9fb8c470b0338dda1de3e14",
+    "lab4/timer.c": "60c086ad95ebac17d593d14b0957a2fed0b0b32495e5d76062779868340d2643",
+    "lab5/Makefile": "8a6fa50c11cb53a0643677edde941afcfab202fb8fa455787d5d26209b95c8c5",
+    "lab5/i8042.h": "732f771f557dc0e2f6127d28693029fbf668fce4d943e350310ad2b6bb6ef03f",
+    "lab5/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "lab5/kbd.c": "d6fb682f6f43c3bcffa2bd849ba8282e45fb0601e3b13bdc33ff5206509cf36c",
+    "lab5/kbd.h": "557bff84de0f381c495b75725f469aadb136ef7659df7e6d7b7b4773b99602a8",
+    "lab5/lab5.c": "4e88e86d6860a4160f8d8aee6fa98346d109fed913ac7ff66e09c95536b89d78",
+    "lab5/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "lab5/pixmap.h": "df987f9991ee986d951db03fe51d3ae3acafe1df922323575d0061f00bd5270a",
+    "lab5/read_xpm.c": "74f9e6f43cf250c51c7c8cc59038d04b9c5768afe6e79c6535298743bba5456d",
+    "lab5/read_xpm.h": "29775399356da2b70aea2db9f051764140ab7e7c76d45043a63da5dd3131838d",
+    "lab5/sprite.c": "237c0c7be30e439d8f176a6b8e0a8318c2e5d5f7ec9c9d3a5d858f78dbaaf30b",
+    "lab5/sprite.h": "8a45c01b03d893ac6d8c60527ca5ffa873d8fb204c2f6940f292d7f3e5edd181",
+    "lab5/test5.c": "9687f9b9240bc5b9f5fdb480c4da075fdaf69f6dfa3897f44a2f001867fdb193",
+    "lab5/test5.h": "3b7b1abc78a48d278f854f53c78ec0ea93c77b2e8d0bdf89ddb71948c4f5845f",
+    "lab5/timer.c": "4d7be59ee573950257ecc254e364419bd0e70262b6841a7da4221df131d70fe3",
+    "lab5/vbe.c": "764b18dbd481b6b464b77821324b200ec836f93fbbe2dd42af908967605e910a",
+    "lab5/vbe.h": "c8db80c97e2471e613e280ba6804cbeab50c59f0eb1a7643303944b454b15216",
+    "lab5/video_gr.c": "2d44fc5ebdb532e4a1df180b514cc4dd98c8e0a2ddff0be6ea45589f9e83a1a8",
+    "lab5/video_gr.h": "751bc99c60fc89f69ddc867c416715957941278212ea5c5572cf9a1bbaa2c0c9",
+    "lab5/video_test.c": "7ede7ee61d178fff8e4088f2a27876a14a10889adb006bb77d26dfdae1fd3a57",
+    "lab5/video_test.h": "ab8edf339693bd3f451cf8b01a0b041bf966f60882bbf7a38d703428b6e6ae36",
+    "proj/src/Makefile": "e5138fc27551bc387be9a1580ee2a7c99b7e44a1245beeb477e38428e6d1791e",
+    "proj/src/game.c": "d1b188023b4338d88141ac67ddb80247c2e7b455f82c6fc406da4dd7221ece9d",
+    "proj/src/game.h": "4b47be22f6eb360a183d1e56faa6afcb203c285c1799e2e27da2db9b1f3535bd",
+    "proj/src/highscores.c": "2e3561fa207dc0af92290719abcaf63ab56db55ace3e4a5334bcd69c96586425",
+    "proj/src/highscores.h": "a26fedaa2eda91ead2dffd28a218015c57110b0e312948c6e104e192ffbddb39",
+    "proj/src/highscores.txt": "42b9d9b750e232d404b89878e75d26c747f39046767f705cb165d1899ef8008c",
+    "proj/src/i8042.h": "7b7dd8b96787b9d7b32124c95052a7c20bd2be7fb4ca40944cd425f4f987b97e",
+    "proj/src/i8254.h": "1ba5a6b3fa3eaf7d93131624761c410903d1824da6e389af4c814e3df9b7bd58",
+    "proj/src/kbd.c": "e0fed130b6e33caae62b21b24dcf1e598fe6b1b695afba973319d3e2774276c0",
+    "proj/src/kbd.h": "7bd3ece21fe3a9cc8991ee5e95deec07b909fe7168e7e38a1c50172d411e3ce4",
+    "proj/src/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "proj/src/mouse.c": "6fbc1a61bf6f17d64bd4d044709e7e891221213264aa989908699a563e647c4c",
+    "proj/src/mouse.h": "8cbb79f8038555c9c7eb2e0c6e892a103ce8aaaac9e3c00ef6c5359aad106eef",
+    "proj/src/pixmap.h": "06178e45130ba89956412ad431d0c2044ac1aa0c4fdd3a5f69eba8d7b94eb320",
+    "proj/src/proj.c": "a24f1480ccc912fce702b1b0e837f29fe7e300f90fa01f1c7299072f70dd9e4c",
+    "proj/src/read_xpm.c": "74f9e6f43cf250c51c7c8cc59038d04b9c5768afe6e79c6535298743bba5456d",
+    "proj/src/read_xpm.h": "624332f43e7053c586bd066ce5149dc2bd62851db09573db7bec5e33c286d0b9",
+    "proj/src/rtc.c": "dafb9a27adc42179e072c87016e5136fa63ac936c8e334791ded9cc4fa3b94e6",
+    "proj/src/rtc.h": "831909dc8022ad803b83550171ed508e1f3b1fad4b54efc00f87aa29d0f1419d",
+    "proj/src/sprite.c": "efc2f9442dfa034b7797dbbdd04ee1bdcd012d805ce19483af92793c301e0581",
+    "proj/src/sprite.h": "ed2d6c089e390ada1454fd0bb6986718a45eebcb35c4024be54f9292a06fcadf",
+    "proj/src/timer.c": "74e0448c6df972c9b7d94df26fee62646252100ef82171ae2d73a17ac3803101",
+    "proj/src/timer.h": "e2edc54534403c0fc9aead8ad53ac57dde019f8bb7380785ae4dea266ef40768",
+    "proj/src/vbe.c": "53b555a402eaeb8d21ab405b501e53d74ffaab50a2838033b90293f7cf0fa3f6",
+    "proj/src/vbe.h": "c8db80c97e2471e613e280ba6804cbeab50c59f0eb1a7643303944b454b15216",
+    "proj/src/video_gr.c": "94e588329de161d1023e833959a09efdbe2ab0d395f908765fb364f70acf9740",
+    "proj/src/video_gr.h": "a25e56f61c2e135d5afeed5475d33ba949e41b5333012c256e46c1e2a39cec3e"
+  },
+  "selection": "Pinned original selected project C/H/Makefile, embedded original XPM artwork, original saved files and selected README. Unused labs/docs and generated object/dependency files omitted.",
+  "excludedMetadata": [],
+  "license": {
+    "status": "not established",
+    "files": []
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "d1b188023b4338d88141ac67ddb80247c2e7b455f82c6fc406da4dd7221ece9d",
+          "patchedSha256": "a00836e586f8f57bd2e3200af5260ae165124995a66cd6dd27bbd1974bcba199",
+          "reason": "Render the existing original main-menu handler once after sprite initialization, before waiting for a keyboard notification.",
+          "verification": "Actual original open_game enters driver_receive with no menu drawn, leaving a blank first frame. Corrected original keyboard_handler(0) draws the menu before the first notification; normal browser initial title andPlay/HighScores/Quit render immediately."
+        },
+        {
+          "file": "proj/src/highscores.c",
+          "originalSha256": "2e3561fa207dc0af92290719abcaf63ab56db55ace3e4a5334bcd69c96586425",
+          "patchedSha256": "1f25db965392974e4395d98e8d1e1da490df9da845412457ed2c101a4540f428",
+          "reason": "Check saved-file open results, use unsigned-long formats matching all18 original fields and commit reads only after a complete valid record set.",
+          "verification": "Actual original missing-file read/write crashes onNULL FILE; original32-bit scanf leaves upper bytes in declared unsignedlong globals. Real-file owning tests validate missing and unwritable paths, full18-field roundtrip and malformed-tail preservation. Final browser hit0010, naturalGameOver, Escape saves, HighScores reopens third score0010 after original100/90, Quit exits0."
+        },
+        {
+          "file": "proj/src/mouse.c",
+          "originalSha256": "6fbc1a61bf6f17d64bd4d044709e7e891221213264aa989908699a563e647c4c",
+          "patchedSha256": "758d8d456f44dd28391a40dcc002d2d022b6d4aa340a2d6c2e3ef09e8688caf9",
+          "reason": "Decode negative PS/2 movement as the full nine-bit signed value instead of casting its low byte to signed char. Read packet bytes only when OBF and mouse AUX are both set; retain incomplete state across empty or foreign notifications and discard partial state on I/O/parity/timeout errors. Read packet bytes only when OBF and mouse AUX are both set; retain incomplete state across empty or foreign notifications and discard partial state on I/O/parity/timeout errors.",
+          "verification": "Actual complete three-byte packets test both axes at\u2212255/\u2212200/\u2212129/\u2212128/\u22121/0/1/127/128/255 plus stationary left click. Original incorrect large-negative direction isRED; exact corrected full-range displacement and button-only packet areGREEN. Actual full consumer first sums three ordinary dx-126/dy104 packets to134,72, then original patterned-storage owner fails an empty-OBF notification between packet bytes. Corrected owner preserves partial state across empty/keyboard notifications without consuming foreign data, completes signed-200/-128 once, resynchronizes after parity failure and leaves scope unchanged on status-read failure. This independently proves a source defect but does not by itself establish the cause of every native overshoot. Actual full consumer first sums three ordinary dx-126/dy104 packets to134,72, then original patterned-storage owner fails an empty-OBF notification between packet bytes. Corrected owner preserves partial state across empty/keyboard notifications without consuming foreign data, completes signed-200/-128 once, resynchronizes after parity failure and leaves scope unchanged on status-read failure. This independently proves a source defect but does not by itself establish the cause of every native overshoot."
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Original scope starts512,384, unit relative motion and source clampx0..999,y31..743. Panel separates relative mouse stick, mouse-leftFire/Select, SpaceReload, EnterSelect, Up/Down andEscape. Relative mode preserves original menu/game transitions that discard mouse motion. Explicit original absolute alias/home/lcom/lcom/proj/src maps to current private game root; repeated source separators match on component boundaries. Original highscores.txt is packaged unchanged.",
+  "artwork": {
+    "icon": "Original64x64 monster XPM reconstructed as SVG pixel rectangles with the original numeric EGA colors, integer3xscale on a dark tile. Original asset unchanged. Rasterized to512x512PNG for the shared launcher contract; SVG source retained.",
+    "preview": "Final corrected-source real gameplay canvas scaled640x480."
+  },
+  "verification": {
+    "browser": "Normal touch menu/arena, screenshot-only green-monster observation guides ordinary relative aim and separate Fire; score0010 and bullets10\u21929, Reload10. NaturalGameOver, Escape saves score, HighScores reopens saved0010, Quit status0. Both orientations and initial HighScores inspected; no page errors.",
+    "ndk": "All12 actual ARM64 build objects passO2/FORTIFY2/stack-protector/format-security, including generated entry wrapper and unchanged source CLI/STI lowered by the reviewed shared compiler bridge.",
+    "native": "Pending ROOT actual Android gameplay.",
+    "assembly": "Original CLI/STI instruction strings remain unchanged.",
+    "limitations": "Native monster location must be observed from the visible image because libc RNG differs. Each monster stays about2seconds initially and misses cost lives, so slow screenshot/ADB startup can consume the round. No clock/RNG changes.",
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/pong-shoot-reviewed-native/results.json",
+      "apkSha256": "b1e3d59d278aac213afcfd7b7b87e41315394dbb028092c32b274a0defb0dc65",
+      "demonstrated": "Root viewed original monster, normal observed gradual Android touch aim and Fire reaching score0010, native Reload restoring10ammo and clean Home.",
+      "limitations": [
+        "Representative positive hit and reload, not a complete life loss/highscore round. QA instantaneous motion was replaced with normal interpolated touches after exact trace proved original guest consumes host deltas correctly."
+      ]
+    }
+  }
+}

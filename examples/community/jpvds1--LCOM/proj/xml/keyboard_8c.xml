@@ -1,0 +1,390 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="keyboard_8c" kind="file" language="C++">
+    <compoundname>keyboard.c</compoundname>
+    <includes refid="keyboard_8h" local="yes">keyboard.h</includes>
+    <incdepgraph>
+      <node id="4">
+        <label>i8042.h</label>
+        <link refid="i8042_8h"/>
+      </node>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c</label>
+        <link refid="keyboard_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>keyboard.h</label>
+        <link refid="keyboard_8h"/>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="3">
+        <label>lcom/lcf.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="var">
+      <memberdef kind="variable" id="keyboard_8c_1a4017d9521177279f305f29157dfe1657" prot="public" static="no" mutable="no">
+        <type>int</type>
+        <definition>int hook_kbc</definition>
+        <argsstring></argsstring>
+        <name>hook_kbc</name>
+        <initializer>= 1</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" line="3" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="3" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t scancode</definition>
+        <argsstring></argsstring>
+        <name>scancode</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" line="4" column="9" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="4" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="keyboard_8c_1a478e9d9e6e396379599060715e26730a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() kbc_get_status</definition>
+        <argsstring>(uint8_t *st)</argsstring>
+        <name>kbc_get_status</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>st</declname>
+        </param>
+        <briefdescription>
+<para>Reads the KBC status byte. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>st</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the variable that will hold the status byte. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" line="6" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="6" bodyend="13"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8c_1a6bbc0d69dfee0ab12b1fdb8903613cdc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() kbc_subscribe</definition>
+        <argsstring>(uint8_t *irq_set)</argsstring>
+        <name>kbc_subscribe</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>irq_set</declname>
+        </param>
+        <briefdescription>
+<para>Subscribes keyboard interrupts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>irq_set</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the subscription bitmask. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" line="15" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="15" bodyend="23"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8c_1a526bd92aadec04f451a9fe18704def65" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() kbc_unsubscribe</definition>
+        <argsstring>()</argsstring>
+        <name>kbc_unsubscribe</name>
+        <briefdescription>
+<para>Unsubscribes keyboard interrupts. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" line="25" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="25" bodyend="29"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8c_1a1fec55bf1acc7a26c865c6454ccf4047" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kbc_read_buffer</definition>
+        <argsstring>(uint8_t port, uint8_t *data)</argsstring>
+        <name>kbc_read_buffer</name>
+        <param>
+          <type>uint8_t</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>data</declname>
+        </param>
+        <briefdescription>
+<para>Reads data from the KBC buffer. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>KBC port to read from. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>data</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the variable that will hold the read data. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" line="31" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="31" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8c_1a94057fd94a31c177929975f785c9b106" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int kbc_read_data</definition>
+        <argsstring>(uint8_t *scancode)</argsstring>
+        <name>kbc_read_data</name>
+        <param>
+          <type>uint8_t *</type>
+          <declname>scancode</declname>
+        </param>
+        <briefdescription>
+<para>Reads data from the KBC buffer assuming it contains a scancode. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>scancode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Pointer to the variable that will hold the read scancode. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" line="36" column="5" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="36" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8c_1aea970a154161a35f6894898a092ed70a" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void()</type>
+        <definition>void() kbc_ih</definition>
+        <argsstring>()</argsstring>
+        <name>kbc_ih</name>
+        <briefdescription>
+<para>Keyboard interrupt handler. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" line="59" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="59" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8c_1a92ffdbe2b735528ea192bd5c3fe78a30" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() kbc_restore_interrupts</definition>
+        <argsstring>()</argsstring>
+        <name>kbc_restore_interrupts</name>
+        <briefdescription>
+<para>Restores the interrupts after disabling them during command handling. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" line="64" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="64" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="keyboard_8c_1a60a70661919026cecb64ed6e2a581326" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() kbc_write_cmd</definition>
+        <argsstring>(int port, uint8_t cmd)</argsstring>
+        <name>kbc_write_cmd</name>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint8_t</type>
+          <declname>cmd</declname>
+        </param>
+        <briefdescription>
+<para>Writes a command to a KBC port. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>port</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>KBC port to write to. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cmd</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Command to be sent. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>int Returns 0 upon success and non-zero otherwise. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" line="74" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c" bodystart="74" bodyend="99"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&quot;<ref refid="keyboard_8h" kindref="compound">keyboard.h</ref>&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="keyboard_8c_1a4017d9521177279f305f29157dfe1657" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="keyboard_8c_1a4017d9521177279f305f29157dfe1657" kindref="member">hook_kbc</ref><sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="4" refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" refkind="member"><highlight class="normal">uint8_t<sp/><ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref><sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="keyboard_8c_1a478e9d9e6e396379599060715e26730a" refkind="member"><highlight class="normal">int(<ref refid="keyboard_8c_1a478e9d9e6e396379599060715e26730a" kindref="member">kbc_get_status</ref>)(uint8_t<sp/>*st)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="utils_8c_1a79a031a8611f5b2d6afa4158e92b0fb4" kindref="member">util_sys_inb</ref>(<ref refid="group__i8042_1ga34b14687d83496940a236351fbbb1aea" kindref="member">KBC_STAT_REG</ref>,<sp/>st))</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15" refid="keyboard_8c_1a6bbc0d69dfee0ab12b1fdb8903613cdc" refkind="member"><highlight class="normal">int<sp/>(<ref refid="keyboard_8c_1a6bbc0d69dfee0ab12b1fdb8903613cdc" kindref="member">kbc_subscribe</ref>)(uint8_t<sp/>*irq_set)</highlight></codeline>
+<codeline lineno="16"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(irq_set<sp/>==<sp/>NULL)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>*irq_set<sp/>=<sp/>BIT(<ref refid="keyboard_8c_1a4017d9521177279f305f29157dfe1657" kindref="member">hook_kbc</ref>);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sys_irqsetpolicy(1,<sp/>IRQ_ENABLE<sp/>|<sp/>IRQ_EXCLUSIVE,<sp/>&amp;<ref refid="keyboard_8c_1a4017d9521177279f305f29157dfe1657" kindref="member">hook_kbc</ref>);</highlight></codeline>
+<codeline lineno="23"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25" refid="keyboard_8c_1a526bd92aadec04f451a9fe18704def65" refkind="member"><highlight class="normal">int<sp/>(<ref refid="keyboard_8c_1a526bd92aadec04f451a9fe18704def65" kindref="member">kbc_unsubscribe</ref>)()</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>sys_irqrmpolicy(&amp;<ref refid="keyboard_8c_1a4017d9521177279f305f29157dfe1657" kindref="member">hook_kbc</ref>);</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31" refid="keyboard_8c_1a1fec55bf1acc7a26c865c6454ccf4047" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="keyboard_8c_1a1fec55bf1acc7a26c865c6454ccf4047" kindref="member">kbc_read_buffer</ref>(uint8_t<sp/>port,<sp/>uint8_t<sp/>*data)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="utils_8c_1a79a031a8611f5b2d6afa4158e92b0fb4" kindref="member">util_sys_inb</ref>(port,<sp/>data);</highlight></codeline>
+<codeline lineno="34"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36" refid="keyboard_8c_1a94057fd94a31c177929975f785c9b106" refkind="member"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="keyboard_8c_1a94057fd94a31c177929975f785c9b106" kindref="member">kbc_read_data</ref>(uint8_t<sp/>*<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref>)</highlight></codeline>
+<codeline lineno="37"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>uint8_t<sp/>st<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(<ref refid="keyboard_8c_1a478e9d9e6e396379599060715e26730a" kindref="member">kbc_get_status</ref>(&amp;st))</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(st<sp/>|<sp/><ref refid="group__i8042_1ga36930de8a703505c95fe133095dcfe06" kindref="member">KBC_OBF</ref>)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="keyboard_8c_1a1fec55bf1acc7a26c865c6454ccf4047" kindref="member">kbc_read_buffer</ref>(<ref refid="group__i8042_1ga1ccde68b2b6d4e45b50eef1403e10bb7" kindref="member">KBC_OUT_BUF</ref>,<sp/><ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref>))<sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(((st<sp/>&amp;<sp/>(<ref refid="group__i8042_1ga82a39176e42fe8f48025521b9674cdc6" kindref="member">KBC_PARITY</ref><sp/>|<sp/><ref refid="group__i8042_1ga34599ca5c55cb9be3b235d7422aff45c" kindref="member">KBC_TIMEOUT</ref>))<sp/>==<sp/>0)<sp/>&amp;&amp;<sp/>((st<sp/>&amp;<sp/><ref refid="group__i8042_1gaaa796d09d1e94025da456738295342f2" kindref="member">KBC_AUX</ref>)<sp/>==<sp/>0))</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59" refid="keyboard_8c_1aea970a154161a35f6894898a092ed70a" refkind="member"><highlight class="normal">void<sp/>(<ref refid="keyboard_8c_1aea970a154161a35f6894898a092ed70a" kindref="member">kbc_ih</ref>)()</highlight></codeline>
+<codeline lineno="60"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><ref refid="keyboard_8c_1a94057fd94a31c177929975f785c9b106" kindref="member">kbc_read_data</ref>(&amp;<ref refid="keyboard_8c_1aa1de7a5557e9d96b83cf03f73c92163f" kindref="member">scancode</ref>);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="keyboard_8c_1a92ffdbe2b735528ea192bd5c3fe78a30" refkind="member"><highlight class="normal">int<sp/>(<ref refid="keyboard_8c_1a92ffdbe2b735528ea192bd5c3fe78a30" kindref="member">kbc_restore_interrupts</ref>)()<sp/>{</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/>uint8_t<sp/>cmd;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><ref refid="keyboard_8c_1a60a70661919026cecb64ed6e2a581326" kindref="member">kbc_write_cmd</ref>(<ref refid="group__i8042_1ga19b698bdf2e0783e04e17153b49128bd" kindref="member">KBC_IN_BUF_CMD</ref>,<sp/><ref refid="group__i8042_1gaaee8eae833c3cf959324f29862c488a8" kindref="member">KBC_R_CMD_B</ref>);</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><ref refid="keyboard_8c_1a1fec55bf1acc7a26c865c6454ccf4047" kindref="member">kbc_read_buffer</ref>(<ref refid="group__i8042_1ga1ccde68b2b6d4e45b50eef1403e10bb7" kindref="member">KBC_OUT_BUF</ref>,<sp/>&amp;cmd);</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/>cmd<sp/>|=<sp/><ref refid="group__i8042_1ga43a8c52761b7ae2c8d67562519b734af" kindref="member">KBC_INT</ref>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><ref refid="keyboard_8c_1a60a70661919026cecb64ed6e2a581326" kindref="member">kbc_write_cmd</ref>(<ref refid="group__i8042_1ga19b698bdf2e0783e04e17153b49128bd" kindref="member">KBC_IN_BUF_CMD</ref>,<sp/><ref refid="group__i8042_1ga6c3bb7fed8322058c9a872270e902331" kindref="member">KBC_W_CMD_B</ref>);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><ref refid="keyboard_8c_1a60a70661919026cecb64ed6e2a581326" kindref="member">kbc_write_cmd</ref>(<ref refid="group__i8042_1gaefc1b7a81b128e9722a6d61a5b9d3e58" kindref="member">KBC_IN_BUF_ARG</ref>,<sp/>cmd);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="74" refid="keyboard_8c_1a60a70661919026cecb64ed6e2a581326" refkind="member"><highlight class="normal">int(<ref refid="keyboard_8c_1a60a70661919026cecb64ed6e2a581326" kindref="member">kbc_write_cmd</ref>)(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>port,<sp/>uint8_t<sp/>cmd)<sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/>uint8_t<sp/>st<sp/>=<sp/>0,<sp/>timeout_cnt<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/></highlight><highlight class="comment">/*<sp/>loops<sp/>while<sp/>8042<sp/>input<sp/>buffer<sp/>is<sp/>not<sp/>empty<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">do</highlight><highlight class="normal"><sp/>{</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>checks<sp/>if<sp/>it<sp/>is<sp/>possible<sp/>to<sp/>read<sp/>the<sp/>status<sp/>of<sp/>KBC<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="keyboard_8c_1a478e9d9e6e396379599060715e26730a" kindref="member">kbc_get_status</ref>(&amp;st)<sp/>!=<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>printf(</highlight><highlight class="stringliteral">&quot;Error<sp/>getting<sp/>KBC<sp/>status&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>checks<sp/>if<sp/>the<sp/>input<sp/>buffer<sp/>is<sp/>empty<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>((<ref refid="group__i8042_1gac1649d41f8ba9a02fa70ec4e600d5e4a" kindref="member">KBC_IBF</ref><sp/>&amp;<sp/>st)<sp/>==<sp/>0)<sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/>sys_outb(port,<sp/>cmd);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*<sp/>delays<sp/>the<sp/>next<sp/>iteration<sp/>and<sp/>increases<sp/>the<sp/>timeout<sp/>counter<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>tickdelay(2000);</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>timeout_cnt++;</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/>}<sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(timeout_cnt<sp/>&lt;<sp/>5);</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1;</highlight></codeline>
+<codeline lineno="99"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/keyboard.c"/>
+  </compounddef>
+</doxygen>

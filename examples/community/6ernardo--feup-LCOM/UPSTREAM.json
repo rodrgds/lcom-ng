@@ -1,0 +1,1963 @@
+{
+  "repository": "https://github.com/6ernardo/feup-LCOM",
+  "revision": "7c691dc6b8f5bd744ef79c4e386f4b0eedfde474",
+  "createdAt": "2023-06-17T14:47:45Z",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "9d1a2bfee96571169315ff63edf683fcdb9452629d86ff722c34e8ef70258c9b",
+    "proj/.vscode/settings.json": "5f3da2b19069595a06e6d308c4a2466d7975502dc8c865f13d41e5770b7933a7",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gitignore": "751ca8583e37c27ae3f5fae4b59d0b12273c47b25e0cbfd74d79b5021d8e7c0f",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "f2a10e0f8e3805fccdd54572887fe954e43d8da5b610510282f360d462389357",
+    "proj/src/Makefile": "aecc2763b2b2ede94438d7e5efccf79d250f4deb4a66c48cd5b7e4a17577faca",
+    "proj/src/controller/KBC/KBC.c": "8fdc10020cb5e6f3835b70cbcd4ded73f7273f130888636d64ba751aa9aec36e",
+    "proj/src/controller/KBC/KBC.h": "3e35f9eb60bf87ceb0f3809aa260a643d3845b9266da93b294df8608eb45fc46",
+    "proj/src/controller/controller.c": "a7bce4ced91835ed56be9b1aa25f21dc7db0c3821fec6de23935b60fabd5d689",
+    "proj/src/controller/controller.h": "ceaf59e2200543af7113834e204bd78679219e1624fa2bc33bee3c7a9839a485",
+    "proj/src/controller/keyboard/i8042.h": "be9aa22b7a9820dae8e00159b29c1265477c16bfeb64334e81bbce9971b34e6f",
+    "proj/src/controller/keyboard/keyboard.c": "3c41c9caffe978fd0c1fede3fd70892d34ed127de516b54a9ef2f7422651dd2a",
+    "proj/src/controller/keyboard/keyboard.h": "cbc54c6fa8fda39582bceada7b4195cb84708fb14929688e0fe5bd3ed2adb253",
+    "proj/src/controller/mouse/i8042.h": "7e069808d801bb7dd9a1b964c68926cea74bd1cbbf40c8912236da169c4b9539",
+    "proj/src/controller/mouse/mouse.c": "df0ee9a5df98b3a27b9defb6bd0c88434e7694dd37ac855f2f0d704294034b8f",
+    "proj/src/controller/mouse/mouse.h": "31d9316aeb2cbe9940ff47f220c82188e50e69ea73b15b6ae04832acf933a0e7",
+    "proj/src/controller/rtc/rtc.c": "5a57b6bbabc26cec5a1afc52a3d3619f07f35b57c8d823341a45fdc9c402c7d6",
+    "proj/src/controller/rtc/rtc.h": "479356abf05fa24494e14ac030f3d518c745141e61f3c82f5d867dd462f1d13a",
+    "proj/src/controller/timer/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/controller/timer/timer.c": "c60f0f22f8606d26328dc0ad4b931bd6ca92022107efd12a927ba17aedae9775",
+    "proj/src/controller/timer/timer.h": "5364d669e3cca3b21477d6a2e88fd7bcea96e2a1feeddd5d1e56432cf77dc806",
+    "proj/src/controller/video/VBE.h": "a373bd61a0cbc846a934cd723375e1a79678f28e273f585ccd610ea9c748a67c",
+    "proj/src/controller/video/graphics.c": "c5acb7b185a393031a84abf3dd6bbe93bf721cfa91b96cb070918bc379252d06",
+    "proj/src/controller/video/graphics.h": "fc83e05be117b09e9e7d28f606d0caf9f1f806e64ba14857537d1f229ed25d17",
+    "proj/src/controller/video/xpm": "dd5b63a0dfe9567d6ad3e3a44b126ee8ad45df3267a6bc4ed770f3d9d6b569d9",
+    "proj/src/main.c": "8028c297ccc2e823989fe74570f0bd4e5e7c22c9225dbb6fb0c6f535354e94f8",
+    "proj/src/model/model.c": "fb5c3ea71c067efe0cc67ca18f3445e0d507e6b99dc5531664982d4ba8ceffa7",
+    "proj/src/model/model.h": "6ed8132af9d09e00cc08dc55badbb70a96c3383d5fedb7fb755e92fa81e60c59",
+    "proj/src/model/sprite.c": "e45bbb95c418da00da8c83c5aa55ee8582394087e327ae70076209f17aade310",
+    "proj/src/model/sprite.h": "900ac53404c191fa3ee54e7881ba4103f796a62933afb57eb1af38881993456c",
+    "proj/src/model/xpm/Inst1.xpm": "7fc34a66e2cfe8720898e3562b880974dcb2b0841dbe7c44e4849520c837b446",
+    "proj/src/model/xpm/Inst2.xpm": "f364bc7ad41da318d097e2ea2dc4797936e6f48975f62d7fa5ff22549ac09f2c",
+    "proj/src/model/xpm/arrow_next.xpm": "a4242e454008e425619c335a78b86da68059a605a09c0434b2d22be919ceb14b",
+    "proj/src/model/xpm/arrow_previous.xpm": "9fe5fee5f375fdeb8dd2f0d280894cc4528f12bf62499d582743011a56b3290b",
+    "proj/src/model/xpm/bucket.xpm": "dacfc57c2a487b47f4dfd8b67747b4250f23c3cf6e00a3b746d1798ccc001878",
+    "proj/src/model/xpm/bucketcursor.xpm": "ca68277340ce2d9b4ff4deea6e258f186250b94ab9b5bd2c4b72331fafc4d3c8",
+    "proj/src/model/xpm/buttonDraw.xpm": "0bde7304914b26f531625f6087cf2d5ab5c27367310dcd54b0367cbdbd62ec37",
+    "proj/src/model/xpm/buttonHelp.xpm": "a9f8a02e64a23e8519e938aaada6993056be5d67ede2c98f86126105e3c2b7d4",
+    "proj/src/model/xpm/buttonQuit.xpm": "a0193cbc396439e02102959ff7e0931cc09cf49dcc056cce5147b594dbbca612",
+    "proj/src/model/xpm/colon.xpm": "6eb1846242d98bc046d877eaa2eb9ca7e26e752233478ff02aa45b54b7dd0202",
+    "proj/src/model/xpm/eraser.xpm": "c2f3b7d008f12482486eec22bfd49224cea4454fad1387b5d8766bdb15680b16",
+    "proj/src/model/xpm/erasercursor.xpm": "56bf68058c28dedea9367aa5b36a56c3bbab54111298a72391f4b3cea6473b3d",
+    "proj/src/model/xpm/hand.xpm": "47a942058faa2960e479716b1c6e0419d82545b65c1f3e62cf24953d14f6c9c2",
+    "proj/src/model/xpm/instructions.xpm": "14066bdca442cf4c7feca2ee0246cc8e2df65d90a76a20d9fe09452a28520eeb",
+    "proj/src/model/xpm/letterB.xpm": "53e7e674bcb79afbf882374c140e681b9a22c0c8c764cdb4f6990fbe4d99b63d",
+    "proj/src/model/xpm/mouse.xpm": "d61f1ebe26b68f8c031acd56e8fa3708960d0dda09db309564f842051ef8719d",
+    "proj/src/model/xpm/numberEight.xpm": "a57f69bb77b4e4eccba729e88b9c14defb239b9d211d6e9617a0a3169f7a68c1",
+    "proj/src/model/xpm/numberFive.xpm": "fabbb6135d323764907194a27dc99c744fd9a5742cdd34bc1e2108ed026b3500",
+    "proj/src/model/xpm/numberFour.xpm": "8911e81f7b5d5fee7eb35a86efac4dd90f920eb7364f4801f4d605371891818a",
+    "proj/src/model/xpm/numberNine.xpm": "3b334bf9edd284304ee2f24f0c0b57e50e83a8ca95d61d016b18f440e083a172",
+    "proj/src/model/xpm/numberOne.xpm": "69b4c2cb2074fb9609ae8da3b2e7ccd5ba9297b6483a097c48e3221f0259489a",
+    "proj/src/model/xpm/numberSeven.xpm": "b29a044c39a1f60ec4f128a063c42f88b2b5201f2fd6f1ead92ca4be745c298e",
+    "proj/src/model/xpm/numberSix.xpm": "c8c81e495899c64b6346c2b22044cd3719603917f62904cb45a00beca9099909",
+    "proj/src/model/xpm/numberThree.xpm": "710bdb1bcb69baf3386e69a8758b5d63af409e4b0c180a140f1f1e3c17e692fe",
+    "proj/src/model/xpm/numberTwo.xpm": "2415ae41909ac0f3522c284868dceb0bab606d3aba7ff18a139e0fa1aed25ed2",
+    "proj/src/model/xpm/numberZero.xpm": "8befbc849af0f56a6fcfc4138e55e037cc003312df95088a7eccf44ea9de19b1",
+    "proj/src/model/xpm/outline.xpm": "de7735f17e21de403caf19955fb790767c8b1d0f2afa1fef78d95267b5ef2581",
+    "proj/src/model/xpm/pencil.xpm": "1ea7456d088da4a950a9b5add9f0d3968a162a14e04d263968b0b75d47557e9a",
+    "proj/src/model/xpm/pencilcursor.xpm": "86151e7c4da230c8167a4bb2c42a7660de9953faefabdc490b5200d673908d8f",
+    "proj/src/model/xpm/vsdraw.xpm": "aa8888562fc7bb060ca66e871b9a33ec818c1d4c1de3c161103a6d3902d1622f",
+    "proj/src/setup.h": "7dd05744a49b2f74cb60a7099b077bdf7603267f967b875b56070089ab10360b",
+    "proj/src/utils.c": "a6cb03a8052a11b4c3aa71491d40fc2652429db383c062f586cf7e1dc56bb4b0",
+    "proj/src/view/view.c": "124d7de959a37729d7a2b951e2f1d23d2a919cda2a26cd1dd3e60dc4bdf0a40b",
+    "proj/src/view/view.h": "5025f291218b187d9aef709ad894b0378158d47514a25e014b813a1060911bde"
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "kind": "student-source-defect",
+      "files": [
+        {
+          "file": "proj/src/controller/video/graphics.c",
+          "originalSha256": "c5acb7b185a393031a84abf3dd6bbe93bf721cfa91b96cb070918bc379252d06",
+          "patchedSha256": "52dfae3f01c2909e090d0aa8a12438eaced18bca92390ace9e32e7918fb220ff",
+          "reason": "Read and write exactly three BGR channels for authored24bpp grayscale, preserving the adjacent pixel and last-pixel canary. Actual owner RED\u2192GREEN, no recolouring of source art."
+        },
+        {
+          "file": "proj/src/main.c",
+          "originalSha256": "8028c297ccc2e823989fe74570f0bd4e5e7c22c9225dbb6fb0c6f535354e94f8",
+          "patchedSha256": "aeaaa6968b405d1da4e6f476299e453daba7faf2b015bb692aee8a648e144365",
+          "reason": "Match original mouse owner byte widths in packet consumer externs, and update rectangle button state from the current decoded packet so release commits the rectangle immediately. Actual motion packet and release-boundary original RED\u2192GREEN."
+        }
+      ]
+    }
+  ],
+  "omittedFiles": [
+    {
+      "path": "proj/doc/Relat\u00f3rio.docs.pdf",
+      "gitBlob": "0e18766c6c3db6f0385161dec970869da6bd413c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/_k_b_c_8h_source.html",
+      "gitBlob": "cd332c97fcda97b94b6dda3d1336f0d08b56ff32",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/_v_b_e_8h_source.html",
+      "gitBlob": "cd7292f449e19ff524972b4d381f51a6971fe456",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/annotated.html",
+      "gitBlob": "1580dcd45bc759b9241b522c5a89f4a6dfb76712",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/bc_s.png",
+      "gitBlob": "224b29aa9847d5a4b3902efd602b7ddf7d33e6c2",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/bc_sd.png",
+      "gitBlob": "31ca888dc71049713b35c351933a8d0f36180bf1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/bdwn.png",
+      "gitBlob": "940a0b950443a0bb1b216ac03c45b8a16c955452",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/classes.html",
+      "gitBlob": "ee17a428ccdd56669d96e996b55beecae8a556f4",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/closed.png",
+      "gitBlob": "98cc2c909da37a6df914fbf67780eebd99c597f5",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/controller_8h_source.html",
+      "gitBlob": "7f0448bde264a7365bfe8dd1a7cb1227b8a89da2",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_00fa4508cc9ca73572aa470a7c3cfab2.html",
+      "gitBlob": "b9bd7eecefd230db91d32e8064cc09d6d318c232",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_00fa4508cc9ca73572aa470a7c3cfab2_dep.map",
+      "gitBlob": "78c540a60443a748cf279494d57806bb173311bb",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_00fa4508cc9ca73572aa470a7c3cfab2_dep.md5",
+      "gitBlob": "e90c7f6cece4aadddc9ddd97fef8a14c00327f4e",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_00fa4508cc9ca73572aa470a7c3cfab2_dep.png",
+      "gitBlob": "326d0135bc6bfe2923ad0d053ffeab0b356efda6",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_15f0409cf5d0c07ded58e983e883d61d.html",
+      "gitBlob": "e65f1c88899ebf7b0423ce5a57c74c99e0d11d41",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_15f0409cf5d0c07ded58e983e883d61d_dep.map",
+      "gitBlob": "ab5794e1b628fd936e5d6f42d5813f522e867a73",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_15f0409cf5d0c07ded58e983e883d61d_dep.md5",
+      "gitBlob": "abce2f538e5e3186e90d4713a0bccd479d783b2f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_15f0409cf5d0c07ded58e983e883d61d_dep.png",
+      "gitBlob": "536b64dfbcf1f00c4c8547cd12cb5833eed3536d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_2f8f2e36545a232b11e8aaaf8a018498.html",
+      "gitBlob": "b267dcf45a6f4e5bc3a3facf3233b2cd55de0fcc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_2f8f2e36545a232b11e8aaaf8a018498_dep.map",
+      "gitBlob": "f29a45d01768361fa3335e2ffd5f9dd14656ad2c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_2f8f2e36545a232b11e8aaaf8a018498_dep.md5",
+      "gitBlob": "76c38688c6c953ab591e6578a42751dc98b7c9ef",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_2f8f2e36545a232b11e8aaaf8a018498_dep.png",
+      "gitBlob": "4b24ddee572c882ada41aee6f5f91ce1430fd806",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_680348b92ba5e8e686650874662fdc4e.html",
+      "gitBlob": "9a76ac994ec527e1367e7c279b81bf656a89ea70",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_680348b92ba5e8e686650874662fdc4e_dep.map",
+      "gitBlob": "ed00455ce33eb6e4471b82226fee1243474b3b71",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_680348b92ba5e8e686650874662fdc4e_dep.md5",
+      "gitBlob": "b4d063037ba9edb6301045901ff0c99c05ef8829",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_680348b92ba5e8e686650874662fdc4e_dep.png",
+      "gitBlob": "422c439fb072dc70957a8bd9cbf9abf249ca0d07",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_6bcfcda4c2c68e732997694ceb4907ee.html",
+      "gitBlob": "b7552685d5db0784801c4ddadc44690751a778cc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_6bcfcda4c2c68e732997694ceb4907ee_dep.map",
+      "gitBlob": "64a2880e1fb2148662459a81af378fe99e95f705",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_6bcfcda4c2c68e732997694ceb4907ee_dep.md5",
+      "gitBlob": "b62f666bfeac8e44df3e4f4e49774513c75650cb",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_6bcfcda4c2c68e732997694ceb4907ee_dep.png",
+      "gitBlob": "4792b334a789df6a83f3ceeb274a54c72d4033b1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_77e7ccb8a35f5a6ec75525d5a1831c81.html",
+      "gitBlob": "748f85904033afa8c9af629464b6c95ef6da38f1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_77e7ccb8a35f5a6ec75525d5a1831c81_dep.map",
+      "gitBlob": "e474b2c71b6dc8ce238793ce29b26d8a6448d3bd",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_77e7ccb8a35f5a6ec75525d5a1831c81_dep.md5",
+      "gitBlob": "08807667e551181eb2a3b0b10e3fe9263e3f3b42",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_77e7ccb8a35f5a6ec75525d5a1831c81_dep.png",
+      "gitBlob": "ff8ce3c2c5b36730ff24ffd5654758a4112b1840",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_7c703cf8895842f30bc743f482037fde.html",
+      "gitBlob": "f5650689eff5ae2c393c20b17a95a40023474e25",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_7c703cf8895842f30bc743f482037fde_dep.map",
+      "gitBlob": "640a9056a7df644d0661dab6a7c13be726e2249e",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_7c703cf8895842f30bc743f482037fde_dep.md5",
+      "gitBlob": "591b7075263d818b5b393090b7e280c5e24a2909",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_7c703cf8895842f30bc743f482037fde_dep.png",
+      "gitBlob": "0a256f2b553091c5f1b2b674e89462b073aed5b9",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_8c8dbc9cdbcea0f7f95b67140bb063df.html",
+      "gitBlob": "9477d8fe2058e653a3971f4c8482423980c49051",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_8c8dbc9cdbcea0f7f95b67140bb063df_dep.map",
+      "gitBlob": "e72380a13a297a9c9320ac009841d8a6d59a8b3d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_8c8dbc9cdbcea0f7f95b67140bb063df_dep.md5",
+      "gitBlob": "90d03320cec566bb63534e23cab0dd5f687d1596",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_8c8dbc9cdbcea0f7f95b67140bb063df_dep.png",
+      "gitBlob": "5bd2492cadfb12ca008afbe545d480f00f02089c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_8fcf3af88d264e2753b43a2b129ab6b2.html",
+      "gitBlob": "3194f4496e73a715c74750bc98d84200711c7de8",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_9e9b21ccd79f29d55ff79bb5d809dfca.html",
+      "gitBlob": "13a92eea6d1956c9ebf16a838f81c6fbd42aaac2",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_9e9b21ccd79f29d55ff79bb5d809dfca_dep.map",
+      "gitBlob": "9e0c89df77a24a9d0df4a08fbd9bc278fc880da6",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_9e9b21ccd79f29d55ff79bb5d809dfca_dep.md5",
+      "gitBlob": "64cd35cbd3647ddf7ca65e1fd25bf15d8dfbf401",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_9e9b21ccd79f29d55ff79bb5d809dfca_dep.png",
+      "gitBlob": "a26ab124a5cbbfce1623a4a41dee1d7852694673",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_b0ea01bdca28cd18d6c1306dd039b0d5.html",
+      "gitBlob": "a775ead71ca4adaccb74d7566c5c79bfcb47e3b3",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_b0ea01bdca28cd18d6c1306dd039b0d5_dep.map",
+      "gitBlob": "e59825663e45655965dbf2dba62cf7fd2d70595f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_b0ea01bdca28cd18d6c1306dd039b0d5_dep.md5",
+      "gitBlob": "09ee9f22337c497ab8163c899c19892c99da5312",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_b0ea01bdca28cd18d6c1306dd039b0d5_dep.png",
+      "gitBlob": "5d1e034e667d4f43f8fe747a0573e4996356e1bf",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_b604f0dfa3c72ea437dc49380bfde40e.html",
+      "gitBlob": "82954efafd8c7eb5389b10e2baa56124ab031b35",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_b604f0dfa3c72ea437dc49380bfde40e_dep.map",
+      "gitBlob": "f8e4d15b5cde25c91356abab11041e86bd7c583d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_b604f0dfa3c72ea437dc49380bfde40e_dep.md5",
+      "gitBlob": "77e44062eaa7b4bcadf1e7c034ab64cdcc3d1cd3",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_b604f0dfa3c72ea437dc49380bfde40e_dep.png",
+      "gitBlob": "5176d694807898bc6d4a6a472fd012f07dae62de",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_b8bab17eb03d0d6b398fc8e6114c3d7a.html",
+      "gitBlob": "7333cfc212d886fa89a9a1dc3573b09a77d984f2",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_b8bab17eb03d0d6b398fc8e6114c3d7a_dep.map",
+      "gitBlob": "86e1b721de7be74d6241ba3635d10a2dc40ed517",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_b8bab17eb03d0d6b398fc8e6114c3d7a_dep.md5",
+      "gitBlob": "f41a0b562cedd14cd7fe5787e47575e1ffc7ca7f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_b8bab17eb03d0d6b398fc8e6114c3d7a_dep.png",
+      "gitBlob": "f4a7551725e3bb99c39adc2adc223f243b3c5634",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_ca6a3eb61b23b55b9df3091253d13db2.html",
+      "gitBlob": "5f53e441735b03b2a403abefab0da5a48a00ea3f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_ca6a3eb61b23b55b9df3091253d13db2_dep.map",
+      "gitBlob": "0716589aae5cc414e25124ae30a0de2a7ad4d092",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_ca6a3eb61b23b55b9df3091253d13db2_dep.md5",
+      "gitBlob": "bac65a7603c5e7f609cfc1d2e4703e7549c9d51d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_ca6a3eb61b23b55b9df3091253d13db2_dep.png",
+      "gitBlob": "d0ec3da9623a8c88d97e7342b411cf612d64794e",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_ceea59a3417ebe6fb5efe4283dac5837.html",
+      "gitBlob": "7760630c632279b2b0be3ac51c79ec47b8c840d1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_ceea59a3417ebe6fb5efe4283dac5837_dep.map",
+      "gitBlob": "222a32b02060c75dbed414c749d2181085ca50fc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_ceea59a3417ebe6fb5efe4283dac5837_dep.md5",
+      "gitBlob": "01e88cd0a36290d8db247dee9416cedba3e00a77",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dir_ceea59a3417ebe6fb5efe4283dac5837_dep.png",
+      "gitBlob": "ceb500b7f2d9d2c9ec87872f3836c705e4a75a3b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/doc.png",
+      "gitBlob": "17edabff95f7b8da13c9516a04efe05493c29501",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/docd.png",
+      "gitBlob": "d7c94fda9bf08ecc02c7190d968452b7a2dbf04b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/doxygen.css",
+      "gitBlob": "89dee6c4347938809cfd85b586a45e13b65690e3",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/doxygen.svg",
+      "gitBlob": "d42dad52d5d1d835a65d89dbddd042c44ee40d3b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/dynsections.js",
+      "gitBlob": "f579fbf3e2bb52ac037f1304107e2b43526e08c5",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/files.html",
+      "gitBlob": "c5e4e712b071e8cd4062b272a443cbd3b47ee983",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/folderclosed.png",
+      "gitBlob": "bb8ab35edce8e97554e360005ee9fc5bffb36e66",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/folderopen.png",
+      "gitBlob": "d6c7f676a3b3ef8c2c307d319dff3c6a604eb227",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/graph_legend.html",
+      "gitBlob": "105d504cbf157c1d43608f64950f916f216a2033",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/graph_legend.md5",
+      "gitBlob": "76a6899d6e54fa65fc9aa6640bcce7a657b955cc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/graph_legend.png",
+      "gitBlob": "5d84377210660c16c0821fc52bddb61d03dd4cc5",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/graphics_8h_source.html",
+      "gitBlob": "18e8b2706ad7d13d47ecd0fd82a57e389dd45e55",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__graphics.html",
+      "gitBlob": "12e499eae3d0451ee9cf1ae5572424b356ba688b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__graphics_ga58517250fd31c8c16965744cce7ae2f1_cgraph.map",
+      "gitBlob": "b4c63e15f66f642a86df47caaf38dd08641aa40c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__graphics_ga58517250fd31c8c16965744cce7ae2f1_cgraph.md5",
+      "gitBlob": "d6029193ba0969f2461366db4e12379571fca621",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__graphics_ga58517250fd31c8c16965744cce7ae2f1_cgraph.png",
+      "gitBlob": "02e46d1cddbdc564628f11e5799f0db01ba97ac9",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__graphics_gaa80401a49b5ac32d66cfdab32257a686_cgraph.map",
+      "gitBlob": "2cb6e40bb87a268ef73c85ecb6706928f36fdbc9",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__graphics_gaa80401a49b5ac32d66cfdab32257a686_cgraph.md5",
+      "gitBlob": "d8d37f13787e564fa7b35d1814c72077d8ef25a6",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__graphics_gaa80401a49b5ac32d66cfdab32257a686_cgraph.png",
+      "gitBlob": "cc2b3efe0a1eed2b758eefc4201c19392300f919",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__i8254.html",
+      "gitBlob": "19ac86c346a636017a92c29d1ae7b5759a563add",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__main.html",
+      "gitBlob": "ae14bfa5549a87d58f6b24b1b2fbe94d13205bf6",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__main_ga2a16f651eccbd248e1ad3b3b924b143b_cgraph.map",
+      "gitBlob": "f5d9a4f24c3c65e4fb722802870cb63651c574ee",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__main_ga2a16f651eccbd248e1ad3b3b924b143b_cgraph.md5",
+      "gitBlob": "3a85d8b578828aa40f34240485400487007b1622",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__main_ga2a16f651eccbd248e1ad3b3b924b143b_cgraph.png",
+      "gitBlob": "6e740d216ffda21d079ae1d2d411729cb3fd7bf5",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__model.html",
+      "gitBlob": "812cb10f8814efd35788778298e5a47e13ef2bab",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__mouse.html",
+      "gitBlob": "4bbbdc77fbdcff5663d975f2e885f1cd7050a406",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__mouse_ga8ede930d34433ca1e2cce6990d7a9898_cgraph.map",
+      "gitBlob": "61919260df438325d80882336ba15bfe897cfbd2",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__mouse_ga8ede930d34433ca1e2cce6990d7a9898_cgraph.md5",
+      "gitBlob": "c918d196b2122a9dfd23e334b95e52fc94192b5f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__mouse_ga8ede930d34433ca1e2cce6990d7a9898_cgraph.png",
+      "gitBlob": "f594339d9521bec7b5246691ae08962fa7f8628a",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc.html",
+      "gitBlob": "9e0621662f599035ec97830f4555bf3854a30aab",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc_ga47d5762e49eb390b04a09fc319c4e047_cgraph.map",
+      "gitBlob": "c6982f7d4c82bbe54cf762483a4d95c59150dfbf",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc_ga47d5762e49eb390b04a09fc319c4e047_cgraph.md5",
+      "gitBlob": "5eb6aeae47b6784a608d87858c2fba78d1dfa313",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc_ga47d5762e49eb390b04a09fc319c4e047_cgraph.png",
+      "gitBlob": "66512d70d750e3bc87ea74796297e025fc88d4b7",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc_ga5873dc86f56c4a2a8ea8f7faf07ef798_cgraph.map",
+      "gitBlob": "683d1252dfe19208707e847dde5ee436ddeee43b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc_ga5873dc86f56c4a2a8ea8f7faf07ef798_cgraph.md5",
+      "gitBlob": "5d3ea29658193a12a52a00fa8587266cf717dc40",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc_ga5873dc86f56c4a2a8ea8f7faf07ef798_cgraph.png",
+      "gitBlob": "d879352a7345c28a1c8edfbc91ed4f1b58b3731a",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc_gad9799f13e0670cb1748baae02f15ca5a_cgraph.map",
+      "gitBlob": "c00de532a58a629b317db0e5d3440d75061a69c3",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc_gad9799f13e0670cb1748baae02f15ca5a_cgraph.md5",
+      "gitBlob": "0fd9a717d2769867c3a95f98b607beef53dd6b8f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc_gad9799f13e0670cb1748baae02f15ca5a_cgraph.png",
+      "gitBlob": "df4d5ec68854b66a138454f7e87aada5e8a2f24f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc_gae22bdeb51eb630e1d579dfc1cd1b2f11_cgraph.map",
+      "gitBlob": "ecb58e0f63b40d18a02962c6238928274e736dfa",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc_gae22bdeb51eb630e1d579dfc1cd1b2f11_cgraph.md5",
+      "gitBlob": "8f4ff9374a08817261814e12aacea5ae78f94cce",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__rtc_gae22bdeb51eb630e1d579dfc1cd1b2f11_cgraph.png",
+      "gitBlob": "f89176c8f42b415b7691aac1fb376d05b70ab172",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__sprite.html",
+      "gitBlob": "7b61d31882dac4f5bfad72d2b7d36a171c22dbe3",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__timer.html",
+      "gitBlob": "908f53fdd735824e3eb71c8f7df6a05b649ab41e",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__timer_gaf2c04fa8e97ffa748fd3f612886a92a7_cgraph.map",
+      "gitBlob": "528a9d0af988cb2111372fc663156a1a0a6da759",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__timer_gaf2c04fa8e97ffa748fd3f612886a92a7_cgraph.md5",
+      "gitBlob": "8e1165e0c5eb345584f62a1f718429763a7a7943",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__timer_gaf2c04fa8e97ffa748fd3f612886a92a7_cgraph.png",
+      "gitBlob": "2c5d6757cdbff6e1cfdaf9d64cbb9efceaae0cfc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view.html",
+      "gitBlob": "d2900bbdc0712b810d9f29df0664993e647097d7",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga0a9f56467341cbe24bd981d4b9960fdd_cgraph.map",
+      "gitBlob": "fc8779af081c2c57b1174856d31e4097637cc8c8",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga0a9f56467341cbe24bd981d4b9960fdd_cgraph.md5",
+      "gitBlob": "ad665e4402f419cb6ad170b783de3096c1453cf1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga0a9f56467341cbe24bd981d4b9960fdd_cgraph.png",
+      "gitBlob": "d8c751787499a2dbc6c87d84f9ff9a18164fdfe5",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga152dd469795887a6f41fb67c1c68f870_cgraph.map",
+      "gitBlob": "a135a52c18c4ce19a29a564d5979a48a8dd5aeb5",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga152dd469795887a6f41fb67c1c68f870_cgraph.md5",
+      "gitBlob": "d9840996a79ce2b1e7ea91a253d0fb420ef2df91",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga152dd469795887a6f41fb67c1c68f870_cgraph.png",
+      "gitBlob": "52278ce6d3d75f091cc116719f195938db3f9d78",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga3ad9f04212e7602618a0dd7ad4afbd4e_cgraph.map",
+      "gitBlob": "4ab7765c31db9f60c7ba12b836224d163c58baa1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga3ad9f04212e7602618a0dd7ad4afbd4e_cgraph.md5",
+      "gitBlob": "a58c7ecdb74f4f8d1f073353ea20c9c8d93c3770",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga3ad9f04212e7602618a0dd7ad4afbd4e_cgraph.png",
+      "gitBlob": "f1ca2da14dd2085a5189dad71fc6b3c43de41320",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga3cef68220fcc611902108d6f0159e50f_cgraph.map",
+      "gitBlob": "10ecf58de70bc52a51beedfa7506f60c01bd2536",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga3cef68220fcc611902108d6f0159e50f_cgraph.md5",
+      "gitBlob": "9921e430982c71fb56d6a3ee32c3c710205be78a",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga3cef68220fcc611902108d6f0159e50f_cgraph.png",
+      "gitBlob": "3583e8c54dd1e0b47ea8891160cdc539e32f72f4",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga3dd6b5ba7e4dab9a1568f422c19c3ec3_cgraph.map",
+      "gitBlob": "396c6cb287eff89b9ab592b5d351337ea962cdd5",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga3dd6b5ba7e4dab9a1568f422c19c3ec3_cgraph.md5",
+      "gitBlob": "c27750ec4f8b3b564f41c61b894199acb318edef",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga3dd6b5ba7e4dab9a1568f422c19c3ec3_cgraph.png",
+      "gitBlob": "58fbc7a61e781bf5da7c33929ec7dbfb603a4fd8",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga42f4903ab89aff9e3ee0206c52cf710a_cgraph.map",
+      "gitBlob": "576c2357805d9852a80ebca897f59c4f45c03e82",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga42f4903ab89aff9e3ee0206c52cf710a_cgraph.md5",
+      "gitBlob": "015e3a2e82fa9f7987eb0a828c01d739be02b4aa",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga42f4903ab89aff9e3ee0206c52cf710a_cgraph.png",
+      "gitBlob": "4d9a9ff343daee92935b4df52eb0f48ab14064e0",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga5282e8556b640f8426e46ddb1708756d_cgraph.map",
+      "gitBlob": "579f777988fb61cfb8aa6ed13409e0123c8e0a73",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga5282e8556b640f8426e46ddb1708756d_cgraph.md5",
+      "gitBlob": "eb679f2e43881369a9ddff1a92dced91178159db",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga5282e8556b640f8426e46ddb1708756d_cgraph.png",
+      "gitBlob": "7807983b18e0b941c2011c4af6d3b5a189422dc3",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga58dc411b6bcf995222751065b64b93b0_cgraph.map",
+      "gitBlob": "bd8f47dc9b0b82241450dee7ec0a69644fd65d4b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga58dc411b6bcf995222751065b64b93b0_cgraph.md5",
+      "gitBlob": "987c44a4573c8640bfc1c5bd91d407142af4132c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga58dc411b6bcf995222751065b64b93b0_cgraph.png",
+      "gitBlob": "11fb9674fb2a13385f86d40180b606b7ca80107c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga5a1cb3e572728c30b75f841aa9c228d6_cgraph.map",
+      "gitBlob": "ca10857bde1a23308d75f5ae93820385aed6bba4",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga5a1cb3e572728c30b75f841aa9c228d6_cgraph.md5",
+      "gitBlob": "7e1c22eaa90f6f36f8b58e8f7ee7054308ca9549",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga5a1cb3e572728c30b75f841aa9c228d6_cgraph.png",
+      "gitBlob": "9d6703b0a22152c9010a0ea0cd36e3639243de51",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga6b37abca69e1c2bbe7282e5c49d9e4d7_cgraph.map",
+      "gitBlob": "ea0e2c72bfff7265eea8f0ddeca1fc2e522421c8",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga6b37abca69e1c2bbe7282e5c49d9e4d7_cgraph.md5",
+      "gitBlob": "b1573d79b46ad029aca27d5279ad1e846c303bfe",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga6b37abca69e1c2bbe7282e5c49d9e4d7_cgraph.png",
+      "gitBlob": "7e48c8d4a1235c3c141afc1759f16f24152b33e8",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga6db4230a0003a09515d78b790d8ec52d_cgraph.map",
+      "gitBlob": "9931fe60262b836ef7b28ad7d8260f9f05f600a4",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga6db4230a0003a09515d78b790d8ec52d_cgraph.md5",
+      "gitBlob": "831165ee6e1f462048cfc96cdeb1d42538cd19c7",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga6db4230a0003a09515d78b790d8ec52d_cgraph.png",
+      "gitBlob": "0ad716ab05e548f1353c9db4678ca0b58d1fd341",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga78f217009cd3cf7b5bc1721616302c65_cgraph.map",
+      "gitBlob": "734fcaf2717e526b1fabaad76408c723cacf9272",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga78f217009cd3cf7b5bc1721616302c65_cgraph.md5",
+      "gitBlob": "602be209b8286a3b1d616f08f95b38122fc1896e",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga78f217009cd3cf7b5bc1721616302c65_cgraph.png",
+      "gitBlob": "dcb518fc4396e6ca4313a7278402873dd5104d39",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga7dbfe327ee927cdca33895b7a67b0b7e_cgraph.map",
+      "gitBlob": "8e76a6a8aab477e36fb9cf22266da923bb81b060",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga7dbfe327ee927cdca33895b7a67b0b7e_cgraph.md5",
+      "gitBlob": "238cba1ca89fc6e1c4a66520c09d45f2a3e90d3f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga7dbfe327ee927cdca33895b7a67b0b7e_cgraph.png",
+      "gitBlob": "5ff0b334674ce0a045cd8e3b5bdd9a29e312e3fe",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga7f67c6a2f31c2b9a8d20ab0e58eff70a_cgraph.map",
+      "gitBlob": "55e11258b62fe7cd68d321975cf03e3accc584f9",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga7f67c6a2f31c2b9a8d20ab0e58eff70a_cgraph.md5",
+      "gitBlob": "4d9ecff6ba6782687a87b4de8e7a4a3f0d87ccd1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga7f67c6a2f31c2b9a8d20ab0e58eff70a_cgraph.png",
+      "gitBlob": "4fc5cded2808bee91fc5f1ed2c9fc54f66a3351a",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga8f7acda4de2ff9ede5fca68d2db09959_cgraph.map",
+      "gitBlob": "6a227b46694d59fd2253d7b1ba94eb21ba7675ba",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga8f7acda4de2ff9ede5fca68d2db09959_cgraph.md5",
+      "gitBlob": "b89fa37fddbbff5220119329c71eb8f6e50302a1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga8f7acda4de2ff9ede5fca68d2db09959_cgraph.png",
+      "gitBlob": "fb17ee2555910118431ef707ba17298e216a2185",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga92fe90a17ba95b7702b618ccfe7e77ba_cgraph.map",
+      "gitBlob": "c814a48c1479587f1ac9f7bcdf5f8d379c66bb13",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga92fe90a17ba95b7702b618ccfe7e77ba_cgraph.md5",
+      "gitBlob": "bbbda3e7f3b11ac480a3511fd7361b23600be387",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_ga92fe90a17ba95b7702b618ccfe7e77ba_cgraph.png",
+      "gitBlob": "3db8e2b75c3b89e2b1c2c6b005a424bedafe2c95",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gaa9ccc9bf691f8263f5fb69f254674f8c_cgraph.map",
+      "gitBlob": "5f6abbbb982e8fe98a73cc7183884a6374da6efa",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gaa9ccc9bf691f8263f5fb69f254674f8c_cgraph.md5",
+      "gitBlob": "76d6e7127ab19ea6bc9f9794484474a16460fe3d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gaa9ccc9bf691f8263f5fb69f254674f8c_cgraph.png",
+      "gitBlob": "74ccfb87027056dc92a79a76e2520e54e94257da",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gab0f51d98fa07eefe31841507a9739abc_cgraph.map",
+      "gitBlob": "f33d6203f589a8414aaeb435ab8ddfd2e0b3b047",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gab0f51d98fa07eefe31841507a9739abc_cgraph.md5",
+      "gitBlob": "da3a5e8649bf918d90b5edae3377e3e88e203155",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gab0f51d98fa07eefe31841507a9739abc_cgraph.png",
+      "gitBlob": "1cb0df8a912306d7ff685e63f9dd9fe130dca634",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gacf82602b2954abf7f47677f27c7051f0_cgraph.map",
+      "gitBlob": "33b7b729e0c40bcdc88abf344bcb44cf737226ba",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gacf82602b2954abf7f47677f27c7051f0_cgraph.md5",
+      "gitBlob": "9d7c667a46719422673c60d674394537bc122d15",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gacf82602b2954abf7f47677f27c7051f0_cgraph.png",
+      "gitBlob": "50c7e5c1ec465947c96aa900ce594b6734d09636",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gaeddc6e768c81b853d71b5f90b3e1dbfb_cgraph.map",
+      "gitBlob": "63124de12fab7c90ccb5a77c76643aee1a102af6",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gaeddc6e768c81b853d71b5f90b3e1dbfb_cgraph.md5",
+      "gitBlob": "7d5dad8569732682396f4c86379ed697eed52812",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gaeddc6e768c81b853d71b5f90b3e1dbfb_cgraph.png",
+      "gitBlob": "d817d7c74310fe94137096da96abb307031ef18a",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gaface0710712eeff3c3721b361e2db58f_cgraph.map",
+      "gitBlob": "c4c6edeb7ce1303f2b154f3f1ed9a6ae9145186e",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gaface0710712eeff3c3721b361e2db58f_cgraph.md5",
+      "gitBlob": "ee096428fc24b7622d60eeff98f0b0222718f7f1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/group__view_gaface0710712eeff3c3721b361e2db58f_cgraph.png",
+      "gitBlob": "c15afdefea534e6beecee01ded96873c4ca01df7",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/i8254_8h_source.html",
+      "gitBlob": "33aa23968add162336ae42adc09457ab4d7fda25",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/index.html",
+      "gitBlob": "569aeed510b3572b137012ee9fcf7b63a3ccbd4d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/jquery.js",
+      "gitBlob": "1dffb65b58c82b5827744a7fd9cd8ce5ab6e4005",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/keyboard_2i8042_8h_source.html",
+      "gitBlob": "cc81a1cca36578380ca8ae12657a179fe05e842f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/keyboard_8h_source.html",
+      "gitBlob": "c72bcb1da1e7198ba608cdb14ebe10206b4759e6",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/menu.js",
+      "gitBlob": "b0b26936a0d12aeb410725baa8c29cfe7e6d1e1e",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/menudata.js",
+      "gitBlob": "6d422b7d91d4c3399455a9165246898eecf8521c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/model_8h_source.html",
+      "gitBlob": "a62d5e5f7b4dc57b98bf9a1eec1a924e052e2b9a",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/modules.html",
+      "gitBlob": "022e2ec956588014c62e9554a2850df6b2048ace",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/mouse_2i8042_8h_source.html",
+      "gitBlob": "93968ebf98113a8ab7f26d7cf68ea627f64da700",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/mouse_8h_source.html",
+      "gitBlob": "8f0dfdd8648e74dc1cce31fd40e7a643b9a48658",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/nav_f.png",
+      "gitBlob": "72a58a529ed3a9ed6aa0c51a79cf207e026deee2",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/nav_fd.png",
+      "gitBlob": "032fbdd4c54f54fa9a2e6423b94ef4b2ebdfaceb",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/nav_g.png",
+      "gitBlob": "2093a237a94f6c83e19ec6e5fd42f7ddabdafa81",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/nav_h.png",
+      "gitBlob": "33389b101d9cd9b4c98ad286b5d9c46a6671f650",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/nav_hd.png",
+      "gitBlob": "de80f18ad6488b9990303f267a76fdc83f0ffd80",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/open.png",
+      "gitBlob": "30f75c7efe2dd0c9e956e35b69777a02751f048b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/rtc_8h_source.html",
+      "gitBlob": "fb41c64bb5a071bc1a4c0ddc46ec4c1891f13b6b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_0.js",
+      "gitBlob": "fb249ed357fdeb563660b6dba6a210d7b94b831c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_1.js",
+      "gitBlob": "b01d0cb3e2f3382bc85c2f0234127c40de7f09cc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_2.js",
+      "gitBlob": "a047afecfeae930d6008193b887c5e9bfcf73a0b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_3.js",
+      "gitBlob": "e3bb224061ca50dd63bc19256d168747e31ba496",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_4.js",
+      "gitBlob": "d712ccd48880a093dc23f6542ce8bfe4abe6ef29",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_5.js",
+      "gitBlob": "1364a812bdc1788e63b8d4bf98be73ee609d18b4",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_6.js",
+      "gitBlob": "4a7dd14f7f2a1dc7f6103fef00f0b57c20ff2afc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_7.js",
+      "gitBlob": "51bf41ae4084d200e96476553c3a2cb59180fb08",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_8.js",
+      "gitBlob": "064569807fc4c8ac34f1feea975e8de0b8b27cbf",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_9.js",
+      "gitBlob": "070a966ea04f7f1e0c0e3735fa35af4d43bd6964",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_a.js",
+      "gitBlob": "fa734ae6694469f1e8379cd746dfbe3296a4e282",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_b.js",
+      "gitBlob": "b9f5f93285dc44bc14e5fc7f0ff1595813b3923b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_c.js",
+      "gitBlob": "070a966ea04f7f1e0c0e3735fa35af4d43bd6964",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_d.js",
+      "gitBlob": "fa734ae6694469f1e8379cd746dfbe3296a4e282",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/all_e.js",
+      "gitBlob": "b9f5f93285dc44bc14e5fc7f0ff1595813b3923b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/classes_0.js",
+      "gitBlob": "8459870b6b643319a2466e285988dd6737c4e931",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/classes_1.js",
+      "gitBlob": "ccd44627c4c5e86a1ad34fce4ac05b022bff4253",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/classes_2.js",
+      "gitBlob": "1c56594780ed23d1d13df48411db94eb220a17be",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/close.svg",
+      "gitBlob": "a933eea1a26b0c7ada7cd0053522238923996df1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/enums_0.js",
+      "gitBlob": "3ec68b161e60ffff101a7f6471f559279e00d995",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/enums_1.js",
+      "gitBlob": "19077add6ba1abd4564ba7d853142204f19c55a8",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/enums_2.js",
+      "gitBlob": "59a622315d5691458e059a74c1f2770946296fe6",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_0.js",
+      "gitBlob": "fb249ed357fdeb563660b6dba6a210d7b94b831c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_1.js",
+      "gitBlob": "b01d0cb3e2f3382bc85c2f0234127c40de7f09cc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_2.js",
+      "gitBlob": "a047afecfeae930d6008193b887c5e9bfcf73a0b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_3.js",
+      "gitBlob": "43421729bcba9472c3df6ae8298bb16530c737c6",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_4.js",
+      "gitBlob": "2c4fca3d8fa2dc84b05bba24666a076c56b6825e",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_5.js",
+      "gitBlob": "2d50b5c998e99851da46bdadc2b460422f3f9f99",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_6.js",
+      "gitBlob": "4a7dd14f7f2a1dc7f6103fef00f0b57c20ff2afc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_7.js",
+      "gitBlob": "1571bdfc3d0aa2ac700623323618c9c2ea26d3a2",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_8.js",
+      "gitBlob": "fc1b02a6b907404c365d06efa9df4179bb908816",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_9.js",
+      "gitBlob": "e11ed461be61c169cad006e2487b2e3d1c8c6ccb",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_a.js",
+      "gitBlob": "fa734ae6694469f1e8379cd746dfbe3296a4e282",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_b.js",
+      "gitBlob": "fc1b02a6b907404c365d06efa9df4179bb908816",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_c.js",
+      "gitBlob": "e11ed461be61c169cad006e2487b2e3d1c8c6ccb",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/functions_d.js",
+      "gitBlob": "fa734ae6694469f1e8379cd746dfbe3296a4e282",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/groups_0.js",
+      "gitBlob": "b6710c50a0e4ccaa6c7b6a2b74b9a3282639c345",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/groups_1.js",
+      "gitBlob": "fdd3dad3041c6db1fc49ce2acc8db3ef982ffe1c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/groups_2.js",
+      "gitBlob": "dce485c491010ff9c9140bc0142653e00504116e",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/groups_3.js",
+      "gitBlob": "b8ecf86ed62bbc13e25746d15eec68afc69aa8bc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/groups_4.js",
+      "gitBlob": "38218e8f2e041697322932dba904b4f5b28e7c70",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/groups_5.js",
+      "gitBlob": "98bb8719f8ae7b0d5706a6752ca8361cfcfd88ae",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/groups_6.js",
+      "gitBlob": "b9f5f93285dc44bc14e5fc7f0ff1595813b3923b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/mag.svg",
+      "gitBlob": "9f46b301eb71b696161df9024e4bdfef1099a99b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/mag_d.svg",
+      "gitBlob": "b9a814c78de68c0b90dd723b125b1c796c2154d4",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/mag_sel.svg",
+      "gitBlob": "03626f64a02be69e427a4a9f29a99052ccd235a1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/mag_seld.svg",
+      "gitBlob": "6e720dcc91b4365a53ec31b14b2035c679490740",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/search.css",
+      "gitBlob": "19f76f9d5b96c7be552f7b18e5218e6bf5ac5ceb",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/search.js",
+      "gitBlob": "e103a262175e2fe58029774dcfacc52f078a4dbc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/search/searchdata.js",
+      "gitBlob": "846e4de544595ee72171b7ae5aa1c1a209a10c8b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/setup_8h_source.html",
+      "gitBlob": "ba149a2849442c53d5e93eac8f7d9241a31b640d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/splitbar.png",
+      "gitBlob": "fe895f2c58179b471a22d8320b39a4bd7312ec8e",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/splitbard.png",
+      "gitBlob": "8367416d757fd7b6dc4272b6432dc75a75abd068",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/sprite_8h_source.html",
+      "gitBlob": "70fd5ad414378e3fe186467ba4a7fd81201ad1af",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/struct_mouse_info-members.html",
+      "gitBlob": "e994423e76ed420a103f146d167e03d6db202588",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/struct_mouse_info.html",
+      "gitBlob": "6e661a2e1fe74d588179ddbdf74fc3419d7ef31b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/struct_sprite-members.html",
+      "gitBlob": "c27cfb968c14c4892428b632f84549f1543b0bd6",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/struct_sprite.html",
+      "gitBlob": "816b747b175a1593ae6012b90e346cf95509f710",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/structreal__time__info-members.html",
+      "gitBlob": "416886725cfe8dc0cef0d5ab375f1800a967ce96",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/structreal__time__info.html",
+      "gitBlob": "51658d80273fd1cdb84bdd8469760f87f52b9d19",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/sync_off.png",
+      "gitBlob": "3b443fc62892114406e3d399421b2a881b897acc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/sync_on.png",
+      "gitBlob": "e08320fb64e6fa33b573005ed6d8fe294e19db76",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/tab_a.png",
+      "gitBlob": "3b725c41c5a527a3a3e40097077d0e206a681247",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/tab_ad.png",
+      "gitBlob": "e34850acfc24be58da6d2fd1ccc6b29cc84fe34d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/tab_b.png",
+      "gitBlob": "e2b4a8638cb3496a016eaed9e16ffc12846dea18",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/tab_bd.png",
+      "gitBlob": "91c25249869ffe5269c24f8c441e3f1bf75df400",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/tab_h.png",
+      "gitBlob": "fd5cb705488e60fcf30f56fcc951dee74f3b095b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/tab_hd.png",
+      "gitBlob": "2489273d4ce1d11d3f7557335244c02b9959351b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/tab_s.png",
+      "gitBlob": "ab478c95b67371d700a20869f7de1ddd73522d50",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/tab_sd.png",
+      "gitBlob": "757a565ced4730f85c833fb2547d8e199ae68f19",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/tabs.css",
+      "gitBlob": "71c8a4704c0e4248120fe7c8e910d4dbbea21841",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/timer_8h_source.html",
+      "gitBlob": "44edd41f98a8ae0e2f6446f575856ff7dfc6f8b6",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/html/view_8h_source.html",
+      "gitBlob": "153352c29fc6428beef26077046a04f16c354463",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/Makefile",
+      "gitBlob": "07f226d4d2a28ce71335867b631cc080e1239867",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/_k_b_c_8h_source.tex",
+      "gitBlob": "b41c14c565bc545c623186de38e71f2aab2649ff",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/_v_b_e_8h_source.tex",
+      "gitBlob": "8855452dc927a6795c5719b0f2debef391e47e6f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/annotated.tex",
+      "gitBlob": "2d62a5e5486818404276df678fe88b910a714996",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/controller_8h_source.tex",
+      "gitBlob": "f184ec91640ad4baa26ad948397057c796f3c4b0",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/doxygen.sty",
+      "gitBlob": "bde67edb3e8e934ed7d4ea113d6ea59d029948b9",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/files.tex",
+      "gitBlob": "bef18897e75c2cc6f585035325d9ab73cc527d19",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/graphics_8h_source.tex",
+      "gitBlob": "3baeb1110153b27f04f61e21ac17211b65b89e91",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__graphics.tex",
+      "gitBlob": "c1574bdbf41b27abd49b420dc205f9199fed4487",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__graphics_ga58517250fd31c8c16965744cce7ae2f1_cgraph.md5",
+      "gitBlob": "d6029193ba0969f2461366db4e12379571fca621",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__graphics_ga58517250fd31c8c16965744cce7ae2f1_cgraph.pdf",
+      "gitBlob": "1d1e72573566eb6335169d4e99336580163e92ac",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__graphics_gaa80401a49b5ac32d66cfdab32257a686_cgraph.md5",
+      "gitBlob": "d8d37f13787e564fa7b35d1814c72077d8ef25a6",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__graphics_gaa80401a49b5ac32d66cfdab32257a686_cgraph.pdf",
+      "gitBlob": "0bf27eef1b887bb0ec7cdc9744df6fa75f3d11ff",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__i8254.tex",
+      "gitBlob": "c931957a7556bfecf95ca21e47a1f07cf819aa17",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__main.tex",
+      "gitBlob": "e89a9456a24eaff220635c0f6d710e391560e41c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__main_ga2a16f651eccbd248e1ad3b3b924b143b_cgraph.md5",
+      "gitBlob": "3a85d8b578828aa40f34240485400487007b1622",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__main_ga2a16f651eccbd248e1ad3b3b924b143b_cgraph.pdf",
+      "gitBlob": "617be0bac96c333bd65c7ad05d8c5abd5f7e812a",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__model.tex",
+      "gitBlob": "cb57ec378f1b59a0740232399c515f9b99494c16",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__mouse.tex",
+      "gitBlob": "4222d397339a9166847943191b3d68b584ec7217",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__mouse_ga8ede930d34433ca1e2cce6990d7a9898_cgraph.md5",
+      "gitBlob": "c918d196b2122a9dfd23e334b95e52fc94192b5f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__mouse_ga8ede930d34433ca1e2cce6990d7a9898_cgraph.pdf",
+      "gitBlob": "d8402a6e6b11c9e13106a1a14570e7097ad21f69",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__rtc.tex",
+      "gitBlob": "b9632d035fc8f7560697000a38efe7c2f5063c7f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__rtc_ga47d5762e49eb390b04a09fc319c4e047_cgraph.md5",
+      "gitBlob": "5eb6aeae47b6784a608d87858c2fba78d1dfa313",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__rtc_ga47d5762e49eb390b04a09fc319c4e047_cgraph.pdf",
+      "gitBlob": "17d99a98275018c17a673edcf5f150b012ac58a0",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__rtc_ga5873dc86f56c4a2a8ea8f7faf07ef798_cgraph.md5",
+      "gitBlob": "5d3ea29658193a12a52a00fa8587266cf717dc40",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__rtc_ga5873dc86f56c4a2a8ea8f7faf07ef798_cgraph.pdf",
+      "gitBlob": "3f1746575f7a6e187d9cb056c938d45217d401ef",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__rtc_gad9799f13e0670cb1748baae02f15ca5a_cgraph.md5",
+      "gitBlob": "0fd9a717d2769867c3a95f98b607beef53dd6b8f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__rtc_gad9799f13e0670cb1748baae02f15ca5a_cgraph.pdf",
+      "gitBlob": "29060e99b579fdb38b8cb6b65fb70460b09f4b91",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__rtc_gae22bdeb51eb630e1d579dfc1cd1b2f11_cgraph.md5",
+      "gitBlob": "8f4ff9374a08817261814e12aacea5ae78f94cce",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__rtc_gae22bdeb51eb630e1d579dfc1cd1b2f11_cgraph.pdf",
+      "gitBlob": "c0448e55ac95446c1154549a75eafd71a9c7ca93",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__sprite.tex",
+      "gitBlob": "b290c680380ba470a4774b09e89e133278d05968",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__timer.tex",
+      "gitBlob": "03ef6e7d127352cd7ab7dd42331faefc945ec4d8",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__timer_gaf2c04fa8e97ffa748fd3f612886a92a7_cgraph.md5",
+      "gitBlob": "8e1165e0c5eb345584f62a1f718429763a7a7943",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__timer_gaf2c04fa8e97ffa748fd3f612886a92a7_cgraph.pdf",
+      "gitBlob": "f25f25b1dd48b226e6c1508d675bc5fe910bc169",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view.tex",
+      "gitBlob": "c4f9562ed2a316d806edeb6791709fadee35b0db",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga0a9f56467341cbe24bd981d4b9960fdd_cgraph.md5",
+      "gitBlob": "ad665e4402f419cb6ad170b783de3096c1453cf1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga0a9f56467341cbe24bd981d4b9960fdd_cgraph.pdf",
+      "gitBlob": "b8edf6fcfdfd893631a881546bb8b0b26d2ab6b6",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga152dd469795887a6f41fb67c1c68f870_cgraph.md5",
+      "gitBlob": "d9840996a79ce2b1e7ea91a253d0fb420ef2df91",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga152dd469795887a6f41fb67c1c68f870_cgraph.pdf",
+      "gitBlob": "a0f5d9c194dbfed2219ed1b2e517ad4cd19031d9",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga3ad9f04212e7602618a0dd7ad4afbd4e_cgraph.md5",
+      "gitBlob": "a58c7ecdb74f4f8d1f073353ea20c9c8d93c3770",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga3ad9f04212e7602618a0dd7ad4afbd4e_cgraph.pdf",
+      "gitBlob": "020dc4a26f84920d5585f11f1951aa912fa8eea0",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga3cef68220fcc611902108d6f0159e50f_cgraph.md5",
+      "gitBlob": "9921e430982c71fb56d6a3ee32c3c710205be78a",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga3cef68220fcc611902108d6f0159e50f_cgraph.pdf",
+      "gitBlob": "f4710c3b96292fecd72d1392d32dc3751a437fac",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga3dd6b5ba7e4dab9a1568f422c19c3ec3_cgraph.md5",
+      "gitBlob": "c27750ec4f8b3b564f41c61b894199acb318edef",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga3dd6b5ba7e4dab9a1568f422c19c3ec3_cgraph.pdf",
+      "gitBlob": "a4ae95d230df6923a47418ffe38adf7ce2ede3a4",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga42f4903ab89aff9e3ee0206c52cf710a_cgraph.md5",
+      "gitBlob": "015e3a2e82fa9f7987eb0a828c01d739be02b4aa",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga42f4903ab89aff9e3ee0206c52cf710a_cgraph.pdf",
+      "gitBlob": "1eab684ffa2e63f72c8652cee82537bd9d440992",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga5282e8556b640f8426e46ddb1708756d_cgraph.md5",
+      "gitBlob": "eb679f2e43881369a9ddff1a92dced91178159db",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga5282e8556b640f8426e46ddb1708756d_cgraph.pdf",
+      "gitBlob": "3422a2170bacbb4da53d1ca4e79a7dabdcd3a4c7",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga58dc411b6bcf995222751065b64b93b0_cgraph.md5",
+      "gitBlob": "987c44a4573c8640bfc1c5bd91d407142af4132c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga58dc411b6bcf995222751065b64b93b0_cgraph.pdf",
+      "gitBlob": "73aef12d8a0e81db9d4df89483d8d7987ccbc6c1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga5a1cb3e572728c30b75f841aa9c228d6_cgraph.md5",
+      "gitBlob": "7e1c22eaa90f6f36f8b58e8f7ee7054308ca9549",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga5a1cb3e572728c30b75f841aa9c228d6_cgraph.pdf",
+      "gitBlob": "ea90e33c4dff83e21344038a8e4665365e563ab4",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga6b37abca69e1c2bbe7282e5c49d9e4d7_cgraph.md5",
+      "gitBlob": "b1573d79b46ad029aca27d5279ad1e846c303bfe",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga6b37abca69e1c2bbe7282e5c49d9e4d7_cgraph.pdf",
+      "gitBlob": "6227aa3d65ce81228d44c07cba9463c80d76dee1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga6db4230a0003a09515d78b790d8ec52d_cgraph.md5",
+      "gitBlob": "831165ee6e1f462048cfc96cdeb1d42538cd19c7",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga6db4230a0003a09515d78b790d8ec52d_cgraph.pdf",
+      "gitBlob": "bf44852f828d620b7b44d7bebc59c4dff10f231d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga78f217009cd3cf7b5bc1721616302c65_cgraph.md5",
+      "gitBlob": "602be209b8286a3b1d616f08f95b38122fc1896e",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga78f217009cd3cf7b5bc1721616302c65_cgraph.pdf",
+      "gitBlob": "f557aeeef6ef85763f883f69c20848a314b2b913",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga7dbfe327ee927cdca33895b7a67b0b7e_cgraph.md5",
+      "gitBlob": "238cba1ca89fc6e1c4a66520c09d45f2a3e90d3f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga7dbfe327ee927cdca33895b7a67b0b7e_cgraph.pdf",
+      "gitBlob": "e0b693e55975fb310d0d334368184b3673d34e07",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga7f67c6a2f31c2b9a8d20ab0e58eff70a_cgraph.md5",
+      "gitBlob": "4d9ecff6ba6782687a87b4de8e7a4a3f0d87ccd1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga7f67c6a2f31c2b9a8d20ab0e58eff70a_cgraph.pdf",
+      "gitBlob": "12de609b50eb098561822d2952206914f4f57689",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga8f7acda4de2ff9ede5fca68d2db09959_cgraph.md5",
+      "gitBlob": "b89fa37fddbbff5220119329c71eb8f6e50302a1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga8f7acda4de2ff9ede5fca68d2db09959_cgraph.pdf",
+      "gitBlob": "3bab08e5961cf159e4caf4d610d757e5a7619261",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga92fe90a17ba95b7702b618ccfe7e77ba_cgraph.md5",
+      "gitBlob": "bbbda3e7f3b11ac480a3511fd7361b23600be387",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_ga92fe90a17ba95b7702b618ccfe7e77ba_cgraph.pdf",
+      "gitBlob": "d93db343db0f96d41b2d708f2021a8b9463f6ef2",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_gaa9ccc9bf691f8263f5fb69f254674f8c_cgraph.md5",
+      "gitBlob": "76d6e7127ab19ea6bc9f9794484474a16460fe3d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_gaa9ccc9bf691f8263f5fb69f254674f8c_cgraph.pdf",
+      "gitBlob": "a3ec0ff5aa39f1662121a683dadda2fc005b098d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_gab0f51d98fa07eefe31841507a9739abc_cgraph.md5",
+      "gitBlob": "da3a5e8649bf918d90b5edae3377e3e88e203155",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_gab0f51d98fa07eefe31841507a9739abc_cgraph.pdf",
+      "gitBlob": "e2dbf1792055264a521608e19773b96e0a693bda",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_gacf82602b2954abf7f47677f27c7051f0_cgraph.md5",
+      "gitBlob": "9d7c667a46719422673c60d674394537bc122d15",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_gacf82602b2954abf7f47677f27c7051f0_cgraph.pdf",
+      "gitBlob": "863d205f1203ff039897acf4f38afa31626c6148",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_gaeddc6e768c81b853d71b5f90b3e1dbfb_cgraph.md5",
+      "gitBlob": "7d5dad8569732682396f4c86379ed697eed52812",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_gaeddc6e768c81b853d71b5f90b3e1dbfb_cgraph.pdf",
+      "gitBlob": "a169ccbdc2f431ee6ca520d7eff5ee54fcc108f5",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_gaface0710712eeff3c3721b361e2db58f_cgraph.md5",
+      "gitBlob": "ee096428fc24b7622d60eeff98f0b0222718f7f1",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/group__view_gaface0710712eeff3c3721b361e2db58f_cgraph.pdf",
+      "gitBlob": "fd8eb4146a4443fbbb47487ea845571457e46170",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/i8254_8h_source.tex",
+      "gitBlob": "daea269199bbe901f80cd61edcae54638f5c72b8",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/keyboard_2i8042_8h_source.tex",
+      "gitBlob": "d8d441b194e00178038e810e7eab03226ff01453",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/keyboard_8h_source.tex",
+      "gitBlob": "2efaf0f70f60b02515a2e31bd44a39ac2c6470af",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/longtable_doxygen.sty",
+      "gitBlob": "a0eb314f9f92cfd92bf000f0893171b45df5d0a9",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/make.bat",
+      "gitBlob": "e4a3290edae06d5a1c579963c9547df07d93a045",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/model_8h_source.tex",
+      "gitBlob": "22fec8f49d442fb0ab1c52a0642083def43ff90d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/modules.tex",
+      "gitBlob": "786c91b36d5c1c46526a047ec54443fe988ce51b",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/mouse_2i8042_8h_source.tex",
+      "gitBlob": "3b7e4e602aeb168add3db7838a6ca17e44ef6e3d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/mouse_8h_source.tex",
+      "gitBlob": "76b8c68da494cb6707d390569a2ec4d28681a7f3",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/refman.tex",
+      "gitBlob": "26b0a3e6c964f9aeebe39f8e3a91581b5b7dae4d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/rtc_8h_source.tex",
+      "gitBlob": "eba27d1c13dcd67b054193ae618d776a1c2b687c",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/setup_8h_source.tex",
+      "gitBlob": "bb2e7cf1f6fe52d7a900125eb6df9ed4d3016d75",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/sprite_8h_source.tex",
+      "gitBlob": "010437f12d671301094f4f0ff29a470054d2cf7f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/struct_mouse_info.tex",
+      "gitBlob": "dc061bec48cdc2115e09f041bcc06b26b0b3451d",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/struct_sprite.tex",
+      "gitBlob": "4af0fee8a0a4ae373f89ad3324f69ae657140a0f",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/structreal__time__info.tex",
+      "gitBlob": "f935bba1f09ac6915d2dcd6264d6d539494b28bd",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/tabu_doxygen.sty",
+      "gitBlob": "3f17d1d02804b33ee004d44860bb39ce6d1bf371",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/timer_8h_source.tex",
+      "gitBlob": "d648cdd84cb8425e93714627367887de199892ab",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/latex/view_8h_source.tex",
+      "gitBlob": "683e7ac0d316c6a22c7ff9795566af4ce87e73b9",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/output.txt",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/doc/trace.txt",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    },
+    {
+      "path": "proj/src/Doxyfile",
+      "gitBlob": "925444afee4b3f84f79f702fc8dfc7d07e70eebc",
+      "reason": "Generated documentation, compiled object/archive, recording, log or OS metadata outside selected game source/runtime asset closure."
+    }
+  ],
+  "sourceSelection": "Pinned original selected project tree and root identity/attribution. Generated documentation/objects/video/log/OS/VCS omitted explicitly. No game source or art modifications.",
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "454671d72c6becbbe7df37bbd756538cef506ca414cea05c9b3e22b1d034f3fa",
+      "kind": "Original rendered artwork crop at(485, 335, 525, 375) scaled nearest-neighbour on a flat background",
+      "sourceCapture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/discovery-secondpass-a133/gameplay-evidence/6ernardo--feup-LCOM-02-stroke-canvas.png"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "0eca70442f7398a96899eca06497f8b4863c732bd499cf47a8286b4a63fe65bf",
+      "kind": "Actual ordinary-touch original gameplay canvas",
+      "sourceCapture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/discovery-secondpass-a133/gameplay-evidence/6ernardo--feup-LCOM-02-stroke-canvas.png"
+    }
+  ],
+  "controlsRationale": "Auto external panel exposes original palette and brush tools. G enters drawing, P/R/B select pencil/rectangle/fill, K undo, M invert, L grayscale, UP/DOWN brush radius, ESC returns/exits. Relative drag holds original left button; no direct touch/calibration or source art changes.",
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/a135-reviewed-native/results.json",
+      "apkSha256": "3d3185a90ecf9d1bf4c0f398d273eb667cacc3c9af902220f6b20eeec4a79bc1",
+      "demonstrated": "ROOT visually reviewed native controls, actual gameplay checkpoints and browser portrait controls and canonical real gameplay frames. Ordinary native touch Draw opens the original canvas; two real drags draw a continuous black stroke, Rectangle commits a solid black shape on release, inversion/grayscale retains the drawing and palette, and Escape returns to the original menu before Home.",
+      "limitations": [
+        "Representative local drawing tools qualified. Linked drawing is not claimed."
+      ]
+    }
+  }
+}

@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="structclock__fields__struct" kind="struct" language="C++" prot="public">
+    <compoundname>clock_fields_struct</compoundname>
+    <includes refid="_r_t_c_8h" local="no">RTC.h</includes>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="structclock__fields__struct_1aacbc9bedaa1869359adae36d2c82609b" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t clock_fields_struct::sec</definition>
+        <argsstring></argsstring>
+        <name>sec</name>
+        <qualifiedname>clock_fields_struct::sec</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>seconds </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" line="16" column="13" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" bodystart="16" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structclock__fields__struct_1aa97974f24bd598bab381157eb2899857" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t clock_fields_struct::min</definition>
+        <argsstring></argsstring>
+        <name>min</name>
+        <qualifiedname>clock_fields_struct::min</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>minutes </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" line="17" column="13" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" bodystart="17" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structclock__fields__struct_1a2bd736629b3e6418d20e90ca42bdda06" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t clock_fields_struct::h</definition>
+        <argsstring></argsstring>
+        <name>h</name>
+        <qualifiedname>clock_fields_struct::h</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>hours </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" line="18" column="13" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" bodystart="18" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structclock__fields__struct_1ac6c0a9c09b5634dd8cb365b712d5ea6a" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t clock_fields_struct::d</definition>
+        <argsstring></argsstring>
+        <name>d</name>
+        <qualifiedname>clock_fields_struct::d</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>day </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" line="19" column="13" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" bodystart="19" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structclock__fields__struct_1a741a9f4334ab733150f2da72a4be249d" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t clock_fields_struct::m</definition>
+        <argsstring></argsstring>
+        <name>m</name>
+        <qualifiedname>clock_fields_struct::m</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>month </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" line="20" column="13" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" bodystart="20" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="structclock__fields__struct_1ac74ebfcc16cee3bd65adf52113779422" prot="public" static="no" mutable="no">
+        <type>uint8_t</type>
+        <definition>uint8_t clock_fields_struct::y</definition>
+        <argsstring></argsstring>
+        <name>y</name>
+        <qualifiedname>clock_fields_struct::y</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>year </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" line="21" column="13" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Struct that represents the fields of a clock (hours, minutes, seconds, day, month, year) </para>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" line="15" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/RTC.h" bodystart="15" bodyend="22"/>
+    <listofallmembers>
+      <member refid="structclock__fields__struct_1ac6c0a9c09b5634dd8cb365b712d5ea6a" prot="public" virt="non-virtual"><scope>clock_fields_struct</scope><name>d</name></member>
+      <member refid="structclock__fields__struct_1a2bd736629b3e6418d20e90ca42bdda06" prot="public" virt="non-virtual"><scope>clock_fields_struct</scope><name>h</name></member>
+      <member refid="structclock__fields__struct_1a741a9f4334ab733150f2da72a4be249d" prot="public" virt="non-virtual"><scope>clock_fields_struct</scope><name>m</name></member>
+      <member refid="structclock__fields__struct_1aa97974f24bd598bab381157eb2899857" prot="public" virt="non-virtual"><scope>clock_fields_struct</scope><name>min</name></member>
+      <member refid="structclock__fields__struct_1aacbc9bedaa1869359adae36d2c82609b" prot="public" virt="non-virtual"><scope>clock_fields_struct</scope><name>sec</name></member>
+      <member refid="structclock__fields__struct_1ac74ebfcc16cee3bd65adf52113779422" prot="public" virt="non-virtual"><scope>clock_fields_struct</scope><name>y</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

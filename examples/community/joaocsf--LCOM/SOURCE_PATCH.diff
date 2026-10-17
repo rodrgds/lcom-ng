@@ -1,0 +1,249 @@
+--- a/proj/code/ball.c
++++ b/proj/code/ball.c
+@@ -1,3 +1,4 @@
++#include "debug.h"
+ #include "ball.h"
+ #include "networkmanager.h"
+ #include "texturemanager.h"
+--- a/proj/code/bullet.c
++++ b/proj/code/bullet.c
+@@ -1,3 +1,4 @@
++#include "map.h"
+ #include "bullet.h"
+ #include "texturemanager.h"
+ #include "enemymanager.h"
+@@ -32,7 +33,7 @@
+ }
+ 
+ char Bullet_Update(Bullet* b){
+-	if(b == NULL) return;
++	if(b == NULL) return 0;
+ 	if(b->destroy == 1)
+ 		return 0;
+ 
+--- a/proj/code/enemy.c
++++ b/proj/code/enemy.c
+@@ -1,3 +1,5 @@
++#include "enemymanager.h"
++#include "debug.h"
+ #include "enemy.h"
+ #include "texturemanager.h"
+ #include "sprite.h"
+--- a/proj/code/font.c
++++ b/proj/code/font.c
+@@ -1,4 +1,5 @@
+ #include "font.h"
++#include "video_gr.h"
+ #include "bmp.h"
+ #include "vector.h"
+ #include "stdio.h"
+--- a/proj/code/font.h
++++ b/proj/code/font.h
+@@ -93,4 +93,7 @@
+  */
+ void Font_Write(int x, int y, char* text,unsigned short color, enum font_type font);
+ 
++
++char Font_Load(void);
++
+ #endif
+--- a/proj/code/map.c
++++ b/proj/code/map.c
+@@ -1,3 +1,4 @@
++#include "debug.h"
+ #include "map.h"
+ #include "bmp.h"
+ #include "vector.h"
+@@ -404,7 +405,7 @@
+ 	if(mapData[nX+ nY *dimMap.x]==0) return 0;
+ 
+ 	if(!NM_IsServer() && !NM_IsSinglePlayer()){
+-		return;
++		return 0;
+ 	}
+ 
+ 
+@@ -550,7 +551,7 @@
+ 
+ inline Node* GetLowCost(List* l1){
+ 	ListNode* node = l1->node->nextNode;
+-	Node* curr;
++	Node* curr = NULL;
+ 	while(node !=NULL){
+ 		Node* nodeTemp = (Node*)node->conteudo;
+ 
+--- a/proj/code/map.h
++++ b/proj/code/map.h
+@@ -226,4 +226,8 @@
+  */
+ void Map_Exit();
+ 
++
++int Map_FillData(void);
++void Map_Brush(int x,int y,char radius,char damage);
++
+ #endif
+--- a/proj/code/menu.c
++++ b/proj/code/menu.c
+@@ -1,3 +1,5 @@
++#include "rtc.h"
++#include "debug.h"
+ #include "menu.h"
+ #include "networkmanager.h"
+ #include "uart.h"
+--- a/proj/code/mouse.c
++++ b/proj/code/mouse.c
+@@ -1,3 +1,4 @@
++#include "keyboard.h"
+ #include "mouse.h"
+ #include <minix/syslib.h>
+ #include <minix/drivers.h>
+@@ -109,8 +110,8 @@
+ 	else
+ 		m_data.m1 = 0;
+ 
+-	m_data.x +=(char) packet[1];
+-	m_data.y +=(char) packet[2];
++	m_data.x += packet[1] - ((fByte & BIT(4)) ? 256 : 0);
++	m_data.y += packet[2] - ((fByte & BIT(5)) ? 256 : 0);
+ 
+ 
+ }
+--- a/proj/code/mouse.h
++++ b/proj/code/mouse.h
+@@ -97,4 +97,7 @@
+ int mouse_sendArgument(unsigned long argument);
+ 
+ 
++
++int mouse_set_stream_mode(void);
++
+ #endif
+--- a/proj/code/networkmanager.c
++++ b/proj/code/networkmanager.c
+@@ -1,3 +1,4 @@
++#include "debug.h"
+ #include "networkmanager.h"
+ #include "uart.h"
+ #include "list.h"
+@@ -110,7 +111,7 @@
+ 	}else{
+ 		Debug_LOG("NM_Parser","Mensagem Nula");
+ 		List_Remove(buffer,obj);
+-		return;
++		return 0;
+ 	}
+ 	char* msg = NULL;
+ 
+--- a/proj/code/networkmanager.h
++++ b/proj/code/networkmanager.h
+@@ -109,4 +109,8 @@
+  */ 
+ void NM_SetPlayer(char id , Player* p);
+ 
++
++void NM_Update(void);
++void NM_SendPlayerInfo(void);
++
+ #endif
+--- a/proj/code/objmanager.c
++++ b/proj/code/objmanager.c
+@@ -1,3 +1,5 @@
++#include "map.h"
++#include "debug.h"
+ #include "objmanager.h"
+ #include "list.h"
+ #include "stdio.h"
+--- a/proj/code/particle.c
++++ b/proj/code/particle.c
+@@ -1,3 +1,4 @@
++#include "debug.h"
+ #include "particle.h"
+ #include <minix/syslib.h>
+ 
+--- a/proj/code/player.c
++++ b/proj/code/player.c
+@@ -1,3 +1,5 @@
++#include "networkmanager.h"
++#include "debug.h"
+ #include "player.h"
+ #include "keyboard.h"
+ #include "bullet.h"
+@@ -99,8 +101,10 @@
+ 	Vector2 mapDim;
+ 	mapDim = Map_getDimensions();
+ 
+-	if((int)p->newPos.x < 0 || (int) p->newPos.x >= mapDim .x ||(int)p->newPos.y < 0 || (int) p->newPos.y >= mapDim .y )
+-		return;
++	if((int)p->newPos.x < 0 || (int) p->newPos.x >= mapDim .x ||(int)p->newPos.y < 0 || (int) p->newPos.y >= mapDim .y ){
++		Vector2 stationary = {0,0};
++		return stationary;
++	}
+ 
+ 	Vector2d temp = Vector2_Lerp(p->pos, p->newPos, 0.1);
+ 	p->pos = temp;
+--- a/proj/code/rectangle.c
++++ b/proj/code/rectangle.c
+@@ -1,3 +1,4 @@
++#include "video_gr.h"
+ #include "rectangle.h"
+ #include "map.h"
+ 
+--- a/proj/code/rtc.c
++++ b/proj/code/rtc.c
+@@ -1,3 +1,4 @@
++#include "debug.h"
+ #include "rtc.h"
+ #include <minix/syslib.h>
+ #include <minix/drivers.h>
+--- a/proj/code/texturemanager.c
++++ b/proj/code/texturemanager.c
+@@ -5,7 +5,7 @@
+ 
+ void TM_Init(){
+ 	sprites = (Sprite**)malloc(sizeof(Sprite*)*SI_TOTAL);
+-	memset(sprites,NULL,SI_TOTAL);
++	memset(sprites,0,sizeof(*sprites)*SI_TOTAL);
+ }
+ 
+ void TM_AddTexture(unsigned int index, char * fileDir){
+--- a/proj/code/uart.c
++++ b/proj/code/uart.c
+@@ -377,7 +377,7 @@
+ 			break;
+ 		default:
+ 			printf("Desconhecido : %d", ((iir>>1) & 7));
+-			return;
++			return 0;
+ 			break;
+ 		}
+ 
+--- a/proj/code/uart.h
++++ b/proj/code/uart.h
+@@ -183,4 +183,10 @@
+  */
+ void UART_SetDLAB(unsigned int addr,unsigned char status);
+ 
++
++int UART_ClearFIFO(unsigned int address);
++void UART_GetConfig(unsigned int address);
++void UART_PrintError(unsigned int address);
++void UART_PrintBuffer(void);
++
+ #endif
+--- a/proj/code/video_gr.c
++++ b/proj/code/video_gr.c
+@@ -1,3 +1,4 @@
++#include "debug.h"
+ #include <minix/syslib.h>
+ #include <minix/drivers.h>
+ #include <machine/int86.h>
+@@ -8,6 +9,8 @@
+ #include "vbe.h"
+ #include "sprite.h"
+ #include "vector.h"
++
++char *read_xpm(char *map[],int *width,int *height,int hres,int vres);
+ 
+ static Vector2 cameraPos;
+ 

@@ -1,0 +1,31 @@
+--- a/proj/src/pool.c
++++ b/proj/src/pool.c
+@@ -1,6 +1,7 @@
+ #include "pool.h"
+ 
+ #include <math.h>
++#include <float.h>
+ #include "./io/rtc/rtc.h"
+ #include <lcom/lcf.h>
+ 
+--- a/proj/src/physics.c
++++ b/proj/src/physics.c
+@@ -1,6 +1,7 @@
+ #include "physics.h"
+ 
+ #include <math.h>
++#include <float.h>
+ 
+ #include <lcom/lcf.h>
+ 
+--- a/proj/src/controller.c
++++ b/proj/src/controller.c
+@@ -68,7 +68,7 @@
+ 
+ void init_controller() {
+ 
+-  scancode sc;
++  scancode sc = {0};
+   struct packet pkt;
+   
+   int ipc_status;

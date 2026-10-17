@@ -1,0 +1,46 @@
+--- a/proj/src/controllers/rtc/rtc.c
++++ b/proj/src/controllers/rtc/rtc.c
+@@ -24,11 +24,11 @@
+     
+     do { 
+         if(sys_outb(REGISTER_INPUT, REG_A)){return 1;} 
+-        if(sys_inb(REGISTER_OUTPUT, (uint32_t*) &regA)){return 1;}
++        if(util_sys_inb(REGISTER_OUTPUT, &regA)){return 1;}
+     } while(regA & BIT(7));
+ 
+     if (sys_outb(REGISTER_INPUT, port)) {return 1;}
+-    if (sys_inb(REGISTER_OUTPUT, (uint32_t*) time)) {return 1;}
++    if (util_sys_inb(REGISTER_OUTPUT, time)) {return 1;}
+ 
+     uint8_t bcd = 0;
+     if(RTCBinary(&bcd)){return 1;}
+--- a/proj/src/handler/gameLocalController.c
++++ b/proj/src/handler/gameLocalController.c
+@@ -20,10 +20,11 @@
+ }
+ 
+ void checkGameLocalClick() {
++    int coor_x = (crosshair->x - 53)/BIG_BOARD_SQUARE;
++    int coor_y = (crosshair->y - 95)/BIG_BOARD_SQUARE;
++    if (coor_x < 0 || coor_x >= MATRIX_SIZE || coor_y < 0 || coor_y >= MATRIX_SIZE) return;
+     cursor_active = false;
+     drawGameLocal();
+-    int coor_x = (crosshair->x - 53)/BIG_BOARD_SQUARE;
+-    int coor_y = (crosshair->y - 95)/BIG_BOARD_SQUARE;
+     
+     if (gameState == TURN1) {
+         if (p2.matrix[coor_y][coor_x].attacked != 0) return;        
+--- a/proj/src/handler/gameRemoteController.c
++++ b/proj/src/handler/gameRemoteController.c
+@@ -124,9 +124,10 @@
+ 
+ void checkGameRemoteClick() {
+     if (cursorIsActive) {
+-        cursorIsActive = false;
+         int c = (crosshair->x - 53)/BIG_BOARD_SQUARE;
+         int l = (crosshair->y - 95)/BIG_BOARD_SQUARE;
++        if (c < 0 || c >= MATRIX_SIZE || l < 0 || l >= MATRIX_SIZE) return;
++        cursorIsActive = false;
+         if (player_status == MYTURN && p1.matrix[l][c].attacked == 0) {
+             c_attack = c;
+             l_attack = l;

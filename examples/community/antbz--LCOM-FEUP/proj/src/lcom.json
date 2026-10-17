@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "name": "LCOM Ninja",
+  "description": "Slice flying fruit with your katana and build a combo.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "layout": "overlay",
+      "pointer": "direct",
+      "toolbar": "top-right",
+      "actions": [],
+      "touch": "press",
+      "cursor": {
+        "x": 0,
+        "y": 0,
+        "maxX": 1024,
+        "maxY": 768
+      }
+    }
+  },
+  "build": {
+    "assetRoot": "../..",
+    "assets": [],
+    "arguments": [
+      "player"
+    ]
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "archetype": "Fruit Ninja"
+}

@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "name": "Relative paths fixture",
+  "build": {
+    "assets": [
+      "assets"
+    ],
+    "pathAliases": {
+      "home/lcom/relative-sdk": "assets"
+    }
+  },
+  "mobile": {
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [],
+      "joystick": false,
+      "pointer": "off"
+    }
+  }
+}

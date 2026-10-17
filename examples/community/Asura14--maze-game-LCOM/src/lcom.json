@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "name": "Maze Game",
+  "description": "Guide the square through the original gridded labyrinth to its exit.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC"
+      ],
+      "joystick": false,
+      "pointer": "off",
+      "layout": "panel",
+      "pads": [
+        {
+          "mode": "arrows",
+          "style": "dpad",
+          "side": "left"
+        }
+      ],
+      "repeatKeys": [
+        "UP",
+        "DOWN",
+        "LEFT",
+        "RIGHT"
+      ]
+    }
+  },
+  "build": {
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

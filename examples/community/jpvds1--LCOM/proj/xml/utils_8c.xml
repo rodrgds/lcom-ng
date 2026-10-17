@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.6" xml:lang="en-US">
+  <compounddef id="utils_8c" kind="file" language="C++">
+    <compoundname>utils.c</compoundname>
+    <includes local="no">lcom/lcf.h</includes>
+    <includes local="no">stdint.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>C:/MINIX-LCOM/shared/g3/proj/src/Drivers/utils.c</label>
+        <link refid="utils_8c"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>lcom/lcf.h</label>
+      </node>
+      <node id="3">
+        <label>stdint.h</label>
+      </node>
+    </incdepgraph>
+      <sectiondef kind="func">
+      <memberdef kind="function" id="utils_8c_1a81621440b3d65680979425e39aa8c789" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() util_get_LSB</definition>
+        <argsstring>(uint16_t val, uint8_t *lsb)</argsstring>
+        <name>util_get_LSB</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>lsb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/utils.c" line="5" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/utils.c" bodystart="5" bodyend="8"/>
+      </memberdef>
+      <memberdef kind="function" id="utils_8c_1a6a880076cd2ec468834438b6e0c58836" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() util_get_MSB</definition>
+        <argsstring>(uint16_t val, uint8_t *msb)</argsstring>
+        <name>util_get_MSB</name>
+        <param>
+          <type>uint16_t</type>
+          <declname>val</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>msb</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/utils.c" line="10" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/utils.c" bodystart="10" bodyend="15"/>
+      </memberdef>
+      <memberdef kind="function" id="utils_8c_1a79a031a8611f5b2d6afa4158e92b0fb4" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int()</type>
+        <definition>int() util_sys_inb</definition>
+        <argsstring>(int port, uint8_t *value)</argsstring>
+        <name>util_sys_inb</name>
+        <param>
+          <type>int</type>
+          <declname>port</declname>
+        </param>
+        <param>
+          <type>uint8_t *</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/utils.c" line="17" column="1" bodyfile="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/utils.c" bodystart="17" bodyend="26"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="preprocessor">#include<sp/>&lt;lcom/lcf.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;stdint.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="utils_8c_1a81621440b3d65680979425e39aa8c789" refkind="member"><highlight class="normal">int(<ref refid="utils_8c_1a81621440b3d65680979425e39aa8c789" kindref="member">util_get_LSB</ref>)(uint16_t<sp/>val,<sp/>uint8_t<sp/>*lsb)<sp/>{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/>*lsb<sp/>=<sp/>val<sp/>&amp;<sp/>255;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10" refid="utils_8c_1a6a880076cd2ec468834438b6e0c58836" refkind="member"><highlight class="normal">int(<ref refid="utils_8c_1a6a880076cd2ec468834438b6e0c58836" kindref="member">util_get_MSB</ref>)(uint16_t<sp/>val,<sp/>uint8_t<sp/>*msb)<sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/>*msb<sp/>=<sp/>255<sp/>&amp;<sp/>(val<sp/>&gt;&gt;<sp/>8);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17" refid="utils_8c_1a79a031a8611f5b2d6afa4158e92b0fb4" refkind="member"><highlight class="normal">int<sp/>(<ref refid="utils_8c_1a79a031a8611f5b2d6afa4158e92b0fb4" kindref="member">util_sys_inb</ref>)(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>port,<sp/>uint8_t<sp/>*value)<sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/>uint32_t<sp/>value_32<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal">(sys_inb(port,<sp/>&amp;value_32))</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>1;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/>}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/>*value<sp/>=<sp/>(uint8_t)<sp/>value_32;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>0;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="C:/MINIX-LCOM/shared/g3/proj/src/Drivers/utils.c"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,23 @@
+--- a/src/mosu.c
++++ b/src/mosu.c
+@@ -27,7 +27,8 @@
+ 
+ 	char txtfile[200];
+ 	strcpy(txtfile, argv[0]);
+-	strcpy(txtfile + strlen(txtfile) - sizeof("mosu"), "/highscores.txt");
++	char *filename = strrchr(txtfile, '/');
++	strcpy(filename ? filename + 1 : txtfile, "highscores.txt");
+ 
+ 	init_game(txtfile);
+ 
+--- a/src/video_gr.c
++++ b/src/video_gr.c
+@@ -121,7 +121,7 @@
+ void vg_paintPixel(unsigned short x, unsigned short y, unsigned long color) {
+ 
+ 	//Check if it should print
+-	if(x < 0 || x > h_res || y < 0 || y > v_res)
++	if(x >= h_res || y >= v_res)
+ 		return;
+ 
+ 	char * pixel = double_buffer + y*h_res + x;

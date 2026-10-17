@@ -1,0 +1,64 @@
+{
+  "version": 1,
+  "name": "Souto: Zombie Escape",
+  "mobile": {
+    "orientation": "auto",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "dpad": {
+        "keys": "wasd"
+      },
+      "quickKeys": [
+        "UP",
+        "DOWN",
+        "LEFT",
+        "RIGHT",
+        "ENTER"
+      ],
+      "layout": "overlay",
+      "pointer": "move",
+      "touch": "move",
+      "actions": [
+        {
+          "label": "Fire / Select",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Menu / Back",
+          "key": "ESC",
+          "position": "top-left"
+        }
+      ]
+    }
+  },
+  "build": {
+    "assetRoot": "..",
+    "assets": [
+      "proj/zombie.bmp",
+      "proj/floor.bmp",
+      "proj/trace.txt",
+      "proj/output.txt",
+      "proj/souto.bmp",
+      "lab6/trace.txt",
+      "lab6/output.txt",
+      "lab5/log.txt",
+      "lab5/trace.txt",
+      "lab5/output.txt",
+      "lab3/trace.txt",
+      "lab3/output.txt",
+      "lab4/trace.txt",
+      "lab4/output.txt",
+      "proj/img/zombie.bmp",
+      "proj/img/floor.bmp",
+      "proj/img/souto.bmp"
+    ]
+  },
+  "archetype": "Zombie Survival",
+  "description": "Move through the stone arena, aim at the students chasing you and fire to survive. Return to the menu after a round.",
+  "preview": "../../../../collections/arcade/previews/gneves95-lcom1819-t7g10-f2ff58fc2e1d.png",
+  "icon": "icon.png"
+}

@@ -1,0 +1,134 @@
+{
+  "repository": "https://github.com/Marantesss/feup-lcom",
+  "commit": "a8221e1ea8de49c6776fbfe74bd27ba34bd92381",
+  "project": "proj/src",
+  "sha256": {
+    "README.md": "505aa89976ff2806e6ca32fd650449b12df5d505afc3086072d801ca25f47bc4",
+    "proj/images/zombie_right_middle.xpm": "6fc637250b938248a9e94318b7b44d2d66630571ad3d100e7cf0e3213194abdf",
+    "proj/images/main_menu_button.xpm": "e59940b610c675c44442bafe53d0c66d53d3b1821c1bcce227b55e72267dc47f",
+    "proj/images/help_button_selected.xpm": "20d8edd2a0283ec46003be424b9d5bd92f094e7732d9af763afccbae4de9ec0c",
+    "proj/images/quit_button_selected.xpm": "024ab68c4a1bc1fba474d59b9c4bec4352ffb71b435422ba0379a6018f85e6ba",
+    "proj/images/arcade_8.xpm": "5dc92701da730fbacbcb1b723f9ff289dafe539b36a4a76b93f4e1ffe165674d",
+    "proj/images/arcade_9.xpm": "5bb7008cefe74d0f234d76e4e5ea98513344c00450e35c9dff9748ec82e491bc",
+    "proj/images/quit_button.xpm": "b11d50fca5a8e233a5c9e9102bdc8349d4a1d9ef582d15ed5e17088f84a210dd",
+    "proj/images/play_button.xpm": "31a8debcb49f3ee3a62b2bc3c90c40d7673e57b698901970c9ec6e2d243f2763",
+    "proj/images/arcade_heart.xpm": "2dda7057a5a0675ffda1e40a550f4bbe1eb003059654e7a115f3506bb4c77547",
+    "proj/images/arcade_pause.xpm": "2ce4bb572a40ab1f87ed7b72a92ee7df462e74f1e8e7574dc4797b1b1d5131b0",
+    "proj/images/soldier.xpm": "6c7cbd0434b16fa09cc65848a805420fa5eb8e4c7e439dfe0838f14bca9f981e",
+    "proj/images/game_background_upper.xpm": "762f5e9f04deff3019f9e7ac5200f8b765f383c139d7544a16440bf30811822b",
+    "proj/images/zombie_middle.xpm": "8da19307580f264b13384af355316e9aa5dd7b3c224d97abd01310a2f2176097",
+    "proj/images/zombie_left_middle.xpm": "8c2c372e56ba5e340eb1c7c1157b1ab7461a5c4baa49c8138a4938bf19fba118",
+    "proj/images/help_menu_background.xpm": "61c2028ed0a8e1a51e6a6d65c008d0df86d2284b49528f102ae0840334e17907",
+    "proj/images/help_button.xpm": "3c5f782429130149004cba70f8fa226241b50a15242c493378a80f79da8a27db",
+    "proj/images/zombie_right.xpm": "0129c43a4d1585d3db02d6266d9d7f0b6f9475ab431423f4e986ce45c551c62e",
+    "proj/images/zombie_left.xpm": "c2174087ae253ed193fc60e6c0fedacd8fad547c882bde61c256f855603ea33e",
+    "proj/images/game_background_tile.xpm": "e99d1120ecc4e756d317ca86ff6d263a792518936f265452f365e8ca6ad71b90",
+    "proj/images/play_button_selected.xpm": "c260d18c48d746617c5c8343a3e50f3e9b08aa395b8982865b36d1d385c234b1",
+    "proj/images/arcade_7.xpm": "1041bdbe877453ff300331fe95955fb706644180002e66e354b04aa22543b6e4",
+    "proj/images/arcade_6.xpm": "b8c866e7bd9be48562d0f928929f22ecae416f50eee788e61cd831df75c58fa6",
+    "proj/images/arcade_dots.xpm": "84dc7cdb43654b815c0c3d387e72e49ab9876ce5867afdfc3cef53b5dc812111",
+    "proj/images/main_menu_background.xpm": "c6b7795163135eec8d0846193055c017a1417b13cdf2849c7918c341ebc8d995",
+    "proj/images/arcade_slash.xpm": "89f41bf2fbd0ba57b2664394ca8b6792807e10432a59c78b268d829eb7600880",
+    "proj/images/arcade_4.xpm": "55b12968b22aba7c86b191270b172996405627d8771fa13f7220caba1afc1d2a",
+    "proj/images/crosshair.xpm": "1adcf8b3fb4f374de05008d72d06a9a8913ec119b5513ca67df33f8e3ef9b80b",
+    "proj/images/arcade_5.xpm": "df5a6d25e812072783787b871e1ea152f2d6e35fd0dfe5f8abda2e8024323ff3",
+    "proj/images/arcade_shot.xpm": "6134dd8d12b0d786644399afb829e705462af6079a9649fa75042afaa4e0d3f0",
+    "proj/images/main_menu_button_selected.xpm": "954f2a7684eada184acb312f2b6386db46b3c84ebff690fdc0fc0200f1260ec0",
+    "proj/images/arcade_1.xpm": "ffd0676c1ee708940f0095def1b4656caebc7e900abe3e39891ac1557f938049",
+    "proj/images/arcade_0.xpm": "a85cc803b494a2e24deebbc1497e4a5d51cf8fd6aa85ba54095d530fb5295578",
+    "proj/images/arcade_2.xpm": "cdaccd159f8205b66954261d1854e085284ff4533373514408d131ef61003898",
+    "proj/images/arcade_3.xpm": "79fc15d06dc1661327999250cf7ffb139934a03d7f5d91d034bdc9df25e87403",
+    "proj/images/score_menu_background.xpm": "70d9d80266d20c4a0dcc093e252f7ff2163a0e746f54b1dd44bafe526147db1a",
+    "proj/src/interrupts.h": "835bc2d06e94630b41b54771d147c44dccbeabf632c608f776aaefd8cb2ff734",
+    "proj/src/game.c": "dd6e180bf4a948f31ef4fc6d44b1ef00ebf5b11ac30e095402e77c46f5b10e95",
+    "proj/src/utils.h": "14140b053758769b42c7450655607da7927c5b21fb3b64bdba5fd1d6d203ef10",
+    "proj/src/movement.h": "e5908c9bcdab996f071efd4c14731b3f0ced77db362f230fa496d39ba0ec9ff7",
+    "proj/src/mouse.c": "0a07430718997a253b5c9e2fc3ce28c94f8353e07543b7aa38580a0abf121317",
+    "proj/src/entities.c": "eda23b5e29b68f116d20ed1aad9640e1bb6066bc5cb374911a9bdfbf48ba8f65",
+    "proj/src/timer.c": "0ccb73d8be93ee034f962c18b2c7b46cb19ad8c483ea34fa3afc4650080392b9",
+    "proj/src/states.c": "c85094dc453ce766d97c362ad3b6e72e7cd2bfd563e1cdb20a29dd7353f11d71",
+    "proj/src/minixforce.c": "d778ce19264d2dcfab90bfebc3cab337219d3171e607da056ec910c7daaac295",
+    "proj/src/videomacros.h": "493ca610a91125e98a16a003269de979385c54fafef794d973796e35596da298",
+    "proj/src/rtc.c": "8b3074cf8aebf328c2a43695325af3ef2af2f05b7ca4117d9eb7cebce04457f5",
+    "proj/src/keyboard.c": "fad5c51863e8eaf2f8963f9c631dc5cd174105f74ec0417cadb933e3d0d3c92c",
+    "proj/src/mrtc.h": "c87a9897ecaae4095312dffb56ed1acb1c4e81e98b8f7ec791632c3c4087ab95",
+    "proj/src/Makefile": "0e7484ae4a810f64a3c56fec12b154b202a9935701fdeab0fc09cb58092f8f05",
+    "proj/src/graphics.c": "b595f1fde25e6a31b4daff162e0c8506adeeb2f0a673f5456a4d2a164b84872f",
+    "proj/src/collision.h": "1bdd800ff8f459c271493d5acde587c0990081ca4ac67f581b8d7769caad50ff",
+    "proj/src/vbe.h": "c1117c7b32ce0a6f53add8a015979415df1f9e241145f82eef8b799a00d04a74",
+    "proj/src/video_gr.h": "3e1682a1fcc9c252a203db135e9598d7a63f6f69696db61fbab37f80f1af5978",
+    "proj/src/proj.h": "7bbebb73d0cdded4ba8a0920624089ed7c4ca022d59e015d70b025484837f453",
+    "proj/src/i8042.h": "edf949c894fdfc0c27379a46737d057d883933ed6fc3672fd0073376c2a1e08a",
+    "proj/src/xpm.h": "44ada08925aaf0b93bb8f2185f033ac2c59238787eec430cb29f2cfdc6c80546",
+    "proj/src/entities.h": "01bc41d4a52ab5beee127d88227a37ba65869f3fdf805ba2130f96925d1bfdc0",
+    "proj/src/mouse.h": "c748de17f695dcd77caddedce2b0655f912aa87fabb7b4d53d6d3d19c06292f0",
+    "proj/src/timer.h": "8e4b6a11225118ae60ed5d139b03c5a794692b150066ffce545f1d2c074dd50c",
+    "proj/src/movement.c": "b8a4f274f490fab84aabb2734038c47f1dfce75d17ec03715c8b1f6d686db69b",
+    "proj/src/game.h": "25fb58ccafc1adc69665dc2b38701e8445cd2435b0402750982991a75420e42e",
+    "proj/src/utils.c": "e45836ec8e0005930bb199f954b588ae78b4b7d743194709c4955cbf41098a48",
+    "proj/src/interrupts.c": "1c6a9e1a000c80c53a6623e8f2311c9d250e9ed164d607b6fe428e4bfa171f7d",
+    "proj/src/keyboard.h": "c4cd3713e7cc4aa36e0ed41a6a26671cd81063ae49b762eaa643ed7557a69b2a",
+    "proj/src/rtc.h": "2a57c3c7ce4f17ff1a43748d346d35f2b6438dc666aab10b0c6e39d901507607",
+    "proj/src/minixforce.h": "36d821557d81ae48f6fee0737ff02c7d954cb9b0ee5e86987698959eeaa6b20b",
+    "proj/src/states.h": "a03110b21226375d048565c262c6f6a436a304487b50f3e686045902d3055752",
+    "proj/src/vbe.c": "89fe3cc200403af824d22689e75420d9e47cf2af8c9ed778b0f432dbece18b26",
+    "proj/src/video_gr.c": "fc42a133ddf55a0a77f46324daf64af0fd174070bd6b0a2b055e7730c38e3bee",
+    "proj/src/collision.c": "51256d2baad56f04b5ef4410757b10d094a21bda9a896b4a599f480a681f0ffb",
+    "proj/src/graphics.h": "f28d7b274d8f69c364eb694bf22f4a1dd812a3ce515f5867e1ba9fd50a99cb4a",
+    "proj/src/i8254.h": "ee9680cebc0ffa9db81508545f23088704ff3153c7427af8bb44852bbecde762",
+    "proj/src/xpm.c": "a3e8cbdcafa96bbf8320968045f07ca62fe2bcaede2bb49f1391524e5a1c34ed",
+    "proj/src/proj.c": "725cea7dcccf6f7bf2d8e404ba2afe778cf9733aa0da1a95bea2c8f61f766380"
+  },
+  "sourceChanges": [
+    {
+      "file": "proj/src/vbe.c",
+      "originalSha256": "89fe3cc200403af824d22689e75420d9e47cf2af8c9ed778b0f432dbece18b26",
+      "patchedSha256": "e0a4ea4f0ef2e3038b31c8b994dd9ce9096c8cdd6d596ea610a2a5928f468be7",
+      "reason": "Original VBE info allocator used sizeof(pointer) instead of the256-byte vbe_mode_info_t result; the BIOS query could overrun the allocation on original Minix. Allocate sizeof(*vmi_p). Actual owning vbe_get_info_mode allocation/BIOS fixture observed RED then GREEN and exact800x600x32 geometry. Original mode0x143 retained; missing runtime support was fixed separately in shared SDK using authoritative SeaBIOS mode table."
+    }
+  ],
+  "selection": "Pinned selected project with required sibling assets; generated docs, labs and OS/VCS/build metadata omitted.",
+  "controlsRationale": "Original Enter chooses Play, WASD moves soldier once per make then resets movement state; repeatKeys provides held normal typematic. Relative canvas swipes aim the crosshair, dedicated mouse-left Fire launches shots, Space release pauses/resumes, ESC ends the round. Actual originalarena/zombies, soldier motion, aimed yellow projectile, timer/score advancement and pause passed. No generic keyboard/joystick or unsupported arrow controls.",
+  "verification": {
+    "nativeBuild": true,
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "landscapeViewport": [
+      960,
+      500
+    ],
+    "portraitViewport": [
+      390,
+      844
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/b/evidence/Marantesss--feup-lcom",
+    "limits": "Short arena movement/aim/fire, approaching zombies, score/time and pause. No confirmed kill, full round or Android gameplay claim yet."
+  },
+  "excludedMetadata": {
+    "kinds": [
+      ".git",
+      ".svn",
+      ".DS_Store",
+      "__MACOSX"
+    ],
+    "reason": "OS and VCS metadata excluded from required source inventory."
+  },
+  "licenseFiles": [],
+  "licenseStatus": "No license file found in selected upstream root.",
+  "icon": {
+    "kind": "simple soldier/crosshair motif",
+    "source": "Original arena and soldier palette"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "397902a318e0ede50fd7d5c25aa1eb7cd14a676155308454948a01d7ac5116fb",
+      "kind": "launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "b336379665ff5f88d4749219750224ac9c328091a33ddeedb31121632154e1f8",
+      "kind": "actual browser aimed projectile and zombies"
+    }
+  ]
+}

@@ -42,5 +42,6 @@
     "assets": []
   },
   "description": "Slide beneath the fleet, dodge incoming fire and clear the alien formation.",
-  "preview": "../../../../../collections/arcade/previews/adriano-7-feup-lcom-727bed1b84da.png"
+  "preview": "../../../../../collections/arcade/previews/adriano-7-feup-lcom-727bed1b84da.png",
+  "archetype": "Space Invaders"
 }

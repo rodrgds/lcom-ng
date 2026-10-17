@@ -46,5 +46,6 @@
     "assets": []
   },
   "description": "Guide your growing snake around the garden without running into yourself.",
-  "preview": "../../../../../collections/arcade/previews/mariajvieira-feup-lcom-d95c409c5aa9.png"
+  "preview": "../../../../../collections/arcade/previews/mariajvieira-feup-lcom-d95c409c5aa9.png",
+  "archetype": "Snake"
 }

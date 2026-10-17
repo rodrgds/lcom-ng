@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "name": "Terraria Lite",
+  "description": "Mine blocks, gather materials and build a small world.",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "joystick": false,
+      "dpad": false,
+      "look": false,
+      "layout": "overlay",
+      "pointer": "move",
+      "toolbar": "top-right",
+      "pads": [
+        {
+          "side": "left",
+          "mode": "wasd",
+          "style": "dpad",
+          "axes": "horizontal"
+        }
+      ],
+      "actions": [
+        {
+          "label": "Use / Mine",
+          "mouseButton": "left",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Place",
+          "mouseButton": "right",
+          "position": "bottom-right"
+        },
+        {
+          "label": "Jump",
+          "key": "SPACE",
+          "position": "bottom-right"
+        }
+      ],
+      "tapDuration": 65
+    }
+  },
+  "build": {
+    "assetRoot": ".",
+    "assets": [
+      "src/assets"
+    ],
+    "pathAliases": {
+      "/home/lcom/labs/grupo_2leic05_6/proj/src/assets/Hotbar": "src/assets/HotBar",
+      "/home/lcom/labs/grupo_2leic05_6/proj": "."
+    }
+  },
+  "icon": "icon.png",
+  "preview": "preview.png"
+}

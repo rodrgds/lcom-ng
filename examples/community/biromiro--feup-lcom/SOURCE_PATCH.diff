@@ -1,0 +1,10 @@
+--- a/proj/src/game/hud.c
++++ b/proj/src/game/hud.c
+@@ -123,7 +123,6 @@
+ 
+ void free_xpm_mem(xpm_object* xpm){
+     free(xpm->map);
+-    free(xpm->ID);
+     free(xpm);
+ }
+ 

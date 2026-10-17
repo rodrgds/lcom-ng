@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "name": "Football Simulator",
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "layout": "overlay",
+      "keyboard": false,
+      "pointer": "move",
+      "touchClick": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "pads": [
+        {
+          "mode": "mouse",
+          "side": "right",
+          "style": "stick",
+          "sensitivity": 10
+        }
+      ],
+      "actions": [
+        {
+          "label": "Select",
+          "mouseButton": "left",
+          "position": "top-right"
+        }
+      ],
+      "quickKeys": []
+    }
+  },
+  "build": {
+    "sources": [
+      "TUI.c",
+      "Base.c",
+      "Jogo.c",
+      "main.c",
+      "video_txt.c",
+      "kbc.c",
+      "prospeaker.c"
+    ],
+    "cStandard": "gnu89",
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "preview.png",
+  "description": "Choose a formation, inspect squad ratings and simulate an original text-mode football match."
+}

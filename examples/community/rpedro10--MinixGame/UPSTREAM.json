@@ -1,0 +1,476 @@
+{
+  "repository": "https://github.com/rpedro10/MinixGame",
+  "revision": "684d731ef622e46decbe428498d1bed82c474fa7",
+  "createdAt": "2018-06-30T14:37:30Z",
+  "project": "LCOM/projeto/src",
+  "sourceHashes": {
+    "LCOM/Proj.Prop.odt": "f59076049f6af764806d0f8b71df9454640719a2edcdc4873c52c51744d28c44",
+    "LCOM/projeto/compile.sh": "94d4784b6ac42a172c45837588f0b0c8ff58a406db2d37a24c46dff7d4123e33",
+    "LCOM/projeto/conf/projeto": "d47817de13aa27a34a76e97f6450616e1c04826b53c3f1d0abb616091a7fa514",
+    "LCOM/projeto/install.sh": "62547d282d42a5e7af8ac64834e5b2af1e22c2e7614e083e242852e753e6291a",
+    "LCOM/projeto/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "LCOM/projeto/run.sh": "ad6e22b3617fc8c10fb8d2b49bd3eb92d0a5b5a7bf7c0afdfb2248e26207e8f0",
+    "LCOM/projeto/src/.depend": "29d8ad1625d7f2050045897cf15a5fc5e7546e23fbb9841b194a5e23a6955cf6",
+    "LCOM/projeto/src/Bitmap.c": "0506249ae1ddea83e11e17cddff157c556b890d595de716300c1854537a07bbc",
+    "LCOM/projeto/src/Bitmap.h": "84695d560a940044e8b7587b04222b99719926474a9f546d29a2c038ac8672be",
+    "LCOM/projeto/src/GameState.c": "ff2dae6a96c69cb537c3e7fe9cb3f1502fec696367f45ac7038e39d19e543a59",
+    "LCOM/projeto/src/GameState.h": "490d14c8aa26d2c8831ea3940d4ee757483754d90ea72d36cc7a66514bf20850",
+    "LCOM/projeto/src/MainMenu.c": "3f59dd1d8738f6bb27cc45d3edc923c2032ad89d7da42d36d5a6671d9c137f4b",
+    "LCOM/projeto/src/MainMenu.h": "a560deabfc301847522177913282bc322d92ad23a2a25d78c69da724e62e4e5a",
+    "LCOM/projeto/src/Makefile": "bfa48a7c085d5430fbe4fc859dcf3f30830b8bf0cb934da73b0a467fca3d072f",
+    "LCOM/projeto/src/Mario.c": "46b610d85cfaab2bdca049a11402f16fd2b08b629165ed566c97952ff0f1e1c4",
+    "LCOM/projeto/src/Mario.h": "b941e5d102a7229b34b9580f127c69dd706bf2239e00543e54a65adc00753c22",
+    "LCOM/projeto/src/Menu.c": "cf80b153cdfd4aae6ea8acf95bf85e78b14b0981c65ba013fe5cd7c462e4fcf7",
+    "LCOM/projeto/src/Menu.h": "f9babd081fbac0ca02655f731183f7977697b69442dbe1ce978411116fdd1a85",
+    "LCOM/projeto/src/Pipe.c": "eb5b0aa0bf79906feeaa6e302e9ef13d38692325ecfcb1ff0cb4d07d5b2a3d21",
+    "LCOM/projeto/src/Pipe.h": "323c7a05308b57f1c644802d8605da94c2f2136ae8a0e2e13017905842c3dae4",
+    "LCOM/projeto/src/RTC.c": "9dca04fa3be267c05fcdd4ace904169f6ff33fa98096afe7a9230f189fe73f42",
+    "LCOM/projeto/src/RTC.h": "be928164fdece306ea3f9ba51ccd94329ccf435c301b9898d70a7e8a0ecc3db5",
+    "LCOM/projeto/src/Score.c": "7fe094638788f52998cb99ea6b4563d0274c762a15495cbf75e9464dd3f03460",
+    "LCOM/projeto/src/Score.h": "f00625de6e0dbff61096f8480b26eeedeb7cb8fb8ca38de62b6b179e17df9f51",
+    "LCOM/projeto/src/Utilities.h": "9406c8324fe90b7482d257a008d67196aeb4e74b675e1489569afcabd2276a95",
+    "LCOM/projeto/src/i8254.h": "d61b1c93f04a9ae4646def5dab0e7d275c3e869c823fb63a81f7cc6a4b4fde79",
+    "LCOM/projeto/src/images/about.bmp": "9c2959dc10ba9a3e1ad68251efa25244618df11e4f0c786f5d33bf3c9a29c3ff",
+    "LCOM/projeto/src/images/exemplo.bmp": "205693f7242d81beb3fa5919f655ddb8cd9378f2b37e7cbc9fb6a588647187ec",
+    "LCOM/projeto/src/images/flappy_floor.bmp": "8d800d60ca0cfd14560f94c18ea75ffce1d5a6ab32cbd66ba3c605e32bea9f95",
+    "LCOM/projeto/src/images/flappy_fundo.bmp": "201708f9a0937f2604722966486a8c335f5ede448908d08162667853f2951cce",
+    "LCOM/projeto/src/images/game_over.bmp": "69f63c5c6fd842d7e595de34869910ef9fffac7288f45c9b313b602224cb5ebf",
+    "LCOM/projeto/src/images/high_scores.bmp": "bc46c9c106767bd3f9c44886fb9b2dcb863adcf5f9342dca9ca0dae095ad472d",
+    "LCOM/projeto/src/images/letters/0.bmp": "8ff1fc1f51b040820bb558b3a2c229c2d5b13dc9b9d53ed096c56dcc5ba48cd9",
+    "LCOM/projeto/src/images/letters/1.bmp": "237fea2d7420e1a2ee9a478f55285ab9e321c2706c6640077b474a3641fcd7b8",
+    "LCOM/projeto/src/images/letters/2.bmp": "a3e2adc47d5e4ffcefa02459db60353c28c18e2da6759b555ef11f780261f8bd",
+    "LCOM/projeto/src/images/letters/3.bmp": "749ed3d08b78c0f6360f61b2d7e566b19f84f090b400252e41daea99f5a0f614",
+    "LCOM/projeto/src/images/letters/4.bmp": "02529198c849083aac6dd6b0d299153b6f6c15eb4080b260a42e9d9e2a81b1b3",
+    "LCOM/projeto/src/images/letters/5.bmp": "74a921847ce1904c71ee99471ad7b98811c2e469c5272e5a585b369ee4876a88",
+    "LCOM/projeto/src/images/letters/6.bmp": "ccf8891a8986b0c857af1d603b06eb2f2b550a9cedd86a55a8ed71bee3dc648d",
+    "LCOM/projeto/src/images/letters/7.bmp": "fa46c5066da352a062eef0a1f27edc8ad04c340f1c95f2e94622642cecca5f12",
+    "LCOM/projeto/src/images/letters/8.bmp": "c6b02378976eb7a5a281844f6727640b9cd6bcb36f97dba6345eff3651995b9c",
+    "LCOM/projeto/src/images/letters/9.bmp": "2163efc0e1f2698e7f9e7b66cdd3332c995dd2dd130a84b590b2de4bf2d20a90",
+    "LCOM/projeto/src/images/letters/A.bmp": "63a63ae153fd8eb4e1208cd4250c87f2e217223ab93fba8f8aa79b73eb03725a",
+    "LCOM/projeto/src/images/letters/B.bmp": "39e9eafc5591b1021605ac918d8f68e5d3d9d5669d5de2ce4224a9e1ac77ceac",
+    "LCOM/projeto/src/images/letters/C.bmp": "1c30b7f1aa87216dd355d98485445458f5c79539c56741f0bab99d8b68c3afb3",
+    "LCOM/projeto/src/images/letters/D.bmp": "b4ec83c8d4bab4f4495f7eff3a1caf9f5fdeb1bb98e8531d8c78ce4b95d61b7e",
+    "LCOM/projeto/src/images/letters/E.bmp": "9598e732be49f8903b8471ac9486cb48e90fa96aecbc6d0355c075c3706da156",
+    "LCOM/projeto/src/images/letters/F.bmp": "8249cae100d6558f1ea2d16ec5b7f66fd059c495c5b68caf90ad087ee8ba2253",
+    "LCOM/projeto/src/images/letters/G.bmp": "9b6b22447bed8267128e61c0f71ec5e271642ea37bee4a9abfe4cf6046fc0427",
+    "LCOM/projeto/src/images/letters/H.bmp": "a06f693c1cdd223989684580298ada97f71b4ce504a3e03e2f79e71131bdbf78",
+    "LCOM/projeto/src/images/letters/I.bmp": "0eafe7078bd1d48dcde4170b8ce75976325689d67ff04b18f9b3c6c30de9200a",
+    "LCOM/projeto/src/images/letters/J.bmp": "ac1e8e01654b1f5736b9e7899e3be847c998952c31e34b67570e89f80252dd30",
+    "LCOM/projeto/src/images/letters/K.bmp": "8075018cdf74926c6716cfd068c2184fd312b8e9510d11da12ed5b10200e0771",
+    "LCOM/projeto/src/images/letters/L.bmp": "de48ff49c5e62da82393cf8b76bdcc313d48282a53a44d01e07e0e86852b477e",
+    "LCOM/projeto/src/images/letters/M.bmp": "5e1ca2e36cf5b59b62da10c83ebe87f29dc89f7f9a3f98e065b7989edd0bc0a0",
+    "LCOM/projeto/src/images/letters/N.bmp": "f0c913f59a92b2d51698d75b09d303166b8b6dafcbeb788aad489eb40448a1c9",
+    "LCOM/projeto/src/images/letters/O.bmp": "7f949451389fb243c0b09299f4b8f8523ec2ab24120ce2c4dc98f51f75e260e7",
+    "LCOM/projeto/src/images/letters/P.bmp": "5e2d85f07703e7631dcfb05a8a4fa8a3c923b6be768e75ca04800ed2ec0d5e8d",
+    "LCOM/projeto/src/images/letters/Q.bmp": "25b6cc9d8c366dfc200a42300de0a4cf5040065da779f41f5c2fcf68ed7ba537",
+    "LCOM/projeto/src/images/letters/R.bmp": "e913e0becafb87b706ad786c9f6df5e9a162cc1abceed97a1925d0f23911fa09",
+    "LCOM/projeto/src/images/letters/S.bmp": "350936aec653ad93518307a3b1c0d55bc5643d1b7141d869e19fa9143c249fb1",
+    "LCOM/projeto/src/images/letters/T.bmp": "fc60f69046e6fb6a4966ef78168a573a7822cd020044f1ae69e330b2130e1ec3",
+    "LCOM/projeto/src/images/letters/U.bmp": "f6ab61c224334ca245680e74a40bde3daba0e889aa40670531634e792e9e4e3e",
+    "LCOM/projeto/src/images/letters/V.bmp": "f9f9aa4155b35db63f3806e678d85b83547028bc77444331d678aae5b079901f",
+    "LCOM/projeto/src/images/letters/W.bmp": "b087a4a41fcc003d815414aac9c7661d24dd56a1acd3a207f01a303a5eb1f426",
+    "LCOM/projeto/src/images/letters/X.bmp": "81c42d314cfe12f4c87d43c47aa8d845cb0b9cc720787ccc27481153aed01b02",
+    "LCOM/projeto/src/images/letters/Y.bmp": "0bc2095085be3c0ae94f1ecd2e59394009b473b98edb085d88b7f1b237450d92",
+    "LCOM/projeto/src/images/letters/Z.bmp": "5a7d9e5c62141131cefebd897942a9a50373c03523ad96c5f6c45b02b44e95b0",
+    "LCOM/projeto/src/images/letters/point.bmp": "e6b30460e3591dc83529604eb045760cf15bb16b79f14286f6b1af782cd0e87d",
+    "LCOM/projeto/src/images/letters/slash.bmp": "a19964fe6622a941d7bbaa98051e5a275dfd0cf9e3e71d598586d982ee0eb495",
+    "LCOM/projeto/src/images/mario.bmp": "9c216f63cfa81af1d691f6ce05d26086260e555db99b79412eb70f31027e0633",
+    "LCOM/projeto/src/images/mario3.bmp": "5e14c83b8b3df7fb662c06d0ebc4067a831c03027713f148870e464d51e0e4ac",
+    "LCOM/projeto/src/images/mario_background.bmp": "384b714d7472cafd7364e81c29c558af16fc9f2429578d193c321b217be00168",
+    "LCOM/projeto/src/images/menu.bmp": "3b797070fef20c5ed08de48c506f440a1e1d85dd4b3b1e2b25d8aa6d691378f3",
+    "LCOM/projeto/src/images/numbers/0.bmp": "6801117bbf14302b1e9729018a13b8192779deb7a7eca9585d8d092e62f4b300",
+    "LCOM/projeto/src/images/numbers/1.bmp": "0ac71eeb5046354bb84d49a699babaabacf2995f73ab6a18a9c4e5247b474738",
+    "LCOM/projeto/src/images/numbers/2.bmp": "9a98403c00d91008da95a4490728c1e7e2a3c76fc65ae380fc2dcd070b2f732c",
+    "LCOM/projeto/src/images/numbers/3.bmp": "aa36327c2ea4e63d6e4990eb453d87aef2357a4b3c523f541e819cbe833c75ac",
+    "LCOM/projeto/src/images/numbers/4.bmp": "f062cd4ba3bd52f592f8864cc48d1802501a86c75c5519e02957902a25fc1028",
+    "LCOM/projeto/src/images/numbers/5.bmp": "77bb0cb7adb1a8d21893380b00e9a52e9cf288950a2810d3c41e2a51bd3b574d",
+    "LCOM/projeto/src/images/numbers/6.bmp": "4f4960d52541f0d991f7bd3fb158cf8bf80b0ee3fda01f598c0a58b6cada67c1",
+    "LCOM/projeto/src/images/numbers/7.bmp": "c0327a6e0d5a66ca26a0a20ee4ea051736e93cd6d4013b4b9f9dfdbfea354c06",
+    "LCOM/projeto/src/images/numbers/8.bmp": "a91b80f077a11094222e814acd8bf19cae92519a4f6f5df1aebb89a1dc43bbd6",
+    "LCOM/projeto/src/images/numbers/9.bmp": "06d6047ae8564d86d3ce8e5388e17cc413697125a522ba83c229f90a9f5d7ab4",
+    "LCOM/projeto/src/images/pipe.bmp": "2ac73adb1073b7eedb08ddbf84bc55d99f3ee2c07804ac58b44d782279a6538b",
+    "LCOM/projeto/src/images/pointer.bmp": "1182ddd8e884234ef8e2e3b99a8aa641b3e318f8496ba4340bbbad3c5a1e5dd6",
+    "LCOM/projeto/src/images/test_fundo.bmp": "69428fa112728e30d978d530af97f650779584470506294447a5bb18da01cea0",
+    "LCOM/projeto/src/images/universe.bmp": "32b7ecfe4d6f59af8f5146120cf5d7ee54c919866ea47416f36fb01e8adf0d3a",
+    "LCOM/projeto/src/kbd.c": "d4a493e91462b2992675de741c97b91d5e96d1f390eab64bcd22c9887302868c",
+    "LCOM/projeto/src/kbd.h": "73e58b61cf9fdd41c6a3c2ec1c66660ac86e11727f1abc2acdd2e459b08507e7",
+    "LCOM/projeto/src/lmlib.h": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+    "LCOM/projeto/src/main.c": "249742c863eb566c7b001e3b1d88c8cb22e4a56dab3619d421967e05139c8407",
+    "LCOM/projeto/src/mouse.c": "1a79c8ce3dae48b8599b68a94eacc72dfceb533a469e68be9e6d3932f04df9b5",
+    "LCOM/projeto/src/mouse.h": "6f48662315f0d47fee382f3619d12afcb4e8b7a403241432bbfad20278c5604d",
+    "LCOM/projeto/src/timer.c": "a64f8a8243eb0746f942f72b83722702e3e1614e68ce5dc13065d18a1f8d6a97",
+    "LCOM/projeto/src/timer.h": "31f6cf4130fc3a6cfccfe9a4560c35335fd5676ea131505439ce357edf99212f",
+    "LCOM/projeto/src/vbe.c": "ae126a19265447ceaca8527ada5d493f39249afe15cd1cbdab9bcb53f0ff5ff2",
+    "LCOM/projeto/src/vbe.h": "67e0c70b43e08ad266c37b112acd21e464f50c0fef2a0736c5c688a5dc5a1990",
+    "LCOM/projeto/src/video_gr.c": "843f5973cc518724080ec6a17d14baf9682c1ceb58c378727a5e640372c76c71",
+    "LCOM/projeto/src/video_gr.h": "e4872a17601a6eb8a714d2e528d6330f5b9a9cbdb7c5aed26e1d80cb0dfc0abf",
+    "README.md": "2d8c33cf6807e168ce6f3b8e48d6083d9b90e79a4480df177bbb808f42b300aa"
+  },
+  "selection": "Pinned original required C/header/Makefile/art data plus root README. Narrow source defects are recorded separately; original game art unchanged.",
+  "omissions": [
+    {
+      "file": "LCOM/projeto/projeto",
+      "sha256": "c6571f6e11a3cb84f0ee142fcfd1020b133abe5921da8575edf56888146929ce",
+      "reason": "Pinned compiled Minix binary, not source"
+    },
+    {
+      "file": "LCOM/projeto/src/Bitmap.d",
+      "sha256": "fab90ac97896deae30c7565a28639d9907b32d4000994d69bb539b0ece7df036",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto/src/GameState.d",
+      "sha256": "8bf895dc01a3ab783b0c68692e01ba53e862ece1389896aed8396a9d13d44338",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto/src/Mario.d",
+      "sha256": "2f34e06449e7b2330922b7fb9842c9e495f4f15309bd01c7cf0c37d6c26f2aa3",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto/src/Menu.d",
+      "sha256": "c7cd80ed06dacf56e70b6aaae7a9cc63d767aa36f8604cc0e6606e7597b42d1f",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto/src/Pipe.d",
+      "sha256": "793c6324cf295c22d46a98f3dd63fceffad4fcff0dafbea150d8c730df6a477f",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto/src/RTC.d",
+      "sha256": "5a54079ce1d2698c4b619f36f4953be159f33e4ab62bb03dcee953ea7085bf48",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto/src/Score.d",
+      "sha256": "6b1b516168008789e3751fa79143e7cab0b6018171971223f326521b727c2a8b",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto/src/kbd.d",
+      "sha256": "956209ef1fcf66af64d1035810f482be2e6c8d6db96f9a25966f218129560401",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto/src/main.d",
+      "sha256": "3dbc54aaab1e3dfeacba340391fff31482952d27fd149bcb7b71d185a5155028",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto/src/mouse.d",
+      "sha256": "02d5a23268a37f9d4ac8ab7c14c3578c58f3b8e99473c79e841fe1b8c0a52356",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto/src/timer.d",
+      "sha256": "f62111f58cbb95e41c0d01480c60fb30361a89291e79e1fcf7de1367e677e9a7",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto/src/vbe.d",
+      "sha256": "06cf070e45b386a63b0ad83bca20ae53ae72963ad46a109465d1b96210d1d17a",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto/src/video_gr.d",
+      "sha256": "de69b58210b6d5e3469c88b703ed5f3d82653a59d601ce5243f215d23dd1f682",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto2/compile.sh",
+      "sha256": "94d4784b6ac42a172c45837588f0b0c8ff58a406db2d37a24c46dff7d4123e33",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/conf/projeto",
+      "sha256": "ab10f8cff6c07052cd068b01ebcc64e4019b88487bac1bf6584cc1eb6e0c8df3",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/install.sh",
+      "sha256": "81a969d80e2f7ebae8514cd37a842f14838d3490178e1ed746e9a91a631a24c7",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/lmlib.h",
+      "sha256": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/projeto",
+      "sha256": "5bdb98abb383b9143a09391ed8203b2518ad33d6f2f4577820db84bc4cb6a3a9",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/run.sh",
+      "sha256": "ad6e22b3617fc8c10fb8d2b49bd3eb92d0a5b5a7bf7c0afdfb2248e26207e8f0",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/.depend",
+      "sha256": "47a9097e38f3cfc86fecd61fc47f736407b99e0783c3168b12967ea9fffcaba6",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/Bitmap.c",
+      "sha256": "3c34e963cbff52632237a350dbd51b45a713eaedd12e7e000a3aca667d98d099",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/Bitmap.d",
+      "sha256": "fab90ac97896deae30c7565a28639d9907b32d4000994d69bb539b0ece7df036",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto2/src/Bitmap.h",
+      "sha256": "c73991c6c7b5c8d4fa4a04378ce4731542625359f769d55e82ab46977b4cd315",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/Character.c",
+      "sha256": "4cafc1184ce6686c148e7abf4df3c3ed40e381f248e80ca17c9536e48290b1c5",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/Character.h",
+      "sha256": "8b6eb6e4ec063ec8e5e04257cd891f3086f2bce96085140e7ea32edcb35e779d",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/Game.c",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/Game.h",
+      "sha256": "6bcdb0f80437d2538b3b1bde948626fa7fd1d8baa0dff309610ffc124f70ebd8",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/GameState.c",
+      "sha256": "d9426e1e6f403dbb876b333af4e280a8689600004c5a1ea64ca9c4f9a99f2033",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/GameState.d",
+      "sha256": "b69dc0b978013ee64552dd6c2acc3d483192a883d754e64e7027cbfad766ffd8",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto2/src/GameState.h",
+      "sha256": "48632191c9e4f7041f19f572335f459f2100e77ba536ef993c2721158c9d2b9a",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/MainMenu.c",
+      "sha256": "3f59dd1d8738f6bb27cc45d3edc923c2032ad89d7da42d36d5a6671d9c137f4b",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/MainMenu.h",
+      "sha256": "a560deabfc301847522177913282bc322d92ad23a2a25d78c69da724e62e4e5a",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/Makefile",
+      "sha256": "c853d032e68d62a1416361d26aeb90e11318e29313832f6b5e4f70be0dc4a8cb",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/Mario.c",
+      "sha256": "bb3cf16499c24491a5869d5d055bb9623ebee54eff03d02b1de89bfec9816bc9",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/Mario.d",
+      "sha256": "fc5d038a770c08af3ea494c34c7bcc880b3654a777096a4be58fe3dfe70536f8",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto2/src/Mario.h",
+      "sha256": "6bcdb0f80437d2538b3b1bde948626fa7fd1d8baa0dff309610ffc124f70ebd8",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/Pipe.c",
+      "sha256": "ea8b31898b3534b15656e0154c6e514cdea45ef4a55b0fe27f7e93ac2dba2326",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/Pipe.h",
+      "sha256": "8f2c279c4119c1b23a5249127a45c4c51b467b0e1722061d922cfdc31701c166",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/Utilities.h",
+      "sha256": "50e1fb2023d2aa6cea2c7b7bf81e5a59fa55e5beedd03c0ec49155cd3269460a",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/i8254.h",
+      "sha256": "40031501d5d1e9ab4b12da129e1b81a0bf53746f5759707b6502eeef6bbddd99",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/images/Game.c",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/images/flappy_floor.bmp",
+      "sha256": "8d800d60ca0cfd14560f94c18ea75ffce1d5a6ab32cbd66ba3c605e32bea9f95",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/images/flappy_fundo.bmp",
+      "sha256": "201708f9a0937f2604722966486a8c335f5ede448908d08162667853f2951cce",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/images/mario.bmp",
+      "sha256": "a273a412fcd0629b4c1ce252bf2ef42c222365ec931b23aaf5ae841677eece50",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/images/mario3.bmp",
+      "sha256": "5e14c83b8b3df7fb662c06d0ebc4067a831c03027713f148870e464d51e0e4ac",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/images/test_fundo.bmp",
+      "sha256": "69428fa112728e30d978d530af97f650779584470506294447a5bb18da01cea0",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/images/universe.bmp",
+      "sha256": "32b7ecfe4d6f59af8f5146120cf5d7ee54c919866ea47416f36fb01e8adf0d3a",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/kbd.c",
+      "sha256": "26108b55a1bb23498a1aa4cf6948dd8b113fef71ae2515fc8dce001df36a701f",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/kbd.d",
+      "sha256": "956209ef1fcf66af64d1035810f482be2e6c8d6db96f9a25966f218129560401",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto2/src/kbd.h",
+      "sha256": "feaa76c8561a07efdd43b0df0b1f220919f6912294b4460b7372e8c26f3f2978",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/lmlib.h",
+      "sha256": "8c62cdf1821e19903c66db7b1e0d15b719163267fcb7b4072b5e565620b29449",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/main.c",
+      "sha256": "0514b41526f9f8bae3e13acbf9cbf3ea3c9c0a1fb88e19daf04d7aa6993d3c5e",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/main.d",
+      "sha256": "6fc2e424614e3a11969026210da1316c707dbb378d608fe574f21e21104f5032",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto2/src/mouse.c",
+      "sha256": "f595046d377aa9057d1fb1e942db81a97729cb5fafe3c8fabb0fb5f490dcfe69",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/mouse.h",
+      "sha256": "b793f8e4291e805633e9164db82081fab280366e29e52cb081e96da14273aa63",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/timer.c",
+      "sha256": "9fac25ae452ee4a05a953850394f0e4b3cab4f4851b63f60358ab3a8faf2f22b",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/timer.d",
+      "sha256": "f62111f58cbb95e41c0d01480c60fb30361a89291e79e1fcf7de1367e677e9a7",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto2/src/timer.h",
+      "sha256": "6cf36dacd68fb52421a4e60933c83502f2f4da5fff96d7446f94d8526892f805",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/vbe.c",
+      "sha256": "ae126a19265447ceaca8527ada5d493f39249afe15cd1cbdab9bcb53f0ff5ff2",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/vbe.d",
+      "sha256": "06cf070e45b386a63b0ad83bca20ae53ae72963ad46a109465d1b96210d1d17a",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto2/src/vbe.h",
+      "sha256": "67e0c70b43e08ad266c37b112acd21e464f50c0fef2a0736c5c688a5dc5a1990",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/video_gr.c",
+      "sha256": "3c53f4d78ff3940925f128ad1b316ca83ab90cf92a27862b8b5a99eedbdc8735",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    },
+    {
+      "file": "LCOM/projeto2/src/video_gr.d",
+      "sha256": "de69b58210b6d5e3469c88b703ed5f3d82653a59d601ce5243f215d23dd1f682",
+      "reason": "Generated build dependency file"
+    },
+    {
+      "file": "LCOM/projeto2/src/video_gr.h",
+      "sha256": "05c488bcfb0aa8ffac8510b18605a8cacb28b316502adbe3ccb8e683d0b85c4e",
+      "reason": "Sibling version outside selected playable project; not counted as a second game"
+    }
+  ],
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "LCOM/projeto/src/main.c",
+          "originalSha256": "249742c863eb566c7b001e3b1d88c8cb22e4a56dab3619d421967e05139c8407",
+          "patchedSha256": "01d7698bc8e56c8cf461eb857354790d33ea643e278cd634af39b57c7517dd80",
+          "reason": "Restore missing final closing brace in original main, which otherwise fails actualcompiler syntax check."
+        }
+      ]
+    }
+  ],
+  "icon": {
+    "kind": "Original sprite on flat matching panel",
+    "source": "LCOM/projeto/src/images/mario.bmp"
+  },
+  "derivedAssets": [
+    {
+      "path": "LCOM/projeto/src/icon.png",
+      "sha256": "ce70f8ff5ea466ffb6b7deeefd93100beb08b4150489fc0bb1ade0f9231f10fc",
+      "kind": "source-derived launcher icon"
+    },
+    {
+      "path": "LCOM/projeto/src/preview.png",
+      "sha256": "dfc8abacce77ce2258a42fb0c823e699dbc042efd976407e6e52ee76aacd22e6",
+      "kind": "actual current-source gameplay preview"
+    }
+  ],
+  "verification": {
+    "web": "Actual canvas touch enters StartGame; held right arrow moves Mario fromx20tox70; Jump makes him airborne; original pipes scroll and original score001 is visible. Portrait controls and keyboard stay outside the game.",
+    "limitations": [
+      "No completed run, saved score entry or high-score reopen claimed.",
+      "Sibling projeto2 is an upstream sibling version and is not counted as a second game."
+    ],
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/nas-native-case/a141-qualify-eight/handoffs/mario-web-v2/evidence",
+    "native": "Original/current source host link and production-fortified ARM64 source compilation pass; ROOT Android gameplay pending.",
+    "wasmSha256": "16f683482efabd09e75718f897f3b27359c3cb768e1cd03ee2388af18365795b"
+  }
+}

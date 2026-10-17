@@ -51,5 +51,6 @@
     }
   },
   "description": "Turn at the right moment, collect food and keep your growing snake alive.",
-  "preview": "../../../../../collections/arcade/previews/forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4.png"
+  "preview": "../../../../../collections/arcade/previews/forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4.png",
+  "archetype": "Snake"
 }

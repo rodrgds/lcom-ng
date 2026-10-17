@@ -1,0 +1,129 @@
+Money pointer: 0x100ebd610
+Array size before size comparsion: 5
+Array size after size comparsion: 5
+Updating digit 0
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite
+Updating digit 1
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite
+Updating digit 2
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite
+Updating digit 3
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite
+Updating digit 4
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite
+Money pointer: 0x100eb0ae0
+Array size before size comparsion: 3
+Array size after size comparsion: 3
+Updating digit 0
+Got the gameobject
+Got the sprite with value 2
+Updated the sprite
+Updating digit 1
+Got the gameobject
+Got the sprite with value 0
+Updated the sprite
+Updating digit 2
+Got the gameobject
+Got the sprite with value 0
+Updated the sprite
+Money pointer: 0x100eb0a80
+Array size before size comparsion: 3
+Array size after size comparsion: 3
+Updating digit 0
+Got the gameobject
+Got the sprite with value 4
+Updated the sprite
+Updating digit 1
+Got the gameobject
+Got the sprite with value 0
+Updated the sprite
+Updating digit 2
+Got the gameobject
+Got the sprite with value 0
+Updated the sprite
+Money pointer: 0x100eb0ba0
+Array size before size comparsion: 3
+Array size after size comparsion: 3
+Updating digit 0
+Got the gameobject
+Got the sprite with value 6
+Updated the sprite
+Updating digit 1
+Got the gameobject
+Got the sprite with value 0
+Updated the sprite
+Updating digit 2
+Got the gameobject
+Got the sprite with value 0
+Updated the sprite
+Money pointer: 0x100ebd610
+Array size before size comparsion: 5
+Array size after size comparsion: 5
+Updating digit 0
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite
+Updating digit 1
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite
+Updating digit 2
+Got the gameobject
+Got the sprite with value 7
+Updated the sprite
+Updating digit 3
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite
+Updating digit 4
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite
+Destrying Money Array
+Before destroying 0 member
+Ammount saved in this member: 200
+Removed member 0 from array.
+Destroyed member 0 from array.
+Before destroying 1 member
+Ammount saved in this member: 400
+Removed member 1 from array.
+Destroyed member 1 from array.
+Before destroying 2 member
+Ammount saved in this member: 600
+Removed member 2 from array.
+Destroyed member 2 from array.
+Money amount: 99799
+Money amount: 99799
+Money pointer: 0x100ebd610
+Array size before size comparsion: 5
+Array size after size comparsion: 5
+Updating digit 0
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite
+Updating digit 1
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite
+Updating digit 2
+Got the gameobject
+Got the sprite with value 7
+Updated the sprite
+Updating digit 3
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite
+Updating digit 4
+Got the gameobject
+Got the sprite with value 9
+Updated the sprite

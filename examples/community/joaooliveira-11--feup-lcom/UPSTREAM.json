@@ -1,0 +1,134 @@
+{
+  "repository": "https://github.com/joaooliveira-11/feup-lcom",
+  "revision": "a85d28cfdb6b7260b081a6fad1a28eede1364f84",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "5e0f244749f0435c2a6bce8697a17c18daa6e3be82cb7a7f586ecf7a4d3b82cf",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gdbinit": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "proj/src/Makefile": "5c8bbb2fa3aa44c1b070d2c1f9902981bf77c66d253cbf0671fa0f732bd7f272",
+    "proj/src/devices/graphics/graphics.c": "941dbb576cec491e450e249a2dae342555c9a6861e35ac89f76e0bef80319c07",
+    "proj/src/devices/graphics/graphics.h": "b463acbc132ab7d8bd44e2a3090be0dd8bbc353567e14cd226742b710e3b5e68",
+    "proj/src/devices/keyboard/keyboard.c": "71112903e366f4c757c32a91ca2ac9211745dabdbf9bf449316cc507939bc93f",
+    "proj/src/devices/keyboard/keyboard.h": "d2ffd42c09b671e49c0b60e71a70b716268a79d67256a1691514ae5b8831247e",
+    "proj/src/devices/mouse/mouse.c": "585077dc1d4a7dde7b7b7ac7980a5aca8d750a2f5e353b094a1cecf51f5bd4b0",
+    "proj/src/devices/mouse/mouse.h": "1ba8427f3d890f012df243dc4b45df2c58ae96b01b216dfb3842c547c7205ebf",
+    "proj/src/devices/rtc/rtc.c": "3f89a41a723fe6f5357b9a3c879c22d06157dc9305a1df225f7c614682f2a961",
+    "proj/src/devices/rtc/rtc.h": "fa0b0bce8a88f9cca11fef13acce45d310730c2e4e5cab8868300b8952a15b75",
+    "proj/src/devices/timer/timer.c": "3502ce144e8a7149600a21163e01be50c3db858f41e4a27bffa66968d05f124f",
+    "proj/src/devices/timer/timer.h": "3b42f3ae61c33ef1e7abf76b8858ab572876074fa89277578d2e6fb7dc42c053",
+    "proj/src/devices/util/KBC.c": "1a64ce94c7a1c193776021e532f01261007b88230cc8a206ba62cfe80a79ec4e",
+    "proj/src/devices/util/KBC.h": "71944d06ba57ce048dc5b341b155ad15fe4da5d31d2cf2f513e0087f130f312f",
+    "proj/src/devices/utils.c": "b1c25b997a3b7426f8edac4a96c9df36df156b6f81d61ae457a0e9a69c630ad6",
+    "proj/src/game/allocations_manager/allocations_manager.c": "ea8a79a1958f825d2220944db46ca2ffc76c6ebc98cf801a7386a50d1e04c8ca",
+    "proj/src/game/allocations_manager/allocations_manager.h": "668ddc8bcd47743241b6cdc32bac9dc3ebac5ac04b5f9c0310148fcffcd72e76",
+    "proj/src/game/context.h": "51288c6a20c6c3f0d61d7fa70f85b8b86ca8986de3f0b829bc544f10aaf2d93a",
+    "proj/src/game/draw/draw.c": "e35001ec6a5a75959b6841862e78d3ceb71439ed6f63ae6a88cc26f016cac2ef",
+    "proj/src/game/draw/draw.h": "fe2c4a81f644bdb5f143ec170ca1f0941593c20c60457c54f1ace3edeffd7e50",
+    "proj/src/game/draw/map.txt": "613f47d25176afa6955421f3c54ef3e4571fb0859842596c1bda555a4fc3913f",
+    "proj/src/game/elements/elements.c": "56295c3ec7820ccdb5ba375f7be3ad4016630d14d80b18651866df9cbdf5e23d",
+    "proj/src/game/elements/elements.h": "d335eb1cd52843eecc5edb247abddce6814b70e5e985f7a925ab644d01bfdc35",
+    "proj/src/game/elements/sprite/sprite.c": "ae4d09d1bf27b314395c8172518f91e08e54f903dec2a1e43968804c0d40bc45",
+    "proj/src/game/elements/sprite/sprite.h": "092aa20061361dc094db24ec0b443e0e1f9429d20460f532dfd1c5869455d765",
+    "proj/src/game/elements/xpms/buttons/button_back.xpm": "aead6b5ec431453c504eeea169a81a632edf03b02c437e8ff41fe857600c8142",
+    "proj/src/game/elements/xpms/buttons/button_inst.xpm": "8994219c7e83c4aa30223f81154f6b411092ecd131329158c1ba00515b12f35c",
+    "proj/src/game/elements/xpms/buttons/button_mainMenu.xpm": "85188c981682b42ae5b9e13af6c9e0078bf8a2fa886246523bdc77d25f875d61",
+    "proj/src/game/elements/xpms/buttons/button_multi.xpm": "63708eb909789f20e8f56f4324f576d518841763f69b8bf0b18e9580a91dc87d",
+    "proj/src/game/elements/xpms/buttons/button_play.xpm": "585a9c442fd94604b49b459586c4b5f4b1891c9e426b0c0a70bb0cd0e30bda77",
+    "proj/src/game/elements/xpms/buttons/button_quit.xpm": "59af8eff1bfbe17e4e544565b935be06851523f5bb1017d4bc23d70f9567783f",
+    "proj/src/game/elements/xpms/game_elements/barrier.xpm": "763633a1cccb43dc39dde5a8535ffba2358bbfc16ee13f1a5dede5e98312b1df",
+    "proj/src/game/elements/xpms/game_elements/doors.xpm": "0beae34d466ea42400a5a5da630547d014952107f3d21b42ce06720c0aba26e6",
+    "proj/src/game/elements/xpms/game_elements/fire.xpm": "f50faa550ef0699012b594cfaa8a24e40659760935a6e4c940cdc71e2abe477e",
+    "proj/src/game/elements/xpms/game_elements/ice.xpm": "2780ac30b440dbf45d1e9cb823d3f1aebf9d00f544bfadc09bd085c2b1a2b28b",
+    "proj/src/game/elements/xpms/game_elements/lever.xpm": "031c28cff65026e2cba8e2970b3a8a3136efeb9750441bc216a47f2ec96b51a8",
+    "proj/src/game/elements/xpms/game_elements/lever_left.xpm": "113ab986afad468e734dfb4767d4b09a28675572d376af30d34721f28f7b8013",
+    "proj/src/game/elements/xpms/game_elements/lever_right.xpm": "434b3d67036c40c3434a7c0ad28cae9cfe37bbfc3e571d2f0d320320dcf400e4",
+    "proj/src/game/elements/xpms/game_elements/mouse.xpm": "911d14fe14f16534a59aee0572b23cc7080ff49d770e54418e07c8c09c480840",
+    "proj/src/game/elements/xpms/game_elements/wall.xpm": "afe6a36738026588c0e9db882344909029811d98ffb7ecf1066de6cb7ca00648",
+    "proj/src/game/elements/xpms/numbers/number0.xpm": "3250d84de23218b65fc5a089d50390d71c757048f576d58572bdb9087390e746",
+    "proj/src/game/elements/xpms/numbers/number1.xpm": "49e518d063b130122d833f427a1709af74bf278185f66c73962a0b18b326c4d2",
+    "proj/src/game/elements/xpms/numbers/number2.xpm": "18dd9549ea711e9b970bb0caddae8693f8d875e8483cf55a26681d8e097d4eda",
+    "proj/src/game/elements/xpms/numbers/number3.xpm": "43314ce46f87cd5c334d5c21269dc5086302e46f2fc57baaebae623c19f22bad",
+    "proj/src/game/elements/xpms/numbers/number4.xpm": "a55703b65b289de32020e3c64cf35c47b48865babf757b5d9649a7186d45de12",
+    "proj/src/game/elements/xpms/numbers/number5.xpm": "ed6d600bad4ff6c4e43355d0b580924af7f8291ffbebbcab49aad30c843fc057",
+    "proj/src/game/elements/xpms/numbers/number6.xpm": "0ca37bf72383b972fe86422da254f24669ac6aa3d036a222846ab84673e79f01",
+    "proj/src/game/elements/xpms/numbers/number7.xpm": "5767019ed997f090ae7c983ec203188eb2f9dd0bb5fa8888f95572daaf1cda47",
+    "proj/src/game/elements/xpms/numbers/number8.xpm": "b4b20e911d65ffb297c87c78422f0c7425107863ffb886fa261dba9e535e5c31",
+    "proj/src/game/elements/xpms/numbers/number9.xpm": "ce60537459f201bbb764796d2f508e89f3302013d012df794a412ea6eee0fc23",
+    "proj/src/game/elements/xpms/players/fireboy.xpm": "316a0b2a6da56767895b677bbcc52768ec21d7ea2eed0f2a5452f12bd5e36124",
+    "proj/src/game/elements/xpms/players/watergirl.xpm": "4962222aed4902ed5c14fcdda74c646a71235b9cbd58f5af844c701ecaca4945",
+    "proj/src/game/elements/xpms/screens/background_final.xpm": "68f9fd0d3fc9a83809b8200dc5ee56daaf3ed505d790699eba6d29126c6c9c3d",
+    "proj/src/game/elements/xpms/screens/game_backgroung.xpm": "1a85c14c9c32f02423849f50511c7912ca32f04258d961d786803d08e1c431f3",
+    "proj/src/game/elements/xpms/screens/instructions.xpm": "fb9861659d8ae5c1f2b9dd5cccb2d01253333110aba51ff2b33b21b4fb529fa9",
+    "proj/src/game/elements/xpms/screens/lostMenu.xpm": "23280f033024d4ed1ab104375ebc274c965b4cb0ab9c6ae9ed0cde915a9386a6",
+    "proj/src/game/elements/xpms/screens/wonMenu.xpm": "117c9256f6c191274f79f5916432e2cc85d987af66a2e018e36a42c74b60d831",
+    "proj/src/game/game.c": "f5fef112f3282097354937bb0998364fac9cc8ea841ccf8ecfb83bc423e77f78",
+    "proj/src/game/game.h": "3564674aa7f441c4920fc307936b28ecc5f5d19431c30a88ea3d984040766999",
+    "proj/src/game/interrupts_actions/interrupts.c": "051acebc12ae97f88cde6e7702568c11e189c254aa6def54b7562735889e97a5",
+    "proj/src/game/interrupts_actions/interrupts.h": "6699fec7faea8ad86bbff746c56d9b1df06fd297b79b190edc02223431308c25",
+    "proj/src/game/moves/moves.c": "97f6d50922e6549747e962ec424576550e8d9a26f3d709acbec3c814de7e31f4",
+    "proj/src/game/moves/moves.h": "c4cd0c8c7d2adb1f901e4bd697d797cfa2943592f1063a8cfb4a002d72a6512f",
+    "proj/src/game/settings.h": "207ddd579128aa78a00ecf2924f5a1aababfbf602f5a1cf9ee32c863e4fde794",
+    "proj/src/proj.c": "5146a3d3400c779a2daa9d7abdff6b4d63b4d58235134b2e74de4e943bdf6115"
+  },
+  "selection": "Original project source tree, headers, required assets and root README. Omitted unrelated labs, generated documentation, logs, compiled objects, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/doc/**",
+    "**/docs/**",
+    "**/html/**",
+    "**/latex/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/*.mov",
+    "**/trace.txt",
+    "**/output.txt",
+    "**/core.*",
+    "proj/src/proj (upstream executable, preserved only in ignored evidence)"
+  ],
+  "createdAt": "2023-06-09T19:31:49Z",
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "file": "proj/src/devices/mouse/mouse.c",
+          "reason": "Initialize the mouse-command ACK byte before the retry loop first reads it. Original uninitialized condition invokes undefined behavior and traps during optimized native startup before sending a command. Actual mouse command RESEND then ACK owner regression fails original SIGTRAP and passes initialized byte.",
+          "originalSha256": "585077dc1d4a7dde7b7b7ac7980a5aca8d750a2f5e353b094a1cecf51f5bd4b0",
+          "patchedSha256": "b6d1744f1b3e090c3f8d0d4f5a14008f311e8c5f496da3db46f3d0a072f0ea94"
+        }
+      ]
+    }
+  ],
+  "controlsRationale": "Source handles discrete make codes: left WASD WaterGirl and right arrow pad FireBoy with authored make-repeat; both held pads work outside the entire original800x600 canvas. Relative pointer begins50,50, Select/Lever left click controls menu and proximity-based levers. Original Q quits; no direct calibration, no fake jump action; original game is a top-down two-character labyrinth.",
+  "previewEvidence": {
+    "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/basic-asm-three/evidence/joao-05-lever-canvas.png",
+    "captureSha256": "e2886b56ca1b3f74221d2d2aeb17c52079018d9589f3b098b7c04bfc0d9a2cdc",
+    "originalSourceArt": true
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "f031317c33a5dd60b4de409f1098fb59136fd704f63a3bd9196a4cfd5927733a",
+      "kind": "Simple flat geometric flame and water-drop launcher icon"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "e2886b56ca1b3f74221d2d2aeb17c52079018d9589f3b098b7c04bfc0d9a2cdc",
+      "kind": "Unmodified actual gameplay canvas showing original timed barrier opened"
+    }
+  ],
+  "verification": {
+    "nativeGameplay": {
+      "status": "passed",
+      "evidence": "build/arcade-100/tetris-whack-elemental-reviewed-native/results.json",
+      "apkSha256": "8338daccf2bdf2928c4040eaa8d1015c11d1c86fed676750f688ce38046bda9a",
+      "demonstrated": "Root viewed independent arrow/WASD characters, lower lever activation opening its yellow barrier for3seconds and timed restoration, then original Q quit returning cleanly to the library.",
+      "limitations": [
+        "Independent characters, one lever and clean original quit verified, not full maze victory."
+      ]
+    }
+  }
+}

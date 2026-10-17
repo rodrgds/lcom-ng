@@ -1,0 +1,95 @@
+{
+  "repository": "https://github.com/Eduarda34/FEUP-LCOM",
+  "revision": "0534e832b7fe199763e65218688ea093881830c4",
+  "project": "proj/src",
+  "sourceHashes": {
+    "README.md": "91f12e5c255be9967fac7a96d36a36b06ef4a492310895d15a945cc984b5c379",
+    "proj/.idea/editor.xml": "b629863ea45928517c8a1bcd54408e3d95e679a4528444ab235c0ca9426a1c22",
+    "proj/.idea/shelf/Uncommitted_changes_before_Checkout_at_27-05-2025_16_05_[Changes]/shelved.patch": "afe5efdb06116eab02d99bac4300d2b39543b4d71215e3674e8178e5df508e61",
+    "proj/.idea/shelf/Uncommitted_changes_before_Checkout_at_27-05-2025_16_05_[Changes]1/shelved.patch": "84f2d431634d015ecb2aff4e0bee585e7c19aea24629d83ce439f4b1fb848929",
+    "proj/.idea/shelf/Uncommitted_changes_before_Checkout_at_27-05-2025_16_05__Changes_.xml": "aa247cc283a8cf6426f1ae0c10465d5d590360f06a7dfbda7cc8cde3ccf977e1",
+    "proj/.idea/shelf/Uncommitted_changes_before_Checkout_at_27-05-2025_16_05__Changes_1.xml": "b31f1ab5cb7957ea4939102df904118d3d3850a94103bfe5fe60d15f0fa3d49a",
+    "proj/.idea/workspace.xml": "a2e728cd58a1bb1d1e406b3a8b8e4dc090e12ea5d503839941219fa3d4294fda",
+    "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
+    "proj/src/.gitignore": "23a79742bc338f43a82a3ad5ec7800651a4d73c560ca07e659c4cfa69804baf6",
+    "proj/src/.vscode/c_cpp_properties.json": "37952052ec777324dcf44956a8210a8a8c638e0527a725d71e7af7bb04aff7b3",
+    "proj/src/.vscode/extensions.json": "9516fcebeecaf040bd408a45eb6d950350043d567a6891e062a3642535bd9a77",
+    "proj/src/.vscode/settings.json": "7230c07480192b10f81a371571bd0c87f8536a625735147923a858cc129bee6e",
+    "proj/src/Makefile": "4e85a948117bf6fe11d2cddf4b11af1ce1616ec0203c49c93be3adf91cb53ae0",
+    "proj/src/controller/keyboard/i8042.h": "7261f47b9ec6a748e1bb9ba19a6a77c302e339431b03650f4438aff36fb8feda",
+    "proj/src/controller/keyboard/kbc.c": "b7933d499090bfabf552a500cdf7986415a1e08ec4d57fd1fe686f23bcc119c4",
+    "proj/src/controller/keyboard/kbc.h": "53525db7ffec59b8c98b37d91ad9ed5abfc0c3e152811f704008068f7f965d19",
+    "proj/src/controller/keyboard/keyboard.c": "6e48b1dc46eea12f5cdb53188dc80f6475fdb49afa36e2da214a90335546bac3",
+    "proj/src/controller/keyboard/keyboard.h": "9853397a82dd2c7b5d33e980a74278529d63157c5bb0deb699f9a2cebfee3385",
+    "proj/src/controller/mouse/mouse.c": "eb6150253306e0e61f3cfd4e140044f16fe9534f2e14ac8b1a960567803b94cb",
+    "proj/src/controller/mouse/mouse.h": "a8c22c9606d0522814d05156f8469c127624ae7d700761407c25067c850f9332",
+    "proj/src/controller/realTimeClock/rtc.c": "4f33de07d268e97f6646a09324f081949259129dcc03812883c9a3278ef36750",
+    "proj/src/controller/realTimeClock/rtc.h": "1fa381c1b199009a1e4b06ed90785287ae360c9cbcff549c8dcbc03bad87c32b",
+    "proj/src/controller/timer/i8254.h": "e687a533734a125435e0c4546137d72241dee769c7918fa5fcf54521d693b4ea",
+    "proj/src/controller/timer/timer.c": "d0a4a17b5677dbb6dd873f2e6286d0d33c33b07f01e1747a8c59975cce4ce679",
+    "proj/src/controller/utils.c": "c71f612f4bcc3b2a807bac3ff44ff9828ac96e1073491aa8a5b94b37f5a742a9",
+    "proj/src/controller/video/colors.h": "8eabc40eef558b497bc6ba237919a808e4b69ce42c8b1879f3e0671ae1928efd",
+    "proj/src/controller/video/graphics.c": "9b54536fa10b6fc6b8f3a9065f6968827d5da8d76a0e60f607906c0ccdefb2b2",
+    "proj/src/controller/video/graphics.h": "d0486a4efa3ae6d6f87805a117d481446d23345226ef6c74974f34aa77058305",
+    "proj/src/controller/video/vbe.h": "c28bab8e80c949271a06d17c66884db9e46c332fb192f03cc3a51a36a500c388",
+    "proj/src/game/apple.c": "20fc329b28a001ee1ec943766b07e58922a5dc020e7394e6b498f34eb7c21a28",
+    "proj/src/game/apple.h": "88a26fe28deea7d0d3a923f375b1110bb0e69ecce3395f59609dd20fe4df0179",
+    "proj/src/game/game.c": "9d19f1b7371f84df002ffa9d91b834f80881f737887b78e57925b8401a1f5c38",
+    "proj/src/game/game.h": "933ac98c44f17667d79429f91cff56b718a280e30af5f1d302f48ff8785f4355",
+    "proj/src/game/score.c": "a2558f668a8a7d93158cc4e3c3a2107ff0b991656038222d96955f2d4df3d2ce",
+    "proj/src/game/score.h": "59ca99d22873a9827021e7e0fa8b3cc7d56aebc6b79848bb943d5c1c4c23f6f2",
+    "proj/src/game/snake.c": "d29884af0d2933d009ccd54bb0e3d79d2c037a98bfe85e258614de53c440ebea",
+    "proj/src/game/snake.h": "cf1c35c8401ab93c9884261bf16bb1108f6187b0e0fee75bb3b2fc5ed6aacbea",
+    "proj/src/game/tongue.c": "5fe5bc77ab426986cfe841b602060fcebecc8bad2f1a0ed06380a24af1e1df76",
+    "proj/src/game/tongue.h": "4c15277a29c5cfe2005f44d52f02ed8a60234adcce8bedf8dc4635cf2f910e39",
+    "proj/src/pixmap.c": "e7f073aaaae7690ec7ff05eaadfdf46155b48ab74a66ac7a88a01b4d1645ad0b",
+    "proj/src/pixmap.h": "3d941957730a0a08da0c513e3e97425726a33a97dbee69598cf31197c158ef05",
+    "proj/src/proj.c": "1684c6ee5a0930a12fcb74ea82215dd926a3839b530e64295bdcf7a7255b5496"
+  },
+  "selection": "Pinned original project sources and required artwork/assets. Omitted generated docs, compiled executables, unrelated labs, VCS and OS metadata.",
+  "omissions": [
+    ".git/**",
+    "**/*.o",
+    "**/*.a",
+    "**/*.pdf",
+    "**/*.mp4",
+    "**/.DS_Store",
+    "**/core.*",
+    "compiled ELF/Mach-O executables"
+  ],
+  "icon": {
+    "kind": "Original pinned game sprite centered on a matching flat palette",
+    "source": "proj/src/pixmap.c",
+    "array": "apple"
+  },
+  "derivedAssets": [
+    {
+      "path": "proj/src/icon.png",
+      "sha256": "b400f1c19be2476b2d66909ff34b17c7e28fb936133f38c497c61df31999c4f1",
+      "kind": "launcher icon from original game art"
+    },
+    {
+      "path": "proj/src/preview.png",
+      "sha256": "0e94c8f6cbbb3eeb30c207490fc7738b09ee00f30ccf627bad06a3048405d3e4",
+      "kind": "actual browser gameplay canvas"
+    }
+  ],
+  "controlsRationale": "Panel keeps original artwork unobscured in portrait and landscape. Source handlers determine every button and held-key behavior. Relative pointer preserves original packet/cursor semantics. ",
+  "verification": {
+    "browserBuild": true,
+    "mobileTouchGameplay": true,
+    "checkpoint": "Directional touch turns the original green snake, its mouse action extends the tongue, and RTC survival scoring advances to2.",
+    "evidence": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence/Eduarda34--FEUP-LCOM",
+    "log": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gameplay8-current-profiles.log",
+    "limits": [
+      "Food collection, long survival and eventual self-collision remain untested."
+    ],
+    "androidGameplay": "pending",
+    "nativeGameplay": {
+      "status": "passed",
+      "apkSha256": "f21e75fdd87c20a43626365d38487effee77b09bbde160cee2017af7e504ae5b",
+      "evidence": "build/arcade-100/next8-native-gameplay2/results.json",
+      "review": "Green snake changes orientation, red tongue renders on Fire and original survival counter reaches5. Actual native controls and Home cleanup reviewed."
+    }
+  }
+}

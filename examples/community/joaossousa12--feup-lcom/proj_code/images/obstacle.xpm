@@ -1,0 +1,11 @@
+/* XPM */
+static char * obstacle_xpm[] = {
+"8 6 1 1",
+"O c #00008B",
+"OOOOOOOO",
+"OOOOOOOO",
+"OOOOOOOO",
+"OOOOOOOO",
+"OOOOOOOO",
+"OOOOOOOO"
+};

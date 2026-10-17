@@ -15,6 +15,7 @@
 namespace lcom {
 
 struct RuntimeOptions {
+  MachineConfig machine_config;
   bool headless = true;
   bool realtime = false;
   bool no_realtime = false;

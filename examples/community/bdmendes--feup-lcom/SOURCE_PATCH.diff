@@ -1,0 +1,11 @@
+--- a/2020_og/proj/src/lib/devices/rtc/rtc.c
++++ b/2020_og/proj/src/lib/devices/rtc/rtc.c
+@@ -2,7 +2,7 @@
+ #include "../../utils/utils.h"
+ 
+ static int rtc_hook_id = RTC_IRQ;
+-static char current_time[17];
++static char current_time[21];
+ 
+ /**
+  * @brief  sets the SET bit to signal RTC registers are being updated
