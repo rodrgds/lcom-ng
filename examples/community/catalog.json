@@ -12957,9 +12957,9 @@
             {
               "file": "proj/src/main.c",
               "originalSha256": "2f1a31e7a0cda8103ac96b5bb68be90504afe85baf7d29d7b12359a83b5e1881",
-              "patchedSha256": "9984d1f70c82f5e95f2a10a4f60bde835bb7c2598b6fc324ff4aa34f1e1d0d55",
-              "reason": "Include the owning API header so pointer/time_t calls have their real declaration.",
-              "verification": "Owning header declaration regression compiles the actual entry source with -Werror=implicit-function-declaration. Original WASM startup trapped; corrected source reaches touch gameplay."
+              "patchedSha256": "5a241291f3e888f0eb96d0ea481688e93ecaee47240ab87dd6141a72f5f507c6",
+              "reason": "Include the owning graphics and Minix SEF headers so pointer and startup calls use their real declarations. An undeclared sef_startup call assumed int while the Minix API returns void, producing an immediate WASM signature trap.",
+              "verification": "Actual current final browser export trapped in $main before graphics with wasm-ld sef_startup ()->i32 versus ()->void. Actual entry strict compilation fails on the missing declaration; corrected entry executes ordered SEF startup, mode0x117, menu selection and graphics exit. Canonical browser tile/menu/play/Home is rechecked after rebuilding only this game. Evidence build/arcade-100/a/bow-final-diagnosis."
             },
             {
               "file": "proj/src/mouse.c",
@@ -23200,6 +23200,13 @@
               "patchedSha256": "354459c9bf86ec178c0b4bc1cc59ddb8c539a4cc6ee416dfb52fedef7a959d56",
               "reason": "Include the existing vbe.h owning xpm_cre declaration before calling it.",
               "verification": "Actual original browser trap .Lxpm_cre_bitcast_invalid in draw_spaceship. Strict actual renderer compilation RED missing declaration; GREEN typed calls preserve original map pointer/positions; actual normal touch both orientations now renders and moves ship among live asteroids."
+            },
+            {
+              "file": "src/galatic_war.c",
+              "originalSha256": "dbd9f3cc9144a04ef1bf45c10342a99365469e9de30e468de7007b2c08539241",
+              "patchedSha256": "24f96d574788c69686f14e4a2cb086a00c21afbc55aa564d4eb7bb82a4654a90",
+              "reason": "Remove the unused initial keyboard notification receive and discard before menu(). It leaves the original menu invisible indefinitely until an unprompted first key event; menu() owns its timer subscription and input loop. No displayed controls, game logic or artwork changes.",
+              "verification": "Original actual collection tile remains uniformly black through10seconds without input; original compiled entry fixture aborts before menu. Corrected entry reaches original menu before guest input, then ordinary Enter/play and Home are checked in an isolated browser export."
             }
           ]
         }
@@ -23239,6 +23246,16 @@
             "Held release-repeat direction moves original ship left.",
             "Ship moves right while original asteroids descend."
           ]
+        },
+        "browserStartup": {
+          "status": "passed",
+          "surface": "Isolated browser export of the exact integrated source repair; final collection artifact check pending.",
+          "demonstrated": "The original menu appears without an unprompted keyboard wake. Ordinary Enter opens gameplay, and Home returns to the library.",
+          "evidence": [
+            "build/arcade-100/galactic-startup-fix-v1/browser-green/results.json",
+            "build/arcade-100/galactic-startup-integrated-green-v2.log"
+          ],
+          "originalFailure": "The initial discarded keyboard notification blocked menu rendering indefinitely; the original entry and real browser launch both reproduced it."
         }
       },
       "collectionId": "davidrsfalcao-lcom-projeto-50632239b22e",

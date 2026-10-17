@@ -698,6 +698,19 @@ void Log(char *message);
 int main(void){Log("100% completed\n");assert(closes==1);fflush(owned);rewind(owned);char text[256]={0};assert(fread(text,1,sizeof(text)-1,owned)>0);assert(strstr(text,"100% completed\n"));fclose(owned);return 0;}
 ''', source_flags=['-DLCOM_COMPAT_LEGACY=1','-Dfclose=checked_close','-include','lcom/paths.h','-Wformat','-Werror=format-security'])
 
+    def test_bow_entry_uses_the_typed_startup_contract_before_graphics(self):
+        self.compile_and_run(COMMUNITY/'huguinho27--FEUP-LCOM/proj/src', ['main.c'], r'''#include <minix/sef.h>
+#include <assert.h>
+static int phase;
+int bow_program_entry(void);
+void sef_startup(void){assert(phase++==0);}
+void*vg_init(unsigned short mode){assert(phase++==1&&mode==0x117);return (void*)1;}
+int selectionHandler(void){assert(phase++==2);return 2;}
+void gameLoop(void){assert(0);}
+int vg_exit(void){assert(phase++==3);return 0;}
+int main(void){assert(bow_program_entry()==0&&phase==4);return 0;}
+''', source_flags=['-Dmain=bow_program_entry', '-DLCOM_COMPAT_LEGACY=1', '-Werror=implicit-function-declaration'])
+
     def test_bow_failed_bios_initialization_returns_null(self):
         self.compile_and_run(COMMUNITY/'huguinho27--FEUP-LCOM/proj/src', ['video_gr.c'], r'''#define LCOM_COMPAT_LEGACY 1
 #include <lcom/compat.h>

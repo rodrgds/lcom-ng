@@ -134,6 +134,13 @@
           "patchedSha256": "354459c9bf86ec178c0b4bc1cc59ddb8c539a4cc6ee416dfb52fedef7a959d56",
           "reason": "Include the existing vbe.h owning xpm_cre declaration before calling it.",
           "verification": "Actual original browser trap .Lxpm_cre_bitcast_invalid in draw_spaceship. Strict actual renderer compilation RED missing declaration; GREEN typed calls preserve original map pointer/positions; actual normal touch both orientations now renders and moves ship among live asteroids."
+        },
+        {
+          "file": "src/galatic_war.c",
+          "originalSha256": "dbd9f3cc9144a04ef1bf45c10342a99365469e9de30e468de7007b2c08539241",
+          "patchedSha256": "24f96d574788c69686f14e4a2cb086a00c21afbc55aa564d4eb7bb82a4654a90",
+          "reason": "Remove the unused initial keyboard notification receive and discard before menu(). It leaves the original menu invisible indefinitely until an unprompted first key event; menu() owns its timer subscription and input loop. No displayed controls, game logic or artwork changes.",
+          "verification": "Original actual collection tile remains uniformly black through10seconds without input; original compiled entry fixture aborts before menu. Corrected entry reaches original menu before guest input, then ordinary Enter/play and Home are checked in an isolated browser export."
         }
       ]
     }

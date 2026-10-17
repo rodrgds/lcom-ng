@@ -137,9 +137,9 @@
         {
           "file": "proj/src/main.c",
           "originalSha256": "2f1a31e7a0cda8103ac96b5bb68be90504afe85baf7d29d7b12359a83b5e1881",
-          "patchedSha256": "9984d1f70c82f5e95f2a10a4f60bde835bb7c2598b6fc324ff4aa34f1e1d0d55",
-          "reason": "Include the owning API header so pointer/time_t calls have their real declaration.",
-          "verification": "Owning header declaration regression compiles the actual entry source with -Werror=implicit-function-declaration. Original WASM startup trapped; corrected source reaches touch gameplay."
+          "patchedSha256": "5a241291f3e888f0eb96d0ea481688e93ecaee47240ab87dd6141a72f5f507c6",
+          "reason": "Include the owning graphics and Minix SEF headers so pointer and startup calls use their real declarations. An undeclared sef_startup call assumed int while the Minix API returns void, producing an immediate WASM signature trap.",
+          "verification": "Actual current final browser export trapped in $main before graphics with wasm-ld sef_startup ()->i32 versus ()->void. Actual entry strict compilation fails on the missing declaration; corrected entry executes ordered SEF startup, mode0x117, menu selection and graphics exit. Canonical browser tile/menu/play/Home is rechecked after rebuilding only this game. Evidence build/arcade-100/a/bow-final-diagnosis."
         },
         {
           "file": "proj/src/mouse.c",

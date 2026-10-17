@@ -2968,6 +2968,27 @@ at 485 mouse 0 0 0
             self.assertGreaterEqual(min(pixel(720, 400)), 200)
 
 
+    def test_galactic_menu_precedes_first_guest_input(self):
+        self.compile_and_run(COMMUNITY/'davidrsfalcao--LCOM-projeto/src',['galatic_war.c'],r'''#define LCOM_COMPAT_LEGACY 1
+#include <minix/drivers.h>
+#include <assert.h>
+static unsigned started, graphics, subscribed, menus, exited, unsubscribed;
+int khook_id=1;
+extern char irq_set;
+int galactic_student_entry(void);
+void sef_startup(void){started++;}
+void *vg_init(unsigned short mode){assert(started==1&&mode==0x105);graphics++;return &graphics;}
+int kbd_subscribe_int(void){assert(graphics==1);subscribed++;return 0;}
+int driver_receive(endpoint_t who,message*m,int*status){(void)who;(void)m;(void)status;assert(0&&"The original menu must be entered before waiting for an unprompted first key");return 0;}
+int kbd_scan_c(int *key){(void)key;assert(0&&"Startup must not discard a guest key");return 0;}
+int menu(void){assert(started==1&&graphics==1&&subscribed==1&&irq_set==BIT(1));menus++;return 1;}
+int game(void){assert(0&&"Choosing Exit must not start a round");return 1;}
+int vg_exit(void){assert(menus==1);exited++;return 0;}
+int timer_unsubscribe_int(void){assert(exited==1);unsubscribed++;return 0;}
+int kbd_unsubscribe_int(void){assert(unsubscribed==1);unsubscribed++;return 0;}
+int main(void){assert(galactic_student_entry()==0);assert(menus==1&&exited==1&&unsubscribed==2);return 0;}
+''',source_flags=['-Dmain=galactic_student_entry','-DLCOM_COMPAT_LEGACY=1','-Wno-implicit-function-declaration'])
+
     def test_galactic_xpm_renderer_uses_own_buffer_declarations(self):
         self.compile_and_run(COMMUNITY/'davidrsfalcao--LCOM-projeto/src',['vbe.c'],r'''#define LCOM_COMPAT_LEGACY 1
 #include <lcom/compat.h>

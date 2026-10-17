@@ -1,3 +1,4 @@
+#include <minix/sef.h>
 #include "bow_and_arrow.h"
 #include "utils.h"
 #include "menu.h"

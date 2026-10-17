@@ -136,3 +136,31 @@
  
  void draw_cursor(cursor r1)
  {
+--- a/src/galatic_war.c
++++ b/src/galatic_war.c
+@@ -23,25 +23,6 @@
+ 	int opcao1 = 0;
+ 	int opcao2 = 0;
+ 
+-	int lixo;
+-	int r;
+-	int ipc_status;
+-	message msg;
+-
+-	if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {
+-		printf("driver_receive failed with: %d", r);
+-
+-	}
+-	if (is_ipc_notify(ipc_status)) {
+-		switch (_ENDPOINT_P(msg.m_source)) {
+-		case HARDWARE:
+-
+-			if (msg.NOTIFY_ARG & irq_set) {
+-				kbd_scan_c(&lixo);
+-			}
+-		}
+-	}
+-
+ 	while(opcao1 != 1)
+ 	{
+ 		opcao1 = menu();
