@@ -9,6 +9,7 @@
 #include <lcom/i8042.h>
 
 #include <algorithm>
+#include <cmath>
 #include <cstdio>
 #include <cstdlib>
 #include <cstring>
