@@ -3,7 +3,7 @@
   "collection": "collections/arcade/lcom.collection.json",
   "verificationSummary": {
     "date": "2026-10-17",
-    "status": "Local public-import expansion in progress. Published distribution evidence is retained separately.",
+    "status": "The web catalog has 306 entries, is deployed and its live UI is verified. Further game discovery and imports were stopped by the user on 2026-10-17.",
     "previousPublishedReview": {
       "date": "2026-10-16",
       "sourceAudit": {
@@ -305,7 +305,7 @@
       "scope": "All viable distinct public projects found, without a numeric stopping cap.",
       "discoveryDecisions": "docs/arcade-public-import-decisions.json",
       "issue": "https://github.com/rodrgds/lcom-ng/issues/16",
-      "publication": "Publication requested; final revision and production verification are tracked in issue 16."
+      "publication": "306 entries deployed at https://arcade.rgo.pt. User stopped further discovery and imports; this does not claim all public repositories were exhausted."
     },
     "combinedNativeTrial": {
       "collectionGames": 121,
@@ -337,7 +337,7 @@
       "note": "Collection entry counts include two verified baseline mirrors."
     },
     "currentWebReview": {
-      "status": "Local source, gallery, browser startup and final mobile checks passed; publication and live verification pending.",
+      "status": "Deployed and live UI verified; strict HTTP negotiation gate failed and is tracked separately.",
       "collectionGames": 306,
       "pinnedOriginalFiles": 33173,
       "correctedGames": 194,
@@ -346,7 +346,19 @@
       "startupAndHomeCoverage": "build/arcade-100/web306-startup-union-final.json",
       "finalTwoMobileProof": "build/arcade-100/web306-final-two-mobile-release-v2/visual-review.json",
       "artifactHandoff": "build/arcade-100/a/final306-startup-transition-v1/handoff.json",
-      "android": "paused"
+      "android": "paused",
+      "url": "https://arcade.rgo.pt",
+      "sourceRevision": "226734553bbfab61559056efae6c3e6c61f87e31",
+      "workerVersion": "e5085abb-e238-47a9-8f4a-0379cb300dc3",
+      "liveUiEvidence": "build/arcade-100/web306-live-ui/examined-notes.json",
+      "publicCollectionSha256": "c0d67178da85b9ce05162c43ece736f3b454a1552fa3780d001f023653d105b5",
+      "strictHttpVerification": {
+        "status": "failed",
+        "issue": "https://github.com/rodrgds/lcom-ng/issues/18",
+        "reason": "The public edge discards Accept-Encoding q-values before the Worker, so explicit gzip refusal cannot be recovered. The full validator remains unchanged and is not claimed passed.",
+        "evidence": "build/arcade-100/encoding-diagnosis/"
+      },
+      "furtherImports": "Stopped by explicit user request. The unpublished Cowboy proposal and SDK issue #17 prototype are preserved separately; neither was deployed."
     }
   },
   "games": [
