@@ -13,7 +13,7 @@ test.beforeAll(async () => {
   test.setTimeout(120_000);
   directory = mkdtempSync(path.join(tmpdir(), 'lcom-startup-'));
   writeFileSync(path.join(directory, 'lcom.collection.json'), JSON.stringify({
-    name: 'Startup collection', projects: [path.join(root, 'tests/fixtures/web/startup')],
+    name: 'Startup collection', projects: ['startup', 'pre-draw-input'].map(name => path.join(root, 'tests/fixtures/web', name)),
   }));
   execFileSync(process.env.LCOM_CLI || path.join(root, 'build/machinelab'),
     ['export', 'web', directory, '--output', path.join(directory, 'web')], {stdio: 'pipe'});
@@ -41,7 +41,7 @@ for (const browserType of [chromium, firefox]) {
       const page = await browser.newPage();
       const preparing = page.waitForEvent('console', message => message.text() === 'Preparing first frame');
       await page.goto(base);
-      await page.locator('#games a[data-id]').first().click();
+      await page.getByRole('link', {name: 'Play startup', exact: true}).click();
       await preparing;
       const frame = page.frames().find(frame => frame.url().includes('/games/'));
       // Firefox can blur an inert iframe while its game initializes. Deliver the
@@ -82,7 +82,7 @@ for (const mode of ['panel', 'overlay', 'right keyboard']) {
         await route.fulfill({response, json: settings});
       });
       await page.goto(base);
-      await page.locator('#games .game-launch').first().tap();
+      await page.getByRole('link', {name: 'Play startup', exact: true}).tap();
       await expect(page.locator('#loading')).toBeHidden();
       const frame = page.frames().find(frame => frame.url().includes('/games/'));
       // This is the exported C guest, not a child that fabricates ready/layout IPC.
@@ -126,7 +126,7 @@ test('collection portrait rotation advice stays clear of authored top-corner act
       await route.fulfill({response, json: settings});
     });
     await page.goto(base);
-    await page.locator('#games .game-launch').first().tap();
+    await page.getByRole('link', {name: 'Play startup', exact: true}).tap();
     await expect(page.locator('#loading')).toBeHidden();
     const frame = page.frames().find(frame => frame.url().includes('/games/'));
     await expect(frame.locator('#rotation-hint')).toBeVisible();
@@ -142,5 +142,84 @@ test('collection portrait rotation advice stays clear of authored top-corner act
     await frame.getByRole('button', {name: 'Start', exact: true}).tap();
     await page.locator('#back').tap();
     await expect(page.locator('#search')).toBeVisible();
+  } finally { await browser.close(); }
+});
+
+test('collection touch can explicitly open controls for a guest waiting for input before drawing', async ({}, testInfo) => {
+  test.setTimeout(45_000);
+  const browser = await chromium.launch(process.env.CHROME_PATH ? {executablePath: process.env.CHROME_PATH} :
+    {channel: process.platform === 'darwin' ? 'chrome' : 'chromium'});
+  try {
+    const context = await browser.newContext({viewport: {width: 390, height: 844}, isMobile: true, hasTouch: true});
+    const page = await context.newPage();
+    await page.route('**/collection.json', async route => {
+      const response = await route.fetch(), catalog = await response.json();
+      catalog.taxonomy = [{id:'single-player', label:'Solo', facet:'players'}];
+      for (const game of catalog.games) game.tags = ['single-player'];
+      await route.fulfill({response, json:catalog});
+    });
+    await page.goto(base);
+    const tile = page.getByRole('link', {name: 'Play Pre-draw input', exact: true});
+    await tile.tap();
+    const modal = page.locator('#loading');
+    const showControls = page.getByRole('button', {name: 'Show controls', exact: true});
+    await expect(showControls).toBeVisible();
+    await expect(showControls).toBeInViewport({ratio:1});
+    await expect(page.locator('#load-tags li')).toHaveText(['Solo']);
+    await expect(page.locator('#load-tags')).toBeInViewport({ratio:1});
+    await expect(page.locator('#load-description')).toBeVisible();
+    await expect(modal).toBeVisible();
+    const output = page.getByLabel('Game messages', {exact: true});
+    await expect(output).toContainText('<Continue> Press Space to open the game');
+    expect((await output.textContent()).length).toBeLessThanOrEqual(4096);
+    await expect(output.locator('continue')).toHaveCount(0);
+    const frame = page.frames().find(frame => frame.url().includes('/games/'));
+    const continueButton = frame.getByRole('button', {name: 'Continue', exact: true});
+    // Child visibility alone does not inspect a hidden ancestor iframe.
+    await expect(continueButton.tap({timeout: 700})).rejects.toThrow(/hidden frame|intercepts pointer events/);
+    await page.screenshot({path: testInfo.outputPath('original-input-prompt.png')});
+    await showControls.tap();
+    await expect(modal).toBeHidden();
+    await expect(continueButton).toBeVisible();
+    // No synthetic key is sent when showing controls: the guest still has not drawn.
+    const pixels = () => frame.locator('canvas').evaluate(canvas =>
+      [...canvas.getContext('2d').getImageData(0, 0, 1, 1).data]);
+    expect(await pixels()).toEqual([0, 0, 0, 0]);
+    await continueButton.tap();
+    await expect.poll(pixels).toEqual([29, 71, 103, 255]);
+    await expect(showControls).toBeHidden();
+    await page.screenshot({path: testInfo.outputPath('ordinary-continue-drew-game.png')});
+    await page.locator('#back').tap();
+    await expect(page.locator('iframe')).toHaveCount(0);
+    await expect(tile).toBeFocused();
+    await tile.tap();
+    await expect(showControls).toBeVisible();
+    await page.locator('#load-dismiss').tap();
+    await expect(page.locator('iframe')).toHaveCount(0);
+    await expect(tile).toBeFocused();
+    await page.setViewportSize({width:844,height:390});
+    await tile.tap();
+    await expect(showControls).toBeVisible();
+    await expect(showControls).toBeInViewport({ratio:1});
+    await expect(page.locator('#load-tags')).toBeInViewport({ratio:1});
+    await page.screenshot({path:testInfo.outputPath('landscape-input-prompt.png')});
+    await showControls.tap();
+    const failingFrame = page.frames().find(frame => frame.url().includes('/games/'));
+    await expect(failingFrame.locator('canvas')).toBeFocused();
+    // X avoids the browser's reserved fullscreen Escape gesture.
+    // The real fixture exits with status 6 before its first draw.
+    await page.keyboard.press('x');
+    await expect(page.locator('#load-error')).toBeVisible();
+    await expect(showControls).toBeHidden();
+    await expect(page.getByRole('button', {name: 'Try again', exact: true})).toBeFocused();
+    await page.getByRole('button', {name: 'Try again', exact: true}).tap();
+    await expect(showControls).toBeVisible();
+    await showControls.tap();
+    const retriedFrame = page.frames().find(frame => frame.url().includes('/games/'));
+    await retriedFrame.getByRole('button', {name: 'Continue', exact: true}).tap();
+    await expect.poll(() => retriedFrame.locator('canvas').evaluate(canvas =>
+      [...canvas.getContext('2d').getImageData(0, 0, 1, 1).data])).toEqual([29, 71, 103, 255]);
+    await page.locator('#back').tap();
+    await expect(tile).toBeFocused();
   } finally { await browser.close(); }
 });

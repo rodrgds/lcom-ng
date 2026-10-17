@@ -1,0 +1,15 @@
+{
+  "name": "Pre-draw input",
+  "description": "Wait for ordinary Space input before the game opens.",
+  "mobile": {
+    "orientation": "auto",
+    "controls": {
+      "keyboard": false,
+      "mouseButtons": false,
+      "joystick": false,
+      "pointer": "off",
+      "quickKeys": [],
+      "actions": [{"label": "Continue", "key": "SPACE", "position": "top-left"}]
+    }
+  }
+}

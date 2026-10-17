@@ -16,8 +16,16 @@ const fullscreenButton = document.querySelector("#fullscreen");
 const collectionPlayer = window.parent !== window && new URLSearchParams(location.search).get('collection') === '1';
 document.documentElement.classList.toggle('collection-player',collectionPlayer);
 let firstFrame = false;
+let startupOutput = '';
 function reportLoading(state) {
   if (collectionPlayer) parent.postMessage({type:'lcom-player-loading', ...state}, location.origin);
+}
+function printOutput(text) {
+  console.log(text);
+  if (collectionPlayer && !firstFrame) {
+    startupOutput = (startupOutput + text + '\n').slice(-4096);
+    reportLoading({phase:'output', text:startupOutput});
+  }
 }
 const keyboardToggle = document.querySelector('#keyboard-toggle');
 const joystickToggle = document.querySelector('#joystick-toggle');
@@ -887,7 +895,7 @@ try {
   }
   updateKeyboard();
   const [{default:createLcomGame}, prepared] = await Promise.all([import('./game.js'), prepareGame(config.downloads, reportLoading)]);
-  const module = await instantiateGame(createLcomGame, { player, preRun: [module => Object.assign(module.ENV,config.environment || {})], print: text => console.log(text), printErr: text => console.warn(text),
+  const module = await instantiateGame(createLcomGame, { player, preRun: [module => Object.assign(module.ENV,config.environment || {})], print: printOutput, printErr: text => console.warn(text),
     onAbort: reason => failed(String(reason)),
     onExit: code => {
       const returnToCollection = collectionPlayer && code === 0;
@@ -909,5 +917,7 @@ try {
   }
   canvas.focus({ preventScroll: true }); player.paused = document.hidden;
   status.textContent = 'Game running.';
+  // Execution can wait for ordinary input before drawing. This is not ready.
+  reportLoading({phase:'running'});
   try { module.callMain(config.arguments); } catch (error) { failed(error.message || String(error)); }
 } catch (error) { failed(error.message || String(error)); }

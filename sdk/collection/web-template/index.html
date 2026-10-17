@@ -63,6 +63,10 @@
     <ul id="load-tags" class="game-tags" aria-label="Game categories" hidden></ul>
     <p id="load-description"></p>
     <div id="load-progress"><progress aria-label="Game download"></progress><p id="load-status" role="status">Loading game…</p></div>
+    <div id="load-running" hidden>
+      <pre id="load-console" aria-label="Game messages" hidden></pre>
+      <div class="load-actions"><p>Some games wait for a key.</p><button id="show-controls" type="button">Show controls</button></div>
+    </div>
     <div id="load-error" hidden><p role="alert">The game couldn’t load. Check your connection and try again.</p><button id="retry" type="button">Try again</button><button id="cancel" type="button">Back to games</button></div>
   </dialog>
 </section>

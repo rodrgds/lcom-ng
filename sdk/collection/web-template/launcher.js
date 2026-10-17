@@ -62,7 +62,9 @@ function placeReturn(layout) {
 }
 const loading = document.querySelector('#loading');
 const progress = loading.querySelector('progress');
-let ready = false, progressStep = -1, loadStarted = 0, readyTimer = null;
+const runningControls = document.querySelector('#load-running');
+const consoleOutput = document.querySelector('#load-console');
+let ready = false, running = false, progressStep = -1, loadStarted = 0, readyTimer = null;
 const minimumLoading = 2000;
 function showLoading() {
   loading.hidden = false;
@@ -73,8 +75,23 @@ function hideLoading() {
   loading.hidden = true;
 }
 function loadingState(state) {
-  if (state.phase === 'error') {
+  if (state.phase === 'output') {
+    if (!ready && typeof state.text === 'string') {
+      consoleOutput.textContent = state.text.slice(-4096);
+      consoleOutput.hidden = !consoleOutput.textContent;
+      consoleOutput.scrollTop = consoleOutput.scrollHeight;
+    }
+  } else if (state.phase === 'running') {
+    if (ready || !document.querySelector('#load-error').hidden) return;
+    running = true;
+    loading.classList.add('running');
+    progress.hidden = true;
+    runningControls.hidden = false;
+    document.querySelector('#load-status').textContent = 'Opening game…';
+  } else if (state.phase === 'error') {
     clearTimeout(readyTimer);
+    running = false; runningControls.hidden = true;
+    loading.classList.remove('running');
     showLoading();
     document.querySelector('#load-error').hidden = false;
     document.querySelector('#load-progress').hidden = true;
@@ -83,6 +100,7 @@ function loadingState(state) {
     const remaining=minimumLoading-(performance.now()-loadStarted);
     if(remaining>0){clearTimeout(readyTimer);readyTimer=setTimeout(()=>loadingState(state),remaining);return;}
     const loadingHadFocus = loading.contains(document.activeElement);
+    runningControls.hidden = true;
     ready = true; library.hidden = true; play.classList.remove('starting'); hideLoading(); host.inert = false;
     surroundings.start(selected,visibleCatalog);
     if (loadingHadFocus || !play.contains(document.activeElement)) host.querySelector('iframe')?.contentWindow.focus();
@@ -99,6 +117,14 @@ function loadingState(state) {
     }
   }
 }
+document.querySelector('#show-controls').onclick = () => {
+  if (!running || ready || !document.querySelector('#load-error').hidden) return;
+  // User chooses to interact early; only an actual draw completes readiness.
+  library.hidden = true; play.classList.remove('starting'); hideLoading(); host.inert = false;
+  const frame = host.querySelector('iframe');
+  frame?.contentWindow.focus();
+  frame?.contentDocument?.querySelector('#game')?.focus({preventScroll:true});
+};
 window.addEventListener('message', event => {
   if(event.origin !== location.origin || event.source !== host.querySelector('iframe')?.contentWindow) return;
   if(event.data?.type === 'lcom-player-layout') placeReturn(event.data);
@@ -197,7 +223,9 @@ function route(force = false) {
   clearTimeout(readyTimer);
   playerLayout=null;
   releasePointer();
-  host.replaceChildren(); selected = game || null; ready = false; progressStep = -1;
+  host.replaceChildren(); selected = game || null; ready = false; running = false; progressStep = -1;
+  runningControls.hidden = true; consoleOutput.hidden = true; consoleOutput.textContent = ''; progress.hidden = false;
+  loading.classList.remove('running');
   hideLoading(); host.inert = !!game;
   library.hidden = !!game && !lastLink; play.hidden = !game;
   play.classList.toggle('starting',!!game);
