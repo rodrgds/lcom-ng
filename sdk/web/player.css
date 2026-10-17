@@ -60,7 +60,8 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
   body { flex-direction: row; }
   #controls-toggle { align-self: center; flex: 0 0 44px; width: 44px; min-height: 120px; writing-mode: vertical-rl; padding: 12px 8px; font-size: 13px; }
   #touch-controls { width: clamp(280px, 38vw, 360px); height: 100%; overflow-y: auto; overscroll-behavior: contain; }
-  body:has(#fullscreen:not([hidden])) #touch-controls:not(.configured-overlay)[data-toolbar="panel"]:not(.keyboard-open) {
+  body:has(#fullscreen:not([hidden])) #touch-controls:not(.configured-overlay)[data-toolbar="panel"]:not(.keyboard-open),
+  .collection-player #touch-controls:not(.configured-overlay)[data-toolbar="panel"]:not(.keyboard-open) {
     padding-top: calc(max(8px, env(safe-area-inset-top)) + 52px);
   }
   .control-bar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -152,7 +153,9 @@ button svg { width: 24px; height: 24px; vertical-align: middle; pointer-events: 
 
 @media (pointer: coarse) {
   body:has(#fullscreen:not([hidden])) #touch-controls[data-toolbar="top-right"] #control-toolbar,
-  body:has(#fullscreen:not([hidden])) .keyboard-open[data-keyboard-position="right"] #control-toolbar { right: calc(max(8px, env(safe-area-inset-right)) + 52px); }
+  body:has(#fullscreen:not([hidden])) .keyboard-open[data-keyboard-position="right"] #control-toolbar,
+  .collection-player #touch-controls[data-toolbar="top-right"] #control-toolbar,
+  :where(.collection-player) #touch-controls.keyboard-open[data-keyboard-position="right"] #control-toolbar { right: calc(max(8px, env(safe-area-inset-right)) + 52px); }
   body:has(.keyboard-open) #controls-toggle { display: none; }
   @media (max-width: 600px) {
     body[data-keyboard-dock="left"] main, body[data-keyboard-dock="right"] main { margin-inline: 0; margin-bottom: min(70dvh, 330px); }
@@ -184,3 +187,6 @@ button svg { width: 24px; height: 24px; vertical-align: middle; pointer-events: 
 html.collection-player,.collection-player body{background:transparent}
 .collection-player #touch-controls{background:#101021}
 .collection-player .configured-overlay#touch-controls{background:transparent}
+@media (pointer: coarse) and (orientation: portrait) {
+  .collection-player #rotation-hint { top: calc(max(8px, env(safe-area-inset-top)) + 52px); }
+}

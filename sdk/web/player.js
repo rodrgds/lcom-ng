@@ -168,6 +168,14 @@ function placeFloatingControls() {
   for(const node of nodes) for(const name of ['left','right','top','bottom','width']) node.style[name]='';
   const obstacles=[...controls.querySelectorAll('button,.joystick,.steering-wheel'),controlsToggle,fullscreenButton]
     .filter(element=>visible(element) && !nodes.some(node=>node.contains(element))).map(rect);
+  if(collectionPlayer) {
+    // The parent renders this control while the child's counterpart is hidden.
+    const style=getComputedStyle(fullscreenButton),width=parseFloat(style.width),height=parseFloat(style.height);
+    const right=parseFloat(style.right),top=parseFloat(style.top);
+    if([width,height,right,top].every(Number.isFinite)) obstacles.push({x:innerWidth-right-width,y:top,width,height});
+    const hint=document.querySelector('#rotation-hint');
+    if(visible(hint)) obstacles.push(rect(hint));
+  }
   const overlap=(a,b,gap=0)=>Math.max(0,Math.min(a.x+a.width,b.x+b.width+gap)-Math.max(a.x,b.x-gap))*Math.max(0,Math.min(a.y+a.height,b.y+b.height+gap)-Math.max(a.y,b.y-gap));
   for(const node of nodes) {
     const desired=rect(node),w=desired.width,h=desired.height;
