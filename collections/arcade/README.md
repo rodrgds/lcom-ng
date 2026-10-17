@@ -77,3 +77,5 @@ with a one-off Nix environment:
 ```sh
 nix shell --impure --expr 'let pkgs = import <nixpkgs> {}; in pkgs.python3.withPackages (ps: [ ps.fonttools ps.brotli ])' -c pyftsubset sdk/collection/web-template/assets/bricolage.ttf --unicodes=U+0000-024F,U+2000-206F,U+20AC --flavor=woff2 --output-file=sdk/collection/web-template/assets/bricolage.woff2 --layout-features='*'
 ```
+
+See the [performance measurements and verification](../../docs/arcade-performance.md).
