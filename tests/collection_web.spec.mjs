@@ -745,6 +745,8 @@ test('side columns loop in alternating directions and pause for focus and reduce
   const columns=page.locator('.game-rail:not([hidden]) .rail-column');
   await expect(columns).toHaveCount(8);
   const tracks=page.locator('.game-rail:not([hidden]) .rail-track');
+  await expect.poll(()=>columns.nth(1).locator('.rail-cycle').first().locator('.game-launch').first().getAttribute('tabindex')).toBe('-1');
+  await expect.poll(()=>columns.nth(1).locator('.rail-cycle').nth(1).locator('.game-launch').first().getAttribute('tabindex')).toBe('0');
   const movement=()=>tracks.evaluateAll(items=>items.map(item=>new DOMMatrixReadOnly(getComputedStyle(item).transform).m42));
   const settled=()=>tracks.first().evaluate(async track=>{for(const animation of track.closest('.game-rail').getAnimations({subtree:true}))await animation.ready;});
   const before=await movement();await page.waitForTimeout(250);const after=await movement();

@@ -19,15 +19,19 @@ export function repositoryIcon(url) {
 }
 
 export class Previews {
-  constructor({idPrefix = 'facts'} = {}) {
+  constructor({idPrefix = 'facts', root = null} = {}) {
     this.idPrefix = idPrefix;
+    this.root = root;
     this.active = null;
     this.timer = null;
     // Native lazy loading can fetch several screens ahead. Observe the final
     // shuffled tile positions and only assign sources near the viewport.
     this.iconObserver = typeof IntersectionObserver === 'undefined' ? null : new IntersectionObserver(entries => {
-      for (const entry of entries) if (entry.isIntersecting) this.loadIcon(entry.target);
-    }, {rootMargin:'160px 0px'});
+      for (const entry of entries) {
+        if(root)entry.target.querySelector('.game-launch').tabIndex=entry.isIntersecting?0:-1;
+        if(entry.isIntersecting)this.loadIcon(entry.target);
+      }
+    }, {root,rootMargin:root?'0px':'160px 0px'});
     document.addEventListener('visibilitychange', () => { if (document.hidden) this.stop(); });
     window.addEventListener('blur', () => this.stop());
     window.addEventListener('resize', () => this.stop());
@@ -48,7 +52,7 @@ export class Previews {
   loadIcon(element) {
     const icon = element.querySelector('.game-icon');
     if (!icon.dataset.src) return;
-    this.iconObserver?.unobserve(element);
+    if(!this.root)this.iconObserver?.unobserve(element);
     if (this.iconObserver) icon.loading = 'eager';
     icon.sizes = `${Math.ceil(element.getBoundingClientRect().width)}px`;
     if(icon.dataset.srcset) {icon.srcset=icon.dataset.srcset;delete icon.dataset.srcset;}
@@ -64,6 +68,7 @@ export class Previews {
     link.className = 'game-launch';
     link.href = '#game=' + encodeURIComponent(game.id);
     link.dataset.id = game.id;
+    if(this.root&&this.iconObserver)link.tabIndex=-1;
     link.setAttribute('aria-label', 'Play ' + game.name);
     const description = document.createElement('span');
     description.className = 'sr-only';

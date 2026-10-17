@@ -9,7 +9,7 @@ export class Surroundings {
       rail.className = `game-rail rail-${side}`;
       rail.setAttribute('aria-label', 'More games'); rail.hidden = true;
       host.before(rail);
-      return {element:rail, previews:new Previews({idPrefix:`rail-${side}`})};
+      return {element:rail, previews:new Previews({idPrefix:`rail-${side}`,root:rail})};
     });
     document.addEventListener('visibilitychange',()=>{
       for(const {element} of this.rails)element.classList.toggle('page-hidden',document.hidden);
