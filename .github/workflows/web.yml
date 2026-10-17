@@ -59,6 +59,7 @@ jobs:
           devenv shell -- python3 tests/collection_sources.py
           devenv shell -- python3 scripts/check_collection_sources.py --require-tracked
           devenv shell -- python3 tests/arcade_packaging.py
+          devenv shell -- node --test tests/arcade_worker.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:

@@ -23,6 +23,7 @@ python3 tests/project_config.py
 python3 tests/collection_export.py
 python3 tests/collection_sources.py
 python3 tests/arcade_packaging.py
+node --test tests/arcade_worker.mjs
 python3 scripts/check_collection_sources.py --require-tracked
 
 echo "==> Native Android source export and relocation checks"

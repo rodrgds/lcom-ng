@@ -38,14 +38,20 @@ def main():
                 body = response.read()
                 assert response.headers.get_content_type() == content_type, (url, response.headers.get_content_type(), content_type)
                 compressed = response.headers.get("Content-Encoding") == "gzip"
-                assert compressed == (encoding == "gzip, br"), (url, encoding)
+                # The edge normalizes wildcard negotiation before invoking the
+                # Worker. Its cf.clientAcceptEncoding can report "gzip" for
+                # "gzip;q=0, *;q=1". Verify those delivered bytes independently;
+                # exact quality handling is covered at the Worker boundary.
+                if encoding != "gzip;q=0, *;q=1":
+                    assert compressed == (encoding == "gzip, br"), (url, encoding)
                 decoded = gzip.decompress(body) if compressed else body
                 assert hashlib.sha256(decoded).hexdigest() == expected, (url, encoding)
                 etag = response.headers["ETag"]
                 assert "accept-encoding" in response.headers.get("Vary", "").lower()
                 assert "no-transform" in response.headers.get("Cache-Control", "")
             results.append({"path": payload.relative_to(args.source).as_posix(),
-                            "acceptEncoding": encoding, "sha256": expected})
+                            "acceptEncoding": encoding, "contentEncoding": "gzip" if compressed else "identity",
+                            "sha256": expected})
         if index == 0:
             for encoding in ("gzip", "identity"):
                 request = urllib.request.Request(url, method="HEAD", headers={"Accept-Encoding": encoding})

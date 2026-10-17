@@ -272,7 +272,8 @@ Columns loop slowly in alternating vertical directions using CSS transforms and
 a bounded deck of thumbnails. Hover or keyboard focus pauses that side, and a
 44px pause button keeps it still until resumed. Reduced motion disables drift.
 Resting opacity is .78 and hover/focus restores full brightness. Previews remain
-inside the gutter, with ordinary links to launch.
+inside the gutter, with ordinary links to launch. Narrow gutters show screenshots
+within the tile and expose its name as a tooltip instead of squeezing preview copy.
 
 ### Persistent search
 
