@@ -8,12 +8,19 @@ export function downloadSize(bytes) {
 }
 
 export function facts(game) {
-  const year = String(game.yearLabel || game.year || '').replace(/^Updated\s+/, '');
+  const year = 'academicYear' in game ? game.academicYear || '' : String(game.yearLabel || game.year || '').replace(/^Updated\s+/, '');
   return [year, downloadSize(game.downloadBytes)].filter(Boolean).join(' · ');
 }
 
+export function repositoryIcon(url) {
+  return /^https?:\/\/(?:www\.)?github\.com(?:[/:]|$)/i.test(url)
+    ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M12 .75a11.25 11.25 0 0 0-3.56 21.92c.56.1.77-.24.77-.54v-2.1c-3.14.68-3.8-1.33-3.8-1.33-.51-1.3-1.25-1.65-1.25-1.65-1.03-.71.08-.7.08-.7 1.14.08 1.74 1.17 1.74 1.17 1.01 1.73 2.65 1.23 3.3.94.1-.73.4-1.23.72-1.51-2.51-.29-5.15-1.26-5.15-5.59 0-1.23.44-2.23 1.16-3.02-.12-.29-.5-1.43.11-2.98 0 0 .95-.3 3.1 1.15a10.8 10.8 0 0 1 5.64 0c2.15-1.46 3.1-1.15 3.1-1.15.61 1.55.23 2.69.11 2.98.72.79 1.16 1.79 1.16 3.02 0 4.34-2.64 5.3-5.16 5.58.41.35.77 1.03.77 2.08v3.1c0 .3.21.65.78.54A11.25 11.25 0 0 0 12 .75Z"/></svg>'
+    : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4 10 14M10 6H4v14h14v-6"/></svg>';
+}
+
 export class Previews {
-  constructor() {
+  constructor({idPrefix = 'facts'} = {}) {
+    this.idPrefix = idPrefix;
     this.active = null;
     this.timer = null;
     // Native lazy loading can fetch several screens ahead. Observe the final
@@ -25,7 +32,7 @@ export class Previews {
     window.addEventListener('blur', () => this.stop());
     window.addEventListener('resize', () => this.stop());
     window.addEventListener('scroll', () => {
-      if (this.hasFocusedAction()) {
+      if (this.active?.element.contains(document.activeElement)) {
         const rect = this.position(this.active);
         if (rect.bottom > 0 && rect.top < innerHeight && rect.right > 0 && rect.left < innerWidth) return;
       }
@@ -54,7 +61,7 @@ export class Previews {
     link.setAttribute('aria-label', 'Play ' + game.name);
     const description = document.createElement('span');
     description.className = 'sr-only';
-    description.id = 'facts-' + game.id;
+    description.id = this.idPrefix + '-' + game.id;
     description.textContent = facts(game);
     link.setAttribute('aria-describedby', description.id);
     const icon = document.createElement('img');
@@ -77,13 +84,14 @@ export class Previews {
     name.setAttribute('aria-hidden', 'true');
     const stats = document.createElement('span'); stats.className = 'game-facts'; stats.textContent = facts(game);
     stats.setAttribute('aria-hidden', 'true');
-    stats.title = [game.yearSource?.detail, game.downloadBytes ? 'Approximate first-load download, including the game and player. Previews excluded; caching may reduce it.' : ''].filter(Boolean).join(' ');
+    stats.title = [game.academicYearSource?.detail || game.yearSource?.detail, game.downloadBytes ? 'Approximate first-load download, including the game and player. Previews excluded; caching may reduce it.' : ''].filter(Boolean).join(' ');
     const meta = document.createElement('span'); meta.className = 'game-meta'; meta.append(stats);
     if (game.repository) {
       const repo = document.createElement('a'); repo.className = 'game-repo';
       repo.href = game.repository; repo.target = '_blank'; repo.rel = 'noopener noreferrer';
       repo.setAttribute('aria-label', 'Repository for ' + game.name);
-      repo.innerHTML = 'Repo<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7 9M7 3H3v10h10V9"/></svg>';
+      repo.innerHTML = repositoryIcon(game.repository);
+      repo.title = 'Repository for ' + game.name;
       meta.append(repo);
     }
     copy.append(name, meta); overlay.append(copy);
@@ -136,10 +144,15 @@ export class Previews {
 
   position(tile) {
     const rect = tile.element.getBoundingClientRect(), edge = 8;
-    const width = Math.min(innerWidth - edge * 2, rect.width * 1.85);
-    const height = Math.min(innerHeight - edge * 2, rect.height * 1.12);
-    const left = Math.max(edge, Math.min(innerWidth - edge - width, rect.x + rect.width / 2 - width / 2));
-    const top = Math.max(edge, Math.min(innerHeight - edge - height, rect.y + rect.height / 2 - height / 2));
+    const rail = tile.element.closest('.game-rail');
+    const zone = rail ? rail.getBoundingClientRect() : {left:edge,top:edge,width:innerWidth-edge*2,height:innerHeight-edge*2};
+    const style = getComputedStyle(tile.element);
+    const ordinary = parseFloat(style.getPropertyValue('--unit')) * 2 + parseFloat(style.getPropertyValue('--gap'));
+    const size = tile.element.classList.contains('compact') && Number.isFinite(ordinary) ? ordinary : rect.width;
+    const width = Math.min(zone.width, Math.max(size * 2.035, rail ? 286 : 0));
+    const height = Math.min(zone.height, Math.max(size * 1.344, rail ? 228 : 200));
+    const left = Math.max(zone.left, Math.min(zone.left+zone.width-width, rect.x+rect.width/2-width/2));
+    const top = Math.max(zone.top, Math.min(zone.top+zone.height-height, rect.y+rect.height/2-height/2));
     tile.element.style.setProperty('--preview-width', `${width}px`);
     tile.element.style.setProperty('--preview-height', `${height}px`);
     tile.element.style.setProperty('--preview-left', `${left - rect.x}px`);

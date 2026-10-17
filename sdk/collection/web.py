@@ -80,17 +80,19 @@ def write_launcher(entries, output, name, icon=None, presentation=None):
     output = Path(output)
     catalog = [{'id': entry['id'], 'name': entry['name'],
                 'description': entry['settings']['description'],
+                'archetype': entry['settings']['archetype'],
                 'revision': hashlib.sha256((output / 'games' / entry['id'] / 'index.html').read_bytes()).hexdigest()[:12],
                 'url': f'games/{entry["id"]}/',
                 'preview': f'games/{entry["id"]}/preview.png' if entry['settings']['preview'] else None,
                 'icon': f'games/{entry["id"]}/icon.png' if entry['icon'] else None}
                for entry in entries]
-    details, galleries = _presentation(presentation, {entry['id'] for entry in entries})
+    details, galleries, options = _presentation(presentation, {entry['id'] for entry in entries})
     for game in catalog:
         game.update(details.get(game['id'], {}))
         game.update(download_metadata(output / 'games' / game['id'], f"games/{game['id']}/"))
         game['screenshots'] = _copy_screenshots(output, game['id'], galleries.get(game['id'], []))
-    (output / 'collection.json').write_text(json.dumps({'name': name, 'games': catalog}, ensure_ascii=False) + '\n')
+    (output / 'collection.json').write_text(json.dumps({'name': name, 'games': catalog,
+        'taxonomy': options.get('taxonomy', [])}, ensure_ascii=False) + '\n')
     template = Path(__file__).parent / 'web-template'
     assets = sorted(path for path in template.iterdir()
                     if path.is_file() and (path.suffix in ('.js', '.css') or path.name == 'index.html'))
@@ -115,9 +117,16 @@ def write_launcher(entries, output, name, icon=None, presentation=None):
         shell = shell.replace(f'"{filename}"', f'"{filename}?v={digest}"')
     if icon:
         shutil.copy2(icon, output / 'icon.png')
-        shell = shell.replace('</head>', '<link rel="icon" href="icon.png"><link rel="apple-touch-icon" href="icon.png"></head>')
+        favicon_link = '' if options.get('favicon') else '<link rel="icon" href="icon.png">'
+        shell = shell.replace('</head>', favicon_link + '<link rel="apple-touch-icon" href="icon.png"></head>')
     else:
         (output / 'icon.png').unlink(missing_ok=True)
+    if options.get('favicon'):
+        favicon = options['favicon']
+        filename = 'favicon' + favicon.suffix.lower()
+        shutil.copy2(favicon, output / filename)
+        digest = hashlib.sha256(favicon.read_bytes()).hexdigest()[:12]
+        shell = shell.replace('</head>', f'<link rel="icon" href="{filename}?v={digest}"></head>')
     (output / 'index.html').write_text(shell)
     manifest = {'name': name, 'short_name': name, 'start_url': './', 'scope': './',
                 'display': 'fullscreen', 'background_color': '#101021', 'theme_color': '#101021'}
@@ -133,11 +142,12 @@ DOWNLOAD_FILES = ('index.html', 'game.js', 'game.wasm', 'game.data', 'game.json'
                   'player.js', 'player.css', 'loading.js', 'driving.js')
 
 
-def download_metadata(folder, prefix='', wasm_bytes=None):
+def download_metadata(folder, prefix='', wasm_bytes=None, data_bytes=None):
     """Measured game/player payload, excluding library artwork and HTTP overhead.
 
     Hosting may compress the other files too. Their stored sizes intentionally
     remain an upper bound rather than pretending to measure a particular wire.
+    Optional publishing sizes record measured gzip bytes for the two payloads.
     """
     folder = Path(folder)
     files = []
@@ -150,9 +160,12 @@ def download_metadata(folder, prefix='', wasm_bytes=None):
         record = {'path': prefix + name, 'bytes': size, 'encoding': 'identity'}
         if name == 'game.wasm' and wasm_bytes is not None:
             record.update(bytes=wasm_bytes, encoding='gzip', decodedBytes=size)
+        if name == 'game.data' and data_bytes is not None:
+            record.update(bytes=data_bytes, encoding='gzip', decodedBytes=size)
         files.append(record)
+    compressed = [name for name, size in (('wasm', wasm_bytes), ('data', data_bytes)) if size is not None]
     return {'downloadBytes': sum(item['bytes'] for item in files),
-            'downloadBasis': 'gzip-wasm-identity-rest' if wasm_bytes is not None else 'identity',
+            'downloadBasis': 'gzip-' + '-'.join(compressed) + '-identity-rest' if compressed else 'identity',
             'downloadFiles': files}
 
 
@@ -169,26 +182,46 @@ def _confined(root, relative):
 
 
 def _presentation(path, identifiers):
-    if path is None: return {}, {}
+    if path is None: return {}, {}, {}
     path = Path(path).absolute()
     root = path.parent.resolve(strict=True)
     path = path.resolve(strict=True)
     if not path.is_relative_to(root):
         raise ValueError('Web presentation sidecar escapes collection')
     config = exporter.source_project.project_config
-    sidecar = config.object_value(json.loads(path.read_text()), str(path), ['version', 'metadata', 'gallery'])
+    sidecar = config.object_value(json.loads(path.read_text()), str(path), ['version', 'metadata', 'gallery', 'favicon'])
     if type(sidecar.get('version', 1)) is not int or sidecar.get('version', 1) != 1:
         raise ValueError('Web presentation version must be 1')
-    details, galleries = {}, {}
+    details, galleries, options = {}, {}, {}
+    if 'favicon' in sidecar:
+        favicon = _confined(root, sidecar['favicon'])
+        if favicon.suffix.lower() not in ('.png', '.svg'):
+            raise ValueError('Web favicon must be PNG or SVG')
+        options['favicon'] = favicon
     for kind in ('metadata', 'gallery'):
         if kind not in sidecar: continue
         source = _confined(root, sidecar[kind])
-        data = config.object_value(json.loads(source.read_text()), str(source), ['version', 'games'])
+        data = config.object_value(json.loads(source.read_text()), str(source), ['version', 'games', 'taxonomy'] if kind == 'metadata' else ['version', 'games'])
         if type(data.get('version', 1)) is not int or data.get('version', 1) != 1:
             raise ValueError('Web presentation version must be 1')
         games = data.get('games')
         if not isinstance(games, dict) or games.keys() - identifiers:
             raise ValueError(f'{source}: unknown or invalid game identifiers')
+        tags = set()
+        if kind == 'metadata':
+            taxonomy = data.get('taxonomy', [])
+            if not isinstance(taxonomy, list) or len(taxonomy) > 128:
+                raise ValueError('Game taxonomy must be an array of at most 128 tags')
+            for tag in taxonomy:
+                config.object_value(tag, 'taxonomy tag', ['id', 'label', 'facet', 'description'])
+                identifier = config.string(tag.get('id'), 'taxonomy.id')
+                if not re.fullmatch(r'[a-z][a-z0-9-]*', identifier) or identifier in tags:
+                    raise ValueError('Taxonomy tag IDs must be unique slugs')
+                tags.add(identifier)
+                config.string(tag.get('label'), 'taxonomy.label')
+                config.choice(tag.get('facet'), 'taxonomy.facet', ['genre', 'players'])
+                if 'description' in tag: config.string(tag['description'], 'taxonomy.description')
+            options['taxonomy'] = taxonomy
         for identifier, value in games.items():
             if kind == 'gallery':
                 if not isinstance(value, list) or len(value) > 12:
@@ -204,7 +237,28 @@ def _presentation(path, identifiers):
                         raise ValueError(f'Gallery image must be WebP: {image}')
                 galleries[identifier] = images
                 continue
-            config.object_value(value, identifier, ['year', 'yearLabel', 'yearSource', 'featured', 'repository'])
+            config.object_value(value, identifier, ['year', 'yearLabel', 'yearSource', 'featured', 'featuredPool', 'repository', 'tags', 'academicYear', 'academicYearSource'])
+            if 'tags' in value:
+                selected = value['tags']
+                if not isinstance(selected, list) or any(not isinstance(tag, str) or tag not in tags for tag in selected) or len(set(selected)) != len(selected):
+                    raise ValueError('Game tags must be unique IDs from the collection taxonomy')
+            if 'academicYear' in value:
+                year = value['academicYear']
+                if year is not None:
+                    match = re.fullmatch(r'(\d{4})/(\d{2})', str(year))
+                    if not match or not 1900 <= int(match[1]) <= 2100 or int(match[2]) != (int(match[1]) + 1) % 100:
+                        raise ValueError('Academic year must identify consecutive years, such as 2023/24')
+                evidence = config.object_value(value.get('academicYearSource'), 'academicYearSource', ['kind', 'confidence', 'detail', 'url', 'date'])
+                config.string(evidence.get('kind'), 'academicYearSource.kind')
+                config.string(evidence.get('detail'), 'academicYearSource.detail')
+                config.choice(evidence.get('confidence'), 'academicYearSource.confidence', ['explicit', 'inferred', 'unknown'])
+                if (year is None) != (evidence['confidence'] == 'unknown'):
+                    raise ValueError('An unknown academic year must be null with unknown confidence')
+                if 'url' in evidence and not re.match(r'^https?://[^\s]+$', config.string(evidence['url'], 'academicYearSource.url')):
+                    raise ValueError('Academic year evidence must use an HTTP URL')
+                if 'date' in evidence: datetime.fromisoformat(config.string(evidence['date'], 'academicYearSource.date'))
+            elif 'academicYearSource' in value:
+                raise ValueError('academicYearSource requires academicYear')
             if 'repository' in value:
                 config.string(value['repository'], 'repository')
                 if not re.match(r'^https?://[^\s]+$', value['repository']):
@@ -233,9 +287,10 @@ def _presentation(path, identifiers):
                         raise ValueError('Repository year labels must use the creation year')
                 if evidence['kind'] == 'unknown' and 'year' in value:
                     raise ValueError('Unknown yearSource cannot establish a year')
-            if 'featured' in value: config.boolean(value['featured'], 'featured')
+            for flag in ('featured','featuredPool'):
+                if flag in value: config.boolean(value[flag], flag)
             details[identifier] = value
-    return details, galleries
+    return details, galleries, options
 
 
 def _copy_screenshots(output, identifier, sources):

@@ -93,9 +93,11 @@ class CollectionManifest(unittest.TestCase):
         identifier=entries[0]['id']
         image=base64.b64decode('UklGRh4AAABXRUJQVlA4TBEAAAAvAUAAAAdQwGIUu/+BiOh/AAA=')
         (self.collection/'capture.webp').write_bytes(image)
-        (self.collection/'metadata.json').write_text(json.dumps({'version':1,'games':{identifier:{'year':2024,'yearLabel':'2024','yearSource':{'kind':'repository','url':'https://github.com/example/game','createdAt':'2024-05-12T00:00:00Z','detail':'GitHub repository creation date'},'featured':True,'repository':'https://github.com/example/game'}}}))
+        (self.collection/'metadata.json').write_text(json.dumps({'version':1,'taxonomy':[{'id':'snake','label':'Snake','facet':'genre'}],'games':{identifier:{'tags':['snake'],'academicYear':'2023/24','academicYearSource':{'kind':'readme','confidence':'explicit','detail':'Original README names the 2023/24 class.'},'year':2024,'yearLabel':'2024','yearSource':{'kind':'repository','url':'https://github.com/example/game','createdAt':'2024-05-12T00:00:00Z','detail':'GitHub repository creation date'},'featured':True,'featuredPool':True,'repository':'https://github.com/example/game'}}}))
         (self.collection/'gallery.json').write_text(json.dumps({'version':1,'games':{identifier:['capture.webp']}}))
-        (self.collection/'web.json').write_text(json.dumps({'version':1,'metadata':'metadata.json','gallery':'gallery.json'}))
+        favicon=b'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M0 0h10v10H0z"/></svg>'
+        (self.collection/'favicon.svg').write_bytes(favicon)
+        (self.collection/'web.json').write_text(json.dumps({'version':1,'metadata':'metadata.json','gallery':'gallery.json','favicon':'favicon.svg'}))
         output=self.root/'export'
         for entry in entries:
             game=output/'games'/entry['id'];game.mkdir(parents=True)
@@ -105,6 +107,10 @@ class CollectionManifest(unittest.TestCase):
         game=games[0]
         self.assertEqual((game['year'],game['yearLabel'],game['yearSource']['kind'],game['featured']),(2024,'2024','repository',True))
         self.assertEqual(game['repository'],'https://github.com/example/game')
+        self.assertEqual((game['tags'],game['academicYear']),(['snake'],'2023/24'))
+        self.assertEqual(json.loads((output/'collection.json').read_text())['taxonomy'][0]['label'],'Snake')
+        self.assertEqual((output/'favicon.svg').read_bytes(),favicon)
+        self.assertIn('href="favicon.svg', (output/'index.html').read_text())
         self.assertNotIn('year',games[1])
         self.assertEqual(game['downloadBytes'],47)
         self.assertEqual(sum(item['bytes'] for item in game['downloadFiles']),47)

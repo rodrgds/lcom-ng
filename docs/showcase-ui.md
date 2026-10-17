@@ -70,9 +70,13 @@ Check extended keys and undo/redo as well as printable keys beneath the overlay.
 guest. Right Option on macOS and Right Ctrl release the captured mouse without
 opening debug. F3 also opens the host debug overlay and releases it. Keep Right
 Alt available as AltGr on other platforms. Do not reserve Command as a host
-escape key. Browser input stays free of Pointer Lock, so Escape reaches the game
-without an implicit host release. The same release modifiers show the browser
-cursor and stop game mouse input until a click resumes it.
+escape key. In the browser, clicking the game captures the mouse with Pointer
+Lock. Escape releases capture and reaches the game once. Shift+Escape returns
+to the collection library. The same release modifiers show the browser cursor
+without sending Escape; clicking the game captures it again. Home stays a plain,
+clickable button for keyboard and touch users. After one second of mouse capture,
+a centered Shift+Esc shortcut hint appears briefly, then fades. Unlocking or
+returning to the library clears it.
 
 ## Verification and captures
 

@@ -12,28 +12,32 @@
 </head>
 <body>
 <main id="library">
+  <div id="active-filters" aria-label="Active search and filters" hidden></div>
   <div id="grid" class="mosaic">
     <div class="library-tools">
       <a class="identity grid-utility" href="./" aria-label="@NAME@ home"><img src="assets/arcade.svg" width="44" height="44" alt=""><h1>@NAME@</h1></a>
       <div class="library-controls" role="group" aria-label="Library controls">
-        <button id="search-toggle" class="utility-tile grid-utility" type="button" aria-label="Find a game" aria-haspopup="dialog" aria-expanded="false" aria-controls="search-panel" title="Find a game (Ctrl+K / ⌘K)" aria-keyshortcuts="Control+k Meta+k"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><span>Search</span></button>
         <button id="fullscreen" class="utility-tile grid-utility" type="button" aria-label="Enter fullscreen" title="Fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg><span>Screen</span></button>
         <button id="shuffle" class="utility-tile grid-utility" type="button" aria-label="Shuffle games" title="Shuffle games"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h3c5 0 7 12 12 12h3m-4-4 4 4-4 4M3 18h3c2 0 3.5-2 5-5m2-3c1.5-2.5 3-4 5-4h3m-4-4 4 4-4 4"/></svg><span>Shuffle</span></button>
         <!-- Clover: Lucide, ISC, assets/lucide-LICENSE.txt. -->
         <button id="surprise" class="utility-tile grid-utility" type="button" aria-label="Surprise me" aria-haspopup="dialog" aria-controls="surprise-panel" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.17 7.83 2 22"/><path d="M4.02 12a2.827 2.827 0 1 1 3.81-4.17A2.827 2.827 0 1 1 12 4.02a2.827 2.827 0 1 1 4.17 3.81A2.827 2.827 0 1 1 19.98 12a2.827 2.827 0 1 1-3.81 4.17A2.827 2.827 0 1 1 12 19.98a2.827 2.827 0 1 1-4.17-3.81A1 1 0 1 1 4 12"/><path d="m7.83 7.83 8.34 8.34"/></svg><span>Surprise</span></button>
       </div>
+      <div class="browse-tile grid-utility">
+        <form role="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input id="search" type="search" placeholder="Name or tag…" aria-label="Search games" autocomplete="off" aria-keyshortcuts="Control+k Meta+k"></form>
+        <div class="browse-actions"><small id="browse-count">All games</small><button id="browse-toggle" type="button" aria-label="Filter games" aria-expanded="false" aria-controls="browse-panel"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4"/></svg><span>Filters</span></button></div>
+      </div>
     </div>
     <div id="games" role="list" aria-label="Games"></div>
   </div>
+  <p id="filter-empty" hidden>No games match. Try another name or clear your filters.</p>
   <p id="count" class="sr-only" aria-live="polite">Loading games…</p>
   <p id="error" role="alert" hidden></p>
 </main>
-<dialog id="search-panel" aria-label="Find a game">
-  <form role="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m15.5 15.5 5 5"/></svg><input id="search" type="search" placeholder="Search games…" aria-label="Find a game" autocomplete="off" autofocus></form>
-  <p id="search-count" role="status"></p>
-  <div id="search-results" role="list" aria-label="Search results"></div>
-  <p id="empty" hidden>No games match. Try another name.</p>
-</dialog>
+<section id="browse-panel" aria-labelledby="browse-title" hidden>
+  <header><h2 id="browse-title">Filters</h2><button data-dismiss type="button" aria-label="Close filters"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button></header>
+  <div class="filter-groups"></div>
+  <footer><p role="status"></p><button data-reset type="button" aria-label="Clear filters">Clear filters</button></footer>
+</section>
 <dialog id="surprise-panel" aria-label="Surprise me" aria-describedby="surprise-status">
   <p id="surprise-status" class="sr-only" role="status" aria-live="polite">Choosing a game…</p>
   <div id="surprise-reel" aria-hidden="true"><div class="roulette-track"></div><div class="roulette-marker"></div></div>
@@ -41,22 +45,26 @@
     <img class="surprise-scene" alt="">
     <div class="surprise-info">
       <div class="surprise-identity"><img class="surprise-icon" width="64" height="64" alt=""><h2 id="surprise-result"></h2></div>
-      <div class="surprise-meta"><span id="surprise-facts"></span><a id="surprise-repo" target="_blank" rel="noopener noreferrer" hidden>Repo<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M9 2h5v5M14 2 7 9M7 3H3v10h10V9"/></svg></a></div>
+      <div class="surprise-meta"><span id="surprise-facts"></span><a id="surprise-repo" target="_blank" rel="noopener noreferrer" hidden></a></div>
+      <ul id="surprise-tags" class="game-tags" aria-label="Game categories" hidden></ul>
       <p id="surprise-description"></p>
       <button id="surprise-play" type="button" hidden>Play<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7z"/></svg></button>
     </div>
   </div>
 </dialog>
 <section id="play" hidden aria-label="Game player">
-  <button id="back" class="back" type="button" aria-label="Games" title="Back to games"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></svg></button>
+  <button id="back" class="back" type="button" aria-label="Games" aria-keyshortcuts="Shift+Escape" title="Back to games"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></svg></button>
+  <p id="library-hint" role="status" aria-label="Shift plus Escape returns to games" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3-9 9h6v8h6v-8h6z"/></svg><span aria-hidden="true">+</span><kbd aria-hidden="true">Esc</kbd><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7M5 9v12h5v-7h4v7h5V9"/></svg></p>
+  <button id="player-fullscreen" class="player-fullscreen" type="button" aria-label="Enter fullscreen" title="Enter fullscreen"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H3v5m13-5h5v5M3 16v5h5m13-5v5h-5"/></svg></button>
   <div id="frame-host"></div>
-  <div id="loading" hidden>
-    <div class="load-art"><img id="load-preview" src="assets/arcade.svg" alt=""><img class="load-logo" src="assets/arcade.svg" width="64" height="64" alt=""></div>
-    <div class="load-copy"><h2 id="load-title"></h2><p id="load-description"></p>
-      <div id="load-progress"><progress aria-label="Game download"></progress><p id="load-status" role="status">Loading game…</p></div>
-      <div id="load-error" hidden><p role="alert">The game couldn’t load. Check your connection and try again.</p><button id="retry" type="button">Try again</button><button id="cancel" type="button">Back to games</button></div>
-    </div>
-  </div>
+  <dialog id="loading" aria-labelledby="load-title" hidden>
+    <button id="load-dismiss" type="button" aria-label="Back to games"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+    <div class="load-heading"><img class="load-logo" src="assets/arcade.svg" width="64" height="64" alt=""><h2 id="load-title"></h2></div>
+    <ul id="load-tags" class="game-tags" aria-label="Game categories" hidden></ul>
+    <p id="load-description"></p>
+    <div id="load-progress"><progress aria-label="Game download"></progress><p id="load-status" role="status">Loading game…</p></div>
+    <div id="load-error" hidden><p role="alert">The game couldn’t load. Check your connection and try again.</p><button id="retry" type="button">Try again</button><button id="cancel" type="button">Back to games</button></div>
+  </dialog>
 </section>
 </body>
 </html>

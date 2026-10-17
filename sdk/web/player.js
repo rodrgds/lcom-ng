@@ -66,10 +66,16 @@ const player = {
     if (down) sources.add(source); else sources.delete(source);
     if (sources.size) this.held.set(code, sources); else this.held.delete(code);
     if (wasHeld !== (sources.size > 0)) this.module.ccall('lcom_web_key', null, ['string', 'number'], [key, down ? 1 : 0]);
-    if (!wasHeld && sources.size && mobile?.controls.repeatKeys?.includes(key)) {
+    const releaseRepeat = mobile?.controls.repeatReleaseKeys?.includes(key);
+    if (releaseRepeat && sources.has('physical')) {
+      clearTimeout(this.repeats.get(code)?.id); this.repeats.delete(code);
+    }
+    if ((!wasHeld && sources.size && mobile?.controls.repeatKeys?.includes(key)) ||
+        (releaseRepeat && sources.size && !sources.has('physical') && !this.repeats.has(code))) {
       const timer={id:null};
       const repeat=()=>{
         if(!this.module || !this.held.has(code) || this.repeats.get(code)!==timer) { this.repeats.delete(code);return; }
+        if (releaseRepeat) this.module.ccall('lcom_web_key',null,['string','number'],[key,0]);
         this.module.ccall('lcom_web_key',null,['string','number'],[key,1]);
         timer.id=setTimeout(repeat,100);
       };
@@ -146,6 +152,7 @@ function publishLayout() {
   });
 }
 function placeFloatingControls() {
+  for(const name of ['left','right','top','bottom','width','maxWidth']) toolbar.style[name]='';
   if(!mobile || !touch.matches || controls.hidden || !keyboard.hidden) return;
   const rect=element=>{const r=element.getBoundingClientRect();return {x:r.x,y:r.y,width:r.width,height:r.height};};
   const visible=element=>element.getClientRects().length && !element.closest('[hidden]');
@@ -184,6 +191,7 @@ new MutationObserver(publishLayout).observe(controls,{subtree:true,childList:tru
 let finished = false;
 function failed(message) {
   reportLoading({phase:'error'});
+  releaseMouse();
   player.module = null; player.held.clear(); player.stopAudio();
   status.textContent = `Could not run the game: ${message}.`;
   document.querySelector('#error-message').textContent = status.textContent;
@@ -194,20 +202,76 @@ function failed(message) {
 const macHost = /Mac|iPhone|iPad|iPod/.test(navigator.platform);
 const isMouseReleaseKey = code => code === 'ControlRight' || (macHost && code === 'AltRight');
 let mouseReleased = false;
+let capturePending = false;
+let captureAvailable = Boolean(canvas.requestPointerLock);
+let capturedMouse = false;
+let expectedUnlock = false;
+let motionRemainder = [0, 0];
+const pointerHint = document.querySelector('#pointer-hint');
+const pointerLocked = () => document.pointerLockElement === canvas;
+function updatePointerHint(message) {
+  pointerHint.hidden = touch.matches || finished || pointerLocked();
+  pointerHint.textContent = message || (!captureAvailable ? 'Mouse capture unavailable in this browser. Click and drag to move.' : 'Click game to capture mouse');
+}
+function requestMouseCapture() {
+  if (pointerLocked() || capturePending || !captureAvailable) return;
+  setMouseButtons('physical', 0);
+  player.lastPointer = null; motionRemainder = [0, 0];
+  capturePending = true;
+  try {
+    canvas.requestPointerLock()?.catch(error => {
+      capturePending = false;
+      captureAvailable = !['WrongDocumentError','NotSupportedError'].includes(error.name);
+      updatePointerHint(captureAvailable ? 'Could not capture the mouse. Click game to try again.' : undefined);
+    });
+  } catch {
+    capturePending = false; captureAvailable = false;
+    updatePointerHint('Mouse capture unavailable in this browser. Click and drag to move.');
+  }
+}
+document.addEventListener('pointerlockchange', () => {
+  const locked = pointerLocked();
+  // Browsers consume their native Escape unlock gesture before DOM key events.
+  // A focused, unsolicited unlock is that gesture; blur and our own exits must
+  // never inject Escape into the game. Capture the Shift state before release.
+  const escaped = capturedMouse && !locked && !expectedUnlock && document.hasFocus() && !document.hidden;
+  const library = escaped && collectionPlayer && ['ShiftLeft','ShiftRight'].some(code => player.held.has(code));
+  capturedMouse = locked; expectedUnlock = false; capturePending = false;
+  if(collectionPlayer) parent.postMessage({type:'lcom-player-pointer',captured:locked},location.origin);
+  if (locked) resumeMouse(); else releaseMouse();
+  if (library) parent.postMessage({type:'lcom-player-library'},location.origin);
+  else if (escaped) {
+    player.key('Escape',true,'browser-unlock');
+    player.key('Escape',false,'browser-unlock');
+  }
+  updatePointerHint();
+});
+document.addEventListener('pointerlockerror', () => {
+  capturePending = false;
+  updatePointerHint('Could not capture the mouse. Click game to try again.');
+});
 function releaseMouse() {
+  if (pointerLocked()) { expectedUnlock = true; document.exitPointerLock(); }
   player.releaseAll();
+  motionRemainder = [0, 0];
   mouseReleased = true;
   canvas.classList.add('mouse-released');
 }
 function resumeMouse() {
-  if (mouseReleased) player.lastPointer = null;
+  if (mouseReleased) { player.lastPointer = null; motionRemainder = [0, 0]; }
   mouseReleased = false;
   canvas.classList.remove('mouse-released');
 }
 
 document.addEventListener('keydown', event => {
+  if (collectionPlayer && event.code === 'Escape' && event.shiftKey) {
+    event.preventDefault(); releaseMouse();
+    parent.postMessage({type:'lcom-player-library'},location.origin); return;
+  }
   if (finished && event.code === 'Enter') { location.reload(); return; }
   if (!player.module || document.activeElement !== canvas) return;
+  if (collectionPlayer) parent.postMessage({type:'lcom-player-input',keyboard:true},location.origin);
+  if (event.code === 'Escape' && pointerLocked()) releaseMouse();
   if (isMouseReleaseKey(event.code)) {
     event.preventDefault(); releaseMouse(); return;
   }
@@ -261,32 +325,62 @@ function setMouseButtons(source, buttons, dx = 0, dy = 0, point = null) {
   else if (previous !== player.buttons || dx || dy) sendMouse(dx, dy);
   for (const button of controls.querySelectorAll('[data-mouse]')) button.setAttribute('aria-pressed', String(Boolean(player.buttons & Number(button.dataset.mouse))));
 }
+function relativeMouse(dx, dy, buttons) {
+  const gain = mobile?.controls.cursor.desktopScale || 1;
+  motionRemainder[0] += dx / gain;
+  motionRemainder[1] += dy / gain;
+  // Integer delta/2 games need even raw packets; odd units disappear in their code.
+  const quantum = gain === 0.5 && !mobile?.controls.cursor.desktopFractional ? 2 : 1;
+  const x = Math.trunc(motionRemainder[0] / quantum) * quantum;
+  const y = Math.trunc(motionRemainder[1] / quantum) * quantum;
+  motionRemainder[0] -= x; motionRemainder[1] -= y;
+  setMouseButtons('physical', buttons, x, y);
+}
 function mouse(event) {
-  if (!player.module || mouseReleased) return;
+  if (!player.module || mouseReleased || (capturePending && !pointerLocked())) return;
+  if (pointerLocked()) {
+    const rect = canvas.getBoundingClientRect();
+    relativeMouse(event.movementX * canvas.width / rect.width, -event.movementY * canvas.height / rect.height, event.buttons);
+    return;
+  }
   const point = canvasPoint(event);
   if (mobile?.controls.pointer === 'direct' || mobile?.controls.cursor.desktopScale) {
     setMouseButtons('physical', event.buttons, 0, 0, point);
     return;
   }
-  const previous = player.lastPointer || [canvas.width / 2, canvas.height / 2];
-  const dx = Math.round(point[0] - previous[0]);
-  const dy = Math.round(previous[1] - point[1]);
+  const previous = player.lastPointer || point;
+  const dx = point[0] - previous[0];
+  const dy = previous[1] - point[1];
   player.lastPointer = point;
   // Browser button bits are left/right/middle, just like a PS/2 packet.
-  setMouseButtons('physical', event.buttons, dx, dy);
+  relativeMouse(dx, dy, event.buttons);
 }
+canvas.addEventListener('wheel', event => {
+  if (!player.module || mouseReleased || !event.deltaY) return;
+  event.preventDefault();
+  player.module.ccall('lcom_web_wheel', null, ['number'], [Math.max(-127, Math.min(127, Math.sign(event.deltaY) * Math.max(1, Math.round(Math.abs(event.deltaY) / 100))))]);
+}, {passive: false});
 canvas.addEventListener('pointerdown', event => {
   if (event.pointerType === 'touch') return;
   if (finished) { location.reload(); return; }
+  if (pointerLocked()) return;
   canvas.focus({ preventScroll: true }); player.unlockAudio();
   resumeMouse();
+  if (!pointerLocked() && captureAvailable) {
+    requestMouseCapture(); return;
+  }
   canvas.setPointerCapture(event.pointerId);
   mouse(event);
 });
 canvas.addEventListener('pointermove', event => {
-  if (event.pointerType !== 'touch' && (event.pointerType === 'mouse' || event.buttons)) mouse(event);
+  if (!pointerLocked() && event.pointerType !== 'touch' && (event.pointerType === 'mouse' || event.buttons)) mouse(event);
 });
-canvas.addEventListener('pointerup', event => { if (event.pointerType !== 'touch') mouse(event); });
+document.addEventListener('mousemove', event => { if (pointerLocked()) mouse(event); });
+for (const type of ['mousedown','mouseup']) document.addEventListener(type, event => {
+  if (pointerLocked()) { event.preventDefault(); mouse(event); }
+});
+canvas.addEventListener('pointerleave', () => { if (!pointerLocked()) player.lastPointer = null; });
+canvas.addEventListener('pointerup', event => { if (!pointerLocked() && event.pointerType !== 'touch') mouse(event); });
 canvas.addEventListener('pointercancel', event => { if (event.pointerType !== 'touch') setMouseButtons('physical', 0); });
 canvas.addEventListener('lostpointercapture', event => { if (event.pointerType !== 'touch') setMouseButtons('physical', 0); });
 canvas.addEventListener('contextmenu', event => event.preventDefault());
@@ -351,6 +445,15 @@ for (const event of ['pointerup', 'pointercancel', 'lostpointercapture']) area.a
     setMouseButtons(`screen-${event.pointerId}`, 0);
   }
 });
+
+// Pointer Events own these game gestures. Explicitly cancel Touch Events too:
+// Chrome otherwise defers timer tasks at touch start, delaying the guest loop.
+area.addEventListener('touchstart', event => {
+  if (event.target === area || event.target === canvas) event.preventDefault();
+}, {passive: false});
+controls.addEventListener('touchstart', event => {
+  if (event.target.closest('[data-code], [data-mouse], [data-wheel], .joystick, .steering-wheel')) event.preventDefault();
+}, {passive: false});
 
 function bindMouseButton(button) {
   const mask = Number(button.dataset.mouse);
@@ -553,7 +656,8 @@ function updateTouchControls() {
   controlsToggle.setAttribute('aria-label', controls.hidden ? 'Controls' : 'Hide controls');
   controlsToggle.title = controlsToggle.getAttribute('aria-label');
   icon(controlsToggle, controls.hidden ? 'controls' : 'hide');
-  fullscreenButton.hidden = !touch.matches || collectionPlayer;
+  fullscreenButton.hidden = collectionPlayer || !document.fullscreenEnabled;
+  updatePointerHint();
   updateOrientationHint();
   updateKeyboardDock();
   publishLayout();
@@ -641,7 +745,13 @@ function renderCustomControls(c) {
     for(const action of (c.actions || []).filter(a=>(a.position || 'bottom-'+a.side)===position)) {
       let button;
       if(action.key) button=keyButton([action.label,browserKey(action.key)],false);
-      else {
+      else if(action.wheel) {
+        button=document.createElement('button'); button.type='button'; button.className='key'; button.textContent=action.label;
+        button.dataset.wheel=action.wheel;
+        const scroll=()=>{ player.unlockAudio(); player.module?.ccall('lcom_web_wheel', null, ['number'], [action.wheel]); };
+        button.addEventListener('pointerdown',event=>{ event.preventDefault(); scroll(); });
+        button.addEventListener('click',event=>{ if(event.detail===0) scroll(); });
+      } else {
         button=document.createElement('button'); button.type='button'; button.className='key'; button.textContent=action.label;
         button.dataset.mouse=({left:1,right:2,middle:4})[action.mouseButton];
         button.setAttribute('aria-label',action.label); button.setAttribute('aria-pressed','false'); bindMouseButton(button);
@@ -736,11 +846,17 @@ async function enterFullscreen() {
     if (mobile?.orientation !== 'auto') await screen.orientation?.lock?.(mobile.orientation);
   } catch { /* Browsers may require a user gesture or may not support locking. */ }
 }
+document.addEventListener('fullscreenchange', () => fullscreenButton.setAttribute('aria-label', document.fullscreenElement ? 'Exit fullscreen' : 'Enter fullscreen'));
 fullscreenButton.onclick = async () => {
   if (document.fullscreenElement) { await document.exitFullscreen(); return; }
   await enterFullscreen();
 };
-document.addEventListener('pointerdown', () => { if (touch.matches && mobile?.fullscreen) enterFullscreen(); }, { once: true });
+document.addEventListener('pointerdown', event => {
+  if (collectionPlayer && event.pointerType === 'touch') parent.postMessage({type:'lcom-player-input',keyboard:false},location.origin);
+});
+document.addEventListener('pointerdown', () => {
+  if (touch.matches && mobile?.fullscreen) enterFullscreen();
+}, { once: true });
 
 try {
   const response = await fetch('./game.json', {cache:'no-cache'});
@@ -768,7 +884,8 @@ try {
     onExit: code => {
       const returnToCollection = collectionPlayer && code === 0;
       if (!firstFrame && !returnToCollection) reportLoading({phase:'error'});
-      player.releaseAll(); player.stopAudio(); player.module = null; finished = true;
+      releaseMouse(); player.stopAudio(); player.module = null; finished = true;
+      updatePointerHint();
       canvas.classList.add('mouse-released');
       status.textContent = code ? `Game exited with status ${code}.` : 'Game finished. Press Enter or tap the game to restart.';
       if (returnToCollection) parent.postMessage({type:'lcom-player-exit',code:0},location.origin);
@@ -776,6 +893,12 @@ try {
   }, prepared);
   module.FS.mkdirTree(config.workingDirectory);
   module.FS.chdir(config.workingDirectory);
+  // Keep the collection's short introduction readable without running hidden gameplay.
+  const startAt=Number(new URLSearchParams(location.search).get('startAt'));
+  if(collectionPlayer && Number.isFinite(startAt)) {
+    const delay=Math.max(0,Math.min(2000,startAt-Date.now()));
+    if(delay) await new Promise(resolve=>setTimeout(resolve,delay));
+  }
   canvas.focus({ preventScroll: true }); player.paused = document.hidden;
   status.textContent = 'Game running.';
   try { module.callMain(config.arguments); } catch (error) { failed(error.message || String(error)); }

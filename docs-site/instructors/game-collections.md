@@ -53,17 +53,24 @@ Re-exporting to the same web output removes generated bundles for games you took
 out of the list. Files you added yourself are preserved.
 
 The web library uses square game icons, with larger featured games spread down
-the grid. Each visit and Shuffle adds two random highlights alongside the fixed
-featured games; resizing keeps the same selection. Desktop density fits nine
-columns at 1280px. Icons load near the viewport and reveal after decoding;
+the grid. Each visit and Shuffle selects five random highlights from a curated `featuredPool`; resizing keeps the same selection. Desktop density fits nine
+columns at 1280px. Games with the same `archetype` in their `lcom.json` form
+compact 3×3 groups when nine unfeatured variants are available. Each group takes
+the space of four ordinary tiles, and every variant keeps its own launch target.
+Icons load near the viewport and reveal after decoding;
 offscreen games wait until scrolling or Shuffle brings them into view.
 Hover or keyboard focus expands a tile into gameplay screenshots with
 its name, year when known, and approximate first-load download size. Screenshots
 slide every few seconds; reduced motion keeps the first frame still. Touch opens
-a game directly. **Search** opens a modal and preserves its query when returning
-from a game. Open it with **Ctrl+K** or **Command+K**, and dismiss it with Escape
-or a tap outside. Arrow keys move through the visible grid in search and the
-library. **Shuffle** rearranges the library.
+a game directly. Search filters the displayed grid by name or tag.
+**Ctrl+K**, **Command+K** or **/** focuses the search field. The query and selected
+filters survive game launches and reloads within the same tab. Enter or Arrow
+Down moves into the visible game grid; arrow keys follow its actual layout.
+**Shuffle** rearranges the current results. **Filters** combines genres, player
+modes and school years in one panel. Choices within each group are alternatives;
+groups combine. Active chips remove individual choices; **Clear all** resets
+search and filters. Filtered results use regular tiles, keeping small selections
+together. Surprise chooses from the same matching games.
 
 **Surprise me** spins for about nine seconds, ticking as each game passes the
 marker. It slows to a point within the chosen icon, then expands into the game's
@@ -74,29 +81,39 @@ The logo and four actions have separate framed tiles. Phones keep these in two
 columns above a three-column game grid. UI sounds play after
 interaction and can be muted through the browser tab. No audio downloads or
 third-party requests are needed.
-A loading screen shows the game's `description` and download progress; failed
-downloads offer a retry or a return to the library.
-Unused game margins keep the Arcade background. Wide side margins show quiet
-columns of game icons, borrowing loaded artwork first. They drift slowly, stay
-clear of touch controls and remain still with reduced motion.
+A compact loading modal shows the game's `description` and measured progress.
+Close cancels; failed downloads offer a retry or a return to the library.
+Unused side margins show brighter playable game icons, with two columns when
+space permits. Hover and keyboard focus use the library's gameplay previews.
+Suggestions stay inside the free margins and clear of the game's controls.
 
 ## Web galleries and metadata
 
 An optional `web.json` beside the collection manifest adds web-only presentation:
 
 ```json
-{"version": 1, "metadata": "game-metadata.json", "gallery": "gallery.json"}
+{"version": 1, "metadata": "game-metadata.json", "gallery": "gallery.json", "favicon": "favicon.png"}
 ```
 
-Both files use `{"version": 1, "games": {...}}`, keyed by exported game IDs from
-`collection.json`. Metadata entries accept `featured`, `repository`, `year`, `yearSource` and
-`yearLabel`. A year source has a `kind` (`repository`, `course`, `commit` or `unknown`), a
-`detail`, and an optional `url`. The included Arcade uses GitHub repository
-creation years, with the exact `createdAt` timestamp recorded in `yearSource`.
-Repository years must match that timestamp. Commit-date metadata remains
-supported with **Updated YYYY** in its stored label; the launcher displays just the year.
-Unknown years can be omitted. A public `repository` HTTP URL adds a **Repo** link
-to the expanded tile, opening separately from the game.
+Metadata and gallery files use `{"version": 1, "games": {...}}`, keyed by exported
+game IDs from `collection.json`. Metadata also accepts a `taxonomy` array of
+`{id, label, facet}` definitions, where `facet` is `genre` or `players`.
+Each game's `tags` selects those IDs. Describe modes that work in the exported
+game, distinguishing same-device multiplayer from separate UART connections.
+
+`academicYear` uses consecutive school years such as `2022/23`, or `null` when
+unknown. Pair it with `academicYearSource`: `kind`, `confidence` (`explicit`,
+`inferred` or `unknown`), `detail`, and optional HTTP `url` and ISO `date`.
+Use original reports or README statements; otherwise use the game's actual
+development history and mark the inference. The Arcade keeps labels plain, retains inference details in evidence tooltips,
+and omits unknowns. Repository upload dates do not establish a school year.
+
+`featured`, `featuredPool`, `repository`, and the earlier `year`, `yearSource` and `yearLabel`
+fields remain supported. The Arcade retains repository creation timestamps as
+separate provenance, with exact `createdAt` dates. A public `repository` HTTP URL
+adds an icon link that opens separately from the game. GitHub repositories use
+the GitHub mark, with an accessible repository name. The optional `favicon`
+is a PNG or SVG inside the collection folder.
 
 Gallery entries are arrays of up to 12 relative WebP paths inside the collection
 folder. The exporter copies them under content hashes and loads them only when
@@ -112,9 +129,17 @@ the collection's gallery instructions before regenerating images.
 
 The mobile launcher fills the screen. On the web, tapping a game requests
 fullscreen when the browser supports it; the player also fills the viewport
-without that API. A **Games** button returns to the library. It occupies unused
-letterboxing when space permits and avoids the game's input controls. Browser history
-works too. Escape remains game input.
+without that API. Touch players use **Games** to return to the library. It occupies
+unused letterboxing when space permits and avoids the game's input controls.
+The Home button stays visible for keyboard and touch players. After mouse capture,
+a centered Shift/Esc hint appears after one second and fades away four seconds
+later. Clicking Home or pressing **Shift+Escape** returns to the library.
+Browser history works too.
+
+Click the game to capture the physical mouse. Relative movement then stays in
+the game even when the host cursor would reach a window edge. **Escape** releases
+capture and reaches the game once. Click again to recapture. The upper-right
+button toggles fullscreen.
 When a game exits normally, its shared player automatically returns to the web
 library. Standalone exports retain their restart behavior.
 

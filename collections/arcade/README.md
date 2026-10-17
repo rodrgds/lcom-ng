@@ -13,12 +13,24 @@ The Android launcher is native and fullscreen, with columns adapting to screen
 width and text size. The web library uses a shuffled square icon mosaic, with
 larger featured games spread down the grid. Hover or keyboard focus expands a
 tile into sliding gameplay screenshots, its name, evidenced year and download
-size and a public Repo link when available. Search opens a modal. Loading shows the selected game's icon, description
-and measured download progress. The Games button prefers unused
-space outside the game and returns to the collection.
+size and a public Repo link when available. Full sets of nine variants in a game
+family share a compact 3×3 group, with each game individually playable.
+Search filters the visible grid by name or tag and stays beside one filter panel
+for genres, player modes and
+academic school years. The query and tags persist within the tab; filtered results use
+regular tiles. Five random featured picks come from a curated pool. Year labels stay plain and unknowns are omitted.
+Loading opens a compact dismissible modal with the selected game's icon,
+description, category tags and measured progress. The modal stays for at least
+two seconds without running gameplay behind it. Empty side gutters show brighter clickable
+suggestions, with two columns when they fit and the same gameplay previews. On touchscreens, the Home button prefers unused
+space outside the game and returns to the collection. Home stays visible for keyboard and touch players. After mouse capture, a centered
+Shift + Esc hint appears after one second and fades away four seconds later.
+Shift+Escape also returns to the library.
+Click the game to capture the mouse; Escape releases it
+and reaches the game once. The upper-right button toggles fullscreen.
 Normal in-game Quit actions return to the library automatically.
 
-The checked-in gallery has 196 real captures across 66 games. See
+The checked-in gallery publishes real gameplay captures with per-image provenance. See
 [`galleries/README.md`](galleries/README.md) for capture and validation commands.
 Three authored launcher illustrations replace weak icons; exact image-generation
 prompts and source hashes are in [`icons/generation.json`](icons/generation.json).
@@ -37,13 +49,13 @@ devenv shell -- bunx wrangler deploy --config collections/arcade/wrangler.jsonc
 ```
 
 The packaging step copies the export into `build/arcade-publish`, losslessly
-compresses Wasm modules and generates smaller WebP previews (up to 640 × 480)
+compresses Wasm modules and game data, and generates smaller WebP previews (up to 640 × 480)
 and icons (256 × 256, or 512 × 512 for featured tiles). Original captures stay unchanged. Content-based
 filenames refresh image caches when the artwork changes; an original is kept
 when it is already smaller. A small Worker serves their encoding correctly and
 streams decompression for clients requesting identity encoding. This keeps large
-modules within the host's asset limit. Other files use static serving. The regular
-export stays directly usable on other static servers. Check all modules with
+payloads within the host's asset limit. Other files use static serving. The regular
+export stays directly usable on other static servers. Check modules and game data with
 browser gzip encoding, plus large identity responses and cache revalidation,
 then test the live player:
 

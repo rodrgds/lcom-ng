@@ -60,6 +60,9 @@ button:focus-visible { outline: 2px solid var(--accent); outline-offset: -3px; }
   body { flex-direction: row; }
   #controls-toggle { align-self: center; flex: 0 0 44px; width: 44px; min-height: 120px; writing-mode: vertical-rl; padding: 12px 8px; font-size: 13px; }
   #touch-controls { width: clamp(280px, 38vw, 360px); height: 100%; overflow-y: auto; overscroll-behavior: contain; }
+  body:has(#fullscreen:not([hidden])) #touch-controls:not(.configured-overlay)[data-toolbar="panel"]:not(.keyboard-open) {
+    padding-top: calc(max(8px, env(safe-area-inset-top)) + 52px);
+  }
   .control-bar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .compact-controls { flex-direction: column; align-items: stretch; gap: 8px; }
   #joystick-controls { flex-direction: column; gap: 6px; }
@@ -82,8 +85,8 @@ button { font-family: var(--control-font, system-ui, sans-serif); }
 #touch-controls { color: var(--text, #eeeeee); }
 #keyboard { --accent: var(--keyboard-accent, #72d6b0); --accent-text: var(--keyboard-accent-text, #101010); }
 button svg { width: 24px; height: 24px; vertical-align: middle; pointer-events: none; }
-#fullscreen { position: absolute; top: max(8px, env(safe-area-inset-top)); right: max(8px, env(safe-area-inset-right)); width: 44px; height: 44px; z-index: 4; opacity: .8; }
-#rotation-hint { position: fixed; top: max(8px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); padding: 10px 16px; background: #161616e8; border-radius: 6px; z-index: 5; font-size: 14px; }
+#fullscreen { position: fixed; top: max(8px, env(safe-area-inset-top)); right: max(8px, env(safe-area-inset-right)); width: 44px; height: 44px; z-index: 4; opacity: .8; }
+#rotation-hint { position: fixed; top: max(8px, env(safe-area-inset-top)); left: 50%; transform: translateX(-50%); padding: 10px 16px; background: #161616e8; border-radius: 6px; z-index: 5; font-size: 14px; pointer-events: none; }
 #controls-toggle { writing-mode: initial; min-height: 44px; }
 /* Direction targets form a cross; the transparent corners leave the game usable. */
 #dpad, .custom-dpad { display: grid; flex-shrink: 0; width: 156px; height: 156px; grid-template: repeat(3, 52px) / repeat(3, 52px); gap: 0; background: transparent; }
@@ -120,7 +123,9 @@ button svg { width: 24px; height: 24px; vertical-align: middle; pointer-events: 
   .thumb-controls.corner-actions[data-position^="top"] { top: max(8px, env(safe-area-inset-top)); bottom: auto; }
   .thumb-controls[data-position^="top"] .game-actions { width: max-content; max-width: 156px; grid-template-columns: minmax(52px, 1fr); }
   .thumb-controls[data-position^="top"] .game-actions:has(> :nth-child(2)) { grid-template-columns: repeat(2, minmax(52px, 1fr)); }
-  .thumb-controls.corner-actions button { pointer-events: auto; }
+  .thumb-controls.corner-actions button,
+  .thumb-controls.corner-actions .joystick,
+  .thumb-controls.corner-actions .steering-wheel { pointer-events: auto; }
   #touch-controls:not([data-toolbar="panel"]) #control-toolbar { position: fixed; z-index: 2; top: max(8px, env(safe-area-inset-top)); right: max(8px, env(safe-area-inset-right)); display: flex; justify-content: flex-end; flex-wrap: wrap; gap: 6px; max-width: min(296px, calc(100vw - var(--toolbar-reserve, 80px))); pointer-events: none; }
   #touch-controls:not([data-toolbar="panel"]) #control-toolbar .control-bar, #touch-controls:not([data-toolbar="panel"]) #control-toolbar .quick-controls, #touch-controls:not([data-toolbar="panel"]) #quick-keys { display: contents; }
   #touch-controls:not([data-toolbar="panel"]) #control-toolbar button { pointer-events: auto; flex: none; min-width: 44px; min-height: 44px; padding: 6px 8px; font-size: 13px; }
@@ -129,7 +134,7 @@ button svg { width: 24px; height: 24px; vertical-align: middle; pointer-events: 
   #touch-controls[data-toolbar^="bottom"] #control-toolbar { top: auto; bottom: max(8px, env(safe-area-inset-bottom)); }
   .keyboard-open .compact-controls, .keyboard-open #custom-controls { display: none; }
   body:has(.keyboard-open) #touch-controls { position: fixed; inset: 0; width: 100%; height: 100%; background: transparent; pointer-events: none; overflow: visible; }
-  #touch-controls.keyboard-open #control-toolbar { position: fixed; z-index: 5; top: max(8px, env(safe-area-inset-top)); right: max(8px, env(safe-area-inset-right)); display: flex; gap: 6px; }
+  #touch-controls.keyboard-open #control-toolbar { position: fixed; z-index: 5; top: max(8px, env(safe-area-inset-top)); right: max(8px, env(safe-area-inset-right)); bottom: auto; left: auto; display: flex; align-items: center; gap: 6px; width: max-content; max-width: calc(100vw - 16px); }
   .keyboard-open #control-toolbar .control-bar { display: contents; }
   .keyboard-open #control-toolbar .quick-controls { display: none !important; }
   .keyboard-open #control-toolbar button { pointer-events: auto; min-height: 44px; }
@@ -140,7 +145,7 @@ button svg { width: 24px; height: 24px; vertical-align: middle; pointer-events: 
   body[data-keyboard-dock="right"] main { margin-right: var(--keyboard-width); }
   .keyboard-open[data-keyboard-position="left"] #keyboard, .keyboard-open[data-keyboard-position="right"] #keyboard { top: 0; bottom: 0; width: var(--keyboard-width); max-height: 100%; }
   .keyboard-open[data-keyboard-position="right"] #keyboard { left: auto; right: 0; }
-  .keyboard-open[data-keyboard-position="left"] #control-toolbar { left: 8px; right: auto; }
+  #touch-controls.keyboard-open[data-keyboard-position="left"] #control-toolbar { left: 8px; right: auto; }
   .keyboard-open #control-toolbar .control-bar [data-mouse], .keyboard-open #pointer-toggle, .keyboard-open #joystick-toggle { display: none; }
   body:has(.configured-overlay) #controls-toggle, body:has(.keyboard-open) #controls-toggle { position: fixed; top: max(8px, env(safe-area-inset-top)); left: max(8px, env(safe-area-inset-left)); width: 44px; height: 44px; min-height: 44px; z-index: 3; }
 }
@@ -152,7 +157,7 @@ button svg { width: 24px; height: 24px; vertical-align: middle; pointer-events: 
   @media (max-width: 600px) {
     body[data-keyboard-dock="left"] main, body[data-keyboard-dock="right"] main { margin-inline: 0; margin-bottom: min(70dvh, 330px); }
     .keyboard-open[data-keyboard-position] #keyboard { top: auto; bottom: 0; left: 0; right: 0; width: 100%; max-height: min(70dvh, 330px); }
-    .keyboard-open[data-keyboard-position] #control-toolbar { top: auto; bottom: calc(min(70dvh, 330px) - 56px); right: 8px; left: auto; }
+    #touch-controls.keyboard-open[data-keyboard-position] #control-toolbar { top: auto; bottom: calc(min(70dvh, 330px) - 56px); right: 8px; left: auto; }
   }
 }
 
@@ -172,6 +177,8 @@ button svg { width: 24px; height: 24px; vertical-align: middle; pointer-events: 
 .pedal.held .pedal-grip { stroke: var(--accent); }
 @media (pointer: coarse) { .configured-overlay .steering-wheel { pointer-events: auto; } }
 @media (prefers-reduced-motion: reduce) { .wheel-rotor { transition: none; } }
+
+#pointer-hint { position:absolute; bottom:max(12px,env(safe-area-inset-bottom)); left:50%; transform:translateX(-50%); margin:0; padding:7px 12px; border-radius:6px; background:#171717db; color:#eee; font-size:12px; line-height:1.4; pointer-events:none; white-space:nowrap; z-index:3; }
 
 /* Collection artwork shows through the unused canvas margins only. */
 html.collection-player,.collection-player body{background:transparent}

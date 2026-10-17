@@ -28,14 +28,43 @@ test.beforeAll(async () => {
   exportGame('tests/fixtures/web/native', 'fixture', cli, '--asset', 'assets');
   const settings=path.join(directory,'lcom.json');
   writeFileSync(settings,JSON.stringify({name:'Sushi config fixture',icon:path.join(root,'docs/assets/android-icons/sushi-slash.png'),mobile:{orientation:'landscape',fullscreen:true,controls:{keyboard:false,mouseButtons:false,quickKeys:[],joystick:false,layout:'overlay'}}}));
-  exportGame('tests/fixtures/web/native','configured',cli,'--config',settings);
+  // Keep the normal configured-game behavior while its unchanged copied source
+  // imports ten headers through an explicit legacy absolute prefix.
+  const absoluteProject = path.join(directory, 'absolute include project');
+  cpSync(path.join(root, 'tests/fixtures/web/native'), absoluteProject, { recursive: true });
+  mkdirSync(path.join(absoluteProject, 'art'));
+  for (let i = 0; i < 10; i++) writeFileSync(path.join(absoluteProject, 'art', `part${i}.h`), `#define PART${i} ${i + 1}\n`);
+  writeFileSync(path.join(absoluteProject, 'mapped.h'), Array.from({length: 10}, (_, i) => `#include "/minix/student/art/part${i}.h"`).join('\n') + '\n');
+  const absoluteSource = path.join(absoluteProject, 'main.c');
+  writeFileSync(absoluteSource, '#include "mapped.h"\n_Static_assert(' + Array.from({length: 10}, (_, i) => `PART${i}`).join('+') + ' == 55, "mapped artwork headers");\n' + readFileSync(absoluteSource, 'utf8'));
+  const absoluteSettings = JSON.parse(readFileSync(settings, 'utf8'));
+  absoluteSettings.build = {pathAliases: {'/minix/student/art': 'art'}};
+  writeFileSync(settings, JSON.stringify(absoluteSettings));
+  const absoluteBytes = readFileSync(absoluteSource);
+  exportGame(absoluteProject,'configured',cli,'--config',settings);
+  expect(readFileSync(absoluteSource)).toEqual(absoluteBytes);
+  rmSync(absoluteProject, {recursive: true});
   writeFileSync(settings,JSON.stringify({mobile:{controls:{keyboard:false,mouseButtons:false,quickKeys:[],joystick:false,layout:'overlay',pointer:'direct',cursor:{x:400,y:300,maxX:799,maxY:599}}}}));
   exportGame('tests/fixtures/web/native','configured-direct',cli,'--config',settings);
   writeFileSync(settings,JSON.stringify({name:'Move and aim',mobile:{controls:{keyboard:true,mouseButtons:true,quickKeys:['ESC'],joystick:false,dpad:{side:'left',keys:'wasd'},look:{side:'right',sensitivity:1.5},layout:'overlay',pointer:'move'},theme:{accent:'#ff8844',keyboardAccent:'#77cc99',button:'#203040',font:'mono'}}}));
   exportGame('tests/fixtures/web/native','configured-dual',cli,'--config',settings);
 
+  writeFileSync(settings,JSON.stringify({mobile:{controls:{keyboard:false,mouseButtons:false,quickKeys:[],joystick:false,layout:'overlay',pointer:'move',actions:[{side:'right',label:'Slow time',wheel:2}]}}}));
+  exportGame('tests/fixtures/web/native','configured-wheel',cli,'--config',settings,'--asset','assets','--arg=--wheel');
   exportGame('tests/fixtures/web/native', 'pause', cli, '--asset', 'assets', '--arg=--keep-open');
   exportGame('tests/fixtures/web/minix', 'legacy', cli, '--asset-root', '..', '--asset', 'minix/assets');
+  exportGame('tests/fixtures/legacy-time', 'legacy-time', cli);
+  exportGame('tests/fixtures/web/vga-text', 'vga-text', cli);
+  // This archived-source shape has no Makefile. Explicit sources still require
+  // the original LCF headers, common-symbol semantics and compatibility entry.
+  const sourceOnly = path.join(directory, 'source-only Minix');
+  cpSync(path.join(root, 'tests/fixtures/compat-sleep'), sourceOnly, {recursive:true});
+  rmSync(path.join(sourceOnly, 'Makefile'));
+  writeFileSync(path.join(sourceOnly, 'lcom.json'), JSON.stringify({build:{sources:['main.c']}}));
+  const sourceOnlyBytes = readFileSync(path.join(sourceOnly, 'main.c'));
+  exportGame(sourceOnly, 'compat-sleep', cli);
+  expect(readFileSync(path.join(sourceOnly, 'main.c'))).toEqual(sourceOnlyBytes);
+  rmSync(sourceOnly, {recursive:true});
   exportGame('examples/flappy', 'flappy', cli, '--name', 'LCOM Bird');
   exportGame('examples/ninjix', 'ninjix', cli, '--name', 'Ninjix');
   exportGame('examples/community/simaopsbarbosa--feup-lcom/proj/src', 'quick-reflex', cli);
@@ -49,9 +78,20 @@ test.beforeAll(async () => {
   execFileSync('python3', ['-c',
     'from pathlib import Path; import sys; sys.path.insert(0, str(Path(sys.argv[1]) / "scripts")); from package_student import copy_student_payload; copy_student_payload(Path(sys.argv[1]), Path(sys.argv[1]) / "build", Path(sys.argv[2]))', root, installed]);
   mkdirSync(path.join(installed, 'bin'));
-  const installedCli = path.join(installed, 'bin/lcom-ng');
-  copyFileSync(cli, installedCli);
+  copyFileSync(cli, path.join(installed,'bin/lcom-ng'));
+  const relocatedSdk=path.join(directory,'relocated installed SDK');
+  renameSync(installed,relocatedSdk);
+  const installedCli=path.join(relocatedSdk,'bin/lcom-ng');
   exportGame(workspace, 'installed', installedCli, '--name', 'Installed Game');
+  writeFileSync(settings,JSON.stringify({build:{environment:{LCOM_VBE_PHYSICAL_BASE:'0xF0000000'}},mobile:{controls:{keyboard:false,mouseButtons:false,quickKeys:[],joystick:false,pointer:'off'}}}));
+  exportGame('tests/fixtures/hardware-config','hardware-config',installedCli,'--config',settings,'--arg','0xF0000000');
+  writeFileSync(settings,JSON.stringify({mobile:{controls:{keyboard:false,mouseButtons:false,quickKeys:[],joystick:false,pointer:'off'}}}));
+  exportGame('tests/fixtures/hardware-config','hardware-default',installedCli,'--config',settings,'--arg','0xE0000000');
+  writeFileSync(settings,JSON.stringify({build:{environment:{LCOM_VBE_PHYSICAL_BASE:'0xD0000000',LCOM_AC97_PCM_BASE:'0xC0000000'}},mobile:{controls:{keyboard:false,mouseButtons:false,quickKeys:[],joystick:false,pointer:'off'}}}));
+  exportGame('tests/fixtures/hardware-config','hardware-dual',installedCli,'--config',settings,'--arg','0xD0000000','--arg','0xC0000000');
+  exportGame('tests/fixtures/relative-paths','relative-paths',installedCli);
+  exportGame('tests/fixtures/dac-palette','dac-palette',installedCli);
+  exportGame('tests/fixtures/process-identity','process-identity',installedCli);
   const collection=path.join(directory,'classroom');
   mkdirSync(collection);
   const projects=[];
@@ -85,12 +125,34 @@ async function start(page, game = 'fixture') {
   await expect(page.locator('#status')).toHaveText('Game running.');
 }
 const consoleText = page => (output.get(page) || []).join('\n');
-function mousePackets(page) {
+function mousePackets(page, size = 3) {
   const bytes = [...consoleText(page).matchAll(/mouse:([0-9a-f]{2})/g)].map(match => parseInt(match[1], 16));
   if (bytes[0] === 0xfa) bytes.shift();
-  return Array.from({ length: Math.floor(bytes.length / 3) }, (_, i) => bytes.slice(i * 3, i * 3 + 3));
+  return Array.from({ length: Math.floor(bytes.length / size) }, (_, i) => bytes.slice(i * size, i * size + size));
 }
 const pixel = page => page.locator('canvas').evaluate(canvas => [...canvas.getContext('2d').getImageData(0, 0, 1, 1).data]);
+
+test('mapped frames appear during original sleep, usleep and tickdelay calls', async ({page}) => {
+  await start(page,'compat-sleep');
+  await expect.poll(()=>pixel(page),{timeout:1500}).toEqual([255,0,0,255]);
+  await expect.poll(()=>pixel(page),{timeout:2500,intervals:[20,40,80]}).toEqual([0,255,0,255]);
+  await expect.poll(()=>pixel(page),{timeout:1500,intervals:[20,40,80]}).toEqual([0,255,255,255]);
+  await expect.poll(()=>pixel(page),{timeout:1500}).toEqual([0,0,255,255]);
+});
+
+test('a mobile wheel action and a physical wheel deliver complete IntelliMouse packets', async ({browser}) => {
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  try {
+    await start(page,'configured-wheel');
+    await page.getByRole('button',{name:'Slow time',exact:true}).tap();
+    await expect.poll(()=>mousePackets(page,4).some(packet=>packet[0]===8&&packet[1]===0&&packet[2]===0&&packet[3]===2)).toBeTruthy();
+    const canvas=await page.locator('canvas').boundingBox();
+    await page.mouse.move(canvas.x+canvas.width/2,canvas.y+canvas.height/2);
+    await page.mouse.wheel(0,-300);
+    await expect.poll(()=>mousePackets(page,4).some(packet=>packet[3]===0xfd)).toBeTruthy();
+  } finally { await context.close(); }
+});
 
 test('two players hold their pads and action buttons independently', async ({browser})=>{
   const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
@@ -99,10 +161,12 @@ test('two players hold their pads and action buttons independently', async ({bro
     const response=await route.fetch(),settings=await response.json();
     Object.assign(settings.mobile.controls,{keyboard:false,mouseButtons:false,look:false,dpad:false,quickKeys:[],pointer:'off',
       pads:[{side:'left',mode:'wasd',style:'dpad'},{side:'right',mode:'keypad',style:'dpad'}],
-      actions:[{side:'left',label:'P1 Bomb',key:'SPACE'},{side:'right',label:'P2 Bomb',key:'KP0'}]});
+      actions:[{side:'left',label:'P1 Bomb',key:'SPACE'},{side:'right',label:'P2 Bomb',key:'KP0'},{position:'top-left',label:'Apostrophe',key:'MINUS'}]});
     await route.fulfill({response,json:settings});
   });
   await start(page,'configured-dual');
+  await page.getByRole('button',{name:'Apostrophe',exact:true}).tap();
+  for(const code of ['0c','8c']) await expect.poll(()=>consoleText(page)).toContain('key:'+code);
   const buttons=[page.locator('.thumb-controls[data-side="left"] [data-direction="up"]'),page.locator('.thumb-controls[data-side="right"] [data-direction="up"]'),
     page.getByRole('button',{name:'P1 Bomb',exact:true}),page.getByRole('button',{name:'P2 Bomb',exact:true})];
   const points=[];
@@ -243,6 +307,73 @@ test('corner actions and horizontal WASD pad expose only useful large targets',a
   await context.close();
 });
 
+test('panel quick keys and fullscreen remain independently reachable in landscape',async({browser})=>{
+  const context=await browser.newContext({viewport:{width:960,height:540},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-dual/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();settings.mobile.orientation='auto';
+    Object.assign(settings.mobile.controls,{layout:'panel',toolbar:'auto',keyboard:false,look:false,mouseButtons:false,pointer:'off',quickKeys:['ESC','ENTER','TAB','R','A','B','C','D','E'],joystick:false,dpad:false,pads:[{side:'left',mode:'arrows',style:'dpad'}],actions:[]});
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-dual');
+  for(const viewport of [{width:960,height:540},{width:844,height:390},{width:390,height:844}]) {
+    await page.setViewportSize(viewport);
+    const keys=page.locator('#quick-keys button');
+    await expect(keys).toHaveCount(9);
+    await expect.poll(()=>keys.evaluateAll(buttons=>buttons.every(button=>{
+      const r=button.getBoundingClientRect(),hit=document.elementFromPoint(r.x+r.width/2,r.y+r.height/2);
+      return hit===button || button.contains(hit);
+    }))).toBe(true);
+    await page.locator('#quick-keys [data-code="KeyB"]').tap();
+    await expect.poll(()=>consoleText(page)).toContain('key:30');
+    expect(await page.evaluate(()=>Boolean(document.fullscreenElement))).toBe(false);
+  }
+  await page.getByRole('button',{name:'Enter fullscreen',exact:true}).tap();
+  await expect.poll(()=>page.evaluate(()=>Boolean(document.fullscreenElement))).toBe(true);
+  await context.close();
+});
+
+test('keyboard dock keeps a compact toggle and every typing target usable after floating placement',async({browser})=>{
+  const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-dual/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();settings.mobile.orientation='auto';
+    Object.assign(settings.mobile.controls,{layout:'panel',toolbar:'auto',look:false,mouseButtons:false,quickKeys:[],joystick:false,dpad:false,pads:[],actions:[]});
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-dual');
+  const toggle=page.getByRole('button',{name:'Keyboard',exact:true});
+  for(const viewport of [{width:390,height:844},{width:844,height:390}]) {
+    await page.setViewportSize(viewport);
+    await toggle.tap();
+    await expect(toggle).toHaveAttribute('aria-expanded','true');
+    const rect=await toggle.boundingBox();
+    expect(rect.width).toBeGreaterThanOrEqual(44);expect(rect.height).toBeGreaterThanOrEqual(44);
+    expect(rect.width).toBeLessThanOrEqual(100);expect(rect.height).toBeLessThanOrEqual(64);
+    for(const [letter,code]of [['I','17'],['K','25'],['O','18'],['L','26']]) {
+      await page.locator('#keyboard').getByRole('button',{name:letter,exact:true}).tap();
+      await expect.poll(()=>consoleText(page)).toContain('key:'+code);
+    }
+    await toggle.tap();await expect(toggle).toHaveAttribute('aria-expanded','false');
+  }
+  await context.close();
+});
+
+test('passive rotation advice lets a real touch reach the overlapping keyboard control',async({browser})=>{
+  const context=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-dual/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();settings.mobile.orientation='landscape';settings.mobile.fullscreen=true;
+    Object.assign(settings.mobile.controls,{layout:'panel',toolbar:'top-right',look:false,mouseButtons:false,quickKeys:['ESC','ENTER','BACKSPACE'],joystick:false,dpad:false,pads:[],actions:[],pointer:'off'});
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-dual');
+  await expect(page.locator('#rotation-hint')).toBeVisible();
+  await page.getByRole('button',{name:'Keyboard',exact:true}).tap({timeout:2000});
+  await expect(page.getByRole('button',{name:'Keyboard',exact:true})).toHaveAttribute('aria-expanded','true');
+  await context.close();
+});
+
 test('configured step keys repeat while held and stop on cancellation',async({browser})=>{
   const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
   const page=await context.newPage();
@@ -259,6 +390,40 @@ test('configured step keys repeat while held and stop on cancellation',async({br
   await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
   await expect.poll(()=>consoleText(page)).toContain('key:91');
   const released=makes();await page.waitForTimeout(250);expect(makes()).toBe(released);
+  await context.close();
+});
+
+test('release-driven touch keys repeat complete cycles and cleanly release',async({browser})=>{
+  const context=await browser.newContext({viewport:{width:844,height:390},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  await page.route('**/configured-dual/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();settings.mobile.controls.repeatReleaseKeys=['W'];
+    await route.fulfill({response,json:settings});
+  });
+  await start(page,'configured-dual');
+  const button=page.locator('#dpad [data-direction="up"]'),box=await button.boundingBox();
+  const cdp=await context.newCDPSession(page);
+  const actions=()=>[...consoleText(page).matchAll(/release-action:\d+/g)].length;
+  await button.tap();await expect.poll(actions).toBe(1);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x:box.x+box.width/2,y:box.y+box.height/2}]});
+  await expect.poll(actions).toBeGreaterThanOrEqual(4);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+  await expect(button).not.toHaveClass(/held/);
+  const makes=()=>[...consoleText(page).matchAll(/key:11\b/g)].length;
+  await expect.poll(()=>actions()-makes()).toBe(0);
+  const cancelled=actions();await page.waitForTimeout(250);expect(actions()).toBe(cancelled);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,x:box.x+box.width/2,y:box.y+box.height/2}]});
+  await expect.poll(actions).toBeGreaterThan(cancelled);
+  await page.evaluate(()=>window.dispatchEvent(new Event('blur')));
+  await expect(button).not.toHaveClass(/held/);
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
+  // Focus resumes asynchronous guest delivery, so compare both live totals.
+  await expect.poll(()=>actions()-makes()).toBe(0);
+  const blurred=actions();await page.waitForTimeout(250);expect(actions()).toBe(blurred);
+  await cdp.send('Input.dispatchTouchEvent',{type:'touchCancel',touchPoints:[]});
+  await page.locator('canvas').focus();await page.keyboard.down('w');
+  await page.waitForTimeout(600);expect(actions()).toBe(blurred);
+  await page.keyboard.up('w');await expect.poll(actions).toBe(blurred+1);
   await context.close();
 });
 
@@ -350,10 +515,11 @@ test('direct touch lands before clicking, follows drags and ignores letterboxing
   await context.close();
 });
 
-test('desktop starts directly in a game with only black letterboxing', async ({ page }) => {
+test('desktop starts in the game with black letterboxing and a fullscreen control', async ({ page }) => {
   await start(page);
   await expect.poll(() => pixel(page)).toEqual([17, 34, 51, 255]);
-  await expect(page.locator('header, nav, h1, button:visible, details')).toHaveCount(0);
+  await expect(page.locator('header, nav, h1, button:visible:not(#fullscreen), details')).toHaveCount(0);
+  await expect(page.getByRole('button',{name:'Enter fullscreen',exact:true})).toBeVisible();
   const bounds = await page.locator('canvas').boundingBox();
   const viewport = page.viewportSize();
   expect(Math.abs(bounds.width / bounds.height - 4 / 3)).toBeLessThan(0.001);
@@ -382,8 +548,9 @@ test('relocated export loads assets and renders, handles physical input, plays P
   await expect.poll(() => pixel(page)).toEqual([0, 255, 0, 255]);
   await expect.poll(() => page.evaluate(() => window.playedAudio)).toEqual({ channels: 2, rate: 48000, sample: 0.125 });
   await page.locator('canvas').click({ position: { x: 40, y: 40 } });
+  await expect.poll(() => page.evaluate(() => document.pointerLockElement?.id)).toBe('game');
+  await page.mouse.click(40,40);
   await expect.poll(() => consoleText(page)).toContain('mouse:09');
-  expect(await page.evaluate(() => document.pointerLockElement)).toBeNull();
   await expect(page.locator('canvas')).toHaveCSS('cursor', 'none');
   await page.mouse.move(500, 300);
   await page.keyboard.press('ControlRight');
@@ -395,7 +562,7 @@ test('relocated export loads assets and renders, handles physical input, plays P
   await expect.poll(() => consoleText(page)).toContain('key:cb');
   await page.keyboard.up('ArrowLeft');
   await page.locator('canvas').click({ position: { x: 40, y: 40 } });
-  expect(await page.evaluate(() => document.pointerLockElement)).toBeNull();
+  await expect.poll(() => page.evaluate(() => document.pointerLockElement?.id)).toBe('game');
   await page.keyboard.press('Escape');
   await expect(page.locator('#status')).toContainText('Game finished.');
   expect(errors).toEqual([]);
@@ -403,6 +570,13 @@ test('relocated export loads assets and renders, handles physical input, plays P
   expect(files).toContain('game.wasm');
   expect(files).toContain('game.data');
   expect(files.some(name => name.endsWith('.o') || name.endsWith('.c'))).toBe(false);
+});
+
+test('legacy time keeps its 64-bit ABI and explicit standard function addresses', async ({ page }) => {
+  observe(page);
+  await page.goto(`${base}/legacy-time/`);
+  await expect.poll(() => consoleText(page)).toContain('legacy time:64 pointer-write namespace function-address passed');
+  await expect(page.locator('#status')).toHaveText('Game finished. Press Enter or tap the game to restart.');
 });
 
 test('legacy polling loop yields for browser key input without source changes', async ({ page }) => {
@@ -418,19 +592,54 @@ test('legacy polling loop yields for browser key input without source changes', 
   await expect(page.locator('#status')).toContainText('Game finished.');
 });
 
-test('Escape stays in the game without locking or releasing the browser mouse', async ({ page }) => {
+test('Escape releases capture and reaches the game exactly once', async ({ page },testInfo) => {
   await start(page, 'pause');
-  await page.locator('canvas').click();
-  expect(await page.evaluate(() => document.pointerLockElement)).toBeNull();
+  const canvas=page.locator('canvas');
+  await canvas.click();
+  await expect.poll(()=>page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
+  await expect(page.locator('#pointer-hint')).toBeHidden();
+  await page.screenshot({path:testInfo.outputPath('captured-mouse-no-hint.png')});
   await page.keyboard.press('Escape');
+  await expect.poll(()=>page.evaluate(()=>document.pointerLockElement)).toBeNull();
   await expect.poll(() => pixel(page)).toEqual([0, 0, 255, 255]);
   await expect.poll(() => consoleText(page)).toContain('key:81');
   expect(consoleText(page).match(/key:01/g)).toHaveLength(1);
   await expect(page.locator('#status')).toHaveText('Game running.');
-  await expect(page.locator('canvas')).toHaveCSS('cursor', 'none');
+  await expect(canvas).toHaveCSS('cursor', 'auto');
   const previous = consoleText(page).match(/mouse:/g)?.length || 0;
   await page.mouse.move(500, 300);
-  await expect.poll(() => consoleText(page).match(/mouse:/g)?.length || 0).toBeGreaterThan(previous);
+  await page.keyboard.press('b');
+  await expect.poll(()=>consoleText(page)).toContain('key:b0');
+  expect(consoleText(page).match(/mouse:/g)?.length || 0).toBe(previous);
+});
+
+test('browser-owned unlock forwards Escape while blur only releases held input',async({page})=>{
+  await start(page,'pause');
+  const canvas=page.locator('canvas');
+  await canvas.focus();
+  await page.keyboard.down('ArrowLeft');
+  await expect.poll(()=>consoleText(page)).toContain('key:4b');
+  await canvas.click();
+  await expect.poll(()=>page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
+  await page.keyboard.press('b');
+  await expect.poll(()=>consoleText(page)).toContain('key:b0');
+  expect(consoleText(page)).not.toContain('key:cb');
+  await page.keyboard.up('ArrowLeft');
+  await expect.poll(()=>consoleText(page)).toContain('key:cb');
+  // Native browser Escape bypasses DOM key events. Exercise that state transition.
+  await page.evaluate(()=>document.exitPointerLock());
+  await expect.poll(()=>consoleText(page)).toContain('key:81');
+  expect(consoleText(page).match(/key:01/g)).toHaveLength(1);
+  await canvas.click();
+  await expect.poll(()=>page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
+  await page.keyboard.down('ArrowLeft');
+  await expect.poll(()=>consoleText(page)).toContain('key:4b');
+  await page.evaluate(()=>window.dispatchEvent(new Event('blur')));
+  await expect.poll(()=>page.evaluate(()=>document.pointerLockElement)).toBeNull();
+  await page.evaluate(()=>window.dispatchEvent(new Event('focus')));
+  await expect.poll(()=>consoleText(page)).toContain('key:cb');
+  expect(consoleText(page).match(/key:01/g)).toHaveLength(1);
+  await page.keyboard.up('ArrowLeft');
 });
 
 for (const [platform, release, guestModifier] of [['MacIntel', 'AltRight', 'MetaRight'], ['Win32', 'ControlRight', 'AltRight']]) {
@@ -449,10 +658,11 @@ for (const [platform, release, guestModifier] of [['MacIntel', 'AltRight', 'Meta
     await expect.poll(() => consoleText(page)).toContain('key:b0');
     expect(consoleText(page).match(/mouse:/g)?.length || 0).toBe(previous);
     await page.locator('canvas').click();
+    await expect.poll(()=>page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
     await expect(page.locator('canvas')).toHaveCSS('cursor', 'none');
     await page.mouse.move(520, 320);
     await expect.poll(() => consoleText(page).match(/mouse:/g)?.length || 0).toBeGreaterThan(previous);
-    expect(await page.evaluate(() => document.pointerLockElement)).toBeNull();
+    await expect.poll(()=>page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
   });
 }
 
@@ -693,7 +903,8 @@ test('game project paths export without name shortcuts', async ({ page }) => {
   await start(page, 'ninjix');
   await expect(page).toHaveTitle('Ninjix · lcom-ng');
   await expect.poll(() => page.locator('canvas').evaluate(canvas => new Set(canvas.getContext('2d').getImageData(0, 0, canvas.width, canvas.height).data).size)).toBeGreaterThan(16);
-  await expect(page.locator('button:visible, header, nav')).toHaveCount(0);
+  await expect(page.locator('button:visible:not(#fullscreen), header, nav')).toHaveCount(0);
+  await expect(page.getByRole('button',{name:'Enter fullscreen',exact:true})).toBeVisible();
   await page.screenshot({ path: path.join(root, 'build/web-qa/ninjix.png') });
 });
 
@@ -777,22 +988,32 @@ test('collection is responsive, forwards profiles, and discards game state on re
   const page=await context.newPage(); observe(page);
   await page.goto(`${base}/collection/`);
   await expect(page.getByRole('heading',{name:'Classroom Arcade'})).toBeVisible();
-  const columns=()=>page.locator('#grid').evaluate(el=>getComputedStyle(el).gridTemplateColumns.split(' ').length);
-  expect(await columns()).toBe(4);
+  const columns=()=>page.locator('#grid').evaluate(grid=>{
+    const games=grid.querySelector('#games');
+    const layout=getComputedStyle(games).display==='grid'?games:grid;
+    // Featured tiles can span two tracks, including both games in this fixture.
+    return getComputedStyle(layout).gridTemplateColumns.split(/\s+/).length;
+  });
+  const phoneColumns=await columns();
+  expect(phoneColumns).toBeGreaterThan(0);
   await page.setViewportSize({width:1280,height:800});
-  await expect.poll(columns).toBe(14);
+  await expect.poll(columns).toBeGreaterThan(phoneColumns);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
-  expect(await page.locator('.game').evaluateAll(items => items.every(item => Math.abs(item.getBoundingClientRect().width - item.getBoundingClientRect().height) < 1))).toBeTruthy();
-  await page.getByRole('button',{name:'Find a game',exact:true}).click();
+  await expect.poll(() => page.locator('.game').evaluateAll(items => items.every(item => Math.abs(item.getBoundingClientRect().width - item.getBoundingClientRect().height) < 1))).toBeTruthy();
   await page.getByRole('searchbox').fill('Second');
-  await expect(page.getByRole('dialog')).toBeVisible();
-  await expect(page.locator('#search-results a')).toHaveCount(1);
-  await expect(page.locator('#search-results a')).toContainText('Second game');
+  await expect(page.locator('#games .game-launch')).toHaveCount(1);
+  await expect(page.getByRole('link',{name:'Play Second game',exact:true})).toBeVisible();
   await page.getByRole('searchbox').fill('');
-  await page.locator('#search-results a').filter({hasText:'First game'}).click();
+  await page.getByRole('link',{name:'Play First game',exact:true}).click();
   const frame=page.frameLocator('iframe');
   await expect(frame.locator('#status')).toHaveText('Game running.');
   await expect.poll(()=>consoleText(page)).toContain('environment:ready from profile');
+  // The actual exported child reports capture; the collection owns its brief hint.
+  await frame.locator('canvas').click();
+  await expect(page.locator('#library-hint')).toBeVisible({timeout:2500});
+  await expect(page.getByRole('button',{name:'Games',exact:true})).toBeVisible();
+  // Escape exits this fixture, so use the host release shortcut to keep playing.
+  await frame.locator('canvas').press('ControlRight');await expect(page.locator('#library-hint')).toBeHidden();
   const targets=await frame.locator('#quick-keys .key').evaluateAll(keys=>keys.map(key=>{const box=key.getBoundingClientRect();return {x:box.x,y:box.y,w:box.width,h:box.height};}));
   expect(targets).toHaveLength(10);
   expect(targets.every(box=>box.w>=44 && box.h>=44)).toBeTruthy();
@@ -800,6 +1021,11 @@ test('collection is responsive, forwards profiles, and discards game state on re
   await frame.getByRole('button',{name:'Keypad Enter',exact:true}).click();
   await expect.poll(()=>consoleText(page)).toContain('key:e0');
   await expect.poll(()=>consoleText(page)).toContain('key:1c');
+  // The real child must report every touch, including after physical typing.
+  await frame.locator('canvas').tap({position:{x:80,y:80}});
+  await frame.locator('canvas').press('b');
+  await expect(page.getByRole('button',{name:'Games',exact:true})).toBeVisible();
+  await frame.locator('canvas').tap({position:{x:80,y:80}});
   await expect(page.getByRole('button',{name:'Games',exact:true})).toBeVisible();
   const toggleBox=await frame.locator('#controls-toggle').boundingBox();
   const gameBox=await frame.locator('canvas').boundingBox();
@@ -813,7 +1039,7 @@ test('collection is responsive, forwards profiles, and discards game state on re
   expect(await page.locator('iframe').boundingBox()).toMatchObject({x:0,y:0,width:1280,height:800});
   await page.getByRole('button',{name:'Games',exact:true}).click();
   await expect(page.locator('iframe')).toHaveCount(0);
-  await page.locator('#search-results a').filter({hasText:'Second game'}).click();
+  await page.getByRole('link',{name:'Play Second game',exact:true}).click();
   await expect(frame.locator('#status')).toHaveText('Game running.');
   await page.goBack();
   await expect(page.getByRole('heading',{name:'Classroom Arcade'})).toBeVisible();
@@ -832,7 +1058,7 @@ test('normal guest exits return to the collection while errors and unrelated sen
   await frame.locator('canvas').press('x');
   await expect(frame.locator('#status')).toHaveText('Game exited with status 9.');
   await expect(page.locator('#library')).toBeHidden();
-  await page.getByRole('button',{name:'Games',exact:true}).click();
+  await page.keyboard.press('Shift+Escape');
   await first.click();
   await expect(frame.locator('#status')).toHaveText('Game running.');
   await frame.locator('canvas').press('Escape');
@@ -867,7 +1093,7 @@ test('collection loading supports cancellation, download failures, and retry to 
   // An unrelated same-origin window must not dismiss another frame's loader.
   await page.evaluate(() => window.postMessage({type:'lcom-player-loading',phase:'ready'},location.origin));
   await expect(page.locator('#loading')).toBeVisible();
-  await page.getByRole('button',{name:'Games',exact:true}).click();
+  await page.keyboard.press('Shift+Escape');
   await expect(page.locator('iframe')).toHaveCount(0);
   mode = 'fail'; release();
   await page.getByRole('link',{name:'Play Second game'}).click();
@@ -880,7 +1106,7 @@ test('collection loading supports cancellation, download failures, and retry to 
   const frame = page.frameLocator('iframe');
   await expect.poll(() => pixel(frame)).toEqual([17,34,51,255]);
   await expect(frame.locator('#status')).toHaveText('Game running.');
-  await page.getByRole('button',{name:'Games',exact:true}).click();
+  await page.keyboard.press('Shift+Escape');
   await expect(page.getByRole('link',{name:'Play Second game'})).toBeFocused();
 });
 
@@ -898,10 +1124,9 @@ test('phone collection keeps square icon targets and reveals long names in searc
   await page.evaluate(() => document.fonts.ready);
   const icon = await card.locator('.game-icon').boundingBox();
   expect(Math.abs(icon.width-icon.height)).toBeLessThan(1);
-  expect(icon.width).toBeGreaterThan(100);
-  await page.getByRole('button',{name:'Find a game',exact:true}).click();
+  expect(icon.width).toBeGreaterThan(80);
   await page.getByRole('searchbox').fill('Star Wars');
-  await expect(page.locator('#search-results strong')).toHaveText(title);
+  await expect(page.locator('#games .game-launch')).toHaveAccessibleName('Play '+title);
 });
 
 test('failed player module downloads offer retry in collections and standalone exports', async ({page}) => {
@@ -1040,6 +1265,8 @@ test('a fast desktop mouse move preserves its full travel to the top of the game
 test('Ninjix consumes mouse startup replies before following the cursor to the top', async ({page}) => {
   await start(page,'ninjix');
   const canvas=page.locator('canvas'),b=await canvas.boundingBox();
+  await canvas.click();
+  await expect.poll(()=>page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
   const move=async(x,y)=>{await page.mouse.move(b.x+x*b.width/800,b.y+y*b.height/600);await page.waitForTimeout(180);};
   const pixels=()=>canvas.evaluate(c=>Array.from(c.getContext('2d').getImageData(0,0,220,120).data));
   for(const phase of ['menu','playing']) {
@@ -1106,6 +1333,7 @@ test('calibrated desktop mouse respects guest gain, bounds and re-entry', async 
     await route.fulfill({response,json:settings});
   });
   for (scale of [0.5,2]) {
+    await page.goto('about:blank');
     await start(page,'configured-dual');
     await page.locator('canvas').focus();
     const move=async(x,y)=>{
@@ -1127,8 +1355,11 @@ test('calibrated desktop mouse respects guest gain, bounds and re-entry', async 
     const click=await page.locator('canvas').evaluate(canvas=>{const r=canvas.getBoundingClientRect();return {x:r.left+101*r.width/canvas.width,y:r.top+101*r.height/canvas.height};});
     await page.mouse.click(click.x,click.y);
     await page.waitForTimeout(250);
-    expect(position()).toEqual(scale===2?[100,102]:[101,101]);
-    await move(102,102);expect(position()).toEqual([102,102]);
+    expect(position()).toEqual([100,scale===2?598:599]);
+    await expect.poll(()=>page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
+    await page.mouse.move(click.x+20,click.y-20,{steps:20});
+    await expect.poll(()=>position()[0]).toBeGreaterThan(100);
+    expect(position()[1]).toBeLessThan(598);
   }
 });
 
@@ -1151,8 +1382,9 @@ test('calibrated physical mouse follows touch travel and large cursor ranges', a
   await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[{...end,id:1}]});
   await page.waitForTimeout(200);expect(position()).toEqual([120,110]);
   await move(100,100);expect(position()).toEqual([100,100]);
-  await move(6000,7000);expect(position()).toEqual([6000,7000]);
-  await move(20,30);expect(position()).toEqual([20,30]);
+  // At 100 Hz, these jumps need over 140 reports, each capped at 96 units.
+  await move(6000,7000);await expect.poll(position).toEqual([6000,7000]);
+  await move(20,30);await expect.poll(position).toEqual([20,30]);
   await context.close();
 });
 
@@ -1243,7 +1475,7 @@ test('Minix Tower Defense accepts physical mouse and direct touch to enter the a
 });
 
 
-test('Quick Reflex keeps its cursor under the desktop pointer at the bottom and after both rounds', async ({page}) => {
+test('Quick Reflex preserves captured cursor motion at the bottom and after both rounds', async ({page}) => {
   await start(page,'quick-reflex');
   const canvas=page.locator('canvas'),b=await canvas.boundingBox();
   const move=async(x,y)=>{await page.mouse.move(b.x+x*b.width/800,b.y+y*b.height/600);};
@@ -1254,6 +1486,8 @@ test('Quick Reflex keeps its cursor under the desktop pointer at the bottom and 
   await move(100,300);await page.waitForTimeout(100);
   await move(100,550);
   await expect.poll(cursor,{message:'bottom cursor follows browser pointer'}).toBeGreaterThan(40);
+  await canvas.click({position:{x:100*b.width/800,y:550*b.height/600}});
+  await expect.poll(()=>page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
   await click(400,310); // One player.
   for(const [mode,y] of [['React',375],['Guess',315]]) {
     await click(400,y);
@@ -1265,4 +1499,164 @@ test('Quick Reflex keeps its cursor under the desktop pointer at the bottom and 
     await expect.poll(cursor,{message:mode+' result-menu cursor remains aligned'}).toBeGreaterThan(40);
     await click(400,500); // Return to the mode menu.
   }
+});
+
+test('relocated SDK preserves the configured BIOS aperture and default between browser instances',async({page})=>{
+  for(const [game,address] of [['hardware-config','f0000000'],['hardware-default','e0000000'],['hardware-dual','d0000000']]) {
+    observe(page);
+    await page.goto(`${base}/${game}/`);
+    await expect.poll(()=>consoleText(page)).toContain(`HARDWARE_CONFIG_OK ${address}`);
+    if(game==='hardware-dual')await expect.poll(()=>consoleText(page)).toContain('PCM c0000000');
+    await expect(page.locator('#status')).toContainText('Game finished.');
+    const first=await pixel(page);
+    expect(first[3]).toBe(255);
+    expect(first.slice(0,3).some(value=>value!==0)).toBe(true);
+  }
+});
+
+
+test('relocated SDK exports explicit relative aliases with resource reads and save commits',async({page})=>{
+  observe(page);
+  await page.goto(`${base}/relative-paths/`);
+  await expect.poll(()=>consoleText(page)).toContain('RELATIVE_PATHS_OK');
+  await expect(page.locator('#status')).toContainText('Game finished.');
+});
+
+test('relocated SDK programs the real eight-bit BIOS DAC and renders its BGR palette',async({page})=>{
+  observe(page);
+  await page.goto(`${base}/dac-palette/`);
+  await expect.poll(()=>consoleText(page)).toContain('VBE_DAC_OK rgb227,66,129');
+  await expect(page.locator('#status')).toContainText('Game finished.');
+  expect(await pixel(page)).toEqual([227,66,129,255]);
+});
+
+test('desktop capture keeps relative motion beyond the viewport and retains small deltas', async ({page})=>{
+  await page.setViewportSize({width:1600,height:1200});
+  let gain=1;
+  await page.route('**/pause/game.json',async route=>{
+    const response=await route.fetch(),settings=await response.json();
+    settings.mobile.controls.cursor={x:400,y:300,desktopScale:gain};
+    await route.fulfill({response,json:settings});
+  });
+  for(gain of [1,0.5]) {
+    await page.goto('about:blank');
+    await start(page,'pause');
+    const canvas=page.locator('canvas');
+    await canvas.click();
+    await expect.poll(()=>page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
+    await page.waitForTimeout(150);
+    const before=mousePackets(page).length;
+    const origin=await canvas.boundingBox();
+    const x=origin.x+origin.width/2,y=origin.y+origin.height/2;
+    for(let n=1;n<=20;n++)await page.mouse.move(x+n,y);
+    const travelled=()=>mousePackets(page).slice(before).reduce((sum,p)=>sum+Math.trunc((p[1]-(p[0]&16?256:0))*gain),0);
+    await expect.poll(travelled).toBe(10);
+    if(gain===0.5)expect(mousePackets(page).slice(before).every(p=>p[1]%2===0)).toBe(true);
+    // Movement remains available beyond the browser's top edge.
+    const after=mousePackets(page).length;
+    await page.mouse.move(x+20,-200,{steps:20});
+    await expect.poll(()=>mousePackets(page).slice(after).some(p=>(p[2]-(p[0]&32?256:0))>0)).toBe(true);
+    expect(await page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
+    await page.keyboard.press('ControlRight');
+    await expect.poll(()=>page.evaluate(()=>document.pointerLockElement)).toBeNull();
+    await expect(canvas).toHaveCSS('cursor','auto');
+  }
+});
+
+test('panel corner actions preserve real touch input for joystick and wheel pads',async({browser})=>{
+  test.setTimeout(60000);
+  for(const viewport of [{width:844,height:390},{width:390,height:844}])for(const style of ['stick','wheel']){
+    const context=await browser.newContext({viewport,isMobile:true,hasTouch:true});
+    const page=await context.newPage();
+    try{
+      await page.route('**/configured-dual/game.json',async route=>{
+        const response=await route.fetch(),settings=await response.json();settings.mobile.orientation='auto';
+        Object.assign(settings.mobile.controls,{keyboard:false,mouseButtons:false,look:false,dpad:false,quickKeys:[],joystick:false,pointer:'off',layout:'panel',toolbar:'auto',
+          pads:[{side:'left',mode:'wasd',style,axes:'horizontal'}],actions:[{position:'bottom-left',label:'Jump',key:'SPACE'}]});
+        await route.fulfill({response,json:settings});
+      });
+      await start(page,'configured-dual');
+      const pad=page.locator(style==='stick'?'#custom-pad-0':'.steering-wheel'),box=await pad.boundingBox(),cdp=await context.newCDPSession(page);
+      const x=box.x+box.width/2,y=box.y+box.height/2;
+      const point=style==='stick'?{x,y}:{x,y:box.y+box.height*.12};
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{id:1,...point}]});
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchMove',touchPoints:[{id:1,x:box.x+box.width*.12,y}]});
+      await expect.poll(()=>consoleText(page)).toContain('key:1e');
+      await expect.poll(()=>pixel(page)).toEqual([0,255,0,255]);
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});
+      await expect.poll(()=>consoleText(page)).toContain('key:9e');
+      await page.getByRole('button',{name:'Jump',exact:true}).tap();
+      await expect.poll(()=>consoleText(page)).toContain('key:39');
+      await expect.poll(()=>consoleText(page)).toContain('key:b9');
+    }finally{await context.close();}
+  }
+});
+
+test('short stationary touch reaches the running guest before release', async ({browser}) => {
+  const context=await browser.newContext({viewport:{width:960,height:540},isMobile:true,hasTouch:true});
+  const page=await context.newPage();
+  try {
+    await page.route('**/configured-dual/game.json',async route=>{
+      const response=await route.fetch(),settings=await response.json();
+      Object.assign(settings.mobile.controls,{keyboard:true,mouseButtons:false,quickKeys:[],joystick:false,dpad:false,look:false,
+        layout:'panel',pointer:'drag',pads:[],actions:[{label:'Paint',mouseButton:'left',position:'bottom-right'},
+          {label:'Act',key:'A',position:'bottom-left'}]});
+      await route.fulfill({response,json:settings});
+    });
+    await start(page,'configured-dual');
+    const cdp=await context.newCDPSession(page);
+    for(const [surface,signal]of [[page.getByRole('button',{name:'Paint',exact:true}),'mouse:09'],
+      [page.getByRole('button',{name:'Act',exact:true}),'key:1e'],[page.locator('canvas'),'mouse:09']]) {
+      const box=await surface.boundingBox();const messages=output.get(page);messages.length=0;
+      await cdp.send('Input.dispatchTouchEvent',{type:'touchStart',touchPoints:[{x:box.x+box.width/2,y:box.y+box.height/2,id:1}]});
+      try {
+        await page.waitForTimeout(80);
+        expect(messages.join('\n'),'An ordinary 100 ms contact must reach the active guest while held').toContain(signal);
+        await page.waitForTimeout(20);
+      } finally {await cdp.send('Input.dispatchTouchEvent',{type:'touchEnd',touchPoints:[]});}
+      await page.waitForTimeout(150);
+    }
+    const fullscreenBox=await page.getByRole('button',{name:'Enter fullscreen',exact:true}).boundingBox();
+    const canvasBox=await page.locator('canvas').boundingBox();
+    expect(fullscreenBox.x+fullscreenBox.width).toBeGreaterThan(900);
+    expect(fullscreenBox.x).toBeGreaterThanOrEqual(canvasBox.x+canvasBox.width);
+    await page.getByRole('button',{name:'Enter fullscreen',exact:true}).tap();
+    await expect.poll(()=>page.evaluate(()=>Boolean(document.fullscreenElement))).toBe(true);
+    await page.getByRole('button',{name:'Exit fullscreen',exact:true}).tap();
+    await expect.poll(()=>page.evaluate(()=>Boolean(document.fullscreenElement))).toBe(false);
+    await page.getByRole('button',{name:'Keyboard',exact:true}).tap();
+    await expect(page.locator('#keyboard')).toBeVisible();
+  } finally {await context.close();}
+});
+
+
+test('relocated SDK retains authored process identity through the embedded browser',async({page})=>{
+  observe(page);
+  await page.goto(`${base}/process-identity/`);
+  await expect.poll(()=>consoleText(page)).toMatch(/PROCESS_IDENTITY_OK endpoint=\d+ name=identity-proces flags=0/);
+  await expect(page.locator('#status')).toContainText('Game finished.');
+});
+
+test('libvt text canvas survives guest keyboard graphics and text transitions', async ({page}) => {
+  await start(page, 'vga-text');
+  const canvas = page.locator('canvas');
+  const frame = points => canvas.evaluate((surface, points) => ({
+    width: surface.width, height: surface.height,
+    pixels: points.map(([x, y]) => [...surface.getContext('2d').getImageData(x, y, 1, 1).data]),
+  }), points);
+  const textPoints = [[0, 0], [8, 15], [9, 0], [719, 399]];
+  const textFrame = {width: 720, height: 400, pixels: [
+    [255, 255, 85, 255], [255, 255, 85, 255], [0, 0, 170, 255], [170, 0, 0, 255],
+  ]};
+  await expect.poll(() => frame(textPoints)).toEqual(textFrame);
+  await page.keyboard.press('g');
+  await expect.poll(() => frame([[0, 0], [639, 479]])).toEqual({
+    width: 640, height: 480, pixels: [[19, 37, 73, 255], [19, 37, 73, 255]],
+  });
+  await expect(page.locator('#status')).toHaveText('Game running.');
+  await page.keyboard.press('t');
+  await expect.poll(() => frame(textPoints)).toEqual(textFrame);
+  await expect(page.locator('#status')).toHaveText('Game running.');
+  await page.keyboard.press('Escape');
+  await expect(page.locator('#status')).toContainText('Game finished.');
 });

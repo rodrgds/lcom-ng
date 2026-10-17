@@ -1,5 +1,6 @@
 import {cue, unlockSound} from './audio.js';
-import {facts} from './previews.js';
+import {facts, repositoryIcon} from './previews.js';
+import {renderGameTags} from './tags.js';
 
 const duration = 8800;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -16,8 +17,9 @@ function travel(time) {
 }
 
 export class Surprise {
-  constructor(catalog, launch) {
+  constructor(catalog, launch, taxonomy = []) {
     this.catalog = catalog;
+    this.taxonomy = taxonomy;
     this.launch = launch;
     this.opener = document.querySelector('#surprise');
     this.dialog = document.querySelector('#surprise-panel');
@@ -127,6 +129,7 @@ export class Surprise {
     const game = this.winner;
     document.querySelector('#surprise-result').textContent = game.name;
     document.querySelector('#surprise-facts').textContent = facts(game);
+    renderGameTags(document.querySelector('#surprise-tags'),game,this.taxonomy);
     const description = document.querySelector('#surprise-description');
     description.textContent = game.description || '';
     description.hidden = !game.description;
@@ -134,6 +137,8 @@ export class Surprise {
     repo.hidden = !game.repository;
     if (game.repository) {
       repo.href = game.repository;
+      repo.innerHTML = repositoryIcon(game.repository);
+      repo.title = 'Repository for ' + game.name;
       repo.setAttribute('aria-label','Repository for ' + game.name);
     } else repo.removeAttribute('href');
     for (const [selector,source] of [

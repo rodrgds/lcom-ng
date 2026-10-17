@@ -1,6 +1,6 @@
 # Arcade gameplay galleries
 
-These are real browser gameplay canvas captures from all 66 Arcade games. The
+These are real browser gameplay canvas captures from the Arcade games. The
 original game artwork is unchanged. Each gallery has three distinct frames,
 except Memory Quest and LabJack, which publish two useful states and document
 why redundant candidates were omitted in `../gallery-captures.json`.
@@ -34,7 +34,13 @@ browser. Capture actions carry labels, not fabricated output. Keyboard movement,
 mouse clicks and drags, and waits produce the captured states. The Snake Garden
 observer follows actual rendered food using normal keys. The Teclas observer
 reads the original bitmap font masks, recognizes the visible word and types it
-through normal keys. Both observers fail if their expected pixels are missing.
+through normal keys. Get Lost reads the visible ball, walls and randomized stars,
+then follows an open passage using arrow keys. PandaType reads the original
+bitmap glyphs before typing the visible words. Golf turns from the rendered
+ball position. Gold Miner steers its visible claw to revealed gold and captures the scored
+return. Green Circuit follows visible food and walls with normal arrow keys.
+Sketch and Guess reads its original bitmap prompt before typing the recall.
+These observers fail if their expected pixels or gameplay progress are missing.
 LCOMaze uses normal movement through its original deterministic maze; three
 explicit crops frame different traversed rooms so its small visible area is
 legible. Crop rectangles and the hashes of the uncropped canvases are recorded.

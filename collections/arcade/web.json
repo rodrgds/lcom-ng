@@ -1,5 +1,6 @@
 {
   "version": 1,
   "metadata": "game-metadata.json",
-  "gallery": "gallery.json"
+  "gallery": "gallery.json",
+  "favicon": "favicon.png"
 }

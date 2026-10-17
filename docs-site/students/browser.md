@@ -21,15 +21,21 @@ with `devenv shell --`. Examples use the same project-folder command:
 devenv shell -- lcom-ng web examples/ninjix
 ```
 
-The game starts automatically. Desktop players see the game with black bars
-where needed. The system cursor hides over the game while the game draws its own
-cursor. The browser mouse stays free to leave the game; clicking never locks it.
-**Escape** reaches the game for pausing or going back.
+The game starts automatically. Click the game to capture the desktop mouse.
+Movement continues past the edges of the browser, using the game's own cursor
+and original controls. **Escape** releases the mouse and reaches the game once
+for pausing or going back. Click again to recapture it.
 
-Press **Right Option on Mac**, or **Right Ctrl** on other keyboards, to release
-game mouse input and show the system cursor. Click the game to resume. Command
-stays available for app shortcuts. Sound starts on the first keypress or tap.
-Refresh the page to restart, or press Enter after the game exits.
+In a collection, **Shift+Escape** returns to the library. The Home button stays
+visible on desktop and touch devices. A brief centered shortcut hint appears
+after the mouse has been captured for a second. Use the fullscreen button at
+the top right to enter or leave fullscreen.
+
+**Right Option on Mac** and **Right Ctrl** also release the mouse without sending
+Escape to the game. Command remains available for app shortcuts. Sound starts
+on the first keypress or tap. Refresh to restart, or press Enter after the game
+exits. When an embedded browser cannot capture the pointer, the player says so
+and retains ordinary mouse dragging.
 
 On mobile, touch the area above the controls to press the left mouse button at
 the game cursor. Lift to finish the click, or hold and drag to move the cursor
@@ -122,17 +128,17 @@ threads, `SharedArrayBuffer` or JavaScript Promise Integration.
 
 | Browser | Expected behavior | Verification |
 | --- | --- | --- |
-| Chrome and Edge | Game, audio, keyboard and free desktop mouse input | Chromium automated tests |
-| Firefox on desktop | Same export, with free mouse input | Automated collection startup and pause/resume checks |
-| Safari on macOS | Same export, with free mouse input | Not yet tested |
+| Chrome and Edge | Game, audio, keyboard and captured desktop mouse input | Chromium automated tests |
+| Firefox on desktop | Same export, with desktop mouse capture | Automated collection startup and pause/resume checks |
+| Safari on macOS | Same export, with desktop mouse capture | Not yet tested |
 | Safari on iPhone and iPad | Game, audio and custom touch keyboard; no Pointer Lock | Physical devices not yet tested |
 
-The player does not use Pointer Lock. It works with ordinary pointer events,
-including in embedded browsers. Browser API availability is separate from testing
-this player on each device.
+Desktop capture uses the browser Pointer Lock API after a click. Touch keeps its
+relative or direct controls. Embedded browsers may restrict capture; API
+availability is separate from testing this player on each device.
 
 Chromium tests cover Flappy, Ninjix, native and Minix fixtures, installed SDK
-relocation, student workspaces, Escape without cursor release, host release keys,
+relocation, student workspaces, captured relative motion, Escape release, host release keys,
 multi-touch keyboard input, relative touch dragging, separate mouse buttons,
 and the optional joystick. Mobile tests use touch emulation. This does not
 certify every Minix project or every mobile browser.

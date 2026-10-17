@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "reviewedAt": "2026-10-17",
+  "scope": "Verified source mirrors already present in the original66-entry catalog. No new mirror admission.",
+  "pairs": [
+    {
+      "first": "Yuka-Sky--LCOM",
+      "second": "scrr-az--skess-lcom",
+      "firstRepository": "https://github.com/Yuka-Sky/LCOM",
+      "secondRepository": "https://github.com/scrr-az/skess-lcom",
+      "firstRevision": "e333e84a361140f7ba410bf219133d7b2fd92860",
+      "secondRevision": "08626275da972c82291efcab0fbed8a57b0eb854",
+      "originalProjectCUnits": [
+        9,
+        9
+      ],
+      "identicalOriginalCHashes": 9,
+      "differentOriginalCFiles": [],
+      "classification": "exact source/art mirror, canonical original project code identical",
+      "explanation": "Only current source delta is the independently proven Yuka cursor inset repair.",
+      "identicalPinnedFiles": 20,
+      "comparison": "Pinned original SHA-256 inventories and all original artwork. Local fixes are compared separately.",
+      "catalogState": "Both entries predate this expansion. Preserve existing launch identities and private saved data until a deliberate alias migration. Do not count these mirrors as distinct games."
+    },
+    {
+      "first": "RiquiFeup--LCOMBAT",
+      "second": "af0nsx--Worms",
+      "firstRepository": "https://github.com/RiquiFeup/LCOMBAT",
+      "secondRepository": "https://github.com/af0nsx/Worms",
+      "firstRevision": "6981e4295329ff2f8dfd9e32e51ceaa45a6b2bf4",
+      "secondRevision": "f38804476b0e38ded06497a64b1e52ea51a23ae9",
+      "originalProjectCUnits": [
+        61,
+        61
+      ],
+      "identicalOriginalCHashes": 61,
+      "differentOriginalCFiles": [],
+      "classification": "exact source/art mirror, canonical original project code identical",
+      "explanation": "All61 current C units and373 asset/header blobs identical; old af0nsx has only extra output.txt.",
+      "identicalPinnedFiles": 441,
+      "comparison": "Pinned original SHA-256 inventories and all original artwork. Local fixes are compared separately.",
+      "catalogState": "Both entries predate this expansion. Preserve existing launch identities and private saved data until a deliberate alias migration. Do not count these mirrors as distinct games."
+    }
+  ]
+}
