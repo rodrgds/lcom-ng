@@ -25,3 +25,6 @@ __pycache__/
 *.py[cod]
 
 /test-results/
+
+# macOS mounted-volume event metadata
+.fseventsd/
