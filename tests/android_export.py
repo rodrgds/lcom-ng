@@ -129,6 +129,10 @@ def main():
         run(['cmake','-S',moved/'native','-B',host_build,'-G','Ninja','-DCMAKE_BUILD_TYPE=Release'])
         run(['cmake','--build',host_build,'--parallel','4'])
         catalog=json.loads((moved/'game-assets/collection.json').read_text())
+        # LCF initializes the real SDL host. Exercise it without requiring the
+        # CI machine to provide a display server, GPU or audio device.
+        host_environment = dict(os.environ,SDL_VIDEODRIVER='dummy',
+                                SDL_AUDIODRIVER='dummy',SDL_RENDER_DRIVER='software')
         for number,game in zip((41,42),catalog['games']):
             library=next(path for path in host_build.rglob('lib'+game['library']+'.*') if path.suffix in ('.so','.dylib'))
             run([sys.executable,'-c','''import ctypes,errno,sys
@@ -147,7 +151,7 @@ else:
     entry.argtypes = []
     result = entry()
 assert result == expected,(result,expected)
-''',library,number])
+''',library,number],env=host_environment)
         run([installed_cli,'export','android',ROOT / 'tests/fixtures/web/minix','--asset-root','..',
              '--asset','minix/assets','--project-only','--output',output])
         run(['cmake','-S',output / 'native','-B',work / 'legacy-build','-G','Ninja','-DCMAKE_BUILD_TYPE=Release'])
