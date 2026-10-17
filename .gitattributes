@@ -1,4 +1,4 @@
 # Pinned student sources and reversible patches retain upstream formatting.
-examples/community/** -whitespace
+examples/community/** -text -whitespace
 # The vendored Windows Gradle launcher retains its original CRLF endings.
-sdk/android/template/gradlew.bat whitespace=cr-at-eol
+sdk/android/template/gradlew.bat -text whitespace=cr-at-eol

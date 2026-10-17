@@ -16,6 +16,41 @@ import check_collection_sources as checker
 
 
 class MixedCollectionSources(unittest.TestCase):
+    def test_git_preserves_pinned_line_endings_with_autocrlf(self):
+        environment = {name: value for name, value in os.environ.items()
+                       if not name.startswith('GIT_')}
+        environment.update(GIT_CONFIG_NOSYSTEM='1', GIT_CONFIG_GLOBAL=os.devnull)
+        originals = {
+            'examples/community/original/main.c': b'int main(void) { return 0; }\n',
+            'examples/community/original/header.h': b'#define VALUE 1\r\n#define OTHER 2\r\n',
+            'sdk/android/template/gradlew.bat': b'@echo off\r\nexit /b 0\r\n',
+        }
+        with tempfile.TemporaryDirectory() as temporary:
+            repo = Path(temporary)
+            subprocess.run(['git', 'init', '-q', str(repo)], env=environment,
+                           check=True, capture_output=True)
+            subprocess.run(['git', '-C', str(repo), 'config', 'core.autocrlf', 'true'],
+                           env=environment, check=True, capture_output=True)
+            (repo / '.gitattributes').write_bytes((ROOT / '.gitattributes').read_bytes())
+            for name, content in originals.items():
+                path = repo / name
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_bytes(content)
+            subprocess.run(['git', '-C', str(repo), 'add', '.'], env=environment,
+                           check=True, capture_output=True)
+            for name, content in originals.items():
+                with self.subTest(path=name, boundary='index'):
+                    stored = subprocess.check_output(['git', '-C', str(repo), 'show', ':' + name],
+                                                     env=environment)
+                    self.assertEqual(stored, content, 'Git changed pinned source bytes on add')
+                (repo / name).unlink()
+            subprocess.run(['git', '-C', str(repo), 'checkout-index', '--', *originals],
+                           env=environment, check=True, capture_output=True)
+            for name, content in originals.items():
+                with self.subTest(path=name, boundary='checkout'):
+                    self.assertEqual((repo / name).read_bytes(), content,
+                                     'Git changed pinned source bytes on checkout')
+
     def test_authored_and_pinned_sources_remain_distinct(self):
         environment = os.environ.copy()
         # The verification caller may supply a real proposed index or Git directory.
