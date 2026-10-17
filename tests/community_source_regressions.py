@@ -315,7 +315,7 @@ int sys_irqsetpolicy(int irq,int flags,int*hook){assert(irq==0&&flags==IRQ_REENA
 int sys_irqdisable(int*hook){assert(*hook==7);return 0;}
 int driver_receive(endpoint_t from,message*msg,int*status){assert(from==ANY);receives++;return 5;}
 int main(void){assert(timer_test_int(1)==1);assert(policies==1&&receives==1);return 0;}
-''',source_flags=['-DLCOM_COMPAT_LEGACY=1','-std=gnu89','-Werror=return-type'])
+''',source_flags=['-DLCOM_COMPAT_LEGACY=1','-std=gnu89','-Wno-implicit-function-declaration','-Werror=return-type'])
 
     def test_star_fleet_creates_one_distinct_bullet_per_slot_and_bounds_capacity(self):
      self.compile_and_run(COMMUNITY/'matilde-silva-21--LCOM/proj/src',['shipBullet.c'],r'''#include <lcom/lcf.h>
@@ -399,6 +399,7 @@ int main(void){assert(subscribe_int()==0);assert(enabled==1&&"the original game 
 #include <assert.h>
 #include "video_gr.h"
 static vbe_mode_info_t info;static uint8_t frames[224];static unsigned mapped;uint32_t COUNTER;
+void panic(const char*message,...){(void)message;abort();}
 void*lm_alloc(size_t size,mmap_t*m){assert(size==sizeof info);m->phys=0x10000;m->virt=&info;m->size=size;return &info;}bool lm_free(const mmap_t*m){return true;}
 int (sys_int86)(reg86_t*r){assert(r->ax==0x4f01||r->ax==0x4f02);r->ax=0x004f;return 0;}
 int sys_privctl(endpoint_t ep,int req,void*arg){struct minix_mem_range*m=arg;assert(m->mr_base==0xe0000000u&&m->mr_limit-m->mr_base==192&&"two 8x4x24bpp pages need192 bytes, not1536bits");return 0;}
@@ -568,7 +569,7 @@ int main(void){init_numbers();assert(loaded==10);free_numbers();assert(releases=
 #include "game/views/animation/animation.h"
 static unsigned frame,writes;static uint32_t*sheet;
 int fill_pixel(uint16_t x,uint16_t y,uint32_t color){assert(x>=100&&x<112&&y>=204&&y<209);unsigned row=(frame-1)/6,col=(frame-1)%6;uint32_t expected=sheet[(row*12+y-200)*72+col*12+x-100];assert(color==expected&&"every frame must select the matching zero-based sheet column");writes++;return 0;}
-int main(void){long page=sysconf(_SC_PAGESIZE);void*pages=mmap(NULL,3*page,PROT_NONE,MAP_PRIVATE|MAP_ANON,-1,0);assert(pages!=MAP_FAILED);assert(mprotect((char*)pages+page,page,PROT_READ|PROT_WRITE)==0);sheet=(uint32_t*)((char*)pages+page);for(unsigned y=0;y<24;y++)for(unsigned x=0;x<72;x++)sheet[y*72+x]=1+y*72+x;sprite_t sprite={.w=72,.h=24,.map=(uint8_t*)sheet};AnimSprite*animation=create_animSprite(&sprite,12,6,12,12);assert(animation);for(frame=1;frame<=12;frame++){writes=0;assert(draw_animSprite(animation,frame,100,200)==EXIT_SUCCESS);assert(writes==60);}free(animation);munmap(pages,3*page);return 0;}
+int main(void){long page=sysconf(_SC_PAGESIZE);size_t bytes=72*24*sizeof(*sheet),span=(bytes+page-1)/page*page;void*pages=mmap(NULL,span+2*page,PROT_NONE,MAP_PRIVATE|MAP_ANON,-1,0);assert(pages!=MAP_FAILED);assert(mprotect((char*)pages+page,span,PROT_READ|PROT_WRITE)==0);sheet=(uint32_t*)((char*)pages+page+span-bytes);for(unsigned y=0;y<24;y++)for(unsigned x=0;x<72;x++)sheet[y*72+x]=1+y*72+x;sprite_t sprite={.w=72,.h=24,.map=(uint8_t*)sheet};AnimSprite*animation=create_animSprite(&sprite,12,6,12,12);assert(animation);for(frame=1;frame<=12;frame++){writes=0;assert(draw_animSprite(animation,frame,100,200)==EXIT_SUCCESS);assert(writes==60);}free(animation);munmap(pages,span+2*page);return 0;}
 ''',source_flags=['-O2'])
 
 
@@ -721,7 +722,7 @@ int main(void){assert(duckhunt_entry()==0);assert(initialized==1&&menus==1&&clos
 #include "RTC.h"
 #include <assert.h>
 int main(void){Date date={.year=2026,.month=10,.day=17,.hour=13,.minute=4};char*text=dateToStr(date);assert(strcmp(text,"13:04 17/10/2026")==0);date.minute=5;assert(strcmp(dateToStr(date),"13:05 17/10/2026")==0);return 0;}
-''',source_flags=['-DLCOM_COMPAT_LEGACY=1','-Werror=return-stack-address','-Werror=format'])
+''',source_flags=['-DLCOM_COMPAT_LEGACY=1','-Werror=return-stack-address','-Werror=format'],compiler_override=['clang'])
 
     def test_duckhunt_fresh_highscores_creates_empty_readable_table(self):
         self.compile_and_run(COMMUNITY/'andrebreis--feup-lcom/proj/src',['Scores.c'],r'''#define LCOM_COMPAT_LEGACY 1
@@ -1595,8 +1596,8 @@ static void launch(char *program,const char *path){buffer=NULL;expected=path;cha
 int main(void){launch("mosu","highscores.txt");launch("./mosu","./highscores.txt");launch("/home/lcom/mosu","/home/lcom/highscores.txt");return 0;}
 ''')
 
-    def compile_and_run(self, project, sources, harness, source_flags=(), include_dirs=()):
-        compiler = shlex.split(os.environ.get('CC', 'cc'))
+    def compile_and_run(self, project, sources, harness, source_flags=(), include_dirs=(), compiler_override=None):
+        compiler = compiler_override or shlex.split(os.environ.get('CC', 'cc'))
         flags = ['-std=gnu11', '-fcommon', '-ffunction-sections', '-fdata-sections',
                  '-Wno-deprecated-non-prototype', '-I', str(ROOT / 'sdk/compat/include'),
                  '-I', str(ROOT / 'sdk/include'), '-I', str(project)]
@@ -1615,7 +1616,7 @@ int main(void){launch("mosu","highscores.txt");launch("./mosu","./highscores.txt
             main = folder / 'main.c'
             main.write_text(harness)
             binary = folder / 'regression'
-            result = subprocess.run([*compiler, *flags, str(main), *objects, linker, '-o', str(binary)],
+            result = subprocess.run([*compiler, *flags, str(main), *objects, linker, '-lm', '-o', str(binary)],
                                     capture_output=True, text=True)
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             result = subprocess.run([str(binary)], capture_output=True, text=True)
@@ -1812,6 +1813,7 @@ int vg_draw_from_background(uint16_t x,uint16_t y){if(x<8&&y<6)frame[y*8+x]=0;re
 void draw_time(Sprite* sprites){memset(sprites,0,19*sizeof(Sprite));}
 void buffer_screen(void){}void flip_page(void){}
 void load_background(void){abort();}void erase_everything(void){abort();}
+void stash_RBR(void){abort();}
 void draw_menu(void){abort();}void erase_menu(void){abort();}int exit_menu(void){abort();}
 FILE *lcom_compat_fopen(const char*p,const char*m){abort();}
 void animate_asprite(ASprite *a){abort();}
@@ -1950,8 +1952,9 @@ int main(void) {
         project = COMMUNITY / 'HenriqueSFernandes--LCOMaze/src'
         with tempfile.TemporaryDirectory(prefix='lcom-maze-cursor-') as temporary:
             folder = Path(temporary)
-            subprocess.run([str(cli), 'compat', 'build', str(project), '--output', str(folder / 'native')],
-                           check=True, capture_output=True, text=True, timeout=120)
+            build = subprocess.run([str(cli), 'compat', 'build', str(project), '--output', str(folder / 'native')],
+                                   capture_output=True, text=True, timeout=120)
+            self.assertEqual(build.returncode, 0, build.stdout + build.stderr)
             replay = folder / 'cursor.mlabscript'
             replay.write_text('at 180 mouse 20 -10 0\nat 200 mouse 0 0 0\n')
             frame = folder / 'menu.ppm'

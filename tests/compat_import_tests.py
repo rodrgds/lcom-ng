@@ -90,7 +90,11 @@ int main(void) {
 }
 ''')
         original = (self.project / "source/main.c").read_bytes()
-        result = self.invoke()
+        # This fixture declares an absolute include alias, which requires Clang.
+        # Keep ordinary importer tests on the platform's default C compiler.
+        clang = shutil.which('clang')
+        self.assertIsNotNone(clang, 'Clang is required for the VFS include-alias fixture')
+        result = self.invoke('--cc', clang)
         self.assertEqual(result.returncode, 0, result.stderr)
         self.run_binary()
         self.assertEqual((self.project / "source/main.c").read_bytes(), original)
@@ -114,7 +118,7 @@ int main(void) {
             (native/'harness.c').write_text('int lcom_student_main(void); int main(void){return lcom_student_main();}\n')
             (native/'CMakeLists.txt').write_text('cmake_minimum_required(VERSION 3.22)\nproject(AssemblySnapshot C)\nset(LCOM_SDK [=['+str(IMPORTER.parents[1])+']=])\ninclude(student.cmake)\nadd_executable(check harness.c)\ntarget_link_libraries(check PRIVATE student)\n')
             build=self.root/'build assembly snapshot'
-            for command in [['cmake','-S',str(native),'-B',str(build),'-G','Ninja'],['cmake','--build',str(build)]]:
+            for command in [['cmake','-S',str(native),'-B',str(build),'-G','Ninja','-DCMAKE_C_COMPILER='+clang],['cmake','--build',str(build)]]:
                 result=subprocess.run(command,capture_output=True,text=True)
                 self.assertEqual(result.returncode,0,result.stdout+result.stderr)
             result=subprocess.run([str(build/'check')],capture_output=True,text=True)

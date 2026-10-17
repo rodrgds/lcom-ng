@@ -104,7 +104,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential cmake ninja-build pkg-config patchelf \
+          sudo apt-get install -y build-essential clang cmake ninja-build pkg-config patchelf \
             curl tar gzip ffmpeg python3 libfreetype6-dev fonts-dejavu-core \
             libasound2-dev libpulse-dev libx11-dev libxext-dev libxrandr-dev \
             libxcursor-dev libxi-dev libxfixes-dev libxss-dev libxtst-dev \
@@ -124,7 +124,7 @@ jobs:
           msystem: MSYS
           update: true
           install: >-
-            base-devel gcc git python cmake ninja pkgconf tar gzip
+            base-devel gcc clang git python cmake ninja pkgconf tar gzip
             mingw-w64-x86_64-ffmpeg
             mingw-w64-x86_64-sdl3
             mingw-w64-x86_64-sdl3-ttf

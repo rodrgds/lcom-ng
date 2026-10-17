@@ -26,7 +26,7 @@ class ArcadeA141SourceRegressions(unittest.TestCase):
             plan.build()
             source = project / unit
             source_flags = next(f for _, p, f in plan.entries if p == source)
-            command = [*compiler, *source_flags, '-O1', *flags]
+            command = [*compiler, *source_flags, '-O1', '-ffunction-sections', '-fdata-sections', *flags]
             if fixture:
                 for name, value in defines:
                     command += ['-D' + name + '="' + str(project/value) + '"']

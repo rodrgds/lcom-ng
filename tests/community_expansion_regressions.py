@@ -540,6 +540,7 @@ int main(void){
         self.compile_and_run(COMMUNITY/'Belem17--lcom-wordle'/'project/src', ['drivers/videogr.c'], r'''#include "drivers/graphics.h"
 #include <assert.h>
 static int mappings;static uintptr_t base=0xe0000000;static size_t page_size=1280*1024*4;
+void panic(const char*message,...){(void)message;abort();}
 int vbe_get_mode_info(uint16_t mode,vbe_mode_info_t*info){*info=(vbe_mode_info_t){.XResolution=1280,.YResolution=1024,.BitsPerPixel=32,.BytesPerScanLine=5120,.PhysBasePtr=0xe0000000};return 0;}
 int sys_privctl(endpoint_t who,int request,void*value){struct minix_mem_range*r=value;assert(r->mr_base==base);assert(r->mr_limit-base==3*page_size);return 0;}
 void *vm_map_phys(endpoint_t who,void*address,size_t size){assert(size==page_size);assert((uintptr_t)address==base+mappings*page_size);mappings++;return(void*)0x1000;}
@@ -2291,7 +2292,7 @@ assert(reads==6&&byteNumMouse==0&&true_x_mouse==807&&true_y_mouse==597);return 0
 ''',source_flags=['-O2'])
 
     def test_desktop_defender_includes_the_original_case_sensitive_clock_asset(self):
-     self.compile_and_run(COMMUNITY/'anaines14--Project_LCOM/src',['mainLoop.c'],r'''int main(void){return 0;}''',source_flags=['-O2','-Werror=nonportable-include-path'])
+     self.compile_and_run(COMMUNITY/'anaines14--Project_LCOM/src',['mainLoop.c'],r'''int main(void){return 0;}''',source_flags=['-O2','-Werror=nonportable-include-path'],compiler_override=['clang'])
 
     def test_pullball_font_treats_the_font_name_as_literal_text(self):
      self.compile_and_run(COMMUNITY/'mbcsm--FEUP_LCOM/proj/code',['font.c'],r'''#include <lcom/lcf.h>
