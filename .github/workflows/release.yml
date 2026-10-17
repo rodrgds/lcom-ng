@@ -96,6 +96,7 @@ jobs:
         shell: ${{ matrix.shell }}
     steps:
       - uses: actions/checkout@v4
+        if: runner.os != 'Windows'
         with:
           ref: ${{ inputs.tag || github.ref }}
 
@@ -123,11 +124,70 @@ jobs:
           msystem: MSYS
           update: true
           install: >-
-            base-devel gcc python cmake ninja pkgconf tar gzip
+            base-devel gcc git python cmake ninja pkgconf tar gzip
             mingw-w64-x86_64-ffmpeg
             mingw-w64-x86_64-sdl3
             mingw-w64-x86_64-sdl3-ttf
             mingw-w64-x86_64-ttf-dejavu
+
+      - name: Check out Windows sources with the POSIX toolchain
+        if: runner.os == 'Windows'
+        env:
+          CHECKOUT_REF: ${{ inputs.tag || github.sha }}
+          CHECKOUT_REPOSITORY: https://github.com/${{ github.repository }}.git
+        run: |
+          # Native Git rejects original DOS device/colon filenames. Use the
+          # same POSIX Git/Python/filesystem boundary as the MSYS SDK tests.
+          export PATH="/usr/bin:$PATH"
+          /usr/bin/git init .
+          git config core.autocrlf false
+          git config core.ignorecase false
+          git remote add origin "$CHECKOUT_REPOSITORY"
+          git fetch --depth=1 --no-tags origin "$CHECKOUT_REF"
+          python3 - <<'PY'
+          import collections, subprocess
+          from pathlib import Path, PurePosixPath
+          records = subprocess.check_output(['git','ls-tree','-rz','FETCH_HEAD']).split(b'\0')
+          groups = collections.defaultdict(set)
+          for record in filter(None, records):
+              path = record.split(b'\t',1)[1].decode()
+              for prefix in PurePosixPath(path).parents:
+                  if str(prefix) != '.':
+                      groups[str(prefix).casefold()].add(str(prefix))
+              groups[path.casefold()].add(path)
+          parents = {str(PurePosixPath(path).parent)
+                     for names in groups.values() if len(names) > 1 for path in names}
+          for directory in sorted(parents, key=lambda p: (len(PurePosixPath(p).parts), p)):
+              Path(directory).mkdir(parents=True, exist_ok=True)
+              windows = subprocess.check_output(['cygpath','-w',directory],text=True).strip()
+              subprocess.run(['fsutil.exe','file','setCaseSensitiveInfo',windows,'enable'],check=True)
+          PY
+          git checkout --detach FETCH_HEAD
+          python3 - <<'PY'
+          import collections, hashlib, re, subprocess
+          from pathlib import Path
+          entries = {}
+          groups = collections.defaultdict(list)
+          for record in filter(None, subprocess.check_output(['git','ls-files','-sz']).split(b'\0')):
+              metadata, name = record.split(b'\t',1)
+              path = name.decode()
+              entries[path] = metadata.split()[1].decode()
+              groups[path.casefold()].append(path)
+          selected = {path for names in groups.values() if len(names) > 1 for path in names}
+          for path in entries:
+              for part in path.split('/'):
+                  if (re.fullmatch(r'(?i)(con|prn|aux|nul|com[1-9¹²³]|lpt[1-9¹²³])(?:\..*)?',part.rstrip(' .'))
+                          or re.search(r'[<>:"\\|?*\x00-\x1f]',part) or part.endswith((' ','.'))):
+                      selected.add(path)
+          for path in sorted(selected):
+              source = Path(path)
+              assert source.name in [item.name for item in source.parent.iterdir()], path
+              data = source.read_bytes()
+              digest = hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+              assert digest == entries[path], (path, digest, entries[path])
+              print('Verified POSIX checkout:', path)
+          print('Verified', len(selected), 'reserved, special and case-distinct original files')
+          PY
 
       - name: Configure Windows SDL C libraries and FFmpeg
         if: runner.os == 'Windows'
