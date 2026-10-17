@@ -131,7 +131,23 @@ def main():
         catalog=json.loads((moved/'game-assets/collection.json').read_text())
         for number,game in zip((41,42),catalog['games']):
             library=next(path for path in host_build.rglob('lib'+game['library']+'.*') if path.suffix in ('.so','.dylib'))
-            run([sys.executable,'-c','import ctypes,sys; assert ctypes.CDLL(sys.argv[1]).lcom_student_main()==int(sys.argv[2])',library,number])
+            run([sys.executable,'-c','''import ctypes,errno,sys
+entry = ctypes.CDLL(sys.argv[1]).lcom_student_main
+entry.restype = ctypes.c_int
+expected = int(sys.argv[2])
+if expected == 42:
+    # Match Player.cpp's argc/argv ABI. Calling this LCF main without
+    # arguments reads undefined register values on the host platform.
+    entry.argtypes = [ctypes.c_int,ctypes.POINTER(ctypes.c_char_p)]
+    assert entry(0,None) == errno.EINVAL
+    assert entry(1,None) == errno.EINVAL
+    argv = (ctypes.c_char_p * 2)(b'game',None)
+    result = entry(1,argv)
+else:
+    entry.argtypes = []
+    result = entry()
+assert result == expected,(result,expected)
+''',library,number])
         run([installed_cli,'export','android',ROOT / 'tests/fixtures/web/minix','--asset-root','..',
              '--asset','minix/assets','--project-only','--output',output])
         run(['cmake','-S',output / 'native','-B',work / 'legacy-build','-G','Ninja','-DCMAKE_BUILD_TYPE=Release'])
