@@ -102,7 +102,7 @@ jobs:
           # The hosted runner disposes of this volume after the job finishes.
           cd "$RUNNER_TEMP"
           image="$RUNNER_TEMP/lcom-source-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.sparseimage"
-          hdiutil create -size 32g -type SPARSE -fs APFSX \
+          hdiutil create -size 32g -type SPARSE -fs 'Case-sensitive APFS' \
             -volname lcom-source "$image"
           hdiutil attach "$image" -mountpoint "$GITHUB_WORKSPACE" -nobrowse
           cd "$GITHUB_WORKSPACE"
