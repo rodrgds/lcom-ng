@@ -65,7 +65,9 @@ def main():
         assert metadata['sources'][str((project / 'main.c').resolve())] == hashlib.sha256(original).hexdigest()
         # Delete the input to prove a fresh build uses only exported source/SDK files.
         shutil.rmtree(project)
-        run(['cmake','-S',relocated / 'native','-B',work / 'desktop-build','-G','Ninja','-DCMAKE_BUILD_TYPE=Release'])
+        # Absolute include aliases use Clang's VFS overlay on every platform.
+        run(['cmake','-S',relocated / 'native','-B',work / 'desktop-build','-G','Ninja','-DCMAKE_BUILD_TYPE=Release',
+             '-DCMAKE_C_COMPILER=clang','-DCMAKE_CXX_COMPILER=clang++'])
         run(['cmake','--build',work / 'desktop-build','--parallel','4'])
         protected = work / 'protected'
         protected.mkdir()
