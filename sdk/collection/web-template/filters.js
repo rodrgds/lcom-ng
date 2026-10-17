@@ -28,8 +28,8 @@ export class GameFilters {
     document.addEventListener('pointerdown',event => {
       if (!this.panel.hidden && !this.panel.contains(event.target) && !this.toggle.contains(event.target)) this.close(false);
     });
-    this.panel.addEventListener('keydown',event => {
-      if (event.key === 'Escape') {event.preventDefault();event.stopPropagation();this.close();}
+    document.addEventListener('keydown',event => {
+      if (!this.panel.hidden && event.key === 'Escape') {event.preventDefault();event.stopPropagation();this.close();}
     });
     const groups = [
       ['genre','Genre',taxonomy.filter(tag=>tag.facet==='genre').map(tag=>({...tag,value:tag.id}))],

@@ -488,6 +488,8 @@ test('touch player retains Home and an unobscured fullscreen control at phone an
   const page=await context.newPage();try{
     await page.goto(base);const id=await page.locator('#games .game-launch').first().getAttribute('data-id'),tile=page.locator('#games .game-launch[data-id="'+id+'"]');await tile.tap();await expect(page.locator('iframe')).toHaveCount(1);await expect(page.locator('#loading')).toBeHidden();
     const home=page.getByRole('button',{name:'Games',exact:true}),screen=page.locator('#player-fullscreen');
+    // Desktop Chromium cannot resize its window while mobile launch fullscreen is active.
+    await page.evaluate(async()=>{if(document.fullscreenElement)await document.exitFullscreen();});
     for(const viewport of [{width:390,height:844},{width:844,height:390}]){
       await page.setViewportSize(viewport);await expect(home).toBeVisible();await expect(screen).toBeVisible();await expect(page.locator('#library-hint')).toBeHidden();
       const a=await home.boundingBox(),b=await screen.boundingBox();expect(a.width).toBeGreaterThanOrEqual(44);expect(a.height).toBeGreaterThanOrEqual(44);expect(b.width).toBeGreaterThanOrEqual(44);expect(b.height).toBeGreaterThanOrEqual(44);
@@ -604,6 +606,8 @@ test('Home reapplies the latest child layout after keyboard use and rotation',as
     await send({type:'lcom-player-layout',width:390,height:844,game:{x:0,y:120,width:390,height:312},occupied:[{x:0,y:600,width:390,height:244}]});
     await expect(home).toBeVisible();expect((await home.boundingBox()).y+44).toBeLessThanOrEqual(120);
     await send({type:'lcom-player-input',keyboard:true});await expect(home).toBeVisible();
+    // Leave launch fullscreen before simulating device rotation through a desktop window resize.
+    await page.evaluate(async()=>{if(document.fullscreenElement)await document.exitFullscreen();});
     await page.setViewportSize({width:844,height:390});
     const game={x:0,y:0,width:480,height:390},controls=[{x:500,y:0,width:344,height:52},{x:600,y:120,width:160,height:180}];
     await send({type:'lcom-player-layout',width:844,height:390,game,occupied:controls});
@@ -634,6 +638,8 @@ test('genre, player and academic-year filters compose, preserve shuffle and rese
   await filter.click();await panel.getByRole('button',{name:'Solo',exact:true}).click();
   await expect(page.locator('#games .game-launch')).toHaveCount(6);
   await panel.getByRole('button',{name:'Clear filters',exact:true}).click();await expect(page.locator('#games .game-launch')).toHaveCount(24);
+  // Clearing may disable the focused reset button. Escape still closes the open popover.
+  await page.getByRole('searchbox').focus();
   await page.keyboard.press('Escape');await expect(panel).toBeHidden();await expect(filter).toBeFocused();
   await filter.click();await panel.getByRole('button',{name:'Space shooters',exact:true}).click();await page.keyboard.press('Escape');
   const chip=page.getByRole('button',{name:'Remove Space shooters',exact:true});await chip.focus();await page.keyboard.press('Enter');await expect(page.getByRole('searchbox')).toBeFocused();
