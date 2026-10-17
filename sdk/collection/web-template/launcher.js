@@ -238,7 +238,7 @@ function route(force = false) {
     renderGameTags(document.querySelector('#load-tags'),game,taxonomy);
     const icon = document.querySelector('.load-logo');
     icon.onerror = () => { icon.onerror = null; icon.src = 'assets/arcade.svg'; };
-    icon.src = game.icon || 'assets/arcade.svg';
+    icon.src = game.iconThumbnail || game.icon || 'assets/arcade.svg';
     document.querySelector('#load-error').hidden = true;
     document.querySelector('#load-progress').hidden = false;
     progress.removeAttribute('value');

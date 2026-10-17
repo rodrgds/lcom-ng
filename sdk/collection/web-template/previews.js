@@ -41,16 +41,22 @@ export class Previews {
     motion.addEventListener('change', () => this.stop());
   }
 
+  clear() {
+    this.stop(); this.iconObserver?.disconnect();
+  }
+
   loadIcon(element) {
     const icon = element.querySelector('.game-icon');
     if (!icon.dataset.src) return;
     this.iconObserver?.unobserve(element);
     if (this.iconObserver) icon.loading = 'eager';
+    icon.sizes = `${Math.ceil(element.getBoundingClientRect().width)}px`;
+    if(icon.dataset.srcset) {icon.srcset=icon.dataset.srcset;delete icon.dataset.srcset;}
     icon.src = icon.dataset.src;
     delete icon.dataset.src;
   }
 
-  tile(game, launch) {
+  tile(game, launch, key = game.id) {
     const element = document.createElement('div');
     element.className = 'game' + (game.featured ? ' featured' : '');
     element.setAttribute('role', 'listitem');
@@ -61,19 +67,49 @@ export class Previews {
     link.setAttribute('aria-label', 'Play ' + game.name);
     const description = document.createElement('span');
     description.className = 'sr-only';
-    description.id = this.idPrefix + '-' + game.id;
+    description.id = this.idPrefix + '-' + key;
     description.textContent = facts(game);
     link.setAttribute('aria-describedby', description.id);
     const icon = document.createElement('img');
     icon.className = 'game-icon pending';
-    icon.dataset.src = game.icon || game.preview || 'assets/arcade.svg';
+    icon.dataset.src = game.iconThumbnail || game.icon || game.preview || 'assets/arcade.svg';
+    if(game.iconSources) {
+      icon.dataset.srcset=game.iconSources.map(source=>`${source.path} ${source.width}w`).join(', ');
+      icon.sizes='(max-width:600px) 34vw, 300px';
+    }
     icon.alt = ''; icon.width = 256; icon.height = 256;
     icon.loading = 'lazy'; icon.decoding = 'async';
     icon.onload = async () => {
       try { await icon.decode(); } catch { /* A loaded fallback can still be shown. */ }
       icon.classList.remove('pending');
     };
-    icon.onerror = () => { icon.onerror = null; icon.src = 'assets/arcade.svg'; };
+    icon.onerror = () => { icon.onerror = null; icon.removeAttribute('srcset'); icon.src = 'assets/arcade.svg'; };
+    link.append(icon,description); element.append(link);
+    const tile = {game,element,link,index:0,token:0};
+    element.addEventListener('pointerenter', event => {
+      // Keep keyboard actions reachable while the pointer crosses other tiles.
+      if (event.pointerType !== 'touch' && finePointer.matches && !this.hasFocusedAction()) this.start(tile);
+    });
+    element.addEventListener('pointerleave', () => { if (this.active === tile && !element.contains(document.activeElement)) this.stop(); });
+    link.addEventListener('focus', () => {
+      // Native keyboard focus scrolls first, so measure the final viewport position.
+      const active = this.active, token = active?.token;
+      requestAnimationFrame(() => {
+        if ((!this.active || this.active === active && active?.token === token) && document.activeElement === link &&
+            (finePointer.matches || link.matches(':focus-visible'))) this.start(tile);
+      });
+    });
+    element.addEventListener('focusout', event => { if (this.active === tile && !element.contains(event.relatedTarget)) this.stop(); });
+    element.addEventListener('keydown', event => { if (event.key === 'Escape') this.stop(); });
+    link.addEventListener('click', () => { this.stop(); launch(link); });
+    if (this.iconObserver) this.iconObserver.observe(element);
+    else this.loadIcon(element);
+    return tile;
+  }
+
+  details(tile) {
+    if(tile.track)return;
+    const {game,element,link}=tile;
     const window_ = document.createElement('span');
     window_.className = 'preview-window';
     window_.setAttribute('aria-hidden', 'true');
@@ -105,27 +141,8 @@ export class Previews {
     });
     steps.hidden = sources.length < 2;
     window_.append(track, steps, play);
-    link.append(icon, window_, description); element.append(link, overlay);
-    const tile = {game, element, link, track, slides, sources, bars, index: 0, token: 0};
-    element.addEventListener('pointerenter', event => {
-      // Keep keyboard actions reachable while the pointer crosses other tiles.
-      if (event.pointerType !== 'touch' && finePointer.matches && !this.hasFocusedAction()) this.start(tile);
-    });
-    element.addEventListener('pointerleave', () => { if (this.active === tile && !element.contains(document.activeElement)) this.stop(); });
-    link.addEventListener('focus', () => {
-      // Native keyboard focus scrolls first, so measure the final viewport position.
-      const active = this.active, token = active?.token;
-      requestAnimationFrame(() => {
-        if ((!this.active || this.active === active && active?.token === token) && document.activeElement === link &&
-            (finePointer.matches || link.matches(':focus-visible'))) this.start(tile);
-      });
-    });
-    element.addEventListener('focusout', event => { if (this.active === tile && !element.contains(event.relatedTarget)) this.stop(); });
-    element.addEventListener('keydown', event => { if (event.key === 'Escape') this.stop(); });
-    link.addEventListener('click', () => { this.stop(); launch(link); });
-    if (this.iconObserver) this.iconObserver.observe(element);
-    else this.loadIcon(element);
-    return tile;
+    link.append(window_); element.append(overlay);
+    Object.assign(tile,{track,slides,sources,bars});
   }
 
   async image(tile, index) {
@@ -164,6 +181,7 @@ export class Previews {
     if (this.active === tile) return;
     this.stop();
     this.active = tile;
+    this.details(tile);
     this.loadIcon(tile.element);
     clearTimeout(tile.closingTimer);
     tile.element.classList.remove('preview-closing');

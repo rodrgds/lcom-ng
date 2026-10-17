@@ -20,16 +20,21 @@ export class Mosaic {
   }
 
   setTiles(tiles, filtered = true) {
+    if(this.filtered===filtered && tiles.length===this.tiles.length && tiles.every((tile,index)=>tile===this.tiles[index]))return;
     this.filtered = filtered;
-    const before = new Map(this.tiles.map(tile => [tile.element, tile.element.getBoundingClientRect()]));
     const visible = new Set(tiles);
     for (const tile of this.tiles) if (!visible.has(tile)) tile.element.remove();
     this.tiles = tiles;
-    this.shuffle(true, before);
+    this.arrange(false);
   }
 
   shuffle(animate = true, before = null) {
-    before ??= new Map(this.tiles.map(tile => [tile.element, tile.element.getBoundingClientRect()]));
+    this.order = shuffled(this.order || this.tiles);
+    this.arrange(animate,before);
+  }
+
+  arrange(animate = false, before = null) {
+    if(animate)before ??= new Map(this.tiles.map(tile => [tile.element, tile.element.getBoundingClientRect()]));
     this.onShuffle?.();
     const candidates = shuffled(this.tiles.filter(tile => !tile.game.featured));
     const sparse = this.filtered || this.tiles.length < 12;
@@ -78,7 +83,9 @@ export class Mosaic {
       }
     }
     this.grid.querySelectorAll('.game-cluster').forEach(group => group.remove());
-    this.ordinary = shuffled([...ordinary.filter(tile => !grouped.has(tile)), ...clusters]);
+    const rank = new Map(this.order.map((tile,index)=>[tile,index]));
+    this.ordinary = [...ordinary.filter(tile => !grouped.has(tile)), ...clusters].sort((a,b)=>
+      (rank.get(a.tiles?.[0]||a)??0)-(rank.get(b.tiles?.[0]||b)??0));
     this.width = 0;
     this.layout(animate,before);
   }
@@ -92,7 +99,7 @@ export class Mosaic {
     const columns = mobile ? 3 : Math.max(2, Math.min(18, Math.floor((width + gap) / 136)));
     const tracks = columns * 2;
     const unit = (width - (tracks - 1) * gap) / tracks;
-    before ??= new Map(this.tiles.map(tile => [tile.element, tile.element.getBoundingClientRect()]));
+    if(animate)before ??= new Map(this.tiles.map(tile => [tile.element, tile.element.getBoundingClientRect()]));
     this.grid.style.setProperty('--tracks', tracks);
     this.grid.style.setProperty('--unit', `${unit}px`);
     this.grid.style.setProperty('--gap', `${gap}px`);
@@ -112,6 +119,7 @@ export class Mosaic {
         Object.assign(tile, {x, y});
         tile.element.style.gridColumn = `${x + 1} / span ${size}`;
         tile.element.style.gridRow = `${y + 1} / span ${size}`;
+        if(!tile.tiles)tile.element.querySelector('.game-icon').sizes=`${Math.ceil(unit*size+gap*(size-1))}px`;
       }
     };
     // Phones place the two utility tiles above the separate game grid.
@@ -150,6 +158,7 @@ export class Mosaic {
           tile.tiles?.forEach((member, index) => {
             member.x = x + index % 3 * size / 3;
             member.y = y + Math.floor(index / 3) * size / 3;
+            member.element.querySelector('.game-icon').sizes=`${Math.ceil((unit*size+gap*(size-1)-gap*2)/3)}px`;
           });
           placed = true;
           break;
@@ -159,7 +168,13 @@ export class Mosaic {
     const focus = document.activeElement;
     const ordered = [...this.tiles].sort((a, b) => a.y - b.y || a.x - b.x);
     const blocks = [...this.featured, ...this.ordinary].sort((a, b) => a.y - b.y || a.x - b.x);
-    this.games.append(...blocks.map(tile => tile.element));
+    // Move only changed nodes. Unchanged results keep decoded artwork, focus
+    // and their DOM position while the query is refined.
+    let next=this.games.firstElementChild;
+    for(const {element} of blocks) {
+      if(element===next)next=next.nextElementSibling;
+      else this.games.insertBefore(element,next);
+    }
     if (focus && this.games.contains(focus)) focus.focus({preventScroll: true});
     if (animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
       for (const tile of ordered) {

@@ -18,11 +18,13 @@ family share a compact 3×3 group, with each game individually playable.
 Search filters the visible grid by name or tag and stays beside one filter panel
 for genres, player modes and
 academic school years. The query and tags persist within the tab; filtered results use
-regular tiles. Five random featured picks come from a curated pool. Year labels stay plain and unknowns are omitted.
+regular tiles and keep their order while typing. Five random featured picks come from a curated pool. Year labels stay plain and unknowns are omitted.
 Loading opens a compact dismissible modal with the selected game's icon,
 description, category tags and measured progress. The modal stays for at least
 two seconds without running gameplay behind it. Empty side gutters show brighter clickable
-suggestions, with two columns when they fit and the same gameplay previews. On touchscreens, the Home button prefers unused
+suggestions in one to four slowly scrolling columns per side, alternating up and down.
+Hover or focus pauses a side; its pause button stops it until resumed. Reduced motion
+keeps suggestions still. They retain the same gameplay previews. On touchscreens, the Home button prefers unused
 space outside the game and returns to the collection. Home stays visible for keyboard and touch players. After mouse capture, a centered
 Shift + Esc hint appears after one second and fades away four seconds later.
 Shift+Escape also returns to the library.
@@ -50,15 +52,28 @@ devenv shell -- bunx wrangler deploy --config collections/arcade/wrangler.jsonc
 
 The packaging step copies the export into `build/arcade-publish`, losslessly
 compresses Wasm modules and game data, and generates smaller WebP previews (up to 640 × 480)
-and icons (256 × 256, or 512 × 512 for featured tiles). Original captures stay unchanged. Content-based
+and responsive icons (128, 256 and, for featured candidates, 512 pixels wide).
+The browser chooses an icon for the tile's size and screen density. Startup uses
+the small thumbnail. Original captures stay unchanged. Content-based
 filenames refresh image caches when the artwork changes; an original is kept
 when it is already smaller. A small Worker serves their encoding correctly and
 streams decompression for clients requesting identity encoding. This keeps large
 payloads within the host's asset limit. Other files use static serving. The regular
-export stays directly usable on other static servers. Check modules and game data with
+export stays directly usable on other static servers. The published `collection.json`
+contains browsing data; `collection-provenance.json` retains the complete delivery
+inventory and historical evidence without loading it on every visit.
+The launcher creates hover-preview markup only when opened. Check modules and game data with
 browser gzip encoding, plus large identity responses and cache revalidation,
 then test the live player:
 
 ```sh
 devenv shell -- python3 tests/arcade_hosting.py --url https://arcade.rgo.pt
+```
+
+The launcher font uses a Latin and punctuation WOFF2 subset of the original
+variable font. Keep `assets/OFL.txt` and the original TTF alongside it. Regenerate
+with a one-off Nix environment:
+
+```sh
+nix shell --impure --expr 'let pkgs = import <nixpkgs> {}; in pkgs.python3.withPackages (ps: [ ps.fonttools ps.brotli ])' -c pyftsubset sdk/collection/web-template/assets/bricolage.ttf --unicodes=U+0000-024F,U+2000-206F,U+20AC --flavor=woff2 --output-file=sdk/collection/web-template/assets/bricolage.woff2 --layout-features='*'
 ```

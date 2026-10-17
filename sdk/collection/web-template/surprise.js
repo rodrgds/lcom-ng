@@ -93,7 +93,7 @@ export class Surprise {
       const card = document.createElement('div');
       card.className = 'roulette-card';
       const image = new Image();
-      image.src = game.icon || 'assets/arcade.svg';
+      image.src = game.iconSources?.find(source=>source.width>=256)?.path || game.icon || 'assets/arcade.svg';
       image.alt = '';image.width = 160;image.height = 160;
       image.onerror = () => {image.onerror = null;image.src = 'assets/arcade.svg';};
       card.append(image);
@@ -143,7 +143,7 @@ export class Surprise {
     } else repo.removeAttribute('href');
     for (const [selector,source] of [
       ['.surprise-scene',game.screenshots?.[Math.floor(game.screenshots.length / 2)] || game.preview || game.icon],
-      ['.surprise-icon',game.icon],
+      ['.surprise-icon',game.iconThumbnail || game.icon],
     ]) {
       const image = this.detail.querySelector(selector);
       image.onerror = () => {

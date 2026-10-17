@@ -165,7 +165,8 @@ white frame the original artwork. Frontmatter tokens are normative.
 
 **Display and Body Font:** self-hosted Bricolage Grotesque, registered as
 `Bricolage`, with system-ui and sans-serif fallbacks. The variable font supports
-weights 200 to 800 with font-display swap. Preserve its adjacent OFL license.
+weights 200 to 800 with font-display swap. The launcher loads a Latin and
+punctuation WOFF2 subset. Preserve its adjacent OFL license and original TTF.
 
 - **Identity:** container-relative sizing follows the actual tile, with balanced wrapping and tight leading. It remains a real h1.
 - **Loading display:** the display role becomes 30px in stacked mobile and short landscape layouts.
@@ -266,9 +267,12 @@ search, shuffle and Surprise use the same subset. Header and footer stay visible
 while the choices scroll on short screens. The panel returns focus when closed.
 
 During play, suggestions use only reported empty side gutters, avoiding controls.
-Each gutter has two columns from 208px, one in narrower space, and hides when
-icons cannot fit at 64px. Resting opacity is .78 and hover/focus restores full
-brightness. Previews remain inside the gutter, with ordinary links to launch.
+Each gutter fits one to four columns and hides when icons cannot fit at 64px.
+Columns loop slowly in alternating vertical directions using CSS transforms and
+a bounded deck of thumbnails. Hover or keyboard focus pauses that side, and a
+44px pause button keeps it still until resumed. Reduced motion disables drift.
+Resting opacity is .78 and hover/focus restores full brightness. Previews remain
+inside the gutter, with ordinary links to launch.
 
 ### Persistent search
 
@@ -279,7 +283,9 @@ visible game. A single nonmodal Filters panel adds genre, player and year facets
 Active chips appear above the grid and remove individual criteria; Clear all
 resets both query and tags. Session storage retains the selection across reloads
 in the same tab. Launching and returning preserves the matching grid and focus.
-Small results stay contiguous at ordinary tile size.
+Small results stay contiguous at ordinary tile size. Refining a query preserves
+result order and updates without movement animations; Shuffle remains explicit.
+Search text is indexed once, and preview markup is created only on interaction.
 
 ### Startup and transfer
 

@@ -38,6 +38,19 @@ test.beforeAll(async () => {
 });
 test.afterAll(async () => new Promise(resolve => server.close(resolve)));
 
+test('typing preserves matching result order and does not animate the grid on each key',async({page})=>{
+  await page.goto(base);
+  const input=page.getByRole('searchbox');
+  await input.fill('Game');
+  const order=()=>page.locator('#games .game-launch').evaluateAll(links=>links.map(link=>link.dataset.id));
+  const before=await order();
+  await input.fill('Game ');
+  expect(await order()).toEqual(before);
+  expect(await page.locator('#games .game').evaluateAll(items=>items.flatMap(item=>item.getAnimations()).length)).toBe(0);
+  await input.fill('Game 0');
+  expect(await order()).toEqual(before.filter(id=>Number(id.slice(5))<10));
+});
+
 test('square icon mosaic keeps staples plus five curated random highlights and shuffles without fetching galleries', async ({page}) => {
   await page.route('**/collection.json',route=>route.fulfill({json:{name:'Mosaic Fixture',games:games.map(game=>({...game,name:'Minixsweeper'}))}}));
   const shots = []; page.on('request', request => {if (request.url().includes('/shot-')) shots.push(request.url());});
@@ -115,6 +128,7 @@ test('repeated archetypes pack nine playable games into four normal tile spaces'
     await page.screenshot({path: testInfo.outputPath(`archetypes-${width}.png`), fullPage: true});
   }
   await page.setViewportSize({width:1440,height:900});await page.emulateMedia({reducedMotion:'reduce'});
+  await expect.poll(()=>page.locator('#games .game:not(.featured):not(.compact) .game-launch').first().evaluate(element=>element.getBoundingClientRect().width)).toBeLessThan(240);
   const normal=page.locator('#games .game:not(.featured):not(.compact) .game-launch').first();
   const ordinary=await normal.boundingBox();await normal.focus();
   await expect.poll(async()=>(await normal.boundingBox()).width).toBeGreaterThan(ordinary.width*1.6);
@@ -416,11 +430,11 @@ test('small collections use regular tiles without oversized highlights',async({p
 
 
 test('grid icons load near the viewport, follow Shuffle, and wait to fetch distant games',async({page})=>{
-  const catalog=Array.from({length:120},(_,index)=>({...games[index%games.length],id:`lazy-${index}`,icon:`/icon-lazy-${index}.svg`,featured:index<4}));
+  const catalog=Array.from({length:120},(_,index)=>({...games[index%games.length],id:`lazy-${index}`,icon:`/icon-full-${index}.svg`,iconThumbnail:`/icon-lazy-${index}.svg`,featured:index<4}));
   await page.setViewportSize({width:390,height:844});await page.emulateMedia({reducedMotion:'reduce'});
   await page.route('**/collection.json',route=>route.fulfill({json:{name:'Large library',games:catalog}}));
-  const icons=new Set(),shots=[];
-  page.on('request',request=>{const name=new URL(request.url()).pathname;if(name.startsWith('/icon-lazy-'))icons.add(name);if(name.startsWith('/shot-'))shots.push(name);});
+  const icons=new Set(),shots=[],fullIcons=[];
+  page.on('request',request=>{const name=new URL(request.url()).pathname;if(name.startsWith('/icon-lazy-'))icons.add(name);if(name.startsWith('/shot-'))shots.push(name);if(name.startsWith('/icon-full-'))fullIcons.push(name);});
   await page.goto(base);await expect(page.locator('.game')).toHaveCount(120);await page.waitForLoadState('networkidle');
   const visibleLoaded=()=>page.locator('.game').evaluateAll(items=>items.filter(item=>{
     const rect=item.getBoundingClientRect();return rect.bottom>0&&rect.top<innerHeight;
@@ -428,7 +442,7 @@ test('grid icons load near the viewport, follow Shuffle, and wait to fetch dista
   await expect.poll(visibleLoaded).toBe(true);
   expect(icons.size).toBeLessThan(40);expect(shots).toEqual([]);
   const distant=page.locator('.game').last(),id=await distant.locator('.game-launch').getAttribute('data-id');
-  const source=catalog.find(game=>game.id===id).icon;
+  const source=catalog.find(game=>game.id===id).iconThumbnail;
   expect((await distant.boundingBox()).y).toBeGreaterThan(844*3);
   expect(icons.has(source)).toBe(false);
   await distant.scrollIntoViewIfNeeded();
@@ -437,7 +451,7 @@ test('grid icons load near the viewport, follow Shuffle, and wait to fetch dista
   await page.locator('.identity').scrollIntoViewIfNeeded();
   await page.getByRole('button',{name:'Shuffle games'}).click();
   await expect.poll(visibleLoaded).toBe(true);await expect(page.locator('.game')).toHaveCount(120);
-  expect(shots).toEqual([]);
+  expect(shots).toEqual([]);expect(fullIcons).toEqual([]);
 });
 
 for(const reduced of [false,true])test(`loaded icons ${reduced?'appear immediately with a working fallback':'fade in after decoding without moving their tiles'}`,async({page})=>{
@@ -545,6 +559,7 @@ test('side suggestions use two bright columns, preview and launch outside gamepl
   expect(await rails.first().evaluate(rail=>Number(getComputedStyle(rail).opacity))).toBeGreaterThanOrEqual(.7);
   const choices=rails.first().getByRole('link',{name:/^Play /});await expect(choices.first()).toBeVisible();
   const positions=await choices.evaluateAll(links=>links.map(link=>Math.round(link.getBoundingClientRect().left)));expect(new Set(positions).size).toBe(2);
+  const railBox=await rails.first().boundingBox();await page.mouse.move(railBox.x+2,railBox.y+2);
   const choice=choices.first(),id=await choice.getAttribute('data-id');await choice.hover();await expect(choice.locator('..')).toHaveClass(/previewing/);
   await expect(choice.locator('.preview-frame')).toBeVisible();await choice.click();await expect(page).toHaveURL(new RegExp('#game='+id+'$'));
   await expect(page.locator('iframe')).toHaveAttribute('title',games.find(game=>game.id===id).name);
@@ -564,7 +579,7 @@ test('direct game links fetch a bounded set of decorations only when side space 
     await frame.evaluate(()=>parent.postMessage({type:'lcom-player-layout',width:innerWidth,height:innerHeight,
       game:innerWidth>1000?{x:240,y:0,width:960,height:900}:{x:0,y:200,width:390,height:292},occupied:[]},location.origin));
     await expect(page.locator('.game-rail:not([hidden])')).toHaveCount(width>1000?2:0);
-    expect(new Set(icons).size).toBeLessThanOrEqual(width>1000?17:1);
+    expect(new Set(icons).size).toBeLessThanOrEqual(width>1000?49:1);
     await context.close();
   }
 });
@@ -720,4 +735,40 @@ test('Surprise and startup show game tags with a two-second minimum loading pres
   await page.locator('#games .game-launch').first().click();await expect(page.locator('#loading')).toBeVisible();
   await page.locator('#load-dismiss').click();await page.waitForTimeout(2100);
   await expect(page.locator('iframe')).toHaveCount(0);await expect(page.locator('#library')).toBeVisible();await expect(page.locator('#loading')).toBeHidden();
+});
+
+test('side columns loop in alternating directions and pause for focus and reduced motion',async({page})=>{
+  await page.setViewportSize({width:1920,height:900});await page.goto(base+'/#game=game-0');
+  await expect(page.locator('#loading')).toBeHidden();
+  const frame=page.frames().find(frame=>frame.url().includes('/games/'));
+  await frame.evaluate(()=>parent.postMessage({type:'lcom-player-layout',width:1920,height:900,game:{x:480,y:0,width:960,height:900},occupied:[]},location.origin));
+  const columns=page.locator('.game-rail:not([hidden]) .rail-column');
+  await expect(columns).toHaveCount(8);
+  const tracks=page.locator('.game-rail:not([hidden]) .rail-track');
+  const movement=()=>tracks.evaluateAll(items=>items.map(item=>new DOMMatrixReadOnly(getComputedStyle(item).transform).m42));
+  const settled=()=>tracks.first().evaluate(async track=>{for(const animation of track.closest('.game-rail').getAnimations({subtree:true}))await animation.ready;});
+  const before=await movement();await page.waitForTimeout(250);const after=await movement();
+  expect(after[0]).toBeLessThan(before[0]);expect(after[1]).toBeGreaterThan(before[1]);
+  await columns.first().getByRole('link',{name:/^Play /}).first().focus();
+  await settled();
+  const paused=(await movement()).slice(0,4);await page.waitForTimeout(250);expect((await movement()).slice(0,4)).toEqual(paused);
+  await page.locator('.game-rail').first().getByRole('button',{name:'Pause suggestions'}).click();
+  await page.locator('#player-fullscreen').focus();
+  await settled();
+  const manual=(await movement()).slice(0,4);await page.waitForTimeout(250);expect((await movement()).slice(0,4)).toEqual(manual);
+  const seam=await tracks.first().evaluate(track=>{
+    const animation=track.getAnimations()[0],rail=track.closest('.game-rail').getBoundingClientRect();
+    const visible=()=>[...track.querySelectorAll('.game')].map(tile=>({id:tile.querySelector('a').dataset.id,y:tile.getBoundingClientRect().y,height:tile.getBoundingClientRect().height})).filter(tile=>tile.y+tile.height/2>rail.y&&tile.y+tile.height/2<rail.bottom).map(tile=>({id:tile.id,y:Math.round(tile.y)}));
+    animation.currentTime=.01;const first=visible();animation.currentTime=animation.effect.getTiming().duration-.01;return {first,last:visible()};
+  });
+  expect(seam.last).toEqual(seam.first);
+  await frame.evaluate(()=>parent.postMessage({type:'lcom-player-layout',width:1920,height:900,game:{x:120,y:0,width:1680,height:900},occupied:[]},location.origin));
+  await expect(page.locator('.game-rail:not([hidden]) .rail-column')).toHaveCount(2);
+  const narrow=page.locator('.game-rail:not([hidden]) .rail-cycle').first().getByRole('link',{name:/^Play /}).first();
+  await narrow.focus();
+  await expect.poll(()=>narrow.evaluate(link=>link.getBoundingClientRect().width)).toBeLessThan(100);
+  await page.emulateMedia({reducedMotion:'reduce'});
+  expect(await tracks.evaluateAll(items=>items.every(item=>getComputedStyle(item).animationName==='none'))).toBe(true);
+  const ids=await page.locator('.game-rail [id]').evaluateAll(items=>items.map(item=>item.id));
+  expect(new Set(ids).size).toBe(ids.length);
 });

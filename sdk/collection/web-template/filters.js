@@ -6,6 +6,8 @@ export class GameFilters {
     this.taxonomy = taxonomy;
     this.change = change;
     this.selected = {genre:new Set(),players:new Set(),year:new Set()};
+    const labels = new Map(taxonomy.map(tag=>[tag.id,tag.label]));
+    this.index = new Map(catalog.map(game=>[game,[game.name,game.academicYear,...(game.tags||[]).map(id=>labels.get(id))].filter(Boolean).join(' ').toLocaleLowerCase()]));
     this.input = document.querySelector('#search');
     this.query = '';
     this.storageKey = 'lcom-arcade:browse:v1:' + location.pathname;
@@ -56,18 +58,26 @@ export class GameFilters {
 
     this.apply(false);
   }
-  matches(game,except=null) {
-    const labels=this.taxonomy.filter(tag=>game.tags?.includes(tag.id)).map(tag=>tag.label);
-    const text=[game.name,game.academicYear,...labels].filter(Boolean).join(' ').toLocaleLowerCase();
-    return text.includes(this.query.trim().toLocaleLowerCase()) && Object.entries(this.selected).every(([facet,values])=>facet===except || !values.size ||
+  matchesFacets(game,except=null) {
+    return Object.entries(this.selected).every(([facet,values])=>facet===except || !values.size ||
       (facet==='year'?values.has(game.academicYear):[...values].some(value=>game.tags?.includes(value))));
   }
   apply(notify=true) {
-    const matches=this.catalog.filter(game=>this.matches(game));
+    this.normalizedQuery=this.query.trim().toLocaleLowerCase();
+    const searched=this.catalog.filter(game=>this.index.get(game).includes(this.normalizedQuery));
+    const matches=searched.filter(game=>this.matchesFacets(game));
+    // Count each facet once, excluding its own selection, rather than scanning
+    // and rebuilding the same searchable text for every individual button.
+    const counts={genre:new Map(),players:new Map(),year:new Map()};
+    for(const facet of Object.keys(counts))for(const game of searched) {
+      if(!this.matchesFacets(game,facet))continue;
+      const values=facet==='year'?[game.academicYear]:game.tags||[];
+      for(const value of values)counts[facet].set(value,(counts[facet].get(value)||0)+1);
+    }
     for(const button of this.buttons) {
       const {facet,value}=button.dataset,selected=this.selected[facet].has(value);
       button.setAttribute('aria-pressed',String(selected));
-      const count=this.catalog.filter(game=>this.matches(game,facet)&&(facet==='year'?game.academicYear===value:game.tags?.includes(value))).length;
+      const count=counts[facet].get(value)||0;
       button.lastElementChild.textContent=count;button.disabled=!selected&&!count;
     }
     const selected=Object.values(this.selected).reduce((sum,values)=>sum+values.size,0);

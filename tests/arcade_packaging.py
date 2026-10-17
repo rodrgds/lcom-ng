@@ -40,11 +40,20 @@ class ArcadePackagingTest(unittest.TestCase):
             (source / "collection.json").write_text(json.dumps(catalog))
             subprocess.run([sys.executable, str(ROOT / "scripts/package_arcade_web.py"), "--source", str(source), "--output", str(output)], check=True, capture_output=True)
             published = json.loads((output / "collection.json").read_text())["games"][0]
+            self.assertNotIn("downloadFiles", published)
+            audit = json.loads((output / "collection-provenance.json").read_text())["games"][0]
+            self.assertEqual(audit["downloadFiles"][0]["path"], "games/fixture/game.js")
+            widths = []
+            for variant in published["iconSources"]:
+                with Image.open(output / variant["path"]) as image:
+                    self.assertEqual(image.width, variant["width"])
+                    widths.append(image.width)
+            self.assertEqual(widths, [128, 256])
             self.assertEqual((output/published["screenshots"][0]).read_bytes(),gallery_bytes)
             expected=len(gzip.compress(module,compresslevel=9,mtime=0))+len(b"loader")+len(b"player")+len(gzip.compress(b"assets",compresslevel=9,mtime=0))
             self.assertEqual(published["downloadBytes"],expected)
-            self.assertEqual(published["downloadBasis"],"gzip-wasm-data-identity-rest")
-            self.assertEqual(sum(item["bytes"] for item in published["downloadFiles"]),expected)
+            self.assertEqual(audit["downloadBasis"],"gzip-wasm-data-identity-rest")
+            self.assertEqual(sum(item["bytes"] for item in audit["downloadFiles"]),expected)
             for name, maximum in (("preview", (640, 480)), ("icon", (256, 256))):
                 path = output / published[name]
                 self.assertLess(path.stat().st_size, len(originals[name]) // 2)
@@ -83,7 +92,7 @@ class ArcadePackagingTest(unittest.TestCase):
             self.assertLess(len(stored), 25 * 1024 * 1024)
             self.assertEqual(gzip.decompress(stored), original)
             self.assertEqual((game/"game.data").read_bytes(), original)
-            game_info = json.loads((output/"collection.json").read_text())["games"][0]
+            game_info = json.loads((output/"collection-provenance.json").read_text())["games"][0]
             data_info = next(item for item in game_info["downloadFiles"] if item["path"].endswith("game.data"))
             self.assertEqual(data_info,{"path":"games/large/game.data","bytes":len(stored),
                                         "encoding":"gzip","decodedBytes":len(original)})

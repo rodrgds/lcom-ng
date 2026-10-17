@@ -53,13 +53,23 @@ def main():
     shutil.copytree(source, output)
     records, data_records, images = [], [], []
     for game in catalog["games"]:
-        icon_bounds = (512, 512) if game.get("featured") else (256, 256)
+        icon_bounds = (512, 512) if game.get("featured") or game.get("featuredPool") else (256, 256)
+        original_icon = game.get("icon")
         for kind, bounds in (("preview", (640, 480)), ("icon", icon_bounds)):
             if not game.get(kind):
                 continue
             relative, before, after = package_image(source, output, game[kind], bounds)
             game[kind] = relative
             images.append({"path": relative, "bytes": before, "publishedBytes": after})
+        if original_icon:
+            variants = {}
+            for bound in sorted({128, 256, icon_bounds[0]}):
+                relative, before, after = package_image(source, output, original_icon, (bound, bound))
+                with Image.open(output / relative) as image:
+                    variants[image.width] = relative
+                images.append({"path": relative, "bytes": before, "publishedBytes": after})
+            game["iconSources"] = [{"path": path, "width": width} for width, path in sorted(variants.items())]
+            game["iconThumbnail"] = game["iconSources"][0]["path"]
         screenshots=[]
         for screenshot in game.get("screenshots", []):
             relative, before, after = package_image(source, output, screenshot, (640, 480))
@@ -87,17 +97,28 @@ def main():
                                  "sha256": hashlib.sha256(original_data).hexdigest()})
         game.update(download_metadata(source / "games" / game["id"], f"games/{game['id']}/",
                                       len(encoded), data_bytes=data_bytes))
-    (output / "collection.json").write_text(json.dumps(catalog, indent=2) + "\n")
+    # Preserve the complete delivery inventory and historical evidence for audits,
+    # without parsing it in every visitor's critical browsing path.
+    (output / "collection-provenance.json").write_text(json.dumps(catalog, ensure_ascii=False) + "\n")
+    library = {**catalog, "provenance": "collection-provenance.json", "games": []}
+    for game in catalog["games"]:
+        item = {key: value for key, value in game.items() if key not in ("downloadFiles", "downloadBasis")}
+        if "academicYear" in item:
+            for key in ("year", "yearLabel", "yearSource"):
+                item.pop(key, None)
+        library["games"].append(item)
+    (output / "collection.json").write_text(json.dumps(library, ensure_ascii=False, separators=(",", ":")) + "\n")
     # The deployment Worker serves these bytes with manual gzip encoding. A
     # static _headers encoding rule would cause a second compression pass.
     for path in output.rglob("*"):
         if path.is_file() and path.stat().st_size > 25 * 1024 * 1024:
             parser.error(f"asset exceeds 25 MiB: {path}")
+    images = list({image["path"]: image for image in images}.values())
     inventory = {"games": len(records), "modules": records, "data": data_records, "images": images}
     (output.parent / "arcade-publish-inventory.json").write_text(
         json.dumps(inventory, indent=2) + "\n")
     print(f"Prepared {len(records)} losslessly compressed modules and {len(data_records)} data files in {output}")
-    print(f"Images: {sum(image['bytes'] for image in images):,} to "
+    print(f"Published images: {len(images)} variants, "
           f"{sum(image['publishedBytes'] for image in images):,} bytes")
 
 
