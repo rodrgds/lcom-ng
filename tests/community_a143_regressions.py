@@ -17,4 +17,10 @@ class A143RendererRegressions(unittest.TestCase):
     def test_meteor_backbuffer_rejects_first_excluded_row_and_column(self):
         self.compile_owner('Litone11--LEIC-FEUP/2nd_year/LCOM/proj/src','devices/video.c',HERE/'meteor-frame.c',[('VIDEO_SOURCE','devices/video.c')],flags=['-O2','-ffunction-sections','-fdata-sections'])
 
+    def test_meteor_menu_paints_before_waiting_and_after_keyboard_info_navigation(self):
+        self.compile_owner('Litone11--LEIC-FEUP/2nd_year/LCOM/proj/src','main.c',HERE/'meteor-menu.c',[('MAIN_SOURCE','main.c')],args=['0'])
+
+    def test_meteor_stationary_mouse_click_presents_info_and_returned_menu(self):
+        self.compile_owner('Litone11--LEIC-FEUP/2nd_year/LCOM/proj/src','main.c',HERE/'meteor-menu.c',[('MAIN_SOURCE','main.c')],args=['2'])
+
 if __name__=='__main__':unittest.main()

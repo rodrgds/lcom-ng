@@ -41,6 +41,13 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
+static void present_menu(void) {
+  game_update();
+  if (current_state == STATE_MENU || current_state == STATE_INFO)
+    vg_draw_xpm((xpm_map_t)cursor, x, y);
+  buf_swap();
+}
+
 /**
  * @brief Handles interrupts during menu and info states.
  *
@@ -53,6 +60,7 @@ void (menu_interrupts)(uint8_t mouse_mask, uint8_t keyboard_mask) {
   int16_t prev_mouse_x;
   int16_t prev_mouse_y;
   int ipc_status;
+  present_menu();
   while (current_state == STATE_MENU || current_state == STATE_INFO) {
     if (driver_receive(ANY, &msg, &ipc_status) != 0) continue;
 
@@ -69,9 +77,7 @@ void (menu_interrupts)(uint8_t mouse_mask, uint8_t keyboard_mask) {
               updateMouseLocation();
               if (x != prev_mouse_x || y != prev_mouse_y) {
                 vg_draw_rectangle(prev_mouse_x, prev_mouse_y, 12, 19, 0x0000001);
-                game_update();
-                vg_draw_xpm((xpm_map_t)cursor, x, y);
-                buf_swap();
+                present_menu();
               }
               if (current_state == STATE_MENU) {
                 if ((x > 500 && x < 700 && y > 350 && y < 410) && processLeftClick())
@@ -84,7 +90,7 @@ void (menu_interrupts)(uint8_t mouse_mask, uint8_t keyboard_mask) {
                 if ((x > 475 && x < 675 && y > 750 && y < 810) && processLeftClick())
                   current_state = STATE_MENU;
               }
-              game_update();
+              present_menu();
               mouse_counter = 0;
             }
           }
@@ -97,7 +103,7 @@ void (menu_interrupts)(uint8_t mouse_mask, uint8_t keyboard_mask) {
             } else if (current_state == STATE_INFO) {
               if (scancode == MAKE_1 || scancode == BREAK_ESC) current_state = STATE_MENU;
             }
-            game_update();
+            present_menu();
           }
           break;
       }

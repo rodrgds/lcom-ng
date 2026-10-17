@@ -101,6 +101,13 @@
           "originalSha256": "6d726e9ddad204a7ddf1e712b64802e8de6213f555b71c0ac12fcb9349d4245d",
           "patchedSha256": "e1db5bd2d7f632e1a44543f8bd0bbc55edbbc8ecf0b477f35bf277fd2b20f76d",
           "reason": "Reject x >= framebuffer width and y >= framebuffer height before computing the backbuffer offset. Actual native enemy rendering reached x784/y864 and wrote 3136 bytes beyond the 1152x864 backbuffer."
+        },
+        {
+          "file": "2nd_year/LCOM/proj/src/main.c",
+          "originalSha256": "9a698b2f3a872514530ac511a19c9b91f3039e8bf081cf916aa745ae62f5df44",
+          "patchedSha256": "7fdde9a0c2f52a2d969f8c1f0c3e97616cff3387b6b65826a83533206db49e1f",
+          "reason": "Present the original menu before its first input wait, and present menu/info redraws after keyboard or stationary mouse selections. The original draws only on mouse motion and never presents keyboard state changes, leaving startup black and navigation visually stale. Keep original artwork, cursor, controls and gameplay rules.",
+          "verification": "Actual main.c independently fails initial-before-wait, keyboard Info/back and stationary mouse Info/back presentation checks; all three pass after correction. Two permanent source-owner cases retain initial/keyboard and stationary-mouse coverage. Real collection tile initial framebuffer is uniformly blank before correction; private corrected tile paints original title/Start/Info/Exit without input in portrait and landscape. Ordinary touch2Info,1Back,1Play,A420ms,Fire300+1800ms yields visible gameplay, SCORE20 in portrait and a complementary landscape replay, and cleanHome. Score0 attempts are retained. No native claim."
         }
       ]
     }
