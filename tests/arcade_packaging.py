@@ -41,9 +41,9 @@ class ArcadePackagingTest(unittest.TestCase):
             subprocess.run([sys.executable, str(ROOT / "scripts/package_arcade_web.py"), "--source", str(source), "--output", str(output)], check=True, capture_output=True)
             published = json.loads((output / "collection.json").read_text())["games"][0]
             self.assertEqual((output/published["screenshots"][0]).read_bytes(),gallery_bytes)
-            expected=len(gzip.compress(module,compresslevel=9,mtime=0))+len(b"loader")+len(b"player")+len(b"assets")
+            expected=len(gzip.compress(module,compresslevel=9,mtime=0))+len(b"loader")+len(b"player")+len(gzip.compress(b"assets",compresslevel=9,mtime=0))
             self.assertEqual(published["downloadBytes"],expected)
-            self.assertEqual(published["downloadBasis"],"gzip-wasm-identity-rest")
+            self.assertEqual(published["downloadBasis"],"gzip-wasm-data-identity-rest")
             self.assertEqual(sum(item["bytes"] for item in published["downloadFiles"]),expected)
             for name, maximum in (("preview", (640, 480)), ("icon", (256, 256))):
                 path = output / published[name]
@@ -55,6 +55,7 @@ class ArcadePackagingTest(unittest.TestCase):
                     self.assertTrue(all(abs(actual-expected) < 12 for actual, expected in zip(center, (24, 128, 216))))
                 self.assertEqual((game / f"{name}.png").read_bytes(), originals[name])
             self.assertEqual(gzip.decompress((output / "games/fixture/game.wasm").read_bytes()), module)
+            self.assertEqual(gzip.decompress((output / "games/fixture/game.data").read_bytes()), b"assets")
             # A tiny original should never grow or be upscaled for publication.
             Image.new("RGBA", (8, 8), (0, 0, 0, 0)).save(game / "icon.png")
             subprocess.run([sys.executable, str(ROOT / "scripts/package_arcade_web.py"), "--source", str(source), "--output", str(output)], check=True, capture_output=True)
@@ -62,6 +63,31 @@ class ArcadePackagingTest(unittest.TestCase):
             self.assertLessEqual((output / published["icon"]).stat().st_size, (game / "icon.png").stat().st_size)
             with Image.open(output / published["icon"]) as image:
                 self.assertEqual(image.size, (8, 8))
+
+    def test_large_game_data_preserves_bytes_and_fits_the_asset_limit(self):
+        with tempfile.TemporaryDirectory() as directory:
+            source, output = Path(directory)/"export", Path(directory)/"publish"
+            game = source/"games/large"
+            game.mkdir(parents=True)
+            original = bytes(range(256)) * (26 * 1024 * 1024 // 256)
+            self.assertGreater(len(original), 25 * 1024 * 1024)
+            (game/"game.data").write_bytes(original)
+            (game/"game.wasm").write_bytes(b"\0asm\1\0\0\0")
+            (game/"game.js").write_bytes(b"loader")
+            (source/"collection.json").write_text(json.dumps({"games":[{"id":"large"}]}))
+            result = subprocess.run([sys.executable,str(ROOT/"scripts/package_arcade_web.py"),
+                                     "--source",str(source),"--output",str(output)],
+                                    capture_output=True,text=True)
+            self.assertEqual(result.returncode,0,result.stderr)
+            stored = (output/"games/large/game.data").read_bytes()
+            self.assertLess(len(stored), 25 * 1024 * 1024)
+            self.assertEqual(gzip.decompress(stored), original)
+            self.assertEqual((game/"game.data").read_bytes(), original)
+            game_info = json.loads((output/"collection.json").read_text())["games"][0]
+            data_info = next(item for item in game_info["downloadFiles"] if item["path"].endswith("game.data"))
+            self.assertEqual(data_info,{"path":"games/large/game.data","bytes":len(stored),
+                                        "encoding":"gzip","decodedBytes":len(original)})
+            self.assertEqual(game_info["downloadBytes"],sum(item["bytes"] for item in game_info["downloadFiles"]))
 
 
 if __name__ == "__main__":

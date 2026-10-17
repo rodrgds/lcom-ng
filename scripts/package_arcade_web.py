@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Prepare lightweight Arcade images and compressed Cloudflare game modules."""
+"""Prepare lightweight Arcade images and compressed Cloudflare game payloads."""
 
 import argparse
 import gzip
@@ -51,7 +51,7 @@ def main():
     if output.exists():
         shutil.rmtree(output)
     shutil.copytree(source, output)
-    records, images = [], []
+    records, data_records, images = [], [], []
     for game in catalog["games"]:
         icon_bounds = (512, 512) if game.get("featured") else (256, 256)
         for kind, bounds in (("preview", (640, 480)), ("icon", icon_bounds)):
@@ -70,21 +70,33 @@ def main():
         original = (source / relative).read_bytes()
         encoded = gzip.compress(original, compresslevel=9, mtime=0)
         assert gzip.decompress(encoded) == original
-        game.update(download_metadata(source / "games" / game["id"], f"games/{game['id']}/", len(encoded)))
         (output / relative).write_bytes(encoded)
         records.append({"path": relative.as_posix(), "bytes": len(original),
                         "gzipBytes": len(encoded),
                         "sha256": hashlib.sha256(original).hexdigest()})
+        data_relative = relative.with_name("game.data")
+        data_bytes = None
+        if (source / data_relative).is_file():
+            original_data = (source / data_relative).read_bytes()
+            encoded_data = gzip.compress(original_data, compresslevel=9, mtime=0)
+            assert gzip.decompress(encoded_data) == original_data
+            (output / data_relative).write_bytes(encoded_data)
+            data_bytes = len(encoded_data)
+            data_records.append({"path": data_relative.as_posix(), "bytes": len(original_data),
+                                 "gzipBytes": data_bytes,
+                                 "sha256": hashlib.sha256(original_data).hexdigest()})
+        game.update(download_metadata(source / "games" / game["id"], f"games/{game['id']}/",
+                                      len(encoded), data_bytes=data_bytes))
     (output / "collection.json").write_text(json.dumps(catalog, indent=2) + "\n")
     # The deployment Worker serves these bytes with manual gzip encoding. A
     # static _headers encoding rule would cause a second compression pass.
     for path in output.rglob("*"):
         if path.is_file() and path.stat().st_size > 25 * 1024 * 1024:
             parser.error(f"asset exceeds 25 MiB: {path}")
-    inventory = {"games": len(records), "modules": records, "images": images}
+    inventory = {"games": len(records), "modules": records, "data": data_records, "images": images}
     (output.parent / "arcade-publish-inventory.json").write_text(
         json.dumps(inventory, indent=2) + "\n")
-    print(f"Prepared {len(records)} losslessly compressed modules in {output}")
+    print(f"Prepared {len(records)} losslessly compressed modules and {len(data_records)} data files in {output}")
     print(f"Images: {sum(image['bytes'] for image in images):,} to "
           f"{sum(image['publishedBytes'] for image in images):,} bytes")
 

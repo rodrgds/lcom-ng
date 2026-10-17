@@ -1,8 +1,11 @@
-// Modules are stored gzip-compressed to fit the host's asset limit. Mark their
+// Modules and data are stored gzip-compressed to fit the host's asset limit. Mark their
 // bytes as already encoded so Workers does not compress them a second time.
 export default {
   async fetch(request, env) {
-    if (!new URL(request.url).pathname.endsWith('/game.wasm')) return env.ASSETS.fetch(request);
+    const pathname = new URL(request.url).pathname;
+    const contentType = pathname.endsWith('/game.wasm') ? 'application/wasm' :
+      pathname.endsWith('/game.data') ? 'application/octet-stream' : null;
+    if (!contentType) return env.ASSETS.fetch(request);
     const assetRequest = new Request(request);
     assetRequest.headers.delete('Range');
     assetRequest.headers.delete('If-Range');
@@ -17,7 +20,7 @@ export default {
     const gzip = (encodings.find(value => value.encoding === 'gzip') ??
       encodings.find(value => value.encoding === '*'))?.quality > 0;
     const headers = new Headers(response.headers);
-    headers.set('Content-Type', 'application/wasm');
+    headers.set('Content-Type', contentType);
     headers.set('Vary', 'Accept-Encoding');
     headers.set('Cache-Control', 'public, max-age=0, must-revalidate, no-transform');
     const etag = headers.get('ETag');
