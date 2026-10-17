@@ -24,7 +24,36 @@ jobs:
           devenv shell -- bun install --frozen-lockfile
           devenv shell -- bunx playwright install --with-deps chromium firefox
       - name: Verify browser exports
-        run: devenv shell -- lcom-ng-web-test
+        run: |
+          devenv shell -- bash -euo pipefail <<'SHELL'
+          firefox=$(node -e 'console.log(require("@playwright/test").firefox.executablePath())')
+          echo "Dependency checker before host-tool selection: $(command -v ldd)"
+          ldd "$firefox" || true
+          # Playwright downloads Ubuntu binaries and installs Ubuntu libraries.
+          # Nix's ldd uses its own loader, which cannot see that host library cache.
+          # Override only this tool, keeping the rest of the Devenv toolchain.
+          browser_tools=$(mktemp -d "$RUNNER_TEMP/playwright-host-tools.XXXXXX")
+          trap 'rm -rf "$browser_tools"' EXIT
+          ln -s /usr/bin/ldd "$browser_tools/ldd"
+          export PATH="$browser_tools:$PATH"
+          echo "Ubuntu browser dependency checker: $(command -v ldd)"
+          ldd "$firefox"
+          # Fail before the full suite if the real downloaded browser cannot run.
+          node --input-type=module <<'JS'
+          import assert from 'node:assert/strict';
+          import { firefox } from '@playwright/test';
+          const browser = await firefox.launch();
+          try {
+            const page = await browser.newPage();
+            await page.setContent('<title>Firefox host ready</title>');
+            assert.equal(await page.title(), 'Firefox host ready');
+            console.log(`Firefox ${browser.version()} host launch passed`);
+          } finally {
+            await browser.close();
+          }
+          JS
+          lcom-ng-web-test
+          SHELL
       - name: Verify Arcade source and image packaging
         run: |
           devenv shell -- python3 tests/collection_sources.py
