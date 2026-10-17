@@ -20,6 +20,10 @@ int lcom_irq_subscribe(uint8_t irq, uint32_t flags, lcom_irq_t *out) {
 int lcom_irq_unsubscribe(lcom_irq_t *irq) { (void)irq; return LCOM_OK; }
 int lcom_port_read8(uint16_t port, uint8_t *value) { (void)port; *value = 0; return LCOM_OK; }
 int lcom_port_write8(uint16_t port, uint8_t value) { (void)port; (void)value; return LCOM_OK; }
+/* PE linkers can retain unused video adapters from compat.c. */
+int lcom_phys_map(uintptr_t phys, size_t len, void **out) {
+  (void)phys; (void)len; (void)out; abort();
+}
 int lcom_phys_unmap(void *ptr, size_t len) { (void)ptr; (void)len; return LCOM_OK; }
 int lcom_compat_output_log_stop(void) { return 0; }
 int lcom_delay_ticks(uint64_t ticks, lcom_event_t *event) {
