@@ -1232,8 +1232,8 @@
     },
     {
       "repository": "https://github.com/Coutinho-David/Drivers",
-      "reviewStatus": "accepted-web-pending-native",
-      "reason": "Current normal browser touch gameplay passed with source patches separately verified; final frozen payload ready for ROOT Android gate.",
+      "reviewStatus": "admitted-browser",
+      "reason": "Included in the web collection after reviewed browser gameplay and final portrait/landscape touch-control checks. Android qualification is deferred by explicit user instruction.",
       "revision": "f9e424e191fe178d292ac2371a327972f5ff41fe",
       "createdAt": "2026-07-18T09:57:02Z",
       "project": "proj/src",
@@ -1241,7 +1241,16 @@
         "build/arcade-100/nas-native-case/a141-qualify-eight/qualification-final-eight-dispositions.json",
         "build/arcade-100/nas-native-case/a141-qualify-eight/handoffs/blackjack-web-v2/inventory.json"
       ],
-      "latestReviewReceipt": "build/arcade-100/nas-native-case/a141-qualify-eight/qualification-final-eight-dispositions.json"
+      "latestReviewReceipt": "build/arcade-100/nas-native-case/a141-qualify-eight/qualification-final-eight-dispositions.json",
+      "arcadeGame": "Blackjack Table",
+      "screeningStatus": "accepted-web",
+      "screeningReason": "Current normal browser touch gameplay passed with source patches separately verified; final frozen payload ready for ROOT Android gate.",
+      "verificationScope": {
+        "browser": "passed",
+        "mobileWeb": "passed",
+        "nativeAndroid": "deferred"
+      },
+      "mobileWebEvidence": "build/arcade-100/web306-final-two-mobile-release-v2/visual-review.json"
     },
     {
       "repository": "https://github.com/Coutinho-David/FEUP",
@@ -3650,8 +3659,8 @@
     },
     {
       "repository": "https://github.com/Litone11/LEIC-FEUP",
-      "reviewStatus": "accepted-web-pending-native",
-      "reason": "Current normal browser touch gameplay passed with source patches separately verified; final frozen payload ready for ROOT Android gate.",
+      "reviewStatus": "admitted-browser",
+      "reason": "Included in the web collection after reviewed browser gameplay and final portrait/landscape touch-control checks. Android qualification is deferred by explicit user instruction.",
       "revision": "c09dd25ef1e2afd36082c496b015b5fdb8fe24ad",
       "createdAt": "2026-08-24T12:08:09Z",
       "project": "2nd_year/LCOM/proj/src",
@@ -3659,7 +3668,16 @@
         "build/arcade-100/nas-native-case/a141-qualify-eight/qualification-final-eight-dispositions.json",
         "build/arcade-100/nas-native-case/a141-qualify-eight/handoffs/meteor-web-v3/inventory.json"
       ],
-      "latestReviewReceipt": "build/arcade-100/nas-native-case/a141-qualify-eight/qualification-final-eight-dispositions.json"
+      "latestReviewReceipt": "build/arcade-100/nas-native-case/a141-qualify-eight/qualification-final-eight-dispositions.json",
+      "arcadeGame": "Asteroids: Meteor Shooter",
+      "screeningStatus": "accepted-web",
+      "screeningReason": "Current normal browser touch gameplay passed with source patches separately verified; final frozen payload ready for ROOT Android gate.",
+      "verificationScope": {
+        "browser": "passed",
+        "mobileWeb": "passed",
+        "nativeAndroid": "deferred"
+      },
+      "mobileWebEvidence": "build/arcade-100/web306-final-two-mobile-release-v2/visual-review.json"
     },
     {
       "repository": "https://github.com/Luck0511/minix-games",

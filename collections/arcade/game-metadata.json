@@ -7252,6 +7252,36 @@
         "url": "https://github.com/jlcrodrigues/lc-typer/blob/e7980414004d794b82a7749081d4160750141663/proj/doc/report.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2021/22."
       }
+    },
+    "coutinho-david-drivers-c1dd87c242d9": {
+      "tags": [
+        "cards",
+        "single-player"
+      ],
+      "academicYear": "2024/25",
+      "academicYearSource": {
+        "kind": "game-history-inference",
+        "confidence": "inferred",
+        "url": "https://github.com/Coutinho-David/Drivers/commit/d9c8de3b6a6a5a1d38d25407533fcbc8c5b2e49e",
+        "date": "2025-04-11",
+        "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C unit (2025-04-11), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
+      }
+    },
+    "lcom-bfd1a0adf303": {
+      "tags": [
+        "shooter",
+        "space-shooter",
+        "survival",
+        "single-player"
+      ],
+      "academicYear": "2024/25",
+      "academicYearSource": {
+        "kind": "source-date-inference",
+        "confidence": "inferred",
+        "url": "https://github.com/Litone11/LEIC-FEUP/blob/c09dd25ef1e2afd36082c496b015b5fdb8fe24ad/2nd_year/LCOM/proj/src/game/game.h#L11",
+        "date": "2025-05-30",
+        "detail": "Academic year inferred from the original game header dated May2025, rather than the later whole-degree repository publication. The school year begins in September."
+      }
     }
   },
   "taxonomy": [

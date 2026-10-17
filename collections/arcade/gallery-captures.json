@@ -35494,6 +35494,105 @@
           "caption": "Complete the displayed phrase for speed and accuracy feedback"
         }
       ]
+    },
+    {
+      "id": "coutinho-david-drivers-c1dd87c242d9",
+      "name": "Blackjack Table",
+      "url": "games/coutinho-david-drivers-c1dd87c242d9/",
+      "cursor": [
+        176,
+        132
+      ],
+      "gain": 1,
+      "actions": [
+        {
+          "op": "key",
+          "key": "ENTER",
+          "ms": 120
+        },
+        {
+          "op": "key",
+          "key": "ENTER",
+          "ms": 120
+        },
+        {
+          "op": "capture",
+          "slug": "choose-bet",
+          "caption": "Choose a wager at the original blackjack table"
+        },
+        {
+          "op": "key",
+          "key": "DOWN",
+          "ms": 120
+        },
+        {
+          "op": "key",
+          "key": "ENTER",
+          "ms": 120
+        },
+        {
+          "op": "capture",
+          "slug": "dealt-hand",
+          "caption": "Read the dealt cards and choose Stand, Hit or Double"
+        },
+        {
+          "op": "key",
+          "key": "ENTER",
+          "ms": 120
+        },
+        {
+          "op": "capture",
+          "slug": "dealer-result",
+          "caption": "Stand to reveal the original dealer hand and round result"
+        }
+      ]
+    },
+    {
+      "id": "lcom-bfd1a0adf303",
+      "name": "Asteroids: Meteor Shooter",
+      "url": "games/lcom-bfd1a0adf303/",
+      "cursor": [
+        0,
+        0
+      ],
+      "gain": 1,
+      "actions": [
+        {
+          "op": "key",
+          "key": "1",
+          "ms": 120
+        },
+        {
+          "op": "capture",
+          "slug": "meteor-field",
+          "caption": "Enter the original falling-meteor field"
+        },
+        {
+          "op": "key",
+          "key": "A",
+          "ms": 420
+        },
+        {
+          "op": "key",
+          "key": "MOUSE1",
+          "ms": 300
+        },
+        {
+          "op": "capture",
+          "slug": "steer-and-fire",
+          "caption": "Steer the ship and fire original laser projectiles"
+        },
+        {
+          "op": "key",
+          "key": "MOUSE1",
+          "ms": 1800
+        },
+        {
+          "op": "capture",
+          "slug": "meteor-volley",
+          "caption": "Keep firing at the falling meteors as the score updates"
+        }
+      ]
     }
   ]
 }

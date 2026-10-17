@@ -24058,6 +24058,164 @@
           ]
         }
       ]
+    },
+    "lcom-bfd1a0adf303": {
+      "name": "Asteroids: Meteor Shooter",
+      "screenshots": [
+        "galleries/lcom-bfd1a0adf303/meteor-field.webp",
+        "galleries/lcom-bfd1a0adf303/steer-and-fire.webp",
+        "galleries/lcom-bfd1a0adf303/meteor-volley.webp"
+      ],
+      "captures": [
+        {
+          "source": "browser gameplay canvas",
+          "sha256": "e34f8c4f6658cff6364711609277e8a9fb07fe7d0f60096815b7f3cedbbce89b",
+          "originalSha256": "a04070272501bdad1c588b148dbbe6f3fd3623f88b4313a39a06af546ccbe9fa",
+          "caption": "Enter the original falling-meteor field",
+          "framebuffer": [
+            1152,
+            864
+          ],
+          "crop": null,
+          "replay": "gallery-captures.json#lcom-bfd1a0adf303",
+          "replaySha256": "1d325d800633a4889ddc41ddf428f906ef53603df5de4a24c34ec6b0eba0092c",
+          "gameFiles": [
+            {
+              "file": "game.wasm",
+              "sha256": "1fd8627c41b90488d83fcc22ed1f89358220f0e22eb932aff8e3f91a83514cc8"
+            },
+            {
+              "file": "game.js",
+              "sha256": "91138a6c9b109fbc52195317c79737516bd079a479fa064a6eef6ce3617fa339"
+            }
+          ]
+        },
+        {
+          "source": "browser gameplay canvas",
+          "sha256": "6be57a5688ec0b84e364781973f6eebd6cfb8ddb8b0bb09e7787fa71b41556eb",
+          "originalSha256": "9beaee4b8ab1c8999953c49c7037df7e912da599f502489fc4032c7d76a8ce23",
+          "caption": "Steer the ship and fire original laser projectiles",
+          "framebuffer": [
+            1152,
+            864
+          ],
+          "crop": null,
+          "replay": "gallery-captures.json#lcom-bfd1a0adf303",
+          "replaySha256": "1d325d800633a4889ddc41ddf428f906ef53603df5de4a24c34ec6b0eba0092c",
+          "gameFiles": [
+            {
+              "file": "game.wasm",
+              "sha256": "1fd8627c41b90488d83fcc22ed1f89358220f0e22eb932aff8e3f91a83514cc8"
+            },
+            {
+              "file": "game.js",
+              "sha256": "91138a6c9b109fbc52195317c79737516bd079a479fa064a6eef6ce3617fa339"
+            }
+          ]
+        },
+        {
+          "source": "browser gameplay canvas",
+          "sha256": "c24f7dcfe5adc700f971daaf2b1f138ab4d47e8502bb5f72247c4096c54e968a",
+          "originalSha256": "115d182ed81eb9e891b8013b2efa339fc13b2e092b872fb0a0522936a9356e83",
+          "caption": "Keep firing at the falling meteors as the score updates",
+          "framebuffer": [
+            1152,
+            864
+          ],
+          "crop": null,
+          "replay": "gallery-captures.json#lcom-bfd1a0adf303",
+          "replaySha256": "1d325d800633a4889ddc41ddf428f906ef53603df5de4a24c34ec6b0eba0092c",
+          "gameFiles": [
+            {
+              "file": "game.wasm",
+              "sha256": "1fd8627c41b90488d83fcc22ed1f89358220f0e22eb932aff8e3f91a83514cc8"
+            },
+            {
+              "file": "game.js",
+              "sha256": "91138a6c9b109fbc52195317c79737516bd079a479fa064a6eef6ce3617fa339"
+            }
+          ]
+        }
+      ]
+    },
+    "coutinho-david-drivers-c1dd87c242d9": {
+      "name": "Blackjack Table",
+      "screenshots": [
+        "galleries/coutinho-david-drivers-c1dd87c242d9/choose-bet.webp",
+        "galleries/coutinho-david-drivers-c1dd87c242d9/dealt-hand.webp",
+        "galleries/coutinho-david-drivers-c1dd87c242d9/dealer-result.webp"
+      ],
+      "captures": [
+        {
+          "source": "browser gameplay canvas",
+          "sha256": "64e0b945ea12357793c140994ba41ac830c18b9d7cd0176236c7bb77884068fd",
+          "originalSha256": "4a772bcbd27e23e49cd7a8da9ae7e1254da3f63d7773fb33a6537cd0caa4304e",
+          "caption": "Choose a wager at the original blackjack table",
+          "framebuffer": [
+            1152,
+            864
+          ],
+          "crop": null,
+          "replay": "gallery-captures.json#coutinho-david-drivers-c1dd87c242d9",
+          "replaySha256": "a298434f04981edcf3e11e09a5262751ba36a937a55ce8fb62b5de9af6455461",
+          "gameFiles": [
+            {
+              "file": "game.wasm",
+              "sha256": "7a43688de46717f15c3999d0420b228ad42dfbf02fe3878a7874ce7bee11d207"
+            },
+            {
+              "file": "game.js",
+              "sha256": "44e8ef760e3589855a73f135f903d6b681b163bc49ba582920352ee4971260b5"
+            }
+          ]
+        },
+        {
+          "source": "browser gameplay canvas",
+          "sha256": "bc76bcf2e832a00d29fd1f515692bbbb885cb835201391d043ad941c1bccbed2",
+          "originalSha256": "17313bad42c54dac7857e88f02de126307222796c4d76524b54056e64b931ccc",
+          "caption": "Read the dealt cards and choose Stand, Hit or Double",
+          "framebuffer": [
+            1152,
+            864
+          ],
+          "crop": null,
+          "replay": "gallery-captures.json#coutinho-david-drivers-c1dd87c242d9",
+          "replaySha256": "a298434f04981edcf3e11e09a5262751ba36a937a55ce8fb62b5de9af6455461",
+          "gameFiles": [
+            {
+              "file": "game.wasm",
+              "sha256": "7a43688de46717f15c3999d0420b228ad42dfbf02fe3878a7874ce7bee11d207"
+            },
+            {
+              "file": "game.js",
+              "sha256": "44e8ef760e3589855a73f135f903d6b681b163bc49ba582920352ee4971260b5"
+            }
+          ]
+        },
+        {
+          "source": "browser gameplay canvas",
+          "sha256": "b51cdd18c2709056d4793e762ac49a4d41e81059e596122efc82322d82cad2fb",
+          "originalSha256": "4a1936c5e672ec48baff6c79511f88c76ff8941301cf895867acb2dfff245cdb",
+          "caption": "Stand to reveal the original dealer hand and round result",
+          "framebuffer": [
+            1152,
+            864
+          ],
+          "crop": null,
+          "replay": "gallery-captures.json#coutinho-david-drivers-c1dd87c242d9",
+          "replaySha256": "a298434f04981edcf3e11e09a5262751ba36a937a55ce8fb62b5de9af6455461",
+          "gameFiles": [
+            {
+              "file": "game.wasm",
+              "sha256": "7a43688de46717f15c3999d0420b228ad42dfbf02fe3878a7874ce7bee11d207"
+            },
+            {
+              "file": "game.js",
+              "sha256": "44e8ef760e3589855a73f135f903d6b681b163bc49ba582920352ee4971260b5"
+            }
+          ]
+        }
+      ]
     }
   }
 }

@@ -297,11 +297,11 @@
         }
       }
     },
-    "collectionGames": 304,
-    "importedGames": 303,
+    "collectionGames": 306,
+    "importedGames": 305,
     "publicExpansion": {
       "startingCollectionGames": 66,
-      "newGames": 238,
+      "newGames": 240,
       "scope": "All viable distinct public projects found, without a numeric stopping cap.",
       "discoveryDecisions": "docs/arcade-public-import-decisions.json",
       "issue": "https://github.com/rodrgds/lcom-ng/issues/16",
@@ -310,7 +310,7 @@
     "combinedNativeTrial": {
       "collectionGames": 121,
       "apkSha256": "cffeb4e7ca0fc6b9ef8ca16b874da616e84b26ed8a61fdae94a62c71af8907b4",
-      "status": "Built locally; full launch sweep in progress.",
+      "status": "Paused by explicit user instruction. Historical partial native slices below are retained; no further Android work until resumed.",
       "passedSlices": [
         {
           "games": 21,
@@ -335,6 +335,18 @@
       "pairs": 2,
       "evidence": "docs/arcade-existing-source-mirrors.json",
       "note": "Collection entry counts include two verified baseline mirrors."
+    },
+    "currentWebReview": {
+      "status": "Local source, gallery, browser startup and final mobile checks passed; publication and live verification pending.",
+      "collectionGames": 306,
+      "pinnedOriginalFiles": 33173,
+      "correctedGames": 194,
+      "correctedSourceFiles": 476,
+      "realGalleryCaptures": 916,
+      "startupAndHomeCoverage": "build/arcade-100/web306-startup-union-final.json",
+      "finalTwoMobileProof": "build/arcade-100/web306-final-two-mobile-release-v2/visual-review.json",
+      "artifactHandoff": "build/arcade-100/a/final306-startup-transition-v1/handoff.json",
+      "android": "paused"
     }
   },
   "games": [
@@ -19617,6 +19629,14 @@
           "limitations": [
             "Representative current SDK Android touch gameplay verified, including HUEtris solo/local2. Full matches, physical phones and UART play not qualified."
           ]
+        },
+        "browserStartup": {
+          "status": "passed",
+          "surface": "Final306 export, portrait and landscape emulated phone touch",
+          "demonstrated": "Original console prompt remains visible; explicit Show controls reveals authored Continue without injecting a key. Normal Continue opens original welcome/menu; Home returns to library.",
+          "evidence": [
+            "build/arcade-100/web306-cosmic-release/result.json"
+          ]
         }
       },
       "collectionId": "code-5e74a9764413",
@@ -23249,11 +23269,12 @@
         },
         "browserStartup": {
           "status": "passed",
-          "surface": "Isolated browser export of the exact integrated source repair; final collection artifact check pending.",
+          "surface": "Final306-game collection export; ordinary tile launch, original menu without a key, and Home.",
           "demonstrated": "The original menu appears without an unprompted keyboard wake. Ordinary Enter opens gameplay, and Home returns to the library.",
           "evidence": [
             "build/arcade-100/galactic-startup-fix-v1/browser-green/results.json",
-            "build/arcade-100/galactic-startup-integrated-green-v2.log"
+            "build/arcade-100/galactic-startup-integrated-green-v2.log",
+            "build/arcade-100/web306-galactic-release/results.json"
           ],
           "originalFailure": "The initial discarded keyboard notification blocked menu rendering indefinitely; the original entry and real browser launch both reproduced it."
         }
@@ -35804,6 +35825,224 @@
         }
       },
       "archetype": "Typing"
+    },
+    {
+      "id": "Coutinho-David--Drivers",
+      "name": "Blackjack Table",
+      "path": "examples/community/Coutinho-David--Drivers/proj/src",
+      "root": "examples/community/Coutinho-David--Drivers",
+      "source": "https://github.com/Coutinho-David/Drivers",
+      "revision": "f9e424e191fe178d292ac2371a327972f5ff41fe",
+      "sourcePatches": [
+        {
+          "path": "SOURCE_PATCH.diff",
+          "files": [
+            {
+              "file": "proj/src/controllers/graphics.c",
+              "originalSha256": "750224efd90e8d1bf665842f222454d1b332e9dab21501ab54b4f2928eb45c73",
+              "patchedSha256": "06c7c5c44376b0b84d421b7e96de4cf9a751e7339f0f21afc60e0d1467e5632b",
+              "reason": "Reserve 53 image slots including the card back. Render one complete 32-bit pixel per card, screen and number-glyph pixel using the selected image row stride; avoid overlapping DWORD writes and source-image overreads. Preserve all original image columns."
+            }
+          ]
+        }
+      ],
+      "license": {
+        "status": "not established",
+        "files": []
+      },
+      "controlsRationale": "Original desktop controls demonstrated by the authored browser capture replay. Authored mobile controls await final phone-profile verification.",
+      "verification": {
+        "scope": "Representative browser gameplay and final-export portrait/landscape touch controls passed. Android qualification is deferred by user instruction; no physical-device performance or full-campaign claim.",
+        "browserGameplay": {
+          "status": "passed",
+          "surface": "Browser gameplay canvas",
+          "demonstrated": "Original wager5, actual player15/dealer10 atdeal, dealer19→DEALERWINS afterStand; allcards/numbers readable, no crash. Originalartunchanged.",
+          "evidence": [
+            "build/arcade-100/nas-native-case/a141-qualify-eight/handoffs/native-renderer-gallery-v2/review.json",
+            "build/arcade-100/nas-native-case/a141-qualify-eight/handoffs/native-renderer-gallery-v2/current-compile-receipts.json",
+            "build/arcade-100/nas-native-case/a141-qualify-eight/handoffs/native-renderer-gallery-v2/gallery-output/gallery-evidence.json"
+          ],
+          "reviewedInventorySha256": "cda28c20c8bb21e8ecfa84cca9e8d30832eea8461b99e2b3f2a295419d4716a2"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Actual browser touch input in emulated390x844 and844x390 phone viewports",
+          "demonstrated": "Ordinary touch starts, wagers5, deals and stands to original DEALER WINS outcome in each orientation; final balance495.",
+          "evidence": [
+            "build/arcade-100/web306-final-two-mobile-release-v2/results.json",
+            "build/arcade-100/web306-final-two-mobile-release-v2/visual-review.json"
+          ]
+        },
+        "nativeGameplay": {
+          "status": "deferred",
+          "reason": "Android qualification paused by explicit user instruction; current admission is browser-only."
+        },
+        "limitations": [
+          "Representative short gameplay only; no full campaign or physical-device performance claim."
+        ]
+      },
+      "collectionId": "coutinho-david-drivers-c1dd87c242d9",
+      "config": "examples/community/Coutinho-David--Drivers/proj/src/lcom.json",
+      "icon": "examples/community/Coutinho-David--Drivers/proj/src/icon.png",
+      "description": "Choose a bet, hit or stand, and play the original dealer hand.",
+      "preview": "examples/community/Coutinho-David--Drivers/proj/src/preview.png",
+      "controls": {
+        "layout": "panel",
+        "keyboard": false,
+        "mouseButtons": false,
+        "joystick": false,
+        "dpad": false,
+        "look": false,
+        "pointer": "off",
+        "quickKeys": [
+          "ESC",
+          "ENTER"
+        ],
+        "pads": [
+          {
+            "side": "left",
+            "mode": "arrows",
+            "style": "dpad"
+          }
+        ]
+      },
+      "build": {
+        "assetRoot": ".",
+        "assets": []
+      },
+      "archetype": "Blackjack"
+    },
+    {
+      "id": "Litone11--LEIC-FEUP",
+      "name": "Asteroids: Meteor Shooter",
+      "path": "examples/community/Litone11--LEIC-FEUP/2nd_year/LCOM/proj/src",
+      "root": "examples/community/Litone11--LEIC-FEUP",
+      "source": "https://github.com/Litone11/LEIC-FEUP",
+      "revision": "c09dd25ef1e2afd36082c496b015b5fdb8fe24ad",
+      "sourcePatches": [
+        {
+          "path": "SOURCE_PATCH.diff",
+          "files": [
+            {
+              "file": "2nd_year/LCOM/proj/src/entities/entities.c",
+              "originalSha256": "63db8065ea2e847ea5d0cbc8dfb0b271696ea397d9dcd55580912124856235b5",
+              "patchedSha256": "36fc469d239fd9043fceb9314d218cfc31d35f6056268fc1d807eb1f2f783db7",
+              "reason": "Authoredtimer_update reaches25, making counter%(25-timer_update) dividebyzero. Keep originaldecreasingspawnperiod abovezero and retainminimumoneframe thereafter."
+            },
+            {
+              "file": "2nd_year/LCOM/proj/src/game/game.c",
+              "originalSha256": "a4c66a882e71ceb7e3210303d277e74755c1056acfd9ad2487a4da61486d2c6e",
+              "patchedSha256": "ca29e33a0345ecbcebd9ac740899f4275e9361030e09b6e484b37129a92ab724",
+              "reason": "Remove secondunusedstale menu.h include from actual game implementation."
+            },
+            {
+              "file": "2nd_year/LCOM/proj/src/game/game.h",
+              "originalSha256": "91d4d554f9f3d2cb6fec1bb1522714594ce5bc5955218affdd5259650d23ebe9",
+              "patchedSha256": "eb0a54b333b6c749a4a5eb01b5fe15cd55a7fc28c2a174e8b942e1b7b0516802",
+              "reason": "Removeunusedstale menu.h include; project uses menu_state.h and shipsno menu.h."
+            },
+            {
+              "file": "2nd_year/LCOM/proj/src/devices/video.c",
+              "originalSha256": "6d726e9ddad204a7ddf1e712b64802e8de6213f555b71c0ac12fcb9349d4245d",
+              "patchedSha256": "e1db5bd2d7f632e1a44543f8bd0bbc55edbbc8ecf0b477f35bf277fd2b20f76d",
+              "reason": "Reject x >= framebuffer width and y >= framebuffer height before computing the backbuffer offset. Actual native enemy rendering reached x784/y864 and wrote 3136 bytes beyond the 1152x864 backbuffer."
+            },
+            {
+              "file": "2nd_year/LCOM/proj/src/main.c",
+              "originalSha256": "9a698b2f3a872514530ac511a19c9b91f3039e8bf081cf916aa745ae62f5df44",
+              "patchedSha256": "7fdde9a0c2f52a2d969f8c1f0c3e97616cff3387b6b65826a83533206db49e1f",
+              "reason": "Present the original menu before its first input wait, and present menu/info redraws after keyboard or stationary mouse selections. The original draws only on mouse motion and never presents keyboard state changes, leaving startup black and navigation visually stale. Keep original artwork, cursor, controls and gameplay rules.",
+              "verification": "Actual main.c independently fails initial-before-wait, keyboard Info/back and stationary mouse Info/back presentation checks; all three pass after correction. Two permanent source-owner cases retain initial/keyboard and stationary-mouse coverage. Real collection tile initial framebuffer is uniformly blank before correction; private corrected tile paints original title/Start/Info/Exit without input in portrait and landscape. Ordinary touch2Info,1Back,1Play,A420ms,Fire300+1800ms yields visible gameplay, SCORE20 in portrait and a complementary landscape replay, and cleanHome. Score0 attempts are retained. No native claim."
+            }
+          ]
+        }
+      ],
+      "license": {
+        "status": "not established",
+        "files": []
+      },
+      "controlsRationale": "Original desktop controls demonstrated by the authored browser capture replay. Authored mobile controls await final phone-profile verification.",
+      "verification": {
+        "scope": "Representative browser gameplay and final-export portrait/landscape touch controls passed. Android qualification is deferred by user instruction; no physical-device performance or full-campaign claim.",
+        "browserGameplay": {
+          "status": "passed",
+          "surface": "Browser gameplay canvas",
+          "demonstrated": "Original field, Asteering/firing, finalHUDSCORE20 independently magnifiedforreview only; canonicalimagesretainunmodifiedfullframe. Normal1/A/LBinputs,noinjectedstate.",
+          "evidence": [
+            "build/arcade-100/nas-native-case/a141-qualify-eight/handoffs/native-renderer-gallery-v2/review.json",
+            "build/arcade-100/nas-native-case/a141-qualify-eight/handoffs/native-renderer-gallery-v2/current-compile-receipts.json",
+            "build/arcade-100/nas-native-case/a141-qualify-eight/handoffs/native-renderer-gallery-v2/gallery-output/gallery-evidence.json"
+          ],
+          "reviewedInventorySha256": "cda28c20c8bb21e8ecfa84cca9e8d30832eea8461b99e2b3f2a295419d4716a2"
+        },
+        "mobileGameplay": {
+          "status": "passed",
+          "surface": "Actual browser touch input in emulated390x844 and844x390 phone viewports",
+          "demonstrated": "Original title/Start/Info/Exit menu appears before any input. Ordinary1, horizontal steering and Fire yield the original ship, bullets and asteroids; portrait SCORE20. Home removes game in all4sessions.",
+          "evidence": [
+            "build/arcade-100/web306-final-two-mobile-release-v2/results.json",
+            "build/arcade-100/web306-final-two-mobile-release-v2/visual-review.json"
+          ]
+        },
+        "nativeGameplay": {
+          "status": "deferred",
+          "reason": "Android qualification paused by explicit user instruction; current admission is browser-only."
+        },
+        "limitations": [
+          "Representative short gameplay only; no full campaign or physical-device performance claim."
+        ],
+        "browserStartup": {
+          "status": "passed",
+          "surface": "Final306-game collection export, ordinary tile launch and Home, plus both phone orientations.",
+          "demonstrated": "The original title and Start, Info and Exit buttons paint before input. Normal keyboard and stationary mouse Info/back selections repaint; touch gameplay reaches SCORE20 in both orientations.",
+          "evidence": [
+            "build/arcade-100/a/meteor-menu-fix-v1/browser/results.json",
+            "build/arcade-100/a/meteor-menu-fix-v1/visual-review.json",
+            "build/arcade-100/meteor-menu-integrated-green.log",
+            "build/arcade-100/web306-meteor-release/results.json",
+            "build/arcade-100/web306-final-two-mobile-release-v2/visual-review.json"
+          ]
+        }
+      },
+      "collectionId": "lcom-bfd1a0adf303",
+      "config": "examples/community/Litone11--LEIC-FEUP/2nd_year/LCOM/proj/src/lcom.json",
+      "icon": "examples/community/Litone11--LEIC-FEUP/2nd_year/LCOM/proj/src/icon.png",
+      "description": "Move your ship and blast the original falling meteor waves.",
+      "preview": "examples/community/Litone11--LEIC-FEUP/2nd_year/LCOM/proj/src/preview.png",
+      "controls": {
+        "layout": "panel",
+        "keyboard": false,
+        "mouseButtons": false,
+        "joystick": false,
+        "dpad": false,
+        "look": false,
+        "pointer": "move",
+        "quickKeys": [
+          "1",
+          "2",
+          "3",
+          "ESC"
+        ],
+        "pads": [
+          {
+            "side": "left",
+            "mode": "wasd",
+            "style": "dpad",
+            "axes": "horizontal"
+          }
+        ],
+        "actions": [
+          {
+            "label": "Select / Fire",
+            "mouseButton": "left",
+            "side": "right"
+          }
+        ]
+      },
+      "build": {
+        "assetRoot": ".",
+        "assets": []
+      }
     }
   ]
 }
