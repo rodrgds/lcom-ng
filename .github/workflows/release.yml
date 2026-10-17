@@ -95,10 +95,56 @@ jobs:
       run:
         shell: ${{ matrix.shell }}
     steps:
+      - name: Prepare case-sensitive macOS checkout volume
+        if: runner.os == 'macOS'
+        run: |
+          # Keep the usual workspace path for every build and post-action step.
+          # The hosted runner disposes of this volume after the job finishes.
+          cd "$RUNNER_TEMP"
+          image="$RUNNER_TEMP/lcom-source-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.sparseimage"
+          hdiutil create -size 32g -type SPARSE -fs APFSX \
+            -volname lcom-source "$image"
+          hdiutil attach "$image" -mountpoint "$GITHUB_WORKSPACE" -nobrowse
+          cd "$GITHUB_WORKSPACE"
+          probe="$(mktemp -d .checkout-case-probe.XXXXXX)"
+          printf 'UPPER\n' > "$probe/Start.xpm"
+          printf 'lower\n' > "$probe/start.xpm"
+          test "$(cat "$probe/Start.xpm")" = UPPER
+          test "$(cat "$probe/start.xpm")" = lower
+          rm "$probe/Start.xpm" "$probe/start.xpm"
+          rmdir "$probe"
+
       - uses: actions/checkout@v4
         if: runner.os != 'Windows'
         with:
           ref: ${{ inputs.tag || github.ref }}
+
+      - name: Verify exact macOS source filenames and bytes
+        if: runner.os == 'macOS'
+        run: |
+          python3 - <<'PY'
+          import collections, hashlib, subprocess
+          from pathlib import Path
+          entries = {}
+          groups = collections.defaultdict(list)
+          for record in filter(None, subprocess.check_output(['git','ls-files','-sz']).split(b'\0')):
+              metadata, name = record.split(b'\t',1)
+              path = name.decode()
+              entries[path] = metadata.split()[1].decode()
+              groups[path.casefold()].append(path)
+          selected = {path for names in groups.values() if len(names) > 1 for path in names}
+          selected.update(path for path in entries if not path.isascii())
+          for path in sorted(selected):
+              source = Path(path)
+              for component in (source, *source.parents):
+                  if str(component) != '.':
+                      assert component.name in [item.name for item in component.parent.iterdir()], path
+              data = source.read_bytes()
+              digest = hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+              assert digest == entries[path], (path, digest, entries[path])
+              print('Verified APFS checkout:', path)
+          print('Verified', len(selected), 'case-distinct and Unicode original files')
+          PY
 
       - name: Install Linux build and desktop dependencies
         if: runner.os == 'Linux'
