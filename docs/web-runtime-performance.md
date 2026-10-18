@@ -1,7 +1,8 @@
 # Browser runtime performance, 18 October 2026
 
-The runtime optimization, all 306 browser exports and the compressed publish
-package are locally verified. Live deployment verification is pending.
+The runtime optimization and Arcade interaction fixes are deployed at
+https://arcade.rgo.pt from `42e364e8ad2afc4abaace4ba453df30e69432ce6`.
+Cloudflare serves version `b983ffad-b9cb-41ff-9a1c-4cb4fa2fdcf2` at 100% traffic.
 
 ## What the profiles showed
 
@@ -132,4 +133,25 @@ changes.
 The final package contains 306 modules and 115 data files. All 421 decoded
 payloads match the qualified builds, all 625 responsive-image width descriptors
 match their files, and Wrangler's production dry run passes for `lcom-arcade`.
-Live hosting and gameplay checks remain pending publication.
+
+Live checks verified the independent search dialog, preserved query after
+returning from a game, 390px/320px filter layouts without horizontal overflow,
+ten featured games and six scrolling suggestion columns without pause buttons.
+Ninjix entered actual gameplay using its authored gallery input sequence through
+the browser keyboard and mouse handlers. Shift+Escape released mouse capture
+without leaving the game. The iframe delivered 182 animation callbacks over
+three seconds, with no page errors. This is a smoke check, not a gameplay FPS
+benchmark. Fifty-five live launcher, catalog, font and sampled game-player assets
+match the qualified package's SHA-256 hashes.
+
+The complete live delivery gate passed for all 306 modules and 115 data files:
+429 payload responses match the qualified decoded SHA-256 hashes. Additional
+HEAD, 304 revalidation and range-request checks passed for the largest module
+and data file, over both gzip and identity delivery. Cloudflare's wildcard
+encoding normalization is recorded separately from the exact Worker negotiation
+tests. The Docs Site CI run for the release revision passed; browser and student
+package CI were still running when these live checks finished. Android remains
+paused.
+
+Local raw profiles, release logs, live captures and hash inventories are retained
+under `build/web-runtime-perf/`.

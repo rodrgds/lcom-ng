@@ -1,6 +1,6 @@
 # Arcade interaction refinements, 18 October 2026
 
-These interaction changes were verified locally before the runtime follow-up.
+These interaction changes are deployed at https://arcade.rgo.pt from `42e364e8`.
 See [browser runtime performance](web-runtime-performance.md) for the combined
 release and its deployment evidence.
 
@@ -83,9 +83,14 @@ shot frames. Raw browsing samples are under `build/arcade-perf/`, named
   Two exported-player collection scenarios were rerun for the restored dialog.
 - Packaging and Worker delivery checks, docs checks and 99 gallery states
   passed. The source audit verified all 305 pinned projects and 33,173 files.
-- All 306 WASM modules and 115 game data files retain their previous decoded
-  SHA-256 hashes. Original game sources and in-game artwork were preserved.
+- Before the subsequent runtime rebuild, all 306 WASM modules and 115 game data
+  files retained their previous decoded SHA-256 hashes. The runtime release
+  replaces the modules; all 115 original data payloads still match. Original
+  game sources and in-game artwork were preserved.
 - Rendered desktop, 390px and 320px layouts were inspected. Six side columns fit
   the representative wide player, with no pause buttons or page errors.
 - Runtime profiling and optimization were subsequently requested and completed
   separately; see the linked runtime report.
+- The deployed search, return navigation, narrow filter layouts and wide player
+  passed the same live smoke checks, including actual Ninjix gameplay and
+  Shift+Escape capture release. No page errors occurred.
