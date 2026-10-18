@@ -63,6 +63,36 @@ for (const browserType of [chromium, firefox]) {
   });
 }
 
+test('returning from repeated games closes each player audio context before discarding its frame', async () => {
+  const browser = await chromium.launch(process.env.CHROME_PATH ? {executablePath: process.env.CHROME_PATH} :
+    {channel: process.platform === 'darwin' ? 'chrome' : 'chromium'});
+  const page = await browser.newPage();
+  try {
+    await page.addInitScript(() => {
+      if (window === window.top) { window.playerContexts = []; return; }
+      const Native = window.AudioContext;
+      window.AudioContext = new Proxy(Native, {construct(target, args) {
+        const context = Reflect.construct(target, args);
+        window.top.playerContexts.push(context);
+        return context;
+      }});
+    });
+    await page.goto(base);
+    for (let index = 0; index < 3; index++) {
+      await page.getByRole('link', {name: 'Play startup', exact: true}).click();
+      await expect(page.locator('iframe')).toBeVisible();
+      await expect(page.locator('#loading')).toBeHidden();
+      const frame = page.frames().find(frame => frame.url().includes('/games/'));
+      await frame.locator('canvas').press('a');
+      await expect.poll(() => page.evaluate(() => playerContexts.at(-1)?.state)).toBe('running');
+      await page.locator('#back').click();
+      await expect(page.locator('iframe')).toHaveCount(0);
+      await expect.poll(() => page.evaluate(() => playerContexts.map(context => context.state)))
+        .toEqual(Array(index + 1).fill('closed'));
+    }
+  } finally { await browser.close(); }
+});
+
 for (const mode of ['panel', 'overlay', 'right keyboard']) {
   test(`collection touch ${mode} keeps controls clear of the parent fullscreen button`, async ({}, testInfo) => {
     const browser = await chromium.launch(process.env.CHROME_PATH ? {executablePath: process.env.CHROME_PATH} :

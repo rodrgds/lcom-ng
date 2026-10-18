@@ -193,6 +193,54 @@ test('repeated archetypes pack nine playable games into four normal tile spaces'
   await expect(page.locator('#search-results a')).toHaveCount(1);
 });
 
+test('closed previews release screenshot elements and animations after visiting many games', async ({page}) => {
+  await page.goto(base);
+  const cards = page.locator('#games .game-launch');
+  for (let index = 0; index < 12; index++) {
+    await cards.nth(index).focus();
+    await expect(cards.nth(index).locator('.preview-frame')).toBeVisible();
+    await page.locator('#search-toggle').focus();
+  }
+  await expect(page.locator('.previewing')).toHaveCount(0);
+  await expect(page.locator('#games .preview-window, #games .preview-overlay')).toHaveCount(0);
+  expect(await page.evaluate(() => document.getAnimations().filter(animation =>
+    animation.animationName === 'preview-time').length)).toBe(0);
+  // Returning to a previously visited card still loads its gallery normally.
+  await cards.first().focus();
+  await expect(cards.first().locator('.preview-frame')).toBeVisible();
+  await expect(page.locator('.previewing')).toHaveCount(1);
+});
+
+test('a screenshot decoded after its preview closes cannot restore released content', async ({page}) => {
+  const errors = [];
+  page.on('pageerror', error => errors.push(error.message));
+  let release, requested;
+  const pending = new Promise(resolve => { release = resolve; });
+  const fetching = new Promise(resolve => { requested = resolve; });
+  await page.route('**/shot-red.svg', async route => {
+    requested();
+    await pending;
+    await route.continue();
+  });
+  try {
+    await page.goto(base);
+    const card = page.locator('#games .game-launch').first();
+    await card.focus();
+    await fetching;
+    await page.locator('#search-toggle').focus();
+    await expect(page.locator('.preview-window')).toHaveCount(0);
+    const downloaded = page.waitForResponse('**/shot-red.svg');
+    release();
+    await downloaded;
+    // Reopening must work even if the old decode completes during this request.
+    await card.focus();
+    await expect(card.locator('.preview-frame')).toBeVisible();
+    await page.locator('#search-toggle').focus();
+    await expect(page.locator('.preview-window')).toHaveCount(0);
+    expect(errors).toEqual([]);
+  } finally { release(); }
+});
+
 test('hover opens a bounded wide preview and pushes consecutive screenshots across it', async ({page},testInfo) => {
   await page.route('**/collection.json',route=>route.fulfill({json:{name:'Hover fixture',taxonomy:[{id:'solo',label:'Solo',facet:'players'}],games:games.map((game,index)=>({...game,tags:index===0?['solo']:[]}))}}));
   await page.setViewportSize({width:1280,height:800}); await page.goto(base);

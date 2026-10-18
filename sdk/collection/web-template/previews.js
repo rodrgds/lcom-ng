@@ -151,12 +151,15 @@ export class Previews {
   }
 
   async image(tile, index) {
-    if (tile.slides[index]) return tile.slides[index];
+    const slides = tile.slides;
+    if (slides[index]) return slides[index];
     const image = new Image();
     image.className = 'preview-frame'; image.alt = ''; image.decoding = 'async';
     image.src = tile.sources[index];
     try { await image.decode(); } catch { return null; }
-    tile.slides[index] = image;
+    // A closed preview may have released its gallery while decoding completed.
+    if (tile.slides !== slides) return null;
+    slides[index] = image;
     return image;
   }
 
@@ -258,7 +261,13 @@ export class Previews {
     tile.element.classList.add('preview-closing');
     tile.element.classList.remove('previewing', 'preview-ready');
     tile.track.classList.remove('sliding');
-    tile.closingTimer = setTimeout(() => tile.element.classList.remove('preview-closing'), 340);
+    tile.closingTimer = setTimeout(() => {
+      tile.element.classList.remove('preview-closing');
+      tile.link.querySelector('.preview-window')?.remove();
+      tile.element.querySelector('.preview-overlay')?.remove();
+      tile.track = tile.slides = tile.sources = tile.bars = null;
+      tile.closingTimer = null;
+    }, 340);
     this.active = null;
   }
 }
