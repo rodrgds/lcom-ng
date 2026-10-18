@@ -174,6 +174,11 @@ through `devenv shell -- ...`.
   `ctest --test-dir build -R <name> --output-on-failure`.
 - Complete runtime/lab/integration suite:
   `devenv shell -- lcom-ng-test`.
+- Browser framebuffer conversion benchmark:
+  `devenv shell -- python3 scripts/benchmark_web_frames.py`. Use `--source-root`
+  for a baseline checkout and `--cpu-rate 4` for a constrained-CPU sample.
+  Timing budgets (`--max-ms`) are local checks, never shared CI gates. Preserve
+  exact colors, opaque alpha, palette writes, row pitch and Wasm heap growth.
 - Cross-surface final gate:
   `devenv shell -- lcom-ng-verify`. This builds and tests lcom-ng, checks
   the docs site and canonical assets, typechecks the Remotion project, and runs

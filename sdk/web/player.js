@@ -108,12 +108,14 @@ const player = {
     for (const button of controls.querySelectorAll('[data-mouse]')) button.setAttribute('aria-pressed', 'false');
   },
   present(bytes, width, height) {
-    if (!this.image || canvas.width !== width || canvas.height !== height) {
+    if (!this.image || canvas.width !== width || canvas.height !== height ||
+        this.image.data.buffer !== bytes.buffer || this.image.data.byteOffset !== bytes.byteOffset) {
       canvas.width = width; canvas.height = height;
       resizeGame();
-      this.image = canvas.getContext('2d').createImageData(width, height);
+      // Reuse the presented Wasm storage. Memory growth detaches the old buffer,
+      // and a mode change can move the runtime's conversion allocation.
+      this.image = new ImageData(new Uint8ClampedArray(bytes.buffer, bytes.byteOffset, bytes.byteLength), width, height);
     }
-    this.image.data.set(bytes);
     canvas.getContext('2d').putImageData(this.image, 0, 0);
     if (!firstFrame) { firstFrame = true; reportLoading({phase:'ready'}); }
   },

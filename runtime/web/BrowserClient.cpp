@@ -1,7 +1,6 @@
 // Browser effects for the shared embedded SDK. No device behavior belongs here.
 #include "embedded/Host.hpp"
 #include <emscripten.h>
-#include <algorithm>
 #include <vector>
 
 extern "C" {
@@ -15,7 +14,7 @@ int lcom_browser_paused();
 namespace lcom::embedded {
 namespace {
 class BrowserHost final : public Host {
-  std::vector<uint8_t> rgba_, row_;
+  std::vector<uint8_t> rgba_;
   std::string clipboard_;
 public:
   bool start() override { clipboard_.clear(); lcom_browser_start(); return true; }
@@ -34,15 +33,8 @@ public:
     auto &vbe = machine.vbe();
     const auto &mode = vbe.currentMode();
     rgba_.resize(static_cast<size_t>(mode.width) * mode.height * 4);
-    row_.resize(static_cast<size_t>(mode.width) * 3);
-    for (uint16_t y = 0; y < mode.height; ++y) {
-      vbe.copyRgbRow(y, row_.data());
-      for (uint16_t x = 0; x < mode.width; ++x) {
-        auto pixel = rgba_.data() + (static_cast<size_t>(y) * mode.width + x) * 4;
-        std::copy_n(row_.data() + x * 3, 3, pixel);
-        pixel[3] = 255;
-      }
-    }
+    for (uint16_t y = 0; y < mode.height; ++y)
+      vbe.copyRgbaRow(y, rgba_.data() + static_cast<size_t>(y) * mode.width * 4);
     lcom_browser_present(rgba_.data(), mode.width, mode.height);
   }
 };

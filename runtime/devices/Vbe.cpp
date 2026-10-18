@@ -15,20 +15,30 @@ namespace lcom {
 
 namespace {
 
-template <unsigned Bits>
-void copyDirectRgb(const uint8_t *pixels, size_t count, uint8_t *rgb) {
-  for (size_t i = 0; i < count; ++i, pixels += (Bits + 7) / 8, rgb += 3) {
+template <unsigned Maximum>
+constexpr std::array<uint8_t, Maximum + 1> colorLevels() {
+  std::array<uint8_t, Maximum + 1> levels{};
+  for (unsigned value = 0; value <= Maximum; ++value)
+    levels[value] = static_cast<uint8_t>(value * 255 / Maximum);
+  return levels;
+}
+constexpr auto five_bit_colors = colorLevels<31>();
+constexpr auto six_bit_colors = colorLevels<63>();
+
+template <unsigned Bits, unsigned Channels>
+void copyDirectColor(const uint8_t *pixels, size_t count, uint8_t *rgb) {
+  for (size_t i = 0; i < count; ++i, pixels += (Bits + 7) / 8, rgb += Channels) {
     if constexpr (Bits == 15 || Bits == 16) {
       const uint16_t value = static_cast<uint16_t>(pixels[0] | (pixels[1] << 8));
-      rgb[0] = static_cast<uint8_t>(((value >> (Bits == 16 ? 11 : 10)) & 0x1f) * 255 / 31);
-      rgb[1] = static_cast<uint8_t>(((value >> 5) & (Bits == 16 ? 0x3f : 0x1f)) * 255 /
-                                    (Bits == 16 ? 63 : 31));
-      rgb[2] = static_cast<uint8_t>((value & 0x1f) * 255 / 31);
+      rgb[0] = five_bit_colors[(value >> (Bits == 16 ? 11 : 10)) & 0x1f];
+      rgb[1] = Bits == 16 ? six_bit_colors[(value >> 5) & 0x3f] : five_bit_colors[(value >> 5) & 0x1f];
+      rgb[2] = five_bit_colors[value & 0x1f];
     } else {
       rgb[0] = pixels[2];
       rgb[1] = pixels[1];
       rgb[2] = pixels[0];
     }
+    if constexpr (Channels == 4) rgb[3] = 255;
   }
 }
 
@@ -190,9 +200,11 @@ void Vbe::resetPalette(bool text_mode) {
 void Vbe::refreshPalette() {
   text_invalid_ = true;
   const unsigned mask = dac_width_ == 8 ? 255 : 63;
-  for (size_t i = 0; i < palette_.size(); ++i)
+  for (size_t i = 0; i < palette_.size(); ++i) {
     for (size_t component = 0; component < 3; ++component)
-      rgb_palette_[i][component] = static_cast<uint8_t>((palette_[i][component] & mask) * 255 / mask);
+      rgba_palette_[i][component] = static_cast<uint8_t>((palette_[i][component] & mask) * 255 / mask);
+    rgba_palette_[i][3] = 255;
+  }
 }
 
 bool Vbe::dacFormat(uint8_t operation, uint8_t requested, uint8_t &actual) {
@@ -243,7 +255,7 @@ bool Vbe::write8(uint16_t port, uint8_t value) {
   case 0x3c9:
     text_invalid_ = true;
     palette_[dac_write_index_][dac_write_component_] = value & (dac_width_ == 8 ? 0xff : 0x3f);
-    rgb_palette_[dac_write_index_][dac_write_component_] = dac_width_ == 8 ? value :
+    rgba_palette_[dac_write_index_][dac_write_component_] = dac_width_ == 8 ? value :
         static_cast<uint8_t>((value & 0x3f) * 255 / 63);
     if (++dac_write_component_ == 3) {
       dac_write_component_ = 0;
@@ -360,7 +372,7 @@ bool Vbe::syncTextFramebuffer(const uint8_t *vram, size_t length) {
           bool ink = x < 8 ? (bits & (0x80 >> x)) != 0 :
                      (ch >= 0xc0 && ch <= 0xdf && (bits & 1));
           if ((attr & 0x80) && text_blink_hidden_) ink = false;
-          const auto &rgb = rgb_palette_[colors[ink ? attr & 15 : (attr >> 4) & 7] & pixel_mask_];
+          const auto &rgb = rgba_palette_[colors[ink ? attr & 15 : (attr >> 4) & 7] & pixel_mask_];
           auto *pixel = framebuffer_.data() + ((row * 16 + y) * 720 + col * 9 + x) * 3;
           for (unsigned c = 0; c < 3; ++c) {
             uint8_t value = rgb[2 - c];
@@ -410,14 +422,30 @@ void Vbe::copyRgb(const uint8_t *pixels, size_t count, uint8_t *rgb) const {
   switch (current_.bpp) {
   case 8:
     for (size_t i = 0; i < count; ++i, rgb += 3) {
-      const auto &color = rgb_palette_[pixels[i] & pixel_mask_];
-      std::copy(color.begin(), color.end(), rgb);
+      const auto &color = rgba_palette_[pixels[i] & pixel_mask_];
+      std::copy_n(color.begin(), 3, rgb);
     }
     break;
-  case 15: copyDirectRgb<15>(pixels, count, rgb); break;
-  case 16: copyDirectRgb<16>(pixels, count, rgb); break;
-  case 24: copyDirectRgb<24>(pixels, count, rgb); break;
-  case 32: copyDirectRgb<32>(pixels, count, rgb); break;
+  case 15: copyDirectColor<15, 3>(pixels, count, rgb); break;
+  case 16: copyDirectColor<16, 3>(pixels, count, rgb); break;
+  case 24: copyDirectColor<24, 3>(pixels, count, rgb); break;
+  case 32: copyDirectColor<32, 3>(pixels, count, rgb); break;
+  }
+}
+
+void Vbe::copyRgbaRow(uint16_t y, uint8_t *rgba) const {
+  const auto *pixels = framebuffer_.data() + static_cast<size_t>(y) * current_.pitch;
+  switch (current_.bpp) {
+  case 8:
+    for (size_t x = 0; x < current_.width; ++x, rgba += 4) {
+      const auto &color = rgba_palette_[pixels[x] & pixel_mask_];
+      std::copy(color.begin(), color.end(), rgba);
+    }
+    break;
+  case 15: copyDirectColor<15, 4>(pixels, current_.width, rgba); break;
+  case 16: copyDirectColor<16, 4>(pixels, current_.width, rgba); break;
+  case 24: copyDirectColor<24, 4>(pixels, current_.width, rgba); break;
+  case 32: copyDirectColor<32, 4>(pixels, current_.width, rgba); break;
   }
 }
 

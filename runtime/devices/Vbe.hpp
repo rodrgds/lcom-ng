@@ -62,6 +62,8 @@ public:
   void pixelRgb(const uint8_t *pixel, uint8_t rgb[3]) const;
   // Copy a visible framebuffer row to width * 3 bytes of RGB output.
   void copyRgbRow(uint16_t y, uint8_t *rgb) const;
+  // Copy a visible row to opaque RGBA without an intermediate RGB buffer.
+  void copyRgbaRow(uint16_t y, uint8_t *rgba) const;
   bool dumpPpm(const std::string &path, const std::string &caption = "",
                const std::string &caption_position = "bottom") const;
 
@@ -79,7 +81,7 @@ private:
   uint8_t dac_width_ = 6;
   std::array<std::array<uint8_t, 3>, 256> palette_{};
   // Expanded DAC colors, refreshed on reset and each component write.
-  std::array<std::array<uint8_t, 3>, 256> rgb_palette_{};
+  std::array<std::array<uint8_t, 4>, 256> rgba_palette_{};
   uint8_t pixel_mask_ = 0xff;
   uint8_t dac_read_index_ = 0;
   uint8_t dac_write_index_ = 0;
