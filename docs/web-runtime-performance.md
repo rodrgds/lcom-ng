@@ -168,6 +168,14 @@ test synchronization only; the deployed application and game payloads remain
 unchanged. [Issue 20](https://github.com/rodrgds/lcom-ng/issues/20) records the
 final Linux web CI result.
 
+A separate local collection run reproduced a host-audio stall: Chrome reported
+a running AudioContext, but its clock stopped after roughly 5 ms and the signal
+remained silent. All six repeated sound cases failed with the host device and
+passed unchanged with `--disable-audio-output`. Browser QA now uses that Chromium
+setting, which [replaces only the final OS output stream](https://chromium.googlesource.com/chromium/src/+/f29eb01290cd36a30177ecf8197f906c01088a0d).
+The real Web Audio graph and nonzero-signal assertions remain in use. Application
+audio, autoplay policy and sound thresholds are unchanged.
+
 The student-package matrix also reports original include-case and Windows
 partial-source fixture/linker failures. Those same failures occur at the
 pre-optimization revision `6789bd26`; they are tracked separately in
