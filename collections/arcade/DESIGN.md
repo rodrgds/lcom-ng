@@ -190,7 +190,7 @@ occupies a separate 2 by 2 tile, or a full-width phone row.
 Featured tiles occupy 4 by 4 microcells.
 
 Each visit and Shuffle selects ten highlights from the source-reviewed
-29-game `featuredPool`, including Plants vs. Zombies, Sushi Slash, Teclas, Ninjix and Thin Ice. Picks remain stable on resize. The first two
+28-game `featuredPool`, including Plants vs. Zombies, Sushi Slash, Teclas, Ninjix and Thin Ice. Picks remain stable on resize. The first two
 normal-tile rows contain only tools and smaller games. Filtered results use
 ordinary tiles without featured promotion or archetype clusters. The DOM order
 follows visual reading order after packing.
@@ -261,7 +261,9 @@ documented in `icons/generation.json`; original in-game artwork stays unchanged.
 A lime play disc and segmented frame timer appear above. Gameplay frames are
 real captures, contained without cropping. Multiple frames push-slide on a
 3-second cycle. Escape, blur, scroll, resize and leaving the page stop the preview.
-Touch activates the game directly.
+Closing releases screenshot elements and cached slide references after the closing
+transition; progress animations run only while a preview is open. Touch activates
+the game directly.
 
 ### Library filters and side suggestions
 
