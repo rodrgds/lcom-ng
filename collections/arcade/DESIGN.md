@@ -190,7 +190,8 @@ occupies a separate 2 by 2 tile, or a full-width phone row.
 Featured tiles occupy 4 by 4 microcells.
 
 Each visit and Shuffle selects ten highlights from the source-reviewed
-28-game `featuredPool`, including Plants vs. Zombies, Sushi Slash, Teclas and Ninjix. Picks remain stable on resize. Filtered results use
+29-game `featuredPool`, including Plants vs. Zombies, Sushi Slash, Teclas, Ninjix and Thin Ice. Picks remain stable on resize. The first two
+normal-tile rows contain only tools and smaller games. Filtered results use
 ordinary tiles without featured promotion or archetype clusters. The DOM order
 follows visual reading order after packing.
 

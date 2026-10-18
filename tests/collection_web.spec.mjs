@@ -87,6 +87,12 @@ test('square icon mosaic keeps staples plus ten curated random highlights and sh
   await page.setViewportSize({width:1440,height:1000}); await page.goto(base);
   await expect(page.locator('#games a[data-id]')).toHaveCount(24);
   const featuredIds=()=>page.locator('.featured .game-launch').evaluateAll(links=>links.map(link=>link.dataset.id).sort());
+  const clearOpeningRows=()=>page.locator('.featured').evaluateAll(items=>{
+    const grid=document.querySelector(matchMedia('(max-width:600px)').matches?'#games':'#grid');
+    const normal=document.querySelector('.game:not(.featured)').getBoundingClientRect();
+    const start=grid.getBoundingClientRect().top+2*(normal.height+parseFloat(getComputedStyle(grid).rowGap));
+    return items.every(item=>item.getBoundingClientRect().top>=start-1);
+  });
   await expect(page.locator('.featured')).toHaveCount(14);
   const staples=games.filter(game=>game.featured).map(game=>game.id),initial=await featuredIds();
   expect(staples.every(id=>initial.includes(id))).toBe(true);
@@ -96,6 +102,7 @@ test('square icon mosaic keeps staples plus ten curated random highlights and sh
     await expect.poll(()=>page.locator('.game').evaluateAll(items=>items.every(item=>Math.abs(item.offsetWidth-item.offsetHeight)<2))).toBeTruthy();
     const featured = await page.locator('.featured').evaluateAll(items=>items.map(item=>item.getBoundingClientRect().top));
     expect(new Set(featured).size).toBe(14);
+    await expect.poll(clearOpeningRows,{message:'the first two normal-tile rows contain no large featured games'}).toBe(true);
     expect(await featuredIds()).toEqual(initial);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
   }
@@ -123,6 +130,7 @@ test('square icon mosaic keeps staples plus ten curated random highlights and sh
     const ids=await page.locator('#games .game-launch').evaluateAll(links=>links.map(link=>link.dataset.id));
     expect(ids).toHaveLength(24);expect(new Set(ids).size).toBe(24);
     await page.evaluate(()=>Promise.all(document.getAnimations().map(animation=>animation.finished.catch(()=>{}))));
+    expect(await clearOpeningRows()).toBe(true);
     expect(await page.locator('.featured').evaluateAll(items=>{
       const normal=document.querySelector('.game:not(.featured)').getBoundingClientRect(),gap=12;
       return items.every(item=>Math.abs(item.getBoundingClientRect().width-(normal.width*2+gap))<2);

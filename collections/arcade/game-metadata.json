@@ -3449,7 +3449,8 @@
         "url": "https://github.com/jose03pedro/FEUP-LCOM/blob/57a88f4e6fa4c3f9183b910297410b952e71a842/proj/src/game_logic.c",
         "date": "2023-05-28",
         "detail": "Academic year inferred from a dated original game source header (2023-05-28), with the school year beginning in September."
-      }
+      },
+      "featuredPool": true
     },
     "iohansardinha-alien-jump-lcom-548fb6e453a5": {
       "year": 2020,

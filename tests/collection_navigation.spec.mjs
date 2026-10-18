@@ -73,6 +73,10 @@ for(const width of [1280,390]) test(`search arrows follow the result list at ${w
 });
 
 test('mosaic arrows use square placement rather than expanded previews or repository links',async({page})=>{
+  // Enough small cards to surround featured games below the two opening rows.
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Navigation Fixture',games:[
+    ...games,...games.map(game=>({...game,id:'extra-'+game.id,featured:false})),
+  ]}}));
   await page.setViewportSize({width:1440,height:1000});await page.goto(base);
   const squares=await page.locator('.game').evaluateAll(items=>items.map(item=>{
     const box=item.getBoundingClientRect();return {id:item.querySelector('.game-launch').dataset.id,x:box.x,y:box.y,right:box.right,bottom:box.bottom};

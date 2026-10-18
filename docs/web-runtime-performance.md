@@ -1,8 +1,9 @@
 # Browser runtime performance, 18 October 2026
 
-The runtime optimization and Arcade interaction fixes are deployed at
+The runtime optimization and Arcade interaction fixes were initially deployed at
 https://arcade.rgo.pt from `42e364e8ad2afc4abaace4ba453df30e69432ce6`.
-Cloudflare serves version `b983ffad-b9cb-41ff-9a1c-4cb4fa2fdcf2` at 100% traffic.
+That release was live-verified with Cloudflare version
+`b983ffad-b9cb-41ff-9a1c-4cb4fa2fdcf2` at 100% traffic.
 
 ## What the profiles showed
 

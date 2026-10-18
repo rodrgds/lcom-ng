@@ -1,6 +1,6 @@
 # Arcade interaction refinements, 18 October 2026
 
-These interaction changes are deployed at https://arcade.rgo.pt from `42e364e8`.
+These interaction changes initially shipped at https://arcade.rgo.pt from `42e364e8`.
 See [browser runtime performance](web-runtime-performance.md) for the combined
 release and its deployment evidence.
 

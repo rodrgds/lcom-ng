@@ -170,7 +170,8 @@ export class Mosaic {
     const usedColumns = new Set();
     let previous = null;
     this.featured.forEach((tile, index) => {
-      let y = Math.round(index * Math.max(0, rows - 2) / Math.max(1, this.featured.length - 1)) * 2;
+      // Keep the first two normal-tile rows for tools and smaller games.
+      let y = Math.max(4, Math.round(index * Math.max(0, rows - 2) / Math.max(1, this.featured.length - 1)) * 2);
       if (previous) y = Math.max(y, previous.y + 2);
       let candidates;
       do {
