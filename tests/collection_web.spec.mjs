@@ -38,34 +38,64 @@ test.beforeAll(async () => {
 });
 test.afterAll(async () => new Promise(resolve => server.close(resolve)));
 
-test('typing preserves matching result order and does not animate the grid on each key',async({page})=>{
+test('search opens an independent launch dialog while filters alone change the mosaic',async({page})=>{
+  const taxonomy=[{id:'racing',label:'Racing',facet:'genre'},{id:'snake',label:'Snake',facet:'genre'}];
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Discovery fixture',taxonomy,games:games.map((game,index)=>({...game,tags:[index%2?'racing':'snake']}))}}));
   await page.goto(base);
-  const input=page.getByRole('searchbox');
-  await input.fill('Game');
+  await expect(page.getByRole('searchbox')).toBeHidden();
+  await page.getByRole('button',{name:'Filter games',exact:true}).click();
+  await page.locator('#browse-panel').getByRole('button',{name:'Racing',exact:true}).click();
+  await expect(page.locator('#games .game-launch')).toHaveCount(12);
+  await page.keyboard.press('Escape');
   const order=()=>page.locator('#games .game-launch').evaluateAll(links=>links.map(link=>link.dataset.id));
   const before=await order();
-  await input.fill('Game ');
+  await page.getByRole('button',{name:'Find a game',exact:true}).click();
+  await expect(page.getByRole('dialog',{name:'Find a game',exact:true})).toBeVisible();
+  await page.getByRole('searchbox').fill('Game 00');
+  await expect(page.locator('#search-results a')).toHaveCount(1);
   expect(await order()).toEqual(before);
-  expect(await page.locator('#games .game').evaluateAll(items=>items.flatMap(item=>item.getAnimations()).length)).toBe(0);
-  await input.fill('Game 0');
-  expect(await order()).toEqual(before.filter(id=>Number(id.slice(5))<10));
+  await page.keyboard.press('Enter');await expect(page.locator('iframe')).toHaveCount(1);
+  await expect(page.locator('#loading')).toBeHidden();await page.locator('#back').click();
+  await expect(page.locator('#search-panel')).toBeVisible();
+  await expect(page.locator('#search-results a[data-id="game-0"]')).toBeFocused();
+  await expect(page.getByRole('searchbox')).toHaveValue('Game 00');
+  await page.keyboard.press('Escape');expect(await order()).toEqual(before);
+  await expect(page.locator('#active-filters')).toHaveCount(0);
 });
 
-test('square icon mosaic keeps staples plus five curated random highlights and shuffles without fetching galleries', async ({page}) => {
+test('filtering animates changes and clearing restores the same order and highlights',async({page})=>{
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Animation fixture',taxonomy:[{id:'racing',label:'Racing',facet:'genre'}],games:games.map((game,index)=>({...game,tags:index<10?['racing']:[]}))}}));
+  await page.goto(base);
+  const highlights=()=>page.locator('#games .featured .game-launch').evaluateAll(links=>links.map(link=>link.dataset.id).sort());
+  const original=await highlights();
+  const order=()=>page.locator('#games .game-launch').evaluateAll(links=>links.map(link=>link.dataset.id));
+  const before=await order();
+  await page.getByRole('button',{name:'Filter games',exact:true}).click();
+  await page.locator('#browse-panel').getByRole('button',{name:'Racing',exact:true}).click();
+  expect((await order()).sort()).toEqual(Array.from({length:10},(_,index)=>'game-'+index).sort());
+  expect(await page.locator('#games .game').evaluateAll(items=>items.flatMap(item=>item.getAnimations()).length)).toBeGreaterThan(0);
+  await page.evaluate(()=>Promise.all(document.getAnimations().map(animation=>animation.finished.catch(()=>{}))));
+  await page.locator('#browse-panel').getByRole('button',{name:'Clear filters',exact:true}).click();
+  await expect(page.locator('#games .game-launch')).toHaveCount(24);
+  expect(await order()).toEqual(before);expect(await highlights()).toEqual(original);
+  expect(await page.locator('#games .game').evaluateAll(items=>items.flatMap(item=>item.getAnimations()).length)).toBeGreaterThan(0);
+});
+
+test('square icon mosaic keeps staples plus ten curated random highlights and shuffles without fetching galleries', async ({page}) => {
   await page.route('**/collection.json',route=>route.fulfill({json:{name:'Mosaic Fixture',games:games.map(game=>({...game,name:'Minixsweeper'}))}}));
   const shots = []; page.on('request', request => {if (request.url().includes('/shot-')) shots.push(request.url());});
   await page.setViewportSize({width:1440,height:1000}); await page.goto(base);
   await expect(page.locator('#games a[data-id]')).toHaveCount(24);
   const featuredIds=()=>page.locator('.featured .game-launch').evaluateAll(links=>links.map(link=>link.dataset.id).sort());
-  await expect(page.locator('.featured')).toHaveCount(9);
+  await expect(page.locator('.featured')).toHaveCount(14);
   const staples=games.filter(game=>game.featured).map(game=>game.id),initial=await featuredIds();
   expect(staples.every(id=>initial.includes(id))).toBe(true);
-  expect(initial.filter(id=>!staples.includes(id))).toHaveLength(5);
+  expect(initial.filter(id=>!staples.includes(id))).toHaveLength(10);
   for (const width of [1440, 390, 320]) {
     await page.setViewportSize({width,height:1000});
     await expect.poll(()=>page.locator('.game').evaluateAll(items=>items.every(item=>Math.abs(item.offsetWidth-item.offsetHeight)<2))).toBeTruthy();
     const featured = await page.locator('.featured').evaluateAll(items=>items.map(item=>item.getBoundingClientRect().top));
-    expect(new Set(featured).size).toBe(9);
+    expect(new Set(featured).size).toBe(14);
     expect(await featuredIds()).toEqual(initial);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
   }
@@ -87,11 +117,12 @@ test('square icon mosaic keeps staples plus five curated random highlights and s
   for(const random of [.01,.99]) {
     await page.evaluate(value=>{Math.random=()=>value;},random);
     await page.getByRole('button',{name:'Shuffle games'}).click();
-    await expect(page.locator('.featured')).toHaveCount(9);
+    await expect(page.locator('.featured')).toHaveCount(14);
     const current=await featuredIds();expect(staples.every(id=>current.includes(id))).toBe(true);
     selections.push(current.filter(id=>!staples.includes(id)));
     const ids=await page.locator('#games .game-launch').evaluateAll(links=>links.map(link=>link.dataset.id));
     expect(ids).toHaveLength(24);expect(new Set(ids).size).toBe(24);
+    await page.evaluate(()=>Promise.all(document.getAnimations().map(animation=>animation.finished.catch(()=>{}))));
     expect(await page.locator('.featured').evaluateAll(items=>{
       const normal=document.querySelector('.game:not(.featured)').getBoundingClientRect(),gap=12;
       return items.every(item=>Math.abs(item.getBoundingClientRect().width-(normal.width*2+gap))<2);
@@ -103,10 +134,10 @@ test('square icon mosaic keeps staples plus five curated random highlights and s
 
 test('repeated archetypes pack nine playable games into four normal tile spaces', async ({page}, testInfo) => {
   // Keep twenty variants outside the curated pool, so two complete groups
-  // remain while all five random highlights are selected independently.
+  // remain while all ten random highlights are selected independently.
   const catalog = Array.from({length:30},(_,index)=>({...games[index%games.length],
     id:'game-'+index,name:(index>=4&&index<24?'Space Invaders: Galactic Defense ':'Game ')+String(index).padStart(2,'0'),url:`games/${index}/`,
-    featured:index<4,featuredPool:index>=24,archetype:index>=4&&index<24?'Snake':null}));
+    featured:index<4,featuredPool:index>=24,archetype:index>=4&&index<24?'Snake':null,repository:'https://github.com/example/game'}));
   await page.route('**/collection.json', route => route.fulfill({json: {name: 'Archetype fixture', games: catalog}}));
   await page.goto(base);
   await expect(page.locator('.game-cluster')).toHaveCount(2);
@@ -131,12 +162,15 @@ test('repeated archetypes pack nine playable games into four normal tile spaces'
   await expect.poll(()=>page.locator('#games .game:not(.featured):not(.compact) .game-launch').first().evaluate(element=>element.getBoundingClientRect().width)).toBeLessThan(240);
   const normal=page.locator('#games .game:not(.featured):not(.compact) .game-launch').first();
   const ordinary=await normal.boundingBox();await normal.focus();
-  await expect.poll(async()=>(await normal.boundingBox()).width).toBeGreaterThan(ordinary.width*1.6);
+  await expect.poll(async()=>(await normal.boundingBox()).width).toBeGreaterThan(ordinary.width*1.45);
   const normalPreview=await normal.boundingBox();
   const compact=page.locator('.game-cluster .game-launch').first();await compact.focus();
   await expect.poll(async()=>(await compact.boundingBox()).width).toBeCloseTo(normalPreview.width,0);
   expect((await compact.boundingBox()).height).toBeCloseTo(normalPreview.height,0);
-  expect(normalPreview.width).toBeGreaterThan(ordinary.width*2);expect(normalPreview.height).toBeGreaterThan(ordinary.height*1.3);
+  const small=await compact.locator('..').boundingBox(),large=await compact.boundingBox(),viewport=page.viewportSize();
+  const centered=Math.max(8,Math.min(viewport.height-8-large.height,small.y+(small.height-large.height)/2));
+  expect(large.y).toBeCloseTo(centered,0);
+  expect(normalPreview.width / normalPreview.height).toBeCloseTo(2.035 / 1.344,1);expect(normalPreview.height).toBeCloseTo(ordinary.height,0);
   const content=await compact.locator('..').locator('.preview-copy').boundingBox(),preview=await compact.boundingBox();
   expect(content.y).toBeGreaterThanOrEqual(preview.y+24);expect(content.y+content.height).toBeLessThanOrEqual(preview.y+preview.height);
   await page.screenshot({path:testInfo.outputPath('compact-preview-full-size.png')});
@@ -146,16 +180,19 @@ test('repeated archetypes pack nine playable games into four normal tile spaces'
   await game.focus(); await expect(game).toBeFocused();
   await page.keyboard.press('Enter'); await expect(page.locator('iframe')).toHaveCount(1);await expect(page.locator('#loading')).toBeHidden();
   await page.locator('#player-fullscreen').focus();await page.keyboard.press('Shift+Escape'); await expect(game).toBeFocused();
+  await page.getByRole('button',{name:'Find a game',exact:true}).click();
   await page.getByRole('searchbox').fill('04');
-  await expect(page.locator('#games .game-launch')).toHaveCount(1);
+  await expect(page.locator('#search-results a')).toHaveCount(1);
 });
 
 test('hover opens a bounded wide preview and pushes consecutive screenshots across it', async ({page},testInfo) => {
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Hover fixture',taxonomy:[{id:'solo',label:'Solo',facet:'players'}],games:games.map((game,index)=>({...game,tags:index===0?['solo']:[]}))}}));
   await page.setViewportSize({width:1280,height:800}); await page.goto(base);
   const card = page.locator('.game:not(.featured) a').first();
   const rest = await card.boundingBox(); await card.hover();
-  await expect.poll(async()=> (await card.boundingBox()).width).toBeGreaterThan(rest.width*1.6);
-  await expect.poll(async()=> (await card.boundingBox()).height).toBeGreaterThan(rest.height*1.05);
+  await expect.poll(async()=> (await card.boundingBox()).width).toBeGreaterThan(rest.width*1.45);
+  await expect.poll(async()=> (await card.boundingBox()).height).toBeCloseTo(rest.height,0);
+  expect((await card.boundingBox()).y).toBeCloseTo(rest.y,0);
   const box = await card.boundingBox(); expect(box.x).toBeGreaterThanOrEqual(7); expect(box.x+box.width).toBeLessThanOrEqual(1273);
   await expect(card.locator('img[src="/shot-red.svg"]')).toHaveCount(1);
   const progress=()=>card.locator('.preview-steps i').first().evaluate(bar=>new DOMMatrixReadOnly(getComputedStyle(bar,'::after').transform).a);
@@ -178,14 +215,35 @@ test('hover opens a bounded wide preview and pushes consecutive screenshots acro
   expect(await page.evaluate(()=>performance.now())-started).toBeLessThan(2900);
   await page.mouse.move(1,1); await page.waitForTimeout(400);
   expect((await card.boundingBox()).width).toBeCloseTo(rest.width,0);
+  await page.getByRole('button',{name:'Filter games',exact:true}).click();
+  await page.locator('#browse-panel').getByRole('button',{name:'Solo',exact:true}).click();
+  await page.keyboard.press('Escape');
+  const single=page.locator('#games .game-launch');await single.focus();
+  await expect.poll(()=>single.evaluate(link=>{
+    const preview=link.getBoundingClientRect(),search=document.querySelector('.browse-tile').getBoundingClientRect();
+    const left=Math.max(preview.left,search.left),right=Math.min(preview.right,search.right);
+    return right>left && document.elementFromPoint((left+right)/2,preview.top+30)?.closest('.game')===link.parentElement;
+  })).toBe(true);
+  await page.getByRole('button',{name:'Filter games',exact:true}).click();
+  await page.locator('#browse-panel').getByRole('button',{name:'Clear filters',exact:true}).click();
+  await page.keyboard.press('Escape');
+  await page.evaluate(()=>Promise.all(document.getAnimations().map(animation=>animation.finished.catch(()=>{}))));
+  const featured=page.locator('#games .featured').first(),square=await featured.boundingBox();
+  await featured.hover({position:{x:square.width/2,y:square.height-8}});
+  await expect.poll(async()=>(await featured.locator('.game-launch').boundingBox()).width).toBeGreaterThan(square.width*1.45);
+  await expect.poll(async()=>(await featured.locator('.game-launch').boundingBox()).height).toBeCloseTo(square.height,0);
+  // Featured previews retain the height of their own large tile.
+  await featured.click({position:{x:square.width/2,y:square.height-8}});
+  await expect(page.locator('iframe')).toHaveCount(1);
 });
 
-test('persistent search preserves context through play and restores keyboard focus', async ({page},testInfo) => {
+test('search dialog preserves context through play and restores keyboard focus', async ({page},testInfo) => {
   await page.goto(base);
-  const input=page.getByRole('searchbox');await input.focus();
-  await input.fill('no such game');await expect(page.locator('#filter-empty')).toBeVisible();
-  await input.fill('07');await expect(page.locator('#games .game-launch')).toHaveCount(1);
-  await page.keyboard.press('Enter');await expect(page.locator('#games .game-launch')).toBeFocused();
+  await page.getByRole('button',{name:'Find a game',exact:true}).click();
+  const input=page.getByRole('searchbox');
+  await input.fill('no such game');await expect(page.locator('#empty')).toBeVisible();
+  await input.fill('07');await expect(page.locator('#search-results a')).toHaveCount(1);
+  await page.keyboard.press('ArrowDown');await expect(page.locator('#search-results a')).toBeFocused();
   await page.keyboard.press('Enter');await expect(page.locator('iframe')).toHaveCount(1);await expect(page.locator('#loading')).toBeHidden();
   const home=page.locator('#player-fullscreen');
   await expect(home.locator('svg')).toHaveCSS('stroke','rgb(255, 255, 255)');
@@ -210,7 +268,7 @@ test('persistent search preserves context through play and restores keyboard foc
   await expect(home).toHaveCSS('outline-width','3px');
   await page.screenshot({path:testInfo.outputPath('home-focus.png')});
   await page.keyboard.press('Shift+Escape');await expect(input).toBeVisible();
-  await expect(input).toHaveValue('07');await expect(page.locator('#games .game-launch')).toBeFocused();
+  await expect(input).toHaveValue('07');await expect(page.locator('#search-results a')).toBeFocused();
 
 });
 
@@ -268,11 +326,12 @@ test('hover facts show a plain year and the repository opens without launching t
   }));
   await game.hover({trial:true});
   const square=await card.evaluate(element=>element.getBoundingClientRect().width);
-  await expect.poll(async()=>(await game.boundingBox()).width).toBeGreaterThan(square*1.6);
+  await expect.poll(async()=>(await game.boundingBox()).width).toBeGreaterThan(square*.7);
   const next=await neighbor();expect(next).toBeTruthy();
-  const nextLink=page.locator(`a[data-id="${next.id}"]`),rest=await nextLink.boundingBox();
+  const nextLink=page.locator(`a[data-id="${next.id}"]`);
+  const ordinary=await nextLink.evaluate(link=>{const tile=link.parentElement,style=getComputedStyle(link);return tile.classList.contains('featured')?tile.offsetHeight:parseFloat(style.getPropertyValue('--unit'))*2+parseFloat(style.getPropertyValue('--gap'));});
   await page.mouse.move(next.x,next.y);
-  await expect.poll(async()=>(await nextLink.boundingBox()).width).toBeGreaterThan(rest.width*1.6);
+  await expect.poll(async()=>(await nextLink.boundingBox()).width).toBeCloseTo(ordinary*2.035/1.344,0);
   await expect.poll(async()=>(await game.boundingBox()).width).toBeCloseTo(square,0);
 });
 
@@ -569,6 +628,27 @@ test('side suggestions use two bright columns, preview and launch outside gamepl
   await expect(rails).toHaveCount(0);await page.locator('#player-fullscreen').focus();await page.keyboard.press('Shift+Escape');await expect(page.locator('.game-rail .game-launch')).toHaveCount(0);await expect(page.locator('#library')).toBeVisible();
 });
 
+test('side suggestions choose a fresh bounded deck from the whole catalog after searching',async({browser})=>{
+  const catalog=Array.from({length:90},(_,index)=>({...games[index%24],id:`game-${index}`,name:'Game '+String(index).padStart(2,'0'),url:`games/${index}/`,icon:`/icon-${index}.svg`}));
+  const decks=[];
+  for(const seed of [42,81]) {
+    const context=await browser.newContext({viewport:{width:1920,height:900}}),page=await context.newPage();
+    await page.addInitScript(seed=>{let state=seed;Math.random=()=>((state=(state*1664525+1013904223)>>>0)/4294967296);},seed);
+    await page.route('**/collection.json',route=>route.fulfill({json:{games:catalog}}));
+    await page.goto(base);await page.getByRole('button',{name:'Find a game',exact:true}).click();await page.getByRole('searchbox').fill('Game 00');
+    await expect(page.locator('#search-results a')).toHaveCount(1);await page.locator('#search-results a').click();
+    await expect(page.locator('#loading')).toBeHidden();
+    const frame=page.frames().find(frame=>frame.url().includes('/games/'));
+    await frame.evaluate(()=>parent.postMessage({type:'lcom-player-layout',width:1920,height:900,game:{x:480,y:0,width:960,height:900},occupied:[]},location.origin));
+    await expect(page.locator('.game-rail:not([hidden])')).toHaveCount(2);
+    const ids=await page.locator('.game-rail .game-launch').evaluateAll(links=>[...new Set(links.map(link=>link.dataset.id))]);
+    expect(ids).not.toContain('game-0');expect(ids.length).toBeLessThanOrEqual(48);
+    expect(ids.some(id=>Number(id.slice(5))>48)).toBe(true);
+    decks.push(ids);await context.close();
+  }
+  expect(decks[0]).not.toEqual(decks[1]);
+});
+
 test('direct game links fetch a bounded set of decorations only when side space is available',async({browser})=>{
   for(const [width,height] of [[1440,900],[390,844]]) {
     const context=await browser.newContext({viewport:{width,height}}),page=await context.newPage();
@@ -653,12 +733,9 @@ test('genre, player and academic-year filters compose, preserve shuffle and rese
   await filter.click();await panel.getByRole('button',{name:'Solo',exact:true}).click();
   await expect(page.locator('#games .game-launch')).toHaveCount(6);
   await panel.getByRole('button',{name:'Clear filters',exact:true}).click();await expect(page.locator('#games .game-launch')).toHaveCount(24);
-  // Clearing may disable the focused reset button. Escape still closes the open popover.
-  await page.getByRole('searchbox').focus();
+  // Clearing may disable the reset button. Escape still closes the popover.
   await page.keyboard.press('Escape');await expect(panel).toBeHidden();await expect(filter).toBeFocused();
-  await filter.click();await panel.getByRole('button',{name:'Space shooters',exact:true}).click();await page.keyboard.press('Escape');
-  const chip=page.getByRole('button',{name:'Remove Space shooters',exact:true});await chip.focus();await page.keyboard.press('Enter');await expect(page.getByRole('searchbox')).toBeFocused();
-  await page.getByRole('searchbox').fill('Game 0');const clear=page.getByRole('button',{name:'Clear search and filters',exact:true});await clear.focus();await page.keyboard.press('Enter');await expect(page.getByRole('searchbox')).toBeFocused();
+  await expect(page.locator('#active-filters')).toHaveCount(0);
 });
 
 test('startup is a compact dismissible modal over the library until a real ready message',async({page})=>{
@@ -667,41 +744,37 @@ test('startup is a compact dismissible modal over the library until a real ready
   const modal=page.getByRole('dialog',{name,exact:true});await expect(modal).toBeVisible();await expect(page.locator('#library')).toBeVisible();
   const rect=await modal.boundingBox();expect(rect.width).toBeLessThan(800);expect(rect.height).toBeLessThan(600);
   await page.keyboard.press('Escape');await expect(modal).toBeHidden();await expect(page.locator('iframe')).toHaveCount(0);await expect(tile).toBeFocused();
-  await tile.click();await expect(modal).toBeVisible();const frame=page.frames().find(frame=>frame.url().includes('/games/'));
+  await tile.click();await expect(modal).toBeVisible();await expect(page.locator('iframe')).toHaveAttribute('src',/collection=1/);
+  await expect.poll(()=>page.frames().some(frame=>frame.url().includes('/games/'))).toBe(true);const frame=page.frames().find(frame=>frame.url().includes('/games/'));
+  const started=Date.now();
   await frame.evaluate(()=>parent.postMessage({type:'lcom-player-loading',phase:'ready'},location.origin));
-  await expect(modal).toBeHidden();await expect(page.locator('#library')).toBeHidden();await expect(page.locator('iframe')).toBeFocused();
+  await expect(modal).toBeHidden({timeout:600});
+  expect(Date.now()-started).toBeLessThan(600);await expect(page.locator('#library')).toBeHidden();await expect(page.locator('iframe')).toBeFocused();
   await page.locator('#player-fullscreen').focus();await page.keyboard.press('Shift+Escape');await expect(page.locator('iframe')).toHaveCount(0);await expect(tile).toBeFocused();
 });
 
-test('search filters the library, persists with tags, and packs sparse results',async({page},testInfo)=>{
-  const tagged=games.map((game,index)=>({...game,tags:[index<15?'snake':'racing'],featuredPool:index>=4&&index<16}));
-  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Search fixture',games:tagged,taxonomy:[{id:'snake',label:'Snake',facet:'genre'},{id:'racing',label:'Racing',facet:'genre'}]}}));
+test('facet filters survive play and reload while search stays independent',async({page})=>{
+  const taxonomy=[{id:'racing',label:'Racing',facet:'genre'}];
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Filter fixture',taxonomy,games:games.map((game,index)=>({...game,tags:index===1?['racing']:[]}))}}));
   await page.setViewportSize({width:1920,height:1000});await page.emulateMedia({reducedMotion:'reduce'});await page.goto(base);
-  const input=page.getByRole('searchbox');await expect(input).toBeVisible();
-  await input.fill('Game 0');await expect(page.locator('#games .game-launch')).toHaveCount(10);
-  await page.getByRole('button',{name:'Filter games',exact:true}).click();await page.locator('#browse-panel').getByRole('button',{name:'Snake',exact:true}).click();
-  await page.keyboard.press('Escape');await input.fill('Game 01');
+  await page.getByRole('button',{name:'Filter games',exact:true}).click();
+  await page.locator('#browse-panel').getByRole('button',{name:'Racing',exact:true}).click();await page.keyboard.press('Escape');
   await expect(page.locator('#games .game-launch')).toHaveCount(1);
-  const box=await page.locator('#games .game').boundingBox();expect(box.width).toBeLessThan(180);
-  expect(box.x).toBeLessThan(600);expect(box.y).toBeLessThan(220);
-  await page.reload();await expect(input).toHaveValue('Game 01');await expect(page.locator('#games .game-launch')).toHaveCount(1);
-  await page.locator('#games .game-launch').click();await expect(page.locator('iframe')).toHaveCount(1);await expect(page.locator('#loading')).toBeHidden();await expect(page.locator('#library')).toBeHidden();
-  await page.locator('#player-fullscreen').focus();await page.keyboard.press('Shift+Escape');
-  await expect(page.locator('iframe')).toHaveCount(0);await expect(input).toBeVisible();await expect(input).toHaveValue('Game 01');await expect(page.locator('#games .game-launch')).toHaveCount(1);
-  await input.fill('missing');await expect(page.locator('#filter-empty')).toBeVisible();
-  await page.getByRole('button',{name:'Clear search and filters',exact:true}).click();
-  await expect(input).toHaveValue('');await expect(page.locator('#games .game-launch')).toHaveCount(24);
-  await page.screenshot({path:testInfo.outputPath('search-reset.png')});
+  const box=await page.locator('#games .game').boundingBox();expect(box.width).toBeLessThan(180);expect(box.x).toBeLessThan(600);expect(box.y).toBeLessThan(220);
+  await page.reload();await expect(page.locator('#games .game-launch')).toHaveCount(1);
+  await expect(page.getByRole('searchbox')).toBeHidden();
+  await page.locator('#games .game-launch').click();await expect(page.locator('#loading')).toBeHidden();await page.locator('#back').click();
+  await expect(page.locator('#games .game-launch')).toHaveCount(1);await expect(page.locator('#games .game-launch')).toBeFocused();
 });
 
-test('five random featured picks come only from the curated pool',async({page})=>{
+test('ten random featured picks come only from the curated pool',async({page})=>{
   const pool=games.slice(4,15).map(game=>game.id);
   await page.route('**/collection.json',route=>route.fulfill({json:{name:'Curated fixture',games:games.map(game=>({...game,featured:false,featuredPool:pool.includes(game.id)}))}}));
   await page.goto(base);
   for(const random of [.01,.99]) {
     await page.evaluate(value=>Math.random=()=>value,random);await page.getByRole('button',{name:'Shuffle games'}).click();
     const extras=await page.locator('.featured .game-launch').evaluateAll(links=>links.map(link=>link.dataset.id));
-    expect(extras).toHaveLength(5);expect(extras.every(id=>pool.includes(id))).toBe(true);
+    expect(extras).toHaveLength(10);expect(extras.every(id=>pool.includes(id))).toBe(true);
   }
 });
 
@@ -719,7 +792,7 @@ test('mouse capture shows only a brief centered shortcut hint and keeps Home vis
   await home.click();await expect(page.locator('iframe')).toHaveCount(0);
 });
 
-test('Surprise and startup show game tags with a two-second minimum loading presentation',async({page})=>{
+test('Surprise and startup show game tags until the actual first frame',async({page})=>{
   const taxonomy=[{id:'platformer',label:'Platformer',facet:'genre'},{id:'single-player',label:'Solo',facet:'players'}];
   await page.route('**/collection.json',route=>route.fulfill({json:{name:'Tagged collection',taxonomy,games:games.map(game=>({...game,featured:false,tags:['platformer','single-player']}))}}));
   await page.emulateMedia({reducedMotion:'reduce'});await page.goto(base);
@@ -727,13 +800,15 @@ test('Surprise and startup show game tags with a two-second minimum loading pres
   await expect(page.locator('#count')).toHaveText('24 games, ready to play');
   await page.getByRole('button',{name:'Surprise me',exact:true}).click();
   await expect(page.locator('#surprise-tags li')).toHaveText(['Platformer','Solo']);
-  const started=Date.now();await page.locator('#surprise-play').click();
+  await page.route('**/games/**',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><title>Waiting for first frame</title>'}));
+  await page.locator('#surprise-play').click();
   await expect(page.locator('#loading')).toBeVisible();await expect(page.locator('#load-tags li')).toHaveText(['Platformer','Solo']);
-  await page.waitForTimeout(1000);await expect(page.locator('#loading')).toBeVisible();
-  await expect(page.locator('#loading')).toBeHidden();expect(Date.now()-started).toBeGreaterThanOrEqual(1950);
+  await expect.poll(()=>page.frames().some(frame=>frame.url().includes('/games/'))).toBe(true);
+  await page.frames().find(frame=>frame.url().includes('/games/')).evaluate(()=>parent.postMessage({type:'lcom-player-loading',phase:'ready'},location.origin));
+  await expect(page.locator('#loading')).toBeHidden();
   await page.locator('#back').click();await expect(page.locator('iframe')).toHaveCount(0);
   await page.locator('#games .game-launch').first().click();await expect(page.locator('#loading')).toBeVisible();
-  await page.locator('#load-dismiss').click();await page.waitForTimeout(2100);
+  await page.locator('#load-dismiss').click();
   await expect(page.locator('iframe')).toHaveCount(0);await expect(page.locator('#library')).toBeVisible();await expect(page.locator('#loading')).toBeHidden();
 });
 
@@ -754,10 +829,10 @@ test('side columns loop in alternating directions and pause for focus and reduce
   await columns.first().getByRole('link',{name:/^Play /}).first().focus();
   await settled();
   const paused=(await movement()).slice(0,4);await page.waitForTimeout(250);expect((await movement()).slice(0,4)).toEqual(paused);
-  await page.locator('.game-rail').first().getByRole('button',{name:'Pause suggestions'}).click();
+  await expect(page.locator('.rail-pause')).toHaveCount(0);
   await page.locator('#player-fullscreen').focus();
   await settled();
-  const manual=(await movement()).slice(0,4);await page.waitForTimeout(250);expect((await movement()).slice(0,4)).toEqual(manual);
+  const resumed=(await movement()).slice(0,4);await page.waitForTimeout(250);expect((await movement()).slice(0,4)).not.toEqual(resumed);
   const seam=await tracks.first().evaluate(track=>{
     const animation=track.getAnimations()[0],rail=track.closest('.game-rail').getBoundingClientRect();
     const visible=()=>[...track.querySelectorAll('.game')].map(tile=>({id:tile.querySelector('a').dataset.id,y:tile.getBoundingClientRect().y,height:tile.getBoundingClientRect().height})).filter(tile=>tile.y+tile.height/2>rail.y&&tile.y+tile.height/2<rail.bottom).map(tile=>({id:tile.id,y:Math.round(tile.y)}));

@@ -103,7 +103,7 @@ for (const mode of ['panel', 'overlay', 'right keyboard']) {
       await page.screenshot({path: testInfo.outputPath('collection-touch-chrome.png')});
       await expect.poll(collisions).toEqual([]);
       await page.locator('#back').tap();
-      await expect(page.locator('#search')).toBeVisible();
+      await expect(page.locator('#search-toggle')).toBeVisible();
     } finally { await browser.close(); }
   });
 }
@@ -141,7 +141,7 @@ test('collection portrait rotation advice stays clear of authored top-corner act
     })).toEqual([]);
     await frame.getByRole('button', {name: 'Start', exact: true}).tap();
     await page.locator('#back').tap();
-    await expect(page.locator('#search')).toBeVisible();
+    await expect(page.locator('#search-toggle')).toBeVisible();
   } finally { await browser.close(); }
 });
 

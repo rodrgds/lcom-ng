@@ -23,10 +23,13 @@ devenv shell -- lcom-ng web examples/ninjix
 
 The game starts automatically. Click the game to capture the desktop mouse.
 Movement continues past the edges of the browser, using the game's own cursor
-and original controls. **Escape** releases the mouse and reaches the game once
-for pausing or going back. Click again to recapture it.
+and original controls. **Escape** reaches the game for pausing or going back.
+In fullscreen, browsers with Keyboard Lock keep the mouse captured. Other
+browsers and windowed play reserve Escape to release capture; the player also
+sends that Escape to the game once. Click again to recapture it.
 
-In a collection, **Shift+Escape** returns to the library. The Home button stays
+**Shift+Escape** releases a captured mouse. In a collection, press it again
+with the mouse released to return to the library. The Home button stays
 visible on desktop and touch devices. A brief centered shortcut hint appears
 after the mouse has been captured for a second. Use the fullscreen button at
 the top right to enter or leave fullscreen.

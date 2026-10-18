@@ -3,7 +3,7 @@ import {renderGameTags} from './tags.js';
 import {Surroundings} from './surroundings.js';
 import {Mosaic} from './mosaic.js';
 import {Previews} from './previews.js';
-import {bindSearchShortcuts} from './search.js';
+import {GameSearch} from './search.js';
 import {Surprise} from './surprise.js';
 import {cue} from './audio.js';
 import {bindGridNavigation} from './navigation.js';
@@ -14,7 +14,7 @@ const games = document.querySelector('#games');
 const count = document.querySelector('#count');
 const host = document.querySelector('#frame-host');
 const surroundings = new Surroundings(host, link => launch(link));
-let catalog = [], selected = null, lastLink = null, surprise = null, filters = null, visibleCatalog = [], taxonomy = [];
+let catalog = [], selected = null, lastLink = null, surprise = null, gameSearch = null, filters = null, visibleCatalog = [], taxonomy = [];
 let playerLayout = null;
 const previews = new Previews();
 const back=document.querySelector('#back');
@@ -64,8 +64,7 @@ const loading = document.querySelector('#loading');
 const progress = loading.querySelector('progress');
 const runningControls = document.querySelector('#load-running');
 const consoleOutput = document.querySelector('#load-console');
-let ready = false, running = false, progressStep = -1, loadStarted = 0, readyTimer = null;
-const minimumLoading = 2000;
+let ready = false, running = false, progressStep = -1;
 function showLoading() {
   loading.hidden = false;
   if (!loading.open) loading.showModal();
@@ -89,7 +88,6 @@ function loadingState(state) {
     runningControls.hidden = false;
     document.querySelector('#load-status').textContent = 'Opening game…';
   } else if (state.phase === 'error') {
-    clearTimeout(readyTimer);
     running = false; runningControls.hidden = true;
     loading.classList.remove('running');
     showLoading();
@@ -97,12 +95,10 @@ function loadingState(state) {
     document.querySelector('#load-progress').hidden = true;
     document.querySelector('#retry').focus({preventScroll:true});
   } else if (state.phase === 'ready') {
-    const remaining=minimumLoading-(performance.now()-loadStarted);
-    if(remaining>0){clearTimeout(readyTimer);readyTimer=setTimeout(()=>loadingState(state),remaining);return;}
     const loadingHadFocus = loading.contains(document.activeElement);
     runningControls.hidden = true;
     ready = true; library.hidden = true; play.classList.remove('starting'); hideLoading(); host.inert = false;
-    surroundings.start(selected,visibleCatalog);
+    surroundings.start(selected,catalog);
     if (loadingHadFocus || !play.contains(document.activeElement)) host.querySelector('iframe')?.contentWindow.focus();
   } else if (!ready && document.querySelector('#load-error').hidden) {
     const fraction = state.total > 0 ? Math.min(1, state.loaded / state.total) : null;
@@ -150,7 +146,12 @@ async function toggleFullscreen() {
   } catch { /* Fullscreen can be unavailable under browser or display policy. */ }
 }
 for (const id of ['fullscreen','player-fullscreen']) document.querySelector('#'+id).onclick = toggleFullscreen;
+function updateKeyboardLock() {
+  if(document.fullscreenElement && selected)navigator.keyboard?.lock?.(['Escape']).catch(()=>{});
+  else navigator.keyboard?.unlock?.();
+}
 document.addEventListener('fullscreenchange', () => {
+  updateKeyboardLock();
   const label=document.fullscreenElement ? 'Exit fullscreen' : 'Enter fullscreen';
   for (const id of ['fullscreen','player-fullscreen']) {
     document.querySelector('#'+id).setAttribute('aria-label',label);
@@ -171,7 +172,12 @@ function returnToLibrary() {
 document.addEventListener('keydown', event => {
   if (!play.hidden) play.classList.add('keyboard-player');
   if (!play.hidden && event.key === 'Escape' && event.shiftKey) {
-    event.preventDefault();returnToLibrary();
+    event.preventDefault();
+    if(event.repeat)return;
+    const child=host.querySelector('iframe')?.contentDocument;
+    if(child?.pointerLockElement)child.defaultView.postMessage({type:'lcom-player-release'},location.origin);
+    else if(document.pointerLockElement)document.exitPointerLock?.();
+    else returnToLibrary();
   }
 });
 
@@ -188,7 +194,7 @@ function render(tags) {
   filters = new GameFilters(catalog,taxonomy,matches => {
     visibleCatalog = matches;
     const ids = new Set(matches.map(game=>game.id));
-    mosaic.setTiles(tiles.filter(tile=>ids.has(tile.game.id)),filters.query.trim().length>0 || Object.values(filters.selected).some(values=>values.size));
+    mosaic.setTiles(tiles.filter(tile=>ids.has(tile.game.id)),Object.values(filters.selected).some(values=>values.size));
     surprise.catalog = matches; document.querySelector('#surprise').disabled = !matches.length;
     document.querySelector('#filter-empty').hidden = !!matches.length;
     count.textContent = `${matches.length} of ${catalog.length} games`;
@@ -199,17 +205,17 @@ function render(tags) {
     cue('select',{emphasis:'subtle'});
     count.textContent = `${visibleCatalog.length} games, shuffled`;
   };
-  bindSearchShortcuts(filters);
+  gameSearch = new GameSearch(catalog, launch, () => {filters.close(false);previews.stop();});
   surprise = new Surprise(catalog, game => {
     launch(document.querySelector('#surprise'));
     location.hash = 'game=' + encodeURIComponent(game.id);
   },taxonomy);
   document.querySelector('#surprise').addEventListener('click', () => previews.stop());
-  bindGridNavigation(document.querySelector('#grid'),'.identity, .library-controls button, #browse-toggle, #search, .game-launch',{
+  bindGridNavigation(document.querySelector('#grid'),'.identity, .library-controls button, #browse-toggle, .game-launch',{
     geometry: element => element.closest('.game') || element,
   });
   count.textContent = `${catalog.length} games, ready to play`;
-  filters.apply(filters.query.trim().length>0 || Object.values(filters.selected).some(values=>values.size));
+  filters.apply(Object.values(filters.selected).some(values=>values.size));
 }
 function route(force = false) {
   const id = new URLSearchParams(location.hash.slice(1)).get('game');
@@ -220,10 +226,10 @@ function route(force = false) {
   previews.stop();
   surroundings.reset();
   resetLibraryHint();
-  clearTimeout(readyTimer);
   playerLayout=null;
   releasePointer();
   host.replaceChildren(); selected = game || null; ready = false; running = false; progressStep = -1;
+  updateKeyboardLock();
   runningControls.hidden = true; consoleOutput.hidden = true; consoleOutput.textContent = ''; progress.hidden = false;
   loading.classList.remove('running');
   hideLoading(); host.inert = !!game;
@@ -231,7 +237,6 @@ function route(force = false) {
   play.classList.toggle('starting',!!game);
   document.body.style.overflow = game ? 'hidden' : '';
   if (game) {
-    loadStarted=performance.now();
     back.style.left='';back.style.top='';
     document.querySelector('#load-title').textContent = game.name;
     document.querySelector('#load-description').textContent = game.description || '';
@@ -243,14 +248,15 @@ function route(force = false) {
     document.querySelector('#load-progress').hidden = false;
     progress.removeAttribute('value');
     document.querySelector('#load-status').textContent = 'Loading game…';
-    const frame = document.createElement('iframe'); frame.title = game.name; frame.src = game.url + '?collection=1&v=' + encodeURIComponent(game.revision || '') + '&startAt=' + (Date.now()+minimumLoading);
+    const frame = document.createElement('iframe'); frame.title = game.name; frame.src = game.url + '?collection=1&v=' + encodeURIComponent(game.revision || '');
     frame.allow = 'autoplay; fullscreen'; host.append(frame);
     document.title = `${game.name} · ${library.querySelector('h1').textContent}`;
     frame.onerror = () => loadingState({phase:'error'});
     showLoading();
   } else {
     document.title = library.querySelector('h1').textContent;
-    lastLink?.focus({preventScroll:true});
+    if (lastLink?.closest('#search-panel')) gameSearch?.open(lastLink.dataset.id);
+    else lastLink?.focus({preventScroll:true});
   }
 }
 back.onclick = returnToLibrary;

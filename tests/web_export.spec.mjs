@@ -592,7 +592,29 @@ test('legacy polling loop yields for browser key input without source changes', 
   await expect(page.locator('#status')).toContainText('Game finished.');
 });
 
-test('Escape releases capture and reaches the game exactly once', async ({ page },testInfo) => {
+test('fullscreen Escape reaches the game while Shift+Escape releases a collection mouse before returning',async({page})=>{
+  await start(page,'pause');
+  await page.getByRole('button',{name:'Enter fullscreen',exact:true}).click();
+  await page.locator('canvas').click();
+  await expect.poll(()=>page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
+  await page.keyboard.press('Escape');
+  await expect.poll(()=>consoleText(page)).toContain('key:81');
+  expect(await page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
+  expect(await page.evaluate(()=>!!document.fullscreenElement)).toBe(true);
+  await page.goto(`${base}/collection/`);
+  await page.getByRole('link',{name:'Play First game',exact:true}).click();
+  const frame=page.frameLocator('iframe');
+  await expect(frame.locator('#status')).toHaveText('Game running.');
+  await frame.locator('canvas').click();
+  await expect.poll(()=>frame.locator('canvas').evaluate(canvas=>document.pointerLockElement===canvas)).toBe(true);
+  await page.keyboard.press('Shift+Escape');
+  await expect(page.locator('iframe')).toHaveCount(1);
+  await expect.poll(()=>frame.locator('canvas').evaluate(()=>!!document.pointerLockElement)).toBe(false);
+  await page.keyboard.press('Shift+Escape');
+  await expect(page.locator('iframe')).toHaveCount(0);
+});
+
+test('delivered Escape reaches the game once without forcing mouse release', async ({ page },testInfo) => {
   await start(page, 'pause');
   const canvas=page.locator('canvas');
   await canvas.click();
@@ -600,11 +622,13 @@ test('Escape releases capture and reaches the game exactly once', async ({ page 
   await expect(page.locator('#pointer-hint')).toBeHidden();
   await page.screenshot({path:testInfo.outputPath('captured-mouse-no-hint.png')});
   await page.keyboard.press('Escape');
-  await expect.poll(()=>page.evaluate(()=>document.pointerLockElement)).toBeNull();
+  expect(await page.evaluate(()=>document.pointerLockElement?.id)).toBe('game');
   await expect.poll(() => pixel(page)).toEqual([0, 0, 255, 255]);
   await expect.poll(() => consoleText(page)).toContain('key:81');
   expect(consoleText(page).match(/key:01/g)).toHaveLength(1);
   await expect(page.locator('#status')).toHaveText('Game running.');
+  await page.keyboard.press('ControlRight');
+  await expect.poll(()=>page.evaluate(()=>document.pointerLockElement)).toBeNull();
   await expect(canvas).toHaveCSS('cursor', 'auto');
   const previous = consoleText(page).match(/mouse:/g)?.length || 0;
   await page.mouse.move(500, 300);
@@ -1000,10 +1024,11 @@ test('collection is responsive, forwards profiles, and discards game state on re
   await expect.poll(columns).toBeGreaterThan(phoneColumns);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBeTruthy();
   await expect.poll(() => page.locator('.game').evaluateAll(items => items.every(item => Math.abs(item.getBoundingClientRect().width - item.getBoundingClientRect().height) < 1))).toBeTruthy();
+  await page.getByRole('button',{name:'Find a game',exact:true}).click();
   await page.getByRole('searchbox').fill('Second');
-  await expect(page.locator('#games .game-launch')).toHaveCount(1);
-  await expect(page.getByRole('link',{name:'Play Second game',exact:true})).toBeVisible();
-  await page.getByRole('searchbox').fill('');
+  await expect(page.locator('#search-results a')).toHaveCount(1);
+  await expect(page.locator('#search-results a')).toContainText('Second game');
+  await page.keyboard.press('Escape');
   await page.getByRole('link',{name:'Play First game',exact:true}).click();
   const frame=page.frameLocator('iframe');
   await expect(frame.locator('#status')).toHaveText('Game running.');
@@ -1125,8 +1150,11 @@ test('phone collection keeps square icon targets and reveals long names in searc
   const icon = await card.locator('.game-icon').boundingBox();
   expect(Math.abs(icon.width-icon.height)).toBeLessThan(1);
   expect(icon.width).toBeGreaterThan(80);
+  await page.getByRole('button',{name:'Find a game',exact:true}).click();
   await page.getByRole('searchbox').fill('Star Wars');
-  await expect(page.locator('#games .game-launch')).toHaveAccessibleName('Play '+title);
+  await expect(page.locator('#search-results a')).toHaveCount(1);
+  await expect(page.locator('#search-results a strong')).toHaveText(title);
+  await expect(page.locator('#search-results a')).toBeVisible();
 });
 
 test('failed player module downloads offer retry in collections and standalone exports', async ({page}) => {

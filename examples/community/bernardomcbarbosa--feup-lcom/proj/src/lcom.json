@@ -52,7 +52,7 @@
       "1"
     ]
   },
-  "description": "Aim your penalty kick, then defend the goal in a five-shot football shootout.",
+  "description": "Hold the right mouse button, drag to aim, then release to shoot. Defend the goal with the arrow keys.",
   "icon": "icon.png",
   "preview": "preview.png"
 }

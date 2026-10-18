@@ -16532,7 +16532,7 @@
       "collectionId": "bernardomcbarbosa-feup-lcom-3baf341c276f",
       "config": "examples/community/bernardomcbarbosa--feup-lcom/proj/src/lcom.json",
       "icon": "examples/community/bernardomcbarbosa--feup-lcom/proj/src/icon.png",
-      "description": "Aim your penalty kick, then defend the goal in a five-shot football shootout.",
+      "description": "Hold the right mouse button, drag to aim, then release to shoot. Defend the goal with the arrow keys.",
       "preview": "examples/community/bernardomcbarbosa--feup-lcom/proj/src/preview.png",
       "controls": {
         "keyboard": false,

@@ -17,12 +17,13 @@ export class Surroundings {
   }
   start(game,catalog) {
     this.active = true;
-    const loaded = new Set([...document.querySelectorAll('#games .game-icon')]
-      .filter(image => image.complete && image.naturalWidth && image.getAttribute('src'))
-      .map(image => image.closest('.game').querySelector('.game-launch').dataset.id));
     const candidates = catalog.filter(item => item.id !== game.id && item.icon);
-    // Reuse library art first. Repeated tracks share a bounded thumbnail deck.
-    this.games = candidates.sort((a,b) => Number(loaded.has(b.id)) - Number(loaded.has(a.id))).slice(0,48);
+    for(let i=candidates.length-1;i>0;i--) {
+      const j=Math.floor(Math.random()*(i+1));
+      [candidates[i],candidates[j]]=[candidates[j],candidates[i]];
+    }
+    // Fresh choices on each launch; repeated tracks share at most 48 thumbnails.
+    this.games = candidates.slice(0,48);
     this.render();
   }
   update(game,occupied) {
@@ -76,15 +77,7 @@ export class Surroundings {
         }
         viewport.append(track);list.append(viewport);
       }
-      const pause=document.createElement('button');pause.type='button';pause.className='rail-pause';
-      const paused=rail.classList.contains('paused');
-      pause.setAttribute('aria-label',paused?'Resume suggestions':'Pause suggestions');pause.setAttribute('aria-pressed',String(paused));
-      pause.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14M16 5v14"/></svg>';
-      pause.onclick=()=>{
-        const paused=rail.classList.toggle('paused');pause.setAttribute('aria-pressed',String(paused));
-        pause.setAttribute('aria-label',paused?'Resume suggestions':'Pause suggestions');
-      };
-      rail.replaceChildren(list,pause);
+      rail.replaceChildren(list);
     });
   }
   reset() {

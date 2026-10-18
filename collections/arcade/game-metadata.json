@@ -330,7 +330,8 @@
         "url": "https://github.com/martimcferreira/lcom-project/commit/26630f64afe1f0002b4195a0176ee4d61695dfba",
         "date": "2026-05-19",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-05-19), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "featuredPool": true
     },
     "samblack569-feup-lcom-2425-c1eb853acae2": {
       "year": 2025,
@@ -1315,7 +1316,8 @@
         "url": "https://github.com/LsFaria04/LCOM_Project-Tennis_for_Two/commit/2e100e76e06b2aec60b9c4bde9f6b00ecc20871e",
         "date": "2024-04-25",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-04-25), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "featuredPool": true
     },
     "rodeso-lcom-brick-blitz-3014442d8fa6": {
       "year": 2024,
@@ -2049,7 +2051,8 @@
         "confidence": "explicit",
         "url": "https://github.com/PedroMMarinho/FEUP-LCOM/blob/3491332bc23379f00238637c61ad2d757e5c6155/README.md",
         "detail": "The pinned original course source explicitly names academic year 2023/24."
-      }
+      },
+      "featuredPool": true
     },
     "game-2020-og-a9bc47caddf5": {
       "year": 2021,
@@ -2873,7 +2876,8 @@
         "confidence": "explicit",
         "url": "https://github.com/bernardomcbarbosa/feup-lcom/blob/2425ceee78f0231d009324659d95f0ce369cf139/README.md",
         "detail": "The pinned original course source explicitly names academic year 2016/17."
-      }
+      },
+      "featuredPool": true
     },
     "belem17-lcom-wordle-fbf1430b6a78": {
       "year": 2025,
@@ -4225,7 +4229,8 @@
         "confidence": "explicit",
         "url": "https://github.com/Andrepereira2001/feup-lcom-2020/blob/3d6153876ca9b689d77a39aa0554912b390ea1d3/src/game.h",
         "detail": "The pinned original course source explicitly names academic year 2020/21."
-      }
+      },
+      "featuredPool": true
     },
     "bernardoramalho-feup-lcom-f5367ce91527": {
       "year": 2022,
@@ -5505,7 +5510,8 @@
         "url": "https://github.com/SergioEstevao11/FEUP-LCOM/commit/92870f387798d502f3ed6365c42f4a56b3c7ce57",
         "date": "2021-11-24",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-11-24), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "featuredPool": true
     },
     "ims-up2021-feup-lcom-3eb52cd1f5fd": {
       "year": 2024,
@@ -6031,7 +6037,8 @@
         "confidence": "explicit",
         "url": "https://github.com/diogotorres97/LCOM-FEUP/blob/aec0ce17cc55e8a1f58b1e6e6a04514268fc3c8f/Age%20Of%20War/doc/Relatorio-LCOM.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2016/17."
-      }
+      },
+      "featuredPool": true
     },
     "ptozin-2l-eic018-lcom-d288f3d883ce": {
       "year": 2024,

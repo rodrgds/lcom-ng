@@ -133,7 +133,7 @@ export class Previews {
       repo.setAttribute('aria-label', 'Repository for ' + game.name);
       repo.innerHTML = repositoryIcon(game.repository);
       repo.title = 'Repository for ' + game.name;
-      meta.append(repo);
+      overlay.append(repo);
     }
     copy.append(name, meta); overlay.append(copy);
     const play = document.createElement('span'); play.className = 'preview-play';
@@ -170,9 +170,9 @@ export class Previews {
     const zone = rail ? rail.getBoundingClientRect() : {left:edge,top:edge,width:innerWidth-edge*2,height:innerHeight-edge*2};
     const style = getComputedStyle(tile.element);
     const ordinary = parseFloat(style.getPropertyValue('--unit')) * 2 + parseFloat(style.getPropertyValue('--gap'));
-    const size = tile.element.classList.contains('compact') && Number.isFinite(ordinary) ? ordinary : rect.width;
-    const width = Math.min(zone.width, Math.max(size * 2.035, rail ? 286 : 0));
-    const height = Math.min(zone.height, Math.max(size * 1.344, rail ? 228 : 200));
+    const size = !rail && !tile.element.classList.contains('featured') && Number.isFinite(ordinary) ? ordinary : rect.width;
+    const height = Math.min(zone.height, rail ? Math.max(size * 1.344,228) : size);
+    const width = Math.min(zone.width, rail ? Math.max(size * 2.035,286) : height * 2.035 / 1.344);
     const left = Math.max(zone.left, Math.min(zone.left+zone.width-width, rect.x+rect.width/2-width/2));
     const top = Math.max(zone.top, Math.min(zone.top+zone.height-height, rect.y+rect.height/2-height/2));
     tile.element.style.setProperty('--preview-width', `${width}px`);
@@ -185,6 +185,9 @@ export class Previews {
   async start(tile) {
     if (this.active === tile) return;
     this.stop();
+    // Filtering may still be moving this card. Anchor the preview to its final
+    // position so keyboard focus cannot leave it offset after the move ends.
+    tile.motion?.cancel();
     this.active = tile;
     this.details(tile);
     this.loadIcon(tile.element);

@@ -185,20 +185,20 @@ frontmatter.
 The packer divides each ordinary column into two square microtracks, with three
 ordinary columns on phones and up to eighteen on desktop. Gaps are 8px on phones
 and 12px otherwise. Ordinary icons and the identity occupy 2 by 2 microcells.
-The Screen and Shuffle controls share a row above Surprise. Persistent search
-occupies 4 by 2 microcells beside these controls, or a full-width phone row.
+Search, Screen, Shuffle and Surprise form a two-by-two control tile. Filters
+occupies a separate 2 by 2 tile, or a full-width phone row.
 Featured tiles occupy 4 by 4 microcells.
 
-Each visit and Shuffle selects five highlights from the source-reviewed
-21-game `featuredPool`, including Plants vs. Zombies, Sushi Slash, Teclas and Ninjix. Picks remain stable on resize. Filtered results use
+Each visit and Shuffle selects ten highlights from the source-reviewed
+28-game `featuredPool`, including Plants vs. Zombies, Sushi Slash, Teclas and Ninjix. Picks remain stable on resize. Filtered results use
 ordinary tiles without featured promotion or archetype clusters. The DOM order
 follows visual reading order after packing.
 
 Startup opens a compact native modal over the library, with a small selected-game
 icon, title, description and measured transfer progress. Cancel restores focus
 to the originating tile. Opening and closing use short opacity/scale transitions;
-reduced motion removes them. After at least two seconds, the first presented frame replaces the modal.
-Fast downloads wait before starting guest gameplay, preserving the opening state.
+reduced motion removes them. The first presented frame replaces the modal
+immediately, with no artificial minimum delay.
 
 The game iframe fills the viewport. The home button uses reported game and
 control bounds to prefer free space and letterboxing, respecting safe areas.
@@ -211,12 +211,16 @@ separate it from adjacent icons, without a colorful ambient field or card glow.
 A dark lower scrim protects preview metadata. Startup artwork retains its
 existing soft violet shadow; that treatment is scoped to startup.
 
-A preview grows to 1.85 times the original width and 1.12 times its height,
-clamped inside the viewport with an 8px margin. Its geometry transitions over
+Library previews retain a 1.514:1 aspect ratio. Normal and compact tiles share
+the normal tile height; larger featured tiles use their own height. Previews
+center on their source tile, remain above search and utility cards, and clamp
+inside an 8px viewport margin. Its geometry transitions over
 320ms using cubic-bezier(.16, 1, .3, 1). Captured frames push horizontally every
 3 seconds, with a 520ms slide and a 560ms completion window. Reduced motion
 removes transitions, animations and automatic frame cycling while retaining the
-static preview and metadata. Shuffle movement takes 540ms when motion is enabled.
+static preview and metadata. Shuffle and filtering move visible cards over 320ms.
+New matches fade and scale into place; removed icons leave over 160ms as inert
+copies. Interrupted movement is canceled, and equivalent result sets stay still.
 
 **The Quiet Depth Rule.** Use neutral elevation for library previews; do not restore colorful hover glow.
 
@@ -226,7 +230,7 @@ Game and utility tiles use the tile radius, switching to the mobile-tile radius
 at 600px. Square icon crops remain square at both ordinary and featured sizes.
 Expanded previews keep the same rounded boundary. The original icon becomes a
 34px footer badge with 8px corners. The play disc is circular. Search uses a
-persistent inset field beside its Filters button. Failure actions use the action radius.
+native dialog with an inset field, separate from the Filters tile. Failure actions use the action radius.
 
 ## Components
 
@@ -242,9 +246,9 @@ both. All controls have accessible names. Focus uses a 3px lime outline with a
 Each tile has a Play link with an accessible name and available year/size
 facts. Only its launcher icon is visible at rest; missing artwork falls back to
 the collection mark. Hover with a fine pointer or keyboard focus opens the wider
-preview. Compact tiles use the ordinary tile’s preview dimensions. Previews
-are 10% wider and 20% taller than the earlier treatment, with a 200px minimum
-height for readable three-line titles and bounded viewport/gutter placement.
+preview. Normal and compact tiles share the normal tile height. Featured
+previews retain their own larger height. All share the landscape aspect ratio
+and center on the source tile within viewport or gutter bounds.
 The icon moves into the footer beside the name and available facts;
 Arcade school-year labels use original README/reports or game development
 history. School-year labels stay plain, with inference confidence in their
@@ -260,33 +264,36 @@ Touch activates the game directly.
 
 ### Library filters and side suggestions
 
-An always-visible search field sits beside one floating filter panel, with genres, player modes
+A dedicated Filters tile opens one floating panel with genres, player modes
 and school-year buttons. Counts respond to the other groups. Choices within a
 group use OR; groups combine with AND. Clear resets all choices. Filtering,
-search, shuffle and Surprise use the same subset. Header and footer stay visible
+shuffle and Surprise use the same subset. Search looks up individual games
+across the complete catalog and never changes the mosaic. Header and footer stay visible
 while the choices scroll on short screens. The panel returns focus when closed.
 
 During play, suggestions use only reported empty side gutters, avoiding controls.
 Each gutter fits one to four columns and hides when icons cannot fit at 64px.
 Columns loop slowly in alternating vertical directions using CSS transforms and
-a bounded deck of thumbnails. Hover or keyboard focus pauses that side, and a
-44px pause button keeps it still until resumed. Reduced motion disables drift.
+a freshly randomized deck of at most 48 thumbnails from the complete catalog
+on each launch, including after a narrow search. Hover or
+keyboard focus pauses that side. Reduced motion disables drift.
 Resting opacity is .78 and hover/focus restores full brightness. Previews remain
 inside the gutter, with ordinary links to launch. Narrow gutters show screenshots
 within the tile and expose its name as a tooltip instead of squeezing preview copy.
 
-### Persistent search
+### Search dialog
 
-Search is always visible beside the library controls and matches game names,
-tag labels and school years without opening a modal. Ctrl+K, Command+K and slash
-focus it without intercepting guest input. Enter or Arrow Down focuses the first
-visible game. A single nonmodal Filters panel adds genre, player and year facets.
-Active chips appear above the grid and remove individual criteria; Clear all
-resets both query and tags. Session storage retains the selection across reloads
-in the same tab. Launching and returning preserves the matching grid and focus.
-Small results stay contiguous at ordinary tile size. Refining a query preserves
-result order and updates without movement animations; Shuffle remains explicit.
-Search text is indexed once, and preview markup is created only on interaction.
+Search opens the original native dialog for finding and launching an individual
+game by name. Ctrl+K, Command+K and slash open it without intercepting guest input.
+Enter launches the first result; Arrow Down moves into the result list. Escape
+or clicking the backdrop dismisses it and restores the opener. Returning from a
+searched game reopens the dialog with the query and selected result focused.
+Search is independent of the mosaic's facets. There is no active-filter bar above
+the grid. Facet selections persist across reloads in the same tab; clear controls
+live inside the filter panel. Visible cards animate when filtering changes the
+mosaic, and clearing restores its highlights and variant groups.
+Names are indexed once, result nodes are reused, icons use lazy thumbnails, and
+preview markup is created only on interaction.
 
 ### Startup and transfer
 
@@ -300,8 +307,10 @@ iframe receives focus. Progress announcements use meaningful steps.
 
 A failed load replaces progress with concise error copy, Try again and Back to
 games. Retry receives focus and restarts the same game. Loading has a close
-button. During play, the plain Home button or Shift+Escape
-follows reported control colors and free-space layout. Returning restores the originating tile or search
+button. During play, the plain Home button follows reported control colors and
+free-space layout. Shift+Escape releases capture first; another press returns
+to the library. Fullscreen Keyboard Lock retains ordinary Escape for the game
+where the browser supports it. Returning restores the originating tile or search
 result focus and retains search state. A Shift/Esc hint appears at bottom center
 after one second of mouse capture, fades over four seconds, and cancels on unlock
 or navigation. Home remains visible for every input method.
@@ -312,7 +321,7 @@ or navigation. Home remains visible for every input method.
 - **Do** retain the ink-violet, warm-white and acid-lime identity with the self-hosted Bricolage font and its license.
 - **Do** preserve original square icons at rest and use real gameplay captures for interactive previews.
 - **Do** keep identity, Search, Full screen and Shuffle inside the full-width mosaic.
-- **Do** preserve visible keyboard focus, persistent search, query restoration and safe-area spacing.
+- **Do** preserve visible keyboard focus, separate search and filters, query restoration and safe-area spacing.
 - **Do** show real transfer progress and wait for the first presented frame before hiding startup.
 - **Do** preserve native Android styling and original game presentation within their platform scope.
 

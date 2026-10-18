@@ -64,6 +64,26 @@
       "sha256": "bc57733e8e4d0a329d838c56281522d5e193051c26f400d1fd65b88268cc864f",
       "generatedSha256": "3af1875665323234ce356f8a50018f5b78887edd0731ba9c8c7a338938031c3f",
       "generatedFile": "exec-7fdfe644-50ad-48e3-ad48-b89cda88d814.png"
+    },
+    {
+      "id": "martimcferreira-lcom-project-9a16857450a6",
+      "slug": "feup-hero",
+      "profile": "examples/community/martimcferreira--lcom-project/Project/lcom.json",
+      "prompt": "Use case: stylized-concept. Final square launcher icon for FEUP Hero, a five-lane keyboard rhythm game inspired by a neon rock concert. Create a bold, simple full-bleed game illustration: a black guitar fretboard recedes upward in perspective, with five large glowing circular note targets across the foreground in green, red, electric blue, purple and yellow. A few chunky matching colored notes descend down the lanes. Deep midnight purple background with a restrained hot-pink stage glow. Crisp pixel-art inspired stepped shapes, strong simple silhouettes, playful arcade energy, readable at 64px. The fretboard and notes fill nearly the whole square. No words, lettering, logo, numbers, badges, frame, border, rounded-square mask, empty margins, UI screenshot or watermark. Only one clear musical rhythm-game composition, no tiny decorative clutter. Promotional launcher artwork; original in-game art remains untouched.",
+      "references": [],
+      "created": "2026-10-18",
+      "generatedSize": [
+        1254,
+        1254
+      ],
+      "path": "collections/arcade/icons/feup-hero.png",
+      "size": [
+        512,
+        512
+      ],
+      "sha256": "86b9d0fdc35a73acf1797f6e6a86ff0a60b4a023c4c0898ee31062cc4d65756b",
+      "generatedSha256": "a2c1144f97e965e5fa5ec54c7601ab97947564a2494531def7fa157c869550ac",
+      "generatedFile": "exec-a4d0dcb9-22fb-4e49-a679-56b3446bf5cf.png"
     }
   ]
 }

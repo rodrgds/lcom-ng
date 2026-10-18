@@ -3,25 +3,16 @@ import {cue} from './audio.js';
 export class GameFilters {
   constructor(catalog,taxonomy,change) {
     this.catalog = catalog;
-    this.taxonomy = taxonomy;
     this.change = change;
     this.selected = {genre:new Set(),players:new Set(),year:new Set()};
-    const labels = new Map(taxonomy.map(tag=>[tag.id,tag.label]));
-    this.index = new Map(catalog.map(game=>[game,[game.name,game.academicYear,...(game.tags||[]).map(id=>labels.get(id))].filter(Boolean).join(' ').toLocaleLowerCase()]));
-    this.input = document.querySelector('#search');
-    this.query = '';
     this.storageKey = 'lcom-arcade:browse:v1:' + location.pathname;
     try {
       const saved = JSON.parse(sessionStorage.getItem(this.storageKey));
-      if (saved && typeof saved.query === 'string') this.query = saved.query;
       for (const facet of Object.keys(this.selected)) {
         if (Array.isArray(saved?.[facet])) this.selected[facet] = new Set(saved[facet].filter(value =>
           typeof value === 'string' && (facet === 'year' ? catalog.some(game=>game.academicYear===value) : taxonomy.some(tag=>tag.facet===facet&&tag.id===value))));
       }
     } catch { /* Browsing works when session storage is unavailable. */ }
-    this.input.value = this.query;
-    this.input.oninput = () => {this.query=this.input.value;this.apply();};
-    this.input.form.onsubmit = event => {event.preventDefault();this.close(false);document.querySelector('#games .game-launch')?.focus();};
     this.panel = document.querySelector('#browse-panel');
     this.toggle = document.querySelector('#browse-toggle');
     this.toggle.addEventListener('click',() => this.open());
@@ -63,13 +54,11 @@ export class GameFilters {
       (facet==='year'?values.has(game.academicYear):[...values].some(value=>game.tags?.includes(value))));
   }
   apply(notify=true) {
-    this.normalizedQuery=this.query.trim().toLocaleLowerCase();
-    const searched=this.catalog.filter(game=>this.index.get(game).includes(this.normalizedQuery));
-    const matches=searched.filter(game=>this.matchesFacets(game));
+    const matches=this.catalog.filter(game=>this.matchesFacets(game));
     // Count each facet once, excluding its own selection, rather than scanning
-    // and rebuilding the same searchable text for every individual button.
+    // the catalog for every individual button.
     const counts={genre:new Map(),players:new Map(),year:new Map()};
-    for(const facet of Object.keys(counts))for(const game of searched) {
+    for(const facet of Object.keys(counts))for(const game of this.catalog) {
       if(!this.matchesFacets(game,facet))continue;
       const values=facet==='year'?[game.academicYear]:game.tags||[];
       for(const value of values)counts[facet].set(value,(counts[facet].get(value)||0)+1);
@@ -81,22 +70,17 @@ export class GameFilters {
       button.lastElementChild.textContent=count;button.disabled=!selected&&!count;
     }
     const selected=Object.values(this.selected).reduce((sum,values)=>sum+values.size,0);
-    const active=!!selected || !!this.query.trim();
+    const active=!!selected;
     document.querySelector('#browse-count').textContent=`${matches.length} ${matches.length===1?'game':'games'}`;
     this.toggle.classList.toggle('filtered',!!selected);
     this.toggle.querySelector('span').textContent=selected?`Filters (${selected})`:'Filters';
     this.panel.querySelector('[data-reset]').disabled=!active;
-    const chips=document.querySelector('#active-filters');chips.replaceChildren();chips.hidden=!active;
-    const chip=(label,remove)=>{const button=document.createElement('button');button.type='button';button.textContent=label;button.setAttribute('aria-label','Remove '+label);button.onclick=remove;chips.append(button);};
-    if(this.query.trim())chip('Search: '+this.query.trim(),()=>{this.query='';this.input.value='';this.apply();this.input.focus();});
-    for(const [facet,values] of Object.entries(this.selected))for(const value of values)chip(facet==='year'?value:this.taxonomy.find(tag=>tag.id===value)?.label||value,()=>{values.delete(value);this.apply();this.input.focus();});
-    if(active){const clear=document.createElement('button');clear.type='button';clear.className='clear-browse';clear.textContent='Clear all';clear.setAttribute('aria-label','Clear search and filters');clear.onclick=()=>{this.reset();this.input.focus();};chips.append(clear);}
-    try {sessionStorage.setItem(this.storageKey,JSON.stringify({query:this.query,...Object.fromEntries(Object.entries(this.selected).map(([facet,values])=>[facet,[...values]]))}));} catch { /* Optional persistence. */ }
+    try {sessionStorage.setItem(this.storageKey,JSON.stringify(Object.fromEntries(Object.entries(this.selected).map(([facet,values])=>[facet,[...values]]))));} catch { /* Optional persistence. */ }
     this.panel.querySelector('[role="status"]').textContent=`${matches.length} of ${this.catalog.length} games`;
     if(notify)this.change(matches);
   }
   reset() {
-    this.query='';this.input.value='';for(const values of Object.values(this.selected))values.clear();this.apply();
+    for(const values of Object.values(this.selected))values.clear();this.apply();
   }
   position() {
     const button=this.toggle.getBoundingClientRect(),panel=this.panel.getBoundingClientRect();

@@ -21,32 +21,72 @@ export class Mosaic {
 
   setTiles(tiles, filtered = true) {
     if(this.filtered===filtered && tiles.length===this.tiles.length && tiles.every((tile,index)=>tile===this.tiles[index]))return;
+    const animate = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const before = animate ? this.positions() : null;
+    this.grid.querySelectorAll('.game-exit').forEach(element=>element.remove());
     this.filtered = filtered;
     const visible = new Set(tiles);
-    for (const tile of this.tiles) if (!visible.has(tile)) tile.element.remove();
+    const exits = [];
+    for (const tile of this.tiles) if (!visible.has(tile)) {
+      const rect = before?.get(tile.element);
+      if (rect) exits.push([tile,rect]);
+      tile.element.remove();
+    }
     this.tiles = tiles;
-    this.arrange(false);
+    this.arrange(animate,before);
+    if(exits.length)this.fadeOut(exits);
+  }
+
+  positions() {
+    const positions = new Map();
+    for (const tile of this.tiles) {
+      const rect = tile.element.getBoundingClientRect();
+      if (rect.width && rect.bottom > 0 && rect.top < innerHeight) positions.set(tile.element,rect);
+    }
+    // Read the interrupted visual positions before canceling previous movement.
+    for (const tile of this.tiles) tile.motion?.cancel();
+    return positions;
+  }
+
+  fadeOut(exits) {
+    // An inert, short-lived copy leaves the real result list immediately.
+    const fragment = document.createDocumentFragment(), ghosts = [];
+    for(const [tile,rect] of exits) {
+      if(!tile.element.querySelector('.game-icon').currentSrc)continue;
+      const ghost = document.createElement('div'), icon = tile.element.querySelector('.game-icon').cloneNode();
+      ghost.className = 'game-exit'; ghost.inert = true; ghost.setAttribute('aria-hidden','true');
+      icon.removeAttribute('srcset'); icon.src = tile.element.querySelector('.game-icon').currentSrc;
+      icon.className = 'game-icon';
+      Object.assign(ghost.style,{left:`${rect.x}px`,top:`${rect.y}px`,width:`${rect.width}px`,height:`${rect.height}px`});
+      ghost.append(icon); fragment.append(ghost); ghosts.push(ghost);
+    }
+    this.grid.append(fragment);
+    for(const ghost of ghosts)ghost.animate([{opacity:.65,transform:'none'},{opacity:0,transform:'scale(.92)'}],{duration:160,easing:'ease-out'}).finished.then(()=>ghost.remove(),()=>ghost.remove());
   }
 
   shuffle(animate = true, before = null) {
     this.order = shuffled(this.order || this.tiles);
+    this.highlights = null;
     this.arrange(animate,before);
   }
 
   arrange(animate = false, before = null) {
-    if(animate)before ??= new Map(this.tiles.map(tile => [tile.element, tile.element.getBoundingClientRect()]));
+    if(animate)before ??= this.positions();
     this.onShuffle?.();
-    const candidates = shuffled(this.tiles.filter(tile => !tile.game.featured));
     const sparse = this.filtered || this.tiles.length < 12;
-    const picks = sparse ? [] : shuffled(candidates.filter(tile=>tile.game.featuredPool)).slice(0,5);
-    this.featured = sparse ? [] : shuffled([...this.tiles.filter(tile=>tile.game.featured),...picks]);
+    if(!sparse && !this.highlights) {
+      const picks=shuffled(this.tiles.filter(tile=>!tile.game.featured && tile.game.featuredPool)).slice(0,10);
+      this.highlights=shuffled([...this.tiles.filter(tile=>tile.game.featured),...picks]);
+      this.highlightTargets=shuffled(this.highlights.map((_,index)=>(index+Math.random())/this.highlights.length));
+    }
+    this.featured = sparse ? [] : this.highlights;
     // Extra highlights belong to this arrangement, never to the game metadata.
     // Refresh their classes on Shuffle and keep the picks stable on resize.
     const highlights = new Set(this.featured);
     this.tiles.forEach(tile => tile.element.classList.toggle('featured', highlights.has(tile)));
     // Jitter one target in each horizontal band, then mix their order. Keep
     // these choices until Shuffle so responsive reflow stays predictable.
-    this.featuredTargets = shuffled(this.featured.map((_, index) => (index + Math.random()) / this.featured.length));
+    this.featuredTargets = sparse ? [] : this.highlightTargets;
     // Only full sets of nine become compact blocks. A featured game keeps its
     // own space, and the remaining variants stay ordinary playable tiles.
     this.tiles.forEach(tile => tile.element.classList.remove('compact'));
@@ -60,8 +100,9 @@ export class Mosaic {
       }
     }
     const grouped = new Set(), clusters = [];
+    const rank = new Map(this.order.map((tile,index)=>[tile,index]));
     for (const [name, family] of families) {
-      const members = shuffled(family);
+      const members = family.sort((a,b)=>rank.get(a)-rank.get(b));
       while (members.length >= 9) {
         const tiles = members.splice(0, 9);
         const element = document.createElement('div');
@@ -83,7 +124,6 @@ export class Mosaic {
       }
     }
     this.grid.querySelectorAll('.game-cluster').forEach(group => group.remove());
-    const rank = new Map(this.order.map((tile,index)=>[tile,index]));
     this.ordinary = [...ordinary.filter(tile => !grouped.has(tile)), ...clusters].sort((a,b)=>
       (rank.get(a.tiles?.[0]||a)??0)-(rank.get(b.tiles?.[0]||b)??0));
     this.width = 0;
@@ -99,7 +139,7 @@ export class Mosaic {
     const columns = mobile ? 3 : Math.max(2, Math.min(18, Math.floor((width + gap) / 136)));
     const tracks = columns * 2;
     const unit = (width - (tracks - 1) * gap) / tracks;
-    if(animate)before ??= new Map(this.tiles.map(tile => [tile.element, tile.element.getBoundingClientRect()]));
+    if(animate)before ??= this.positions();
     this.grid.style.setProperty('--tracks', tracks);
     this.grid.style.setProperty('--unit', `${unit}px`);
     this.grid.style.setProperty('--gap', `${gap}px`);
@@ -122,10 +162,10 @@ export class Mosaic {
         if(!tile.tiles)tile.element.querySelector('.game-icon').sizes=`${Math.ceil(unit*size+gap*(size-1))}px`;
       }
     };
-    // Phones place the two utility tiles above the separate game grid.
+    // Phones place the library tools above the separate game grid.
     const tools=[...this.grid.querySelector('.library-tools').children].filter(element=>!element.hidden);
-    const utilities=tools.reduce((sum,element)=>sum+(element.classList.contains('browse-tile')?2:1),0);
-    if(!mobile){let x=0;for(const element of tools){const span=element.classList.contains('browse-tile')?4:2;for(let dx=0;dx<span;dx+=2)reserve(null,x+dx,0,2);x+=span;}}
+    const utilities=tools.length;
+    if(!mobile)tools.forEach((element,index)=>reserve(null,index*2,0,2));
     const rows = Math.max(2, Math.ceil(((mobile ? 0 : utilities) + this.ordinary.reduce((sum, block) => sum + (block.tiles ? 4 : 1), 0) + this.featured.length * 4) / columns));
     const usedColumns = new Set();
     let previous = null;
@@ -177,13 +217,17 @@ export class Mosaic {
     }
     if (focus && this.games.contains(focus)) focus.focus({preventScroll: true});
     if (animate && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      for (const tile of ordered) {
-        const rect = tile.element.getBoundingClientRect(), old = before.get(tile.element);
+      // Batch geometry reads before creating animations to avoid forcing style
+      // and layout once per card while typing through a large catalog.
+      const positions = ordered.map(tile=>[tile,tile.element.getBoundingClientRect()]);
+      for (const [tile,rect] of positions) {
+        const old = before.get(tile.element);
         if (rect.top > innerHeight || rect.bottom < 0) continue;
-        tile.element.animate([
-          {transform: old?.width ? `translate(${old.x - rect.x}px, ${old.y - rect.y}px)` : 'scale(.96)', opacity: old?.width ? .7 : 0},
+        if(old && Math.abs(old.x-rect.x)<.5 && Math.abs(old.y-rect.y)<.5 && Math.abs(old.width-rect.width)<.5)continue;
+        tile.motion = tile.element.animate([
+          {transform: old?.width ? `translate(${old.x - rect.x}px, ${old.y - rect.y}px) scale(${old.width/rect.width},${old.height/rect.height})` : 'scale(.92)', opacity: old?.width ? 1 : 0},
           {transform: 'none', opacity: 1}
-        ], {duration: 540, easing: 'cubic-bezier(.16,1,.3,1)'});
+        ], {duration: 320, easing: 'cubic-bezier(.16,1,.3,1)'});
       }
     }
   }

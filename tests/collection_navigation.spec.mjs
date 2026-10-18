@@ -28,76 +28,48 @@ test.beforeAll(async () => {
 });
 test.afterAll(async()=>new Promise(resolve=>server.close(resolve)));
 
-test('search shortcuts focus the persistent field without taking typing, modal or guest input',async({page})=>{
+test('search shortcuts open the dialog without taking typing, other modal or guest input',async({page})=>{
   await page.goto(base);
   const input=page.getByRole('searchbox',{name:'Search games'});
-  await expect(input).toBeVisible();
+  await expect(input).toBeHidden();
   await page.keyboard.press('Control+k');await expect(input).toBeFocused();
   await input.fill('Game');await page.keyboard.press('/');await expect(input).toHaveValue('Game/');
   await page.keyboard.press('Meta+k');await expect(input).toBeFocused();await expect(input).toHaveValue('Game/');
+  await page.keyboard.press('Escape');await expect(page.locator('#search-toggle')).toBeFocused();
   await page.locator('.identity').focus();await page.keyboard.press('/');await expect(input).toBeFocused();
-  await input.fill('Game');
+  await input.fill('Game');await page.keyboard.press('Escape');
   await page.getByRole('button',{name:'Filter games',exact:true}).click();
   await expect(page.locator('#browse-panel')).toBeVisible();
-  await page.keyboard.press('Control+k');await expect(input).toBeFocused();
-  await expect(page.locator('#browse-panel')).toBeHidden();
-  const surprise=page.getByRole('button',{name:'Surprise me',exact:true});
-  await surprise.click();
-  await expect(page.locator('#surprise-panel')).toBeVisible();
-  await page.keyboard.press('Control+k');await page.keyboard.press('/');
-  await expect(input).not.toBeFocused();await expect(input).toHaveValue('Game');
-  await page.keyboard.press('Escape');
+  await page.keyboard.press('Control+k');await expect(input).toBeFocused();await expect(page.locator('#browse-panel')).toBeHidden();
+  await page.keyboard.press('Escape');await page.getByRole('button',{name:'Surprise me',exact:true}).click();
+  await expect(page.locator('#surprise-panel')).toBeVisible();await page.keyboard.press('Control+k');await page.keyboard.press('/');
+  await expect(input).toBeHidden();await expect(page.locator('#search')).toHaveValue('Game');await page.keyboard.press('Escape');
   await page.locator('#games .game-launch').first().click();
   const guest=page.frameLocator('iframe').getByRole('textbox',{name:'Guest input'});
-  await guest.focus();await page.keyboard.press('Control+k');await page.keyboard.press('Meta+k');
-  await page.keyboard.press('/');await expect(guest).toHaveValue('/');await expect(guest).toBeFocused();
-  const librarySearch=page.getByRole('searchbox',{name:'Search games',includeHidden:true});
-  await expect(librarySearch).toBeHidden();await expect(librarySearch).toHaveValue('Game');
+  await guest.focus();await page.keyboard.press('Control+k');await page.keyboard.press('Meta+k');await page.keyboard.press('/');
+  await expect(guest).toHaveValue('/');await expect(guest).toBeFocused();await expect(input).toBeHidden();
 });
 
-test('search keeps its query and filtered games through gameplay, Home and reload',async({page})=>{
-  await page.goto(base);
-  const input=page.getByRole('searchbox',{name:'Search games'}),links=page.locator('#games .game-launch');
-  await input.fill('07');await expect(links).toHaveCount(1);
-  await expect(links.first()).toHaveAttribute('data-id','game-7');
-  await page.keyboard.press('Enter');await expect(links.first()).toBeFocused();
-  await page.keyboard.press('Enter');await expect(page.locator('iframe')).toHaveCount(1);
-  await page.locator('#back').click();
-  await expect(input).toBeVisible();await expect(input).toHaveValue('07');
-  await expect(links).toHaveCount(1);await expect(links.first()).toBeFocused();
-  await page.reload();await expect(input).toHaveValue('07');
-  await expect(links).toHaveCount(1);await expect(links.first()).toHaveAttribute('data-id','game-7');
+test('search result launch and Home restore query and focus without changing the mosaic',async({page})=>{
+  await page.goto(base);await page.keyboard.press('/');
+  const input=page.getByRole('searchbox',{name:'Search games'}),results=page.locator('#search-results a');
+  await input.fill('07');await expect(results).toHaveCount(1);await expect(results).toHaveAttribute('data-id','game-7');
+  await page.keyboard.press('Enter');await expect(page.locator('iframe')).toHaveCount(1);await expect(page.locator('#loading')).toBeHidden();
+  await page.locator('#back').click();await expect(input).toBeVisible();await expect(input).toHaveValue('07');await expect(results).toBeFocused();
+  await page.keyboard.press('Escape');await expect(page.locator('#search-toggle')).toBeFocused();await expect(page.locator('#games .game-launch')).toHaveCount(24);
 });
 
-for(const width of [1280,390]) test(`search enters the actual filtered mosaic and follows its rendered squares at ${width}px`,async({page})=>{
-  await page.setViewportSize({width,height:844});await page.goto(base);
-  await page.keyboard.press('/');
-  const input=page.getByRole('searchbox',{name:'Search games'}),links=page.locator('#games .game-launch');
+for(const width of [1280,390]) test(`search arrows follow the result list at ${width}px`,async({page})=>{
+  await page.setViewportSize({width,height:844});await page.goto(base);await page.keyboard.press('/');
+  const input=page.getByRole('searchbox',{name:'Search games'}),links=page.locator('#search-results a');
   await input.fill('Game');await expect(links).toHaveCount(24);
-  await page.locator('#games').evaluate(element=>Promise.all(element.getAnimations({subtree:true}).map(animation=>animation.finished.catch(()=>{}))));
-  // A nonempty query uses ordinary squares. Derive the first 2x2 from their
-  // resting rectangles, independently of DOM order and expanded previews.
-  const squares=await links.evaluateAll(items=>items.map(item=>{
-    const box=item.closest('.game').getBoundingClientRect();return {id:item.dataset.id,x:box.x,y:box.y};
-  }));
-  const top=Math.min(...squares.map(square=>square.y));
-  const row=squares.filter(square=>Math.abs(square.y-top)<2).sort((a,b)=>a.x-b.x);
-  expect(row.length).toBeGreaterThanOrEqual(2);
-  const below=squares.filter(square=>square.y>top+2&&Math.abs(square.x-row[1].x)<2).sort((a,b)=>a.y-b.y)[0];
-  expect(below,'filtered mosaic has a second row').toBeTruthy();
-  const belowLeft=squares.find(square=>Math.abs(square.y-below.y)<2&&Math.abs(square.x-row[0].x)<2);
-  expect(belowLeft).toBeTruthy();
-  const game=id=>page.locator(`.game-launch[data-id="${id}"]`);
   await page.keyboard.press('ArrowDown');await expect(links.nth(0)).toBeFocused();
-  await expect(game(row[0].id)).toBeFocused();
-  await page.keyboard.press('ArrowRight');await expect(game(row[1].id)).toBeFocused();
-  await page.keyboard.press('ArrowDown');await expect(game(below.id)).toBeFocused();
-  await page.keyboard.press('ArrowLeft');await expect(game(belowLeft.id)).toBeFocused();
-  await page.keyboard.press('ArrowUp');await expect(game(row[0].id)).toBeFocused();
-  await page.keyboard.press('Control+k');await expect(input).toBeFocused();
-  await expect(input).toHaveValue('Game');
-  await input.fill('not found');await page.keyboard.press('ArrowDown');await expect(input).toBeFocused();
-  await expect(links).toHaveCount(0);
+  if(width>600){await page.keyboard.press('ArrowRight');await expect(links.nth(1)).toBeFocused();}
+  await page.keyboard.press('ArrowDown');await expect(links.nth(width>600?3:1)).toBeFocused();
+  await page.keyboard.press('ArrowUp');await expect(links.nth(width>600?1:0)).toBeFocused();
+  await page.keyboard.press('ArrowUp');await expect(input).toBeFocused();
+  await page.keyboard.press('Control+k');await expect(input).toBeFocused();await expect(input).toHaveValue('Game');
+  await input.fill('not found');await page.keyboard.press('ArrowDown');await expect(input).toBeFocused();await expect(links).toHaveCount(0);
 });
 
 test('mosaic arrows use square placement rather than expanded previews or repository links',async({page})=>{
@@ -154,7 +126,7 @@ test('separate brand and controls stay in two phone columns above three game col
         return Math.round((grid.clientWidth+gap)/(normal.width+gap));
       })).toBe(9);
     }
-    await expect(panel.locator('button')).toHaveCount(3);
+    await expect(panel.locator('button')).toHaveCount(4);
     for(const control of await panel.locator('a,button').all()) {
       const rect=await control.boundingBox();expect(rect.width).toBeGreaterThanOrEqual(44);expect(rect.height).toBeGreaterThanOrEqual(44);
       expect(await control.evaluate(element=>{const label=element.querySelector('span');return !label||(label.getBoundingClientRect().height<=parseFloat(getComputedStyle(label).fontSize)*1.5&&label.scrollWidth<=label.clientWidth+1);})).toBe(true);
@@ -174,12 +146,12 @@ test('separate brand and controls stay in two phone columns above three game col
     await page.screenshot({path:testInfo.outputPath(`controls-${width}.png`)});
   }
   await page.locator('.identity').focus();
-  for(const id of ['fullscreen','shuffle','surprise','search','browse-toggle']) {
+  for(const id of ['search-toggle','fullscreen','shuffle','surprise','browse-toggle']) {
     await page.keyboard.press('Tab');await expect(page.locator('#'+id)).toBeFocused();
   }
-  await page.locator('.identity').focus();await page.keyboard.press('ArrowRight');await expect(page.locator('#fullscreen')).toBeFocused();
-  await page.keyboard.press('ArrowRight');await expect(page.locator('#shuffle')).toBeFocused();
+  await page.locator('.identity').focus();await page.keyboard.press('ArrowRight');await expect(page.locator('#search-toggle')).toBeFocused();
+  await page.keyboard.press('ArrowRight');await expect(page.locator('#fullscreen')).toBeFocused();
   await page.keyboard.press('ArrowDown');await expect(page.locator('#surprise')).toBeFocused();
-  await page.keyboard.press('ArrowLeft');await expect(page.locator('.identity')).toBeFocused();
-  await page.locator('#browse-toggle').focus();await page.keyboard.press('ArrowLeft');await expect(page.locator('#surprise')).toBeFocused();
+  await page.keyboard.press('ArrowLeft');await expect(page.locator('#shuffle')).toBeFocused();
+  await page.locator('#browse-toggle').focus();await page.keyboard.press('ArrowLeft');await expect(page.locator('#fullscreen')).toBeFocused();
 });

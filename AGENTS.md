@@ -138,8 +138,11 @@ through `devenv shell -- ...`.
   Help overlays must consume editing input while maintaining button/modifier
   releases. Command is guest input. Right Option on macOS and Right Ctrl release the mouse.
   Browser physical mouse input uses click-to-capture Pointer Lock with relative
-  movement and retained fractional deltas. Escape unlocks and reaches the game
-  once; Shift+Escape returns to the collection. Native browser unlock can consume
+  movement and retained fractional deltas. Escape reaches the game. Fullscreen
+  Keyboard Lock retains capture where supported; browser-owned windowed Escape
+  unlock still forwards it once.
+  Shift+Escape first releases capture, then returns to the collection when
+  already released. Native browser unlock can consume
   Escape before DOM key events, so distinguish it from blur and programmatic
   release. Touch keeps its authored relative/direct controls. Keep
   shortcuts, hit targets, authored replays and screenshots aligned. See

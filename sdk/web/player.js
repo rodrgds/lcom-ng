@@ -251,12 +251,11 @@ document.addEventListener('pointerlockchange', () => {
   // A focused, unsolicited unlock is that gesture; blur and our own exits must
   // never inject Escape into the game. Capture the Shift state before release.
   const escaped = capturedMouse && !locked && !expectedUnlock && document.hasFocus() && !document.hidden;
-  const library = escaped && collectionPlayer && ['ShiftLeft','ShiftRight'].some(code => player.held.has(code));
+  const shortcut = escaped && ['ShiftLeft','ShiftRight'].some(code => player.held.has(code));
   capturedMouse = locked; expectedUnlock = false; capturePending = false;
   if(collectionPlayer) parent.postMessage({type:'lcom-player-pointer',captured:locked},location.origin);
   if (locked) resumeMouse(); else releaseMouse();
-  if (library) parent.postMessage({type:'lcom-player-library'},location.origin);
-  else if (escaped) {
+  if (escaped && !shortcut) {
     player.key('Escape',true,'browser-unlock');
     player.key('Escape',false,'browser-unlock');
   }
@@ -280,14 +279,16 @@ function resumeMouse() {
 }
 
 document.addEventListener('keydown', event => {
-  if (collectionPlayer && event.code === 'Escape' && event.shiftKey) {
-    event.preventDefault(); releaseMouse();
-    parent.postMessage({type:'lcom-player-library'},location.origin); return;
+  if (event.code === 'Escape' && event.shiftKey) {
+    event.preventDefault();
+    if(event.repeat)return;
+    const captured=pointerLocked(); releaseMouse();
+    if(collectionPlayer && !captured)parent.postMessage({type:'lcom-player-library'},location.origin);
+    return;
   }
   if (finished && event.code === 'Enter') { location.reload(); return; }
   if (!player.module || document.activeElement !== canvas) return;
   if (collectionPlayer) parent.postMessage({type:'lcom-player-input',keyboard:true},location.origin);
-  if (event.code === 'Escape' && pointerLocked()) releaseMouse();
   if (isMouseReleaseKey(event.code)) {
     event.preventDefault(); releaseMouse(); return;
   }
@@ -295,6 +296,9 @@ document.addEventListener('keydown', event => {
   event.preventDefault();
   player.unlockAudio();
   if (!event.repeat) player.key(event.code, true, 'physical');
+});
+window.addEventListener('message',event=>{
+  if(collectionPlayer && event.source===parent && event.origin===location.origin && event.data?.type==='lcom-player-release')releaseMouse();
 });
 document.addEventListener('keyup', event => {
   if (document.activeElement === canvas && isMouseReleaseKey(event.code)) {
@@ -862,7 +866,13 @@ async function enterFullscreen() {
     if (mobile?.orientation !== 'auto') await screen.orientation?.lock?.(mobile.orientation);
   } catch { /* Browsers may require a user gesture or may not support locking. */ }
 }
-document.addEventListener('fullscreenchange', () => fullscreenButton.setAttribute('aria-label', document.fullscreenElement ? 'Exit fullscreen' : 'Enter fullscreen'));
+document.addEventListener('fullscreenchange', () => {
+  fullscreenButton.setAttribute('aria-label', document.fullscreenElement ? 'Exit fullscreen' : 'Enter fullscreen');
+  if(collectionPlayer)return;
+  // Only a fullscreen top-level document can retain the browser's Escape key.
+  if(document.fullscreenElement)navigator.keyboard?.lock?.(['Escape']).catch(()=>{});
+  else navigator.keyboard?.unlock?.();
+});
 fullscreenButton.onclick = async () => {
   if (document.fullscreenElement) { await document.exitFullscreen(); return; }
   await enterFullscreen();
@@ -909,12 +919,6 @@ try {
   }, prepared);
   module.FS.mkdirTree(config.workingDirectory);
   module.FS.chdir(config.workingDirectory);
-  // Keep the collection's short introduction readable without running hidden gameplay.
-  const startAt=Number(new URLSearchParams(location.search).get('startAt'));
-  if(collectionPlayer && Number.isFinite(startAt)) {
-    const delay=Math.max(0,Math.min(2000,startAt-Date.now()));
-    if(delay) await new Promise(resolve=>setTimeout(resolve,delay));
-  }
   canvas.focus({ preventScroll: true }); player.paused = document.hidden;
   status.textContent = 'Game running.';
   // Execution can wait for ordinary input before drawing. This is not ready.
