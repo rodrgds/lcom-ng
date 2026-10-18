@@ -1268,8 +1268,7 @@
         "url": "https://github.com/teixdavide/FEUP_LCOM_PettyCats/blob/678372ac889677fb6241a6daa100ec7d56dcd6b0/src/utils/aux_structs/HurtBox.h",
         "date": "2024-06-02",
         "detail": "Academic year inferred from a dated original game source header (2024-06-02), with the school year beginning in September."
-      },
-      "featuredPool": true
+      }
     },
     "davidgustavo6-lcom-game-7f0cc9b9f5ba": {
       "year": 2024,
@@ -5678,8 +5677,7 @@
         "url": "https://github.com/Educorreia932/FEUP-LCOM/commit/4ca95947fb5d1745c913ec1f74c906c16fe14ade",
         "date": "2019-12-16",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-12-16), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      },
-      "featuredPool": true
+      }
     },
     "codyphin-feup-lcom-445abbecf4ab": {
       "year": 2022,
@@ -6755,8 +6753,7 @@
         "confidence": "explicit",
         "url": "https://github.com/Lantaros/LCOM/blob/56d2db8f00718f876097b67e0c2e24270ee230ed/proj/doc/LCOM_Report.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2016/17."
-      },
-      "featuredPool": true
+      }
     },
     "brunogomes30-lcom-5bba0d4baf36": {
       "year": 2022,
