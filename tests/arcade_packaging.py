@@ -9,10 +9,18 @@ import subprocess
 import sys
 import tempfile
 import unittest
+try:
+    import resource
+except ImportError:
+    resource = None
 
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def hosting_file_limit():
+    resource.setrlimit(resource.RLIMIT_FSIZE, (25*1024*1024, 25*1024*1024))
 
 
 class ArcadePackagingTest(unittest.TestCase):
@@ -86,7 +94,8 @@ class ArcadePackagingTest(unittest.TestCase):
             (source/"collection.json").write_text(json.dumps({"games":[{"id":"large"}]}))
             result = subprocess.run([sys.executable,str(ROOT/"scripts/package_arcade_web.py"),
                                      "--source",str(source),"--output",str(output)],
-                                    capture_output=True,text=True)
+                                    capture_output=True,text=True,
+                                    **({"preexec_fn":hosting_file_limit} if resource else {}))
             self.assertEqual(result.returncode,0,result.stderr)
             stored = (output/"games/large/game.data").read_bytes()
             self.assertLess(len(stored), 25 * 1024 * 1024)

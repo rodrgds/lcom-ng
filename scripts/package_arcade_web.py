@@ -50,7 +50,11 @@ def main():
     catalog = json.loads((source / "collection.json").read_text())
     if output.exists():
         shutil.rmtree(output)
-    shutil.copytree(source, output)
+    # Payloads are written compressed below. Copying their decoded form first
+    # wastes staging space and can exceed the host's per-file limit.
+    def skip_payloads(directory, names):
+        return {"game.wasm", "game.data"} if Path(directory).parent == source / "games" else set()
+    shutil.copytree(source, output, ignore=skip_payloads)
     records, data_records, images = [], [], []
     for game in catalog["games"]:
         icon_bounds = (512, 512) if game.get("featured") or game.get("featuredPool") else (256, 256)
