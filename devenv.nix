@@ -2,7 +2,7 @@
 
 {
   languages.python.enable = true;
-  languages.python.package = pkgs.python3.withPackages (ps: [ ps.pillow ]);
+  languages.python.package = pkgs.python3.withPackages (ps: [ ps.pillow ps.fonttools ps.brotli ]);
   packages = [
     pkgs.clang
     pkgs.emscripten

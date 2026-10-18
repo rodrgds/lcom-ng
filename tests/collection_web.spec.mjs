@@ -38,6 +38,28 @@ test.beforeAll(async () => {
 });
 test.afterAll(async () => new Promise(resolve => server.close(resolve)));
 
+test('a stalled optional font does not hold the page load or block browsing', async ({page}) => {
+  const fonts = [];
+  page.on('request', request => { if (request.url().endsWith('/assets/bricolage.woff2')) fonts.push(request.url()); });
+  let releaseCatalog;
+  const catalog = new Promise(resolve => { releaseCatalog = resolve; });
+  await page.route('**/collection.json', async route => { await catalog; await route.continue(); });
+  let release;
+  const pending = new Promise(resolve => { release = resolve; });
+  await page.route('**/assets/bricolage.woff2', async route => { await pending; await route.continue(); });
+  try {
+    await page.goto(base, {waitUntil:'domcontentloaded'});
+    await expect(page.locator('.identity h1')).toBeVisible();
+    expect(fonts).toEqual([]);
+    releaseCatalog();
+    await expect(page.locator('#games .game-launch')).toHaveCount(24);
+    await page.getByRole('button', {name:'Find a game',exact:true}).click();
+    await expect(page.getByRole('searchbox')).toBeVisible();
+    await page.waitForLoadState('load', {timeout:1500});
+  } finally { releaseCatalog(); release(); }
+  await expect.poll(() => page.evaluate(() => [...document.fonts].some(font => font.family === 'Bricolage' && font.status === 'loaded'))).toBe(true);
+});
+
 test('search opens an independent launch dialog while filters alone change the mosaic',async({page})=>{
   const taxonomy=[{id:'racing',label:'Racing',facet:'genre'},{id:'snake',label:'Snake',facet:'genre'}];
   await page.route('**/collection.json',route=>route.fulfill({json:{name:'Discovery fixture',taxonomy,games:games.map((game,index)=>({...game,tags:[index%2?'racing':'snake']}))}}));

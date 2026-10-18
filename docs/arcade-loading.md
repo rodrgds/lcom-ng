@@ -2,6 +2,45 @@
 
 Issue: [#22](https://github.com/rodrgds/lcom-ng/issues/22).
 
+## Production follow-up, issue 23
+
+The controlled comparison below did not establish that production loading was
+fixed. A subsequent user capture showed 9.47 seconds to DOMContentLoaded,
+23.22 seconds for the catalog, 34.88 seconds for the font, and a 36.25-second
+load event. A fresh live browser reproduced a 9.84-second load. Requests were
+Cloudflare cache hits, but their delivery times varied substantially.
+
+The decorative font was preloaded alongside the catalog and held the load event
+open. The launcher now requests it at low priority after rendering the catalog
+and after the page load. System text remains usable while it downloads. The
+hosted packager also pins the unused width axis to its normal value, reducing
+the font from 169,060 to 100,236 bytes. All characters, default glyph widths,
+weight variation and optical sizing are preserved. The original font stays
+unchanged in the SDK source.
+
+Three fresh Chrome contexts per version, 1280 by 800, fixed shuffle seed,
+400 ms request latency, 64 KiB/s download, 4x CPU slowdown and local HTTP/2.
+Medians compare `546368f5` with this follow-up:
+
+| Measure | Before | After |
+| --- | ---: | ---: |
+| Grid rendered and interactive | 5,491 ms | 3,556 ms |
+| All visible game icons decoded | 9,458 ms | 7,537 ms |
+| Last initial network response, including background work | 10,987 ms | 9,793 ms |
+
+These are 35%, 20% and 11% improvements respectively. The browser load event
+also moved from 8,842 to 1,705 ms, but that event precedes catalog rendering
+after this change and must not be presented as the usable-page improvement.
+This does not prove that the variable live delivery delay is resolved.
+
+The blocked-font browser regression verifies that the font does not compete
+with the catalog, browsing works during its download, the page load completes,
+and the font eventually applies. The packaging test preserves its character
+map, default glyph metrics and remaining variation ranges. Desktop and phone
+renders retain the same typography; the full phone capture is pixel-identical.
+All 5,563 per-game files match the previous publish byte for byte.
+Raw measurements: `build/arcade-loading/font-benchmark.json`.
+
 The previous deployment (`96d9fab0`) served every static file with
 `max-age=0, must-revalidate`. Live requests reproduced 0.5–0.6 second waits even
 for cached files. The launcher then discovered nine imported modules, another

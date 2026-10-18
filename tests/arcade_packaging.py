@@ -19,6 +19,7 @@ except ImportError:
     resource = None
 
 from PIL import Image, ImageDraw
+from fontTools.ttLib import TTFont
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -110,6 +111,9 @@ class ArcadePackagingTest(unittest.TestCase):
             (source/"launcher.js").write_text('import {value} from "./dependency.js?v=abcdef";document.body.dataset.value=await Promise.resolve(value);')
             (source/"dependency.js").write_text('export const value="first";')
             (source/"launcher.css").write_text('body{color:red}')
+            (source/"assets").mkdir()
+            original_font = ROOT/'sdk/collection/web-template/assets/bricolage.woff2'
+            (source/'assets/bricolage.woff2').write_bytes(original_font.read_bytes())
             (source/"collection.json").write_text(json.dumps({"name":"First", "games":[]}))
             command = [sys.executable, str(ROOT/"scripts/package_arcade_web.py"), "--source", str(source), "--output", str(output)]
             def build():
@@ -126,6 +130,15 @@ class ArcadePackagingTest(unittest.TestCase):
                 self.assertEqual((output/"_headers").read_text().strip(), '/static/*\n  Cache-Control: public, max-age=31536000, immutable')
                 return paths
             first = build()
+            published_font = next((output/'static').glob('bricolage-*.woff2'))
+            self.assertLess(published_font.stat().st_size, 110*1024)
+            with TTFont(original_font) as original, TTFont(published_font) as published:
+                self.assertEqual(original.getBestCmap(), published.getBestCmap())
+                self.assertEqual(original['hmtx'].metrics, published['hmtx'].metrics)
+                self.assertEqual({axis.axisTag:(axis.minValue,axis.defaultValue,axis.maxValue)
+                                  for axis in published['fvar'].axes},
+                                 {axis.axisTag:(axis.minValue,axis.defaultValue,axis.maxValue)
+                                  for axis in original['fvar'].axes if axis.axisTag != 'wdth'})
             (source/"dependency.js").write_text('export const value="second";')
             (source/"collection.json").write_text(json.dumps({"name":"Second", "games":[]}))
             second = build()

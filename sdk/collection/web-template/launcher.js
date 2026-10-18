@@ -7,6 +7,7 @@ import {GameSearch} from './search.js';
 import {Surprise} from './surprise.js';
 import {cue} from './audio.js';
 import {bindGridNavigation} from './navigation.js';
+import {loadFont} from './fonts.js';
 
 const library = document.querySelector('#library');
 const play = document.querySelector('#play');
@@ -270,7 +271,7 @@ try {
   if (!response.ok) throw new Error('The game library could not be loaded.');
   const data = await response.json(); catalog = data.games;
   library.querySelector('h1').textContent = data.name;
-  render(data.taxonomy || []); route();
+  render(data.taxonomy || []); route(); loadFont();
 } catch (error) {
   count.textContent = 'Library unavailable';
   const message = document.querySelector('#error'); message.textContent = `${error.message} Reload to try again.`; message.hidden = false;

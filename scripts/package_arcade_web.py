@@ -18,6 +18,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "sdk"))
 from collection.web import download_metadata
 
 from PIL import Image
+from fontTools.ttLib import TTFont
+from fontTools.varLib.instancer import instantiateVariableFont
 
 
 def fingerprint(output, name, data):
@@ -56,7 +58,16 @@ def package_shell(source, output, catalog):
     replacements = {}
     for name in ('assets/bricolage.woff2', 'assets/cursor.svg', 'assets/arcade.svg', 'icon.png', 'favicon.png'):
         if (source / name).is_file():
-            replacements[name] = fingerprint(output, name, (source / name).read_bytes())
+            data = (source / name).read_bytes()
+            if name.endswith('.woff2'):
+                # The UI always uses normal width. Retain every character,
+                # weight and optical size, without unused condensed masters.
+                with TTFont(BytesIO(data), recalcTimestamp=False) as font:
+                    instantiateVariableFont(font, {'wdth':100}, inplace=True)
+                    encoded = BytesIO()
+                    font.save(encoded)
+                    data = encoded.getvalue()
+            replacements[name] = fingerprint(output, name, data)
             shell = re.sub(r'''(["'])''' + re.escape(name) + r'''(?:\?v=[\w.-]+)?\1''',
                            lambda match: match[1] + replacements[name] + match[1], shell)
     css = (source / 'launcher.css').read_text()
