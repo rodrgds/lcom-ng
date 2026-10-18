@@ -155,3 +155,21 @@ paused.
 
 Local raw profiles, release logs, live captures and hash inventories are retained
 under `build/web-runtime-perf/`.
+
+### CI follow-up
+
+The initial Linux browser CI run passed 109 of 110 cases. The new randomized
+side-suggestion test could inspect the frame before hash navigation created it:
+the loader is initially hidden, so waiting only for it to be hidden does not
+establish that gameplay has started. The race reproduced in four of twelve local
+runs. The test now registers a navigation waiter before clicking the search
+result, then waits for readiness. All twelve repeated runs pass. This changes
+test synchronization only; the deployed application and game payloads remain
+unchanged. [Issue 20](https://github.com/rodrgds/lcom-ng/issues/20) records the
+final Linux web CI result.
+
+The student-package matrix also reports original include-case and Windows
+partial-source fixture/linker failures. Those same failures occur at the
+pre-optimization revision `6789bd26`; they are tracked separately in
+[issue 21](https://github.com/rodrgds/lcom-ng/issues/21). Passing local checks and
+live delivery qualification do not imply that this native-package matrix passed.

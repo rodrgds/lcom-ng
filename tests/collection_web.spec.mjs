@@ -636,9 +636,12 @@ test('side suggestions choose a fresh bounded deck from the whole catalog after 
     await page.addInitScript(seed=>{let state=seed;Math.random=()=>((state=(state*1664525+1013904223)>>>0)/4294967296);},seed);
     await page.route('**/collection.json',route=>route.fulfill({json:{games:catalog}}));
     await page.goto(base);await page.getByRole('button',{name:'Find a game',exact:true}).click();await page.getByRole('searchbox').fill('Game 00');
-    await expect(page.locator('#search-results a')).toHaveCount(1);await page.locator('#search-results a').click();
+    await expect(page.locator('#search-results a')).toHaveCount(1);
+    const [frame]=await Promise.all([
+      page.waitForEvent('framenavigated',{predicate:frame=>frame.parentFrame()===page.mainFrame() && frame.url().includes('/games/')}),
+      page.locator('#search-results a').click(),
+    ]);
     await expect(page.locator('#loading')).toBeHidden();
-    const frame=page.frames().find(frame=>frame.url().includes('/games/'));
     await frame.evaluate(()=>parent.postMessage({type:'lcom-player-layout',width:1920,height:900,game:{x:480,y:0,width:960,height:900},occupied:[]},location.origin));
     await expect(page.locator('.game-rail:not([hidden])')).toHaveCount(2);
     const ids=await page.locator('.game-rail .game-launch').evaluateAll(links=>[...new Set(links.map(link=>link.dataset.id))]);
