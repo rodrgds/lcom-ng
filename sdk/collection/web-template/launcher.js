@@ -266,7 +266,7 @@ document.querySelector('#cancel').onclick = returnToLibrary;
 document.querySelector('#load-dismiss').onclick = returnToLibrary;
 loading.addEventListener('cancel',event => {event.preventDefault();returnToLibrary();});
 try {
-  const response = await fetch('collection.json', {cache:'no-cache'});
+  const response = await fetch(document.querySelector('link[data-catalog]')?.href || 'collection.json');
   if (!response.ok) throw new Error('The game library could not be loaded.');
   const data = await response.json(); catalog = data.games;
   library.querySelector('h1').textContent = data.name;

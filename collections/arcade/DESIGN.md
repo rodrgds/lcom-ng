@@ -260,7 +260,13 @@ documented in `icons/generation.json`; original in-game artwork stays unchanged.
 
 A lime play disc and segmented frame timer appear above. Gameplay frames are
 real captures, contained without cropping. Multiple frames push-slide on a
-3-second cycle. Escape, blur, scroll, resize and leaving the page stop the preview.
+2.4-second cycle. A 32-pixel embedded screenshot supplies the first frame without
+a network round trip. After launcher icons decode, up to eight visible thumbnails
+queue for low-priority warming, with two downloads at a time. Only fine-pointer
+browsing warms them; Data Saver and 2G connections skip this work. The decoded
+160-pixel thumbnail cache retains at most 48 images. Sharp gallery frames load on
+interaction, with only the next frame warmed while a preview stays open.
+Escape, blur, scroll, resize and leaving the page stop the preview.
 Closing releases screenshot elements and cached slide references after the closing
 transition; progress animations run only while a preview is open. Touch activates
 the game directly.
@@ -297,6 +303,11 @@ live inside the filter panel. Visible cards animate when filtering changes the
 mosaic, and clearing restores its highlights and variant groups.
 Names are indexed once, result nodes are reused, icons use lazy thumbnails, and
 preview markup is created only on interaction.
+
+The hosted launcher is bundled into one content-hashed script. Its versioned
+catalog is preloaded alongside the script. Hosted scripts, styles, fonts, icons
+and screenshots use content-hashed files under `static/` with immutable browser
+caching. The HTML keeps revalidation so a new release selects fresh asset URLs.
 
 ### Startup and transfer
 

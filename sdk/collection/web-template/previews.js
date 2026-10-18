@@ -1,3 +1,5 @@
+import {Thumbnails} from './thumbnails.js';
+
 const motion = matchMedia('(prefers-reduced-motion: reduce)');
 const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
 const interval = 2400;
@@ -24,6 +26,20 @@ export class Previews {
     this.root = root;
     this.active = null;
     this.timer = null;
+    this.thumbnails = new Thumbnails();
+    this.tiles = new WeakMap();
+    this.thumbnailObserver = !root && finePointer.matches && typeof IntersectionObserver !== 'undefined' ? new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        const tile = this.tiles.get(entry.target);
+        if (!tile) continue;
+        tile.visible = entry.isIntersecting;
+        if (!tile.visible) this.thumbnails.queue.delete(tile.game.screenshotThumbnail);
+        else {
+          const icon = tile.link.querySelector('.game-icon');
+          if (icon.complete && icon.naturalWidth) this.thumbnails.warm(tile.game.screenshotThumbnail);
+        }
+      }
+    }) : null;
     // Native lazy loading can fetch several screens ahead. Observe the final
     // shuffled tile positions and only assign sources near the viewport.
     this.iconObserver = typeof IntersectionObserver === 'undefined' ? null : new IntersectionObserver(entries => {
@@ -32,7 +48,10 @@ export class Previews {
         if(entry.isIntersecting)this.loadIcon(entry.target);
       }
     }, {root,rootMargin:root?'0px':'160px 0px'});
-    document.addEventListener('visibilitychange', () => { if (document.hidden) this.stop(); });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) this.stop();
+      else this.thumbnails.schedule();
+    });
     window.addEventListener('blur', () => this.stop());
     window.addEventListener('resize', () => this.stop());
     window.addEventListener('scroll', () => {
@@ -46,7 +65,7 @@ export class Previews {
   }
 
   clear() {
-    this.stop(); this.iconObserver?.disconnect();
+    this.stop(); this.iconObserver?.disconnect(); this.thumbnailObserver?.disconnect(); this.thumbnails.clear();
   }
 
   loadIcon(element) {
@@ -54,7 +73,10 @@ export class Previews {
     if (!icon.dataset.src) return;
     if(!this.root)this.iconObserver?.unobserve(element);
     if (this.iconObserver) icon.loading = 'eager';
-    icon.sizes = `${Math.ceil(element.getBoundingClientRect().width)}px`;
+    const bounds = element.getBoundingClientRect();
+    const visible = bounds.top < innerHeight && bounds.bottom > 0;
+    icon.fetchPriority = this.root || !visible ? 'low' : element.classList.contains('featured') ? 'high' : 'auto';
+    icon.sizes = `${Math.ceil(bounds.width)}px`;
     if(icon.dataset.srcset) {icon.srcset=icon.dataset.srcset;delete icon.dataset.srcset;}
     icon.src = icon.dataset.src;
     delete icon.dataset.src;
@@ -87,10 +109,13 @@ export class Previews {
     icon.onload = async () => {
       try { await icon.decode(); } catch { /* A loaded fallback can still be shown. */ }
       icon.classList.remove('pending');
+      if (tile.visible) this.thumbnails.warm(game.screenshotThumbnail);
     };
     icon.onerror = () => { icon.onerror = null; icon.removeAttribute('srcset'); icon.src = 'assets/arcade.svg'; };
     link.append(icon,description); element.append(link);
     const tile = {game,element,link,index:0,token:0};
+    this.tiles.set(element, tile);
+    this.thumbnailObserver?.observe(element);
     element.addEventListener('pointerenter', event => {
       // Keep keyboard actions reachable while the pointer crosses other tiles.
       if (event.pointerType !== 'touch' && finePointer.matches && !this.hasFocusedAction()) this.start(tile);
@@ -150,17 +175,14 @@ export class Previews {
     Object.assign(tile,{track,slides,sources,bars});
   }
 
-  async image(tile, index) {
+  async image(tile, index, priority = 'high') {
     const slides = tile.slides;
     if (slides[index]) return slides[index];
     const image = new Image();
-    image.className = 'preview-frame'; image.alt = ''; image.decoding = 'async';
+    image.className = 'preview-frame'; image.alt = ''; image.decoding = 'async'; image.fetchPriority = priority;
     image.src = tile.sources[index];
-    try { await image.decode(); } catch { return null; }
-    // A closed preview may have released its gallery while decoding completed.
-    if (tile.slides !== slides) return null;
-    slides[index] = image;
-    return image;
+    slides[index] = image.decode().then(() => tile.slides === slides ? image : null, () => null);
+    return slides[index];
   }
 
   hasFocusedAction() {
@@ -200,7 +222,18 @@ export class Previews {
     this.position(tile);
     tile.element.classList.add('previewing');
     tile.index = 0;
-    tile.track.replaceChildren();
+    const thumbnail = this.thumbnails.get(tile.game.screenshotThumbnail);
+    const placeholder = (thumbnail || tile.link.querySelector('.game-icon')).cloneNode();
+    placeholder.className = 'preview-frame preview-placeholder';
+    if (!thumbnail && tile.game.screenshotPlaceholder) {
+      placeholder.removeAttribute('srcset');
+      placeholder.src = tile.game.screenshotPlaceholder;
+    }
+    tile.track.replaceChildren(placeholder);
+    tile.element.classList.add('preview-ready');
+    this.thumbnails.load(tile.game.screenshotThumbnail).then(image => {
+      if (image && this.active === tile && tile.token === token && placeholder.isConnected) placeholder.src = image.src;
+    });
     const image = await this.image(tile, 0);
     if (this.active !== tile || tile.token !== token) return;
     if (image) tile.track.replaceChildren(image);
@@ -226,6 +259,8 @@ export class Previews {
   schedule(tile) {
     clearTimeout(this.timer);
     if (motion.matches || tile.sources.length < 2) return;
+    // Warm only the next frame of the open gallery, never every game's gallery.
+    this.image(tile, (tile.index + 1) % tile.sources.length, 'low');
     this.timer = setTimeout(() => this.next(tile), interval);
   }
 

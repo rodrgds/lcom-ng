@@ -193,6 +193,79 @@ test('repeated archetypes pack nine playable games into four normal tile spaces'
   await expect(page.locator('#search-results a')).toHaveCount(1);
 });
 
+test('a first hover shows an embedded screenshot without waiting for either network image', async ({page}) => {
+  const placeholder = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="32" height="24"><path fill="red" d="M0 0h32v24H0z"/></svg>');
+  await page.route('**/collection.json', route => route.fulfill({json:{games:games.map(game => ({...game,screenshotThumbnail:'/shot-tiny.svg',screenshotPlaceholder:placeholder}))}}));
+  let release;
+  const pending = new Promise(resolve => { release = resolve; });
+  await page.route(/\/shot-(red|tiny)\.svg$/, async route => { await pending; await route.continue(); });
+  try {
+    await page.goto(base);
+    const card = page.locator('#games .game-launch').first();
+    await card.focus();
+    const image = card.locator('.preview-placeholder');
+    await expect(image).toBeVisible();
+    await expect(image).toHaveAttribute('src', placeholder);
+    await expect.poll(() => image.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);
+    await expect(card.locator('img[src="/shot-red.svg"]')).toHaveCount(0);
+  } finally { release(); }
+});
+
+test('tiny screenshot warming respects data saver', async ({page}) => {
+  await page.addInitScript(() => Object.defineProperty(navigator, 'connection', {value:{saveData:true}}));
+  await page.route('**/collection.json', route => route.fulfill({json:{games:games.map((game,index) => ({...game,screenshotThumbnail:`/shot-tiny-${index}.svg`}))}}));
+  const screenshots = [];
+  page.on('request', request => { if (request.url().includes('/shot-')) screenshots.push(request.url()); });
+  await page.goto(base);
+  await expect(page.locator('#games .game-launch')).toHaveCount(24);
+  await page.waitForLoadState('networkidle');
+  expect(screenshots).toEqual([]);
+});
+
+test('the decoded tiny screenshot cache retains at most 48 images and releases them on clear', async ({page}) => {
+  await page.goto(base);
+  const result = await page.evaluate(async () => {
+    const {Thumbnails} = await import('/thumbnails.js');
+    const cache = new Thumbnails();
+    const urls = Array.from({length:64}, (_,index) => `/shot-cache-${index}.svg`);
+    for (const url of urls) await cache.load(url);
+    const retained = urls.filter(url => cache.get(url));
+    cache.clear();
+    return {retained,after:urls.filter(url => cache.get(url))};
+  });
+  expect(result.retained).toHaveLength(48);
+  expect(result.retained[0]).toBe('/shot-cache-16.svg');
+  expect(result.retained.at(-1)).toBe('/shot-cache-63.svg');
+  expect(result.after).toEqual([]);
+});
+
+test('visible cards warm only tiny screenshots and show them while sharp screenshots download', async ({page}) => {
+  await page.setViewportSize({width:1440,height:900});
+  const catalog = Array.from({length:90}, (_, index) => ({...games[index%24], id:`game-${index}`, screenshotThumbnail:`/shot-tiny-${index}.svg`}));
+  await page.route('**/collection.json', route => route.fulfill({json:{games:catalog}}));
+  const tiny = [];
+  page.on('request', request => { if (request.url().includes('/shot-tiny-')) tiny.push(new URL(request.url()).pathname); });
+  let release;
+  const pending = new Promise(resolve => { release = resolve; });
+  await page.route('**/shot-red.svg', async route => { await pending; await route.continue(); });
+  try {
+    await page.goto(base);
+    await expect.poll(() => tiny.length).toBeGreaterThan(0);
+    const id = tiny[0].match(/shot-tiny-(\d+)/)[1];
+    const card = page.locator('#games .game-launch[data-id="game-'+id+'"]');
+    expect(tiny.length).toBeLessThan(90);
+    expect(await page.evaluate(() => performance.getEntriesByType('resource').some(entry => /shot-(red|blue|green)/.test(entry.name)))).toBe(false);
+    await card.focus();
+    await expect(card.locator('.preview-placeholder')).toBeVisible();
+    await expect.poll(() => card.locator('.preview-placeholder').evaluate(image => new URL(image.src).pathname)).toBe(`/shot-tiny-${id}.svg`);
+    release();
+    await expect(card.locator('img[src="/shot-red.svg"]')).toBeVisible();
+    await expect(card.locator('.preview-placeholder')).toHaveCount(0);
+    await page.locator('#search-toggle').focus();
+    await expect(page.locator('.preview-window')).toHaveCount(0);
+  } finally { release(); }
+});
+
 test('closed previews release screenshot elements and animations after visiting many games', async ({page}) => {
   await page.goto(base);
   const cards = page.locator('#games .game-launch');

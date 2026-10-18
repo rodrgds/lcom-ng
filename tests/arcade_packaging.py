@@ -2,6 +2,10 @@
 """Exercise the hosted Arcade's image and module delivery contracts."""
 
 import gzip
+import base64
+from io import BytesIO
+import hashlib
+from html.parser import HTMLParser
 import json
 from pathlib import Path
 import random
@@ -49,6 +53,16 @@ class ArcadePackagingTest(unittest.TestCase):
             subprocess.run([sys.executable, str(ROOT / "scripts/package_arcade_web.py"), "--source", str(source), "--output", str(output)], check=True, capture_output=True)
             published = json.loads((output / "collection.json").read_text())["games"][0]
             self.assertNotIn("downloadFiles", published)
+            for relative in [published["icon"], published["preview"], published["screenshots"][0], published["screenshotThumbnail"]]:
+                self.assertTrue(relative.startswith("static/"), relative)
+                self.assertIn(hashlib.sha256((output/relative).read_bytes()).hexdigest()[:12], relative)
+            self.assertTrue(published['screenshotPlaceholder'].startswith('data:image/webp;base64,'))
+            with Image.open(BytesIO(base64.b64decode(published['screenshotPlaceholder'].split(',')[1]))) as placeholder:
+                self.assertLessEqual(placeholder.width, 32)
+                self.assertLessEqual(placeholder.height, 24)
+            with Image.open(output/published["screenshotThumbnail"]) as thumbnail:
+                self.assertLessEqual(thumbnail.width, 160)
+                self.assertLessEqual(thumbnail.height, 120)
             audit = json.loads((output / "collection-provenance.json").read_text())["games"][0]
             self.assertEqual(audit["downloadFiles"][0]["path"], "games/fixture/game.js")
             widths = []
@@ -80,6 +94,44 @@ class ArcadePackagingTest(unittest.TestCase):
             self.assertLessEqual((output / published["icon"]).stat().st_size, (game / "icon.png").stat().st_size)
             with Image.open(output / published["icon"]) as image:
                 self.assertEqual(image.size, (8, 8))
+
+    def test_shell_bundles_dependencies_and_preloads_an_immutable_catalog(self):
+        class Head(HTMLParser):
+            def __init__(self):
+                super().__init__()
+                self.elements = []
+            def handle_starttag(self, tag, attrs):
+                self.elements.append((tag, dict(attrs)))
+
+        with tempfile.TemporaryDirectory() as directory:
+            source, output = Path(directory)/"export", Path(directory)/"publish"
+            source.mkdir()
+            (source/"index.html").write_text('<link rel="stylesheet" href="launcher.css?v=old"><script type="module" src="launcher.js?v=old"></script><link rel="preload" as="fetch" crossorigin href="collection.json" data-catalog>')
+            (source/"launcher.js").write_text('import {value} from "./dependency.js?v=abcdef";document.body.dataset.value=await Promise.resolve(value);')
+            (source/"dependency.js").write_text('export const value="first";')
+            (source/"launcher.css").write_text('body{color:red}')
+            (source/"collection.json").write_text(json.dumps({"name":"First", "games":[]}))
+            command = [sys.executable, str(ROOT/"scripts/package_arcade_web.py"), "--source", str(source), "--output", str(output)]
+            def build():
+                subprocess.run(command, check=True, capture_output=True)
+                head = Head()
+                head.feed((output/"index.html").read_text())
+                paths = [attrs.get("src") or attrs.get("href") for tag, attrs in head.elements]
+                self.assertEqual(len(paths), 3)
+                for relative in paths:
+                    self.assertTrue(relative.startswith("static/"), relative)
+                    self.assertIn(hashlib.sha256((output/relative).read_bytes()).hexdigest()[:12], relative)
+                catalog = next(attrs['href'] for tag, attrs in head.elements if 'data-catalog' in attrs)
+                self.assertEqual(json.loads((output/catalog).read_text()), json.loads((output/"collection.json").read_text()))
+                self.assertEqual((output/"_headers").read_text().strip(), '/static/*\n  Cache-Control: public, max-age=31536000, immutable')
+                return paths
+            first = build()
+            (source/"dependency.js").write_text('export const value="second";')
+            (source/"collection.json").write_text(json.dumps({"name":"Second", "games":[]}))
+            second = build()
+            self.assertNotEqual(first[1], second[1])
+            self.assertNotEqual(first[2], second[2])
+            self.assertEqual(first[0], second[0])
 
     def test_large_game_data_preserves_bytes_and_fits_the_asset_limit(self):
         with tempfile.TemporaryDirectory() as directory:
