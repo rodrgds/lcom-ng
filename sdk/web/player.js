@@ -35,6 +35,7 @@ let touchPointer = null;
 let touchClickEnabled = true;
 let tapTimer = null;
 const mouseSources = new Map();
+let physicalButtons = 0;
 const mouseButtonContacts = new Map();
 const functionToggle = document.createElement('button');
 functionToggle.id = 'function-toggle';
@@ -97,6 +98,7 @@ const player = {
     for (const button of document.querySelectorAll('.key[data-code][aria-pressed]')) button.setAttribute('aria-pressed', 'false');
     if (this.buttons) this.module?.ccall('lcom_web_mouse', null, ['number', 'number', 'number'], [0, 0, 0]);
     this.buttons = 0;
+    physicalButtons = 0;
     this.lastPointer = null;
     mouseSources.clear();
     for (const contact of mouseButtonContacts.values()) clearTimeout(contact.timer);
@@ -323,6 +325,13 @@ document.addEventListener('visibilitychange', () => {
   if (document.hidden) releaseMouse();
   player.paused = document.hidden; player.stopAudio();
 });
+window.addEventListener('pagehide', event => {
+  if (event.persisted) return;
+  releaseMouse(); player.paused = true; player.stopAudio();
+  // Firefox does not close an AudioContext when its game iframe is removed.
+  player.audioContext?.close().catch(error => console.warn(error.message));
+  player.audioContext = null;
+});
 
 function sendMouse(dx = 0, dy = 0) {
   player.module?.ccall('lcom_web_mouse', null, ['number', 'number', 'number'], [dx, dy, player.buttons]);
@@ -362,12 +371,12 @@ function mouse(event) {
   if (!player.module || mouseReleased || (capturePending && !pointerLocked())) return;
   if (pointerLocked()) {
     const rect = canvas.getBoundingClientRect();
-    relativeMouse(event.movementX * canvas.width / rect.width, -event.movementY * canvas.height / rect.height, event.buttons);
+    relativeMouse(event.movementX * canvas.width / rect.width, -event.movementY * canvas.height / rect.height, physicalButtons);
     return;
   }
   const point = canvasPoint(event);
   if (mobile?.controls.pointer === 'direct' || mobile?.controls.cursor.desktopScale) {
-    setMouseButtons('physical', event.buttons, 0, 0, point);
+    setMouseButtons('physical', physicalButtons, 0, 0, point);
     return;
   }
   const previous = player.lastPointer || point;
@@ -375,7 +384,7 @@ function mouse(event) {
   const dy = previous[1] - point[1];
   player.lastPointer = point;
   // Browser button bits are left/right/middle, just like a PS/2 packet.
-  relativeMouse(dx, dy, event.buttons);
+  relativeMouse(dx, dy, physicalButtons);
 }
 canvas.addEventListener('wheel', event => {
   if (!player.module || mouseReleased || !event.deltaY) return;
@@ -392,19 +401,23 @@ canvas.addEventListener('pointerdown', event => {
     requestMouseCapture(); return;
   }
   canvas.setPointerCapture(event.pointerId);
-  mouse(event);
 });
 canvas.addEventListener('pointermove', event => {
   if (!pointerLocked() && event.pointerType !== 'touch' && (event.pointerType === 'mouse' || event.buttons)) mouse(event);
 });
 document.addEventListener('mousemove', event => { if (pointerLocked()) mouse(event); });
 for (const type of ['mousedown','mouseup']) document.addEventListener(type, event => {
-  if (pointerLocked()) { event.preventDefault(); mouse(event); }
+  // Firefox can report zero buttons on pointer-locked movement while a button
+  // is still held. Only actual press/release events change physical state.
+  physicalButtons = event.buttons;
+  if (pointerLocked() || event.target === canvas) { event.preventDefault(); mouse(event); }
 });
 canvas.addEventListener('pointerleave', () => { if (!pointerLocked()) player.lastPointer = null; });
-canvas.addEventListener('pointerup', event => { if (!pointerLocked() && event.pointerType !== 'touch') mouse(event); });
-canvas.addEventListener('pointercancel', event => { if (event.pointerType !== 'touch') setMouseButtons('physical', 0); });
-canvas.addEventListener('lostpointercapture', event => { if (event.pointerType !== 'touch') setMouseButtons('physical', 0); });
+for (const type of ['pointercancel','lostpointercapture']) canvas.addEventListener(type, event => {
+  if (event.pointerType === 'touch') return;
+  physicalButtons = 0;
+  setMouseButtons('physical', 0);
+});
 canvas.addEventListener('contextmenu', event => event.preventDefault());
 area.addEventListener('pointerdown', event => {
   if (event.target !== area && event.target !== canvas) return;

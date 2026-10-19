@@ -17,6 +17,9 @@ test.beforeAll(async () => {
   }));
   execFileSync(process.env.LCOM_CLI || path.join(root, 'build/machinelab'),
     ['export', 'web', directory, '--output', path.join(directory, 'web')], {stdio: 'pipe'});
+  execFileSync(process.env.LCOM_CLI || path.join(root, 'build/machinelab'),
+    ['export', 'web', path.join(root, 'tests/fixtures/web/native'), '--asset', 'assets',
+     '--arg=--keep-open', '--output', path.join(directory, 'web/input')], {stdio:'pipe'});
   const mime = {'.js': 'text/javascript', '.wasm': 'application/wasm', '.json': 'application/json', '.css': 'text/css', '.html': 'text/html'};
   server = createServer((request, response) => {
     const name = new URL(request.url, 'http://localhost').pathname;
@@ -63,9 +66,65 @@ for (const browserType of [chromium, firefox]) {
   });
 }
 
-test('returning from repeated games closes each player audio context before discarding its frame', async () => {
-  const browser = await chromium.launch(process.env.CHROME_PATH ? {executablePath: process.env.CHROME_PATH} :
-    {channel: process.platform === 'darwin' ? 'chrome' : 'chromium'});
+for (const browserType of [chromium, firefox]) for (const capture of [true, false]) {
+  test(`${browserType.name()}: ${capture ? 'captured' : 'fallback'} drags retain button state across incorrect movement reports`, async () => {
+    const browser = await browserType.launch(browserType === chromium ?
+      (process.env.CHROME_PATH ? {executablePath:process.env.CHROME_PATH} : process.platform === 'darwin' ? {channel:'chrome'} : {}) : {});
+    try {
+      const page = await browser.newPage();
+      if (!capture) await page.addInitScript(() => { Element.prototype.requestPointerLock = undefined; });
+      const bytes = [];
+      page.on('console', message => {
+        const match = /^mouse:([0-9a-f]{2})$/.exec(message.text());
+        if (match && (bytes.length || match[1] !== 'fa')) bytes.push(parseInt(match[1], 16));
+      });
+      await page.goto(base + '/input/');
+      await expect(page.locator('#status')).toHaveText('Game running.');
+      const buttons = () => bytes[Math.floor(bytes.length / 3) * 3 - 3] & 7;
+      const canvas = page.locator('canvas');
+      // The initial gesture, including capture acquisition, supports dragging.
+      await canvas.hover(); await page.mouse.down();
+      await expect.poll(() => page.evaluate(() => !!document.pointerLockElement)).toBe(capture);
+      const box = await canvas.boundingBox();
+      await page.mouse.move(box.x + box.width / 2 + 20, box.y + box.height / 2);
+      await expect.poll(buttons).toBe(1);
+      await page.mouse.up(); await expect.poll(buttons).toBe(0);
+      let moves = 0;
+      const move = async reportedButtons => {
+        const before = Math.floor(bytes.length / 3);
+        // Replay Firefox's native pointer-lock bug: a movement reports zero
+        // buttons while the real mouse button is still down (Mozilla 2037367).
+        await canvas.evaluate((canvas, {buttons,capture,moves}) => {
+          const rect = canvas.getBoundingClientRect();
+          canvas.dispatchEvent(capture ? new MouseEvent('mousemove', {bubbles:true,movementX:12,buttons}) :
+            new PointerEvent('pointermove', {bubbles:true,pointerType:'mouse',buttons,
+              clientX:rect.x+rect.width/2+moves*12,clientY:rect.y+rect.height/2}));
+        }, {buttons:reportedButtons,capture,moves:++moves});
+        await expect.poll(() => Math.floor(bytes.length / 3)).toBeGreaterThan(before);
+      };
+      await page.mouse.down();
+      await expect.poll(buttons).toBe(1);
+      await move(0);
+      expect(buttons()).toBe(1);
+      await page.mouse.down({button:'right'});
+      await expect.poll(buttons).toBe(3);
+      await move(0);
+      expect(buttons()).toBe(3);
+      await page.mouse.up();
+      await expect.poll(buttons).toBe(2);
+      await move(0);
+      expect(buttons()).toBe(2);
+      await page.mouse.up({button:'right'});
+      await expect.poll(buttons).toBe(0);
+      await move(3);
+      expect(buttons()).toBe(0);
+    } finally { await browser.close(); }
+  });
+}
+
+for (const browserType of [chromium, firefox]) test(`${browserType.name()}: returning from repeated games closes each player audio context before discarding its frame`, async () => {
+  const browser = await browserType.launch(browserType === chromium ?
+    (process.env.CHROME_PATH ? {executablePath:process.env.CHROME_PATH} : process.platform === 'darwin' ? {channel:'chrome'} : {}) : {});
   const page = await browser.newPage();
   try {
     await page.addInitScript(() => {
