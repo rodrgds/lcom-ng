@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "T-Rex Run",
-  "description": "Jump over cacti and duck under birds in the dinosaur runner.",
+  "description": "Type a five-letter nickname, then press Space to start. Use Up Arrow to jump over cacti and Down Arrow to duck under birds.",
   "mobile": {
     "orientation": "landscape",
     "fullscreen": true,
