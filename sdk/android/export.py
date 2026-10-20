@@ -29,6 +29,8 @@ def argument_parser():
     parser.add_argument('--app-id', help='Android application ID (default: pt.rgo.lcomng.game.PROJECT)')
     parser.add_argument('--abi', action='append', choices=['arm64-v8a', 'x86_64', 'armeabi-v7a'], help='native architecture; repeatable (default: arm64-v8a)')
     parser.add_argument('--project-only', action='store_true', help='generate the relocatable Android project without building its APK')
+    parser.add_argument('--catalog-only', action='store_true', help='build a collection launcher with no bundled games')
+    parser.add_argument('--catalog-url', help='remote catalog URL for a catalog-only collection launcher')
     return parser
 
 
@@ -91,6 +93,8 @@ def build(args):
         sys.path.insert(0, str(SDK))
         from collection import manifest
         return manifest.build(args, 'android')
+    if getattr(args, 'catalog_only', False) or getattr(args, 'catalog_url', None):
+        raise source_project.compat.BuildError('--catalog-only and --catalog-url require a collection')
     settings = source_project.project_config.resolve(args)
     project = args.project.resolve(strict=True)
     output = (args.output or project / '.lcom-ng/android').resolve()

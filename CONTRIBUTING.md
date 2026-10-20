@@ -52,9 +52,11 @@ a desktop session.
 - Keep original Arcade game assets unchanged and per-game settings in each
   game's `lcom.json`.
 
-Android builds, emulator checks, and publication are paused. Do not treat
-Android qualification as a condition for admitting a web change, and preserve
-the implementation and signing keys.
+The Android Arcade launcher ships no games. Build and publish per-game bundles
+with `scripts/build_android_bundles.py` and `scripts/publish_android_bundles.py`,
+then verify download, offline launch, update and delete on an emulator or
+device. Keep web and Android qualification separate, and preserve the signing
+keys.
 
 ## Docs style
 

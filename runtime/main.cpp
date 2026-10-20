@@ -161,6 +161,8 @@ static void configureCliApp(CLI::App &app) {
   android->add_option("--app-id", "Android application ID");
   android->add_option("--abi", "Native ABI: arm64-v8a (default), x86_64, armeabi-v7a; repeatable");
   android->add_flag("--project-only", "Generate an Android project without building its APK");
+  android->add_flag("--catalog-only", "Build a launcher with no bundled games");
+  android->add_option("--catalog-url", "Remote Android game catalog URL");
 
   auto *browser = app.add_subcommand("web", "Build a game and open it in a browser");
   configureSourceExportOptions(browser);
@@ -320,7 +322,7 @@ static int completionScript(const std::string &shell) {
         << "    test) COMPREPLY=( $(compgen -W \"" << lab_names << " " << test_opts << "\" -- \"$cur\") ) ;;\n"
         << "    bundle) COMPREPLY=( $(compgen -W \"" << bundle_opts << "\" -- \"$cur\") ) ;;\n"
         << "    web) COMPREPLY=( $(compgen -W \"--output --source --include --library --asset --asset-root --name --arg --config --icon --orientation --port --host --no-open\" -- \"$cur\") ) ;;\n"
-        << "    export) COMPREPLY=( $(compgen -W \"web android --output --source --include --library --asset --asset-root --name --arg --config --orientation --icon --app-id --abi --project-only\" -- \"$cur\") ) ;;\n"
+        << "    export) COMPREPLY=( $(compgen -W \"web android --output --source --include --library --asset --asset-root --name --arg --config --orientation --icon --app-id --abi --project-only --catalog-only --catalog-url\" -- \"$cur\") ) ;;\n"
         << "    compat) COMPREPLY=( $(compgen -W \"build --output --cc --library --include --asset-root --debug --sanitize\" -- \"$cur\") ) ;;\n"
         << "    lab) COMPREPLY=( $(compgen -W \"list show " << lab_names << "\" -- \"$cur\") ) ;;\n"
         << "    completion) COMPREPLY=( $(compgen -W \"bash zsh fish\" -- \"$cur\") ) ;;\n"
@@ -345,7 +347,7 @@ static int completionScript(const std::string &shell) {
         << "    lab) _arguments '1:action:(list show)' '2:lab:(rtc timer kbd mouse graphics audio uart lab1 lab2 lab3 lab4 lab5 lab6 lab7)' ;;\n"
         << "    completion) _arguments '1:shell:(bash zsh fish)' ;;\n"
         << "    web) _arguments '1:project directory:_files -/' '--port[HTTP port]:' '--host[listen address]:' '--no-open' '--output[directory]:dir:_files -/' '*--source[C source]:file:_files' '*--include[include directory]:dir:_files -/' '*--library[archive sources]:' '*--asset[asset]:file:_files' '--asset-root[asset directory]:dir:_files -/' '--name[game title]:' '*--arg[game argument]:' '--config[project configuration]:file:_files' '--icon[launcher PNG]:file:_files' '--orientation[mobile orientation]:(auto landscape portrait)' ;;\n"
-        << "    export) _arguments '1:target:(web android)' '2:project-dir:_files -/' '--output[directory]:dir:_files -/' '*--source[C source]:file:_files' '*--include[include directory]:dir:_files -/' '*--library[archive sources]:' '*--asset[asset]:file:_files' '--asset-root[asset directory]:dir:_files -/' '--name[game title]:' '*--arg[game argument]:' '--config[project configuration]:file:_files' '--orientation[screen orientation]:(auto landscape portrait)' '--icon[launcher PNG]:file:_files' '--app-id[Android application ID]:' '*--abi[native ABI]:(arm64-v8a x86_64 armeabi-v7a)' '--project-only[generate project without APK]' ;;\n"
+        << "    export) _arguments '1:target:(web android)' '2:project-dir:_files -/' '--output[directory]:dir:_files -/' '*--source[C source]:file:_files' '*--include[include directory]:dir:_files -/' '*--library[archive sources]:' '*--asset[asset]:file:_files' '--asset-root[asset directory]:dir:_files -/' '--name[game title]:' '*--arg[game argument]:' '--config[project configuration]:file:_files' '--orientation[screen orientation]:(auto landscape portrait)' '--icon[launcher PNG]:file:_files' '--app-id[Android application ID]:' '*--abi[native ABI]:(arm64-v8a x86_64 armeabi-v7a)' '--project-only[generate project without APK]' '--catalog-only[launcher without bundled games]' '--catalog-url[remote catalog URL]:' ;;\n"
         << "    compat) _arguments '1:action:(build)' '2:project-dir:_files -/' '--output[build dir]:dir:_files -/' '--cc[compiler]:' '--library[archive sources]:' '--include[include dir]:dir:_files -/' '--asset-root[workspace]:dir:_files -/' '--debug[student debug symbols]' '--sanitize[diagnostics]:(address undefined address,undefined)' ;;\n"
         << "  esac\n"
         << "}\n_machinelab \"$@\"\n";

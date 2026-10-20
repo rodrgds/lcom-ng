@@ -23,13 +23,16 @@ _spec.loader.exec_module(android_export)
 
 
 def build(entries, output: Path, name: str, icon: Path | None, app_id: str,
-          abis: list[str], project_only: bool = False) -> Path:
+          abis: list[str], project_only: bool = False, catalog_only: bool = False,
+          catalog_url: str = 'https://arcade.rgo.pt/android/catalog.json') -> Path:
     """Build once, sharing SDK compilation and isolating each game's process/state."""
     output = Path(output).resolve()
     name = source_project.project_config.string(name, 'collection name')
     if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_]*(?:\.[A-Za-z][A-Za-z0-9_]*)+', app_id):
         raise ValueError('Invalid Android application ID')
-    if not entries:
+    if catalog_only:
+        entries = []
+    if not entries and not catalog_only:
         raise ValueError('An Android collection needs at least one game')
     ids = [entry['id'] for entry in entries]
     if len(set(ids)) != len(ids) or any(not re.fullmatch(r'[a-z][a-z0-9_-]*', item) for item in ids):
@@ -59,6 +62,9 @@ def build(entries, output: Path, name: str, icon: Path | None, app_id: str,
         shutil.copytree(SDK / 'android/template', work, dirs_exist_ok=True)
         # Collection-specific Java and manifest replace only the standalone host.
         shutil.copytree(Path(__file__).parent / 'android-template', work, dirs_exist_ok=True)
+        heap = 4096 if len(entries) > 20 else 1536
+        (work / 'gradle.properties').write_text(
+            f'org.gradle.jvmargs=-Xmx{heap}m -Dfile.encoding=UTF-8\norg.gradle.workers.max=2\n')
         (work / 'native-CMakeLists.txt').unlink()
         runtime = SDK.parent / 'runtime'
         if not (runtime / 'core/Machine.cpp').is_file():
@@ -136,8 +142,10 @@ def build(entries, output: Path, name: str, icon: Path | None, app_id: str,
         label = name.replace('\\', '\\\\').replace('"', '\\"').replace("'", "\\'").replace('\n', '\\n')
         resources = work / 'app/src/main/res'
         (resources / 'values').mkdir(parents=True, exist_ok=True)
+        catalog_label = html.escape(catalog_url, quote=False)
         (resources / 'values/strings.xml').write_text(
-            '<resources><string name="app_name">"' + html.escape(label, quote=False) + '"</string></resources>\n')
+            '<resources><string name="app_name">"' + html.escape(label, quote=False) + '"</string>'
+            '<string name="catalog_url">' + catalog_label + '</string></resources>\n')
         if icon_bytes:
             (resources / 'drawable-nodpi').mkdir(exist_ok=True)
             (resources / 'drawable-nodpi/app_icon.png').write_bytes(icon_bytes)

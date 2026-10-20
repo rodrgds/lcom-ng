@@ -1,5 +1,31 @@
 # Export a native Android app
 
+The Arcade app is a small launcher. It ships no games. On first play it downloads
+that game from `arcade.rgo.pt/android`, verifies the bundle, and keeps it in private
+app storage for offline play. Long-press a tile to update or delete its download.
+
+Build the per-game bundles and catalog:
+
+```sh
+devenv shell -- python3 scripts/build_android_bundles.py \
+  --build-apk --output build/android-publish \
+  --base-url https://arcade.rgo.pt/android
+```
+
+Build the catalog-only launcher:
+
+```sh
+devenv shell -- lcom-ng export android collections/arcade --catalog-only \
+  --catalog-url https://arcade.rgo.pt/android/catalog.json \
+  --output dist/lcom-arcade-android
+```
+
+The Worker serves the catalog and bundles from its R2 bucket at `/android/`. The
+launcher caches the catalog, so installed games and the library still open without
+a connection.
+
+## Export one native game
+
 Build a supported C game into an APK:
 
 ```sh
@@ -14,8 +40,10 @@ devenv shell -- lcom-ng export android examples/flappy --output dist/flappy-andr
 ```
 
 Student code, the compatibility SDK and simulated devices compile to native ARM64
-with SDL3. APKs optimize native code even with the debug signing key. The app works
-offline without WebAssembly, a WebView or a game server; sources stay unchanged.
+with SDL3. APKs optimize native code even with the debug signing key. A standalone
+game APK works offline without WebAssembly, a WebView or a game server; sources
+stay unchanged. The Arcade launcher downloads each game once, then plays it
+offline.
 
 ## Build tools
 

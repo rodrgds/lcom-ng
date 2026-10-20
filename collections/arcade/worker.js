@@ -3,6 +3,19 @@
 export default {
   async fetch(request, env) {
     const pathname = new URL(request.url).pathname;
+    if (pathname.startsWith('/android/')) {
+      const key = pathname.slice('/android/'.length);
+      if (!key || key.includes('..')) return new Response('Not found', {status: 404});
+      const object = await env.ANDROID.get(key);
+      if (!object) return new Response('Not found', {status: 404});
+      const headers = new Headers();
+      object.writeHttpMetadata(headers);
+      headers.set('ETag', object.httpEtag);
+      headers.set('Cache-Control', key === 'catalog.json'
+        ? 'public, max-age=60' : 'public, max-age=31536000, immutable');
+      headers.set('Access-Control-Allow-Origin', '*');
+      return new Response(object.body, {headers});
+    }
     const contentType = pathname.endsWith('/game.wasm') ? 'application/wasm' :
       pathname.endsWith('/game.data') ? 'application/octet-stream' : null;
     if (!contentType) return env.ASSETS.fetch(request);

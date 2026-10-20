@@ -6,10 +6,12 @@ task.
 
 ## Start Here
 
-Current delivery focus is the web Arcade. Android builds, emulators, publication
-and CI are paused until the user resumes Android work. Qualify web imports in
-the browser; Android qualification is not a web admission or deployment gate.
-Preserve Android implementation and signing keys for future builds.
+Current delivery focus is the web Arcade and the catalog-only Android launcher.
+The Android launcher ships no games: it downloads per-game native bundles from
+`arcade.rgo.pt/android`, verifies them, and keeps them for offline play. Qualify
+web imports in the browser. Qualify Android changes on an emulator or device;
+one surface is not an admission gate for the other. Preserve Android
+implementation and signing keys.
 
 For non-trivial work, run this once:
 
@@ -67,6 +69,12 @@ through `devenv shell -- ...`.
   Keep Android game libraries in the isolated `:game` process, with fresh globals
   on each launch and private saved files preserved. Collection exporters ship in
   the installed SDK via `scripts/package_student.py`.
+  Android Arcade on-demand: `scripts/build_android_bundles.py` extracts one
+  native `.so` plus assets per game from a collection APK;
+  `scripts/publish_android_bundles.py` uploads them to the `lcom-arcade-android`
+  R2 bucket; `lcom-ng export android --catalog-only` builds the small launcher.
+  The launcher caches the remote catalog and installed bundles for offline play.
+  Verify download, offline launch, update and delete on an emulator or device.
   Native source staging must preserve both filename case and exact Unicode bytes.
   Use case-sensitive APFS for NAS-backed staging on macOS; case-sensitive HFSX
   normalizes NFC filenames and can break original game asset lookups. On this

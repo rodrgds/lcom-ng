@@ -62,4 +62,5 @@ def build(args, target):
     from collection import android
     return android.build(collection['entries'], output, name, icon,
                          args.app_id or 'pt.rgo.lcomng.arcade', args.abi,
-                         args.project_only)
+                         args.project_only, catalog_only=getattr(args, 'catalog_only', False),
+                         catalog_url=getattr(args, 'catalog_url', 'https://arcade.rgo.pt/android/catalog.json') or 'https://arcade.rgo.pt/android/catalog.json')
