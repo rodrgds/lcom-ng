@@ -32,3 +32,15 @@
      mc->map->elements[last] = new_Element(type, position, width, height, block_up);
  }
  
+
+--- a/proj/src/GUI/gui.h
++++ b/proj/src/GUI/gui.h
+@@ -7,7 +7,7 @@
+ #include "src/Controller/VBE/GPU.h"
+ #include "src/GUI/bitmap.h"
+ #include "src/GUI/gui.h"
+-#include "src/Model/Elements/BGs.h"
++#include "src/Model/Elements/Bgs.h"
+ #include "src/Model/Elements/Sprite.h"
+ #include "src/Model/Elements/player.h"
+ #include "src/Model/Position.h"

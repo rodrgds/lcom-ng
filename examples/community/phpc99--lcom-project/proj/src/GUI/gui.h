@@ -7,7 +7,7 @@
 #include "src/Controller/VBE/GPU.h"
 #include "src/GUI/bitmap.h"
 #include "src/GUI/gui.h"
-#include "src/Model/Elements/BGs.h"
+#include "src/Model/Elements/Bgs.h"
 #include "src/Model/Elements/Sprite.h"
 #include "src/Model/Elements/player.h"
 #include "src/Model/Position.h"

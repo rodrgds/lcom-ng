@@ -296,7 +296,7 @@
           "originalSha256": "a9a749bbdf309facc5b80e30d8019212a9e86e7a592d726890457c1d47ae507b",
           "patchedSha256": "31ba785dbe825ffc4736140dd225dd2030f8a878256720bcafa75b6cdf732872",
           "reason": "Copy the removed block before deletion so inventory never reads freed storage; release the temporary block after placement copies it into the map.",
-          "verification": "Compiled real mouse-button Mine\u2192inventory\u2192Place fixture first fails missing earth after poisoned free, then detects leaked placement storage; both pass after repairs. Actual mobile browser shows inventory quantity1 after mining and empty slot/new tile after placing."
+          "verification": "Compiled real mouse-button Mine→inventory→Place fixture first fails missing earth after poisoned free, then detects leaked placement storage; both pass after repairs. Actual mobile browser shows inventory quantity1 after mining and empty slot/new tile after placing."
         },
         {
           "file": "proj/src/Controller/Game/MapController.c",
@@ -304,6 +304,17 @@
           "patchedSha256": "3125b07e45c92ddeb7805b544802b09c4c9e9e8907b010111635765c5b0f79da",
           "reason": "Grow the element-pointer allocation to the new count, including the newly placed block.",
           "verification": "After collection repair, real placement fixture rejects original realloc size because it excludes the new element. Repaired source retains both live block pointers within the allocation."
+        }
+      ]
+    },
+    {
+      "path": "SOURCE_PATCH.diff",
+      "files": [
+        {
+          "path": "proj/src/GUI/gui.h",
+          "originalSha256": "14b44e0894d89795a43189aba87e1363f42720212d98a515bee184870fa0627e",
+          "patchedSha256": "5c03a7b45ce3f2b2758089eeab45a84fde41e17409efd4e82e5cf9af187c0a59",
+          "reason": "Use the authored lowercase header name so case-sensitive Linux and Android staging can find it."
         }
       ]
     }

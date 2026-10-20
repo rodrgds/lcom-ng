@@ -17571,6 +17571,17 @@
               "verification": "After collection repair, real placement fixture rejects original realloc size because it excludes the new element. Repaired source retains both live block pointers within the allocation."
             }
           ]
+        },
+        {
+          "path": "SOURCE_PATCH.diff",
+          "files": [
+            {
+              "path": "proj/src/GUI/gui.h",
+              "originalSha256": "14b44e0894d89795a43189aba87e1363f42720212d98a515bee184870fa0627e",
+              "patchedSha256": "5c03a7b45ce3f2b2758089eeab45a84fde41e17409efd4e82e5cf9af187c0a59",
+              "reason": "Use the authored lowercase header name so case-sensitive Linux and Android staging can find it."
+            }
+          ]
         }
       ],
       "license": {
