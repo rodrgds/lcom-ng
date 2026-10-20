@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.20)
 
-project(lcom-ng VERSION 0.2.0 LANGUAGES C CXX)
+project(lcom-ng VERSION 0.3.0 LANGUAGES C CXX)
 
 file(READ ${CMAKE_CURRENT_SOURCE_DIR}/package.json MACHINE_LAB_PACKAGE_JSON)
 string(JSON MACHINE_LAB_PACKAGE_VERSION GET "${MACHINE_LAB_PACKAGE_JSON}" version)
