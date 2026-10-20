@@ -5,7 +5,7 @@
 
 #include "SerialPorts.h"
 #include "tools/queue.h"
-#include "../game/Game.h"
+#include "../game/game.h"
 #include "i8042.h"
 
 int (sp_subscribe_int)(uint8_t* irq_set);

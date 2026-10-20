@@ -26,7 +26,7 @@
 #include "model/stateModels/mainRoom.h"
 #include "model/stateModels/minigameMenu.h"
 #include "model/stateModels/nameMinigotchi.h"
-#include "model/stateModels/tictactoe.h"
+#include "model/stateModels/ticTacToe.h"
 #include "model/stateModels/rockPaperScissors.h"
 
 // Viewers

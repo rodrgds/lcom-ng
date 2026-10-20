@@ -101,7 +101,21 @@
       "status": "passed",
       "evidence": "build/arcade-100/a70-brick-reviewed-native/results.json",
       "apkSha256": "a22d3bca3bd9497d85b52a07b8c5a011126aad34845f495a8fb0fc1a8911f972",
-      "demonstrated": "Root inspected original native SCORE00\u219201 and30\u219229bricks; ordinary A/D touchscreen paddle motion, one remaining heart, Home isolated process cleanup."
+      "demonstrated": "Root inspected original native SCORE00→01 and30→29bricks; ordinary A/D touchscreen paddle motion, one remaining heart, Home isolated process cleanup."
     }
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Use the exact case of the authored source filenames.",
+      "files": [
+        {
+          "path": "proj/src/sprite.c",
+          "originalSha256": "bd6adc7f7537e82ef495d4c58281946e4aa6742459163e8063f1657f3e275fd1",
+          "patchedSha256": "2fc7d2832f925017d840a4eb458e724caa8bd4e2563c69b7dcee673bfa40e628",
+          "reason": "Use the exact case of the authored source filename so the case-sensitive Linux checkout compiles."
+        }
+      ]
+    }
+  ]
 }

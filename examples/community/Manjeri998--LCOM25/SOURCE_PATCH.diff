@@ -27,3 +27,25 @@
    if (firstMove) {
      deployBombs(getColInGame(mouse), getRowInGame(mouse));
      dig(getColInGame(mouse), getRowInGame(mouse));
+--- a/proj/src/Model/Mouse/mouseModel.h
++++ b/proj/src/Model/Mouse/mouseModel.h
+@@ -3,7 +3,7 @@
+ 
+ #include "../position.h"
+ #include "../Sprite/sprite.h"
+-#include "../XPMS/mouse.xpm"
++#include "../XPMs/mouse.xpm"
+ #include <stdint.h>
+ #include <stdio.h>
+ #include <minix/sysutil.h>
+--- a/proj/src/Model/SelectorMine/selectorMine.h
++++ b/proj/src/Model/SelectorMine/selectorMine.h
+@@ -3,7 +3,7 @@
+ 
+ #include "../position.h"
+ #include "../Sprite/sprite.h"
+-#include "../XPMS/mine.xpm"
++#include "../XPMs/mine.xpm"
+ #include <stdint.h>
+ #include <stdio.h>
+ #include <minix/sysutil.h>

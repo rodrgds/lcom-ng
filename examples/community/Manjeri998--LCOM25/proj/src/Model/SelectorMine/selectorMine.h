@@ -3,7 +3,7 @@
 
 #include "../position.h"
 #include "../Sprite/sprite.h"
-#include "../XPMS/mine.xpm"
+#include "../XPMs/mine.xpm"
 #include <stdint.h>
 #include <stdio.h>
 #include <minix/sysutil.h>

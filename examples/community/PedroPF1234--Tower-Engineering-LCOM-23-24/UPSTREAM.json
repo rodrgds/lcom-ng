@@ -148,9 +148,9 @@
         },
         {
           "file": "proj/src/Game/Gameplay/gameplay.c",
-          "reason": "Rebind replacement button artwork; retain and hide the reusable weapon between rounds, releasing it only at whole-game destruction.",
+          "reason": "Rebind replacement button artwork; retain and hide the reusable weapon between rounds, releasing it only at whole-game destruction. Use the exact case of the authored source filename so the case-sensitive Linux checkout compiles.",
           "originalSha256": "ce6fad798fc393a5b7104759bb33d6330d0a3048d92b94050ee4823e78a8d634",
-          "patchedSha256": "33c3f1fb2ff181b2d9945820458d7b0d2d7630507b98c0481be48333c9a2d4cc"
+          "patchedSha256": "e18083f4f944f374361be4c9a9f8f7035000f3df2476b95490bd15b51648689d"
         },
         {
           "file": "proj/src/Game/Gameplay/Weapon/weapon.c",
@@ -175,6 +175,12 @@
           "reason": "Declare the actual shared rotated-array destructor used by weapons and towers.",
           "originalSha256": "6d4e83e791aeee4ec52cc160a171a130add869bfe295b3bdea9dd40f42412f8a",
           "patchedSha256": "434492f77a2a4d990b968ab990486a94931053ea8f37b119ea65384c8c9e3f9e"
+        },
+        {
+          "path": "proj/src/Game/Gameplay/Arena/arena.h",
+          "originalSha256": "70452a57c1c7cd9f7f670b5387075724c505ed7c0fb94d6bcbfd79176d41fc9a",
+          "patchedSha256": "def465dda11765a4eda10355b52fda99eda8ce0bc4e413f175db6cfe237b281a",
+          "reason": "Use the exact case of the authored source filename so the case-sensitive Linux checkout compiles."
         }
       ]
     }
@@ -182,12 +188,12 @@
   "createdAt": "2024-07-14T21:41:12Z",
   "controlsRationale": "Actual held WASD make/break velocity uses the left pad without make-repeat. Relative pointer starts640,512; Select/Fire is left mouse, E interacts with the nearby base, shop or tower. ESC opens pause; arrows/Enter retain original menu navigation. All actions are in an external panel in portrait and landscape. The authored shop/weapon progression remains intact; no state injection, calibration or player-stat changes.",
   "verification": {
-    "summary": "Five actual-source owner regressions cover PS/2 ACK ownership, sorted render retention, live replacement artwork, single ownership of animated/rotated artwork, and mapped VRAM release. Progressive original failures retained in ignored proof. Actual native GuardMalloc round\u2192tower mount\u2192pause\u2192menu\u2192whole-game quit exits0 after original exitGame fault and later vg_free invalid free. Actual browser mount reduces money99999\u219299799, turret rotates and visible enemy HP decreases; no full-wave victory claim.",
+    "summary": "Five actual-source owner regressions cover PS/2 ACK ownership, sorted render retention, live replacement artwork, single ownership of animated/rotated artwork, and mapped VRAM release. Progressive original failures retained in ignored proof. Actual native GuardMalloc round→tower mount→pause→menu→whole-game quit exits0 after original exitGame fault and later vg_free invalid free. Actual browser mount reduces money99999→99799, turret rotates and visible enemy HP decreases; no full-wave victory claim.",
     "nativeGameplay": {
       "status": "passed",
       "evidence": "build/arcade-100/tower-engineering-reviewed-native/results.json",
       "apkSha256": "0aa53bc3458f6f1b29e32541744d09260aa6559b76511bb9b2b8eb5219ab42ee",
-      "demonstrated": "Root viewed normal native WASD movement to first tower, Interact mount menu, Crossbow purchase decreasing99999\u219299799, mounted defense reducing several enemy health bars, original pause and round Quit returning menu, then authored whole-game Escape quit returning cleanly to native library.",
+      "demonstrated": "Root viewed normal native WASD movement to first tower, Interact mount menu, Crossbow purchase decreasing99999→99799, mounted defense reducing several enemy health bars, original pause and round Quit returning menu, then authored whole-game Escape quit returning cleanly to native library.",
       "limitations": [
         "First tower purchase/defense and full cleanup verified. Complete wave/victory, personal weapon purchase, alternate arenas and second player are not claimed."
       ]

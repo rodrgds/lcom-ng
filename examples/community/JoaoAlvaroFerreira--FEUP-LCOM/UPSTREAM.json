@@ -16,6 +16,12 @@
       "originalSha256": "f23333a1dee23540296cf2cf7e285e4d5e77f33ada3ff0f32576df3c24c292f6",
       "patchedSha256": "9d3eee05ff9b5cc14b3ee4df11184a3ca85f305152844a71dfba93702108f495",
       "reason": "Allocate the disease-name pointer array using sizeof(*deseases), preventing startup heap overwrite. Keep the existing global char* name ABI but point it to writable AAA storage, because actual postgame alterName modifies its characters and writing the original literal crashes. The postgame Points[10] buffer formats an18-byte normal score message, and the highscore digit buffer needs an unsigned32 terminator. Allocate complete summary/digit buffers and preserve unsigned values."
+    },
+    {
+      "file": "proj/src/bitmap.c",
+      "originalSha256": "d6b12f75ba4cac312cec38449488577f2fdf73b0ffe93e98008f4511653eed59",
+      "patchedSha256": "6cdfa5d017954f13089068eee457797e0b0596cf43adef27f9d086a3cf5aa604",
+      "reason": "Use the exact case of the authored source filename so the case-sensitive Linux checkout compiles."
     }
   ],
   "sha256": {
@@ -151,7 +157,7 @@
     "kind": "simple launcher icon derived from original sprite or board palette",
     "source": "proj/src/images/pills/pill1.bmp"
   },
-  "controlsRationale": "Relative drag pointer selects pharmacy door and Start, positions cursor over a pill then drags it to a customer. Pill guide sends A, Reset / Submit sends Space. Keyboard permits original postgame names. Actual complete customer cure scored3,30second round reached postgame, software keyboard edited AAA\u2192BBA and score submission returned to menu. Genuine pointer-array allocation and immutable-name memory defects repaired with actual startup/name boundary RED/GREEN.",
+  "controlsRationale": "Relative drag pointer selects pharmacy door and Start, positions cursor over a pill then drags it to a customer. Pill guide sends A, Reset / Submit sends Space. Keyboard permits original postgame names. Actual complete customer cure scored3,30second round reached postgame, software keyboard edited AAA→BBA and score submission returned to menu. Genuine pointer-array allocation and immutable-name memory defects repaired with actual startup/name boundary RED/GREEN.",
   "verification": {
     "nativeBuild": true,
     "browserBuild": true,

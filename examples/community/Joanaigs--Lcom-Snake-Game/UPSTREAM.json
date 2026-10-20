@@ -152,6 +152,12 @@
           "originalSha256": "ba51197d323cfdb43c4f70bed43825c1006a2a8c2d214dfb8e1467169f31c1a6",
           "patchedSha256": "64f40754a656b2a5ec0e31194e7d80355529c1aef48e0f37c5cad38bb95fdc37",
           "reason": "Stop addBodyPart before the two snakeBody writes would exceed the array."
+        },
+        {
+          "path": "proj/src/keyboard.c",
+          "originalSha256": "3f8498076c60ea993441770d46b0758b84afde77dc18e2fb8edb1a68d58e4795",
+          "patchedSha256": "6dcedb6217b3eed9c83535cbe60aad4097b6e93eac07af80bf11956e1877dc58",
+          "reason": "Use the local quoted header so the case-sensitive Linux compat build does not resolve a different keyboard.h from the SDK include path."
         }
       ],
       "reproduction": "Public CLI raw PS2 replay drives menu cursor beyond both frame corners. Original cursor disappears; corrected whole40x40 art remains at760,560 or0,0. Separate normal-mouse CLI replay fails before reporting-helper correction and passes after it. Prior uintptr_t graphics correction remains retained."

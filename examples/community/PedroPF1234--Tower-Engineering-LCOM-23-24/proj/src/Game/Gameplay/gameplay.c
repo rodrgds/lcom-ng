@@ -14,7 +14,7 @@
 #include "Enemy/enemy.h"
 #include "Bullet/bullet.h"
 #include "PlayerBase/playerbase.h"
-#include "Shop/shop.h"
+#include "shop/shop.h"
 #include "Money/money.h"
 #include "Weapon/weapon.h"
 

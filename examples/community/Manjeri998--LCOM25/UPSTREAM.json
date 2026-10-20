@@ -119,6 +119,18 @@
           },
           "originalSha256": "7b95b8638077367435ffc315c9bb12c0c5938bcb504b4a518e310d0513d6e19f",
           "patchedSha256": "8816b5d7e6c63b42d301cd9f646ecd8056b6867adcbef43cce524fc9f0c5ea9c"
+        },
+        {
+          "path": "proj/src/Model/Mouse/mouseModel.h",
+          "originalSha256": "e4964d9b3a0a72d9d8febe0372a49b37c264812accfd95b9ae0a3259eed499c6",
+          "patchedSha256": "082beb1305dc06191acb56bd21d489d160046d77e02f9e3553c69a89cf81a366",
+          "reason": "Use the exact case of the authored source filename so the case-sensitive Linux checkout compiles."
+        },
+        {
+          "path": "proj/src/Model/SelectorMine/selectorMine.h",
+          "originalSha256": "00dddd64440a7703af2c461101d2b28cc35433fc471d3108f410c9fd28972182",
+          "patchedSha256": "2a675cfa93850812018b842e41348c1e2b976a52dbb3f35f6a75bcf4706eff7e",
+          "reason": "Use the exact case of the authored source filename so the case-sensitive Linux checkout compiles."
         }
       ]
     }

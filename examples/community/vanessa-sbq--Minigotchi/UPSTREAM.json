@@ -231,8 +231,8 @@
         {
           "path": "proj/src/proj.c",
           "originalSha256": "f9c51d4cfdd817f5037d815006ea01626689ea026d1849d6219d02e90a5488fa",
-          "patchedSha256": "efa2dc9d10dc43f1b31108d7e6768d9c244dd5baf8e52b33114e883dc269033b",
-          "reason": "Use a zero-initialized on-stack name buffer instead of writing through a string literal."
+          "patchedSha256": "6e00257f3edb2b53fad91f354a6ba101bc57f77ab3a37a9831b01bcd741c03b1",
+          "reason": "Use a zero-initialized on-stack name buffer instead of writing through a string literal. Use the exact case of the authored source filename so the case-sensitive Linux checkout compiles."
         }
       ]
     }

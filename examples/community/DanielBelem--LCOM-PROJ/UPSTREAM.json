@@ -82,6 +82,18 @@
           "patchedSha256": "e4be910d03c4421adeec61894bf41270e5bbcae4c5480224623207462d847ff9",
           "reason": "Sentence rendering iterated25 words in a5-word array. Selected timer duration was not recorded for results, while empty/instant rounds divided by zero. Bound rendering to MAX_GAME_WORDS, retain the selected round duration and define empty/instant statistics safely.",
           "verification": "Actual compiled original draw_sentence fails pointer membership; repaired renders exactly5 words. Original actual game-loop fixture reports15 seconds elapsed for a60-second timeout; repaired empty60-second and immediate5-submission rounds have nonnegative finite statistics. Browser mobile touch completes5 correct words:6seconds,50WPM,100% accuracy."
+        },
+        {
+          "path": "proj/src/keyboard.h",
+          "originalSha256": "a5b480cab9e03bdf601cf4e115e5449e8073b262eb6ba7d4758ca772b268004c",
+          "patchedSha256": "7f609edb2c7b7ab332a088d310891c428123fb7b6ed64d702ddbc1c680477b89",
+          "reason": "Use the exact case of the authored source filename so the case-sensitive Linux checkout compiles."
+        },
+        {
+          "path": "proj/src/mouse.h",
+          "originalSha256": "14cf08517c62769a9ebdabd8277c45eba7c767bca3d6f6271c565caccb5a3c63",
+          "patchedSha256": "f5e4ef2b1ffe23475c746c14766e682099d820370d2bc388a93b785b5e20028e",
+          "reason": "Use the exact case of the authored source filename so the case-sensitive Linux checkout compiles."
         }
       ]
     }

@@ -251,3 +251,25 @@
 +
 +/* Release a contiguous rotated-sprite array and each owned pixel map. */
 +void destroy_rotated_sprites(Sprite* sprites, int count);
+--- a/proj/src/Game/Gameplay/Arena/arena.h
++++ b/proj/src/Game/Gameplay/Arena/arena.h
+@@ -1,7 +1,7 @@
+ #pragma once
+ 
+ #include "../Tower/towers.h"
+-#include "../Shop/shop.h"
++#include "../shop/shop.h"
+ #include "../PlayerBase/playerbase.h"
+ 
+ #include "../../../Devices/device_controller.h"
+--- a/proj/src/Game/Gameplay/gameplay.c
++++ b/proj/src/Game/Gameplay/gameplay.c
+@@ -14,7 +14,7 @@
+ #include "Enemy/enemy.h"
+ #include "Bullet/bullet.h"
+ #include "PlayerBase/playerbase.h"
+-#include "Shop/shop.h"
++#include "shop/shop.h"
+ #include "Money/money.h"
+ #include "Weapon/weapon.h"
+ 

@@ -81,3 +81,11 @@
  
              break;
            default:
+--- a/proj/src/bitmap.c
++++ b/proj/src/bitmap.c
+@@ -1,4 +1,4 @@
+-#include "Bitmap.h"
++#include "bitmap.h"
+ 
+ // IMPORTANT: you must include the following line in all your C files
+ #include <lcom/lcf.h>

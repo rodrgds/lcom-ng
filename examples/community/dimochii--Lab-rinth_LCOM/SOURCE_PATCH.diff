@@ -1,0 +1,22 @@
+--- a/proj/src/devices/serialPort.h
++++ b/proj/src/devices/serialPort.h
+@@ -5,7 +5,7 @@
+ 
+ #include "SerialPorts.h"
+ #include "tools/queue.h"
+-#include "../game/Game.h"
++#include "../game/game.h"
+ #include "i8042.h"
+ 
+ int (sp_subscribe_int)(uint8_t* irq_set);
+--- a/proj/src/game/logic.h
++++ b/proj/src/game/logic.h
+@@ -4,7 +4,7 @@
+ 
+ #include <lcom/lcf.h>
+ 
+-#include "Game.h"
++#include "game.h"
+ #include "devices/serialPort.h"
+ 
+ #define WIN_POS_X 785

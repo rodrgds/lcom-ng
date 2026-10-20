@@ -11,7 +11,7 @@
 
 #include "../position.h"
 #include "../Sprite/sprite.h"
-#include "../XPMS/mouse.xpm"
+#include "../XPMs/mouse.xpm"
 #include <stdint.h>
 #include <stdio.h>
 #include <minix/sysutil.h>

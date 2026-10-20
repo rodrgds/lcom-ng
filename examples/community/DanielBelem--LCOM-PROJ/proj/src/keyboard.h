@@ -4,7 +4,7 @@
 #include <minix/sysutil.h>
 #include <lcom/lcf.h>
 #include "i8042.h"
-#include "KBC.h"
+#include "kbc.h"
 
 
 int (keyboard_subscribe_int)(uint8_t *bit_no);

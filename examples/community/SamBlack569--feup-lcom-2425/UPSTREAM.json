@@ -20,6 +20,12 @@
       "upstreamSha256": "00598ea5d9996f8bea51a78cfaf360b473f074055af6977ba8151afdd015353a",
       "patchedSha256": "3147e8d73ca7f1fc88873f57ef8bde9a08c3008de795516298322a09c0d4e922",
       "verification": "Actual source compiled regression RED before repair and GREEN afterward: tests/community_source_regressions.py StudentSourceRegressions.test_space_shooter_cursor_stays_in_framebuffer"
+    },
+    {
+      "file": "proj/src/graphics/sprites.c",
+      "originalSha256": "c5fd92378265462bf3cc2142fabeba04d3e0e2d534eb27264307a9dd1dc57e9b",
+      "patchedSha256": "41744c6d98516404833118a2e24533fcc4bd263bf4fdd3c9dd8b851e1d5eabc7",
+      "reason": "Use the exact case of the authored source filename so the case-sensitive Linux checkout compiles."
     }
   ],
   "sha256": {

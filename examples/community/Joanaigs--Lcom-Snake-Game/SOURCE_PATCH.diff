@@ -193,3 +193,12 @@
    erase_xpm(snakeBody[numOfBodyParts].img, snakeBody[numOfBodyParts].x, snakeBody[numOfBodyParts].y, background.img);
    numOfBodyParts++;
    int i = numOfBodyParts - 1;
+
+--- a/proj/src/keyboard.c
++++ b/proj/src/keyboard.c
+@@ -1,4 +1,4 @@
+-#include <keyboard.h>
++#include "keyboard.h"
+ #include <lcom/lcf.h>
+ #include <minix/sysutil.h>
+ #include "i8042.h"

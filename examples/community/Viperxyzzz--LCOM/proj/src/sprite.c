@@ -1,4 +1,4 @@
-#include "Sprite.h"
+#include "sprite.h"
 
 
 Sprite* create_sprite(xpm_row_t pic[], uint16_t x,uint16_t y,uint16_t xspeed,uint16_t yspeed) 

@@ -10,3 +10,14 @@
  
  						for (size_t i = 0; i < nameMinigotchiViewer_get_spriteVector()->size; i++) {
  							char toBeConcatenated = ((char)(nameMinigotchiViewer_get_spriteVector()->data[i])) + 'A';
+--- a/proj/src/proj.c
++++ b/proj/src/proj.c
+@@ -26,7 +26,7 @@
+ #include "model/stateModels/mainRoom.h"
+ #include "model/stateModels/minigameMenu.h"
+ #include "model/stateModels/nameMinigotchi.h"
+-#include "model/stateModels/tictactoe.h"
++#include "model/stateModels/ticTacToe.h"
+ #include "model/stateModels/rockPaperScissors.h"
+ 
+ // Viewers

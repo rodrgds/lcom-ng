@@ -69,3 +69,25 @@
              printf("wrong words: %d\n", wrong_words);
              printf("correct words: %d\n", correct_words);
              printf("used time: %d\n",used_time );
+--- a/proj/src/keyboard.h
++++ b/proj/src/keyboard.h
+@@ -4,7 +4,7 @@
+ #include <minix/sysutil.h>
+ #include <lcom/lcf.h>
+ #include "i8042.h"
+-#include "KBC.h"
++#include "kbc.h"
+ 
+ 
+ int (keyboard_subscribe_int)(uint8_t *bit_no);
+--- a/proj/src/mouse.h
++++ b/proj/src/mouse.h
+@@ -4,7 +4,7 @@
+ #include <minix/sysutil.h>
+ #include "i8042.h"
+ #include <lcom/lcf.h>
+-#include "KBC.h"
++#include "kbc.h"
+ 
+ int (mouse_subscribe_int)(uint8_t *bit_no);
+ 

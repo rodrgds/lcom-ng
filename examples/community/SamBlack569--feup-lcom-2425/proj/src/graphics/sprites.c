@@ -15,7 +15,7 @@
 #include "xpms/8.h"
 #include "xpms/9.h"
 #include "xpms/gameOver.h"
-#include "xpms/helpMenu.h"
+#include "xpms/helpmenu.h"
 
 #include "info.h"
 

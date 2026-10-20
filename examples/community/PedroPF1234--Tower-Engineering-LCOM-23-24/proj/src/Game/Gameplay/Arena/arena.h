@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Tower/towers.h"
-#include "../Shop/shop.h"
+#include "../shop/shop.h"
 #include "../PlayerBase/playerbase.h"
 
 #include "../../../Devices/device_controller.h"

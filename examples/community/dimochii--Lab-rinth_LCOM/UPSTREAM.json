@@ -169,5 +169,25 @@
       "evidence": "build/arcade-100/next8-native-gameplay2/results.json",
       "review": "Original first maze: character moves through first bend while independent mouse lantern reveals another area; no full maze completion claim. Actual native controls and Home cleanup reviewed."
     }
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Use the exact case of the authored source filenames.",
+      "files": [
+        {
+          "path": "proj/src/devices/serialPort.h",
+          "originalSha256": "4a56476f14f6af9642bb48e95be80a4383c29e5271c34c2ef5e577d96124a93a",
+          "patchedSha256": "24e2fd220003661adc08bd61287322f02b2933777dd66e5d6dd0d66e4254a973",
+          "reason": "Use the exact case of the authored source filename so the case-sensitive Linux checkout compiles."
+        },
+        {
+          "path": "proj/src/game/logic.h",
+          "originalSha256": "ce926020024dd0cfbd0dcdb5e26281274fb2599e46c09e57f0d7f85d9cd2e06d",
+          "patchedSha256": "9fba4a8b8b4bcde46adb90ceb9a4fc8309c5d3f0a11359827550ac890b5e9a03",
+          "reason": "Use the exact case of the authored source filename so the case-sensitive Linux checkout compiles."
+        }
+      ]
+    }
+  ]
 }
