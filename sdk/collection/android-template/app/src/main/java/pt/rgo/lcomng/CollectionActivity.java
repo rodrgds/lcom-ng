@@ -1,11 +1,10 @@
 package pt.rgo.lcomng;
 
 import android.app.Activity;
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -37,13 +36,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
 import android.graphics.Rect;
+import android.os.Handler;
+import android.os.Looper;
 import android.text.TextUtils;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.FrameLayout;
 import java.util.Locale;
+
 import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -59,11 +61,14 @@ public final class CollectionActivity extends Activity {
     private ScrollView scroll;
     private GridLayout grid;
     private EditText search;
-    private Button clear, surprise;
+    private Button clear, surprise, allChip, downloadedChip;
     private TextView summary, empty;
     private String anchorId;
     private int columns, anchorOffset, anchorHeight, sideInset, topInset, bottomInset;
-    private boolean restorePending, resumed;
+    private boolean restorePending, resumed, installedOnly;
+    private long cachedBytes;
+    private final Handler mainHandler = new Handler(Looper.getMainLooper());
+    private Runnable pendingFilter;
     private final ExecutorService io = Executors.newFixedThreadPool(2);
     private final ExecutorService artwork = Executors.newFixedThreadPool(4);
 
@@ -72,10 +77,12 @@ public final class CollectionActivity extends Activity {
         String id, name, archetype;
         Bitmap icon;
         ImageView iconView;
+        TextView placeholder;
         TextView status;
         ProgressBar progress;
         View tile;
-        boolean busy;
+        boolean busy, installed, updateAvailable;
+        int downloadPercent;
     }
 
     private int dp(float value) { return Math.round(value * getResources().getDisplayMetrics().density); }
@@ -99,6 +106,7 @@ public final class CollectionActivity extends Activity {
         if (Build.VERSION.SDK_INT >= 30) getWindow().setDecorFitsSystemWindows(false);
         if (savedInstanceState != null) {
             query = savedInstanceState.getString("query", "");
+            installedOnly = savedInstanceState.getBoolean("installedOnly", false);
             anchorId = savedInstanceState.getString("anchor");
             anchorOffset = savedInstanceState.getInt("anchorOffset");
             anchorHeight = savedInstanceState.getInt("anchorHeight");
@@ -144,6 +152,7 @@ public final class CollectionActivity extends Activity {
                     game.icon = CatalogRepository.cachedIcon(this, data.id);
                     loaded.add(game);
                 }
+                refreshStates(loaded);
                 runOnUiThread(() -> {
                     if (isFinishing() || isDestroyed()) return;
                     title = loadedTitle;
@@ -160,6 +169,7 @@ public final class CollectionActivity extends Activity {
                                 if (isFinishing() || isDestroyed() || game.iconView == null) return;
                                 game.icon = bitmap;
                                 game.iconView.setImageBitmap(bitmap);
+                                if (game.placeholder != null) game.placeholder.setVisibility(View.GONE);
                             });
                         });
                     }
@@ -192,7 +202,15 @@ public final class CollectionActivity extends Activity {
     private GradientDrawable surface(int color, int stroke) {
         GradientDrawable drawable = new GradientDrawable();
         drawable.setColor(color);
-        drawable.setCornerRadius(dp(16));
+        drawable.setCornerRadius(dp(20));
+        if (stroke != 0) drawable.setStroke(dp(2), stroke);
+        return drawable;
+    }
+
+    private GradientDrawable pillSurface(int color, int stroke) {
+        GradientDrawable drawable = new GradientDrawable();
+        drawable.setColor(color);
+        drawable.setCornerRadius(dp(999));
         if (stroke != 0) drawable.setStroke(dp(2), stroke);
         return drawable;
     }
@@ -250,7 +268,7 @@ public final class CollectionActivity extends Activity {
         surprise.setOnClickListener(view -> {
             ArrayList<Game> matches = matchingGames();
             ArrayList<Game> installed = new ArrayList<>();
-            for (Game game : matches) if (GameInstaller.isInstalled(this, game.data)) installed.add(game);
+            for (Game game : matches) if (game.installed) installed.add(game);
             if (!installed.isEmpty()) matches = installed;
             if (!matches.isEmpty()) launch(matches.get(random.nextInt(matches.size())));
         });
@@ -263,7 +281,7 @@ public final class CollectionActivity extends Activity {
         searchRow.setGravity(Gravity.CENTER_VERTICAL);
         LinearLayout.LayoutParams rowSize = compactHeader
             ? new LinearLayout.LayoutParams(0, -2, 1) : new LinearLayout.LayoutParams(-1, -2);
-        rowSize.topMargin = compactHeader ? 0 : dp(20);
+        rowSize.topMargin = compactHeader ? 0 : dp(16);
         rowSize.leftMargin = compactHeader ? dp(24) : 0;
         header.addView(searchRow, rowSize);
         search = new EditText(this);
@@ -278,7 +296,7 @@ public final class CollectionActivity extends Activity {
         search.setPadding(dp(16), 0, dp(16), 0);
         search.setMinHeight(dp(52));
         search.setImeOptions(EditorInfo.IME_ACTION_SEARCH | EditorInfo.IME_FLAG_NO_EXTRACT_UI);
-        search.setBackground(interactive(SURFACE));
+        search.setBackground(interactive(0xff121815));
         search.setText(query);
         searchRow.addView(search, new LinearLayout.LayoutParams(0, dp(52), 1));
         clear = action("", true);
@@ -289,6 +307,20 @@ public final class CollectionActivity extends Activity {
         LinearLayout.LayoutParams clearSize = new LinearLayout.LayoutParams(dp(48), dp(48));
         clearSize.leftMargin = dp(8);
         searchRow.addView(clear, clearSize);
+        LinearLayout chips = new LinearLayout(this);
+        chips.setGravity(Gravity.CENTER_VERTICAL);
+        LinearLayout.LayoutParams chipsSize = new LinearLayout.LayoutParams(-1, -2);
+        chipsSize.topMargin = dp(12);
+        header.addView(chips, chipsSize);
+        allChip = filterChip("All");
+        allChip.setOnClickListener(view -> setFilter(false));
+        LinearLayout.LayoutParams allSize = new LinearLayout.LayoutParams(-2, dp(40));
+        chips.addView(allChip, allSize);
+        downloadedChip = filterChip("Downloaded");
+        downloadedChip.setOnClickListener(view -> setFilter(true));
+        LinearLayout.LayoutParams downloadedSize = new LinearLayout.LayoutParams(-2, dp(40));
+        downloadedSize.leftMargin = dp(8);
+        chips.addView(downloadedChip, downloadedSize);
         search.setOnEditorActionListener((view, action, event) -> {
             if (action != EditorInfo.IME_ACTION_SEARCH &&
                     (event == null || event.getKeyCode() != android.view.KeyEvent.KEYCODE_ENTER)) return false;
@@ -301,8 +333,16 @@ public final class CollectionActivity extends Activity {
             @Override public void onTextChanged(CharSequence value, int start, int before, int count) {
                 query = value.toString();
                 anchorId = null;
-                renderGames();
-                scroll.scrollTo(0, 0);
+                // Rebuilding the whole grid on every keystroke is janky. Debounce
+                // until typing pauses, and ignore stale filters after rotation.
+                if (pendingFilter != null) mainHandler.removeCallbacks(pendingFilter);
+                pendingFilter = () -> {
+                    pendingFilter = null;
+                    if (isFinishing() || isDestroyed() || grid == null) return;
+                    renderGames();
+                    scroll.scrollTo(0, 0);
+                };
+                mainHandler.postDelayed(pendingFilter, 280);
             }
             @Override public void afterTextChanged(Editable value) {}
         });
@@ -357,8 +397,66 @@ public final class CollectionActivity extends Activity {
     private ArrayList<Game> matchingGames() {
         ArrayList<Game> matches = new ArrayList<>();
         String filter = query.trim().toLowerCase(Locale.ROOT);
-        for (Game game : games) if (game.name.toLowerCase(Locale.ROOT).contains(filter)) matches.add(game);
+        for (Game game : games) {
+            if (installedOnly && !game.installed) continue;
+            if (game.name.toLowerCase(Locale.ROOT).contains(filter)) matches.add(game);
+        }
         return matches;
+    }
+
+    private Button filterChip(String label) {
+        Button chip = action(label, false);
+        chip.setMinWidth(0);
+        chip.setMinHeight(dp(40));
+        chip.setPadding(dp(16), 0, dp(16), 0);
+        chip.setTextSize(13);
+        chip.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        return chip;
+    }
+
+    private void setFilter(boolean downloaded) {
+        if (installedOnly == downloaded) return;
+        installedOnly = downloaded;
+        anchorId = null;
+        updateFilterChips();
+        renderGames();
+        scroll.scrollTo(0, 0);
+    }
+
+    private void updateFilterChips() {
+        if (allChip == null) return;
+        int installed = 0;
+        for (Game game : games) if (game.installed) installed++;
+        allChip.setText("All");
+        downloadedChip.setText(installed > 0 ? "Downloaded · " + installed : "Downloaded");
+        allChip.setTextColor(installedOnly ? MUTED : ACCENT);
+        downloadedChip.setTextColor(installedOnly ? ACCENT : MUTED);
+        allChip.setBackground(installedOnly ? pillSurface(0xff1d2521, 0) : pillSurface(0x2272d6b0, 0));
+        downloadedChip.setBackground(installedOnly ? pillSurface(0x2272d6b0, 0) : pillSurface(0xff1d2521, 0));
+    }
+
+    /** Recompute every game's install state away from the UI thread, then re-render. */
+    private void refreshAndRender() {
+        io.execute(() -> {
+            refreshStates(games);
+            runOnUiThread(() -> {
+                if (isFinishing() || isDestroyed() || grid == null) return;
+                renderGames();
+            });
+        });
+    }
+
+    private void refreshStates(ArrayList<Game> list) {
+        long bytes = 0;
+        for (Game game : list) {
+            JSONObject manifest = GameInstaller.installedManifest(this, game.id);
+            CatalogGame.Version version = game.data.version();
+            game.updateAvailable = manifest != null && version != null
+                && !version.version.equals(manifest.optString("version", ""));
+            game.installed = manifest != null && !game.updateAvailable;
+            if (game.installed) bytes += GameInstaller.gameBytes(this, game.id);
+        }
+        cachedBytes = bytes;
     }
 
     private void hideKeyboard() {
@@ -393,17 +491,19 @@ public final class CollectionActivity extends Activity {
                 }));
                 runOnUiThread(() -> {
                     game.busy = false;
+                    game.downloadPercent = 0;
                     if (isFinishing() || isDestroyed()) return;
-                    renderGames();
+                    refreshAndRender();
                     launch(game);
                 });
             } catch (Exception error) {
                 android.util.Log.e("lcom-ng", "Cannot install " + game.id, error);
                 runOnUiThread(() -> {
                     game.busy = false;
+                    game.downloadPercent = 0;
                     if (isFinishing() || isDestroyed()) return;
                     if (game.status != null) {
-                        game.status.setText("Download failed. Tap to retry.");
+                        game.status.setText("Failed · tap to retry");
                         game.status.setTextColor(0xffff8a80);
                     }
                     Toast.makeText(this, "Download failed. Check your connection and try again.", Toast.LENGTH_LONG).show();
@@ -414,14 +514,14 @@ public final class CollectionActivity extends Activity {
 
     private void updateStatus(Game game, long read, long total) {
         if (game.status == null) return;
-        game.status.setTextColor(ACCENT);
-        if (read <= 0) {
-            game.status.setText("Downloading…");
-            if (game.progress != null) game.progress.setVisibility(View.VISIBLE);
-            return;
-        }
         int percent = total > 0 ? (int) Math.min(100, read * 100 / total) : 0;
-        game.status.setText("Downloading " + percent + "%");
+        game.downloadPercent = percent;
+        game.status.setTextColor(ACCENT);
+        game.status.setText(percent > 0 ? percent + "%" : "…");
+        GradientDrawable pill = new GradientDrawable();
+        pill.setCornerRadius(dp(999));
+        pill.setColor(0x2272d6b0);
+        game.status.setBackground(pill);
         if (game.progress != null) {
             game.progress.setVisibility(View.VISIBLE);
             game.progress.setProgress(percent);
@@ -472,75 +572,110 @@ public final class CollectionActivity extends Activity {
 
     private void showGameDialog(Game game) {
         hideKeyboard();
-        boolean installed = GameInstaller.isInstalled(this, game.data);
-        boolean update = GameInstaller.hasUpdate(this, game.data);
         LinearLayout panel = new LinearLayout(this);
         panel.setOrientation(LinearLayout.VERTICAL);
-        panel.setPadding(dp(24), dp(4), dp(24), dp(8));
+        TextView heading = text(game.name, 22, INK);
+        heading.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        panel.addView(heading);
         if (!game.data.description.isEmpty()) {
             TextView description = text(game.data.description, 15, MUTED);
-            description.setPadding(0, 0, 0, dp(12));
+            description.setPadding(0, dp(10), 0, dp(4));
             panel.addView(description);
         }
-        AlertDialog[] holder = new AlertDialog[1];
-        if (installed) {
-            panel.addView(dialogAction(panel, "Play", () -> { holder[0].dismiss(); launch(game); }));
+        Dialog[] holder = new Dialog[1];
+        if (game.installed) {
+            panel.addView(dialogRow("Play", ACCENT, 0x2272d6b0, () -> { holder[0].dismiss(); launch(game); }));
         }
-        if (!installed || update) {
-            panel.addView(dialogAction(panel, installed ? "Update download" : "Download and play",
+        if (!game.installed || game.updateAvailable) {
+            panel.addView(dialogRow(game.installed ? "Update" : "Download and play", ACCENT, 0x2272d6b0,
                 () -> { holder[0].dismiss(); download(game); }));
         }
         if (game.data.instructions != null) {
-            panel.addView(dialogAction(panel, "Controls", () -> { holder[0].dismiss(); showControls(game); }));
+            panel.addView(dialogRow("Controls", INK, 0xff1d2521, () -> { holder[0].dismiss(); showControls(game); }));
         }
-        if (installed) {
-            panel.addView(dialogAction(panel, "Delete download", () -> {
+        if (game.installed) {
+            panel.addView(dialogRow("Delete download", 0xffff8a80, 0xff241b1b, () -> {
                 holder[0].dismiss();
-                new AlertDialog.Builder(this)
-                    .setTitle("Delete " + game.name + "?")
-                    .setMessage("The installed game files will be removed. You can download it again later.")
-                    .setNegativeButton("Cancel", null)
-                    .setPositiveButton("Delete", (confirm, value) -> {
-                        GameInstaller.delete(this, game.id);
-                        renderGames();
-                    }).show();
+                confirmDelete(game);
             }));
         }
-        panel.addView(dialogAction(panel, "Close", () -> holder[0].dismiss()));
-        holder[0] = new AlertDialog.Builder(this)
-            .setTitle(game.name)
-            .setView(panel)
-            .create();
-        holder[0].show();
-    }
-
-    private View dialogAction(LinearLayout panel, String label, Runnable action) {
-        Button button = action(label, false);
-        button.setGravity(Gravity.CENTER);
-        button.setOnClickListener(view -> action.run());
-        LinearLayout.LayoutParams size = new LinearLayout.LayoutParams(-1, dp(48));
-        size.topMargin = dp(6);
-        button.setLayoutParams(size);
-        return button;
+        panel.addView(dialogRow("Close", INK, 0xff1d2521, () -> holder[0].dismiss()));
+        holder[0] = showCard(panel);
     }
 
     private void showControls(Game game) {
-        String text = instructionText(game.data.instructions).trim();
-        if (text.isEmpty()) return;
-        TextView message = text(text, 15, INK);
-        message.setLineSpacing(dp(2), 1f);
-        int padding = dp(20);
-        message.setPadding(padding, dp(12), padding, dp(12));
-        ScrollView scroll = new ScrollView(this);
-        scroll.addView(message);
-        new AlertDialog.Builder(this)
-            .setTitle("Controls")
-            .setView(scroll)
-            .setPositiveButton("Close", null)
-            .show();
+        String body = instructionText(game.data.instructions).trim();
+        if (body.isEmpty()) return;
+        LinearLayout panel = new LinearLayout(this);
+        panel.setOrientation(LinearLayout.VERTICAL);
+        TextView heading = text("Controls", 22, INK);
+        heading.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        panel.addView(heading);
+        TextView message = text(body, 15, INK);
+        message.setPadding(0, dp(14), 0, dp(10));
+        panel.addView(message);
+        Dialog dialog = showCard(panel);
+        panel.addView(dialogRow("Close", INK, 0xff1d2521, dialog::dismiss));
+    }
+
+    private void confirmDelete(Game game) {
+        LinearLayout panel = new LinearLayout(this);
+        panel.setOrientation(LinearLayout.VERTICAL);
+        TextView heading = text("Delete " + game.name + "?", 20, INK);
+        heading.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
+        panel.addView(heading);
+        TextView message = text("The installed game files will be removed. You can download it again later.", 15, MUTED);
+        message.setPadding(0, dp(10), 0, dp(4));
+        panel.addView(message);
+        Dialog dialog = showCard(panel);
+        panel.addView(dialogRow("Delete", 0xffff8a80, 0xff241b1b, () -> {
+            dialog.dismiss();
+            GameInstaller.delete(this, game.id);
+            refreshAndRender();
+        }));
+        panel.addView(dialogRow("Cancel", INK, 0xff1d2521, dialog::dismiss));
+    }
+
+    private Button dialogRow(String label, int textColor, int fillColor, Runnable action) {
+        Button row = action(label, false);
+        row.setTextColor(textColor);
+        row.setBackground(interactive(fillColor));
+        row.setGravity(Gravity.CENTER);
+        LinearLayout.LayoutParams size = new LinearLayout.LayoutParams(-1, dp(50));
+        size.topMargin = dp(8);
+        row.setLayoutParams(size);
+        row.setOnClickListener(view -> action.run());
+        return row;
+    }
+
+    /** Show a panel inside a rounded dark card over a dimmed scrim. */
+    private Dialog showCard(LinearLayout panel) {
+        LinearLayout card = new LinearLayout(this);
+        card.setOrientation(LinearLayout.VERTICAL);
+        card.setPadding(dp(22), dp(22), dp(22), dp(14));
+        card.setBackground(surface(0xff121a16, 0));
+        card.addView(panel);
+        ScrollView wrapper = new ScrollView(this);
+        wrapper.addView(card, new FrameLayout.LayoutParams(-1, -2));
+        FrameLayout outer = new FrameLayout(this);
+        outer.setPadding(dp(16), dp(16), dp(16), dp(16));
+        outer.addView(wrapper, new FrameLayout.LayoutParams(-1, -2, Gravity.CENTER));
+        Dialog dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(outer);
+        dialog.setCanceledOnTouchOutside(true);
+        Window window = dialog.getWindow();
+        if (window != null) {
+            window.setBackgroundDrawable(new android.graphics.drawable.ColorDrawable(Color.TRANSPARENT));
+            window.setLayout(-1, -1);
+            window.setDimAmount(0.5f);
+        }
+        dialog.show();
+        return dialog;
     }
 
     @Override protected void onDestroy() {
+        mainHandler.removeCallbacksAndMessages(null);
         io.shutdownNow();
         artwork.shutdownNow();
         super.onDestroy();
@@ -550,149 +685,138 @@ public final class CollectionActivity extends Activity {
         grid.removeAllViews();
         for (Game game : games) game.tile = null;
         ArrayList<Game> matches = matchingGames();
-        int iconSize = Math.max(dp(64), (getResources().getDisplayMetrics().widthPixels - dp(24) - 2 * sideInset) / columns - dp(12));
-        int tileHeight = iconSize + dp(64 * Math.max(1f, getResources().getConfiguration().fontScale));
-        LinkedHashMap<String, ArrayList<Game>> families = new LinkedHashMap<>();
-        if (columns >= 2) for (Game game : matches) if (!game.archetype.isEmpty()) {
-            if (!families.containsKey(game.archetype)) families.put(game.archetype, new ArrayList<>());
-            families.get(game.archetype).add(game);
-        }
-        LinkedHashMap<Game, ArrayList<Game>> clusters = new LinkedHashMap<>();
-        HashSet<Game> grouped = new HashSet<>();
-        for (ArrayList<Game> family : families.values()) for (int start = 0; start + 9 <= family.size(); start += 9) {
-            ArrayList<Game> members = new ArrayList<>(family.subList(start, start + 9));
-            clusters.put(members.get(0), members);
-            grouped.addAll(members);
-        }
-        ArrayList<boolean[]> occupied = new ArrayList<>();
+        float fontScale = Math.max(1f, getResources().getConfiguration().fontScale);
         int availableWidth = getResources().getDisplayMetrics().widthPixels - dp(24) - 2 * sideInset;
+        int gap = dp(10);
+        int blockWidth = Math.max(dp(120), availableWidth / columns - gap);
+        int iconSize = Math.min(dp(280), Math.max(dp(96), blockWidth - dp(20)));
+        int tileHeight = iconSize + Math.round(dp(46 * fontScale)) + dp(48);
         for (Game game : matches) {
-            ArrayList<Game> members = clusters.get(game);
-            if (grouped.contains(game) && members == null) continue;
-            int span = members == null ? 1 : 2;
-            int row = 0, column = 0;
-            boolean found = false;
-            while (!found) {
-                while (occupied.size() < row + span) occupied.add(new boolean[columns]);
-                for (column = 0; column + span <= columns; column++) {
-                    boolean free = true;
-                    for (int y = row; y < row + span; y++) for (int x = column; x < column + span; x++)
-                        if (occupied.get(y)[x]) free = false;
-                    if (free) { found = true; break; }
-                }
-                if (!found) row++;
-            }
-            for (int y = row; y < row + span; y++) for (int x = column; x < column + span; x++) occupied.get(y)[x] = true;
-            int blockWidth = availableWidth * span / columns - dp(8);
-            int blockHeight = (tileHeight + dp(8)) * span - dp(8);
-            View block;
-            if (members == null) block = gameTile(game, iconSize, false);
-            else {
-                GridLayout cluster = new GridLayout(this);
-                cluster.setColumnCount(3);
-                cluster.setRowCount(3);
-                int smallHeight = (blockHeight - dp(16)) / 3;
-                int smallIcon = Math.max(dp(24), smallHeight - dp(48 * Math.max(1f, getResources().getConfiguration().fontScale)));
-                for (int index = 0; index < members.size(); index++) {
-                    GridLayout.LayoutParams cell = new GridLayout.LayoutParams(GridLayout.spec(index / 3), GridLayout.spec(index % 3));
-                    cell.width = (blockWidth - dp(16)) / 3;
-                    cell.height = smallHeight;
-                    cell.setMargins(0, 0, index % 3 < 2 ? dp(8) : 0, index / 3 < 2 ? dp(8) : 0);
-                    cluster.addView(gameTile(members.get(index), smallIcon, true), cell);
-                }
-                block = cluster;
-            }
-            GridLayout.LayoutParams cell = new GridLayout.LayoutParams(GridLayout.spec(row, span, GridLayout.FILL), GridLayout.spec(column, span, GridLayout.FILL));
+            GridLayout.LayoutParams cell = new GridLayout.LayoutParams(
+                GridLayout.spec(GridLayout.UNDEFINED, 1, GridLayout.FILL),
+                GridLayout.spec(GridLayout.UNDEFINED, 1, GridLayout.FILL));
             cell.width = blockWidth;
-            cell.height = blockHeight;
-            cell.setMargins(dp(4), dp(4), dp(4), dp(4));
-            grid.addView(block, cell);
+            cell.height = tileHeight;
+            cell.setMargins(dp(5), dp(5), dp(5), dp(5));
+            grid.addView(gameTile(game, iconSize), cell);
         }
         empty.setVisibility(matches.isEmpty() ? View.VISIBLE : View.GONE);
+        empty.setText(installedOnly && query.trim().isEmpty()
+            ? "Nothing downloaded yet.\nTap a game to get it."
+            : "No games match. Try another name.");
         int installed = 0;
-        for (Game game : games) if (GameInstaller.isInstalled(this, game.data)) installed++;
-        String count = query.trim().isEmpty() ? games.size() + " games" : matches.size() + " of " + games.size() + " games";
+        for (Game game : games) if (game.installed) installed++;
+        String count = query.trim().isEmpty() ? games.size() + " games"
+            : matches.size() + " of " + games.size() + " games";
         if (installed > 0) count += " · " + installed + " installed";
-        long bytes = GameInstaller.installedBytes(this);
-        if (bytes > 0) count += " · " + formatBytes(bytes) + " used";
+        if (cachedBytes > 0) count += " · " + formatBytes(cachedBytes) + " used";
         summary.setText(count);
         clear.setVisibility(query.isEmpty() ? View.GONE : View.VISIBLE);
         surprise.setEnabled(!matches.isEmpty());
         surprise.setAlpha(matches.isEmpty() ? .4f : 1f);
+        updateFilterChips();
     }
 
-    private View gameTile(Game game, int iconSize, boolean compact) {
+    private View gameTile(Game game, int iconSize) {
         LinearLayout tile = new LinearLayout(this);
         game.tile = tile;
         tile.setOrientation(LinearLayout.VERTICAL);
+        tile.setGravity(Gravity.CENTER_HORIZONTAL);
         tile.setBackground(interactive(SURFACE));
         tile.setClipToOutline(true);
         tile.setClickable(true);
         tile.setFocusable(true);
-        tile.setContentDescription("Play " + game.name);
+        tile.setContentDescription((game.installed ? "Play " : "Download ") + game.name);
         tile.setTooltipText(game.name);
         tile.setOnClickListener(view -> launch(game));
         tile.setOnLongClickListener(view -> { showGameDialog(game); return true; });
+        tile.setPadding(dp(10), dp(10), dp(10), dp(10));
+
+        FrameLayout art = new FrameLayout(this);
+        GradientDrawable artBackground = surface(0xff0d120f, 0);
+        artBackground.setCornerRadius(dp(14));
+        art.setBackground(artBackground);
+        ImageView artwork = new ImageView(this);
+        artwork.setScaleType(ImageView.ScaleType.FIT_CENTER);
+        artwork.setPadding(dp(14), dp(14), dp(14), dp(14));
+        artwork.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        art.addView(artwork, new FrameLayout.LayoutParams(-1, -1));
+        game.iconView = artwork;
+        TextView initial = text(game.name.isEmpty() ? "?" : game.name.substring(0, 1).toUpperCase(Locale.ROOT), 34, ACCENT);
+        initial.setGravity(Gravity.CENTER);
+        initial.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        art.addView(initial, new FrameLayout.LayoutParams(-1, -1));
+        game.placeholder = initial;
         if (game.icon != null) {
-            ImageView artwork = new ImageView(this);
-            artwork.setScaleType(ImageView.ScaleType.FIT_CENTER);
             artwork.setImageBitmap(game.icon);
-            artwork.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-            tile.addView(artwork, new LinearLayout.LayoutParams(-1, iconSize));
-            game.iconView = artwork;
-        } else {
-            TextView initial = text(game.name.isEmpty() ? "?" : game.name.substring(0, 1).toUpperCase(Locale.ROOT), compact ? 28 : 40, ACCENT);
-            initial.setGravity(Gravity.CENTER);
-            initial.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-            tile.addView(initial, new LinearLayout.LayoutParams(-1, iconSize));
-            game.iconView = null;
+            initial.setVisibility(View.GONE);
         }
-        TextView label = text(game.name, compact ? 12 : 14, INK);
+        tile.addView(art, new LinearLayout.LayoutParams(-1, iconSize));
+
+        TextView label = text(game.name, 14, INK);
         label.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
-        label.setMinLines(2);
         label.setMaxLines(2);
         label.setEllipsize(TextUtils.TruncateAt.END);
-        label.setPadding(dp(compact ? 6 : 12), dp(compact ? 4 : 10), dp(compact ? 6 : 12), dp(compact ? 2 : 4));
+        label.setGravity(Gravity.CENTER);
+        label.setPadding(dp(4), dp(10), dp(4), dp(6));
         label.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         tile.addView(label, new LinearLayout.LayoutParams(-1, -2));
-        game.status = text("", compact ? 10 : 12, MUTED);
-        game.status.setPadding(dp(compact ? 6 : 12), 0, dp(compact ? 6 : 12), dp(compact ? 5 : 8));
+
+        game.status = text("", 12, MUTED);
+        game.status.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         game.status.setMaxLines(1);
-        game.status.setEllipsize(TextUtils.TruncateAt.END);
+        game.status.setPadding(dp(12), dp(4), dp(12), dp(4));
         game.status.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-        tile.addView(game.status, new LinearLayout.LayoutParams(-1, -2));
+        FrameLayout chipRow = new FrameLayout(this);
+        chipRow.addView(game.status, new FrameLayout.LayoutParams(-2, -2, Gravity.CENTER));
+        tile.addView(chipRow, new LinearLayout.LayoutParams(-1, -2));
+
         game.progress = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
         game.progress.setMax(100);
+        game.progress.getProgressDrawable().setColorFilter(ACCENT, android.graphics.PorterDuff.Mode.SRC_IN);
         game.progress.setVisibility(View.GONE);
         game.progress.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-        tile.addView(game.progress, new LinearLayout.LayoutParams(-1, dp(3)));
+        LinearLayout.LayoutParams barSize = new LinearLayout.LayoutParams(-1, dp(4));
+        barSize.topMargin = dp(4);
+        tile.addView(game.progress, barSize);
+
         refreshStatus(game);
         return tile;
     }
 
     private void refreshStatus(Game game) {
         if (game.status == null) return;
-        boolean installed = GameInstaller.isInstalled(this, game.data);
-        boolean update = GameInstaller.hasUpdate(this, game.data);
         CatalogGame.Version version = game.data.version();
+        GradientDrawable pill = new GradientDrawable();
+        pill.setCornerRadius(dp(999));
         if (game.busy) {
-            game.status.setText("Downloading…");
+            game.status.setText(game.downloadPercent > 0 ? game.downloadPercent + "%" : "…");
             game.status.setTextColor(ACCENT);
+            pill.setColor(0x2272d6b0);
             if (game.progress != null) game.progress.setVisibility(View.VISIBLE);
-        } else if (installed) {
+        } else if (game.installed) {
             game.status.setText("Installed");
             game.status.setTextColor(ACCENT);
+            pill.setColor(0x2272d6b0);
             if (game.progress != null) game.progress.setVisibility(View.GONE);
-        } else if (update) {
-            game.status.setText("Update available");
+        } else if (game.updateAvailable) {
+            game.status.setText("Update · " + (version == null ? "" : formatBytes(version.bytes)));
             game.status.setTextColor(ACCENT);
+            pill.setColor(0x2272d6b0);
+            if (game.progress != null) game.progress.setVisibility(View.GONE);
+        } else if (version == null) {
+            game.status.setText("Not available");
+            game.status.setTextColor(MUTED);
+            pill.setColor(0xff1d2521);
             if (game.progress != null) game.progress.setVisibility(View.GONE);
         } else {
-            game.status.setText(version == null ? "Not available" : "Download " + formatBytes(version.bytes));
+            game.status.setText("Get · " + formatBytes(version.bytes));
             game.status.setTextColor(MUTED);
+            pill.setColor(0xff1d2521);
             if (game.progress != null) game.progress.setVisibility(View.GONE);
         }
-        game.tile.setContentDescription((installed ? "Play " : "Download ") + game.name);
+        game.status.setBackground(pill);
+        game.tile.setContentDescription((game.installed ? "Play " : "Download ") + game.name);
     }
 
     private int tileTop(Game game) {
@@ -702,9 +826,10 @@ public final class CollectionActivity extends Activity {
     }
 
     private int columnCount() {
-        int width = getResources().getDisplayMetrics().widthPixels - dp(24) - 2 * sideInset;
-        float fontScale = Math.max(1f, getResources().getConfiguration().fontScale);
-        return Math.max(1, Math.min(6, width / dp(144 * Math.min(fontScale, 1.5f))));
+        int width = getResources().getConfiguration().screenWidthDp;
+        if (width >= 900) return 4;
+        if (width >= 600) return 3;
+        return 2;
     }
 
     private void reflowGrid() {
@@ -752,6 +877,7 @@ public final class CollectionActivity extends Activity {
     @Override public void onSaveInstanceState(Bundle state) {
         rememberAnchor();
         state.putString("query", query);
+        state.putBoolean("installedOnly", installedOnly);
         state.putString("anchor", anchorId);
         state.putInt("anchorOffset", anchorOffset);
         state.putInt("anchorHeight", anchorHeight);
@@ -767,7 +893,7 @@ public final class CollectionActivity extends Activity {
     @Override public void onResume() {
         super.onResume();
         resumed = true;
-        if (grid != null) renderGames();
+        if (grid != null) refreshAndRender();
         reflowGrid();
         restoreAnchorAfterLayout();
     }

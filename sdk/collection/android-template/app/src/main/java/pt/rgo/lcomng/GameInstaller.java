@@ -87,6 +87,10 @@ final class GameInstaller {
         return new File(new File(gameRoot(context, id), version), "assets");
     }
 
+    static long gameBytes(Context context, String id) {
+        return size(gameRoot(context, id));
+    }
+
     static long installedBytes(Context context) {
         long total = 0;
         File root = gamesRoot(context);
