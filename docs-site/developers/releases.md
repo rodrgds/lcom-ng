@@ -26,12 +26,12 @@ Windows compiler target. Windows ARM is not supported.
 1. Finish the changes and run `devenv shell -- lcom-ng-verify`.
 2. Keep `CMakeLists.txt` and `package.json` versions equal. CMake enforces this.
 3. Commit and push the intended release revision.
-4. Push an annotated tag named `v` plus that version, such as `v0.3.0` when both
+4. Push an annotated tag named `v` plus that version, such as `v0.3.1` when both
    files say `0.2.0`.
 
 ```sh
-git tag -a v0.3.0 -m "lcom-ng 0.3.0"
-git push origin v0.3.0
+git tag -a v0.3.1 -m "lcom-ng 0.3.1"
+git push origin v0.3.1
 ```
 
 A release build starts from a `v*` tag and rejects a tag that does not match the
