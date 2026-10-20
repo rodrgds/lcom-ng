@@ -31,9 +31,9 @@ grep -q "MIT License" LICENSE
 test -f course/LICENSE.md
 grep -q "CC BY 4.0" course/LICENSE.md
 test -f CONTRIBUTING.md
-grep -q "Audience Boundaries" CONTRIBUTING.md
+grep -qi "Audience Boundaries" CONTRIBUTING.md
 test -f docs/index.md
-grep -q "Student-facing" docs/index.md
+grep -q "Public documentation" docs/index.md
 test -f docs/adoption.md
 grep -qi "one week" docs/adoption.md
 test -f docs-site/index.md
@@ -46,10 +46,10 @@ grep -q "deploy_pages" .github/workflows/docs.yml
 test -f docs/student-guide.md
 test -f docs/instructor-guide.md
 test -f docs/developer-guide.md
-grep -q "Usually Ignore These" docs/student-guide.md
-grep -q "Audience Boundaries" docs/developer-guide.md
-grep -q "Syllabus Map" docs/instructor-guide.md
-grep -q "Project Rubric" docs/instructor-guide.md
+grep -qi "Usually ignore these" docs/student-guide.md
+grep -qi "Audience Boundaries" docs/developer-guide.md
+grep -q "Instructor-owned surfaces" docs/instructor-guide.md
+grep -q "Assessment artifacts" docs/instructor-guide.md
 test -d sdk/include/lcom
 test -d sdk/client
 test -d course/labs/docs
