@@ -1,7 +1,7 @@
 import {test, expect, chromium, firefox} from '@playwright/test';
 import {execFileSync} from 'node:child_process';
 import {createServer} from 'node:http';
-import {mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
+import {cpSync, mkdtempSync, readFileSync, rmSync, writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import path from 'node:path';
 
@@ -9,11 +9,17 @@ import path from 'node:path';
 test.use({launchOptions: {}});
 const root = path.resolve(import.meta.dirname, '..');
 let directory, server, base;
+const instructions = {sections: [
+  {title:'Before you start',text:'Read these instructions before starting.'},
+  {title:'Controls',controls:[{action:'Jump',bindings:[{keys:['Up']}]}]},
+]};
 test.beforeAll(async () => {
   test.setTimeout(120_000);
   directory = mkdtempSync(path.join(tmpdir(), 'lcom-startup-'));
+  cpSync(path.join(root, 'tests/fixtures/web/startup'), path.join(directory,'instructions'), {recursive:true});
+  writeFileSync(path.join(directory,'instructions/lcom.json'),JSON.stringify({name:'Instructions fixture',instructions}));
   writeFileSync(path.join(directory, 'lcom.collection.json'), JSON.stringify({
-    name: 'Startup collection', projects: ['startup', 'pre-draw-input'].map(name => path.join(root, 'tests/fixtures/web', name)),
+    name: 'Startup collection', projects: [...['startup', 'pre-draw-input'].map(name => path.join(root, 'tests/fixtures/web', name)), 'instructions'],
   }));
   execFileSync(process.env.LCOM_CLI || path.join(root, 'build/machinelab'),
     ['export', 'web', directory, '--output', path.join(directory, 'web')], {stdio: 'pipe'});
@@ -65,6 +71,85 @@ for (const browserType of [chromium, firefox]) {
     } finally { await browser.close(); }
   });
 }
+
+for (const browserType of [chromium, firefox]) {
+  test(`${browserType.name()}: instructions hold the real guest until Start and pause it again when reopened`, async () => {
+    const browser = await browserType.launch(browserType === chromium ?
+      (process.env.CHROME_PATH ? {executablePath:process.env.CHROME_PATH} : process.platform === 'darwin' ? {channel:'chrome'} : {}) : {});
+    try {
+      const page = await browser.newPage();
+      await page.goto(base);
+      await page.getByRole('link',{name:'Play Instructions fixture',exact:true}).click();
+      await expect(page.getByText('Read these instructions before starting.',{exact:true})).toBeVisible();
+      const start = page.getByRole('button',{name:'Start game',exact:true});
+      await expect(start).toBeEnabled();
+      const frame=page.frames().find(frame=>frame.url().includes('/games/'));
+      const pixels=()=>frame.locator('canvas').evaluate(canvas=>[...canvas.getContext('2d').getImageData(0,0,2,1).data]);
+      await expect.poll(async()=>(await pixels()).slice(0,4)).toEqual([17,34,51,255]);
+      const held=await pixels();
+      await frame.evaluate(()=>window.dispatchEvent(new Event('focus')));
+      await page.waitForTimeout(250);
+      expect(await pixels()).toEqual(held);
+      expect(await page.locator('#frame-host').evaluate(host=>host.inert)).toBe(true);
+      await start.click();
+      await expect(page.locator('#loading')).toBeHidden();
+      await expect.poll(pixels).not.toEqual(held);
+      await expect.poll(()=>frame.evaluate(()=>document.activeElement?.id)).toBe('game');
+      await page.getByRole('button',{name:'Instructions',exact:true}).click();
+      await expect(page.getByRole('button',{name:'Resume game',exact:true})).toBeVisible();
+      await page.waitForTimeout(100);
+      const paused=await pixels();
+      await page.waitForTimeout(250);
+      expect(await pixels()).toEqual(paused);
+      await page.keyboard.press('Escape');
+      await expect(page.locator('#loading')).toBeHidden();
+      await expect.poll(pixels).not.toEqual(paused);
+      await page.locator('#back').click();
+      await expect(page.locator('iframe')).toHaveCount(0);
+      await expect(page.getByRole('link',{name:'Play Instructions fixture',exact:true})).toBeFocused();
+    } finally { await browser.close(); }
+  });
+
+  test(`${browserType.name()}: instructions let a fully downloaded guest start when it needs input before drawing`, async () => {
+    const browser = await browserType.launch(browserType === chromium ?
+      (process.env.CHROME_PATH ? {executablePath:process.env.CHROME_PATH} : process.platform === 'darwin' ? {channel:'chrome'} : {}) : {});
+    try {
+      const page=await browser.newPage();
+      await page.route('**/collection.json',async route=>{
+        const response=await route.fetch(),catalog=await response.json();
+        catalog.games.find(game=>game.name==='Pre-draw input').instructions=instructions;
+        await route.fulfill({response,json:catalog});
+      });
+      await page.goto(base);
+      await page.getByRole('link',{name:'Play Pre-draw input',exact:true}).click();
+      await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeEnabled();
+      await page.getByRole('button',{name:'Start game',exact:true}).click();
+      const frame=page.frames().find(frame=>frame.url().includes('/games/'));
+      await frame.locator('canvas').press('Space');
+      await expect.poll(()=>frame.locator('canvas').evaluate(canvas=>[...canvas.getContext('2d').getImageData(0,0,1,1).data])).toEqual([29,71,103,255]);
+      await expect(page.locator('#loading')).toBeHidden();
+    } finally { await browser.close(); }
+  });
+}
+
+test('a late first frame keeps reopened instructions visible', async () => {
+  const browser=await chromium.launch(process.env.CHROME_PATH ? {executablePath:process.env.CHROME_PATH} :
+    process.platform === 'darwin' ? {channel:'chrome'} : {});
+  try {
+    const page=await browser.newPage();
+    await page.goto(base);
+    await page.getByRole('link',{name:'Play Instructions fixture',exact:true}).click();
+    const waitingFrame=page.frames().find(frame=>frame.url().includes('/games/'));
+    expect(await waitingFrame.locator('canvas').evaluate(canvas=>[...canvas.getContext('2d').getImageData(0,0,1,1).data])).toEqual([0,0,0,0]);
+    await page.getByRole('button',{name:'Start game',exact:true}).click();
+    await page.getByRole('button',{name:'Instructions',exact:true}).click();
+    const frame=page.frames().find(frame=>frame.url().includes('/games/'));
+    await expect.poll(()=>frame.locator('canvas').evaluate(canvas=>[...canvas.getContext('2d').getImageData(0,0,1,1).data])).toEqual([17,34,51,255]);
+    await expect(page.getByRole('button',{name:'Resume game',exact:true})).toBeVisible();
+    await page.getByRole('button',{name:'Resume game',exact:true}).click();
+    await expect(page.locator('#loading')).toBeHidden();
+  } finally { await browser.close(); }
+});
 
 for (const browserType of [chromium, firefox]) for (const capture of [true, false]) {
   test(`${browserType.name()}: ${capture ? 'captured' : 'fallback'} drags retain button state across incorrect movement reports`, async () => {
@@ -152,8 +237,8 @@ for (const browserType of [chromium, firefox]) test(`${browserType.name()}: retu
   } finally { await browser.close(); }
 });
 
-for (const mode of ['panel', 'overlay', 'right keyboard']) {
-  test(`collection touch ${mode} keeps controls clear of the parent fullscreen button`, async ({}, testInfo) => {
+for (const mode of ['panel', 'overlay', 'right keyboard']) for (const withInstructions of [false, true]) {
+  test(`collection touch ${mode}${withInstructions ? " with instructions" : ""} keeps controls clear of the parent player buttons`, async ({}, testInfo) => {
     const browser = await chromium.launch(process.env.CHROME_PATH ? {executablePath: process.env.CHROME_PATH} :
       {channel: process.platform === 'darwin' ? 'chrome' : 'chromium'});
     const context = await browser.newContext({viewport: {width: 844, height: 390}, isMobile: true, hasTouch: true});
@@ -171,7 +256,8 @@ for (const mode of ['panel', 'overlay', 'right keyboard']) {
         await route.fulfill({response, json: settings});
       });
       await page.goto(base);
-      await page.getByRole('link', {name: 'Play startup', exact: true}).tap();
+      await page.getByRole('link', {name: withInstructions ? 'Play Instructions fixture' : 'Play startup', exact: true}).tap();
+      if (withInstructions) await page.getByRole('button',{name:'Start game',exact:true}).tap();
       await expect(page.locator('#loading')).toBeHidden();
       const frame = page.frames().find(frame => frame.url().includes('/games/'));
       // This is the exported C guest, not a child that fabricates ready/layout IPC.
@@ -182,12 +268,12 @@ for (const mode of ['panel', 'overlay', 'right keyboard']) {
         await expect(frame.locator('#keyboard-toggle')).toHaveAttribute('aria-expanded', 'true');
       }
       const collisions = async () => {
-        const fullscreen = await page.locator('#player-fullscreen').boundingBox();
+        const parentButtons = await page.locator('#player-fullscreen:visible,#player-help:visible').evaluateAll(buttons=>buttons.map(button=>button.getBoundingClientRect().toJSON()));
         const buttons = await frame.locator('#touch-controls button:visible').evaluateAll(items =>
           items.map(element => ({label: element.getAttribute('aria-label') || element.textContent,
             ...element.getBoundingClientRect().toJSON()})));
-        return buttons.filter(button => Math.min(button.right, fullscreen.x + fullscreen.width) > Math.max(button.left, fullscreen.x) &&
-          Math.min(button.bottom, fullscreen.y + fullscreen.height) > Math.max(button.top, fullscreen.y));
+        return buttons.filter(button => parentButtons.some(parent => Math.min(button.right,parent.right)>Math.max(button.left,parent.left) &&
+          Math.min(button.bottom,parent.bottom)>Math.max(button.top,parent.top)));
       };
       await page.screenshot({path: testInfo.outputPath('collection-touch-chrome.png')});
       await expect.poll(collisions).toEqual([]);

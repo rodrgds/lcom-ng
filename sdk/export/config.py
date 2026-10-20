@@ -45,6 +45,44 @@ def string(value, path):
     return value
 
 
+def instructions(value):
+    """Author-written help, independent of input bindings and guest behavior."""
+    def text(value, path, limit):
+        if len(string(value, path)) > limit: raise ValueError(f'{path} must contain at most {limit} characters')
+    def items(value, path, limit):
+        if not isinstance(value, list) or not 1 <= len(value) <= limit:
+            raise ValueError(f'{path} must contain between 1 and {limit} items')
+        return enumerate(value)
+
+    object_value(value, 'instructions', ['sections'])
+    for index, section in items(value.get('sections'), 'instructions.sections', 8):
+        path = f'instructions.sections[{index}]'
+        object_value(section, path, ['title', 'text', 'controls'])
+        if not ('text' in section or 'controls' in section): raise ValueError(path + ' requires text or controls')
+        for field, limit in [('title', 80), ('text', 1000)]:
+            if field in section: text(section[field], path + '.' + field, limit)
+        if 'controls' not in section: continue
+        for index, control in items(section['controls'], path + '.controls', 16):
+            row = f'{path}.controls[{index}]'
+            object_value(control, row, ['action', 'bindings', 'note'])
+            text(control.get('action'), row + '.action', 80)
+            if 'note' in control: text(control['note'], row + '.note', 240)
+            for index, binding in items(control.get('bindings'), row + '.bindings', 8):
+                source = f'{row}.bindings[{index}]'
+                object_value(binding, source, ['keys', 'label', 'platforms'])
+                if sum(field in binding for field in ('keys', 'label')) != 1:
+                    raise ValueError(source + ' requires exactly one of keys or label')
+                if 'label' in binding: text(binding['label'], source + '.label', 120)
+                if 'keys' in binding:
+                    for _, key in items(binding['keys'], source + '.keys', 6): text(key, source + '.keys', 32)
+                if 'platforms' in binding:
+                    for _, platform in items(binding['platforms'], source + '.platforms', 5):
+                        choice(platform, source + '.platforms', ['macos', 'windows', 'linux', 'ios', 'android'])
+                    if len(set(binding['platforms'])) != len(binding['platforms']):
+                        raise ValueError(source + '.platforms cannot contain duplicates')
+    return copy.deepcopy(value)
+
+
 def icon_path(path):
     path = Path(path).resolve(strict=True)
     data = path.read_bytes()
@@ -72,11 +110,12 @@ def load(project, explicit=None):
     project = Path(project).resolve()
     path = Path(explicit).resolve(strict=True) if explicit else project / 'lcom.json'
     data = json.loads(path.read_text()) if path.is_file() else {}
-    object_value(data, str(path), ['$schema','version','name','icon','description','preview','archetype','mobile','build'])
+    object_value(data, str(path), ['$schema','version','name','icon','description','instructions','preview','archetype','mobile','build'])
     if 'version' in data and (type(data['version']) is not int or data['version'] != 1):
         raise ValueError('lcom.json version must be 1')
     result = {'name': string(data.get('name',project.name),'name'), 'icon': None, 'preview': None, 'description': '', 'archetype': None,
               'mobile': copy.deepcopy(DEFAULT_MOBILE), 'build': {}}
+    if 'instructions' in data: result['instructions'] = instructions(data['instructions'])
     if 'icon' in data: result['icon'] = icon_path(path.parent / string(data['icon'],'icon'))
     if 'description' in data:
         result['description'] = string(data['description'], 'description').strip()
@@ -279,6 +318,7 @@ def runtime_environment(config):
 
 def public(config):
     return {'name':config['name'], 'description':config['description'], 'archetype':config['archetype'],
+            **({'instructions':config['instructions']} if 'instructions' in config else {}),
             'preview':'preview.png' if config['preview'] else None, 'icon':'icon.png' if config['icon'] else None,'mobile':config['mobile'],
             'environment':runtime_environment(config)}
 

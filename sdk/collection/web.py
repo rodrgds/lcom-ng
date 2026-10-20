@@ -80,6 +80,7 @@ def write_launcher(entries, output, name, icon=None, presentation=None):
     output = Path(output)
     catalog = [{'id': entry['id'], 'name': entry['name'],
                 'description': entry['settings']['description'],
+                **({'instructions': entry['settings']['instructions']} if 'instructions' in entry['settings'] else {}),
                 'archetype': entry['settings']['archetype'],
                 'revision': hashlib.sha256((output / 'games' / entry['id'] / 'index.html').read_bytes()).hexdigest()[:12],
                 'url': f'games/{entry["id"]}/',

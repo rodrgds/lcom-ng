@@ -15,6 +15,8 @@ const fullscreenButton = document.querySelector("#fullscreen");
 // The collection owns fullscreen so its Games return button stays in view.
 const collectionPlayer = window.parent !== window && new URLSearchParams(location.search).get('collection') === '1';
 document.documentElement.classList.toggle('collection-player',collectionPlayer);
+let instructionsHold = collectionPlayer && new URLSearchParams(location.search).get('instructions') === '1';
+document.documentElement.classList.toggle('collection-instructions',instructionsHold);
 let firstFrame = false;
 let startupOutput = '';
 function reportLoading(state) {
@@ -59,7 +61,8 @@ const aliases = {
 const guestKey = code => aliases[code] || (/^Key[A-Z]$/.test(code) ? code.slice(3) : /^Digit[0-9]$/.test(code) ? code.slice(5) : /^F([1-9]|1[0-2])$/.test(code) ? code : null);
 
 const player = {
-  module: null, paused: false, held: new Map(), repeats: new Map(), buttons: 0, image: null,
+  module: null, backgroundPaused: false, held: new Map(), repeats: new Map(), buttons: 0, image: null,
+  get paused() { return this.backgroundPaused || (instructionsHold && firstFrame); },
   audioContext: null, audioSource: null, lastPointer: null,
   attach(module) {
     this.module = module;
@@ -185,6 +188,8 @@ function placeFloatingControls() {
     const style=getComputedStyle(fullscreenButton),width=parseFloat(style.width),height=parseFloat(style.height);
     const right=parseFloat(style.right),top=parseFloat(style.top);
     if([width,height,right,top].every(Number.isFinite)) obstacles.push({x:innerWidth-right-width,y:top,width,height});
+    if (document.documentElement.classList.contains('collection-instructions') && [width,height,right,top].every(Number.isFinite))
+      obstacles.push({x:innerWidth-right-width-52,y:top,width,height});
     const hint=document.querySelector('#rotation-hint');
     if(visible(hint)) obstacles.push(rect(hint));
   }
@@ -303,6 +308,11 @@ document.addEventListener('keydown', event => {
 });
 window.addEventListener('message',event=>{
   if(collectionPlayer && event.source===parent && event.origin===location.origin && event.data?.type==='lcom-player-release')releaseMouse();
+  if(collectionPlayer && event.source===parent && event.origin===location.origin && event.data?.type==='lcom-player-instructions' && typeof event.data.paused==='boolean') {
+    instructionsHold = event.data.paused;
+    if (instructionsHold) { releaseMouse(); player.stopAudio(); }
+    else { player.unlockAudio(); canvas.focus({preventScroll:true}); }
+  }
 });
 document.addEventListener('keyup', event => {
   if (document.activeElement === canvas && isMouseReleaseKey(event.code)) {
@@ -317,17 +327,17 @@ window.addEventListener('blur', () => {
   releaseMouse();
   // The collection keeps the iframe inert until its first frame. Firefox can
   // blur it during startup, before the loader can give it focus again.
-  player.paused = document.hidden || !collectionPlayer || firstFrame;
+  player.backgroundPaused = document.hidden || !collectionPlayer || firstFrame;
   player.stopAudio();
 });
-window.addEventListener('focus', () => { player.paused = document.hidden; });
+window.addEventListener('focus', () => { player.backgroundPaused = document.hidden; });
 document.addEventListener('visibilitychange', () => {
   if (document.hidden) releaseMouse();
-  player.paused = document.hidden; player.stopAudio();
+  player.backgroundPaused = document.hidden; player.stopAudio();
 });
 window.addEventListener('pagehide', event => {
   if (event.persisted) return;
-  releaseMouse(); player.paused = true; player.stopAudio();
+  releaseMouse(); player.backgroundPaused = true; player.stopAudio();
   // Firefox does not close an AudioContext when its game iframe is removed.
   player.audioContext?.close().catch(error => console.warn(error.message));
   player.audioContext = null;
@@ -934,7 +944,7 @@ try {
   }, prepared);
   module.FS.mkdirTree(config.workingDirectory);
   module.FS.chdir(config.workingDirectory);
-  canvas.focus({ preventScroll: true }); player.paused = document.hidden;
+  canvas.focus({ preventScroll: true }); player.backgroundPaused = document.hidden;
   status.textContent = 'Game running.';
   // Execution can wait for ordinary input before drawing. This is not ready.
   reportLoading({phase:'running'});

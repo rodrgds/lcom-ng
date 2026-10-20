@@ -8,6 +8,7 @@ import {Surprise} from './surprise.js';
 import {cue} from './audio.js';
 import {bindGridNavigation} from './navigation.js';
 import {loadFont} from './fonts.js';
+import {renderInstructions} from './instructions.js';
 
 const library = document.querySelector('#library');
 const play = document.querySelector('#play');
@@ -19,6 +20,7 @@ let catalog = [], selected = null, lastLink = null, surprise = null, gameSearch 
 let playerLayout = null;
 const previews = new Previews();
 const back=document.querySelector('#back');
+const help=document.querySelector('#player-help');
 const libraryHint=document.querySelector('#library-hint');
 let hintDelay=null,hintTimeout=null;
 function resetLibraryHint() {
@@ -43,6 +45,7 @@ function placeReturn(layout) {
   const transform=r=>({x:bounds.x+r.x*sx,y:bounds.y+r.y*sy,width:r.width*sx,height:r.height*sy});
   const game=transform(layout.game), occupied=layout.occupied.map(transform);
   occupied.push(document.querySelector('#player-fullscreen').getBoundingClientRect());
+  if (!help.hidden) occupied.push(help.getBoundingClientRect());
   surroundings.update(game,occupied);
   if(!back.offsetWidth) return;
   const w=back.offsetWidth,h=back.offsetHeight;
@@ -65,7 +68,10 @@ const loading = document.querySelector('#loading');
 const progress = loading.querySelector('progress');
 const runningControls = document.querySelector('#load-running');
 const consoleOutput = document.querySelector('#load-console');
-let ready = false, running = false, progressStep = -1;
+const instructionContent = document.querySelector('#game-instructions');
+const instructionFooter = document.querySelector('#load-start');
+const startButton = document.querySelector('#start-game');
+let ready = false, running = false, started = false, hasInstructions = false, progressStep = -1;
 function showLoading() {
   loading.hidden = false;
   if (!loading.open) loading.showModal();
@@ -73,6 +79,33 @@ function showLoading() {
 function hideLoading() {
   if (loading.open) loading.close();
   loading.hidden = true;
+}
+function enterGame() {
+  started = true;
+  library.hidden = true; play.classList.remove('starting'); hideLoading(); host.inert = false;
+  if (ready) surroundings.start(selected,catalog);
+  const frame = host.querySelector('iframe');
+  frame?.contentWindow.postMessage({type:'lcom-player-instructions',paused:false},location.origin);
+  frame?.contentWindow.focus();
+  frame?.contentDocument?.querySelector('#game')?.focus({preventScroll:true});
+}
+function showInstructions() {
+  if (!hasInstructions || !started) return;
+  host.querySelector('iframe')?.contentWindow.postMessage({type:'lcom-player-instructions',paused:true},location.origin);
+  host.inert = true;
+  surroundings.reset(); resetLibraryHint();
+  startButton.firstChild.textContent = 'Resume game';
+  document.querySelector('#instruction-state').textContent = 'Game paused.';
+  document.querySelector('#load-dismiss').setAttribute('aria-label','Return to game');
+  showLoading(); startButton.focus({preventScroll:true});
+}
+startButton.onclick = enterGame;
+help.onclick = showInstructions;
+function allowStart() {
+  const becameReady = startButton.disabled;
+  startButton.disabled = false;
+  document.querySelector('#instruction-state').textContent = started ? 'Game paused.' : ready ? '' : 'Opening game…';
+  if (becameReady && loading.contains(document.activeElement)) startButton.focus({preventScroll:true});
 }
 function loadingState(state) {
   if (state.phase === 'output') {
@@ -88,19 +121,30 @@ function loadingState(state) {
     progress.hidden = true;
     runningControls.hidden = false;
     document.querySelector('#load-status').textContent = 'Opening game…';
+    if (hasInstructions) {
+      runningControls.hidden = true;
+      allowStart();
+    }
   } else if (state.phase === 'error') {
     running = false; runningControls.hidden = true;
     loading.classList.remove('running');
     showLoading();
     document.querySelector('#load-error').hidden = false;
     document.querySelector('#load-progress').hidden = true;
+    instructionFooter.hidden = true;
     document.querySelector('#retry').focus({preventScroll:true});
   } else if (state.phase === 'ready') {
     const loadingHadFocus = loading.contains(document.activeElement);
     runningControls.hidden = true;
-    ready = true; library.hidden = true; play.classList.remove('starting'); hideLoading(); host.inert = false;
-    surroundings.start(selected,catalog);
-    if (loadingHadFocus || !play.contains(document.activeElement)) host.querySelector('iframe')?.contentWindow.focus();
+    ready = true;
+    if (hasInstructions && (!started || loading.open)) {
+      document.querySelector('#load-progress').hidden = true;
+      allowStart();
+    } else {
+      library.hidden = true; play.classList.remove('starting'); hideLoading(); host.inert = false;
+      surroundings.start(selected,catalog);
+      if (loadingHadFocus || !play.contains(document.activeElement)) host.querySelector('iframe')?.contentWindow.focus();
+    }
   } else if (!ready && document.querySelector('#load-error').hidden) {
     const fraction = state.total > 0 ? Math.min(1, state.loaded / state.total) : null;
     if (fraction === null) progress.removeAttribute('value');
@@ -229,7 +273,13 @@ function route(force = false) {
   resetLibraryHint();
   playerLayout=null;
   releasePointer();
-  host.replaceChildren(); selected = game || null; ready = false; running = false; progressStep = -1;
+  host.replaceChildren(); selected = game || null; ready = false; running = false; started = false; progressStep = -1;
+  hasInstructions = renderInstructions(instructionContent, game?.instructions);
+  help.hidden = !hasInstructions; instructionFooter.hidden = !hasInstructions;
+  loading.classList.toggle('with-instructions',hasInstructions);
+  startButton.disabled = true; startButton.firstChild.textContent = 'Start game';
+  document.querySelector('#instruction-state').textContent = 'You can read while it loads.';
+  document.querySelector('#load-dismiss').setAttribute('aria-label','Back to games');
   updateKeyboardLock();
   runningControls.hidden = true; consoleOutput.hidden = true; consoleOutput.textContent = ''; progress.hidden = false;
   loading.classList.remove('running');
@@ -249,7 +299,7 @@ function route(force = false) {
     document.querySelector('#load-progress').hidden = false;
     progress.removeAttribute('value');
     document.querySelector('#load-status').textContent = 'Loading game…';
-    const frame = document.createElement('iframe'); frame.title = game.name; frame.src = game.url + '?collection=1&v=' + encodeURIComponent(game.revision || '');
+    const frame = document.createElement('iframe'); frame.title = game.name; frame.src = game.url + '?collection=1&v=' + encodeURIComponent(game.revision || '') + (hasInstructions ? '&instructions=1' : '');
     frame.allow = 'autoplay; fullscreen'; host.append(frame);
     document.title = `${game.name} · ${library.querySelector('h1').textContent}`;
     frame.onerror = () => loadingState({phase:'error'});
@@ -264,8 +314,12 @@ back.onclick = returnToLibrary;
 window.addEventListener('hashchange', () => route());
 document.querySelector('#retry').onclick = () => route(true);
 document.querySelector('#cancel').onclick = returnToLibrary;
-document.querySelector('#load-dismiss').onclick = returnToLibrary;
-loading.addEventListener('cancel',event => {event.preventDefault();returnToLibrary();});
+const dismissLoading = () => {
+  if (started && hasInstructions && document.querySelector('#load-error').hidden) enterGame();
+  else returnToLibrary();
+};
+document.querySelector('#load-dismiss').onclick = dismissLoading;
+loading.addEventListener('cancel',event => {event.preventDefault();dismissLoading();});
 try {
   const response = await fetch(document.querySelector('link[data-catalog]')?.href || 'collection.json');
   if (!response.ok) throw new Error('The game library could not be loaded.');

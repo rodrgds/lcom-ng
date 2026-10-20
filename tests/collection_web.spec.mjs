@@ -38,6 +38,30 @@ test.beforeAll(async () => {
 });
 test.afterAll(async () => new Promise(resolve => server.close(resolve)));
 
+for (const [platform, caps] of [['MacIntel',['⌘','S']],['Win32',['Ctrl','S']],['Linux x86_64',['Ctrl','S']],['Unknown',['⌘','S','Ctrl','S']]]) {
+  test(`instructions show authored shortcut alternatives for ${platform}`,async({page})=>{
+    await page.addInitScript(platform=>{
+      Object.defineProperty(navigator,'platform',{value:platform});
+      Object.defineProperty(navigator,'maxTouchPoints',{value:0});
+    },platform);
+    const instructions={sections:[{title:'Before you start',text:'Type <name> to continue.'},{title:'Shortcuts',controls:[
+      {action:'Save',bindings:[{keys:['Command','S'],platforms:['macos']},{keys:['Ctrl','S'],platforms:['windows','linux']}]},
+      {action:'Move',bindings:[{label:'Hold and drag'}]},
+    ]}]};
+    await page.route('**/collection.json',route=>route.fulfill({json:{name:'Instructions fixture',games:games.map((game,index)=>index?game:{...game,instructions})}}));
+    await page.goto(base);
+    await page.locator('#games a[data-id="game-0"]').click();
+    await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeEnabled();
+    await expect(page.locator('#game-instructions kbd')).toHaveText(caps);
+    await expect(page.getByText('Type <name> to continue.',{exact:true})).toBeVisible();
+    await expect(page.getByText('Hold and drag',{exact:true})).toBeVisible();
+    if(platform==='Unknown')await expect(page.locator('.instruction-binding small')).toHaveText(['macOS','Windows / Linux']);
+    await page.keyboard.press('Escape');
+    await expect(page.locator('iframe')).toHaveCount(0);
+    await expect(page.locator('#games a[data-id="game-0"]')).toBeFocused();
+  });
+}
+
 test('a stalled optional font does not hold the page load or block browsing', async ({page}) => {
   const fonts = [];
   page.on('request', request => { if (request.url().endsWith('/assets/bricolage.woff2')) fonts.push(request.url()); });

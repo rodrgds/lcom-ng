@@ -106,6 +106,29 @@ class ProjectConfig(unittest.TestCase):
             with self.subTest(value=value), self.assertRaisesRegex(ValueError, 'archetype'):
                 config.load(self.project)
 
+    def test_instructions_preserve_sections_chords_and_platform_alternatives(self):
+        self.assertNotIn('instructions', config.public(config.load(self.project)))
+        instructions = {'sections': [
+            {'title': 'Before you start', 'text': 'Type a five-letter nickname.'},
+            {'title': 'Controls', 'controls': [
+                {'action': 'Save', 'bindings': [
+                    {'keys': ['Command', 'S'], 'platforms': ['macos']},
+                    {'keys': ['Ctrl', 'S'], 'platforms': ['windows', 'linux']}]},
+                {'action': 'Slice', 'bindings': [{'label': 'Hold and drag'}], 'note': 'Avoid bombs.'}]}]}
+        self.write({'instructions': instructions})
+        self.assertEqual(config.public(config.load(self.project))['instructions'], instructions)
+        for invalid, field in [
+            ({'sections': []}, 'sections'),
+            ({'sections': [{'title': 'Empty'}]}, 'sections'),
+            ({'sections': [{'text': 'x' * 1001}]}, 'text'),
+            ({'sections': [{'controls': [{'action': 'Save', 'bindings': []}]}]}, 'bindings'),
+            ({'sections': [{'controls': [{'action': 'Save', 'bindings': [{'keys': []}]}]}]}, 'keys'),
+            ({'sections': [{'controls': [{'action': 'Save', 'bindings': [{'keys': ['S'], 'label': 'Save'}]}]}]}, 'exactly one'),
+            ({'sections': [{'controls': [{'action': 'Save', 'bindings': [{'keys': ['S'], 'platforms': ['mac']}]}]}]}, 'platforms')]:
+            self.write({'instructions': invalid})
+            with self.subTest(invalid=invalid), self.assertRaisesRegex(ValueError, field):
+                config.load(self.project)
+
     def test_pads_do_not_overlap_the_optional_mouse_stick(self):
         self.write({'mobile':{'controls':{'dpad':True}}})
         self.assertFalse(config.load(self.project)['mobile']['controls']['joystick'])
