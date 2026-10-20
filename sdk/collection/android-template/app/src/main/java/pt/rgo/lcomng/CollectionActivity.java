@@ -37,6 +37,8 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import android.graphics.Rect;
 import android.os.Handler;
 import android.os.Looper;
@@ -447,6 +449,9 @@ public final class CollectionActivity extends Activity {
     }
 
     private void refreshStates(ArrayList<Game> list) {
+        java.util.HashSet<String> known = new java.util.HashSet<>();
+        for (Game game : list) known.add(game.id);
+        GameInstaller.prune(this, known);
         long bytes = 0;
         for (Game game : list) {
             JSONObject manifest = GameInstaller.installedManifest(this, game.id);
@@ -689,16 +694,66 @@ public final class CollectionActivity extends Activity {
         int availableWidth = getResources().getDisplayMetrics().widthPixels - dp(24) - 2 * sideInset;
         int gap = dp(10);
         int blockWidth = Math.max(dp(120), availableWidth / columns - gap);
-        int iconSize = Math.min(dp(280), Math.max(dp(96), blockWidth - dp(20)));
+        int iconSize = Math.min(dp(300), Math.max(dp(96), blockWidth));
         int tileHeight = iconSize + Math.round(dp(46 * fontScale)) + dp(48);
+        LinkedHashMap<String, ArrayList<Game>> families = new LinkedHashMap<>();
+        if (columns >= 2) for (Game game : matches) if (!game.archetype.isEmpty()) {
+            if (!families.containsKey(game.archetype)) families.put(game.archetype, new ArrayList<>());
+            families.get(game.archetype).add(game);
+        }
+        LinkedHashMap<Game, ArrayList<Game>> clusters = new LinkedHashMap<>();
+        HashSet<Game> grouped = new HashSet<>();
+        for (ArrayList<Game> family : families.values()) for (int start = 0; start + 9 <= family.size(); start += 9) {
+            ArrayList<Game> members = new ArrayList<>(family.subList(start, start + 9));
+            clusters.put(members.get(0), members);
+            grouped.addAll(members);
+        }
+        ArrayList<boolean[]> occupied = new ArrayList<>();
         for (Game game : matches) {
+            ArrayList<Game> members = clusters.get(game);
+            if (grouped.contains(game) && members == null) continue;
+            int span = members == null ? 1 : 2;
+            int row = 0, column = 0;
+            boolean found = false;
+            while (!found) {
+                while (occupied.size() < row + span) occupied.add(new boolean[columns]);
+                for (column = 0; column + span <= columns; column++) {
+                    boolean free = true;
+                    for (int y = row; y < row + span; y++) for (int x = column; x < column + span; x++)
+                        if (occupied.get(y)[x]) free = false;
+                    if (free) { found = true; break; }
+                }
+                if (!found) row++;
+            }
+            for (int y = row; y < row + span; y++) for (int x = column; x < column + span; x++) occupied.get(y)[x] = true;
+            int pitch = blockWidth + gap;
+            int width = pitch * span - gap;
+            int height = (tileHeight + gap) * span - gap;
+            View block;
+            if (members == null) block = gameTile(game, iconSize, false);
+            else {
+                GridLayout cluster = new GridLayout(this);
+                cluster.setColumnCount(3);
+                cluster.setRowCount(3);
+                int smallWidth = (width - dp(16)) / 3;
+                int smallHeight = (height - dp(16)) / 3;
+                int smallIcon = Math.max(dp(40), smallHeight - Math.round(dp(38 * fontScale)) - dp(34));
+                for (int index = 0; index < members.size(); index++) {
+                    GridLayout.LayoutParams small = new GridLayout.LayoutParams(
+                        GridLayout.spec(index / 3), GridLayout.spec(index % 3));
+                    small.width = smallWidth;
+                    small.height = smallHeight;
+                    small.setMargins(0, 0, index % 3 < 2 ? dp(8) : 0, index / 3 < 2 ? dp(8) : 0);
+                    cluster.addView(gameTile(members.get(index), smallIcon, true), small);
+                }
+                block = cluster;
+            }
             GridLayout.LayoutParams cell = new GridLayout.LayoutParams(
-                GridLayout.spec(GridLayout.UNDEFINED, 1, GridLayout.FILL),
-                GridLayout.spec(GridLayout.UNDEFINED, 1, GridLayout.FILL));
-            cell.width = blockWidth;
-            cell.height = tileHeight;
+                GridLayout.spec(row, span, GridLayout.FILL), GridLayout.spec(column, span, GridLayout.FILL));
+            cell.width = width;
+            cell.height = height;
             cell.setMargins(dp(5), dp(5), dp(5), dp(5));
-            grid.addView(gameTile(game, iconSize), cell);
+            grid.addView(block, cell);
         }
         empty.setVisibility(matches.isEmpty() ? View.VISIBLE : View.GONE);
         empty.setText(installedOnly && query.trim().isEmpty()
@@ -717,7 +772,7 @@ public final class CollectionActivity extends Activity {
         updateFilterChips();
     }
 
-    private View gameTile(Game game, int iconSize) {
+    private View gameTile(Game game, int iconSize, boolean compact) {
         LinearLayout tile = new LinearLayout(this);
         game.tile = tile;
         tile.setOrientation(LinearLayout.VERTICAL);
@@ -730,19 +785,14 @@ public final class CollectionActivity extends Activity {
         tile.setTooltipText(game.name);
         tile.setOnClickListener(view -> launch(game));
         tile.setOnLongClickListener(view -> { showGameDialog(game); return true; });
-        tile.setPadding(dp(10), dp(10), dp(10), dp(10));
 
         FrameLayout art = new FrameLayout(this);
-        GradientDrawable artBackground = surface(0xff0d120f, 0);
-        artBackground.setCornerRadius(dp(14));
-        art.setBackground(artBackground);
         ImageView artwork = new ImageView(this);
         artwork.setScaleType(ImageView.ScaleType.FIT_CENTER);
-        artwork.setPadding(dp(14), dp(14), dp(14), dp(14));
         artwork.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         art.addView(artwork, new FrameLayout.LayoutParams(-1, -1));
         game.iconView = artwork;
-        TextView initial = text(game.name.isEmpty() ? "?" : game.name.substring(0, 1).toUpperCase(Locale.ROOT), 34, ACCENT);
+        TextView initial = text(game.name.isEmpty() ? "?" : game.name.substring(0, 1).toUpperCase(Locale.ROOT), compact ? 24 : 34, ACCENT);
         initial.setGravity(Gravity.CENTER);
         initial.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         art.addView(initial, new FrameLayout.LayoutParams(-1, -1));
@@ -753,19 +803,19 @@ public final class CollectionActivity extends Activity {
         }
         tile.addView(art, new LinearLayout.LayoutParams(-1, iconSize));
 
-        TextView label = text(game.name, 14, INK);
+        TextView label = text(game.name, compact ? 12 : 14, INK);
         label.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         label.setMaxLines(2);
         label.setEllipsize(TextUtils.TruncateAt.END);
         label.setGravity(Gravity.CENTER);
-        label.setPadding(dp(4), dp(10), dp(4), dp(6));
+        label.setPadding(dp(4), dp(compact ? 6 : 10), dp(4), dp(compact ? 2 : 6));
         label.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         tile.addView(label, new LinearLayout.LayoutParams(-1, -2));
 
-        game.status = text("", 12, MUTED);
+        game.status = text("", compact ? 10 : 12, MUTED);
         game.status.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         game.status.setMaxLines(1);
-        game.status.setPadding(dp(12), dp(4), dp(12), dp(4));
+        game.status.setPadding(dp(compact ? 8 : 12), dp(compact ? 2 : 4), dp(compact ? 8 : 12), dp(compact ? 2 : 4));
         game.status.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         FrameLayout chipRow = new FrameLayout(this);
         chipRow.addView(game.status, new FrameLayout.LayoutParams(-2, -2, Gravity.CENTER));
@@ -776,8 +826,9 @@ public final class CollectionActivity extends Activity {
         game.progress.getProgressDrawable().setColorFilter(ACCENT, android.graphics.PorterDuff.Mode.SRC_IN);
         game.progress.setVisibility(View.GONE);
         game.progress.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
-        LinearLayout.LayoutParams barSize = new LinearLayout.LayoutParams(-1, dp(4));
-        barSize.topMargin = dp(4);
+        LinearLayout.LayoutParams barSize = new LinearLayout.LayoutParams(-1, dp(compact ? 3 : 4));
+        barSize.topMargin = dp(2);
+        barSize.leftMargin = barSize.rightMargin = dp(compact ? 8 : 10);
         tile.addView(game.progress, barSize);
 
         refreshStatus(game);

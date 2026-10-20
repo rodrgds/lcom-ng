@@ -112,6 +112,15 @@ final class GameInstaller {
         deleteTree(gameRoot(context, id));
     }
 
+    /** Remove installed games whose id is no longer in the catalog. */
+    static void prune(Context context, java.util.Set<String> keep) {
+        File[] games = gamesRoot(context).listFiles();
+        if (games == null) return;
+        for (File game : games) {
+            if (game.isDirectory() && !keep.contains(game.getName())) deleteTree(game);
+        }
+    }
+
     private static void deleteTree(File file) {
         File[] children = file.listFiles();
         if (children != null) for (File child : children) deleteTree(child);
