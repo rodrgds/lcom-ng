@@ -1,29 +1,26 @@
-# Developer Guide
+# Developer guide
 
-This guide is for people maintaining lcom-ng itself: runtime code, lab
-scaffolding, docs, tests, examples, and releases.
+For people maintaining lcom-ng itself: runtime code, lab scaffolding, docs,
+tests, examples, and releases. Treat the public course kit and the host runtime
+as first-class: a runtime change that breaks the student workspace, or docs that
+drift from the runtime, is incomplete.
 
-The project has two jobs:
+## Current delivery focus
 
-- provide a stable public course kit;
-- provide a maintainable host runtime that makes the course portable.
+The browser Arcade is the active delivery surface. Its collection and manifest
+live in `collections/arcade/`; the published site is <https://arcade.rgo.pt/>.
 
-Treat both jobs as first-class. Runtime changes that break the generated
-student experience are not complete. Docs changes that drift from the runtime
-are not complete either.
+Android builds, emulator checks, and publication are paused. Preserve
+`sdk/android/`, the shared exporter, and signing keys. Qualify web imports in the
+browser; Android qualification is not a web admission gate.
 
-## Audience Boundaries
+## Audience boundaries
 
-| Audience | Stable surface | Do not leak |
-| --- | --- | --- |
-| Students | generated workspace, `include/lcom/`, lab handouts, `lcom-ng test` | CMake, runtime C++, CI, reference solutions |
-| Instructors | labs, examples, scripts, adoption docs, selected tests | accidental internal protocol details |
-| Developers | whole repository | unclear student-facing copy |
+The audience table and cross-surface rules are in
+[CONTRIBUTING.md](../CONTRIBUTING.md#audience-boundaries). Read them before
+changing a public artifact.
 
-When a change crosses boundaries, update the related docs and tests in the same
-patch.
-
-## Source Map
+## Source map
 
 | Path | Ownership |
 | --- | --- |
@@ -32,44 +29,40 @@ patch.
 | `common/` | process protocol shared by runtime and C client |
 | `sdk/client/` | C client linked into student programs |
 | `sdk/include/lcom/` | public student SDK headers copied as `include/lcom/` |
+| `sdk/compat/` | Minix/LCF compatibility SDK and project builder |
+| `sdk/export/` | shared export configuration and source discovery |
+| `sdk/android/` | Android export, preserved while Android work is paused |
 | `course/labs/templates/` | APIs copied into generated workspaces |
 | `course/labs/docs/` | student-facing handouts |
 | `course/labs/function-requests.json` | structured lab truth for CLI/help |
 | `docs-site/` | VitePress public website |
+| `docs/` | package-local reference and evidence, not a second website |
 | `dev/lab-solutions/` | reference implementations for tests and review |
 | `dev/lab-tests/` | predefined student-lab checks |
-| `examples/` | examples and project seeds |
-| `scripts/` | deterministic replay scripts |
+| `examples/` | examples, project seeds, and pinned community sources |
+| `collections/arcade/` | Arcade manifest, per-game settings, previews |
+| `scripts/` | deterministic replay, capture, and packaging scripts |
 | `tests/integration.sh` | end-to-end repo contract |
 
-## Change Rules
+Architecture and runtime behavior are documented on the public
+[architecture](../docs-site/developers/architecture.md) and
+[runtime and CLI](../docs-site/developers/runtime-cli.md) pages.
+
+## Change rules
 
 - Keep `sdk/include/lcom/` small, C-only, and free of host backend types.
 - Keep generated workspace text student-facing and short.
 - Keep CLI strings, lab aliases, and generated workspace layout aligned with
-  `course/labs/function-requests.json` and `runtime/main.cpp`.
-- Keep `lcom`/`lowlab` compatibility aliases unless a release plan removes them.
+  `course/labs/function-requests.json` and `runtime/cli/`.
+- Keep the `lcom`, `machinelab`, `lowlab`, and `mlab` aliases working.
 - Do not make students learn repo internals to pass labs.
 - Prefer one shared helper over repeated generated text.
 - Add public docs and integration checks when adding public features.
 - Keep binary demo artifacts reproducible from scripts or documented commands.
+- Keep public guides in `docs-site/`; put maintainer notes and evidence in
+  `docs/` instead of copying a public page.
 
-## Runtime Architecture
-
-At a high level:
-
-1. A student C program links against the lcom-ng C client.
-2. The client speaks a small protocol to the host runtime.
-3. The runtime exposes virtual devices: PIT, RTC, keyboard/mouse, VBE, audio,
-   UART, IRQ controller, and related support.
-4. SDL backends provide interactive display, input, and audio where available.
-5. Headless backends provide deterministic tests, frame dumps, WAVs, traces, and
-   videos for CI and grading.
-
-The runtime should model device-facing constraints without pretending to be a
-full operating system or hardware emulator.
-
-## Adding Or Changing A Lab
+## Adding or changing a lab
 
 Update these surfaces together:
 
@@ -78,15 +71,15 @@ Update these surfaces together:
 3. generated starter source in `runtime/cli/FileOps.*` if needed
 4. `dev/lab-solutions/labN/`
 5. `dev/lab-tests/labN_test.c`
-6. `course/labs/docs/labN-*.md`
+6. `course/labs/docs/labN-*.md` and the matching `docs-site/labs/labN/` pages
 7. `course/README.md`
-8. README and role guides if the public course map changes
+8. public lab track and role guides if the course map changes
 9. integration tests
 
 Fresh stubs should compile and fail meaningfully. Completed reference solutions
 should pass the predefined checks.
 
-## Adding Or Changing A Device
+## Adding or changing a device
 
 Check:
 
@@ -100,25 +93,26 @@ Check:
 - lab or project use case;
 - docs and external references.
 
-Avoid exposing runtime internals through public headers just because it is
-convenient for one example.
+Do not expose runtime internals through public headers for one example's
+convenience.
 
-## Test Gate
+## Test gate
 
 ```sh
 devenv shell -- lcom-ng-verify
 ```
 
-Useful narrower checks:
+Narrower checks:
 
 ```sh
 devenv shell -- ctest --test-dir build -R integration --output-on-failure
 devenv shell -- lcom-ng docs cli
-devenv shell -- lcom-ng setup student --force
-devenv shell -- lcom-ng test rtc --project student
+devenv shell -- lcom-ng setup build/student-smoke --force
+devenv shell -- lcom-ng test rtc --project build/student-smoke
 ```
 
-For visual/audio changes, also capture artifacts:
+Browser changes also run through `lcom-ng-web-test`, which includes real
+multi-touch keyboard input. For visual or audio changes, capture artifacts:
 
 ```sh
 devenv shell -- lcom-ng run --headless \
@@ -130,47 +124,16 @@ devenv shell -- lcom-ng run --headless \
 
 ## Release workflow
 
-GitHub Actions builds SDL-enabled Linux x86_64/arm64, macOS x86_64/arm64 and
-Windows MSYS2 x86_64 student archives. Each contains the SDK, desktop dependencies,
-lab assets and checksums. All platform checks must pass before a matching version
-tag creates a draft release. See the [release guide](../docs-site/developers/releases.md)
-for tagging, manual candidates, packaging owners and platform constraints.
-
-## Documentation Discipline
-
-Root README is the public landing page. Keep detailed workflows in focused docs:
-
-- public index: `docs/index.md`;
-- public website: `docs-site/`;
-- students: `docs/student-guide.md`;
-- instructors: `docs/instructor-guide.md`;
-- adoption: `docs/adoption.md`;
-- developers: this file;
-- lab handouts: `course/labs/docs/`;
-- runtime behavior: `docs/runtime-and-cli.md`;
-- architecture: `docs/architecture.md`.
-
-Student-facing docs should explain what to implement while leaving real gaps.
-Instructor docs can discuss grading and operation. Developer docs can mention
-internal files, release workflows, and test contracts.
+GitHub Actions builds SDL-enabled Linux x86_64/arm64, macOS x86_64/arm64, and
+Windows MSYS2 x86_64 student archives, each containing the SDK, desktop
+dependencies, lab assets, and checksums. Tagging, candidate builds, packaging
+owners, and platform constraints are in the
+[release guide](../docs-site/developers/releases.md).
 
 ## Licensing
 
 Code is MIT licensed. Course and documentation material is CC BY 4.0. Keep new
-files aligned with that split unless there is a specific reason to do otherwise.
+files aligned with that split.
 
-## Public Website
-
-The public website is built with VitePress and deployed to Cloudflare Pages:
-
-```sh
-bun run docs:dev
-bun run docs:check
-bun run deploy:docs
-```
-
-Production URL: <https://lcom.rgo.pt/>
-
-Assets are copied from `docs/assets/` into `docs-site/public/assets/` during the
-build. Push-to-deploy is configured in `.github/workflows/docs.yml` and requires
-`CLOUDFLARE_API_TOKEN` plus `CLOUDFLARE_ACCOUNT_ID` repository secrets.
+The site is VitePress, deployed to Cloudflare Pages. Build, asset sync, checks,
+and deployment details are in [Docs Site](../docs-site/developers/docs-site.md).

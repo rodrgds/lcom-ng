@@ -1,15 +1,10 @@
-# Lab 1 Tasks
+# Lab 1 tasks
 
-Work in `labs/rtc/`.
+Work in `labs/rtc/`. Turn the protocol into clear C code. Keep helpers boring: a
+function that builds a mask should build a mask, not hide controller reads or
+formatting.
 
-The skeleton deliberately leaves small but important pieces unfinished. You are
-not expected to discover the RTC from scratch, but you are expected to turn the
-protocol described in the previous pages into clear C code. Keep the helper
-functions boring. If a function only needs to build a mask, it should build a
-mask and return it; do not hide controller reads or formatting behavior inside
-it.
-
-## Requested Functions
+## Requested functions
 
 - `uint8_t bit_clear(uint8_t value, uint8_t bit)`
 - `uint8_t bit_set(uint8_t value, uint8_t bit)`
@@ -20,30 +15,28 @@ it.
 - `int rtc_read_date(lcom_rtc_date_t *date)`
 - `int rtc_read_time(lcom_rtc_time_t *time)`
 
-## Guided Gaps
+## Guided gaps
 
-The bit helpers should build masks from bit positions and should behave
-predictably when a caller asks for an out-of-range bit. The variadic
-`bit_mask` helper needs a sentinel so that it knows where the argument list
-ends. The RTC helpers should poll `RTC_REG_A` until `RTC_UIP` is clear, keep BCD
-conversion small and inspectable, and check output pointers before writing.
+- Build bit masks from bit positions and handle out-of-range bits predictably.
+- End the variadic `bit_mask` argument list with `BIT_MASK_END`.
+- Poll `RTC_REG_A` until `RTC_UIP` is clear.
+- Keep BCD conversion small and inspectable.
+- Check output pointers before writing.
 
-You will also need to decide which helpers are merely part of the exercise and
-which ones deserve to become reusable library code. A `bcd_to_binary` helper is
-likely to remain close to the RTC implementation. Generic bit helpers may be
-useful across several labs, but only if their names and behavior are precise
-enough for other students to trust.
+Decide which helpers are exercise-only and which deserve to become reusable
+library code. A `bcd_to_binary` helper likely stays near the RTC implementation.
+Generic bit helpers may serve several labs if their names and behavior are
+precise.
 
 > [!IMPORTANT]
 > Do not change RTC configuration. Interpret the mode reported by the device
 > instead of forcing the device into the mode you prefer.
 
-## Common Mistakes
+## Common mistakes
 
-The most common failures in this lab come from treating BCD as binary,
-forgetting that bit positions start at zero, returning a mask value when the API
-asks for boolean-like output, or writing a partial date/time structure after one
-read failed. These bugs are small enough that tests should lead you directly to
-them, but only if you keep each helper focused.
+Treating BCD as binary, forgetting that bit positions start at zero, returning a
+mask when the API asks for boolean-like output, and writing a partial structure
+after a failed read. Tests should lead you to these bugs if each helper stays
+focused.
 
 Next: [checks and references](/labs/lab1/check).

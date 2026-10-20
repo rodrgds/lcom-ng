@@ -1,4 +1,4 @@
-# Runtime And CLI
+# Runtime and CLI
 
 `lcom-ng` is the supported entry point for running, testing, recording, and
 packaging student programs.
@@ -13,6 +13,7 @@ packaging student programs.
 | `lcom-ng setup` | generate a student workspace |
 | `lcom-ng test` | compile and run one predefined lab test |
 | `lcom-ng lab` | list labs or inspect requested functions |
+| `lcom-ng compat build` | build unchanged Minix/LCF sources; see [From Minix](/developers/from-minix) |
 | `lcom-ng bundle` | package a runtime and program for this platform |
 | `lcom-ng export web` | rebuild C sources as a standalone browser game |
 | `lcom-ng export android` | rebuild C sources as a native SDL3 APK |
@@ -22,23 +23,23 @@ packaging student programs.
 
 Use `lcom-ng <command> --help` for the exact option list.
 
-## Interactive And Headless
+## Interactive and headless
 
 ```sh
 lcom-ng run build/examples/flappy_bird
 lcom-ng run --headless --max-ticks 300 -- build/examples/timer_int 3
 ```
 
-Headless runs are deterministic and suitable for tests. SDL runs are for live
-teaching, demos, and student exploration.
+Headless runs are deterministic and suitable for tests. SDL runs advance virtual
+time from host time for live teaching and demos.
 
-Use `--max-ticks` to bound virtual time and `--timeout 30` to stop a run after
-30 host seconds, including busy loops. The host deadline is disabled by default.
-It stops and reaps the direct student processes, preserves diagnostic artifacts,
-and exits with code 124. `run`, `replay`, and `run-pair` accept positive finite
-seconds, including fractions.
+`--max-ticks` bounds virtual time. `--timeout 30` stops a run after 30 host
+seconds, including busy loops; the host deadline is disabled by default. It stops
+and reaps direct student processes, preserves diagnostic artifacts, and exits
+with code 124. `run`, `replay`, and `run-pair` accept positive finite seconds,
+including fractions.
 
-Useful artifacts:
+### Artifacts
 
 ```sh
 lcom-ng run --headless --trace build/run.jsonl -- build/examples/timer_int 3
@@ -46,7 +47,15 @@ lcom-ng run --headless --dump-frame build/frame.ppm -- build/examples/vbe_rectan
 lcom-ng run --headless --audio-wav build/audio.wav -- build/examples/audio_tone
 ```
 
-## Replay Scripts
+### Complete frames
+
+`run`, `replay`, and `run-pair` accept `--dump-presented` with their frame dump
+options. It captures the last completed `lcom_vbe_present()` call, excluding
+guest writes after it, which is useful when a finite tick guard stops an
+animation mid-repaint. Without it, frame dumps retain current shared-memory
+contents for debugging unfinished rendering.
+
+## Replay scripts
 
 Replay scripts are line-oriented timelines:
 
@@ -58,27 +67,27 @@ at 8s rtc 2026-06-16T12:00:00
 at 9s caption top 3s REPRODUCIBLE INPUT
 ```
 
-They are useful for:
+Plain timestamps are virtual ticks; `s` and `ms` suffixes are converted at
+60 Hz. `move` expands into smooth relative packets.
 
-- deterministic demos;
-- regression tests;
-- project review;
-- recorded videos;
-- grading artifacts.
+```sh
+lcom-ng replay scripts/flappy_demo.mlabscript --headless \
+  --max-ticks 600 -- build/examples/flappy_bird
+```
 
-## Paired Runtimes
+Use them for demos, regression tests, project review, videos, and grading.
+
+## Paired runtimes
 
 ```sh
 lcom-ng run-pair build/examples/ninjix --right build/examples/ninjix
 ```
 
-The left and right programs have separate machines, processes, input streams,
-display state, and IRQ state. The runtime bridges matching serial ports:
-left COM1 to right COM1 and left COM2 to right COM2. Use
-`--left-dump-frame` and `--right-dump-frame` to keep both final PPM frames from
-a headless paired run.
-
-This replaces the old two-VM/null-modem setup with one reproducible command.
+Left and right programs have separate machines, processes, input streams,
+display state, and IRQ state. The runtime bridges matching serial ports: left
+COM1 to right COM1 and left COM2 to right COM2. Use `--left-script` and
+`--right-script` for separate deterministic input, and `--left-dump-frame` and
+`--right-dump-frame` to keep both final PPM frames from a headless run.
 
 ## Bundles
 
@@ -87,13 +96,7 @@ lcom-ng bundle . --program build/examples/flappy_bird --name flappy-bird
 ./dist/flappy-bird.mlab
 ```
 
-The default bundle is executable on the current host platform. Bundling packages
-existing binaries; it is not cross-compilation.
-
-### Complete-frame screenshots
-
-`run`, `replay`, and `run-pair` accept `--dump-presented` alongside their frame
-dump options. This captures the last completed `lcom_vbe_present()` call,
-excluding guest writes made after it. It is useful when a finite tick guard
-stops an animation during its next repaint. Without this flag, frame dumps
-retain the current shared-memory contents for debugging unfinished rendering.
+The default bundle is executable on the current host platform. `--format dir`
+produces an exploded directory with launchers, manifest, runtime, program, SDK
+headers, and static library. Bundling packages existing binaries; it is not
+cross-compilation.

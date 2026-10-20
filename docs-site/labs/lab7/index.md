@@ -1,11 +1,10 @@
-# Lab 7: UART And Serial Ports
+# Lab 7: UART and serial ports
 
 Generated folder: `labs/uart/`
 
 Lab 7 introduces serial communication through a 16550-style UART. A UART turns
-bytes into a stream and receives a stream back into bytes. It is simple enough
-to fit in a lab, but it contains the same reliability questions that appear in
-larger communication systems.
+bytes into a stream and receives a stream back into bytes. It fits in a lab but
+contains the reliability questions of larger communication systems.
 
 | Register idea | Role |
 | --- | --- |
@@ -16,9 +15,9 @@ larger communication systems.
 | interrupt enable | which events raise IRQs |
 | loopback | transmit is routed back to receive |
 
-Begin with [serial protocol thinking](/labs/lab7/protocols), complete the
-[implementation tasks](/labs/lab7/tasks), run the [checks](/labs/lab7/check),
-and compare this model with [modern serial links](/labs/lab7/modern).
+Read [serial protocol thinking](/labs/lab7/protocols), complete the
+[tasks](/labs/lab7/tasks), run the [checks](/labs/lab7/check), and compare with
+[modern serial links](/labs/lab7/modern).
 
 > [!TIP]
 > Loopback proves one endpoint before `run-pair` asks you to reason about two

@@ -1,39 +1,27 @@
-# Lab 1 Context: Why I/O Looked This Way
+# Lab 1 context: why I/O looked this way
 
-Early PC hardware was built around simple buses and small controller chips. A
-device did not expose an object, a file descriptor, or a driver API. It exposed
-registers. Software selected a register, read a byte, checked a status bit, and
-repeated the protocol until the device was ready.
+Early PC hardware used simple buses and small controller chips. A device exposed
+registers, not objects, file descriptors, or driver APIs. Software selected a
+register, read a byte, checked a status bit, and repeated until the device was
+ready.
 
 The original LCOM/Minix path used privileged services because ordinary programs
-should not freely touch hardware ports. lcom-ng keeps the same controller
-shape, but the runtime safely virtualizes the port reads and writes.
+should not freely touch hardware ports. lcom-ng keeps the controller shape and
+virtualizes the port reads and writes.
 
-## The Transferable Idea
+## The transferable idea
 
-The important lesson is not that the RTC happens to use `0x70` and `0x71`. Those
-addresses are historical details. The deeper lesson is that a controller has a
-small public contract, and the programmer is responsible for following it
-precisely. A status bit may say whether data is valid. A configuration bit may
-change how the next byte should be interpreted. A write to one register may
-only affect the meaning of a later read from another register.
+The addresses `0x70` and `0x71` are historical details. The lesson is that a
+controller has a small public contract: a status bit says whether data is valid,
+a configuration bit changes how the next byte is interpreted, and a write to one
+register may affect a later read from another.
 
-This kind of interface can feel primitive compared with a modern library call,
-but it is also refreshingly honest. There is no hidden object model. There is a
-device state machine, a few bytes of visible state, and a specification that
-tells you how to move from one state to the next. That pattern reappears in
-every later lab, even when the device becomes a timer, keyboard, mouse, video
-card, audio buffer, or serial port.
+The pattern returns in every later lab, whether the device is a timer, keyboard,
+mouse, video card, audio buffer, or serial port.
 
-## What lcom-ng Removes
+## What lcom-ng removes
 
-lcom-ng does not ask you to configure VirtualBox, register a Minix service,
-request I/O privileges from the microkernel, or restore the VM's own device
-drivers after experiments. Those are real operating-system topics, and they are
-worth studying in the right setting. They are not necessary before you learn how
-bit fields, status registers, and controller protocols work.
-
-For this reason, the first lab should be read as a small device-driver exercise
-with the dangerous parts removed. You still need to be careful, but the
-consequences are test failures and trace output rather than a broken guest
-system.
+You do not configure VirtualBox, register a Minix service, request I/O
+privileges, or restore VM drivers. Treat this lab as a device-driver exercise
+with the dangerous parts removed: mistakes become test failures and trace
+output, not a broken guest.

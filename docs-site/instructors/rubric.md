@@ -1,15 +1,12 @@
-# Project Rubric
+# Project rubric
 
-The project should be the place where students prove that the labs became a
-toolkit. A strong project is not necessarily the largest game or the prettiest
-interface. It is a coherent reactive program that combines device areas, has a
+A strong project is a coherent reactive program that combines device areas, has a
 clear state model, and can be demonstrated reproducibly.
 
-## Suggested Weights
+## Suggested weights
 
-For a full semester, a useful course-level split is 40% theory / 60% project.
-Inside the project component, you can either grade broad engineering outcomes
-or use a device-weighted rubric. The broad version is easier to adapt:
+For a full semester, use 40% theory and 60% project. Within the project
+component, either grade broad outcomes or use a device-weighted rubric.
 
 | Area | Weight | Looks for |
 | --- | --- | --- |
@@ -19,7 +16,10 @@ or use a device-weighted rubric. The broad version is easier to adapt:
 | Demo artifact | 5% | screenshot, WAV, video, bundle, or trace that can be reproduced |
 | Individual contribution adjustment | variable | fair accounting within group work |
 
-An LCOM-style project rubric can be more concrete about devices:
+These are relative shares of the project component. Grade lab checks or practical
+progress separately if the course uses them.
+
+An LCOM-style rubric can be concrete about devices:
 
 | Area | Weight | Looks for |
 | --- | ---: | --- |
@@ -34,12 +34,16 @@ An LCOM-style project rubric can be more concrete about devices:
 | Report and video | 10% | concise architecture report and reproducible demo artifact |
 | Optional serial-port extension | up to 10% extra | real paired feature, protocol, multiplayer, console, or visualizer |
 
-If you grade labs directly, reserve a separate lab component for passing checks,
-helper boundaries, and correct error handling. If labs are formative, require
-students to reuse their lab libraries in the project and assess the result
-there.
+Graphics carries the largest weight because it dominates the visible program.
+Keyboard and mouse test different input models. Timer credit should reward real
+timing policy, not sleeping. RTC credit should reward purposeful use. Fewer
+devices used well beats touching every API superficially. Serial extra credit
+should enable a real paired feature.
 
-## Strong Final Projects
+If labs are graded directly, reserve a separate lab component. If formative,
+require reuse of lab libraries in the project.
+
+## Strong final projects
 
 | Criterion | Strong submission |
 | --- | --- |
@@ -50,42 +54,34 @@ there.
 | Finish | has a coherent start, interaction loop, and end state |
 | Evidence | includes source, build instructions, and reproducible artifact |
 
-## Suggested Milestones
+## Suggested milestones
 
-The proposal should identify the project idea, the device areas it will use,
-the smallest finished loop, and the main risks. The prototype should already run
-and respond to input, even if the visuals or audio are temporary. The final
-submission should include source, build instructions, a short implementation
-note, and at least one artifact that staff can reproduce.
+The proposal states the idea, devices, smallest finished loop, and risks. The
+prototype runs and responds to input. The final submission has source, build
+instructions, a short implementation note, and one reproducible artifact.
 
-For a larger course, make the final delivery contract explicit. A good minimum
-is application source, project documentation, build/run instructions, a report
-of at most five pages, and a demo video of at most five minutes. The report
-should answer what the project is, how it is structured, which devices it uses,
-and what differentiates it from a minimal exercise. The video should prove that
-the submitted version runs; it should not replace the source and report.
+For a larger course, require source, documentation, build and run instructions, a
+report of at most five pages, and a demo video of at most five minutes. The report
+covers structure, devices, and what separates the project from a minimal
+exercise. The video proves the submitted version runs; it does not replace source
+or report.
 
-For groups, assess the shared artifact and the individual contribution. Members
-of the same group can receive different marks if their contribution,
-understanding, or submitted implementation notes differ significantly.
+Assess the shared artifact and each member's contribution; marks may differ.
 
-## AI Use
+If the class publishes a [game collection](/instructors/game-collections), an
+Arcade entry may count as the demo artifact if the game's `lcom.json` title,
+description, preview, and instruction rows match the build. Keyboard rows are
+display help and must name keys the game reads.
 
-If AI tools are allowed, say so directly and make responsibility explicit.
-Students may use tools to support learning, debugging, planning, and review, but
-they remain responsible for every submitted file. They must be able to explain
-the code, verify generated output, avoid confidential data disclosure, avoid
-submitting complete generated solutions as unaided work, and describe tool usage
-if asked.
+## AI use
 
-This policy is easiest to enforce in discussion. Ask students to explain a
-buffering decision, walk through a packet parser, justify a timing policy, or
-show how they tested a generated section. The final grade is for the student's
-understanding and artifact, not for the tool.
+State whether AI is allowed and make students responsible for every submitted
+file. They must explain code, verify output, protect confidential data, avoid
+submitting generated solutions as unaided work, and describe tool use if asked.
+Test this in discussion: explain a buffering decision, walk through a parser, or
+justify timing. Grade understanding and artifact, not the tool.
 
-## What To Penalize
+## What to penalize
 
-Penalize projects that only work through blocking sleeps, hide device code in
-unreviewable blobs, cannot be rebuilt by staff, lack a reproducible demo path,
-or add many features without a stable core loop. The project is a systems
-exercise, so reliability and explainability matter as much as visual ambition.
+Blocking sleeps, unreviewable device code, builds staff cannot reproduce, no
+reproducible demo path, and features without a stable core loop.

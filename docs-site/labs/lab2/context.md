@@ -1,34 +1,23 @@
-# Lab 2 Context: Why PC Timers Exist
+# Lab 2 context: why PC timers exist
 
-The CPU is much faster than many I/O devices and much faster than human-visible
-time. A program needs a way to ask "has enough time passed?" without blocking
-the whole machine in a busy loop.
+The CPU is much faster than many I/O devices and than human-visible time. A
+program needs to ask "has enough time passed?" without a busy loop. Older PCs used
+timer hardware such as the i8254 PIT: program a divisor, receive periodic events,
+and count ticks.
 
-Older PCs used dedicated timer hardware such as the i8254 PIT. The timer was
-simple: program a divisor, receive periodic events, and count ticks.
+## What you learn
 
-## What You Learn
+Hardware time derives from a base clock. You program a divisor so the counter
+produces events at the requested frequency, then count events. Time becomes
+measurable independently of CPU speed.
 
-The most important idea is that hardware time is usually derived from a base
-clock. The program does not ask the PIT for "three seconds" directly. It
-programs a divisor so that a counter produces events at a requested frequency,
-then it counts those events. This makes time measurable in a way that is
-independent from how fast the CPU happens to execute a loop.
+Programming a controller also means writing bytes in a required order. A divisor
+is 16 bits, but the interface writes a low byte and a high byte. Wrong order
+configures a different value while every port write succeeds.
 
-You will also see another recurring device pattern: programming a controller
-often requires writing several bytes in a required order. A timer divisor is a
-16-bit value, but the interface writes it as a low byte and a high byte. If the
-order is wrong, the device can be configured to a completely different value
-while every individual port write still "succeeds."
+## Why this comes before graphics
 
-## Why This Comes Before Graphics
-
-Animation is not only drawing. A program needs a timing policy:
-
-when to update state, when to draw, how long to wait for input, and when to
-stop an idle loop. Without that policy, a graphical program either runs as fast
-as the CPU allows or sleeps in a way that is difficult to test.
-
-Lab 2 supplies the first version of that policy layer. The implementation is
-small, but the design habit is important: the handler records ticks, and the
-main program decides what those ticks mean.
+Animation needs a timing policy: when to update state, draw, wait for input, and
+stop an idle loop. Without one, a graphical program runs as fast as the CPU or
+sleeps in a way that is hard to test. The handler records ticks; the main program
+decides what they mean.

@@ -138,7 +138,7 @@ const examplesSidebar = [
     { text: "Plants vs. Zombies", link: "/examples/plants-vs-zombies" },
   ] },
   { text: "Contributing", items: [
-    { text: "Update screenshots", link: "/examples/screenshots" },
+    { text: "Screenshot workflow", link: "/examples/screenshots" },
   ] },
 ];
 

@@ -1,24 +1,22 @@
-# How It Works Today
+# How it works today: keyboards
 
-Modern keyboard stacks usually go through USB HID, Bluetooth HID, operating
+Modern keyboard stacks usually pass through USB HID, Bluetooth HID, operating
 system input layers, keymaps, input methods, and accessibility services before
 applications see input.
 
-## What Changed
+## What changed
 
-Applications usually receive key events from APIs such as SDL, browser events,
-Cocoa, Win32, X11, Wayland, or terminal input modes. Those APIs often translate
-device reports into richer events that include logical keys, text input,
-modifier state, repeat behavior, focus, and layout-dependent characters.
+Applications receive key events from SDL, browser events, Cocoa, Win32, X11,
+Wayland, or terminal input modes. Those APIs translate device reports into
+richer events with logical keys, text input, modifier state, repeat behavior,
+focus, and layout-dependent characters.
 
-## What Stayed Useful
+## What stayed useful
 
-The low-level lessons remain. Byte streams need careful decoding, command
-responses must not be confused with data, and low-level input should be
-separated from UI behavior. These ideas apply whether the report came from PS/2,
-USB HID, Bluetooth, a terminal emulator, or a virtual input backend.
+Byte streams need careful decoding, command responses must not be confused with
+data, and low-level input should be separated from UI behavior. These ideas apply
+to PS/2, USB HID, Bluetooth, terminals, and virtual input backends.
 
 lcom-ng uses the older keyboard shape because it is visible enough to teach.
-Modern stacks are more capable, especially for international text and
-accessibility, but they are also harder to inspect end to end in a first systems
-course.
+Modern stacks handle international text and accessibility better, but are harder
+to inspect end to end in a first systems course.

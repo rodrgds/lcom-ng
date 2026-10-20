@@ -1,11 +1,23 @@
-# Lab Track
+# Lab track
 
 The lab track teaches machine-facing C through small device-shaped exercises.
-Each lab is split into:
+Each lab has an overview of the device model, implementation tasks with
+intentional gaps, and checks with commands and external reading. Every lab also
+explains the controller protocol and its modern equivalent.
 
-- overview: what the device model is;
-- tasks: what you implement and what gaps are intentionally left;
-- check: commands, prompts, and external reading.
+## Before you start
+
+[Install lcom-ng](/students/install), then create a workspace:
+
+```sh
+lcom-ng setup student
+cd student
+make
+```
+
+Run lab checks from the workspace root. Commands that name `build/examples/` or
+`scripts/` use the repository checkout. A generated workspace builds
+`build/student_project` and keeps its scripts under `.mlab/scripts/`.
 
 ## Sequence
 
@@ -18,22 +30,6 @@ Each lab is split into:
 | [Lab 5](/labs/lab5/) | VBE framebuffer and sprites | `lcom-ng test graphics` |
 | [Lab 6](/labs/lab6/) | AC97-lite PCM audio | `lcom-ng test audio` |
 | [Lab 7](/labs/lab7/) | 16550 UART and serial protocols | `lcom-ng test uart` |
-
-## Guide Style
-
-Each lab now has more than a task list:
-
-- history and motivation;
-- controller model;
-- protocol steps;
-- implementation tasks;
-- checks and discussion prompts;
-- external reading;
-- "how it works today" notes for modern systems.
-
-The goal is to teach why the old PC-shaped interface works, why it looked that
-way, and which ideas still transfer to modern MMIO, APIC/MSI, HID, GPU, audio,
-and serial stacks.
 
 ## Method
 

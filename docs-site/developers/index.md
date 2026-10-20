@@ -1,47 +1,51 @@
-# Developer Guide
+# Developer guide
 
-This page is for people building lcom-ng itself: runtime code, lab
-scaffolding, docs, tests, examples, and releases.
+For people building lcom-ng itself: runtime code, SDKs, lab scaffolding, docs,
+tests, examples, and releases.
 
-## Audience Boundaries
+## Audience boundaries
 
 | Audience | Stable surface | Keep out |
 | --- | --- | --- |
 | Students | generated workspace, SDK headers, lab handouts, `lcom-ng test` | CMake, runtime C++, CI, reference solutions |
 | Instructors | labs, examples, scripts, adoption docs, selected tests | accidental protocol internals |
-| Developers | whole repository | unclear student-facing copy |
+| Developers | whole repository | unclear or internal-only copy in public pages |
 
-## Source Map
+## Source map
 
 | Path | Ownership |
 | --- | --- |
 | `runtime/` | C++ host runtime and devices |
-| `runtime/cli/` | setup, lab catalog, tests, CLI support |
+| `runtime/embedded/` | in-process runtime shared by web and Android exports |
+| `runtime/cli/` | CLI file operations and lab catalog helpers |
 | `sdk/include/lcom/` | public C headers copied into workspaces |
 | `sdk/client/` | C client linked into student programs |
+| `sdk/export/` | export configuration and shared source discovery |
+| `sdk/android/` | Android packaging and launcher |
+| `sdk/compat/` | Minix/LCF compatibility SDK and project builder |
 | `course/labs/templates/` | starter contracts |
 | `course/labs/docs/` | source lab handouts |
+| `collections/arcade/` | Arcade manifest, metadata, galleries and publisher |
+| `examples/community/` | pinned student sources and `UPSTREAM.json` provenance |
 | `docs-site/` | public website |
 | `dev/lab-solutions/` | reference implementations |
 | `dev/lab-tests/` | predefined lab checks |
 
-## Test Gate
+[Architecture](/developers/architecture) explains how these pieces fit together.
+[Runtime and CLI](/developers/runtime-cli) covers day-to-day commands.
+
+## Test gate
 
 ```sh
 devenv shell -- lcom-ng-verify
 ```
 
-## Docs Site
+`lcom-ng-test` runs the complete runtime and lab suite. During C/C++ iteration,
+`lcom-ng-build` builds the tree, then run a focused target inside the Devenv
+shell with `ctest --test-dir build -R <name> --output-on-failure`.
 
-The public site uses VitePress:
+## Docs site
 
-```sh
-bun install
-bun run docs:dev
-bun run docs:build
-bun run deploy:docs
-```
-
-Cloudflare Pages deploys from `docs-site/.vitepress/dist`. Push-to-deploy uses
-`.github/workflows/docs.yml` and requires `CLOUDFLARE_API_TOKEN` plus
-`CLOUDFLARE_ACCOUNT_ID` repository secrets.
+The public site is VitePress, deployed from `docs-site/` to Cloudflare Pages.
+Build, asset sync, checks, and deployment details live in
+[Docs site](/developers/docs-site).

@@ -1,15 +1,13 @@
-# Lab 6: AC97-lite PCM Audio
+# Lab 6: AC97-lite PCM audio
 
 Generated folder: `labs/audio/`
 
-Lab 6 introduces audio as a stream of samples. Instead of drawing pixels into a
-framebuffer, you fill an audio buffer with PCM data and ask the runtime to play
-it.
+Lab 6 introduces audio as a stream of samples. You fill an audio buffer with PCM
+data and ask the runtime to play it.
 
-The analogy with graphics is useful. A framebuffer is memory that eventually
-becomes an image. An audio buffer is memory that eventually becomes pressure
-changes in the air. In both cases, the device consumes bytes according to a
-format, and your program is responsible for producing those bytes consistently.
+The analogy with graphics helps. A framebuffer becomes an image; an audio buffer
+becomes pressure changes in the air. In both cases the device consumes bytes in a
+format, and the program must produce those bytes consistently.
 
 | Concept | Meaning |
 | --- | --- |
@@ -19,9 +17,9 @@ format, and your program is responsible for producing those bytes consistently.
 | buffer | mapped memory for samples |
 | byte count | amount the device should consume |
 
-Start by learning [PCM audio](/labs/lab6/pcm), then complete the
-[implementation tasks](/labs/lab6/tasks), run the [checks](/labs/lab6/check),
-and compare the lab model with [modern audio stacks](/labs/lab6/modern).
+Learn [PCM audio](/labs/lab6/pcm), complete the [tasks](/labs/lab6/tasks), run
+the [checks](/labs/lab6/check), and compare with
+[modern audio stacks](/labs/lab6/modern).
 
 > [!TIP]
 > Audio bugs are often unit bugs: samples, frames, channels, and bytes are not

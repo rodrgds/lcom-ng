@@ -5,7 +5,7 @@ owns the virtual devices.
 
 ```text
 student C process
-  libmachinelab client
+  libmachinelab client (aliases: liblcom, liblowlab)
         | local protocol
         v
   lcom-ng runtime server
@@ -15,36 +15,24 @@ student C process
         +-- headless or SDL/audio backend
 ```
 
-That runtime/device boundary is deliberate:
+The runtime/device boundary keeps student code independent of SDL, allows one binary to
+run interactively or headlessly, isolates crashes, and lets host backends evolve
+without changing lab code.
 
-- student code cannot accidentally depend on SDL;
-- the same binary can run interactively or headlessly;
-- device behavior can be traced and tested;
-- crashes stay isolated at the process boundary;
-- host backends can evolve without changing lab code.
+## Student surface
 
-## Student Surface
+`sdk/include/lcom/` is copied into generated workspaces as `include/lcom/`. It
+contains `lcom.h` and device headers for the PIT, i8042, RTC, VBE, AC97, UART and
+memory map.
 
-`sdk/include/lcom/lcom.h` is copied into generated workspaces as
-`include/lcom/lcom.h`.
+`lcom.h` exposes initialization and console output, 8/16/32-bit port I/O, IRQ
+subscribe/unsubscribe and event waits, virtual physical memory map/unmap, and VBE
+mode information, mode changes, and frame presentation.
 
-It exposes:
+It does not expose SDL types, C++ runtime classes, Minix IPC structures, LCF
+callbacks, or host pointers.
 
-- initialization and console output;
-- 8/16/32-bit port I/O;
-- IRQ subscribe/unsubscribe and event waits;
-- virtual physical memory map/unmap;
-- VBE mode information, mode changes, and frame presentation.
-
-It does not expose:
-
-- SDL types;
-- C++ runtime classes;
-- Minix IPC structures;
-- LCF callbacks;
-- host pointers.
-
-## Virtual Devices
+## Virtual devices
 
 | Device | Student-visible concepts | Host outputs |
 | --- | --- | --- |
@@ -61,37 +49,67 @@ These are educational device models, not cycle-accurate emulations.
 
 Headless execution uses a virtual clock. Scripts inject input at virtual
 timestamps. RTC overrides, traces, screenshots, frame sequences, WAV files, and
-replay videos come from the same run.
+replay videos come from the same run. SDL execution follows host time and live
+input but uses the same virtual devices.
 
-SDL execution follows host time and live keyboard/mouse input, but the student
-program still talks to the same virtual devices.
+## Test layers
 
-## Test Layers
-
-1. `unit_tests`: bus, controller, device, script, and core behavior.
-2. `labN_solution`: reference lab implementations through the runtime.
-3. `tests/integration.sh`: CLI, examples, artifacts, pairing, workspace setup,
-   replay encoding, bundles, and docs-site contracts.
+1. `unit`: bus, controller, device, script, and core behavior.
+2. `lab1_solution` through `lab7_solution`: reference lab implementations through
+   the runtime.
+3. `integration`: CLI, examples, artifacts, pairing, workspace setup, replay
+   encoding, bundles, and docs-site contracts.
 
 ```sh
 devenv shell -- lcom-ng-test
 ```
+
+Browser and collection regressions run through `devenv shell -- lcom-ng-web-test`,
+including real multi-touch keyboard input. Android export checks are separate
+from the default gate.
 
 ## Embedded app exports
 
 Browser and native Android exports link student code and the shared device core
 inside one process. `runtime/embedded/Client.cpp` implements the C SDK;
 `runtime/embedded/Host.hpp` separates time, input, rendering, audio and clipboard
-from device behavior. Browser and SDL hosts implement that interface.
+from device behavior. Android uses the NDK and SDL3 with a small Java activity.
+Desktop keeps the process-isolated path. Embedded crashes terminate the app.
 
-Android uses the NDK and SDL3, with a small Java activity for lifecycle and asset
-preparation. The desktop process-isolated path remains available. Embedded games
-share their process with the runtime, so student crashes terminate the app.
-
-Shared source discovery lives in `sdk/export/`; Android packaging lives in
+Source discovery lives in `sdk/export/`; Android packaging lives in
 `sdk/android/`. See [Android export](../students/android) for building and limits,
-and `docs/embedded-runtime.md` for the host execution contract and extension points.
+and `docs/embedded-runtime.md` for the host contract and extension points.
 
 Optional [`lcom.json`](../students/project-config) is resolved by
 `sdk/export/config.py` for web, Android and desktop bundle identity. Exported
-profiles are self-contained; normal desktop runtime input stays unchanged.
+profiles are self-contained; normal desktop input stays unchanged.
+
+## Game collections
+
+`sdk/collection/` validates `lcom.collection.json` and builds both collection
+launchers. The checked-in Arcade is `collections/arcade/`; the authoring guide is
+[Build a game collection](../instructors/game-collections).
+
+- Each game's `lcom.json` owns its title, icon, preview, description, mobile
+  controls and optional `instructions`. Instructions are display metadata; they
+  do not remap keys or change guest input. See
+  [project configuration](../students/project-config#instructions-in-the-browser-arcade).
+- Collection-wide `web.json` points to `game-metadata.json` and `gallery.json`.
+  Keep academic-year evidence, tags and featured selection in metadata, not in
+  game source.
+- Pinned imports under `examples/community/` keep original bytes and an
+  `UPSTREAM.json` with source hashes, license status and any recorded
+  `SOURCE_PATCH.diff` correction. Do not edit original game assets to fit a
+  launcher; runtime adaptations belong in the compatibility SDK.
+
+### Maintenance checks
+
+Before publishing, verify pinned sources and gallery evidence:
+
+```sh
+python3 scripts/check_collection_sources.py --require-tracked
+python3 scripts/capture_arcade_galleries.py --check
+```
+
+`scripts/package_arcade_web.py` produces the compressed, hashed site payload.
+Publication steps stay in `collections/arcade/README.md`.

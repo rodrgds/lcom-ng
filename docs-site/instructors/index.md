@@ -1,29 +1,14 @@
-# Instructor Guide
+# Instructor guide
 
-lcom-ng is designed to be adopted as a course module, workshop, independent
-study track, or semester lab section. Students get a generated workspace;
-instructors get lab guides, reference tests, examples, project rubrics, and a
-portable runtime that avoids a VM setup bottleneck.
+lcom-ng works as a course module, workshop, independent study track, or semester
+lab section. Students get a generated workspace. Instructors get lab guides,
+reference tests, examples, rubrics, and a portable runtime with no VM setup.
 
-The full course shape is close to a traditional computer laboratory unit:
-students first implement small C libraries for device-shaped interfaces, then
-reuse those libraries in a final interactive project. A 6 ECTS version can use
-about 52 contact hours and 162 total hours, with concept sessions supporting
-the lab work rather than replacing it.
+Students implement small C libraries for device-shaped interfaces, then reuse
+them in a final interactive project. See the [syllabus map](/instructors/syllabus)
+for topics, outcomes, and a week-by-week plan.
 
-## Course Promise
-
-lcom-ng gives students direct practice with bit fields, status registers,
-polling, interrupt-style events, mapped framebuffers, audio buffers, byte
-streams, static libraries, and state-machine design. It gives instructors a
-course surface that can be used in a classroom, in a short module, or as
-self-study material without asking students to maintain the upstream runtime.
-
-The intended teaching method is learning by doing. The guides explain enough of
-the device model for students to proceed, but they leave implementation gaps
-that require careful C code, tests, debugging, and discussion.
-
-## Course Shape
+## Course shape
 
 | Phase | Material | Outcome |
 | --- | --- | --- |
@@ -32,20 +17,30 @@ that require careful C code, tests, debugging, and discussion.
 | Weeks 3-4 | Labs 3-4 | keyboard and mouse packet handling |
 | Weeks 5-6 | Lab 5 | framebuffer graphics and sprites |
 | Weeks 7-8 | Labs 6-7 | audio buffers and UART protocols |
-| Weeks 9-13 | Project studio | interactive C application |
+| Weeks 9-13 | Project studio | interactive C application, optionally published in a class Arcade |
 
-Use the [syllabus map](/instructors/syllabus) for a detailed week-by-week
-version, the [adoption guide](/instructors/adoption) for the first week of
-setup, and the [project rubric](/instructors/rubric) for assessment.
+## Teaching materials
 
-## What To Publish
+| Resource | Use |
+| --- | --- |
+| [Lab track](/labs/) | student-facing lab sequence |
+| [Syllabus map](/instructors/syllabus) | timing, outcomes, weekly plan |
+| [Adoption guide](/instructors/adoption) | first-week setup and course decisions |
+| [Project rubric](/instructors/rubric) | assessment weights and milestones |
+| [Game collections](/instructors/game-collections) | class Arcade, metadata, and browser/Android export |
+| [Install guide](/students/install) | release archives for student machines |
 
-Publish the release binary or install instructions, generated workspace
-instructions, lab schedule, collaboration policy, grading rubric, final project
-milestones, and expected artifacts. Artifacts can include test output, traces,
-screenshots, WAV captures, replay scripts, videos, or bundles.
+## What to publish
 
-## What To Keep Private
+- Release archive or install page.
+- Generated workspace instructions.
+- Lab schedule, collaboration policy, and grading rubric.
+- Project milestones and expected artifacts.
+
+Artifacts can include test output, traces, screenshots, WAV captures, replay
+scripts, videos, or bundles.
+
+## What to keep private
 
 | Path | Reason |
 | --- | --- |
@@ -53,14 +48,14 @@ screenshots, WAV captures, replay scripts, videos, or bundles.
 | `dev/lab-tests/` | can reveal expected behavior |
 | upstream CMake/runtime internals | not part of normal student work |
 
-Students should normally start from `lcom-ng setup`, not from the upstream
-repository. The upstream repository is for maintainers and contributors.
+Students start from `lcom-ng setup`, not the upstream repository. The upstream
+repository is for maintainers and contributors.
 
-## First Class Flow
+## First class flow
 
 Show the short demo, generate a workspace live, run `make`, run a failing lab
 test, and implement one tiny bit helper together. Stop before solving the whole
-lab. The first class should prove that the environment works and that tests are
-feedback for missing student code, not mysterious infrastructure failures.
+lab. The point is to show that tests are feedback for missing student code, not
+broken infrastructure.
 
 Next: [adopt lcom-ng in one week](/instructors/adoption).

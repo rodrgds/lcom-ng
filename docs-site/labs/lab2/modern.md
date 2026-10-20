@@ -1,35 +1,28 @@
-# How It Works Today
+# How it works today: timers
 
-Modern machines still need timer interrupts, but they rarely rely on the PIT as
-the main timing source.
+Modern machines still need timer interrupts, but they rarely use the PIT as the
+main timing source.
 
-## Modern Timer Sources
+## Modern timer sources
 
-Common timer facilities include APIC timers, HPET, invariant TSC and TSC
-deadline timers, paravirtualized clocks in VMs, scheduler timers, and
-high-resolution timers. The operating system chooses the best source for the
-platform and hides most of that choice from ordinary applications.
+Common facilities include APIC timers, HPET, invariant TSC and TSC deadline
+timers, paravirtualized clocks in VMs, scheduler timers, and high-resolution
+timers. The operating system chooses the best source and hides most of that
+choice from applications.
 
-## What Changed
+## What changed
 
-Modern timers are more precise, more scalable across CPUs, and better integrated
-with power management. Interrupt routing also changed: APIC and MSI/MSI-X
-replaced much of the older PIC-style model.
+Modern timers are more precise, scale across CPUs, and integrate with power
+management. APIC and MSI/MSI-X replaced much of the older PIC-style routing.
+Kernels also coalesce timers and use tickless idle to avoid waking CPUs, so real
+APIs sometimes differ from a simple "interrupt every N milliseconds" model.
 
-Another major change is that modern systems care deeply about power. Waking a
-CPU too often wastes energy, so kernels coalesce timers, choose tickless idle
-strategies, and avoid unnecessary periodic interrupts when possible. This is far
-beyond Lab 2, but it explains why real timing APIs sometimes behave differently
-from a simple "interrupt every N milliseconds" mental model.
+## What stayed the same
 
-## What Stayed The Same
+Time still arrives as events, handlers should be small, state should advance
+predictably, and tests need deterministic time. lcom-ng keeps the PIT-shaped
+interface because it is small enough to program directly.
 
-The event-loop lesson remains. Time arrives as events, handlers should be
-small, application state should advance predictably, and tests need deterministic
-time. lcom-ng keeps the older PIT-shaped interface because it is small
-enough to program directly and clear enough to teach.
-
-Once you understand this older shape, modern APIs such as `timerfd`, browser
-animation callbacks, SDL timers, or game-engine fixed timestep loops become
-easier to reason about. They are higher-level interfaces over the same basic
-problem: something has to decide when the program should advance.
+Once you understand it, APIs such as `timerfd`, browser animation callbacks, SDL
+timers, and fixed timestep loops are easier to reason about. They answer the same
+question: when should the program advance?

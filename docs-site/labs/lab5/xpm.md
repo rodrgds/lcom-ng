@@ -1,25 +1,23 @@
-# Pixmaps And XPMs
+# Pixmaps and XPMs
 
-XPM is a text-based image format that can be embedded directly in C programs.
-It is not a modern asset pipeline, but it is excellent for a teaching lab
-because students can inspect the image data without a separate binary tool.
+XPM is a text-based image format that can be embedded directly in C. It is not a
+modern asset pipeline, but it is good for teaching because the image data stays
+inspectable.
 
-For the course sprites, you need enough support for width and height, number of
-colors, characters per pixel, the color table, transparent pixels, and pixel
-rows. You do not need a full image library. In fact, a small parser is more
-useful here because every part of the format remains visible.
+For course sprites, support width, height, number of colors, characters per
+pixel, the color table, transparent pixels, and pixel rows. A full image library
+is unnecessary; a small parser keeps every part visible.
 
-## Drawing Sprites
+## Drawing sprites
 
-Sprites are rectangles with per-pixel decisions. A transparent pixel should not
+Sprites are rectangles with per-pixel decisions. A transparent pixel must not
 overwrite the destination. A sprite that begins partly off-screen should be
-clipped rather than rejected entirely. Color values should be converted into the
-current mode's pixel format before they are written.
+clipped, not rejected. Convert colors to the current mode's pixel format before
+writing.
 
-This is the bridge from rectangles to games and tools. A game character, mouse
-cursor, icon, tile, note block, or document caret can all be represented as
-small images drawn at positions controlled by application state.
+This bridges rectangles and applications. A game character, cursor, icon, tile,
+note block, or caret can all be a small image positioned by application state.
 
 > [!TIP]
-> Keep XPM parsing separate from sprite drawing. Loading an image and drawing an
-> already-loaded pixmap are different responsibilities.
+> Keep XPM parsing separate from sprite drawing. Loading an image and drawing a
+> loaded pixmap are different responsibilities.

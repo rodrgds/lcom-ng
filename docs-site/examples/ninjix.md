@@ -1,79 +1,67 @@
 # Ninjix
 
-[Play in your browser](https://ninjix.rgo.pt/).
+The larger game port included with lcom-ng. It came from an earlier Minix final
+project and shows the application structure the labs lead to.
 
-Ninjix is the larger game port included with lcom-ng. It came from a
-previous Minix-style final project and is useful because it shows that the labs
-lead to real application structure, not only isolated device functions.
+[Play in your browser](https://ninjix.rgo.pt/).
 
 ![Ninjix menu screenshot](/assets/screenshots/ninjix.png)
 
-## What It Exercises
+## What it exercises
 
-- keyboard and mouse input;
-- framebuffer rendering;
-- menus, overlays, panels, and HUD text;
-- audio hooks;
-- profiling and frame timing;
-- reusable device libraries;
-- a UART multiplayer protocol;
-- paired runtime execution.
+Keyboard and mouse input, framebuffer rendering, menus and HUD text, profiling,
+reusable device libraries, a UART multiplayer protocol, and paired execution.
 
-## Why It Matters
+The game separates input translation, rendering and game state, drives
+progression with timers, and uses deterministic smoke scripts.
 
-Small examples prove one device at a time. Ninjix proves that the device pieces
-can support a full reactive program:
-
-- input is translated into application events;
-- rendering is separated from game state;
-- timers drive progression;
-- serial messages coordinate two hosted programs;
-- deterministic smoke scripts make a large project testable.
-
-## Run It
+## Run it
 
 ```sh
-lcom-ng run build/examples/ninjix
+lcom-ng run -- build/examples/ninjix
 ```
 
-For multiplayer:
+Multiplayer:
 
 ```sh
 lcom-ng run-pair build/examples/ninjix --right build/examples/ninjix
 ```
 
-In interactive multiplayer, select Multiplayer in both windows, then choose
-opposite ATTACK and DEFEND roles.
+In both windows, select Multiplayer, then choose opposite ATTACK and DEFEND
+roles.
 
-For a fast deterministic smoke test:
+Fast deterministic smoke test:
 
 ```sh
 lcom-ng run-pair --headless build/examples/ninjix \
   --right build/examples/ninjix --max-ticks 900
 ```
 
-For a longer authored demo:
+Longer authored demo:
 
 ```sh
 lcom-ng run --headless --script scripts/ninjix_level1_demo.mlabscript \
   --dump-frame build/ninjix.ppm -- build/examples/ninjix
 ```
 
-## Teaching Notes
+## Controls
 
-Ninjix is a good final-project reference when students ask:
+- `1`-`4` choose a ninja type; click the lawn to place or select one.
+- Right click cancels placement. Select a placed ninja to upgrade, sell or retarget.
+- `Esc` pauses or resumes. `N` skips to the next level in singleplayer.
+- Menus: Up/Down or W/S, Enter to confirm, Esc or Backspace to go back.
 
-- how large should a state machine be?
-- where should input parsing stop and application logic begin?
-- how should rendering helpers be organized?
-- what does a serial protocol look like inside a game?
-- how can a project remain demoable and testable?
+## Teaching notes
 
-It should not be treated as the starter template. It is evidence of the target
-scale, not the minimum expected project.
+Use Ninjix as a final-project reference for state-machine size, the input and
+application boundary, rendering helpers, serial protocols in a game, and keeping
+a project demoable and testable. It is evidence of target scale, not the starter
+template or minimum expected project.
 
 ## In the game
 
-Open a screenshot to inspect the original menus, setup, play and pause states.
-
 <ExampleGallery app="ninjix" />
+
+Source: [examples/ninjix/](https://github.com/rodrgds/lcom-ng/tree/main/examples/ninjix/).
+
+Refresh captures with the [screenshot workflow](./screenshots).

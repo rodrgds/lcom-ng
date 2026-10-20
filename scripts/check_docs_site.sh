@@ -44,8 +44,8 @@ for lab in lab1 lab2 lab3 lab4 lab5 lab6 lab7; do
   test -f "docs-site/labs/$lab/check.md"
   test -f "docs-site/labs/$lab/modern.md"
   grep -q "\\[!IMPORTANT\\]" "docs-site/labs/$lab/tasks.md"
-  grep -q "External Reading" "docs-site/labs/$lab/check.md"
-  grep -q "How It Works Today" "docs-site/labs/$lab/modern.md"
+  grep -qi "External reading" "docs-site/labs/$lab/check.md"
+  grep -qi "How it works today" "docs-site/labs/$lab/modern.md"
 done
 
 for page in docs-site/labs/lab*/*.md; do
@@ -97,7 +97,7 @@ if grep -q "machine-lab-90s.mp4" \
   exit 1
 fi
 grep -q "Ninjix" docs-site/examples/ninjix.md
-grep -q "Showcase Studios" docs-site/examples/showcase-studios.md
+grep -qi "Showcase Studios" docs-site/examples/showcase-studios.md
 grep -q "/assets/screenshots/pixel-studio.png" docs-site/examples/showcase-studios.md
 grep -q "/assets/screenshots/serial-whiteboard-left.png" docs-site/examples/showcase-studios.md
 grep -q "/assets/screenshots/serial-whiteboard-right.png" docs-site/examples/showcase-studios.md
@@ -115,11 +115,10 @@ grep -q "/assets/screenshots/ninjix.png" docs-site/examples/index.md
 grep -q "/assets/screenshots/ninjix.png" docs-site/examples/ninjix.md
 grep -q "runtime/device boundary" docs-site/developers/architecture.md
 grep -q "VitePress" docs-site/developers/docs-site.md
-grep -q "6 ECTS" docs-site/instructors/adoption.md
-grep -q "52 contact hours" docs-site/instructors/adoption.md
-grep -q "162 total hours" docs-site/instructors/adoption.md
-grep -q "learning by doing" docs-site/instructors/adoption.md
-grep -q "40% theory / 60% project" docs-site/instructors/adoption.md
+grep -q "6 ECTS" docs-site/instructors/syllabus.md
+grep -q "52 contact hours" docs-site/instructors/syllabus.md
+grep -q "162 total hours" docs-site/instructors/syllabus.md
+grep -q "40% theory" docs-site/instructors/syllabus.md
 grep -q "Computer Architecture" docs-site/instructors/syllabus.md
 grep -q "Operating Systems" docs-site/instructors/syllabus.md
 grep -q "deploy_pages" .github/workflows/docs.yml

@@ -2,81 +2,72 @@
 
 ## Open a game
 
-One command builds the game, starts a local server and opens your browser:
+One command builds, serves and opens the game:
 
 ```sh
 lcom-ng web path/to/my-game
 ```
 
-Inside the project folder, run:
+Inside the project folder:
 
 ```sh
 lcom-ng web .
 ```
 
-The project defaults to the current folder. In this repository, prefix commands
-with `devenv shell --`. Examples use the same project-folder command:
+The project path defaults to the current folder. In this repository, prefix commands
+with `devenv shell --`:
 
 ```sh
 devenv shell -- lcom-ng web examples/ninjix
 ```
 
-The game starts automatically. Click the game to capture the desktop mouse.
-Movement continues past the edges of the browser, using the game's own cursor
-and original controls. **Escape** reaches the game for pausing or going back.
-In fullscreen, browsers with Keyboard Lock keep the mouse captured. Other
-browsers and windowed play reserve Escape to release capture; the player also
-sends that Escape to the game once. Click again to recapture it.
+Click the game to capture the mouse; the cursor moves past the browser edge.
 
-**Shift+Escape** releases a captured mouse. In a collection, press it again
-with the mouse released to return to the library. The Home button stays
-visible on desktop and touch devices. A brief centered shortcut hint appears
-after the mouse has been captured for a second. Use the fullscreen button at
-the top right to enter or leave fullscreen.
+**Escape** reaches the game. In fullscreen, browsers with Keyboard Lock keep
+capture. Windowed play and other browsers reserve Escape to release capture and
+also send it to the game once. Click again to recapture.
 
-**Right Option on Mac** and **Right Ctrl** also release the mouse without sending
-Escape to the game. Command remains available for app shortcuts. Sound starts
-on the first keypress or tap. Refresh to restart, or press Enter after the game
-exits. When an embedded browser cannot capture the pointer, the player says so
-and retains ordinary mouse dragging.
+**Shift+Escape** releases a captured mouse; in a collection, press it again to
+return to the library. The top-right button toggles fullscreen.
 
-On mobile, touch the area above the controls to press the left mouse button at
-the game cursor. Lift to finish the click, or hold and drag to move the cursor
-with the button down. These are the default relative controls. Projects can enable
-[direct touch](./project-config#direct-touch), where tapping moves to the finger
-before clicking and dragging follows it. The PvZ and Sushi presets enable this.
-Use the **Mouse** joystick to move without clicking. The separate **Left click**
-and **Right click** buttons can be held while using a stick. Holding **Right click**
-also makes a screen drag use that button instead of adding a left click.
+**Right Option on Mac** and **Right Ctrl** release the mouse without sending
+Escape. Command stays available for app shortcuts. Sound starts on the first
+keypress or tap. Refresh restarts; press Enter after the game exits. If the browser
+cannot capture the pointer, the game reports it and keeps ordinary dragging.
 
-**Esc**, **Space** and **Enter** stay within reach. Tap **Keyboard** to show or
-hide the full keyboard. Hold keys, combine touches, or tap Shift, Ctrl and Alt
-to latch modifiers. **Fn** switches to function keys, navigation and punctuation.
-The optional **Joystick** starts in **Mouse** mode: hold the stick to move the
-cursor, and push further to move faster. **Arrow keys** and **WASD** control
-keyboard movement instead. **Mouse + arrows** or **Mouse + WASD** shows two
-independent sticks, so you can move and aim together while holding a click button.
-Both panels start closed to leave more room for the game. Desktop stays game-only.
-Rotate to landscape to put the mobile controls beside the game on the right.
-**Hide controls** collapses that panel; tap **Controls** to bring it back.
-In portrait, the controls return to the bottom.
+On mobile, touch presses the left button at the game cursor; lift to click, drag to
+move with the button down. This is the default relative control. Projects can
+enable [direct touch](./project-config#direct-touch) to tap at the finger.
 
-Press Ctrl+C in the terminal to stop the preview. Re-run the command after source
-changes. Use `--port 8080` to choose a port or `--no-open` to copy the printed URL
-into another browser. To try a phone on the same network, add `--host 0.0.0.0`
-and open your computer's network address with the printed port.
+- **Mouse** stick moves without clicking. **Left click** and **Right click** can be
+  held with another finger; holding **Right click** makes a drag use that button.
+- **Esc**, **Space** and **Enter** stay within reach. **Keyboard** shows the full
+  keyboard, including latched Shift, Ctrl and Alt and **Fn** keys.
+- **Joystick** starts in **Mouse** mode; push further to move faster. **Arrow keys**
+  or **WASD** switch it to keyboard movement. **Mouse + arrows** or
+  **Mouse + WASD** shows two sticks.
+- **Hide controls** collapses the panel; **Controls** reopens it. Panels start
+  closed. Landscape places panel controls beside the game; portrait moves them to
+  the bottom.
+
+Press Ctrl+C to stop. Re-run after source changes. `--port 8080` chooses a port,
+`--no-open` prints the URL, and `--host 0.0.0.0` lets a phone on the same network
+connect.
 
 ## Play published games
 
-- [Plants vs. Zombies](https://plantsvszombiesrafa.pages.dev/), built from the unchanged original student archive.
-- [Ninjix](https://ninjix.rgo.pt/).
-- [Sushi Slash](https://sushi-slash.pages.dev/), built from the original upstream project.
+- [Plants vs. Zombies](https://plantsvszombiesrafa.pages.dev/)
+- [Ninjix](https://ninjix.rgo.pt/)
+- [Sushi Slash](https://sushi-slash.pages.dev/)
+
+Collection games with authored instructions open on **Start game**.
+**Instructions** reopens them during play.
 
 ## Your project
 
-Use an optional [`lcom.json`](./project-config) for the title, icon, mobile
-orientation, fullscreen, controls and theme. Web and Android share the file.
-
+Optional [`lcom.json`](./project-config) sets title, icon, preview, mobile settings
+and theme; web and Android share it. For instruction screens and shortcut rows, see
+[Instructions in the browser Arcade](./project-config#instructions-in-the-browser-arcade).
 
 The exporter discovers:
 
@@ -84,50 +75,46 @@ The exporter discovers:
 - generated student workspaces, including `proj/`, `lib/` and `labs/`;
 - original Minix Makefiles and their source libraries.
 
-An `assets/` folder is included automatically, preserving paths such as
-`assets/background.bmp`. For another layout, select files explicitly:
+`assets/` is included automatically, preserving paths. For another layout, select
+files explicitly:
 
 ```sh
 lcom-ng web . --source game/main.c --source shared/timer.c --include headers \
   --asset images --asset sounds
 ```
 
-Explicit `--asset` options replace the automatic `assets/` selection. Use
-`--arg value` for each game argument; use `--arg=--option` for values beginning
-with a dash. Minix source-library overrides use `--library name=file.c,other.c`.
+Explicit `--asset` replaces the automatic `assets/`. Use `--arg value`, or
+`--arg=--option` for values starting with a dash. Minix source libraries use
+`--library name=file.c,other.c`.
 
-For legacy absolute paths such as `/home/lcom/labs/proj/assets`, select the parent
-workspace as the asset root:
+For legacy absolute paths, select the parent workspace:
 
 ```sh
 lcom-ng web . --asset-root .. --asset proj/assets
 ```
 
-Source files stay unchanged. The exporter rebuilds for WebAssembly rather than
-converting a desktop or Minix executable.
+Sources stay unchanged. The exporter rebuilds for WebAssembly; it does not convert
+a desktop or Minix binary.
 
 ## Publish
-
-Create a standalone export without starting a preview server:
 
 ```sh
 lcom-ng export web path/to/my-game --output dist/my-game
 ```
 
-Upload the complete output folder to static hosting. Keep the files together and
-serve `.wasm` as `application/wasm`. HTTPS is recommended. Players need a browser,
-without installing lcom-ng or connecting to a game server. No special isolation
-headers are required.
+Upload the complete folder to static hosting. Keep files together and serve `.wasm`
+as `application/wasm`. HTTPS is recommended. Players need only a browser; no
+special isolation headers are required.
 
-Exports can also be previewed with `python3 -m http.server 8080 --directory dist/my-game`.
-Opening `index.html` directly from the filesystem is not supported.
+Preview with `python3 -m http.server 8080 --directory dist/my-game`. Opening
+`index.html` from the filesystem is not supported.
 
 ## Browser compatibility
 
 The same export targets current Chrome, Edge, Firefox and Safari. Emscripten
-compiles the game and device core to WebAssembly. The build uses
-[Asyncify](https://emscripten.org/docs/porting/asyncify.html) and does not require
-threads, `SharedArrayBuffer` or JavaScript Promise Integration.
+compiles to WebAssembly using
+[Asyncify](https://emscripten.org/docs/porting/asyncify.html); no threads,
+`SharedArrayBuffer` or JavaScript Promise Integration are required.
 
 | Browser | Expected behavior | Verification |
 | --- | --- | --- |
@@ -136,32 +123,22 @@ threads, `SharedArrayBuffer` or JavaScript Promise Integration.
 | Safari on macOS | Same export, with desktop mouse capture | Not yet tested |
 | Safari on iPhone and iPad | Game, audio and custom touch keyboard; no Pointer Lock | Physical devices not yet tested |
 
-Desktop capture uses the browser Pointer Lock API after a click. Touch keeps its
-relative or direct controls. Embedded browsers may restrict capture; API
-availability is separate from testing this player on each device.
-
-Chromium tests cover Flappy, Ninjix, native and Minix fixtures, installed SDK
-relocation, student workspaces, captured relative motion, Escape release, host release keys,
-multi-touch keyboard input, relative touch dragging, separate mouse buttons,
-and the optional joystick. Mobile tests use touch emulation. This does not
-certify every Minix project or every mobile browser.
-
-Chromium and Firefox also check that a collection game reaches its first frame
-when focus changes during loading, then pauses and resumes normally.
+Desktop capture uses Pointer Lock after a click. Touch keeps relative or direct
+controls. Embedded browsers may restrict capture. Mobile tests use touch emulation
+and do not certify every browser.
 
 ## Tools and limits
 
-The repository's Devenv shell supplies the compiler and build tools. Outside
-Devenv, install Emscripten, Python 3.11 or newer, CMake and Ninja. Minix exports
-also need the matching `llvm-link` next to Emscripten's Clang. Current source
-builds include these commands; earlier published archives do not.
+Devenv supplies the compiler and build tools. Outside Devenv, install Emscripten,
+Python 3.11 or newer, CMake and Ninja. Minix exports also need the matching
+`llvm-link` next to Emscripten's Clang. Earlier archives may not include these
+commands.
 
 - Single player and local UART loopback are supported. Paired instances and online
-  multiplayer are not included.
-- Saved files in the virtual filesystem disappear on reload. The clipboard is
-  private to the game.
-- Program output appears in the browser's developer console. LCF output-file
-  logging explicitly reports that it is unavailable.
+  multiplayer are not.
+- Saved files disappear on reload. The clipboard is private to the game.
+- Program output goes to the browser console. LCF output-file logging reports that
+  it is unavailable.
 - Inactive windows and hidden tabs pause virtual time and release held input.
-- Native processes, threads, assembly and external system libraries may require
-  changes. Long computation without SDK calls cannot yield to the browser.
+- Native processes, threads, assembly and external libraries may need changes. Long
+  computation without SDK calls cannot yield to the browser.

@@ -1,4 +1,4 @@
-# Reading Mouse Packets
+# Reading mouse packets
 
 A basic PS/2 packet has three bytes:
 
@@ -8,34 +8,29 @@ A basic PS/2 packet has three bytes:
 | byte 1 | X movement low byte |
 | byte 2 | Y movement low byte |
 
-The first byte includes a bit that should always be set for a normal packet.
-Use that bit to recover if parsing starts in the middle of a stream. This is the
-same general idea as finding a start marker in a serial protocol: the parser
-needs a way to regain trust after it loses its place.
+Byte 0 includes a bit that should always be set for a normal packet. Use it to
+recover when parsing starts mid-stream, like a start marker in a serial protocol.
 
-## Signed Movement
+## Signed movement
 
-X and Y movement are signed values. The sign bits are in byte 0, while the low
-movement bytes are byte 1 and byte 2. This split forces you to assemble the
-value deliberately.
+X and Y movement are signed. The sign bits are in byte 0; the low movement bytes
+are bytes 1 and 2. Assemble the value deliberately.
 
-Do not treat the movement bytes as ordinary unsigned coordinates. A mouse packet
-usually reports relative movement since the previous packet, not an absolute
-screen position. The application can later add those deltas to a cursor
-position, clamp the result to the screen, or use the movement to control a game
-camera.
+Do not treat movement bytes as unsigned coordinates. A packet usually reports
+relative movement since the previous packet, not an absolute position. The
+application can add deltas to a cursor, clamp to the screen, or control a camera.
 
-## Packet State
+## Packet state
 
 Track how many bytes have been collected, whether byte 0 is synchronized,
-whether a complete packet is ready, and whether overflow flags should invalidate
-or merely report movement. The parser should be able to receive one byte at a
-time and only expose a packet after all three bytes are available.
+whether a complete packet is ready, and whether overflow flags invalidate or only
+report movement. The parser receives one byte at a time and exposes a packet only
+after all three bytes arrive.
 
-This state-machine shape will look familiar by the end of the course. UART
-framing, sprite parsing, and replay scripts all involve partial input that only
-becomes meaningful after enough bytes or tokens arrive.
+This state-machine shape returns in UART framing, sprite parsing, and replay
+scripts: partial input becomes meaningful only after enough bytes or tokens
+arrive.
 
 > [!TIP]
-> Keep packet assembly separate from coordinate updates. A drawing program can
-> use decoded deltas later; the lab library should only parse packets.
+> Keep packet assembly separate from coordinate updates. The library parses
+> packets; a drawing program uses the decoded deltas later.

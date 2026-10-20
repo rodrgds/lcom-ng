@@ -1,38 +1,27 @@
-# How It Works Today
+# How it works today: RTC
 
-Modern machines still have compatibility paths for old PC interfaces, but most
-high-performance hardware is not controlled through isolated I/O ports.
+Modern machines keep compatibility paths for old PC interfaces, but most
+high-performance hardware does not use isolated I/O ports.
 
 ## MMIO
 
-Modern devices commonly expose registers through memory-mapped I/O. Instead of
-special port instructions, software reads and writes addresses in a physical
-memory range reserved for the device. The syntax looks more like pointer access
-than port access, but the programmer still has to respect the device contract.
-Status bits report readiness and errors. Control bits configure behavior.
-Read-modify-write operations still matter because neighboring fields often share
-the same word. Ordering rules still matter because devices can observe writes
-in a different way than normal memory.
+Modern devices commonly expose registers through memory-mapped I/O. Software
+reads and writes addresses in a physical memory range reserved for the device.
+The syntax looks like pointer access, but the contract is the same: status bits
+report readiness and errors, control bits configure behavior, read-modify-write
+matters when fields share a word, and ordering rules still apply. The access
+mechanism changed; the protocol discipline did not.
 
-The access mechanism changed; the protocol discipline did not.
+## Firmware and OS mediation
 
-## Firmware And OS Mediation
+Normal programs call operating-system APIs such as `clock_gettime`. The OS,
+firmware, and hardware abstraction layers choose between RTC state, HPET, APIC
+timers, TSC deadline timers, or a paravirtualized clock. Applications want a
+stable time API; device-specific work belongs below them.
 
-Normal user programs usually call operating-system APIs such as
-`clock_gettime`. The OS, firmware, and hardware abstraction layers decide how to
-read time on that machine. It may involve RTC state, HPET, APIC timers, TSC
-deadline timers, or paravirtualized clocks.
-
-That stack is good engineering. Most applications should not know which clock
-source won a platform-specific selection process. A browser, game, database, or
-editor wants a stable time API. The device-specific work belongs in the kernel,
-firmware, hypervisor, or runtime layer.
-
-## Why Learn The Old Shape?
+## Why learn the old shape
 
 The RTC is small enough to understand completely. It teaches register selection,
-status-before-data, binary encoding choices, and output-parameter error
-handling without making you learn a modern kernel driver framework first. Those
-lessons transfer to real drivers even when the bus changes from port I/O to
-MMIO, and they also transfer to ordinary software that has to parse small binary
-protocols correctly.
+status-before-data, binary encoding choices, and output-parameter error handling
+without a kernel driver framework. Those lessons transfer to MMIO drivers and to
+ordinary code that parses small binary protocols.

@@ -1,6 +1,6 @@
-# Bitwise Operations
+# Bitwise operations
 
-Registers are compact. A single byte may contain several independent fields:
+Registers are compact. One byte may contain several independent fields:
 
 ```text
 Bit 7 | Bit 6 | Bit 5 | Bit 4 | Bit 3 | Bit 2 | Bit 1 | Bit 0
@@ -8,7 +8,7 @@ Bit 7 | Bit 6 | Bit 5 | Bit 4 | Bit 3 | Bit 2 | Bit 1 | Bit 0
  UIP  |  DV2  |  DV1  |  DV0  |  RS3  |  RS2  |  RS1  |  RS0
 ```
 
-The `UIP` bit is bit 7. To isolate it:
+`UIP` is bit 7. To isolate it:
 
 ```c
 uint8_t uip = reg_a & 0x80;
@@ -20,14 +20,12 @@ To build the mask without hardcoding:
 uint8_t mask = (uint8_t)(1u << 7);
 ```
 
-## Read Values
+## Read values
 
-Use `&` to test whether a bit is present. The operation keeps only the bits
-that are set in both operands, so a mask with one bit set is enough to ask a
-yes-or-no question about that position. In C, the result does not need to be
-exactly `1` to be true; any non-zero value is true. This is why a helper such as
-`bit_is_set` should be clear about whether it returns the raw mask value or a
-normalized boolean-like result.
+Use `&` to test whether a bit is present. A mask with one bit set asks a
+yes-or-no question about that position. In C, any non-zero result is true. A
+helper such as `bit_is_set` should therefore document whether it returns the raw
+mask or a normalized boolean.
 
 ```c
 if (value & BIT(7)) {
@@ -35,26 +33,24 @@ if (value & BIT(7)) {
 }
 ```
 
-## Construct Write Values
+`BIT(n)` is defined in the public SDK header as `(1u << (n))`.
 
-Use `|` to set bits and `& ~mask` to clear bits. These two operations are the
-basic tools for building control words. They also make it possible to change one
-field while preserving neighboring fields, which is essential when a register
-contains several unrelated settings.
+## Construct write values
+
+Use `|` to set bits and `& ~mask` to clear them. These operations change one
+field while preserving its neighbors.
 
 ```c
 value |= BIT(2);
 value &= (uint8_t)~BIT(2);
 ```
 
-This lab mostly reads the RTC. Later labs use the same idea to construct timer
-control words, UART line-control values, and mouse/keyboard commands.
+This lab mostly reads the RTC. Later labs use the same idea for timer control
+words, UART line control, and mouse or keyboard commands.
 
-When you are debugging bitwise code, write the value in binary on paper or in a
-comment beside the test. Many mistakes are not arithmetic mistakes; they are
-position mistakes. Bit 0 is the least significant bit, so shifting by one moves
-to bit 1, not to the second byte or to a decimal digit.
+When debugging, write the value in binary beside the test. Most mistakes are
+position mistakes, not arithmetic mistakes. Bit 0 is the least significant bit.
 
 > [!TIP]
-> Write masks from bit positions, then name the mask. Named masks document the
-> device protocol and reduce off-by-one errors.
+> Build masks from bit positions, then name them. Named masks document the device
+> protocol and reduce off-by-one errors.

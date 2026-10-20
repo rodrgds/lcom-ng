@@ -1,59 +1,44 @@
-# lcom-ng Docs
+# lcom-ng documentation
 
-On a Mac, start with the [student installation guide](macos-student.md). It covers the bundled runtime, unchanged Minix labs and projects, and native course exercises.
+The canonical public documentation is <https://lcom.rgo.pt/>, built from
+[`docs-site/`](../docs-site). This folder holds package-local reference and
+evidence, not a second website.
 
-lcom-ng is organized as a public course kit. The canonical public docs are
-the VitePress website in [../docs-site](../docs-site), deployed at
-<https://lcom.rgo.pt/>.
+## Public documentation
 
-This folder remains useful as package-local reference material, but new
-student, instructor, and developer documentation should be added to the website
-first.
+| Audience | Start at |
+| --- | --- |
+| Students | [Install](https://lcom.rgo.pt/students/install) · [Native labs](https://lcom.rgo.pt/students/) · [Existing Minix project](https://lcom.rgo.pt/students/compatibility) · [Browser export](https://lcom.rgo.pt/students/browser) · [Android export](https://lcom.rgo.pt/students/android) |
+| Instructors | [Course guide](https://lcom.rgo.pt/instructors/) · [Adoption](https://lcom.rgo.pt/instructors/adoption) · [Syllabus](https://lcom.rgo.pt/instructors/syllabus) · [Project rubric](https://lcom.rgo.pt/instructors/rubric) · [Game collections](https://lcom.rgo.pt/instructors/game-collections) |
+| Developers | [Maintainer guide](https://lcom.rgo.pt/developers/) · [Architecture](https://lcom.rgo.pt/developers/architecture) · [Runtime and CLI](https://lcom.rgo.pt/developers/runtime-cli) · [Releases](https://lcom.rgo.pt/developers/releases) · [From Minix](https://lcom.rgo.pt/developers/from-minix) |
 
-## Student-facing
+[Lab Track](https://lcom.rgo.pt/labs/) covers the seven device labs and their
+handouts. Android app and collection builds are paused.
 
-Use this path when you are taking the course or following it independently.
+## Repository reference
 
-- [Public docs website source](../docs-site): the VitePress site intended for public browsing.
-- [Student guide](student-guide.md): workspace setup, lab loop, final project
-  loop, and what to ignore.
-- [Course overview](../course/README.md): lab sequence and project studio.
-- [Lab 1: Bitwise Helpers And RTC](../course/labs/docs/lab1-bitwise-rtc.md)
-- [Lab 2: PIT And Timer IRQs](../course/labs/docs/lab2-timer.md)
-- [Lab 3: Keyboard And i8042](../course/labs/docs/lab3-keyboard.md)
-- [Lab 4: PS/2 Mouse Packets](../course/labs/docs/lab4-mouse.md)
-- [Lab 5: VBE Framebuffer And XPM](../course/labs/docs/lab5-video.md)
-- [Lab 6: AC97-lite PCM Audio](../course/labs/docs/lab6-audio.md)
-- [Lab 7: UART And Serial Ports](../course/labs/docs/lab7-uart.md)
-- [Examples](../examples/README.md): word processor, music maker, games, and
-  project seeds.
+- [Student guide](student-guide.md): workspace quick reference.
+- [Instructor guide](instructor-guide.md): instructor operations, owned surfaces,
+  and demo commands.
+- [Developer guide](developer-guide.md): maintainer workflows, change rules,
+  releases, and docs ownership.
+- [Getting started](getting-started.md): build and run this repository.
+- [Contributing](../CONTRIBUTING.md): audience boundaries, checklist, and review
+  expectations.
+- [macOS trial notes](macos-student.md): local arm64 bundle trial and limits.
+- [Video demo script](video-demo.md): short presentation sequence.
 
-## Teacher-facing
+## Compatibility evidence
 
-Use this path when you want to run the material in a class, club, workshop, or
-university lab.
+Tested projects, known failures, and Minix/LCF limits:
 
-- [Adoption guide](adoption.md): how to use lcom-ng in one week.
-- [Instructor guide](instructor-guide.md): syllabus map, lab operations,
-  grading, project rubric, and staff workflow.
-- [Video demo script](video-demo.md): short sequence for a class presentation.
-- [Course license](../course/LICENSE.md): CC BY 4.0 reuse terms for handouts.
-
-## Developer-facing
-
-Use this path when you are building lcom-ng itself.
-
-- [Docs site source](../docs-site): canonical public VitePress site deployed to Cloudflare Pages.
-- [Developer guide](developer-guide.md): architecture boundaries, tests, release
-  workflow, docs conventions, and change rules.
-- [Architecture](architecture.md): runtime process model and virtual devices.
-- [Runtime and CLI](runtime-and-cli.md): execution, replay, capture, bundles.
-- [From Minix to lcom-ng](from-minix.md): what was retained and what was
-  made portable.
-- [Roadmap](roadmap.md): implemented scope and future work.
-- [Contributing](../CONTRIBUTING.md): contribution rules and review checklist.
+- [Compatibility results](compatibility-results.md)
+- [Expanded corpus](compatibility-expanded.md)
+- [Recent runs](compatibility-recent.md)
+- [Course compatibility audit](course-compatibility-audit.md)
 
 ## Licenses
 
 - Code: [MIT License](../LICENSE).
-- Course, docs, screenshots, and demo media: [CC BY 4.0](../course/LICENSE.md).
+- Course, docs, screenshots, and demo media:
+  [CC BY 4.0](../course/LICENSE.md).

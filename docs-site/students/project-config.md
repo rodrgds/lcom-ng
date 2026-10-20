@@ -1,8 +1,8 @@
 # Configure your project
 
-Add an optional **`lcom.json`** to your project folder. Web and Android exports
-read it automatically. Projects without it still build and run. Normal desktop
-execution keeps its existing input and presentation.
+Add an optional **`lcom.json`** to your project folder. Web and Android exports and
+desktop bundles read it automatically; projects without it still build and run
+unchanged.
 
 ## Start small
 
@@ -24,9 +24,8 @@ execution keeps its existing input and presentation.
 }
 ```
 
-This gives the game a title and launcher icon, requests landscape and fullscreen,
-and leaves the game clear of controls. Touching and dragging still moves its cursor
-with the left mouse button held. Android Back sends Escape.
+This sets the title, icon, landscape fullscreen and a clear game area. Touch drag
+still moves the cursor; Android Back sends Escape.
 
 ```sh
 lcom-ng export android . --output dist/android
@@ -34,31 +33,24 @@ lcom-ng export web . --output dist/web
 lcom-ng web .
 ```
 
-Use a square PNG at least 48 pixels wide. A 1024×1024 image with the subject near
-the center works well with Android's adaptive launcher masks. The web export uses
-the icon for the browser tab, home-screen shortcut and web app manifest.
+Use a square PNG at least 48 pixels wide; 1024×1024 with a centered subject suits
+Android. Web exports use it for the tab and manifest.
 
-Optional `archetype`, for example `"Snake"` or `"Space Invaders"`, groups related
-games in collection launchers. Full sets of nine use a compact 3×3 block in the
-space of four normal tiles. Each game keeps its own icon, search result and controls.
-
-Paths in `lcom.json` are relative to the project. The icon path is relative to the
-configuration file, including when you select another file with `--config`:
+Project paths are relative to the project; `icon` and `preview` are relative to the
+config file, including with `--config`:
 
 ```sh
 lcom-ng export web . --config profiles/touch.json
 lcom-ng export android . --name 'Practice build' --orientation auto --icon other.png
 ```
 
-Explicit CLI options override matching file settings. Repeated source, asset,
-include and argument options replace their configured arrays. Unknown settings,
-invalid values and missing files produce an error naming the setting. The file
-can contain just `name`, just `mobile`, or any subset below. `version` is optional;
-when supplied, use `1`.
+CLI options override the file. Repeated source, include, asset, library and argument
+options replace arrays. Invalid settings and missing files name the setting. Any
+subset is valid; optional `version` must be `1`.
 
-## Web collection artwork
+## Collection metadata
 
-Add a short gameplay description and a screenshot for the browser library:
+Add a description and screenshot:
 
 ```json
 {
@@ -68,13 +60,130 @@ Add a short gameplay description and a screenshot for the browser library:
 }
 ```
 
-`description` is optional, with up to 500 characters. `preview` is an optional
-PNG of at least 48 pixels in each dimension, relative to the configuration file.
-A gameplay capture around 800×600 works well. The library crops it to a wide tile
-and puts the game name over the image. Without a preview, it uses the icon.
-The loading modal shows the description and actual download progress, then
-opens the game when its first frame appears. These fields do not alter gameplay
-or native controls.
+`description` is optional, up to 500 characters. `preview` is an optional PNG at
+least 48 pixels per side, relative to the config file; 800×600 works well. The
+library crops it to a wide tile and overlays the name, or uses the icon. The loading
+modal shows the description and progress; without instructions, the game opens at
+its first frame. These fields do not alter gameplay.
+
+Optional `archetype`, such as `"Snake"`, groups related games. Nine use a 3×3 block
+in the space of four tiles; each keeps its icon and controls.
+
+## Instructions in the browser Arcade
+
+Add optional `instructions`. A web collection shows them while downloading, then
+waits for **Start game**; players can reopen **Instructions** and resume without
+restarting. Games without it open directly. Only web collections display them;
+standalone exports include the metadata in `game.json`. Native controls and code are
+unchanged.
+
+```json
+{
+  "instructions": {
+    "sections": [
+      {
+        "title": "Before you start",
+        "text": "Type a five-letter nickname, then press Space."
+      },
+      {
+        "title": "Controls",
+        "controls": [
+          { "action": "Start", "bindings": [{ "keys": ["Space"] }] },
+          { "action": "Jump", "bindings": [{ "keys": ["Up"] }] },
+          {
+            "action": "Move",
+            "bindings": [{ "keys": ["A"] }, { "keys": ["Left"] }],
+            "note": "Either key moves left."
+          },
+          { "action": "Aim", "bindings": [{ "label": "Move the mouse" }] }
+        ]
+      }
+    ]
+  }
+}
+```
+
+Each section can contain `text`, `controls`, or both. Titles are optional; text
+preserves line breaks. Use a short first section for setup.
+
+### Keyboard shortcut rows
+
+| Field | Purpose |
+| --- | --- |
+| `action` | Short label shown on the left, such as `Jump`, `Pause` or `Select`. |
+| `bindings` | Alternatives for that action. Put each alternative in its own object. |
+| `keys` | One chord inside a binding. `["Shift", "S"]` means press both together. |
+| `label` | Text for mouse, touch, gamepad or other input, such as `Left click` or `Drag`. |
+| `platforms` | Optional host filter: `macos`, `windows`, `linux`, `ios` or `android`. |
+| `note` | Optional short hint shown under the action. |
+
+Keys in one binding form a chord. Separate bindings are alternatives:
+
+```json
+{
+  "action": "Move left",
+  "bindings": [
+    { "keys": ["A"] },
+    { "keys": ["Left"] }
+  ],
+  "note": "Either key moves left."
+}
+```
+
+A binding needs exactly one of `keys` or `label`. Use keycap names such as `Space`,
+`Esc`, `F1` or `1`, not scancodes or `KEY_*` names. `instructions` keys are display
+labels; `quickKeys` use guest names such as `ESC`.
+
+A complete config can combine instructions with mobile settings:
+
+```json
+{
+  "name": "My game",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Keyboard",
+        "controls": [
+          { "action": "Move", "bindings": [{ "keys": ["A"] }, { "keys": ["D"] }] },
+          { "action": "Jump", "bindings": [{ "keys": ["Space"] }] },
+          { "action": "Pause", "bindings": [{ "keys": ["Esc"] }] }
+        ]
+      }
+    ]
+  },
+  "mobile": {
+    "orientation": "landscape",
+    "controls": {
+      "quickKeys": ["ESC", "SPACE"]
+    }
+  }
+}
+```
+
+For different host shortcuts, write explicit platforms:
+
+```json
+{
+  "action": "Save",
+  "bindings": [
+    { "keys": ["Command", "S"], "platforms": ["macos"] },
+    { "keys": ["Ctrl", "S"], "platforms": ["windows", "linux"] }
+  ]
+}
+```
+
+The viewer selects matching bindings. Omit `platforms` for any-platform input.
+Supported values are `macos`, `windows`, `linux`, `ios` and `android`; unknown
+platforms show every variant with a label. `Command`, `Option`, `Shift` and arrows
+get symbols. The viewer never remaps keys, so verify each row.
+
+Do not list the Arcade's own controls: Right Ctrl, Right Option on macOS, and
+Shift+Escape release the mouse or return to the collection.
+
+Validation allows up to 8 sections, 16 controls per section, 8 alternatives per
+control and 6 keys per chord. Section text is limited to 1,000 characters. Missing
+fields, empty controls, unknown properties and invalid platforms produce a
+setting-specific error.
 
 ## Mobile controls
 
@@ -105,10 +214,9 @@ or native controls.
 
 ### Direct touch
 
-For a game with a cursor, use `"pointer": "direct"` to tap where your finger lands
-and drag from there. Each tap moves to its target before pressing. A second
-finger cannot take over the game cursor. Browser mouse clicks and hovering also
-use game coordinates in this mode. Native physical mice retain relative motion.
+`"pointer": "direct"` taps where the finger lands and drags from there. Each tap
+moves before pressing; a second finger cannot take control. Browser clicks use game
+coordinates; native mice stay relative.
 
 ```json
 {
@@ -121,61 +229,40 @@ use game coordinates in this mode. Native physical mice retain relative motion.
 }
 ```
 
-The cursor settings must match the game's code. This example is for an 800×600
-cursor starting at `(400, 300)` and clamped to `(0, 0)` through `(799, 599)`.
-Start and maximum settings default to `-1`: centered start, or the final framebuffer pixel.
-Minimums default to zero. Use `"bounds": "reject"` when the guest ignores an
-out-of-bounds delta rather than clamping it. Each axis is tracked independently.
-Sushi Slash clamps inclusively to `800, 600`, so its preset uses those bounds.
-Both PvZ and Sushi Slash presets enable direct touch without changing their C sources.
+Settings must match the game. This 800×600 example starts at `(400, 300)` and clamps
+to `(0, 0)` through `(799, 599)`. Start and maxima default to `-1`; minima to zero.
+Use `"bounds": "reject"` when the guest ignores out-of-bounds deltas. Axes are
+independent. Sushi Slash clamps to `800, 600`; its preset and PvZ's need no C
+changes.
 
-Direct mapping follows the relative packets delivered to the game, including
-edge clamps and movement from other controls. It requires one cursor pixel per
-mouse delta and no independent cursor resets, wrapping or acceleration. Use
-`"drag"` or `"move"` for games with those behaviors. Verify taps after dragging
-against each edge and switching input devices before publishing a direct preset.
+Direct mapping follows delivered packets, including edge clamps and other controls,
+and needs one cursor pixel per mouse delta with no resets, wrapping or acceleration;
+otherwise use `"drag"` or `"move"`. Verify taps at each edge and after switching
+devices.
 
-For point-and-click games, combine `"pointer": "direct"` with
-`"touch": "tap"`. A finger moves the cursor without pressing. Releasing clicks
-only if the finger stayed within eight screen units of its starting point.
-Dragging away and back, cancellation and a concurrent explicit mouse-button hold
-do not click. This lets players inspect pieces without selecting them. Use
-`"touch": "press"` for drawing, slashing or dragging objects, and `"move"` when
-separate buttons should provide all clicks. These settings affect touch only.
+These settings affect touch only; cancellation, backgrounding and closing controls
+release input.
 
-Some games check held mouse buttons once per frame instead of handling mouse
-press edges. Set `"tapDuration": 60` to hold synthesized screen taps and quick
-mouse-action button taps across those timer ticks. Longer button holds release
-immediately on lift. Ordinary press/drag input and tap-hold latching retain their own lifetimes.
-A new contact, cancellation, backgrounding or a right-click releases the pulse.
-
-For drag-based boards, `"touch": "hold-drag"` keeps movement immediate without
-selecting on a quick swipe. Hold still for 180 ms to press, then drag and lift
-to place, all in one gesture. Moving more than eight screen units before that
-hold keeps the whole gesture as hover-only. A quick stationary tap clicks.
-The older `"tap-hold"` alternates press and release across two taps when that
-interaction is preferred. Cancellation, backgrounding and closing the controls
-release held input. Choose `"layout": "panel"` to keep controls off the board.
-
-For boards where an accidental touch could reveal a cell or choose a card, set
-`"touchClick": false`. Touch still moves the cursor, and separate named mouse
-actions can discover, flag or select. Players can enable touch clicks with the
-pointer switch. Keep the underlying `touch` policy, such as `"tap"`, to choose
-what that switch enables. Use `"touch": "move"` when clicks should stay disabled
-and the switch should be hidden.
+| Setting | Behavior |
+| --- | --- |
+| `"touch": "tap"` | Finger moves without pressing; release clicks only within eight screen units of the start. Dragging away and back, cancellation and a concurrent button hold do not click. |
+| `"touch": "press"` | Press on touch; use for drawing, slashing or dragging objects. |
+| `"touch": "move"` | No click; separate mouse buttons provide all clicks. |
+| `"tapDuration": 60` | Holds synthesized taps and quick mouse-action taps across timer ticks, for games that sample buttons once per frame. Longer holds release on lift. |
+| `"touch": "hold-drag"` | Movement stays immediate without selecting on a swipe. Hold 180 ms to press, then drag and lift. Moving over eight units first stays hover-only; a stationary tap clicks. |
+| `"touch": "tap-hold"` | Older behavior: alternates press and release across two taps. |
+| `"touchClick": false` | Touch moves only; named mouse actions discover, flag or select. The pointer switch re-enables clicks per `touch`. |
+| `"touch": "move"` | Keeps clicks off and hides the pointer switch. |
 
 ### Movement and aiming
 
-A configured joystick accepts `mode` (`"arrows"`, `"wasd"` or `"mouse"`) and
-`side` (`"left"` or `"right"`). A directional pad accepts `keys` (`"arrows"` or
-`"wasd"`) and `side`. A look stick accepts `side` and `sensitivity` from `0.1` to
-`5`, default `1`. Movement defaults to the left; aiming defaults to the right.
-Only one configured pad can occupy each side. Adding a directional or look pad
-hides the default optional joystick menu. Explicit `"joystick": true` alongside
-one other pad shows a mouse stick on the free side; use an object to choose its
-mode and side yourself.
+- Joystick: `mode` (`arrows`, `wasd`, `mouse`) and `side`.
+- Dpad: `keys` (`arrows`, `wasd`) and `side`.
+- Look stick: `side` and `sensitivity` from `0.1` to `5`, default `1`.
 
-For movement on the left and independent mouse aiming on the right:
+Movement defaults left, aiming right. One pad per side; directional or look pads
+hide the joystick menu. `"joystick": true` with another pad shows a mouse stick on
+the free side.
 
 ```json
 {
@@ -195,25 +282,21 @@ For movement on the left and independent mouse aiming on the right:
 }
 ```
 
-Replace `joystick` with `false` and add `"dpad": { "keys": "arrows", "side": "left" }`
-for arrow buttons instead. Pads support diagonals. Fingers own controls
-independently, so you can move, aim and hold a mouse button together. Releasing,
-cancelling, rotating or backgrounding releases held input.
+Replace `joystick` with `false` and add
+`"dpad": { "keys": "arrows", "side": "left" }` for buttons. Pads support diagonals;
+fingers hold independent controls, so you can move, aim and click together.
+Cancellation or backgrounding releases input.
 
-Games that move once per key make, rather than keeping a held movement state,
-can set `"repeatKeys": ["W", "A", "S", "D"]`. Those keys repeat after a short
-hold, so a movement pad can travel continuously. Releasing the last finger or
-cancelling stops repeats. Leave this empty for games with their own held-key logic.
-For games that act on key release, use `repeatReleaseKeys` instead. A short tap
-still produces one action. Held touch controls repeat complete key cycles;
-releasing or cancelling stops them. Physical keyboard input stays unchanged.
-A key cannot appear in both repeat lists.
+Games that move once per key make can set `"repeatKeys": ["W", "A", "S", "D"]`; keys
+repeat after a short hold. Releasing the last finger or cancelling stops repeats;
+leave it empty for held-key games. Use `repeatReleaseKeys` for release-driven games;
+a tap still acts once. Physical keyboards are unchanged, and a key cannot be in both
+lists.
 
 ### Custom and two-player controls
 
-Use `pads` for separate players or custom direction keys, and `actions` for
-clearly named buttons near each thumb. `quickKeys` stay with the toolbar for
-menu commands. For example:
+Use `pads` for players or custom directions, and `actions` for named thumb buttons.
+`quickKeys` stay in the toolbar for menus.
 
 ```json
 {
@@ -237,26 +320,18 @@ menu commands. For example:
 }
 ```
 
-Pad modes are `arrows`, `wasd`, `keypad` (8/4/2/6), and `mouse`. Styles are
-`dpad`, `stick` and `wheel`; mouse mode requires `stick`. A pad can instead map all four
-directions through `"keys": {"up":"W","left":"A","down":"S","right":"D"}`.
-Only one pad can occupy each side, including the older joystick, look and dpad
-settings. Explicit pads hide the optional default joystick menu.
-Mouse sticks accept `sensitivity` from `0.1` to `10`. Higher values help older
-text-mode games that divide each mouse packet into coarse cursor steps.
+Modes: `arrows`, `wasd`, `keypad` (8/4/2/6), `mouse`; styles: `dpad`, `stick`,
+`wheel`, with `stick` for mouse. Map directions with
+`"keys": {"up":"W","left":"A","down":"S","right":"D"}`. Explicit pads hide the
+joystick menu. Mouse sticks take `sensitivity` from `0.1` to `10` for coarse
+text-mode games.
 
-Each action requires a `side` or `position`, a short `label` (up to 16 characters), and either
-`key`, `mouseButton` (`left`, `right`, `middle`), or `wheel` (a nonzero integer
-from -127 to 127). For example, `{"side":"right","label":"Slow time","wheel":2}`
-sends two wheel steps once per tap. The game must enable its IntelliMouse wheel
-protocol. Key and mouse button actions hold while touched,
-including modifier keys. Multiple fingers can hold both pads and both players'
-actions independently. Positions are `top-left`, `top-right`, `bottom-left` and
-`bottom-right`. A legacy `side` places the action by that thumb; an explicit
-`position` takes precedence. Use `axes: "horizontal"` or `"vertical"` on pads,
-the legacy dpad or a configured joystick to remove unused directions. WASD and
-keypad controls display their actual keys, while arrow controls display arrows.
-
+Each action needs a `side` or `position`, a label up to 16 characters, and one of
+`key`, `mouseButton` (`left`, `right`, `middle`) or `wheel` (nonzero, -127 to 127).
+For example, `{"side":"right","label":"Slow time","wheel":2}` sends two steps per
+tap; IntelliMouse must be enabled. Buttons hold while touched, including modifiers.
+Positions: `top-left`, `top-right`, `bottom-left`, `bottom-right`; `position` wins
+over `side`. `axes` removes unused directions.
 
 ```json
 {
@@ -273,34 +348,27 @@ keypad controls display their actual keys, while arrow controls display arrows.
 }
 ```
 
-Overlay toolbars default to the top right; panel layouts keep their toolbar in
-the panel. The expanded keyboard reserves space beside or below the game.
-Automatic placement uses a side in landscape and the bottom in portrait, with
-a bottom fallback on narrow displays. The pointer icon is highlighted while touch
-clicks are enabled. Tap it for “Move only”; separate mouse buttons still work.
-Hover-only profiles omit this switch. Top utility keys size to their labels,
-while bottom thumb actions keep larger targets.
+Overlays put the toolbar top right by default; panels keep it inside. The keyboard
+reserves space beside or below the game. Auto placement uses a side in landscape and
+the bottom in portrait, with a fallback on narrow screens. The pointer icon
+highlights while touch clicks are on; tap it for **Move only**. Profiles that never
+click with touch omit the switch.
 
-Quick keys use guest names: letters `A` to `Z`, digits, `ESC`, `SPACE`, `ENTER`,
-`UP`, `DOWN`, `LEFT`, `RIGHT`, `TAB`, `BACKSPACE`, `LSHIFT`, `LCTRL`, `LALT`, `F1`
-to `F12`, `HOME`, `END`, `PAGEUP`, `PAGEDOWN`, `DELETE`, `INSERT`, `KP_ENTER`
-and `KP0` to `KP9`. Actions and quick keys also accept `MINUS`, `EQUAL`,
-`LBRACKET`, `RBRACKET`, `BACKSLASH`, `SEMICOLON`, `APOSTROPHE`, `BACKQUOTE`,
-`COMMA`, `PERIOD` and `SLASH`. These are physical guest keys, so choose the
-key expected by the original game's keyboard layout. Keypad directions produce their original single-byte codes;
-arrow keys retain extended codes. Arrow and
-mouse controls use symbols; web controls retain accessible names and tooltips.
+Quick keys use guest names: `A` to `Z`, digits, `ESC`, `SPACE`, `ENTER`, `UP`,
+`DOWN`, `LEFT`, `RIGHT`, `TAB`, `BACKSPACE`, `LSHIFT`, `LCTRL`, `LALT`, `F1` to
+`F12`, `HOME`, `END`, `PAGEUP`, `PAGEDOWN`, `DELETE`, `INSERT`, `KP_ENTER` and `KP0`
+to `KP9`. Actions also accept `MINUS`, `EQUAL`, `LBRACKET`, `RBRACKET`,
+`BACKSLASH`, `SEMICOLON`, `APOSTROPHE`, `BACKQUOTE`, `COMMA`, `PERIOD` and `SLASH`.
+Match the original game's layout. Keypad directions send single-byte codes; arrows
+keep extended codes.
 
-Android requests the selected orientation and fullscreen directly. Browsers can
-require a player gesture for fullscreen and orientation lock. The fullscreen
-button requests both; unsupported orientation locking shows a rotation hint
-instead. Desktop browsers keep the game-only view. Browser support and device
-settings ultimately control whether fullscreen or orientation requests succeed.
+Android requests orientation and fullscreen directly; browsers may require a
+gesture. The fullscreen button requests both; unsupported orientation locking shows
+a rotation hint. Desktop keeps the game-only view.
 
 ### Driving controls
 
-Use a steering wheel for games with held left/right steering, and separate
-pedal actions for acceleration and braking. For a game controlled with WASD:
+Use a wheel for held left/right steering and pedals for acceleration and braking:
 
 ```json
 {
@@ -321,23 +389,17 @@ pedal actions for acceleration and braking. For a game controlled with WASD:
 }
 ```
 
-Drag around the rim to turn. The wheel returns to centre on release and can be
-held with a pedal using another finger. It sends ordinary held left/right keys
-outside its dead zone. It does not add analog steering to the guest game.
-`maxAngle` is the rotation limit in each direction, from 45 to 270 degrees,
-default 135. `deadZone` is from 0 to 30 degrees, default 8. These settings apply
-only to wheels, which always use the horizontal axis. Custom wheel `keys` need
-`left` and `right` mappings. Wheel modes can be `arrows`, `wasd` or `keypad`.
+Drag the rim to turn. The wheel centers on release and can be held with a pedal;
+outside its dead zone it sends held left/right keys, with no analog steering.
+`maxAngle` is 45 to 270 degrees (default 135); `deadZone` is 0 to 30 (default 8).
+Wheels use the horizontal axis; custom `keys` need `left` and `right`. Modes are
+`arrows`, `wasd` or `keypad`.
 
-Action `icon` accepts `accelerator`, `brake` or `reverse` to draw a pedal while
-keeping its label. Match each key and label to the game's behavior. MINIX Grand
-Prix uses S to brake through zero and then reverse. Lane-changing games with
-automatic acceleration should keep their directional controls.
-
+`icon` accepts `accelerator`, `brake` or `reverse` and keeps the label. Match keys
+to the game: MINIX Grand Prix brakes and reverses with S; lane games with automatic
+acceleration keep directional controls.
 
 ## Colors and font
-
-These settings style the controls, leaving game artwork and text unchanged:
 
 ```json
 {
@@ -353,15 +415,14 @@ These settings style the controls, leaving game artwork and text unchanged:
 }
 ```
 
-Use `#RRGGBB` colors. `accent` styles sticks and held buttons; `keyboardAccent`
-styles held keyboard keys and defaults to `accent`. `button` and `text` style
-resting controls. Font choices are `"sans"` (default) and `"mono"`. Native exports bundle their glyphs. Players do not need to install fonts
-or connect to the Internet. Choose contrasting text and button colors.
+Use `#RRGGBB`. `accent` styles sticks and held buttons; `keyboardAccent` defaults to
+`accent`. `button` and `text` style resting controls. Fonts are `sans` (default) and
+`mono`. Native exports bundle glyphs, so no Internet is needed. Choose contrasting
+colors.
 
 ## Source layouts and desktop bundles
 
-Build settings are optional too. They use the same paths and semantics as the
-exporter's command-line options:
+Build settings use exporter paths and semantics:
 
 ```json
 {
@@ -375,47 +436,33 @@ exporter's command-line options:
 }
 ```
 
-Sources are discovered automatically when `sources` is absent. An `assets/`
-folder is included automatically when `assets` is absent. Use `"assets": []` to
-exclude it explicitly. Original Minix
-Makefiles can also set `"assetRoot": ".."`, `"assets": ["proj/assets"]` and
-`"libraries": ["name=source.c,other.c"]`. Explicit source lists override Makefile discovery. Projects that import the
-original LCF/Minix headers keep the compatibility compiler and entry point,
-including source archives without a Makefile. Other source lists use the native
-SDK. Keep required header directories in `build.include`.
+Discovery and assets follow the [browser exporter](./browser#your-project);
+`"assets": []` excludes automatic assets. Minix Makefiles can set `"assetRoot"`,
+`"assets"` and `"libraries"`, and explicit sources override discovery. LCF/Minix
+imports keep the compatibility compiler and entry point, even without a Makefile;
+other lists use the native SDK. Keep headers in `build.include`.
 
-`build.cStandard` selects the game source dialect: `"gnu89"`, `"gnu99"`,
-`"gnu11"` (default), or `"gnu17"`. It applies to desktop compatibility builds,
-browser exports and native game objects, including Android. SDK and runtime
-sources keep their own standard. For example, a Minix 3.1.8 project written for
-GCC's original GNU89 inline rules can declare:
+`build.cStandard` selects `gnu89`, `gnu99`, `gnu11` (default) or `gnu17` for
+compatibility builds, browser exports and native objects including Android. SDK and
+runtime keep their own standard. A Minix 3.1.8 project using GNU89 inline rules sets
+`{"build": {"cStandard": "gnu89"}}`. Exporters honor `--config`.
 
-```json
-{"build": {"cStandard": "gnu89"}}
-```
+Configured arguments begin at `argv[1]`. Native exports use `./<PROG>` as `argv[0]`
+for Minix Makefiles and `./game` for native sources, regardless of display name.
+Relative asset paths use the exported project's working directory.
 
-Use the original project's toolchain requirements when choosing a dialect.
-Exporters honor an alternate `--config` file too.
-
-Configured arguments begin at `argv[1]`. Native exports use `./<PROG>` as
-`argv[0]` for Minix Makefiles and `./game` for native sources, independently of
-the display name. Relative asset paths use the exported project's working directory.
-
-Desktop bundles use the configured name and include `icon.png`, referenced in
-`bundle.json`. They retain the existing executable/directory format:
+Desktop bundles use the configured name and `icon.png` from `bundle.json`:
 
 ```sh
 lcom-ng bundle . --program build/my-game --format dir --output dist/desktop
 ```
 
-`--name`, `--icon` and `--config` also work for bundles. The mobile settings do
-not change the normal desktop runtime.
+`--name`, `--icon` and `--config` also work for bundles.
 
 ## Repository examples
 
-Each example has a profile in `examples/<name>/lcom.json`. Single-file examples
-keep their C file beside that folder and select it with `build.sources`, so
-existing desktop build commands stay valid:
+Each example has `examples/<name>/lcom.json`; single-file examples keep their C file
+beside it and select it with `build.sources`:
 
 ```sh
 lcom-ng web examples/word_processor
@@ -423,51 +470,43 @@ lcom-ng export android examples/breakout_demo
 lcom-ng web examples/flappy
 ```
 
-Word Processor, Music Maker, Pixel Studio and Tilemap Editor expose a keyboard. Breakout uses a left directional pad;
-Flappy exposes Space and Escape. PvZ, Ninjix and Sushi Slash keep mobile gameplay
-clear of control panels. The Sushi preset in `examples/sushi-slash/` accompanies
-the separately obtained original project: copy `lcom.json` and `icon.png` into
-its `proj/` folder, then export that folder. For original PvZ sources, copy its
-profile and icon into `proj/` and add the Minix asset-root settings above.
+For Sushi, copy its `lcom.json` and `icon.png` into `proj/`, then export. For PvZ,
+copy its profile and icon and add the asset-root settings above.
 
-Editor completion is available through the bundled JSON schema at
-`sdk/export/lcom.schema.json`. Add a `$schema` path relative to your `lcom.json`
-when your editor supports local JSON schemas.
+Editor completion uses `sdk/export/lcom.schema.json`; add a local `$schema` path
+when supported.
 
 ### Runtime environment
 
-`build.environment` sets string environment variables before the game starts in
-browser, Android and desktop app exports. For a legacy game that never enables PS/2 mouse
-reporting, opt into the compatibility override without changing its source:
+`build.environment` sets string variables before browser, Android and desktop app
+exports start. A game that never enables PS/2 reporting can opt in without source
+changes:
 
 ```json
 {"build": {"environment": {"LCOM_COMPAT_MOUSE_REPORTING": "1"}}}
 ```
 
-If a frozen game unsubscribes its mouse before disabling reporting, a touch
-release can leave unread mouse bytes ahead of keyboard input. For games verified
-to have this transition, set `"LCOM_COMPAT_MOUSE_IRQ_ONLY": "1"` in the same
-environment object. Embedded players then deliver mouse input only while the game
-subscribes to its interrupt. Leave this unset for games that poll the mouse.
+If a frozen game unsubscribes before disabling reporting, a touch release can leave
+mouse bytes ahead of keyboard input. For verified games, also set
+`LCOM_COMPAT_MOUSE_IRQ_ONLY`; input then arrives only while the game subscribes.
+Leave it unset for polling games.
 
-Legacy builds default to signed `char`, matching the original x86 Minix target
-on Android ARM too. An explicit `-funsigned-char` in the original Makefile still wins.
+Legacy builds use signed `char`, matching x86 Minix on Android ARM. An explicit
+`-funsigned-char` still wins.
 
-A game written for a graphics card with a fixed framebuffer address can select
-that firmware address while keeping its source unchanged:
+A fixed-framebuffer game can select its address without source changes:
 
 ```json
 {"build": {"environment": {"LCOM_VBE_PHYSICAL_BASE": "0xF0000000"}}}
 ```
 
-The default is `0xE0000000`. The selected address is reported by VBE BIOS calls
-and owns the game's only video-memory aperture. It must be page aligned, fit the
-complete 16 MiB aperture in 32-bit physical space, and avoid the runtime's low
-memory and audio buffer. Invalid values stop initialization. For ordinary CLI
-runs, set the same variable when starting `lcom-ng run`, `replay` or `run-pair`.
+The default is `0xE0000000`. VBE BIOS calls report the selected address, which owns
+the only video aperture. It must be page aligned, fit the 16 MiB aperture in 32-bit
+physical space, and avoid low memory and the audio buffer. Invalid values stop
+initialization. For CLI runs, set the variable for `run`, `replay` or `run-pair`.
 
-If the authored framebuffer occupies the default audio buffer at `0xD0000000`,
-relocate the SDK's 2 MiB PCM memory window explicitly:
+If the framebuffer overlaps the default audio buffer at `0xD0000000`, relocate the
+2 MiB PCM window:
 
 ```json
 {"build": {"environment": {
@@ -476,94 +515,73 @@ relocate the SDK's 2 MiB PCM memory window explicitly:
 }}}
 ```
 
-The two page-aligned windows must be disjoint and fit outside low memory in the
-32-bit physical address space. `lcom_ac97_get_buffer` reports the selected PCM
-address. AC97 I/O ports remain unchanged. Each device owns only its selected
-window, with no alias at its previous address. Omitting both options preserves
-the default video and audio addresses.
+The page-aligned windows must be disjoint and outside low memory.
+`lcom_ac97_get_buffer` reports the PCM address; AC97 ports are unchanged. Each
+device owns only its window, with no alias. Omitting both keeps the defaults.
 
 ### Legacy save-file paths
 
-Some Minix games open files under a hard-coded home directory. Map that directory
-to a folder in the exported assets without editing the game:
+Some Minix games open hard-coded home paths. Map them to exported assets:
 
 ```json
 {"build": {"pathAliases": {"/home/lcom/labs/my-project": "."}}}
 ```
 
-Alias keys are explicit absolute or relative POSIX directory prefixes. For a game
-that uses `home/lcom/game/assets` without a leading slash, map that exact relative
-prefix to the packaged asset directory. Ordinary relative paths keep their normal
-working-directory behavior when no alias matches. Values are existing directories
-relative to `build.assetRoot`, or the project folder when no asset root is set.
-The compatibility SDK applies the longest matching directory prefix when the
-original `access`, `open`, `fopen`, `remove` or `rename` path does not exist, or access is denied
-by a host directory such as Android `/tmp`. Successful original operations keep
-precedence. Permission-denied paths require an explicit alias; the default Minix
-home-directory fallback does not apply. If the alias also fails, the original
-permission error is preserved. Explicit aliases accept repeated `/` separators.
-A prefix matches only a complete path component, so `home/lcom/game` does not
-match `home/lcom/game2`.
-Declared absolute prefixes also relocate literal C `#include` paths at build time.
-The importer and both exporters use Clang's built-in VFS overlay, keeping source
-bytes unchanged. Android exports copy the mapped header closure and keep the
-mapping relative to that snapshot, so moving the export does not require the
-original project. This requires Clang, Emscripten or Android NDK Clang only when
-a declared alias matches an absolute include. For a desktop GCC build, select
-`--cc clang`. Relative save-file aliases retain their runtime behavior. Includes
-constructed by preprocessor macros are outside this source-discovery contract.
+Keys are explicit absolute or relative POSIX prefixes; `home/lcom/game/assets`
+works without a slash. Values are existing directories relative to
+`build.assetRoot`, or the project when no root is set.
 
-Android keeps each game's saved files in private storage between launches.
-Browser writes last for the current game
-session. Include any initial save-file assets the game expects.
+- The SDK applies the longest matching prefix when the original `access`, `open`,
+  `fopen`, `remove` or `rename` path is missing or denied by a host directory such
+  as `/tmp`; successful calls win.
+- Denied paths need an explicit alias; a failed alias preserves the original error.
+- Repeated `/` is allowed; a prefix matches whole components, so `home/lcom/game`
+  does not match `home/lcom/game2`.
+- Absolute prefixes relocate literal `#include` paths through Clang's VFS overlay.
+  Android copies the mapped header closure, so exports do not need the original
+  project.
+- Clang is required only for aliases with absolute includes; desktop GCC builds use
+  `--cc clang`.
+- Relative aliases stay runtime-only; macro-built includes are out of scope.
 
-Browser and Android exports configure these aliases automatically. Plain desktop
-`compat build` does not read this setting.
+Android keeps saved files between launches; browser writes last for the session.
+Include initial save assets. Browser and Android configure aliases automatically;
+plain `compat build` does not.
 
 ### Small keyboard layouts
 
-Quick keys also accept `KP_ENTER` for games that require the keypad Enter key.
-
-For a game with only two actions, hide the expandable keyboard and list only
-those keys. Quick keys wrap on smaller screens and support simultaneous holds:
+For two actions, hide the expandable keyboard and list only those keys. Quick keys
+wrap and support simultaneous holds; enable a pad only when needed.
 
 ```json
 {"mobile": {"controls": {"keyboard": false, "joystick": false,
   "mouseButtons": false, "pointer": "off", "quickKeys": ["SPACE", "ESC"]}}}
 ```
 
-Only enable a directional pad or stick when the game uses one.
-
 ### Desktop mouse calibration
 
-For a relative-pointer game with a verified cursor start, inclusive bounds and
-no independent cursor warps, set `cursor.desktopScale` to the number of guest
-pixels moved per PS/2 unit. For example, Memory Match starts at `(0, 0)`, clamps
-to `(799, 599)` and divides each packet delta by two:
+For a verified relative cursor with inclusive bounds and no warps, `desktopScale`
+sets guest pixels per PS/2 unit. Memory Match starts at `(0, 0)`, clamps to
+`(799, 599)` and halves deltas:
 
 ```json
 "cursor": { "x": 0, "y": 0, "maxX": 799, "maxY": 599, "desktopScale": 0.5 }
 ```
 
-The browser preserves this position across focus release and canvas re-entry.
-Integer half-speed mapping emits even raw deltas; double-speed mapping retains sub-step
-travel until a guest pixel step is representable. Set `desktopFractional: true`
-when the guest stores fractional cursor positions, rather than truncating each
-scaled packet delta. Tracking follows delivered packets, so switching between
-touch and physical mouse preserves alignment. Touch gestures and native
-physical mice retain their existing relative behavior. Keep this unset for
-cursors that warp, wrap, accelerate or move independently through other inputs.
+Browsers preserve position across focus release and canvas re-entry. Half speed
+emits even deltas; double speed keeps sub-step travel. Set `desktopFractional: true`
+when the guest stores fractions. Tracking follows delivered packets, keeping touch
+and mouse aligned. Leave it unset for cursors that warp, wrap or accelerate.
 
 ### Legacy C callback signatures
 
-Some older C projects assign callbacks with omitted parameters to function pointers
-that accept arguments. Native Minix permits that calling pattern, but WebAssembly
-checks the exact signature. If a browser export stops with a function signature
-mismatch, enable the compatibility option without editing the original sources:
+Older projects may assign callbacks with omitted parameters to function pointers
+taking arguments. Native Minix allows this; WebAssembly checks exact signatures.
+If a browser export stops with a mismatch, enable this without editing sources:
 
 ```json
 {"build": {"emulateFunctionPointerCasts": true}}
 ```
 
-This affects legacy Minix browser exports only. It adds callback overhead, so leave
-it unset for projects that already use matching signatures.
+This affects legacy Minix browser exports only and adds callback overhead; leave it
+unset when signatures match.

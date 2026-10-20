@@ -1,42 +1,41 @@
-# Syllabus Map
+# Syllabus map
 
-This page gives instructors a concrete semester shape. It is not a required
-contract; it is a starting point that mirrors the structure of a practical
-computer-laboratory course: device labs first, project studio second.
+A starting point, not a required contract: device labs first, project studio
+second.
 
-## Course Summary
+## Course summary
 
-lcom-ng teaches students to write structured C code that interacts with
-machine-like device interfaces. Students learn bit-level protocols, polling,
-interrupt-style events, mapped buffers, byte streams, systematic debugging, and
-state-machine design. The practical outcome is a final interactive program that
-combines several device areas.
+Students write structured C against machine-like device interfaces: bit-level
+protocols, polling, interrupt-style events, mapped buffers, byte streams,
+systematic debugging, and state-machine design. The outcome is a final
+interactive program that combines several device areas.
 
-A full course can be framed as a 6 ECTS offering with about 52 contact hours and
-162 total hours. A typical weekly format is two hours of theory or guided
-discussion plus two hours of laboratory work. The remaining time is independent
-study, implementation, debugging, and project work.
+A full course can be 6 ECTS with about 52 contact hours and 162 total hours. A
+typical week has two hours of theory or discussion plus two hours of laboratory
+work; the rest is independent study and project work.
 
 ## Prerequisites
 
-Students should have passed, or be concurrently prepared by, courses with the
-content normally covered in introductory Programming, Computer Architecture, and
-Operating Systems. They should be able to compile C programs, read pointer-based
-APIs, understand basic memory layout, and reason about registers, interrupts,
-and system calls at a conceptual level.
+Introductory Programming, Computer Architecture, and Operating Systems. Students
+should compile C programs, read pointer-based APIs, understand basic memory
+layout, and reason conceptually about registers, interrupts, and system calls.
 
-## Learning Outcomes
+If C is weak, spend the first session on bit operations, pointers, structs,
+`make`, and compiler errors. If systems background is strong, move faster
+through Lab 1 and spend more time on project architecture and deterministic
+replay.
 
-By the end of the course, successful students should be able to use
-device-shaped programmatic interfaces, structure low-level C libraries, debug
-with reproducible experiments, combine asynchronous input sources, and build a
-reactive application with a clear state model.
+## Learning outcomes
 
-The course also develops tool fluency: compiler diagnostics, Makefiles, static
-libraries, Git, generated tests, frame/audio artifacts, and short technical
-notes that explain implementation decisions.
+- Use device-shaped programmatic interfaces.
+- Structure low-level C libraries.
+- Debug with reproducible experiments.
+- Combine asynchronous input sources into a reactive application with a clear
+  state model.
+- Use compiler diagnostics, Makefiles, static libraries, Git, generated tests,
+  and frame or audio artifacts.
 
-## Weekly Map
+## Weekly map
 
 | Week | Student work | Instructor focus | Evidence |
 | --- | --- | --- | --- |
@@ -51,14 +50,18 @@ notes that explain implementation decisions.
 | 9 | project proposal | scope control and risk review | idea, devices, smallest loop, risks |
 | 10 | first usable loop | state machine and deterministic replay | replay script |
 | 11 | systems pass | helper boundaries, error handling, timing | code review |
-| 12 | polish and packaging | artifacts, demo script, rubric check | source, docs, report draft, video draft |
+| 12 | polish and packaging | artifacts, demo script, rubric check, optional Arcade metadata | source, docs, report draft, video draft, `lcom.json` |
 | 13 | final demo | presentation and review | last assessed commit plus artifacts |
 
 Shorter modules can skip Labs 6 and 7, or use Lab 5 plus a small project as a
-graphics-focused unit. Longer offerings can add deeper lectures on modern MMIO,
-USB HID, graphics APIs, audio scheduling, or embedded Linux.
+graphics unit. Longer offerings can add lectures on MMIO, USB HID, graphics
+APIs, audio scheduling, or embedded Linux.
 
-## Topic Coverage
+For a class Arcade, collect each project's `description`, `preview`, and
+`instructions` in its `lcom.json` during the packaging week. See
+[game collections](/instructors/game-collections).
+
+## Topic coverage
 
 | Topic | Where it appears |
 | --- | --- |
@@ -72,29 +75,24 @@ USB HID, graphics APIs, audio scheduling, or embedded Linux.
 | Systematic debugging | tests, traces, dumps, WAVs, replays |
 | Tooling | `cc`, `make`, Git, generated tests, docs |
 
-## Recommended Bibliography
+## Recommended bibliography
 
-Elecia White's *Making Embedded Systems* is a strong primary companion because
-it treats embedded software as design work rather than only register trivia.
-Derek Molloy's *Exploring Raspberry Pi* is useful when instructors want a bridge
-to Linux-based hardware interfacing. Selected chapters from *Operating Systems:
-Three Easy Pieces* can support the process, virtualization, and I/O context.
+Elecia White, *Making Embedded Systems*, for embedded software as design work.
+Derek Molloy, *Exploring Raspberry Pi*, for a bridge to Linux hardware
+interfacing. Selected chapters from *Operating Systems: Three Easy Pieces* for
+processes, virtualization, and I/O. The lab pages link to focused references for
+CMOS/RTC, PIT timers, PS/2 input, VBE graphics, PCM audio, and UART programming.
 
-The lcom-ng guides also link to focused external references for CMOS/RTC,
-PIT timers, PS/2 input, VBE graphics, PCM audio, and UART programming.
+## Assessment
 
-## Assessment Shape
+Suggested split: 40% theory, 60% project. Theory checks device access, C
+behavior, event loops, and debugging. The project rewards integration, clear
+architecture, reproducible artifacts, and meaningful use of several device
+areas.
 
-For an LCOM-like semester, start from 40% theory / 60% project. The theory
-component should check conceptual understanding of device access, C behavior,
-event loops, and debugging methodology. The project component should reward
-working integration, clear architecture, reproducible artifacts, and meaningful
-use of multiple device areas.
+Expected delivery is application source, build and run instructions,
+documentation, a short architecture report, and a short demo video. Teams share
+the artifact; each student is assessed on their own progress and understanding.
 
-For the project studio, tell students early that the expected final delivery is
-application source, build/run instructions, project documentation, a short
-architecture report, and a short demo video. Teams can share the artifact, but
-each student should be assessed on their own progress and technical
-understanding.
-
-See the [project rubric](/instructors/rubric) for a more concrete breakdown.
+See the [project rubric](/instructors/rubric) for weights, milestones, and AI
+policy.
