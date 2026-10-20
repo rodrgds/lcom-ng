@@ -90,6 +90,48 @@ void initImages() {
   */
 }
 
+static void freeEntityPayload(DoubleLinkedList *list, EntitiesLinkedElement *element) {
+  switch (element->type) {
+    case ENEMY: {
+      Enemy *enemy = (Enemy *) element->data;
+      if (enemy == NULL) break;
+      if (enemy->gun != NULL) {
+        EntitiesLinkedElement *other = list->firstElement;
+        while (other != NULL) {
+          if (other->type == BULLET && ((Bullet *) other->data)->origin == enemy->gun) {
+            ((Bullet *) other->data)->origin = NULL;
+          }
+          other = other->next;
+        }
+        if (enemy->gun->sprite != NULL) free(enemy->gun->sprite);
+        free(enemy->gun);
+      }
+      free(enemy->sprite);
+      free(enemy);
+      break;
+    }
+    case BULLET: {
+      Bullet *bullet = (Bullet *) element->data;
+      if (bullet != NULL) {
+        free(bullet->sprite);
+        free(bullet);
+      }
+      break;
+    }
+    case GUN: {
+      Gun *gun = (Gun *) element->data;
+      if (gun != NULL) {
+        free(gun->sprite);
+        free(gun);
+      }
+      break;
+    }
+    case PLAYER:
+    case SPRITE:
+      break;
+  }
+}
+
 void moveEntities(Game *game, double gameSpeed) {
   updateAnimations(game);
   EntitiesLinkedElement *elem = game->entitiesList.firstElement;
@@ -99,6 +141,7 @@ void moveEntities(Game *game, double gameSpeed) {
     if (is_out_of_bounds(sprite->x, sprite->y, 100)) {
       //printf("Out of bounds %d %d\n", sprite->x, sprite->y);
       EntitiesLinkedElement *next = elem->next;
+      freeEntityPayload(&game->entitiesList, elem);
       removeLinkedElement(&game->entitiesList, elem);
       elem = next;
     }
@@ -435,6 +478,7 @@ void deleteEntities(Game *game) {
   while (elem != NULL) {
     EntitiesLinkedElement *next = elem->next;
     if (elem->remove) {
+      freeEntityPayload(&game->entitiesList, elem);
       removeLinkedElement(&game->entitiesList, elem);
     }
 

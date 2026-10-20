@@ -197,8 +197,8 @@ int spawn_monsters(struct game_entities_position *all_game_state_entities_positi
 /// @return 0 if the conversion was successful, 1 otherwise
 int convert_frame_buffer_position_to_game_position(int frame_buffer_position_x, int frame_buffer_position_y,
                                                    int *game_position_x, int *game_position_y) {
-    if (frame_buffer_position_x < 32 || frame_buffer_position_x > 768 || frame_buffer_position_y < 112 ||
-        frame_buffer_position_y > 560) {
+    if (frame_buffer_position_x < 32 || frame_buffer_position_x >= 768 || frame_buffer_position_y < 112 ||
+        frame_buffer_position_y >= 560) {
         *game_position_x = -1;
         *game_position_y = -1;
         return 1;
@@ -815,7 +815,6 @@ int write_high_scores(struct high_score high_scores[5]) {
 //    printf("Writing high scores\n");
     FILE *file = fopen(HIGH_SCORES_FILE_PATH_NAME, "w");
     if (file == NULL) {
-        fclose(file);
         return 1;
     }
 

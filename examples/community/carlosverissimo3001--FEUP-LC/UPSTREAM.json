@@ -131,9 +131,15 @@
         {
           "file": "proj/src/words.c",
           "originalSha256": "b7c0b69077b272bdcd34ae3972bac6d4d1681efd3b8515eb6a8b45e2086b56e6",
-          "patchedSha256": "553a3d9efac1b54a6c291cdd960761fe21f94e6b682cbec054761cf78dbe1755",
-          "reason": "Submitting a nickname with Enter passes NUL to the letter renderer; indexing alphabet[c-65] then reads outside the27-glyph array. Ignore characters outside A..Z and space, with zero width.",
-          "verification": "Original actual browser Enter crashes memory access out of bounds; compiled original glyph lookup fails range assertion. Repaired13-source regression suite passes; actual touch A/B names \u2192 choose SPOON \u2192 draw \u2192 wait original60+30s timers \u2192 type SPOON \u2192 CORRECT GUESS YOU WIN."
+          "patchedSha256": "d0b5c761e858026adccdc6c31e0e601847eb9e382e83d43daea06e45534e7173",
+          "reason": "Submitting a nickname with Enter passes NUL to the letter renderer; indexing alphabet[c-65] then reads outside the27-glyph array. Ignore characters outside A..Z and space, with zero width. Bound appends at MAX_WORD_SIZE characters and always terminate the string.",
+          "verification": "Original actual browser Enter crashes memory access out of bounds; compiled original glyph lookup fails range assertion. Repaired13-source regression suite passes; actual touch A/B names → choose SPOON → draw → wait original60+30s timers → type SPOON → CORRECT GUESS YOU WIN."
+        },
+        {
+          "path": "proj/src/pen_pal.c",
+          "originalSha256": "5f33dc2f6f9dd28d850739354e3b11c03c6539f1252e897b2facf1dbee29faf0",
+          "patchedSha256": "5c439ecc906b5252c829feb63fce1dd9b1c9d99d0f75baf9ea49401ba735eb9e",
+          "reason": "Size the three text buffers and the swap temporary for MAX_WORD_SIZE characters plus NUL, and check the player-2 length when advancing."
         }
       ]
     }

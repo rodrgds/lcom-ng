@@ -367,11 +367,11 @@ int (proj_main_loop)(int argc, char *argv[]){
   Alien* alien = (Alien*) alienInit(jogo);
   Mouse* mouse = (Mouse*) mouseInit();
 
-  char file[50];
+  char file[50] = "users.txt";
 
-  if (argc != 0)
+  if (argc > 0 && argv != NULL && argv[0] != NULL)
   {
-    strcpy(file,*argv);
+    snprintf(file, sizeof(file), "%s", argv[0]);
   }
 
   Users users = usersInit();

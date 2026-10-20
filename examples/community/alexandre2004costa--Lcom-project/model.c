@@ -419,8 +419,28 @@ void (manageOutInput)(){
  */
 void (prepareGame)(bool solo){
   freePlanes(planeArray);
+  for (int i = 0; i < bombsArray->sizeBombs; i++) {
+    Object *bomb = bombsArray->bombs[i];
+    if (bomb != NULL) {
+      if (bomb->sprite != NULL) {
+        free(bomb->sprite->map);
+        free(bomb->sprite);
+      }
+      free(bomb);
+    }
+  }
   free(bombsArray->bombs);
   free(bombsArray);
+  for (int i = 0; i < bulletArray->sizeBombs; i++) {
+    Object *bullet = bulletArray->bombs[i];
+    if (bullet != NULL) {
+      if (bullet->sprite != NULL) {
+        free(bullet->sprite->map);
+        free(bullet->sprite);
+      }
+      free(bullet);
+    }
+  }
   free(bulletArray->bombs);
   free(bulletArray);
   planeArray = create_PlanesArray(30);

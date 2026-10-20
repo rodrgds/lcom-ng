@@ -106,8 +106,8 @@
         {
           "file": "proj/src/logic/alien.c",
           "originalSha256": "3a5873e662582ba8ab7dde71f2bd85c48fd31189eb54701b5202716a4b30db25",
-          "patchedSha256": "d84ec9886ea5c7bb5897e9f65b5290ae6bde97a936aceffe075888ac9c06c186",
-          "reason": "init_alien leaves its shots pointer uninitialized and first alien firing frees arbitrary stack data. Both alien shot removal and player shot removal free an interior array element, invalidating live storage or passing a non-allocation address to free. Initialize shots to NULL, retain the compacted array until empty, then free its base.",
+          "patchedSha256": "c60e295c2191cb742da9164a49e005a71b2bb3b428d550ea0b55205a91a64da9",
+          "reason": "init_alien leaves its shots pointer uninitialized and first alien firing frees arbitrary stack data. Both alien shot removal and player shot removal free an interior array element, invalidating live storage or passing a non-allocation address to free. Initialize shots to NULL, retain the compacted array until empty, then free its base. Return immediately when there are no live aliens to shoot.",
           "verification": "Actual original source regression fails on uninitialized shots; initialization-only variant fails the allocation-base free invariant. Repaired original source passes100 cycles of four shots per side, first/middle/last deletion, preserved coordinates, empty-array cleanup and zero leaked allocations. All9 A source regressions green. Android retry pending."
         },
         {

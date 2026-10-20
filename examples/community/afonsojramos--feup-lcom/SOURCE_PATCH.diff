@@ -90,3 +90,24 @@
  							}
  							int temp = testCursorCol();
  
+
+--- a/brickbreaker/src/timer.c
++++ b/brickbreaker/src/timer.c
+@@ -248,7 +248,7 @@ int masterClock(){
+ 	int irq_set_mouse = mouse_subscribe_int();
+ 
+ 	int interruptsCounter = 0, mouseCounter = 0;
+-	unsigned long key;
++	unsigned long key = 0;
+ 
+ 	unsigned long data;
+ 	char packet[3];
+@@ -380,7 +380,7 @@ int masterClock(){
+ 	kbd_unsubscribe_int();
+ 	timer_unsubscribe_int();
+ 
+-	fclose(fp);
++	if (fp) fclose(fp);
+ 	return 0;
+ }
+ 

@@ -79,6 +79,18 @@
             "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/bomberman-utils-header-red.log",
             "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/bomberman-header-green.log"
           }
+        },
+        {
+          "path": "src/controller.c",
+          "originalSha256": "f86affe54b31de842450662018d1ea5c708ebf4e4bd388afc8bfb49d1b647de3",
+          "patchedSha256": "498553bf02bae09859cf6830de95f8c902cb7e014132b0e77c6bb9b9f3f4b061",
+          "reason": "Route all bomb blast cell accesses through a bounds-checked MAP_AT macro so out-of-map cells are ignored instead of corrupting adjacent globals."
+        },
+        {
+          "path": "src/graphics.c",
+          "originalSha256": "30097a0d7a1d1211268bb2b6a0446620c6020fb38a8339aab047bfa4aa5c6b2e",
+          "patchedSha256": "723ffb9d9a09aad0fbbd36564f5747c74a9a753a1303eec2188f734d01ac5f93",
+          "reason": "Reject x/y equal to the mode resolution before computing the framebuffer index."
         }
       ]
     }

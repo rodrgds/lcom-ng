@@ -12,6 +12,18 @@
       "upstreamSha256": "6497435907dee29825d5eddda5cf778cc1783cffe9a4d6e1d189f276d84c426e",
       "patchedSha256": "c0c9ef62af5e223418346cabdee8d91f9882dcb5f2cf2a92ca917a152149e9eb",
       "verification": "Actual vbe_info BIOS allocation-boundary regression RED rejected undersized buffer, GREEN returns complete 1024x768 RGB565 result."
+    },
+    {
+      "file": "proj/src/proj.c",
+      "originalSha256": "9b968808cca0cf823b8dcc5a63da6c1a934515bfeb198e564b74d74a40cbe644",
+      "patchedSha256": "eb4714c13ebb6b7a4ed9c8d4095fd82fd895dfecb9a8d2c1f6c59434fb345c85",
+      "reason": "Default the path to users.txt, bound the copy with snprintf, and tolerate missing argv."
+    },
+    {
+      "file": "proj/src/file.c",
+      "originalSha256": "184da07c50fbe5070b2d0f22a09b5a2de1d6a39f9db4cb4eb686a66c182bd409",
+      "patchedSha256": "2666a2ac2023c9d232b0c47ed2e70835b101323b811aafbc6c4fcaca9102fa54",
+      "reason": "Return safely when the score file cannot be opened for reading or writing."
     }
   ],
   "sha256": {

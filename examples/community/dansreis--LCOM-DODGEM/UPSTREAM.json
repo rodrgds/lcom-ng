@@ -87,8 +87,8 @@
         {
           "file": "DODGEM/src/DODGEM.c",
           "originalSha256": "cfba3736e38ca21c49984722593a09312d895b6c503fed2ed61f5742ac95e09e",
-          "patchedSha256": "87a55fd711794df424d39dd4647d638426aba84423c13c06f8128ec30d3211ad",
-          "reason": "loadScores passed100 to fgets destinations15/10bytes; unchecked copies could overflow nickname[12], atoi read unterminateddate[2], feof loop could add a phantom record and arrays of4had no capacity guard. Read the original five-line records through one correctly sized line buffer, validate name length, parse all six dates from the owned full line, stop on actualEOF, cap stored rows4per mode and close the file on every exit.",
+          "patchedSha256": "ddbb1e47bfe514da0bb40a4e74d90bf6e325b1fcf388cd1c051a2197fa887a79",
+          "reason": "loadScores passed100 to fgets destinations15/10bytes; unchecked copies could overflow nickname[12], atoi read unterminateddate[2], feof loop could add a phantom record and arrays of4had no capacity guard. Read the original five-line records through one correctly sized line buffer, validate name length, parse all six dates from the owned full line, stop on actualEOF, cap stored rows4per mode and close the file on every exit. Zero-initialize the submitted PLAYER and explicitly NUL-terminate nickname, truncating to the final field byte when all 12 name slots are used.",
           "verification": "Actual ARM64 FORTIFY optimized compilation RED on five fgets bound violations, GREEN all11Cunits with -D_FORTIFY_SOURCE=2 -O2. Actual owning loadScores real-file regression original SIGTRAP, corrected parses pinned seven originalrecords and exact date/name/score fields, a maximum11character nickname, rejects overlong/truncated/malformed records, preserves0s2sentinel and caps six valid rows to4."
         },
         {
@@ -110,12 +110,12 @@
     "browser": "Actual CDP touch landscape844x390 and portrait390x844: Play menu, click red block, dodge with unit relative motion, Freeze visible energy100 to50 and stationary enemies, move again then Shield green block; timer and energy advance, errors[].",
     "ndk": "All11authored Makefile C translation units pass actual NDK27 ARM64 object compilation with -D_FORTIFY_SOURCE=2 -O2, matching real Android FORTIFY build.",
     "sourceRegression": "Owning graphicsStart uses full vg_init pointer with existing header; actual print_mouse handles all signed9bit boundaries and clamp/button transitions. Separate RED/GREEN logs and cumulative reversible source patch. Actual loadScores real-file record/bounds/EOF regression RED/GREEN; originalfile records and six date fields preserved. Timer status guarded byte-destination/60Hz PIT/read-failure regression RED/GREEN with real optimized stack-protected timer.c.",
-    "native": "Original menu enters arena. Freeze spends50 energy and all blue enemy pixels remain identical across three real frames. Shield spends40more energy (50\u219212 including regeneration); green immunity remains beyond initial grace period. Ordinary relative pointer moves player while stopped enemies retain identical masks. Score advances0.53\u21921.96. Home terminates isolated process.",
+    "native": "Original menu enters arena. Freeze spends50 energy and all blue enemy pixels remain identical across three real frames. Shield spends40more energy (50→12 including regeneration); green immunity remains beyond initial grace period. Ordinary relative pointer moves player while stopped enemies retain identical masks. Score advances0.53→1.96. Home terminates isolated process.",
     "nativeGameplay": {
       "status": "passed",
       "apkSha256": "92a108aaa7c1f5162655b9d0b118675a93e32899baf185e417a4df9343a9f859",
       "evidence": "build/arcade-100/dodgem-native-safe/results.json",
-      "review": "Original menu enters arena. Freeze spends50 energy and all blue enemy pixels remain identical across three real frames. Shield spends40more energy (50\u219212 including regeneration); green immunity remains beyond initial grace period. Ordinary relative pointer moves player while stopped enemies retain identical masks. Score advances0.53\u21921.96. Home terminates isolated process."
+      "review": "Original menu enters arena. Freeze spends50 energy and all blue enemy pixels remain identical across three real frames. Shield spends40more energy (50→12 including regeneration); green immunity remains beyond initial grace period. Ordinary relative pointer moves player while stopped enemies retain identical masks. Score advances0.53→1.96. Home terminates isolated process."
     }
   }
 }

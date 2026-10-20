@@ -41,8 +41,8 @@
         {
           "path": "proj/src/game.c",
           "originalSha256": "cfb859940e9839cbdc641f9ea64b43f0c00da9e1113db544fc0afe90ac35375e",
-          "patchedSha256": "49bec810c204cd4a37949a5025d7ff26499331b93a2a756e0037ac0e56a14a7c",
-          "reason": "Clamp only the14x13 crosshair drawing origin inside the framebuffer. Preserve full-screen logical aim and shooting coordinates. The original pixel renderer writes all supplied pixels without clipping."
+          "patchedSha256": "496621024aa9f465ed11fd144479445ce9aa97fea4de179147e11a7176d5c5d5",
+          "reason": "Clamp only the14x13 crosshair drawing origin inside the framebuffer. Preserve full-screen logical aim and shooting coordinates. The original pixel renderer writes all supplied pixels without clipping. Consume the shot when the aim vector has zero length instead of dividing by a zero hypotenuse."
         }
       ],
       "reproduction": "Public moveCrosshair then drawCrosshair submits draw1023,767 before correction, which extends past1024x768 allocation. Corrected draw fits1010,755 while crosshairCenter remains1030,773. Signed return-to-origin is also verified."

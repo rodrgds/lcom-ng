@@ -11,3 +11,36 @@
  
    FILE *file = fopen(filename, "r");
    if (file == NULL) {
+
+--- a/proj/src/visuals/model.c
++++ b/proj/src/visuals/model.c
+@@ -572,8 +572,14 @@ void check_mouse_click(struct packet pp) {
+             updateArrayWithLevel(level);
+           }
+           change = true;
++          destroy_sprite(lever);
++          lever = NULL;
+           int i, x, y;
+           for (i = 0; i < 1200; i++) {
++            if (walls20[i] != NULL) {
++              destroy_sprite(walls20[i]);
++              walls20[i] = NULL;
++            }
+             x = (i % 40) * 20;
+             y = (i / 40) * 20;
+             if (levelArray[i] == 1)
+@@ -689,8 +695,14 @@ void reset_states() {
+     girls[i]->xaccell = 0;
+   }
+   updateArrayWithLevel(level);
++  destroy_sprite(lever);
++  lever = NULL;
+   int i, x, y;
+   for (i = 0; i < 1200; i++) {
++    if (walls20[i] != NULL) {
++      destroy_sprite(walls20[i]);
++      walls20[i] = NULL;
++    }
+     x = (i % 40) * 20;
+     y = (i / 40) * 20;
+     if (levelArray[i] == 1)

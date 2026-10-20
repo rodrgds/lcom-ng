@@ -48,3 +48,15 @@
          }
  
          // Mouse interrupt: read and parse mouse packet
+
+--- a/project/src/utils/frames.c
++++ b/project/src/utils/frames.c
+@@ -11,7 +11,7 @@
+  * @return Pointer to the created Frame structure. Returns NULL on failure.
+  */
+ Frame *createFrame(const char  *xpm[]){
+-  Frame *frame=(Frame *)malloc(sizeof(frame));
++  Frame *frame=(Frame *)malloc(sizeof(*frame));
+   xpm_image_t img;
+   frame->map=(char *)xpm_load(xpm,XPM_8_8_8_8,&img);
+   frame->width=img.width;

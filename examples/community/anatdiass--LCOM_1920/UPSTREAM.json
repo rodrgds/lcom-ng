@@ -152,19 +152,19 @@
           "file": "proj/src/game.c",
           "originalSha256": "cb30fdcb621f063d3dce324b06882dddb6bda3b01bac0bfd55ed9ed8ea4e377a",
           "patchedSha256": "141a99be51b0bd6bebcf810ce8218cdf5a14b9d7ca657f34dd19872a0052d76d",
-          "reason": "Correct original score ownership: winning player name needs10bytes including NUL and one-digit position needs2; empty score table must not read its nonexistent first entry; three-digit/full signed-int duration needs room including NUL and matching local copy; full three-slot table rejects slower new times. Actual normal winning and record-owner fixtures original2FAIL\u2192fixed2PASS with complete130pinned closure. No rules/art or gameplay control changes."
+          "reason": "Correct original score ownership: winning player name needs10bytes including NUL and one-digit position needs2; empty score table must not read its nonexistent first entry; three-digit/full signed-int duration needs room including NUL and matching local copy; full three-slot table rejects slower new times. Actual normal winning and record-owner fixtures original2FAIL→fixed2PASS with complete130pinned closure. No rules/art or gameplay control changes."
         },
         {
           "file": "proj/src/highscores.c",
           "originalSha256": "e711bc5c27a63ae87406e5f108db5e9ee8f6c369bbcc5a68213c53e8d279f465",
-          "patchedSha256": "63f9fd438bcd133303e07ba525aa78ff17ac906932bce2f082c188b41744d159",
-          "reason": "Correct original score ownership: winning player name needs10bytes including NUL and one-digit position needs2; empty score table must not read its nonexistent first entry; three-digit/full signed-int duration needs room including NUL and matching local copy; full three-slot table rejects slower new times. Actual normal winning and record-owner fixtures original2FAIL\u2192fixed2PASS with complete130pinned closure. No rules/art or gameplay control changes."
+          "patchedSha256": "4cd190734ae60582ff7f7483fb6db5b942ecdc5138197e7d04ec193295d56969",
+          "reason": "Correct original score ownership: winning player name needs10bytes including NUL and one-digit position needs2; empty score table must not read its nonexistent first entry; three-digit/full signed-int duration needs room including NUL and matching local copy; full three-slot table rejects slower new times. Actual normal winning and record-owner fixtures original2FAIL→fixed2PASS with complete130pinned closure. No rules/art or gameplay control changes. Bound the loop to the three array entries, stop when either fscanf conversion fails, count only complete records, and close the opened file. Behaviour for existing three-record files is unchanged."
         },
         {
           "file": "proj/src/highscores.h",
           "originalSha256": "43d07508c47403d6fc289f3f2b3f5a3a3318c5744981af438b363c62ffe998cd",
           "patchedSha256": "cbb328e109d183e403c8d4a2c90002e02934c0740e31f16cb34e3780b61e93c3",
-          "reason": "Correct original score ownership: winning player name needs10bytes including NUL and one-digit position needs2; empty score table must not read its nonexistent first entry; three-digit/full signed-int duration needs room including NUL and matching local copy; full three-slot table rejects slower new times. Actual normal winning and record-owner fixtures original2FAIL\u2192fixed2PASS with complete130pinned closure. No rules/art or gameplay control changes."
+          "reason": "Correct original score ownership: winning player name needs10bytes including NUL and one-digit position needs2; empty score table must not read its nonexistent first entry; three-digit/full signed-int duration needs room including NUL and matching local copy; full three-slot table rejects slower new times. Actual normal winning and record-owner fixtures original2FAIL→fixed2PASS with complete130pinned closure. No rules/art or gameplay control changes."
         },
         {
           "file": "proj/src/xpmHandler.c",

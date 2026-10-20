@@ -11,6 +11,15 @@
 #include "board.h"
 #include "piece_move.h"
 
+static bool rotation_in_bounds(const uint16_t idx[4]) {
+  for (int i = 0; i < 4; i++) {
+    if (idx[i] > BOARD_MAX_IDX) {
+      return false;
+    }
+  }
+  return true;
+}
+
 bool update_movement(Piece *piece, enum movement_type move) {
   switch (move) {
     case ROTATE:
@@ -70,6 +79,10 @@ bool rotate_piece(Piece *piece) {
       rotated_idx[2] = piece->board_index[2] - 1;
       rotated_idx[3] = piece->board_index[1];
 
+      if (!rotation_in_bounds(rotated_idx) || piece->board_index[2] % 10 == 0 || piece->board_index[2] % 10 == 9) {
+        return false;
+      }
+
       if (piece->board->cells[rotated_idx[0]].color != BLACK || piece->board->cells[rotated_idx[2]].color != BLACK) {
         return false;
       }
@@ -80,6 +93,10 @@ bool rotate_piece(Piece *piece) {
       rotated_idx[2] = piece->board_index[3] - 10;
       rotated_idx[3] = piece->board_index[3] + 1;
 
+      if (!rotation_in_bounds(rotated_idx)) {
+        return false;
+      }
+
       if (piece->board->cells[rotated_idx[3]].color != BLACK || piece->board_index[3] < 10) {
         return false;
       }
@@ -89,6 +106,10 @@ bool rotate_piece(Piece *piece) {
       rotated_idx[1] = piece->board_index[1];
       rotated_idx[2] = piece->board_index[1] + 1;
       rotated_idx[3] = piece->board_index[0];
+
+      if (!rotation_in_bounds(rotated_idx)) {
+        return false;
+      }
 
       if (piece->board->cells[rotated_idx[0]].color != BLACK) {
         return false;
@@ -171,6 +192,10 @@ bool rotate_piece(Piece *piece) {
       rotated_idx[2] = piece->board_index[1];
       rotated_idx[3] = piece->board_index[2];
 
+      if (!rotation_in_bounds(rotated_idx)) {
+        return false;
+      }
+
       if (piece->board_index[1] < 10) {
         return false;
       }
@@ -183,6 +208,10 @@ bool rotate_piece(Piece *piece) {
       rotated_idx[1] = piece->board_index[2];
       rotated_idx[2] = piece->board_index[3];
       rotated_idx[3] = piece->board_index[3] + 1;
+
+      if (!rotation_in_bounds(rotated_idx)) {
+        return false;
+      }
 
       if (piece->board_index[2] % 10 == 0) {
         return false;
@@ -212,6 +241,10 @@ bool rotate_piece(Piece *piece) {
       rotated_idx[2] = piece->board_index[1] + 10;
       rotated_idx[3] = piece->board_index[2] + 10;
 
+      if (!rotation_in_bounds(rotated_idx)) {
+        return false;
+      }
+
       if (piece->board_index[1] > 189) {
         return false;
       }
@@ -224,6 +257,10 @@ bool rotate_piece(Piece *piece) {
       rotated_idx[1] = piece->board_index[1];
       rotated_idx[2] = piece->board_index[1] - 1;
       rotated_idx[3] = piece->board_index[2] - 1;
+
+      if (!rotation_in_bounds(rotated_idx)) {
+        return false;
+      }
 
       if (piece->board_index[1] % 10 == 0) {
         return false;
@@ -239,6 +276,10 @@ bool rotate_piece(Piece *piece) {
       rotated_idx[2] = piece->board_index[1] - 10;
       rotated_idx[3] = piece->board_index[2] - 10;
 
+      if (!rotation_in_bounds(rotated_idx)) {
+        return false;
+      }
+
       if (piece->board_index[1] < 10) {
         return false;
       }
@@ -251,6 +292,10 @@ bool rotate_piece(Piece *piece) {
       rotated_idx[1] = piece->board_index[1];
       rotated_idx[2] = piece->board_index[1] + 1;
       rotated_idx[3] = piece->board_index[2] + 1;
+
+      if (!rotation_in_bounds(rotated_idx)) {
+        return false;
+      }
 
       if (piece->board_index[1] % 10 == 9) {
         return false;

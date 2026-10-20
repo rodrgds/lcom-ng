@@ -189,6 +189,12 @@
             "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/spacecom-bounds-fix/red.log",
             "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/spacecom-bounds-fix/green.log"
           }
+        },
+        {
+          "path": "proj/src/game/gameStates/game_controller.c",
+          "originalSha256": "baea88d7fc283507a75058c58a4c2dd366363ce9d1217e03c94865f096bafb3c",
+          "patchedSha256": "d0726bed160f6df6cb832384a0940f51f73bf6d1bf2212f05cf635eff9374d62",
+          "reason": "Stop spawning powerups when the fixed pool is full, preventing the out-of-bounds write."
         }
       ]
     }

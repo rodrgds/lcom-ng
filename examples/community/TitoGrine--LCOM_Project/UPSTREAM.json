@@ -14,6 +14,12 @@
       "upstreamSha256": "26b8a571f57beed3a623c12bc2aac300b35a4754cf94ec2114bd90f3999f5715",
       "patchedSha256": "859ec4e386aff21ce004a2dcc5fcaa48f500d0d9fdad272c4295443db9fac434",
       "verification": "Actual vg_init boundary RED rejects mapping byte count 8x expected. GREEN maps1024x768x4 bytes and sets original0x144 mode."
+    },
+    {
+      "file": "projeto/src/events.c",
+      "originalSha256": "825c67daf45b897166ba34b7907fb690632410636de62fd12feed88c322da70a",
+      "patchedSha256": "dfc878f4f3e995a85b2aa2644f808cb215fd1bb21be10ec82a114bab57399bf2",
+      "reason": "timer buffer held only two bytes, but sprintf writes \"%02d\" plus a terminator (and up to three characters for values beyond two digits), overflowing the global by one byte every second"
     }
   ],
   "sha256": {

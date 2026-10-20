@@ -101,5 +101,19 @@
       "evidence": "build/arcade-100/next8-native-gameplay2/results.json",
       "review": "Both local tanks change position; ordinary aimed Fire produces original P1 WINS result while blocking sleep preserves that frame. Actual native controls and Home cleanup reviewed."
     }
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Skip bullet creation when origin and destination coincide, avoiding division by zero and unbounded NaN bullets.",
+      "files": [
+        {
+          "path": "proj/src/game/states/gamestate.c",
+          "originalSha256": "fd2480e0ddbea74504bc344275248c36e215f0c9a1c1c65dd41f036c87d7dc17",
+          "patchedSha256": "a062145c46210b2776932fec5e5cbfcbfd30ca76aea2671159c443b60498bf9e",
+          "reason": "Skip bullet creation when origin and destination coincide, avoiding division by zero and unbounded NaN bullets."
+        }
+      ]
+    }
+  ]
 }

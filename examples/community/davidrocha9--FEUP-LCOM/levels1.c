@@ -629,8 +629,10 @@ void FloweyLevel(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint16_t 
     uint8_t *temp_address = (uint8_t*) malloc(1152*864*4);
     memset(temp_address, 0, 1152*864*4);
     scancode = 0;
-    if (abs(xi-xf)!=0 && abs(yi-yf)!=0)
+    if (abs(xi-xf)!=0 && abs(yi-yf)!=0){
+        free(temp_address);
         return;
+    }
     bool speed_neg=false;
     //inicializar o modo gráfico
     if (speed<0){
@@ -651,5 +653,6 @@ void FloweyLevel(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint16_t 
     updateBuffer(init_adress, temp_address);
     EasyLevel4(temp_address, init_adress, t_irq, k_irq, m_irq);
 
+    free(temp_address);
     return;
 }

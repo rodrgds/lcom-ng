@@ -119,8 +119,8 @@
         {
           "path": "proj/Src/game.c",
           "originalSha256": "98ac3d24d05918e53c8a7400b2290fa497610abb9f9580c0a97f77f86fe94f31",
-          "patchedSha256": "33b5171e798a8e9d222dcfa73c424db1721bd7b50e15a2c5faac041f7ded177b",
-          "reason": "Preserve the earlier level filename buffer fix. Free only owned pixel maps of global portal value snapshots, release their temporary heap wrappers, and clear level pointers after destruction so Escape, level changes and editor/co-op transitions cannot free static or stale objects. Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions. Restore the previous cursor through the identical inset transform used for drawing, so moving away from screen edges leaves no trails.",
+          "patchedSha256": "81fd3bc9f8742edb3f75d1516fbff647e6e058db6b6b506e6788e931323cca77",
+          "reason": "Preserve the earlier level filename buffer fix. Free only owned pixel maps of global portal value snapshots, release their temporary heap wrappers, and clear level pointers after destruction so Escape, level changes and editor/co-op transitions cannot free static or stale objects. Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions. Restore the previous cursor through the identical inset transform used for drawing, so moving away from screen edges leaves no trails. Move the off-screen bounds check ahead of the grid lookup so the ray never indexes outside the grid.",
           "verification": "Actual draw_new_frame integration RED/GREEN: test_portal_cursor_frame_restores_the_previous_inset_origin; actual browser edge-to-centre trail check."
         },
         {

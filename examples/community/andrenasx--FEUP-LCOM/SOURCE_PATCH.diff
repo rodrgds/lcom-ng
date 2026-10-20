@@ -9,3 +9,29 @@
                      }
                    }
                  }
+
+--- a/proj/src/asteroids.c
++++ b/proj/src/asteroids.c
+@@ -9,7 +9,7 @@ void createAsteroidsArray(Game* game){
+ 
+ void createAsteroid(Game* game, int size, int x, int y){
+   int idx=0;
+-  while(game->gamesprites->asteroids[idx]!=NULL){
++  while(idx<50 && game->gamesprites->asteroids[idx]!=NULL){
+     idx++;
+   }
+   if(idx<50){
+--- a/proj/src/sprite.c
++++ b/proj/src/sprite.c
+@@ -31,8 +31,9 @@ return sp;
+ void destroy_sprite(Sprite *sp) {
+ if( sp == NULL )
+ return;
+-if( sp ->map )
+-free(sp->map);
++/* Sprite maps are borrowed from the game image table, which is loaded once
++   and shared by every sprite created from the same XPM. Freeing a map here
++   would double-free it and leave other sprites with a dangling pointer. */
+ free(sp);
+ sp = NULL; // XXX: pointer is passed by value
+ // should do this @ the caller

@@ -1143,8 +1143,10 @@ void SansLevel(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint16_t yf
     uint8_t *temp_address = (uint8_t*) malloc(1152*864*4);
     memset(temp_address, 0, 1152*864*4);
     scancode = 0;
-    if (abs(xi-xf)!=0 && abs(yi-yf)!=0)
+    if (abs(xi-xf)!=0 && abs(yi-yf)!=0){
+        free(temp_address);
         return;
+    }
     bool speed_neg=false;
     //inicializar o modo gráfico
     if (speed<0){
@@ -1161,17 +1163,24 @@ void SansLevel(xpm_map_t xpm, uint16_t xi, uint16_t yi, uint16_t xf, uint16_t yf
     spr = create_sprite(heart, xi, yi, 0, 0);
     p1 = FirstWave(temp_address, init_adress, k_irq, t_irq, m_irq, p1, xi, yi, spr);
     updateBuffer(init_adress, temp_address);
-    if (p1.dead)
+    if (p1.dead){
+        free(temp_address);
         return;
+    }
     p1 = SecondWave(temp_address, init_adress, k_irq, t_irq, m_irq, p1, xi, yi, spr);
     updateBuffer(init_adress, temp_address);
-    if (p1.dead)
+    if (p1.dead){
+        free(temp_address);
         return;
+    }
     p1 = ThirdWave(temp_address, init_adress, k_irq, t_irq, m_irq, p1, xi, yi, spr);
     updateBuffer(init_adress, temp_address);
-    if (p1.dead)
+    if (p1.dead){
+        free(temp_address);
         return;
+    }
     ExtremeLevel4(temp_address, init_adress, t_irq, k_irq, m_irq, p1);
     ExtremeLevel5(temp_address, init_adress, t_irq, k_irq, m_irq, p1);
     updateBuffer(init_adress, temp_address);
+    free(temp_address);
 }

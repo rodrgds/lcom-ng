@@ -45,7 +45,14 @@
     "proj/src/xpm/xpm_id.h": "b82e0b90066e264cdca675406f14cfeecbe33ed24a5769c3bd314398d23789d1",
     "proj/src/xpm/xpm_sprites.h": "1b9b54faa8c56b3987a872cb8f2e7114b9ab262643d5d2a3b21e239e315ecb8f"
   },
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "file": "proj/src/models/bullet.c",
+      "originalSha256": "fc6a678aef737583975cffb97f47d4d14bf0d4cb3d35998b7b370bc1f78ad760",
+      "patchedSha256": "ddb0179d78296549b7da34b7bb8741eb5d0a56c20699f118770f94d460119f34",
+      "reason": "Allocate the next free bullet slot instead of a never-reused running index."
+    }
+  ],
   "omittedFiles": [
     {
       "path": "proj/doc/.DS_Store",

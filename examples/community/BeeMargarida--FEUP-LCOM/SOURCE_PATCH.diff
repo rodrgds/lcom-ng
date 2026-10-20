@@ -570,3 +570,14 @@
  	long endr = y*(H_RES)+ x;
  	*(buffer + endr) = color;
  }
+
+--- a/proj/src/handler.c
++++ b/proj/src/handler.c
+@@ -210,6 +210,7 @@ int menu(){
+ 							free(menu);
+ 							clear_screen();
+ 							game_handler();
++							return 1;
+ 						}
+ 						menu_show(menu);
+ 						actVideoMem();

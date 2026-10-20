@@ -67,6 +67,12 @@
           "originalSha256": "ea2292569db4c5eccc9d3a96c70d5611ef92538a7dcb3c02d00eeeb6c8194311",
           "patchedSha256": "a41e0c26dee8c3eada9cb5e0b11c154acb79ea42b23f78c206e339f441aef59c",
           "reason": "Own result WPM and100%accuracy strings need complete integer/percent/terminator storage; use bounded snprintf."
+        },
+        {
+          "path": "proj/src/states/scoreboard.c",
+          "originalSha256": "2293026adb999994924bb016afc1125a29dc17026d39cb789e32162d6e3d7c62",
+          "patchedSha256": "c4dafb62d08b2b7261c325c759fa284ce5d1ab1f549f836dc6ee020905f0fbcf",
+          "reason": "Check j >= 0 before the strncmp comparison."
         }
       ]
     }

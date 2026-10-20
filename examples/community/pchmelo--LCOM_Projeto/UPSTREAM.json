@@ -199,6 +199,12 @@
           "originalSha256": "a61c7c99409e542c0194b2f67a9718996b5c4ddcc666ecb211164d5117716037",
           "patchedSha256": "f039c81e3f8a823e77b62f3fc3b5636443c5c118f4a909e2ea4d3d66ff64f69f",
           "reason": "Rename only the external game_round object round and its C identifier references to current_game_round. C99 external namespace reserves the standard math function round independently of header inclusion. Actual original host/WASM compiler collision RED, then real legal/illegal card selection and libc round(+/-1.5) coexist GREEN without compiler suppression or SDK changes. Original rules, art, enum values, strings and comments unchanged."
+        },
+        {
+          "path": "src/prog/functions/aux_func.c",
+          "originalSha256": "2ecaa0cd81a5767f766dbe011bc51bac6e9a317f303ab7036acec96b24e91f24",
+          "patchedSha256": "d8a824c789660e829ff11fd5894060b85328b5f3c466d0752e234191f9e5180a",
+          "reason": "Allocate the six elements the function initializes."
         }
       ]
     },

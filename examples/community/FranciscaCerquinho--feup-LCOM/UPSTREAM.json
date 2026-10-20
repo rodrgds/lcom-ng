@@ -88,6 +88,12 @@
           "patchedSha256": "301f2dd9edd7bc247f8d7e9a2eed9958446def0218225fbe16dc35e1c9b880cf",
           "reason": "Initialize the four VBE2 signature bytes with character constants rather than string-literal pointers.",
           "verification": "Actual original mode-information unit fails compilation on four pointer-to-byte assignments; corrected owning test compiles and receives exact1024x768x16 BIOS information."
+        },
+        {
+          "path": "src/Pipe.c",
+          "originalSha256": "42291247b127026c689f6c9c9677fdd42de10a74ac6e70826f0bc33cfb74dc82",
+          "patchedSha256": "a84978885b1679f81e2206de4df2648191585573892c5c0839b797ec20e98319",
+          "reason": "Cache the pipe bitmap once so the per-frame pipe object no longer reloads and leaks the image."
         }
       ]
     }

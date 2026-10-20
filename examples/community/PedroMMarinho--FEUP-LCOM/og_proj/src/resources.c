@@ -8,6 +8,7 @@
 Resources* loadResources(){
 
   Resources* resources = (Resources*)malloc(sizeof(Resources));
+  resources->table = NULL;
   resources->menu = newMenu(MAIN_MENU);
   resources->state = MENU;
   int randomNumber = rand() % 10000 + 1000;  
@@ -22,6 +23,8 @@ void destroyResources(Resources* resources){
   else if(resources->state == MENU){
     destroyMenu(resources->menu);
   }
-  free(resources->table);
+  if(resources->table != NULL) {
+    free(resources->table);
+  }
   free(resources);
 }

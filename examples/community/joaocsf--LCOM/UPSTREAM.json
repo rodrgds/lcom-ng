@@ -123,8 +123,8 @@
         {
           "file": "proj/code/map.c",
           "originalSha256": "5a4b7633a19b1090fb4f3aa43b6447215022d8691e38c5a6d21c5ad72e791fa9",
-          "patchedSha256": "61f1f72c7fed4bdfcb6e0c09dc57f021a7cc3ab5af4c9cdf1c66968a81b596fc",
-          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts. Initialize GetLowCost current candidate to NULL, and return0 when a client refuses authoritative map damage.",
+          "patchedSha256": "3c2f4e0ac5c4118ae166431fec02214333acd99df421d73c978bb1d27a62fedc",
+          "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts. Initialize GetLowCost current candidate to NULL, and return0 when a client refuses authoritative map damage. Return NULL on the no-path exit, matching the existing invalid-node path that Enemy_MoveTo handles safely.",
           "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps. Patterned-storage actual GetLowCost regression originally returns an indeterminate pointer, then passes empty/unordered/first-min cases after initialization. Real arena originally stalls at pathfinding; corrected match advances and enemies approach. Actual Map_Damage owner fixture checks denied damage returns0 and preserves tile."
         },
         {

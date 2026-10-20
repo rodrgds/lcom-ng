@@ -12,6 +12,18 @@
       "upstreamSha256": "f26f714c0a8a528c1c6c19682eb03807ad886bde1e2fb0158ef9970b7286fc2f",
       "patchedSha256": "dfa315dd082356e1b8e6b971908efa42cf0664bc2d0ea4e6265c4a19b3646489",
       "verification": "Original real80ms menu tap stayed in menu,1000ms hold entered game. The same80ms mobile tap now enters active UFO gameplay after the source correction, with no JS errors. Evidence: import-a/menu-debug-final.log, asteroid-debug.log, asteroids-after.log."
+    },
+    {
+      "file": "proj/src/asteroids.c",
+      "originalSha256": "9f6913a5370fcf50c1422bdb41ff02c289ce7d43f5a81e30a53ef711016e7343",
+      "patchedSha256": "c533c92f07e62749a979c869728a6108b04410a4402741997e67b17f61e3b893",
+      "reason": "Stop the asteroid slot scan at the 50-entry array bound instead of reading past it."
+    },
+    {
+      "file": "proj/src/sprite.c",
+      "originalSha256": "bb49a51c4db29023b26a09f72e0c2ae1c0e783f10040b8307ca7692ec081b239",
+      "patchedSha256": "a0b015a942d8851403bb037b3c1751a1da50b14d919ed6dfe716ca26f115fe71",
+      "reason": "Do not free maps shared with the game's loaded XPM image table; sprites own only their descriptor."
     }
   ],
   "sha256": {

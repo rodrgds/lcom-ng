@@ -76,6 +76,12 @@
           "path": "proj/src/mouse.c",
           "originalSha256": "09995adce1b51d9607094cc4c6996e461bdbd0346c3a97256143e27185d0b2c2",
           "patchedSha256": "6d6936b39be15b277c5fcf622904d9f7ebdcbeaff034c3cbad0f5ca05d59a72e"
+        },
+        {
+          "path": "proj/src/cloud.c",
+          "originalSha256": "20953df3a7cd5ff518e6ebe12db7ef51af54bb578bf0c8d90355d3c0a76161de",
+          "patchedSha256": "d88e9b1024324d5f4103deb65fd0f812b89e9ce843885695b8cfa2ba263234f0",
+          "reason": "Load the three cloud bitmaps once and share them; deleteClouds continues to free only the cloud struct."
         }
       ]
     }

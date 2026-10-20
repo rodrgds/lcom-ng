@@ -36,9 +36,9 @@ KeyboardState keyboard_state = KBD_GETTING_NICKNAME_1;
 GameState game_state = GETTING_NICKNAME_1;
 MouseState mouse_state = MOUSE_GETTING_NICKNAMES;
 
-char player1_nickname[MAX_WORD_SIZE] = {'\0'};
-char player2_nickname[MAX_WORD_SIZE] = {'\0'};
-char guess[MAX_WORD_SIZE] = {'\0'};
+char player1_nickname[MAX_WORD_SIZE + 1] = {'\0'};
+char player2_nickname[MAX_WORD_SIZE + 1] = {'\0'};
+char guess[MAX_WORD_SIZE + 1] = {'\0'};
 
 char *word1, *word2, *word3;
 char *curr_word;
@@ -526,7 +526,7 @@ void(keyboard_event_handler)() {
           else if (code != ENTER_BRK_CODE)
             break;
 
-          if (strlen(player1_nickname) == MAX_WORD_SIZE) {
+          if (strlen(player2_nickname) == MAX_WORD_SIZE) {
             keyboard_state = KBD_CHOOSING_WORD;
             game_state = CHOOSING_WORD;
             mouse_state = MOUSE_CHOOSING_WORD;
@@ -864,7 +864,7 @@ void(update_width)(int index) {
 }
 
 void(switch_nicknames)() {
-  char tmp[MAX_WORD_SIZE] = {'\0'};
+  char tmp[MAX_WORD_SIZE + 1] = {'\0'};
 
   strcpy(tmp, player1_nickname);
   strcpy(player1_nickname, player2_nickname);

@@ -31,3 +31,24 @@
  }
  
  int(rtc_unsubscribe_int)() {
+
+--- a/proj/src/claustro.c
++++ b/proj/src/claustro.c
+@@ -88,7 +88,7 @@ int(move)(uint8_t xi, uint8_t yi, uint8_t xf, uint8_t yf) {
+ }
+ 
+ int(can_move)(uint8_t player, uint8_t xi, uint8_t yi, uint8_t xf, uint8_t yf) {
+-  if (xi < 0 || yi < 0 || xi >= BOARD_SIZE || yi >= BOARD_SIZE)
++  if (xi >= BOARD_SIZE || yi >= BOARD_SIZE || xf >= BOARD_SIZE || yf >= BOARD_SIZE)
+     return 0;
+   if (board[xi][yi] != player) // Check if the pawn belongs to the player
+     return 0;
+@@ -128,6 +128,8 @@ int(can_move)(uint8_t player, uint8_t xi, uint8_t yi, uint8_t xf, uint8_t yf) {
+ }
+ 
+ int(can_pick)(uint8_t x, uint8_t y) {
++  if (x >= BOARD_SIZE || y >= BOARD_SIZE)
++    return 0;
+   // Check if the pawn belongs to the player
+   return board[x][y] == player;
+ }

@@ -90,6 +90,12 @@
           },
           "originalSha256": "e2b9608728706d4376a87f48ed1098c0ec33d4ba5fca67a196208e8b13705a37",
           "patchedSha256": "2626257cf5b100bc21a6cd1709a5d5d630d6f4d37ea5494140efdb67d9b61708"
+        },
+        {
+          "path": "proj/src/piece_move.c",
+          "originalSha256": "ebc7a70ca7bc9c85deb05bfbe1819ad9bc341f3329fd8d55ff5470c080e147c7",
+          "patchedSha256": "ecfc67e7fef59ad28f2378fd45014b06c959733a64bc28636d962459440bc6c8",
+          "reason": "Add a shared rotation_in_bounds() check that rejects any rotated index outside 0..BOARD_MAX_IDX before cells[rotated_idx] is read, and reject the T rotation-2 side-column wrap; legitimate rotations are unchanged."
         }
       ]
     }

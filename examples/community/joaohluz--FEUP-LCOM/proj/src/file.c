@@ -87,6 +87,7 @@ void write_to_file(Users users, char* file){
 	// printf("Insira o path para o ficheiro\n");
 	// char file[128];//"/home/lcom/labs/proj/src/users.txt"ile);
 	ptr = fopen(file, "w");
+	if (ptr == NULL) return;
 	
 	while(l != NULL){
 		int n = 0;
@@ -115,6 +116,7 @@ void read_from_file(Users users, char* file){
 	// char file[128];//"/home/lcom/labs/proj/src/users.txt";
 	// scanf("%123s",file);
 	ptr = fopen(file, "r");
+	if (ptr == NULL) return;
 
 	int count = 0;
 	char c = fgetc(ptr);

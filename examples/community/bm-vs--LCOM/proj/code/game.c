@@ -155,10 +155,12 @@ int game(char *video_mem, int player, int time_other_player) {
 						// Colision with borders
 						int move = move_shot(shots1.items[i], player2, H_RES, V_RES, double_buffer);
 						if ((move >= 1) && (move <= 5)) {
+							destroy_sprite(shots1.items[i]);
 							vector_erase(&shots1, i);
 						}
 						if (move == 6) {
 							player_hp--;
+							destroy_sprite(shots1.items[i]);
 							vector_erase(&shots1, i);
 							if (player_hp <= 0) {
 								end = 1;
@@ -178,26 +180,32 @@ int game(char *video_mem, int player, int time_other_player) {
 					draw_sprite(crosshair, mouse_buffer);
 
 					// Draw player hp
+					Sprite *hp = create_sprite(get_xpm(6), 0, 0);
 					for (i = 0; i < player_hp; i++) {
-						Sprite *hp = create_sprite(get_xpm(6), HP_X - 42*i, HP_Y);
+						hp->x = HP_X - 42*i;
+						hp->y = HP_Y;
 						draw_sprite(hp, mouse_buffer);
-						destroy_sprite(hp);
 					}
+					destroy_sprite(hp);
 
 					if (time_other_player/60 < 228 && time_other_player != -1) {
+						Sprite *time_bar_other = create_sprite(get_xpm(15), 0, 0);
 						for (i = 0; i < time_other_player/60; i++) {
-							Sprite *time_bar_other = create_sprite(get_xpm(15), TIME_X + 3*i, TIME_Y);
+							time_bar_other->x = TIME_X + 3*i;
+							time_bar_other->y = TIME_Y;
 							draw_sprite(time_bar_other, mouse_buffer);
-							destroy_sprite(time_bar_other);
 						}
+						destroy_sprite(time_bar_other);
 					}
 
 					if (counter/60 < 228) {
+						Sprite *time_bar = create_sprite(get_xpm(14), 0, 0);
 						for (i = 0; i < counter/60; i++) {
-							Sprite *time_bar = create_sprite(get_xpm(14), TIME_X + 3*i, TIME_Y);
+							time_bar->x = TIME_X + 3*i;
+							time_bar->y = TIME_Y;
 							draw_sprite(time_bar, mouse_buffer);
-							destroy_sprite(time_bar);
 						}
+						destroy_sprite(time_bar);
 					}
 
 					// Copy mouse buffer to video memory

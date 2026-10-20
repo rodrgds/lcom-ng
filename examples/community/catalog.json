@@ -927,7 +927,14 @@
         }
       },
       "provenance": "examples/community/bersanots--FEUP-LCOM/UPSTREAM.json",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "src/game_logic.c",
+          "originalSha256": "7b9835bdfd8b0e0845bade77acae19ba020ba349205e1169f59b76825ff4d52c",
+          "patchedSha256": "c67b716e89f25854139df52af3132b84b409d071a89ce58278564cf4b5e24402",
+          "reason": "Let Escape end the match even while win_player is DRAW, so a tied game can be exited."
+        }
+      ],
       "description": "Two players, one ball. Defend your goal and send it into the other net.",
       "preview": "examples/community/bersanots--FEUP-LCOM/src/../../../../collections/arcade/previews/bersanots-feup-lcom-a436e5039455.png"
     },
@@ -1292,6 +1299,18 @@
           "upstreamSha256": "f26f714c0a8a528c1c6c19682eb03807ad886bde1e2fb0158ef9970b7286fc2f",
           "patchedSha256": "dfa315dd082356e1b8e6b971908efa42cf0664bc2d0ea4e6265c4a19b3646489",
           "verification": "Original real80ms menu tap stayed in menu,1000ms hold entered game. The same80ms mobile tap now enters active UFO gameplay after the source correction, with no JS errors. Evidence: import-a/menu-debug-final.log, asteroid-debug.log, asteroids-after.log."
+        },
+        {
+          "file": "proj/src/asteroids.c",
+          "originalSha256": "9f6913a5370fcf50c1422bdb41ff02c289ce7d43f5a81e30a53ef711016e7343",
+          "patchedSha256": "c533c92f07e62749a979c869728a6108b04410a4402741997e67b17f61e3b893",
+          "reason": "Stop the asteroid slot scan at the 50-entry array bound instead of reading past it."
+        },
+        {
+          "file": "proj/src/sprite.c",
+          "originalSha256": "bb49a51c4db29023b26a09f72e0c2ae1c0e783f10040b8307ca7692ec081b239",
+          "patchedSha256": "a0b015a942d8851403bb037b3c1751a1da50b14d919ed6dfe716ca26f115fe71",
+          "reason": "Do not free maps shared with the game's loaded XPM image table; sprites own only their descriptor."
         }
       ],
       "description": "Pilot your ship through an asteroid field. Turn, thrust and fire to stay alive.",
@@ -1587,7 +1606,14 @@
         "assets": []
       },
       "provenance": "examples/community/raulnasoliveira--FEUP-LCOM-2025/UPSTREAM.json",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "2c922a8f7960a331a931ed57f26c71462b7765c465914d83e5679dc1f8d8217f",
+          "patchedSha256": "c5a0d57daccb0d063ce8410280daf182dbfc1f5b184119b501f3230d5f8d92d3",
+          "reason": "Ignore letters once the expected length is reached, and cap level at MAX_SEQUENCE so sequence and display buffers stay in bounds."
+        }
+      ],
       "description": "Put your reaction time to the test in a series of quick challenges.",
       "preview": "examples/community/raulnasoliveira--FEUP-LCOM-2025/proj/src/../../../../../collections/arcade/previews/raulnasoliveira-feup-lcom-2025-23b9e09f9b80.png"
     },
@@ -3509,7 +3535,14 @@
         "status": "missing",
         "files": []
       },
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/game/game.c",
+          "originalSha256": "1bbd54ec40500882c3ca3366ae52ca15873b4fd00bd610e5469c3639e11010f5",
+          "patchedSha256": "cda5b17f93b5429575a97fd3a1935cdd02fe6e4c55d6b0c7a960a8068e1e6420",
+          "reason": "wrong_letters had six slots but a seventh wrong guess is accepted before the game-over check, writing one byte past the global array; size it for the seventh stored letter"
+        }
+      ],
       "verification": {
         "repo": "RodriguesS2/LCOM-HangMan",
         "buildExit": 0,
@@ -5111,7 +5144,8 @@
             {
               "path": "proj/src/devices/gpu/gpu.c",
               "originalSha256": "84dd67aa8236baa11dfc8ca6bb18c18c61b1a5287c63c623e1dbc5b1b638e2af",
-              "patchedSha256": "1421517abc29e7c6cc3fc9dbfcbec3f0783cd5e52f9718a87e1bc3e32cd86f5f"
+              "patchedSha256": "6837eb5bd2dbb8a837bb26bc7c15dccd0a1605ad52a97f5d02f96a8539780e93",
+              "reason": "Skip digit drawing when the score has no matching digit image."
             }
           ]
         },
@@ -7603,8 +7637,26 @@
             {
               "path": "model.c",
               "originalSha256": "89c30122dccef89dedf8cfd409cf947b029cc382f8c4a43c95080406e7487c98",
-              "patchedSha256": "4cad824e73cb6e9834f4d3b9fc2e24c1d88bf103d0509779a935f7acff679864",
-              "reason": "Move and click only after a complete three-byte packet so the previous Y or repeated previous X/Y cannot affect menu input."
+              "patchedSha256": "576c3f9a0a97c1a3bf11b964d712b1dda806d1ca3b2ce3028877814443e31457",
+              "reason": "Move and click only after a complete three-byte packet so the previous Y or repeated previous X/Y cannot affect menu input. prepareGame frees every live bomb and bullet object, including its sprite map and sprite struct, before freeing the container arrays."
+            },
+            {
+              "path": "classes/Bomb.c",
+              "originalSha256": "86ed556b022eda1c66888669b2dedfd72df08877f4b33075d126ea9471c9135a",
+              "patchedSha256": "fe15d73e38a1a3fdbbfcbbb9d8b6cf6b73636ebd84630f52b28bc39685e15348",
+              "reason": "Release each removed bomb/bullet Sprite and its xpm_load pixel buffer."
+            },
+            {
+              "path": "classes/Plane.c",
+              "originalSha256": "fe4d3ea88b6e5f45affe2fcfc4dca97ff1a4dec7d80cf13505d4d745dbbeadd5",
+              "patchedSha256": "2d23831780aa62cf645fbc2a951552da9bab1d8e7f20ae63c707a153c5b357c2",
+              "reason": "freePlanes now releases each active plane object's sprite map, sprite struct and object, matching removePlane."
+            },
+            {
+              "path": "classes/Sprite.c",
+              "originalSha256": "38327c9cb98e02611ef8aed8de47f7ec72d8a171432352bb77c06586ef803d93",
+              "patchedSha256": "9ced7396a850b71234967efbdd813b6aff4fad3e729a2280a05b57f57e5fa9f4",
+              "reason": "Free the previous pixel map when changeSprite() installs a new XPM."
             }
           ],
           "reproduction": "Real CLI menu capture: normal movement20,-10 then neutral0,0 renders0,0 while reporting is disabled. Raw PS2 equivalent bypasses reporting and renders60,30 because partial packets move the cursor. Both render20,10 after corrections. Existing graphic.c correction retains vm_unmap_phys for mapped framebuffers, verified by the original Close-menu reproduction."
@@ -8003,6 +8055,18 @@
               "originalSha256": "636f8e6276262c3224a1d5182aff81401874f6f0b2677627de2549be05fe3691",
               "patchedSha256": "da1a3066b677138649ad73b7ee9f09597997427fe6f04a1266b54fb5d38ca519",
               "reason": "Original callback int() conflicts with required LCF int(argc,argv) signature. Only signature corrected after compiler failure, original game logic unchanged."
+            },
+            {
+              "path": "proj/src/Game/SelectNames.c",
+              "originalSha256": "89bf0e7ee506ac10b72a3c224fa322ad87aab2a7eb5d8b5bca2993d32b6f0e8e",
+              "patchedSha256": "f9719bc938e1b3c903dc1887e2c3d898a9eea369fd75c9820886c19318b08827",
+              "reason": "Limit input to nine characters so the Enter terminator lands at the last valid index."
+            },
+            {
+              "path": "proj/src/Game/gameControllers/Controller.c",
+              "originalSha256": "f23c57193466674ddec5494d17573de9495928b4ee281467855855b2a643d575",
+              "patchedSha256": "49e382c8f5f1a3151d0e2da188d3ee4fb21332c21fa7158d0c762e3433d3254e",
+              "reason": "Extended arrow-key scancodes (0xE0 prefix) were compared as the first byte, so Player 2 arrow controls never matched even though the game handles the same make/break codes. Use the second byte for two-byte sequences, matching real PC hardware and preserving numeric-keypad support."
             }
           ],
           "reproduction": "source-regressions/Monsterdied--LcomProj/results.json"
@@ -8481,8 +8545,8 @@
             {
               "path": "proj/src/game.c",
               "originalSha256": "cfb859940e9839cbdc641f9ea64b43f0c00da9e1113db544fc0afe90ac35375e",
-              "patchedSha256": "49bec810c204cd4a37949a5025d7ff26499331b93a2a756e0037ac0e56a14a7c",
-              "reason": "Clamp only the14x13 crosshair drawing origin inside the framebuffer. Preserve full-screen logical aim and shooting coordinates. The original pixel renderer writes all supplied pixels without clipping."
+              "patchedSha256": "496621024aa9f465ed11fd144479445ce9aa97fea4de179147e11a7176d5c5d5",
+              "reason": "Clamp only the14x13 crosshair drawing origin inside the framebuffer. Preserve full-screen logical aim and shooting coordinates. The original pixel renderer writes all supplied pixels without clipping. Consume the shot when the aim vector has zero length instead of dividing by a zero hypotenuse."
             }
           ],
           "reproduction": "Public moveCrosshair then drawCrosshair submits draw1023,767 before correction, which extends past1024x768 allocation. Corrected draw fits1010,755 while crosshairCenter remains1030,773. Signed return-to-origin is also verified."
@@ -8722,6 +8786,18 @@
               "originalSha256": "74240b8caea25fc4efafcf688f01f17cd5a8e8b6a4c5617b28354090f78e16d3",
               "patchedSha256": "70c64438174a93d611a286f668bbba5516280e7aaca2ac38888f92129380e3bf",
               "reason": "Send both mouse command prefix and enable/disable byte, then consume its ACK using bounded readiness and resend handling. The original helper returned before sending the command."
+            },
+            {
+              "path": "proj/src/apple.c",
+              "originalSha256": "c93e6a0c330460919745380385409c102f3bd26b0c61e24bd14dcfcb3d12507e",
+              "patchedSha256": "c60fa0af39427fde690ddc04d678e6221338ef9ded49f4cf3e9b9b4e49d70dad",
+              "reason": "Reject apple creation once applesArray is full, including placeApple before it draws an uninitialized local Apple."
+            },
+            {
+              "path": "proj/src/snake.c",
+              "originalSha256": "ba51197d323cfdb43c4f70bed43825c1006a2a8c2d214dfb8e1467169f31c1a6",
+              "patchedSha256": "64f40754a656b2a5ec0e31194e7d80355529c1aef48e0f37c5cad38bb95fdc37",
+              "reason": "Stop addBodyPart before the two snakeBody writes would exceed the array."
             }
           ],
           "reproduction": "Public CLI raw PS2 replay drives menu cursor beyond both frame corners. Original cursor disappears; corrected whole40x40 art remains at760,560 or0,0. Separate normal-mouse CLI replay fails before reporting-helper correction and passes after it. Prior uintptr_t graphics correction remains retained."
@@ -9153,6 +9229,12 @@
               "originalSha256": "8d38809169326da2150f7c25594d501647a23fb108f903732e19c7b506a66f6a",
               "patchedSha256": "b8b5f82e12fa1eff5a262d92c1563931cdcca583eaa2cf49cee37fbef1421f04",
               "reason": "Preserve all-or-nothing cursor movement and phase initialization, but validate each loaded resolution square actual extent instead of hardcoded7px X and unbounded Y."
+            },
+            {
+              "path": "proj/src/game/logic/save_score.c",
+              "originalSha256": "b6e96bdb771f41c844c157e3ff4351be275334d44e561ffa756167dd95d01d8c",
+              "patchedSha256": "48eb2647b83af90925b0fa8dbc9ebfe699b44bb0d3a59ce69dacef8f1d5006cc",
+              "reason": "Bound the insertion to nine entries and only append while the ten-entry scoreboard has space."
             }
           ],
           "reproduction": "Public CLI640x480 resolution-menu replay moves original4x4 square from222,194 to222,434 then requestsY480. Original accepts and loses cursor. Corrected code rejects the second packet, leaving the white square visible at222,434."
@@ -9825,7 +9907,20 @@
         "status": "missing",
         "files": []
       },
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/proj.c",
+          "originalSha256": "f34c2a14c12cf132305f91a79ecdb04a9f07e8b992a638c7aa93866d6e4cf36b",
+          "patchedSha256": "3e0c0d535e12b2f3a9c29a71b51ef584d17622b98537216285e88ee12789a0c8",
+          "reason": "Return after closing devices when app_init fails."
+        },
+        {
+          "file": "proj/src/model/card/card.c",
+          "originalSha256": "827daea967d23cd8c0b79fb501a2fe980b1fe3ef206924eb5c96bbc63ab606c7",
+          "patchedSha256": "b97c381194e15cf533ef893ea8c79d68a63b05f7c6e90cbeb0c546139abb5559",
+          "reason": "Make card-base destruction idempotent by clearing the loaded count and ignoring repeated calls."
+        }
+      ],
       "controlsRationale": "Actual dealt cards and hand result visible. Named Hit/Stand/Double/Surrender preserve numeric keys; original bet phases reuse the same keys. Full keyboard retained for names.",
       "verification": {
         "repo": "gablm/feup_lcom_labjack",
@@ -10416,7 +10511,26 @@
         "assets": []
       },
       "controlsRationale": "WASD movement, left mouse serve/hit, Down selects Start then Enter opens the court. Mouse cursor uses acceleration so relative screen hover is retained.",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/ball.c",
+          "originalSha256": "660073db803681b96ab7e80f993fa952310789467368a3a29e3588e92e732242",
+          "patchedSha256": "9c0d4e00f19f9f6bcfa443dfd31a32a1165b08e66a474adc764eeacb97934656",
+          "reason": "Free each ball sprite map once through its owning field instead of freeing currentSprite.map twice."
+        },
+        {
+          "file": "proj/src/player.c",
+          "originalSha256": "feb00623c7e3006812f287fc563ccbc353e8ec408fd8baf14346fced9a61378e",
+          "patchedSha256": "de64531f5d62dc5c0da6a6248ff9069c0cf8ca74afe10541f1d3a3acd2d9453c",
+          "reason": "Free player maps only through the owning sprite arrays and remove free() calls on inline Player array members."
+        },
+        {
+          "file": "proj/src/ball.c",
+          "originalSha256": "660073db803681b96ab7e80f993fa952310789467368a3a29e3588e92e732242",
+          "patchedSha256": "c180b71764117130cf40b15076c0d20f789ea859ee1cf18fccac19ff387792f9",
+          "reason": "Skip background samples outside the framebuffer while still advancing through the sprite map, so an off-screen ball cannot read past the background buffer. In-bounds collision behaviour is unchanged."
+        }
+      ],
       "license": {
         "status": "missing",
         "files": []
@@ -10769,8 +10883,14 @@
             {
               "path": "src/view/view.c",
               "originalSha256": "23fe3bcb7671e5e585057c9c376fa46beef998e6a81e128ae30e8a2a39ab9540",
-              "patchedSha256": "99dcdca072a58943148f5b7cf5e709859da930cf728f9a79e3b2127a3e2e396a",
-              "reason": "Clamp only normal/hover cursor artwork origins inside the framebuffer, preserving full-screen logical click coordinates and all other sprite positions."
+              "patchedSha256": "88705c291f19776a4f62f1531f063775f6357d68a8f8947e27721c907f9d3169",
+              "reason": "Clamp only normal/hover cursor artwork origins inside the framebuffer, preserving full-screen logical click coordinates and all other sprite positions. Clamp the gauge index to the table range so it cannot index before barV[0]."
+            },
+            {
+              "path": "src/model/model.c",
+              "originalSha256": "b07e2d7b43fd69af2b076a283ff6b357c16807357cea51bf170f2bb3b749ca40",
+              "patchedSha256": "445fe2e328e2cb5b92a2609d23648f05c100005821c4e496ea7e1c24ebb80bfa",
+              "reason": "Remove the duplicate sprite frees."
             }
           ],
           "verification": "Actual compiled renderer regression RED before correction and GREEN afterward: tests/community_source_regressions.py test_castle_cursor_draw_preserves_fullscreen_hit_coordinates"
@@ -11245,8 +11365,8 @@
             {
               "path": "proj/Src/game.c",
               "originalSha256": "98ac3d24d05918e53c8a7400b2290fa497610abb9f9580c0a97f77f86fe94f31",
-              "patchedSha256": "33b5171e798a8e9d222dcfa73c424db1721bd7b50e15a2c5faac041f7ded177b",
-              "reason": "Preserve the earlier level filename buffer fix. Free only owned pixel maps of global portal value snapshots, release their temporary heap wrappers, and clear level pointers after destruction so Escape, level changes and editor/co-op transitions cannot free static or stale objects. Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions. Restore the previous cursor through the identical inset transform used for drawing, so moving away from screen edges leaves no trails.",
+              "patchedSha256": "81fd3bc9f8742edb3f75d1516fbff647e6e058db6b6b506e6788e931323cca77",
+              "reason": "Preserve the earlier level filename buffer fix. Free only owned pixel maps of global portal value snapshots, release their temporary heap wrappers, and clear level pointers after destruction so Escape, level changes and editor/co-op transitions cannot free static or stale objects. Draw cursor artwork through an explicit bounded wrapper without changing logical portal aim, editor cell selection or noncursor sprite positions. Restore the previous cursor through the identical inset transform used for drawing, so moving away from screen edges leaves no trails. Move the off-screen bounds check ahead of the grid lookup so the ray never indexes outside the grid.",
               "verification": "Actual draw_new_frame integration RED/GREEN: test_portal_cursor_frame_restores_the_previous_inset_origin; actual browser edge-to-centre trail check."
             },
             {
@@ -11492,6 +11612,12 @@
               "originalSha256": "ddf6495a223c11de6b70564a7ae79f383d3598f871ff7432abf8ac8192d1cb84",
               "patchedSha256": "0d5698d3f8a8d3f298ba1ccb18bcf163427de0ca4dcb6447e697c7561fed695b",
               "reason": "Clamp the centered32x32 cursor draw origin on initial and interrupt-driven redraws, preserving logical menu/game coordinates and full original cursor visibility."
+            },
+            {
+              "path": "proj/src/game_state/game_state.c",
+              "originalSha256": "d43cf05b1e21ba773562ea5bca3aa7e13f8e01459af52fdb0cc2e6fa5be0b9b9",
+              "patchedSha256": "4859845b8fbb5798fb6cd59bc59ead4b6f51bfc2e1c7d37e0a225f0afd8397e2",
+              "reason": "mouse conversion allowed x=768 and y=560, producing column 23 and row 14 for the 23x14 array; tightened the bounds, and removed fclose(NULL) from the score-file open failure path"
             }
           ],
           "reason": "Clamp the centered32x32 cursor draw origin on initial and interrupt-driven redraws, preserving logical menu/game coordinates and full original cursor visibility.",
@@ -12181,7 +12307,14 @@
       "root": "examples/community/AndreMalheiro98--FEUP-LCOM",
       "source": "https://github.com/AndreMalheiro98/FEUP-LCOM",
       "revision": "f7646dfc0b24fafec1790ee81851a9d0ecc975a2",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "4444dd0fed28d3473dd97aaa220e605fda168ae24e6d38e6ca7a156a4e21503f",
+          "patchedSha256": "81a17ca009879f56cc8466613cd3fed2d38e83860197256367f7312361630a71",
+          "reason": "Terminate the 5-character player name so strlen and the save-score drawing stay inside the allocation."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -12519,7 +12652,14 @@
       "root": "examples/community/ferreira1911--LCOM_Project",
       "source": "https://github.com/ferreira1911/LCOM_Project",
       "revision": "a5b49d664cc4989c30806d3114ecbc719b37732f",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/model/target.c",
+          "originalSha256": "b67403522179c19c2fa52bf3fe9647982e4e1feadf85c81e645fe8b45780f6fb",
+          "patchedSha256": "2261d774e025a7e844ed1358f4893305a7d31a6787915c488b73768cb894f489",
+          "reason": "Free the previous pixmap before loading the target image again."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -12826,7 +12966,14 @@
       "root": "examples/community/jogp10--TypeRacer",
       "source": "https://github.com/jogp10/TypeRacer",
       "revision": "b03d840a67c6d8c2a71529711105ce473c511a6b",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "bc6e9d78dfe2ee633f677dc21050681d6cded3514140de9b1a2114bbe8faae84",
+          "patchedSha256": "8463083738ede215f410029994bf027d4234fdc4013dbfac8e7c710a73a86e60",
+          "reason": "Stop accepting characters at the 500-entry input capacity and stop drawing at the sentence terminator before indexing past it."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -12895,7 +13042,14 @@
       "root": "examples/community/gibeiro--LCOM",
       "source": "https://github.com/gibeiro/LCOM",
       "revision": "0d4bcaec81568ee3244a66dd13cf99791e263377",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/2048.c",
+          "originalSha256": "fab3b2bc51896f0db93011a00dc59d289b9043a2cc6ef526505f40ecb492dffb",
+          "patchedSha256": "69335daec4c73c7b9af6524c2d83f115cd5719a34a75e8cd72375c7e2eb73cd7",
+          "reason": "Scan every cell and compare only the in-bounds right and down neighbours, covering all horizontal and vertical merge pairs exactly once while keeping the existing game-over rule."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -13132,6 +13286,24 @@
               "patchedSha256": "9d96a51701a9268b14f7f3c2c69562ecd3cf0ff4eac8c43a0031c0bfe80f4ed8",
               "reason": "Each IRQ device must retain its own handle; shared/shadowed hook_id caused incorrect masks and leaked subscriptions.",
               "verification": "Actual timer, keyboard and mouse driver objects exercised for two subscription/removal rounds; masks identify their independent device handles and all subscriptions are released. Evidence c/copter-hooks-red.log and corresponding green log."
+            },
+            {
+              "path": "proj/code/Singleplayer.c",
+              "originalSha256": "e686f825d3f0b4e537060f5c63398e836f4c76b1bdabb384c18e873d39076884",
+              "patchedSha256": "131dce366c5787ae9f2d19ee49e98b4a6726a24e9802ce46cd746c613798dbf8",
+              "reason": "Initialize obs to NULL so pre-spawn exit frees a valid pointer."
+            },
+            {
+              "path": "proj/code/bitmap.c",
+              "originalSha256": "3e4eb579c9f3c3efcfb19617732e6ad5f92ce743fc572f631416d14f22577c5a",
+              "patchedSha256": "21d5289b1ddb684d3acb91b1f0cfc2dcc73ffc7a71eb037306d71017e14ac8f2",
+              "reason": "Cache the clock and digit bitmaps once instead of reloading and deleting them every frame."
+            },
+            {
+              "path": "proj/code/rtc.c",
+              "originalSha256": "907803b18e2c2f2a8bab618de708c767b96997c08be916fe395ba5df13eec690",
+              "patchedSha256": "aac50e041f3c476c9e217d8ebe8d606b201df8ed5a2aa57a9a304578c5875dfb",
+              "reason": "Remove the unused per-frame bitmap load and size time for all six written characters."
             }
           ]
         }
@@ -13299,7 +13471,20 @@
       "root": "examples/community/PedroMMarinho--FEUP-LCOM",
       "source": "https://github.com/PedroMMarinho/FEUP-LCOM",
       "revision": "3491332bc23379f00238637c61ad2d757e5c6155",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "og_proj/src/resources.c",
+          "originalSha256": "0fa33792695960af819491271f7ae7492e39d8a2cff731fd74948146d1325b20",
+          "patchedSha256": "b2d9c76bc7e4f9049b3f601dbd5b2ea5c64bfcb74d0ebfd011f059d91a456d4a",
+          "reason": "Initialize table to NULL and only free it when set."
+        },
+        {
+          "file": "og_proj/src/controllers/menuController.c",
+          "originalSha256": "3c681eedf381df2d0b5c0f1a31c9bb6b1f77f1e9ef4e04c158de10fcbd12da1d",
+          "patchedSha256": "e6a617ebcf31cdb39629a1afdb3f0502493a612854247fa03d8fec50bf213060",
+          "reason": "Keep one byte of headroom for strcat to append the new character and terminator."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -13448,7 +13633,14 @@
       "root": "examples/community/beatrizlopesdossantos--FEUP-LCOM",
       "source": "https://github.com/beatrizlopesdossantos/FEUP-LCOM",
       "revision": "37a4c26c08868021eccf756a08e0992c95721b1f",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/sprite.c",
+          "originalSha256": "2e8be3b09b1c5b09034f39cf6d4f93643ddaeb7ffd6b6dd1e31b49775f1a8201",
+          "patchedSha256": "b2eaa151fd60497fbf1b085ef4d4e3b9b7d4fb69b0a9408d5191ffcff3f9f925",
+          "reason": "Do not free maps borrowed from the global xpm image tables; only free the per-sprite descriptor."
+        }
+      ],
       "license": {
         "status": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
         "files": []
@@ -13687,7 +13879,14 @@
       "root": "examples/community/vanessa-sbq--Minigotchi",
       "source": "https://github.com/vanessa-sbq/Minigotchi",
       "revision": "dfa49f08615eda1ba2539505037e0213eb4df201",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/proj.c",
+          "originalSha256": "f9c51d4cfdd817f5037d815006ea01626689ea026d1849d6219d02e90a5488fa",
+          "patchedSha256": "efa2dc9d10dc43f1b31108d7e6768d9c244dd5baf8e52b33114e883dc269033b",
+          "reason": "Use a zero-initialized on-stack name buffer instead of writing through a string literal."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -14000,7 +14199,20 @@
       "root": "examples/community/filiperecharte--FEUP-LCOM",
       "source": "https://github.com/filiperecharte/FEUP-LCOM",
       "revision": "66ff35e12827e096758cda030ce0c660b1c84a48",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/snake.c",
+          "originalSha256": "1df0e9299c27f5e9e12ee51ccaf13cbc82c2ea36e858191f8646b18f4c83fab1",
+          "patchedSha256": "709181fcf7081b59766e60ea34b1673b1a4b874f4ff14f75d81d3ca66c785071",
+          "reason": "Bounds-check the next head position before mutating Field, and guard tail advancement; off-grid steps now end the round instead of corrupting memory."
+        },
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "8d52d7ff594e5287f2b68d65748b272188cf460f830c2d1f45097d3f13f98667",
+          "patchedSha256": "1779f0e523b46abc0774e5690dba50c76b29000e2b201111f606a17305481fc1",
+          "reason": "Only delete a character when the entered name is non-empty."
+        }
+      ],
       "license": {
         "status": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
         "files": []
@@ -14074,7 +14286,14 @@
       "root": "examples/community/jccmartins--LCOM",
       "source": "https://github.com/jccmartins/LCOM",
       "revision": "da7c6a4da1e7706f1617e833ab14f73f8f5573e5",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/snake.c",
+          "originalSha256": "778db488a1aa74b6281ee7f7aa4dcbd385833b7f055ed8cd6f5aad1da44ad9ab",
+          "patchedSha256": "852fe25fdd5197d21715a79ea8478c282a4359e3f1c0b72687fdb2ae97fe00f6",
+          "reason": "Free the node after detaching it from the tail."
+        }
+      ],
       "license": {
         "status": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
         "files": []
@@ -14216,6 +14435,12 @@
               "patchedSha256": "0116e3f539711162eb92393b657a4e906bd6b94b1ae303ee8ac0e4f21e43b8cf",
               "reason": "Menu owns and frees its cached background buffers. Clear the renderer alias instead of freeing the same menu background a second time. Android Scudo abort was reproduced on Start.",
               "verification": "Actual compiled menu_run Start flow with guarded free failed duplicate-release assertion before repair, then six source regressions passed after repair."
+            },
+            {
+              "path": "proj/src/game/scoreboard.c",
+              "originalSha256": "7c69526181c8b6be80a835d4441b9dad3ba1b20ab99c5b48dbb53f2ffb8ab116",
+              "patchedSha256": "c6aab2a0706cc4d96ddcedb2246db02597276144605e239fac82a3483a1b18d3",
+              "reason": "fclose(fr) ran twice when scores.txt opened, and ran on NULL when it did not, crashing the scoreboard; keep only the guarded close"
             }
           ]
         }
@@ -14449,7 +14674,14 @@
       "root": "examples/community/adr1an0s0ar3s--feup-lcom-20-21",
       "source": "https://github.com/adr1an0s0ar3s/feup-lcom-20-21",
       "revision": "888915a21d19f6d7a4f5fa4b2acd260efe5520ec",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "30025d39f3e551c0ba1efda485c8a0ec61fe86b7f06b0e565d430a6d1cfd8d04",
+          "patchedSha256": "f453cb261acb65a5d4f105fc56a87c743a70a353cf5c0c766b9c6348d4432554",
+          "reason": "Bound randomPlay() to playable columns so a full board cannot spin forever in the RTC alarm handler."
+        }
+      ],
       "license": {
         "status": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
         "files": []
@@ -14536,6 +14768,24 @@
           "upstreamSha256": "2f170fecfb3ad0648933a3998cb10959a3321131da678af610067462516dde5d",
           "patchedSha256": "21d657869701e3a64539daf230dfc750deb7bf2f18a6bd2d2365f005751c2b9f",
           "verification": "Actualserialsource regression with emptyUART and3queuedbytes. RED waitswhileempty, GREEN emptyno-wait andexact3drainedbytes. Browsermenus and7hitgameplay pass."
+        },
+        {
+          "file": "src/player_settings.c",
+          "originalSha256": "f7d4367b94268b571a2c928e3f5b05267cb19b41c7b9e31258f393a60ac8ed00",
+          "patchedSha256": "3ca5a6219846822f0fff5699cac6e417b7ffe4989b1966ab246ff5a94baf3644",
+          "reason": "Initialize max_name_length before allocation, allocate room for a terminator, and terminate the default name."
+        },
+        {
+          "file": "src/game.c",
+          "originalSha256": "31be32135f20c6858af97830de3d17fd5202805687e8989c6ee048575b306d6a",
+          "patchedSha256": "554a6c1cd6456598fe37a6016f0b68edad4c4980dd90a3c6a5979d63c2e94cd3",
+          "reason": "Remove the invalid free of the inline avatars[] member pointer."
+        },
+        {
+          "file": "src/leaderboard.c",
+          "originalSha256": "c4335c019d4dccacc5ca8be73eb6d51a060af5bd5ed8864e75e8d50baea4431a",
+          "patchedSha256": "028bbfe5233297a4089b2e65b381edc7306060f728d40af7c55d34b1a05aa6e7",
+          "reason": "Allocate zero-filled name buffers with room for a terminator so every record is safe to print with %s."
         }
       ],
       "license": {
@@ -14947,7 +15197,14 @@
       "root": "examples/community/BrenoAccioly--LCOM-PROJ",
       "source": "https://github.com/BrenoAccioly/LCOM-PROJ",
       "revision": "9353a6890217aca00a80ae4723090ef7fe107d1a",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "src/maze.c",
+          "originalSha256": "8aa9cf5cf3d228335f697103c2f01c649ca5c1ff1d60a282825c4acaf14260e4",
+          "patchedSha256": "2459cdb38ca7335c927ff3708fac90d9a97dadfe9d8bd5b6c6f2425d6d452e79",
+          "reason": "Place keys and traps only on still-empty cells, guaranteeing seven distinct keys and no trap overwrite."
+        }
+      ],
       "license": {
         "status": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
         "files": []
@@ -15029,7 +15286,14 @@
       "root": "examples/community/raulviana--FEUP-LCOM",
       "source": "https://github.com/raulviana/FEUP-LCOM",
       "revision": "5a7ed4431c60222add957269c4ad3841c98a0767",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "d5106e5167cb11f059c9157a26494f361a306a4f5c141faddcc27ea924db46ba",
+          "patchedSha256": "caa4cc996a3035addb9724f420120003bbcb9801b6d1af88cc75c1ce3940e384",
+          "reason": "Remove the invalid free of the static array. The process exits immediately after menu(), so the small one-time allocation is harmless."
+        }
+      ],
       "license": {
         "status": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
         "files": []
@@ -15639,8 +15903,8 @@
             {
               "file": "proj/src/logic/alien.c",
               "originalSha256": "3a5873e662582ba8ab7dde71f2bd85c48fd31189eb54701b5202716a4b30db25",
-              "patchedSha256": "d84ec9886ea5c7bb5897e9f65b5290ae6bde97a936aceffe075888ac9c06c186",
-              "reason": "init_alien leaves its shots pointer uninitialized and first alien firing frees arbitrary stack data. Both alien shot removal and player shot removal free an interior array element, invalidating live storage or passing a non-allocation address to free. Initialize shots to NULL, retain the compacted array until empty, then free its base.",
+              "patchedSha256": "c60e295c2191cb742da9164a49e005a71b2bb3b428d550ea0b55205a91a64da9",
+              "reason": "init_alien leaves its shots pointer uninitialized and first alien firing frees arbitrary stack data. Both alien shot removal and player shot removal free an interior array element, invalidating live storage or passing a non-allocation address to free. Initialize shots to NULL, retain the compacted array until empty, then free its base. Return immediately when there are no live aliens to shoot.",
               "verification": "Actual original source regression fails on uninitialized shots; initialization-only variant fails the allocation-base free invariant. Repaired original source passes100 cycles of four shots per side, first/middle/last deletion, preserved coordinates, empty-array cleanup and zero leaked allocations. All9 A source regressions green. Android retry pending."
             },
             {
@@ -15748,6 +16012,12 @@
           "upstreamSha256": "26b8a571f57beed3a623c12bc2aac300b35a4754cf94ec2114bd90f3999f5715",
           "patchedSha256": "859ec4e386aff21ce004a2dcc5fcaa48f500d0d9fdad272c4295443db9fac434",
           "verification": "Actual vg_init boundary RED rejects mapping byte count 8x expected. GREEN maps1024x768x4 bytes and sets original0x144 mode."
+        },
+        {
+          "file": "projeto/src/events.c",
+          "originalSha256": "825c67daf45b897166ba34b7907fb690632410636de62fd12feed88c322da70a",
+          "patchedSha256": "dfc878f4f3e995a85b2aa2644f808cb215fd1bb21be10ec82a114bab57399bf2",
+          "reason": "timer buffer held only two bytes, but sprintf writes \"%02d\" plus a terminator (and up to three characters for values beyond two digits), overflowing the global by one byte every second"
         }
       ],
       "license": {
@@ -15820,6 +16090,18 @@
           "upstreamSha256": "6497435907dee29825d5eddda5cf778cc1783cffe9a4d6e1d189f276d84c426e",
           "patchedSha256": "c0c9ef62af5e223418346cabdee8d91f9882dcb5f2cf2a92ca917a152149e9eb",
           "verification": "Actual vbe_info BIOS allocation-boundary regression RED rejected undersized buffer, GREEN returns complete 1024x768 RGB565 result."
+        },
+        {
+          "file": "proj/src/proj.c",
+          "originalSha256": "9b968808cca0cf823b8dcc5a63da6c1a934515bfeb198e564b74d74a40cbe644",
+          "patchedSha256": "eb4714c13ebb6b7a4ed9c8d4095fd82fd895dfecb9a8d2c1f6c59434fb345c85",
+          "reason": "Default the path to users.txt, bound the copy with snprintf, and tolerate missing argv."
+        },
+        {
+          "file": "proj/src/file.c",
+          "originalSha256": "184da07c50fbe5070b2d0f22a09b5a2de1d6a39f9db4cb4eb686a66c182bd409",
+          "patchedSha256": "2666a2ac2023c9d232b0c47ed2e70835b101323b811aafbc6c4fcaca9102fa54",
+          "reason": "Return safely when the score file cannot be opened for reading or writing."
         }
       ],
       "license": {
@@ -15912,6 +16194,12 @@
           "upstreamSha256": "aa484c1bd395438dcaffface04fbe7194b2b73d9129fbdf926f63fb5cb043f92",
           "patchedSha256": "572d2099f7486953ecf96d08ad7b4bfe69414a904f70c196892f5e81950dc3e3",
           "verification": "Actual drawWave compiled regression checked formatter RED bounds abort on original; GREEN complete wave1 and INT_MAX banner. b/sandz-banner-before.log and b/sandz-banner-after.log; native Android gameplay retry required."
+        },
+        {
+          "file": "src/edit_text.c",
+          "originalSha256": "af3a61128eede7963334c7d1db1b8b7d789ccce822115c556e83f26bb68cb6c8",
+          "patchedSha256": "06105df00263b6bb97cda72cd885126f2ce7e378bfda893c99ceac87e671d6d4",
+          "reason": "edit_text.text was uninitialized when the name screen was created again, and user input was never terminated, so sprintf(\"%s\") could read past the field into a 26-byte stack buffer; zero the field and terminate after edits"
         }
       ],
       "license": {
@@ -16613,6 +16901,12 @@
               "patchedSha256": "4762c60c463a427721130115531be14ff6e178a02c6a4635a4e10f99a8e94a23",
               "reason": "The original main loop overwrites a pending letter make with its key release before the next timer frame, dropping quick taps. Queue only make codes, ignoring break codes and extended prefixes.",
               "verification": "Actual original proj_main_loop fixture receives A-make/A-break before one timerframe and fails because pendingkey is0x9e; repaired frame retains0x1e. Real browser touch typesCASAS and submits positionalgreen feedback."
+            },
+            {
+              "path": "project/src/utils/frames.c",
+              "originalSha256": "3db6a56424c43c127f424a52ea95e20cf5727ec0460b6f963c4ac0343762698d",
+              "patchedSha256": "54259604b06296c802ba6e22fbf4db146f6e43706e4db5a6df9979fdd919ebb2",
+              "reason": "Allocate sizeof(*frame) so the Frame fields fit in their heap allocation."
             }
           ]
         }
@@ -17148,6 +17442,12 @@
               "patchedSha256": "58b3dc87315162ed559898723817fc7e30e1f4353d265484863180d0375a9400",
               "reason": "Return NULL when the bitmap file cannot be loaded, matching the pointer-returning loader contract. Leave caller dimensions untouched.",
               "verification": "Original actual bitmap.c fails Clang/Android NDK non-void bare-return diagnostic. Missing-file compiled regression verifies NULL with unchanged123x456 dimension sentinels after correction."
+            },
+            {
+              "path": "proj/code/game.c",
+              "originalSha256": "04379ec8aa44371d680be79df9ebbe45883a46c19fff59fc92355c8b37f4b595",
+              "patchedSha256": "1b71aed45249437f39656cc009104377a250587b0ed2ab4c250c7f885a3176ff",
+              "reason": "Initialize the filled-cell counter before accumulating each row."
             }
           ]
         }
@@ -17707,9 +18007,15 @@
             {
               "file": "proj/src/words.c",
               "originalSha256": "b7c0b69077b272bdcd34ae3972bac6d4d1681efd3b8515eb6a8b45e2086b56e6",
-              "patchedSha256": "553a3d9efac1b54a6c291cdd960761fe21f94e6b682cbec054761cf78dbe1755",
-              "reason": "Submitting a nickname with Enter passes NUL to the letter renderer; indexing alphabet[c-65] then reads outside the27-glyph array. Ignore characters outside A..Z and space, with zero width.",
+              "patchedSha256": "d0b5c761e858026adccdc6c31e0e601847eb9e382e83d43daea06e45534e7173",
+              "reason": "Submitting a nickname with Enter passes NUL to the letter renderer; indexing alphabet[c-65] then reads outside the27-glyph array. Ignore characters outside A..Z and space, with zero width. Bound appends at MAX_WORD_SIZE characters and always terminate the string.",
               "verification": "Original actual browser Enter crashes memory access out of bounds; compiled original glyph lookup fails range assertion. Repaired13-source regression suite passes; actual touch A/B names → choose SPOON → draw → wait original60+30s timers → type SPOON → CORRECT GUESS YOU WIN."
+            },
+            {
+              "path": "proj/src/pen_pal.c",
+              "originalSha256": "5f33dc2f6f9dd28d850739354e3b11c03c6539f1252e897b2facf1dbee29faf0",
+              "patchedSha256": "5c439ecc906b5252c829feb63fce1dd9b1c9d99d0f75baf9ea49401ba735eb9e",
+              "reason": "Size the three text buffers and the swap temporary for MAX_WORD_SIZE characters plus NUL, and check the player-2 length when advancing."
             }
           ]
         }
@@ -17804,6 +18110,12 @@
           "patchedSha256": "6eb26c20a19305cb3e5bb92586cea8fd45e9797446499c945931ecfe73263507",
           "reason": "Original vg_paintPixel accepted x==framebuffer width or y==framebuffer height. Right-edge pixels could wrap into the next row, and bottom-edge pixels wrote beyond the allocated software framebuffer. Clip at or beyond each dimension before computing the address. Coordinates are unsigned, so negative comparisons were ineffective.",
           "verification": "Actual original renderer initialized through vg_init fails guarded allocation regression. Repaired renderer preserves first/last valid corner colors, clips exact width/height, beyond-edge and unsigned-maximum coordinates, and presents the unchanged valid pixels through vg_nextFrame. RED/GREEN: build/arcade-100/a/mosu-edge-fix/{red,green}.log."
+        },
+        {
+          "file": "src/game.c",
+          "originalSha256": "5469fac948191cd79845cf7130aa630ce1e9f4be8cde2e4d7fbb3804335f2380",
+          "patchedSha256": "e180419430b8eabb09c0c0a0edea53d098ce7ee5624f89b181dd3a28d9181821",
+          "reason": "each 60 Hz timer tick allocated replacement queues and abandoned the old queue struct and buffer, leaking memory for the whole round; free the replaced queues after transferring their circles"
         }
       ],
       "license": {
@@ -17903,8 +18215,8 @@
             {
               "file": "proj/src/visuals/model.c",
               "originalSha256": "bd45bf308b05676358d44a4f490347cb3a6d655147fa78cbce41731450b5599a",
-              "patchedSha256": "117975b6b0a9661f011b2a2c76b68f0f53c06cc2fa36bf84578ba8da924d6d18",
-              "reason": "Original level1 asset path has50characters plusNUL but sprintf writes into filename[50]. Use64-byte buffer and bounded formatting so original one/two-digit level names and all int values fit.",
+              "patchedSha256": "d90820b97326534cf0ba00efb03ff5fa65cf9900caa6883507a37c4698e7db45",
+              "reason": "Original level1 asset path has50characters plusNUL but sprintf writes into filename[50]. Use64-byte buffer and bounded formatting so original one/two-digit level names and all int values fit. Destroy the existing wall sprites and lever before rebuilding the level's sprites.",
               "verification": "Actual Android startup FORTIFY51-byte write into50-byte buffer, compiled original updateArrayWithLevel fixture traps underFORTIFY. Repaired fixture tests1,13,INT_MAX and actual parsed level cells."
             }
           ]
@@ -18451,6 +18763,12 @@
               "patchedSha256": "498cf55633dcd1dae42dfd37c0426567600289d660f9abcaf1aa35e326e65e21",
               "reason": "Original Stand resolution ran only on keyboard IRQ, stalling finished dealer hands and allowing a key to resolve before the dealer completed. Resolve on the normal timer render only after both dealer cards are present; retain paired readiness gating.",
               "verification": "Compiled original-source regression red on early key resolution; repaired regression passes pending/complete dealer hands, once-only payout and paired readiness. Browser normal touch Hit deals a visible card and Stand reaches original result without any further keyboard event."
+            },
+            {
+              "path": "view/view_menu.c",
+              "originalSha256": "1157f53e05e7501a3fc0446df497607379d081bded4b6139cf253ccc659275f7",
+              "patchedSha256": "376ac0ec220a3254c9248b63694565ffa8cf8880425435b26b4eceb0ccdc83e1",
+              "reason": "drawTableDigit read to_save[name_size - 1] before testing name_size == 0, reading before the buffer on the empty first edit frame; test emptiness first"
             }
           ]
         }
@@ -19187,6 +19505,12 @@
               "patchedSha256": "f100c0ad13142dfe3b650850444e6de98837f8c9b43a0002bbf5c42d85b65382",
               "reason": "is_check freed the inline stack Movelist.moves array, while leaking the individually owned Move/Position allocations. Release only each owned Move and its positions on normal and early-check paths. Remove immediately discarded allocation for borrowed board piece.",
               "verification": "Original compiled actual source rejects free of non-allocation stack storage. Repaired forty normal +forty checking positions detect correct check state with zero leaks and preserved borrowed pieces. Repaired real browser E2→E4 move passes."
+            },
+            {
+              "path": "proj/src/mvc/controller/controller.c",
+              "originalSha256": "b534f376b45c669c49e7e1ee3d81ddb3d31807477e48b69cffab5de9cdbd765f",
+              "patchedSha256": "968457942135e5059600a3758c4dc589873d118ddfbb52f68b5185bcd438a751",
+              "reason": "Return immediately after each free()/winner screen so no later code reads the freed game object."
             }
           ]
         }
@@ -19706,7 +20030,14 @@
       "root": "examples/community/FrozenHart--LCOM_2025",
       "source": "https://github.com/FrozenHart/LCOM_2025",
       "revision": "f1879939f7a9a8e9610b9dcfc228b6aee1723e66",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/game/game_controller.c",
+          "originalSha256": "b3a9f6ba0cf87b19d08dd95e92b934d6aa805ecc82c34caa2800945ceebe6720",
+          "patchedSha256": "faca24c9f53692febda83224c56953775736ac655df770ed48af54b82436a208",
+          "reason": "Move the deck position to file scope so the existing per-round reset actually applies to the dealer used by deal_card."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -19793,7 +20124,14 @@
       "root": "examples/community/Proenca13--Lcom",
       "source": "https://github.com/Proenca13/Lcom",
       "revision": "b66f80011df1a279cbd98fbc3cc513b084d22d8b",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/State/state.c",
+          "originalSha256": "e936e3a796c3684c606c0f6f9405873bc1d7421a7afc408343e7b274f1291404",
+          "patchedSha256": "87eb1309fdd058796573e0ce1eed8381f5232e6ff797af938c8cd90ef701a9ef",
+          "reason": "win and mine branches freed the grid then continued to read grid[0][0] via reveal_near_zeros, a use-after-free; return immediately after destroying the game"
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -20392,6 +20730,12 @@
           "originalSha256": "3c488f90aac6509f02e1b3ddb725f411471de1aa7c875ff17939662657918649",
           "patchedSha256": "c10bade90f98e7951943c1d8df7467f4600c7f5247555d9b18c2aa244b8d9e5f",
           "reason": "draw_hearts freed local stack image metadata. Release each heap-backed blue/red pixel buffer after its last draw instead. The actual owning renderer aborted before repair and now draws three hearts of each color without invalid frees."
+        },
+        {
+          "file": "proj/src/Bullet.c",
+          "originalSha256": "a374e28bfc8623bd82242eada20cbfea747e045068141ac80909e38c227d1227",
+          "patchedSha256": "5f50bfe858d3e2081ce602885be2934a02fe315ee8fab29e961bf919540ab58b",
+          "reason": "Use signed loop counters with an explicit >= 0 lower bound in both countdown wall scans, stopping at the level edge instead of wrapping through unsigned underflow. Wall hits are still detected exactly as before."
         }
       ],
       "license": {
@@ -20656,8 +21000,8 @@
             {
               "file": "proj/code/ModRato.c",
               "originalSha256": "6a03697d3cc61122efe227b4c253d3232d95f24837ebc11b3ce505fc9ed278bd",
-              "patchedSha256": "14c2df785307d091e4d5557072288dbc210d56c2d4afbd491123cdc0e9ebe718",
-              "reason": "Decode signed nine-bit PS/2 deltas using the packet header sign bits before applying the existing cursor clamp. The original signed-char truncation reverses large valid movements.",
+              "patchedSha256": "1ea7ea815e07e6619dc0b11107d0aabf5661e5130f662c5ed351300f55238daf",
+              "reason": "Decode signed nine-bit PS/2 deltas using the packet header sign bits before applying the existing cursor clamp. The original signed-char truncation reverses large valid movements. Cache the three cursor bitmaps on first use and reuse them instead of reading the files each frame.",
               "verification": "Actual original updateMouse fails the -255 direction assertion; corrected function passes deltas -255,-200,-128,-127,-1,0,1,127,128,200,255 on both axes. Actual NDK27 source compile passes."
             },
             {
@@ -20917,6 +21261,12 @@
           "originalSha256": "5bb3ec465e050e9c7564f2ea1318c47cec5bb7b9639e735f055649496e2cf621",
           "patchedSha256": "4eb8b09df2a8a59226421db25e9f7a57ec4414e3d07ca40d57663caca0bda5fc",
           "reason": "Synchronize first PS/2 packet only while expecting its first header byte. Original first_packet branch also tested payload bit3 and reset byte_counter midpacket, losing valid initial dx/dy bytes 9/9 and 26/232. Actual owning parser fails packet-completion/coordinate assertions before repair and passes both positive and negative movement packets afterward."
+        },
+        {
+          "file": "code/highscore.c",
+          "originalSha256": "fb2081eba09697a97ab677ee72fb53acc488125f46a6690902aa4630c0eef045",
+          "patchedSha256": "30db5f1d5762e43f8a3e301716d6ce43f5946414e9422cbfd9b29e2492aafb14",
+          "reason": "Copy DateTime values into each entry instead of sharing pointers; entries keep owning their own allocation."
         }
       ],
       "license": {
@@ -21091,7 +21441,14 @@
       "root": "examples/community/ArturAlb--LCOM",
       "source": "https://github.com/ArturAlb/LCOM",
       "revision": "eae7307dd7d8d23f50b039c0f14599f385e3d52d",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/game/states/gamestate.c",
+          "originalSha256": "fd2480e0ddbea74504bc344275248c36e215f0c9a1c1c65dd41f036c87d7dc17",
+          "patchedSha256": "a062145c46210b2776932fec5e5cbfcbfd30ca76aea2671159c443b60498bf9e",
+          "reason": "Skip bullet creation when origin and destination coincide, avoiding division by zero and unbounded NaN bullets."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -21365,7 +21722,14 @@
       "root": "examples/community/Eduarda34--FEUP-LCOM",
       "source": "https://github.com/Eduarda34/FEUP-LCOM",
       "revision": "0534e832b7fe199763e65218688ea093881830c4",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/game/apple.c",
+          "originalSha256": "20fc329b28a001ee1ec943766b07e58922a5dc020e7394e6b498f34eb7c21a28",
+          "patchedSha256": "ed2e7016d1af0bb0c37a37398aec8d02c26860c5b5b212d8aaacd4f9ecc39041",
+          "reason": "Bound the random attempts and fall back to a full grid scan; also guard a zero grid size."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -21643,8 +22007,8 @@
             {
               "file": "DODGEM/src/DODGEM.c",
               "originalSha256": "cfba3736e38ca21c49984722593a09312d895b6c503fed2ed61f5742ac95e09e",
-              "patchedSha256": "87a55fd711794df424d39dd4647d638426aba84423c13c06f8128ec30d3211ad",
-              "reason": "loadScores passed100 to fgets destinations15/10bytes; unchecked copies could overflow nickname[12], atoi read unterminateddate[2], feof loop could add a phantom record and arrays of4had no capacity guard. Read the original five-line records through one correctly sized line buffer, validate name length, parse all six dates from the owned full line, stop on actualEOF, cap stored rows4per mode and close the file on every exit.",
+              "patchedSha256": "ddbb1e47bfe514da0bb40a4e74d90bf6e325b1fcf388cd1c051a2197fa887a79",
+              "reason": "loadScores passed100 to fgets destinations15/10bytes; unchecked copies could overflow nickname[12], atoi read unterminateddate[2], feof loop could add a phantom record and arrays of4had no capacity guard. Read the original five-line records through one correctly sized line buffer, validate name length, parse all six dates from the owned full line, stop on actualEOF, cap stored rows4per mode and close the file on every exit. Zero-initialize the submitted PLAYER and explicitly NUL-terminate nickname, truncating to the final field byte when all 12 name slots are used.",
               "verification": "Actual ARM64 FORTIFY optimized compilation RED on five fgets bound violations, GREEN all11Cunits with -D_FORTIFY_SOURCE=2 -O2. Actual owning loadScores real-file regression original SIGTRAP, corrected parses pinned seven originalrecords and exact date/name/score fields, a maximum11character nickname, rejects overlong/truncated/malformed records, preserves0s2sentinel and caps six valid rows to4."
             },
             {
@@ -21772,6 +22136,12 @@
                 "red": "build/arcade-100/a/spacecom-bounds-fix/red.log",
                 "green": "build/arcade-100/a/spacecom-bounds-fix/green.log"
               }
+            },
+            {
+              "path": "proj/src/game/gameStates/game_controller.c",
+              "originalSha256": "baea88d7fc283507a75058c58a4c2dd366363ce9d1217e03c94865f096bafb3c",
+              "patchedSha256": "d0726bed160f6df6cb832384a0940f51f73bf6d1bf2212f05cf635eff9374d62",
+              "reason": "Stop spawning powerups when the fixed pool is full, preventing the out-of-bounds write."
             }
           ]
         }
@@ -21955,6 +22325,12 @@
               "patchedSha256": "0da31838d03cce751299ef9b384082f9101eb81bf3e2656b8fc9ac57bf8b0cab",
               "reason": "Clip original mallet source columns and destination rows before transparency-keyed framebuffer writes. Original drawBitmapMouse computed drawWidth but ignored it and never clipped vertical rows, corrupting memory at clamped mouse edges.",
               "verification": "Actual original renderer guard-page RED SIGBUS at bottom-right; GREEN allfour partial edges, wholly outside positions and original transparency bytes. Actual normal joystick edge holds in landscape/portrait remain running without errors."
+            },
+            {
+              "path": "lcom1415-t3g15/projeto/src/Whack.c",
+              "originalSha256": "2748352051409786c7df10709f68650250edf0dcfc7d84e66a323f78a9ac4324",
+              "patchedSha256": "ee2cb46b8da093ebff50e832f61fb737c41a8dfa9ba56dc461283be6a236e0b7",
+              "reason": "Apply the selected difficulty to the base 120-frame interval instead of compounding the current interval, which can reach zero."
             }
           ]
         }
@@ -22349,8 +22725,8 @@
             {
               "file": "proj/code/jogo.c",
               "originalSha256": "93973952b7721fa99f2cfbdbdeb0604ba95c18eb3f33ded5231c070d41f3bd00",
-              "patchedSha256": "c5d2229297fdd0c118ee97bcaa9bdff0cac2b64e52b42fb233a68bcef3961ff7",
-              "reason": "Initialize five keyboard loop guards before testing them. Bound difficulty filename construction and load only complete in-range Sudoku records. Decode complete signed9bit mouse deltas with header sign bits. Clock/timer repaints draw the cursor without applying a partially received mouse packet. Timer-only repaints also skip cell/Back click processing, because no new mouse input arrived.",
+              "patchedSha256": "12f6e69408ed77c65340fec9cb656113105e7d76290813d6eb70e0e209e01a56",
+              "reason": "Initialize five keyboard loop guards before testing them. Bound difficulty filename construction and load only complete in-range Sudoku records. Decode complete signed9bit mouse deltas with header sign bits. Clock/timer repaints draw the cursor without applying a partially received mouse packet. Timer-only repaints also skip cell/Back click processing, because no new mouse input arrived. Read at most three high scores and require successful scans, preventing writes past a[3].",
               "verification": "Original optimized actual WASM unreachable→corrected real menu after guard initialization; owning compiled menu fixture checks timer then actual Escape. Original difficulty path stack overflow RED SIGTRAP→GREEN allthree difficulties and malformed/out-of-range input rejection. Original full signed9bit delta fixture RED→GREEN121pairs preserving originalgain2 and64x51glyph clamps. Actual menu partialheader+x→RTC→Escape interleaving RED unintended cursor motion→GREEN unchanged cursor until a full packet. Additional owning clock redraw fixture RED requests keyboard input from a held cell without any new mouse packet; GREEN repaints without opening an editor."
             },
             {
@@ -22571,8 +22947,8 @@
             {
               "file": "brickbreaker/src/timer.c",
               "originalSha256": "8a1d75368a16b63d4c74fda8e25403379e52bb44f0e591bf4eeeefa35d8a3f06",
-              "patchedSha256": "22d6fc4bf6c4a55fc9580092a2696b741b240c9f3a5c137418e1d559c6cbd512",
-              "reason": "Return success from int masterClock on early Escape, rather than bare return. Decode mousepacket sign bits together with lower bytes before forwarding full deltas.",
+              "patchedSha256": "c7935703abd9959ed8eb41dc7cec972b565c7f7c786094d65f087e11021fff67",
+              "reason": "Return success from int masterClock on early Escape, rather than bare return. Decode mousepacket sign bits together with lower bytes before forwarding full deltas. Initialize the timer-loop key state before the first interrupt and close the optional log file only when it opened.",
               "verification": "Original actual ARM64 compilation rejected nonvoid bare return. Owning earlyEscape RED/GREEN returns0 with real keyboard and timer notifications. Original signed low-byte packet test RED; GREEN all121complete signed9bit pairs."
             }
           ]
@@ -22719,6 +23095,12 @@
               },
               "originalSha256": "bbe60ff61bad734f2cfc5acecf9baf9bae2294649341be27e78ad3c3c52d0429",
               "patchedSha256": "a7f9c7e0d0d06c5ca3d22fe97db8489f0c7c6cc0d0056de43f3aa250ee3a0f50"
+            },
+            {
+              "path": "proj/src/model/enemy.c",
+              "originalSha256": "d4e3936681a2d6938921bed2cc5919a950a153bf44db9be6e55621081ea6e57e",
+              "patchedSha256": "28c661f47a085b61045e595ea8aa78311a7f67c272904b3e58ad16c8a0eac0c4",
+              "reason": "Stop spawning at MAX_ENEMIES, destroy rejected temporary enemies, and cap the direction-retry recursion at the four directions."
             }
           ]
         }
@@ -22849,6 +23231,12 @@
               },
               "originalSha256": "3507e5a4061d0b605ef35b50ade65ea7f9999c58b79a6008f7af1d4ec1f94cf2",
               "patchedSha256": "e8b156e585433a5282ab0139b64b02eb038dbe256a1e3fb196cfdf22c4242891"
+            },
+            {
+              "path": "proj/src/controller/keyboard/keyboard.c",
+              "originalSha256": "8b33f3a8fb8b1213d7e2258ed42cf9744ea73d26b4bd69c8d67142bcd93ca462",
+              "patchedSha256": "afe61862a76464a6673ea807496b6ddb724662b5056116c94171bfa092ae7360",
+              "reason": "Cap typed guesses at the 12-byte buffer size."
             }
           ]
         }
@@ -23345,8 +23733,8 @@
         {
           "file": "proj/src/proj.c",
           "originalSha256": "fcef7b4db04857b1a18e68931ab3715ed649bb3b13c069059179a388e0a3c1ad",
-          "patchedSha256": "e7c9de190c887f48d964c66118d964eedd0c8bae73c87c135788fb71045c0f53",
-          "reason": "Existing draw/movement code used one-based occupied slots up to count on50/100element arrays, and discarded objects without reducing count. Actual sustained-fire browser UBSan RED proj.c449 index50 outside int[50], plus actual whole-game-loop bounds regression RED. Make one-based slots1..50/100 valid, initialize each spawned slot, reduce counts on collision/retirement, stop testing a removed projectile and retire offscreen shots. Remove automatic MENU arrays that shadowed persistent sprite tables. Initial hearts3 now match the three-entry table even before the first menu timer. Whole real loop GREEN with normal and early-input startup, sustained fire, score/menu/Exit notifications; final instrumented browser GREEN."
+          "patchedSha256": "2070dfa6bdc37f81a8493039f224d0ea89d0c04cbffadde8736c944d3afc260b",
+          "reason": "Existing draw/movement code used one-based occupied slots up to count on50/100element arrays, and discarded objects without reducing count. Actual sustained-fire browser UBSan RED proj.c449 index50 outside int[50], plus actual whole-game-loop bounds regression RED. Make one-based slots1..50/100 valid, initialize each spawned slot, reduce counts on collision/retirement, stop testing a removed projectile and retire offscreen shots. Remove automatic MENU arrays that shadowed persistent sprite tables. Initial hearts3 now match the three-entry table even before the first menu timer. Whole real loop GREEN with normal and early-input startup, sustained fire, score/menu/Exit notifications; final instrumented browser GREEN. Preload the gameplay and HUD XPMs once before the main loop and reuse them, and drop the per-enemy debug prints; removes the per-frame/per-spawn allocations and console I/O without changing what is drawn."
         },
         {
           "file": "proj/src/moves.c",
@@ -23837,6 +24225,12 @@
               },
               "originalSha256": "e2b9608728706d4376a87f48ed1098c0ec33d4ba5fca67a196208e8b13705a37",
               "patchedSha256": "2626257cf5b100bc21a6cd1709a5d5d630d6f4d37ea5494140efdb67d9b61708"
+            },
+            {
+              "path": "proj/src/piece_move.c",
+              "originalSha256": "ebc7a70ca7bc9c85deb05bfbe1819ad9bc341f3329fd8d55ff5470c080e147c7",
+              "patchedSha256": "ecfc67e7fef59ad28f2378fd45014b06c959733a64bc28636d962459440bc6c8",
+              "reason": "Add a shared rotation_in_bounds() check that rejects any rotated index outside 0..BOARD_MAX_IDX before cells[rotated_idx] is read, and reject the T rotation-2 side-column wrap; legitimate rotations are unchanged."
             }
           ]
         }
@@ -24057,6 +24451,12 @@
                 "red": "build/arcade-100/a/animated-chess-font-caller-red.log",
                 "green": "build/arcade-100/a/animated-chess-frame-font-green.log"
               }
+            },
+            {
+              "path": "proj/src/game/objects/pieces.c",
+              "originalSha256": "5b39e4288e7af4d1d9239fb94a1bc31d769fd71d8a7c983f4acdee3b9043e436",
+              "patchedSha256": "a9984f94a858d8926fd48c9248aef669e0e3a40a75c925c9ea46b75df1c1e36f",
+              "reason": "Reject out-of-range destination rows/columns before indexing the board or valid-move array."
             }
           ]
         }
@@ -25608,8 +26008,8 @@
             {
               "file": "proj/code/game.c",
               "originalSha256": "0bf98e402ff059461830ef4ba113d6d4bbe06d6c1e2277793bd3f3e214287a17",
-              "patchedSha256": "df26da1ec4448b86628c010cda2bc94da42afd151ab26c56d76548d149710369",
-              "reason": "Include existing xpm.h owning the char**get_xpm return contract before sprite creation.",
+              "patchedSha256": "6e483c14a0203088fdfd99a584f1f73aa3fedd9f46eed974d5844a1f59c186b4",
+              "reason": "Include existing xpm.h owning the char**get_xpm return contract before sprite creation. Destroy expired shots' Sprites and maps, and decode the HP/time-bar XPMs once per frame instead of once per drawn segment.",
               "verification": "Original actual game.c compilation fails incompatible int-to-pointer conversions at fourteen XPM calls. Corrected actual owning-unit regression passes strict pointer conversion and optimized compilation."
             },
             {
@@ -25814,6 +26214,18 @@
                 "red": "build/arcade-100/a/bomberman-utils-header-red.log",
                 "green": "build/arcade-100/a/bomberman-header-green.log"
               }
+            },
+            {
+              "path": "src/controller.c",
+              "originalSha256": "f86affe54b31de842450662018d1ea5c708ebf4e4bd388afc8bfb49d1b647de3",
+              "patchedSha256": "498553bf02bae09859cf6830de95f8c902cb7e014132b0e77c6bb9b9f3f4b061",
+              "reason": "Route all bomb blast cell accesses through a bounds-checked MAP_AT macro so out-of-map cells are ignored instead of corrupting adjacent globals."
+            },
+            {
+              "path": "src/graphics.c",
+              "originalSha256": "30097a0d7a1d1211268bb2b6a0446620c6020fb38a8339aab047bfa4aa5c6b2e",
+              "patchedSha256": "723ffb9d9a09aad0fbbd36564f5747c74a9a753a1303eec2188f734d01ac5f93",
+              "reason": "Reject x/y equal to the mode resolution before computing the framebuffer index."
             }
           ]
         }
@@ -26044,6 +26456,12 @@
                 "red": "build/arcade-100/a/claustro-subscribe-red.log",
                 "green": "build/arcade-100/a/claustro-subscribe-green.log"
               }
+            },
+            {
+              "path": "proj/src/claustro.c",
+              "originalSha256": "75537c6739555590cbcac38f6224a8ada917cb2e41bf0594c492404b0ca39cfd",
+              "patchedSha256": "a8f9a060c997a42075135ec8d17468bcc6aeba295c89972bcb77e9af0849bc5d",
+              "reason": "find_board_cell returns BOARD_SIZE for clicks outside the board, but can_pick and can_move indexed the destination/board without checking, causing out-of-bounds reads and possible writes; reject out-of-board coordinates"
             }
           ]
         }
@@ -26221,7 +26639,20 @@
       "root": "examples/community/limapedro12--LCOM_DefendTheBase",
       "source": "https://github.com/limapedro12/LCOM_DefendTheBase",
       "revision": "cd5fc15a916ba7405c8ec9087e9360c324eea29d",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/drag.c",
+          "originalSha256": "316ef032146f200fbd256bed49fbdffcacb0ca5b31e80959f7a7bec481f1a046",
+          "patchedSha256": "bb74ca0d3d3afc8a9344d4b6ee7c82ad6cdfc28ba28c7482c30c8869c6876584",
+          "reason": "Allow the next-slot pointers to be omitted so the last tower slot cannot write past the array; placement still works for the final slot."
+        },
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "60e8052b77460a53e711bdd33421443555d4091082507e2f908b49c8c33f9815",
+          "patchedSha256": "311ef4c84037c3a31dfc8c54dd96bfc4f6ddb09d3592cd41b57dc9de640b310b",
+          "reason": "Pass NULL for the next-slot pointers when placing the final tower slot, avoiding the out-of-bounds &towers_level_X[i+1] access."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -26416,8 +26847,8 @@
             {
               "file": "proj/code/map.c",
               "originalSha256": "5a4b7633a19b1090fb4f3aa43b6447215022d8691e38c5a6d21c5ad72e791fa9",
-              "patchedSha256": "61f1f72c7fed4bdfcb6e0c09dc57f021a7cc3ab5af4c9cdf1c66968a81b596fc",
-              "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts. Initialize GetLowCost current candidate to NULL, and return0 when a client refuses authoritative map damage.",
+              "patchedSha256": "3c2f4e0ac5c4118ae166431fec02214333acd99df421d73c978bb1d27a62fedc",
+              "reason": "Use the original public owning headers or exact existing function definitions before calls, preserving typed C return and argument contracts. Initialize GetLowCost current candidate to NULL, and return0 when a client refuses authoritative map damage. Return NULL on the no-path exit, matching the existing invalid-node path that Enemy_MoveTo handles safely.",
               "verification": "Original strict per-unit audit rejects missing declarations. Corrected all28 authored units compile with implicit declarations treated as errors; actual browser menu, match and combat no longer encounter invalid-function-bitcast traps. Patterned-storage actual GetLowCost regression originally returns an indeterminate pointer, then passes empty/unordered/first-min cases after initialization. Real arena originally stalls at pathfinding; corrected match advances and enemies approach. Actual Map_Damage owner fixture checks denied damage returns0 and preserves tile."
             },
             {
@@ -26754,6 +27185,18 @@
           "patchedSha256": "53a03796b32a1f915e89628fcdedab3d5aaa62b53d726667f97dcb7d427b76a9",
           "reason": "create_sprite borrows its identifier string, including literals passed by every HUD caller. free_xpm_mem must release its allocated pixel map and metadata, but must not free that borrowed identifier. Remove only the invalid identifier free.",
           "verification": "Original solo startup reproduces WASM memory access out of bounds. Actual constructor/destructor ownership fixture RED rejects the literal free; GREEN releases exactly the two owned allocations and preserves the borrowed string. Actual full HUD, movement, magic shot, enemy hit and clean Escape work with corrected source."
+        },
+        {
+          "file": "proj/src/game/enemies.c",
+          "originalSha256": "c957db9fae49c1fdbbb01440a98a310389602ce1571eaa1067dd567a437922af",
+          "patchedSha256": "be6a8bfb16b29310a6fadd83f57e97e9cec46be21660f4046a2a57d1188f28dd",
+          "reason": "Free each enemy's xpm_load map with the enemy object on despawn, collision and reset."
+        },
+        {
+          "file": "proj/src/game/magic_blast.c",
+          "originalSha256": "929223f72db9ddfe4ed04c3d039772d17e6bea4f3320586fe02d66f1c431875d",
+          "patchedSha256": "877698a0b32791e09fa3f7db7f6d03f95184796ba3261853dc7498dd2e1919b2",
+          "reason": "Free each magic blast's xpm_load map with the blast object on expiry, collision and reset."
         }
       ],
       "license": {
@@ -27127,7 +27570,14 @@
       "root": "examples/community/carlosmgomes--FEUP_LCOM",
       "source": "https://github.com/carlosmgomes/FEUP_LCOM",
       "revision": "ed0d1daf594c7e7131374c9ba12d8cfd3b549534",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "6d9fe71eeee4df9946a66666b67fc145156452d1d3c2b6d4ed74de85f839d4e5",
+          "patchedSha256": "00cd74de913682e0682f46dd9a7a887f991769d7931ec3d6a0c9b0b6d38b476a",
+          "reason": "Break out of GAME_STATE for the keyboard-controlled red turn and enter END_STATE only on the first winning frame."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -28289,7 +28739,14 @@
       "root": "examples/community/carlosverissimo3001--FEUP-LCOM",
       "source": "https://github.com/carlosverissimo3001/FEUP-LCOM",
       "revision": "137579fc46b37275ab5fb7b882bdac1d4a292cd4",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/covid_escape.c",
+          "originalSha256": "0914910569e35656bcb90a74914f622a295da60a9fd2a007607925fd8efdcbd6",
+          "patchedSha256": "1d238757220780c6deb3ee1be004b42a9ea3c54d5489c4359978dac74bed7ed8",
+          "reason": "Clip the restored rectangle to the background image bounds before indexing the pixmap."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -28358,7 +28815,14 @@
       "root": "examples/community/DinisSousa2003--LCOM-FEUP",
       "source": "https://github.com/DinisSousa2003/LCOM-FEUP",
       "revision": "2659c0344dc37e96f16f7e88110c91eecd174d57",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/video/video.c",
+          "originalSha256": "203f873a47036a3402aadb7b2482d00db6614a853492b0cb03d882da8f66b717",
+          "patchedSha256": "b5306532ac1b6c899ed0ea5811c3f5ff095818522789bf959ed311eb765ea7d9",
+          "reason": "Use >= bounds checks so edge coordinates are rejected before the pixel index is computed."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -29084,6 +29548,12 @@
               "patchedSha256": "301f2dd9edd7bc247f8d7e9a2eed9958446def0218225fbe16dc35e1c9b880cf",
               "reason": "Initialize the four VBE2 signature bytes with character constants rather than string-literal pointers.",
               "verification": "Actual original mode-information unit fails compilation on four pointer-to-byte assignments; corrected owning test compiles and receives exact1024x768x16 BIOS information."
+            },
+            {
+              "path": "src/Pipe.c",
+              "originalSha256": "42291247b127026c689f6c9c9677fdd42de10a74ac6e70826f0bc33cfb74dc82",
+              "patchedSha256": "a84978885b1679f81e2206de4df2648191585573892c5c0839b797ec20e98319",
+              "reason": "Cache the pipe bitmap once so the per-frame pipe object no longer reloads and leaks the image."
             }
           ]
         }
@@ -29196,6 +29666,12 @@
               "reason": "Original score save writes into a string literal, overflows/frees caller stack name, and score read frees a local array. Format unchanged fixed-width records in owned local buffers, preserve caller storage, bound reads, handle missing read file, and release every allocated sorted entry.",
               "originalSha256": "d6209bfba5a5001ddf7de3c896fdcfed42e27e0546548521155a0c1b612f9f9c",
               "patchedSha256": "409884537ebf6fe3302264e5c67abd704e777ca07ebde32eced5aa0c82b0b854"
+            },
+            {
+              "path": "proj/src/libs/rtc/src/rtc.c",
+              "originalSha256": "55087d6f8fceb3519eac9a62c36dbfcb34810085f2010f52a0b949ad0d95b89b",
+              "patchedSha256": "c5869d6a3a04c2b5360e7c814c4de9cdacf00245c7672b892a5e52291090a92a",
+              "reason": "the RTC weekday register is 1-based (7 for Saturday), but the switch handled 0..6 only, leaving the pointer uninitialized for strcpy in the menu; initialize it to a safe fallback"
             }
           ]
         }
@@ -30476,6 +30952,12 @@
               "reason": "Original vg_init definition unsigned long disagreed with public unsigned short declaration, causing browser LTO startup unreachable. Match original16-bit mode API. Live vg_set_pixel bare return for transparent index30 violates status contract and NDK18 rejects it; return0. The writer accepted x==width/y==height and incremented the pointer before writing, shifting every pixel and corrupting last-pixel canary. Use exclusive bounds and exact byte offset. Original artwork unchanged.",
               "originalSha256": "bfb98efc2b567f773d6e691e366498448ffa72fa9f7f8685b053d3882b6bead9",
               "patchedSha256": "be1d774f6e5ef7bd69060be3d2b02cf1c02bb1439c42098052255566144d7b24"
+            },
+            {
+              "path": "src/commodore.c",
+              "originalSha256": "89f49729ae3436a8b33daedffeacbd1f10c4e5830143a6ea6df5777caf048de8",
+              "patchedSha256": "87fbb226c82b6b98ec5f78009c0d9aa955cbd50fe328f93a62c99cb95704d24d",
+              "reason": "Retry scout only for destroyed ships (matching the AI path) so an alive ship terminates the loop; check the bombardment neighbour bounds before dereferencing the board cell."
             }
           ]
         }
@@ -30567,9 +31049,9 @@
             },
             {
               "file": "proj/src/tetris.c",
-              "reason": "Match the uint8_t scancode defined by keyboard.c. A uint32_t extern also reads the adjacent nonzero sys_inb_counter, so Enter never leaves the title and arrow keys fail in gameplay.",
+              "reason": "Match the uint8_t scancode defined by keyboard.c. A uint32_t extern also reads the adjacent nonzero sys_inb_counter, so Enter never leaves the title and arrow keys fail in gameplay. Return true as soon as a block is on the edge, before scanning neighbours outside the 22x15 status board.",
               "originalSha256": "cb421c1f6e736a2b153e11d96ff27381616809809bd390ca92ddbd8413c470d8",
-              "patchedSha256": "c958183ea49448b8c0bd75799da6a0574d1eb52489c3eb9108fc4029831cb536"
+              "patchedSha256": "d4ed37513fcf5e704cd8561d158f1d8e36c8f8c8a376d2a4c526fdce9d095c60"
             },
             {
               "file": "proj/src/keyboard.c",
@@ -30878,8 +31360,8 @@
             {
               "file": "proj/src/handler.c",
               "originalSha256": "99b162398cdef6a52209e2482c101e756185a648cc8b6d5f04195fc59b608779",
-              "patchedSha256": "b6271f5b759448cc029694c386298d2e6b15d5a2b0abac19acdf78774c142051",
-              "reason": "Keep authored notification bit IDs separate from returned Minix control handles, remove each actual subscription on teardown, check positive kernel errors, and update the menu cursor after each complete three-byte mouse packet. Use the authored timer notification bit in the match loop instead of casting a function address to a mask. Initialize vertical ball direction for a new match while preserving its existing valid direction on a scored-ball reset.",
+              "patchedSha256": "30e9d4fb3c9e3a4d742b8217696e5994d6feff3f27e28cc2d740846dc574b8b6",
+              "reason": "Keep authored notification bit IDs separate from returned Minix control handles, remove each actual subscription on teardown, check positive kernel errors, and update the menu cursor after each complete three-byte mouse packet. Use the authored timer notification bit in the match loop instead of casting a function address to a mask. Initialize vertical ball direction for a new match while preserving its existing valid direction on a scored-ball reset. Return from the outer menu once the launched game handler returns, instead of touching the already-freed menu object.",
               "verification": "Original actual subscriptions fail on legal handles10..13 and positive policy errors; corrected notify0/1/12/2 and saved cleanup handles pass. Actual menu loop originally waits for three complete packets before one cursor update; corrected one-complete-packet-to-one-update passes. Actual match owner receives W, sixty timer-bit0 notifications and Escape: original has zero ball/paddle updates and no second countdown; corrected has sixty ball updates, sixty held-paddle updates, time59 and exact three unsubscribes. Actual game_handler with patterned allocation originally exposes an undefined vert field. Corrected fresh-match owner sets vert0. The actual scored-ball reset preserves a valid up direction, retaining authored reset behavior."
             },
             {
@@ -31116,6 +31598,12 @@
               "path": "proj/words.c",
               "originalSha256": "cc99a6fec7c25bbe410e4b3fc37818704504be5f1e9fad4e3b3a66c706867338",
               "patchedSha256": "c17aafbda90c77269d8cba5bccb7ae3691c3fac3df782e3011a7392369c8b124"
+            },
+            {
+              "path": "proj/game.c",
+              "originalSha256": "b72af02e0720bc9e9537ffda7775f21f202f8392d99fae876b5c24e55355de1a",
+              "patchedSha256": "f5e708aa1585dc58465ee93e095b3df84b62b7a97637f74f5d7e1f09de699eed",
+              "reason": "high-score name entry appended keyboard characters to a 256-byte heap buffer without a length limit, allowing a heap overflow; stop appending at the buffer capacity"
             }
           ]
         }
@@ -31194,7 +31682,14 @@
       "root": "examples/community/daniel-s-goncalves--LCOM-FEUP",
       "source": "https://github.com/daniel-s-goncalves/LCOM-FEUP",
       "revision": "00078772ad62fba6bb75de907215f472b74e115a",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/game.c",
+          "originalSha256": "cafff8d826a1ec0b3510ebbed195b82b9cf01867eba6a3bdc4e8696080712093",
+          "patchedSha256": "645806cf621818bf60f16c9912171df1de32adcde8b596dfaaa66ec926bdd59e",
+          "reason": "Count the occupied cells from game_table on each check instead of carrying the stale static counter."
+        }
+      ],
       "license": {
         "status": "No license file found in selected tree.",
         "files": []
@@ -31876,6 +32371,12 @@
               "path": "proj/src/mouse.c",
               "originalSha256": "09995adce1b51d9607094cc4c6996e461bdbd0346c3a97256143e27185d0b2c2",
               "patchedSha256": "6d6936b39be15b277c5fcf622904d9f7ebdcbeaff034c3cbad0f5ca05d59a72e"
+            },
+            {
+              "path": "proj/src/cloud.c",
+              "originalSha256": "20953df3a7cd5ff518e6ebe12db7ef51af54bb578bf0c8d90355d3c0a76161de",
+              "patchedSha256": "d88e9b1024324d5f4103deb65fd0f812b89e9ce843885695b8cfa2ba263234f0",
+              "reason": "Load the three cloud bitmaps once and share them; deleteClouds continues to free only the cloud struct."
             }
           ]
         }
@@ -32002,6 +32503,12 @@
               "path": "proj/src/video.c",
               "originalSha256": "59e590f3278f0e7d98fa7fd182d51da2ba65f5983bdd43ecb49f51ad360a2040",
               "patchedSha256": "b013a8e2a9ca0ed47e82bec58c169e6683242d8c64db91630f24b32541dbf34a"
+            },
+            {
+              "path": "proj/src/Game.c",
+              "originalSha256": "353c35d4b3d84de29a09f457c6a8e6da034cb672c5c84b6cb39375bb86745aa7",
+              "patchedSha256": "557b1d10ebe0b6f5308c0a3a76a2f61ca7df1f32f420c280710a1054e7c77a36",
+              "reason": "Extended arrow-key scancodes (0xE0 prefix) were compared as the first byte, so the authored arrow-key controls never matched. Use the second byte for two-byte sequences, matching real PC hardware and the existing ARROW_* constants."
             }
           ]
         }
@@ -32282,8 +32789,8 @@
             {
               "file": "proj/code/game.c",
               "originalSha256": "4f28dc926509be82b6e750c5caca2a36be77d119a552b15c222441611c6eeaac",
-              "patchedSha256": "79e2e6d49e38b63ba2e5a21b508eefd4e978bbc737fc7395a875263971ed848d",
-              "reason": "Ignore a stationary right-click instead of multiplying zero forever, and reuse dead block slots without exceeding the declared256entry table.",
+              "patchedSha256": "3f7f30756dd2c970f9e18e7bb90e50fae7d7d363e9f621cd527f01f5f31dfeb4",
+              "reason": "Ignore a stationary right-click instead of multiplying zero forever, and reuse dead block slots without exceeding the declared256entry table. Load the cursor once in Start() and reuse it in the mouse handler.",
               "verification": "Original zero-vector owner times out; fixed zero tap returns and100,-150 retains authored speed-4,-6. Original nextLevel writes index256; corrected controlled twelve-column spawn reuses dead slots while preserving an existing live block."
             },
             {
@@ -32885,6 +33392,12 @@
               "reason": "Import netinet/in.h, the original Minix owning header for in_port_t, explicitly. This graphics source used that16bit type without its owning include, relying on incidental host transitive headers. Actual source WASM vg_init owner regression originally fails unknown type, corrected explicit header compiles and executes original BIOS query/map/mode contract. No type alias, parameter, mode or runtime changes.",
               "originalSha256": "9d5fe85b813428d6cb9f153fe0edde6c6dc951c4a2e5831c8d789211d3b61cb8",
               "patchedSha256": "ac0d187a1f71f9395f27cff15b65b1e8efbd2d63620c0f062825096e76072698"
+            },
+            {
+              "path": "proj/src/devices/video/graphics.c",
+              "originalSha256": "57041ef0e93f19ffbe740a259a7b9df65387bb510f4b29b8a31dc5e3de859f62",
+              "patchedSha256": "b93e156ef200de572378f5316ba2f0f4889dee5bb97125d497a7b0c09ad74b79",
+              "reason": "Clip the rectangle to the buffer bounds before memset so edge stamps stay inside the allocation."
             }
           ]
         }
@@ -32993,6 +33506,12 @@
               "patchedSha256": "1e86451196e33b9f0b9081dbad7d34a615acd4a664a6d8f6eb093fe4223c1df1",
               "reason": "Allocate the full rotated sprite pixel buffer rather than sizeof its size variable.",
               "verification": "Actual original rotation requests8bytes for a36byte output, assertionRED; full36byteallocation preserves postimagecanaryGREEN."
+            },
+            {
+              "path": "proj/src/asteroid.c",
+              "originalSha256": "14d39d1c03391d70214c8f7ae24734582367b3e63d579dee0d967415e8ea9aec",
+              "patchedSha256": "23e6935fdad02d41ea719d36b2e263121826c9f6dc9d220122a4df8845bf069b",
+              "reason": "Guard both spawn and split appends against maxNumAsteroids; at capacity the hit asteroid is removed instead of writing past the table."
             }
           ]
         }
@@ -33087,6 +33606,30 @@
           "patchedSha256": "7345ce179be6a16223fe18bbe6730dfe18c8f9c66a8a9e00a0b45fcc998ba5e4",
           "reason": "Decode the RTC12-hour PM flag separately from the numeric hour and normalize12AM/12PM before displaying24-hour time. Preserve BCD/binary and24-hour modes.",
           "verification": "Actual owning read_date with port-backed register fixtures reproduces BCD0x89→89, binary0x89→137 and12AM→12 in original source. Corrected16cases cover BCD/binary12h09,12AM,9PM,12PM and BCD/binary24h0,12,21,23, with unchangedminute58/second47/year26/month10/day17."
+        },
+        {
+          "file": "proj.c",
+          "originalSha256": "9beeab1ba15a1be5be2f2d3b8ff3c4bc7d16233fcfb4a53ec1a623eeed7d839d",
+          "patchedSha256": "ba430907469b8602693b68100ad5d400f99d1c37cfbecdc376e9b335601b8232",
+          "reason": "Removed the unused 3.98 MB allocation and memset from MainMenu; the buffer was never referenced afterward."
+        },
+        {
+          "file": "levels.c",
+          "originalSha256": "c993b2f8e1a16dcadadb33fb61b2c36493b1fd64f83c664e07f13566c3f0d4df",
+          "patchedSha256": "7c0ae9449b1847160342289b7bf5c2ff0554211c0dcfb8ac48352c0a80d297d2",
+          "reason": "Free the level framebuffer before each early return and at the normal end of SansLevel."
+        },
+        {
+          "file": "levels1.c",
+          "originalSha256": "f50e05c3264c5edcb6ca77713260cd1fe4c3b41481ed6e6e57ef5a308ade2f3f",
+          "patchedSha256": "50346f8dccbfba816235bd796683a03ffa518cacd3f025e992f433e720f0ad45",
+          "reason": "Free the level framebuffer on the parameter-validation early return and before the normal return in FloweyLevel."
+        },
+        {
+          "file": "levels2.c",
+          "originalSha256": "ada7db4ad4b54cda8070c0fe1627ce9d8f949e0665e27304a78ae0327bb81eb5",
+          "patchedSha256": "d17c204cc4360e7110215b535c4b28d54205780d754c9f7e4b15d91952594154",
+          "reason": "Free the level framebuffer on the parameter-validation return, both player-death returns, and the normal return in PapyrusLevel."
         }
       ],
       "license": {
@@ -33304,8 +33847,8 @@
             {
               "file": "proj/src/highscores.c",
               "originalSha256": "e711bc5c27a63ae87406e5f108db5e9ee8f6c369bbcc5a68213c53e8d279f465",
-              "patchedSha256": "63f9fd438bcd133303e07ba525aa78ff17ac906932bce2f082c188b41744d159",
-              "reason": "Correct original score ownership: winning player name needs10bytes including NUL and one-digit position needs2; empty score table must not read its nonexistent first entry; three-digit/full signed-int duration needs room including NUL and matching local copy; full three-slot table rejects slower new times. Actual normal winning and record-owner fixtures original2FAIL→fixed2PASS with complete130pinned closure. No rules/art or gameplay control changes."
+              "patchedSha256": "4cd190734ae60582ff7f7483fb6db5b942ecdc5138197e7d04ec193295d56969",
+              "reason": "Correct original score ownership: winning player name needs10bytes including NUL and one-digit position needs2; empty score table must not read its nonexistent first entry; three-digit/full signed-int duration needs room including NUL and matching local copy; full three-slot table rejects slower new times. Actual normal winning and record-owner fixtures original2FAIL→fixed2PASS with complete130pinned closure. No rules/art or gameplay control changes. Bound the loop to the three array entries, stop when either fscanf conversion fails, count only complete records, and close the opened file. Behaviour for existing three-record files is unchanged."
             },
             {
               "file": "proj/src/highscores.h",
@@ -33584,15 +34127,21 @@
           "files": [
             {
               "file": "proj/game.c",
-              "reason": "Stop the collision pair iterator at the list tail before dereferencing the next node, including empty/single lists. Actual owning three-pair/empty/single fixture with null sanitizer traps original; fixed preserves each pair exactly once. Independently initialize missing saved highscore to zero; poisoned Game fixture original exposes uninitialized score, fixed defaults0 and still reads existing150/date. Ordinary optimized native collision code can eliminate the invalid unused read, so this is a proven source UB repair, not a claimed Android crash.",
+              "reason": "Stop the collision pair iterator at the list tail before dereferencing the next node, including empty/single lists. Actual owning three-pair/empty/single fixture with null sanitizer traps original; fixed preserves each pair exactly once. Independently initialize missing saved highscore to zero; poisoned Game fixture original exposes uninitialized score, fixed defaults0 and still reads existing150/date. Ordinary optimized native collision code can eliminate the invalid unused read, so this is a proven source UB repair, not a claimed Android crash. Added a per-type payload release helper and call it before removeLinkedElement on both removal paths. Enemy deletion also clears bullet origin pointers that reference the freed gun so no stale origins remain. Player and the player's separately listed cursor sprite are left owned by the player, avoiding double frees.",
               "originalSha256": "9fa52abecc6ab434dd7de1f88485101368def8bd26d506462cdf4c67cbca787d",
-              "patchedSha256": "77f0e0eebc1cf29feb1e4fa7385f349da655ab7a918f8179389fd1125161a664"
+              "patchedSha256": "102eb798b69fa892f6587e7a7a3e31240df64460553f5d62ed20e2506a16de3a"
             },
             {
               "file": "proj/gun.c",
               "reason": "Initialize current_image0 in both original gun constructors before updateGunAnimation unconditionally indexes the four-frame table. Independently poisoned malloc makes original constructor-to-animation owner fail its idle-frame precondition; fixed actual idle frame0 and next shooting frame1 pass. Existing gun sprite already starts on pistol0; this guarantees the authored idle frame without depending on fresh zeroed heap. No aiming, projectile, cooldown, movement or art changes. This is a genuine uninitialized source state defect on original Minix too, not an emulator adaptation or proven explanation of current native aiming failure.",
               "originalSha256": "2e871906b13b92baa34b2d76078e72005cc269aa7a6ccdee300a451044df6c90",
               "patchedSha256": "9350129747395e38b664bfdaaa3326df69713394cf4caa275c02cb1d93b8a404"
+            },
+            {
+              "path": "proj/linkedEntities.c",
+              "originalSha256": "ec2c4b22132abd6ade1faf3a231f91c0519fefd643987ffeb46d0b4af78d8671",
+              "patchedSha256": "c5b3a00892012d3e3217ac60d220a6be6412927254d22ad43bf7d88631dba65b",
+              "reason": "Update firstElement when the removed node is the head so the list cannot keep a dangling pointer."
             }
           ]
         }
@@ -33826,6 +34375,12 @@
               "originalSha256": "a61c7c99409e542c0194b2f67a9718996b5c4ddcc666ecb211164d5117716037",
               "patchedSha256": "f039c81e3f8a823e77b62f3fc3b5636443c5c118f4a909e2ea4d3d66ff64f69f",
               "reason": "Rename only the external game_round object round and its C identifier references to current_game_round. C99 external namespace reserves the standard math function round independently of header inclusion. Actual original host/WASM compiler collision RED, then real legal/illegal card selection and libc round(+/-1.5) coexist GREEN without compiler suppression or SDK changes. Original rules, art, enum values, strings and comments unchanged."
+            },
+            {
+              "path": "src/prog/functions/aux_func.c",
+              "originalSha256": "2ecaa0cd81a5767f766dbe011bc51bac6e9a317f303ab7036acec96b24e91f24",
+              "patchedSha256": "d8a824c789660e829ff11fd5894060b85328b5f3c466d0752e234191f9e5180a",
+              "reason": "Allocate the six elements the function initializes."
             }
           ]
         },
@@ -34567,7 +35122,14 @@
       "root": "examples/community/ItsDrumond--FEUP-LCOM",
       "source": "https://github.com/ItsDrumond/FEUP-LCOM",
       "revision": "c13b6e1b3dfc66c10765a9f44654f95609ad0a61",
-      "sourcePatches": [],
+      "sourcePatches": [
+        {
+          "file": "proj/src/models/bullet.c",
+          "originalSha256": "fc6a678aef737583975cffb97f47d4d14bf0d4cb3d35998b7b370bc1f78ad760",
+          "patchedSha256": "ddb0179d78296549b7da34b7bb8741eb5d0a56c20699f118770f94d460119f34",
+          "reason": "Allocate the next free bullet slot instead of a never-reused running index."
+        }
+      ],
       "license": {
         "status": "not established",
         "files": []
@@ -35349,6 +35911,12 @@
               "patchedSha256": "6ef3c9a0da957fbeda0d767c9e9697f19c773e40abf52369788d10b37104e03b",
               "reason": "Restarting medium already constructs the20x16 board; retain MEDIUM instead of switching to the BEGINNER16x16 renderer/input dispatcher.",
               "verification": "Actual owning keyboard event handler with ordinary R make: original resets20x16 but sets BEGINNER RED; corrected handler retains MEDIUM GREEN. Actual browser shows20columns before and afterR;16 fortified ARM64 objects PASS."
+            },
+            {
+              "path": "proj/src/game/game_logic.c",
+              "originalSha256": "977a3a6863bb0e7190f4625f028ede5e46a42926b4a30f1cafbe472c44617414",
+              "patchedSha256": "abe8263e05c5ad3a29f2c3452923f0820e2c38ae14c8ad7b488f668933924fae",
+              "reason": "edge clicks produced matrix indices equal to the board dimensions (16/20/28 columns, 16/20 rows), accessing one past the boards; clamp to the active board size"
             }
           ]
         }
@@ -35435,8 +36003,8 @@
             {
               "file": "proj/src/game_loop.c",
               "originalSha256": "a8f1658f76a5f180c4aff488bc93d4766f1459209012bbc2f1d08952f41e7c53",
-              "patchedSha256": "c8584711af11f8b7393a8a4354e5a7078c3116b1fea69048573a618011eddf21",
-              "reason": "Measure original drag-stick distance and angle from its visible32pixel sprite center; place the dragged sprite around the pointer. Holding the visible center stays neutral, right/down drags follow original orientation and release recenters.",
+              "patchedSha256": "594aeeb2239d4c4975c1c29109710c2f07a3455f7f9a425aa8c12fa67c590014",
+              "reason": "Measure original drag-stick distance and angle from its visible32pixel sprite center; place the dragged sprite around the pointer. Holding the visible center stays neutral, right/down drags follow original orientation and release recenters. Reduce each displayed decimal digit modulo 10 so the index stays within numbers[10].",
               "verification": "Actual whole game_loop.c control_stick consumer: visible center816,666 over original32pixel sprite800,650 leaves angle90 neutral; right846,666 and down816,696 follow independently derived angles/positions; release recenters. Original SIGABRT at neutral center RED, corrected source GREEN. Final-source ordinary browser neutral center, held steering and both circuits pass."
             },
             {
@@ -35646,6 +36214,12 @@
               "originalSha256": "249742c863eb566c7b001e3b1d88c8cb22e4a56dab3619d421967e05139c8407",
               "patchedSha256": "01d7698bc8e56c8cf461eb857354790d33ea643e278cd634af39b57c7517dd80",
               "reason": "Restore missing final closing brace in original main, which otherwise fails actualcompiler syntax check."
+            },
+            {
+              "path": "LCOM/projeto/src/Menu.c",
+              "originalSha256": "cf80b153cdfd4aae6ea8acf95bf85e78b14b0981c65ba013fe5cd7c462e4fcf7",
+              "patchedSha256": "4f1e113419add72185643a8b3232dc332503bec0a70befce52101442142665fb",
+              "reason": "Use a writable score-line buffer, return cleanly when the score file is absent, and avoid fclose(NULL) when saving."
             }
           ]
         }
@@ -35763,6 +36337,12 @@
               "originalSha256": "ea2292569db4c5eccc9d3a96c70d5611ef92538a7dcb3c02d00eeeb6c8194311",
               "patchedSha256": "a41e0c26dee8c3eada9cb5e0b11c154acb79ea42b23f78c206e339f441aef59c",
               "reason": "Own result WPM and100%accuracy strings need complete integer/percent/terminator storage; use bounded snprintf."
+            },
+            {
+              "path": "proj/src/states/scoreboard.c",
+              "originalSha256": "2293026adb999994924bb016afc1125a29dc17026d39cb789e32162d6e3d7c62",
+              "patchedSha256": "c4dafb62d08b2b7261c325c759fa284ce5d1ab1f549f836dc6ee020905f0fbcf",
+              "reason": "Check j >= 0 before the strncmp comparison."
             }
           ]
         }

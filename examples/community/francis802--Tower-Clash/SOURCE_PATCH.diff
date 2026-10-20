@@ -13,3 +13,29 @@
    uint32_t current_color;
    for (int h = 0; h < height; h++)
    {
+
+--- a/src/model/model.c
++++ b/src/model/model.c
+@@ -216,8 +216,6 @@ void destroy_sprites()
+     destroy_sprite(backButton);
+     destroy_sprite(gameOver);
+     destroy_sprite(gamePaused);
+-    destroy_sprite(gameOver);
+-    destroy_sprite(gamePaused);
+     destroy_sprite(orangeWon);
+     destroy_sprite(purpleWon);
+     destroy_Vbar();
+--- a/src/view/view.c
++++ b/src/view/view.c
+@@ -438,6 +438,11 @@ void player_mechanics()
+     {
+       velocity--;
+     }
++    // barV has exactly 51 frames; keep the gauge index inside its table.
++    if (velocity < 0)
++      velocity = 0;
++    else if (velocity > 50)
++      velocity = 50;
+     if (velocity == 50 || velocity == 0)
+     {
+       barcontrol = !barcontrol;

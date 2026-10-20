@@ -4,7 +4,14 @@
   "project": "src",
   "licenseFiles": [],
   "licenseStatus": "No license found in upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "src/game_logic.c",
+      "originalSha256": "7b9835bdfd8b0e0845bade77acae19ba020ba349205e1169f59b76825ff4d52c",
+      "patchedSha256": "c67b716e89f25854139df52af3132b84b409d071a89ce58278564cf4b5e24402",
+      "reason": "Let Escape end the match even while win_player is DRAW, so a tied game can be exited."
+    }
+  ],
   "sha256": {
     ".clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",
     ".gitignore": "47b97228805caad0da2ba6b87f4f3e8b3affc2f33b982580cbc2d6726d7b373b",

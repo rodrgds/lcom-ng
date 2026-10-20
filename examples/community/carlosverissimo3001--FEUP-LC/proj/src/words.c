@@ -129,7 +129,12 @@ char* (get_random_word)(){
 }
 
 void(add_character)(char *str, char c) {
-  str[strlen(str)] = c;
+  size_t len = strlen(str);
+  if (len >= MAX_WORD_SIZE) {
+    return;
+  }
+  str[len] = c;
+  str[len + 1] = '\0';
 }
 
 char (remove_character)(char *str){

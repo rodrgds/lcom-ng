@@ -4,7 +4,14 @@
   "project": "proj/src",
   "licenseFiles": [],
   "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "proj/src/game.c",
+      "originalSha256": "4444dd0fed28d3473dd97aaa220e605fda168ae24e6d38e6ca7a156a4e21503f",
+      "patchedSha256": "81a17ca009879f56cc8466613cd3fed2d38e83860197256367f7312361630a71",
+      "reason": "Terminate the 5-character player name so strlen and the save-score drawing stay inside the allocation."
+    }
+  ],
   "sha256": {
     "README.md": "73a7db23971338d4e7aa60d71da1a40960d7905a135c6770cc39fbeb4f6a190e",
     "proj/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",

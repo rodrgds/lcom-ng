@@ -44,7 +44,14 @@ void (createBomb)(Bombs *b, int x, int y, bool down){
  */
 void (removeBomb)(Bombs *b, int indexToRemove) {
     if (indexToRemove < 0 || indexToRemove >= b->sizeBombs) return;
-    free(b->bombs[indexToRemove]);
+    Object *removed = b->bombs[indexToRemove];
+    if (removed != NULL) {
+        if (removed->sprite != NULL) {
+            free(removed->sprite->map);
+            free(removed->sprite);
+        }
+        free(removed);
+    }
     for (int i = indexToRemove; i < (b->sizeBombs - 1); i++) {
         b->bombs[i] = b->bombs[i + 1];
     }

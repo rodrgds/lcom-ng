@@ -4,7 +4,14 @@
   "project": "proj/src",
   "licenseFiles": [],
   "licenseStatus": "No license found in upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "proj/src/game.c",
+      "originalSha256": "2c922a8f7960a331a931ed57f26c71462b7765c465914d83e5679dc1f8d8217f",
+      "patchedSha256": "c5a0d57daccb0d063ce8410280daf182dbfc1f5b184119b501f3230d5f8d92d3",
+      "reason": "Ignore letters once the expected length is reached, and cap level at MAX_SEQUENCE so sequence and display buffers stay in bounds."
+    }
+  ],
   "sha256": {
     "README.md": "eaeeaa649ded8321496b4f5d487fedeebc4cb253ec635b03033cfcde7ac3ea77",
     "proj/src/.clang-format": "21f16a6a06233c07c0e79e98ef4d4bbdef13dc94517cd1eaa8d9daa014531829",

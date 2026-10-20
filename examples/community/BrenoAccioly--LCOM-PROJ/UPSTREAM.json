@@ -4,7 +4,14 @@
   "project": "src",
   "licenseFiles": [],
   "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "src/maze.c",
+      "originalSha256": "8aa9cf5cf3d228335f697103c2f01c649ca5c1ff1d60a282825c4acaf14260e4",
+      "patchedSha256": "2459cdb38ca7335c927ff3708fac90d9a97dadfe9d8bd5b6c6f2425d6d452e79",
+      "reason": "Place keys and traps only on still-empty cells, guaranteeing seven distinct keys and no trap overwrite."
+    }
+  ],
   "sha256": {
     "README.md": "c51c639dd36d25b233e6219c11e65e1a30eb66cd7b013ba18df6a56d59817226",
     "src/Makefile": "47d4959e778793c7478b90ff67ede16132b4380ef0336fa53beb0b7295470084",

@@ -57,5 +57,19 @@
   "license": {
     "status": "not established",
     "files": []
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Scan every cell and compare only the in-bounds right and down neighbours, covering all horizontal and vertical merge pairs exactly once while keeping the existing game-over rule.",
+      "files": [
+        {
+          "path": "proj/src/2048.c",
+          "originalSha256": "fab3b2bc51896f0db93011a00dc59d289b9043a2cc6ef526505f40ecb492dffb",
+          "patchedSha256": "69335daec4c73c7b9af6524c2d83f115cd5719a34a75e8cd72375c7e2eb73cd7",
+          "reason": "Scan every cell and compare only the in-bounds right and down neighbours, covering all horizontal and vertical merge pairs exactly once while keeping the existing game-over rule."
+        }
+      ]
+    }
+  ]
 }

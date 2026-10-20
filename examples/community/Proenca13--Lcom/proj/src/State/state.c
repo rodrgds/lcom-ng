@@ -368,6 +368,7 @@ void cell_state_mouse(){
                     destroy_game();
                     grid_entry.x = 0;
                     grid_entry.y = 0;
+                    return;
                 }
                 if(grid[grid_entry.x][grid_entry.y]->type == BOMB){
                     draw_state();
@@ -376,6 +377,7 @@ void cell_state_mouse(){
                     destroy_game();
                     grid_entry.x = 0;
                     grid_entry.y = 0;
+                    return;
                 }
                 if(grid[grid_entry.x][grid_entry.y]->type == EMPTY)reveal_near_zeros(grid_entry.x,grid_entry.y);
             }
@@ -432,6 +434,7 @@ void cell_state_keyboard(){
                     destroy_game();
                     grid_entry.x = 0;
                     grid_entry.y = 0;
+                    return;
                 }
                 if(grid[grid_entry.x][grid_entry.y]->type == BOMB){
                     draw_state();
@@ -440,6 +443,7 @@ void cell_state_keyboard(){
                     destroy_game();
                     grid_entry.x = 0;
                     grid_entry.y = 0;
+                    return;
                 }
                 if(grid[grid_entry.x][grid_entry.y]->type == EMPTY)reveal_near_zeros(grid_entry.x,grid_entry.y);
             }

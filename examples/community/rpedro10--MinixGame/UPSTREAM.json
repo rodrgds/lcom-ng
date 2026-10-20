@@ -443,6 +443,12 @@
           "originalSha256": "249742c863eb566c7b001e3b1d88c8cb22e4a56dab3619d421967e05139c8407",
           "patchedSha256": "01d7698bc8e56c8cf461eb857354790d33ea643e278cd634af39b57c7517dd80",
           "reason": "Restore missing final closing brace in original main, which otherwise fails actualcompiler syntax check."
+        },
+        {
+          "path": "LCOM/projeto/src/Menu.c",
+          "originalSha256": "cf80b153cdfd4aae6ea8acf95bf85e78b14b0981c65ba013fe5cd7c462e4fcf7",
+          "patchedSha256": "4f1e113419add72185643a8b3232dc332503bec0a70befce52101442142665fb",
+          "reason": "Use a writable score-line buffer, return cleanly when the score file is absent, and avoid fclose(NULL) when saving."
         }
       ]
     }

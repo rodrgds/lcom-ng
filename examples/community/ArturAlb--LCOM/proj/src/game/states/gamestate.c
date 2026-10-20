@@ -101,6 +101,7 @@ void createBullet(GameState *state, uint16_t xOrigin, uint16_t yOrigin, uint16_t
 
     // Calculate Unit Vector
     float distance = sqrtf(xDifference * xDifference + yDifference * yDifference);
+    if (distance == 0) return;
 
     Object *object = malloc(sizeof(* object));
     object->x = xOrigin;

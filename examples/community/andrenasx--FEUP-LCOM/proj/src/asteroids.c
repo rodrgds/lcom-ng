@@ -9,7 +9,7 @@ void createAsteroidsArray(Game* game){
 
 void createAsteroid(Game* game, int size, int x, int y){
   int idx=0;
-  while(game->gamesprites->asteroids[idx]!=NULL){
+  while(idx<50 && game->gamesprites->asteroids[idx]!=NULL){
     idx++;
   }
   if(idx<50){

@@ -165,6 +165,12 @@
           "reason": "Original score save writes into a string literal, overflows/frees caller stack name, and score read frees a local array. Format unchanged fixed-width records in owned local buffers, preserve caller storage, bound reads, handle missing read file, and release every allocated sorted entry.",
           "originalSha256": "d6209bfba5a5001ddf7de3c896fdcfed42e27e0546548521155a0c1b612f9f9c",
           "patchedSha256": "409884537ebf6fe3302264e5c67abd704e777ca07ebde32eced5aa0c82b0b854"
+        },
+        {
+          "path": "proj/src/libs/rtc/src/rtc.c",
+          "originalSha256": "55087d6f8fceb3519eac9a62c36dbfcb34810085f2010f52a0b949ad0d95b89b",
+          "patchedSha256": "c5869d6a3a04c2b5360e7c814c4de9cdacf00245c7672b892a5e52291090a92a",
+          "reason": "the RTC weekday register is 1-based (7 for Saturday), but the switch handled 0..6 only, leaving the pointer uninitialized for strcpy in the menu; initialize it to a safe fallback"
         }
       ]
     }

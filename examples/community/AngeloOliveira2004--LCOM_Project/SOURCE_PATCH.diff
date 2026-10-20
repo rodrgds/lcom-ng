@@ -35,3 +35,46 @@
  
          move->piece = piece;
          move->init_pos->x = piece->position.x;
+
+--- a/proj/src/mvc/controller/controller.c
++++ b/proj/src/mvc/controller/controller.c
+@@ -106,6 +106,7 @@ void game_loop(struct Game *game) {
+     free(game);
+     erase_buffer();
+     draw_white_wins();
++    return;
+   }else if(king_count == -1){
+     current_state = WINNER_SCREEN;
+     dt.day = 0;
+@@ -120,6 +121,7 @@ void game_loop(struct Game *game) {
+     free(game);
+     erase_buffer();
+     draw_black_wins();
++    return;
+   }
+ 
+   if(game->White_player.clock.minutes == 0 && game->White_player.clock.seconds == 0 && game->White_player.clock.a_tenth_of_a_second == 0){
+@@ -136,6 +138,7 @@ void game_loop(struct Game *game) {
+     free(game);
+     erase_buffer();
+     draw_black_wins();
++    return;
+   }
+ 
+   if(game->Black_player.clock.minutes == 0 && game->Black_player.clock.seconds == 0 && game->Black_player.clock.a_tenth_of_a_second == 0){
+@@ -152,6 +155,7 @@ void game_loop(struct Game *game) {
+     free(game);
+     erase_buffer();
+     draw_white_wins();
++    return;
+   }
+ }
+ 
+@@ -446,6 +450,7 @@ void router() {
+             free(game);
+             erase_buffer();
+             draw_black_wins();
++            return;
+           }
+ 
+           if(game->Black_player.clock.minutes <= 0 && game->Black_player.clock.seconds <= 0){

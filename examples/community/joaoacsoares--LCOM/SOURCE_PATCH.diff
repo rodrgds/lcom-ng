@@ -94,3 +94,17 @@
  }
  
  unsigned long getColorFromBuffer(unsigned char* buffer, int x, int y, int width) {
+
+--- a/lcom1415-t3g15/projeto/src/Whack.c
++++ b/lcom1415-t3g15/projeto/src/Whack.c
+@@ -39,7 +39,9 @@ void isDone(Whack* whack) {
+ 	case SETTINGS:
+ 		if (((OptionsMenu*) (whack->state))->choiceExit) {
+ 			resetMouse();
+-			whack->dif = whack->dif * ((OptionsMenu*) (whack->state))->difficulty;
++			/* Apply the selected difficulty to the base interval instead of
++			 * compounding it on every options visit (which can reach zero). */
++			whack->dif = 120 * ((OptionsMenu*) (whack->state))->difficulty;
+ 			whack->time = ((OptionsMenu*) (whack->state))->gameTime;
+ 			changeState(whack, MAINMENU);
+ 		}

@@ -91,5 +91,19 @@
       "evidence": "build/arcade-100/next8-native-gameplay2/results.json",
       "review": "Green snake changes orientation, red tongue renders on Fire and original survival counter reaches5. Actual native controls and Home cleanup reviewed."
     }
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Bound the random attempts and fall back to a full grid scan; also guard a zero grid size.",
+      "files": [
+        {
+          "path": "proj/src/game/apple.c",
+          "originalSha256": "20fc329b28a001ee1ec943766b07e58922a5dc020e7394e6b498f34eb7c21a28",
+          "patchedSha256": "ed2e7016d1af0bb0c37a37398aec8d02c26860c5b5b212d8aaacd4f9ecc39041",
+          "reason": "Bound the random attempts and fall back to a full grid scan; also guard a zero grid size."
+        }
+      ]
+    }
+  ]
 }

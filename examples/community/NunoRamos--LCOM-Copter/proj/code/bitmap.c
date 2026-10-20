@@ -256,11 +256,15 @@ void drawBest(int distance, Bitmap* bmp){
 
 void drawTime(char* time){
 
-	Bitmap* teste;
-	Bitmap* clock;
+	static Bitmap* teste = NULL;
+	static Bitmap* clock = NULL;
 
-	teste=loadBitmap("/home/lcom/repos/proj/images/abcp.bmp");
-	clock=loadBitmap("/home/lcom/repos/proj/images/clock.bmp");
+	if(teste == NULL)
+		teste=loadBitmap("/home/lcom/repos/proj/images/abcp.bmp");
+	if(clock == NULL)
+		clock=loadBitmap("/home/lcom/repos/proj/images/clock.bmp");
+	if(teste == NULL || clock == NULL)
+		return;
 
 
 	drawBitmapWithoutBackground(clock,2,10);
@@ -273,9 +277,6 @@ void drawTime(char* time){
 	drawNumbers(teste,105,2, ':');
 	drawNumbers(teste,120,2, time[4]);
 	drawNumbers(teste,135,2, time[5]);
-
-	deleteBitmap(teste);
-	deleteBitmap(clock);
 
 }
 

@@ -31,8 +31,9 @@ return sp;
 void destroy_sprite(Sprite *sp) {
 if( sp == NULL )
 return;
-if( sp ->map )
-free(sp->map);
+/* Sprite maps are borrowed from the game image table, which is loaded once
+   and shared by every sprite created from the same XPM. Freeing a map here
+   would double-free it and leave other sprites with a dangling pointer. */
 free(sp);
 sp = NULL; // XXX: pointer is passed by value
 // should do this @ the caller

@@ -112,7 +112,7 @@ bool check_collisions_bullet(Bullet * bullet, Enemy ** enemies, unsigned int num
 
       // CHECK COLLISIONS WITH WALLS
       for (unsigned int i = bullet->x; i <= bullet->x + bullet->img.width; i++) {
-        for (unsigned int j = bullet->y; j >= bullet->y - bullet->speed; j--) {
+        for (int j = (int)bullet->y; j >= 0 && j >= (int)bullet->y - (int)bullet->speed; j--) {
           if(*(level->level_walls + i + j * hres) == 0) {
             bullet->y = j + 1;
             bullet->active = false;
@@ -167,7 +167,7 @@ bool check_collisions_bullet(Bullet * bullet, Enemy ** enemies, unsigned int num
       }
 
       // CHECK COLLISIONS WITH WALLS
-      for (unsigned int i = bullet->x; i >= bullet->x - bullet->speed; i--) {
+      for (int i = (int)bullet->x; i >= 0 && i >= (int)bullet->x - (int)bullet->speed; i--) {
         for (unsigned int j = bullet->y; j <= bullet->y + bullet->img.height; j++) {
           if(*(level->level_walls + i + j * hres) == 0) {
             bullet->x = i - 1;

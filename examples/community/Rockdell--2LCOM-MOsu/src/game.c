@@ -139,6 +139,7 @@ int game_menu() {
 					}
 
 					//Temporary queues
+					queue old_circles_menu = circles_menu;
 					queue tmp_q1 = q_new();
 
 					while (!empty(circles_menu)) {
@@ -153,6 +154,8 @@ int game_menu() {
 
 					//Recreate "circles_menu" queue
 					circles_menu = tmp_q1;
+					free(old_circles_menu->buf);
+					free(old_circles_menu);
 
 					event_t mouse_over = (event_t) { ACTIVATE, 0x00, NULL , cursor };
 					mosu_handler(&mouse_over);
@@ -469,6 +472,8 @@ int game_mode_easy() {
 					}
 
 					//Temporary queues
+					queue old_circles = circles;
+					queue old_past_circles = past_circles;
 					queue tmp_q1 = q_new();
 					queue tmp_q2 = q_new();
 
@@ -501,6 +506,8 @@ int game_mode_easy() {
 
 					//Recreate "circles" queue
 					circles = tmp_q1;
+					free(old_circles->buf);
+					free(old_circles);
 
 					//Tick the "circles_past" queue
 					while (!empty(past_circles)) {
@@ -519,6 +526,8 @@ int game_mode_easy() {
 
 					//Recreate "circles_past" queue
 					past_circles = tmp_q2;
+					free(old_past_circles->buf);
+					free(old_past_circles);
 
 					//Draw rectangle with player's life indication
 					vg_drawRectangle(getPlayer().life);
@@ -794,6 +803,8 @@ int game_mode_hard() {
 					}
 
 					//Temporary queues
+					queue old_circles = circles;
+					queue old_past_circles = past_circles;
 					queue tmp_q1 = q_new();
 					queue tmp_q2 = q_new();
 
@@ -828,6 +839,8 @@ int game_mode_hard() {
 
 					//Recreate "circles" queue
 					circles = tmp_q1;
+					free(old_circles->buf);
+					free(old_circles);
 
 					//Tick the "circles_past" queue
 					while (!empty(past_circles)) {
@@ -848,6 +861,8 @@ int game_mode_hard() {
 
 					//Recreate "circles_past" queue
 					past_circles = tmp_q2;
+					free(old_past_circles->buf);
+					free(old_past_circles);
 
 					//Draw rectangle with player's life indication
 					vg_drawRectangle(getPlayer().life);

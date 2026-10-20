@@ -4,7 +4,14 @@
   "project": "proj/src",
   "licenseFiles": [],
   "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "proj/src/game.c",
+      "originalSha256": "30025d39f3e551c0ba1efda485c8a0ec61fe86b7f06b0e565d430a6d1cfd8d04",
+      "patchedSha256": "f453cb261acb65a5d4f105fc56a87c743a70a353cf5c0c766b9c6348d4432554",
+      "reason": "Bound randomPlay() to playable columns so a full board cannot spin forever in the RTC alarm handler."
+    }
+  ],
   "sha256": {
     "README.md": "ac4e3388f51192928974cdd958f5cc7310dbc0d10f8ef98ca7b08c0a076cc219",
     "proj/src/Doxyfile": "9f4c5390b5f3b97cefabbce622b4c40d993402c5ca0534c80b0171674cf8689f",

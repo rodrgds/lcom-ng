@@ -89,8 +89,26 @@
         {
           "path": "model.c",
           "originalSha256": "89c30122dccef89dedf8cfd409cf947b029cc382f8c4a43c95080406e7487c98",
-          "patchedSha256": "4cad824e73cb6e9834f4d3b9fc2e24c1d88bf103d0509779a935f7acff679864",
-          "reason": "Move and click only after a complete three-byte packet so the previous Y or repeated previous X/Y cannot affect menu input."
+          "patchedSha256": "576c3f9a0a97c1a3bf11b964d712b1dda806d1ca3b2ce3028877814443e31457",
+          "reason": "Move and click only after a complete three-byte packet so the previous Y or repeated previous X/Y cannot affect menu input. prepareGame frees every live bomb and bullet object, including its sprite map and sprite struct, before freeing the container arrays."
+        },
+        {
+          "path": "classes/Bomb.c",
+          "originalSha256": "86ed556b022eda1c66888669b2dedfd72df08877f4b33075d126ea9471c9135a",
+          "patchedSha256": "fe15d73e38a1a3fdbbfcbbb9d8b6cf6b73636ebd84630f52b28bc39685e15348",
+          "reason": "Release each removed bomb/bullet Sprite and its xpm_load pixel buffer."
+        },
+        {
+          "path": "classes/Plane.c",
+          "originalSha256": "fe4d3ea88b6e5f45affe2fcfc4dca97ff1a4dec7d80cf13505d4d745dbbeadd5",
+          "patchedSha256": "2d23831780aa62cf645fbc2a951552da9bab1d8e7f20ae63c707a153c5b357c2",
+          "reason": "freePlanes now releases each active plane object's sprite map, sprite struct and object, matching removePlane."
+        },
+        {
+          "path": "classes/Sprite.c",
+          "originalSha256": "38327c9cb98e02611ef8aed8de47f7ec72d8a171432352bb77c06586ef803d93",
+          "patchedSha256": "9ced7396a850b71234967efbdd813b6aff4fad3e729a2280a05b57f57e5fa9f4",
+          "reason": "Free the previous pixel map when changeSprite() installs a new XPM."
         }
       ],
       "reproduction": "Real CLI menu capture: normal movement20,-10 then neutral0,0 renders0,0 while reporting is disabled. Raw PS2 equivalent bypasses reporting and renders60,30 because partial packets move the cursor. Both render20,10 after corrections. Existing graphic.c correction retains vm_unmap_phys for mapped framebuffers, verified by the original Close-menu reproduction."

@@ -37,3 +37,105 @@
            }
            if (msg.m_notify.interrupts & serialIRQ) {
              serial_ih();
+
+--- a/classes/Bomb.c
++++ b/classes/Bomb.c
+@@ -44,7 +44,14 @@ void (createBomb)(Bombs *b, int x, int y, bool down){
+  */
+ void (removeBomb)(Bombs *b, int indexToRemove) {
+     if (indexToRemove < 0 || indexToRemove >= b->sizeBombs) return;
+-    free(b->bombs[indexToRemove]);
++    Object *removed = b->bombs[indexToRemove];
++    if (removed != NULL) {
++        if (removed->sprite != NULL) {
++            free(removed->sprite->map);
++            free(removed->sprite);
++        }
++        free(removed);
++    }
+     for (int i = indexToRemove; i < (b->sizeBombs - 1); i++) {
+         b->bombs[i] = b->bombs[i + 1];
+     }
+--- a/classes/Sprite.c
++++ b/classes/Sprite.c
+@@ -50,11 +50,12 @@ void drawSprite(Sprite *sprite){
+  */
+ void changeSprite(Sprite *sp, xpm_map_t xpm){
+     xpm_image_t img;
+-    sp->map = (uint32_t *)xpm_load(xpm, XPM_8_8_8_8, &img);
+-    if(sp->map == NULL) {
+-        free(sp);
++    uint32_t *new_map = (uint32_t *)xpm_load(xpm, XPM_8_8_8_8, &img);
++    if(new_map == NULL) {
+         return;
+     }
++    free(sp->map);
++    sp->map = new_map;
+     sp->width = img.width; 
+     sp->height= img.height;
+ }
+--- a/classes/Plane.c
++++ b/classes/Plane.c
+@@ -51,7 +51,15 @@ Plane* (createPlane)(Planes *b, bool left) {
+  */
+ void (removePlane)(Planes *b, int indexToRemove){
+     if (indexToRemove < 0 || indexToRemove >= b->sizePlanes) return;
+-    free(b->plane[indexToRemove]);
++    Plane *removed = b->plane[indexToRemove];
++    if (removed->planeObject != NULL) {
++        if (removed->planeObject->sprite != NULL) {
++            free(removed->planeObject->sprite->map);
++            free(removed->planeObject->sprite);
++        }
++        free(removed->planeObject);
++    }
++    free(removed);
+     for (int i = indexToRemove; i < (b->sizePlanes - 1); i++) {
+         b->plane[i] = b->plane[i + 1];
+     }
+@@ -106,7 +114,13 @@ void (planeMovement)(Planes *PlanesArray, int index){
+ void (freePlanes)(Planes* planes) {
+     if (planes == NULL) return;
+     for (int i = 0; i < planes->sizePlanes; i++) {
+-        free(planes->plane[i]->planeObject);
++        if (planes->plane[i]->planeObject != NULL) {
++            if (planes->plane[i]->planeObject->sprite != NULL) {
++                free(planes->plane[i]->planeObject->sprite->map);
++                free(planes->plane[i]->planeObject->sprite);
++            }
++            free(planes->plane[i]->planeObject);
++        }
+         free(planes->plane[i]);
+     }
+     free(planes->plane);
+--- a/model.c
++++ b/model.c
+@@ -419,8 +419,28 @@ void (manageOutInput)(){
+  */
+ void (prepareGame)(bool solo){
+   freePlanes(planeArray);
++  for (int i = 0; i < bombsArray->sizeBombs; i++) {
++    Object *bomb = bombsArray->bombs[i];
++    if (bomb != NULL) {
++      if (bomb->sprite != NULL) {
++        free(bomb->sprite->map);
++        free(bomb->sprite);
++      }
++      free(bomb);
++    }
++  }
+   free(bombsArray->bombs);
+   free(bombsArray);
++  for (int i = 0; i < bulletArray->sizeBombs; i++) {
++    Object *bullet = bulletArray->bombs[i];
++    if (bullet != NULL) {
++      if (bullet->sprite != NULL) {
++        free(bullet->sprite->map);
++        free(bullet->sprite);
++      }
++      free(bullet);
++    }
++  }
+   free(bulletArray->bombs);
+   free(bulletArray);
+   planeArray = create_PlanesArray(30);

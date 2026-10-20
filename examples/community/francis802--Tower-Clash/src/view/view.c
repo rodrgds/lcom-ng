@@ -438,6 +438,11 @@ void player_mechanics()
     {
       velocity--;
     }
+    // barV has exactly 51 frames; keep the gauge index inside its table.
+    if (velocity < 0)
+      velocity = 0;
+    else if (velocity > 50)
+      velocity = 50;
     if (velocity == 50 || velocity == 0)
     {
       barcontrol = !barcontrol;

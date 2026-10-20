@@ -297,7 +297,7 @@ int remove_finished_lines(Board * board){
 
 	board_ptr += (board->width * FACE_LENGTH * 21) + FACE_LENGTH;				//??
 
-	unsigned int i,j, counter;
+	unsigned int i,j, counter = 0;
 	for (i = 20; i > 0; i--){
 		for (j = 0; j< 10; j++){
 			//counts the number of pieces in line

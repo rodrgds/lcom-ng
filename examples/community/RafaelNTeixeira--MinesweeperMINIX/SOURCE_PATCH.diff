@@ -9,3 +9,30 @@
        break;
      }
      default: 
+
+--- a/proj/src/game/game_logic.c
++++ b/proj/src/game/game_logic.c
+@@ -6,11 +6,21 @@ int y_matrix, x_matrix;
+ int selected_x = 0, selected_y = 0;
+ 
+ int getMatrixIndexX(int x) {
+-  return round((cursor_pos.x - x) / 16);
++  int index = round((cursor_pos.x - x) / 16);
++  if (index < 0)
++    index = 0;
++  if (x_tiles > 0 && index >= x_tiles)
++    index = x_tiles - 1;
++  return index;
+ }
+ 
+ int getMatrixIndexY(int y) {
+-  return round((cursor_pos.y - y) / 16);
++  int index = round((cursor_pos.y - y) / 16);
++  if (index < 0)
++    index = 0;
++  if (y_tiles > 0 && index >= y_tiles)
++    index = y_tiles - 1;
++  return index;
+ }
+ 
+ int getXCoordenatesPressedCell_16x16(int x) {

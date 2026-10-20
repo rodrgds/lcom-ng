@@ -377,12 +377,13 @@ void game_over_test(_2048* game){
 				}
 			}
 		if(over)
-			for(i = 1; i < MATRIX_SIZE -1; i++)
-				for(j = 1; j < MATRIX_SIZE -1; j++)
-					over &= game->matrix[i][j] != game->matrix[i+1][j]&&
-					game->matrix[i][j] != game->matrix[i-1][j]&&
-					game->matrix[i][j] != game->matrix[i][j+1]&&
-					game->matrix[i][j] != game->matrix[i][j-1];
+			for(i = 0; i < MATRIX_SIZE; i++)
+				for(j = 0; j < MATRIX_SIZE; j++){
+					if(i + 1 < MATRIX_SIZE)
+						over &= game->matrix[i][j] != game->matrix[i+1][j];
+					if(j + 1 < MATRIX_SIZE)
+						over &= game->matrix[i][j] != game->matrix[i][j+1];
+				}
 
 		game->over = over;
 	}

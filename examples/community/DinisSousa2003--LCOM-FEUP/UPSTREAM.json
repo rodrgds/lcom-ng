@@ -64,7 +64,14 @@
     "**/*.pdf",
     "**/.DS_Store"
   ],
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "file": "proj/src/video/video.c",
+      "originalSha256": "203f873a47036a3402aadb7b2482d00db6614a853492b0cb03d882da8f66b717",
+      "patchedSha256": "b5306532ac1b6c899ed0ea5811c3f5ff095818522789bf959ed311eb765ea7d9",
+      "reason": "Use >= bounds checks so edge coordinates are rejected before the pixel index is computed."
+    }
+  ],
   "controlsRationale": "Original nested src Makefile is the real game entry. W/S make events need repeat during touch holds. Menu arrows/ENTER, relative pointer and Speed(left)/Wall(right) expose authored solo powers; UART-only two-player mode not promised.",
   "previewEvidence": {
     "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence14/DinisSousa2003--LCOM-FEUP-02-score-canvas.png",
@@ -88,7 +95,7 @@
       "status": "passed",
       "evidence": "build/arcade-100/a75-reviewed-native/results.json",
       "apkSha256": "0eb52ac47b13b323ab9b9fae4e5027e4b4acfb43b625045f13b78b324465c2c6",
-      "demonstrated": "Root inspected blue paddle after W hold218screenpixels upward and after S131pixels downward, live rally and positive1\u20130 score, visible power buttons, Home isolated-process cleanup."
+      "demonstrated": "Root inspected blue paddle after W hold218screenpixels upward and after S131pixels downward, live rally and positive1–0 score, visible power buttons, Home isolated-process cleanup."
     }
   }
 }

@@ -112,6 +112,7 @@ void destroy_edittext(){
 
 struct EditText create_edittext(int x, int y, bool focused){
   struct EditText edt;
+  memset(edt.text, 0, sizeof(edt.text));
   edt.x = x;
   edt.y = y;
   edt.t_size = 0;
@@ -126,13 +127,16 @@ void receive_input(struct EditText* edt, uint8_t d){
   if (edt->focused){
     if (d == BACKSPACE){
       edt->t_size = (edt->t_size > 0)? edt->t_size-1 : 0;
+      edt->text[edt->t_size] = '\0';
       return;
     }
     if (edt->t_size >= 25)
       return;
     char input;
-    if (convert_to_char(&input, d))
+    if (convert_to_char(&input, d)) {
       edt->text[edt->t_size++] = input;
+      edt->text[edt->t_size] = '\0';
+    }
   }
 }
 

@@ -254,8 +254,8 @@
         {
           "file": "proj/code/game.c",
           "originalSha256": "4f28dc926509be82b6e750c5caca2a36be77d119a552b15c222441611c6eeaac",
-          "patchedSha256": "79e2e6d49e38b63ba2e5a21b508eefd4e978bbc737fc7395a875263971ed848d",
-          "reason": "Ignore a stationary right-click instead of multiplying zero forever, and reuse dead block slots without exceeding the declared256entry table.",
+          "patchedSha256": "3f7f30756dd2c970f9e18e7bb90e50fae7d7d363e9f621cd527f01f5f31dfeb4",
+          "reason": "Ignore a stationary right-click instead of multiplying zero forever, and reuse dead block slots without exceeding the declared256entry table. Load the cursor once in Start() and reuse it in the mouse handler.",
           "verification": "Original zero-vector owner times out; fixed zero tap returns and100,-150 retains authored speed-4,-6. Original nextLevel writes index256; corrected controlled twelve-column spawn reuses dead slots while preserving an existing live block."
         },
         {

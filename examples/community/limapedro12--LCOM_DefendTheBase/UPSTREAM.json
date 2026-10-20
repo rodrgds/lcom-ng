@@ -150,5 +150,25 @@
         "No completed wave or projectile hit claimed."
       ]
     }
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Allow the next-slot pointers to be omitted so the last tower slot cannot write past the array; placement still works for the final slot. Pass NULL for the next-slot pointers when placing the final tower slot, avoiding the out-of-bounds &towers_level_X[i+1] access.",
+      "files": [
+        {
+          "path": "proj/src/drag.c",
+          "originalSha256": "316ef032146f200fbd256bed49fbdffcacb0ca5b31e80959f7a7bec481f1a046",
+          "patchedSha256": "bb74ca0d3d3afc8a9344d4b6ee7c82ad6cdfc28ba28c7482c30c8869c6876584",
+          "reason": "Allow the next-slot pointers to be omitted so the last tower slot cannot write past the array; placement still works for the final slot."
+        },
+        {
+          "path": "proj/src/game.c",
+          "originalSha256": "60e8052b77460a53e711bdd33421443555d4091082507e2f908b49c8c33f9815",
+          "patchedSha256": "311ef4c84037c3a31dfc8c54dd96bfc4f6ddb09d3592cd41b57dc9de640b310b",
+          "reason": "Pass NULL for the next-slot pointers when placing the final tower slot, avoiding the out-of-bounds &towers_level_X[i+1] access."
+        }
+      ]
+    }
+  ]
 }

@@ -340,7 +340,8 @@ void keyboard_event_handler(enum game_state* state, uint32_t* key_pressed, enum 
 			strcat(name, to_input);
 		}
 		if (*key_pressed == BACKSPACE_KEY) {
-			name[strlen(name) - 1] = '\0';
+			if (strlen(name) > 0)
+				name[strlen(name) - 1] = '\0';
 		}
 		if (strlen(name) > 8) {
 			name[strlen(name) - 1] = '\0';

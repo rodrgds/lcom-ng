@@ -155,6 +155,14 @@ int (proj_main_loop)(int argc, char* argv[]){
     uint8_t* sete = (xpm_load)(sete_xpm, XPM_8_8_8, &sete_img);
     uint8_t* oito = (xpm_load)(oito_xpm, XPM_8_8_8, &oito_img);
     uint8_t* nove = (xpm_load)(nove_xpm, XPM_8_8_8, &nove_img);
+    /* Load the gameplay sprites once. They are reused by every spawned
+       object; loading them on spawn or per frame leaked a new image each
+       time. */
+    uint8_t* fogo_px = (xpm_load)(fogo_xpm, XPM_8_8_8, &fogo_img);
+    uint8_t* alien_px = (xpm_load)(alien_xpm, XPM_8_8_8, &alien_img);
+    uint8_t* asteroide_px = (xpm_load)(asteroide_xpm, XPM_8_8_8, &asteroides_img);
+    uint8_t* coin_px = (xpm_load)(coin_xpm, XPM_8_8_8, &coin_img);
+    uint8_t* vida_px = (xpm_load)(vida_xpm, XPM_8_8_8, &vida_img);
 
 
 
@@ -253,9 +261,7 @@ int (proj_main_loop)(int argc, char* argv[]){
                 //VIDAS
                 int vida_x=642;
                 for(int i=0; i<vidas_idx;i++){
-                    vidas[i]=(xpm_load)(vida_xpm, XPM_8_8_8, &vida_img);
-                    vg_draw_xpm_proj(vida_img, vida_x,28, vidas[i]);
-                    printf("vidas:%x\n", vidas_idx);
+                    vg_draw_xpm_proj(vida_img, vida_x,28, vida_px);
                     vida_x+=35;
                   }
                 
@@ -266,7 +272,7 @@ int (proj_main_loop)(int argc, char* argv[]){
                     asteroide_idx++;
                     asteroide_x[asteroide_idx]=1100;
                     asteroide_y[asteroide_idx]=rand()%401+50;
-                    asteroides[asteroide_idx]=(xpm_load)(asteroide_xpm, XPM_8_8_8, &asteroides_img);
+                    asteroides[asteroide_idx]=asteroide_px;
                     break;
                   }
                 }
@@ -287,7 +293,7 @@ int (proj_main_loop)(int argc, char* argv[]){
                       et_idx++;
                     et_x[et_idx]=1100;
                     et_y[et_idx]=rand()%401+50;
-                    ets[et_idx]=(xpm_load)(alien_xpm, XPM_8_8_8, &alien_img);
+                    ets[et_idx]=alien_px;
                       break;
                   }
                 }
@@ -302,7 +308,7 @@ int (proj_main_loop)(int argc, char* argv[]){
                     coin_idx++;
                     coin_x[coin_idx]=1100;
                     coin_y[coin_idx]=rand()%401+90;
-                    coins[coin_idx]=(xpm_load)(coin_xpm, XPM_8_8_8, &coin_img);
+                    coins[coin_idx]=coin_px;
                     break;
                   }
                 }
@@ -333,7 +339,7 @@ int (proj_main_loop)(int argc, char* argv[]){
                     fogo_idx++;
                     fogo_x[fogo_idx]=50;
                     fogo_y[fogo_idx]=dog_init_pos+40;
-                    fogos[fogo_idx]=(xpm_load)(fogo_xpm, XPM_8_8_8, &fogo_img);
+                    fogos[fogo_idx]=fogo_px;
                     break;
                   }
                 }
@@ -356,8 +362,6 @@ int (proj_main_loop)(int argc, char* argv[]){
                 }
                 //cao e ets
                 for(int k=1; k<=et_idx; k++){
-                  printf("et_y: %x\n", et_y[k]);
-                  printf("k: %x\n", k);
                   if(((dog_init_pos>=et_y[k] && dog_init_pos<=et_y[k]+83) || 
                   (dog_init_pos+90>=et_y[k] && dog_init_pos+90<=et_y[k]+83) ||
                   (et_y[k]>=dog_init_pos && et_y[k]<=dog_init_pos+90) ||

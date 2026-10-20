@@ -15,7 +15,7 @@ extern int current_stage;
 extern char displayed_word[];
 
 //array to keep track of the wrong guessed letters
-char wrong_letters[6]; 
+char wrong_letters[7]; 
 
 void gameCountdown(int remaining_time) {
 

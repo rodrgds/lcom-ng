@@ -73,73 +73,66 @@ void printSnake(uint8_t * head_up_adr, xpm_image_t head_up_img,uint8_t * head_do
 }
 
 int movement(enum direction snake_dir){
-  Field[newSnake.x][newSnake.y].Head=false;
-  Field[newSnake.x][newSnake.y].Body=true;
+  enum direction move_dir = newSnake.snake_dir;
+  short nx = newSnake.x;
+  short ny = newSnake.y;
 
   if (snake_dir==RIGHT){
     if (newSnake.snake_dir==LEFT){ //se carregar na seta direita e a snake estiver a andar para a esquerda continua a andar para a esquerda.
-      Field[newSnake.x][newSnake.y].dir=LEFT;
-      newSnake.x--;
-      Field[newSnake.x][newSnake.y].dir=LEFT;
-      Field[newSnake.x][newSnake.y].Head=true;
-      newSnake.snake_dir=LEFT;
+      move_dir=LEFT;
+      nx--;
     }
     else{
-      Field[newSnake.x][newSnake.y].dir=RIGHT;
-      newSnake.x++;
-      Field[newSnake.x][newSnake.y].dir=RIGHT;
-      Field[newSnake.x][newSnake.y].Head=true;
-      newSnake.snake_dir=RIGHT;
+      move_dir=RIGHT;
+      nx++;
     }
   }
   else if (snake_dir==LEFT){
     if (newSnake.snake_dir==RIGHT){
-      Field[newSnake.x][newSnake.y].dir=RIGHT;
-      newSnake.x++;
-      Field[newSnake.x][newSnake.y].dir=RIGHT;
-      Field[newSnake.x][newSnake.y].Head=true;
-      newSnake.snake_dir=RIGHT;
+      move_dir=RIGHT;
+      nx++;
     }
     else{
-      Field[newSnake.x][newSnake.y].dir=LEFT;
-      newSnake.x--;
-      Field[newSnake.x][newSnake.y].dir=LEFT;
-      Field[newSnake.x][newSnake.y].Head=true;
-      newSnake.snake_dir=LEFT;
+      move_dir=LEFT;
+      nx--;
     }
   }
   else if (snake_dir==UP){
     if (newSnake.snake_dir==DOWN){
-      Field[newSnake.x][newSnake.y].dir=DOWN;
-      newSnake.y++;
-      Field[newSnake.x][newSnake.y].dir=DOWN;
-      Field[newSnake.x][newSnake.y].Head=true;
-      newSnake.snake_dir=DOWN;
+      move_dir=DOWN;
+      ny++;
     }
     else{
-      Field[newSnake.x][newSnake.y].dir=UP;
-      newSnake.y--;
-      Field[newSnake.x][newSnake.y].dir=UP;
-      Field[newSnake.x][newSnake.y].Head=true;
-      newSnake.snake_dir=UP;
+      move_dir=UP;
+      ny--;
     }
   }
   else if (snake_dir==DOWN){
     if (newSnake.snake_dir==UP){
-      Field[newSnake.x][newSnake.y].dir=UP;
-      newSnake.y--;
-      Field[newSnake.x][newSnake.y].dir=UP;
-      Field[newSnake.x][newSnake.y].Head=true;
-      newSnake.snake_dir=UP;
+      move_dir=UP;
+      ny--;
     }
     else{
-      Field[newSnake.x][newSnake.y].dir=DOWN;
-      newSnake.y++;
-      Field[newSnake.x][newSnake.y].dir=DOWN;
-      Field[newSnake.x][newSnake.y].Head=true;
-      newSnake.snake_dir=DOWN;
+      move_dir=DOWN;
+      ny++;
     }
   }
+
+  // Reject an off-grid step before touching the field so the head never
+  // indexes outside Field.
+  if (nx < 0 || nx >= N || ny < 0 || ny >= M){
+    return 1;
+  }
+
+  Field[newSnake.x][newSnake.y].Head=false;
+  Field[newSnake.x][newSnake.y].Body=true;
+  Field[newSnake.x][newSnake.y].dir=move_dir;
+
+  newSnake.x=nx;
+  newSnake.y=ny;
+  newSnake.snake_dir=move_dir;
+  Field[newSnake.x][newSnake.y].dir=move_dir;
+  Field[newSnake.x][newSnake.y].Head=true;
 
   if (Field[newSnake.x][newSnake.y].Body || Field[newSnake.x][newSnake.y].Tail){
     return 1;
@@ -152,7 +145,7 @@ int movement(enum direction snake_dir){
 }
 
 void UpdateTail(){
-  int tmpi,tmpj;
+  int tmpi=-1,tmpj=-1;
   for(size_t i=0;i<N;i++){
     for(size_t j=0;j<M;j++){
       if(Field[i][j].Tail){
@@ -163,22 +156,24 @@ void UpdateTail(){
       }
     }
   }
-  if (Field[tmpi][tmpj].dir==DOWN){
+  if (tmpi < 0 || tmpj < 0)
+    return;
+  if (Field[tmpi][tmpj].dir==DOWN && tmpj+1 < M){
       Field[tmpi][tmpj+1].Body=false;
       Field[tmpi][tmpj+1].Tail=true;
       Field[tmpi][tmpj].dir=EMPTY;
   }
-  else if (Field[tmpi][tmpj].dir==UP){
+  else if (Field[tmpi][tmpj].dir==UP && tmpj-1 >= 0){
       Field[tmpi][tmpj-1].Body=false;
       Field[tmpi][tmpj-1].Tail=true;
       Field[tmpi][tmpj].dir=EMPTY;
   }
-  else if (Field[tmpi][tmpj].dir==RIGHT){
+  else if (Field[tmpi][tmpj].dir==RIGHT && tmpi+1 < N){
       Field[tmpi+1][tmpj].Body=false;
       Field[tmpi+1][tmpj].Tail=true;
       Field[tmpi][tmpj].dir=EMPTY;
   }
-  else if (Field[tmpi][tmpj].dir==LEFT){
+  else if (Field[tmpi][tmpj].dir==LEFT && tmpi-1 >= 0){
       Field[tmpi-1][tmpj].Body=false;
       Field[tmpi-1][tmpj].Tail=true;
       Field[tmpi][tmpj].dir=EMPTY;

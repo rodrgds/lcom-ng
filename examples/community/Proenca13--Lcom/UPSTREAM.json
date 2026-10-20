@@ -154,5 +154,19 @@
       "Flag action configured from original F release handler; final screenshot target was already revealed, so successful flag placement not yet demonstrated. Full board win not exhausted."
     ],
     "androidGameplay": "pending"
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "win and mine branches freed the grid then continued to read grid[0][0] via reveal_near_zeros, a use-after-free; return immediately after destroying the game",
+      "files": [
+        {
+          "path": "proj/src/State/state.c",
+          "originalSha256": "e936e3a796c3684c606c0f6f9405873bc1d7421a7afc408343e7b274f1291404",
+          "patchedSha256": "87eb1309fdd058796573e0ce1eed8381f5232e6ff797af938c8cd90ef701a9ef",
+          "reason": "win and mine branches freed the grid then continued to read grid[0][0] via reveal_near_zeros, a use-after-free; return immediately after destroying the game"
+        }
+      ]
+    }
+  ]
 }

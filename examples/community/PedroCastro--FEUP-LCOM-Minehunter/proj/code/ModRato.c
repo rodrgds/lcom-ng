@@ -98,19 +98,26 @@ Rato* newRato(){
 	return rato;
 }
 
+static Bitmap* cursor_bitmaps[3] = {NULL, NULL, NULL};
+
 void drawRato(int cor){
 	if(!rato)
 		newRato();
 	int i,j;
 	trocarRato_buffer();
-	Bitmap* rato_bmp;
-	if(cor == 0)
-		rato_bmp = loadBitmap(PATH"Cursor.bmp");
-	else if(cor == 1)
-		rato_bmp= loadBitmap(PATH"Cursor_1.bmp");
-	else rato_bmp= loadBitmap(PATH"Cursor_2.bmp");
-	drawBitmap(rato_bmp,rato->x,rato->y,ALIGN_LEFT,bufferRato);
-	deleteBitmap(rato_bmp);
+	if(cor < 0 || cor > 2)
+		cor = 2;
+	if(cursor_bitmaps[cor] == NULL){
+		if(cor == 0)
+			cursor_bitmaps[cor] = loadBitmap(PATH"Cursor.bmp");
+		else if(cor == 1)
+			cursor_bitmaps[cor] = loadBitmap(PATH"Cursor_1.bmp");
+		else
+			cursor_bitmaps[cor] = loadBitmap(PATH"Cursor_2.bmp");
+	}
+	if(cursor_bitmaps[cor] == NULL)
+		return;
+	drawBitmap(cursor_bitmaps[cor],rato->x,rato->y,ALIGN_LEFT,bufferRato);
 }
 
 void updateMouse(){

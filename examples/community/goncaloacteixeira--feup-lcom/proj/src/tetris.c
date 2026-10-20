@@ -2258,60 +2258,46 @@ int updateFrame(tetris* game) {
 }
 
 bool checkNearColisionLeft(tetris* game, int blocks, int pos[][2]) {
-	bool colision = false;
-
 	for (int i = 0; i < blocks; i++) {
-		if (pos[i][1] == 0) {
-			colision = true;
-			break;
-		}
+		if (pos[i][1] == 0)
+			return true;
 	}
 
 	for (int i = 0; i < blocks; i++) {
 		if (status[pos[i][0]][pos[i][1] - 1] == true) {
-			colision = true;
-			break;
+			return true;
 		}
 	}
-	return colision;
+	return false;
 }
 
 bool checkNearColisionRight(tetris* game, int blocks, int pos[][2]) {
-	bool colision = false;
-
 	for (int i = 0; i < blocks; i++) {
-		if (pos[i][1] == 14) {
-			colision = true;
-			break;
-		}
+		if (pos[i][1] == 14)
+			return true;
 	}
 
 	for (int i = 0; i < blocks; i++) {
 		if (status[pos[i][0]][pos[i][1] + 1] == true) {
-			colision = true;
-			break;
+			return true;
 		}
 	}
-	return colision;
+	return false;
 }
 
 bool checkNearColisionBottom(tetris* game, int blocks, int pos[][2]) {
-	bool colision = false;
-	
 	for (int i = 0; i < blocks; i++) {
-		if (pos[i][0] + 1 > 21) {
-			colision = true;
-		}
+		if (pos[i][0] + 1 > 21)
+			return true;
 	}
 
 	for (int i = 0; i < blocks; i++) {
 		if (status[pos[i][0] + 1][pos[i][1]] == true) {
-			colision = true;
-			break;
+			return true;
 		}
 	}
 
-	return colision;
+	return false;
 }
 
 int checkColision(tetris* game, int blocks, int pos[][2]) {

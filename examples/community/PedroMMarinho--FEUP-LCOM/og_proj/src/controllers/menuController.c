@@ -115,7 +115,7 @@ void convertScanCodeToChar(char* playerName, uint8_t scanCode){
       playerName[strlen(playerName)-1] = '\0';
     }
   }
-  if(strlen(playerName)< 20){
+  if(strlen(playerName) < 19){
     switch (scanCode)
     {
     case SCANCODE_0:

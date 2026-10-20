@@ -154,6 +154,7 @@ Game* Start() {
     mBall = (uint16_t*)xpm_load(ball_xpm, XPM_5_6_5, &imgBall);
     mBullet = (uint16_t*)xpm_load(bullet_xpm, XPM_5_6_5, &imgBullet);
     mSquare = (uint16_t*)xpm_load(bullet_xpm, XPM_5_6_5, &imgSquare);
+    mCursor = (uint16_t*)xpm_load(cursor_xpm_xpm, XPM_5_6_5, &imgC);
     
     if (startMenu() == 0)
         printf("Started Menu");
@@ -388,7 +389,6 @@ void paintCell(int x, int y){
 
 void process_mouse_event(Game *game, struct packet* pp){
 
-    mCursor = (uint16_t*)xpm_load(cursor_xpm_xpm, XPM_5_6_5, &imgC);
     if (yCursor + imgC.height < get_v_res() && xCursor + imgC.width < get_h_res()){
         clearMouse();
     }

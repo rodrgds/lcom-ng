@@ -39,7 +39,14 @@
     "proj/src/peripherals/timer/timer.c": "ad9eec0fc4fad2945b856ee51b2a56c29161b23c4408fde88e461ee827bda2a4",
     "proj/src/peripherals/utils.c": "57b320cd15b3b5cccaf2ffad1958d0ccb6a9b8485d643067249eadfe5e4c9816"
   },
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "file": "proj/src/game/game.c",
+      "originalSha256": "1bbd54ec40500882c3ca3366ae52ca15873b4fd00bd610e5469c3639e11010f5",
+      "patchedSha256": "cda5b17f93b5429575a97fd3a1935cdd02fe6e4c55d6b0c7a960a8068e1e6420",
+      "reason": "wrong_letters had six slots but a seventh wrong guess is accepted before the game-over check, writing one byte past the global array; size it for the seventh stored letter"
+    }
+  ],
   "license": {
     "status": "missing",
     "files": []

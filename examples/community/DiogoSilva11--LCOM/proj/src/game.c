@@ -553,6 +553,12 @@ void (bulletDirection)() {
   double s = pow(x, 2) + pow(y, 2);
   int hypo = (int)(round(sqrt(s)));
 
+  if (hypo == 0) {
+    // Crosshair and muzzle coincide: there is no direction to shoot in.
+    bullet.hit = true;
+    return;
+  }
+
   bullet.xStep = (x * BULLET_SPEED) / hypo;
   bullet.yStep = (y * BULLET_SPEED) / hypo;
 }

@@ -42,7 +42,14 @@
     "proj/src/xpm_management.h": "2c6c2d09930ad22f01088d9ba6f7e66290e2de6a691a3e45108e11502b8d2087",
     "proj/src/xpm_variables.c": "c3c8d01a3cc0472e8bbc08808cb5029d77957b88de410b70f43c463e07ec2aca"
   },
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "proj/src/game.c",
+      "originalSha256": "cafff8d826a1ec0b3510ebbed195b82b9cf01867eba6a3bdc4e8696080712093",
+      "patchedSha256": "645806cf621818bf60f16c9912171df1de32adcde8b596dfaaa66ec926bdd59e",
+      "reason": "Count the occupied cells from game_table on each check instead of carrying the stale static counter."
+    }
+  ],
   "sourcePreservation": "All32selected original source/header/data files verified against pinned Git blob identities. No original code or art changed.",
   "omissions": "Unused labs, generated documentation, VCS/OS metadata and generated outputs omitted.",
   "licenseStatus": "No license file found in selected tree.",

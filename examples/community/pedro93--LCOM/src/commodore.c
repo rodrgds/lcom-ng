@@ -2039,7 +2039,7 @@ void player1_scout()
 
 		//if the ID generated is of a ship that was already destroyed or of a ship that was already found
 		//generate a new ID
-		while(ships1[(random_id)-1] == 0 || ships1[(random_id)-1] != ships_aux[(random_id)-1])
+		while(ships1[(random_id)-1] == 0)
 			random_id = random()%5+1;
 
 		for(j=0;j<10;j++)
@@ -2113,7 +2113,8 @@ void AI_bombardement()
 			for(i=-1;i<=1;i++)
 			{
 				//if the square is already checked or exceeds the table border limits - do nothing
-				if(player2_board[column+i][row+j].checked == 1|| column+i < 0 || column+i > 9|| row+j < 0 || row+j > 9)
+				if(column+i < 0 || column+i > 9 || row+j < 0 || row+j > 9 ||
+						player2_board[column+i][row+j].checked == 1)
 				{
 					i=i;
 				}
@@ -2159,9 +2160,9 @@ void player1_bombardement()
 			for(i=-1;i<=1;i++)
 			{
 				//if the square is already checked or exceeds the table border limits - do nothing
-				if(player1_board[keyboard_cursor.column+i][keyboard_cursor.row+j].checked == 1
-						|| keyboard_cursor.column+i < 0 || keyboard_cursor.column+i > 9
-						|| keyboard_cursor.row+j < 0 || keyboard_cursor.row+j > 9)
+				if(keyboard_cursor.column+i < 0 || keyboard_cursor.column+i > 9
+						|| keyboard_cursor.row+j < 0 || keyboard_cursor.row+j > 9
+						|| player1_board[keyboard_cursor.column+i][keyboard_cursor.row+j].checked == 1)
 				{
 					i=i;
 				}

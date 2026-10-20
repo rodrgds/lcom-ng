@@ -64,8 +64,8 @@
     {
       "file": "proj/src/proj.c",
       "originalSha256": "fcef7b4db04857b1a18e68931ab3715ed649bb3b13c069059179a388e0a3c1ad",
-      "patchedSha256": "e7c9de190c887f48d964c66118d964eedd0c8bae73c87c135788fb71045c0f53",
-      "reason": "Existing draw/movement code used one-based occupied slots up to count on50/100element arrays, and discarded objects without reducing count. Actual sustained-fire browser UBSan RED proj.c449 index50 outside int[50], plus actual whole-game-loop bounds regression RED. Make one-based slots1..50/100 valid, initialize each spawned slot, reduce counts on collision/retirement, stop testing a removed projectile and retire offscreen shots. Remove automatic MENU arrays that shadowed persistent sprite tables. Initial hearts3 now match the three-entry table even before the first menu timer. Whole real loop GREEN with normal and early-input startup, sustained fire, score/menu/Exit notifications; final instrumented browser GREEN."
+      "patchedSha256": "2070dfa6bdc37f81a8493039f224d0ea89d0c04cbffadde8736c944d3afc260b",
+      "reason": "Existing draw/movement code used one-based occupied slots up to count on50/100element arrays, and discarded objects without reducing count. Actual sustained-fire browser UBSan RED proj.c449 index50 outside int[50], plus actual whole-game-loop bounds regression RED. Make one-based slots1..50/100 valid, initialize each spawned slot, reduce counts on collision/retirement, stop testing a removed projectile and retire offscreen shots. Remove automatic MENU arrays that shadowed persistent sprite tables. Initial hearts3 now match the three-entry table even before the first menu timer. Whole real loop GREEN with normal and early-input startup, sustained fire, score/menu/Exit notifications; final instrumented browser GREEN. Preload the gameplay and HUD XPMs once before the main loop and reuse them, and drop the per-enemy debug prints; removes the per-frame/per-spawn allocations and console I/O without changing what is drawn."
     },
     {
       "file": "proj/src/moves.c",

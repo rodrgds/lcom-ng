@@ -321,22 +321,23 @@ void reactToMouseEvent(Game *  g){
 
 void reactToKBDEvent(Game *g){
   kbd_ih();
+  uint8_t code = is_twoByte() ? scancode[1] : scancode[0];
   if (g->state == PLAYING){
-    if (scancode[0] == A_MAKE || scancode[0] == ARROW_LEFT_MAKE)
+    if (code == A_MAKE || code == ARROW_LEFT_MAKE)
       g->gamestate.player.dir.left = true;
-    if (scancode[0] == D_MAKE || scancode[0] == ARROW_RIGHT_MAKE)
+    if (code == D_MAKE || code == ARROW_RIGHT_MAKE)
       g->gamestate.player.dir.right = true;
-    if (scancode[0] == W_MAKE || scancode[0] == ARROW_UP_MAKE)
+    if (code == W_MAKE || code == ARROW_UP_MAKE)
       g->gamestate.player.dir.up = true;
-    if (scancode[0] == S_MAKE || scancode[0] == ARROW_DOWN_MAKE)
+    if (code == S_MAKE || code == ARROW_DOWN_MAKE)
       g->gamestate.player.dir.down = true;
-    if (scancode[0] == A_BREAK || scancode[0] == ARROW_LEFT_BREAK)
+    if (code == A_BREAK || code == ARROW_LEFT_BREAK)
       g->gamestate.player.dir.left = false;
-    if (scancode[0] == D_BREAK || scancode[0] == ARROW_RIGHT_BREAK)
+    if (code == D_BREAK || code == ARROW_RIGHT_BREAK)
       g->gamestate.player.dir.right = false;
-    if (scancode[0] == W_BREAK || scancode[0] == ARROW_UP_BREAK)
+    if (code == W_BREAK || code == ARROW_UP_BREAK)
       g->gamestate.player.dir.up = false;
-    if (scancode[0] == S_BREAK || scancode[0] == ARROW_DOWN_BREAK)
+    if (code == S_BREAK || code == ARROW_DOWN_BREAK)
       g->gamestate.player.dir.down = false;
 
     movePlayer(&g->gamestate.player);

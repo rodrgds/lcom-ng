@@ -122,6 +122,12 @@
           "patchedSha256": "58b3dc87315162ed559898723817fc7e30e1f4353d265484863180d0375a9400",
           "reason": "Return NULL when the bitmap file cannot be loaded, matching the pointer-returning loader contract. Leave caller dimensions untouched.",
           "verification": "Original actual bitmap.c fails Clang/Android NDK non-void bare-return diagnostic. Missing-file compiled regression verifies NULL with unchanged123x456 dimension sentinels after correction."
+        },
+        {
+          "path": "proj/code/game.c",
+          "originalSha256": "04379ec8aa44371d680be79df9ebbe45883a46c19fff59fc92355c8b37f4b595",
+          "patchedSha256": "1b71aed45249437f39656cc009104377a250587b0ed2ab4c250c7f885a3176ff",
+          "reason": "Initialize the filled-cell counter before accumulating each row."
         }
       ]
     }

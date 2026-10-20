@@ -76,7 +76,6 @@ void (get_scoreboard)(uint8_t kb_irq_set, uint8_t mouse_irq_set, uint8_t timer_i
             }
             fclose(fr);
         }
-        fclose(fr);
     }
 
     for (int i = 0; i < n; i++) {

@@ -23,3 +23,16 @@
          result = malloc(floor(log10(n)) + 2);
      else
          result = malloc(floor(log10(n)) + 3);
+
+--- a/proj/game.c
++++ b/proj/game.c
+@@ -153,7 +153,8 @@ char* askNameIfRecordHandlerKeyboard(char* topPlayerName) {
+ 
+       if (is_valid_scancode(scancode)) {
+           char* c = scancode_to_char_pointer(scancode);
+-          strcat(topPlayerName, c);
++          if (strlen(topPlayerName) + strlen(c) < 256)
++              strcat(topPlayerName, c);
+       }
+ 
+       if (scancode == BACKSPACE_BREAK && strlen(topPlayerName) > 0)

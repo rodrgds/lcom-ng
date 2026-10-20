@@ -1,5 +1,8 @@
 #include "keyboard.h"
 
+/* Must match word_guess[MAX_WORD_LENGTH] in model/model.h. */
+#define WORD_GUESS_CAPACITY 12
+
 static int hook_id = 1;
 static uint8_t scancode = 0;
 
@@ -82,7 +85,7 @@ int (keyboard_restore)() {
 }
 
 int read_letter(int scancode, uint8_t *word_guess, int *number_letters) {
-  if (*number_letters < 15){
+  if (*number_letters < WORD_GUESS_CAPACITY){
     if (scancode >= Q_KEY && scancode <= P_KEY) {
       word_guess[*number_letters] = scancode - Q_KEY;
       (*number_letters)++;

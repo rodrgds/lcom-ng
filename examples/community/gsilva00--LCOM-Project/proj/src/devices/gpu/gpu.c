@@ -137,6 +137,9 @@ int draw_nums_to_background(uint16_t xi, uint16_t yi, uint8_t points1) {
   if (points1 >= 0 && points1 <= 9) {
     xpm_load((xpm_map_t) numbers_xpm[points1], XPM_8_8_8, &img);
   }
+  else {
+    return 0; // No digit image for scores above 9
+  }
   
 
   for (int y = 0; y < img.height; y++) {

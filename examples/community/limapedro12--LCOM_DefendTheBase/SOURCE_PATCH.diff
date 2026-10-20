@@ -1,0 +1,43 @@
+--- a/proj/src/drag.c
++++ b/proj/src/drag.c
+@@ -27,9 +27,9 @@ void verifyDrag(int * x, int * y, bool * new, bool * new_next, bool * placed, bo
+     *x = ((*x + 15) / 50) * 50;
+     *y = ((*y + 15) / 50) * 50;
+     *placed = true;
+-    *placed_next = false;
++    if (placed_next) *placed_next = false;
+     *new = false;
+-    *new_next = true;
++    if (new_next) *new_next = true;
+ 
+     if(*level == 1) {*coins = *coins - 50;}
+     else if(*level == 2) {*coins = *coins - 100;}
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -290,7 +290,7 @@ void game(){
+           }
+           
+           if(coins >= 50) {
+-            verifyDrag(&towers_level_1[i].x, &towers_level_1[i].y, &towers_level_1[i].new, &towers_level_1[i+1].new, &towers_level_1[i].placed, &towers_level_1[i+1].placed, &towers_level_1[i].level, &coins, background_pixmap, background_img, towers_level_1, towers_level_2, towers_level_3);
++            verifyDrag(&towers_level_1[i].x, &towers_level_1[i].y, &towers_level_1[i].new, (i + 1 < (int)(sizeof(towers_level_1) / sizeof(towers_level_1[0]))) ? &towers_level_1[i+1].new : NULL, &towers_level_1[i].placed, (i + 1 < (int)(sizeof(towers_level_1) / sizeof(towers_level_1[0]))) ? &towers_level_1[i+1].placed : NULL, &towers_level_1[i].level, &coins, background_pixmap, background_img, towers_level_1, towers_level_2, towers_level_3);
+           }
+         }
+         else {
+@@ -323,7 +323,7 @@ void game(){
+           }
+ 
+           if(coins >= 100) {
+-            verifyDrag(&towers_level_2[i].x, &towers_level_2[i].y, &towers_level_2[i].new, &towers_level_2[i+1].new, &towers_level_2[i].placed, &towers_level_2[i+1].placed, &towers_level_2[i].level, &coins, background_pixmap, background_img, towers_level_1, towers_level_2, towers_level_3);
++            verifyDrag(&towers_level_2[i].x, &towers_level_2[i].y, &towers_level_2[i].new, (i + 1 < (int)(sizeof(towers_level_2) / sizeof(towers_level_2[0]))) ? &towers_level_2[i+1].new : NULL, &towers_level_2[i].placed, (i + 1 < (int)(sizeof(towers_level_2) / sizeof(towers_level_2[0]))) ? &towers_level_2[i+1].placed : NULL, &towers_level_2[i].level, &coins, background_pixmap, background_img, towers_level_1, towers_level_2, towers_level_3);
+           }
+         }
+         else {
+@@ -348,7 +348,7 @@ void game(){
+           draw_xpm_loaded(towers_level_3[i].x, towers_level_3[i].y, tower_blue_right_pixmap, tower_blue_right_img, 0xFFFFFF); 
+           
+           if(coins >= 150) {
+-            verifyDrag(&towers_level_3[i].x, &towers_level_3[i].y, &towers_level_3[i].new, &towers_level_3[i+1].new, &towers_level_3[i].placed, &towers_level_3[i+1].placed, &towers_level_3[i].level, &coins, background_pixmap, background_img, towers_level_1, towers_level_2, towers_level_3);
++            verifyDrag(&towers_level_3[i].x, &towers_level_3[i].y, &towers_level_3[i].new, (i + 1 < (int)(sizeof(towers_level_3) / sizeof(towers_level_3[0]))) ? &towers_level_3[i+1].new : NULL, &towers_level_3[i].placed, (i + 1 < (int)(sizeof(towers_level_3) / sizeof(towers_level_3[0]))) ? &towers_level_3[i+1].placed : NULL, &towers_level_3[i].level, &coins, background_pixmap, background_img, towers_level_1, towers_level_2, towers_level_3);
+           }
+         }
+         else {

@@ -12,6 +12,24 @@
       "upstreamSha256": "2f170fecfb3ad0648933a3998cb10959a3321131da678af610067462516dde5d",
       "patchedSha256": "21d657869701e3a64539daf230dfc750deb7bf2f18a6bd2d2365f005751c2b9f",
       "verification": "Actualserialsource regression with emptyUART and3queuedbytes. RED waitswhileempty, GREEN emptyno-wait andexact3drainedbytes. Browsermenus and7hitgameplay pass."
+    },
+    {
+      "file": "src/player_settings.c",
+      "originalSha256": "f7d4367b94268b571a2c928e3f5b05267cb19b41c7b9e31258f393a60ac8ed00",
+      "patchedSha256": "3ca5a6219846822f0fff5699cac6e417b7ffe4989b1966ab246ff5a94baf3644",
+      "reason": "Initialize max_name_length before allocation, allocate room for a terminator, and terminate the default name."
+    },
+    {
+      "file": "src/game.c",
+      "originalSha256": "31be32135f20c6858af97830de3d17fd5202805687e8989c6ee048575b306d6a",
+      "patchedSha256": "554a6c1cd6456598fe37a6016f0b68edad4c4980dd90a3c6a5979d63c2e94cd3",
+      "reason": "Remove the invalid free of the inline avatars[] member pointer."
+    },
+    {
+      "file": "src/leaderboard.c",
+      "originalSha256": "c4335c019d4dccacc5ca8be73eb6d51a060af5bd5ed8864e75e8d50baea4431a",
+      "patchedSha256": "028bbfe5233297a4089b2e65b381edc7306060f728d40af7c55d34b1a05aa6e7",
+      "reason": "Allocate zero-filled name buffers with room for a terminator so every record is safe to print with %s."
     }
   ],
   "sha256": {

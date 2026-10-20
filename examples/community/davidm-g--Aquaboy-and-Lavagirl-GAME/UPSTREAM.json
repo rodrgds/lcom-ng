@@ -146,8 +146,8 @@
         {
           "file": "proj/src/visuals/model.c",
           "originalSha256": "bd45bf308b05676358d44a4f490347cb3a6d655147fa78cbce41731450b5599a",
-          "patchedSha256": "117975b6b0a9661f011b2a2c76b68f0f53c06cc2fa36bf84578ba8da924d6d18",
-          "reason": "Original level1 asset path has50characters plusNUL but sprintf writes into filename[50]. Use64-byte buffer and bounded formatting so original one/two-digit level names and all int values fit.",
+          "patchedSha256": "d90820b97326534cf0ba00efb03ff5fa65cf9900caa6883507a37c4698e7db45",
+          "reason": "Original level1 asset path has50characters plusNUL but sprintf writes into filename[50]. Use64-byte buffer and bounded formatting so original one/two-digit level names and all int values fit. Destroy the existing wall sprites and lever before rebuilding the level's sprites.",
           "verification": "Actual Android startup FORTIFY51-byte write into50-byte buffer, compiled original updateArrayWithLevel fixture traps underFORTIFY. Repaired fixture tests1,13,INT_MAX and actual parsed level cells."
         }
       ]

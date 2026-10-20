@@ -93,6 +93,7 @@ void (delete_alien_shot)(Alien* alien, int i) {
 }
 
 void (shoot_aliens)(AlienGroup* group) {
+  if (group->alive_no == 0) return;
   int index = rand() % group->size;
   while (!(group->set[index].alive)) index = rand() % group->size;
   Alien* a = &(group->set[index]);

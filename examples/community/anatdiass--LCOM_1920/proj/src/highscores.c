@@ -110,12 +110,12 @@ void loadRecords(){
     
     int i=0;
     if(f!=NULL){
-        while(!feof(f)){
-            fscanf(f, "%s", records[i].name);
-            fscanf(f, "%s", records[i].seconds);
+        while(i < 3 && fscanf(f, "%s", records[i].name) == 1 &&
+              fscanf(f, "%s", records[i].seconds) == 1){
             nrRecords++;
-            i++;    
+            i++;
         }
+        fclose(f);
     }
 }
 

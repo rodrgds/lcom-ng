@@ -145,3 +145,50 @@
      adjust_queue(q);
      return 0;
    }
+
+--- a/proj/src/model/enemy.c
++++ b/proj/src/model/enemy.c
+@@ -11,6 +11,9 @@ unsigned int e_delay = 0;
+ 
+ int enemies = 0;
+ 
++/* Bounds the recursive retry below so a surrounded enemy cannot overflow the stack. */
++static int enemy_move_depth = 0;
++
+ enemy_t *enemy_init(int16_t start_x, int16_t start_y) {
+   xpm_map_t walk_xpm[10] = {e_walk1, e_walk2, e_walk3, e_walk4, e_walk5, e_walk6, e_walk7, e_walk8, e_walk9, e_walk10};
+ 
+@@ -115,7 +118,11 @@ void enemy_move(enemy_t *enemy, wall_array_t *wall_arr, player_t *player, enemy_
+     enemy->direction = enemy->direction + 1;
+     if (enemy->direction > 3)
+       enemy->direction = 0;
+-    enemy_move(enemy, wall_arr, player, enemy_arr);
++    if (enemy_move_depth < 4) {
++      enemy_move_depth++;
++      enemy_move(enemy, wall_arr, player, enemy_arr);
++      enemy_move_depth--;
++    }
+   }
+ 
+ 
+@@ -273,7 +280,7 @@ int create_enemies(enemy_t **enemy_arr, int num, wall_array_t *wall_arr, positio
+   int attempts = 0;
+   int created = 0;
+ 
+-  while (created < num && attempts < 1000) {
++  while (created < num && enemies < MAX_ENEMIES && attempts < 1000) {
+     attempts++;
+ 
+     int x = rand() % (hres - enemy_width);
+@@ -292,8 +299,10 @@ int create_enemies(enemy_t **enemy_arr, int num, wall_array_t *wall_arr, positio
+ 
+     // Distance from the player
+     float dist = sqrtf((x - player_pos->x) * (x - player_pos->x) + (y - player_pos->y) * (y - player_pos->y));
+-    if (dist < SPAWN_DISTANCE)
++    if (dist < SPAWN_DISTANCE) {
++      destroy_enemy(temp);
+       continue;
++    }
+ 
+     // Shouldn't be drawn on top of another enemy
+     bool enemy_collision = false;

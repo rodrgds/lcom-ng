@@ -67,7 +67,14 @@
     "**/*.pdf",
     "**/.DS_Store"
   ],
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "file": "proj/covid_escape.c",
+      "originalSha256": "0914910569e35656bcb90a74914f622a295da60a9fd2a007607925fd8efdcbd6",
+      "patchedSha256": "1d238757220780c6deb3ee1be004b42a9ea3c54d5489c4359978dac74bed7ed8",
+      "reason": "Clip the restored rectangle to the background image bounds before indexing the pixmap."
+    }
+  ],
   "controlsRationale": "Original1/2/3 release selects menus, A/D held states and SPACE jump use panel quick keys; no make repeat. Original indexed artwork untouched.",
   "previewEvidence": {
     "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/evidence14/carlosverissimo3001--FEUP-LCOM-03-progress-canvas.png",

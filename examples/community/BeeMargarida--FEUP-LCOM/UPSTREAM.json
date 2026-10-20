@@ -78,8 +78,8 @@
         {
           "file": "proj/src/handler.c",
           "originalSha256": "99b162398cdef6a52209e2482c101e756185a648cc8b6d5f04195fc59b608779",
-          "patchedSha256": "b6271f5b759448cc029694c386298d2e6b15d5a2b0abac19acdf78774c142051",
-          "reason": "Keep authored notification bit IDs separate from returned Minix control handles, remove each actual subscription on teardown, check positive kernel errors, and update the menu cursor after each complete three-byte mouse packet. Use the authored timer notification bit in the match loop instead of casting a function address to a mask. Initialize vertical ball direction for a new match while preserving its existing valid direction on a scored-ball reset.",
+          "patchedSha256": "30e9d4fb3c9e3a4d742b8217696e5994d6feff3f27e28cc2d740846dc574b8b6",
+          "reason": "Keep authored notification bit IDs separate from returned Minix control handles, remove each actual subscription on teardown, check positive kernel errors, and update the menu cursor after each complete three-byte mouse packet. Use the authored timer notification bit in the match loop instead of casting a function address to a mask. Initialize vertical ball direction for a new match while preserving its existing valid direction on a scored-ball reset. Return from the outer menu once the launched game handler returns, instead of touching the already-freed menu object.",
           "verification": "Original actual subscriptions fail on legal handles10..13 and positive policy errors; corrected notify0/1/12/2 and saved cleanup handles pass. Actual menu loop originally waits for three complete packets before one cursor update; corrected one-complete-packet-to-one-update passes. Actual match owner receives W, sixty timer-bit0 notifications and Escape: original has zero ball/paddle updates and no second countdown; corrected has sixty ball updates, sixty held-paddle updates, time59 and exact three unsubscribes. Actual game_handler with patterned allocation originally exposes an undefined vert field. Corrected fresh-match owner sets vert0. The actual scored-ball reset preserves a valid up direction, retaining authored reset behavior."
         },
         {
@@ -112,7 +112,7 @@
     "preview": "Final corrected-source real gameplay canvas scaled640x480."
   },
   "verification": {
-    "browser": "Actual normal touch500190+Select opens match. W raises left paddle, K lowers right paddle, ball/rally scoring advances0\u21922. Original RTC date/time rendered, portrait and landscape reserved controls inspected; no page errors.",
+    "browser": "Actual normal touch500190+Select opens match. W raises left paddle, K lowers right paddle, ball/rally scoring advances0→2. Original RTC date/time rendered, portrait and landscape reserved controls inspected; no page errors.",
     "ndk": "All8 actual ARM64 build objects passO2/FORTIFY2/stack-protector/format-security, including generated entry wrapper and unchanged source CLI/STI lowered by the reviewed shared compiler bridge.",
     "native": "Pending ROOT actual Android gameplay.",
     "assembly": "Original CLI/STI instruction strings remain unchanged.",

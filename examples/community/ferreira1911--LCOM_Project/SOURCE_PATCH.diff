@@ -1,0 +1,19 @@
+--- a/proj/src/model/target.c
++++ b/proj/src/model/target.c
+@@ -1,4 +1,5 @@
+ #include <lcom/lcf.h>
++#include <stdlib.h>
+ 
+ #include "target.h"
+ #include "devices/video.h"
+@@ -10,6 +11,10 @@ void (create_target)(Target* target, int16_t x, int16_t y, xpm_map_t image) {
+     target->x = x;
+     target->y = y;
+ 
++    if (target->TargetImage.bytes != NULL) {
++        free(target->TargetImage.bytes);
++        target->TargetImage.bytes = NULL;
++    }
+     target->TargetImage.bytes = xpm_load(image, XPM_8_8_8, &target->TargetImage);
+     target->isVisible = true;
+ 

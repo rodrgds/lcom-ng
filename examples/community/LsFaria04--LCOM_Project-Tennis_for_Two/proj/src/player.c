@@ -747,10 +747,7 @@ void (destroyPlayer1)(Player *player){
     return;
   }
 
-  //free the memory allocated for the currrent sprite
-  if(player -> currentSprite.map){
-    free(player -> currentSprite.map);
-  }
+  /* currentSprite is a copy of one of the sprite maps freed below. */
 
   //free the allocated memory for the move arrays
   for(int i = 0; i < 2 ; i++){
@@ -782,12 +779,6 @@ void (destroyPlayer1)(Player *player){
     }
   }
 
-  free(player->start);
-  free(player->startrev);
-  free(player->hit);
-  free(player->hitrev);
-  free(player->moverev);
-  free(player->move);
   free(player);
   player = NULL;
 }
@@ -803,10 +794,7 @@ void (destroyPlayer2)(Player * player){
     return;
   }
 
-  //free the memory allocated for the currrent sprite
-  if(player -> currentSprite.map){
-    free(player -> currentSprite.map);
-  }
+  /* currentSprite is a copy of one of the sprite maps freed below. */
 
   //free the allocated memory for the move arrays
   for(int i = 0; i < 2 ; i++){
@@ -838,12 +826,6 @@ void (destroyPlayer2)(Player * player){
     }
   }
 
-  free(player->start);
-  free(player->startrev);
-  free(player->hit);
-  free(player->hitrev);
-  free(player->moverev);
-  free(player->move);
   free(player);
   player = NULL;
 }

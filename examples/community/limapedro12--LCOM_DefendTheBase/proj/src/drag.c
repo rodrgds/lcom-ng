@@ -27,9 +27,9 @@ void verifyDrag(int * x, int * y, bool * new, bool * new_next, bool * placed, bo
     *x = ((*x + 15) / 50) * 50;
     *y = ((*y + 15) / 50) * 50;
     *placed = true;
-    *placed_next = false;
+    if (placed_next) *placed_next = false;
     *new = false;
-    *new_next = true;
+    if (new_next) *new_next = true;
 
     if(*level == 1) {*coins = *coins - 50;}
     else if(*level == 2) {*coins = *coins - 100;}

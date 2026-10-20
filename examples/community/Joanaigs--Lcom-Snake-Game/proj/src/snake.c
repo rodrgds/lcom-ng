@@ -66,6 +66,9 @@ void eraseSnakeBody() {
 }
 
 void addBodyPart() {
+  if (numOfBodyParts + 1 >= (int)(sizeof(snakeBody) / sizeof(snakeBody[0])))
+    return;
+
   erase_xpm(snakeBody[numOfBodyParts].img, snakeBody[numOfBodyParts].x, snakeBody[numOfBodyParts].y, background.img);
   numOfBodyParts++;
   int i = numOfBodyParts - 1;

@@ -14,7 +14,10 @@ void set_magic_blasts_available() {
 
 void free_magic_blasts(){
   for(size_t i=0; i<(total_blasts-available_blasts); i++){
-    free(magic_blasts[i]);
+    if (magic_blasts[i] != NULL) {
+      free(magic_blasts[i]->map);
+      free(magic_blasts[i]);
+    }
   }
   free(magic_blasts);
 }
@@ -51,6 +54,7 @@ void print_magic_blasts() {
   for (size_t i = 0; i < (total_blasts - available_blasts); i++) {
 
     if ((magic_blasts[i]->x < -20) || (magic_blasts[i]->x > (get_h_resolution() + 20)) || (magic_blasts[i]->y < -20) || (magic_blasts[i]->y > (get_v_resolution() + 20))) {
+      free(magic_blasts[i]->map);
       free(magic_blasts[i]);
       reindex_magic_blasts(i);
       i--;

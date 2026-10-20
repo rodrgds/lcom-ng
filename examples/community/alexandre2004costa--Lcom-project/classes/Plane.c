@@ -51,7 +51,15 @@ Plane* (createPlane)(Planes *b, bool left) {
  */
 void (removePlane)(Planes *b, int indexToRemove){
     if (indexToRemove < 0 || indexToRemove >= b->sizePlanes) return;
-    free(b->plane[indexToRemove]);
+    Plane *removed = b->plane[indexToRemove];
+    if (removed->planeObject != NULL) {
+        if (removed->planeObject->sprite != NULL) {
+            free(removed->planeObject->sprite->map);
+            free(removed->planeObject->sprite);
+        }
+        free(removed->planeObject);
+    }
+    free(removed);
     for (int i = indexToRemove; i < (b->sizePlanes - 1); i++) {
         b->plane[i] = b->plane[i + 1];
     }
@@ -106,7 +114,13 @@ void (planeMovement)(Planes *PlanesArray, int index){
 void (freePlanes)(Planes* planes) {
     if (planes == NULL) return;
     for (int i = 0; i < planes->sizePlanes; i++) {
-        free(planes->plane[i]->planeObject);
+        if (planes->plane[i]->planeObject != NULL) {
+            if (planes->plane[i]->planeObject->sprite != NULL) {
+                free(planes->plane[i]->planeObject->sprite->map);
+                free(planes->plane[i]->planeObject->sprite);
+            }
+            free(planes->plane[i]->planeObject);
+        }
         free(planes->plane[i]);
     }
     free(planes->plane);

@@ -34,7 +34,7 @@ void (kbc_api_select_names)(struct ArenaModel* model, enum GameState* state) {
     }
     char c = getChar(scan_code);
     if (c != '=') {
-        if (model->players[number_of_player].nameSize < 10) {
+        if (model->players[number_of_player].nameSize < 9) {
             model->players[number_of_player].name[model->players[number_of_player].nameSize] = c;
             model->players[number_of_player].nameSize++;
         }

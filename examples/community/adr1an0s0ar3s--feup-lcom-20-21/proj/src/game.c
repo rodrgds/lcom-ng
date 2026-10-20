@@ -401,6 +401,19 @@ void (nextPlay)()
 
 void (randomPlay)()
 {
+    bool available = false;
+    for (int i = 0; i < columns; i++)
+        if (board[i][rows-1] == 0)
+        {
+            available = true;
+            break;
+        }
+
+    /* A full board has no playable column, so the RTC alarm handler must not
+       spin forever trying to find one. */
+    if (!available)
+        return;
+
     while (1){
         randomPlay_board_x = rand() % 7;
         printf("%d\n", randomPlay_board_x);

@@ -7,6 +7,7 @@ extern application_state_t app_state;
 card_t *deck;
 game_action_state_t game_action_state;
 int current_player = 1;
+static int current_card = 0; // position in the deck, reset for every round
 bool dealers_turn = false;
 extern bool first_time;
 int current_hand = 0;
@@ -554,7 +555,6 @@ int game_controller_add_hand(int player_id) {
 }
 
 int game_controller_deal_card(int player_id, int hand_index) {
-  static int current_card = 0; // Track position in deck
   printf("Dealing card to player %d, hand %d...\n", player_id, hand_index);
 
   if (deck == NULL) {
@@ -687,7 +687,6 @@ int game_controller_redy_for_new_round() {
   dealers_turn = false;
 
   // Reset deck index
-  static int current_card = 0;
   current_card = 0;
 
   // Free all player hands

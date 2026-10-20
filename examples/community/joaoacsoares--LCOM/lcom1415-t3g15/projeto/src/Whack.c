@@ -39,7 +39,9 @@ void isDone(Whack* whack) {
 	case SETTINGS:
 		if (((OptionsMenu*) (whack->state))->choiceExit) {
 			resetMouse();
-			whack->dif = whack->dif * ((OptionsMenu*) (whack->state))->difficulty;
+			/* Apply the selected difficulty to the base interval instead of
+			 * compounding it on every options visit (which can reach zero). */
+			whack->dif = 120 * ((OptionsMenu*) (whack->state))->difficulty;
 			whack->time = ((OptionsMenu*) (whack->state))->gameTime;
 			changeState(whack, MAINMENU);
 		}

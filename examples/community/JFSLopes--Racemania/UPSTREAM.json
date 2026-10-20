@@ -82,8 +82,8 @@
         {
           "file": "proj/src/game_loop.c",
           "originalSha256": "a8f1658f76a5f180c4aff488bc93d4766f1459209012bbc2f1d08952f41e7c53",
-          "patchedSha256": "c8584711af11f8b7393a8a4354e5a7078c3116b1fea69048573a618011eddf21",
-          "reason": "Measure original drag-stick distance and angle from its visible32pixel sprite center; place the dragged sprite around the pointer. Holding the visible center stays neutral, right/down drags follow original orientation and release recenters.",
+          "patchedSha256": "594aeeb2239d4c4975c1c29109710c2f07a3455f7f9a425aa8c12fa67c590014",
+          "reason": "Measure original drag-stick distance and angle from its visible32pixel sprite center; place the dragged sprite around the pointer. Holding the visible center stays neutral, right/down drags follow original orientation and release recenters. Reduce each displayed decimal digit modulo 10 so the index stays within numbers[10].",
           "verification": "Actual whole game_loop.c control_stick consumer: visible center816,666 over original32pixel sprite800,650 leaves angle90 neutral; right846,666 and down816,696 follow independently derived angles/positions; release recenters. Original SIGABRT at neutral center RED, corrected source GREEN. Final-source ordinary browser neutral center, held steering and both circuits pass."
         },
         {

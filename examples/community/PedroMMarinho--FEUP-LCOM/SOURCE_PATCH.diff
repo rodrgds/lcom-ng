@@ -1,0 +1,31 @@
+--- a/og_proj/src/resources.c
++++ b/og_proj/src/resources.c
+@@ -8,6 +8,7 @@
+ Resources* loadResources(){
+ 
+   Resources* resources = (Resources*)malloc(sizeof(Resources));
++  resources->table = NULL;
+   resources->menu = newMenu(MAIN_MENU);
+   resources->state = MENU;
+   int randomNumber = rand() % 10000 + 1000;  
+@@ -22,6 +23,8 @@ void destroyResources(Resources* resources){
+   else if(resources->state == MENU){
+     destroyMenu(resources->menu);
+   }
+-  free(resources->table);
++  if(resources->table != NULL) {
++    free(resources->table);
++  }
+   free(resources);
+ }
+--- a/og_proj/src/controllers/menuController.c
++++ b/og_proj/src/controllers/menuController.c
+@@ -115,7 +115,7 @@ void convertScanCodeToChar(char* playerName, uint8_t scanCode){
+       playerName[strlen(playerName)-1] = '\0';
+     }
+   }
+-  if(strlen(playerName)< 20){
++  if(strlen(playerName) < 19){
+     switch (scanCode)
+     {
+     case SCANCODE_0:

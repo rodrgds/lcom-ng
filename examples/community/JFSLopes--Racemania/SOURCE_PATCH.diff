@@ -51,3 +51,15 @@
  
  	printf("Alarm at: %02d:%02d:%02d", hours, minutes, seconds);
  
+
+--- a/proj/src/game_loop.c
++++ b/proj/src/game_loop.c
+@@ -281,7 +281,7 @@ int (game_viewer_draw) (){
+     uint16_t index = 100;
+     uint16_t time_aux = seconds;
+     while(index){
+-        show_xpm1(&numbers[time_aux/index],pos_init_x,pos_init_y);
++        show_xpm1(&numbers[(time_aux/index) % 10],pos_init_x,pos_init_y);
+         time_aux = time_aux % index;
+         index = index / 10;
+         pos_init_x += 50;

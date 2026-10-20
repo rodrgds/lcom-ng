@@ -187,5 +187,25 @@
     "web": "Real Chromium mobile touch gameplay in landscape and portrait; no JavaScript errors. Controls, menu transitions and game actions exercised.",
     "evidence": "build/arcade-100/a/evidence/PedroMMarinho--FEUP-LCOM",
     "native": "Original sources compiled against compatibility SDK; final native collection build pending integration."
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Initialize table to NULL and only free it when set. Keep one byte of headroom for strcat to append the new character and terminator.",
+      "files": [
+        {
+          "path": "og_proj/src/resources.c",
+          "originalSha256": "0fa33792695960af819491271f7ae7492e39d8a2cff731fd74948146d1325b20",
+          "patchedSha256": "b2d9c76bc7e4f9049b3f601dbd5b2ea5c64bfcb74d0ebfd011f059d91a456d4a",
+          "reason": "Initialize table to NULL and only free it when set."
+        },
+        {
+          "path": "og_proj/src/controllers/menuController.c",
+          "originalSha256": "3c681eedf381df2d0b5c0f1a31c9bb6b1f77f1e9ef4e04c158de10fcbd12da1d",
+          "patchedSha256": "e6a617ebcf31cdb39629a1afdb3f0502493a612854247fa03d8fec50bf213060",
+          "reason": "Keep one byte of headroom for strcat to append the new character and terminator."
+        }
+      ]
+    }
+  ]
 }

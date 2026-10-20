@@ -222,5 +222,19 @@
     "web": "Real Chromium mobile touch gameplay in landscape and portrait; no JavaScript errors. Controls, menu transitions and game actions exercised.",
     "evidence": "build/arcade-100/a/evidence/vanessa-sbq--Minigotchi",
     "native": "Original sources compiled against compatibility SDK; final native collection build pending integration."
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Use a zero-initialized on-stack name buffer instead of writing through a string literal.",
+      "files": [
+        {
+          "path": "proj/src/proj.c",
+          "originalSha256": "f9c51d4cfdd817f5037d815006ea01626689ea026d1849d6219d02e90a5488fa",
+          "patchedSha256": "efa2dc9d10dc43f1b31108d7e6768d9c244dd5baf8e52b33114e883dc269033b",
+          "reason": "Use a zero-initialized on-stack name buffer instead of writing through a string literal."
+        }
+      ]
+    }
+  ]
 }

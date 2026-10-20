@@ -134,7 +134,7 @@ void (rtc_update_real_time)(){
 }
 
 char* (rtc_get_real_time)(){
-  char * weekday;
+  char * weekday = "UNKNOWN, ";
   switch (date_s.weekday)
   {
   case 0: weekday = "SUNDAY, "; break;

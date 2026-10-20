@@ -258,8 +258,7 @@ int (proj_main_loop)(int argc, char **argv) {
 
 					if (nameMinigotchiController_getButtonEvent() == CONTINUE_NAMEMINIGOTCHI && nameMinigotchiViewer_get_spriteVector()->size != 0) {
 
-						char* minigotchiName = malloc(11*sizeof(char));
-						minigotchiName = "\0\0\0\0\0\0\0\0\0\0";
+						char minigotchiName[11] = {0};
 
 						for (size_t i = 0; i < nameMinigotchiViewer_get_spriteVector()->size; i++) {
 							char toBeConcatenated = ((char)(nameMinigotchiViewer_get_spriteVector()->data[i])) + 'A';

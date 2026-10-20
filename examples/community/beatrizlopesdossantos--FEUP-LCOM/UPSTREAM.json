@@ -4,7 +4,14 @@
   "project": "proj/src",
   "licenseFiles": [],
   "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "proj/src/sprite.c",
+      "originalSha256": "2e8be3b09b1c5b09034f39cf6d4f93643ddaeb7ffd6b6dd1e31b49775f1a8201",
+      "patchedSha256": "b2eaa151fd60497fbf1b085ef4d4e3b9b7d4fb69b0a9408d5191ffcff3f9f925",
+      "reason": "Do not free maps borrowed from the global xpm image tables; only free the per-sprite descriptor."
+    }
+  ],
   "sha256": {
     "README.md": "9ee77c375eabc20165f888a9da22fddd5a34c41d33b649ab2ccf359cc89a23aa",
     "proj/README.md": "a4038c5c8355c3d12b0367b9fa329950162563cba7a2fbd3c9440d361c2fb58f",

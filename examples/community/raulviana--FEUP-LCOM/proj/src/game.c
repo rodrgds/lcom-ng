@@ -256,7 +256,6 @@ void menu() {
       counter++;
     }
   }
-  free(punctuation);
 }
 
 uint8_t play(){

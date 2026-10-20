@@ -7,7 +7,8 @@ Player *load_player(Avatar *default_avatar)
 {
   //Allocating memory
   Player *player = (Player *)malloc(sizeof(Player));
-  player->name = (char *)malloc(player->max_name_length);
+  player->max_name_length = 7;
+  player->name = (char *)malloc(player->max_name_length + 1);
   player->name[0] = 'P';
   player->name[1] = 'L';
   player->name[2] = 'A';
@@ -15,9 +16,9 @@ Player *load_player(Avatar *default_avatar)
   player->name[4] = 'E';
   player->name[5] = 'R';
   player->name[6] = ' ';
+  player->name[player->max_name_length] = '\0';
   player->hitted_moles = 0;
   player->missed_moles = 0;
-  player->max_name_length = 7;
   player->avatar = default_avatar->sprites[0];
   return player;
 }

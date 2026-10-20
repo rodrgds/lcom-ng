@@ -417,11 +417,17 @@ void game_end(){
 }
 
 void draw_sprite_covid(Sprite *sp, Sprite *background, int xmov, int ymov){
-   for (int i = sp->y ; i <= sp->y + 70; i++){
-    for (int j = sp->x ; j <= sp->x + 70; j++){
+  int x0 = sp->x, y0 = sp->y;
+  int x1 = sp->x + 70, y1 = sp->y + 70;
+  if (x0 < 0) x0 = 0;
+  if (y0 < 0) y0 = 0;
+  if (x1 >= (int) background->img.width) x1 = (int) background->img.width - 1;
+  if (y1 >= (int) background->img.height) y1 = (int) background->img.height - 1;
+  for (int i = y0; i <= y1; i++){
+    for (int j = x0; j <= x1; j++){
       vg_draw_pixel(j, i, *(background->map + i*background->img.width + j));
     }
-  } 
+  }
   move_sprite(sp, xmov, ymov);
   draw_sprite(sp);
 }

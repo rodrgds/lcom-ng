@@ -55,8 +55,8 @@
         {
           "file": "brickbreaker/src/timer.c",
           "originalSha256": "8a1d75368a16b63d4c74fda8e25403379e52bb44f0e591bf4eeeefa35d8a3f06",
-          "patchedSha256": "22d6fc4bf6c4a55fc9580092a2696b741b240c9f3a5c137418e1d559c6cbd512",
-          "reason": "Return success from int masterClock on early Escape, rather than bare return. Decode mousepacket sign bits together with lower bytes before forwarding full deltas.",
+          "patchedSha256": "c7935703abd9959ed8eb41dc7cec972b565c7f7c786094d65f087e11021fff67",
+          "reason": "Return success from int masterClock on early Escape, rather than bare return. Decode mousepacket sign bits together with lower bytes before forwarding full deltas. Initialize the timer-loop key state before the first interrupt and close the optional log file only when it opened.",
           "verification": "Original actual ARM64 compilation rejected nonvoid bare return. Owning earlyEscape RED/GREEN returns0 with real keyboard and timer notifications. Original signed low-byte packet test RED; GREEN all121complete signed9bit pairs."
         }
       ]

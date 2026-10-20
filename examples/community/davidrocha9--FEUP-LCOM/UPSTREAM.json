@@ -128,7 +128,31 @@
       "originalSha256": "43032858c9b00d2badd2368bd67b7452eca3ef3ab586c23891d7f279084ab6e3",
       "patchedSha256": "7345ce179be6a16223fe18bbe6730dfe18c8f9c66a8a9e00a0b45fcc998ba5e4",
       "reason": "Decode the RTC12-hour PM flag separately from the numeric hour and normalize12AM/12PM before displaying24-hour time. Preserve BCD/binary and24-hour modes.",
-      "verification": "Actual owning read_date with port-backed register fixtures reproduces BCD0x89\u219289, binary0x89\u2192137 and12AM\u219212 in original source. Corrected16cases cover BCD/binary12h09,12AM,9PM,12PM and BCD/binary24h0,12,21,23, with unchangedminute58/second47/year26/month10/day17."
+      "verification": "Actual owning read_date with port-backed register fixtures reproduces BCD0x89→89, binary0x89→137 and12AM→12 in original source. Corrected16cases cover BCD/binary12h09,12AM,9PM,12PM and BCD/binary24h0,12,21,23, with unchangedminute58/second47/year26/month10/day17."
+    },
+    {
+      "file": "proj.c",
+      "originalSha256": "9beeab1ba15a1be5be2f2d3b8ff3c4bc7d16233fcfb4a53ec1a623eeed7d839d",
+      "patchedSha256": "ba430907469b8602693b68100ad5d400f99d1c37cfbecdc376e9b335601b8232",
+      "reason": "Removed the unused 3.98 MB allocation and memset from MainMenu; the buffer was never referenced afterward."
+    },
+    {
+      "file": "levels.c",
+      "originalSha256": "c993b2f8e1a16dcadadb33fb61b2c36493b1fd64f83c664e07f13566c3f0d4df",
+      "patchedSha256": "7c0ae9449b1847160342289b7bf5c2ff0554211c0dcfb8ac48352c0a80d297d2",
+      "reason": "Free the level framebuffer before each early return and at the normal end of SansLevel."
+    },
+    {
+      "file": "levels1.c",
+      "originalSha256": "f50e05c3264c5edcb6ca77713260cd1fe4c3b41481ed6e6e57ef5a308ade2f3f",
+      "patchedSha256": "50346f8dccbfba816235bd796683a03ffa518cacd3f025e992f433e720f0ad45",
+      "reason": "Free the level framebuffer on the parameter-validation early return and before the normal return in FloweyLevel."
+    },
+    {
+      "file": "levels2.c",
+      "originalSha256": "ada7db4ad4b54cda8070c0fe1627ce9d8f949e0665e27304a78ae0327bb81eb5",
+      "patchedSha256": "d17c204cc4360e7110215b535c4b28d54205780d754c9f7e4b15d91952594154",
+      "reason": "Free the level framebuffer on the parameter-validation return, both player-death returns, and the normal return in PapyrusLevel."
     }
   ],
   "sourcePreservation": "112 original source/header/XPM/Makefile hashes retained. rtc.c has one separately recorded RTC hour decoding correction; original art unchanged.",

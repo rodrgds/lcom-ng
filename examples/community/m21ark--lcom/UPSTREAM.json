@@ -245,6 +245,12 @@
             "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/animated-chess-font-caller-red.log",
             "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/animated-chess-frame-font-green.log"
           }
+        },
+        {
+          "path": "proj/src/game/objects/pieces.c",
+          "originalSha256": "5b39e4288e7af4d1d9239fb94a1bc31d769fd71d8a7c983f4acdee3b9043e436",
+          "patchedSha256": "a9984f94a858d8926fd48c9248aef669e0e3a40a75c925c9ea46b75df1c1e36f",
+          "reason": "Reject out-of-range destination rows/columns before indexing the board or valid-move array."
         }
       ]
     }

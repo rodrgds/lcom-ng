@@ -114,6 +114,12 @@
           "path": "proj/src/video.c",
           "originalSha256": "59e590f3278f0e7d98fa7fd182d51da2ba65f5983bdd43ecb49f51ad360a2040",
           "patchedSha256": "b013a8e2a9ca0ed47e82bec58c169e6683242d8c64db91630f24b32541dbf34a"
+        },
+        {
+          "path": "proj/src/Game.c",
+          "originalSha256": "353c35d4b3d84de29a09f457c6a8e6da034cb672c5c84b6cb39375bb86745aa7",
+          "patchedSha256": "557b1d10ebe0b6f5308c0a3a76a2f61ca7df1f32f420c280710a1054e7c77a36",
+          "reason": "Extended arrow-key scancodes (0xE0 prefix) were compared as the first byte, so the authored arrow-key controls never matched. Use the second byte for two-byte sequences, matching real PC hardware and the existing ARROW_* constants."
         }
       ]
     }

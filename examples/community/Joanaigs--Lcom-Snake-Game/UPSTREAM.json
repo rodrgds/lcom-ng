@@ -140,6 +140,18 @@
           "originalSha256": "74240b8caea25fc4efafcf688f01f17cd5a8e8b6a4c5617b28354090f78e16d3",
           "patchedSha256": "70c64438174a93d611a286f668bbba5516280e7aaca2ac38888f92129380e3bf",
           "reason": "Send both mouse command prefix and enable/disable byte, then consume its ACK using bounded readiness and resend handling. The original helper returned before sending the command."
+        },
+        {
+          "path": "proj/src/apple.c",
+          "originalSha256": "c93e6a0c330460919745380385409c102f3bd26b0c61e24bd14dcfcb3d12507e",
+          "patchedSha256": "c60fa0af39427fde690ddc04d678e6221338ef9ded49f4cf3e9b9b4e49d70dad",
+          "reason": "Reject apple creation once applesArray is full, including placeApple before it draws an uninitialized local Apple."
+        },
+        {
+          "path": "proj/src/snake.c",
+          "originalSha256": "ba51197d323cfdb43c4f70bed43825c1006a2a8c2d214dfb8e1467169f31c1a6",
+          "patchedSha256": "64f40754a656b2a5ec0e31194e7d80355529c1aef48e0f37c5cad38bb95fdc37",
+          "reason": "Stop addBodyPart before the two snakeBody writes would exceed the array."
         }
       ],
       "reproduction": "Public CLI raw PS2 replay drives menu cursor beyond both frame corners. Original cursor disappears; corrected whole40x40 art remains at760,560 or0,0. Separate normal-mouse CLI replay fails before reporting-helper correction and passes after it. Prior uintptr_t graphics correction remains retained."

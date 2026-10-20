@@ -100,8 +100,10 @@ int(proj_main_loop)(int argc, char **argv) {
     return 1;
 
   app_t *app = app_init();
-  if (app == NULL)
+  if (app == NULL) {
     close_app();
+    return 1;
+  }
 
   while (app->state != EXIT) {
     if (driver_receive(ANY, &msg, &ipc_status))

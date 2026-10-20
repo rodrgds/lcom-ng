@@ -114,6 +114,12 @@
           "patchedSha256": "4762c60c463a427721130115531be14ff6e178a02c6a4635a4e10f99a8e94a23",
           "reason": "The original main loop overwrites a pending letter make with its key release before the next timer frame, dropping quick taps. Queue only make codes, ignoring break codes and extended prefixes.",
           "verification": "Actual original proj_main_loop fixture receives A-make/A-break before one timerframe and fails because pendingkey is0x9e; repaired frame retains0x1e. Real browser touch typesCASAS and submits positionalgreen feedback."
+        },
+        {
+          "path": "project/src/utils/frames.c",
+          "originalSha256": "3db6a56424c43c127f424a52ea95e20cf5727ec0460b6f963c4ac0343762698d",
+          "patchedSha256": "54259604b06296c802ba6e22fbf4db146f6e43706e4db5a6df9979fdd919ebb2",
+          "reason": "Allocate sizeof(*frame) so the Frame fields fit in their heap allocation."
         }
       ]
     }

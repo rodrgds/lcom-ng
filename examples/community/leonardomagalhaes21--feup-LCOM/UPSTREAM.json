@@ -193,6 +193,12 @@
           "originalSha256": "8d38809169326da2150f7c25594d501647a23fb108f903732e19c7b506a66f6a",
           "patchedSha256": "b8b5f82e12fa1eff5a262d92c1563931cdcca583eaa2cf49cee37fbef1421f04",
           "reason": "Preserve all-or-nothing cursor movement and phase initialization, but validate each loaded resolution square actual extent instead of hardcoded7px X and unbounded Y."
+        },
+        {
+          "path": "proj/src/game/logic/save_score.c",
+          "originalSha256": "b6e96bdb771f41c844c157e3ff4351be275334d44e561ffa756167dd95d01d8c",
+          "patchedSha256": "48eb2647b83af90925b0fa8dbc9ebfe699b44bb0d3a59ce69dacef8f1d5006cc",
+          "reason": "Bound the insertion to nine entries and only append while the ten-entry scoreboard has space."
         }
       ],
       "reproduction": "Public CLI640x480 resolution-menu replay moves original4x4 square from222,194 to222,434 then requestsY480. Original accepts and loses cursor. Corrected code rejects the second packet, leaving the white square visible at222,434."

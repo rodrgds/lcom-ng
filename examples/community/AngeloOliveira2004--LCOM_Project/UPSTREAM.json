@@ -114,7 +114,13 @@
           "originalSha256": "dede22ad0d883210fbd13b9395a8670810468f87a97e0bcf735d1945b02d37aa",
           "patchedSha256": "f100c0ad13142dfe3b650850444e6de98837f8c9b43a0002bbf5c42d85b65382",
           "reason": "is_check freed the inline stack Movelist.moves array, while leaking the individually owned Move/Position allocations. Release only each owned Move and its positions on normal and early-check paths. Remove immediately discarded allocation for borrowed board piece.",
-          "verification": "Original compiled actual source rejects free of non-allocation stack storage. Repaired forty normal +forty checking positions detect correct check state with zero leaks and preserved borrowed pieces. Repaired real browser E2\u2192E4 move passes."
+          "verification": "Original compiled actual source rejects free of non-allocation stack storage. Repaired forty normal +forty checking positions detect correct check state with zero leaks and preserved borrowed pieces. Repaired real browser E2→E4 move passes."
+        },
+        {
+          "path": "proj/src/mvc/controller/controller.c",
+          "originalSha256": "b534f376b45c669c49e7e1ee3d81ddb3d31807477e48b69cffab5de9cdbd765f",
+          "patchedSha256": "968457942135e5059600a3758c4dc589873d118ddfbb52f68b5185bcd438a751",
+          "reason": "Return immediately after each free()/winner screen so no later code reads the freed game object."
         }
       ]
     }

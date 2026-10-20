@@ -26,7 +26,7 @@ static int chronometer = 60; // Timer for stopwatch while playing
 static unsigned int counter = 0; // Counter used to store round number
 
 char time_string[20] = {0}; // String that stores current date and time
-static char timer[2] = {0}; // String to display stopwatch time
+static char timer[4] = {0}; // String to display stopwatch time
 
 // Boolean that is set to 1 if the given active button sprite is drawn (prevents constant active sprites drawing)
 static bool active_play = false;

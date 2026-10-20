@@ -136,6 +136,7 @@ int game_begin(){
   game->reload=0;
   for(int i=0;i<5;i++)
     game->player_name[i]=' ';
+  game->player_name[5]='\0';
   currentLetter=0;
   update_background();
   updateGameBuffer();

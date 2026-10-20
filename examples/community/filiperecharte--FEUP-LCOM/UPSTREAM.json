@@ -4,7 +4,20 @@
   "project": "proj/src",
   "licenseFiles": [],
   "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "proj/src/snake.c",
+      "originalSha256": "1df0e9299c27f5e9e12ee51ccaf13cbc82c2ea36e858191f8646b18f4c83fab1",
+      "patchedSha256": "709181fcf7081b59766e60ea34b1673b1a4b874f4ff14f75d81d3ca66c785071",
+      "reason": "Bounds-check the next head position before mutating Field, and guard tail advancement; off-grid steps now end the round instead of corrupting memory."
+    },
+    {
+      "file": "proj/src/game.c",
+      "originalSha256": "8d52d7ff594e5287f2b68d65748b272188cf460f830c2d1f45097d3f13f98667",
+      "patchedSha256": "1779f0e523b46abc0774e5690dba50c76b29000e2b201111f606a17305481fc1",
+      "reason": "Only delete a character when the entered name is non-empty."
+    }
+  ],
   "sha256": {
     "README.md": "361ecdf22465c34f5af4c7ccd87875fc310d36518e935a73a1fea87a368b0a0c",
     "proj/src/Game_Over.xpm": "dbb336085e6e805a6e44cfc23abc5514a3005ed93d986bd328fa172826318d31",

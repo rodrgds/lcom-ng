@@ -17,7 +17,10 @@ void set_enemies_available() {
 
 void free_enemies(){
   for(size_t i=0; i<(total_enemies-available_enemies); i++){
-    free(enemies[i]);
+    if (enemies[i] != NULL) {
+      free(enemies[i]->map);
+      free(enemies[i]);
+    }
   }
   free(enemies);
 }
@@ -41,6 +44,7 @@ void print_enemies() {
   for (size_t i = 0; i < (total_enemies - available_enemies); i++) {
 
     if ((enemies[i]->x < -95) || (enemies[i]->x > (get_h_resolution() + 1)) || (enemies[i]->y < -20) || (enemies[i]->y > (get_v_resolution() + 20))) {
+      free(enemies[i]->map);
       free(enemies[i]);
       reindex_enemies(i);
       i--;
@@ -65,6 +69,7 @@ int checking_collision(xpm_object **magic_blasts) {
   for (size_t enemiesIndex = 0; enemiesIndex < total_enemies - available_enemies; enemiesIndex++) {
     for (size_t blastIndex = 0; blastIndex < (get_total_blasts() - get_available_blasts()); blastIndex++) {
       if (enemy_collision(magic_blasts[blastIndex], enemies[enemiesIndex])) {
+        free(magic_blasts[blastIndex]->map);
         free(magic_blasts[blastIndex]);
         reindex_magic_blasts(blastIndex);
         collided = true;
@@ -74,6 +79,7 @@ int checking_collision(xpm_object **magic_blasts) {
     }
 
     if (collided) {
+      free(enemies[enemiesIndex]->map);
       free(enemies[enemiesIndex]);
       reindex_enemies(enemiesIndex);
       collided = false;
@@ -81,6 +87,7 @@ int checking_collision(xpm_object **magic_blasts) {
       continue;
     }
     if (enemy_collision(get_current_character_p1(), enemies[enemiesIndex])) {
+      free(enemies[enemiesIndex]->map);
       free(enemies[enemiesIndex]);
       reindex_enemies(enemiesIndex);
       score = 0;
@@ -88,6 +95,7 @@ int checking_collision(xpm_object **magic_blasts) {
     }
     if(in_coop){
       if (enemy_collision(get_current_character_p2(), enemies[enemiesIndex])) {
+        free(enemies[enemiesIndex]->map);
         free(enemies[enemiesIndex]);
         reindex_enemies(enemiesIndex);
         score = 0;

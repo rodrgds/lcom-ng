@@ -40,8 +40,9 @@ Food* create_food(xpm_image_t *pic, int x, int y, int xspeed, int yspeed, bool h
 void destroy_sprite(Sprite *sprite) {
     if( sprite == NULL )
         return;
-    if( sprite ->map )
-        free(sprite->map);
+    /* Maps are borrowed from the global xpm_image_t tables loaded in
+       load_xpms(); freeing one here invalidates every other sprite of the
+       same fruit type. Only the per-sprite descriptor is owned. */
     free(sprite);
     sprite = NULL; // XXX: pointer is passed by value
     // should do this @ the caller

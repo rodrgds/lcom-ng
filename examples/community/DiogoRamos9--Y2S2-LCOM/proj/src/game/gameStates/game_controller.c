@@ -511,6 +511,7 @@ void draw_ammo() {
 }
 
 void create_powerup() {
+    if (powerup_index >= (int)(sizeof(powerups) / sizeof(powerups[0]))) return;
     if (rand() % 500 == 0) {
         int x = 0;
         int y = 0;

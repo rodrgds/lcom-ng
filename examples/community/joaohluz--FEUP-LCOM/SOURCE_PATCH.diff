@@ -9,3 +9,39 @@
    phys_bytes buf = m.phys;
  
    memset(&r, 0, sizeof(r)); /* zero the structure */
+
+--- a/proj/src/proj.c
++++ b/proj/src/proj.c
+@@ -367,11 +367,11 @@ int (proj_main_loop)(int argc, char *argv[]){
+   Alien* alien = (Alien*) alienInit(jogo);
+   Mouse* mouse = (Mouse*) mouseInit();
+ 
+-  char file[50];
++  char file[50] = "users.txt";
+ 
+-  if (argc != 0)
++  if (argc > 0 && argv != NULL && argv[0] != NULL)
+   {
+-    strcpy(file,*argv);
++    snprintf(file, sizeof(file), "%s", argv[0]);
+   }
+ 
+   Users users = usersInit();
+--- a/proj/src/file.c
++++ b/proj/src/file.c
+@@ -87,6 +87,7 @@ void write_to_file(Users users, char* file){
+ 	// printf("Insira o path para o ficheiro\n");
+ 	// char file[128];//"/home/lcom/labs/proj/src/users.txt"ile);
+ 	ptr = fopen(file, "w");
++	if (ptr == NULL) return;
+ 	
+ 	while(l != NULL){
+ 		int n = 0;
+@@ -115,6 +116,7 @@ void read_from_file(Users users, char* file){
+ 	// char file[128];//"/home/lcom/labs/proj/src/users.txt";
+ 	// scanf("%123s",file);
+ 	ptr = fopen(file, "r");
++	if (ptr == NULL) return;
+ 
+ 	int count = 0;
+ 	char c = fgetc(ptr);

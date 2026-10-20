@@ -75,3 +75,15 @@
    width = get_sentence_width(acc_str);
    draw_sentence(acc_str, 3 * h_res / 4 - width / 2, TEXT_Y_POS + LINE_HEIGHT, PRIMARY_COLOR);
  }
+
+--- a/proj/src/states/scoreboard.c
++++ b/proj/src/states/scoreboard.c
+@@ -64,7 +64,7 @@ int score_board_update(Game *game) {
+     for (int i = 1; i <= row; i++) {
+         strcpy(temp, scores[i]);
+         j = i - 1;
+-        while((strncmp(temp,scores[j], 3) > 0) && (j >= 0)) {
++        while(j >= 0 && (strncmp(temp,scores[j], 3) > 0)) {
+             strcpy(scores[j+1], scores[j]);
+             j = j-1;
+         }

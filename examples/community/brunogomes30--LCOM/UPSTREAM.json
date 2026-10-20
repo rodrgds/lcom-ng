@@ -73,15 +73,21 @@
       "files": [
         {
           "file": "proj/game.c",
-          "reason": "Stop the collision pair iterator at the list tail before dereferencing the next node, including empty/single lists. Actual owning three-pair/empty/single fixture with null sanitizer traps original; fixed preserves each pair exactly once. Independently initialize missing saved highscore to zero; poisoned Game fixture original exposes uninitialized score, fixed defaults0 and still reads existing150/date. Ordinary optimized native collision code can eliminate the invalid unused read, so this is a proven source UB repair, not a claimed Android crash.",
+          "reason": "Stop the collision pair iterator at the list tail before dereferencing the next node, including empty/single lists. Actual owning three-pair/empty/single fixture with null sanitizer traps original; fixed preserves each pair exactly once. Independently initialize missing saved highscore to zero; poisoned Game fixture original exposes uninitialized score, fixed defaults0 and still reads existing150/date. Ordinary optimized native collision code can eliminate the invalid unused read, so this is a proven source UB repair, not a claimed Android crash. Added a per-type payload release helper and call it before removeLinkedElement on both removal paths. Enemy deletion also clears bullet origin pointers that reference the freed gun so no stale origins remain. Player and the player's separately listed cursor sprite are left owned by the player, avoiding double frees.",
           "originalSha256": "9fa52abecc6ab434dd7de1f88485101368def8bd26d506462cdf4c67cbca787d",
-          "patchedSha256": "77f0e0eebc1cf29feb1e4fa7385f349da655ab7a918f8179389fd1125161a664"
+          "patchedSha256": "102eb798b69fa892f6587e7a7a3e31240df64460553f5d62ed20e2506a16de3a"
         },
         {
           "file": "proj/gun.c",
           "reason": "Initialize current_image0 in both original gun constructors before updateGunAnimation unconditionally indexes the four-frame table. Independently poisoned malloc makes original constructor-to-animation owner fail its idle-frame precondition; fixed actual idle frame0 and next shooting frame1 pass. Existing gun sprite already starts on pistol0; this guarantees the authored idle frame without depending on fresh zeroed heap. No aiming, projectile, cooldown, movement or art changes. This is a genuine uninitialized source state defect on original Minix too, not an emulator adaptation or proven explanation of current native aiming failure.",
           "originalSha256": "2e871906b13b92baa34b2d76078e72005cc269aa7a6ccdee300a451044df6c90",
           "patchedSha256": "9350129747395e38b664bfdaaa3326df69713394cf4caa275c02cb1d93b8a404"
+        },
+        {
+          "path": "proj/linkedEntities.c",
+          "originalSha256": "ec2c4b22132abd6ade1faf3a231f91c0519fefd643987ffeb46d0b4af78d8671",
+          "patchedSha256": "c5b3a00892012d3e3217ac60d220a6be6412927254d22ad43bf7d88631dba65b",
+          "reason": "Update firstElement when the removed node is the head so the list cannot keep a dangling pointer."
         }
       ]
     }

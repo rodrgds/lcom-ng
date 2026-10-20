@@ -173,3 +173,69 @@
  		return 0;
  
  	return 1;
+
+--- a/proj/code/Singleplayer.c
++++ b/proj/code/Singleplayer.c
+@@ -14,6 +14,7 @@ Singleplayer* singleplayerInit(){
+ 
+ 	sp=(Singleplayer*) malloc(sizeof(Singleplayer));
+ 	sp->copter=newCopter(200,300,60,30);
++	sp->obs=NULL;
+ 
+ 	sp->spacePress=0;
+ 	sp->LeftButtonPress=0;
+--- a/proj/code/bitmap.c
++++ b/proj/code/bitmap.c
+@@ -256,11 +256,15 @@ void drawBest(int distance, Bitmap* bmp){
+ 
+ void drawTime(char* time){
+ 
+-	Bitmap* teste;
+-	Bitmap* clock;
+-
+-	teste=loadBitmap("/home/lcom/repos/proj/images/abcp.bmp");
+-	clock=loadBitmap("/home/lcom/repos/proj/images/clock.bmp");
++	static Bitmap* teste = NULL;
++	static Bitmap* clock = NULL;
++
++	if(teste == NULL)
++		teste=loadBitmap("/home/lcom/repos/proj/images/abcp.bmp");
++	if(clock == NULL)
++		clock=loadBitmap("/home/lcom/repos/proj/images/clock.bmp");
++	if(teste == NULL || clock == NULL)
++		return;
+ 
+ 
+ 	drawBitmapWithoutBackground(clock,2,10);
+@@ -274,9 +278,6 @@ void drawTime(char* time){
+ 	drawNumbers(teste,120,2, time[4]);
+ 	drawNumbers(teste,135,2, time[5]);
+ 
+-	deleteBitmap(teste);
+-	deleteBitmap(clock);
+-
+ }
+ 
+ void drawCopters(Bitmap* bmp,int x,int y, char number){
+--- a/proj/code/rtc.c
++++ b/proj/code/rtc.c
+@@ -39,10 +39,6 @@ int rtc_test_date(void) {
+ 	Date date;
+ 	char d1,d2;
+ 
+-	Bitmap* teste;
+-	teste=loadBitmap("/home/lcom/repos/proj/images/abcb.bmp");
+-
+-
+ 	//changeReg(0x11,2);
+ 	//changeReg(RTC_REG_B,RTC_REG_B_DM);
+ 	date.seconds=readReg(RTC_REG_SECONDS);
+@@ -57,7 +53,7 @@ int rtc_test_date(void) {
+ 	date.minutes=((date.minutes >> 4) * 10) + (date.minutes & 0x0F);
+ 	date.seconds=((date.seconds >> 4) * 10) + (date.seconds & 0x0F);
+ 
+-	char time[5];
++	char time[6];
+ 
+ 	if(date.hours<10){
+ 		time[0]='0';

@@ -93,7 +93,7 @@ void (clear_buffer)(){
 }
 
 int (vg_set_pixel) (uint32_t color, uint16_t x, uint16_t y){
-  if(x < 0 || y < 0 || x > x_res || y > y_res){
+  if(x >= x_res || y >= y_res){
     printf("Pixel out of the screen.\n");
     return 1;
   }

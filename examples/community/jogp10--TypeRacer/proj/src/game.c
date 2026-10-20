@@ -474,6 +474,7 @@ int kbd_handler(letter * sentence,letter * sentence2 , letter ** inputSentence, 
                     isShift = 0;
                     break;
                 default:
+                    if (*idx >= 500) return 0;
                     if(isUpper == 0){
                         for(unsigned int k =0; k < 35; k++){ 
                             if(letters[k].makeCode == code && letters[k].shift == isShift){ 
@@ -843,6 +844,9 @@ int draw_input_sentence(letter *input,letter *sentence, uint16_t x, uint16_t y, 
 
   for(int i = 0; i < size; i++){ 
    
+    if(sentence[i].letter == '.')
+      break;
+
     if(i == size-1){
       finish = true;
     }

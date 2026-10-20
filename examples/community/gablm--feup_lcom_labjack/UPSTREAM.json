@@ -177,7 +177,20 @@
     "proj/src/proj.c": "f34c2a14c12cf132305f91a79ecdb04a9f07e8b992a638c7aa93866d6e4cf36b",
     "proj/src/struct.md": "c75950a8b78a271e782dad6ddb31cf5f498b84f5465d71022dbce8d4f66cf48c"
   },
-  "sourcePatches": [],
+  "sourcePatches": [
+    {
+      "file": "proj/src/proj.c",
+      "originalSha256": "f34c2a14c12cf132305f91a79ecdb04a9f07e8b992a638c7aa93866d6e4cf36b",
+      "patchedSha256": "3e0c0d535e12b2f3a9c29a71b51ef584d17622b98537216285e88ee12789a0c8",
+      "reason": "Return after closing devices when app_init fails."
+    },
+    {
+      "file": "proj/src/model/card/card.c",
+      "originalSha256": "827daea967d23cd8c0b79fb501a2fe980b1fe3ef206924eb5c96bbc63ab606c7",
+      "patchedSha256": "b97c381194e15cf533ef893ea8c79d68a63b05f7c6e90cbeb0c546139abb5559",
+      "reason": "Make card-base destruction idempotent by clearing the loaded count and ignoring repeated calls."
+    }
+  ],
   "derivedAssets": [],
   "license": {
     "status": "missing",

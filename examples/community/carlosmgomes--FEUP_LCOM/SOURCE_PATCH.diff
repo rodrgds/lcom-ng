@@ -1,0 +1,24 @@
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -86,8 +86,10 @@ int update_game(Game *game) {
+             if (counter % (sys_hz()/15) == 0) {
+               double_buffer_update();
+               if (game->yellow_win || game->red_win || game->tie) {
+-                game->state = END_STATE;
+-                display_game(game);
++                if (game->state != END_STATE) {
++                  game->state = END_STATE;
++                  display_game(game);
++                }
+               }
+             }
+           }
+@@ -633,6 +635,8 @@ void mouse_game_handler(Game *game) {
+         display_game(game);
+         break;
+       }
++      /* The red player is keyboard controlled; never fall through to MENU_STATE. */
++      break;
+     case MENU_STATE:
+       if (game->state != MENU_STATE) {
+         break;

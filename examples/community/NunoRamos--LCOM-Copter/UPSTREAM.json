@@ -110,6 +110,24 @@
           "patchedSha256": "9d96a51701a9268b14f7f3c2c69562ecd3cf0ff4eac8c43a0031c0bfe80f4ed8",
           "reason": "Each IRQ device must retain its own handle; shared/shadowed hook_id caused incorrect masks and leaked subscriptions.",
           "verification": "Actual timer, keyboard and mouse driver objects exercised for two subscription/removal rounds; masks identify their independent device handles and all subscriptions are released. Evidence c/copter-hooks-red.log and corresponding green log."
+        },
+        {
+          "path": "proj/code/Singleplayer.c",
+          "originalSha256": "e686f825d3f0b4e537060f5c63398e836f4c76b1bdabb384c18e873d39076884",
+          "patchedSha256": "131dce366c5787ae9f2d19ee49e98b4a6726a24e9802ce46cd746c613798dbf8",
+          "reason": "Initialize obs to NULL so pre-spawn exit frees a valid pointer."
+        },
+        {
+          "path": "proj/code/bitmap.c",
+          "originalSha256": "3e4eb579c9f3c3efcfb19617732e6ad5f92ce743fc572f631416d14f22577c5a",
+          "patchedSha256": "21d5289b1ddb684d3acb91b1f0cfc2dcc73ffc7a71eb037306d71017e14ac8f2",
+          "reason": "Cache the clock and digit bitmaps once instead of reloading and deleting them every frame."
+        },
+        {
+          "path": "proj/code/rtc.c",
+          "originalSha256": "907803b18e2c2f2a8bab618de708c767b96997c08be916fe395ba5df13eec690",
+          "patchedSha256": "aac50e041f3c476c9e217d8ebe8d606b201df8ed5a2aa57a9a304578c5875dfb",
+          "reason": "Remove the unused per-frame bitmap load and size time for all six written characters."
         }
       ]
     }

@@ -1,0 +1,40 @@
+--- a/proj/src/models/bullet.c
++++ b/proj/src/models/bullet.c
+@@ -56,20 +56,27 @@ void player_update_bullets(Helicopter * heli){
+ 
+ void player_create_bullet( Player* obj,struct packet *pp, Mouse *mouse){
+ 
+-    if(n_player_bullets == BULLETS){ 
+-      
+-        return;}
+-        
++    // Reuse slots of bullets that already left play. Tracking only a running
++    // count would permanently stop firing after the first BULLETS shots.
++    int slot = -1;
++    for (unsigned i = 0; i < BULLETS; i++) {
++        if (!player_bullets[i].in_game) {
++            slot = (int) i;
++            break;
++        }
++    }
++    if (slot < 0)
++        return;
++
+     int delta_x = mouse->x - obj->x;
+     int delta_y = mouse->y - obj->y;
+     double alpha = atan2((double)delta_y, (double)delta_x);
+-    player_bullets[n_player_bullets].x = obj->x;
+-    player_bullets[n_player_bullets].y = obj->y;
+-    player_bullets[n_player_bullets].in_game = true;
+-    player_bullets[n_player_bullets].vx = (int16_t)round(cos(alpha) * 5.0);
+-    player_bullets[n_player_bullets].vy = (int16_t)round(sin(alpha) * 5.0);  
++    player_bullets[slot].x = obj->x;
++    player_bullets[slot].y = obj->y;
++    player_bullets[slot].in_game = true;
++    player_bullets[slot].vx = (int16_t)round(cos(alpha) * 5.0);
++    player_bullets[slot].vy = (int16_t)round(sin(alpha) * 5.0);
+ 
+-    
+     n_player_bullets++;
+ }
+ 

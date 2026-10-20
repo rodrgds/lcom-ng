@@ -9,3 +9,101 @@
  
  
  
+
+--- a/proj/src/Game/SelectNames.c
++++ b/proj/src/Game/SelectNames.c
+@@ -34,7 +34,7 @@ void (kbc_api_select_names)(struct ArenaModel* model, enum GameState* state) {
+     }
+     char c = getChar(scan_code);
+     if (c != '=') {
+-        if (model->players[number_of_player].nameSize < 10) {
++        if (model->players[number_of_player].nameSize < 9) {
+             model->players[number_of_player].name[model->players[number_of_player].nameSize] = c;
+             model->players[number_of_player].nameSize++;
+         }
+
+--- a/proj/src/Game/gameControllers/Controller.c
++++ b/proj/src/Game/gameControllers/Controller.c
+@@ -71,41 +71,47 @@ bool (PlayerCanWalkUp)(int PlayerNumber, struct ArenaModel* ArenaModel){
+     return PlayerCanWalkTo(position,PlayerNumber ,ArenaModel);
+ }
+ 
++static int effectiveScanCode(void){
++    return scan_code[0] == 0xE0 ? scan_code[1] : scan_code[0];
++}
++
+ void (kbc_Player1)(enum Direction *action){
+-    if(scan_code[0] == 0x1e){
++    int code = effectiveScanCode();
++    if(code == 0x1e){
+         *action = LEFT;
+-    }else if(scan_code[0] == 0x9e && *action == LEFT){
++    }else if(code == 0x9e && *action == LEFT){
+         *action = STAY;
+-    }else  if(scan_code[0] == 0x1f){
++    }else  if(code == 0x1f){
+         *action = DOWN;
+-    }else if(scan_code[0] == 0x9f && *action == DOWN){
++    }else if(code == 0x9f && *action == DOWN){
+         *action = STAY;
+-    }else  if(scan_code[0] == 0x11){
++    }else  if(code == 0x11){
+         *action = UP;
+-    }else if(scan_code[0] == 0x91 && *action == UP){
++    }else if(code == 0x91 && *action == UP){
+         *action = STAY;
+-    }else  if(scan_code[0] == 0x20){
++    }else  if(code == 0x20){
+         *action = RIGHT;
+-    }else if(scan_code[0] == 0xa0 && *action == RIGHT){
++    }else if(code == 0xa0 && *action == RIGHT){
+         *action = STAY;
+     }
+ }
+ void (kbc_Player2)(enum Direction *action){
+-    if(scan_code[0] == 0x4B){
++    int code = effectiveScanCode();
++    if(code == 0x4B){
+         *action = LEFT;
+-    }else if(scan_code[0] == 0xCB && *action == LEFT){
++    }else if(code == 0xCB && *action == LEFT){
+         *action = STAY;
+-    }else  if(scan_code[0] == 0x50){
++    }else  if(code == 0x50){
+         *action = DOWN;
+-    }else if(scan_code[0] == 0xD0 && *action == DOWN){
++    }else if(code == 0xD0 && *action == DOWN){
+         *action = STAY;
+-    }else  if(scan_code[0] == 0x48){
++    }else  if(code == 0x48){
+         *action = UP;
+-    }else if(scan_code[0] == 0xC8 && *action == UP){
++    }else if(code == 0xC8 && *action == UP){
+         *action = STAY;
+-    }else  if(scan_code[0] == 0x4D){
++    }else  if(code == 0x4D){
+         *action = RIGHT;
+-    }else if(scan_code[0] == 0xCD && *action == RIGHT){
++    }else if(code == 0xCD && *action == RIGHT){
+         *action = STAY;
+     }
+ }
+@@ -149,7 +155,8 @@ void(movePlayer)(int PlayerNumber,struct ArenaModel* ArenaModel){
+     }
+ }
+ void (kbc_Bomb)(struct ArenaModel* ArenaModel){
+-    if(scan_code[0] == 0x39){
++    int code = effectiveScanCode();
++    if(code == 0x39){
+         if(ArenaModel->players[0].bombs > 0){
+             ArenaModel->players[0].bombs--;
+             ArenaModel->bombs[ArenaModel->nBombs].position.x = ArenaModel->players[0].position.x;
+@@ -161,7 +168,7 @@ void (kbc_Bomb)(struct ArenaModel* ArenaModel){
+             ArenaModel->nBombs++;
+             ArenaModel->players[0].bombcooldown = 3;
+         }
+-    }else if(scan_code[0] == 0x52){
++    }else if(code == 0x52){
+         if(ArenaModel->players[1].bombs > 0){
+             ArenaModel->players[1].bombs--;
+             ArenaModel->bombs[ArenaModel->nBombs].position.x = ArenaModel->players[1].position.x;

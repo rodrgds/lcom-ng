@@ -115,5 +115,19 @@
     "web": "Real Chromium mobile touch gameplay in landscape and portrait; no JavaScript errors. Controls, menu transitions and game actions exercised.",
     "evidence": "build/arcade-100/a/evidence/ferreira1911--LCOM_Project",
     "native": "Original sources compiled against compatibility SDK; final native collection build pending integration."
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Free the previous pixmap before loading the target image again.",
+      "files": [
+        {
+          "path": "proj/src/model/target.c",
+          "originalSha256": "b67403522179c19c2fa52bf3fe9647982e4e1feadf85c81e645fe8b45780f6fb",
+          "patchedSha256": "2261d774e025a7e844ed1358f4893305a7d31a6787915c488b73768cb894f489",
+          "reason": "Free the previous pixmap before loading the target image again."
+        }
+      ]
+    }
+  ]
 }

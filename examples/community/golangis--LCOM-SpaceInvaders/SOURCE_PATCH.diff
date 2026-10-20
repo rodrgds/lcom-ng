@@ -104,3 +104,14 @@
  }
  
  void (draw_player)(Player* ship) {
+
+--- a/proj/src/logic/alien.c
++++ b/proj/src/logic/alien.c
+@@ -93,6 +93,7 @@ void (delete_alien_shot)(Alien* alien, int i) {
+ }
+ 
+ void (shoot_aliens)(AlienGroup* group) {
++  if (group->alive_no == 0) return;
+   int index = rand() % group->size;
+   while (!(group->set[index].alive)) index = rand() % group->size;
+   Alien* a = &(group->set[index]);

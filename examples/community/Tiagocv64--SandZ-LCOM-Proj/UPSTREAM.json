@@ -12,6 +12,12 @@
       "upstreamSha256": "aa484c1bd395438dcaffface04fbe7194b2b73d9129fbdf926f63fb5cb043f92",
       "patchedSha256": "572d2099f7486953ecf96d08ad7b4bfe69414a904f70c196892f5e81950dc3e3",
       "verification": "Actual drawWave compiled regression checked formatter RED bounds abort on original; GREEN complete wave1 and INT_MAX banner. b/sandz-banner-before.log and b/sandz-banner-after.log; native Android gameplay retry required."
+    },
+    {
+      "file": "src/edit_text.c",
+      "originalSha256": "af3a61128eede7963334c7d1db1b8b7d789ccce822115c556e83f26bb68cb6c8",
+      "patchedSha256": "06105df00263b6bb97cda72cd885126f2ce7e378bfda893c99ceac87e671d6d4",
+      "reason": "edit_text.text was uninitialized when the name screen was created again, and user input was never terminated, so sprintf(\"%s\") could read past the field into a 26-byte stack buffer; zero the field and terminate after edits"
     }
   ],
   "sha256": {

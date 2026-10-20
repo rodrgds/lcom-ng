@@ -92,8 +92,8 @@
         {
           "file": "proj/code/jogo.c",
           "originalSha256": "93973952b7721fa99f2cfbdbdeb0604ba95c18eb3f33ded5231c070d41f3bd00",
-          "patchedSha256": "c5d2229297fdd0c118ee97bcaa9bdff0cac2b64e52b42fb233a68bcef3961ff7",
-          "reason": "Initialize five keyboard loop guards before testing them. Bound difficulty filename construction and load only complete in-range Sudoku records. Decode complete signed9bit mouse deltas with header sign bits. Clock/timer repaints draw the cursor without applying a partially received mouse packet. Timer-only repaints also skip cell/Back click processing, because no new mouse input arrived.",
+          "patchedSha256": "12f6e69408ed77c65340fec9cb656113105e7d76290813d6eb70e0e209e01a56",
+          "reason": "Initialize five keyboard loop guards before testing them. Bound difficulty filename construction and load only complete in-range Sudoku records. Decode complete signed9bit mouse deltas with header sign bits. Clock/timer repaints draw the cursor without applying a partially received mouse packet. Timer-only repaints also skip cell/Back click processing, because no new mouse input arrived. Read at most three high scores and require successful scans, preventing writes past a[3].",
           "verification": "Original optimized actual WASM unreachable→corrected real menu after guard initialization; owning compiled menu fixture checks timer then actual Escape. Original difficulty path stack overflow RED SIGTRAP→GREEN allthree difficulties and malformed/out-of-range input rejection. Original full signed9bit delta fixture RED→GREEN121pairs preserving originalgain2 and64x51glyph clamps. Actual menu partialheader+x→RTC→Escape interleaving RED unintended cursor motion→GREEN unchanged cursor until a full packet. Additional owning clock redraw fixture RED requests keyboard input from a held cell without any new mouse packet; GREEN repaints without opening an editor."
         },
         {

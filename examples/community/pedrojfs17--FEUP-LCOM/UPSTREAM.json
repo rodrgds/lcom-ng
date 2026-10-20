@@ -194,6 +194,12 @@
       "originalSha256": "3c488f90aac6509f02e1b3ddb725f411471de1aa7c875ff17939662657918649",
       "patchedSha256": "c10bade90f98e7951943c1d8df7467f4600c7f5247555d9b18c2aa244b8d9e5f",
       "reason": "draw_hearts freed local stack image metadata. Release each heap-backed blue/red pixel buffer after its last draw instead. The actual owning renderer aborted before repair and now draws three hearts of each color without invalid frees."
+    },
+    {
+      "file": "proj/src/Bullet.c",
+      "originalSha256": "a374e28bfc8623bd82242eada20cbfea747e045068141ac80909e38c227d1227",
+      "patchedSha256": "5f50bfe858d3e2081ce602885be2934a02fe315ee8fab29e961bf919540ab58b",
+      "reason": "Use signed loop counters with an explicit >= 0 lower bound in both countdown wall scans, stopping at the level edge instead of wrapping through unsigned underflow. Wall hits are still detected exactly as before."
     }
   ],
   "selection": "Pinned selected project with required sibling assets; generated docs, labs and OS/VCS/build metadata omitted.",

@@ -16,11 +16,11 @@ Leaderboard *load_leaderboard()
     leaderboard->num_score_records = 5;
 
     leaderboard->score_records = (Score_Record *)malloc(sizeof(Score_Record) * leaderboard->num_score_records);
-    leaderboard->score_records[0].player_name = (char *)malloc(leaderboard->max_name_length);
-    leaderboard->score_records[1].player_name = (char *)malloc(leaderboard->max_name_length);
-    leaderboard->score_records[2].player_name = (char *)malloc(leaderboard->max_name_length);
-    leaderboard->score_records[3].player_name = (char *)malloc(leaderboard->max_name_length);
-    leaderboard->score_records[4].player_name = (char *)malloc(leaderboard->max_name_length);
+    leaderboard->score_records[0].player_name = (char *)calloc(leaderboard->max_name_length + 1, sizeof(char));
+    leaderboard->score_records[1].player_name = (char *)calloc(leaderboard->max_name_length + 1, sizeof(char));
+    leaderboard->score_records[2].player_name = (char *)calloc(leaderboard->max_name_length + 1, sizeof(char));
+    leaderboard->score_records[3].player_name = (char *)calloc(leaderboard->max_name_length + 1, sizeof(char));
+    leaderboard->score_records[4].player_name = (char *)calloc(leaderboard->max_name_length + 1, sizeof(char));
 
     load_scores(leaderboard);
 

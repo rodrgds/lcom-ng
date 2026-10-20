@@ -66,9 +66,9 @@
         },
         {
           "file": "proj/src/tetris.c",
-          "reason": "Match the uint8_t scancode defined by keyboard.c. A uint32_t extern also reads the adjacent nonzero sys_inb_counter, so Enter never leaves the title and arrow keys fail in gameplay.",
+          "reason": "Match the uint8_t scancode defined by keyboard.c. A uint32_t extern also reads the adjacent nonzero sys_inb_counter, so Enter never leaves the title and arrow keys fail in gameplay. Return true as soon as a block is on the edge, before scanning neighbours outside the 22x15 status board.",
           "originalSha256": "cb421c1f6e736a2b153e11d96ff27381616809809bd390ca92ddbd8413c470d8",
-          "patchedSha256": "c958183ea49448b8c0bd75799da6a0574d1eb52489c3eb9108fc4029831cb536"
+          "patchedSha256": "d4ed37513fcf5e704cd8561d158f1d8e36c8f8c8a376d2a4c526fdce9d095c60"
         },
         {
           "file": "proj/src/keyboard.c",

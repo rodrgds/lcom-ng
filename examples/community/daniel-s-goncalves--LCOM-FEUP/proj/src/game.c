@@ -410,9 +410,13 @@ void RESTART(int print, void *address){
 }
 
 int checkWin() {
-    static int filledSpaces = 0;
-
-    filledSpaces++;
+    int filledSpaces = 0;
+    for (int r = 0; r < ROWS; r++) {
+        for (int c = 0; c < COLUMNS; c++) {
+            if (game_table[r][c] != 0)
+                filledSpaces++;
+        }
+    }
 
     int HEIGHT = ROWS;
     int WIDTH = COLUMNS;
@@ -461,7 +465,6 @@ int checkWin() {
     }
 
     if(filledSpaces == ROWS * COLUMNS){
-        filledSpaces = 0;
         setRemainingSeconds(3);
         addREDwarning(0);
         reset_counter();

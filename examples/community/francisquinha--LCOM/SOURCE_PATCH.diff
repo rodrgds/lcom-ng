@@ -19,3 +19,20 @@
  		if (byte & BIT(3)) {									/* if BIT(3) of this byte is on */
  			mouse->byte_counter = 1;							/* this is probably the first byte, set byte counter to 1 */
  			mouse->bytes[0] = byte;								/* and store this as first byte */
+
+--- a/code/highscore.c
++++ b/code/highscore.c
+@@ -81,11 +81,11 @@ void update_highscores(HighScore *highscores[10], unsigned int new_score, unsign
+ 	for (j = 9; j > i; j--) {
+ 		for (k = 0; k < 5; k++)
+ 			highscores[j]->name[k] = highscores[j - 1]->name[k];
+-		highscores[j]->datetime = highscores[j - 1]->datetime;
++		*highscores[j]->datetime = *highscores[j - 1]->datetime;
+ 		highscores[j]->score = highscores[j - 1]->score;
+ 	}
+ 	for (k = 0; k < 5; k++)
+ 		highscores[i]->name[k] = new_name[k];
+-	highscores[i]->datetime = new_datetime;
++	*highscores[i]->datetime = *new_datetime;
+ 	highscores[i]->score = new_score;
+ }

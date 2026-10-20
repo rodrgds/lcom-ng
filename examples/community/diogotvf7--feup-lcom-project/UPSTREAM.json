@@ -115,6 +115,12 @@
           },
           "originalSha256": "3507e5a4061d0b605ef35b50ade65ea7f9999c58b79a6008f7af1d4ec1f94cf2",
           "patchedSha256": "e8b156e585433a5282ab0139b64b02eb038dbe256a1e3fb196cfdf22c4242891"
+        },
+        {
+          "path": "proj/src/controller/keyboard/keyboard.c",
+          "originalSha256": "8b33f3a8fb8b1213d7e2258ed42cf9744ea73d26b4bd69c8d67142bcd93ca462",
+          "patchedSha256": "afe61862a76464a6673ea807496b6ddb724662b5056116c94171bfa092ae7360",
+          "reason": "Cap typed guesses at the 12-byte buffer size."
         }
       ]
     }

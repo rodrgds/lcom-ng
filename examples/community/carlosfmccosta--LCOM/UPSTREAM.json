@@ -131,6 +131,12 @@
           },
           "originalSha256": "bbe60ff61bad734f2cfc5acecf9baf9bae2294649341be27e78ad3c3c52d0429",
           "patchedSha256": "a7f9c7e0d0d06c5ca3d22fe97db8489f0c7c6cc0d0056de43f3aa250ee3a0f50"
+        },
+        {
+          "path": "proj/src/model/enemy.c",
+          "originalSha256": "d4e3936681a2d6938921bed2cc5919a950a153bf44db9be6e55621081ea6e57e",
+          "patchedSha256": "28c661f47a085b61045e595ea8aa78311a7f67c272904b3e58ad16c8a0eac0c4",
+          "reason": "Stop spawning at MAX_ENEMIES, destroy rejected temporary enemies, and cap the direction-retry recursion at the four directions."
         }
       ]
     }

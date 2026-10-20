@@ -20,3 +20,37 @@
  
    mouse->icon = loadBitmap("/home/lcom/proj/res/mouse.bmp");
    mouse->x = H_RES / 2;
+
+--- a/proj/src/cloud.c
++++ b/proj/src/cloud.c
+@@ -12,13 +12,24 @@
+ #include "cloud.h"
+ 
+ Clouds* startClouds() {
+-  Clouds* clouds = (Clouds*)malloc(sizeof(Clouds));
++  static Bitmap *cloud_1 = NULL;
++  static Bitmap *cloud_2 = NULL;
++  static Bitmap *cloud_3 = NULL;
+ 
+-  clouds->cloud_1 = loadBitmap("/home/lcom/proj/res/cloud1.bmp");
+-  clouds->cloud_2 = loadBitmap("/home/lcom/proj/res/cloud2.bmp");
+-  clouds->cloud_3 = loadBitmap("/home/lcom/proj/res/cloud3.bmp");
+-  clouds->cloud_4 = loadBitmap("/home/lcom/proj/res/cloud1.bmp");
+-  clouds->cloud_5 = loadBitmap("/home/lcom/proj/res/cloud2.bmp");
++  Clouds* clouds = (Clouds*)malloc(sizeof(Clouds));
++  if (clouds == NULL) return NULL;
++
++  /* Load each bitmap once and share it between clouds. Re-loading per cloud
++     leaked the previous image and repeatedly read ~390 KB from disk. */
++  if (cloud_1 == NULL) cloud_1 = loadBitmap("/home/lcom/proj/res/cloud1.bmp");
++  if (cloud_2 == NULL) cloud_2 = loadBitmap("/home/lcom/proj/res/cloud2.bmp");
++  if (cloud_3 == NULL) cloud_3 = loadBitmap("/home/lcom/proj/res/cloud3.bmp");
++
++  clouds->cloud_1 = cloud_1;
++  clouds->cloud_2 = cloud_2;
++  clouds->cloud_3 = cloud_3;
++  clouds->cloud_4 = cloud_1;
++  clouds->cloud_5 = cloud_2;
+ 
+   clouds->cloud1_y = CLOUD1_Y;
+   clouds->cloud2_y = CLOUD2_Y;

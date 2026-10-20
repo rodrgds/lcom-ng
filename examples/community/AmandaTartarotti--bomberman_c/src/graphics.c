@@ -78,7 +78,7 @@ int alloc_double_buffer(uint16_t mode){
 
 int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
 
-  if(x > vbe.XResolution || y > vbe.YResolution) return 1;
+  if(x >= vbe.XResolution || y >= vbe.YResolution) return 1;
   unsigned BytesPerPixel = (vbe.BitsPerPixel + 7) / 8;
   unsigned int index = (vbe.XResolution * y + x) * BytesPerPixel;
   if(color != TRANSPARENT){

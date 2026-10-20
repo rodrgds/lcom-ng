@@ -49,6 +49,12 @@
           "path": "proj/words.c",
           "originalSha256": "cc99a6fec7c25bbe410e4b3fc37818704504be5f1e9fad4e3b3a66c706867338",
           "patchedSha256": "c17aafbda90c77269d8cba5bccb7ae3691c3fac3df782e3011a7392369c8b124"
+        },
+        {
+          "path": "proj/game.c",
+          "originalSha256": "b72af02e0720bc9e9537ffda7775f21f202f8392d99fae876b5c24e55355de1a",
+          "patchedSha256": "f5e708aa1585dc58465ee93e095b3df84b62b7a97637f74f5d7e1f09de699eed",
+          "reason": "high-score name entry appended keyboard characters to a 256-byte heap buffer without a length limit, allowing a heap overflow; stop appending at the buffer capacity"
         }
       ]
     }
@@ -77,7 +83,7 @@
       "status": "passed",
       "evidence": "build/arcade-100/falling-words-reviewed-native/results.json",
       "apkSha256": "82df6ac1830030de0f6ba87fff4ada4fc2e3790f2617b802ca3291d11d751f2f",
-      "demonstrated": "Root viewed original visible native word, typed it through actual on-screen touch keyboard, trophy score0\u21921 and next PARTICULAR word at level1. Original Enter pause/resume and clean Home also verified.",
+      "demonstrated": "Root viewed original visible native word, typed it through actual on-screen touch keyboard, trophy score0→1 and next PARTICULAR word at level1. Original Enter pause/resume and clean Home also verified.",
       "limitations": [
         "One visible word completed using original120Hz game speed. Sustained typing performance, full round and leaderboard record are not claimed."
       ]

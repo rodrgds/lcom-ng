@@ -663,6 +663,7 @@ List* Map_GetPath(int xi , int yi, int xf, int yf){
 	List_Destroy(open);
 	List_Destroy(closed);
 
+	return NULL;
 }
 
 inline unsigned char Map_GetData(int x, int y){

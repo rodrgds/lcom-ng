@@ -39,10 +39,6 @@ int rtc_test_date(void) {
 	Date date;
 	char d1,d2;
 
-	Bitmap* teste;
-	teste=loadBitmap("/home/lcom/repos/proj/images/abcb.bmp");
-
-
 	//changeReg(0x11,2);
 	//changeReg(RTC_REG_B,RTC_REG_B_DM);
 	date.seconds=readReg(RTC_REG_SECONDS);
@@ -57,7 +53,7 @@ int rtc_test_date(void) {
 	date.minutes=((date.minutes >> 4) * 10) + (date.minutes & 0x0F);
 	date.seconds=((date.seconds >> 4) * 10) + (date.seconds & 0x0F);
 
-	char time[5];
+	char time[6];
 
 	if(date.hours<10){
 		time[0]='0';

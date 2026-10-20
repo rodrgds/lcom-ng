@@ -238,6 +238,12 @@
           "patchedSha256": "6ef3c9a0da957fbeda0d767c9e9697f19c773e40abf52369788d10b37104e03b",
           "reason": "Restarting medium already constructs the20x16 board; retain MEDIUM instead of switching to the BEGINNER16x16 renderer/input dispatcher.",
           "verification": "Actual owning keyboard event handler with ordinary R make: original resets20x16 but sets BEGINNER RED; corrected handler retains MEDIUM GREEN. Actual browser shows20columns before and afterR;16 fortified ARM64 objects PASS."
+        },
+        {
+          "path": "proj/src/game/game_logic.c",
+          "originalSha256": "977a3a6863bb0e7190f4625f028ede5e46a42926b4a30f1cafbe472c44617414",
+          "patchedSha256": "abe8263e05c5ad3a29f2c3452923f0820e2c38ae14c8ad7b488f668933924fae",
+          "reason": "edge clicks produced matrix indices equal to the board dimensions (16/20/28 columns, 16/20 rows), accessing one past the boards; clamp to the active board size"
         }
       ]
     }

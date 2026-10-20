@@ -91,5 +91,19 @@
         "Representative original touch play and clean Home process exit on ARM64 emulator. Every mode, long sessions, linked UART and physical-phone performance are unclaimed."
       ]
     }
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Break out of GAME_STATE for the keyboard-controlled red turn and enter END_STATE only on the first winning frame.",
+      "files": [
+        {
+          "path": "proj/src/game.c",
+          "originalSha256": "6d9fe71eeee4df9946a66666b67fc145156452d1d3c2b6d4ed74de85f839d4e5",
+          "patchedSha256": "00cd74de913682e0682f46dd9a7a887f991769d7931ec3d6a0c9b0b6d38b476a",
+          "reason": "Break out of GAME_STATE for the keyboard-controlled red turn and enter END_STATE only on the first winning frame."
+        }
+      ]
+    }
+  ]
 }

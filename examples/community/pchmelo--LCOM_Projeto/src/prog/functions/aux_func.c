@@ -8,7 +8,7 @@ uint8_t seed = 0;
 uint32_t count = 0;
 
 int* time_to_int(){
-    int* res = (int*) malloc(sizeof(int) * 3);
+    int* res = (int*) malloc(sizeof(int) * 6);
 
     res[0] = rtc_time.hours / 10;
     res[1] = rtc_time.hours % 10;

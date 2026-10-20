@@ -107,7 +107,7 @@
           "originalSha256": "690e38d4b51c8e8259685be050bc202eba00bb2696b65b7eac7d8d6dc8cf928c",
           "patchedSha256": "8301c4f06d6a11b6a793b51a951ce80c38188b101d9bd224fd1c199a232005d2",
           "reason": "Release the original F font image once during authored Exit cleanup. Keep original entered names NUL-terminated before the original highscore strcpy and saved-file writer.",
-          "verification": "Actual original exit_game cleanup fails unique-free assertion on F; corrected actualfunction releases originalfontassets once. Actual reset_stats\u2192type ana\u2192write_new_highscore originally fails an independently bounded13byte-NUL assertion; corrected save produces ana, backspace/retype produces anz, reset and12characterlimit preserve the terminator."
+          "verification": "Actual original exit_game cleanup fails unique-free assertion on F; corrected actualfunction releases originalfontassets once. Actual reset_stats→type ana→write_new_highscore originally fails an independently bounded13byte-NUL assertion; corrected save produces ana, backspace/retype produces anz, reset and12characterlimit preserve the terminator."
         },
         {
           "file": "proj/src/graphics.c",
@@ -129,6 +129,12 @@
           "patchedSha256": "1e86451196e33b9f0b9081dbad7d34a615acd4a664a6d8f6eb093fe4223c1df1",
           "reason": "Allocate the full rotated sprite pixel buffer rather than sizeof its size variable.",
           "verification": "Actual original rotation requests8bytes for a36byte output, assertionRED; full36byteallocation preserves postimagecanaryGREEN."
+        },
+        {
+          "path": "proj/src/asteroid.c",
+          "originalSha256": "14d39d1c03391d70214c8f7ae24734582367b3e63d579dee0d967415e8ea9aec",
+          "patchedSha256": "23e6935fdad02d41ea719d36b2e263121826c9f6dc9d220122a4df8845bf069b",
+          "reason": "Guard both spawn and split appends against maxNumAsteroids; at capacity the hit asteroid is removed instead of writing past the table."
         }
       ]
     }
@@ -139,17 +145,17 @@
     "preview": "Actual browser screenshot after original asteroid hitcounter reaches100points, resized640x480."
   },
   "verification": {
-    "browser": "Corrected actualgame moves ship right/up, fires, opensHighscores, returnsmenu and authoredExit reachesGamefinished withoutpageerrors. Screenshot-only rockcomponents drive ordinary touchaim/Fire, originalHUD40\u219260\u219270\u2192100\u2192130\u2192170\u2192230 points. Portrait390x844 andlandscape844x390 panel reviewed.",
+    "browser": "Corrected actualgame moves ship right/up, fires, opensHighscores, returnsmenu and authoredExit reachesGamefinished withoutpageerrors. Screenshot-only rockcomponents drive ordinary touchaim/Fire, originalHUD40→60→70→100→130→170→230 points. Portrait390x844 andlandscape844x390 panel reviewed.",
     "ndk": "All15actual selected/generated-context ARM64 objects passO2/FORTIFY2/stack-protector/format-security.",
     "native": "Pending ROOT actualAndroidgameplay.",
     "sdk": "Requires corrected historical lm_init(false) enable_logging contract; SDKownerhandoff lm-sdk/handoff is separate and game call remainsunchanged.",
     "limitations": "No fullwave/completionclaim. No sourcephysics/timing/RNG changes. Empty highscores is originaldefault; configuredabsolutealias preserves original private savedfile access. A prior QA sequence continued canvas input after Quit and restarted via standard host behavior; corrected final sequence stops at authoredExit.",
-    "nameEntry": "Owning original full name-entry/highscore-copy chain RED\u2192GREEN, including backspace/retype/reset/12characterlimit; actual device entry pending ROOT.",
+    "nameEntry": "Owning original full name-entry/highscore-copy chain RED→GREEN, including backspace/retype/reset/12characterlimit; actual device entry pending ROOT.",
     "nativeGameplay": {
       "status": "passed",
       "evidence": "build/arcade-100/asteroid-watch-reviewed-native/results.json",
       "apkSha256": "9f28eb2d43ddb727ad0085f28fa357b1ecafca51ee8b316de16def7b79104800",
-      "demonstrated": "ROOT viewed Android ship movement, pointer aiming, original orange fireballs, score0\u219250, natural GameOver/NewHighscore, actual native touch-keyboard ANA entry, submitted and reopened highscore50/date, original menu and clean authored Exit.",
+      "demonstrated": "ROOT viewed Android ship movement, pointer aiming, original orange fireballs, score0→50, natural GameOver/NewHighscore, actual native touch-keyboard ANA entry, submitted and reopened highscore50/date, original menu and clean authored Exit.",
       "limitations": [
         "Full later rounds and physical-phone performance are not demonstrated."
       ]

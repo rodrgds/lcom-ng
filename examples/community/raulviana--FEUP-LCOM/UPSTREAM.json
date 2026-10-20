@@ -4,7 +4,14 @@
   "project": "proj/src",
   "licenseFiles": [],
   "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "proj/src/game.c",
+      "originalSha256": "d5106e5167cb11f059c9157a26494f361a306a4f5c141faddcc27ea924db46ba",
+      "patchedSha256": "caa4cc996a3035addb9724f420120003bbcb9801b6d1af88cc75c1ce3940e384",
+      "reason": "Remove the invalid free of the static array. The process exits immediately after menu(), so the small one-time allocation is harmless."
+    }
+  ],
   "sha256": {
     "README.md": "57ffc9a5c11b14a5c68203dc959d1dc0eb46ebb5e0d6e830dfb89f6ceaca2b84",
     "proj/Documents/relatorioLCOM.docx": "a00d25596ce1bdf0fd42d5c3cebc53446dc316d58e9bbeb89f679824658996a9",

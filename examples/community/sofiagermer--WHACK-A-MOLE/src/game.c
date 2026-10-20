@@ -194,7 +194,6 @@ int game_main_loop(WhacAMole *new_game)
     free(new_game->moles);
     free(new_game->menu->buttons);
     free(new_game->menu);
-    free(new_game->player_settings->avatars);
     free(new_game->player_settings->buttons);
     free(new_game->player_settings);
     free(new_game->player);

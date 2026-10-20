@@ -50,11 +50,12 @@ void drawSprite(Sprite *sprite){
  */
 void changeSprite(Sprite *sp, xpm_map_t xpm){
     xpm_image_t img;
-    sp->map = (uint32_t *)xpm_load(xpm, XPM_8_8_8_8, &img);
-    if(sp->map == NULL) {
-        free(sp);
+    uint32_t *new_map = (uint32_t *)xpm_load(xpm, XPM_8_8_8_8, &img);
+    if(new_map == NULL) {
         return;
     }
+    free(sp->map);
+    sp->map = new_map;
     sp->width = img.width; 
     sp->height= img.height;
 }

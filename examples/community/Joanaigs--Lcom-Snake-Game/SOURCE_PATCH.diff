@@ -158,3 +158,38 @@
  
  
  
+
+--- a/proj/src/apple.c
++++ b/proj/src/apple.c
+@@ -15,6 +15,9 @@ void initAppleXPM(){
+ }
+ 
+ void initApple(Apple *apple, int x_pos, int y_pos, enum appleType type){
++    if (numApples >= (int)(sizeof(applesArray) / sizeof(applesArray[0])))
++        return;
++
+     apple->type = type;
+     apple->appleXpm = get_xpm(type);
+     apple->x_pos = x_pos;
+@@ -71,6 +74,9 @@ int isApple(int x, int y) {
+ }
+ 
+ void placeApple(int x, int y, enum appleType type){
++    if (numApples >= (int)(sizeof(applesArray) / sizeof(applesArray[0])))
++        return;
++
+     Apple apple;
+     int h=x/40;
+     int v=y/40;
+--- a/proj/src/snake.c
++++ b/proj/src/snake.c
+@@ -66,6 +66,9 @@ void eraseSnakeBody() {
+ }
+ 
+ void addBodyPart() {
++  if (numOfBodyParts + 1 >= (int)(sizeof(snakeBody) / sizeof(snakeBody[0])))
++    return;
++
+   erase_xpm(snakeBody[numOfBodyParts].img, snakeBody[numOfBodyParts].x, snakeBody[numOfBodyParts].y, background.img);
+   numOfBodyParts++;
+   int i = numOfBodyParts - 1;

@@ -153,7 +153,8 @@ char* askNameIfRecordHandlerKeyboard(char* topPlayerName) {
 
       if (is_valid_scancode(scancode)) {
           char* c = scancode_to_char_pointer(scancode);
-          strcat(topPlayerName, c);
+          if (strlen(topPlayerName) + strlen(c) < 256)
+              strcat(topPlayerName, c);
       }
 
       if (scancode == BACKSPACE_BREAK && strlen(topPlayerName) > 0)

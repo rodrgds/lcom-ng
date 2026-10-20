@@ -1,0 +1,19 @@
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -449,7 +449,7 @@ bool get_user_input(int length) {
+                         } else if(scancode & MAKE_CODE)  {
+                             uint8_t clean_scancode = scancode & 0x7F;
+                             char input = convert_scancode_to_char(clean_scancode);
+-                            if (input != 0) {
++                            if (input != 0 && index < length) {
+                                 user_input[index++] = input;
+                             }
+                             show_sequence(user_input,index);
+@@ -564,6 +564,7 @@ void play_memory_game() {
+         }
+         show_countdown_screen();
+         level++;
++        if (level > MAX_SEQUENCE) level = MAX_SEQUENCE;
+     }
+ 
+ }

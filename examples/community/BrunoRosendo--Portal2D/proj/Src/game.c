@@ -980,12 +980,12 @@ void shoot_portal(bool purple, Sprite *character, int x_c, int y_c) {
     x = character->x + floor(rad * cos(ang));
     y = character->y - floor(rad * sin(ang));
 
+    if (x < 0 || y < 0 || x > (int) get_h_res() || y > (int) get_v_res()) return; // off limits
+
     if (grid[y / block_width][x / block_width] == 2)
       return; // hit a black block
     else if (grid[y / block_width][x / block_width] == 1)
       break; // hit a white block
-    
-    if (x < 0 || y < 0 || x > (int) get_h_res() || y > (int) get_v_res()) return; // off limits
   }
 
   int block_x = (x / block_width) * block_width;

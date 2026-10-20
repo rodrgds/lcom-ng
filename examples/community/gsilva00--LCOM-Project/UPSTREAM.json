@@ -126,7 +126,8 @@
         {
           "path": "proj/src/devices/gpu/gpu.c",
           "originalSha256": "84dd67aa8236baa11dfc8ca6bb18c18c61b1a5287c63c623e1dbc5b1b638e2af",
-          "patchedSha256": "1421517abc29e7c6cc3fc9dbfcbec3f0783cd5e52f9718a87e1bc3e32cd86f5f"
+          "patchedSha256": "6837eb5bd2dbb8a837bb26bc7c15dccd0a1605ad52a97f5d02f96a8539780e93",
+          "reason": "Skip digit drawing when the score has no matching digit image."
         }
       ]
     },

@@ -286,5 +286,19 @@
       "Paired multiplayer and split/double strategies not exhaustively tested."
     ],
     "androidGameplay": "pending"
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Move the deck position to file scope so the existing per-round reset actually applies to the dealer used by deal_card.",
+      "files": [
+        {
+          "path": "proj/src/game/game_controller.c",
+          "originalSha256": "b3a9f6ba0cf87b19d08dd95e92b934d6aa805ecc82c34caa2800945ceebe6720",
+          "patchedSha256": "faca24c9f53692febda83224c56953775736ac655df770ed48af54b82436a208",
+          "reason": "Move the deck position to file scope so the existing per-round reset actually applies to the dealer used by deal_card."
+        }
+      ]
+    }
+  ]
 }

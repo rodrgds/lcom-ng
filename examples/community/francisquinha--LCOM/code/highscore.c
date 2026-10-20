@@ -81,11 +81,11 @@ void update_highscores(HighScore *highscores[10], unsigned int new_score, unsign
 	for (j = 9; j > i; j--) {
 		for (k = 0; k < 5; k++)
 			highscores[j]->name[k] = highscores[j - 1]->name[k];
-		highscores[j]->datetime = highscores[j - 1]->datetime;
+		*highscores[j]->datetime = *highscores[j - 1]->datetime;
 		highscores[j]->score = highscores[j - 1]->score;
 	}
 	for (k = 0; k < 5; k++)
 		highscores[i]->name[k] = new_name[k];
-	highscores[i]->datetime = new_datetime;
+	*highscores[i]->datetime = *new_datetime;
 	highscores[i]->score = new_score;
 }

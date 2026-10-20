@@ -93,6 +93,12 @@
           "patchedSha256": "0da31838d03cce751299ef9b384082f9101eb81bf3e2656b8fc9ac57bf8b0cab",
           "reason": "Clip original mallet source columns and destination rows before transparency-keyed framebuffer writes. Original drawBitmapMouse computed drawWidth but ignored it and never clipped vertical rows, corrupting memory at clamped mouse edges.",
           "verification": "Actual original renderer guard-page RED SIGBUS at bottom-right; GREEN allfour partial edges, wholly outside positions and original transparency bytes. Actual normal joystick edge holds in landscape/portrait remain running without errors."
+        },
+        {
+          "path": "lcom1415-t3g15/projeto/src/Whack.c",
+          "originalSha256": "2748352051409786c7df10709f68650250edf0dcfc7d84e66a323f78a9ac4324",
+          "patchedSha256": "ee2cb46b8da093ebff50e832f61fb737c41a8dfa9ba56dc461283be6a236e0b7",
+          "reason": "Apply the selected difficulty to the base 120-frame interval instead of compounding the current interval, which can reach zero."
         }
       ]
     }

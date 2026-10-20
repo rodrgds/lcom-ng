@@ -19,6 +19,12 @@
       "patchedSha256": "6eb26c20a19305cb3e5bb92586cea8fd45e9797446499c945931ecfe73263507",
       "reason": "Original vg_paintPixel accepted x==framebuffer width or y==framebuffer height. Right-edge pixels could wrap into the next row, and bottom-edge pixels wrote beyond the allocated software framebuffer. Clip at or beyond each dimension before computing the address. Coordinates are unsigned, so negative comparisons were ineffective.",
       "verification": "Actual original renderer initialized through vg_init fails guarded allocation regression. Repaired renderer preserves first/last valid corner colors, clips exact width/height, beyond-edge and unsigned-maximum coordinates, and presents the unchanged valid pixels through vg_nextFrame. RED/GREEN: build/arcade-100/a/mosu-edge-fix/{red,green}.log."
+    },
+    {
+      "file": "src/game.c",
+      "originalSha256": "5469fac948191cd79845cf7130aa630ce1e9f4be8cde2e4d7fbb3804335f2380",
+      "patchedSha256": "e180419430b8eabb09c0c0a0edea53d098ce7ee5624f89b181dd3a28d9181821",
+      "reason": "each 60 Hz timer tick allocated replacement queues and abandoned the old queue struct and buffer, leaking memory for the whole round; free the replaced queues after transferring their circles"
     }
   ],
   "sha256": {

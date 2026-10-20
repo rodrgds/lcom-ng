@@ -1,0 +1,10 @@
+--- a/proj/src/snake.c
++++ b/proj/src/snake.c
+@@ -195,6 +195,7 @@ bool(move_snake)()
+     }
+ 
+     aux->next = NULL;
++    free(last);
+   }
+ 
+   return true;

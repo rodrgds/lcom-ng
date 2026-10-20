@@ -33,13 +33,13 @@ void save_name_score(char *name, int score) {
                                  temp_score.name, &temp_score.score,
                                  &temp_score.hours, &temp_score.minutes, &temp_score.seconds,
                                  &temp_score.day, &temp_score.month, &temp_score.year) == 8) {
-            if (placed == 0 && temp_score.score < score) {
+            if (placed == 0 && temp_score.score < score && c < 9) {
                 scores[c] = new_score;
                 c++;
                 placed = 1;
             }
-            scores[c] = temp_score;
-            c++;
+            if (c < 10)
+                scores[c++] = temp_score;
         }
         fclose(file);
     }

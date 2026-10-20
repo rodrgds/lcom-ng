@@ -178,3 +178,22 @@
 -    //Print time
      printWord(time, 630, 5);
  }
+--- a/proj/src/highscores.c
++++ b/proj/src/highscores.c
+@@ -110,12 +110,12 @@ void loadRecords(){
+     
+     int i=0;
+     if(f!=NULL){
+-        while(!feof(f)){
+-            fscanf(f, "%s", records[i].name);
+-            fscanf(f, "%s", records[i].seconds);
++        while(i < 3 && fscanf(f, "%s", records[i].name) == 1 &&
++              fscanf(f, "%s", records[i].seconds) == 1){
+             nrRecords++;
+-            i++;    
++            i++;
+         }
++        fclose(f);
+     }
+ }
+ 

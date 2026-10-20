@@ -35,6 +35,8 @@ void addEntity(DoubleLinkedList *list, void *sprite, EntityType type){
 void removeLinkedElement(DoubleLinkedList *list, EntitiesLinkedElement *linkedElement){
     if(linkedElement->previous != NULL){
         linkedElement->previous->next = linkedElement->next;
+    } else {
+        list->firstElement = linkedElement->next;
     }
     if(linkedElement->next != NULL){
         linkedElement->next->previous = linkedElement->previous;

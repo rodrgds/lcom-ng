@@ -53,11 +53,17 @@
           "reason": "Original vg_init definition unsigned long disagreed with public unsigned short declaration, causing browser LTO startup unreachable. Match original16-bit mode API. Live vg_set_pixel bare return for transparent index30 violates status contract and NDK18 rejects it; return0. The writer accepted x==width/y==height and incremented the pointer before writing, shifting every pixel and corrupting last-pixel canary. Use exclusive bounds and exact byte offset. Original artwork unchanged.",
           "originalSha256": "bfb98efc2b567f773d6e691e366498448ffa72fa9f7f8685b053d3882b6bead9",
           "patchedSha256": "be1d774f6e5ef7bd69060be3d2b02cf1c02bb1439c42098052255566144d7b24"
+        },
+        {
+          "path": "src/commodore.c",
+          "originalSha256": "89f49729ae3436a8b33daedffeacbd1f10c4e5830143a6ea6df5777caf048de8",
+          "patchedSha256": "87fbb226c82b6b98ec5f78009c0d9aa955cbd50fe328f93a62c99cb95704d24d",
+          "reason": "Retry scout only for destroyed ships (matching the AI path) so an alive ship terminates the loop; check the bombardment neighbour bounds before dereferencing the board cell."
         }
       ]
     }
   ],
-  "controlsRationale": "Original WASD per-make cursor movement with mobile repeatKeys, Enter fires/selects, keys1\u20134 are original special attacks. All controls in panel, pointer off because source has no mouse input. Both enemy/player ships remain displayed exactly as authored.",
+  "controlsRationale": "Original WASD per-make cursor movement with mobile repeatKeys, Enter fires/selects, keys1–4 are original special attacks. All controls in panel, pointer off because source has no mouse input. Both enemy/player ships remain displayed exactly as authored.",
   "previewEvidence": {
     "capture": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/gallery19-final/galleries/pedro93-lcom-aef5fe19f228/volley.webp",
     "captureSha256": "e1b2c45176445f14db9ed666b8be67f68e7f7d309871024426174cb095a3e2a3",

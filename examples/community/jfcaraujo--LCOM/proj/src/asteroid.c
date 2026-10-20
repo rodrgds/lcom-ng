@@ -3,6 +3,7 @@
 void (create_asteroid)(Game* game)
 {
   if(game->gameplay->asteroids_spawned >= game->gameplay->asteroids_per_round) return;
+  if(game->numAsteroids >= game->maxNumAsteroids) return;
 
   game->gameplay->asteroids_spawned++;
 
@@ -110,6 +111,13 @@ void (split_asteroid)(Game* game, int index)
 {
   Asteroid* asteroid = &game->asteroids[index];
   Asteroid newAsteroid;
+
+  // The asteroid table is fixed-size; drop the extra half instead of
+  // writing past it when split fragments fill the table.
+  if (game->numAsteroids >= game->maxNumAsteroids) {
+    destroy_asteroid(game, index);
+    return;
+  }
 
   double PI = acos(-1.0);
 

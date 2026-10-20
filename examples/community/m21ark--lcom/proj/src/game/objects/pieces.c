@@ -56,6 +56,8 @@ void get_valid_moves(Board board[8][8], uint8_t lin, uint8_t col, bool valid_mov
 }
 
 bool valid_pawn_move(Board board[8][8], bool valid_moves[8][8], uint8_t lin, uint8_t col, uint8_t color) {
+  if (lin > 7 || col > 7)
+    return false;
   bool b = board[lin][col]->p_type == Blank_space;
   valid_moves[lin][col] = b;
   return b;

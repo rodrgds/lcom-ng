@@ -1,0 +1,31 @@
+--- a/src/maze.c
++++ b/src/maze.c
+@@ -162,8 +162,13 @@ void addKeys(uint8_t *maze, uint32_t width, uint32_t height){
+                 blankCont++;
+             }
+     }
++    if(blankCont == 0) return;
+     for(uint8_t i = 0; i < 7; i++){
+-        maze[blankPos[rand() % blankCont]] = 3;
++        uint32_t pos;
++        do {
++            pos = blankPos[rand() % blankCont];
++        } while(maze[pos] != 0);
++        maze[pos] = 3;
+     }
+ }
+ 
+@@ -181,7 +186,12 @@ void addTraps(uint8_t *maze, uint32_t width, uint32_t height){
+             }
+ 
+     }
++    if(blankCont == 0) return;
+     for(uint8_t i = 0; i < 10; i++){
+-        maze[blankPos[rand() % blankCont]] = 4;
++        uint32_t pos;
++        do {
++            pos = blankPos[rand() % blankCont];
++        } while(maze[pos] != 0);
++        maze[pos] = 4;
+     }
+ }

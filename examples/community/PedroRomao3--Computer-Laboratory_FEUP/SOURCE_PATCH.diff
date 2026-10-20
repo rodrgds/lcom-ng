@@ -17,3 +17,15 @@
  
    return 0;
  }
+
+--- a/view/view_menu.c
++++ b/view/view_menu.c
+@@ -139,7 +139,7 @@ int drawTableDigit(){
+   }
+     
+   uint8_t name_size = strlen(to_save);
+-  if( (isl(to_save[name_size - 1])) || name_size == 0 ){
++  if( name_size == 0 || (isl(to_save[name_size - 1])) ){
+     vg_draw_rectangle(LETTER_SPACE * name_size + TABLE_DIGIT_INITIAL_X, 
+                       y - TABLE_DIGIT_Y_INCREMENT, 
+                       SPACE, LETTER_HEIGHT, WIGHT);

@@ -1,0 +1,10 @@
+--- a/proj/src/game.c
++++ b/proj/src/game.c
+@@ -256,7 +256,6 @@ void menu() {
+       counter++;
+     }
+   }
+-  free(punctuation);
+ }
+ 
+ uint8_t play(){

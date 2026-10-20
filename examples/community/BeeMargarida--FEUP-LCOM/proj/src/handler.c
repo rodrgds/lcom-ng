@@ -210,6 +210,7 @@ int menu(){
 							free(menu);
 							clear_screen();
 							game_handler();
+							return 1;
 						}
 						menu_show(menu);
 						actVideoMem();

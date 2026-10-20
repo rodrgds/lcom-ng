@@ -9,3 +9,56 @@
          if(ser_read_byte(&dummy)) return 1;
          printf("treata  %d\n", dummy);
      }
+
+--- a/src/player_settings.c
++++ b/src/player_settings.c
+@@ -7,7 +7,8 @@ Player *load_player(Avatar *default_avatar)
+ {
+   //Allocating memory
+   Player *player = (Player *)malloc(sizeof(Player));
+-  player->name = (char *)malloc(player->max_name_length);
++  player->max_name_length = 7;
++  player->name = (char *)malloc(player->max_name_length + 1);
+   player->name[0] = 'P';
+   player->name[1] = 'L';
+   player->name[2] = 'A';
+@@ -15,9 +16,9 @@ Player *load_player(Avatar *default_avatar)
+   player->name[4] = 'E';
+   player->name[5] = 'R';
+   player->name[6] = ' ';
++  player->name[player->max_name_length] = '\0';
+   player->hitted_moles = 0;
+   player->missed_moles = 0;
+-  player->max_name_length = 7;
+   player->avatar = default_avatar->sprites[0];
+   return player;
+ }
+--- a/src/game.c
++++ b/src/game.c
+@@ -194,7 +194,6 @@ int game_main_loop(WhacAMole *new_game)
+     free(new_game->moles);
+     free(new_game->menu->buttons);
+     free(new_game->menu);
+-    free(new_game->player_settings->avatars);
+     free(new_game->player_settings->buttons);
+     free(new_game->player_settings);
+     free(new_game->player);
+--- a/src/leaderboard.c
++++ b/src/leaderboard.c
+@@ -16,11 +16,11 @@ Leaderboard *load_leaderboard()
+     leaderboard->num_score_records = 5;
+ 
+     leaderboard->score_records = (Score_Record *)malloc(sizeof(Score_Record) * leaderboard->num_score_records);
+-    leaderboard->score_records[0].player_name = (char *)malloc(leaderboard->max_name_length);
+-    leaderboard->score_records[1].player_name = (char *)malloc(leaderboard->max_name_length);
+-    leaderboard->score_records[2].player_name = (char *)malloc(leaderboard->max_name_length);
+-    leaderboard->score_records[3].player_name = (char *)malloc(leaderboard->max_name_length);
+-    leaderboard->score_records[4].player_name = (char *)malloc(leaderboard->max_name_length);
++    leaderboard->score_records[0].player_name = (char *)calloc(leaderboard->max_name_length + 1, sizeof(char));
++    leaderboard->score_records[1].player_name = (char *)calloc(leaderboard->max_name_length + 1, sizeof(char));
++    leaderboard->score_records[2].player_name = (char *)calloc(leaderboard->max_name_length + 1, sizeof(char));
++    leaderboard->score_records[3].player_name = (char *)calloc(leaderboard->max_name_length + 1, sizeof(char));
++    leaderboard->score_records[4].player_name = (char *)calloc(leaderboard->max_name_length + 1, sizeof(char));
+ 
+     load_scores(leaderboard);
+ 

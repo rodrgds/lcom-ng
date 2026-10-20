@@ -216,8 +216,6 @@ void destroy_sprites()
     destroy_sprite(backButton);
     destroy_sprite(gameOver);
     destroy_sprite(gamePaused);
-    destroy_sprite(gameOver);
-    destroy_sprite(gamePaused);
     destroy_sprite(orangeWon);
     destroy_sprite(purpleWon);
     destroy_Vbar();

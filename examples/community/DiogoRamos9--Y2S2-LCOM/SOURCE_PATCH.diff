@@ -9,3 +9,14 @@
  
      // Calculate bytes per pixel (divide by 8) and the index in bytes
      int bytesPerPixel = (mode_info.BitsPerPixel + 7) / 8;
+
+--- a/proj/src/game/gameStates/game_controller.c
++++ b/proj/src/game/gameStates/game_controller.c
+@@ -511,6 +511,7 @@ void draw_ammo() {
+ }
+ 
+ void create_powerup() {
++    if (powerup_index >= (int)(sizeof(powerups) / sizeof(powerups[0]))) return;
+     if (rand() % 500 == 0) {
+         int x = 0;
+         int y = 0;

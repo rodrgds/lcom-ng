@@ -1301,7 +1301,7 @@ int submitHighscoreMenu()
 	unsigned long keyboard = 0x0;
 	int firstMove = 0;
 	int pos_letra = 0;
-	PLAYER p;
+	PLAYER p = {0};
 	char name[12];
 	memset(&name, '.', 12);
 	int x_inicio = 400;
@@ -1366,6 +1366,9 @@ int submitHighscoreMenu()
 									break;
 								p.nickname[k] = name[k];
 							}
+							if (k >= (int)sizeof p.nickname)
+								k = (int)sizeof p.nickname - 1;
+							p.nickname[k] = '\0';
 							p.segundos= scores->best_segundos;
 							p.centesimas=scores->best_centesimas;
 

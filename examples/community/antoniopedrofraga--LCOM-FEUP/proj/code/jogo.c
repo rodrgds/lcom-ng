@@ -66,8 +66,7 @@ int update_highScores(Game*game){
 	file = fopen("//home//lcom1415-t6g09-proj//sudoku//highscores.txt", "r");
 	if(file != NULL){
 		int it = 0;
-		while(!feof(file)){
-			fscanf(file,"%d",&a[it]);
+		while(it < 3 && fscanf(file,"%d",&a[it]) == 1){
 			it++;
 		}
 	}
@@ -83,6 +82,7 @@ int update_highScores(Game*game){
 		a[2] = time;
 	}
 	file = fopen("//home//lcom1415-t6g09-proj//sudoku//highscores.txt", "w");
+	if(file == NULL) return 0;
 	int it2 = 0;
 	for(it2; it2<3;it2++){
 		if(a[it2]!=0){
@@ -632,8 +632,7 @@ int display_hs(Game*game,unsigned char ** double_buffer){
 	file = fopen("//home//lcom1415-t6g09-proj//sudoku//highscores.txt", "r");
 	if(file != NULL){
 		char it = 0;
-		while(!feof(file)){
-			fscanf(file,"%d",&a[it]);
+		while(it < 3 && fscanf(file,"%d",&a[it]) == 1){
 			it++;
 		}
 	}else{
@@ -686,7 +685,7 @@ int display_hs(Game*game,unsigned char ** double_buffer){
 		display_number(game,seconds,665 + 64 + 75,200,double_buffer);
 		drawBitmap_onBoard(game->bmps.dots, 665 + 64 + (75 -20), 200, ALIGN_LEFT,double_buffer);
 	}
-	fclose(file);
+	if(file != NULL) fclose(file);
 	return 0;
 }
 

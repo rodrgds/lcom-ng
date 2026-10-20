@@ -206,6 +206,12 @@
           "patchedSha256": "498cf55633dcd1dae42dfd37c0426567600289d660f9abcaf1aa35e326e65e21",
           "reason": "Original Stand resolution ran only on keyboard IRQ, stalling finished dealer hands and allowing a key to resolve before the dealer completed. Resolve on the normal timer render only after both dealer cards are present; retain paired readiness gating.",
           "verification": "Compiled original-source regression red on early key resolution; repaired regression passes pending/complete dealer hands, once-only payout and paired readiness. Browser normal touch Hit deals a visible card and Stand reaches original result without any further keyboard event."
+        },
+        {
+          "path": "view/view_menu.c",
+          "originalSha256": "1157f53e05e7501a3fc0446df497607379d081bded4b6139cf253ccc659275f7",
+          "patchedSha256": "376ac0ec220a3254c9248b63694565ffa8cf8880425435b26b4eceb0ccdc83e1",
+          "reason": "drawTableDigit read to_save[name_size - 1] before testing name_size == 0, reading before the buffer on the empty first edit frame; test emptiness first"
         }
       ]
     }

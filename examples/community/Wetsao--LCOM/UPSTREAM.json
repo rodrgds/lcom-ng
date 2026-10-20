@@ -95,6 +95,12 @@
             "red": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/claustro-subscribe-red.log",
             "green": "/Users/rgo/dev/lcom-ng/build/arcade-100/a/claustro-subscribe-green.log"
           }
+        },
+        {
+          "path": "proj/src/claustro.c",
+          "originalSha256": "75537c6739555590cbcac38f6224a8ada917cb2e41bf0594c492404b0ca39cfd",
+          "patchedSha256": "a8f9a060c997a42075135ec8d17468bcc6aeba295c89972bcb77e9af0849bc5d",
+          "reason": "find_board_cell returns BOARD_SIZE for clicks outside the board, but can_pick and can_move indexed the destination/board without checking, causing out-of-bounds reads and possible writes; reject out-of-board coordinates"
         }
       ]
     }
@@ -123,7 +129,7 @@
       "status": "passed",
       "evidence": "build/arcade-100/a57-native-gameplay/results.json",
       "apkSha256": "43e911f4b7204c50509d5b43a7cc00a48ed60f1433c8ac4edf8394f1f375ca1c",
-      "demonstrated": "Original board uses its authored RTC night mode with black/white pawns. Player1 moves row0col2\u2192row1col2, then Player2 replies row2col0\u2192row2col1.",
+      "demonstrated": "Original board uses its authored RTC night mode with black/white pawns. Player1 moves row0col2→row1col2, then Player2 replies row2col0→row2col1.",
       "limits": [
         "Representative local ARM64 touchscreen gameplay only. Complete campaigns and physical-phone performance remain untested."
       ]

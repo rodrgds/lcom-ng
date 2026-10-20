@@ -145,13 +145,16 @@ void (moveBall)(Ball *ball, bool slow){
 bool (checkCollisionLine)(Ball *ball, uint32_t *background){
   int width = ball->currentSprite.width;
   int height = ball->currentSprite.height;
+  int hres = get_hres();
+  int vres = get_vres();
 
   uint32_t *map = background;
   uint32_t *ballMap = ball->currentSprite.map;
 
   for(int j = ball->y; j < ball->y + height; j++){
     for(int i = ball->x; i < ball->x + width; i++){
-      if((*(map + (j * get_hres() + i)) == ENDLINE_COLOR) && (*ballMap != TRANSPARENCY_COLOR)){
+      if(i >= 0 && i < hres && j >= 0 && j < vres &&
+         (*(map + (j * hres + i)) == ENDLINE_COLOR) && (*ballMap != TRANSPARENCY_COLOR)){
         return true;
       }
       ballMap++;
@@ -187,10 +190,8 @@ void (destroyBall)(Ball *ball){
     return;
   }
 
-  if(ball->currentSprite.map != NULL){
-    free(ball ->currentSprite.map);
-  }
-
+  /* currentSprite is a copy of one of the sprite maps below, so it is
+     freed once through that owning entry. */
   if(ball->small.map != NULL){
     free(ball->small.map);
   }

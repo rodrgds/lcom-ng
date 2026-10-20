@@ -14,6 +14,7 @@ Singleplayer* singleplayerInit(){
 
 	sp=(Singleplayer*) malloc(sizeof(Singleplayer));
 	sp->copter=newCopter(200,300,60,30);
+	sp->obs=NULL;
 
 	sp->spacePress=0;
 	sp->LeftButtonPress=0;

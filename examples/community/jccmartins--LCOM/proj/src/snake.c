@@ -195,6 +195,7 @@ bool(move_snake)()
     }
 
     aux->next = NULL;
+    free(last);
   }
 
   return true;

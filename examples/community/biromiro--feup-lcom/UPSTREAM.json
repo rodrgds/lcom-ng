@@ -253,6 +253,18 @@
       "patchedSha256": "53a03796b32a1f915e89628fcdedab3d5aaa62b53d726667f97dcb7d427b76a9",
       "reason": "create_sprite borrows its identifier string, including literals passed by every HUD caller. free_xpm_mem must release its allocated pixel map and metadata, but must not free that borrowed identifier. Remove only the invalid identifier free.",
       "verification": "Original solo startup reproduces WASM memory access out of bounds. Actual constructor/destructor ownership fixture RED rejects the literal free; GREEN releases exactly the two owned allocations and preserves the borrowed string. Actual full HUD, movement, magic shot, enemy hit and clean Escape work with corrected source."
+    },
+    {
+      "file": "proj/src/game/enemies.c",
+      "originalSha256": "c957db9fae49c1fdbbb01440a98a310389602ce1571eaa1067dd567a437922af",
+      "patchedSha256": "be6a8bfb16b29310a6fadd83f57e97e9cec46be21660f4046a2a57d1188f28dd",
+      "reason": "Free each enemy's xpm_load map with the enemy object on despawn, collision and reset."
+    },
+    {
+      "file": "proj/src/game/magic_blast.c",
+      "originalSha256": "929223f72db9ddfe4ed04c3d039772d17e6bea4f3320586fe02d66f1c431875d",
+      "patchedSha256": "877698a0b32791e09fa3f7db7f6d03f95184796ba3261853dc7498dd2e1919b2",
+      "reason": "Free each magic blast's xpm_load map with the blast object on expiry, collision and reset."
     }
   ],
   "selection": "234 selected original project files. Original font.h includes uppercase A.xpm through Z.xpm. The 26 unused lowercase variants cannot coexist with them on a case-insensitive filesystem, so they are omitted from the live selected tree and preserved, with every original project file, in ORIGINAL_PROJECT.tar.gz. Every one of the 260 archived files was verified against its pinned Git blob identity. No original assets were changed.",

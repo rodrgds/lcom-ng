@@ -8,3 +8,80 @@
      free(xpm);
  }
  
+
+--- a/proj/src/game/enemies.c
++++ b/proj/src/game/enemies.c
+@@ -17,7 +17,10 @@ void set_enemies_available() {
+ 
+ void free_enemies(){
+   for(size_t i=0; i<(total_enemies-available_enemies); i++){
+-    free(enemies[i]);
++    if (enemies[i] != NULL) {
++      free(enemies[i]->map);
++      free(enemies[i]);
++    }
+   }
+   free(enemies);
+ }
+@@ -41,6 +44,7 @@ void print_enemies() {
+   for (size_t i = 0; i < (total_enemies - available_enemies); i++) {
+ 
+     if ((enemies[i]->x < -95) || (enemies[i]->x > (get_h_resolution() + 1)) || (enemies[i]->y < -20) || (enemies[i]->y > (get_v_resolution() + 20))) {
++      free(enemies[i]->map);
+       free(enemies[i]);
+       reindex_enemies(i);
+       i--;
+@@ -65,6 +69,7 @@ int checking_collision(xpm_object **magic_blasts) {
+   for (size_t enemiesIndex = 0; enemiesIndex < total_enemies - available_enemies; enemiesIndex++) {
+     for (size_t blastIndex = 0; blastIndex < (get_total_blasts() - get_available_blasts()); blastIndex++) {
+       if (enemy_collision(magic_blasts[blastIndex], enemies[enemiesIndex])) {
++        free(magic_blasts[blastIndex]->map);
+         free(magic_blasts[blastIndex]);
+         reindex_magic_blasts(blastIndex);
+         collided = true;
+@@ -74,6 +79,7 @@ int checking_collision(xpm_object **magic_blasts) {
+     }
+ 
+     if (collided) {
++      free(enemies[enemiesIndex]->map);
+       free(enemies[enemiesIndex]);
+       reindex_enemies(enemiesIndex);
+       collided = false;
+@@ -81,6 +87,7 @@ int checking_collision(xpm_object **magic_blasts) {
+       continue;
+     }
+     if (enemy_collision(get_current_character_p1(), enemies[enemiesIndex])) {
++      free(enemies[enemiesIndex]->map);
+       free(enemies[enemiesIndex]);
+       reindex_enemies(enemiesIndex);
+       score = 0;
+@@ -88,6 +95,7 @@ int checking_collision(xpm_object **magic_blasts) {
+     }
+     if(in_coop){
+       if (enemy_collision(get_current_character_p2(), enemies[enemiesIndex])) {
++        free(enemies[enemiesIndex]->map);
+         free(enemies[enemiesIndex]);
+         reindex_enemies(enemiesIndex);
+         score = 0;
+--- a/proj/src/game/magic_blast.c
++++ b/proj/src/game/magic_blast.c
+@@ -14,7 +14,10 @@ void set_magic_blasts_available() {
+ 
+ void free_magic_blasts(){
+   for(size_t i=0; i<(total_blasts-available_blasts); i++){
+-    free(magic_blasts[i]);
++    if (magic_blasts[i] != NULL) {
++      free(magic_blasts[i]->map);
++      free(magic_blasts[i]);
++    }
+   }
+   free(magic_blasts);
+ }
+@@ -51,6 +54,7 @@ void print_magic_blasts() {
+   for (size_t i = 0; i < (total_blasts - available_blasts); i++) {
+ 
+     if ((magic_blasts[i]->x < -20) || (magic_blasts[i]->x > (get_h_resolution() + 20)) || (magic_blasts[i]->y < -20) || (magic_blasts[i]->y > (get_v_resolution() + 20))) {
++      free(magic_blasts[i]->map);
+       free(magic_blasts[i]);
+       reindex_magic_blasts(i);
+       i--;

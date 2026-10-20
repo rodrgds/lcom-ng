@@ -98,8 +98,8 @@
         {
           "file": "proj/code/ModRato.c",
           "originalSha256": "6a03697d3cc61122efe227b4c253d3232d95f24837ebc11b3ce505fc9ed278bd",
-          "patchedSha256": "14c2df785307d091e4d5557072288dbc210d56c2d4afbd491123cdc0e9ebe718",
-          "reason": "Decode signed nine-bit PS/2 deltas using the packet header sign bits before applying the existing cursor clamp. The original signed-char truncation reverses large valid movements.",
+          "patchedSha256": "1ea7ea815e07e6619dc0b11107d0aabf5661e5130f662c5ed351300f55238daf",
+          "reason": "Decode signed nine-bit PS/2 deltas using the packet header sign bits before applying the existing cursor clamp. The original signed-char truncation reverses large valid movements. Cache the three cursor bitmaps on first use and reuse them instead of reading the files each frame.",
           "verification": "Actual original updateMouse fails the -255 direction assertion; corrected function passes deltas -255,-200,-128,-127,-1,0,1,127,128,200,255 on both axes. Actual NDK27 source compile passes."
         },
         {
@@ -116,7 +116,7 @@
     "browser": "Corrected source and final authored profile: actual landscape844x390 and portrait390x844 CDP touch selects singleplayer, toggles visible red flag, reveals original numbered region, and returns cursor after right/left movement; errors[].",
     "native": "All9 authored Makefile translation units pass NDK27 ARM64 compile. Actual Android gameplay pending."
   },
-  "controlsRationale": "Original cursor begins500,500 and moves in unit deltas. Relative movement selects Singleplayer500,375, Reveal emits left mouse and Flag emits right mouse. Left actions and right mouse stick use normal panel flow to keep original board unobscured in portrait and landscape. Explicit firmware F0000000 and relative alias home/lcom\u2192declared assetRoot preserve original code paths.",
+  "controlsRationale": "Original cursor begins500,500 and moves in unit deltas. Relative movement selects Singleplayer500,375, Reveal emits left mouse and Flag emits right mouse. Left actions and right mouse stick use normal panel flow to keep original board unobscured in portrait and landscape. Explicit firmware F0000000 and relative alias home/lcom→declared assetRoot preserve original code paths.",
   "artwork": {
     "icon": "Simple gray beveled Minehunter tile grid with the original red flag color and black mast. Original bitmaps unchanged.",
     "preview": "Actual final-profile browser canvas showing revealed numbered cells over original background artwork."

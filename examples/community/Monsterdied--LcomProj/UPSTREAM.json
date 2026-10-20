@@ -115,6 +115,18 @@
           "originalSha256": "636f8e6276262c3224a1d5182aff81401874f6f0b2677627de2549be05fe3691",
           "patchedSha256": "da1a3066b677138649ad73b7ee9f09597997427fe6f04a1266b54fb5d38ca519",
           "reason": "Original callback int() conflicts with required LCF int(argc,argv) signature. Only signature corrected after compiler failure, original game logic unchanged."
+        },
+        {
+          "path": "proj/src/Game/SelectNames.c",
+          "originalSha256": "89bf0e7ee506ac10b72a3c224fa322ad87aab2a7eb5d8b5bca2993d32b6f0e8e",
+          "patchedSha256": "f9719bc938e1b3c903dc1887e2c3d898a9eea369fd75c9820886c19318b08827",
+          "reason": "Limit input to nine characters so the Enter terminator lands at the last valid index."
+        },
+        {
+          "path": "proj/src/Game/gameControllers/Controller.c",
+          "originalSha256": "f23c57193466674ddec5494d17573de9495928b4ee281467855855b2a643d575",
+          "patchedSha256": "49e382c8f5f1a3151d0e2da188d3ee4fb21332c21fa7158d0c762e3433d3254e",
+          "reason": "Extended arrow-key scancodes (0xE0 prefix) were compared as the first byte, so Player 2 arrow controls never matched even though the game handles the same make/break codes. Use the second byte for two-byte sequences, matching real PC hardware and preserving numeric-keypad support."
         }
       ],
       "reproduction": "source-regressions/Monsterdied--LcomProj/results.json"

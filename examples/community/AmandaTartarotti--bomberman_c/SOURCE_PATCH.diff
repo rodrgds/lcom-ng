@@ -21,3 +21,247 @@
  
  #include <stdint.h>
  
+
+--- a/src/controller.c
++++ b/src/controller.c
+@@ -4,6 +4,8 @@
+ #include "../inc/data_structures.h"
+ 
+ extern char map[15][20];
++static char ignored_map_cell;
++#define MAP_AT(y, x) (*( ((y) >= 0 && (y) < 15 && (x) >= 0 && (x) < 20) ? &map[(y)][(x)] : &ignored_map_cell ))
+ extern char menu[4];
+ uint8_t timer_mask;
+ uint8_t keyboard_mask;
+@@ -670,62 +672,62 @@ int check_bomb(){
+         map[bomb_position.y][bomb_position.x] = 'E';
+         
+         for(int i=-2; i <= 2; i++){
+-             if(map[bomb_position.y+i][bomb_position.x] == '#') map[bomb_position.y+i][bomb_position.x] = '#';
+-        else if(map[bomb_position.y+i][bomb_position.x] == 'S' ){ 
++             if(MAP_AT(bomb_position.y+i, bomb_position.x) == '#') MAP_AT(bomb_position.y+i, bomb_position.x) = '#';
++        else if(MAP_AT(bomb_position.y+i, bomb_position.x) == 'S' ){ 
+             if(life_position.x >= 1 && life_position.x <= 3){  
+-                map[bomb_position.y+i][bomb_position.x] = 'S';
++                MAP_AT(bomb_position.y+i, bomb_position.x) = 'S';
+             if(map[life_position.y][life_position.x] == 'L'){
+                 if(life_position.x < 3)life_position.x += 1;  
+                 decrease_life();
+                 map[life_position.y][life_position.x] = 'L';}
+             else{map[life_position.y][life_position.x] = 'L';}}}
+-        else if(map[bomb_position.y+i][bomb_position.x] == 'M') {
++        else if(MAP_AT(bomb_position.y+i, bomb_position.x) == 'M') {
+             countMonster--;
+-            map[bomb_position.y+i][bomb_position.x] = 'E';
++            MAP_AT(bomb_position.y+i, bomb_position.x) = 'E';
+         }
+-        else if(map[bomb_position.y+i][bomb_position.x] == 'U'){
++        else if(MAP_AT(bomb_position.y+i, bomb_position.x) == 'U'){
+             countUpMonster--;
+-            map[bomb_position.y+i][bomb_position.x] = 'E';
++            MAP_AT(bomb_position.y+i, bomb_position.x) = 'E';
+         }
+-        else if(map[bomb_position.y+i][bomb_position.x] == '%') {
++        else if(MAP_AT(bomb_position.y+i, bomb_position.x) == '%') {
+             upgrade_position.x = bomb_position.x;
+             upgrade_position.y = bomb_position.y+i;
+             get_upgrade(upgrade_position);
+         }
+-        else if(map[bomb_position.y+i][bomb_position.x] == '-') map[bomb_position.y+i][bomb_position.x] = '-';
+-        else if(map[bomb_position.y+i][bomb_position.x] == 'L') map[bomb_position.y+i][bomb_position.x] = 'L';
+-        else if(map[bomb_position.y+i][bomb_position.x] == 'H') map[bomb_position.y+i][bomb_position.x] = 'H';
+-        else if(map[bomb_position.y+i][bomb_position.x] == 'F') map[bomb_position.y+i][bomb_position.x] = 'F';
+-        else map[bomb_position.y+i][bomb_position.x] = 'E';
++        else if(MAP_AT(bomb_position.y+i, bomb_position.x) == '-') MAP_AT(bomb_position.y+i, bomb_position.x) = '-';
++        else if(MAP_AT(bomb_position.y+i, bomb_position.x) == 'L') MAP_AT(bomb_position.y+i, bomb_position.x) = 'L';
++        else if(MAP_AT(bomb_position.y+i, bomb_position.x) == 'H') MAP_AT(bomb_position.y+i, bomb_position.x) = 'H';
++        else if(MAP_AT(bomb_position.y+i, bomb_position.x) == 'F') MAP_AT(bomb_position.y+i, bomb_position.x) = 'F';
++        else MAP_AT(bomb_position.y+i, bomb_position.x) = 'E';
+         
+-            if(map[bomb_position.y][bomb_position.x + i] == '#') map[bomb_position.y][bomb_position.x + i] = '#';
+-        else if(map[bomb_position.y][bomb_position.x + i] == 'S'){ 
++            if(MAP_AT(bomb_position.y, bomb_position.x + i) == '#') MAP_AT(bomb_position.y, bomb_position.x + i) = '#';
++        else if(MAP_AT(bomb_position.y, bomb_position.x + i) == 'S'){ 
+             if(life_position.x >= 1 && life_position.x <= 3){
+-                map[bomb_position.y][bomb_position.x + i] = 'S';
++                MAP_AT(bomb_position.y, bomb_position.x + i) = 'S';
+             if(map[life_position.y][life_position.x] == 'L'){
+                 if(life_position.x < 3)life_position.x += 1; 
+                 decrease_life();
+                 map[life_position.y][life_position.x] = 'L';}
+             else{map[life_position.y][life_position.x] = 'L';}}
+         }
+-        else if(map[bomb_position.y][bomb_position.x + i] == 'M') {
++        else if(MAP_AT(bomb_position.y, bomb_position.x + i) == 'M') {
+             countMonster--;
+-            map[bomb_position.y][bomb_position.x + i] = 'E';
++            MAP_AT(bomb_position.y, bomb_position.x + i) = 'E';
+         }
+-        else if(map[bomb_position.y][bomb_position.x + i] == 'U'){
++        else if(MAP_AT(bomb_position.y, bomb_position.x + i) == 'U'){
+             countUpMonster--;
+-            map[bomb_position.y][bomb_position.x + i] = 'E';
++            MAP_AT(bomb_position.y, bomb_position.x + i) = 'E';
+         }
+-        else if(map[bomb_position.y][bomb_position.x + i] == '%') {
++        else if(MAP_AT(bomb_position.y, bomb_position.x + i) == '%') {
+             upgrade_position.x = bomb_position.x + i;
+             upgrade_position.y = bomb_position.y;
+             get_upgrade(upgrade_position);
+         }
+-        else if(map[bomb_position.y][bomb_position.x + i] == '-') map[bomb_position.y][bomb_position.x + i] = '-';
+-        else if(map[bomb_position.y][bomb_position.x + i] == 'L') map[bomb_position.y][bomb_position.x + i] = 'L';
+-        else if(map[bomb_position.y][bomb_position.x + i] == 'H') map[bomb_position.y][bomb_position.x + i] = 'H';
+-        else if(map[bomb_position.y][bomb_position.x + i] == 'F') map[bomb_position.y][bomb_position.x + i] = 'F';
+-        else map[bomb_position.y][bomb_position.x + i] = 'E';
++        else if(MAP_AT(bomb_position.y, bomb_position.x + i) == '-') MAP_AT(bomb_position.y, bomb_position.x + i) = '-';
++        else if(MAP_AT(bomb_position.y, bomb_position.x + i) == 'L') MAP_AT(bomb_position.y, bomb_position.x + i) = 'L';
++        else if(MAP_AT(bomb_position.y, bomb_position.x + i) == 'H') MAP_AT(bomb_position.y, bomb_position.x + i) = 'H';
++        else if(MAP_AT(bomb_position.y, bomb_position.x + i) == 'F') MAP_AT(bomb_position.y, bomb_position.x + i) = 'F';
++        else MAP_AT(bomb_position.y, bomb_position.x + i) = 'E';
+         }
+         bomb_state = CLEAN;
+         using_db = TRUE;
+@@ -735,13 +737,13 @@ int check_bomb(){
+         map[bomb_position.y][bomb_position.x] = ' ';
+         
+         for(int i=-2; i <= 2; i++){
+-            if(map[bomb_position.y+i][bomb_position.x] == '#') map[bomb_position.y+i][bomb_position.x] = '#';
+-            else if(map[bomb_position.y+i][bomb_position.x] == 'S') map[bomb_position.y+i][bomb_position.x] = 'S';
+-            else if(map[bomb_position.y+i][bomb_position.x] == '-') map[bomb_position.y+i][bomb_position.x] = '-';
+-            else if(map[bomb_position.y+i][bomb_position.x] == 'H') map[bomb_position.y+i][bomb_position.x] = 'H';
+-            else if(map[bomb_position.y+i][bomb_position.x] == 'F') map[bomb_position.y+i][bomb_position.x] = 'F';
+-            else if(map[bomb_position.y+i][bomb_position.x] == 'L') map[bomb_position.y+i][bomb_position.x] = 'L';  
+-            else map[bomb_position.y+i][bomb_position.x] = ' ';
++            if(MAP_AT(bomb_position.y+i, bomb_position.x) == '#') MAP_AT(bomb_position.y+i, bomb_position.x) = '#';
++            else if(MAP_AT(bomb_position.y+i, bomb_position.x) == 'S') MAP_AT(bomb_position.y+i, bomb_position.x) = 'S';
++            else if(MAP_AT(bomb_position.y+i, bomb_position.x) == '-') MAP_AT(bomb_position.y+i, bomb_position.x) = '-';
++            else if(MAP_AT(bomb_position.y+i, bomb_position.x) == 'H') MAP_AT(bomb_position.y+i, bomb_position.x) = 'H';
++            else if(MAP_AT(bomb_position.y+i, bomb_position.x) == 'F') MAP_AT(bomb_position.y+i, bomb_position.x) = 'F';
++            else if(MAP_AT(bomb_position.y+i, bomb_position.x) == 'L') MAP_AT(bomb_position.y+i, bomb_position.x) = 'L';  
++            else MAP_AT(bomb_position.y+i, bomb_position.x) = ' ';
+ 
+             if(map[bomb_position.y][bomb_position.x+i] == '#') map[bomb_position.y][bomb_position.x+i] = '#';
+             else if(map[bomb_position.y][bomb_position.x+i] == 'S') map[bomb_position.y][bomb_position.x+i] = 'S';
+@@ -790,61 +792,61 @@ int check_unlimited_bombs(){
+         map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x] = 'E';
+         
+         for(int i=-2; i <= 2; i++){
+-             if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == '#') map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = '#';
+-        else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == 'S'){ 
+-            map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = 'S';
++             if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == '#') MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = '#';
++        else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == 'S'){ 
++            MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = 'S';
+             if(map[life_position.y][life_position.x] == 'L'){
+             if(life_position.x < 3)life_position.x += 1; 
+             decrease_life();
+             map[life_position.y][life_position.x] = 'L';}
+             else{map[life_position.y][life_position.x] = 'L';}}
+-        else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == 'M') {
++        else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == 'M') {
+             countMonster--;
+-            map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = 'E';
++            MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = 'E';
+         }
+-        else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == 'U'){
++        else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == 'U'){
+             countUpMonster--;
+-            map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = 'E';
++            MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = 'E';
+         }
+-        else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == '%') {
++        else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == '%') {
+             upgrade_position.x = unlimited_bomb_position[j].x;
+             upgrade_position.y = unlimited_bomb_position[j].y+i;
+             get_upgrade(upgrade_position);
+         }
+-        else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == '-') map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = '-';
+-        else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == 'L') map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = 'L';
+-        else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == 'H') map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = 'H';
+-        else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == 'F') map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = 'F';
++        else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == '-') MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = '-';
++        else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == 'L') MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = 'L';
++        else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == 'H') MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = 'H';
++        else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == 'F') MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = 'F';
+ 
+-        else map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = 'E';
++        else MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = 'E';
+         
+-            if(map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] == '#') map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] = '#';
+-        else if(map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] == 'S'){ 
+-            map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] = 'S';
++            if(MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) == '#') MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) = '#';
++        else if(MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) == 'S'){ 
++            MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) = 'S';
+             if(map[life_position.y][life_position.x] == 'L'){
+             if(life_position.x < 3)life_position.x += 1; 
+             decrease_life();
+             map[life_position.y][life_position.x] = 'L';}
+             else{map[life_position.y][life_position.x] = 'L';}}
+-        else if(map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] == 'M') {
++        else if(MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) == 'M') {
+             countMonster--;
+-            map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] = 'E';
++            MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) = 'E';
+         }
+-        else if(map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] == 'U'){
++        else if(MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) == 'U'){
+             countUpMonster--;
+-            map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] = 'E';
++            MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) = 'E';
+         }
+-        else if(map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] == '%') {
++        else if(MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) == '%') {
+             upgrade_position.x = unlimited_bomb_position[j].x + i;
+             upgrade_position.y = unlimited_bomb_position[j].y;
+             get_upgrade(upgrade_position);
+         }
+-        else if(map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] == '-') map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] = '-';
+-        else if(map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] == 'L') map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] = 'L';
+-        else if(map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] == 'H') map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] = 'H';
+-        else if(map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] == 'F') map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] = 'F';
++        else if(MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) == '-') MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) = '-';
++        else if(MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) == 'L') MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) = 'L';
++        else if(MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) == 'H') MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) = 'H';
++        else if(MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) == 'F') MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) = 'F';
+ 
+-        else map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x + i] = 'E';
++        else MAP_AT(unlimited_bomb_position[j].y, unlimited_bomb_position[j].x + i) = 'E';
+         }
+         unlimited_bombs_state[j] = CLEAN;
+         using_db = TRUE;
+@@ -856,14 +858,14 @@ int check_unlimited_bombs(){
+         map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x] = ' ';
+         
+         for(int i=-2; i <= 2; i++){
+-            if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == '#') map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = '#';
+-            else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == 'S') map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = 'S';
+-            else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == '-') map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = '-';
+-            else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == 'H') map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = 'H';
+-            else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == 'F') map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = 'F';
+-
+-            else if(map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] == 'L') map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = 'L';  
+-            else map[unlimited_bomb_position[j].y+i][unlimited_bomb_position[j].x] = ' ';
++            if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == '#') MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = '#';
++            else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == 'S') MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = 'S';
++            else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == '-') MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = '-';
++            else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == 'H') MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = 'H';
++            else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == 'F') MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = 'F';
++
++            else if(MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) == 'L') MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = 'L';  
++            else MAP_AT(unlimited_bomb_position[j].y+i, unlimited_bomb_position[j].x) = ' ';
+ 
+             if(map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x+i] == '#') map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x+i] = '#';
+             else if(map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x+i] == 'S') map[unlimited_bomb_position[j].y][unlimited_bomb_position[j].x+i] = 'S';
+--- a/src/graphics.c
++++ b/src/graphics.c
+@@ -78,7 +78,7 @@ int alloc_double_buffer(uint16_t mode){
+ 
+ int (vg_draw_pixel)(uint16_t x, uint16_t y, uint32_t color) {
+ 
+-  if(x > vbe.XResolution || y > vbe.YResolution) return 1;
++  if(x >= vbe.XResolution || y >= vbe.YResolution) return 1;
+   unsigned BytesPerPixel = (vbe.BitsPerPixel + 7) / 8;
+   unsigned int index = (vbe.XResolution * y + x) * BytesPerPixel;
+   if(color != TRANSPARENT){

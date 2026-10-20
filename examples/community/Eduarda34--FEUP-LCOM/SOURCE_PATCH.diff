@@ -1,0 +1,50 @@
+--- a/proj/src/game/apple.c
++++ b/proj/src/game/apple.c
+@@ -13,7 +13,15 @@ void generate_apple_position() {
+     int grid_width = mode_info.XResolution / CELL_SIZE;
+     int grid_height = mode_info.YResolution / CELL_SIZE;
+ 
+-    while (true) {
++    if (grid_width <= 0 || grid_height <= 0) {
++        apple_position.x = 0;
++        apple_position.y = 0;
++        return;
++    }
++
++    // Try random cells first, then fall back to a bounded scan so a nearly
++    // full board cannot spin here forever.
++    for (int attempt = 0; attempt < grid_width * grid_height; attempt++) {
+         int gx = rand() % grid_width;
+         int gy = rand() % grid_height;
+ 
+@@ -30,8 +38,29 @@ void generate_apple_position() {
+         }
+ 
+         if (!overlap)
+-            break;
++            return;
+     }
++
++    for (int gy = 0; gy < grid_height; gy++) {
++        for (int gx = 0; gx < grid_width; gx++) {
++            apple_position.x = gx * CELL_SIZE;
++            apple_position.y = gy * CELL_SIZE;
++
++            bool overlap = false;
++            for (int i = 0; i < snake_length; i++) {
++                if (snake_body[i].x == apple_position.x &&
++                    snake_body[i].y == apple_position.y) {
++                    overlap = true;
++                    break;
++                }
++            }
++
++            if (!overlap)
++                return;
++        }
++    }
++
++    // The snake fills the board and there is no free cell left.
+ }
+ 
+ void draw_apple() {

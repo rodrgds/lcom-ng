@@ -1,0 +1,13 @@
+--- a/src/game_logic.c
++++ b/src/game_logic.c
+@@ -26,7 +26,9 @@ void play() {
+ 
+   cnt = 0;
+ 
+-  while (code != ESC_BREAKCODE || win_player == DRAW) {
++  /* Escape must always leave the match, including while the score is tied
++     (win_player stays DRAW until a side leads). */
++  while (code != ESC_BREAKCODE) {
+     KBD_EVT = false;
+     /* Get a request message. */
+     if ((r = driver_receive(ANY, &msg, &ipc_status)) != 0) {

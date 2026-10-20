@@ -147,6 +147,12 @@
       "originalSha256": "5bb3ec465e050e9c7564f2ea1318c47cec5bb7b9639e735f055649496e2cf621",
       "patchedSha256": "4eb8b09df2a8a59226421db25e9f7a57ec4414e3d07ca40d57663caca0bda5fc",
       "reason": "Synchronize first PS/2 packet only while expecting its first header byte. Original first_packet branch also tested payload bit3 and reset byte_counter midpacket, losing valid initial dx/dy bytes 9/9 and 26/232. Actual owning parser fails packet-completion/coordinate assertions before repair and passes both positive and negative movement packets afterward."
+    },
+    {
+      "file": "code/highscore.c",
+      "originalSha256": "fb2081eba09697a97ab677ee72fb53acc488125f46a6690902aa4630c0eef045",
+      "patchedSha256": "30db5f1d5762e43f8a3e301716d6ce43f5946414e9422cbfd9b29e2492aafb14",
+      "reason": "Copy DateTime values into each entry instead of sharing pointers; entries keep owning their own allocation."
     }
   ],
   "selection": "Pinned original code plus original saved-file assets; labs/build/OS metadata omitted.",

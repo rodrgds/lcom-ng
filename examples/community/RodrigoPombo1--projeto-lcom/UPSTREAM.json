@@ -67,6 +67,12 @@
           "originalSha256": "ddf6495a223c11de6b70564a7ae79f383d3598f871ff7432abf8ac8192d1cb84",
           "patchedSha256": "0d5698d3f8a8d3f298ba1ccb18bcf163427de0ca4dcb6447e697c7561fed695b",
           "reason": "Clamp the centered32x32 cursor draw origin on initial and interrupt-driven redraws, preserving logical menu/game coordinates and full original cursor visibility."
+        },
+        {
+          "path": "proj/src/game_state/game_state.c",
+          "originalSha256": "d43cf05b1e21ba773562ea5bca3aa7e13f8e01459af52fdb0cc2e6fa5be0b9b9",
+          "patchedSha256": "4859845b8fbb5798fb6cd59bc59ead4b6f51bfc2e1c7d37e0a225f0afd8397e2",
+          "reason": "mouse conversion allowed x=768 and y=560, producing column 23 and row 14 for the 23x14 array; tightened the bounds, and removed fclose(NULL) from the score-file open failure path"
         }
       ],
       "reason": "Clamp the centered32x32 cursor draw origin on initial and interrupt-driven redraws, preserving logical menu/game coordinates and full original cursor visibility.",

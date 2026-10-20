@@ -142,5 +142,19 @@
     "web": "Real Chromium mobile touch gameplay in landscape and portrait; no JavaScript errors. Controls, menu transitions and game actions exercised.",
     "evidence": "build/arcade-100/a/evidence/jogp10--TypeRacer",
     "native": "Original sources compiled against compatibility SDK; final native collection build pending integration."
-  }
+  },
+  "sourcePatches": [
+    {
+      "path": "SOURCE_PATCH.diff",
+      "reason": "Stop accepting characters at the 500-entry input capacity and stop drawing at the sentence terminator before indexing past it.",
+      "files": [
+        {
+          "path": "proj/src/game.c",
+          "originalSha256": "bc6e9d78dfe2ee633f677dc21050681d6cded3514140de9b1a2114bbe8faae84",
+          "patchedSha256": "8463083738ede215f410029994bf027d4234fdc4013dbfac8e7c710a73a86e60",
+          "reason": "Stop accepting characters at the 500-entry input capacity and stop drawing at the sentence terminator before indexing past it."
+        }
+      ]
+    }
+  ]
 }

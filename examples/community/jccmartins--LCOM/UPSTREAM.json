@@ -4,7 +4,14 @@
   "project": "proj/src",
   "licenseFiles": [],
   "licenseStatus": "No license file found in selected upstream tree; attribution retained, redistribution permission not established.",
-  "sourceChanges": [],
+  "sourceChanges": [
+    {
+      "file": "proj/src/snake.c",
+      "originalSha256": "778db488a1aa74b6281ee7f7aa4dcbd385833b7f055ed8cd6f5aad1da44ad9ab",
+      "patchedSha256": "852fe25fdd5197d21715a79ea8478c282a4359e3f1c0b72687fdb2ae97fe00f6",
+      "reason": "Free the node after detaching it from the tail."
+    }
+  ],
   "sha256": {
     "proj/res/0.xpm": "0dfab23835a4b126c2ca800e79d84f2d1717025b030d5852cd2b76e68da64128",
     "proj/res/1.xpm": "d0b505e8f39717a42a4a4b1944e287bcbbd70ac5da70013f4f549ed3134d4a97",

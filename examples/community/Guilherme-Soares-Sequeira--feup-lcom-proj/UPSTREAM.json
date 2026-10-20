@@ -89,6 +89,12 @@
           "reason": "Import netinet/in.h, the original Minix owning header for in_port_t, explicitly. This graphics source used that16bit type without its owning include, relying on incidental host transitive headers. Actual source WASM vg_init owner regression originally fails unknown type, corrected explicit header compiles and executes original BIOS query/map/mode contract. No type alias, parameter, mode or runtime changes.",
           "originalSha256": "9d5fe85b813428d6cb9f153fe0edde6c6dc951c4a2e5831c8d789211d3b61cb8",
           "patchedSha256": "ac0d187a1f71f9395f27cff15b65b1e8efbd2d63620c0f062825096e76072698"
+        },
+        {
+          "path": "proj/src/devices/video/graphics.c",
+          "originalSha256": "57041ef0e93f19ffbe740a259a7b9df65387bb510f4b29b8a31dc5e3de859f62",
+          "patchedSha256": "b93e156ef200de572378f5316ba2f0f4889dee5bb97125d497a7b0c09ad74b79",
+          "reason": "Clip the rectangle to the buffer bounds before memset so edge stamps stay inside the allocation."
         }
       ]
     }

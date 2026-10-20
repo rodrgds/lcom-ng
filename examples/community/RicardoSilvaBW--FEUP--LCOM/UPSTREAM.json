@@ -174,6 +174,12 @@
           "patchedSha256": "0116e3f539711162eb92393b657a4e906bd6b94b1ae303ee8ac0e4f21e43b8cf",
           "reason": "Menu owns and frees its cached background buffers. Clear the renderer alias instead of freeing the same menu background a second time. Android Scudo abort was reproduced on Start.",
           "verification": "Actual compiled menu_run Start flow with guarded free failed duplicate-release assertion before repair, then six source regressions passed after repair."
+        },
+        {
+          "path": "proj/src/game/scoreboard.c",
+          "originalSha256": "7c69526181c8b6be80a835d4441b9dad3ba1b20ab99c5b48dbb53f2ffb8ab116",
+          "patchedSha256": "c6aab2a0706cc4d96ddcedb2246db02597276144605e239fac82a3483a1b18d3",
+          "reason": "fclose(fr) ran twice when scores.txt opened, and ran on NULL when it did not, crashing the scoreboard; keep only the guarded close"
         }
       ]
     }

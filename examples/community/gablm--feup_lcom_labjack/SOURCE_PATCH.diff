@@ -1,0 +1,39 @@
+--- a/proj/src/proj.c
++++ b/proj/src/proj.c
+@@ -100,8 +100,10 @@ int(proj_main_loop)(int argc, char **argv) {
+     return 1;
+ 
+   app_t *app = app_init();
+-  if (app == NULL)
++  if (app == NULL) {
+     close_app();
++    return 1;
++  }
+ 
+   while (app->state != EXIT) {
+     if (driver_receive(ANY, &msg, &ipc_status))
+--- a/proj/src/model/card/card.c
++++ b/proj/src/model/card/card.c
+@@ -34,14 +34,21 @@ int card_base_init() {
+ 
+ void card_base_destroy() {
+   uint32_t count = 0;
++
++  if (loaded_card_ammount == 0)
++    return;
++
+   for (int type = 0; type < CARD_TYPE_NUM; type++) {
+     for (int value = 0; value < CARD_VALUE_NUM; value++) {
+-      if (count == loaded_card_ammount)
++      if (count == loaded_card_ammount) {
++        loaded_card_ammount = 0;
+         return;
++      }
+       sprite_destroy(card_sprites[type][value]);
+       count++;
+     }
+   }
++  loaded_card_ammount = 0;
+ }
+ 
+ void card_queue_destroy(void *card) {

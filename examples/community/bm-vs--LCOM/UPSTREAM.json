@@ -38,8 +38,8 @@
         {
           "file": "proj/code/game.c",
           "originalSha256": "0bf98e402ff059461830ef4ba113d6d4bbe06d6c1e2277793bd3f3e214287a17",
-          "patchedSha256": "df26da1ec4448b86628c010cda2bc94da42afd151ab26c56d76548d149710369",
-          "reason": "Include existing xpm.h owning the char**get_xpm return contract before sprite creation.",
+          "patchedSha256": "6e483c14a0203088fdfd99a584f1f73aa3fedd9f46eed974d5844a1f59c186b4",
+          "reason": "Include existing xpm.h owning the char**get_xpm return contract before sprite creation. Destroy expired shots' Sprites and maps, and decode the HP/time-bar XPMs once per frame instead of once per drawn segment.",
           "verification": "Original actual game.c compilation fails incompatible int-to-pointer conversions at fourteen XPM calls. Corrected actual owning-unit regression passes strict pointer conversion and optimized compilation."
         },
         {
@@ -47,7 +47,7 @@
           "originalSha256": "febe96b119ac469b34fbba4e649e1b8fa0235c6918cf76496bab995e8e1b1630",
           "patchedSha256": "a847eac1441e6cd67a0389449c3492dd2023225d829e225436ddb8967069cd5b",
           "reason": "Send Set Stream Mode0xEA to PS2 data port0x60 and consume/validate command ACKs before packet decoding. Interpret positive motion low bytes as unsigned for the full9-bit PS2 range.",
-          "verification": "Original real touch+460,+480 missed Start because unread0xFA was consumed as a packet header. Original command fixture fails data-port contract; corrected0xEA/F4 ACK fixtures verify0xFA success and0xFE/FC failure. Original signed-char packet fixture fails positive128 motion; corrected independently checks X/Y deltas\u2212255,\u2212128,\u22121,0,1,127,128,255. Actual normal gesture now starts the arena; portrait/landscape movement and heart-decreasing shot proof recorded separately."
+          "verification": "Original real touch+460,+480 missed Start because unread0xFA was consumed as a packet header. Original command fixture fails data-port contract; corrected0xEA/F4 ACK fixtures verify0xFA success and0xFE/FC failure. Original signed-char packet fixture fails positive128 motion; corrected independently checks X/Y deltas−255,−128,−1,0,1,127,128,255. Actual normal gesture now starts the arena; portrait/landscape movement and heart-decreasing shot proof recorded separately."
         }
       ]
     }
@@ -64,7 +64,7 @@
       "status": "passed",
       "evidence": "build/arcade-100/platform-native-instrumented/results.json",
       "apkSha256": "ea48c7cb2446787fac0707cc2e03fef53f2462346b5fd5eb14f133ff2c87ac38",
-      "demonstrated": "Original blue and red troopers use independent touch controls. Timed ordinary Jump then left lands blue beside red. Screenshot-guided shot reduces original five red hearts to four (3445\u21922756 sampled red pixels). Clean Home return.",
+      "demonstrated": "Original blue and red troopers use independent touch controls. Timed ordinary Jump then left lands blue beside red. Screenshot-guided shot reduces original five red hearts to four (3445→2756 sampled red pixels). Clean Home return.",
       "limits": [
         "Representative local ARM64 touchscreen gameplay. Full match victory, role-swap completion and physical-phone performance remain untested."
       ]

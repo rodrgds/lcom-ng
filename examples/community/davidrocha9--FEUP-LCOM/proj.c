@@ -194,9 +194,6 @@ int MainMenu(void *address){
         return 1;
     uint8_t *addrs = address;
 
-    uint8_t *temp_address = (uint8_t*) malloc(1152*864*4);
-    memset(temp_address, 0, 1152*864*4);
-
     drawBackground(menu, addrs);
     Sprite *setaSprite;
     setaSprite = create_sprite(seta, 230, 335, 10, 0);
