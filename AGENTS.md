@@ -69,7 +69,10 @@ through `devenv shell -- ...`.
   the installed SDK via `scripts/package_student.py`.
   Native source staging must preserve both filename case and exact Unicode bytes.
   Use case-sensitive APFS for NAS-backed staging on macOS; case-sensitive HFSX
-  normalizes NFC filenames and can break original game asset lookups.
+  normalizes NFC filenames and can break original game asset lookups. On this
+  case-insensitive checkout, `examples/community/LuisRelvas--ProjectLCOM` is
+  mounted from `build/luisrelvas-case-sensitive.sparseimage` so both
+  `Easy.xpm` and `easy.xpm` exist; remount there after a reboot.
   Stage imported source files hidden by upstream ignore rules explicitly. Run
   `scripts/check_collection_sources.py --require-tracked` before publishing;
   provenance must survive a fresh checkout. Exclude OS and VCS metadata from the
