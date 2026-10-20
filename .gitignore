@@ -28,3 +28,7 @@ __pycache__/
 
 # macOS mounted-volume event metadata
 .fseventsd/
+
+# Runtime state and OS metadata
+pvz-last-played.txt
+Thumbs.db
