@@ -1,6 +1,7 @@
 package pt.rgo.lcomng;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
@@ -33,6 +34,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import java.io.InputStream;
@@ -43,6 +45,8 @@ import android.graphics.Rect;
 import android.text.TextUtils;
 import java.util.Locale;
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 /** Native library UI. SDL and student code are loaded exclusively in :game. */
 public final class CollectionActivity extends Activity {
@@ -60,14 +64,28 @@ public final class CollectionActivity extends Activity {
     private String anchorId;
     private int columns, anchorOffset, anchorHeight, sideInset, topInset, bottomInset;
     private boolean restorePending, resumed;
+    private final ExecutorService io = Executors.newFixedThreadPool(2);
+    private final ExecutorService artwork = Executors.newFixedThreadPool(4);
 
     private static final class Game {
+        CatalogGame data;
         String id, name, archetype;
         Bitmap icon;
+        ImageView iconView;
+        TextView status;
+        ProgressBar progress;
         View tile;
+        boolean busy;
     }
 
     private int dp(float value) { return Math.round(value * getResources().getDisplayMetrics().density); }
+
+    private static String formatBytes(long bytes) {
+        if (bytes < 1024) return bytes + " B";
+        if (bytes < 1024L * 1024L) return String.format(Locale.ROOT, "%.0f KB", bytes / 1024.0);
+        if (bytes < 1024L * 1024L * 1024L) return String.format(Locale.ROOT, "%.1f MB", bytes / (1024.0 * 1024.0));
+        return String.format(Locale.ROOT, "%.1f GB", bytes / (1024.0 * 1024.0 * 1024.0));
+    }
 
     @Override public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -98,33 +116,32 @@ public final class CollectionActivity extends Activity {
         progress.setIndeterminateTintList(android.content.res.ColorStateList.valueOf(ACCENT));
         loading.addView(progress, new LinearLayout.LayoutParams(dp(36), dp(36)));
         TextView message = text("Loading games…", 16, INK);
+        message.setGravity(Gravity.CENTER);
         message.setPadding(0, dp(20), 0, 0);
         loading.addView(message);
         setContentView(loading);
         immerse();
-        // Decode bundled artwork away from the UI thread. A bad icon must not
-        // make the other games inaccessible.
-        new Thread(() -> {
+        io.execute(() -> {
             try {
-                JSONObject catalog = CollectionCatalog.read(this);
-                String loadedTitle = catalog.getString("name");
+                JSONObject catalog = CatalogRepository.load(this);
+                String loadedTitle = catalog.optString("name", "Game library");
+                String baseUrl = catalog.optString("baseUrl", "");
+                if (baseUrl.isEmpty()) {
+                    String address = CatalogRepository.catalogUrl(this);
+                    baseUrl = address.endsWith("/catalog.json")
+                        ? address.substring(0, address.length() - "/catalog.json".length()) : address;
+                }
                 ArrayList<Game> loaded = new ArrayList<>();
-                JSONArray entries = catalog.getJSONArray("games");
-                for (int index = 0; index < entries.length(); index++) {
-                    JSONObject entry = entries.getJSONObject(index);
+                JSONArray entries = catalog.optJSONArray("games");
+                if (entries != null) for (int index = 0; index < entries.length(); index++) {
+                    CatalogGame data = CatalogGame.from(entries.getJSONObject(index), baseUrl);
+                    if (data.id.isEmpty()) continue;
                     Game game = new Game();
-                    game.id = entry.getString("id");
-                    game.name = entry.getString("name");
-                    game.archetype = entry.isNull("archetype") ? "" : entry.optString("archetype", "");
-                    if (!entry.isNull("icon")) {
-                        try (InputStream input = getAssets().open(entry.getString("icon"))) {
-                            BitmapFactory.Options options = new BitmapFactory.Options();
-                            options.inSampleSize = 2;
-                            game.icon = BitmapFactory.decodeStream(input, null, options);
-                        } catch (Exception error) {
-                            android.util.Log.w("lcom-ng", "Cannot load game artwork: " + game.id, error);
-                        }
-                    }
+                    game.data = data;
+                    game.id = data.id;
+                    game.name = data.name;
+                    game.archetype = data.archetype;
+                    game.icon = CatalogRepository.cachedIcon(this, data.id);
                     loaded.add(game);
                 }
                 runOnUiThread(() -> {
@@ -134,14 +151,25 @@ public final class CollectionActivity extends Activity {
                     games.addAll(loaded);
                     render();
                     restoreAnchorAfterLayout();
+                    for (Game game : games) if (game.icon == null && !game.data.icon.isEmpty()) {
+                        artwork.execute(() -> {
+                            CatalogRepository.downloadIcon(this, game.data);
+                            Bitmap bitmap = CatalogRepository.cachedIcon(this, game.id);
+                            if (bitmap == null) return;
+                            runOnUiThread(() -> {
+                                if (isFinishing() || isDestroyed() || game.iconView == null) return;
+                                game.icon = bitmap;
+                                game.iconView.setImageBitmap(bitmap);
+                            });
+                        });
+                    }
                 });
             } catch (Exception error) {
-                android.util.Log.e("lcom-ng", "Cannot load game library", error);
+                android.util.Log.w("lcom-ng", "Cannot load remote game library", error);
                 runOnUiThread(() -> {
                     if (isFinishing() || isDestroyed()) return;
                     loading.removeView(progress);
-                    message.setText("Could not load this game library.");
-                    message.setGravity(Gravity.CENTER);
+                    message.setText("Games could not be loaded.\nCheck your connection and try again.");
                     Button retry = action("Try again", false);
                     LinearLayout.LayoutParams size = new LinearLayout.LayoutParams(-2, dp(48));
                     size.topMargin = dp(20);
@@ -149,7 +177,7 @@ public final class CollectionActivity extends Activity {
                     retry.setOnClickListener(view -> loadCatalog());
                 });
             }
-        }, "collection-artwork").start();
+        });
     }
 
     private TextView text(String value, int size, int color) {
@@ -221,6 +249,9 @@ public final class CollectionActivity extends Activity {
         surprise.setForeground(new ControlIcon(false));
         surprise.setOnClickListener(view -> {
             ArrayList<Game> matches = matchingGames();
+            ArrayList<Game> installed = new ArrayList<>();
+            for (Game game : matches) if (GameInstaller.isInstalled(this, game.data)) installed.add(game);
+            if (!installed.isEmpty()) matches = installed;
             if (!matches.isEmpty()) launch(matches.get(random.nextInt(matches.size())));
         });
         LinearLayout.LayoutParams randomSize = new LinearLayout.LayoutParams(dp(48), dp(48));
@@ -336,9 +367,183 @@ public final class CollectionActivity extends Activity {
     }
 
     private void launch(Game game) {
+        if (!GameInstaller.isInstalled(this, game.data)) {
+            download(game);
+            return;
+        }
         hideKeyboard();
         root.requestFocus();
         startActivity(new Intent(this, GameActivity.class).putExtra("game", game.id));
+    }
+
+    private void download(Game game) {
+        if (game.busy) return;
+        CatalogGame.Version version = game.data.version();
+        if (version == null) {
+            Toast.makeText(this, "No download is available for this device.", Toast.LENGTH_LONG).show();
+            return;
+        }
+        game.busy = true;
+        updateStatus(game, 0, 0);
+        io.execute(() -> {
+            try {
+                GameInstaller.install(this, game.data, (read, total) -> runOnUiThread(() -> {
+                    if (isFinishing() || isDestroyed() || game.busy != true) return;
+                    updateStatus(game, read, total);
+                }));
+                runOnUiThread(() -> {
+                    game.busy = false;
+                    if (isFinishing() || isDestroyed()) return;
+                    renderGames();
+                    launch(game);
+                });
+            } catch (Exception error) {
+                android.util.Log.e("lcom-ng", "Cannot install " + game.id, error);
+                runOnUiThread(() -> {
+                    game.busy = false;
+                    if (isFinishing() || isDestroyed()) return;
+                    if (game.status != null) {
+                        game.status.setText("Download failed. Tap to retry.");
+                        game.status.setTextColor(0xffff8a80);
+                    }
+                    Toast.makeText(this, "Download failed. Check your connection and try again.", Toast.LENGTH_LONG).show();
+                });
+            }
+        });
+    }
+
+    private void updateStatus(Game game, long read, long total) {
+        if (game.status == null) return;
+        game.status.setTextColor(ACCENT);
+        if (read <= 0) {
+            game.status.setText("Downloading…");
+            if (game.progress != null) game.progress.setVisibility(View.VISIBLE);
+            return;
+        }
+        int percent = total > 0 ? (int) Math.min(100, read * 100 / total) : 0;
+        game.status.setText("Downloading " + percent + "%");
+        if (game.progress != null) {
+            game.progress.setVisibility(View.VISIBLE);
+            game.progress.setProgress(percent);
+        }
+    }
+
+    private String instructionText(JSONObject instructions) {
+        if (instructions == null) return "";
+        JSONArray sections = instructions.optJSONArray("sections");
+        if (sections == null) return "";
+        StringBuilder text = new StringBuilder();
+        for (int index = 0; index < sections.length(); index++) {
+            JSONObject section = sections.optJSONObject(index);
+            if (section == null) continue;
+            String title = section.optString("title", "");
+            String body = section.optString("text", "");
+            StringBuilder rows = new StringBuilder();
+            JSONArray controls = section.optJSONArray("controls");
+            if (controls != null) for (int row = 0; row < controls.length(); row++) {
+                JSONObject control = controls.optJSONObject(row);
+                if (control == null) continue;
+                StringBuilder keys = new StringBuilder();
+                JSONArray bindings = control.optJSONArray("bindings");
+                if (bindings != null) for (int binding = 0; binding < bindings.length(); binding++) {
+                    JSONObject value = bindings.optJSONObject(binding);
+                    if (value == null) continue;
+                    if (keys.length() > 0) keys.append(" or ");
+                    String label = value.optString("label", "");
+                    if (!label.isEmpty()) { keys.append(label); continue; }
+                    JSONArray values = value.optJSONArray("keys");
+                    if (values == null) continue;
+                    for (int key = 0; key < values.length(); key++) {
+                        if (key > 0) keys.append("+");
+                        keys.append(values.optString(key));
+                    }
+                }
+                if (keys.length() > 0) rows.append("\n").append(control.optString("action", "")).append(": ").append(keys);
+            }
+            if (title.isEmpty() && body.isEmpty() && rows.length() == 0) continue;
+            text.append("\n\n");
+            if (!title.isEmpty()) text.append(title).append("\n");
+            if (!body.isEmpty()) text.append(body).append("\n");
+            text.append(rows.toString().trim());
+        }
+        String result = text.toString().trim();
+        return result.isEmpty() ? "" : "\n\n" + result;
+    }
+
+    private void showGameDialog(Game game) {
+        hideKeyboard();
+        boolean installed = GameInstaller.isInstalled(this, game.data);
+        boolean update = GameInstaller.hasUpdate(this, game.data);
+        LinearLayout panel = new LinearLayout(this);
+        panel.setOrientation(LinearLayout.VERTICAL);
+        panel.setPadding(dp(24), dp(4), dp(24), dp(8));
+        if (!game.data.description.isEmpty()) {
+            TextView description = text(game.data.description, 15, MUTED);
+            description.setPadding(0, 0, 0, dp(12));
+            panel.addView(description);
+        }
+        AlertDialog[] holder = new AlertDialog[1];
+        if (installed) {
+            panel.addView(dialogAction(panel, "Play", () -> { holder[0].dismiss(); launch(game); }));
+        }
+        if (!installed || update) {
+            panel.addView(dialogAction(panel, installed ? "Update download" : "Download and play",
+                () -> { holder[0].dismiss(); download(game); }));
+        }
+        if (game.data.instructions != null) {
+            panel.addView(dialogAction(panel, "Controls", () -> { holder[0].dismiss(); showControls(game); }));
+        }
+        if (installed) {
+            panel.addView(dialogAction(panel, "Delete download", () -> {
+                holder[0].dismiss();
+                new AlertDialog.Builder(this)
+                    .setTitle("Delete " + game.name + "?")
+                    .setMessage("The installed game files will be removed. You can download it again later.")
+                    .setNegativeButton("Cancel", null)
+                    .setPositiveButton("Delete", (confirm, value) -> {
+                        GameInstaller.delete(this, game.id);
+                        renderGames();
+                    }).show();
+            }));
+        }
+        panel.addView(dialogAction(panel, "Close", () -> holder[0].dismiss()));
+        holder[0] = new AlertDialog.Builder(this)
+            .setTitle(game.name)
+            .setView(panel)
+            .create();
+        holder[0].show();
+    }
+
+    private View dialogAction(LinearLayout panel, String label, Runnable action) {
+        Button button = action(label, false);
+        button.setGravity(Gravity.CENTER);
+        button.setOnClickListener(view -> action.run());
+        LinearLayout.LayoutParams size = new LinearLayout.LayoutParams(-1, dp(48));
+        size.topMargin = dp(6);
+        button.setLayoutParams(size);
+        return button;
+    }
+
+    private void showControls(Game game) {
+        String text = instructionText(game.data.instructions).trim();
+        if (text.isEmpty()) return;
+        TextView message = text(text, 15, INK);
+        message.setLineSpacing(dp(2), 1f);
+        int padding = dp(20);
+        message.setPadding(padding, dp(12), padding, dp(12));
+        ScrollView scroll = new ScrollView(this);
+        scroll.addView(message);
+        new AlertDialog.Builder(this)
+            .setTitle("Controls")
+            .setView(scroll)
+            .setPositiveButton("Close", null)
+            .show();
+    }
+
+    @Override protected void onDestroy() {
+        io.shutdownNow();
+        artwork.shutdownNow();
+        super.onDestroy();
     }
 
     private void renderGames() {
@@ -404,7 +609,13 @@ public final class CollectionActivity extends Activity {
             grid.addView(block, cell);
         }
         empty.setVisibility(matches.isEmpty() ? View.VISIBLE : View.GONE);
-        summary.setText(query.trim().isEmpty() ? games.size() + " games" : matches.size() + " of " + games.size() + " games");
+        int installed = 0;
+        for (Game game : games) if (GameInstaller.isInstalled(this, game.data)) installed++;
+        String count = query.trim().isEmpty() ? games.size() + " games" : matches.size() + " of " + games.size() + " games";
+        if (installed > 0) count += " · " + installed + " installed";
+        long bytes = GameInstaller.installedBytes(this);
+        if (bytes > 0) count += " · " + formatBytes(bytes) + " used";
+        summary.setText(count);
         clear.setVisibility(query.isEmpty() ? View.GONE : View.VISIBLE);
         surprise.setEnabled(!matches.isEmpty());
         surprise.setAlpha(matches.isEmpty() ? .4f : 1f);
@@ -421,27 +632,67 @@ public final class CollectionActivity extends Activity {
         tile.setContentDescription("Play " + game.name);
         tile.setTooltipText(game.name);
         tile.setOnClickListener(view -> launch(game));
+        tile.setOnLongClickListener(view -> { showGameDialog(game); return true; });
         if (game.icon != null) {
             ImageView artwork = new ImageView(this);
             artwork.setScaleType(ImageView.ScaleType.FIT_CENTER);
             artwork.setImageBitmap(game.icon);
             artwork.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
             tile.addView(artwork, new LinearLayout.LayoutParams(-1, iconSize));
+            game.iconView = artwork;
         } else {
             TextView initial = text(game.name.isEmpty() ? "?" : game.name.substring(0, 1).toUpperCase(Locale.ROOT), compact ? 28 : 40, ACCENT);
             initial.setGravity(Gravity.CENTER);
             initial.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
             tile.addView(initial, new LinearLayout.LayoutParams(-1, iconSize));
+            game.iconView = null;
         }
         TextView label = text(game.name, compact ? 12 : 14, INK);
         label.setTypeface(Typeface.DEFAULT, Typeface.BOLD);
         label.setMinLines(2);
         label.setMaxLines(2);
         label.setEllipsize(TextUtils.TruncateAt.END);
-        label.setPadding(dp(compact ? 6 : 12), dp(compact ? 4 : 10), dp(compact ? 6 : 12), dp(8));
+        label.setPadding(dp(compact ? 6 : 12), dp(compact ? 4 : 10), dp(compact ? 6 : 12), dp(compact ? 2 : 4));
         label.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
         tile.addView(label, new LinearLayout.LayoutParams(-1, -2));
+        game.status = text("", compact ? 10 : 12, MUTED);
+        game.status.setPadding(dp(compact ? 6 : 12), 0, dp(compact ? 6 : 12), dp(compact ? 5 : 8));
+        game.status.setMaxLines(1);
+        game.status.setEllipsize(TextUtils.TruncateAt.END);
+        game.status.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        tile.addView(game.status, new LinearLayout.LayoutParams(-1, -2));
+        game.progress = new ProgressBar(this, null, android.R.attr.progressBarStyleHorizontal);
+        game.progress.setMax(100);
+        game.progress.setVisibility(View.GONE);
+        game.progress.setImportantForAccessibility(View.IMPORTANT_FOR_ACCESSIBILITY_NO);
+        tile.addView(game.progress, new LinearLayout.LayoutParams(-1, dp(3)));
+        refreshStatus(game);
         return tile;
+    }
+
+    private void refreshStatus(Game game) {
+        if (game.status == null) return;
+        boolean installed = GameInstaller.isInstalled(this, game.data);
+        boolean update = GameInstaller.hasUpdate(this, game.data);
+        CatalogGame.Version version = game.data.version();
+        if (game.busy) {
+            game.status.setText("Downloading…");
+            game.status.setTextColor(ACCENT);
+            if (game.progress != null) game.progress.setVisibility(View.VISIBLE);
+        } else if (installed) {
+            game.status.setText("Installed");
+            game.status.setTextColor(ACCENT);
+            if (game.progress != null) game.progress.setVisibility(View.GONE);
+        } else if (update) {
+            game.status.setText("Update available");
+            game.status.setTextColor(ACCENT);
+            if (game.progress != null) game.progress.setVisibility(View.GONE);
+        } else {
+            game.status.setText(version == null ? "Not available" : "Download " + formatBytes(version.bytes));
+            game.status.setTextColor(MUTED);
+            if (game.progress != null) game.progress.setVisibility(View.GONE);
+        }
+        game.tile.setContentDescription((installed ? "Play " : "Download ") + game.name);
     }
 
     private int tileTop(Game game) {
@@ -516,6 +767,7 @@ public final class CollectionActivity extends Activity {
     @Override public void onResume() {
         super.onResume();
         resumed = true;
+        if (grid != null) renderGames();
         reflowGrid();
         restoreAnchorAfterLayout();
     }
