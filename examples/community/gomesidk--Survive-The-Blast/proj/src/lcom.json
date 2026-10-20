@@ -48,5 +48,76 @@
   },
   "description": "Explore the board and uncover its secrets while staying clear of the bombs.",
   "preview": "../../../../../collections/arcade/previews/gomesidk-survive-the-blast-3d56ca17c03b.png",
-  "archetype": "Minesweeper"
+  "archetype": "Minesweeper",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Singleplayer or Multiplayer. Move through the maze, blast walls, and stay out of the explosions."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Plant a bomb",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Places a bomb at your position."
+          },
+          {
+            "action": "Choose a bomb type",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click one of the bomb icons."
+          }
+        ]
+      }
+    ]
+  }
 }

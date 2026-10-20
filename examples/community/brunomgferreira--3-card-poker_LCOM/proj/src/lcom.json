@@ -48,5 +48,100 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Poker"
+  "archetype": "Poker",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Play, then create a player or select an existing one. Set your bet and press Enter to deal."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm or play hand",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Decrease bet",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Increase bet",
+            "bindings": [
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Fold",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Select, bet, or play",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Select button"
+              }
+            ],
+            "note": "Click the bet buttons or drag the bet slider."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -37,5 +37,75 @@
   },
   "archetype": "8-Ball Pool",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Play with Up and Down, then press Enter. Move the pointer around the cue ball to aim, press the left button on the cue ball, then release to shoot."
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back from About",
+            "bindings": [
+              {
+                "keys": [
+                  "B"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Shoot",
+            "bindings": [
+              {
+                "label": "Hold left click on the cue ball, drag, then release"
+              }
+            ],
+            "note": "The ball travels toward the pointer."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -51,5 +51,114 @@
     "assets": []
   },
   "description": "Place blocks and guide your panda through a moonlit platform puzzle.",
-  "preview": "../../../../collections/arcade/previews/josesereno-bamboozlers-a02f6afff6d5.png"
+  "preview": "../../../../collections/arcade/previews/josesereno-bamboozlers-a02f6afff6d5.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Pick a level, then drag blocks and planks from the bottom of the screen into the level. Build a path for the panda and reach the home before the 90-second timer ends."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Rotate the held piece",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              },
+              {
+                "keys": [
+                  "E"
+                ]
+              }
+            ],
+            "note": "While dragging a block or plank."
+          },
+          {
+            "action": "Level select",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return after game over",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Place a block or plank",
+            "bindings": [
+              {
+                "label": "Hold left click + drag"
+              },
+              {
+                "label": "Touch and drag"
+              }
+            ],
+            "note": "Drop it inside the level; invalid drops return to the inventory."
+          },
+          {
+            "action": "Choose a menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

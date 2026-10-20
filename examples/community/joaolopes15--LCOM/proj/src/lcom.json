@@ -43,5 +43,117 @@
   },
   "description": "Keep the ball in play and break the wall of colored blocks.",
   "preview": "../../../../../collections/arcade/previews/joaolopes15-lcom-4115b87918f9.png",
-  "archetype": "Breakout"
+  "archetype": "Breakout",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Start from the menu. Keep the ball in play and break every colored block."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move paddle",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Launch ball",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Works while the ball is attached to the paddle."
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Select Continue to resume."
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Choose option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Move paddle",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ],
+            "note": "The paddle follows horizontal mouse movement."
+          },
+          {
+            "action": "Choose a menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

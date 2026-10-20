@@ -43,5 +43,143 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Battleship"
+  "archetype": "Battleship",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, or press W then E, on the title screen. Place your fleet on the grid, then fire at the enemy board until every ship sinks."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move cursor",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Moves through the menu, placement grid and attack board."
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "E"
+                ]
+              }
+            ],
+            "note": "Chooses Play, places a ship or fires."
+          },
+          {
+            "action": "Rotate or show your board",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ],
+            "note": "Rotates a ship during placement; toggles your board during attack."
+          },
+          {
+            "action": "Choose ship size",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              },
+              {
+                "keys": [
+                  "4"
+                ]
+              }
+            ],
+            "note": "Two ships of each size."
+          },
+          {
+            "action": "Back to title",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim or select",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              },
+              {
+                "label": "Drag"
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ],
+            "note": "Chooses Play, places a ship or fires."
+          },
+          {
+            "action": "Rotate or show your board",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

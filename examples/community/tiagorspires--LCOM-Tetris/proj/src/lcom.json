@@ -59,5 +59,97 @@
   },
   "archetype": "Tetris",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to start a new round. Rotate and place falling blocks to complete rows."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Rotate",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Soft drop",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Hard drop",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "End round",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ],
+            "note": "Opens the game over menu, where you can restart."
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -49,5 +49,77 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, then choose a level. Rotate and thrust to land gently on the platform."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Rotate",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Thrust",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Hold Space to keep boosting."
+          },
+          {
+            "action": "End run",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Esc again on the results screen returns to the menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move the mouse"
+              }
+            ]
+          },
+          {
+            "action": "Select or fire",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ],
+            "note": "In a run, fires a rocket toward the crosshair."
+          }
+        ]
+      }
+    ]
+  }
 }

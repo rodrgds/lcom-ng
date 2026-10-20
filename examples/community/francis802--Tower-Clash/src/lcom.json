@@ -57,5 +57,94 @@
     "assets": []
   },
   "description": "Time the angle, charge your cannon and duel a rival castle.",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, then hold Space to charge the shot and release to fire. Destroy the rival castle before it destroys yours."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Charge and fire",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Hold to charge, release to fire."
+          },
+          {
+            "action": "Play or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ],
+            "note": "Starts from the menu and resumes from the results screen."
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Multiplayer or menu",
+            "bindings": [
+              {
+                "keys": [
+                  "M"
+                ]
+              }
+            ],
+            "note": "Opens multiplayer from the start menu; returns to the menu from pause or results."
+          },
+          {
+            "action": "Help",
+            "bindings": [
+              {
+                "keys": [
+                  "H"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit or back",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

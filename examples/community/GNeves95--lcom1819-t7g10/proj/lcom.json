@@ -60,5 +60,92 @@
   "archetype": "Zombie Survival",
   "description": "Move through the stone arena, aim at the students chasing you and fire to survive. Return to the menu after a round.",
   "preview": "../../../../collections/arcade/previews/gneves95-lcom1819-t7g10-f2ff58fc2e1d.png",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play on the menu to start. Move through the arena, aim with the pointer, and fire at the students chasing you."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit game",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move the mouse"
+              },
+              {
+                "label": "Drag"
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ],
+            "note": "Keep the pointer over a student and hold to fire."
+          },
+          {
+            "action": "Select menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

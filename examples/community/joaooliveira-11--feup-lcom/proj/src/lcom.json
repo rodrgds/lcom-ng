@@ -56,5 +56,91 @@
   },
   "archetype": "Fireboy and Watergirl",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to begin. Guide WaterGirl and FireBoy to the exit while avoiding the pools that hurt each of them."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move WaterGirl",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move FireBoy",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select or pull lever",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

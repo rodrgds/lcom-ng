@@ -35,5 +35,79 @@
   },
   "description": "Draw a clue or guess the word. A drawing-and-guessing game built for sharing.",
   "preview": "../../../../../collections/arcade/previews/yuka-sky-lcom-d0ec5dfcc81b.png",
-  "archetype": "Draw & Guess"
+  "archetype": "Draw & Guess",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click START to begin. One player draws the word shown on screen while the other types guesses."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Submit guess",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Type letters to build a guess, then press Enter."
+          },
+          {
+            "action": "Delete last letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Draw",
+            "bindings": [
+              {
+                "label": "Left drag or touch drag"
+              }
+            ],
+            "note": "Hold the button and drag inside the drawing area."
+          },
+          {
+            "action": "Clear the drawing",
+            "bindings": [
+              {
+                "label": "Click or tap CLEAR"
+              }
+            ]
+          },
+          {
+            "action": "Start",
+            "bindings": [
+              {
+                "label": "Click or tap START"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

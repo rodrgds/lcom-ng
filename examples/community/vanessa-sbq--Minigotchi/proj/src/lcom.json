@@ -41,5 +41,86 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start, then type a name for your pet and click Continue. Keep your pet fed and happy, and open Minigames for rock, paper, scissors or tic-tac-toe."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Type name",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "Use any letter key; Backspace deletes."
+          },
+          {
+            "action": "Choose food",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ],
+            "note": "The food bar must be visible."
+          },
+          {
+            "action": "Feed pet",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Show or hide food bar",
+            "bindings": [
+              {
+                "keys": [
+                  "E"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Choose or confirm",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ]
+          },
+          {
+            "action": "Cuddle pet",
+            "bindings": [
+              {
+                "label": "Left click the pet"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

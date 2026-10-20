@@ -43,5 +43,67 @@
   },
   "description": "Slide beneath the fleet, dodge incoming fire and clear the alien formation.",
   "preview": "../../../../../collections/arcade/previews/adriano-7-feup-lcom-727bed1b84da.png",
-  "archetype": "Space Invaders"
+  "archetype": "Space Invaders",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Start from the menu. Clear the alien formation before it reaches the bottom."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to the menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "From the main menu, Esc exits the game."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose a menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

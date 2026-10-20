@@ -54,5 +54,87 @@
     "assets": []
   },
   "description": "Jump, kick and chase the ball in a two-player pixel football match.",
-  "preview": "../../../../../collections/arcade/previews/gsilva00-lcom-project-4c94e7405c90.png"
+  "preview": "../../../../../collections/arcade/previews/gsilva00-lcom-project-4c94e7405c90.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Singleplayer or Multiplayer with Up and Down, then press Enter. Multiplayer connects two machines over the serial port."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump or menu up",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Kick or menu down",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Singleplayer only."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose a menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

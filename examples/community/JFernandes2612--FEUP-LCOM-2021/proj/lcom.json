@@ -57,5 +57,105 @@
   },
   "description": "Move through the original dungeon, fight green blobs and aim the spearman special attack.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Singleplayer or Co-op, then choose Easy, Medium or Hard. Move with WASD, attack with Space, and press Q before clicking a target to aim the special."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Attack",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Channel special",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ],
+            "note": "Then left-click a target within range."
+          },
+          {
+            "action": "Return or exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns to the main menu during play; exits from the main menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim special",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Valid while the special is channeling."
+          },
+          {
+            "action": "Cancel special",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          },
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

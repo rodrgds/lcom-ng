@@ -35,5 +35,76 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Singleplayer to start. Catch healthy food with your character and click junk food to swat it away."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move left",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move right",
+            "bindings": [
+              {
+                "keys": [
+                  "Right"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move cursor",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              },
+              {
+                "label": "Swipe"
+              }
+            ]
+          },
+          {
+            "action": "Select or swat",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Select / Swat button"
+              }
+            ],
+            "note": "Clicks menu buttons and swats junk food under the cursor."
+          }
+        ]
+      }
+    ]
+  }
 }

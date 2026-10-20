@@ -51,5 +51,95 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start Game. Collect all seven keys in the maze before the timer runs out."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Select menu options",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Select button"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "text": "After a win, type a five-letter highscore name.",
+        "controls": [
+          {
+            "action": "Delete a letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm the name",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

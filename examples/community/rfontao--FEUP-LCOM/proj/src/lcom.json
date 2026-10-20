@@ -39,5 +39,76 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start, then drive with WASD and aim with the mouse. Protect the money stash through each round."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Drive",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Ends the run immediately."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move the mouse or drag"
+              }
+            ]
+          },
+          {
+            "action": "Fire or restart",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ],
+            "note": "Hold to keep firing; after game over, click Start to play again."
+          }
+        ]
+      }
+    ]
+  }
 }

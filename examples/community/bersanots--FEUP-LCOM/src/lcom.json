@@ -42,5 +42,92 @@
     }
   },
   "description": "Two players, one ball. Defend your goal and send it into the other net.",
-  "preview": "../../../../collections/arcade/previews/bersanots-feup-lcom-a436e5039455.png"
+  "preview": "../../../../collections/arcade/previews/bersanots-feup-lcom-a436e5039455.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start to play. Red moves with WASD and blue with the arrow keys; score three goals or lead after three minutes."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Red player move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Blue player move",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit after the result",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Only once a winner is decided."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose a menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

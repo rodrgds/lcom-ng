@@ -23,5 +23,49 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, choose an unlocked circuit, then click the game to capture the mouse. Type the letter shown on screen to accelerate and build a combo."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Accelerate",
+            "bindings": [
+              {
+                "label": "Letter shown on screen"
+              }
+            ],
+            "note": "The required letter changes after each correct key."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select menu item or circuit",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Charge nitro",
+            "bindings": [
+              {
+                "label": "Hold left click on the nitro bar"
+              }
+            ],
+            "note": "Move the mouse while holding; needs a combo of 5."
+          }
+        ]
+      }
+    ]
+  }
 }

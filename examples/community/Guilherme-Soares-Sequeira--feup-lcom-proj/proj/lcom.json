@@ -36,5 +36,75 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Pick a color and tool from the toolbar, then drag on the canvas to draw. With the text tool, click the canvas and type to add text."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Place text",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Delete text character",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Draw or select",
+            "bindings": [
+              {
+                "label": "Left click or drag"
+              },
+              {
+                "label": "Tap and drag"
+              }
+            ]
+          },
+          {
+            "action": "Move pointer",
+            "bindings": [
+              {
+                "label": "Move the mouse"
+              },
+              {
+                "label": "Drag"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -60,5 +60,66 @@
   "description": "Move one paddle with the arrows and the other with the mouse in this two-player Pong.",
   "archetype": "Pong",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to start. The left paddle uses the arrow keys and the right paddle follows vertical mouse or touch movement."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move left paddle",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns from the instructions screen; during play it exits."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move right paddle",
+            "bindings": [
+              {
+                "label": "Move the mouse or drag vertically"
+              }
+            ]
+          },
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ],
+            "note": "Point at Play, Instructions or Quit first."
+          }
+        ]
+      }
+    ]
+  }
 }

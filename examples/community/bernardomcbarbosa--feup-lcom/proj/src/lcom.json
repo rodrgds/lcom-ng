@@ -54,5 +54,96 @@
   },
   "description": "Hold the right mouse button, drag to aim, then release to shoot. Defend the goal with the arrow keys.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Tab to move through the menu and Enter to choose Play, then Single Player. Hold the right mouse button and drag to aim, then release to shoot."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "Tab"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm or skip pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Confirms menu choices and skips reaction pauses."
+          },
+          {
+            "action": "Defend the goal",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ],
+            "note": "Pick up to two areas when the computer shoots."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim and shoot",
+            "bindings": [
+              {
+                "label": "Hold right click and drag, then release"
+              }
+            ]
+          },
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

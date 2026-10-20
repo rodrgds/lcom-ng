@@ -51,5 +51,132 @@
   },
   "description": "Drop bombs, break through the maze and get out of the blast zone.",
   "preview": "../../../../../collections/arcade/previews/peucastro-lcom-03ab6e7e63db.png",
-  "archetype": "Bomberman"
+  "archetype": "Bomberman",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start, then move through the maze and place bombs to clear blocks. Stay outside the blast."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              },
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Arrow keys or WASD."
+          },
+          {
+            "action": "Drop bomb",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              },
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "In the pause menu."
+          },
+          {
+            "action": "Return to start",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "In the pause menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Drop bomb on tile",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

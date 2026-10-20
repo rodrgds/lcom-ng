@@ -54,5 +54,92 @@
   },
   "archetype": "Fireboy and Watergirl",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Single Player to begin. Guide Fireboy and Watergirl to the exits; each hero moves and jumps separately."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move Fireboy",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump Fireboy",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move Watergirl",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump Watergirl",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select or push lever",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Chooses the start option or moves a lever while the cursor crosses it."
+          }
+        ]
+      }
+    ]
+  }
 }

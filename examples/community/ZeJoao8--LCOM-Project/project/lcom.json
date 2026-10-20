@@ -48,5 +48,123 @@
   },
   "archetype": "Jetpack Joyride",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Enter a username and password, pressing Enter after each, then choose PLAY. Hold thrust to fly through the obstacles and collect coins."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Thrust",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Hold to rise."
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ],
+            "note": "Solo runs only."
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Quits from the main menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Thrust",
+            "bindings": [
+              {
+                "label": "Hold left click"
+              }
+            ]
+          },
+          {
+            "action": "Select menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              },
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Enter also submits each username and password field."
+          },
+          {
+            "action": "Delete a character",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -52,5 +52,99 @@
     ]
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Type a three-letter nickname, press Enter, then click Play. Shoot the enemy ship and dodge asteroids to keep your score alive."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Type nickname",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "Use letter keys; Backspace deletes."
+          },
+          {
+            "action": "Confirm nickname",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move ship",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Show instructions",
+            "bindings": [
+              {
+                "keys": [
+                  "H"
+                ]
+              }
+            ],
+            "note": "Available from the main menu."
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "During play, returns to the main menu; Esc on the main menu exits."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Fire or choose a menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

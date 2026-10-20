@@ -52,5 +52,116 @@
   },
   "description": "Turn at the right moment, collect food and keep your growing snake alive.",
   "preview": "../../../../../collections/arcade/previews/forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4.png",
-  "archetype": "Snake"
+  "archetype": "Snake",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Singleplayer, then choose Classic or Minhoca IO. Minhoca IO asks for the input method: 1 for mouse or 2 for keyboard. Eat apples and avoid the walls and your own body."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move or turn left",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "Classic moves left; Minhoca IO turns left."
+          },
+          {
+            "action": "Move or turn right",
+            "bindings": [
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Classic moves right; Minhoca IO turns right."
+          },
+          {
+            "action": "Move up",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ],
+            "note": "Classic mode."
+          },
+          {
+            "action": "Move down",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ],
+            "note": "Classic mode."
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "During play, returns to the main menu; from the main menu it exits."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Guide the snake",
+            "bindings": [
+              {
+                "label": "Move pointer"
+              }
+            ],
+            "note": "In Minhoca IO with the 1 Mouse input method."
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Choose input method",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ],
+            "note": "Minhoca IO only. Classic starts with the keyboard."
+          }
+        ]
+      }
+    ]
+  }
 }

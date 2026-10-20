@@ -37,5 +37,83 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter or click Start. Place towers near the road and press Space to begin each enemy wave."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start wave",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Place tower",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ],
+            "note": "Point at a free tile near the road."
+          },
+          {
+            "action": "Upgrade tower",
+            "bindings": [
+              {
+                "keys": [
+                  "U"
+                ]
+              }
+            ],
+            "note": "Point at a placed tower."
+          },
+          {
+            "action": "Back or quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns to the menu during play; quits from the menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Drag tower",
+            "bindings": [
+              {
+                "label": "Hold left click and move"
+              }
+            ],
+            "note": "Repositions a placed tower."
+          },
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

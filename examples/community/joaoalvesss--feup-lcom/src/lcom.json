@@ -50,5 +50,155 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Memory"
+  "archetype": "Memory",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press E, M or H on the title screen to start on Easy, Medium or Hard. Reveal two dinosaurs per turn and match every pair."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move selection",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Reveal card",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "B"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Start Easy",
+            "bindings": [
+              {
+                "keys": [
+                  "E"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Start Medium",
+            "bindings": [
+              {
+                "keys": [
+                  "M"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Start Hard",
+            "bindings": [
+              {
+                "keys": [
+                  "H"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Results menu",
+            "bindings": [
+              {
+                "keys": [
+                  "M"
+                ]
+              }
+            ],
+            "note": "On the results screen only."
+          },
+          {
+            "action": "Play again",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ],
+            "note": "On the results screen only."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Reveal card or choose difficulty",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Clicks title-screen buttons and face-down cards."
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "label": "Right click"
+              },
+              {
+                "label": "Middle click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

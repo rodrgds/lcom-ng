@@ -43,5 +43,118 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press 2 to start the solo recall round. Study the prompt, draw it from memory, then type what it was and press Enter."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start solo round",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "View scores",
+            "bindings": [
+              {
+                "keys": [
+                  "4"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "0"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Delete last letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Submit answer",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Type your answer first."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Draw",
+            "bindings": [
+              {
+                "label": "Left drag"
+              }
+            ],
+            "note": "Hold and drag below the toolbar."
+          },
+          {
+            "action": "Pick color or brush",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click the toolbar at the top."
+          },
+          {
+            "action": "Clear canvas",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -39,5 +39,58 @@
   },
   "archetype": "Minesweeper",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click the game to capture the mouse. Clear every safe square without uncovering a mine, and mark suspected mines with the right button."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Move pointer",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Reveal",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Flag",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Marks or unmarks a suspected mine."
+          }
+        ]
+      }
+    ]
+  }
 }

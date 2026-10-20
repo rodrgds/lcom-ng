@@ -37,5 +37,94 @@
   "description": "Take turns against the original computer fleet and use volleys, scouting and bombardment.",
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Battleship"
+  "archetype": "Battleship",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Play with W and S and press Enter. Move the target cursor over the enemy board and fire to sink the fleet."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move cursor",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "W and S also choose menu options."
+          },
+          {
+            "action": "Confirm or fire",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Horizontal volley",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Vertical volley",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Scout",
+            "bindings": [
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Bombard",
+            "bindings": [
+              {
+                "keys": [
+                  "4"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

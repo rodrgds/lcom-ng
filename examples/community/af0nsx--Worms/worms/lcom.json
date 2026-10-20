@@ -64,5 +64,133 @@
   },
   "description": "Aim across a destructible battlefield and take your shot in a turn-based worm battle.",
   "preview": "../../../../collections/arcade/previews/worms-0ace38f831e6.png",
-  "archetype": "Worms"
+  "archetype": "Worms",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Start a match, then take turns moving and firing. Hold Space to build power and release to fire."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump or aim up",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ],
+            "note": "Jumps while walking and raises the aim while charging."
+          },
+          {
+            "action": "Aim down",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Charge and fire",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Hold to charge, release to fire."
+          },
+          {
+            "action": "Equip bazooka",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Equip grenade",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Confirm or select",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select a worm or HUD item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

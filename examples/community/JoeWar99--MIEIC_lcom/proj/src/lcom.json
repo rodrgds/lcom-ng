@@ -65,5 +65,97 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play on the title menu to enter the castle. Run with WASD, jump with Space, and use the mouse to attack."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Rage",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ],
+            "note": "Only when the rage bar is full."
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Select or fire magic",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ],
+            "note": "Left click selects menus and fires magic in the game."
+          },
+          {
+            "action": "Sword",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Only while standing on the ground."
+          }
+        ]
+      }
+    ]
+  }
 }

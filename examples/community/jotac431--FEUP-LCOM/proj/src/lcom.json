@@ -47,5 +47,60 @@
   },
   "archetype": "Pong",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "The match starts right away. Move the left paddle with W and S and the right paddle with Up and Down; the first player to send the ball past the other paddle scores."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move left paddle",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ],
+            "note": "Hold a key to keep moving."
+          },
+          {
+            "action": "Move right paddle",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ],
+            "note": "Hold a key to keep moving."
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -58,5 +58,147 @@
   },
   "archetype": "Tetris",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Use Up and Down to choose PLAY, then press Enter to start. Clear complete horizontal lines before the stack reaches the top."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Soft drop",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Rotate",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ],
+            "note": "Rotates counter-clockwise."
+          },
+          {
+            "action": "Hard drop",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              },
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Rotate left",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Rotate right",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          },
+          {
+            "action": "Hard drop",
+            "bindings": [
+              {
+                "label": "Middle click"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Enter high-score name",
+            "bindings": [
+              {
+                "label": "Letter and number keys"
+              }
+            ],
+            "note": "Backspace deletes the last character."
+          }
+        ]
+      }
+    ]
+  }
 }

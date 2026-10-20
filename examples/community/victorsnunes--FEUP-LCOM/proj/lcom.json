@@ -43,5 +43,106 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter to start from the menu. Jump over mushrooms and birds while collecting crystals."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Also starts the game and saves a high-score name."
+          },
+          {
+            "action": "Jump",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Type name",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "After a game over, use letters and numbers; Backspace deletes."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Collect crystal",
+            "bindings": [
+              {
+                "label": "Left click a crystal"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

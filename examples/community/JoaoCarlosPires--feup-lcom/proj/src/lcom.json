@@ -46,5 +46,80 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Play with P or click it. Move the cannon to match the target height, then press L to launch before the timer runs out."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ],
+            "note": "Moves the cannon through five heights."
+          },
+          {
+            "action": "Launch",
+            "bindings": [
+              {
+                "keys": [
+                  "L"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Play, pause, or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "E"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Select menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Play button"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

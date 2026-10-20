@@ -48,5 +48,151 @@
   },
   "archetype": "Whack-a-Mole",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter to start. Whack each Diglett with the key shown on it before it hides."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Start / confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Hit top-row Diglett",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              },
+              {
+                "keys": [
+                  "T"
+                ]
+              },
+              {
+                "keys": [
+                  "Y"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Hit middle-row Diglett",
+            "bindings": [
+              {
+                "keys": [
+                  "F"
+                ]
+              },
+              {
+                "keys": [
+                  "G"
+                ]
+              },
+              {
+                "keys": [
+                  "H"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Hit bottom-row Diglett",
+            "bindings": [
+              {
+                "keys": [
+                  "V"
+                ]
+              },
+              {
+                "keys": [
+                  "B"
+                ]
+              },
+              {
+                "keys": [
+                  "N"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Pause & exit",
+        "controls": [
+          {
+            "action": "Pause / resume",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

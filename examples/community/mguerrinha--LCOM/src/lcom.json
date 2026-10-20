@@ -47,5 +47,141 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play or press Enter to start, then click the game to capture the mouse. Steer each player around the arena to claim more territory before the timer runs out."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move player 1",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move player 2",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Start",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "From the menu or the results screen."
+          },
+          {
+            "action": "Show controls",
+            "bindings": [
+              {
+                "keys": [
+                  "C"
+                ]
+              }
+            ],
+            "note": "From the menu."
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "M"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Steer player 1",
+            "bindings": [
+              {
+                "label": "Drag left button"
+              }
+            ],
+            "note": "During play. Drag toward the direction you want the player to turn."
+          },
+          {
+            "action": "Steer player 2",
+            "bindings": [
+              {
+                "label": "Drag right button"
+              }
+            ],
+            "note": "During play. Drag toward the direction you want the player to turn."
+          }
+        ]
+      }
+    ]
+  }
 }

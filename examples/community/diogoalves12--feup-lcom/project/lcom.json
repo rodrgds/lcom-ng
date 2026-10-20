@@ -54,5 +54,114 @@
     "assets": []
   },
   "description": "Share the arena with a second player. Move, aim and fight for survival.",
-  "preview": "../../../../collections/arcade/previews/diogoalves12-feup-lcom-a9dac2656b4f.png"
+  "preview": "../../../../collections/arcade/previews/diogoalves12-feup-lcom-a9dac2656b4f.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Start with the mouse or arrow keys and Enter. Player 1 uses the keyboard, player 2 the mouse; both turn automatically while not driving forward."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Player 1 drive forward",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ],
+            "note": "Hold to move; release to rotate."
+          },
+          {
+            "action": "Player 1 fire",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Navigate menus",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Player 2 drive forward",
+            "bindings": [
+              {
+                "label": "Hold left click"
+              }
+            ],
+            "note": "Release to rotate."
+          },
+          {
+            "action": "Player 2 fire",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          },
+          {
+            "action": "Choose a menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

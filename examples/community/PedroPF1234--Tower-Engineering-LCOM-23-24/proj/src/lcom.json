@@ -43,5 +43,112 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose an arena and start the round. Move with WASD, aim with the mouse, and defend your base from advancing enemies."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Interact",
+            "bindings": [
+              {
+                "keys": [
+                  "E"
+                ]
+              }
+            ],
+            "note": "Opens a nearby shop, tower, or base menu."
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Esc also closes pause and shop menus."
+          },
+          {
+            "action": "Navigate menus",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Fire or select",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Fire works after you pick up a weapon."
+          }
+        ]
+      }
+    ]
+  }
 }

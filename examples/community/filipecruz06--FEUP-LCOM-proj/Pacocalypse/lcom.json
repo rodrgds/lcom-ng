@@ -40,5 +40,75 @@
   },
   "description": "Explore the maze, collect dots and keep away from the ghosts.",
   "preview": "../../../../collections/arcade/previews/pacocalypse-387c0be823e4.png",
-  "archetype": "Pac-Man"
+  "archetype": "Pac-Man",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play. Clear the maze of dots and avoid the ghosts; press Esc to pause."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Use menu and pause buttons",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Scare a ghost",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click a ghost while powered up."
+          }
+        ]
+      }
+    ]
+  }
 }

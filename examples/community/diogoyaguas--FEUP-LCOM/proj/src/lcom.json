@@ -73,5 +73,62 @@
   "archetype": "Flappy Bird",
   "description": "Tap Jump to stay aloft through the clouds. Avoid collisions, then move the cursor onto Try Again and use Select after Game Over.",
   "preview": "../../../../../collections/arcade/previews/diogoyaguas-feup-lcom-d7f0289e903c.png",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press P to start, then tap Space to stay in the air. Avoid the clouds and select Try Again after Game Over."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Tap repeatedly to stay aloft."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

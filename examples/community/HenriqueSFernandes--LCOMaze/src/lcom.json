@@ -56,5 +56,76 @@
     ]
   },
   "description": "Explore the maze one corridor at a time and find your way through.",
-  "preview": "../../../../collections/arcade/previews/henriquesfernandes-lcomaze-e2d54c32196a.png"
+  "preview": "../../../../collections/arcade/previews/henriquesfernandes-lcomaze-e2d54c32196a.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click SinglePlayer or MultiPlayer on the menu, then find the far side of the maze. The view only lights the area around you."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Relative to where the player faces."
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Hold left click"
+              }
+            ],
+            "note": "Turns the player toward the pointer."
+          },
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

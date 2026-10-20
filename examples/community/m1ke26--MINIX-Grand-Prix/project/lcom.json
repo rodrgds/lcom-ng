@@ -81,5 +81,97 @@
     }
   },
   "description": "Take the wheel, race around the track and use your boost on the straights.",
-  "preview": "../../../../collections/arcade/previews/m1ke26-minix-grand-prix-d83709a8a95c.png"
+  "preview": "../../../../collections/arcade/previews/m1ke26-minix-grand-prix-d83709a8a95c.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Pick a car and track on the start screen, then click Start Race. Press Enter to begin the countdown."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Accelerate",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Brake or reverse",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Steer",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Drift",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Handbrake for tighter turns."
+          },
+          {
+            "action": "Boost",
+            "bindings": [
+              {
+                "keys": [
+                  "Shift"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

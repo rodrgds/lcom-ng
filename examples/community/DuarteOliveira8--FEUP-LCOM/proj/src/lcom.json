@@ -49,5 +49,69 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Wait for the intro, then click Play on the menu. Fly through the columns of bats and breathe fire to clear them."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Choose Resume in the pause menu."
+          },
+          {
+            "action": "Power shot",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Hold Space while left-clicking."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Fly up or down",
+            "bindings": [
+              {
+                "label": "Move mouse or drag vertically"
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "label": "Left click or hold"
+              }
+            ]
+          },
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

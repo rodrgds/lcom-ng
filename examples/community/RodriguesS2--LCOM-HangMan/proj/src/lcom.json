@@ -36,5 +36,67 @@
   },
   "description": "Choose a word theme, guess the letters and solve the word before your chances run out.",
   "preview": "../../../../../collections/arcade/previews/rodriguess2-lcom-hangman-b8d098d60c4c.png",
-  "archetype": "Hangman"
+  "archetype": "Hangman",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose a menu option and a word category. Type letters to guess the word before your chances or time run out."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back or exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns to the menu, or quits from the main menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

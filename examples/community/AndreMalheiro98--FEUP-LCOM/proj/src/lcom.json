@@ -40,5 +40,59 @@
     ]
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to start. Aim at the flying clay disks and shoot before your ammunition runs out."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Reload",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Shoot",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

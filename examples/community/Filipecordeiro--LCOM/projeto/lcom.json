@@ -39,5 +39,48 @@
   },
   "description": "Steer a bouncing doodle left and right to land on the next platform.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "The doodle bounces on its own. Steer left and right to land on the next platform and keep climbing."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move left",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move right",
+            "bindings": [
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

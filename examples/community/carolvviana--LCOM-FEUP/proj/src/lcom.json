@@ -48,5 +48,95 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Pong"
+  "archetype": "Pong",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Singleplayer with Up and Down, then press Enter. Keep the ball in play and beat your opponent."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move / choose menu option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ],
+            "note": "Up and Down also move the menu selection."
+          },
+          {
+            "action": "Start",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Speed boost",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "In a match. Has a long cooldown."
+          },
+          {
+            "action": "Grow paddle",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "In a match. Has a long cooldown."
+          }
+        ]
+      }
+    ]
+  }
 }

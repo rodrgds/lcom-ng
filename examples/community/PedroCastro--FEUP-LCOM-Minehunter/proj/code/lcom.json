@@ -108,5 +108,57 @@
   "description": "Reveal safe squares, mark mines and clear the original painted Minehunter board.",
   "archetype": "Minesweeper",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Singleplayer on the main menu. Clear every safe square without uncovering a mine."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Move the cursor",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Reveal a square",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Place or remove a flag",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

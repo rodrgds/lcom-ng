@@ -41,5 +41,125 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Play with Up/Down and press Enter. Fly with the arrow keys or mouse, and hold Space to charge a shot."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Start or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Tap for a normal shot; hold for a charged shot."
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              },
+              {
+                "label": "Left pad"
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Hold Fire"
+              }
+            ],
+            "note": "Hold for a charged shot."
+          },
+          {
+            "action": "Start or resume",
+            "bindings": [
+              {
+                "label": "Tap Play / Resume"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

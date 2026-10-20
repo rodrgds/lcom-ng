@@ -39,5 +39,149 @@
     ]
   },
   "description": "Build a garden of sunflowers and peashooters. Keep the zombies off your lawn.",
-  "preview": "../../../../collections/arcade/previews/supplied-pvz-002c15167874.png"
+  "preview": "../../../../collections/arcade/previews/supplied-pvz-002c15167874.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter or click Start, choose six seed packets, then start the round. Collect sun and plant defenses before the zombies reach your house."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Select a seed packet",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              },
+              {
+                "keys": [
+                  "4"
+                ]
+              },
+              {
+                "keys": [
+                  "5"
+                ]
+              },
+              {
+                "keys": [
+                  "6"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move the planting cursor",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Plant or confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              },
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Use the shovel",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Cancel placement or pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to the main menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ],
+            "note": "While paused."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Select, place, or collect sun",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ],
+            "note": "You can also drag a seed packet onto the lawn."
+          },
+          {
+            "action": "Cancel placement",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

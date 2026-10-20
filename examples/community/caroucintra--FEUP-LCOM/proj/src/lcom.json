@@ -46,5 +46,98 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Play, then pick an activity and use it to keep Violetchi's needs met."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose activity",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Use activity",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "During play or the end screen it returns to the menu. The main menu exits through its Exit option."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Pet",
+            "bindings": [
+              {
+                "label": "Hold left click and move"
+              }
+            ],
+            "note": "During the Love activity, rub the pointer over Violetchi."
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Choose Play or Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

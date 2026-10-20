@@ -40,5 +40,94 @@
   "description": "Return the ball against the computer and use the original speed and wall powers.",
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Pong"
+  "archetype": "Pong",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Player 1 with Up and Down, then press Enter. Defend your side and return the ball against the computer."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move paddle",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Position power cursor",
+            "bindings": [
+              {
+                "label": "Move the mouse or drag"
+              }
+            ]
+          },
+          {
+            "action": "Speed boost",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ],
+            "note": "Speeds the ball up for 15 seconds."
+          },
+          {
+            "action": "Place wall",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Only when the wall is ready."
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Choose option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

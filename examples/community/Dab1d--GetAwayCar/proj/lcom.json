@@ -68,5 +68,107 @@
     "assets": []
   },
   "description": "Steer through traffic and dodge obstacles. Share the road with a second player.",
-  "preview": "../../../../collections/arcade/previews/dab1d-getawaycar-a7df638127d0.png"
+  "preview": "../../../../collections/arcade/previews/dab1d-getawaycar-a7df638127d0.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Start, pick both cars, a track and a race mode. Dodge traffic and reach the finish ahead of your rival."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Steer player 1",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move in menus",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or back",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Steer player 2 left",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Steer player 2 right",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          },
+          {
+            "action": "Choose a menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

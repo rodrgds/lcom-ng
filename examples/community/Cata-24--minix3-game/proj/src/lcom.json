@@ -49,5 +49,95 @@
     "assets": []
   },
   "description": "Find your way through the dungeon. Dash past danger and fight the enemies ahead.",
-  "preview": "../../../../../collections/arcade/previews/cata-24-minix3-game-952ce67c4b3d.png"
+  "preview": "../../../../../collections/arcade/previews/cata-24-minix3-game-952ce67c4b3d.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click New Game to enter the dungeon. Find the key, fight the enemies and reach the door to advance."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Dash",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Hold to dash; release to return to normal speed."
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ],
+            "note": "Your character faces the cursor."
+          },
+          {
+            "action": "Attack",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Interact",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Use on doors and rewards."
+          }
+        ]
+      }
+    ]
+  }
 }

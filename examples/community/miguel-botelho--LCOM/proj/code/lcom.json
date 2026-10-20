@@ -46,5 +46,85 @@
   },
   "description": "Choose Human vs Machine, type your name, then guess the picture as it is revealed.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Human vs Machine, then click the game to capture the mouse. Type your name and press Enter, then guess the hidden picture as it is revealed."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Type name or guess",
+            "bindings": [
+              {
+                "label": "Letter keys"
+              }
+            ]
+          },
+          {
+            "action": "Submit",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Confirms the name and each guess."
+          },
+          {
+            "action": "Delete",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ],
+            "note": "Deletes the current name or guess."
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move pointer",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              },
+              {
+                "label": "Drag"
+              }
+            ]
+          },
+          {
+            "action": "Choose a menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

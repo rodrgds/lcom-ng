@@ -39,5 +39,70 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Singleplayer to open the canvas. Hold the left mouse button and drag to draw; pick a color and brush size from the toolbar."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Draw",
+            "bindings": [
+              {
+                "label": "Hold left click and drag"
+              },
+              {
+                "label": "Hold and drag on the canvas"
+              }
+            ]
+          },
+          {
+            "action": "Choose a color or brush size",
+            "bindings": [
+              {
+                "label": "Click a toolbar button"
+              },
+              {
+                "label": "Tap a toolbar button"
+              }
+            ]
+          },
+          {
+            "action": "Clear the canvas",
+            "bindings": [
+              {
+                "label": "Click Clear"
+              },
+              {
+                "label": "Tap Clear"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Multiplayer",
+        "text": "In multiplayer guessing, type letters to build a guess. Backspace deletes the last letter and Enter submits it."
+      }
+    ]
+  }
 }

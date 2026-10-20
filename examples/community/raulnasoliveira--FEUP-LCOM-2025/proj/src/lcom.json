@@ -42,5 +42,143 @@
     "assets": []
   },
   "description": "Put your reaction time to the test in a series of quick challenges.",
-  "preview": "../../../../../collections/arcade/previews/raulnasoliveira-feup-lcom-2025-23b9e09f9b80.png"
+  "preview": "../../../../../collections/arcade/previews/raulnasoliveira-feup-lcom-2025-23b9e09f9b80.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose a test from the main menu with Up and Down, then press Enter. Each test uses the inputs listed below."
+      },
+      {
+        "title": "Menu",
+        "controls": [
+          {
+            "action": "Move selection",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Start the test",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Reaction test",
+        "controls": [
+          {
+            "action": "React or continue",
+            "bindings": [
+              {
+                "label": "Any key"
+              }
+            ],
+            "note": "Any key works; Esc returns to the menu from the final result."
+          },
+          {
+            "action": "React or continue",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Back to the menu",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "On the final result screen."
+          }
+        ]
+      },
+      {
+        "title": "Memory game",
+        "controls": [
+          {
+            "action": "Type the sequence",
+            "bindings": [
+              {
+                "label": "Letter keys"
+              }
+            ],
+            "note": "Letters A to Z."
+          },
+          {
+            "action": "Submit the answer",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Delete the last letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Verbal memory",
+        "controls": [
+          {
+            "action": "Mark the word NEW",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Mark the word SEEN",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm the answer",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

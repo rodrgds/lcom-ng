@@ -64,5 +64,121 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Whack-a-Mole"
+  "archetype": "Whack-a-Mole",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Single Player, pick an avatar, and click the name field to type a name. Click Start, then hit each mole as it pops out."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Hit top-left hole",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Hit top-middle hole",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Hit top-right hole",
+            "bindings": [
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Hit bottom-left hole",
+            "bindings": [
+              {
+                "keys": [
+                  "J"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Hit bottom-middle hole",
+            "bindings": [
+              {
+                "keys": [
+                  "K"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Hit bottom-right hole",
+            "bindings": [
+              {
+                "keys": [
+                  "L"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Select menus and hit moles",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Select button"
+              }
+            ],
+            "note": "Point the hammer at a mole before clicking."
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Delete a name letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm the name",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Click the name field before typing."
+          }
+        ]
+      }
+    ]
+  }
 }

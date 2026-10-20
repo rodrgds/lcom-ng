@@ -60,5 +60,64 @@
   "description": "Choose grid coordinates to uncover and sink a hidden fleet.",
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Battleship"
+  "archetype": "Battleship",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Up or Down to choose New Game or Exit, then press Enter. Each shot takes an X digit, Enter, a Y digit, then Enter."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Also submits each coordinate digit."
+          },
+          {
+            "action": "Clear digit",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -36,5 +36,84 @@
   },
   "archetype": "Air Hockey",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Space on Play. Hold the left mouse button and drag to move your paddle, then strike the ball past the red paddle."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ],
+            "note": "Play, Rules and Exit."
+          },
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "During a match."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move paddle",
+            "bindings": [
+              {
+                "label": "Hold left click and drag"
+              },
+              {
+                "label": "Touch and drag"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Touch",
+        "controls": [
+          {
+            "action": "Start a match",
+            "bindings": [
+              {
+                "label": "Tap Play / Select"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

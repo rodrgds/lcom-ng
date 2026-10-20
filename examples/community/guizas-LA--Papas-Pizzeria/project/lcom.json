@@ -43,5 +43,130 @@
     "assets": []
   },
   "description": "Prepare a pizza, put it in the oven and keep the kitchen moving.",
-  "preview": "../../../../collections/arcade/previews/guizas-la-papas-pizzeria-807f3b26e203.png"
+  "preview": "../../../../collections/arcade/previews/guizas-la-papas-pizzeria-807f3b26e203.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose JOGAR from the menu, then take an order and build the pizza. Use the mouse or the arrow keys and Enter through each step."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move in menus",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm or advance",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Choose sauce",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Add or remove toppings",
+            "bindings": [
+              {
+                "keys": [
+                  "3"
+                ]
+              },
+              {
+                "keys": [
+                  "4"
+                ]
+              },
+              {
+                "keys": [
+                  "5"
+                ]
+              },
+              {
+                "keys": [
+                  "6"
+                ]
+              },
+              {
+                "keys": [
+                  "7"
+                ]
+              },
+              {
+                "keys": [
+                  "8"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Type and edit the customer name",
+            "bindings": [
+              {
+                "label": "Letter keys"
+              },
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back or close popup",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select, place and cut",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click sauce, toppings, the oven, cut points and menu buttons."
+          }
+        ]
+      }
+    ]
+  }
 }

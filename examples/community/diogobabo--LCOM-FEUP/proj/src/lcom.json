@@ -49,5 +49,131 @@
   },
   "archetype": "Snake",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to start. Steer the snake to eat fruit while avoiding the walls and your own tail."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Turn up",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Turn down",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Turn left",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Turn right",
+            "bindings": [
+              {
+                "keys": [
+                  "Right"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Pause menu",
+        "controls": [
+          {
+            "action": "Choose Resume or Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

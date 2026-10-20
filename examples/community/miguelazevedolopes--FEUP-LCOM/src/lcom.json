@@ -52,5 +52,72 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to start. The first player to five points wins; Player 1 uses W and S, Player 2 uses the arrow keys."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Player 1 move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Player 2 move",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select menu or pause option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click Continue in the pause menu to resume."
+          }
+        ]
+      }
+    ]
+  }
 }

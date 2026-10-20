@@ -48,5 +48,90 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Start with Up/Down and press Enter, then click the game to capture the mouse. Walk with the arrow keys, aim the crosshair with the mouse and left click to fire."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Walk up",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Walk down",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Walk left",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Walk right",
+            "bindings": [
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Up to 10 shots can be in flight."
+          }
+        ]
+      }
+    ]
+  }
 }

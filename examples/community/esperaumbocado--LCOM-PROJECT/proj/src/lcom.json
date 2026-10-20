@@ -42,5 +42,81 @@
   },
   "archetype": "Typing",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, choose a 15, 30 or 60 second timer, then type the words shown on screen. Press Space after each word."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Submit word",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Delete last letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Start from menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Opens the timer selection."
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Choose menu item or timer",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ]
+          },
+          {
+            "action": "Fill current word",
+            "bindings": [
+              {
+                "label": "Hold left click and drag right"
+              }
+            ],
+            "note": "Costs one star."
+          }
+        ]
+      }
+    ]
+  }
 }

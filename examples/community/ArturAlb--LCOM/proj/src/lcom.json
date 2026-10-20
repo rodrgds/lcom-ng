@@ -78,5 +78,147 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Destroy the opposing tank. Player 1 drives with WASD and aims with the mouse; Player 2 drives with the arrow keys and fires with the numpad."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move player 1",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Holding a direction repeats the step."
+          },
+          {
+            "action": "Move player 2",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ],
+            "note": "Holding a direction repeats the step."
+          },
+          {
+            "action": "Fire player 2",
+            "bindings": [
+              {
+                "keys": [
+                  "Numpad 8"
+                ]
+              },
+              {
+                "keys": [
+                  "Numpad 2"
+                ]
+              },
+              {
+                "keys": [
+                  "Numpad 4"
+                ]
+              },
+              {
+                "keys": [
+                  "Numpad 6"
+                ]
+              },
+              {
+                "keys": [
+                  "Numpad 7"
+                ]
+              },
+              {
+                "keys": [
+                  "Numpad 9"
+                ]
+              },
+              {
+                "keys": [
+                  "Numpad 1"
+                ]
+              },
+              {
+                "keys": [
+                  "Numpad 3"
+                ]
+              }
+            ],
+            "note": "The numpad direction sets the shot angle."
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim player 1",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Fire player 1",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

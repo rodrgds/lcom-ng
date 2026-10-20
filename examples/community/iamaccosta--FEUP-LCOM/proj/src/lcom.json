@@ -59,5 +59,71 @@
   },
   "description": "Turn over the cards and remember what you saw. Find each matching pair.",
   "preview": "../../../../../collections/arcade/previews/iamaccosta-feup-lcom-8eb08d543062.png",
-  "archetype": "Memory"
+  "archetype": "Memory",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play or press P. Flip cards two at a time to find every matching pair before your lives run out."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Play or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Instructions",
+            "bindings": [
+              {
+                "keys": [
+                  "I"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "E"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or go back",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Flip a card or choose a menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -66,5 +66,115 @@
   },
   "description": "Reveal the hidden pictures and find the matching cards.",
   "preview": "../../../../collections/arcade/previews/luizhqueiroz-lcom-memorygame-4540b5424a79.png",
-  "archetype": "Memory"
+  "archetype": "Memory",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press 1 to start. Reveal two cards at a time and match every pair."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Scores",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move selection",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Flip card",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Also saves your name on the win screen."
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Delete name letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Flip card",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Choose a menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

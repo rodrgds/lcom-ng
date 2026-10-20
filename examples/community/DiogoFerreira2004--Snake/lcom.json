@@ -31,5 +31,111 @@
   },
   "description": "Eat fruit on the chequered board and try Classic, Walls, Swap Arrows or Fruit Power.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Start and pick a mode. Eat fruit without hitting the walls or yourself; Swap Arrows reverses every direction."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Steer",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              },
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "WASD works as an alternative to the arrow keys."
+          },
+          {
+            "action": "Back",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ],
+            "note": "Leaves the mode and rules screens."
+          },
+          {
+            "action": "Return or exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns from play to the main menu; exits from the main menu."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -45,5 +45,71 @@
     }
   },
   "description": "Navigate a dungeon and tap adjacent monsters to survive the growing horde.",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to enter the dungeon. Move with WASD and click monsters on adjacent tiles before the horde grows."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Moves one tile at a time."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Attack adjacent monster",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ],
+            "note": "Menu options and the top-right Exit button also use a click."
+          }
+        ]
+      }
+    ]
+  }
 }

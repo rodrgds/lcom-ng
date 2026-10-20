@@ -41,5 +41,91 @@
   },
   "archetype": "Typing",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose 1, 2 or 3 for 15, 30 or 60 seconds, and 4, 5 or 6 for the language. Press Space to start, then type each word and press Space to submit it."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start or submit word",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Space also returns to the menu after the results."
+          },
+          {
+            "action": "Delete letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Set time limit",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ],
+            "note": "15, 30 or 60 seconds."
+          },
+          {
+            "action": "Choose language",
+            "bindings": [
+              {
+                "keys": [
+                  "4"
+                ]
+              },
+              {
+                "keys": [
+                  "5"
+                ]
+              },
+              {
+                "keys": [
+                  "6"
+                ]
+              }
+            ],
+            "note": "English, Portuguese or Spanish."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

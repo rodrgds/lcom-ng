@@ -66,5 +66,209 @@
   },
   "description": "Draw, fill, undo, invert and convert your own picture with the original brush tools.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press G or click Draw to open the canvas. Pick a color and tool, then drag on the canvas to draw."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Enter drawing",
+            "bindings": [
+              {
+                "keys": [
+                  "G"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pencil",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Rectangle",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Fill",
+            "bindings": [
+              {
+                "keys": [
+                  "B"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back or exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Help",
+            "bindings": [
+              {
+                "keys": [
+                  "H"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Editing",
+        "controls": [
+          {
+            "action": "Undo",
+            "bindings": [
+              {
+                "keys": [
+                  "K"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Invert colors",
+            "bindings": [
+              {
+                "keys": [
+                  "M"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Grayscale",
+            "bindings": [
+              {
+                "keys": [
+                  "L"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Increase brush size",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Decrease brush size",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Choose color 1-8",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              },
+              {
+                "keys": [
+                  "4"
+                ]
+              },
+              {
+                "keys": [
+                  "5"
+                ]
+              },
+              {
+                "keys": [
+                  "6"
+                ]
+              },
+              {
+                "keys": [
+                  "7"
+                ]
+              },
+              {
+                "keys": [
+                  "8"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Choose color 9",
+            "bindings": [
+              {
+                "keys": [
+                  "9"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose tool or color",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Draw",
+            "bindings": [
+              {
+                "label": "Left drag"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

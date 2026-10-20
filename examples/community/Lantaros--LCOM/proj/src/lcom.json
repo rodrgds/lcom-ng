@@ -66,5 +66,89 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click the button on the title screen to set sail. Sink the pursuing sea monsters with your port and starboard cannons."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Speed up",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Slow down",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Turn port",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Turn starboard",
+            "bindings": [
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Fire port cannons",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Fire starboard cannons",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

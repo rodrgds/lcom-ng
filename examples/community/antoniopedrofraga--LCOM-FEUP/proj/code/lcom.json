@@ -56,5 +56,114 @@
   "archetype": "Sudoku",
   "description": "Choose a difficulty, fill the original Sudoku board and watch rule checks highlight your entries.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play and choose Easy, Medium or Hard. Click a cell, then type a digit; conflicting entries are highlighted."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Enter 1-8",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              },
+              {
+                "keys": [
+                  "4"
+                ]
+              },
+              {
+                "keys": [
+                  "5"
+                ]
+              },
+              {
+                "keys": [
+                  "6"
+                ]
+              },
+              {
+                "keys": [
+                  "7"
+                ]
+              },
+              {
+                "keys": [
+                  "8"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Enter 9",
+            "bindings": [
+              {
+                "keys": [
+                  "9"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Clear cell",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Deselect cell",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move pointer",
+            "bindings": [
+              {
+                "label": "Move mouse or drag"
+              }
+            ]
+          },
+          {
+            "action": "Select cell or menu item",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

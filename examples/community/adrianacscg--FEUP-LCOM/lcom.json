@@ -40,5 +40,95 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter to leave the opening screen, then click Rudolph to choose your pet. Use the Sleep, Feed, and Game buttons to care for it."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Advance or start the cloud jump",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump between clouds",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Press toward the next cloud."
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ],
+            "note": "Leaves sleep, feeding, or the mini game."
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Choose Rudolph",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ]
+          },
+          {
+            "action": "Open a pet action",
+            "bindings": [
+              {
+                "label": "Left click or tap a button"
+              }
+            ]
+          },
+          {
+            "action": "Feed",
+            "bindings": [
+              {
+                "label": "Drag food onto the pet"
+              }
+            ],
+            "note": "Press the food, then release over your pet."
+          }
+        ]
+      }
+    ]
+  }
 }

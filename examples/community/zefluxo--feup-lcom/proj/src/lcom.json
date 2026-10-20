@@ -60,5 +60,92 @@
   },
   "description": "Rotate falling blocks and build complete lines before the stack reaches the top.",
   "preview": "../../../../../collections/arcade/previews/zefluxo-feup-lcom-7d2140581772.png",
-  "archetype": "Tetris"
+  "archetype": "Tetris",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to start. Clear complete rows before the stack reaches the top; at the end, type three letters and press Esc to save your score."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Soft drop",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Rotate left",
+            "bindings": [
+              {
+                "keys": [
+                  "Z"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Rotate right",
+            "bindings": [
+              {
+                "keys": [
+                  "X"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Slide piece",
+            "bindings": [
+              {
+                "label": "Move mouse left or right"
+              }
+            ]
+          },
+          {
+            "action": "Soft drop",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Rotate right",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -68,5 +68,112 @@
   },
   "description": "Drop colorful pieces, clear lines and race a friend on a second board.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press 1 for a solo game or 2 for a two-player game. Clear complete lines before the stack reaches the top."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Rotate",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Soft drop",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Hard drop",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Ends the game immediately."
+          }
+        ]
+      },
+      {
+        "title": "Player 2 mouse",
+        "text": "In a two-player game, player two uses the mouse.",
+        "controls": [
+          {
+            "action": "Move left",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Move right",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          },
+          {
+            "action": "Rotate",
+            "bindings": [
+              {
+                "label": "Middle click"
+              }
+            ]
+          },
+          {
+            "action": "Hard drop",
+            "bindings": [
+              {
+                "label": "Move the mouse down"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

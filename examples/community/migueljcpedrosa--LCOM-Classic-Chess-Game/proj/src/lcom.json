@@ -42,5 +42,72 @@
   },
   "description": "Choose a piece, plan your next move and play a game of chess.",
   "preview": "../../../../../collections/arcade/previews/migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f.png",
-  "archetype": "Chess"
+  "archetype": "Chess",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play and type your name, then press Enter. Click a piece, then click its destination to move."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start / confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Starts from the menu, confirms your name, or plays again after the game ends."
+          },
+          {
+            "action": "Delete letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back / exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Quits from the menu; elsewhere it returns to the menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select piece or menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click a piece, then click a highlighted destination."
+          },
+          {
+            "action": "Cancel selection",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

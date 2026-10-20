@@ -74,5 +74,107 @@
   },
   "description": "Guide a blue square along a winding path before the time runs out.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, then choose mouse or keyboard control and a normal or night maze. Reach the finish before the timer runs out."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Keyboard control mode only."
+          },
+          {
+            "action": "Switch control mode",
+            "bindings": [
+              {
+                "keys": [
+                  "M"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Toggle night",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Continue after win or loss",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to mode selection",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "During play it returns to the mode selection screen; Esc on the main menu quits."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose a mode",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Move the square",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ],
+            "note": "Mouse control mode only."
+          }
+        ]
+      }
+    ]
+  }
 }

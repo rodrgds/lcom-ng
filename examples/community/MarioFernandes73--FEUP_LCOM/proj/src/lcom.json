@@ -48,5 +48,85 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "description": "Build and repeat a growing sequence of shapes with a friend."
+  "description": "Build and repeat a growing sequence of shapes with a friend.",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click START. Player 1 builds a sequence, then Player 2 repeats it from memory."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Enter a key move",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Adds that key to the sequence."
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose START or EXIT",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Choose a shape",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click the square, triangle, circle or star during a turn."
+          },
+          {
+            "action": "Enter a slope",
+            "bindings": [
+              {
+                "label": "Hold right click + drag up or down"
+              }
+            ],
+            "note": "Drag far enough to enter an ascending or descending slope."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -63,5 +63,94 @@
     "assets": []
   },
   "description": "Follow the falling notes and press the right keys as they reach the line.",
-  "preview": "../../../../collections/arcade/previews/vasco888888-feup-leic-lcom-be8975b3e8c5.png"
+  "preview": "../../../../collections/arcade/previews/vasco888888-feup-leic-lcom-be8975b3e8c5.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose a mode in the menu with Up and Down, then press Enter. Press the matching key as each note reaches the line; one wrong note ends the round."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Hit note",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              },
+              {
+                "keys": [
+                  "F"
+                ]
+              },
+              {
+                "keys": [
+                  "G"
+                ]
+              },
+              {
+                "keys": [
+                  "H"
+                ]
+              },
+              {
+                "keys": [
+                  "J"
+                ]
+              }
+            ],
+            "note": "Each piano lane maps to one key."
+          },
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

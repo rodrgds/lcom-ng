@@ -39,5 +39,52 @@
   "archetype": "Typing",
   "description": "Type each falling word before it reaches the bottom. Tap Play, then open the keyboard to type.",
   "preview": "../../../../collections/arcade/previews/tiagoogomess-lcom-1920-81ea76c163f5.png",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, then type each falling word before it reaches the bottom. On touch screens, open the keyboard to type."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Delete last letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ],
+            "note": "While entering your name for the leaderboard."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

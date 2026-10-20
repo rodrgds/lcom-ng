@@ -55,5 +55,135 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose a player count by clicking a menu button or pressing 2, 3 or 4. Steer your lightcycles and avoid crashing into trails."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Turn player 1",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Turn player 2",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Turn player 3",
+            "bindings": [
+              {
+                "keys": [
+                  "B"
+                ]
+              },
+              {
+                "keys": [
+                  "M"
+                ]
+              }
+            ],
+            "note": "Three or four player games only."
+          },
+          {
+            "action": "Start, pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Quits from the menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose a menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Turn player 4",
+            "bindings": [
+              {
+                "label": "Left button"
+              },
+              {
+                "label": "Right button"
+              }
+            ],
+            "note": "Four-player games only."
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Choose player count",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              },
+              {
+                "keys": [
+                  "4"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

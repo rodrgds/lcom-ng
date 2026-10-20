@@ -55,5 +55,72 @@
   },
   "archetype": "Pong",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "The match starts immediately. Play until one side reaches three goals."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Player 1 up",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ],
+            "note": "Hold to keep moving."
+          },
+          {
+            "action": "Player 1 down",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ],
+            "note": "Hold to keep moving."
+          },
+          {
+            "action": "Player 2 up",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ],
+            "note": "Hold to keep moving."
+          },
+          {
+            "action": "Player 2 down",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ],
+            "note": "Hold to keep moving."
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

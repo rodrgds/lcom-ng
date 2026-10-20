@@ -45,5 +45,90 @@
   "description": "Type the original displayed sentence and review your accuracy and score.",
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Typing"
+  "archetype": "Typing",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Easy or Hard with Up and Down, then press Enter. Type each displayed word and press Space to check it."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Type the word",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "Any letter key; hold Shift for capitals and punctuation."
+          },
+          {
+            "action": "Check word",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Delete last letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "End round or exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Esc also exits from the menu."
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Choose mode",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

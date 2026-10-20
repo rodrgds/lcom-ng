@@ -100,5 +100,64 @@
   },
   "description": "Change lanes to collect coins and avoid rocks on a three-lane road.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to start a run. Switch between the three lanes to collect coins and avoid rocks, holes and cones."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move between lanes",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Move between lanes",
+            "bindings": [
+              {
+                "label": "Move mouse up or down"
+              }
+            ]
+          },
+          {
+            "action": "Choose Play or Exit",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

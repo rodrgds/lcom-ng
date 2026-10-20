@@ -44,5 +44,76 @@
   "preview": "preview.png",
   "build": {
     "assets": []
+  },
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start, choose a difficulty, then click cards to reveal them. Match every pair to win."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Menu",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "New game",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ],
+            "note": "During a game."
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Choose a menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ]
+          },
+          {
+            "action": "Reveal a card",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }

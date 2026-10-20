@@ -54,5 +54,76 @@
     ]
   },
   "description": "Place your defenders around the path and stop the enemies from getting through.",
-  "preview": "../../../../../collections/arcade/previews/guystavo7-feup-lcom-project-912ca0851017.png"
+  "preview": "../../../../../collections/arcade/previews/guystavo7-feup-lcom-project-912ca0851017.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click New Game, then Play on the level select screen. Place defenders beside the path and stop every enemy from reaching the end."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Resume from the pause menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Place or select",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Open build menu or cancel",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Right click opens the tower menu and cancels placement."
+          }
+        ]
+      }
+    ]
+  }
 }

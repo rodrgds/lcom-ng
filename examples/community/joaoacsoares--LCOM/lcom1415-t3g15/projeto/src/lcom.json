@@ -46,5 +46,49 @@
   "description": "Hit the emerging Diglett, beat the timer and choose the original difficulty and round length.",
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Whack-a-Mole"
+  "archetype": "Whack-a-Mole",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to start a round. Hit each Diglett as it pops up, and use Options to set difficulty and round length."
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move mallet",
+            "bindings": [
+              {
+                "label": "Move mouse or drag"
+              }
+            ]
+          },
+          {
+            "action": "Hit or select",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Leave round or options",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

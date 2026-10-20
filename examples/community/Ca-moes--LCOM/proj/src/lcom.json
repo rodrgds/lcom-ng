@@ -41,5 +41,108 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Typing"
+  "archetype": "Typing",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Classic or Timed, then type the displayed sentence exactly. Each correct character moves the car forward."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Type the sentence",
+            "bindings": [
+              {
+                "label": "Letter keys"
+              }
+            ],
+            "note": "Match each character; Shift switches between lowercase and uppercase."
+          },
+          {
+            "action": "Insert a space",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Type comma or period",
+            "bindings": [
+              {
+                "keys": [
+                  ","
+                ]
+              },
+              {
+                "keys": [
+                  "."
+                ]
+              }
+            ],
+            "note": "Shift gives the colon and semicolon forms."
+          },
+          {
+            "action": "Type apostrophe",
+            "bindings": [
+              {
+                "keys": [
+                  "Minus"
+                ]
+              }
+            ],
+            "note": "The apostrophe is on the Minus key."
+          },
+          {
+            "action": "Delete mistakes",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ],
+            "note": "Removes wrong characters and clears the error block."
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Leaves a run; on the results screen it opens score entry."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose a game mode",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Classic or Timed."
+          },
+          {
+            "action": "Move cursor",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

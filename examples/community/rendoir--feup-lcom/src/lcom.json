@@ -43,5 +43,57 @@
     ]
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Start Game and press Enter, or click it. Hold the left mouse button to grow the bridge, then release to drop it and cross."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select or grow bridge",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Hold to grow the bridge; release to drop it."
+          }
+        ]
+      }
+    ]
+  }
 }

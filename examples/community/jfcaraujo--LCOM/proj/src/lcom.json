@@ -40,5 +40,107 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Asteroids"
+  "archetype": "Asteroids",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Play from the menu. Move with WASD and aim with the pointer, then fire to break apart the asteroids."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move menu selection",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ],
+            "note": "Menus use W and S."
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move the mouse"
+              },
+              {
+                "label": "Drag"
+              }
+            ]
+          },
+          {
+            "action": "Fire / select",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ],
+            "note": "Hold to keep firing; clicks also confirm menu options."
+          }
+        ]
+      }
+    ]
+  }
 }

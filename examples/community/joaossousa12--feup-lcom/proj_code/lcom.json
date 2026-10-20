@@ -40,5 +40,72 @@
   },
   "archetype": "Mini Golf",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press 1 to play. The ball moves on its own; left click to rotate its direction and steer it into the hole."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Play",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Instructions",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Turn",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ],
+            "note": "Each turn rotates the ball 90 degrees counterclockwise."
+          }
+        ]
+      }
+    ]
+  }
 }

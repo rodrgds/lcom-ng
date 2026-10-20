@@ -44,5 +44,63 @@
   "icon": "icon.png",
   "archetype": "Typing",
   "description": "Type the visible golden sentence, correct red typos and finish with an original WPM and accuracy result.",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, then type the golden sentence exactly. Correct typos with Backspace before finishing to see your WPM and accuracy."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Type a space",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Correct a typo",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "During a race; on the start screen Esc exits."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Chooses Play, Exit or Play Again."
+          }
+        ]
+      }
+    ]
+  }
 }

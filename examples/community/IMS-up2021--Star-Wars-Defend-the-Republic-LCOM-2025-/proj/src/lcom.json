@@ -48,5 +48,89 @@
     "assets": []
   },
   "description": "Place your defenses and hold the line against the approaching army.",
-  "preview": "../../../../../collections/arcade/previews/ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3.png"
+  "preview": "../../../../../collections/arcade/previews/ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, choose a unit with 1, 2 or 3, then click a spawn slot to deploy it. Hold the line against the approaching army."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Select unit",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ],
+            "note": "Sets which unit the next spawn slot deploys."
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Deploy unit",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click one of the five slots on the left."
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Use the Pause and Resume buttons."
+          },
+          {
+            "action": "Speed up",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Use the Fast button."
+          }
+        ]
+      }
+    ]
+  }
 }

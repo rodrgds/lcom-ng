@@ -49,5 +49,95 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Connect Four"
+  "archetype": "Connect Four",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Local game to start a two-player match. Take turns choosing a column and dropping a chip; connect four in a row to win."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose column",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ],
+            "note": "Player one."
+          },
+          {
+            "action": "Drop red chip",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Drop yellow chip",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Player two."
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move yellow column left",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Player two selects the column with left and right clicks."
+          },
+          {
+            "action": "Move yellow column right",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          },
+          {
+            "action": "Drop yellow chip",
+            "bindings": [
+              {
+                "label": "Middle click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

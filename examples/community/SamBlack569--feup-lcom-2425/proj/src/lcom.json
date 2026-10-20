@@ -46,5 +46,62 @@
     }
   },
   "description": "Weave through space and keep your ship clear of enemy fire.",
-  "preview": "../../../../../collections/arcade/previews/samblack569-feup-lcom-2425-c1eb853acae2.png"
+  "preview": "../../../../../collections/arcade/previews/samblack569-feup-lcom-2425-c1eb853acae2.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to launch. Your ship fires automatically, so focus on dodging asteroids."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move left",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move right",
+            "bindings": [
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "M"
+                ]
+              }
+            ],
+            "note": "Works on the help and game over screens."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -55,5 +55,109 @@
   "archetype": "Tetris",
   "description": "Stack the original colorful blocks, rotate both ways, hold a piece and choose three difficulty levels.",
   "preview": "../../../../../collections/arcade/previews/goncaloacteixeira-feup-lcom-a992eaca46aa.png",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter at the title, choose a difficulty with Left and Right, then press Enter to begin. Stack pieces to clear lines."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Soft drop",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Hard drop",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Rotate left",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Rotate right",
+            "bindings": [
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Hold piece",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Start, confirm, or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Esc again from the pause menu exits the game."
+          }
+        ]
+      }
+    ]
+  }
 }

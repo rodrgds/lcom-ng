@@ -108,5 +108,85 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "T-Rex Runner"
+  "archetype": "T-Rex Runner",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press P or click Play to start running. Jump over cacti and hold Down to duck under birds."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Play",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ],
+            "note": "From the main menu."
+          },
+          {
+            "action": "Scores",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ],
+            "note": "From the main menu."
+          },
+          {
+            "action": "Jump",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Duck",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ],
+            "note": "Hold to stay low."
+          },
+          {
+            "action": "Back",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns from the scores screen to the menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

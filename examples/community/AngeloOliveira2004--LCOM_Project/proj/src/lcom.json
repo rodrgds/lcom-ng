@@ -38,5 +38,90 @@
   },
   "archetype": "Chess",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press 1, then choose a clock with 1 to 5. Click a piece and then its destination square to move it."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start a new game",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ],
+            "note": "In the time menu, 1 to 5 choose 1, 5, 10, 30 or 59 minutes."
+          },
+          {
+            "action": "Continue current game",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ],
+            "note": "Starts a new game when no game is in progress."
+          },
+          {
+            "action": "Show instructions",
+            "bindings": [
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "4"
+                ]
+              }
+            ],
+            "note": "From the main menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select a piece",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Move to a square",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Cancel selection",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

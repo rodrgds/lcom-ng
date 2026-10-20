@@ -59,5 +59,106 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start, then click the game to capture the mouse. Players swap shooter and runner roles each round; the shooter aims with the crosshair and fires with left click."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Shooter left",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Shooter right",
+            "bindings": [
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Shooter jump",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "The shooter role swaps between players each round."
+          },
+          {
+            "action": "Runner left",
+            "bindings": [
+              {
+                "keys": [
+                  "J"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Runner right",
+            "bindings": [
+              {
+                "keys": [
+                  "L"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Runner jump",
+            "bindings": [
+              {
+                "keys": [
+                  "I"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Shoot",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Only the current shooter can fire."
+          }
+        ]
+      }
+    ]
+  }
 }

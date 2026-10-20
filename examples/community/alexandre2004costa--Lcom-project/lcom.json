@@ -50,5 +50,76 @@
     }
   },
   "description": "Jump, run and fire your way through a colorful side-scrolling battle.",
-  "preview": "../../../collections/arcade/previews/alexandre2004costa-lcom-project-e3c159e09375.png"
+  "preview": "../../../collections/arcade/previews/alexandre2004costa-lcom-project-e3c159e09375.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Singleplayer to begin. Run and jump while shooting down the planes above."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns to the menu from the multiplayer lobby or scores."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Choose a menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Pick singleplayer, multiplayer, scores or exit."
+          }
+        ]
+      }
+    ]
+  }
 }

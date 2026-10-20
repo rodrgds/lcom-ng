@@ -48,5 +48,73 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter on the title screen, read the tip, then press Enter again. Move the ship with the mouse and fire with the left button."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start or continue",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Confirms the tip and restarts after game over."
+          },
+          {
+            "action": "Shield",
+            "bindings": [
+              {
+                "keys": [
+                  "Z"
+                ]
+              }
+            ],
+            "note": "Briefly makes the ship invulnerable."
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "From the game-over or scores screen; Esc is ignored during play."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move ship",
+            "bindings": [
+              {
+                "label": "Move the mouse or drag"
+              }
+            ]
+          },
+          {
+            "action": "Fire or select",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ],
+            "note": "Hold to keep firing; click menu items to choose them."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -46,5 +46,124 @@
     ]
   },
   "description": "Hit the notes as they reach the fretboard and keep the rhythm going.",
-  "preview": "../../../../collections/arcade/previews/martimcferreira-lcom-project-9a16857450a6.png"
+  "preview": "../../../../collections/arcade/previews/martimcferreira-lcom-project-9a16857450a6.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Play, enter a name and pick a song. Press each lane key as its note reaches the line."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Hit note",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              },
+              {
+                "keys": [
+                  "F"
+                ]
+              },
+              {
+                "keys": [
+                  "G"
+                ]
+              }
+            ],
+            "note": "One key per lane, left to right."
+          },
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ],
+            "note": "Main menu, song select and pause menus."
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Delete name letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Choose game-over option",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ],
+            "note": "Game-over and game-won screens."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

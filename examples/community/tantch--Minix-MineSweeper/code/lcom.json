@@ -50,5 +50,95 @@
   },
   "archetype": "Minesweeper",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose single player with Up and Down, press Enter, and click the game to capture the mouse. Reveal safe squares and flag the mines; the first square you reveal is always safe."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Navigate menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Reset field",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ],
+            "note": "During play."
+          },
+          {
+            "action": "Back / exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns to the menu during play; exits from the menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Move pointer",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Reveal",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Flag",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Marks or unmarks a square."
+          }
+        ]
+      }
+    ]
+  }
 }

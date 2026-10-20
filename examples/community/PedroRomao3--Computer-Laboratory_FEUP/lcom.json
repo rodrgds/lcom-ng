@@ -35,5 +35,107 @@
   },
   "archetype": "Blackjack",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start, then click a chip to place a bet. Click Hit or Stand to play your hand; get closer to 21 than the dealer without going over."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Return to menu after a hand",
+            "bindings": [
+              {
+                "label": "Any key"
+              }
+            ],
+            "note": "The result screen waits for a key press."
+          },
+          {
+            "action": "Confirm name",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "In the name editor."
+          },
+          {
+            "action": "Delete name character",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Choose Start",
+            "bindings": [
+              {
+                "label": "Click"
+              },
+              {
+                "label": "Tap"
+              }
+            ]
+          },
+          {
+            "action": "Place a bet",
+            "bindings": [
+              {
+                "label": "Click a chip"
+              },
+              {
+                "label": "Tap a chip"
+              }
+            ]
+          },
+          {
+            "action": "Hit",
+            "bindings": [
+              {
+                "label": "Click Hit"
+              },
+              {
+                "label": "Tap Hit"
+              }
+            ]
+          },
+          {
+            "action": "Stand",
+            "bindings": [
+              {
+                "label": "Click Stand"
+              },
+              {
+                "label": "Tap Stand"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

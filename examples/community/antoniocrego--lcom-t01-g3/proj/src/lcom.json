@@ -73,5 +73,107 @@
     "assets": []
   },
   "description": "Jump through dark caverns and fight your way forward with sword and magic.",
-  "preview": "../../../../../collections/arcade/previews/antoniocrego-lcom-t01-g3-c70a27f473d7.png"
+  "preview": "../../../../../collections/arcade/previews/antoniocrego-lcom-t01-g3-c70a27f473d7.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter to start from the menu. Move with A and D, jump with Space, and attack toward the cursor."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Press again in mid-air after picking up double jump."
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Choose a menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ],
+            "note": "W and S switch between the two menu options, and move through the pause menu."
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Slash",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Blast",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Requires the soul blast power-up."
+          }
+        ]
+      }
+    ]
+  }
 }

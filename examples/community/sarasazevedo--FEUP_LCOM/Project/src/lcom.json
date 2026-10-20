@@ -56,5 +56,90 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Galaga"
+  "archetype": "Galaga",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to launch a round. Destroy the alien waves before they reach the bottom."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move left",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move right",
+            "bindings": [
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Stop",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              },
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Select menus and fire",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Select button"
+              }
+            ],
+            "note": "During play, clicking fires."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -46,5 +46,93 @@
   "description": "Track flying ducks, aim your shot and build a high score in the original pixel-art field.",
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Duck Hunt"
+  "archetype": "Duck Hunt",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose the play option, then click the game to capture the mouse. Aim with the mouse and left click to shoot passing ducks; three misses end the round."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Type name",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "Letter keys fill the name entry after a round."
+          },
+          {
+            "action": "Move name cursor",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Submit name",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back from high scores",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Shoot",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

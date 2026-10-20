@@ -50,5 +50,66 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "description": "Keep a helicopter airborne through a scrolling cavern and beat your best distance."
+  "description": "Keep a helicopter airborne through a scrolling cavern and beat your best distance.",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to begin. Hold Space or the left mouse button to climb, and release to descend through the cave."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Lift",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Hold to climb."
+          },
+          {
+            "action": "End run",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Select menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Select button"
+              }
+            ]
+          },
+          {
+            "action": "Lift",
+            "bindings": [
+              {
+                "label": "Hold left button"
+              },
+              {
+                "label": "Lift button"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

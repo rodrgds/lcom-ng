@@ -38,5 +38,109 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Type Player 1's name and press Enter, then Player 2's. Player 1 chooses a word and draws it; Player 2 types a guess."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Type text",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "Letter and number keys enter names and guesses."
+          },
+          {
+            "action": "Advance / submit",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Moves past each name and submits a guess."
+          },
+          {
+            "action": "Delete letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Choose word",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ],
+            "note": "Player 1, before drawing."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Draw",
+            "bindings": [
+              {
+                "label": "Hold left click"
+              },
+              {
+                "label": "Touch drag"
+              }
+            ],
+            "note": "Keep holding and move to continue the stroke."
+          },
+          {
+            "action": "Choose word or button",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

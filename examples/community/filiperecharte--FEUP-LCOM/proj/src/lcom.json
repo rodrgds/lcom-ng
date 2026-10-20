@@ -44,5 +44,88 @@
   },
   "archetype": "Snake",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, then press an arrow key to start moving. Steer through the fruit and avoid the walls and your own tail."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Turn",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ],
+            "note": "You cannot reverse direction."
+          },
+          {
+            "action": "Type name",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "Use letter keys after a game over; Backspace deletes."
+          },
+          {
+            "action": "Save score",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

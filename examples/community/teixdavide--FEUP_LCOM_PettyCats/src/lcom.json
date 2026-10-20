@@ -51,5 +51,85 @@
     "assets": []
   },
   "description": "Explore the room and pet the cats with the original mouse gestures.",
-  "preview": "../../../../collections/arcade/previews/teixdavide-feup-lcom-pettycats-768b12c9a51f.png"
+  "preview": "../../../../collections/arcade/previews/teixdavide-feup-lcom-pettycats-768b12c9a51f.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Walk near a cat until it is selected, then press E to start petting. Hold the left mouse button and trace the shape shown for that cat."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pet selected cat",
+            "bindings": [
+              {
+                "keys": [
+                  "E"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Trace the petting shape",
+            "bindings": [
+              {
+                "label": "Hold left click and move"
+              }
+            ],
+            "note": "Release at the end of the shape."
+          },
+          {
+            "action": "Cancel petting",
+            "bindings": [
+              {
+                "label": "Right or middle click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

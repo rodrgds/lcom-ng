@@ -56,5 +56,112 @@
   },
   "description": "Fly your ship through enemy waves, dodge bullets and power up your weapons.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start on the title screen. Fly with the arrow keys, hold Space to fire, and dodge enemy bullets."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Hold to keep firing."
+          },
+          {
+            "action": "Save score and restart",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "After typing a name on the game over screen."
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Start or select",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap Select"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Touch",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "label": "Left pad"
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "label": "Hold Shoot"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

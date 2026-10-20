@@ -1,7 +1,7 @@
 {
   "version": 1,
   "name": "Minix Asteroids",
-  "description": "Survive falling asteroids and fire the ship\u2019s recharging shots.",
+  "description": "Survive falling asteroids and fire the ship’s recharging shots.",
   "build": {
     "assetRoot": ".",
     "assets": [],
@@ -37,5 +37,52 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Move the ship with the mouse and fire with Space. Asteroids fall faster over time, so keep moving."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Fires on press; four shots recharge over time."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Move ship",
+            "bindings": [
+              {
+                "label": "Mouse movement"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

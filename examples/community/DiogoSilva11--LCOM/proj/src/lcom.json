@@ -50,5 +50,96 @@
     "assets": []
   },
   "description": "Navigate the arena and fire at your opponents while avoiding incoming shots.",
-  "preview": "../../../../../collections/arcade/previews/diogosilva11-lcom-ed97fdb962ec.png"
+  "preview": "../../../../../collections/arcade/previews/diogosilva11-lcom-ed97fdb962ec.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press 1 to start. Move your robot, aim with the mouse and shoot the other robots before they hit you."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Start",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ],
+            "note": "From the main menu."
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "0"
+                ]
+              }
+            ],
+            "note": "From the main menu."
+          },
+          {
+            "action": "Leave the arena",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

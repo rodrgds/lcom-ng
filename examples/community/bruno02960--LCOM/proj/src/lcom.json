@@ -40,5 +40,118 @@
   "archetype": "Space Invaders",
   "icon": "icon.png",
   "preview": "preview.png",
-  "description": "Pilot the original ship, shoot descending aliens and keep the patrol alive."
+  "description": "Pilot the original ship, shoot descending aliens and keep the patrol alive.",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose New Game, then pick Keyboard or Mouse mode. In the menu use S and W to move and Enter to select."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move ship",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Keyboard mode only."
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Keyboard mode only."
+          },
+          {
+            "action": "End game",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Move selection",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Move ship",
+            "bindings": [
+              {
+                "label": "Move pointer"
+              }
+            ],
+            "note": "Mouse mode only."
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Mouse mode only."
+          }
+        ]
+      }
+    ]
+  }
 }

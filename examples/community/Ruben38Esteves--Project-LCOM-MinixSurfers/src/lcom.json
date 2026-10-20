@@ -52,5 +52,100 @@
     "assets": []
   },
   "description": "A local two-player chase: one dodges while the other sends trains and missiles.",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, then keep player one alive while player two sends trains and missiles. Player one moves with WASD; player two aims with the mouse and clicks to drop obstacles."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move player 1",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Restart after losing",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim player 2",
+            "bindings": [
+              {
+                "label": "Move pointer"
+              }
+            ]
+          },
+          {
+            "action": "Wide train",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Train",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          },
+          {
+            "action": "Missile",
+            "bindings": [
+              {
+                "label": "Middle click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

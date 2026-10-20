@@ -39,5 +39,76 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click START, then hit each note as it reaches the target row. Choose Arrows, DFJK, or WASD and a difficulty in Settings."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Hit note lane",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ],
+            "note": "Default Arrows; Settings can switch to WASD or DFJK."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ]
+          },
+          {
+            "action": "Hit heart note",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Hardcore mode only."
+          }
+        ]
+      }
+    ]
+  }
 }

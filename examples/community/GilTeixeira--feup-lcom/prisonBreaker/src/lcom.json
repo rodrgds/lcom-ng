@@ -40,5 +40,64 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter to start the run. Answer the direction shown on screen before the timer empties; one wrong answer ends the round."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Answer direction",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Start or retry",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit or back",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "From the main menu it exits; on the lose screen it returns to the menu."
+          }
+        ]
+      }
+    ]
+  }
 }

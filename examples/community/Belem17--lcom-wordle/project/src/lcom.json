@@ -35,5 +35,80 @@
   },
   "icon": "icon.png",
   "archetype": "Wordle",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter or click Start, then guess the hidden five-letter Portuguese word. Letter colors show how close each guess is."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start / submit guess",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              },
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Enter or Space starts from the menu; Enter submits a full five-letter guess."
+          },
+          {
+            "action": "Type a letter",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "Any letter key fills the next square."
+          },
+          {
+            "action": "Delete last letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Clears the current round; from the menu it exits."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Start game",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click the Start button in the menu."
+          }
+        ]
+      }
+    ]
+  }
 }

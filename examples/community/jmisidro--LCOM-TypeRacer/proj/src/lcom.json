@@ -42,5 +42,71 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Typing"
+  "archetype": "Typing",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Singleplayer and wait for the countdown. Drag the answer tiles into the blanks, then type the passage to move your car."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Finish word",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Type letters to fill the passage, then press Space after a correct word."
+          },
+          {
+            "action": "Delete last letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Drag an answer tile",
+            "bindings": [
+              {
+                "label": "Hold left click + drag"
+              }
+            ],
+            "note": "Drop the word over its blank to lock it in."
+          }
+        ]
+      }
+    ]
+  }
 }

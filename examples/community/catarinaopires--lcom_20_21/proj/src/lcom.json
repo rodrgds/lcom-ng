@@ -61,5 +61,85 @@
   },
   "description": "Prove you are human with the original reaction, drawing, key-chord and timing challenges. Move the cursor by dragging, then use Select.",
   "preview": "../../../../../collections/arcade/previews/catarinaopires-lcom-20-21-05e58c9827c1.png",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, then choose a challenge. Move the pointer with the mouse and left click to select; complete each test to prove you are human."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Steer in the reaction game",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Key chord",
+            "bindings": [
+              {
+                "keys": [
+                  "P",
+                  "M",
+                  "J"
+                ]
+              }
+            ],
+            "note": "Press all three together in the keys challenge."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Move pointer",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Draw line",
+            "bindings": [
+              {
+                "label": "Hold left click and drag horizontally"
+              }
+            ],
+            "note": "Release the button to finish the line."
+          },
+          {
+            "action": "Stop timer",
+            "bindings": [
+              {
+                "label": "Middle click"
+              }
+            ],
+            "note": "In the timing challenge."
+          }
+        ]
+      }
+    ]
+  }
 }

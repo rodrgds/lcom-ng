@@ -38,5 +38,61 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Draw & Guess"
+  "archetype": "Draw & Guess",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click PLAY to start a round. One player draws the secret word with the mouse while the other types guesses."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Submit guess",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Type letters and numbers to build a guess. Only the guesser can type."
+          },
+          {
+            "action": "Delete last character",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Draw",
+            "bindings": [
+              {
+                "label": "Hold left click + drag"
+              }
+            ],
+            "note": "Keep holding while moving to draw a stroke."
+          },
+          {
+            "action": "Choose a tool or color",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

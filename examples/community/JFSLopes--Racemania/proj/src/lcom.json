@@ -56,5 +56,73 @@
   },
   "icon": "icon.png",
   "description": "Choose either circuit, accelerate and steer a red car with the original drag stick.",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Single Player and choose a circuit. Hold W to accelerate, then drag the red stick to steer around the track."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Accelerate",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ],
+            "note": "Hold to keep accelerating."
+          },
+          {
+            "action": "Reverse",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ],
+            "note": "Hold to slow down and reverse."
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Steer",
+            "bindings": [
+              {
+                "label": "Drag the red stick"
+              }
+            ],
+            "note": "Hold the left button on the stick and drag."
+          },
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Chooses menu and pause options."
+          }
+        ]
+      }
+    ]
+  }
 }

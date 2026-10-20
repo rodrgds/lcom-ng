@@ -57,5 +57,166 @@
     "assets": []
   },
   "description": "Gather deliveries, manage your inventory and survive alien pursuers.",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press S then Enter, or click Start, to begin. Pick up packages with P and keep them in your inventory while aliens chase you."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "W and S also navigate menus."
+          },
+          {
+            "action": "Pick up",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Use item",
+            "bindings": [
+              {
+                "keys": [
+                  "I"
+                ]
+              }
+            ],
+            "note": "Hold to keep throwing a held item."
+          },
+          {
+            "action": "Attack",
+            "bindings": [
+              {
+                "keys": [
+                  "L"
+                ]
+              }
+            ],
+            "note": "Fires a pistol or kills nearby workers."
+          },
+          {
+            "action": "Select inventory slot",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Drop item",
+            "bindings": [
+              {
+                "keys": [
+                  "O"
+                ]
+              }
+            ],
+            "note": "Drops the hovered or held item."
+          }
+        ]
+      },
+      {
+        "title": "Pause & menus",
+        "controls": [
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm menu option",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Starts the game and selects pause options."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move inventory item",
+            "bindings": [
+              {
+                "label": "Hold left click + drag"
+              },
+              {
+                "label": "Touch and drag"
+              }
+            ]
+          },
+          {
+            "action": "Drop item",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          },
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Clicks Start or Exit."
+          }
+        ]
+      }
+    ]
+  }
 }

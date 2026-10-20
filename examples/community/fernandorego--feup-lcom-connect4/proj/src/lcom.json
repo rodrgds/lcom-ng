@@ -49,5 +49,83 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Connect Four"
+  "archetype": "Connect Four",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to start. Player 1 drops with the arrow keys and Space; Player 2 aims with the mouse and left-clicks."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move column",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Drop piece",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "From the main menu, Esc quits."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim and drop piece",
+            "bindings": [
+              {
+                "label": "Move mouse + left click"
+              },
+              {
+                "label": "Drag and tap"
+              }
+            ],
+            "note": "Used on Player 2's turn."
+          },
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ],
+            "note": "Clicks Play, rules, back or continue."
+          }
+        ]
+      }
+    ]
+  }
 }

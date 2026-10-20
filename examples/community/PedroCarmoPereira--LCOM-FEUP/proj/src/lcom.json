@@ -103,5 +103,85 @@
   "archetype": "Space Shooter",
   "description": "Steer with WASD, move the crosshair and use Fire / Select to shoot enemy ships. Return to the original menu after Game Over.",
   "preview": "../../../../../collections/arcade/previews/pedrocarmopereira-lcom-feup-09ffc7a01a3b.png",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, then steer with WASD or the arrow keys and aim with the mouse. Left click to fire at the crosshair."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              },
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Fire or select",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Also selects menu and high-score buttons."
+          }
+        ]
+      }
+    ]
+  }
 }

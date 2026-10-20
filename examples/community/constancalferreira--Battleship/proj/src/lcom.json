@@ -67,5 +67,152 @@
   },
   "description": "Arrange your fleet, take turns firing and find your opponent’s ships before they find yours.",
   "preview": "../../../../../collections/arcade/previews/constancalferreira-battleship-0d18d3873e2b.png",
-  "archetype": "Battleship"
+  "archetype": "Battleship",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter on the main menu, then choose Start. Drag your ships into place, press R, and fire at the enemy grid."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Open rules",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Open help",
+            "bindings": [
+              {
+                "keys": [
+                  "H"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "M"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Ready",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back from rules or help",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit game",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Move selection",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Choose one or two players",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Move a ship",
+            "bindings": [
+              {
+                "label": "Left drag"
+              }
+            ]
+          },
+          {
+            "action": "Rotate a ship",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          },
+          {
+            "action": "Fire at a cell",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

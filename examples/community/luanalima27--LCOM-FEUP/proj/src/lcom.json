@@ -52,5 +52,87 @@
   },
   "description": "Move your starfighter beneath the alien formation and return fire.",
   "preview": "../../../../../collections/arcade/previews/luanalima27-lcom-feup-eda1c5716f42.png",
-  "archetype": "Space Invaders"
+  "archetype": "Space Invaders",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Start, then pick a difficulty. Move your ship beneath the alien formation and shoot it down before it reaches you."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "W and S also move the menu selection."
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ],
+            "note": "Shots travel toward the cursor."
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click above the ship to fire."
+          }
+        ]
+      }
+    ]
+  }
 }

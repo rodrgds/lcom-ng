@@ -73,5 +73,213 @@
   },
   "description": "Send opposing armies into battle on the same screen, unlock stronger units, and defend each original fortress.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click a multiplayer option on the main menu to start. Build units and defenses for your side and destroy the enemy fortress."
+      },
+      {
+        "title": "Player 1",
+        "controls": [
+          {
+            "action": "Build unit",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Build defense",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              },
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "E"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Evolve",
+            "bindings": [
+              {
+                "keys": [
+                  "X"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Use special",
+            "bindings": [
+              {
+                "keys": [
+                  "Z"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Player 2",
+        "controls": [
+          {
+            "action": "Build unit",
+            "bindings": [
+              {
+                "keys": [
+                  "J"
+                ]
+              },
+              {
+                "keys": [
+                  "K"
+                ]
+              },
+              {
+                "keys": [
+                  "L"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Build defense",
+            "bindings": [
+              {
+                "keys": [
+                  "U"
+                ]
+              },
+              {
+                "keys": [
+                  "I"
+                ]
+              },
+              {
+                "keys": [
+                  "O"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Evolve",
+            "bindings": [
+              {
+                "keys": [
+                  "M"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Use special",
+            "bindings": [
+              {
+                "keys": [
+                  "N"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Defenses and match",
+        "controls": [
+          {
+            "action": "Sell a defense",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              },
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ],
+            "note": "R for player 1, P for player 2."
+          },
+          {
+            "action": "Expand tower",
+            "bindings": [
+              {
+                "keys": [
+                  "T"
+                ]
+              },
+              {
+                "keys": [
+                  "+"
+                ]
+              }
+            ],
+            "note": "T for player 1, + for player 2."
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to main menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

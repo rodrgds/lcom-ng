@@ -40,5 +40,92 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, or choose it with W/S and press Enter. Move through the maze with WASD, aim with the mouse and click to shoot."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move / choose menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "W/S (and A/D) also cycle the menu selection."
+          },
+          {
+            "action": "Confirm menu item",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "From the maze."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              },
+              {
+                "label": "Drag"
+              }
+            ]
+          },
+          {
+            "action": "Shoot or select",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap Select / Fire"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

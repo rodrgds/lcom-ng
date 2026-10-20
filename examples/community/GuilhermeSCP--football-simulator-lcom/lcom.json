@@ -44,5 +44,35 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "description": "Choose a formation, inspect squad ratings and simulate an original text-mode football match."
+  "description": "Choose a formation, inspect squad ratings and simulate an original text-mode football match.",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Quick Game, or Friendly Game to pick teams, then click Play. Move the pointer over the text buttons and left-click to choose formations, inspect the squad or simulate the match."
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Point",
+            "bindings": [
+              {
+                "label": "Mouse movement"
+              }
+            ]
+          },
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Chooses menu items, teams, formations, Play and Back."
+          }
+        ]
+      }
+    ]
+  }
 }

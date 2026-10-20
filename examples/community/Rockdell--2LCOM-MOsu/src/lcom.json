@@ -52,5 +52,82 @@
     ]
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, then choose Easy or Hard. Move the pointer over a shrinking circle and press a key while it is inside the ring; waiting until the outer ring is small scores more."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Hit circle",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              },
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "E"
+                ]
+              },
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ],
+            "note": "Hard mode: press the letter shown. In Easy any key works while the pointer is inside."
+          },
+          {
+            "action": "Leave the menu or end the round",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Esc does not exit the game; use the Exit button to leave."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              },
+              {
+                "label": "Swipe"
+              }
+            ]
+          },
+          {
+            "action": "Select menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap Select"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -39,5 +39,83 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play, then click the game to capture the mouse. Move around the arena and throw Pokeballs at the Goombas until the timer runs out."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Hold a direction to keep moving."
+          },
+          {
+            "action": "End round or return",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "During play it ends the round; on the game-over screen it returns to the menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              },
+              {
+                "label": "Drag"
+              }
+            ]
+          },
+          {
+            "action": "Throw or select",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Throw / Select button"
+              }
+            ],
+            "note": "Aim first; in menus this chooses Play, Exit or Play Again."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -63,5 +63,132 @@
   },
   "archetype": "Fireboy and Watergirl",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start to enter the chamber. Guide the blue hero with A/D and W, and the red hero with Left/Right and Up."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move blue",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump blue",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move red",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump red",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "During a run."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Select menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap Select"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Touch",
+        "controls": [
+          {
+            "action": "Move blue",
+            "bindings": [
+              {
+                "label": "Left pad"
+              }
+            ]
+          },
+          {
+            "action": "Jump blue",
+            "bindings": [
+              {
+                "label": "Blue jump button"
+              }
+            ]
+          },
+          {
+            "action": "Move red",
+            "bindings": [
+              {
+                "label": "Right pad"
+              }
+            ]
+          },
+          {
+            "action": "Jump red",
+            "bindings": [
+              {
+                "label": "Red jump button"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

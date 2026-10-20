@@ -46,5 +46,51 @@
   },
   "description": "Reveal the board one square at a time. Flag the mines and trust the numbers.",
   "preview": "../../../../collections/arcade/previews/casemiromjm-minixsweeper-286a5a2780c5.png",
-  "archetype": "Minesweeper"
+  "archetype": "Minesweeper",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose a mode and difficulty with the arrow buttons, then click Start. Left click reveals a tile and right click flags a mine."
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Reveal tile",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Flag tile",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          },
+          {
+            "action": "Use hint lamp",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Reveals one random tile, once per game."
+          }
+        ]
+      }
+    ]
+  }
 }

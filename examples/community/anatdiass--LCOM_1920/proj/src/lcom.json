@@ -85,5 +85,95 @@
   "archetype": "Tic-Tac-Toe",
   "description": "Place the original panda and tiger pieces to make three in a row. Play against the computer or share the board with a second player.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Singleplayer or Multiplayer on the menu. Place your piece on an empty square; in Singleplayer the computer answers with the tiger."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Place piece 1-8",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              },
+              {
+                "keys": [
+                  "4"
+                ]
+              },
+              {
+                "keys": [
+                  "5"
+                ]
+              },
+              {
+                "keys": [
+                  "6"
+                ]
+              },
+              {
+                "keys": [
+                  "7"
+                ]
+              },
+              {
+                "keys": [
+                  "8"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Place piece 9",
+            "bindings": [
+              {
+                "keys": [
+                  "9"
+                ]
+              }
+            ],
+            "note": "Singleplayer only. Keys map to the board squares left to right, top to bottom."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Place piece",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -47,5 +47,119 @@
   },
   "archetype": "Plants vs. Zombies",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play or Levels, choose a level if needed, then type a name and press Enter. Place plants on the lawn and collect sun before the zombies reach your house."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose plant",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ],
+            "note": "Sunflower, peashooter or wall-nut."
+          },
+          {
+            "action": "Toggle shovel",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ],
+            "note": "Click any planted plant to remove it."
+          },
+          {
+            "action": "Freeze zombies",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Costs 10 sun."
+          },
+          {
+            "action": "Confirm name or next level",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Delete name character",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Abandons the current level."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move cursor",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              },
+              {
+                "label": "Drag"
+              }
+            ]
+          },
+          {
+            "action": "Place plant, collect sun or choose menu",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Select button"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

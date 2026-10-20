@@ -32,5 +32,68 @@
   },
   "archetype": "Blackjack",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start, choose a chip value, then press BET. Beat the dealer without going over 21."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Change selection",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ],
+            "note": "Cycles bet chips and hand actions."
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select and confirm",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Clicks the menu, bet chips, BET, Stand, Hit, Double and result buttons."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -40,5 +40,70 @@
   },
   "description": "Type the words on screen and keep up with the next challenge.",
   "preview": "../../../../collections/arcade/previews/teclas-9e9acdbd5fab.png",
-  "archetype": "Typing"
+  "archetype": "Typing",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Space on the title screen, then choose a mode and start it from its settings screen. Type each word as it appears before time runs out."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start or advance",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Starts from the title screen and moves to the next word."
+          },
+          {
+            "action": "Type the words",
+            "bindings": [
+              {
+                "label": "Letter keys"
+              }
+            ]
+          },
+          {
+            "action": "Delete a letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back or exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose a mode or setting",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

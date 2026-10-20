@@ -38,5 +38,83 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Asteroids"
+  "archetype": "Asteroids",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start, then fly with W, A, S, and D. Aim with the mouse and hold left click to fire at the asteroids."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move up",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move down",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move left",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move right",
+            "bindings": [
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse or drag"
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "label": "Hold left click"
+              },
+              {
+                "label": "Hold Fire / Select"
+              }
+            ],
+            "note": "The ship shoots toward the crosshair."
+          }
+        ]
+      }
+    ]
+  }
 }

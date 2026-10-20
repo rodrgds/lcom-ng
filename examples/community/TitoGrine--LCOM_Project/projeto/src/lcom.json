@@ -31,5 +31,92 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play for a two-player drawing round, or Draw for free painting. Type a name, pick an avatar and choose a word."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Type name",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "Use letter keys; Backspace deletes."
+          },
+          {
+            "action": "Confirm or finish turn",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Confirms a name, ends the drawing turn, and submits a typed guess."
+          },
+          {
+            "action": "Cycle color",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ],
+            "note": "Works while drawing."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Draw",
+            "bindings": [
+              {
+                "label": "Hold left click"
+              }
+            ],
+            "note": "Drag inside the canvas to paint."
+          },
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Choose tools, colors, avatars and words."
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "label": "Right click the return arrow"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

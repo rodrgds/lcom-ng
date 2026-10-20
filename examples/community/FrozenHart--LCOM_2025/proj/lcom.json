@@ -55,5 +55,143 @@
   },
   "archetype": "Blackjack",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press S for singleplayer or M for multiplayer. Press B to bet, set the amount with Up and Down, then press P to deal."
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Choose a mode",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "M"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back or exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns to the main menu from a game and exits from the main menu."
+          }
+        ]
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Bet",
+            "bindings": [
+              {
+                "keys": [
+                  "B"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Adjust bet",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ],
+            "note": "Up raises the bet, Down lowers it."
+          },
+          {
+            "action": "Deal or confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              },
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "P deals. After a payout, Enter shows the score screen and starts the next hand."
+          },
+          {
+            "action": "Hit or stand",
+            "bindings": [
+              {
+                "keys": [
+                  "H"
+                ]
+              },
+              {
+                "keys": [
+                  "K"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Double or split",
+            "bindings": [
+              {
+                "keys": [
+                  "D"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ],
+            "note": "S also starts singleplayer from the main menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move pointer",
+            "bindings": [
+              {
+                "label": "Move the mouse or drag"
+              }
+            ]
+          },
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

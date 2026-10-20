@@ -46,5 +46,135 @@
   },
   "archetype": "Pac-Man",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter to start from the title screen. One player steers Pac-Man with the arrow keys; the other steers the ghost with W/A/S/D."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move Pac-Man",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move ghost",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Start",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "During play."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Use power-up",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Only while carrying a power-up."
+          }
+        ]
+      },
+      {
+        "title": "Touch",
+        "controls": [
+          {
+            "action": "Move Pac-Man",
+            "bindings": [
+              {
+                "label": "Left pad"
+              }
+            ]
+          },
+          {
+            "action": "Move ghost",
+            "bindings": [
+              {
+                "label": "Right pad"
+              }
+            ]
+          },
+          {
+            "action": "Start",
+            "bindings": [
+              {
+                "label": "Tap Start"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -43,5 +43,104 @@
   },
   "archetype": "Typing",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press E, M, or H to start an Easy, Medium or Hard sentence. Type the sentence exactly; correct letters turn green and the timer stops when you finish."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose difficulty",
+            "bindings": [
+              {
+                "keys": [
+                  "E"
+                ]
+              },
+              {
+                "keys": [
+                  "M"
+                ]
+              },
+              {
+                "keys": [
+                  "H"
+                ]
+              }
+            ],
+            "note": "Easy, Medium and Hard. These keys only work on the menu."
+          },
+          {
+            "action": "Type the sentence",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "Press each letter shown, plus Space for spaces; wrong keys are ignored."
+          },
+          {
+            "action": "Finish",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Available after the last letter."
+          },
+          {
+            "action": "Leave a run",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ],
+            "note": "From the menu."
+          }
+        ]
+      },
+      {
+        "title": "Touch",
+        "controls": [
+          {
+            "action": "Type the sentence",
+            "bindings": [
+              {
+                "label": "Tap letters on the on-screen keyboard"
+              }
+            ]
+          },
+          {
+            "action": "Finish",
+            "bindings": [
+              {
+                "label": "Tap Confirm"
+              }
+            ],
+            "note": "Available after the last letter."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -44,5 +44,61 @@
     "assets": []
   },
   "description": "Watch for the signal and react. Challenge your timing alone or with a second player.",
-  "preview": "../../../../../collections/arcade/previews/simaopsbarbosa-feup-lcom-e3fa6454545b.png"
+  "preview": "../../../../../collections/arcade/previews/simaopsbarbosa-feup-lcom-e3fa6454545b.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click one or two players, then click Guess or React mode. Wait for the screen to turn green before reacting."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Player 1 react",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "In Guess mode stop the timer at the target time; in React mode react as soon as the screen turns green."
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose a menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Player 2 react",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Two-player games only."
+          }
+        ]
+      }
+    ]
+  }
 }

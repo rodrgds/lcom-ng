@@ -49,5 +49,80 @@
   },
   "description": "Aim and bounce through advancing bricks, then fire collected missile power-ups.",
   "preview": "preview.png",
-  "archetype": "Breakout"
+  "archetype": "Breakout",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter to start, then press Enter again to launch the ball. Move the mouse to set the launch angle with the marker."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move paddle",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "One step per press."
+          },
+          {
+            "action": "Start or launch",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Fire missile",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "After collecting a missile power-up."
+          },
+          {
+            "action": "Back or quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "During a round it returns to the menu; on the result screen or main menu it exits the game."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move pointer"
+              }
+            ],
+            "note": "Moves the launch marker."
+          }
+        ]
+      }
+    ]
+  }
 }

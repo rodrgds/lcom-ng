@@ -51,5 +51,107 @@
   },
   "description": "Guide your snake toward the apples and steer clear of traps.",
   "preview": "../../../../../collections/arcade/previews/joanaigs-lcom-snake-game-330f9e657355.png",
-  "archetype": "Snake"
+  "archetype": "Snake",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Singleplayer or Multiplayer from the menu. Steer toward apples and away from traps; in multiplayer you can also place them for the other snake."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              },
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Continue",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "On the game-over screen."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Menus, apples and continue",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Chooses menu options, places an apple in multiplayer, and continues after game over."
+          },
+          {
+            "action": "Place trap",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Multiplayer only."
+          }
+        ]
+      }
+    ]
+  }
 }

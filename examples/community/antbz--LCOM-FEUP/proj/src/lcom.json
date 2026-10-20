@@ -34,5 +34,36 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Fruit Ninja"
+  "archetype": "Fruit Ninja",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Swipe through the pineapple on the menu to start solo play. Slice the flying fruit and avoid the bombs."
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Swipe across a fruit"
+              }
+            ],
+            "note": "Slice the pineapple for solo play."
+          },
+          {
+            "action": "Slice",
+            "bindings": [
+              {
+                "label": "Drag across fruit"
+              }
+            ],
+            "note": "Hold and move to cut through the fruit."
+          }
+        ]
+      }
+    ]
+  }
 }

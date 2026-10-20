@@ -42,5 +42,79 @@
   "archetype": "Connect Four",
   "description": "Choose a column and drop your chip. Connect four blue or red chips before the turn timer expires.",
   "preview": "../../../../../collections/arcade/previews/daniel-s-goncalves-lcom-feup-9abd1f6f744d.png",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Pick a column and drop a chip. Connect four before the turn timer expires."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move column",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Drop chip",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              },
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Restart",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ],
+            "note": "Clears the board."
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

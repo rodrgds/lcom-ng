@@ -37,5 +37,84 @@
   },
   "description": "Drag the paddle, break glowing blocks and catch bonuses before time runs out.",
   "preview": "preview.png",
-  "archetype": "Breakout"
+  "archetype": "Breakout",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter on the menu to start. Hold the left mouse button and drag to move the paddle, then right-click to launch the ball."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm or quit to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Confirms menu choices; in the pause screen Enter quits to the menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move paddle",
+            "bindings": [
+              {
+                "label": "Hold left click + drag"
+              },
+              {
+                "label": "Touch and drag"
+              }
+            ]
+          },
+          {
+            "action": "Launch ball",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Also advances the level cards."
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Select option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

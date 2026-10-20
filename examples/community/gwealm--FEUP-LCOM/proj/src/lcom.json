@@ -92,5 +92,73 @@
   "description": "Guess the original hidden word using its English word list.",
   "archetype": "Wordle",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start Game, then type a five-letter word and press Enter. Green letters are correct; yellow letters appear elsewhere in the word."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Type a letter",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "Any letter key fills the next square."
+          },
+          {
+            "action": "Submit guess",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Delete last letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ],
+            "note": "Use the menu buttons; clicking a cell in the current row moves the cursor."
+          }
+        ]
+      }
+    ]
+  }
 }

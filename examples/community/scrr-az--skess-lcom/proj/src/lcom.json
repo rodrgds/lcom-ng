@@ -27,5 +27,71 @@
   },
   "description": "Sketch the secret word or type your guess as another player draws.",
   "preview": "../../../../../collections/arcade/previews/scrr-az-skess-lcom-282ac263194e.png",
-  "archetype": "Draw & Guess"
+  "archetype": "Draw & Guess",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click START, then sketch the secret word while the other players type guesses. Hold the left mouse button to draw on the canvas."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Delete letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Submit guess",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Type letters and Space to build your guess first."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Draw",
+            "bindings": [
+              {
+                "label": "Hold left click"
+              }
+            ],
+            "note": "Keep holding and move to continue the stroke."
+          },
+          {
+            "action": "Clear canvas",
+            "bindings": [
+              {
+                "label": "Left click CLEAR"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

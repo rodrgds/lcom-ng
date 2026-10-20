@@ -45,5 +45,134 @@
   },
   "description": "Move the paddle and break bricks, collecting bonuses across three levels.",
   "preview": "preview.png",
-  "archetype": "Breakout"
+  "archetype": "Breakout",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press 1 to start a single-player game, then right-click to launch the ball. Clear every brick across three levels; Settings (4) switches between mouse and keyboard control."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move paddle",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Works when keyboard control is selected in Settings."
+          },
+          {
+            "action": "Launch ball",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Keyboard control only."
+          },
+          {
+            "action": "Return to start menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move paddle",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              },
+              {
+                "label": "Drag"
+              }
+            ]
+          },
+          {
+            "action": "Launch ball",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Mouse control only."
+          },
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Single player",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Multiplayer",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "High scores",
+            "bindings": [
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Settings",
+            "bindings": [
+              {
+                "keys": [
+                  "4"
+                ]
+              }
+            ],
+            "note": "In Settings, A selects mouse control and D selects keyboard control."
+          }
+        ]
+      }
+    ]
+  }
 }

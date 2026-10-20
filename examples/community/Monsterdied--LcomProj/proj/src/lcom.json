@@ -54,5 +54,181 @@
   },
   "description": "Outmaneuver another player, plant your bombs and escape before they explode.",
   "preview": "../../../../../collections/arcade/previews/monsterdied-lcomproj-138166482bfa.png",
-  "archetype": "Bomberman"
+  "archetype": "Bomberman",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Start, then type a name for player 1 and player 2, pressing Enter after each. Collect coins and use bombs to knock out the other player."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Player 1 move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Player 1 bomb",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Player 2 move",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              },
+              {
+                "keys": [
+                  "Numpad 8"
+                ]
+              },
+              {
+                "keys": [
+                  "Numpad 2"
+                ]
+              },
+              {
+                "keys": [
+                  "Numpad 4"
+                ]
+              },
+              {
+                "keys": [
+                  "Numpad 6"
+                ]
+              }
+            ],
+            "note": "Arrow keys or the numeric keypad."
+          },
+          {
+            "action": "Player 2 bomb",
+            "bindings": [
+              {
+                "keys": [
+                  "Numpad 0"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Choose option",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Delete name letter",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose a menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "label": "Left click Return"
+              }
+            ],
+            "note": "The Return button is available during a match."
+          }
+        ]
+      }
+    ]
+  }
 }

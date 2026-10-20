@@ -48,5 +48,87 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press 1 to start a game, or 2 for options. Steer by moving the mouse, eat apples, and stay inside the walls."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Steer",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ],
+            "note": "Move mostly left, right, up or down to turn the snake."
+          },
+          {
+            "action": "New apple",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Moves the apple to a new spot."
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Start game",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Options",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ],
+            "note": "Choose 1 for difficulty, then 1, 2 or 3 for Easy, Normal or Hard."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

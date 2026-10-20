@@ -46,5 +46,115 @@
   "description": "Reveal coloured cards with WASD and Space, then remember all five pairs.",
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Memory"
+  "archetype": "Memory",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press J on the menu to start a game. Move the selector with WASD, reveal cards with Space, and match all five pairs."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move selector",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Reveal card",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Play",
+            "bindings": [
+              {
+                "keys": [
+                  "J"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Show instructions",
+            "bindings": [
+              {
+                "keys": [
+                  "I"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Leave instructions",
+            "bindings": [
+              {
+                "keys": [
+                  "H"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Replay",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ],
+            "note": "Available after all pairs are found."
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "N"
+                ]
+              }
+            ],
+            "note": "Available after all pairs are found."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

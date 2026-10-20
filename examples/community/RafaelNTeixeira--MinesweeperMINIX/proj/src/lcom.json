@@ -42,5 +42,116 @@
   },
   "icon": "icon.png",
   "description": "Reveal clues and place flags on three original purple minefields, with keyboard selection and a running clock.",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press 1, 2 or 3 to start a Beginner, Medium or Hard board. Move the cursor, reveal safe cells and flag mines before the clock runs out."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose board",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ],
+            "note": "From the main menu."
+          },
+          {
+            "action": "Move cursor",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Reveal cell",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Flag or unflag",
+            "bindings": [
+              {
+                "keys": [
+                  "F"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Restart board",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Show instructions",
+            "bindings": [
+              {
+                "keys": [
+                  "4"
+                ]
+              }
+            ],
+            "note": "From the main menu."
+          },
+          {
+            "action": "Return or exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns to the menu from a board; exits from the main menu."
+          }
+        ]
+      }
+    ]
+  }
 }

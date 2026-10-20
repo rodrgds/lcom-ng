@@ -50,5 +50,81 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter to log in. Aim with the mouse and click bugs to fire missiles while collecting coins for abilities."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Log in",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Nuke",
+            "bindings": [
+              {
+                "keys": [
+                  "Z"
+                ]
+              }
+            ],
+            "note": "Requires enough coins."
+          },
+          {
+            "action": "Antivirus",
+            "bindings": [
+              {
+                "keys": [
+                  "X"
+                ]
+              }
+            ],
+            "note": "Requires enough coins."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Fire or select",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

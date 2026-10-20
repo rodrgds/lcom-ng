@@ -39,5 +39,76 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start on the main menu. Move left and right to steer the alien as it bounces upward between asteroids."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Save score",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "If you make the top ten, type a name with the letter keys and Backspace to edit it, then press Enter."
+          },
+          {
+            "action": "Exit game",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Steer",
+            "bindings": [
+              {
+                "label": "Move the mouse left or right"
+              },
+              {
+                "label": "Swipe left or right"
+              }
+            ]
+          },
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

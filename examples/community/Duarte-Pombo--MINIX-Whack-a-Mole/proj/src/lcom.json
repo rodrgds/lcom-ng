@@ -35,5 +35,42 @@
   },
   "description": "Watch the holes and tap each mole as it pops up. Be quick with the hammer.",
   "preview": "../../../../../collections/arcade/previews/duarte-pombo-minix-whack-a-mole-c0b1a146de15.png",
-  "archetype": "Whack-a-Mole"
+  "archetype": "Whack-a-Mole",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start, then hit each mole as it pops out of a hole."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select or hit",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Use the hammer cursor on menu buttons and moles."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -71,5 +71,119 @@
     }
   },
   "description": "Choose your fighters and face a friend in a two-player arena battle.",
-  "preview": "../../../../collections/arcade/previews/cast-10-lcomproject-1c6c122eea2f.png"
+  "preview": "../../../../collections/arcade/previews/cast-10-lcomproject-1c6c122eea2f.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play or press W to start. Player 1 uses W/A/S/D, Player 2 uses the arrow keys, and each player attacks with their mouse button."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move Player 1",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move Player 2",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Open or close shop",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ],
+            "note": "Spend points on upgrades while the shop is open."
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Player 1 attack",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Player 2 attack",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          },
+          {
+            "action": "Buy an upgrade",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click an upgrade bar while the shop is open."
+          }
+        ]
+      }
+    ]
+  }
 }

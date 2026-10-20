@@ -44,5 +44,84 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Steer the boat with A, D, W and S. Aim with the mouse and left-click to fire at approaching sharks."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move boat",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Press to fire."
+          },
+          {
+            "action": "Restart or quit",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click a button on the game-over screen."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -41,5 +41,80 @@
   "archetype": "Undertale Battle",
   "description": "Choose Normal, Hard or Extreme, then guide the heart through the original Flowey, Papyrus or Sans attack patterns. Move the crosshair and use Attack when the game offers a turn.",
   "preview": "../../../collections/arcade/previews/davidrocha9-feup-lcom-6ec407d2e49b.png",
-  "icon": "icon.png"
+  "icon": "icon.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Normal or Hard, then pick Flowey, Papyrus or Sans. Move the heart with the arrow keys or mouse and click to attack when you get a turn."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move or aim",
+            "bindings": [
+              {
+                "label": "Move the mouse"
+              },
+              {
+                "label": "Drag"
+              }
+            ]
+          },
+          {
+            "action": "Attack",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

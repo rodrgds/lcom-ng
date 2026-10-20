@@ -62,5 +62,82 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to start a round. Move your square with the mouse and avoid the moving blocks while your energy lasts."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Shield",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ],
+            "note": "Costs 40 energy; press again to cancel."
+          },
+          {
+            "action": "Freeze blocks",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ],
+            "note": "Costs 50 energy; press again to cancel."
+          },
+          {
+            "action": "Slow blocks",
+            "bindings": [
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ],
+            "note": "Costs 30 energy; press again to cancel."
+          },
+          {
+            "action": "Continue after a loss",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move square",
+            "bindings": [
+              {
+                "label": "Move mouse or drag"
+              }
+            ]
+          },
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

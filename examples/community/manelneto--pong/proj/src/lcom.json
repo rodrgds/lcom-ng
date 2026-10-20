@@ -49,5 +49,129 @@
   },
   "archetype": "Pong",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press P or click Play, then choose a difficulty with 1, 2 or 3. Move your paddle to return the ball."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Play",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              },
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ],
+            "note": "From the main menu."
+          },
+          {
+            "action": "Choose difficulty",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ],
+            "note": "E, M and H also work."
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Q"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ],
+            "note": "From the main menu."
+          },
+          {
+            "action": "Back",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns to the difficulty screen during play."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Speed up ball",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "During play."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -55,5 +55,91 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click START or press 1 to begin. Choose colors to flood the board from the top-left tile until every tile matches."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose blue",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Choose green",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Choose cyan",
+            "bindings": [
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Choose red",
+            "bindings": [
+              {
+                "keys": [
+                  "4"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Choose purple",
+            "bindings": [
+              {
+                "keys": [
+                  "5"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Choose yellow",
+            "bindings": [
+              {
+                "keys": [
+                  "6"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose START or EXIT",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

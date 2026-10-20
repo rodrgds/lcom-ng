@@ -50,5 +50,80 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "description": "Shoot balloons with a bow, aim by moving vertically, and keep your arrows stocked."
+  "description": "Shoot balloons with a bow, aim by moving vertically, and keep your arrows stocked.",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Play and press Enter to start. Move the mouse up or down to aim, hold Space to draw, then release to fire."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Draw and shoot",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Hold to build power; release to fire."
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse up or down"
+              },
+              {
+                "label": "Vertical stick"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

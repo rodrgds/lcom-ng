@@ -63,5 +63,161 @@
   "description": "Place ninja defenders, upgrade their skills and protect the shrine from enemy waves.",
   "build": {
     "assets": []
+  },
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Singleplayer, then place ninjas beside the path to defend the shrine. Click the game to capture the mouse."
+      },
+      {
+        "title": "Choose a ninja",
+        "controls": [
+          {
+            "action": "Normal ninja",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Sniper ninja",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Smoke ninja",
+            "bindings": [
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Poison ninja",
+            "bindings": [
+              {
+                "keys": [
+                  "4"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "During a wave",
+        "controls": [
+          {
+            "action": "Place or select a ninja",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Select a placed ninja to upgrade, sell or change its target using the side panel."
+          },
+          {
+            "action": "Cancel placement",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ]
+          },
+          {
+            "action": "Pause / resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Next level",
+            "bindings": [
+              {
+                "keys": [
+                  "N"
+                ]
+              }
+            ],
+            "note": "Singleplayer only. Skips the current level."
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Previous option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Next option",
+            "bindings": [
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm selection",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back from instructions / credits",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              },
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
   }
 }

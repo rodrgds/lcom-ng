@@ -75,5 +75,102 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Campaign Single, then guide the character to the switchboard. Move with Left and Right or A and D, and jump with Space."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              },
+              {
+                "keys": [
+                  "Z"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Flip gravity",
+            "bindings": [
+              {
+                "keys": [
+                  "X"
+                ]
+              }
+            ],
+            "note": "Arcade mode only."
+          },
+          {
+            "action": "Back",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Press twice quickly to return to the menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Choose menu button",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ]
+          },
+          {
+            "action": "Adjust power",
+            "bindings": [
+              {
+                "label": "Drag with left click or touch"
+              }
+            ],
+            "note": "Move the switchboard sliders."
+          }
+        ]
+      }
+    ]
+  }
 }

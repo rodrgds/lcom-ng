@@ -48,5 +48,67 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "description": "Steer a starship through horizontal enemy waves, fire missiles and save a high score."
+  "description": "Steer a starship through horizontal enemy waves, fire missiles and save a high score.",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose New Game with Up and Down, then press Space. Fly through the enemy waves and fire to build a score."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move or choose menu option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ],
+            "note": "Up and Down also navigate the menu before a game starts."
+          },
+          {
+            "action": "Fire or confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Fires during play and confirms menu choices."
+          },
+          {
+            "action": "End run",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Opens the high-score name entry."
+          },
+          {
+            "action": "Type name",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ],
+            "note": "Any letter key; Enter saves the name."
+          }
+        ]
+      }
+    ]
+  }
 }

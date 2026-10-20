@@ -49,5 +49,80 @@
   "description": "Take turns dropping planets into the original space-themed board and connect four before the timer expires.",
   "archetype": "Connect Four",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Space at the welcome screen, then choose Play from the menu with Up and Down and press Enter. On each turn, move the column arrow with Left and Right and press Enter to drop a planet."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Continue",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "Welcome, credits, and result screens."
+          },
+          {
+            "action": "Choose a menu option",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Starts the selected option or drops in the selected column."
+          },
+          {
+            "action": "Move column",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Leave match",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

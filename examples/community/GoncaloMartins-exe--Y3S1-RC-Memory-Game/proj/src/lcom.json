@@ -46,5 +46,66 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Memory"
+  "archetype": "Memory",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Use the arrow keys to move the cursor to Start and press Enter. Flip two cards per turn and match every fruit pair."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move cursor",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ],
+            "note": "Moves the cursor in menus and across the cards."
+          },
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Confirms a menu button or flips the highlighted card."
+          },
+          {
+            "action": "Back or quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns from Instructions to the menu; quits from the main menu."
+          }
+        ]
+      }
+    ]
+  }
 }

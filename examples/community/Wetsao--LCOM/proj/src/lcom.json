@@ -47,5 +47,78 @@
   },
   "archetype": "Claustro",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play or press Enter to begin. Players take turns moving one pawn toward the opposite goal; the first to reach it wins."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move cursor",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ],
+            "note": "Each press moves one cell."
+          },
+          {
+            "action": "Select or confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click a pawn, then its destination, or use the Play and Quit buttons."
+          }
+        ]
+      }
+    ]
+  }
 }

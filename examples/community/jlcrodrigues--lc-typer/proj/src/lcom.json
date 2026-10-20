@@ -39,5 +39,89 @@
   },
   "archetype": "Typing",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start and type the phrase shown on screen. Finish it to see your speed and accuracy."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Fix a typo",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Restart phrase",
+            "bindings": [
+              {
+                "keys": [
+                  "Tab"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "New phrase",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Leave game",
+            "bindings": [
+              {
+                "label": "Click x"
+              }
+            ],
+            "note": "Top-right button."
+          },
+          {
+            "action": "Next phrase",
+            "bindings": [
+              {
+                "label": "Click n"
+              }
+            ],
+            "note": "Top-right button."
+          }
+        ]
+      }
+    ]
+  }
 }

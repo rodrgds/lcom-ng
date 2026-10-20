@@ -40,5 +40,75 @@
   },
   "description": "Pilot your ship through an asteroid field. Turn, thrust and fire to stay alive.",
   "preview": "../../../../../collections/arcade/previews/andrenasx-feup-lcom-3c62b99c6b04.png",
-  "archetype": "Asteroids"
+  "archetype": "Asteroids",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Start in the main menu. Fly with WASD and aim with the mouse to destroy asteroids before one hits your ship."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit from the main menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Mouse movement"
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "The crosshair recharges shortly after each shot."
+          }
+        ]
+      }
+    ]
+  }
 }

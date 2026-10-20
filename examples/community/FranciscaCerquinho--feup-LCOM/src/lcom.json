@@ -39,5 +39,49 @@
   },
   "description": "Time each jump to clear the approaching pipes in the original automatically scrolling Mario runner.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press S or tap Start to begin. Press Space or tap Jump to clear each approaching pipe."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Jump",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Exits from the main menu."
+          }
+        ]
+      }
+    ]
+  }
 }

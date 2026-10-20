@@ -37,5 +37,80 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Typing"
+  "archetype": "Typing",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Right to select Singleplayer and Enter to start, or click Singleplayer. Type each displayed sentence exactly to move along the highway, and use Backspace to fix mistakes."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Start or advance",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Starts the race and moves to the next sentence."
+          },
+          {
+            "action": "Delete mistake",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Select menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Select button"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -34,5 +34,68 @@
   },
   "archetype": "Snake",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Collect apples and grow without running into your own tail; the snake wraps around the screen edges. Left click once to place an apple when the board is empty."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Turn",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ],
+            "note": "You cannot reverse direction."
+          },
+          {
+            "action": "Exit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Place an apple",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Only when no apple is on the board."
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -38,5 +38,69 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Slide the tiles to merge matching numbers and reach 2048. Every move adds a new tile, so keep empty space open."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Slide tiles",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "End game",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Slide tiles",
+            "bindings": [
+              {
+                "label": "Left-button drag"
+              },
+              {
+                "label": "Direction pad"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

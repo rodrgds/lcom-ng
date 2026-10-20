@@ -44,5 +44,109 @@
     "assets": []
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Start on the menu. Press the piano key that matches each note as it reaches the hit line; a missed note ends the run."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Play note",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              },
+              {
+                "keys": [
+                  "F"
+                ]
+              },
+              {
+                "keys": [
+                  "G"
+                ]
+              },
+              {
+                "keys": [
+                  "H"
+                ]
+              },
+              {
+                "keys": [
+                  "J"
+                ]
+              }
+            ],
+            "note": "The seven keys match the piano keys from left to right."
+          },
+          {
+            "action": "End run or leave menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Move selection",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              },
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -57,5 +57,137 @@
   },
   "icon": "icon.png",
   "archetype": "Battleship",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Local to start, then place all five ships. Use Tab between players and click the prompt to begin the battle."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Choose a ship",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "B"
+                ]
+              },
+              {
+                "keys": [
+                  "C"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              },
+              {
+                "keys": [
+                  "E"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move ship",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Place ship",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Rotate ship",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Next player or ready",
+            "bindings": [
+              {
+                "keys": [
+                  "Tab"
+                ]
+              }
+            ],
+            "note": "Available once every ship is placed."
+          },
+          {
+            "action": "Back or quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Opens the quit prompt while placing; leaves the battle otherwise."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move cursor",
+            "bindings": [
+              {
+                "label": "Move the mouse or drag"
+              }
+            ]
+          },
+          {
+            "action": "Select or fire",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ],
+            "note": "Clicks prompt buttons; during a turn, click a cell to fire."
+          }
+        ]
+      }
+    ]
+  }
 }

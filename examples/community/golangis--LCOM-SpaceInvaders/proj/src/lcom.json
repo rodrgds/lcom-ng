@@ -57,5 +57,81 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Space Invaders"
+  "archetype": "Space Invaders",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play or press Space to start. Move with Left and Right and fire with Space or Up; stop each formation before it lands."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start or fire",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              },
+              {
+                "keys": [
+                  "Up"
+                ]
+              }
+            ],
+            "note": "Up only fires; Space also starts a round from the menu."
+          },
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Move ship",
+            "bindings": [
+              {
+                "label": "Move mouse left or right"
+              }
+            ]
+          },
+          {
+            "action": "Choose a menu button",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Covers Play, Rankings, Replay and Menu."
+          }
+        ]
+      }
+    ]
+  }
 }

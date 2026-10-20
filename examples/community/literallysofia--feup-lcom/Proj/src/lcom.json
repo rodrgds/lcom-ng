@@ -51,5 +51,86 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "description": "Jump over presents and snowmen in a Christmas endless runner."
+  "description": "Jump over presents and snowmen in a Christmas endless runner.",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click PLAY and start running. Jump over presents and snowmen for as long as you can."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Jump",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              },
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Crouch",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ],
+            "note": "Hold to stay low."
+          },
+          {
+            "action": "End the run",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "During a run, Esc shows the game-over screen; Esc on the menu exits."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Jump",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "In a run."
+          },
+          {
+            "action": "Crouch",
+            "bindings": [
+              {
+                "label": "Hold right click"
+              }
+            ],
+            "note": "In a run."
+          }
+        ]
+      }
+    ]
+  }
 }

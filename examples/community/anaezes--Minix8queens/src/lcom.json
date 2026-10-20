@@ -39,5 +39,87 @@
   },
   "description": "Place eight queens on a chessboard without letting them attack one another.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Play from the menu. Place eight queens so that none can attack another before the timer bar empties."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move cursor",
+            "bindings": [
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              },
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Place queen",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Restart",
+            "bindings": [
+              {
+                "keys": [
+                  "R"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select or place",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Click a square to place a queen there. On touch, use the arrow pad and Enter."
+          }
+        ]
+      }
+    ]
+  }
 }

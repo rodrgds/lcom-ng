@@ -53,5 +53,134 @@
     }
   },
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click a mode card to start, then use the mouse and keyboard for that mode. Hold Your Ground and Infinite Runner add objects or enemies with left click."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move forward",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move backward",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move left",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move right",
+            "bindings": [
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Wolf & Stein",
+        "controls": [
+          {
+            "action": "Choose map",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Select mode or help",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          },
+          {
+            "action": "Place or spawn",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ],
+            "note": "Places boxes in Hold Your Ground and spawns enemies in Infinite Runner."
+          },
+          {
+            "action": "Clear marks",
+            "bindings": [
+              {
+                "label": "Right click"
+              }
+            ],
+            "note": "Clears the boxes in Hold Your Ground."
+          }
+        ]
+      }
+    ]
+  }
 }

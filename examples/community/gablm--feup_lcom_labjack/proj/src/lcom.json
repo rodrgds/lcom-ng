@@ -47,5 +47,102 @@
     "assets": []
   },
   "description": "Place your bet, take another card or stand. Try to beat the dealer at blackjack.",
-  "preview": "../../../../../collections/arcade/previews/gablm-feup-lcom-labjack-de14d1919ed9.png"
+  "preview": "../../../../../collections/arcade/previews/gablm-feup-lcom-labjack-de14d1919ed9.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press 1 or Enter on the menu, then press Enter again to edit the bet and type an amount with the number keys. Press Enter to deal and finish closer to 21 than the dealer without going over."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Delete bet digit",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Edit or confirm bet",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ],
+            "note": "Press once to focus the bet field, then press again to deal."
+          },
+          {
+            "action": "Hit",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Stand",
+            "bindings": [
+              {
+                "keys": [
+                  "2"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Double",
+            "bindings": [
+              {
+                "keys": [
+                  "3"
+                ]
+              }
+            ],
+            "note": "First round only."
+          },
+          {
+            "action": "Surrender",
+            "bindings": [
+              {
+                "keys": [
+                  "4"
+                ]
+              }
+            ],
+            "note": "First round only."
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Return to menu",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "On the main menu, 2 also exits."
+          }
+        ]
+      }
+    ]
+  }
 }

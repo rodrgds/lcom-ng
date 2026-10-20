@@ -48,5 +48,65 @@
   },
   "archetype": "Space Invaders",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press P to launch a game. Slide your ship left and right, shoot the alien formation, and dodge their lasers."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Play",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              },
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Fire",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ],
+            "note": "One laser can be in flight at a time."
+          },
+          {
+            "action": "End run or quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "During a run, Esc ends the run; on the game-over screen it quits."
+          }
+        ]
+      }
+    ]
+  }
 }

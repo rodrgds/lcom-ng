@@ -42,5 +42,106 @@
   "archetype": "Snake",
   "icon": "icon.png",
   "preview": "preview.png",
-  "description": "Steer the original green snake, eat fruit and grow across its white board."
+  "description": "Steer the original green snake, eat fruit and grow across its white board.",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Space on the menu to start, or click Play. Steer the snake to eat fruit and grow."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Start",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Turn left",
+            "bindings": [
+              {
+                "keys": [
+                  "A"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Turn right",
+            "bindings": [
+              {
+                "keys": [
+                  "D"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Turn up",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Turn down",
+            "bindings": [
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Menus",
+        "controls": [
+          {
+            "action": "Open exit screen",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Choose menu option",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

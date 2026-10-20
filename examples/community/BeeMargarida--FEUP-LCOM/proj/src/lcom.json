@@ -46,5 +46,72 @@
   "archetype": "Pong",
   "description": "Move both paddles through a timed match with the original ball, scores and RTC-driven speed changes.",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Click Play to start the match. Move both paddles to keep the ball in play until the timer runs out."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move left paddle",
+            "bindings": [
+              {
+                "keys": [
+                  "W"
+                ]
+              },
+              {
+                "keys": [
+                  "S"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Move right paddle",
+            "bindings": [
+              {
+                "keys": [
+                  "O"
+                ]
+              },
+              {
+                "keys": [
+                  "K"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "End match",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "Returns to the menu."
+          }
+        ]
+      },
+      {
+        "title": "Mouse",
+        "controls": [
+          {
+            "action": "Select menu item",
+            "bindings": [
+              {
+                "label": "Left click"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }

@@ -34,5 +34,86 @@
   },
   "icon": "icon.png",
   "preview": "preview.png",
-  "archetype": "Pool"
+  "archetype": "Pool",
+  "instructions":   {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Choose Play, then Local to start a match. Move the mouse to aim, hold the left button and pull back to charge, then release to shoot."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Exit match",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Aim",
+            "bindings": [
+              {
+                "label": "Move mouse"
+              },
+              {
+                "label": "Drag"
+              }
+            ]
+          },
+          {
+            "action": "Charge shot",
+            "bindings": [
+              {
+                "label": "Hold left button and pull back"
+              },
+              {
+                "label": "Hold Select and drag"
+              }
+            ]
+          },
+          {
+            "action": "Shoot",
+            "bindings": [
+              {
+                "label": "Release left button"
+              },
+              {
+                "label": "Release Select"
+              }
+            ]
+          },
+          {
+            "action": "Set spin",
+            "bindings": [
+              {
+                "label": "Click the spin circle"
+              }
+            ]
+          },
+          {
+            "action": "Place cue ball or select",
+            "bindings": [
+              {
+                "label": "Left click"
+              },
+              {
+                "label": "Tap"
+              }
+            ],
+            "note": "Places the cue ball after a foul and chooses menu items."
+          }
+        ]
+      }
+    ]
+  }
 }

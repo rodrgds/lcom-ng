@@ -54,5 +54,152 @@
   },
   "archetype": "Sudoku",
   "icon": "icon.png",
-  "preview": "preview.png"
+  "preview": "preview.png",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Enter on Practice, or choose Difficulty from the menu to pick a level first. Select cells and fill every empty square."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move selection",
+            "bindings": [
+              {
+                "keys": [
+                  "Left"
+                ]
+              },
+              {
+                "keys": [
+                  "Right"
+                ]
+              },
+              {
+                "keys": [
+                  "Up"
+                ]
+              },
+              {
+                "keys": [
+                  "Down"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Enter 1-8",
+            "bindings": [
+              {
+                "keys": [
+                  "1"
+                ]
+              },
+              {
+                "keys": [
+                  "2"
+                ]
+              },
+              {
+                "keys": [
+                  "3"
+                ]
+              },
+              {
+                "keys": [
+                  "4"
+                ]
+              },
+              {
+                "keys": [
+                  "5"
+                ]
+              },
+              {
+                "keys": [
+                  "6"
+                ]
+              },
+              {
+                "keys": [
+                  "7"
+                ]
+              },
+              {
+                "keys": [
+                  "8"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Enter 9",
+            "bindings": [
+              {
+                "keys": [
+                  "9"
+                ]
+              }
+            ],
+            "note": "Given cells cannot be changed."
+          },
+          {
+            "action": "Clear a cell",
+            "bindings": [
+              {
+                "keys": [
+                  "Backspace"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Confirm menu option",
+            "bindings": [
+              {
+                "keys": [
+                  "Enter"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Back",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ],
+            "note": "In the grid, Esc leaves the game; in the main or difficulty menu it highlights Exit, then Enter confirms."
+          }
+        ]
+      },
+      {
+        "title": "Mouse & touch",
+        "controls": [
+          {
+            "action": "Move pointer",
+            "bindings": [
+              {
+                "label": "Move the mouse or drag"
+              }
+            ]
+          },
+          {
+            "action": "Select",
+            "bindings": [
+              {
+                "label": "Left click or tap"
+              }
+            ],
+            "note": "Selects a cell or menu option."
+          }
+        ]
+      }
+    ]
+  }
 }
