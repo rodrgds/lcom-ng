@@ -11,8 +11,10 @@ export default {
       const headers = new Headers();
       object.writeHttpMetadata(headers);
       headers.set('ETag', object.httpEtag);
-      headers.set('Cache-Control', key === 'catalog.json'
-        ? 'public, max-age=60' : 'public, max-age=31536000, immutable');
+      const cacheControl = key === 'catalog.json' ? 'public, max-age=60'
+        : key.endsWith('.apk') || key.endsWith('.apk.sha256') ? 'public, max-age=300'
+        : 'public, max-age=31536000, immutable';
+      headers.set('Cache-Control', cacheControl);
       headers.set('Access-Control-Allow-Origin', '*');
       return new Response(object.body, {headers});
     }

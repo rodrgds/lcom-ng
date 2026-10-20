@@ -5,7 +5,7 @@ that game from `arcade.rgo.pt/android`, verifies the bundle, and keeps it in pri
 app storage for offline play. Long-press a tile to update or delete its download.
 Download the APK from
 [the on-demand release](https://github.com/rodrgds/lcom-ng/releases/tag/arcade-2026-10-20-ondemand)
-or from [arcade.rgo.pt/android/lcom-arcade-2026-10-20.apk](https://arcade.rgo.pt/android/lcom-arcade-2026-10-20.apk).
+or from [arcade.rgo.pt/android/lcom-arcade-118109ef.apk](https://arcade.rgo.pt/android/lcom-arcade-118109ef.apk).
 
 Build the per-game bundles and catalog:
 
