@@ -17,7 +17,8 @@
         "confidence": "unknown",
         "detail": "No dated original course statement or reliable game development history establishes the academic year."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "slug": "plants-vs-zombies"
     },
     "dsv8-feup-lcom-97a7235a6dfe": {
       "year": 2024,
@@ -42,7 +43,13 @@
         "url": "https://github.com/DSV8/FEUP-LCom/blob/ca0515a861cc7c9b21d86f97290945cea1f7a487/proj/doc/FinalReport.pdf",
         "date": "2023-05-28",
         "detail": "Academic year inferred from the author-generated original project report CreationDate metadata. This dates the report, rather than the later GitHub repository publication, and remains an estimate."
-      }
+      },
+      "authors": [
+        "David Cordeiro",
+        "Gonçalo Martins",
+        "Diogo Viana"
+      ],
+      "slug": "dg-plant-hero"
     },
     "josesereno-bamboozlers-a02f6afff6d5": {
       "year": 2023,
@@ -67,7 +74,14 @@
         "date": "2023-07-23",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-07-23), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "José Santos",
+        "Luís Du",
+        "Madalena Ye",
+        "Rodrigo Moucho"
+      ],
+      "slug": "jlmr-bamboozlers"
     },
     "bersanots-feup-lcom-a436e5039455": {
       "year": 2021,
@@ -91,7 +105,11 @@
         "url": "https://github.com/bersanots/FEUP-LCOM/blob/04e6ad63181e05a801c8f71eedf440c6bda04fc0/src/elements.h",
         "date": "2021-01-05",
         "detail": "Academic year inferred from a dated original game source header (2021-01-05), with the school year beginning in September."
-      }
+      },
+      "authors": [
+        "Bernardo Santos"
+      ],
+      "slug": "b-sticky-ball"
     },
     "adriano-7-feup-lcom-727bed1b84da": {
       "year": 2023,
@@ -114,7 +132,14 @@
         "confidence": "explicit",
         "url": "https://github.com/Adriano-7/feup-lcom/blob/e0b46670ed2122e2ad303a7d5ed83e51b517d215/proj/README.md",
         "detail": "The pinned original course source explicitly names academic year 2022/23."
-      }
+      },
+      "authors": [
+        "Adriano Machado",
+        "José João",
+        "Luís Cunha",
+        "Rodrigo Ribeiro"
+      ],
+      "slug": "ajlr-space-invaders"
     },
     "andrenasx-feup-lcom-3c62b99c6b04": {
       "year": 2020,
@@ -139,7 +164,12 @@
         "url": "https://github.com/andrenasx/FEUP-LCOM/commit/9701a1cf341448ab58ed886fb6c76fd183ef36a5",
         "date": "2020-02-27",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-02-27), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "André Filipe Meireles do Nascimento",
+        "João Nuno Diegues Vasconcelos"
+      ],
+      "slug": "aj-asteroids-ufo-attack"
     },
     "teixeiraa05-lcom-sushi-slash-aeb86527d30d": {
       "year": 2026,
@@ -164,7 +194,13 @@
         "date": "2026-03-02",
         "detail": "Academic year inferred from the dated original README project statement (2026-03-02), with the school year beginning in September."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Diana Oliveira",
+        "Diogo Castro",
+        "Rodrigo Teixeira"
+      ],
+      "slug": "dr-sushi-slash"
     },
     "raulnasoliveira-feup-lcom-2025-23b9e09f9b80": {
       "year": 2025,
@@ -187,7 +223,12 @@
         "url": "https://github.com/raulnasoliveira/FEUP-LCOM-2025/commit/3681ccc45ceb134b33e7cfb0304d1740b20a4218",
         "date": "2025-05-26",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-26), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Raul Oliveira",
+        "João Martins"
+      ],
+      "slug": "jr-brain-training"
     },
     "diogoalves12-feup-lcom-a9dac2656b4f": {
       "year": 2026,
@@ -211,7 +252,13 @@
         "url": "https://github.com/diogoalves12/feup-lcom/blob/14cf5aaefacf17cde4e309f5c6dc18d6195bb49a/README.md",
         "date": "2026-06-05",
         "detail": "Academic year inferred from the dated original README project statement (2026-06-05), with the school year beginning in September."
-      }
+      },
+      "authors": [
+        "Diogo Alves",
+        "Diogo Pérez",
+        "Gonçalo Paiva"
+      ],
+      "slug": "dg-dual-arena"
     },
     "ims-up2021-star-wars-defend-the-republic-lcom-20-51f88a50fcd3": {
       "year": 2025,
@@ -235,7 +282,14 @@
         "url": "https://github.com/IMS-up2021/Star-Wars-Defend-the-Republic-LCOM-2025-/commit/b90153b735ba17adfdff1ecc6c52dae7b901a8a7",
         "date": "2025-05-29",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-29), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Beatriz Remondes",
+        "Inês Soares",
+        "José Reis",
+        "Sofia Cruz"
+      ],
+      "slug": "bijs-star-wars-defend-the-republic"
     },
     "zefluxo-feup-lcom-7d2140581772": {
       "year": 2022,
@@ -259,7 +313,14 @@
         "url": "https://github.com/zefluxo/feup-lcom/commit/e65ab1042229cd99acc5d21a69efbba9d6f53792",
         "date": "2022-06-16",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-06-16), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "António O. Santos",
+        "Pedro A. F. Silva",
+        "Pedro M. M. Nunes",
+        "José L. N. Osório"
+      ],
+      "slug": "ajp-minix-tetris"
     },
     "m1ke26-minix-grand-prix-d83709a8a95c": {
       "year": 2026,
@@ -283,7 +344,14 @@
         "url": "https://github.com/m1ke26/MINIX-Grand-Prix/blob/c246fb4ba19820940f399155d23eb814b961a9cf/README.md",
         "detail": "The pinned original course source explicitly names academic year 2025/26."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "José Maio",
+        "Vasco Guimarães",
+        "Miguel Mimoso",
+        "Victor Gomez"
+      ],
+      "slug": "jmv-minix-grand-prix"
     },
     "casemiromjm-minixsweeper-286a5a2780c5": {
       "year": 2025,
@@ -307,7 +375,14 @@
         "url": "https://github.com/casemiromjm/minixsweeper/commit/d7f6cd1c297580f60bc23fb45b9cc02082949636",
         "date": "2025-06-18",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-06-18), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Casemiro Melo Jorge de Medeiros",
+        "Henrique Oliveira",
+        "Paulo Sérgio da Silva Saavedra",
+        "Tiago"
+      ],
+      "slug": "chpt-minixsweeper"
     },
     "martimcferreira-lcom-project-9a16857450a6": {
       "year": 2026,
@@ -331,7 +406,8 @@
         "date": "2026-05-19",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-05-19), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "slug": "feup-hero"
     },
     "samblack569-feup-lcom-2425-c1eb853acae2": {
       "year": 2025,
@@ -355,7 +431,13 @@
         "confidence": "explicit",
         "url": "https://github.com/SamBlack569/feup-lcom-2425",
         "detail": "The original repository course name encodes consecutive academic years 2024/25."
-      }
+      },
+      "authors": [
+        "Samuel Maciel",
+        "Henrique Marques",
+        "Diogo Faria"
+      ],
+      "slug": "dhs-space-shooter"
     },
     "peucastro-lcom-03ab6e7e63db": {
       "year": 2025,
@@ -379,7 +461,13 @@
         "url": "https://github.com/peucastro/lcom/commit/02ddbf58f73f45a6e4e3ac23a63811d897a69698",
         "date": "2025-05-11",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-11), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Nuno Gomes",
+        "Pedro Castro",
+        "Vasco Lemos"
+      ],
+      "slug": "npv-bomberman"
     },
     "mariajvieira-feup-lcom-d95c409c5aa9": {
       "year": 2025,
@@ -402,7 +490,13 @@
         "url": "https://github.com/mariajvieira/feup-lcom/commit/ddf6c919913868b8b7a8b7f4af41f823e731e271",
         "date": "2025-05-28",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-28), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Duarte Marques",
+        "Maria Vieira",
+        "Marta Cruz"
+      ],
+      "slug": "dm-snake-garden"
     },
     "vasco888888-feup-leic-lcom-be8975b3e8c5": {
       "year": 2026,
@@ -425,7 +519,14 @@
         "url": "https://github.com/Vasco888888/feup-leic-lcom/commit/9c5e3a8949036cfed02c5ee3cbaf9f940c302c81",
         "date": "2026-01-23",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-01-23), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Ana Santos",
+        "João Júnior",
+        "Mário Pereira",
+        "Vasco Sá"
+      ],
+      "slug": "ajmv-dr-minix-tiles-lab"
     },
     "rodriguess2-lcom-hangman-b8d098d60c4c": {
       "year": 2025,
@@ -449,7 +550,14 @@
         "url": "https://github.com/RodriguesS2/LCOM-HangMan/commit/6c76df070f321dd20349a6e6429bee2797223b9c",
         "date": "2025-12-31",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-12-31), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Ana Sousa",
+        "José Vizcaíno",
+        "Matilde Sousa",
+        "Rafael Rodrigues"
+      ],
+      "slug": "ajmr-hangman"
     },
     "cast-10-lcomproject-1c6c122eea2f": {
       "year": 2026,
@@ -473,7 +581,14 @@
         "url": "https://github.com/Cast-10/LCOMProject/commit/5b14551a85a4c26cafdb588e6e233b1784553c26",
         "date": "2026-06-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-06-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Gabriela Felgueiras",
+        "José Pacheco",
+        "Luís Lima",
+        "Vasco Castanheira"
+      ],
+      "slug": "gjlv-minix-legends"
     },
     "yuka-sky-lcom-d0ec5dfcc81b": {
       "year": 2025,
@@ -498,7 +613,14 @@
         "url": "https://github.com/Yuka-Sky/LCOM/commit/e333e84a361140f7ba410bf219133d7b2fd92860",
         "date": "2025-06-02",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-06-02), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Gonçalo Calapez Peneque Pessoa Lopes",
+        "Leonor Alexandra Costa Azevedo",
+        "Rodrigo José de Amorim Martins",
+        "Yuka Sakai"
+      ],
+      "slug": "glry-skess"
     },
     "pedroribas372-minix-spaceinvaders-e02a4844fc81": {
       "year": 2025,
@@ -521,7 +643,11 @@
         "confidence": "unknown",
         "url": "https://github.com/pedroRibas372/MINIX-SpaceInvaders/commit/c49d1d2e33bca8062ff120a1461bab2b149599d6",
         "detail": "The available game source first appears as a published/imported snapshot. Its publication date does not establish the academic year."
-      }
+      },
+      "authors": [
+        "Pedro Ribas"
+      ],
+      "slug": "p-space-invaders-neon-fleet"
     },
     "simaopsbarbosa-feup-lcom-e3fa6454545b": {
       "year": 2026,
@@ -546,7 +672,14 @@
         "url": "https://github.com/simaopsbarbosa/feup-lcom/commit/b9d31b6c40ee4c2513248655ebaeb5b7320306fe",
         "date": "2025-05-28",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-28), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Daunísia Jone",
+        "Filipe Lopes",
+        "Pedro Araújo",
+        "Simão Barbosa"
+      ],
+      "slug": "dfps-quick-reflex"
     },
     "pacocalypse-387c0be823e4": {
       "year": 2026,
@@ -569,7 +702,13 @@
         "url": "https://github.com/filipecruz06/FEUP-LCOM-proj/commit/e918a376c60e01a4d53ad3b6ad5f31449e86c4d4",
         "date": "2026-05-19",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-05-19), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Filipe Cruz",
+        "Pedro Vilaça",
+        "Pedro Postiga"
+      ],
+      "slug": "fp-pacocalypse"
     },
     "gomesidk-survive-the-blast-3d56ca17c03b": {
       "year": 2025,
@@ -593,7 +732,14 @@
         "url": "https://github.com/gomesidk/Survive-The-Blast/commit/c11486574b57c2590a8ef42c045a2a74701491c5",
         "date": "2025-05-01",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-01), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Leandro Filipe Pais Resende",
+        "Afonso Miguel Almeida Pereira",
+        "João Marques Gomes",
+        "Luis Andre Pinho Pinhal Moreira da Silva"
+      ],
+      "slug": "ajl-survive-the-blast"
     },
     "antoniocrego-lcom-t01-g3-c70a27f473d7": {
       "year": 2025,
@@ -618,7 +764,14 @@
         "url": "https://github.com/antoniocrego/lcom-t01-g3/commit/c82ee2a561f1ee45629c6968d329854b29b8658d",
         "date": "2023-05-23",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-23), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Antonio Rego",
+        "Alexandre Santos",
+        "Daniel Bernardo",
+        "Mariana Nogueira"
+      ],
+      "slug": "adm-knight-quest"
     },
     "worms-d4885e74d5cb": {
       "year": 2026,
@@ -643,7 +796,8 @@
         "url": "https://github.com/RiquiFeup/LCOMBAT/commit/353e03e3d1a42cba7e8b383034d0a9d280d7a184",
         "date": "2026-06-05",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-06-05), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "slug": "lcombat"
     },
     "gsilva00-lcom-project-4c94e7405c90": {
       "year": 2025,
@@ -667,7 +821,13 @@
         "confidence": "explicit",
         "url": "https://github.com/gsilva00/LCOM-Project/blob/4e793123ae3cd5ad486e1472fa715cff6567c66e/proj/README.md",
         "detail": "The pinned original course source explicitly names academic year 2023/24."
-      }
+      },
+      "authors": [
+        "Guilherme Teixeira",
+        "Guilherme Silva",
+        "Valentina Cadime"
+      ],
+      "slug": "gv-pixel-football"
     },
     "iamaccosta-feup-lcom-8eb08d543062": {
       "year": 2022,
@@ -691,7 +851,13 @@
         "url": "https://github.com/iamaccosta/FEUP-LCOM/commit/600d56854ba68bcd5e99bc22cc322529869f6c6c",
         "date": "2022-06-22",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-06-22), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "André Costa",
+        "Filipe Pinto",
+        "João Rodrigo"
+      ],
+      "slug": "afj-memory-match"
     },
     "luanalima27-lcom-feup-eda1c5716f42": {
       "year": 2025,
@@ -714,7 +880,14 @@
         "confidence": "explicit",
         "url": "https://github.com/luanalima27/LCOM-FEUP/blob/8a51f4788f459f16e832668dd988ec4f42552fdf/README.md",
         "detail": "The pinned original course source explicitly names academic year 2023/24."
-      }
+      },
+      "authors": [
+        "Cláudia Mesquita",
+        "Luana Lima",
+        "Pedro Costa",
+        "Sofia Reis"
+      ],
+      "slug": "clps-star-defender"
     },
     "guystavo7-feup-lcom-project-912ca0851017": {
       "year": 2026,
@@ -738,7 +911,14 @@
         "url": "https://github.com/guystavo7/feup-lcom-project/blob/ad0703bebf8ab8fd00ede7f690667e2034ca682d/README.md",
         "date": "2026-02-26",
         "detail": "Academic year inferred from the dated original README project statement (2026-02-26), with the school year beginning in September."
-      }
+      },
+      "authors": [
+        "Dalton Yuiti Kitadani Liaw Djoesman",
+        "Gustavo Bastos",
+        "Isaac Santos",
+        "Tiago Su"
+      ],
+      "slug": "dgit-fruit-defense"
     },
     "duarte-pombo-minix-whack-a-mole-c0b1a146de15": {
       "year": 2026,
@@ -760,7 +940,11 @@
         "confidence": "unknown",
         "url": "https://github.com/Duarte-Pombo/MINIX-Whack-a-Mole/commit/81f26c60f644bcb6ca3b42bc2b4e4eacd68ddd17",
         "detail": "The available game source first appears as a published/imported snapshot. Its publication date does not establish the academic year."
-      }
+      },
+      "authors": [
+        "Duarte Pombo"
+      ],
+      "slug": "d-whack-a-mole"
     },
     "guizas-la-papas-pizzeria-807f3b26e203": {
       "year": 2026,
@@ -783,7 +967,14 @@
         "url": "https://github.com/guizas-LA/Papas-Pizzeria/blob/000501bc4254a98cc28374b363d031f5d2a78601/README.md",
         "detail": "The pinned original course source explicitly names academic year 2025/26."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Afonso Bouça",
+        "Bruno Dias",
+        "Diogo Coelho",
+        "Guilherme Silva"
+      ],
+      "slug": "abdg-papa-s-pizzeria"
     },
     "cata-24-minix3-game-952ce67c4b3d": {
       "year": 2025,
@@ -807,7 +998,14 @@
         "confidence": "explicit",
         "url": "https://github.com/Cata-24/minix3-game/blob/faae1683745df7f807d1f9c3750ac8c9054f9193/README.md",
         "detail": "The pinned original course source explicitly names academic year 2023/24."
-      }
+      },
+      "authors": [
+        "Catarina Bastos",
+        "Filipe Solha",
+        "Nuno Costa",
+        "Vasco Gonçalves"
+      ],
+      "slug": "cfnv-labyrinth-quest"
     },
     "constancalferreira-battleship-0d18d3873e2b": {
       "year": 2026,
@@ -833,7 +1031,14 @@
         "url": "https://github.com/constancalferreira/Battleship/commit/7aec4fa3ead5afb58d9d7d01cb05311b34dd2404",
         "date": "2025-05-13",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-13), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Ana Catarina Barbosa Patrício",
+        "Carolina Alves Ferreira",
+        "Constança Lemos Ferreira",
+        "Maria Inês Morais de Pinho"
+      ],
+      "slug": "acm-battleship"
     },
     "worms-0ace38f831e6": {
       "year": 2026,
@@ -858,7 +1063,8 @@
         "url": "https://github.com/af0nsx/Worms/commit/353e03e3d1a42cba7e8b383034d0a9d280d7a184",
         "date": "2026-06-05",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-06-05), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "slug": "lcombat-worms"
     },
     "dab1d-getawaycar-a7df638127d0": {
       "year": 2026,
@@ -884,7 +1090,14 @@
         "date": "2026-05-18",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-05-18), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "André Baptista",
+        "David Ferreira",
+        "Diogo Santos",
+        "Leonor Alpoim"
+      ],
+      "slug": "adl-getaway-car"
     },
     "d4yz-stp-minix-pacman-e9e2296201be": {
       "year": 2025,
@@ -906,7 +1119,15 @@
         "confidence": "unknown",
         "url": "https://github.com/D4yz-stp/Minix-Pacman/commit/f4c8b10c02d16b4801c6fdeca0cfd9627f246491",
         "detail": "The available game source first appears as a published/imported snapshot. Its publication date does not establish the academic year."
-      }
+      },
+      "authors": [
+        "Ana Silva",
+        "Artur Santos",
+        "Divaldo Dias",
+        "Oleksandr Aleshchenko",
+        "Ricardo Cruz"
+      ],
+      "slug": "ador-minix-pac-man"
     },
     "teclas-9e9acdbd5fab": {
       "year": 2026,
@@ -931,7 +1152,14 @@
         "date": "2026-06-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-06-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "David Leão",
+        "Leandro Moreira",
+        "Nicholas Oliveira",
+        "Tomás Silva"
+      ],
+      "slug": "dlnt-teclas"
     },
     "scrr-az-skess-lcom-282ac263194e": {
       "year": 2026,
@@ -956,7 +1184,14 @@
         "url": "https://github.com/scrr-az/skess-lcom/commit/420f74464cbd84431e5b266a1a619ba742dd114b",
         "date": "2025-05-27",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-27), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Gonçalo Lopes",
+        "Rodrigo Martins",
+        "Leonor Azevedo",
+        "Yuka Sakai"
+      ],
+      "slug": "glry-skess-draw-guess"
     },
     "hugo-mgs-lcom-space-invaders-5c534d6f57b3": {
       "year": 2026,
@@ -980,7 +1215,13 @@
         "url": "https://github.com/Hugo-mgs/LCOM-Space-Invaders/commit/f3b2dc7835f0eac3e8d3500ba7be52bb43cbb1c7",
         "date": "2025-05-27",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-27), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Diogo Campeão",
+        "Inês Francisco",
+        "Hugo Silva"
+      ],
+      "slug": "dhi-space-invaders-alien-waves"
     },
     "alexandre2004costa-lcom-project-e3c159e09375": {
       "year": 2024,
@@ -1005,7 +1246,12 @@
         "url": "https://github.com/alexandre2004costa/Lcom-project/commit/7c518e1b8ff607df60fb94c620668ad02be8893c",
         "date": "2024-07-09",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-07-09), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Alexandre Costa",
+        "Bernardo Costa"
+      ],
+      "slug": "ab-aerial-ambush"
     },
     "joaolopes15-lcom-4115b87918f9": {
       "year": 2026,
@@ -1028,7 +1274,13 @@
         "url": "https://github.com/joaolopes15/LCOM/commit/125c20f42b2e7623575b073190cf0481b9a9726c",
         "date": "2025-05-23",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-23), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Lopes",
+        "Martim Cadilhe",
+        "Pedro Monteiro"
+      ],
+      "slug": "jmp-block-blast"
     },
     "monsterdied-lcomproj-138166482bfa": {
       "year": 2024,
@@ -1052,7 +1304,14 @@
         "url": "https://github.com/Monsterdied/LcomProj/commit/2725915b1d7969515afd9dab7fbfe4389b1a2122",
         "date": "2023-05-24",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-24), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Tomás Câmara",
+        "Rodrigo Póvoa",
+        "Diogo Sarmento",
+        "Tomás Sarmento"
+      ],
+      "slug": "drt-bomber-arena"
     },
     "luizhqueiroz-lcom-memorygame-4540b5424a79": {
       "year": 2024,
@@ -1076,7 +1335,11 @@
         "url": "https://github.com/luizhqueiroz/LCOM-MemoryGame/blob/d740913f2049d0ddc7e089eef59a865160111cf7/docs/lcom_proj.pdf",
         "date": "2023-05-28",
         "detail": "Academic year inferred from the author-generated original project report CreationDate metadata. This dates the report, rather than the later GitHub repository publication, and remains an estimate."
-      }
+      },
+      "authors": [
+        "Luiz Henrique Mamede Queiroz"
+      ],
+      "slug": "l-memory-quest"
     },
     "diogosilva11-lcom-ed97fdb962ec": {
       "year": 2024,
@@ -1100,7 +1363,14 @@
         "url": "https://github.com/DiogoSilva11/LCOM/commit/1174aeecbb074793e9c2219bff97e1f156bd7009",
         "date": "2022-06-11",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-06-11), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Afonso Poças",
+        "Diogo Silva",
+        "João Araújo",
+        "Tomás Martins"
+      ],
+      "slug": "adjt-robot-arena"
     },
     "joanaigs-lcom-snake-game-330f9e657355": {
       "year": 2024,
@@ -1123,7 +1393,14 @@
         "url": "https://github.com/Joanaigs/Lcom-Snake-Game/commit/78e51441914f42a51aa550f002687e79170be194",
         "date": "2022-05-29",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-05-29), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Inês Cardoso",
+        "Joana Santos",
+        "Mariana Carvalho",
+        "Matilde Sequeira"
+      ],
+      "slug": "ijm-snake-orchard"
     },
     "migueljcpedrosa-lcom-classic-chess-game-5dfb841c6c0f": {
       "year": 2024,
@@ -1148,7 +1425,14 @@
         "url": "https://github.com/migueljcpedrosa/LCOM-Classic-Chess-Game/commit/efea5f1e3e9a1aab9b8ed194c12186f688b3157e",
         "date": "2023-05-27",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-27), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Ramos",
+        "Matilde Simões",
+        "Miguel Rocha",
+        "Miguel Pedrosa"
+      ],
+      "slug": "jm-classic-chess"
     },
     "leonardomagalhaes21-feup-lcom-9e3925b94730": {
       "year": 2024,
@@ -1173,7 +1457,14 @@
         "url": "https://github.com/leonardomagalhaes21/feup-LCOM/commit/3d40a9c0cd8e73eff41b9a412802604c6dcad744",
         "date": "2024-05-13",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-05-13), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Tiago Pinto",
+        "Antero Morgado",
+        "Leonardo Teixeira",
+        "Rúben Esteves"
+      ],
+      "slug": "alrt-not-cuphead"
     },
     "henriquesfernandes-lcomaze-e2d54c32196a": {
       "year": 2024,
@@ -1196,7 +1487,14 @@
         "url": "https://github.com/HenriqueSFernandes/LCOMaze/commit/8611e205ecd1440e3b5bded39fb3d03e4b8baafc",
         "date": "2024-06-05",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-06-05), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Henrique Fernandes",
+        "José Sousa",
+        "Luís Cordeiro",
+        "Miguel Cabral"
+      ],
+      "slug": "hjlm-lcomaze"
     },
     "forreca05-lcom-snake-game-projeto-2025-7155ac3f67f4": {
       "year": 2025,
@@ -1221,7 +1519,14 @@
         "url": "https://github.com/Forreca05/LCOM-Snake-Game-Projeto-2025/commit/b0702af5282d72f2a5edfc647e75782c4dc5867c",
         "date": "2025-05-21",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-21), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Carlos Cerqueira",
+        "João Ferreira",
+        "Manuel Pedro",
+        "Pedro Coelho"
+      ],
+      "slug": "cjmp-minhoca"
     },
     "gablm-feup-lcom-labjack-de14d1919ed9": {
       "year": 2024,
@@ -1244,7 +1549,14 @@
         "url": "https://github.com/gablm/feup_lcom_labjack/commit/288c9f37fce45938f67d4ba3deccf056489418b4",
         "date": "2024-05-22",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-05-22), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Sara Cortez",
+        "Marta Silva",
+        "João Santos",
+        "Gabriel Lima"
+      ],
+      "slug": "gjms-labjack"
     },
     "teixdavide-feup-lcom-pettycats-768b12c9a51f": {
       "year": 2024,
@@ -1268,7 +1580,14 @@
         "url": "https://github.com/teixdavide/FEUP_LCOM_PettyCats/blob/678372ac889677fb6241a6daa100ec7d56dcd6b0/src/utils/aux_structs/HurtBox.h",
         "date": "2024-06-02",
         "detail": "Academic year inferred from a dated original game source header (2024-06-02), with the school year beginning in September."
-      }
+      },
+      "authors": [
+        "Davide Teixeira",
+        "Eduardo Baltazar",
+        "Emanuel Maia",
+        "Joana Noites"
+      ],
+      "slug": "dej-pettycats"
     },
     "davidgustavo6-lcom-game-7f0cc9b9f5ba": {
       "year": 2024,
@@ -1292,7 +1611,13 @@
         "url": "https://github.com/DavidGustavo6/LCOM-game/blob/de9b4106a1d1aaec60027be5a73a6f35c4da6dd3/doc/Relat%C3%B3rio%20final%20de%20LCOM.pdf",
         "date": "2024-06-02",
         "detail": "Academic year inferred from the author-generated original project report CreationDate metadata. This dates the report, rather than the later GitHub repository publication, and remains an estimate."
-      }
+      },
+      "authors": [
+        "David Carvalho",
+        "João Torres",
+        "Diogo Vieira"
+      ],
+      "slug": "dj-minix-tower-defense"
     },
     "lsfaria04-lcom-project-tennis-for-two-2e48173786f1": {
       "year": 2024,
@@ -1316,7 +1641,14 @@
         "date": "2024-04-25",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-04-25), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Lucas Faria",
+        "António Santos",
+        "Rafael Campeão",
+        "Alexandre Lopes"
+      ],
+      "slug": "alr-tennis-for-two"
     },
     "rodeso-lcom-brick-blitz-3014442d8fa6": {
       "year": 2024,
@@ -1339,7 +1671,14 @@
         "url": "https://github.com/rodeso/lcom.brick-blitz/commit/1c08dc159fb44fb02eb3cb12007775de6b478ce0",
         "date": "2024-06-04",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-06-04), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Afonso Castro",
+        "José Martins",
+        "Pedro Santos",
+        "Rodrigo de Sousa"
+      ],
+      "slug": "ajpr-brick-blitz"
     },
     "murielpinho-feup-lcom-1920-bc475165f123": {
       "year": 2019,
@@ -1362,7 +1701,11 @@
         "url": "https://github.com/MurielPinho/FEUP-LCOM-1920/blob/d36662bb5a5e0e88c36bb65a27ecc0e137d6e949/README.md",
         "detail": "The pinned original course source explicitly names academic year 2019/20."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Muriel Pinho"
+      ],
+      "slug": "m-euler-s-way"
     },
     "francis802-tower-clash-21525d616a06": {
       "year": 2023,
@@ -1388,7 +1731,14 @@
         "date": "2023-06-13",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-06-13), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Francisco Campos",
+        "João Silva",
+        "João Figueiredo",
+        "João Longras"
+      ],
+      "slug": "fj-castle-clash"
     },
     "ruben38esteves-project-lcom-minixsurfers-f64f6c1da3a9": {
       "year": 2023,
@@ -1413,7 +1763,14 @@
         "url": "https://github.com/Ruben38Esteves/Project-LCOM-MinixSurfers/commit/fb77b0331e94503f908b31fbf90058c3d344e075",
         "date": "2023-06-10",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-06-10), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Tiago Gouveia",
+        "Rúben Esteves",
+        "Rui Silveira",
+        "Luís Sousa"
+      ],
+      "slug": "lrt-minix-surfers-versus"
     },
     "vidal322-breakpong-df233c2d2a2c": {
       "year": 2024,
@@ -1436,7 +1793,14 @@
         "url": "https://github.com/Vidal322/BreakPong/commit/b04553bd6a79ece56b69827b4152d9b8aecc6d33",
         "date": "2023-05-24",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-24), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "António Rama",
+        "José Veiga",
+        "Luís Jesus",
+        "Pedro Marcelino"
+      ],
+      "slug": "ajlp-breakpong"
     },
     "leticia-003-2ndyear-feup-lcom-ab9c644ba6fb": {
       "year": 2025,
@@ -1459,7 +1823,14 @@
         "url": "https://github.com/leticia-003/2ndYear_FEUP_LCom/commit/a464ee0d0f6b205972af3a883a059e7cbce43299",
         "date": "2025-05-09",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-09), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Gonçalo Sousa",
+        "Leticia Coelho",
+        "Diogo Carvalho",
+        "Guilherme Sá"
+      ],
+      "slug": "dgl-bounce-ball"
     },
     "brunorosendo-portal2d-efb0e7bceb35": {
       "year": 2021,
@@ -1484,7 +1855,11 @@
         "date": "2021-01-22",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-01-22), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Bruno Rosendo"
+      ],
+      "slug": "b-portal-2d"
     },
     "dagarsar-lcom-4a069f7a0061": {
       "year": 2022,
@@ -1507,7 +1882,12 @@
         "url": "https://github.com/dagarsar/lcom/commit/59f31f17959b0c68b6a16eb8d32e0c6051fb9e3f",
         "date": "2022-12-16",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-12-16), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Daniel Garcia Silva",
+        "Nuno Oliveira"
+      ],
+      "slug": "dn-block-destroyer"
     },
     "rodrigopombo1-projeto-lcom-571c4f64fa76": {
       "year": 2024,
@@ -1531,7 +1911,13 @@
         "url": "https://github.com/RodrigoPombo1/projeto-lcom/commit/da654bb5454c86a1074c3e7fff15134416990b0d",
         "date": "2024-05-29",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-05-29), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Pedro Vieira",
+        "Rodrigo Pombo",
+        "Liess Aouimeur"
+      ],
+      "slug": "lpr-leiria"
     },
     "unrealxinfinity-alienexpress-12fa5db8be9d": {
       "year": 2023,
@@ -1554,7 +1940,14 @@
         "url": "https://github.com/unrealxinfinity/AlienExpress/commit/7ae3df47f4d59eda628cfee2b9d8646b18b38d2b",
         "date": "2023-05-28",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-28), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Isabel Moutinho",
+        "Haochang Fu",
+        "João Cardoso",
+        "Pedro Paixão"
+      ],
+      "slug": "hijp-alien-express"
     },
     "ninjix-e742f8bcdc75": {
       "year": 2026,
@@ -1577,7 +1970,14 @@
         "confidence": "explicit",
         "detail": "The pinned original course source explicitly names academic year 2025/26."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Alexandre Teixeira",
+        "Carlos Diogo",
+        "Pedro Marques",
+        "Rodrigo Dias"
+      ],
+      "slug": "acpr-ninjix"
     },
     "goncalomartins-exe-y3s1-rc-memory-game-6718822f7588": {
       "year": 2025,
@@ -1601,7 +2001,14 @@
         "url": "https://github.com/GoncaloMartins-exe/Y3S1-RC-Memory-Game/commit/0ffae659c188453626cdb6970e4d61bfc9254caa",
         "date": "2025-05-28",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-28), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Aléssia Jorge",
+        "Gonçalo Da Cruz Martins",
+        "Henrique Santana Vilarinho",
+        "Mariia Hutsul"
+      ],
+      "slug": "aghm-fruit-memory"
     },
     "tonevanda-lcom-0275fdd40d7c": {
       "year": 2023,
@@ -1625,7 +2032,14 @@
         "url": "https://github.com/Tonevanda/LCOM/commit/354d7a5a38274833e80b462f15edc776bc31c9a5",
         "date": "2023-05-04",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-04), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Lourenço",
+        "Tiago Cruz",
+        "Tomás Xavier",
+        "Pedro Barros"
+      ],
+      "slug": "jpt-battleships-ocean-fleet"
     },
     "fernandorego-feup-lcom-connect4-ba78a38cfdf9": {
       "year": 2022,
@@ -1650,7 +2064,14 @@
         "url": "https://github.com/fernandorego/feup-lcom-connect4/commit/4d7e670db50e70402796e869abd0697e03cfd24d",
         "date": "2022-05-02",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-05-02), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Fernando Rego",
+        "Gonçalo Ferreira",
+        "João Duarte",
+        "Pedro Macedo"
+      ],
+      "slug": "fgjp-connect-4"
     },
     "joaoalvesss-feup-lcom-bbf53b100c68": {
       "year": 2024,
@@ -1674,7 +2095,11 @@
         "url": "https://github.com/joaoalvesss/feup-lcom/commit/74a9fab9ab2913edd8f2d558ea2cd0eab5617630",
         "date": "2024-01-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-01-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Alves"
+      ],
+      "slug": "j-dinosaur-memory"
     },
     "minipoloalex-lcom-minipicty-234258bc26e9": {
       "year": 2023,
@@ -1697,7 +2122,14 @@
         "url": "https://github.com/Minipoloalex/LCOM-MiniPicty/commit/24ceb74756d357bd980fff6c0620d773241f57da",
         "date": "2023-04-22",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-04-22), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Félix Martins",
+        "Francisco da Ana",
+        "João Pereira",
+        "Tomás Vicente"
+      ],
+      "slug": "fjt-minipicty"
     },
     "carolvviana-lcom-feup-964a7b855f6b": {
       "year": 2023,
@@ -1721,7 +2153,14 @@
         "confidence": "explicit",
         "url": "https://github.com/carolvviana/LCOM-FEUP/blob/defa70053845beb9f423c1c40d4d863353f44b76/README.md",
         "detail": "The pinned original course source explicitly names academic year 2022/23."
-      }
+      },
+      "authors": [
+        "Carolina Viana",
+        "Guilherme Monteiro",
+        "Sérgio Peixoto",
+        "Sofia Sá"
+      ],
+      "slug": "cgs-neon-pong"
     },
     "andremalheiro98-feup-lcom-f782adf54c64": {
       "year": 2021,
@@ -1744,7 +2183,12 @@
         "url": "https://github.com/AndreMalheiro98/FEUP-LCOM/commit/492cf80c4aae28aec5bca967f1d0ecd6b329970a",
         "date": "2020-12-30",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-12-30), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "André Malheiro",
+        "Juan Bellon"
+      ],
+      "slug": "aj-target-practice-shooter"
     },
     "gamaamaral98-feup-lcom-bbcc8439f840": {
       "year": 2019,
@@ -1767,7 +2211,11 @@
         "url": "https://github.com/gamaamaral98/FEUP-LCOM/commit/34f1008931ca956cf410edc867d11c4fcd8fab54",
         "date": "2019-12-04",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-12-04), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João V. Gama Amaral"
+      ],
+      "slug": "j-color-blox"
     },
     "literallysofia-feup-lcom-3f816c404e86": {
       "year": 2017,
@@ -1791,7 +2239,12 @@
         "url": "https://github.com/literallysofia/feup-lcom/commit/1a22dac0e851b2b064fec51689c44431d531389a",
         "date": "2017-02-18",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2017-02-18), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Sofia Silva",
+        "Julieta Frade"
+      ],
+      "slug": "js-christmas-run"
     },
     "mariofernandes73-feup-lcom-81d2240fcec7": {
       "year": 2017,
@@ -1815,7 +2268,12 @@
         "confidence": "explicit",
         "url": "https://github.com/MarioFernandes73/FEUP_LCOM/blob/0730180f5801f1222b64da6c0de2f52881622559/README.md",
         "detail": "The pinned original course source explicitly names academic year 2016/17."
-      }
+      },
+      "authors": [
+        "Mário Fernandes",
+        "Nelson Almeida"
+      ],
+      "slug": "mn-simon-says"
     },
     "ferreira1911-lcom-project-fc462cdf1336": {
       "year": 2025,
@@ -1839,7 +2297,14 @@
         "url": "https://github.com/ferreira1911/LCOM_Project/commit/58ece414f55a41e0c791da53b5ce9e59ec64c0b1",
         "date": "2025-05-09",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-09), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Pedro Marques",
+        "Gonçalo Carvalho",
+        "João Sousa",
+        "Gustavo Oliveira"
+      ],
+      "slug": "gjp-aim-lab"
     },
     "afonsusousa-labbomber-f4e1dd343419": {
       "year": 2026,
@@ -1862,7 +2327,14 @@
         "confidence": "explicit",
         "url": "https://github.com/afonsusousa/labbomber/blob/a229a6c4a7796281e75effbc361c67c3df17cd64/project/README.md",
         "detail": "The pinned original course source explicitly names academic year 2025/26."
-      }
+      },
+      "authors": [
+        "Afonso Sousa",
+        "Dário Amaral",
+        "Tiago Carvalho",
+        "Tiago Rocha"
+      ],
+      "slug": "adt-bomberlab"
     },
     "g0ncal0-lcom-targetshooting-883c834e8754": {
       "year": 2024,
@@ -1884,7 +2356,13 @@
         "confidence": "explicit",
         "url": "https://github.com/g0ncal0/lcom_targetShooting/blob/245523ced1dfa8516420261a04d364dd7338857a/doc/LCOM_1304_Relatorio.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2023/24."
-      }
+      },
+      "authors": [
+        "Gonçalo Nunes",
+        "Nuno Machado",
+        "Vítor Pires"
+      ],
+      "slug": "gnv-target-shooting"
     },
     "jmisidro-lcom-typeracer-bef28ff765b6": {
       "year": 2023,
@@ -1909,7 +2387,13 @@
         "url": "https://github.com/jmisidro/LCOM-TypeRacer/commit/19d42e7a58074a13a077e17f30bd5a7c473e0eb3",
         "date": "2023-01-09",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-01-09), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Alexandre Nunes",
+        "José Miguel Isidro",
+        "Tomás Torres"
+      ],
+      "slug": "ajt-typeracer-word-rally"
     },
     "jogp10-typeracer-d27ddce720b3": {
       "year": 2022,
@@ -1934,7 +2418,14 @@
         "url": "https://github.com/jogp10/TypeRacer/commit/4fcf841c8fedb785099cecdc7aada7be489b5915",
         "date": "2022-05-26",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-05-26), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Ricardo Cavalheiro",
+        "João Gigante",
+        "Guilherme Pereira",
+        "Gustavo Costa"
+      ],
+      "slug": "gjr-typeracer-highway"
     },
     "gibeiro-lcom-0688193379d6": {
       "year": 2016,
@@ -1956,7 +2447,11 @@
         "confidence": "explicit",
         "url": "https://github.com/gibeiro/LCOM/blob/0d4bcaec81568ee3244a66dd13cf99791e263377/proj/docs/T2G10_relatorio.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2015/16."
-      }
+      },
+      "authors": [
+        "Gonçalo Ribeiro"
+      ],
+      "slug": "g-game-2048"
     },
     "huguinho27-feup-lcom-f8211f41ade6": {
       "year": 2017,
@@ -1979,7 +2474,11 @@
         "url": "https://github.com/huguinho27/FEUP-LCOM/commit/7d6d3e3c2206597c2ff3008465593119bba8b30e",
         "date": "2017-02-25",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2017-02-25), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Huguinho"
+      ],
+      "slug": "h-bow-and-arrow"
     },
     "code-1b64d1751069": {
       "year": 2016,
@@ -2003,7 +2502,12 @@
         "url": "https://github.com/NunoRamos/LCOM-Copter/commit/ab26ca47e3b7bff19f842104810e1685956870d0",
         "date": "2016-01-05",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2016-01-05), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Maria João dos Santos Aguiar e Mira Paulo",
+        "Nuno Miguel Mendes Ramos"
+      ],
+      "slug": "mn-lcom-copter"
     },
     "josealbanogaspar-feup-lcom-057554ecc3fe": {
       "year": 2024,
@@ -2026,7 +2530,14 @@
         "url": "https://github.com/JoseAlbanoGaspar/FEUP-LCOM/commit/08127b7f5a963e269e5dbe84dd30fb77fd0fa321",
         "date": "2022-05-30",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-05-30), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "André Morais",
+        "Aníbal Ferreira",
+        "Bárbara Rodrigues",
+        "José Gaspar"
+      ],
+      "slug": "abj-snake-garden-trail"
     },
     "og-proj-009fdf72ad5f": {
       "year": 2024,
@@ -2050,7 +2561,14 @@
         "url": "https://github.com/PedroMMarinho/FEUP-LCOM/blob/3491332bc23379f00238637c61ad2d757e5c6155/README.md",
         "detail": "The pinned original course source explicitly names academic year 2023/24."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Sérgio Rego Nossa",
+        "Pedro Marinho Silva Roleira Marinho",
+        "Eduardo Castro Portugal Ferreira",
+        "Xavier dos Santos Portugal Martins"
+      ],
+      "slug": "epsx-snook-eight-ball-pool"
     },
     "game-2020-og-a9bc47caddf5": {
       "year": 2021,
@@ -2073,7 +2591,12 @@
         "confidence": "explicit",
         "url": "https://github.com/bdmendes/feup-lcom/blob/c62b7ffe669602024eed3697d69ec3272a48bbe8/README.md",
         "detail": "The pinned original course source explicitly names academic year 2020/21."
-      }
+      },
+      "authors": [
+        "Bruno Mendes",
+        "Rita Mendes"
+      ],
+      "slug": "br-lerbirinto"
     },
     "beatrizlopesdossantos-feup-lcom-1ca872b8123a": {
       "year": 2021,
@@ -2096,7 +2619,12 @@
         "confidence": "explicit",
         "url": "https://github.com/beatrizlopesdossantos/FEUP-LCOM/blob/37a4c26c08868021eccf756a08e0992c95721b1f/README.md",
         "detail": "The pinned original course source explicitly names academic year 2020/21."
-      }
+      },
+      "authors": [
+        "Bibs",
+        "Ricardo Ferreira"
+      ],
+      "slug": "br-fall-diet"
     },
     "joaocarlospires-feup-lcom-08f0b5cf24c5": {
       "year": 2019,
@@ -2120,7 +2648,12 @@
         "url": "https://github.com/JoaoCarlosPires/feup-lcom/commit/d723caaa69b16bb50b5846664e30e0d4ce97c198",
         "date": "2020-01-07",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-01-07), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Pedro Pacheco",
+        "João Carlos Pires"
+      ],
+      "slug": "jp-bullet-man"
     },
     "catarina03-feup-lcom-7a82957ce0ed": {
       "year": 2020,
@@ -2143,7 +2676,12 @@
         "confidence": "explicit",
         "url": "https://github.com/catarina03/FEUP-LCOM/blob/5f11caacb1dd1811f60626edfd99bcab29043e7d/README.md",
         "detail": "The pinned original course source explicitly names academic year 2019/20."
-      }
+      },
+      "authors": [
+        "Ana Clara Moreira Gadelho",
+        "Catarina Justo dos Santos Fernandes"
+      ],
+      "slug": "ac-super-tux"
     },
     "vanessa-sbq-minigotchi-74ac296c5d69": {
       "year": 2025,
@@ -2167,7 +2705,13 @@
         "url": "https://github.com/vanessa-sbq/Minigotchi/commit/0cf65d54a9b53406bd159c31dd82b61463479d25",
         "date": "2024-05-27",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-05-27), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Joao Castro",
+        "Antonio Abilio",
+        "Vanessa Queiros"
+      ],
+      "slug": "ajv-minigotchi"
     },
     "diogooliveirareis-feup-lcom-e42871b17790": {
       "year": 2020,
@@ -2191,7 +2735,11 @@
         "url": "https://github.com/DiogoOliveiraReis/FEUP-LCOM/commit/a3520669940ff57f6114048080e2b1ba95ca773e",
         "date": "2020-03-02",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-03-02), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Diogo Reis"
+      ],
+      "slug": "d-space-invaders-reis"
     },
     "antbz-lcom-feup-2b1475b7bc65": {
       "year": 2020,
@@ -2215,7 +2763,12 @@
         "url": "https://github.com/antbz/LCOM-FEUP/commit/e2e1c24ad60eeddea9af55145dbea6cbca0bf3f4",
         "date": "2020-11-17",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-11-17), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "António Bezerra",
+        "Inês Silva"
+      ],
+      "slug": "ai-lcom-ninja"
     },
     "kiko-g-feup-lcom-5acd83d7874d": {
       "year": 2020,
@@ -2237,7 +2790,12 @@
         "confidence": "explicit",
         "url": "https://github.com/kiko-g/feup-lcom/blob/854c6a9bddb5abce1ddd246ad43869fef8749413/README.md",
         "detail": "The pinned original course source explicitly names academic year 2019/20."
-      }
+      },
+      "authors": [
+        "Francisco José Paiva Gonçalves",
+        "Miguel Delgado Pinto"
+      ],
+      "slug": "fm-space-lander"
     },
     "filiperecharte-feup-lcom-dd61764d0217": {
       "year": 2020,
@@ -2261,7 +2819,12 @@
         "url": "https://github.com/filiperecharte/FEUP-LCOM/commit/380f1c8ee4cb8b5d58c4915e1700fee981e35820",
         "date": "2020-03-07",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-03-07), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Nuno Resende",
+        "Filipe Recharte"
+      ],
+      "slug": "fn-snake-dodge-the-fruit"
     },
     "jccmartins-lcom-f495dc5687c2": {
       "year": 2020,
@@ -2284,7 +2847,12 @@
         "url": "https://github.com/jccmartins/LCOM/commit/da7c6a4da1e7706f1617e833ab14f73f8f5573e5",
         "date": "2020-01-06",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-01-06), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Carlos Carreira Martins",
+        "João Francisco de Pinho Brandão"
+      ],
+      "slug": "j-snake-martins"
     },
     "adrianacscg-feup-lcom-3894028f4c63": {
       "year": 2019,
@@ -2308,7 +2876,12 @@
         "url": "https://github.com/adrianacscg/FEUP-LCOM/commit/cf9e5a17eb57aeaf24e013708e11186fadcdcc8c",
         "date": "2019-12-26",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-12-26), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Adriana Gonçalves",
+        "Beatriz Mendes"
+      ],
+      "slug": "ab-christmas-tamagotchi"
     },
     "ricardosilvabw-feup-lcom-54891c5ec3e3": {
       "year": 2026,
@@ -2331,7 +2904,14 @@
         "url": "https://github.com/RicardoSilvaBW/FEUP--LCOM/commit/b9b0bec2a8c39005e7a673d8d3a36fad71671f38",
         "date": "2026-07-07",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-07-07), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Ricardo Silva",
+        "Francisco Correia",
+        "João Maia",
+        "Ana Pinto"
+      ],
+      "slug": "afjr-pom-power"
     },
     "aluisamarques-feup-lcom-trex-game-d92917c87b7b": {
       "year": 2021,
@@ -2355,7 +2935,13 @@
         "url": "https://github.com/aluisamarques/feup-lcom-trex-game/commit/f139d0b8cc49a17b451bb1a0c494fde60fb80a11",
         "date": "2021-02-19",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-02-19), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Luísa Marques",
+        "Miguel Amorim",
+        "Tiago Rodrigues"
+      ],
+      "slug": "lmt-t-rex-run"
     },
     "victorsnunes-feup-lcom-417cdf6b1ed5": {
       "year": 2021,
@@ -2379,7 +2965,11 @@
         "url": "https://github.com/victorsnunes/FEUP-LCOM/commit/8bebf13f453f61a98639cc7e53f4390d8455b9cb",
         "date": "2021-01-12",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-01-12), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Victor Saldanha Nunes"
+      ],
+      "slug": "v-dave-the-jumper"
     },
     "adr1an0s0ar3s-feup-lcom-20-21-abad764e2682": {
       "year": 2021,
@@ -2403,7 +2993,12 @@
         "confidence": "explicit",
         "url": "https://github.com/adr1an0s0ar3s/feup-lcom-20-21",
         "detail": "The original repository course name encodes consecutive academic years 2020/21."
-      }
+      },
+      "authors": [
+        "Adriano Soares",
+        "Vasco Alves"
+      ],
+      "slug": "av-connect-four-adriano"
     },
     "sofiagermer-whack-a-mole-ced21b75bacd": {
       "year": 2021,
@@ -2426,7 +3021,13 @@
         "url": "https://github.com/sofiagermer/WHACK-A-MOLE/commit/881b39ed4ce10abaaf6f74f9084ffc29b93f23af",
         "date": "2021-02-11",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-02-11), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Pedro Miguel Sampaio Ferreira Machado",
+        "Luís Filipe Carvalhais dos Santos de Matos",
+        "Sofia Ariana Moutinho Coimbra Germer"
+      ],
+      "slug": "lps-whack-a-mole-burrow-rush"
     },
     "minix-vice-59405c43f80d": {
       "year": 2018,
@@ -2450,7 +3051,11 @@
         "url": "https://github.com/joao-conde/feup-lcom/commit/6384dfaab60830d3de47df9e9f89e1e1f87779ea",
         "date": "2017-12-05",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2017-12-05), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Dias Conde Azevedo"
+      ],
+      "slug": "j-minix-vice"
     },
     "h-aze2005-lcom-owltyping-55c397bb34b3": {
       "year": 2026,
@@ -2474,7 +3079,14 @@
         "url": "https://github.com/H-Aze2005/LCOM_OwlTyping/commit/68522ee5e8968abafc1af61104c5bf99cdef5fe3",
         "date": "2025-05-19",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-19), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Dinis Pinto",
+        "Felipe Ferreira",
+        "Hugo Azevedo",
+        "Maria Jesus"
+      ],
+      "slug": "dfhm-owl-type"
     },
     "joanapimenta27-lcom-project-43771f33ad14": {
       "year": 2025,
@@ -2499,7 +3111,13 @@
         "url": "https://github.com/joanapimenta27/LCOM_project/commit/346235a12a93c4fc6998047fe1dfcc74609e57ee",
         "date": "2025-05-11",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-11), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Diogo Neves",
+        "Joana Pimenta",
+        "Dinis Galvão"
+      ],
+      "slug": "dj-multitasker"
     },
     "sarasazevedo-feup-lcom-23027daca6ec": {
       "year": 2024,
@@ -2522,7 +3140,14 @@
         "confidence": "explicit",
         "url": "https://github.com/sarasazevedo/FEUP_LCOM/blob/5eb2888d1ff5b1587352e2f9d2473909609a3229/Project/lcom_proj.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2023/24."
-      }
+      },
+      "authors": [
+        "João Sousa",
+        "Mariana Azevedo",
+        "Sara Azevedo",
+        "Tiago Carvalho"
+      ],
+      "slug": "jmst-agalag"
     },
     "brenoaccioly-lcom-proj-7413728614a9": {
       "year": 2020,
@@ -2544,7 +3169,11 @@
         "confidence": "explicit",
         "url": "https://github.com/BrenoAccioly/LCOM-PROJ/blob/9353a6890217aca00a80ae4723090ef7fe107d1a/README.md",
         "detail": "The pinned original course source explicitly names academic year 2019/20."
-      }
+      },
+      "authors": [
+        "Breno Accioly de Barros Pimentel"
+      ],
+      "slug": "b-the-sealed-room"
     },
     "raulviana-feup-lcom-9d58f4edc1d8": {
       "year": 2020,
@@ -2568,7 +3197,12 @@
         "confidence": "explicit",
         "url": "https://github.com/raulviana/FEUP-LCOM/blob/5a7ed4431c60222add957269c4ad3841c98a0767/README.md",
         "detail": "The pinned original course source explicitly names academic year 2019/20."
-      }
+      },
+      "authors": [
+        "André Filipe de Soveral Torres Lopes dos Santos",
+        "Raul Manuel Fidalgo da Silva Teixeira Viana"
+      ],
+      "slug": "ar-asteroids-in-the-lcom-galaxy"
     },
     "anaezes-minix8queens-b370c449e2cb": {
       "year": 2017,
@@ -2593,7 +3227,12 @@
         "url": "https://github.com/anaezes/Minix8queens/commit/f27a4fc94a64298d23ba3450b9f90919b7e4ec75",
         "date": "2016-11-27",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2016-11-27), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Ana Santos",
+        "Mariana Silva"
+      ],
+      "slug": "am-minix-8-queens"
     },
     "brunomgferreira-3-card-poker-lcom-d8cf71c7f58e": {
       "year": 2024,
@@ -2615,7 +3254,14 @@
         "confidence": "inferred",
         "url": "https://github.com/brunomgferreira/3-card-poker_LCOM/blob/f12a1a56b6a283daae4a4f12b276601c7d3a8d30/proj/doc/T15G1.pdf#page=1",
         "detail": "Academic year inferred from the original project report cover date or development period; the school year begins in September."
-      }
+      },
+      "authors": [
+        "André Sousa",
+        "Bruno Ferreira",
+        "Gabriela Neto",
+        "Mariana Pina"
+      ],
+      "slug": "abgm-three-card-poker"
     },
     "projeto-88c883e02650": {
       "year": 2014,
@@ -2639,7 +3285,11 @@
         "url": "https://github.com/Filipecordeiro/LCOM/commit/b36d7db6fcde81feff6377d78d373b940251a3dd",
         "date": "2014-12-10",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2014-12-10), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Filipe Cordeiro"
+      ],
+      "slug": "f-doodle-nix"
     },
     "eduardamsc-feup-lcom-2e7a4fca51b9": {
       "year": 2017,
@@ -2662,7 +3312,12 @@
         "confidence": "explicit",
         "url": "https://github.com/eduardamsc/FEUP-LCOM/blob/577d3b7fe702f23eff092c742132f9e188a1b50e/README.md",
         "detail": "The pinned original course source explicitly names academic year 2017/18."
-      }
+      },
+      "authors": [
+        "Bruno Alexandre Oliveira Dias",
+        "Maria Eduarda Santos Cunha"
+      ],
+      "slug": "bm-obstacle-course"
     },
     "source-169548b2d0b8": {
       "year": 2016,
@@ -2686,7 +3341,12 @@
         "url": "https://github.com/pedroduartecosta/LCOM-FEUP/commit/9bd931894e0baaf8b223c866cedc76edbaf4425c",
         "date": "2015-12-08",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2015-12-08), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "José Pedro Teixeira Monteiro",
+        "Pedro Duarte da Costa"
+      ],
+      "slug": "jp-pokemon-run"
     },
     "golangis-lcom-spaceinvaders-8117cf591bc3": {
       "year": 2023,
@@ -2710,7 +3370,13 @@
         "url": "https://github.com/golangis/LCOM-SpaceInvaders/commit/ebef8784485d11dc864bb6b08b645a022138ae69",
         "date": "2023-05-28",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-28), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Guilherme Ribeiro",
+        "Mariana Rocha",
+        "Pedro Januário"
+      ],
+      "slug": "gmp-space-invaders-galactic-defense"
     },
     "projeto-317ebad9637b": {
       "year": 2019,
@@ -2733,7 +3399,12 @@
         "url": "https://github.com/TitoGrine/LCOM_Project/commit/27f6994c8b8a1abad790fb56deb93a99d3950a43",
         "date": "2019-03-05",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-03-05), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Bernardo Manuel Esteves dos Santos",
+        "Tito Alexandre Trindade Griné"
+      ],
+      "slug": "bt-paintmix"
     },
     "joaohluz-feup-lcom-84b8e01b6c65": {
       "year": 2019,
@@ -2757,7 +3428,12 @@
         "url": "https://github.com/joaohluz/FEUP-LCOM/commit/0979c44b93a55511368b8a2f55be2b3e1c66a888",
         "date": "2019-01-04",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-01-04), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Luz",
+        "Francisco Rodrigues"
+      ],
+      "slug": "fj-space-defender-luz"
     },
     "tiagocv64-sandz-lcom-proj-29b035c85daf": {
       "year": 2019,
@@ -2782,7 +3458,12 @@
         "url": "https://github.com/Tiagocv64/SandZ-LCOM-Proj/commit/13dfe32d3c0f382459d5ec1beb09619d3c9644c1",
         "date": "2019-02-06",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-02-06), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Renato Costa Pinto",
+        "Tiago Candeias Verdade"
+      ],
+      "slug": "jt-sandz"
     },
     "pdsam-feup-lcom-54234cd3b17c": {
       "year": 2019,
@@ -2805,7 +3486,12 @@
         "confidence": "explicit",
         "url": "https://github.com/pdsam/FEUP-LCOM/blob/9fd144898836dcabd384a943d886e0de8157e4d9/README.md",
         "detail": "The pinned original course source explicitly names academic year 2018/19."
-      }
+      },
+      "authors": [
+        "Carlos Jorge Direito Albuquerque",
+        "Paulo Daniel da Silva Araújo Marques"
+      ],
+      "slug": "cp-ltron"
     },
     "trunk-329d748c0868": {
       "year": 2016,
@@ -2829,7 +3515,12 @@
         "url": "https://github.com/vascofg/lcom/commit/d4b9d1770dbbc327ef2aead4173a9d5d330a8088",
         "date": "2012-02-10",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2012-02-10), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Vasco Gonçalves",
+        "André Freitas"
+      ],
+      "slug": "av-battleship-hidden-fleet"
     },
     "code-a89b02257573": {
       "year": 2015,
@@ -2852,7 +3543,12 @@
         "url": "https://github.com/vitormsesteves/LCOM/commit/61426fe59fe9d836cb7042afb86d31de368fb9a4",
         "date": "2015-01-02",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2015-01-02), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Rui Vilares",
+        "Vitor Esteves"
+      ],
+      "slug": "rv-mouse-maze"
     },
     "bernardomcbarbosa-feup-lcom-3baf341c276f": {
       "year": 2017,
@@ -2875,7 +3571,12 @@
         "url": "https://github.com/bernardomcbarbosa/feup-lcom/blob/2425ceee78f0231d009324659d95f0ce369cf139/README.md",
         "detail": "The pinned original course source explicitly names academic year 2016/17."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Bernardo Manuel Costa Barbosa",
+        "Duarte Nuno Esteves André Lima de Carvalho"
+      ],
+      "slug": "bd-penaltix"
     },
     "belem17-lcom-wordle-fbf1430b6a78": {
       "year": 2025,
@@ -2899,7 +3600,14 @@
         "url": "https://github.com/Belem17/lcom-wordle/commit/02a8b6ec077de4e1623d68276c6081ead884ba5d",
         "date": "2025-05-26",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-26), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Tiago Correia",
+        "Eduarda Magno",
+        "Ana Belém Bilhoto",
+        "Tiago Arteiro"
+      ],
+      "slug": "aet-wordle-pt"
     },
     "leonardofmoura-computer-laboratories-9272d0a136c0": {
       "year": 2019,
@@ -2924,7 +3632,12 @@
         "confidence": "unknown",
         "url": "https://github.com/leonardofmoura/Computer_Laboratories/commit/df3c5f7e12b7aeae57f61d39841c87327e769162",
         "detail": "The available game source first appears as a published/imported snapshot. Its publication date does not establish the academic year."
-      }
+      },
+      "authors": [
+        "Leonardo Moura",
+        "João Ribeiro"
+      ],
+      "slug": "jl-foolish-chaos"
     },
     "edurbrito-trex-run-f816d970c65d": {
       "year": 2021,
@@ -2948,7 +3661,12 @@
         "url": "https://github.com/edurbrito/trex-run/commit/064f5752ecebde2345832c87dc65e0858909e1bf",
         "date": "2021-01-22",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-01-22), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Eduardo Brito",
+        "Rita Silva"
+      ],
+      "slug": "er-t-rex-run-brito"
     },
     "tanks-ee7f5421fc1a": {
       "year": 2016,
@@ -2972,7 +3690,12 @@
         "url": "https://github.com/renatoabreu11/LCOM-BattalionTanks/commit/705d9b6886ea765f1f008a5bf732dbbae166d228",
         "date": "2016-02-22",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2016-02-22), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Miguel Alves",
+        "Renato Abreu"
+      ],
+      "slug": "mr-battalion-tanks"
     },
     "code-4f72c2bdede1": {
       "year": 2016,
@@ -2997,7 +3720,12 @@
         "url": "https://github.com/telmobarros/feup-lcom/commit/e6a97dd2ed3cd44c0f9737f9a7bc68736b449799",
         "date": "2015-12-05",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2015-12-05), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "António Jorge Aguiar do Vale",
+        "Telmo João Vales Ferreira Barros"
+      ],
+      "slug": "at-battle-tetris"
     },
     "phpc99-lcom-project-b50a032fcc38": {
       "year": 2025,
@@ -3020,7 +3748,14 @@
         "confidence": "unknown",
         "url": "https://github.com/phpc99/lcom-project/commit/4ba38939718ff977834bbebfb796e9fa4787792c",
         "detail": "The available game source first appears as a published/imported snapshot. Its publication date does not establish the academic year."
-      }
+      },
+      "authors": [
+        "Ana Pacheco",
+        "João Marques",
+        "Luís Bento",
+        "Pedro Camargo"
+      ],
+      "slug": "ajlp-terraria-lite"
     },
     "manelneto-pong-2aa1599f1717": {
       "year": 2024,
@@ -3043,7 +3778,14 @@
         "confidence": "explicit",
         "url": "https://github.com/manelneto/pong/blob/37804e6f581c5d3e1092742327be12904baf0cbd/README.md",
         "detail": "The pinned original course source explicitly names academic year 2022/23."
-      }
+      },
+      "authors": [
+        "André Rodrigues",
+        "Ian Beltrão",
+        "Lucas Nakajima",
+        "Manuel Neto"
+      ],
+      "slug": "ailm-pong-2-0"
     },
     "joaoalvaroferreira-feup-lcom-71267d89b40e": {
       "year": 2019,
@@ -3067,7 +3809,12 @@
         "url": "https://github.com/JoaoAlvaroFerreira/FEUP-LCOM/commit/c67638555b279fe46cba3d176dc3cce61f217e1e",
         "date": "2019-02-19",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-02-19), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Álvaro Cardoso Soares Ferreira",
+        "Pedro Hugo Lima Noevo"
+      ],
+      "slug": "jp-lcom-fever"
     },
     "franpts2-whack-a-diglett-5422f1a1fcec": {
       "year": 2025,
@@ -3090,7 +3837,14 @@
         "url": "https://github.com/franpts2/whack-a-diglett/commit/7423c4eb5c164bf4d084d46d7acd3094bd7d2683",
         "date": "2025-05-22",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-22), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Francisca Portugal",
+        "Gabriela de Mattos",
+        "Maria Luiza Vieira",
+        "Sara García"
+      ],
+      "slug": "fgms-whack-a-diglett"
     },
     "carlosverissimo3001-feup-lc-0f43bc143cb2": {
       "year": 2022,
@@ -3115,7 +3869,14 @@
         "confidence": "explicit",
         "url": "https://github.com/carlosverissimo3001/FEUP-LC/blob/6e212516257ada4569e7a2c5a00de0f09b119fbb/README.md",
         "detail": "The pinned original course source explicitly names academic year 2021/22."
-      }
+      },
+      "authors": [
+        "Carlos Veríssimo",
+        "Marcos Aires",
+        "Martim Videira",
+        "Miguel Silva"
+      ],
+      "slug": "cm-pen-pal"
     },
     "rockdell-2lcom-mosu-67ee0b67c61f": {
       "year": 2018,
@@ -3138,7 +3899,12 @@
         "url": "https://github.com/Rockdell/2LCOM-MOsu/commit/18bb7769623c545430c2f6f7d3f545b38fe5f1f4",
         "date": "2018-02-04",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2018-02-04), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Miguel Alexandre Brandão Teixeira",
+        "Pedro Xavier T. M. C. de Pinho"
+      ],
+      "slug": "mp-mosu"
     },
     "davidm-g-aquaboy-and-lavagirl-game-012cbf5f030f": {
       "year": 2024,
@@ -3163,7 +3929,14 @@
         "url": "https://github.com/davidm-g/Aquaboy-and-Lavagirl-GAME/commit/685e9e13581a3ed200c09ff223a8d5c05f62c495",
         "date": "2024-05-01",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-05-01), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Tomás Marques",
+        "João Santos",
+        "Luís Freitas",
+        "David Gonçalves"
+      ],
+      "slug": "djlt-aquaboy-and-lavagirl"
     },
     "tiagoalmeida05-a2-s2-laboratorio-de-computadores-b4edd5eb9f45": {
       "year": 2026,
@@ -3187,7 +3960,13 @@
         "url": "https://github.com/TiagoAlmeida05/A2_S2-Laboratorio_De_Computadores/commit/8614e2affff3a14045a94ef9dd47ad3d392f1523",
         "date": "2025-05-26",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-26), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Tiago Almeida",
+        "Pedro Gouveia",
+        "Gonçalo Paiva"
+      ],
+      "slug": "gpt-speed-test"
     },
     "afonsodomingues17-air-hockey-game-f7f9c5305b56": {
       "year": 2024,
@@ -3210,7 +3989,14 @@
         "url": "https://github.com/AfonsoDomingues17/Air-Hockey-Game/blob/5ab44fcfc953ddfd680510d3ddfc467bee839a11/proj/src/project.c",
         "date": "2024-04-22",
         "detail": "Academic year inferred from a dated original game source header (2024-04-22), with the school year beginning in September."
-      }
+      },
+      "authors": [
+        "Afonso Machado",
+        "Afonso Domingues",
+        "Ana Filipa Geraldes",
+        "Luís Arruda"
+      ],
+      "slug": "al-air-hockey-practice-rink"
     },
     "luisgoncalves05-lostcurseofmadness-6dad912febba": {
       "year": 2025,
@@ -3234,7 +4020,12 @@
         "url": "https://github.com/LuisGoncalves05/LostCurseOfMadness/commit/6804a8aa5821d0442cd8800beec8c0647f8d75ee",
         "date": "2025-05-23",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-23), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Luís Gonçalves",
+        "Sofia Sousa"
+      ],
+      "slug": "ls-lost-curse-of-madness"
     },
     "luiseduardoreis-lcom-pewpewsandexplosions-a7ab95caeab1": {
       "year": 2017,
@@ -3258,7 +4049,11 @@
         "confidence": "unknown",
         "url": "https://github.com/LuisEduardoReis/LCOM-PewPewsAndExplosions/commit/dc16d8fa831048da90191df113b5551a2282e1ba",
         "detail": "The available game source first appears as a published/imported snapshot. Its publication date does not establish the academic year."
-      }
+      },
+      "authors": [
+        "LuisReis"
+      ],
+      "slug": "l-pewpews-explosions"
     },
     "system-44f6f8e11968": {
       "year": 2020,
@@ -3283,7 +4078,12 @@
         "url": "https://github.com/DoStini/feup-lcom/commit/a1155400ff9e6af7cb2aaedbfebb78d3e82e6749",
         "date": "2021-03-22",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-03-22), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Andre Moreira",
+        "Nuno Alves"
+      ],
+      "slug": "an-minixop"
     },
     "pedroromao3-computer-laboratory-feup-af14142eed9a": {
       "year": 2025,
@@ -3306,7 +4106,11 @@
         "url": "https://github.com/PedroRomao3/Computer-Laboratory_FEUP/commit/5872fe2b85a56f5274ccfaf6d08e6f276bfd1596",
         "date": "2026-05-18",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-05-18), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Pedro Miguel Martins Romão"
+      ],
+      "slug": "p-blackjack-green-table"
     },
     "nmtc01-lcom-projects-8bd7e0b46eac": {
       "year": 2020,
@@ -3330,7 +4134,12 @@
         "url": "https://github.com/nmtc01/LCOM-Projects/commit/8996fcf17586aae7853396989c68ba7bf5dd1031",
         "date": "2020-01-24",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-01-24), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Pedro Pinheiro de Lacerda Campos",
+        "Nuno Miguel Teixeira Cardoso"
+      ],
+      "slug": "jn-nether-dragon"
     },
     "maria08849-lcom-neonnibbler-0b00440efd81": {
       "year": 2025,
@@ -3354,7 +4163,13 @@
         "url": "https://github.com/Maria08849/LCOM-NeonNibbler/commit/f7cc7964f3c3a211ae95b9fbb0c1288ab85f6df1",
         "date": "2025-02-04",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-02-04), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Eduardo Oliveira",
+        "Maria Costa",
+        "Máximo Pereira"
+      ],
+      "slug": "em-neon-nibbler"
     },
     "projeto-59d6acf1f3c7": {
       "year": 2025,
@@ -3378,7 +4193,14 @@
         "url": "https://github.com/FEUP-tiago-repositories/LCOM/commit/445532fc54a5d0e96e7e2a18360ee423097dd252",
         "date": "2025-06-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-06-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Miguel Valente",
+        "Ana Carolina",
+        "Tiago Oliveira",
+        "Gabriel Sousa"
+      ],
+      "slug": "agmt-tetr-io-s"
     },
     "carolbrandak-feup-lcom-proj-7bd05fb735f4": {
       "year": 2023,
@@ -3401,7 +4223,13 @@
         "url": "https://github.com/CarolBrandak/feup-lcom-proj/commit/be4be1cea4562cb68a32645cddb52053eaf17b1b",
         "date": "2023-05-11",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-11), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Ana Carolina Brandão",
+        "André Soares",
+        "Vinícius Macedo"
+      ],
+      "slug": "av-jumping-frog"
     },
     "tomas-gaspar-lcom-7f6c480beece": {
       "year": 2025,
@@ -3424,7 +4252,14 @@
         "url": "https://github.com/Tomas-Gaspar/lcom/commit/53153b30cb47ec976a691a8eeed6df1bb441d6eb",
         "date": "2023-04-26",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-04-26), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Daniel Gago",
+        "João Padrão",
+        "Pedro Madureira",
+        "Tomás Gaspar"
+      ],
+      "slug": "djpt-draw-together-studio"
     },
     "jose03pedro-feup-lcom-768b3863de3b": {
       "year": 2024,
@@ -3448,7 +4283,14 @@
         "date": "2023-05-28",
         "detail": "Academic year inferred from a dated original game source header (2023-05-28), with the school year beginning in September."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Miguel Dionísio",
+        "Diogo Santos",
+        "Maria Miranda",
+        "José Santos"
+      ],
+      "slug": "djm-thin-ice"
     },
     "iohansardinha-alien-jump-lcom-548fb6e453a5": {
       "year": 2020,
@@ -3471,7 +4313,12 @@
         "confidence": "explicit",
         "url": "https://github.com/IohanSardinha/Alien-Jump-LCOM/blob/46055885b9768199102ddacc9a49f205a1902c3d/Doxygen/html/index.html#L26",
         "detail": "The pinned original project documentation title explicitly names LCOM2019/20."
-      }
+      },
+      "authors": [
+        "Iohan Sardinha",
+        "Isla Cassamo"
+      ],
+      "slug": "i-alien-jump"
     },
     "marantesss-feup-lcom-cc9a24a5fcfe": {
       "year": 2018,
@@ -3496,7 +4343,12 @@
         "url": "https://github.com/Marantesss/feup-lcom/commit/726290a0934798ee6c16ea3ca49a564633503a04",
         "date": "2019-01-07",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-01-07), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Gonçalo Marantes",
+        "Helena Ferreira"
+      ],
+      "slug": "gh-minix-force"
     },
     "angelooliveira2004-lcom-project-5eaf9db7b61f": {
       "year": 2024,
@@ -3521,7 +4373,13 @@
         "url": "https://github.com/AngeloOliveira2004/LCOM_Project/commit/2ad19e39100e25f254e4f1ad5c5e0fbe7695014b",
         "date": "2024-05-26",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-05-26), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Angelo Rafael Araújo Oliveira",
+        "José Pedro Pereira da Costa",
+        "Bruno Miguel Ataide Fortes"
+      ],
+      "slug": "abj-knights-of-lcom"
     },
     "code-7b75e5f307a5": {
       "year": 2015,
@@ -3547,7 +4405,12 @@
         "url": "https://github.com/edualm/LCOM-Huetris/commit/3672a0c434d66e01aaef97de2c4527361d22bcfe",
         "date": "2014-01-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2014-01-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Eduardo Almeida",
+        "Pedro Santiago"
+      ],
+      "slug": "ep-huetris"
     },
     "ritapeixoto-feup-lcom-c342c9b548c0": {
       "year": 2020,
@@ -3570,7 +4433,12 @@
         "url": "https://github.com/RitaPeixoto/FEUP-LCOM/commit/75261f7a7cfafbc06f074d01fffd3b0312e02b0f",
         "date": "2020-03-20",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-03-20), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Mariana Almeida Truta",
+        "Rita Matos Maranhão Peixoto"
+      ],
+      "slug": "mr-get-lost"
     },
     "danielbelem-lcom-proj-3ccb4c0b11e4": {
       "year": 2026,
@@ -3593,7 +4461,8 @@
         "confidence": "unknown",
         "url": "https://github.com/DanielBelem/LCOM-PROJ/commit/bbb721d0430e8992f49bf6389fd7bf28d93c0440",
         "detail": "The available game source first appears as a published/imported snapshot. Its publication date does not establish the academic year."
-      }
+      },
+      "slug": "hawktype"
     },
     "code-5e74a9764413": {
       "year": 2015,
@@ -3618,7 +4487,12 @@
         "url": "https://github.com/hpnog/FEUP-LCOM/commit/5cff9e3dc70d384c3ca9127f2db3f22036d5b8fa",
         "date": "2015-01-06",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2015-01-06), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Francisco Rodrigues",
+        "João Nogueira"
+      ],
+      "slug": "fj-connect-four-cosmic-rivals"
     },
     "frozenhart-lcom-2025-aa9c01dcbcda": {
       "year": 2025,
@@ -3641,7 +4515,14 @@
         "url": "https://github.com/FrozenHart/LCOM_2025/commit/bc54a511761a3f5b0d1412a636c2b55f15d3c99d",
         "date": "2025-05-28",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-28), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Filipe Esteves",
+        "Margarida Fonseca",
+        "Gonçalo Carvalho",
+        "Clara Sousa"
+      ],
+      "slug": "cfgm-blackjack-royal-table"
     },
     "proenca13-lcom-7e9295a237e0": {
       "year": 2024,
@@ -3665,7 +4546,13 @@
         "url": "https://github.com/Proenca13/Lcom/commit/5e2712cb27d9df920091d0a3f385627f9b5ee4fe",
         "date": "2024-05-16",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-05-16), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Henrique Andrade Proença",
+        "Gonçalo Araújo Guimarães Cardoso Sampaio",
+        "Tiago Daniel Martins dos Santos"
+      ],
+      "slug": "gjt-minesweeper-hidden-fields"
     },
     "lekinasa-lcom-galactic-warfare-e4496a0dd85e": {
       "year": 2022,
@@ -3689,7 +4576,8 @@
         "url": "https://github.com/LeKinaSa/lcom-galactic-warfare/commit/55eddadea0c3d6cf87d28cc3f540a9c3856beccd",
         "date": "2019-12-09",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-12-09), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "slug": "galactic-warfare-practice"
     },
     "jorgerestivo-lcom-2425-e1d106f85caa": {
       "year": 2025,
@@ -3712,7 +4600,8 @@
         "confidence": "explicit",
         "url": "https://github.com/JorgeRestivo/LCOM-2425",
         "detail": "The original repository course name encodes consecutive academic years 2024/25."
-      }
+      },
+      "slug": "earth-defender"
     },
     "esperaumbocado-lcom-project-a2c0c21e87e2": {
       "year": 2024,
@@ -3736,7 +4625,14 @@
         "url": "https://github.com/esperaumbocado/LCOM-PROJECT/commit/22bc50f4b9b328ba434022efdde0d5887d79594f",
         "date": "2024-04-25",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-04-25), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Maria Rabelo",
+        "Rui Borges",
+        "Tiago Pires",
+        "Vitor Moreira"
+      ],
+      "slug": "mrtv-pandatype"
     },
     "pipe-01-lcom-feup-917b185e0b31": {
       "year": 2024,
@@ -3760,7 +4656,14 @@
         "url": "https://github.com/pipe-01/LCOM-FEUP/commit/c14af8012c928286d09aea162ef3fd0066e33342",
         "date": "2024-04-12",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-04-12), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "André Costa",
+        "Filipe Pinto",
+        "Juan Bellon",
+        "João Rodrigo"
+      ],
+      "slug": "afj-memory-card-pairs"
     },
     "proj-code-d711f6ad5f8f": {
       "year": 2024,
@@ -3783,7 +4686,14 @@
         "url": "https://github.com/joaossousa12/feup-lcom/blob/75693a9a080484932bf2ff73e7112e308c126862/proj_code/main.c",
         "date": "2023-05-28",
         "detail": "Academic year inferred from a dated original game source header (2023-05-28), with the school year beginning in September."
-      }
+      },
+      "authors": [
+        "Bernardo Pinto",
+        "Carlos Madaleno",
+        "João Sousa",
+        "Miguel Valente"
+      ],
+      "slug": "bcjm-minix-golf"
     },
     "joewar99-mieic-lcom-6bd20b83eadb": {
       "year": 2019,
@@ -3807,7 +4717,12 @@
         "confidence": "explicit",
         "url": "https://github.com/JoeWar99/MIEIC_lcom/blob/0336a7387278eb2b5fd447f65a7df30140b8ffd6/proj/doc/FINAL_REPORT.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2018/19."
-      }
+      },
+      "authors": [
+        "José Guerra",
+        "Rúben Almeida"
+      ],
+      "slug": "jr-demon-slayer"
     },
     "pedrojfs17-feup-lcom-ed6653166d5a": {
       "year": 2020,
@@ -3832,7 +4747,12 @@
         "url": "https://github.com/pedrojfs17/FEUP-LCOM/commit/97564c0a401778d2579537732badb680aa1919fe",
         "date": "2020-01-23",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-01-23), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Paulo Jorge Salgado Marinho Ribeiro",
+        "Pedro Jorge Fonseca Seixas"
+      ],
+      "slug": "p-one-shot"
     },
     "asura14-maze-game-lcom-8bbd56dd02a6": {
       "year": 2016,
@@ -3855,7 +4775,11 @@
         "url": "https://github.com/Asura14/maze-game-LCOM/commit/0ff190de5cd36963ae5354d9022d07daf98bf674",
         "date": "2016-06-20",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2016-06-20), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Luís Miguel Gonçalves"
+      ],
+      "slug": "l-maze-game"
     },
     "j-seixas-feup-lcom-9bbef60fe575": {
       "year": 2017,
@@ -3878,7 +4802,12 @@
         "confidence": "explicit",
         "url": "https://github.com/j-seixas/feup-lcom/blob/815544b61eb679382d94b3f90b8686b0af6329da/proj/doc/report.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2016/17."
-      }
+      },
+      "authors": [
+        "João Seixas",
+        "Bernardo Ramos"
+      ],
+      "slug": "bj-tron-lightcycle-arena"
     },
     "code-641e602e8c51": {
       "year": 2015,
@@ -3902,7 +4831,12 @@
         "url": "https://github.com/PedroCastro/FEUP-LCOM-Minehunter/commit/1e57ac202778dd491fbd45da6a1e1a7ac01aec58",
         "date": "2015-01-02",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2015-01-02), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Pedro Castro",
+        "Mariana Oliveira"
+      ],
+      "slug": "mp-minehunter"
     },
     "joaocostaifg-lcom-beedd9d56c6a": {
       "year": 2020,
@@ -3926,7 +4860,12 @@
         "confidence": "explicit",
         "url": "https://github.com/JoaoCostaIFG/LCOM/blob/85697eb72e5495615afa23bdb8dc74ea1c461837/proj/src/skane_royale.c",
         "detail": "The pinned original course source explicitly names academic year 2019/20."
-      }
+      },
+      "authors": [
+        "João de Jesus Costa",
+        "João Lucas Silva Martins"
+      ],
+      "slug": "j-skane-royale"
     },
     "code-762abf58de20": {
       "year": 2019,
@@ -3950,7 +4889,12 @@
         "url": "https://github.com/francisquinha/LCOM/commit/09b3889ad8296fbd5fe82f91db646fedb6bcd3eb",
         "date": "2019-07-23",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-07-23), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Ângela Cardoso",
+        "Ilona Generalova"
+      ],
+      "slug": "ai-set"
     },
     "antoni0ferreira-lcom-8a2f9149c09d": {
       "year": 2023,
@@ -3975,7 +4919,14 @@
         "url": "https://github.com/Antoni0Ferreira/LCOM/commit/6601aeeff4c3923dd8addef75b5349268e439f59",
         "date": "2023-03-10",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-03-10), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "António Ferreira",
+        "Henrique Ferreira",
+        "João Maldonado",
+        "José Ribeiro"
+      ],
+      "slug": "ahj-space-race"
     },
     "arturalb-lcom-328265ed2064": {
       "year": 2024,
@@ -3999,7 +4950,14 @@
         "url": "https://github.com/ArturAlb/LCOM/commit/e5cabd6d9f755f19011289e65a556a419632e3e8",
         "date": "2023-05-07",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-07), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Gonçalo Pinho",
+        "Artur Oliveira",
+        "Tomás Lopes",
+        "João Viveiros"
+      ],
+      "slug": "agjt-tank-duel-ricochet"
     },
     "carlotaleite-lcom-project-bdc75ffc7132": {
       "year": 2025,
@@ -4022,7 +4980,14 @@
         "url": "https://github.com/carlotaleite/LCOM-Project/commit/72d128057806e3e07346639848d69abbde0b161a",
         "date": "2024-05-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-05-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Carlota Leite",
+        "Ricardo Parreira",
+        "Rui Teixeira",
+        "Yves Bonneau"
+      ],
+      "slug": "cry-snake-checker-garden"
     },
     "dimochii-lab-rinth-lcom-34a8f5effb0a": {
       "year": 2024,
@@ -4045,7 +5010,14 @@
         "url": "https://github.com/dimochii/Lab-rinth_LCOM/commit/e38c1d6e2ccbc581fd023302068f3da8ed90d187",
         "date": "2024-06-02",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-06-02), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Beatriz Bernardo",
+        "Diana Nunes",
+        "Sofia Gonçalves",
+        "Teresa Mascarenhas"
+      ],
+      "slug": "bdst-lab-rinth"
     },
     "eduarda34-feup-lcom-035fb670adb0": {
       "year": 2025,
@@ -4068,7 +5040,14 @@
         "url": "https://github.com/Eduarda34/FEUP-LCOM/commit/6f03cec57b1b63da122762c99debf27e4acc8631",
         "date": "2025-05-28",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-28), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Catarina da Silva Guimarães",
+        "Guilherme Linhares",
+        "Maria Eduarda Pacheco Mendes Araújo",
+        "Tiago Vasques Moreira"
+      ],
+      "slug": "cgmt-snake-hungry-tongue"
     },
     "filipecardoso0-lcom-8d7749e66f92": {
       "year": 2022,
@@ -4091,7 +5070,14 @@
         "url": "https://github.com/filipecardoso0/LCOM/commit/044a0953343e8c1fab82d05a973a4d415889e9f9",
         "date": "2022-06-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-06-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Emanuel Silva Gestosa",
+        "Filipe Cardoso",
+        "Pedro Fardilha Barbeira",
+        "Pedro Pereira Ferreira"
+      ],
+      "slug": "efp-snake-pixel-orchard"
     },
     "retchut-lcom-2020-2021-a7ba17c6c6bb": {
       "year": 2021,
@@ -4114,7 +5100,11 @@
         "confidence": "explicit",
         "url": "https://github.com/Retchut/LCOM-2020-2021/blob/1df532a9519a7281cdabe5c60b7c199704dd15e1/README.md",
         "detail": "The pinned original course source explicitly names academic year 2020/21."
-      }
+      },
+      "authors": [
+        "Mário Manuel Seixas Travassos"
+      ],
+      "slug": "m-space-invaders-starfield"
     },
     "dodgem-e3b83819d88e": {
       "year": 2015,
@@ -4138,7 +5128,12 @@
         "url": "https://github.com/dansreis/LCOM-DODGEM/commit/1c653122d99d0c4b97378bd423df8070670df733",
         "date": "2014-11-28",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2014-11-28), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Daniel Silva Reis",
+        "João David Gonçalves Baião"
+      ],
+      "slug": "dj-dodgem"
     },
     "diogoramos9-y2s2-lcom-9125b04c3c18": {
       "year": 2025,
@@ -4161,7 +5156,13 @@
         "confidence": "explicit",
         "url": "https://github.com/DiogoRamos9/Y2S2-LCOM/blob/f590de9781811054e63a710c9d696f44330c8265/README.md",
         "detail": "The pinned original course source explicitly names academic year 2023/24."
-      }
+      },
+      "authors": [
+        "Diogo Ramos",
+        "Gabriel Braga",
+        "Guilherme Rego"
+      ],
+      "slug": "dg-spacecom-shooter"
     },
     "prisonbreaker-a5c5d1ed4ff4": {
       "year": 2019,
@@ -4184,7 +5185,12 @@
         "url": "https://github.com/GilTeixeira/feup-lcom/commit/5af84e840ca981570009c323cde0763ec8dc4d40",
         "date": "2017-12-15",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2017-12-15), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Antero Gandra",
+        "Gil Teixeira"
+      ],
+      "slug": "ag-prison-breaker"
     },
     "projeto-85d232fd10eb": {
       "year": 2015,
@@ -4206,7 +5212,12 @@
         "confidence": "explicit",
         "url": "https://github.com/joaoacsoares/LCOM/blob/6bc5fa02f7a0ea328ef6675be8c0c8f57d67ef81/lcom1415-t3g15/proj/doc/Relatorio.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2014/15."
-      }
+      },
+      "authors": [
+        "João António Custódio Soares",
+        "Mário Filipe Araújo Ferreira"
+      ],
+      "slug": "jm-whack-a-mole-diglett"
     },
     "andrepereira2001-feup-lcom-2020-e6ff7d10f079": {
       "year": 2021,
@@ -4229,7 +5240,12 @@
         "url": "https://github.com/Andrepereira2001/feup-lcom-2020/blob/3d6153876ca9b689d77a39aa0554912b390ea1d3/src/game.h",
         "detail": "The pinned original course source explicitly names academic year 2020/21."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "André Pereira",
+        "Matilde Oliveira"
+      ],
+      "slug": "am-gold-miner"
     },
     "bernardoramalho-feup-lcom-f5367ce91527": {
       "year": 2022,
@@ -4254,7 +5270,12 @@
         "url": "https://github.com/BernardoRamalho/FEUP_LCOM/blob/58fb8091d2945f57dc929fa71e40a062938ead18/proj/src/drawing.h",
         "date": "2020-01-06",
         "detail": "Academic year inferred from a dated original game source header (2020-01-06), with the school year beginning in September."
-      }
+      },
+      "authors": [
+        "Bernardo da Silva Moço de Soares Ramalho",
+        "Tiago Alexandre Pinto de Faria Ferreira Alves"
+      ],
+      "slug": "bt-terminix"
     },
     "duarteoliveira8-feup-lcom-bf5f4b9d13ac": {
       "year": 2018,
@@ -4278,7 +5299,8 @@
         "url": "https://github.com/DuarteOliveira8/FEUP-LCOM/commit/9155f6ec78218bd778946a90c6394ff06d9c7cc8",
         "date": "2018-01-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2018-01-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "slug": "pixel-wings"
     },
     "code-9bc65986e66b": {
       "year": 2015,
@@ -4302,7 +5324,12 @@
         "url": "https://github.com/antoniopedrofraga/LCOM-FEUP/commit/20bad598969ee046d629de12556cf1808487b591",
         "date": "2015-04-14",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2015-04-14), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Pedro Fraga",
+        "Marta Lopes"
+      ],
+      "slug": "mp-sudoku-samurai"
     },
     "estevesandre-lcom1718-1acc3aa4199a": {
       "year": 2018,
@@ -4325,7 +5352,12 @@
         "confidence": "explicit",
         "url": "https://github.com/EstevesAndre/LCOM1718",
         "detail": "The original repository course name encodes consecutive academic years 2017/18."
-      }
+      },
+      "authors": [
+        "André Esteves",
+        "Bruno Sousa"
+      ],
+      "slug": "ab-avoid-it"
     },
     "brickbreaker-6d7c5664d277": {
       "year": 2017,
@@ -4348,7 +5380,12 @@
         "url": "https://github.com/afonsojramos/feup-lcom/commit/5200ee9db709971f9d9ca15ab344413f3e45ab4a",
         "date": "2017-03-06",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2017-03-06), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Afonso Jorge Ramos",
+        "Miguel Mano Fernandes"
+      ],
+      "slug": "am-atari-bricket"
     },
     "carlosfmccosta-lcom-48c7e4de46fb": {
       "year": 2025,
@@ -4373,7 +5410,14 @@
         "url": "https://github.com/carlosfmccosta/LCOM/commit/fcfb3f0f30a9a6eeeb62b5470b788cf0b54813f1",
         "date": "2025-05-28",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-28), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Carlos Costa",
+        "Luís Miranda",
+        "Leonor Bidarra",
+        "Cosme Sousa"
+      ],
+      "slug": "cl-eye-for-an-eye"
     },
     "diogotvf7-feup-lcom-project-d3c1c8822f08": {
       "year": 2023,
@@ -4398,7 +5442,14 @@
         "url": "https://github.com/diogotvf7/feup-lcom-project/commit/cf4e802e9b85b9491772efab82570783d7017b87",
         "date": "2023-05-17",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-17), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Carlos Daniel Rebelo",
+        "Diogo Tomás Valente Fernandes",
+        "Hélder Gabriel Silva Costa",
+        "Jaime Francisco Rodrigues Fonseca"
+      ],
+      "slug": "cdhj-sketch-and-guess"
     },
     "franciscocardoso913-feup-lcom-542c3feaf530": {
       "year": 2024,
@@ -4423,7 +5474,14 @@
         "url": "https://github.com/FranciscoCardoso913/Feup-Lcom/commit/841654b36057a3d1279f00bce26d29b23744501f",
         "date": "2023-05-22",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-22), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Daniel Ferreira",
+        "Francisco Cardoso",
+        "José Martins",
+        "Marco Boas"
+      ],
+      "slug": "dfjm-fireboy-and-watergirl-falling-blocks"
     },
     "diogobabo-lcom-feup-32b50bb27f3f": {
       "year": 2023,
@@ -4446,7 +5504,14 @@
         "url": "https://github.com/diogobabo/LCOM-FEUP/commit/ebfcd0357fcc82bcb85b552c161a4df28d2c681a",
         "date": "2022-06-01",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-06-01), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Diogo Babo",
+        "João Oliveira",
+        "João Teixeira",
+        "Rui Andrade"
+      ],
+      "slug": "djr-snake-green-circuit"
     },
     "davidrsfalcao-lcom-projeto-50632239b22e": {
       "year": 2017,
@@ -4469,7 +5534,8 @@
         "url": "https://github.com/davidrsfalcao/LCOM-projeto/commit/3fde5cb7977e742cdbdf7e7713de32b54b97b994",
         "date": "2017-01-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2017-01-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "slug": "galactic-war"
     },
     "marinuas-feup-lcom-46992160b6e1": {
       "year": 2021,
@@ -4494,7 +5560,12 @@
         "url": "https://github.com/marinuas/FEUP-LCOM/commit/4dde38e53f749e89ced5aab52c48e6a1fad9c8b4",
         "date": "2021-08-19",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-08-19), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Marina Dias",
+        "Raquel Sepulveda"
+      ],
+      "slug": "mr-space-jetpack"
     },
     "hugocastro28-lcom-3e5f85de31a2": {
       "year": 2023,
@@ -4517,7 +5588,14 @@
         "url": "https://github.com/hugocastro28/LCOM/commit/b14aa51468e665ffff70b2021f1d26c198bcd83a",
         "date": "2022-06-06",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-06-06), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Hugo Castro",
+        "Isabel Amaral",
+        "Milena Gouveia",
+        "Sofia Moura"
+      ],
+      "slug": "hims-pac-man-coin-maze"
     },
     "jfguedes123-y2s2-lcom-f5d9c53ac867": {
       "year": 2025,
@@ -4542,7 +5620,13 @@
         "url": "https://github.com/jfguedes123/Y2S2-LCOM/commit/0cfc67b6358ab63906f23f7f710101dbd5bc0940",
         "date": "2025-07-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-07-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Guedes",
+        "Tomás Silva",
+        "Rafael Oliveira"
+      ],
+      "slug": "jrt-pong-spin-rally"
     },
     "jotac431-feup-lcom-9211167185d0": {
       "year": 2023,
@@ -4567,7 +5651,12 @@
         "url": "https://github.com/jotac431/FEUP-LCOM/commit/52105600d2f4026622127cf78516b5dc07ab28ad",
         "date": "2023-06-28",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-06-28), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Jorge Costa",
+        "Ricardo Silva"
+      ],
+      "slug": "jr-pong-neon-court"
     },
     "mguerrinha-lcom-e5a400ed6b7d": {
       "year": 2025,
@@ -4591,7 +5680,13 @@
         "url": "https://github.com/mguerrinha/LCOM/commit/741bca6ed6a6ea37e2cae626e82776c45dd61032",
         "date": "2025-02-02",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-02-02), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Miguel Lopes Guerrinha",
+        "Miguel Duarte",
+        "Rui Cruz"
+      ],
+      "slug": "mr-last-one-standing"
     },
     "lindirod-l-eic-lcom-2223-ed44d252d10d": {
       "year": 2023,
@@ -4614,7 +5709,14 @@
         "confidence": "explicit",
         "url": "https://github.com/lindirod/L.EIC-LCOM-2223/blob/863785594fb32a5bdf01d05332707d93e656e9d6/README.md",
         "detail": "The pinned original course source explicitly names academic year 2022/23."
-      }
+      },
+      "authors": [
+        "Diogo Pintado",
+        "Gabriel Machado Jr.",
+        "José Costa",
+        "Linda Rodrigues"
+      ],
+      "slug": "dgjl-tetris-block-tower"
     },
     "manjeri998-lcom25-c9c0807ac07b": {
       "year": 2025,
@@ -4638,7 +5740,13 @@
         "url": "https://github.com/Manjeri998/LCOM25/commit/e8256f8b3ee51673c7fe6b79b5ec3ef25da20c93",
         "date": "2025-02-17",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-02-17), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Gonçalo Matos",
+        "Nuno Fernandes",
+        "João Cordeiro"
+      ],
+      "slug": "gjn-minesweeper-green-field"
     },
     "m21ark-lcom-5438cd7b9e7d": {
       "year": 2025,
@@ -4663,7 +5771,14 @@
         "url": "https://github.com/m21ark/lcom/commit/ce4665b94853384fc8a6b1c8f9363b8facd8108d",
         "date": "2022-05-14",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-05-14), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Guilherme Freire",
+        "Marco André",
+        "Pedro Gomes",
+        "Ricardo Matos"
+      ],
+      "slug": "gmpr-chess-animated-board"
     },
     "jpvds1-lcom-6fa8be8ef8db": {
       "year": 2025,
@@ -4688,7 +5803,14 @@
         "url": "https://github.com/jpvds1/LCOM/commit/5f152992a0c299c83c8e06736f99222990e47f87",
         "date": "2023-05-20",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-20), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Armando Martins",
+        "Joana Marques",
+        "João Silva",
+        "Ricardo Sousa"
+      ],
+      "slug": "ajr-alien-attacks"
     },
     "andrebreis-feup-lcom-2ea65ca375b0": {
       "year": 2017,
@@ -4712,7 +5834,12 @@
         "url": "https://github.com/andrebreis/feup-lcom/commit/e79bc720cb9e36e3f3f0bb8390bbd7ae11b694d7",
         "date": "2015-12-15",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2015-12-15), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "André Reis",
+        "João Gomes"
+      ],
+      "slug": "aj-duck-hunt-field-shoot"
     },
     "henrijsantos-lcom-c555613314fc": {
       "year": 2019,
@@ -4736,7 +5863,12 @@
         "confidence": "explicit",
         "url": "https://github.com/HenriJSantos/LCOM/blob/440457a7d3fdf8ec4c080fc491efebcfe91c7c04/proj/doc/Relatorio_LCOM.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2018/19."
-      }
+      },
+      "authors": [
+        "Henrique Santos",
+        "Luís Fernandes"
+      ],
+      "slug": "hl-delete-charmander"
     },
     "code-df91a1ab93db": {
       "year": 2014,
@@ -4760,7 +5892,13 @@
         "url": "https://github.com/tantch/Minix-MineSweeper/commit/4c45388473bfd7a0f2f961a8483b509029e4e900",
         "date": "2014-04-27",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2014-04-27), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "José Marques",
+        "Pedro Vieira de Castro",
+        "Vânia Leite"
+      ],
+      "slug": "jpv-classic-minix-minesweeper"
     },
     "matilde-silva-21-lcom-0f6f967ab587": {
       "year": 2022,
@@ -4784,7 +5922,14 @@
         "url": "https://github.com/matilde-silva-21/LCOM/commit/47f26b8822b067844312cf4bb662771b95d7190b",
         "date": "2022-05-30",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-05-30), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Alexandre Costa",
+        "Ana Beatriz Fontão",
+        "Ana Rita Oliveira",
+        "Matilde Silva"
+      ],
+      "slug": "am-space-invaders-star-fleet"
     },
     "miguelmarinho02-lcom22-23-de73dc578b91": {
       "year": 2023,
@@ -4807,7 +5952,14 @@
         "confidence": "explicit",
         "url": "https://github.com/MiguelMarinho02/LCOM22-23",
         "detail": "The original repository course name encodes consecutive academic years 2022/23."
-      }
+      },
+      "authors": [
+        "António Matos",
+        "Eva Carvalho",
+        "Miguel Marinho",
+        "Rúben Fonseca"
+      ],
+      "slug": "aemr-space-invaders-space-patrol"
     },
     "miguelsantos42-lcom-b5bae3d0c711": {
       "year": 2025,
@@ -4833,7 +5985,14 @@
         "url": "https://github.com/miguelsantos42/LCOM/commit/f8e6c1461e0d0218723dc31ef18b36b17fd2d18d",
         "date": "2025-05-12",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-12), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Miguel Santos",
+        "Maria Carneiro",
+        "Pedro Peixoto",
+        "André Gomes"
+      ],
+      "slug": "amp-crypt-defender"
     },
     "nunofer998-lcom-838fbf336b8d": {
       "year": 2026,
@@ -4857,7 +6016,14 @@
         "url": "https://github.com/NunoFer998/LCOM/commit/76afa34c9a023cd646488e258ec939b4dde3db41",
         "date": "2025-05-26",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-26), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Cordeiro",
+        "Nuno Fernandes",
+        "Pedro Marinho",
+        "Luis Fernandes"
+      ],
+      "slug": "jlnp-minesweeper-classic-garden"
     },
     "sirkotal-feup-lcom-cac89edb1387": {
       "year": 2023,
@@ -4881,7 +6047,14 @@
         "url": "https://github.com/sirkotal/feup-lcom/commit/4547543cbf1e271bfc1094179752c9c81df3beee",
         "date": "2023-04-26",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-04-26), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Coutinho",
+        "Joaquim Cunha",
+        "Maria Beirão",
+        "Miguel Garrido"
+      ],
+      "slug": "jm-arena-three-hunters"
     },
     "tomasm30-feup-lcom-d6aef81724f1": {
       "year": 2024,
@@ -4906,7 +6079,13 @@
         "url": "https://github.com/TomasM30/FEUP-LCOM/commit/15d3b5711148a384091a8012f2ff460bd557a7cc",
         "date": "2023-05-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "António Azevedo",
+        "Duarte Gonçalves",
+        "Tomás Martins"
+      ],
+      "slug": "adt-chess-clock-duel"
     },
     "tomaspm98-lcom-2afb87f2787d": {
       "year": 2024,
@@ -4931,7 +6110,13 @@
         "url": "https://github.com/tomaspm98/LCOM/commit/e598965c466724ec1bd07c88e18b01e9a3771be8",
         "date": "2023-05-27",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-27), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Sequeira",
+        "Tomás Maciel",
+        "Gonçalo Miranda"
+      ],
+      "slug": "gjt-pong-power-court"
     },
     "tommygomez25-lcom-83cb47407331": {
       "year": 2022,
@@ -4954,7 +6139,14 @@
         "url": "https://github.com/tommygomez25/LCOM/commit/95fed212d41794796506893a3bce79b507d3fcaa",
         "date": "2022-06-07",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-06-07), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Maria Carlota Silva",
+        "Diogo Alexandre Sá",
+        "Tomás Gomes",
+        "Henrique Ferreira"
+      ],
+      "slug": "dhmt-snake-grass-garden"
     },
     "nasgregorio-feup-a2s1-lcom-1cca704fa6e9": {
       "year": 2019,
@@ -4980,7 +6172,12 @@
         "url": "https://github.com/NASGregorio/FEUP-A2S1-LCOM/commit/361b30b133bdddc602b31b31382481d07631aff9",
         "date": "2020-02-06",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-02-06), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Afonso Carvalho Pereira de Sá",
+        "Nelson Alexandre Saraiva Gregório"
+      ],
+      "slug": "an-minix-arcade-frontal-collision"
     },
     "code-b073eb5781a5": {
       "year": 2016,
@@ -5005,7 +6202,12 @@
         "url": "https://github.com/bm-vs/LCOM/commit/dfbc2979a21db36fff415801ce4c32a757ad5be0",
         "date": "2016-01-04",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2016-01-04), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "António Melo",
+        "Bruno Santos"
+      ],
+      "slug": "ab-pew-pew-platform-duel"
     },
     "samyuh-feup-lcom-ea867e49f615": {
       "year": 2019,
@@ -5029,7 +6231,11 @@
         "url": "https://github.com/samyuh/feup-lcom/commit/bc45e9a14f9af86f743dd7d117bf01db92c65726",
         "date": "2020-02-16",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-02-16), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Samuel"
+      ],
+      "slug": "s-ultimate-pixel-racer"
     },
     "amandatartarotti-bomberman-c-5a046f0be4dc": {
       "year": 2024,
@@ -5052,7 +6258,14 @@
         "confidence": "explicit",
         "url": "https://github.com/AmandaTartarotti/bomberman_c/blob/f37c6392d4e2be9c2f0287348ef43afc3f0b0d7a/README.md",
         "detail": "The pinned original course source explicitly names academic year 2023/24."
-      }
+      },
+      "authors": [
+        "Amanda Silva",
+        "Leonardo Garcia",
+        "Manoela Américo",
+        "Marcel Medeiros"
+      ],
+      "slug": "alm-universe-bomb"
     },
     "caroucintra-feup-lcom-6aed0d29387c": {
       "year": 2022,
@@ -5076,7 +6289,14 @@
         "url": "https://github.com/caroucintra/FEUP-LCOM/commit/637f9c1a3fcc8d706437bf95002be2c627067462",
         "date": "2022-06-21",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-06-21), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Ana Teixeira",
+        "Carolina Cintra",
+        "Marta Mariz",
+        "Igor Diniz"
+      ],
+      "slug": "acim-violetchi"
     },
     "wetsao-lcom-cadb4918f2ec": {
       "year": 2025,
@@ -5101,7 +6321,14 @@
         "url": "https://github.com/Wetsao/LCOM/commit/a0af965e4d5a2b8cd8be7c618ba5d62881f24402",
         "date": "2024-05-15",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-05-15), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Pedro Plácido",
+        "Tiago Simões",
+        "Alexandre Morais",
+        "Daniel Silva"
+      ],
+      "slug": "adpt-claustro"
     },
     "zejoao8-lcom-project-6c0c5a4481fd": {
       "year": 2026,
@@ -5126,7 +6353,8 @@
         "url": "https://github.com/ZeJoao8/LCOM-Project/commit/d80099af5a67a088935bb20b29c43446f2a5b081",
         "date": "2026-05-20",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-05-20), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "slug": "jetpack-joyride-lcom-edition"
     },
     "limapedro12-lcom-defendthebase-34d05c1aaa86": {
       "year": 2024,
@@ -5150,7 +6378,14 @@
         "url": "https://github.com/limapedro12/LCOM_DefendTheBase/commit/6c348afb4e69678f2863f060b96fe81c39938eef",
         "date": "2023-04-16",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-04-16), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Coelho",
+        "João Mota",
+        "Pedro Lima",
+        "Pedro Landolt"
+      ],
+      "slug": "jp-defend-the-base"
     },
     "jcovaa-lcom-project-2dce8dd5258e": {
       "year": 2025,
@@ -5176,7 +6411,14 @@
         "date": "2025-05-23",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-23), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Jennifer Ricardo",
+        "João Cova",
+        "Mariana Pina",
+        "Simião Mavi"
+      ],
+      "slug": "jms-pixelmind"
     },
     "code-67fd2ab3bba4": {
       "year": 2016,
@@ -5200,7 +6442,12 @@
         "confidence": "explicit",
         "url": "https://github.com/joaocsf/LCOM/blob/a561aa79be78926dc5689876626b6a7ddf49ab3b/proj/docs/report/report.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2015/16."
-      }
+      },
+      "authors": [
+        "João Ferreira",
+        "David Azevedo"
+      ],
+      "slug": "dj-top-down-shooter"
     },
     "code-73f00e560251": {
       "year": 2015,
@@ -5224,7 +6471,11 @@
         "url": "https://github.com/joaodealmeida/LCOM/commit/1e18f26e5be387ed090f241067a01660662165d1",
         "date": "2015-02-26",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2015-02-26), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Almeida"
+      ],
+      "slug": "j-shark-patrol"
     },
     "biromiro-feup-lcom-35601f6668ea": {
       "year": 2021,
@@ -5248,7 +6499,12 @@
         "url": "https://github.com/biromiro/feup-lcom/commit/5844cb55b7909b7fb0109ec3038889b33d80adf8",
         "date": "2021-01-01",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-01-01), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Gonçalo Alves",
+        "Nuno Costa"
+      ],
+      "slug": "gn-lcom-last-stand"
     },
     "trocatudo95-lcom-feup-40a416b9861b": {
       "year": 2017,
@@ -5270,7 +6526,8 @@
         "confidence": "unknown",
         "url": "https://github.com/TrocaTudo95/LCOM-feup/commit/146281459e7a2bf8955d3cf2fc761a66e7a19b27",
         "detail": "The available game source first appears as a published/imported snapshot. Its publication date does not establish the academic year."
-      }
+      },
+      "slug": "snake-x3"
     },
     "th0rz05-mario-man-pokeball-edition-f03ef171d245": {
       "year": 2023,
@@ -5294,7 +6551,11 @@
         "url": "https://github.com/th0rz05/Mario-Man-Pokeball_Edition/commit/702f11de280247d69b563f2d4b12e08c71dbc8b4",
         "date": "2023-01-05",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-01-05), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Tiago Barbosa"
+      ],
+      "slug": "t-mario-man-pokeball-edition"
     },
     "akatatago-minix-pvz-57244aab806c": {
       "year": 2026,
@@ -5318,7 +6579,14 @@
         "url": "https://github.com/akaTatago/minix-pvz/commit/8a342eacd85503524fff43fdabfca8a660dfba47",
         "date": "2026-05-25",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-05-25), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Tiago Filipe",
+        "António Charrão",
+        "António Morais",
+        "Daria Mahdych"
+      ],
+      "slug": "adt-minix-pvz-garden-defense"
     },
     "carlosmgomes-feup-lcom-071ea38d0ddc": {
       "year": 2023,
@@ -5343,7 +6611,8 @@
         "url": "https://github.com/carlosmgomes/FEUP_LCOM/commit/961110d380e7a8e3e9f9f4634619ab1c19523ba5",
         "date": "2021-01-04",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-01-04), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "slug": "connect-four-disc-match"
     },
     "bsonnemberg-lcom-efb2528a22aa": {
       "year": 2024,
@@ -5366,7 +6635,14 @@
         "confidence": "explicit",
         "url": "https://github.com/BSonnemberg/LCOM/blob/d21d0fb034b126352af3e6d96853ef6498b5435b/proj/doc/report.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2023/24."
-      }
+      },
+      "authors": [
+        "Nuno Rios",
+        "Gonçalo Marques",
+        "Beatriz Sonnemberg",
+        "Tomás Teixeira"
+      ],
+      "slug": "bgnt-lcom-pool"
     },
     "sergiocarvalhais02-lcom-proj-dd52ff36c6c9": {
       "year": 2025,
@@ -5389,7 +6665,11 @@
         "url": "https://github.com/SergioCarvalhais02/LCOM-proj/commit/8e0101df0552f71fc572cb71b11df8d9ae7007c2",
         "date": "2025-02-23",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-02-23), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Sérgio Manuel de Sousa Carvalho e Boura Carvalhais"
+      ],
+      "slug": "s-whack-a-mole-classic-board"
     },
     "joao17junior-lcom-dr-minix-44fea6e4a768": {
       "year": 2025,
@@ -5412,7 +6692,14 @@
         "url": "https://github.com/Joao17Junior/LCOM-DR.MINIX/commit/e1d0f568f6d4e86df55e3430bec49d4784fc4427",
         "date": "2025-11-22",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-11-22), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Mário Pereira",
+        "Vasco Sá",
+        "João Júnior",
+        "Ana Santos"
+      ],
+      "slug": "ajmv-dr-minix-rhythm-tiles"
     },
     "ca-moes-lcom-81a206bc4200": {
       "year": 2020,
@@ -5437,7 +6724,12 @@
         "url": "https://github.com/Ca-moes/LCOM/commit/52f97fc978587772cf9f0df717ce4305e697d438",
         "date": "2020-02-01",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-02-01), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Dani",
+        "Diana Freitas"
+      ],
+      "slug": "d-type-racer-sentence-sprint"
     },
     "code-82579b17f238": {
       "year": 2015,
@@ -5462,7 +6754,12 @@
         "url": "https://github.com/miguel-botelho/LCOM/commit/539dabef1a07db9727085b0abb6d966802a6b1ae",
         "date": "2014-12-23",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2014-12-23), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "António Ramadas",
+        "Miguel Botelho"
+      ],
+      "slug": "am-artist-vs-guess"
     },
     "viperxyzzz-lcom-cae4f7a5e8b8": {
       "year": 2022,
@@ -5485,7 +6782,11 @@
         "url": "https://github.com/Viperxyzzz/LCOM/commit/98c2ef83eb826d1b25db7b54294b60f7fd466f1c",
         "date": "2021-01-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-01-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Pedro Nunes"
+      ],
+      "slug": "p-breakout-brick-chase"
     },
     "sergioestevao11-feup-lcom-dd3ae723635c": {
       "year": 2021,
@@ -5510,7 +6811,11 @@
         "date": "2021-11-24",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-11-24), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Sérgio Estêvão"
+      ],
+      "slug": "s-penguin-run"
     },
     "ims-up2021-feup-lcom-3eb52cd1f5fd": {
       "year": 2024,
@@ -5535,7 +6840,13 @@
         "url": "https://github.com/IMS-up2021/FEUP_LCOM/commit/6d5c51ace72c181b000a24e98864ff17b6731133",
         "date": "2024-06-02",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-06-02), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Ricardo Cardoso",
+        "Inês Soares",
+        "André Relva"
+      ],
+      "slug": "air-pong-mouse-and-arrows"
     },
     "gwealm-feup-lcom-a26f76ab7863": {
       "year": 2022,
@@ -5558,7 +6869,11 @@
         "confidence": "explicit",
         "url": "https://github.com/gwealm/FEUP-LCOM/blob/7ad8a4e97ced30e89c0db63daf1cc89fb4bc0ddb/README.md",
         "detail": "The pinned original course source explicitly names academic year 2021/22."
-      }
+      },
+      "authors": [
+        "Guilherme Almeida"
+      ],
+      "slug": "g-wordlcom"
     },
     "dmfrodrigues-feup-lcom-6cfdfb795cc1": {
       "year": 2020,
@@ -5582,7 +6897,12 @@
         "confidence": "explicit",
         "url": "https://github.com/dmfrodrigues/feup-lcom/blob/8bad219da386ce2ee944f8c0c1508f0a9a365b99/README.md",
         "detail": "The pinned original course source explicitly names academic year 2019/20."
-      }
+      },
+      "authors": [
+        "Diogo Miguel Ferreira Rodrigues",
+        "Telmo Alexandre Espirito Santo Baptista"
+      ],
+      "slug": "dt-labwars"
     },
     "carlosverissimo3001-feup-lcom-96aa414ad8f5": {
       "year": 2022,
@@ -5605,7 +6925,12 @@
         "confidence": "explicit",
         "url": "https://github.com/carlosverissimo3001/FEUP-LCOM/blob/137579fc46b37275ab5fb7b882bdac1d4a292cd4/README.md",
         "detail": "The pinned original course source explicitly names academic year 2020/21."
-      }
+      },
+      "authors": [
+        "Gabriel Martins",
+        "Carlos Veríssimo"
+      ],
+      "slug": "cg-covid-escape"
     },
     "dinissousa2003-lcom-feup-e0dd62c2139c": {
       "year": 2022,
@@ -5628,7 +6953,14 @@
         "confidence": "explicit",
         "url": "https://github.com/DinisSousa2003/LCOM-FEUP/blob/2659c0344dc37e96f16f7e88110c91eecd174d57/README.md",
         "detail": "The pinned original course source explicitly names academic year 2021/22."
-      }
+      },
+      "authors": [
+        "Bruna Marques",
+        "Dinis Sousa",
+        "Francisca Silva",
+        "João Malva"
+      ],
+      "slug": "bdfj-pong-powerup-rally"
     },
     "joaotrindade-lcom-c739a4ee9638": {
       "year": 2016,
@@ -5653,7 +6985,12 @@
         "url": "https://github.com/joaotrindade/LCOM/commit/43a6121af552507b9572ae2134d642acb642ed1d",
         "date": "2012-12-26",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2012-12-26), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Trindade",
+        "Luís Abreu"
+      ],
+      "slug": "jl-space-impact-horizontal-patrol"
     },
     "educorreia932-feup-lcom-dc2fce1fe789": {
       "year": 2020,
@@ -5677,7 +7014,12 @@
         "url": "https://github.com/Educorreia932/FEUP-LCOM/commit/4ca95947fb5d1745c913ec1f74c906c16fe14ade",
         "date": "2019-12-16",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-12-16), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Eduardo da Costa Correia",
+        "Tiago Duarte Silva"
+      ],
+      "slug": "et-watt-circuit-escape"
     },
     "codyphin-feup-lcom-445abbecf4ab": {
       "year": 2022,
@@ -5700,7 +7042,12 @@
         "confidence": "explicit",
         "url": "https://github.com/CoDyPhin/FEUP-LCOM/blob/4e1724bc78f81d8cdc2207b05366a2277b24ffa1/doc/Report.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2019/20."
-      }
+      },
+      "authors": [
+        "Carlos Daniel Rodrigues Lousada",
+        "Miguel Augusto Marques da Silva"
+      ],
+      "slug": "cm-minix-is-lava"
     },
     "rodolfof31-feup-lcom-89e4b0f732fe": {
       "year": 2025,
@@ -5724,7 +7071,8 @@
         "url": "https://github.com/RodolfoF31/FEUP_LCOM/commit/c975b1212bf489b155db101e85af8db151fbdac8",
         "date": "2025-05-17",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-17), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "slug": "typeracer-sentence-sprint"
     },
     "trabalho-9b22e2e17674": {
       "year": 2017,
@@ -5748,7 +7096,12 @@
         "url": "https://github.com/pedrofaria09/LCOM/commit/7d7e2bb4188297abbeae2bc9964e9c2c3ee30bf8",
         "date": "2017-02-21",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2017-02-21), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Luís Miguel Santos Monteiro Saraiva",
+        "Pedro Filipe Agrela Faria"
+      ],
+      "slug": "lp-penguin-obstacle-dash"
     },
     "gcmadureira-lcom-project-e370a3e66c94": {
       "year": 2026,
@@ -5773,7 +7126,13 @@
         "url": "https://github.com/GCMadureira/LCOM-Project/commit/647a3e9264a2bc4b321d0c7a35009e7e52a6c0ed",
         "date": "2025-05-08",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-05-08), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Gustavo Henrique Faria da Costa Ferreira de Madureira",
+        "João Medeiros Miranda",
+        "Tiago Mota Cunha"
+      ],
+      "slug": "gjt-last-survivor"
     },
     "franciscacerquinho-feup-lcom-b98581c0e984": {
       "year": 2017,
@@ -5797,7 +7156,12 @@
         "url": "https://github.com/FranciscaCerquinho/feup-LCOM/commit/1183012ded08def0ae662ca8271be1a70fc79df8",
         "date": "2017-03-21",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2017-03-21), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Diogo Mota Pinto",
+        "Francisca Cerquinho"
+      ],
+      "slug": "df-super-mario-pipe-runner"
     },
     "tiagobranquinho-lcom-bomberman-442cca0a617a": {
       "year": 2023,
@@ -5821,7 +7185,14 @@
         "url": "https://github.com/TiagoBranquinho/LCOM_Bomberman/commit/eab49f6ec2425a45c3a473906cb538f278ddf90c",
         "date": "2022-06-02",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-06-02), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Alexandre Correia",
+        "Duarte Lopes",
+        "Tiago Branquinho",
+        "João Sousa"
+      ],
+      "slug": "adjt-bomberman-remote-arena"
     },
     "nunomelocastro-feup-lcom-b8448d66f870": {
       "year": 2022,
@@ -5845,7 +7216,12 @@
         "url": "https://github.com/nunoMeloCastro/FEUP-LCOM/commit/4a0cc6a4afe5f6f261cce1bbf8a47d708397fdb3",
         "date": "2022-07-05",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-07-05), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Nuno Castro",
+        "Angela Cruz"
+      ],
+      "slug": "an-sudoku-number-grid"
     },
     "apilifogladif-lcom2324-project-74b3dccc4027": {
       "year": 2024,
@@ -5869,7 +7245,14 @@
         "confidence": "explicit",
         "url": "https://github.com/apilifogladif/LCOM2324_Project",
         "detail": "The original repository course name encodes consecutive academic years 2023/24."
-      }
+      },
+      "authors": [
+        "Francisco Afonso",
+        "Alexandre Ramos",
+        "Filipa Fidalgo",
+        "Leonor Couto"
+      ],
+      "slug": "afl-battleship-naval-tactics"
     },
     "manuelcralves-feup-lcom-3618095a9358": {
       "year": 2024,
@@ -5892,7 +7275,14 @@
         "url": "https://github.com/manuelcralves/FEUP-LCOM/commit/9393f2205a383f8007c59fd336ef481ccb75a922",
         "date": "2023-05-24",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-24), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Manuel Alves",
+        "Lara Cunha",
+        "Luís Alves",
+        "Ana Carneiro"
+      ],
+      "slug": "alm-candy-maze-ghost-trail"
     },
     "rfontao-feup-lcom-c3de80140d55": {
       "year": 2020,
@@ -5916,7 +7306,12 @@
         "confidence": "explicit",
         "url": "https://github.com/rfontao/FEUP-LCOM/blob/0ccfe55e49da1f3904d23c17492dcbc8bf8a14b6/proj/doc/LCOM_Relat.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2019/20."
-      }
+      },
+      "authors": [
+        "Ricardo Fontão",
+        "Davide Castro"
+      ],
+      "slug": "dr-auto-defense"
     },
     "pmscosta-ball-vs-ball-game-b0896eadaec3": {
       "year": 2018,
@@ -5940,7 +7335,12 @@
         "url": "https://github.com/pmscosta/Ball-vs-Ball-Game/blob/f0d29825813b629ccda3a25f652f3ead12de8d71/proj/src/time.h",
         "date": "2017-12-29",
         "detail": "Academic year inferred from a dated original game source header (2017-12-29), with the school year beginning in September."
-      }
+      },
+      "authors": [
+        "Pedro Costa",
+        "João Fidalgo"
+      ],
+      "slug": "jp-ball-vs-ball"
     },
     "ezspecial-lcom16-17-2fa9ece0d2fb": {
       "year": 2017,
@@ -5963,7 +7363,12 @@
         "url": "https://github.com/EZSPECIAL/LCOM16-17",
         "detail": "The original repository course name encodes consecutive academic years 2016/17."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Francisco Teixeira Lopes",
+        "Rui Miguel Oliveira"
+      ],
+      "slug": "fr-legend-of-lcom"
     },
     "amadeuppereira-lcom-feup-4f0db2dc6c7b": {
       "year": 2018,
@@ -5988,7 +7393,12 @@
         "url": "https://github.com/amadeuppereira/LCOM_FEUP/commit/4b37d6136405d60b8af036211a68360352a3e129",
         "date": "2018-02-28",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2018-02-28), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Alves",
+        "Amadeu Pereira"
+      ],
+      "slug": "aj-fugix"
     },
     "rendoir-feup-lcom-339d212e9914": {
       "year": 2019,
@@ -6012,7 +7422,12 @@
         "url": "https://github.com/rendoir/feup-lcom/commit/e0256565c45fff26b17cc88f74bbf9d3803cc985",
         "date": "2019-02-17",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-02-17), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Daniel Marques",
+        "João Almeida"
+      ],
+      "slug": "dj-stick-hero-bridge-builder"
     },
     "age-of-war-9cc8a2c1bc34": {
       "year": 2016,
@@ -6036,7 +7451,12 @@
         "url": "https://github.com/diogotorres97/LCOM-FEUP/blob/aec0ce17cc55e8a1f58b1e6e6a04514268fc3c8f/Age%20Of%20War/doc/Relatorio-LCOM.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2016/17."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Diogo Luís Rey Torres",
+        "Rui Emanuel Cabral de Almeida Quaresma"
+      ],
+      "slug": "dr-age-of-war-ancient-front"
     },
     "ptozin-2l-eic018-lcom-d288f3d883ce": {
       "year": 2024,
@@ -6060,7 +7480,12 @@
         "confidence": "explicit",
         "url": "https://github.com/Ptozin/2L.EIC018-LCOM/blob/fca79e09f8c2651dfaa7ff02a0bd26bdfe5a12f4/README.md",
         "detail": "The pinned original course source explicitly names academic year 2021/22."
-      }
+      },
+      "authors": [
+        "João Paulo Moreira Araújo",
+        "Henrique Silva"
+      ],
+      "slug": "hj-last-survivor-outpost"
     },
     "oxi-moron-escapethelab-lcom2324-c9af5cac662b": {
       "year": 2025,
@@ -6084,7 +7509,14 @@
         "url": "https://github.com/oxi-moron/EscapeTheLab_LCOM2324",
         "detail": "The original repository course name encodes consecutive academic years 2023/24."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Rafael Magalhães",
+        "Ricardo Oliveira",
+        "Tomas Esteves",
+        "Vitor Pereira"
+      ],
+      "slug": "rtv-escape-the-lab"
     },
     "code-891d77dca170": {
       "year": 2016,
@@ -6107,7 +7539,12 @@
         "url": "https://github.com/josealeixopc/LCOM-FEUP/commit/af2800cd6ed7eba19c28bd05c4ea0e56889ea240",
         "date": "2016-10-27",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2016-10-27), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "José Aleixo Cruz",
+        "Nuno Miguel Cardoso Freitas"
+      ],
+      "slug": "jn-daedalus-maze"
     },
     "pedro93-lcom-aef5fe19f228": {
       "year": 2014,
@@ -6131,7 +7568,11 @@
         "url": "https://github.com/pedro93/LCOM/commit/0cfd07b8cd7ec9741a95a4670b99d97c80e854b8",
         "date": "2014-12-05",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2014-12-05), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Pedro Silva"
+      ],
+      "slug": "p-commodore-battleship"
     },
     "goncaloacteixeira-feup-lcom-a992eaca46aa": {
       "year": 2019,
@@ -6154,7 +7595,12 @@
         "confidence": "explicit",
         "url": "https://github.com/goncaloacteixeira/feup-lcom/blob/3d1647afb7871f5e7617f011b3553d1366de97d2/README.md",
         "detail": "The pinned original course source explicitly names academic year 2019/20."
-      }
+      },
+      "authors": [
+        "Gonçalo André Carneiro Teixeira",
+        "Tiago André Macedo Pinto"
+      ],
+      "slug": "gt-tetris-lcom"
     },
     "leonormsousa-lcom-1819-7c210c5b0789": {
       "year": 2019,
@@ -6176,7 +7622,12 @@
         "confidence": "explicit",
         "url": "https://github.com/leonormsousa/LCOM_1819",
         "detail": "The original repository course name encodes consecutive academic years 2018/19."
-      }
+      },
+      "authors": [
+        "Leonor Sousa",
+        "Sílvia Rocha"
+      ],
+      "slug": "ls-whack-a-trump"
     },
     "joaooliveira-11-feup-lcom-eb21012e65a0": {
       "year": 2023,
@@ -6201,7 +7652,14 @@
         "url": "https://github.com/joaooliveira-11/feup-lcom/commit/24318e96724c511be290a2945a91d7ab6d981775",
         "date": "2023-05-06",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-06), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Oliveira",
+        "Francisca Guimarães",
+        "Inês Oliveira",
+        "Pedro Magalhães"
+      ],
+      "slug": "fijp-fireboy-watergirl-elemental-labyrinth"
     },
     "beemargarida-feup-lcom-5480a4494697": {
       "year": 2017,
@@ -6225,7 +7683,12 @@
         "confidence": "inferred",
         "url": "https://github.com/BeeMargarida/FEUP-LCOM/blob/e1b183d5d3dafa38797f54b3d0d1a108d4bbc355/proj/doc/relatorio.pdf#page=1",
         "detail": "Academic year inferred from the original project report cover date or development period; the school year begins in September."
-      }
+      },
+      "authors": [
+        "Ana Silva",
+        "Danny Soares"
+      ],
+      "slug": "ad-pongx"
     },
     "nunottlopes-feup-lcom-103c6bb1ebc7": {
       "year": 2017,
@@ -6247,7 +7710,12 @@
         "confidence": "explicit",
         "url": "https://github.com/nunottlopes/feup-lcom/blob/23b691558b2ae4bcdb76bcd2315ee6e134d8a061/README.md",
         "detail": "The pinned original course source explicitly names academic year 2017/18."
-      }
+      },
+      "authors": [
+        "Nuno Tiago Lopes",
+        "Diogo Lousa Ribeiro"
+      ],
+      "slug": "dn-shoot-monsters"
     },
     "tiagoogomess-lcom-1920-81ea76c163f5": {
       "year": 2020,
@@ -6270,7 +7738,12 @@
         "confidence": "explicit",
         "url": "https://github.com/TiagooGomess/LCOM_1920",
         "detail": "The original repository course name encodes consecutive academic years 2019/20."
-      }
+      },
+      "authors": [
+        "Ricardo Carvalho",
+        "Tiago Gomes"
+      ],
+      "slug": "rt-falling-words"
     },
     "daniel-s-goncalves-lcom-feup-9abd1f6f744d": {
       "year": 2021,
@@ -6295,7 +7768,12 @@
         "url": "https://github.com/daniel-s-goncalves/LCOM-FEUP/commit/00078772ad62fba6bb75de907215f472b74e115a",
         "date": "2021-03-30",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2021-03-30), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Daniel da Silva Gonçalves",
+        "Guilherme Candicella Calassi"
+      ],
+      "slug": "dg-connect-four-neon"
     },
     "jpmmaia-lcom-7c1274da30e2": {
       "year": 2016,
@@ -6319,7 +7797,12 @@
         "url": "https://github.com/JPMMaia/lcom/commit/b2f4a09136309f32b69b995498c21a63e176b654",
         "date": "2015-04-25",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2015-04-25), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Maia",
+        "José Oliveira"
+      ],
+      "slug": "j-walls-split-the-field"
     },
     "catarinaopires-lcom-20-21-05e58c9827c1": {
       "year": 2021,
@@ -6342,7 +7825,12 @@
         "url": "https://github.com/catarinaopires/lcom_20_21/blob/39c59020e6c38123a1785f7492f4a516d9afa49e/README.md",
         "detail": "The pinned original course source explicitly names academic year 2020/21."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Catarina O. Pires",
+        "José E. F. Costa"
+      ],
+      "slug": "cj-humanoid"
     },
     "pedropf1234-tower-engineering-lcom-23-24-737fe5c310dc": {
       "year": 2024,
@@ -6365,7 +7853,14 @@
         "confidence": "explicit",
         "url": "https://github.com/PedroPF1234/Tower-Engineering-LCOM-23-24",
         "detail": "The original repository course name encodes consecutive academic years 2023/24."
-      }
+      },
+      "authors": [
+        "Pedro Fonseca",
+        "José Quintas",
+        "Maria Laranjeira",
+        "Manuel Silva"
+      ],
+      "slug": "jmp-tower-engineering"
     },
     "anaines14-project-lcom-6a7b599fc84f": {
       "year": 2019,
@@ -6389,7 +7884,12 @@
         "url": "https://github.com/anaines14/Project_LCOM/commit/284c483925d217da2eff51eb10ecadaa0968bcb8",
         "date": "2020-01-09",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-01-09), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Ana Inês Oliveira Barros",
+        "João Alexandre Lobo Cardoso"
+      ],
+      "slug": "aj-desktop-defender"
     },
     "eloymtm-lcom-da9f9e542e70": {
       "year": 2025,
@@ -6414,7 +7914,14 @@
         "url": "https://github.com/Eloymtm/LCOM/commit/2e32dc06241c4ff5d17dd792cbbeb0905f745aa8",
         "date": "2025-02-25",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2025-02-25), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Pedro Pedro",
+        "Eduardo Santos",
+        "Martim Moniz",
+        "Ana Baptista"
+      ],
+      "slug": "aemp-batalha-naval-fleet-duel"
     },
     "diogoyaguas-feup-lcom-d7f0289e903c": {
       "year": 2018,
@@ -6438,7 +7945,12 @@
         "url": "https://github.com/diogoyaguas/FEUP-LCOM/commit/395be50b3c02e9b6a67d6cb60f0165f6215af5de",
         "date": "2018-01-03",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2018-01-03), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Diogo Filipe da Silva Yaguas",
+        "Maria João Senra Viana"
+      ],
+      "slug": "dm-jumping-peanut"
     },
     "pedrocarmopereira-lcom-feup-09ffc7a01a3b": {
       "year": 2020,
@@ -6463,7 +7975,12 @@
         "url": "https://github.com/PedroCarmoPereira/LCOM-FEUP/commit/739cee330a657f889e7e0546652e68dd6c22c5de",
         "date": "2020-02-25",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-02-25), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Carlos Miguel Soeiro",
+        "Pedro Carmo Pereira"
+      ],
+      "slug": "cp-star-fighter-2d"
     },
     "pedrorc12-lcom-proj-c876be75c734": {
       "year": 2023,
@@ -6487,7 +8004,11 @@
         "url": "https://github.com/pedrorc12/LCOM-proj/commit/f968c02a72db6671a55a54d307c3ea3f272ffda5",
         "date": "2023-05-04",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-05-04), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Pedro Rezende de Carvalho"
+      ],
+      "slug": "p-doodle-jump-platform-climb"
     },
     "code-00e0c8512ff4": {
       "year": 2018,
@@ -6510,7 +8031,8 @@
         "url": "https://github.com/mbcsm/FEUP_LCOM/commit/45f36caac22fe94e4a6d8dc19373c701b73b907c",
         "date": "2019-01-07",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-01-07), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "slug": "pullball"
     },
     "gneves95-lcom1819-t7g10-f2ff58fc2e1d": {
       "year": 2019,
@@ -6534,7 +8056,8 @@
         "confidence": "explicit",
         "url": "https://github.com/GNeves95/lcom1819-t7g10",
         "detail": "The original repository course name encodes consecutive academic years 2018/19."
-      }
+      },
+      "slug": "souto-zombie-escape"
     },
     "tiagorspires-lcom-tetris-2a64ca42a220": {
       "year": 2024,
@@ -6558,7 +8081,14 @@
         "url": "https://github.com/tiagorspires/LCOM-Tetris/commit/a19810adaf6ad22827079eb6734709da8e363ac0",
         "date": "2024-05-23",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-05-23), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Simão Rodrigues",
+        "Eduardo Machado",
+        "Tiago Pires",
+        "Gonçalo Sousa"
+      ],
+      "slug": "egst-tetris-block-workshop"
     },
     "miguelazevedolopes-feup-lcom-b39f3ec68550": {
       "year": 2020,
@@ -6583,7 +8113,11 @@
         "url": "https://github.com/miguelazevedolopes/FEUP-LCOM/commit/262cf096204b7ebcc6c0641acfac4f2ea53548fd",
         "date": "2020-12-07",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-12-07), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Miguel Lopes"
+      ],
+      "slug": "m-pong-five-points"
     },
     "lessthelonely-simonsaysvs-2bf2f7f084d9": {
       "year": 2022,
@@ -6608,7 +8142,13 @@
         "url": "https://github.com/lessthelonely/SimonSaysVs/commit/3ddd2415e68848904ea419a1a96fbcb6d72234ec",
         "date": "2022-01-04",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-01-04), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Henrique Sousa",
+        "Mateus Silva",
+        "Melissa Silva"
+      ],
+      "slug": "hm-simon-says-vs-memory-duel"
     },
     "guilherme-soares-sequeira-feup-lcom-proj-64d10fcaf09f": {
       "year": 2024,
@@ -6631,7 +8171,14 @@
         "url": "https://github.com/Guilherme-Soares-Sequeira/feup-lcom-proj/commit/9cc6b8e48e4e4c87d3ba3a5243906105c3a9ff8f",
         "date": "2022-05-31",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-05-31), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Guilherme Sequeira",
+        "João Pereira",
+        "Nuno Pereira",
+        "Pedro Ramalho"
+      ],
+      "slug": "gjnp-minix-paint-studio"
     },
     "jfcaraujo-lcom-98e7326f00fb": {
       "year": 2019,
@@ -6656,7 +8203,11 @@
         "url": "https://github.com/jfcaraujo/LCOM/commit/5b839fc332274d90e1fa9a70bfe4a04005508cb0",
         "date": "2019-03-19",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2019-03-19), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "João Filipe Araújo"
+      ],
+      "slug": "j-asteroid-watch"
     },
     "davidrocha9-feup-lcom-6ec407d2e49b": {
       "year": 2020,
@@ -6681,7 +8232,11 @@
         "url": "https://github.com/davidrocha9/FEUP-LCOM/commit/91115cc908870e8ce0781068383945944bdd9fec",
         "date": "2020-01-06",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-01-06), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "David Rocha"
+      ],
+      "slug": "d-minixrun20"
     },
     "rush-b8d1c1829af7": {
       "year": 2018,
@@ -6705,7 +8260,12 @@
         "url": "https://github.com/reeckset/LCOM_Minix_2017/commit/422068bc25d6f50aceb2341e9381af4f4194e6e6",
         "date": "2018-06-22",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2018-06-22), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Ângelo Teixeira",
+        "Henrique Lima"
+      ],
+      "slug": "ah-rush-ambulance-run"
     },
     "anatdiass-lcom-1920-8f53d6145ab3": {
       "year": 2020,
@@ -6730,7 +8290,11 @@
         "confidence": "explicit",
         "url": "https://github.com/anatdiass/LCOM_1920",
         "detail": "The original repository course name encodes consecutive academic years 2019/20."
-      }
+      },
+      "authors": [
+        "Ana Teresa"
+      ],
+      "slug": "a-rooster-game"
     },
     "lantaros-lcom-9d406ea50aa5": {
       "year": 2017,
@@ -6753,7 +8317,12 @@
         "confidence": "explicit",
         "url": "https://github.com/Lantaros/LCOM/blob/56d2db8f00718f876097b67e0c2e24270ee230ed/proj/doc/LCOM_Report.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2016/17."
-      }
+      },
+      "authors": [
+        "Rui André Rebolo Fernandes Leixo",
+        "Nuno Manuel Ferreira Corte-Real"
+      ],
+      "slug": "nr-plunder"
     },
     "brunogomes30-lcom-5bba0d4baf36": {
       "year": 2022,
@@ -6779,7 +8348,12 @@
         "date": "2022-03-31",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2022-03-31), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Pedro Pinheiro",
+        "Bruno Gomes"
+      ],
+      "slug": "bp-super-cold"
     },
     "ban08-lcom-minix-driver-game-436ce93a3cb9": {
       "year": 2026,
@@ -6802,7 +8376,8 @@
         "confidence": "explicit",
         "url": "https://github.com/ban08/lcom-minix-driver-game/blob/145c4e319fde20af8382764d9d32372477a798d0/README.md",
         "detail": "The pinned original course source explicitly names academic year 2024/25."
-      }
+      },
+      "slug": "dino-driver-run"
     },
     "pchmelo-lcom-projeto-34ecac5731f6": {
       "year": 2024,
@@ -6826,7 +8401,13 @@
         "url": "https://github.com/pchmelo/LCOM_Projeto/commit/82986b7e53d853a610f8a4f10b6fd4a0e7de41bf",
         "date": "2024-07-02",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2024-07-02), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Rafael Cunha",
+        "Vasco Melo",
+        "Gabriel Carvalho"
+      ],
+      "slug": "grv-suecalandia"
     },
     "bruno02960-lcom-8451d0bec35b": {
       "year": 2017,
@@ -6850,7 +8431,12 @@
         "url": "https://github.com/bruno02960/LCOM/blob/c61cdc9acd448b3bdaa9e4dec87c06e1577840a2/proj/doc/Relatorio%20LCOM.pdf",
         "date": "2017-01-02",
         "detail": "Academic year inferred from the author-generated original project report CreationDate metadata. This dates the report, rather than the later GitHub repository publication, and remains an estimate."
-      }
+      },
+      "authors": [
+        "Bruno Pinto",
+        "Vitor Magalhaes"
+      ],
+      "slug": "bv-space-invaders-star-patrol"
     },
     "vosferatu-lcom-cfb299aa93a8": {
       "year": 2017,
@@ -6875,7 +8461,11 @@
         "confidence": "explicit",
         "url": "https://github.com/vosferatu/LCOM/blob/8785d2087d49967283e16a3d91d680916de1cf07/proj/doc/relatorioLCOM.pdf#page=2",
         "detail": "The pinned original project report explicitly names academic year 2016/17. The report repeatedly labels the course 2016/17, although its cover date says January2016. The explicit course-year label takes precedence over that inconsistent date."
-      }
+      },
+      "authors": [
+        "Joao Mendes"
+      ],
+      "slug": "j-duelnix"
     },
     "marisadaniela-lcom-6aa82cf0a528": {
       "year": 2017,
@@ -6898,7 +8488,8 @@
         "url": "https://github.com/marisaDaniela/LCOM/commit/9cf62e9f4dddea23943bd3b332fe377874d98a14",
         "date": "2017-12-21",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2017-12-21), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "slug": "snake-fruit-trail"
     },
     "luisrelvas-projectlcom-63d8249d84f8": {
       "year": 2023,
@@ -6922,7 +8513,14 @@
         "url": "https://github.com/LuisRelvas/ProjectLCOM/blob/6f5369959789cf32a773015fcd4b935fe79c5d3f/debug/output.txt",
         "date": "2023-05-28",
         "detail": "Academic year inferred from the original game development run log recorded May2023. A guest-clock timestamp is supporting evidence, not an explicit academic-year statement."
-      }
+      },
+      "authors": [
+        "Afonso Neves",
+        "Francisco Serra",
+        "Luis Relvas",
+        "Diogo Silva"
+      ],
+      "slug": "adfl-el-memory"
     },
     "game-6ernardo-feup-lcom-1c739142503b": {
       "year": 2023,
@@ -6945,7 +8543,13 @@
         "url": "https://github.com/6ernardo/feup-LCOM/commit/7c691dc6b8f5bd744ef79c4e386f4b0eedfde474",
         "date": "2023-06-17",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-06-17), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "André Tiago Moreira Soares da Costa e Silva",
+        "Bernardo Ferreira Campos",
+        "João Tomás Pinho Cardinal Teixeira"
+      ],
+      "slug": "abj-vs-draw"
     },
     "itsdrumond-feup-lcom-52d7ff596b90": {
       "year": 2023,
@@ -6971,7 +8575,13 @@
         "url": "https://github.com/ItsDrumond/FEUP-LCOM/commit/42a7a537dafc3914185a641395d58ee1cd414ab2",
         "date": "2023-07-09",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2023-07-09), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Andreia Silva",
+        "Bruno Drumond",
+        "Tomás Ramos"
+      ],
+      "slug": "abt-sky-attack"
     },
     "jfernandes2612-feup-lcom-2021-7449e1cecdc9": {
       "year": 2022,
@@ -6994,7 +8604,12 @@
         "confidence": "inferred",
         "url": "https://github.com/JFernandes2612/FEUP-LCOM-2021/blob/a265187e46c66748c4001fa9f48650f65f01bf75/proj/doc/lcom_proj.pdf#page=1",
         "detail": "Academic year inferred from the original project report cover date or development period; the school year begins in September."
-      }
+      },
+      "authors": [
+        "Joel Fernandes",
+        "João Baltazar"
+      ],
+      "slug": "j-lowlife-champions-of-mosscrest"
     },
     "joaodossena-mieic-lcom-683867b0521a": {
       "year": 2020,
@@ -7017,7 +8632,12 @@
         "confidence": "explicit",
         "url": "https://github.com/joaoDossena/MIEIC-LCOM/blob/3ee2694079d56cdf20f8dd461e3c374bd638750a/README.md",
         "detail": "The pinned original course source explicitly names academic year 2019/20."
-      }
+      },
+      "authors": [
+        "João Dossena",
+        "Diogo"
+      ],
+      "slug": "dj-jogo-da-memoria-com-cartas"
     },
     "scr-29ce9d194fef": {
       "year": 2019,
@@ -7042,7 +8662,12 @@
         "url": "https://github.com/Jumaruba/FEUP-LCOM20/commit/bc583682a19be2c42257c95e3051bac8a214e68a",
         "date": "2020-01-08",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2020-01-08), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Allan Borges de Sousa",
+        "Juliane de Lima Marubayashi"
+      ],
+      "slug": "aj-bowcannon"
     },
     "diogoferreira2004-snake-04eb50f6d3a7": {
       "year": 2025,
@@ -7064,7 +8689,14 @@
         "confidence": "explicit",
         "url": "https://github.com/DiogoFerreira2004/Snake/blob/8ea921392622e962a25ee310a7ce8e735edf9a55/README.md",
         "detail": "The pinned original course source explicitly names academic year 2024/25."
-      }
+      },
+      "authors": [
+        "Diogo Ferreira",
+        "Diogo Pinheiro",
+        "Diogo Silva",
+        "Luísa Monteiro"
+      ],
+      "slug": "dl-snake-four-modes"
     },
     "guilhermescp-football-simulator-lcom-3a4a019788f1": {
       "year": 2015,
@@ -7087,7 +8719,12 @@
         "confidence": "explicit",
         "url": "https://github.com/GuilhermeSCP/football-simulator-lcom/blob/0b65e30f9842274bfb23c1e0d19902a8d8ad7e02/LCOM1112-T4G2.pdf#page=2",
         "detail": "The pinned original project report explicitly names academic year 2011/12."
-      }
+      },
+      "authors": [
+        "Daniel dos Santos Teixeira",
+        "Luís Guilherme Ribeiro de Castro Silva Martins"
+      ],
+      "slug": "dl-football-simulator"
     },
     "laraabastoss-feup-computerlaboratory-da2a190fd610": {
       "year": 2023,
@@ -7113,7 +8750,14 @@
         "date": "2023-06-17",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit containing the original game logic (June2023), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
       },
-      "featuredPool": true
+      "featuredPool": true,
+      "authors": [
+        "Bruno Miguel de Siuéia Duvane",
+        "Carlos Manuel da Silva Costa",
+        "Lara Santos Bastos",
+        "Rita Gonçalves Pereira"
+      ],
+      "slug": "bclr-fireboy-watergirl"
     },
     "xouteiro-typeracer-in-c-0d23c84d3e84": {
       "year": 2024,
@@ -7137,7 +8781,14 @@
         "url": "https://github.com/Xouteiro/TypeRacer-in-C/commit/e56af1ab04f6f7ca9596910038a55a7af9e02136",
         "date": "2023-05-26",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C unit (2023-05-26), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "Guilherme Coutinho",
+        "Xavier Outeiro",
+        "Rui Carvalho",
+        "Ana Almeida"
+      ],
+      "slug": "agrx-typo-racer"
     },
     "rafaelnteixeira-minesweeperminix-d53469a217bb": {
       "year": 2023,
@@ -7160,7 +8811,14 @@
         "confidence": "unknown",
         "url": "https://github.com/RafaelNTeixeira/MinesweeperMINIX/blob/684f60ac1c03fa6e047181705e7f8d81df9b1985/proj/doc/Relat%C3%B3rio%20LCom.pdf",
         "detail": "The pinned original report has no academic year or dated cover. Available source history begins with an October2023 publication snapshot, which does not establish the coursework year."
-      }
+      },
+      "authors": [
+        "Eduardo Oliveira",
+        "João Sobral",
+        "João Costa",
+        "Rafael Teixeira"
+      ],
+      "slug": "ejr-minesweeper-grid-challenge"
     },
     "jfslopes-racemania-b07a0ffb3141": {
       "year": 2025,
@@ -7183,7 +8841,14 @@
         "confidence": "explicit",
         "url": "https://github.com/JFSLopes/Racemania/blob/8a726be7dd53c043b45ebff1f23af2543707cbcb/proj/doc/T03G6-Report.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2023/24."
-      }
+      },
+      "authors": [
+        "Ana Ramos",
+        "José Lopes",
+        "Mariana Pereira",
+        "Mário Araújo"
+      ],
+      "slug": "ajm-racemania"
     },
     "gcandal-minixasteroid-37e4fe9091d9": {
       "year": 2013,
@@ -7208,7 +8873,12 @@
         "url": "https://github.com/gcandal/minixasteroid/blob/4d9efd7af34abca5294c3967bfe0e87217c24c32/doc/LCOM-T05G03.pdf#page=1",
         "date": "2012-11-22",
         "detail": "Academic year inferred from the original project specification cover date (2012-11-22), with the school year beginning in September."
-      }
+      },
+      "authors": [
+        "Ana Isabel Neves Alves de Sousa",
+        "Gabriel Cardoso Candal"
+      ],
+      "slug": "ag-minix-asteroids"
     },
     "projeto-70273b8bf919": {
       "year": 2018,
@@ -7232,7 +8902,12 @@
         "url": "https://github.com/rpedro10/MinixGame/blob/684d731ef622e46decbe428498d1bed82c474fa7/LCOM/Untitled%20Folder/LCOM-report.pdf#page=1",
         "date": "2018-01-02",
         "detail": "Academic year inferred from the original project report cover date (2018-01-02), with the school year beginning in September."
-      }
+      },
+      "authors": [
+        "Rui Araujo",
+        "Pedro Franco"
+      ],
+      "slug": "pr-super-minix"
     },
     "jlcrodrigues-lc-typer-1a5cfcb83878": {
       "year": 2022,
@@ -7255,7 +8930,14 @@
         "confidence": "explicit",
         "url": "https://github.com/jlcrodrigues/lc-typer/blob/e7980414004d794b82a7749081d4160750141663/proj/doc/report.pdf#page=1",
         "detail": "The pinned original project report explicitly names academic year 2021/22."
-      }
+      },
+      "authors": [
+        "André Barbosa",
+        "Guilherme Almeida",
+        "José Rodrigues",
+        "João Félix"
+      ],
+      "slug": "agj-lc-typer"
     },
     "coutinho-david-drivers-c1dd87c242d9": {
       "tags": [
@@ -7269,7 +8951,14 @@
         "url": "https://github.com/Coutinho-David/Drivers/commit/d9c8de3b6a6a5a1d38d25407533fcbc8c5b2e49e",
         "date": "2025-04-11",
         "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C unit (2025-04-11), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      }
+      },
+      "authors": [
+        "André Martim Morais Pinho",
+        "Carlos David Martins Coutinho",
+        "José Pedro Afonso Martins",
+        "Miguel Freitas de Oliveira"
+      ],
+      "slug": "acjm-blackjack-table"
     },
     "lcom-bfd1a0adf303": {
       "tags": [
@@ -7285,7 +8974,14 @@
         "url": "https://github.com/Litone11/LEIC-FEUP/blob/c09dd25ef1e2afd36082c496b015b5fdb8fe24ad/2nd_year/LCOM/proj/src/game/game.h#L11",
         "date": "2025-05-30",
         "detail": "Academic year inferred from the original game header dated May2025, rather than the later whole-degree repository publication. The school year begins in September."
-      }
+      },
+      "authors": [
+        "Luís Martins",
+        "Henrique Gonçalves",
+        "Bárbara Ribeiro",
+        "Tomás Silva"
+      ],
+      "slug": "bhlt-asteroids-meteor-shooter"
     }
   },
   "taxonomy": [

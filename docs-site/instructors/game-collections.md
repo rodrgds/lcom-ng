@@ -146,6 +146,15 @@ IDs from that catalog.
   game. `favicon` is a PNG or SVG inside the collection folder.
 - Gallery entries are arrays of up to 12 relative WebP paths. The exporter
   copies them under content hashes and loads them when a tile expands.
+- `authors` lists the participants' first names in alphabetical order, and only
+  when evidence supports them: a local README, an upstream report, a source
+  header, or a profile name for a single contributor. Never derive a name from a
+  username.
+- `slug` is the game's fixed share address. `sdk/collection/share.py` derives it
+  from those initials and the game name, such as `afg-ninjix`, collapsing
+  repeated letters, and uses the name alone when no authors are evidenced.
+  Validation rejects duplicates, names that do not match the exported catalog,
+  and slugs over 64 characters or outside `^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$`.
 
 The Arcade shows plain labels, keeps inference details in tooltips, and omits
 unknown years. Repository creation timestamps remain separate provenance with
@@ -178,6 +187,14 @@ The upper-right button toggles fullscreen.
 
 **Games**, browser history, a normal game exit, and **Shift+Escape** return to
 the library. After mouse capture, a centered shortcut hint appears briefly.
+
+The **Share** button copies the game's clean address,
+`https://<host>/share/<slug>`, without the library hash. Touch layouts keep that
+corner for the game's own controls and omit it. Opening one of those
+links starts that game directly on a plain background, with no side
+suggestions, and its **Games** button and normal exit return to the library.
+The hosting Worker serves that route with the game's title, description and
+preview, so the address is suitable for a résumé or a message.
 
 Android runs each game in a separate native process. **Games**, Android Back,
 normal game exit, and a crash return to the launcher. Relaunching starts fresh

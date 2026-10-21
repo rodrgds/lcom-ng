@@ -10,6 +10,27 @@ import urllib.error
 import urllib.request
 
 
+def check_share_pages(opener, url, source):
+    """A shared address must carry its own game metadata and root-relative assets."""
+    catalog = json.loads((source / "collection.json").read_text())
+    games = [game for game in catalog.get("games", []) if game.get("slug")]
+    assert games, "no slug in the exported catalog"
+    for game in (games[0], games[len(games) // 2]):
+        share = url.rstrip("/") + "/share/" + game["slug"]
+        request = urllib.request.Request(share, headers={"Accept-Encoding": "identity"})
+        with opener.open(request, timeout=60) as response:
+            assert response.headers.get_content_type() == "text/html", (share, response.headers.get_content_type())
+            assert "max-age" in response.headers.get("Cache-Control", ""), (share, response.headers.get("Cache-Control"))
+            html = response.read().decode()
+        assert '<base href="/">' in html, share
+        assert f'<link rel="canonical" href="{share}">' in html, share
+        assert f'Play {game["name"]}' in html, share
+        assert 'property="og:title"' in html, share
+    unknown = url.rstrip("/") + "/share/not-a-real-slug"
+    with opener.open(urllib.request.Request(unknown, headers={"Accept-Encoding": "identity"}), timeout=60) as response:
+        assert response.status == 200 and '<base href="/">' in response.read().decode(), unknown
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--url", required=True)
@@ -72,6 +93,7 @@ def main():
                     body = response.read()
                     decoded = gzip.decompress(body) if response.headers.get("Content-Encoding") == "gzip" else body
                     assert hashlib.sha256(decoded).hexdigest() == expected
+    check_share_pages(opener, args.url, args.source)
     print(json.dumps({"modules": len(modules), "dataFiles": len(data_files), "checks": results}, indent=2))
 
 

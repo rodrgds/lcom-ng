@@ -12,6 +12,7 @@ from unittest.mock import patch
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'sdk'))
 from collection import manifest
+from collection import share
 from collection import web
 
 
@@ -93,7 +94,7 @@ class CollectionManifest(unittest.TestCase):
         identifier=entries[0]['id']
         image=base64.b64decode('UklGRh4AAABXRUJQVlA4TBEAAAAvAUAAAAdQwGIUu/+BiOh/AAA=')
         (self.collection/'capture.webp').write_bytes(image)
-        (self.collection/'metadata.json').write_text(json.dumps({'version':1,'taxonomy':[{'id':'snake','label':'Snake','facet':'genre'}],'games':{identifier:{'tags':['snake'],'academicYear':'2023/24','academicYearSource':{'kind':'readme','confidence':'explicit','detail':'Original README names the 2023/24 class.'},'year':2024,'yearLabel':'2024','yearSource':{'kind':'repository','url':'https://github.com/example/game','createdAt':'2024-05-12T00:00:00Z','detail':'GitHub repository creation date'},'featured':True,'featuredPool':True,'repository':'https://github.com/example/game'}}}))
+        (self.collection/'metadata.json').write_text(json.dumps({'version':1,'taxonomy':[{'id':'snake','label':'Snake','facet':'genre'}],'games':{identifier:{'tags':['snake'],'slug':'aa-same-title','authors':['Ana Alves','André Antunes'],'academicYear':'2023/24','academicYearSource':{'kind':'readme','confidence':'explicit','detail':'Original README names the 2023/24 class.'},'year':2024,'yearLabel':'2024','yearSource':{'kind':'repository','url':'https://github.com/example/game','createdAt':'2024-05-12T00:00:00Z','detail':'GitHub repository creation date'},'featured':True,'featuredPool':True,'repository':'https://github.com/example/game'}}}))
         (self.collection/'gallery.json').write_text(json.dumps({'version':1,'games':{identifier:['capture.webp']}}))
         favicon=b'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10"><path d="M0 0h10v10H0z"/></svg>'
         (self.collection/'favicon.svg').write_bytes(favicon)
@@ -108,6 +109,7 @@ class CollectionManifest(unittest.TestCase):
         self.assertEqual((game['year'],game['yearLabel'],game['yearSource']['kind'],game['featured']),(2024,'2024','repository',True))
         self.assertEqual(game['repository'],'https://github.com/example/game')
         self.assertEqual((game['tags'],game['academicYear']),(['snake'],'2023/24'))
+        self.assertEqual((game['slug'],game['authors']),('aa-same-title',['Ana Alves','André Antunes']))
         self.assertEqual(json.loads((output/'collection.json').read_text())['taxonomy'][0]['label'],'Snake')
         self.assertEqual((output/'favicon.svg').read_bytes(),favicon)
         self.assertIn('href="favicon.svg', (output/'index.html').read_text())
@@ -139,6 +141,11 @@ class CollectionManifest(unittest.TestCase):
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{'unknown':{'year':2025}}},None),
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'year':True}}},None),
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'featured':'yes'}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'slug':'Class Game'}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'slug':'9leading-digit'}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'authors':[]}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'authors':['Ana Alves',42]}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{entry['id']:{'slug':'same-slug'} for entry in entries}},None),
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{entry['id']:{'unsupported':True} for entry in entries}},None)]
         for sidecar,metadata,gallery in cases:
             with self.subTest(sidecar=sidecar,metadata=metadata,gallery=gallery):
@@ -173,6 +180,50 @@ class CollectionManifest(unittest.TestCase):
             self.assertNotEqual(first,(output/'index.html').read_text())
             self.assertNotEqual(first_module,(output/'launcher.js').read_text())
             self.assertEqual((output/'widget.js').read_text(),"export const color='red';")
+
+
+class ShareSlugDerivation(unittest.TestCase):
+    """Initials come from evidenced first names, and names stay URL-safe."""
+
+    def test_slugs_combine_sorted_initials_with_a_normalized_name(self):
+        cases = [([['Ana Alves', 'Filipe Faria', 'Gonçalo Gomes'], 'Ninjix'], 'afg-ninjix'),
+                 ([['José Santos', 'Luís Du', 'Madalena Ye', 'Rodrigo Moucho'], 'Bamboozlers'], 'jlmr-bamboozlers'),
+                 ([['Rui Ribeiro', 'Rita Reis'], 'Tetris'], 'r-tetris'),
+                 ([[], 'Plants vs. Zombies'], 'plants-vs-zombies'),
+                 ([['Ana Alves'], '4 in a row'], 'a-game-4-in-a-row')]
+        for (authors, name), slug in cases:
+            with self.subTest(authors=authors, name=name):
+                self.assertEqual(share.share_slug(authors, name), slug)
+                self.assertRegex(slug, share.SHARE_SLUG)
+
+    def test_long_names_leave_room_for_their_initials(self):
+        slug = share.share_slug(['Ana Alves', 'Bruno Braga'], 'x' * 80)
+        self.assertLessEqual(len(slug), share.MAX_SLUG_LENGTH)
+        self.assertTrue(slug.startswith('ab-'))
+
+    def test_collisions_gain_deterministic_numeric_suffixes(self):
+        assigned = share.assign_slugs([{'id': 'b', 'name': 'Snake', 'authors': []},
+                                       {'id': 'a', 'name': 'Snake', 'authors': []}])
+        self.assertEqual(sorted(assigned.values()), ['snake', 'snake-2'])
+        self.assertEqual(assigned['a'], 'snake')
+
+
+class ArcadeShareSlugs(unittest.TestCase):
+    """Published share addresses stay derivable from the credited authors."""
+
+    def test_every_arcade_game_publishes_its_derived_share_slug(self):
+        collection = ROOT / 'collections/arcade'
+        entries = manifest.load(collection)['entries']
+        metadata = json.loads((collection / 'game-metadata.json').read_text())['games']
+        games = [{'id': entry['id'], 'name': entry['name'],
+                  'authors': metadata.get(entry['id'], {}).get('authors', [])} for entry in entries]
+        self.assertEqual(len(games), len(entries))
+        missing = [game['id'] for game in games if 'slug' not in metadata.get(game['id'], {})]
+        self.assertFalse(missing, f'Arcade games without a share slug: {missing[:5]}')
+        for identifier, slug in share.assign_slugs(games).items():
+            with self.subTest(game=identifier):
+                self.assertEqual(metadata[identifier]['slug'], slug)
+                self.assertRegex(slug, share.SHARE_SLUG)
 
 
 if __name__ == '__main__': unittest.main()

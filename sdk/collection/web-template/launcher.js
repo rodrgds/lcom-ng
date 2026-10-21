@@ -9,6 +9,7 @@ import {cue} from './audio.js';
 import {bindGridNavigation} from './navigation.js';
 import {loadFont} from './fonts.js';
 import {renderInstructions} from './instructions.js';
+import {sharedSlug, homeUrl, shareUrl, copyText} from './share.js';
 
 const library = document.querySelector('#library');
 const play = document.querySelector('#play');
@@ -16,12 +17,16 @@ const games = document.querySelector('#games');
 const count = document.querySelector('#count');
 const host = document.querySelector('#frame-host');
 const surroundings = new Surroundings(host, link => launch(link));
+const shared = sharedSlug();
 let catalog = [], selected = null, lastLink = null, surprise = null, gameSearch = null, filters = null, visibleCatalog = [], taxonomy = [];
-let playerLayout = null;
+let playerLayout = null, shareMode = false;
 const previews = new Previews();
 const back=document.querySelector('#back');
 const help=document.querySelector('#player-help');
 const libraryHint=document.querySelector('#library-hint');
+const shareButton=document.querySelector('#player-share');
+const shareStatus=document.querySelector('#share-status');
+let shareTimeout=null;
 let hintDelay=null,hintTimeout=null;
 function resetLibraryHint() {
   clearTimeout(hintDelay);clearTimeout(hintTimeout);libraryHint.hidden=true;
@@ -45,7 +50,7 @@ function placeReturn(layout) {
   const transform=r=>({x:bounds.x+r.x*sx,y:bounds.y+r.y*sy,width:r.width*sx,height:r.height*sy});
   const game=transform(layout.game), occupied=layout.occupied.map(transform);
   occupied.push(document.querySelector('#player-fullscreen').getBoundingClientRect());
-  if (!help.hidden) occupied.push(help.getBoundingClientRect());
+  for (const control of [document.querySelector('#player-share'), help]) if (!control.hidden && control.offsetWidth) occupied.push(control.getBoundingClientRect());
   surroundings.update(game,occupied);
   if(!back.offsetWidth) return;
   const w=back.offsetWidth,h=back.offsetHeight;
@@ -83,7 +88,7 @@ function hideLoading() {
 function enterGame() {
   started = true;
   library.hidden = true; play.classList.remove('starting'); hideLoading(); host.inert = false;
-  if (ready) surroundings.start(selected,catalog);
+  if (ready && !shareMode) surroundings.start(selected,catalog);
   const frame = host.querySelector('iframe');
   frame?.contentWindow.postMessage({type:'lcom-player-instructions',paused:false},location.origin);
   frame?.contentWindow.focus();
@@ -142,7 +147,7 @@ function loadingState(state) {
       allowStart();
     } else {
       library.hidden = true; play.classList.remove('starting'); hideLoading(); host.inert = false;
-      surroundings.start(selected,catalog);
+      if (!shareMode) surroundings.start(selected,catalog);
       if (loadingHadFocus || !play.contains(document.activeElement)) host.querySelector('iframe')?.contentWindow.focus();
     }
   } else if (!ready && document.querySelector('#load-error').hidden) {
@@ -176,7 +181,7 @@ window.addEventListener('message', event => {
     play.classList.toggle('keyboard-player',event.data.keyboard);
     if(!event.data.keyboard && playerLayout) placeReturn(playerLayout);
   }
-  if(event.data?.type === 'lcom-player-exit' && event.data.code === 0) location.hash = '';
+  if(event.data?.type === 'lcom-player-exit' && event.data.code === 0) returnToLibrary();
 });
 
 async function fullscreen() {
@@ -212,6 +217,8 @@ function returnToLibrary() {
   if (play.hidden) return;
   releasePointer();
   cue('navigate',{direction:'back',emphasis:'subtle'});
+  // A shared game has no library behind it; its clean address leads back home.
+  if (shareMode) { location.assign(homeUrl()); return; }
   location.hash = '';
 }
 document.addEventListener('keydown', event => {
@@ -264,13 +271,19 @@ function render(tags) {
 }
 function route(force = false) {
   const id = new URLSearchParams(location.hash.slice(1)).get('game');
-  const game = catalog.find(game => game.id === id);
-  if (!game) play.classList.remove('keyboard-player');
+  const game = catalog.find(game => game.id === id) || (shared ? catalog.find(game => game.slug === shared) : null);
+  shareMode = !!game && !id;
+  if (!game) {
+    play.classList.remove('keyboard-player');
+    // An unknown share address still lands on the library, not on a dead URL.
+    if (shared) history.replaceState(null, '', homeUrl());
+  }
   if (!force && game && selected?.id === game.id) return;
   surprise?.close();
   previews.stop();
   surroundings.reset();
   resetLibraryHint();
+  clearTimeout(shareTimeout); shareStatus.hidden = true; shareStatus.textContent = '';
   playerLayout=null;
   releasePointer();
   host.replaceChildren(); selected = game || null; ready = false; running = false; started = false; progressStep = -1;
@@ -311,6 +324,15 @@ function route(force = false) {
   }
 }
 back.onclick = returnToLibrary;
+shareButton.onclick = async () => {
+  const url = shareUrl(selected);
+  const copied = await copyText(url);
+  clearTimeout(shareTimeout);
+  shareStatus.textContent = (copied ? 'Link copied · ' : 'Copy this link · ') + url;
+  shareStatus.hidden = false;
+  cue('select', {emphasis: 'subtle'});
+  shareTimeout = setTimeout(() => { shareStatus.hidden = true; shareStatus.textContent = ''; }, 4000);
+};
 window.addEventListener('hashchange', () => route());
 document.querySelector('#retry').onclick = () => route(true);
 document.querySelector('#cancel').onclick = returnToLibrary;

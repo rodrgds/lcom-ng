@@ -10,6 +10,7 @@ import shutil
 import re
 
 SDK = Path(__file__).resolve().parents[1]
+from collection import share
 _spec = importlib.util.spec_from_file_location('lcom_collection_web_game', SDK / 'web/export.py')
 exporter = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(exporter)
@@ -194,6 +195,7 @@ def _presentation(path, identifiers):
     if type(sidecar.get('version', 1)) is not int or sidecar.get('version', 1) != 1:
         raise ValueError('Web presentation version must be 1')
     details, galleries, options = {}, {}, {}
+    slugs = set()
     if 'favicon' in sidecar:
         favicon = _confined(root, sidecar['favicon'])
         if favicon.suffix.lower() not in ('.png', '.svg'):
@@ -238,7 +240,19 @@ def _presentation(path, identifiers):
                         raise ValueError(f'Gallery image must be WebP: {image}')
                 galleries[identifier] = images
                 continue
-            config.object_value(value, identifier, ['year', 'yearLabel', 'yearSource', 'featured', 'featuredPool', 'repository', 'tags', 'academicYear', 'academicYearSource'])
+            config.object_value(value, identifier, ['year', 'yearLabel', 'yearSource', 'featured', 'featuredPool', 'repository', 'tags', 'academicYear', 'academicYearSource', 'slug', 'authors'])
+            if 'slug' in value:
+                slug = config.string(value['slug'], 'slug')
+                if len(slug) > share.MAX_SLUG_LENGTH or not share.SHARE_SLUG.fullmatch(slug):
+                    raise ValueError(f'Game share slugs must be lowercase words joined by hyphens: {slug}')
+                if slug in slugs: raise ValueError(f'Duplicate game share slug: {slug}')
+                slugs.add(slug)
+            if 'authors' in value:
+                authors = value['authors']
+                if (not isinstance(authors, list) or not authors or len(authors) > 12
+                        or any(not isinstance(author, str) or not author.strip() or len(author) > 80
+                               for author in authors)):
+                    raise ValueError('Game authors must be an array of 1 to 12 credited names')
             if 'tags' in value:
                 selected = value['tags']
                 if not isinstance(selected, list) or any(not isinstance(tag, str) or tag not in tags for tag in selected) or len(set(selected)) != len(selected):

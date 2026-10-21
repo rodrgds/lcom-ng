@@ -17,6 +17,8 @@ test.beforeAll(async () => {
   server = createServer((request, response) => {
     const name = new URL(request.url, 'http://localhost').pathname;
     if (name === '/collection.json') { response.setHeader('Content-Type', 'application/json'); response.end(JSON.stringify({name:'Mosaic Fixture',games})); return; }
+    // Mirrors the hosted Worker: /share/<slug> serves the launcher shell for the site root.
+    const shell = name === '/' || /^\/share\/[a-z0-9-]+\/?$/.test(name);
     if (/^\/(?:icon-|shot-)/.test(name)) {
       response.setHeader('Content-Type', 'image/svg+xml');
       const color = name.includes('shot-') ? name.slice(6, -4) : '#c5ff62';
@@ -27,9 +29,10 @@ test.beforeAll(async () => {
       response.end('<!doctype html><title>Playable fixture</title><script>setTimeout(()=>parent.postMessage({type:"lcom-player-loading",phase:"ready"},location.origin),20)</script>'); return;
     }
     try {
-      response.setHeader('Content-Type', ({'.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.ttf':'font/ttf'})[path.extname(name)] || 'text/html');
-      let body = readFileSync(path.join(template, name === '/' ? 'index.html' : name));
-      if (name === '/') body = body.toString().replaceAll('@NAME@', 'Mosaic Fixture');
+      response.setHeader('Content-Type', ({'.js':'text/javascript','.css':'text/css','.svg':'image/svg+xml','.ttf':'font/ttf'})[path.extname(shell ? 'index.html' : name)] || 'text/html');
+      let body = readFileSync(path.join(template, shell ? 'index.html' : name));
+      if (shell) body = body.toString().replaceAll('@NAME@', 'Mosaic Fixture');
+      if (shell && name !== '/') body = body.replace('<head>', '<head><base href="/">');
       response.end(body);
     } catch { response.writeHead(404).end(); }
   });
@@ -437,6 +440,8 @@ test('search dialog preserves context through play and restores keyboard focus',
   await home.hover();
   await expect(home.locator('svg')).toHaveCSS('stroke','rgb(255, 255, 255)');
   await home.screenshot({path:testInfo.outputPath('home-hover.png')});
+  // Reverse-tab reaches the player controls past the copy-link button.
+  if (await page.locator('#player-share').isVisible()) await page.keyboard.press('Shift+Tab');
   await page.keyboard.press('Shift+Tab');
   await expect(home).toBeFocused();
   await expect(home).toHaveCSS('outline-style','solid');
@@ -1026,4 +1031,29 @@ test('side columns loop in alternating directions and pause for focus and reduce
   expect(await tracks.evaluateAll(items=>items.every(item=>getComputedStyle(item).animationName==='none'))).toBe(true);
   const ids=await page.locator('.game-rail [id]').evaluateAll(items=>items.map(item=>item.id));
   expect(new Set(ids).size).toBe(ids.length);
+});
+
+test('a share link opens one game on a clean address without side suggestions',async({page,context})=>{
+  await context.grantPermissions(['clipboard-read','clipboard-write']);
+  await page.setViewportSize({width:1600,height:900});
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Share Fixture',games:games.map((game,index)=>index?game:{...game,slug:'afg-game-00',authors:['Ana Alves','Filipe Faria','Gonçalo Gomes']})}}));
+  await page.goto(base+'/share/afg-game-00');
+  await expect(page.locator('#loading')).toBeHidden();
+  await expect(page.locator('#library')).toBeHidden();
+  await expect(page.locator('iframe')).toHaveCount(1);
+  const frame=page.frames().find(frame=>frame.url().includes('/games/'));
+  expect(frame.url().startsWith(base+'/games/')).toBe(true);
+  await expect(page.locator('.game-rail:not([hidden])')).toHaveCount(0);
+  await page.locator('#player-share').click();
+  await expect(page.locator('#share-status')).toContainText('Link copied · '+base+'/share/afg-game-00');
+  expect(await page.evaluate(()=>navigator.clipboard.readText())).toBe(base+'/share/afg-game-00');
+  await page.locator('#back').click();
+  await expect(page.locator('#library')).toBeVisible();
+  await expect(page).toHaveURL(base+'/');
+});
+
+test('a share link without a matching game falls back to the library',async({page})=>{
+  await page.goto(base+'/share/not-a-real-game');
+  await expect(page.locator('#library')).toBeVisible();
+  await expect(page).toHaveURL(base+'/');
 });

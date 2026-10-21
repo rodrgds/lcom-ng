@@ -31,6 +31,16 @@ Shift+Escape also returns to the library.
 Click the game to capture the mouse; Escape releases it
 and reaches the game once. The upper-right button toggles fullscreen.
 Normal in-game Quit actions return to the library automatically.
+On a mouse or trackpad, the upper-right **Share** button copies a clean
+per-game address such as `https://arcade.rgo.pt/share/afg-ninjix`. Those
+initials come from each participant's first name, in alphabetical order, and
+only from evidenced author lists in `game-metadata.json`; games without
+evidence use a name-only slug. Touch layouts keep that corner for the game's
+own controls, so phones open shared addresses without the button. The Worker
+answers `/share/<slug>` with the same launcher, a `<base href="/">`, the
+game's title and preview for link unfurls, and no side suggestion rails, so a
+shared link opens one game on a plain background. Slugs are assigned by
+`sdk/collection/share.py` and checked by `tests/collection_export.py`.
 
 The checked-in gallery publishes real gameplay captures with per-image provenance. See
 [`galleries/README.md`](galleries/README.md) for capture and validation commands.
