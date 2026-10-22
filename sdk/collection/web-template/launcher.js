@@ -74,7 +74,9 @@ const progress = loading.querySelector('progress');
 const runningControls = document.querySelector('#load-running');
 const consoleOutput = document.querySelector('#load-console');
 const instructionContent = document.querySelector('#game-instructions');
-const instructionFooter = document.querySelector('#load-start');
+const loadFooter = document.querySelector('#load-footer');
+const compactActions = [document.querySelector('#compact-message'), document.querySelector('#show-controls')];
+const setCompactActions = hidden => compactActions.forEach(element => { element.hidden = hidden; });
 const startButton = document.querySelector('#start-game');
 let ready = false, running = false, started = false, hasInstructions = false, progressStep = -1;
 function showLoading() {
@@ -109,7 +111,8 @@ help.onclick = showInstructions;
 function allowStart() {
   const becameReady = startButton.disabled;
   startButton.disabled = false;
-  document.querySelector('#instruction-state').textContent = started ? 'Game paused.' : ready ? '' : 'Opening game…';
+  // The download status already says "Opening game…"; the note covers a paused game.
+  document.querySelector('#instruction-state').textContent = started ? 'Game paused.' : '';
   if (becameReady && loading.contains(document.activeElement)) startButton.focus({preventScroll:true});
 }
 function loadingState(state) {
@@ -125,25 +128,31 @@ function loadingState(state) {
     loading.classList.add('running');
     progress.hidden = true;
     runningControls.hidden = false;
+    setCompactActions(false);
     document.querySelector('#load-status').textContent = 'Opening game…';
+    // Only the instructions dialog keeps a status line beside its actions.
+    document.querySelector('#load-progress').hidden = !hasInstructions;
     if (hasInstructions) {
       runningControls.hidden = true;
+      setCompactActions(true);
       allowStart();
     }
   } else if (state.phase === 'error') {
-    running = false; runningControls.hidden = true;
+    running = false; runningControls.hidden = true; setCompactActions(true);
     loading.classList.remove('running');
     showLoading();
     document.querySelector('#load-error').hidden = false;
     document.querySelector('#load-progress').hidden = true;
-    instructionFooter.hidden = true;
+    loadFooter.hidden = true;
     document.querySelector('#retry').focus({preventScroll:true});
   } else if (state.phase === 'ready') {
     const loadingHadFocus = loading.contains(document.activeElement);
     runningControls.hidden = true;
+    setCompactActions(true);
+    // A reopened dialog shows the note, never a stale download status.
+    document.querySelector('#load-progress').hidden = true;
     ready = true;
     if (hasInstructions && (!started || loading.open)) {
-      document.querySelector('#load-progress').hidden = true;
       allowStart();
     } else {
       library.hidden = true; play.classList.remove('starting'); hideLoading(); host.inert = false;
@@ -288,13 +297,14 @@ function route(force = false) {
   releasePointer();
   host.replaceChildren(); selected = game || null; ready = false; running = false; started = false; progressStep = -1;
   hasInstructions = renderInstructions(instructionContent, game?.instructions);
-  help.hidden = !hasInstructions; instructionFooter.hidden = !hasInstructions;
+  help.hidden = !hasInstructions; startButton.hidden = !hasInstructions;
   loading.classList.toggle('with-instructions',hasInstructions);
   startButton.disabled = true; startButton.firstChild.textContent = 'Start game';
-  document.querySelector('#instruction-state').textContent = 'You can read while it loads.';
+  document.querySelector('#instruction-state').textContent = '';
   document.querySelector('#load-dismiss').setAttribute('aria-label','Back to games');
   updateKeyboardLock();
-  runningControls.hidden = true; consoleOutput.hidden = true; consoleOutput.textContent = ''; progress.hidden = false;
+  runningControls.hidden = true; setCompactActions(true); consoleOutput.hidden = true; consoleOutput.textContent = ''; progress.hidden = false;
+  loadFooter.hidden = false;
   loading.classList.remove('running');
   hideLoading(); host.inert = !!game;
   library.hidden = !!game && !lastLink; play.hidden = !game;

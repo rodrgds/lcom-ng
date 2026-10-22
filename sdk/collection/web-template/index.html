@@ -70,14 +70,18 @@
     <ul id="load-tags" class="game-tags" aria-label="Game categories" hidden></ul>
     <p id="load-description"></p>
     <div id="game-instructions" aria-label="Instructions" hidden></div>
-    <div id="load-progress"><progress aria-label="Game download"></progress><p id="load-status" role="status">Loading game…</p></div>
     <div id="load-running" hidden>
       <pre id="load-console" aria-label="Game messages" hidden></pre>
-      <div class="load-actions"><p>Some games wait for a key.</p><button id="show-controls" type="button">Show controls</button></div>
     </div>
     <div id="load-error" hidden><p role="alert">The game couldn’t load. Check your connection and try again.</p><button id="retry" type="button">Try again</button><button id="cancel" type="button">Back to games</button></div>
     </div>
-    <footer id="load-start" hidden><p id="instruction-state" role="status">You can read while it loads.</p><button id="start-game" type="button" disabled>Start game<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7z"/></svg></button></footer>
+    <footer id="load-footer">
+      <div id="load-progress"><progress aria-label="Game download"></progress><p id="load-status" role="status">Loading game…</p></div>
+      <p id="compact-message" class="load-footer-note" hidden>Some games wait for a key.</p>
+      <button id="show-controls" type="button" hidden>Show controls</button>
+      <p id="instruction-state" class="load-footer-note" role="status"></p>
+      <button id="start-game" type="button" disabled hidden>Start game<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 10 7-10 7z"/></svg></button>
+    </footer>
   </dialog>
 </section>
 </body>
