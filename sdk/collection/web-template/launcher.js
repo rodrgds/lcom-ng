@@ -358,6 +358,14 @@ const dismissLoading = () => {
   else returnToLibrary();
 };
 document.querySelector('#load-dismiss').onclick = dismissLoading;
+// A modal dialog targets backdrop clicks at the dialog itself. Only a point
+// truly outside its box dismisses, so padding and scrollbar clicks stay put.
+loading.addEventListener('click', event => {
+  if (event.target !== loading) return;
+  const bounds = loading.getBoundingClientRect();
+  if (event.clientX < bounds.left || event.clientX > bounds.right
+      || event.clientY < bounds.top || event.clientY > bounds.bottom) dismissLoading();
+});
 loading.addEventListener('cancel',event => {event.preventDefault();dismissLoading();});
 try {
   const response = await fetch(document.querySelector('link[data-catalog]')?.href || 'collection.json');

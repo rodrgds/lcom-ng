@@ -325,8 +325,9 @@ iframe receives focus. Progress announcements use meaningful steps.
 
 A failed load replaces progress with concise error copy, Try again and Back to
 games. Retry receives focus and restarts the same game. Loading has a close
-button. During play, the plain Home button follows reported control colors and
-free-space layout. Shift+Escape releases capture first; another press returns
+button, and a click outside the dialog dismisses it the same way; reopened over a
+paused game, that dismiss resumes play. During play, the plain Home button follows
+reported control colors and free-space layout. Shift+Escape releases capture first; another press returns
 to the library. Fullscreen Keyboard Lock retains ordinary Escape for the game
 where the browser supports it. Returning restores the originating tile or search
 result focus and retains search state. A Shift/Esc hint appears at bottom center

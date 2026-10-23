@@ -798,6 +798,30 @@ test('before-play modal credits the participants and links the original reposito
   await expect(page.locator('#load-repository')).toBeHidden();
 });
 
+test('clicking outside the loading dialog dismisses it like the close button',async({page})=>{
+  const instructions={sections:[{title:'Controls',controls:[{action:'Jump',bindings:[{keys:['Space']}]}]}]};
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Dismiss fixture',games:games.map((game,index)=>index?game:{...game,instructions})}}));
+  await page.goto(base);
+  await page.locator('#games a[data-id="game-0"]').click();
+  await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeEnabled();
+  const box=await page.locator('#loading').boundingBox();
+  await page.mouse.click(box.x+box.width/2,box.y+box.height/2);
+  await expect(page.locator('#loading')).toBeVisible();
+  await page.mouse.click(8,8);
+  await expect(page.locator('#loading')).toBeHidden();
+  await expect(page.locator('#library')).toBeVisible();
+  // Reopened during play, an outside click resumes instead of leaving the game.
+  await page.locator('#games a[data-id="game-0"]').click();
+  await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeEnabled();
+  await page.getByRole('button',{name:'Start game',exact:true}).click();
+  await expect(page.locator('#loading')).toBeHidden();
+  await page.locator('#player-help').click();
+  await expect(page.locator('#loading')).toBeVisible();
+  await page.mouse.click(8,8);
+  await expect(page.locator('#loading')).toBeHidden();
+  await expect(page.locator('#play')).toBeVisible();
+});
+
 test('desktop loading failures keep a reachable cancel action and return focus to the launching tile',async({page})=>{
   await page.route('**/games/**',route=>route.fulfill({contentType:'text/html',body:'<script>parent.postMessage({type:"lcom-player-loading",phase:"error"},location.origin)</script>'}));
   await page.goto(base);const id=await page.locator('#games .game-launch').first().getAttribute('data-id'),tile=page.locator('#games .game-launch[data-id="'+id+'"]');await tile.click();
