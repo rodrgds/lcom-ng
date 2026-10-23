@@ -74,7 +74,9 @@ streams decompression for clients requesting identity encoding. This keeps large
 payloads within the host's asset limit. Other files use static serving. The regular
 export stays directly usable on other static servers. The published `collection.json`
 contains browsing data; `collection-provenance.json` retains the complete delivery
-inventory and historical evidence without loading it on every visit.
+inventory and historical evidence without loading it on every visit. The hosted
+library also loads a cookieless Umami page-view script configured in
+[`web.json`](web.json); exported games never include it.
 The launcher creates hover-preview markup only when opened. Check modules and game data with
 browser gzip encoding, plus large identity responses and cache revalidation,
 then test the live player:

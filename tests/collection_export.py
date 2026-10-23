@@ -143,6 +143,21 @@ class CollectionManifest(unittest.TestCase):
         self.assertEqual(games[0]['creditsSource'],source)
         self.assertEqual(json.loads((output/'collection.json').read_text())['games'][0]['authors'],authors)
 
+    def test_web_presentation_injects_configured_analytics(self):
+        entries=manifest.load(self.collection)['entries']
+        output=self.root/'export'
+        for entry in entries:
+            game=output/'games'/entry['id'];game.mkdir(parents=True)
+            for name in ['index.html','game.js','game.wasm']:(game/name).write_bytes(b'game')
+        (self.collection/'web.json').write_text(json.dumps({'version':1,'analytics':{'src':'https://cool.example/script.js','websiteId':'dd6f1aa0-d935-48bf-a9f8-703271c2c5d3'}}))
+        web.write_launcher(entries,output,'Class games',presentation=self.collection/'web.json')
+        shell=(output/'index.html').read_text()
+        self.assertIn('<script defer src="https://cool.example/script.js" data-website-id="dd6f1aa0-d935-48bf-a9f8-703271c2c5d3"></script></head>',shell)
+        self.assertEqual(shell.count('cool.example/script.js'),1)
+        (self.collection/'web.json').write_text(json.dumps({'version':1}))
+        web.write_launcher(entries,output,'Class games',presentation=self.collection/'web.json')
+        self.assertNotIn('cool.example/script.js',(output/'index.html').read_text())
+
     def test_web_presentation_rejects_paths_outside_collection_and_invalid_metadata(self):
         entries=manifest.load(self.collection)['entries'];identifier=entries[0]['id']
         output=self.root/'export'
@@ -169,6 +184,9 @@ class CollectionManifest(unittest.TestCase):
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'creditsSource':{'kind':'vibes','detail':'Unsupported evidence'}}}},None),
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'creditsSource':{'kind':'readme'}}}},None),
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'creditsSource':{'kind':'readme','detail':'Bad evidence URL','url':'ftp://example.com'}}}},None),
+               ({'version':1,'metadata':'metadata.json','analytics':{'src':'javascript:alert(1)','websiteId':'abc'}},None,None),
+               ({'version':1,'metadata':'metadata.json','analytics':{'src':'https://example.com/script.js','websiteId':'not a site'}},None,None),
+               ({'version':1,'metadata':'metadata.json','analytics':{'src':'https://example.com/script.js','websiteId':'abc','cookie':True}},None,None),
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{entry['id']:{'slug':'same-slug'} for entry in entries}},None),
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{entry['id']:{'unsupported':True} for entry in entries}},None)]
         for sidecar,metadata,gallery in cases:

@@ -115,6 +115,11 @@ def write_launcher(entries, output, name, icon=None, presentation=None):
         else:
             shutil.copy2(asset, output / asset.name)
     shell = (output / 'index.html').read_text().replace('@NAME@', html.escape(name))
+    if options.get('analytics'):
+        analytics = options['analytics']
+        script = ('<script defer src="' + html.escape(analytics['src'], quote=True)
+                  + '" data-website-id="' + html.escape(analytics['websiteId'], quote=True) + '"></script>')
+        shell = shell.replace('</head>', script + '</head>')
     for filename in ('launcher.css', 'launcher.js'):
         digest = hashlib.sha256((output / filename).read_bytes()).hexdigest()[:12]
         shell = shell.replace(f'"{filename}"', f'"{filename}?v={digest}"')
@@ -217,11 +222,20 @@ def _presentation(path, identifiers):
     if not path.is_relative_to(root):
         raise ValueError('Web presentation sidecar escapes collection')
     config = exporter.source_project.project_config
-    sidecar = config.object_value(json.loads(path.read_text()), str(path), ['version', 'metadata', 'gallery', 'favicon'])
+    sidecar = config.object_value(json.loads(path.read_text()), str(path), ['version', 'metadata', 'gallery', 'favicon', 'analytics'])
     if type(sidecar.get('version', 1)) is not int or sidecar.get('version', 1) != 1:
         raise ValueError('Web presentation version must be 1')
     details, galleries, options = {}, {}, {}
     slugs = set()
+    if 'analytics' in sidecar:
+        analytics = config.object_value(sidecar['analytics'], 'analytics', ['src', 'websiteId'])
+        src = config.string(analytics.get('src'), 'analytics.src')
+        if not re.match(r'^https?://[^\s]+$', src):
+            raise ValueError('analytics.src must be an HTTP URL')
+        website_id = config.string(analytics.get('websiteId'), 'analytics.websiteId')
+        if not re.fullmatch(r'[A-Za-z0-9-]{1,64}', website_id):
+            raise ValueError('analytics.websiteId must be a site identifier')
+        options['analytics'] = {'src': src, 'websiteId': website_id}
     if 'favicon' in sidecar:
         favicon = _confined(root, sidecar['favicon'])
         if favicon.suffix.lower() not in ('.png', '.svg'):

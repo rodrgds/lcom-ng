@@ -2,5 +2,9 @@
   "version": 1,
   "metadata": "game-metadata.json",
   "gallery": "gallery.json",
-  "favicon": "favicon.png"
+  "favicon": "favicon.png",
+  "analytics": {
+    "src": "https://cool.rgo.pt/script.js",
+    "websiteId": "dd6f1aa0-d935-48bf-a9f8-703271c2c5d3"
+  }
 }
