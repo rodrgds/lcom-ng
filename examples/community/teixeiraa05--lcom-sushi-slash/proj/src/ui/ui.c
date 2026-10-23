@@ -17,6 +17,34 @@ int ui_draw_sprite(const sprite_t *sprite, uint16_t x, uint16_t y) {
     return video_draw_sprite(sprite->pixmap, sprite->width, sprite->height, x, y);
 }
 
+int ui_draw_sprite_rotated(const sprite_t *sprite, double x, double y, int angle) {
+    if (sprite == NULL || sprite->pixmap == NULL) return 1;
+    if (angle == 0 && x >= 0 && y >= 0 && x <= SCREEN_WIDTH && y <= SCREEN_HEIGHT &&
+        x == floor(x) && y == floor(y)) return ui_draw_sprite(sprite, (uint16_t)x, (uint16_t)y);
+
+    rotation_t rotation = rotation_for_angle(angle);
+    double half_width = sprite->width / 2.0, half_height = sprite->height / 2.0;
+    double cx = x + half_width, cy = y + half_height;
+    double extent_x = fabs(rotation.cosine) * half_width + fabs(rotation.sine) * half_height;
+    double extent_y = fabs(rotation.sine) * half_width + fabs(rotation.cosine) * half_height;
+    int left = (int)fmax(0, floor(cx - extent_x));
+    int right = (int)fmin(SCREEN_WIDTH, ceil(cx + extent_x));
+    int top = (int)fmax(0, floor(cy - extent_y));
+    int bottom = (int)fmin(SCREEN_HEIGHT, ceil(cy + extent_y));
+    for (int sy = top; sy < bottom; sy++) {
+        for (int sx = left; sx < right; sx++) {
+            point_t local = rotation_inverse(rotation, (point_t){sx + 0.5 - cx, sy + 0.5 - cy});
+            int px = (int)floor(local.x + half_width);
+            int py = (int)floor(local.y + half_height);
+            if (!sprite_pixel_visible(sprite, px, py)) continue;
+            const uint8_t *pixel = sprite->pixmap + ((size_t)py * sprite->width + px) * 3;
+            uint32_t color = pixel[0] | ((uint32_t)pixel[1] << 8) | ((uint32_t)pixel[2] << 16);
+            if (ui_draw_pixel((uint16_t)sx, (uint16_t)sy, color) != 0) return 1;
+        }
+    }
+    return 0;
+}
+
 void anim_update(anim_sprite_t *anim, int current_tick) {
     if (current_tick - anim->last_tick >= anim->frame_delay) {
         anim->cur_frame = (anim->cur_frame + 1) % anim->num_sprites;

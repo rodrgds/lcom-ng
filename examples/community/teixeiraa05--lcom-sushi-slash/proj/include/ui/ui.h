@@ -34,6 +34,9 @@ int ui_draw_pixel(uint16_t x, uint16_t y, uint32_t color);
  */
 int ui_draw_sprite(const sprite_t *sprite, uint16_t x, uint16_t y);
 
+/** @brief Draw around the sprite center, with clockwise degrees and signed clipping. */
+int ui_draw_sprite_rotated(const sprite_t *sprite, double x, double y, int angle);
+
 /**
  * @brief Renders the entire full-screen background sprite.
  * 

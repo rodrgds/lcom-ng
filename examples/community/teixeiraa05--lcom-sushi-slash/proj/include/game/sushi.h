@@ -62,6 +62,12 @@ typedef struct {
   /** @brief Fixed-point gravity applied every tick. */
   int gravity;
 
+  /** @brief Clockwise rotation in degrees, normalized to [0, 360). */
+  int angle;
+
+  /** @brief Clockwise degrees added on each physics tick. */
+  int angular_velocity;
+
   /** @brief Score awarded when the item is successfully cut. */
   int score_value;
 
@@ -192,34 +198,45 @@ typedef struct {
   /** @brief Fixed-point gravity applied every tick. */
   int gravity;
 
+  /** @brief Clockwise rotation in degrees, normalized to [0, 360). */
+  int angle;
+
+  /** @brief Clockwise degrees added on each physics tick. */
+  int angular_velocity;
+
   /** @brief Owned sprite representing the fragment. */
   sprite_t* xpm;
 } sushi_fragment_t;
 
 /**
- * @brief Check whether a slash segment intersects a sushi-style item.
+ * @brief Test visible rotated pixels for sushi, and padded bounds for hazards.
  *
  * @param sushi Item to test.
  * @param cut_x0 Slash start horizontal position in pixels.
  * @param cut_y0 Slash start vertical position in pixels.
  * @param cut_x1 Slash end horizontal position in pixels.
  * @param cut_y1 Slash end vertical position in pixels.
- * @param radius Padding around the item bounds, in pixels.
+ * @param radius Padding around hazard bounds; ignored for regular sushi.
  *
- * @return true if the segment intersects the item bounds, false otherwise.
+ * @return true if the segment hits the item, false otherwise.
  */
 bool sushi_segment_intersects(const sushi_t* sushi, int cut_x0, int cut_y0, int cut_x1, int cut_y1, int radius);
 
 /**
- * @brief Split a regular sushi piece into left and right fragments.
+ * @brief Select a generated profile from the slash and split a regular sushi.
  *
  * @param sushi Item to split and destroy.
- * @param left_fragment Output fragment for the left half.
- * @param right_fragment Output fragment for the right half.
+ * @param cut_x0 Slash start horizontal position in pixels.
+ * @param cut_y0 Slash start vertical position in pixels.
+ * @param cut_x1 Slash end horizontal position in pixels.
+ * @param cut_y1 Slash end vertical position in pixels.
+ * @param left_fragment Output fragment on the negative side of the profile normal.
+ * @param right_fragment Output fragment on the positive side of the profile normal.
  *
- * @return 0 on success, non-zero on allocation or loading failure.
+ * @return 0 on success; non-zero leaves the sushi and outputs unchanged.
  */
-int cut_sushi(sushi_t* sushi, sushi_fragment_t* left_fragment, sushi_fragment_t* right_fragment);
+int cut_sushi(sushi_t* sushi, int cut_x0, int cut_y0, int cut_x1, int cut_y1,
+               sushi_fragment_t* left_fragment, sushi_fragment_t* right_fragment);
 
 /**
  * @brief Advance a sushi fragment by one physics tick.

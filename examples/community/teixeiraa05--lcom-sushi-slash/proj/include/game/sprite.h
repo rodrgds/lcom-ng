@@ -16,6 +16,7 @@
 #define ANIM_FAST_DELAY 5
 
 #include <lcom/lcf.h>
+#include "rotation.h"
 
 /**
  * @brief Loaded XPM sprite.
@@ -59,6 +60,12 @@ typedef struct {
  * @return 0 on success, non-zero on failure.
  */
 int sprite_load(sprite_t *sprite, xpm_map_t xpm);
+
+/** @brief Test a pixel against the sprite's green transparency key. */
+bool sprite_pixel_visible(const sprite_t *sprite, int x, int y);
+
+/** @brief Test a nonzero segment against visible pixel cells, in local top-left coordinates. */
+bool sprite_segment_intersects(const sprite_t *sprite, point_t start, point_t end);
 
 /**
  * @brief Release the pixel buffer owned by a sprite.

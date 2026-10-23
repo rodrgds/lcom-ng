@@ -3,6 +3,7 @@
 
 #include "../include/game/sushi.h"
 #include "../include/game/game_rand.h"
+#include "../include/game/cut_profile.h"
 
 #include "../assets/sushi_pieces/Nigiri1.xpm"
 #include "../assets/sushi_pieces/Nigiri2.xpm"
@@ -12,38 +13,12 @@
 #include "../assets/sushi_pieces/SushiRoll1.xpm"
 #include "../assets/sushi_pieces/SushiRoll2.xpm"
 #include "../assets/sushi_pieces/SushiRoll3.xpm"
-#include "../assets/sushi_pieces/SushiRoll4.xpm"
 #include "../assets/sushi_pieces/SushiRoll5.xpm"
 #include "../assets/sushi_pieces/SushiRoll6.xpm"
 
-#include "../assets/sushi_pieces/Nigiri1_left.xpm"
-#include "../assets/sushi_pieces/Nigiri2_left.xpm"
-#include "../assets/sushi_pieces/Nigiri3_left.xpm"
-#include "../assets/sushi_pieces/Nigiri4_left.xpm"
-#include "../assets/sushi_pieces/Onigiri_left.xpm"
-#include "../assets/sushi_pieces/SushiRoll1_left.xpm"
-#include "../assets/sushi_pieces/SushiRoll2_left.xpm"
-#include "../assets/sushi_pieces/SushiRoll3_left.xpm"
-#include "../assets/sushi_pieces/SushiRoll4_left.xpm"
-#include "../assets/sushi_pieces/SushiRoll5_left.xpm"
-#include "../assets/sushi_pieces/SushiRoll6_left.xpm"
-
-#include "../assets/sushi_pieces/Nigiri1_right.xpm"
-#include "../assets/sushi_pieces/Nigiri2_right.xpm"
-#include "../assets/sushi_pieces/Nigiri3_right.xpm"
-#include "../assets/sushi_pieces/Nigiri4_right.xpm"
-#include "../assets/sushi_pieces/Onigiri_right.xpm"
-#include "../assets/sushi_pieces/SushiRoll1_right.xpm"
-#include "../assets/sushi_pieces/SushiRoll2_right.xpm"
-#include "../assets/sushi_pieces/SushiRoll3_right.xpm"
-#include "../assets/sushi_pieces/SushiRoll4_right.xpm"
-#include "../assets/sushi_pieces/SushiRoll5_right.xpm"
-#include "../assets/sushi_pieces/SushiRoll6_right.xpm"
-
 #include "../assets/sushi_pieces/bomb.xpm"
 
-xpm_map_t sushi_xpms[10] = {
-    // Placeholder XPMs for different sushi types
+static xpm_map_t sushi_xpms[] = {
     (xpm_map_t)Nigiri1_xpm,
     (xpm_map_t)Nigiri2_xpm,
     (xpm_map_t)Nigiri3_xpm,
@@ -56,34 +31,6 @@ xpm_map_t sushi_xpms[10] = {
     (xpm_map_t)SushiRoll6_xpm
 };
 
-xpm_map_t sushi_left_xpms[10] = {
-    // Placeholder XPMs for the left fragments of different sushi types
-    (xpm_map_t)Nigiri1_left_xpm,
-    (xpm_map_t)Nigiri2_left_xpm,
-    (xpm_map_t)Nigiri3_left_xpm,
-    (xpm_map_t)Nigiri4_left_xpm,
-    (xpm_map_t)Onigiri_left_xpm,
-    (xpm_map_t)SushiRoll1_left_xpm,
-    (xpm_map_t)SushiRoll2_left_xpm,
-    (xpm_map_t)SushiRoll3_left_xpm,
-    (xpm_map_t)SushiRoll5_left_xpm,
-    (xpm_map_t)SushiRoll6_left_xpm
-};
-
-xpm_map_t sushi_right_xpms[10] = {
-    // Placeholder XPMs for the right fragments of different sushi types
-    (xpm_map_t)Nigiri1_right_xpm,
-    (xpm_map_t)Nigiri2_right_xpm,
-    (xpm_map_t)Nigiri3_right_xpm,
-    (xpm_map_t)Nigiri4_right_xpm,
-    (xpm_map_t)Onigiri_right_xpm,
-    (xpm_map_t)SushiRoll1_right_xpm,
-    (xpm_map_t)SushiRoll2_right_xpm,
-    (xpm_map_t)SushiRoll3_right_xpm,
-    (xpm_map_t)SushiRoll5_right_xpm,
-    (xpm_map_t)SushiRoll6_right_xpm
-};
-
 sushi_t create_sushi(int x, int y, int vx, int vy, int gravity, sprite_t* xpm, int score_value) {
     sushi_t sushi;
     sushi.x = PHYSICS_FROM_PIXELS(x);
@@ -91,6 +38,8 @@ sushi_t create_sushi(int x, int y, int vx, int vy, int gravity, sprite_t* xpm, i
     sushi.vx = PHYSICS_FROM_PIXELS(vx);
     sushi.vy = PHYSICS_FROM_PIXELS(vy);
     sushi.gravity = gravity;
+    sushi.angle = 0;
+    sushi.angular_velocity = 0;
     sushi.xpm = xpm;
     sushi.score_value = score_value;
     sushi.type = 0;
@@ -128,7 +77,7 @@ sushi_t create_random_sushi(int speed, int gravity, uint32_t *prng_seed) {
     sprite_t *sprite = malloc(sizeof(sprite_t));
     if (sprite == NULL) return create_sushi(0, 0, 0, 0, gravity, NULL, 0);
 
-    uint8_t sushi_type = game_rand(prng_seed) % 10;
+    uint8_t sushi_type = game_rand(prng_seed) % (sizeof(sushi_xpms) / sizeof(sushi_xpms[0]));
 
     if (sprite_load(sprite, sushi_xpms[sushi_type])) {
         free(sprite);
@@ -147,6 +96,9 @@ sushi_t create_random_sushi(int speed, int gravity, uint32_t *prng_seed) {
                                  sprite,
                                  SUSHI_SCORE_VALUE);
     sushi.type = sushi_type;
+    sushi.angle = game_rand(prng_seed) % 360;
+    sushi.angular_velocity = 1 + game_rand(prng_seed) % 3;
+    if (game_rand(prng_seed) & 1) sushi.angular_velocity = -sushi.angular_velocity;
 
     return sushi;
 }
@@ -178,11 +130,14 @@ void update_sushi(sushi_t* sushi) {
     sushi->x += sushi->vx;
     sushi->y += sushi->vy;
     sushi->vy += sushi->gravity;
+    sushi->angle = ((sushi->angle + sushi->angular_velocity) % 360 + 360) % 360;
 
-    // Deactivate if it goes off-screen
-    if (sushi->xpm != NULL &&
-        (sushi_screen_x(sushi) + sushi->xpm->width < 0 || sushi_screen_x(sushi) > SCREEN_WIDTH)) {
-          sushi_destroy(sushi);
+    if (sushi->xpm != NULL) {
+        int margin = sushi->kind == SUSHI_REGULAR ? sushi->xpm->height : 0;
+        if (sushi_screen_x(sushi) + sushi->xpm->width + margin < 0 ||
+            sushi_screen_x(sushi) - margin > SCREEN_WIDTH) {
+            sushi_destroy(sushi);
+        }
     }
 }
 
@@ -264,56 +219,55 @@ static bool segment_intersects_sushi_bounds(const sushi_t* sushi, int x0, int y0
 bool sushi_segment_intersects(const sushi_t* sushi, int cut_x0, int cut_y0, int cut_x1, int cut_y1, int radius) {
     if (sushi == NULL || sushi->xpm == NULL) return false;
 
+    if (sushi->kind == SUSHI_REGULAR) {
+        rotation_t rotation = rotation_for_angle(sushi->angle);
+        double half_width = sushi->xpm->width / 2.0, half_height = sushi->xpm->height / 2.0;
+        double cx = sushi->x / (double)PHYSICS_SCALE + half_width;
+        double cy = sushi->y / (double)PHYSICS_SCALE + half_height;
+        point_t start = rotation_inverse(rotation, (point_t){cut_x0 - cx, cut_y0 - cy});
+        point_t end = rotation_inverse(rotation, (point_t){cut_x1 - cx, cut_y1 - cy});
+        start.x += half_width; start.y += half_height;
+        end.x += half_width; end.y += half_height;
+        return sprite_segment_intersects(sushi->xpm, start, end);
+    }
     return segment_intersects_sushi_bounds(sushi, cut_x0, cut_y0, cut_x1, cut_y1, radius);
 }
 
-int cut_sushi(sushi_t* sushi, sushi_fragment_t* left_fragment, sushi_fragment_t* right_fragment) {
+int cut_sushi(sushi_t* sushi, int cut_x0, int cut_y0, int cut_x1, int cut_y1,
+               sushi_fragment_t* left_fragment, sushi_fragment_t* right_fragment) {
     if (sushi == NULL || left_fragment == NULL || right_fragment == NULL ||
-        sushi->kind != SUSHI_REGULAR || sushi->type >= 11) return 1;
+        left_fragment == right_fragment || sushi->kind != SUSHI_REGULAR || sushi->xpm == NULL) return 1;
+    if (!sushi_segment_intersects(sushi, cut_x0, cut_y0, cut_x1, cut_y1, 0)) return 1;
 
-    sprite_t *left_sprite = malloc(sizeof(sprite_t));
-    sprite_t *right_sprite = malloc(sizeof(sprite_t));
-
-    if (left_sprite == NULL || right_sprite == NULL) {
-        free(left_sprite);
-        free(right_sprite);
-        return 1;
+    rotation_t rotation = rotation_for_angle(sushi->angle);
+    double half_width = sushi->xpm->width / 2.0, half_height = sushi->xpm->height / 2.0;
+    double cx = sushi->x / (double)PHYSICS_SCALE + half_width;
+    double cy = sushi->y / (double)PHYSICS_SCALE + half_height;
+    point_t start = rotation_inverse(rotation, (point_t){cut_x0 - cx, cut_y0 - cy});
+    point_t end = rotation_inverse(rotation, (point_t){cut_x1 - cx, cut_y1 - cy});
+    const cut_profile_t *profile = cut_profile_select(sushi->type, sushi->xpm, start, end);
+    if (profile == NULL) return 1;
+    cut_piece_t pieces[2];
+    if (cut_profile_split(sushi->xpm, profile, pieces) != 0) return 1;
+    point_t normal = rotation_apply(rotation, (point_t){profile->nx, profile->ny});
+    sushi_fragment_t *fragments[2] = {left_fragment, right_fragment};
+    for (int side = 0; side < 2; side++) {
+        sprite_t *sprite = pieces[side].sprite;
+        point_t center = rotation_apply(rotation,
+            (point_t){pieces[side].x + sprite->width / 2.0 - half_width,
+                      pieces[side].y + sprite->height / 2.0 - half_height});
+        int direction = side == 0 ? -1 : 1;
+        *fragments[side] = (sushi_fragment_t){
+            .x = sushi->x + (int)lround((half_width + center.x - sprite->width / 2.0) * PHYSICS_SCALE),
+            .y = sushi->y + (int)lround((half_height + center.y - sprite->height / 2.0) * PHYSICS_SCALE),
+            .vx = sushi->vx + (int)lround(direction * normal.x * PHYSICS_FROM_PIXELS(2)),
+            .vy = sushi->vy + (int)lround(direction * normal.y * PHYSICS_FROM_PIXELS(2)),
+            .gravity = sushi->gravity,
+            .angle = sushi->angle,
+            .angular_velocity = sushi->angular_velocity,
+            .xpm = sprite
+        };
     }
-
-    if (sprite_load(left_sprite, sushi_left_xpms[sushi->type])) {
-        free(left_sprite);
-        free(right_sprite);
-        return 1;
-    }
-
-    if (sprite_load(right_sprite, sushi_right_xpms[sushi->type])) {
-        sprite_destroy(left_sprite);
-        free(left_sprite);
-        free(right_sprite);
-        return 1;
-    }
-
-    // Create left fragment
-    *left_fragment = (sushi_fragment_t){
-        .x = sushi->x - PHYSICS_FROM_PIXELS(2), // Move left
-        .y = sushi->y ,
-        .vx = sushi->vx - PHYSICS_FROM_PIXELS(2), // Move left
-        .vy = sushi->vy - PHYSICS_FROM_PIXELS(2),
-        .gravity = sushi->gravity,
-        .xpm = left_sprite
-    };
-
-    // Create right fragment
-    *right_fragment = (sushi_fragment_t){
-        .x = sushi->x + PHYSICS_FROM_PIXELS(2), // Move right
-        .y = sushi->y,
-        .vx = sushi->vx + PHYSICS_FROM_PIXELS(2), // Move right
-        .vy = sushi->vy - PHYSICS_FROM_PIXELS(2),
-        .gravity = sushi->gravity,
-        .xpm = right_sprite
-    };
-
-    // Destroy the original sushi
     sushi_destroy(sushi);
 
     return 0;
@@ -325,12 +279,13 @@ void update_sushi_fragment(sushi_fragment_t* fragment) {
     fragment->x += fragment->vx;
     fragment->y += fragment->vy;
     fragment->vy += fragment->gravity;
+    fragment->angle = ((fragment->angle + fragment->angular_velocity) % 360 + 360) % 360;
 
     // Deactivate if it goes off-screen
     if (fragment->xpm != NULL &&
-        (sushi_fragment_screen_x(fragment) + fragment->xpm->width < 0 ||
-         sushi_fragment_screen_x(fragment) > SCREEN_WIDTH ||
-         sushi_fragment_screen_y(fragment) > SCREEN_HEIGHT)) {
+        (sushi_fragment_screen_x(fragment) + fragment->xpm->width + fragment->xpm->height < 0 ||
+         sushi_fragment_screen_x(fragment) - fragment->xpm->height > SCREEN_WIDTH ||
+         sushi_fragment_screen_y(fragment) - fragment->xpm->width > SCREEN_HEIGHT)) {
           sushi_fragment_destroy(fragment);
     }
 }

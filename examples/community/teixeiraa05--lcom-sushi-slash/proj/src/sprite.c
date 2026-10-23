@@ -1,5 +1,47 @@
 #include "../include/game/sprite.h"
 
+bool sprite_pixel_visible(const sprite_t *sprite, int x, int y) {
+    if (sprite == NULL || sprite->pixmap == NULL || x < 0 || y < 0 ||
+        x >= sprite->width || y >= sprite->height) return false;
+    const uint8_t *pixel = sprite->pixmap + ((size_t)y * sprite->width + x) * 3;
+    uint32_t color = pixel[0] | ((uint32_t)pixel[1] << 8) | ((uint32_t)pixel[2] << 16);
+    return color != CHROMA_KEY_GREEN_888;
+}
+
+static bool clip_axis(double origin, double delta, double low, double high,
+                       double *entry, double *exit) {
+    if (fabs(delta) < 1e-12) return origin >= low && origin <= high;
+    double a = (low - origin) / delta, b = (high - origin) / delta;
+    double first = fmin(a, b), last = fmax(a, b);
+    if (first > *entry) *entry = first;
+    if (last < *exit) *exit = last;
+    return *entry <= *exit;
+}
+
+bool sprite_segment_intersects(const sprite_t *sprite, point_t start, point_t end) {
+    if (sprite == NULL || sprite->pixmap == NULL) return false;
+    double dx = end.x - start.x, dy = end.y - start.y;
+    if (dx == 0 && dy == 0) return false;
+    double entry = 0, exit = 1;
+    if (!clip_axis(start.x, dx, 0, sprite->width, &entry, &exit) ||
+        !clip_axis(start.y, dy, 0, sprite->height, &entry, &exit)) return false;
+
+    int first_row = (int)fmax(0, ceil(fmin(start.y + entry * dy, start.y + exit * dy)) - 1);
+    int last_row = (int)fmin(sprite->height - 1, floor(fmax(start.y + entry * dy, start.y + exit * dy)));
+    for (int y = first_row; y <= last_row; y++) {
+        double row_entry = entry, row_exit = exit;
+        if (!clip_axis(start.y, dy, y, y + 1, &row_entry, &row_exit)) continue;
+        double x0 = start.x + row_entry * dx, x1 = start.x + row_exit * dx;
+        /* Include both cells at a shared edge so a visible-pixel graze counts. */
+        int first_col = (int)fmax(0, ceil(fmin(x0, x1)) - 1);
+        int last_col = (int)fmin(sprite->width - 1, floor(fmax(x0, x1)));
+        for (int x = first_col; x <= last_col; x++) {
+            if (sprite_pixel_visible(sprite, x, y)) return true;
+        }
+    }
+    return false;
+}
+
 int sprite_load(sprite_t *sprite, xpm_map_t xpm) {
     if (sprite == NULL) return 1;
 

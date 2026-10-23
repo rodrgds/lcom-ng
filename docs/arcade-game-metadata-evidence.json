@@ -590,7 +590,7 @@
       "name": "Sushi Slash",
       "project": "examples/community/teixeiraa05--lcom-sushi-slash/proj",
       "repository": "https://github.com/teixeiraa05/lcom-sushi-slash",
-      "revision": "2ee087937f7bb7b1a0d2a45036ca16cc71577421",
+      "revision": "46a419ef102090ede4a90342fb12d0b6b1e44126",
       "tags": [
         "reaction",
         "fruit-slicing",
@@ -605,8 +605,8 @@
       ],
       "originalLogic": {
         "path": "examples/community/teixeiraa05--lcom-sushi-slash/proj/src/game.c",
-        "sha256": "5882d19bbd137ef00a1e3be4c037c0b65ad469ca6a798ec6ffa0e24bd6e121d1",
-        "publicUrl": "https://github.com/teixeiraa05/lcom-sushi-slash/blob/2ee087937f7bb7b1a0d2a45036ca16cc71577421/proj/src/game.c",
+        "sha256": "e3f1f7fd1da309fbfd4b81af27f50f2c6d5ec876e0b7bdbe119d8811eca049bf",
+        "publicUrl": "https://github.com/teixeiraa05/lcom-sushi-slash/blob/46a419ef102090ede4a90342fb12d0b6b1e44126/proj/src/game.c",
         "excerpts": [
           {
             "path": "examples/community/teixeiraa05--lcom-sushi-slash/proj/src/game.c",

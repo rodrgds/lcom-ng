@@ -1320,7 +1320,7 @@
     {
       "id": "teixeiraa05--lcom-sushi-slash",
       "repo": "teixeiraa05/lcom-sushi-slash",
-      "sha": "2ee087937f7bb7b1a0d2a45036ca16cc71577421",
+      "sha": "46a419ef102090ede4a90342fb12d0b6b1e44126",
       "project": "proj",
       "root": "examples/community/teixeiraa05--lcom-sushi-slash",
       "projectPath": "examples/community/teixeiraa05--lcom-sushi-slash/proj",
@@ -1428,7 +1428,7 @@
       "iconSource": "Existing Sushi Slash source artwork icon",
       "path": "examples/community/teixeiraa05--lcom-sushi-slash/proj",
       "repository": "https://github.com/teixeiraa05/lcom-sushi-slash",
-      "revision": "2ee087937f7bb7b1a0d2a45036ca16cc71577421",
+      "revision": "46a419ef102090ede4a90342fb12d0b6b1e44126",
       "controlsRationale": "Preserve direct slicing and the optional keyboard needed for original boss-letter gameplay and score-name entry; move its toggle into the upper left.",
       "icon": "examples/community/teixeiraa05--lcom-sushi-slash/proj/icon.png",
       "collectionId": "teixeiraa05-lcom-sushi-slash-aeb86527d30d",

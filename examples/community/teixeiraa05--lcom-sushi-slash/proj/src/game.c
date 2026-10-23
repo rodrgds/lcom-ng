@@ -377,19 +377,17 @@ void gameplay_draw(const GameInfo *game, const Assets *assets, uint32_t current_
 
     for (uint8_t i = 0; i < game->singleplayer.num_active_sushi; i++) {
         const sushi_t *sushi = &game->singleplayer.active_sushi[i];
-        int x = sushi_screen_x(sushi);
-        int y = sushi_screen_y(sushi);
-        if (sushi->xpm != NULL && x >= 0 && y >= 0) {
-            ui_draw_sprite(sushi->xpm, (uint16_t)x, (uint16_t)y);
+        if (sushi->xpm != NULL) {
+            ui_draw_sprite_rotated(sushi->xpm, sushi->x / (double)PHYSICS_SCALE,
+                                   sushi->y / (double)PHYSICS_SCALE, sushi->angle);
         }
     }
 
     for (uint8_t i = 0; i < game->singleplayer.num_active_fragments; i++) {
         const sushi_fragment_t *fragment = &game->singleplayer.active_fragments[i];
-        int x = sushi_fragment_screen_x(fragment);
-        int y = sushi_fragment_screen_y(fragment);
-        if (fragment->xpm != NULL && x >= 0 && y >= 0) {
-            ui_draw_sprite(fragment->xpm, (uint16_t)x, (uint16_t)y);
+        if (fragment->xpm != NULL) {
+            ui_draw_sprite_rotated(fragment->xpm, fragment->x / (double)PHYSICS_SCALE,
+                                   fragment->y / (double)PHYSICS_SCALE, fragment->angle);
         }
     }
 
@@ -448,7 +446,8 @@ void gameplay_handle_cut(GameInfo *game, MouseGameState *mouse_state, uint32_t c
 
             sushi_fragment_t left_fragment;
             sushi_fragment_t right_fragment;
-            if (cut_sushi(sushi, &left_fragment, &right_fragment) != 0) {
+            if (cut_sushi(sushi, prev_cut_x, prev_cut_y, cut_x, cut_y,
+                          &left_fragment, &right_fragment) != 0) {
                 i++;
                 continue;
             }

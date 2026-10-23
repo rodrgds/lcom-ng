@@ -1,6 +1,6 @@
 # Sushi Slash
 
-Original student project from [teixeiraa05/lcom-sushi-slash](https://github.com/teixeiraa05/lcom-sushi-slash), pinned at `2ee087937f7bb7b1a0d2a45036ca16cc71577421`.
+Original student project from [teixeiraa05/lcom-sushi-slash](https://github.com/teixeiraa05/lcom-sushi-slash), pinned at `46a419ef102090ede4a90342fb12d0b6b1e44126`.
 
 Build from `proj` with `lcom-ng compat build .`, or export using
 `lcom-ng export web .` / `lcom-ng export android .`. The adjacent `lcom.json`
