@@ -142,7 +142,7 @@ function loadingState(state) {
     }
   } else if (state.phase === 'error') {
     running = false; runningControls.hidden = true; setCompactActions(true);
-    loading.classList.remove('running');
+    loading.classList.remove('running'); loading.classList.remove('ready');
     showLoading();
     document.querySelector('#load-error').hidden = false;
     document.querySelector('#load-progress').hidden = true;
@@ -150,6 +150,7 @@ function loadingState(state) {
     document.querySelector('#retry').focus({preventScroll:true});
   } else if (state.phase === 'ready') {
     const loadingHadFocus = loading.contains(document.activeElement);
+    loading.classList.add('ready');
     runningControls.hidden = true;
     setCompactActions(true);
     // A reopened dialog shows the note, never a stale download status.
@@ -308,7 +309,7 @@ function route(force = false) {
   updateKeyboardLock();
   runningControls.hidden = true; setCompactActions(true); consoleOutput.hidden = true; consoleOutput.textContent = ''; progress.hidden = false;
   loadFooter.hidden = false;
-  loading.classList.remove('running');
+  loading.classList.remove('running'); loading.classList.remove('ready');
   hideLoading(); host.inert = !!game;
   library.hidden = !!game && !lastLink; play.hidden = !game;
   play.classList.toggle('starting',!!game);

@@ -789,13 +789,30 @@ test('before-play modal credits the participants and links the original reposito
   const repo=page.locator('#load-repository');
   await expect(repo).toBeVisible();
   await expect(repo).toHaveAttribute('href','https://github.com/example/game');
-  await expect(repo).toContainText('github.com/example/game');
+  await expect(repo).toHaveAttribute('aria-label','Source repository for Game 00');
+  await expect(repo).toHaveText('');
+  await expect(repo.locator('svg')).toHaveCount(1);
   await page.locator('#load-dismiss').click();
   await expect(page.locator('#loading')).toBeHidden();
   // Games without evidenced participants keep both surfaces hidden.
   await page.locator('#games a[data-id="game-1"]').click();
   await expect(page.locator('#load-credits')).toBeHidden();
   await expect(page.locator('#load-repository')).toBeHidden();
+});
+
+test('the repository icon waits for the first frame and shows no repository text',async({page})=>{
+  const instructions={sections:[{title:'Controls',controls:[{action:'Jump',bindings:[{keys:['Space']}]}]}]};
+  await page.route('**/games/**',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><title>Loading fixture</title>'}));
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Loading fixture',games:games.map((game,index)=>index?game:{...game,instructions,repository:'https://github.com/example/game'})}}));
+  await page.goto(base);
+  await page.locator('#games a[data-id="game-0"]').click();
+  await expect(page.locator('#load-progress')).toBeVisible();
+  await expect(page.locator('#load-repository')).toBeHidden();
+  await page.frames().find(frame=>frame.url().includes('/games/')).evaluate(()=>parent.postMessage({type:'lcom-player-loading',phase:'ready'},location.origin));
+  await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeEnabled();
+  const repo=page.getByRole('link',{name:'Source repository for Game 00'});
+  await expect(repo).toBeVisible();
+  await expect(repo).toHaveText('');
 });
 
 test('clicking outside the loading dialog dismisses it like the close button',async({page})=>{

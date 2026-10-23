@@ -22,7 +22,8 @@ regular tiles and keep their order while typing. Five random featured picks come
 Loading opens a compact dismissible modal with the selected game's icon,
 description, category tags and measured progress. It also credits the original
 participants below the controls, with a personal link or published email when the
-project documents one, and puts the upstream repository on the left of the footer.
+project documents one. Once the first frame is ready, the footer's left side adds
+the upstream repository as an icon-only link; while loading it shows only progress.
 The modal stays for at least two seconds without running gameplay behind it. Empty side gutters show brighter clickable
 suggestions in one to four slowly scrolling columns per side, alternating up and down.
 Hover or focus pauses a side; its pause button stops it until resumed. Reduced motion

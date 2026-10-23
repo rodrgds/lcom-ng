@@ -50,7 +50,4 @@ export function renderRepository(link, game) {
   link.title = url;
   link.setAttribute('aria-label', 'Source repository for ' + game.name);
   link.innerHTML = repositoryIcon(url);
-  const label = document.createElement('span');
-  label.textContent = url.replace(/^https?:\/\/(?:www\.)?/i, '').replace(/\/$/, '');
-  link.append(label);
 }
