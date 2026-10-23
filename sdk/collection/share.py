@@ -19,11 +19,16 @@ def normalize(value):
     return re.sub(r'[^a-z0-9]+', '-', text.lower()).strip('-')
 
 
+def author_name(author):
+    """A credited name from a plain string or a `{name, email, url}` record."""
+    return author.get('name', '') if isinstance(author, dict) else author
+
+
 def initials(authors):
     """One letter per participant, sorted, with repeats collapsed."""
     letters = set()
     for author in authors:
-        words = normalize(author).split()
+        words = normalize(author_name(author)).split()
         if words:
             letters.add(words[0][0])
     return ''.join(sorted(letters))
@@ -42,7 +47,9 @@ def assign_slugs(games):
     """Deterministic collection-wide slugs; collisions gain numeric suffixes.
 
     `games` holds mappings with `id`, `name` and optional `authors`. Sorting by
-    id keeps the assignment stable when a collection is reordered.
+    id keeps the assignment stable when a collection is reordered. A slug already
+    published for a game stays fixed when later evidence credits more people, so
+    existing share links keep resolving; call this only for a new collection.
     """
     assigned, taken = {}, set()
     for game in sorted(games, key=lambda item: str(item['id'])):

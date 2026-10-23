@@ -146,15 +146,20 @@ IDs from that catalog.
   game. `favicon` is a PNG or SVG inside the collection folder.
 - Gallery entries are arrays of up to 12 relative WebP paths. The exporter
   copies them under content hashes and loads them when a tile expands.
-- `authors` lists the participants' first names in alphabetical order, and only
-  when evidence supports them: a local README, an upstream report, a source
-  header, or a profile name for a single contributor. Never derive a name from a
-  username.
-- `slug` is the game's fixed share address. `sdk/collection/share.py` derives it
-  from those initials and the game name, such as `afg-ninjix`, collapsing
-  repeated letters, and uses the name alone when no authors are evidenced.
-  Validation rejects duplicates, names that do not match the exported catalog,
-  and slugs over 64 characters or outside `^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$`.
+- `authors` lists the participants, only when evidence supports them: a local
+  README, an upstream report, a source header, or a profile name for a single
+  contributor. Use the published full name, never one derived from a username.
+  A plain name string is enough; use `{name, email, url}` only for details the
+  project or the person's public profile publishes, and pair any change with
+  `creditsSource` (`kind`: `readme`, `project`, `commit`, `profile`, `unknown`;
+  `detail`; optional HTTP `url`).
+- `slug` is the game's fixed share address. `sdk/collection/share.py` derives a
+  new one from the credited initials and the game name, such as `afg-ninjix`,
+  and uses the name alone when no authors are evidenced. A published slug stays
+  unchanged when later evidence adds a participant, so shared links keep
+  working. Validation rejects duplicates, slugs whose name no longer matches the
+  game, prefixes that use letters no credited person provides, and slugs over 64
+  characters or outside `^[a-z][a-z0-9]*(?:-[a-z0-9]+)*$`.
 
 The Arcade shows plain labels, keeps inference details in tooltips, and omits
 unknown years. Repository creation timestamps remain separate provenance with
@@ -170,6 +175,10 @@ remain supported.
   school year.
 - Hover or keyboard focus expands a tile into screenshots, name, known year, and
   approximate first-load size. Touch opens a game directly.
+- The loading modal shows the description, category tags, and the game's
+  participants below any authored controls. A credited person becomes a link to
+  their published site or email. The upstream repository sits on the left of the
+  modal footer when the metadata has one.
 - **Ctrl+K**, **Command+K**, or **/** focuses search. Query and filters survive
   launches and reloads in the same tab. **Surprise me** chooses from current
   matches. Reduced motion keeps results still.

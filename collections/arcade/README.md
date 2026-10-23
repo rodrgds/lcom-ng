@@ -20,8 +20,10 @@ for genres, player modes and
 academic school years. The query and tags persist within the tab; filtered results use
 regular tiles and keep their order while typing. Five random featured picks come from a curated pool. Year labels stay plain and unknowns are omitted.
 Loading opens a compact dismissible modal with the selected game's icon,
-description, category tags and measured progress. The modal stays for at least
-two seconds without running gameplay behind it. Empty side gutters show brighter clickable
+description, category tags and measured progress. It also credits the original
+participants below the controls, with a personal link or published email when the
+project documents one, and puts the upstream repository on the left of the footer.
+The modal stays for at least two seconds without running gameplay behind it. Empty side gutters show brighter clickable
 suggestions in one to four slowly scrolling columns per side, alternating up and down.
 Hover or focus pauses a side; its pause button stops it until resumed. Reduced motion
 keeps suggestions still. They retain the same gameplay previews. On touchscreens, the Home button prefers unused
@@ -35,7 +37,8 @@ On a mouse or trackpad, the upper-right **Share** button copies a clean
 per-game address such as `https://arcade.rgo.pt/share/afg-ninjix`. Those
 initials come from each participant's first name, in alphabetical order, and
 only from evidenced author lists in `game-metadata.json`; games without
-evidence use a name-only slug. Touch layouts keep that corner for the game's
+evidence use a name-only slug. A published slug is never rewritten when later
+evidence credits more participants, so existing links keep working. Touch layouts keep that corner for the game's
 own controls, so phones open shared addresses without the button. The Worker
 answers `/share/<slug>` with the same launcher, a `<base href="/">`, the
 game's title and preview for link unfurls, and no side suggestion rails, so a

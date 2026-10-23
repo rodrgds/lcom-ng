@@ -11,6 +11,7 @@ import re
 
 SDK = Path(__file__).resolve().parents[1]
 from collection import share
+EMAIL = re.compile(r'[^@\s]+@[^@\s]+\.[^@\s]+')
 _spec = importlib.util.spec_from_file_location('lcom_collection_web_game', SDK / 'web/export.py')
 exporter = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(exporter)
@@ -183,6 +184,31 @@ def _confined(root, relative):
     return path
 
 
+def _credited_authors(authors, config):
+    """Credit names stay plain strings unless a person publishes contact details."""
+    if not isinstance(authors, list) or not authors or len(authors) > 12:
+        raise ValueError('Game authors must be an array of 1 to 12 credited names')
+    names = []
+    for author in authors:
+        if isinstance(author, dict):
+            author = config.object_value(author, 'author', ['name', 'email', 'url'])
+            if 'email' in author:
+                email = config.string(author['email'], 'author.email')
+                if len(email) > 120 or not EMAIL.fullmatch(email):
+                    raise ValueError('Author email must be an email address')
+            if 'url' in author:
+                url = config.string(author['url'], 'author.url')
+                if len(url) > 500 or not re.match(r'^https?://[^\s]+$', url):
+                    raise ValueError('Author url must be an HTTP URL')
+        name = config.string(author['name'] if isinstance(author, dict) else author, 'author name')
+        if len(name) > 80:
+            raise ValueError('Author names must contain at most 80 characters')
+        names.append(name)
+    if len({name.casefold() for name in names}) != len(names):
+        raise ValueError('Game authors must not repeat a person')
+    return names
+
+
 def _presentation(path, identifiers):
     if path is None: return {}, {}, {}
     path = Path(path).absolute()
@@ -240,7 +266,7 @@ def _presentation(path, identifiers):
                         raise ValueError(f'Gallery image must be WebP: {image}')
                 galleries[identifier] = images
                 continue
-            config.object_value(value, identifier, ['year', 'yearLabel', 'yearSource', 'featured', 'featuredPool', 'repository', 'tags', 'academicYear', 'academicYearSource', 'slug', 'authors'])
+            config.object_value(value, identifier, ['year', 'yearLabel', 'yearSource', 'featured', 'featuredPool', 'repository', 'tags', 'academicYear', 'academicYearSource', 'slug', 'authors', 'creditsSource'])
             if 'slug' in value:
                 slug = config.string(value['slug'], 'slug')
                 if len(slug) > share.MAX_SLUG_LENGTH or not share.SHARE_SLUG.fullmatch(slug):
@@ -248,11 +274,14 @@ def _presentation(path, identifiers):
                 if slug in slugs: raise ValueError(f'Duplicate game share slug: {slug}')
                 slugs.add(slug)
             if 'authors' in value:
-                authors = value['authors']
-                if (not isinstance(authors, list) or not authors or len(authors) > 12
-                        or any(not isinstance(author, str) or not author.strip() or len(author) > 80
-                               for author in authors)):
-                    raise ValueError('Game authors must be an array of 1 to 12 credited names')
+                _credited_authors(value['authors'], config)
+            if 'creditsSource' in value:
+                evidence = config.object_value(value['creditsSource'], 'creditsSource', ['kind', 'detail', 'url'])
+                config.choice(evidence.get('kind'), 'creditsSource.kind', ['readme', 'project', 'commit', 'profile', 'unknown'])
+                if len(config.string(evidence.get('detail'), 'creditsSource.detail')) > 400:
+                    raise ValueError('creditsSource.detail must contain at most 400 characters')
+                if 'url' in evidence and not re.match(r'^https?://[^\s]+$', config.string(evidence['url'], 'creditsSource.url')):
+                    raise ValueError('Credits evidence must use an HTTP URL')
             if 'tags' in value:
                 selected = value['tags']
                 if not isinstance(selected, list) or any(not isinstance(tag, str) or tag not in tags for tag in selected) or len(set(selected)) != len(selected):

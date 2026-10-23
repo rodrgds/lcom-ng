@@ -18,7 +18,10 @@ async function shareShell(env, slug, shell, url) {
   const game = (catalog.games || []).find(item => item.slug === slug);
   if (!game) return shell;
   const canonical = new URL(SHARE_PATH + slug, url).href;
-  const authors = Array.isArray(game.authors) && game.authors.length ? game.authors.join(', ') : null;
+  const authors = Array.isArray(game.authors) && game.authors.length
+    ? game.authors.map(author => typeof author === 'string' ? author : author?.name)
+      .filter(Boolean).join(', ')
+    : null;
   const description = [game.description, authors && `by ${authors}`].filter(Boolean).join(' · ')
     || `${catalog.name} game`;
   const image = game.screenshotThumbnail || game.iconThumbnail || game.icon;

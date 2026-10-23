@@ -26,7 +26,9 @@ results use regular tiles without oversized highlights or compact clusters.
 Five random highlights come from a curated pool.
 A compact loading modal explains the game and shows real transfer progress until
 its first presented frame, with a two-second minimum and visible category tags.
-Cancel returns to the current library. Playable
+Below the controls it credits the original participants, with an evidenced
+personal link or email, and its footer carries the upstream repository link when
+one exists. Cancel returns to the current library. Playable
 suggestions fill empty side gutters in continuously looping columns, alternating
 up and down, with the same hover previews as the library. Each side pauses on
 hover, focus or its pause control; reduced motion keeps the columns still.

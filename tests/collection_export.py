@@ -126,6 +126,23 @@ class CollectionManifest(unittest.TestCase):
         games=web.write_launcher(entries,output,'Class games',presentation=moved/'web.json')
         self.assertEqual(games[0]['screenshots'],game['screenshots'])
 
+    def test_web_presentation_publishes_evidenced_author_contact_details(self):
+        entries=manifest.load(self.collection)['entries'];identifier=entries[0]['id']
+        output=self.root/'export'
+        for entry in entries:
+            game=output/'games'/entry['id'];game.mkdir(parents=True)
+            for name in ['index.html','game.js','game.wasm']:(game/name).write_bytes(b'game')
+        authors=[{'name':'Ana Alves','email':'up202000001@up.pt'},
+                 {'name':'Bruno Braga','url':'https://example.com/bruno'},'Carla Dias']
+        source={'kind':'readme','detail':'Original README lists the three group members.',
+                'url':'https://github.com/example/game/blob/main/README.md'}
+        (self.collection/'metadata.json').write_text(json.dumps({'version':1,'games':{identifier:{'authors':authors,'creditsSource':source}}}))
+        (self.collection/'web.json').write_text(json.dumps({'version':1,'metadata':'metadata.json'}))
+        games=web.write_launcher(entries,output,'Class games',presentation=self.collection/'web.json')
+        self.assertEqual(games[0]['authors'],authors)
+        self.assertEqual(games[0]['creditsSource'],source)
+        self.assertEqual(json.loads((output/'collection.json').read_text())['games'][0]['authors'],authors)
+
     def test_web_presentation_rejects_paths_outside_collection_and_invalid_metadata(self):
         entries=manifest.load(self.collection)['entries'];identifier=entries[0]['id']
         output=self.root/'export'
@@ -145,6 +162,13 @@ class CollectionManifest(unittest.TestCase):
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'slug':'9leading-digit'}}},None),
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'authors':[]}}},None),
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'authors':['Ana Alves',42]}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'authors':[{'name':'Ana Alves','email':'not-an-email'}]}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'authors':[{'name':'Ana Alves','url':'javascript:alert(1)'}]}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'authors':[{'name':'Ana Alves','phone':'912345678'}]}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'authors':[{'name':'Ana Alves'},{'name':'ana alves'}]}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'creditsSource':{'kind':'vibes','detail':'Unsupported evidence'}}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'creditsSource':{'kind':'readme'}}}},None),
+               ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{identifier:{'creditsSource':{'kind':'readme','detail':'Bad evidence URL','url':'ftp://example.com'}}}},None),
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{entry['id']:{'slug':'same-slug'} for entry in entries}},None),
                ({'version':1,'metadata':'metadata.json'},{'version':1,'games':{entry['id']:{'unsupported':True} for entry in entries}},None)]
         for sidecar,metadata,gallery in cases:
@@ -201,6 +225,11 @@ class ShareSlugDerivation(unittest.TestCase):
         self.assertLessEqual(len(slug), share.MAX_SLUG_LENGTH)
         self.assertTrue(slug.startswith('ab-'))
 
+    def test_contact_records_keep_the_published_name_for_slugs(self):
+        self.assertEqual(share.share_slug([{'name': 'Ana Alves', 'email': 'up202000001@up.pt'},
+                                           {'name': 'Bruno Braga', 'url': 'https://example.com/bruno'}],
+                                          'Ninjix'), 'ab-ninjix')
+
     def test_collisions_gain_deterministic_numeric_suffixes(self):
         assigned = share.assign_slugs([{'id': 'b', 'name': 'Snake', 'authors': []},
                                        {'id': 'a', 'name': 'Snake', 'authors': []}])
@@ -209,9 +238,9 @@ class ShareSlugDerivation(unittest.TestCase):
 
 
 class ArcadeShareSlugs(unittest.TestCase):
-    """Published share addresses stay derivable from the credited authors."""
+    """Published share addresses stay stable, readable and unique."""
 
-    def test_every_arcade_game_publishes_its_derived_share_slug(self):
+    def test_every_arcade_game_publishes_a_stable_readable_share_slug(self):
         collection = ROOT / 'collections/arcade'
         entries = manifest.load(collection)['entries']
         metadata = json.loads((collection / 'game-metadata.json').read_text())['games']
@@ -220,10 +249,24 @@ class ArcadeShareSlugs(unittest.TestCase):
         self.assertEqual(len(games), len(entries))
         missing = [game['id'] for game in games if 'slug' not in metadata.get(game['id'], {})]
         self.assertFalse(missing, f'Arcade games without a share slug: {missing[:5]}')
-        for identifier, slug in share.assign_slugs(games).items():
-            with self.subTest(game=identifier):
-                self.assertEqual(metadata[identifier]['slug'], slug)
+        published = [metadata[game['id']]['slug'] for game in games]
+        duplicates = {slug for slug in published if published.count(slug) > 1}
+        self.assertFalse(duplicates, f'Duplicate share slugs: {sorted(duplicates)}')
+        for game in games:
+            with self.subTest(game=game['id']):
+                slug = metadata[game['id']]['slug']
                 self.assertRegex(slug, share.SHARE_SLUG)
+                self.assertLessEqual(len(slug), share.MAX_SLUG_LENGTH)
+                tail = share.share_slug([], game['name'])
+                if slug == tail:
+                    prefix = ''
+                else:
+                    self.assertTrue(slug.endswith('-' + tail), f'{slug} no longer names {game["name"]}')
+                    prefix = slug[:-len(tail) - 1]
+                # A published slug keeps the initials it was assigned with, so
+                # later credited participants never break an existing link. It
+                # may only ever shorten the set of letters actually evidenced.
+                self.assertLessEqual(set(prefix), set(share.initials(game['authors'])))
 
 
 if __name__ == '__main__': unittest.main()

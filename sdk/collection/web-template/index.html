@@ -70,12 +70,17 @@
     <ul id="load-tags" class="game-tags" aria-label="Game categories" hidden></ul>
     <p id="load-description"></p>
     <div id="game-instructions" aria-label="Instructions" hidden></div>
+    <section id="load-credits" class="load-credits" aria-labelledby="load-credits-title" hidden>
+      <h3 id="load-credits-title">Made by</h3>
+      <ul id="load-credit-names"></ul>
+    </section>
     <div id="load-running" hidden>
       <pre id="load-console" aria-label="Game messages" hidden></pre>
     </div>
     <div id="load-error" hidden><p role="alert">The game couldn’t load. Check your connection and try again.</p><button id="retry" type="button">Try again</button><button id="cancel" type="button">Back to games</button></div>
     </div>
     <footer id="load-footer">
+      <a id="load-repository" class="load-repository" target="_blank" rel="noopener noreferrer" hidden></a>
       <div id="load-progress"><progress aria-label="Game download"></progress><p id="load-status" role="status">Loading game…</p></div>
       <p id="compact-message" class="load-footer-note" hidden>Some games wait for a key.</p>
       <button id="show-controls" type="button" hidden>Show controls</button>

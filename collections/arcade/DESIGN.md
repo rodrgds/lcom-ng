@@ -312,7 +312,11 @@ caching. The HTML keeps revalidation so a new release selects fresh asset URLs.
 ### Startup and transfer
 
 Startup shows a compact selected-game icon, name, short description and progress
-rail in a modal. Measured loaded/total bytes drive progress when the total is known;
+rail in a modal. Authored controls sit below it, followed by the credited
+participants: each name links to a published personal page, and a published
+address follows it as a mail-to link. The modal footer carries the upstream
+repository on the left, with the GitHub mark and the repository path, so the
+source stays one click away. Measured loaded/total bytes drive progress when the total is known;
 otherwise the rail is indeterminate. Starting game follows transfer. Startup
 stays visible and the iframe inert until the first presented frame, then the
 iframe receives focus. Progress announcements use meaningful steps.

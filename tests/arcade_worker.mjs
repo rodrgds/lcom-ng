@@ -21,7 +21,7 @@ test('game delivery honors original client encoding and preserves the module byt
 
 test('share links serve the launcher with the game metadata and root-relative assets',async()=>{
   const catalog={name:'LCOM Arcade',games:[{slug:'afg-ninjix',name:'Ninjix',description:'Ninja defence',
-    authors:['Afonso Alves','Filipe Faria','Gonçalo Gomes'],screenshotThumbnail:'static/shot-123.webp'}]};
+    authors:[{name:'Afonso Alves',email:'up202000001@up.pt'},'Filipe Faria',{name:'Gonçalo Gomes',url:'https://example.com/goncalo'}],screenshotThumbnail:'static/shot-123.webp'}]};
   const shell='<!doctype html><html><head><title>LCOM Arcade</title></head><body></body></html>';
   const env={ASSETS:{fetch:async request=>{
     const pathname=new URL(request.url).pathname;

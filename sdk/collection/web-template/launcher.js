@@ -9,6 +9,7 @@ import {cue} from './audio.js';
 import {bindGridNavigation} from './navigation.js';
 import {loadFont} from './fonts.js';
 import {renderInstructions} from './instructions.js';
+import {renderCredits, renderRepository} from './credits.js';
 import {sharedSlug, homeUrl, shareUrl, copyText} from './share.js';
 
 const library = document.querySelector('#library');
@@ -75,6 +76,8 @@ const runningControls = document.querySelector('#load-running');
 const consoleOutput = document.querySelector('#load-console');
 const instructionContent = document.querySelector('#game-instructions');
 const loadFooter = document.querySelector('#load-footer');
+const creditsSection = document.querySelector('#load-credits');
+const repositoryLink = document.querySelector('#load-repository');
 const compactActions = [document.querySelector('#compact-message'), document.querySelector('#show-controls')];
 const setCompactActions = hidden => compactActions.forEach(element => { element.hidden = hidden; });
 const startButton = document.querySelector('#start-game');
@@ -315,6 +318,8 @@ function route(force = false) {
     document.querySelector('#load-title').textContent = game.name;
     document.querySelector('#load-description').textContent = game.description || '';
     renderGameTags(document.querySelector('#load-tags'),game,taxonomy);
+    renderCredits(creditsSection,game);
+    renderRepository(repositoryLink,game);
     const icon = document.querySelector('.load-logo');
     icon.onerror = () => { icon.onerror = null; icon.src = 'assets/arcade.svg'; };
     icon.src = game.iconThumbnail || game.icon || 'assets/arcade.svg';
@@ -328,6 +333,8 @@ function route(force = false) {
     frame.onerror = () => loadingState({phase:'error'});
     showLoading();
   } else {
+    renderCredits(creditsSection,null);
+    renderRepository(repositoryLink,null);
     document.title = library.querySelector('h1').textContent;
     if (lastLink?.closest('#search-panel')) gameSearch?.open(lastLink.dataset.id);
     else lastLink?.focus({preventScroll:true});

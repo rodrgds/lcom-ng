@@ -767,6 +767,37 @@ test('only the active same-origin player can return to the library and release a
   expect(await page.evaluate(()=>!!document.pointerLockElement)).toBe(false);
 });
 
+test('before-play modal credits the participants and links the original repository',async({page})=>{
+  const instructions={sections:[{title:'Controls',controls:[{action:'Jump',bindings:[{keys:['Space']}]}]}]};
+  const credited={...games[0],instructions,
+    authors:[{name:'Ana Alves',email:'up202000001@up.pt'},{name:'Bruno Braga',url:'https://example.com/bruno'}],
+    repository:'https://github.com/example/game',
+    creditsSource:{kind:'readme',detail:'Original README lists both group members.',url:'https://github.com/example/game/blob/main/README.md'}};
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Credits fixture',games:[credited,...games.slice(1)]}}));
+  await page.goto(base);
+  await page.locator('#games a[data-id="game-0"]').click();
+  await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeEnabled();
+  const credits=page.locator('#load-credits');
+  await expect(credits).toBeVisible();
+  await expect(credits.getByRole('heading',{name:'Made by'})).toBeVisible();
+  await expect(credits.locator('li')).toHaveText([/Ana Alves/,/Bruno Braga/]);
+  await expect(credits.getByRole('link',{name:'up202000001@up.pt'})).toHaveAttribute('href','mailto:up202000001@up.pt');
+  await expect(credits.getByRole('link',{name:'Bruno Braga'})).toHaveAttribute('href','https://example.com/bruno');
+  // Credits sit below the authored controls inside the scrollable modal body.
+  const controls=await page.locator('#game-instructions').boundingBox(),creditBox=await credits.boundingBox();
+  expect(creditBox.y).toBeGreaterThan(controls.y+controls.height-1);
+  const repo=page.locator('#load-repository');
+  await expect(repo).toBeVisible();
+  await expect(repo).toHaveAttribute('href','https://github.com/example/game');
+  await expect(repo).toContainText('github.com/example/game');
+  await page.locator('#load-dismiss').click();
+  await expect(page.locator('#loading')).toBeHidden();
+  // Games without evidenced participants keep both surfaces hidden.
+  await page.locator('#games a[data-id="game-1"]').click();
+  await expect(page.locator('#load-credits')).toBeHidden();
+  await expect(page.locator('#load-repository')).toBeHidden();
+});
+
 test('desktop loading failures keep a reachable cancel action and return focus to the launching tile',async({page})=>{
   await page.route('**/games/**',route=>route.fulfill({contentType:'text/html',body:'<script>parent.postMessage({type:"lcom-player-loading",phase:"error"},location.origin)</script>'}));
   await page.goto(base);const id=await page.locator('#games .game-launch').first().getAttribute('data-id'),tile=page.locator('#games .game-launch[data-id="'+id+'"]');await tile.click();
