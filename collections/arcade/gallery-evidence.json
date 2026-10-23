@@ -2924,85 +2924,6 @@
         }
       ]
     },
-    "worms-0ace38f831e6": {
-      "name": "LCOMbat: Worms",
-      "screenshots": [
-        "galleries/worms-0ace38f831e6/play-started.webp",
-        "galleries/worms-0ace38f831e6/play-progress.webp",
-        "galleries/worms-0ace38f831e6/play-continued.webp"
-      ],
-      "captures": [
-        {
-          "source": "browser gameplay canvas",
-          "sha256": "9093268d41f7ee065959a87c7affb422542c3292c371b8daf91e3390cc5ac117",
-          "originalSha256": "864b81e140f6e31a4d8a3e64dd1b19bbd54eddae4df38d7ef50efeff4af429b5",
-          "caption": "play started",
-          "framebuffer": [
-            800,
-            600
-          ],
-          "crop": null,
-          "replay": "gallery-captures.json#worms-0ace38f831e6",
-          "replaySha256": "5c4ed2742ee0e50f2dbdc611885c2e4c40b1553c5ca5f61a7bd30eb88f3abc66",
-          "gameFiles": [
-            {
-              "file": "game.wasm",
-              "sha256": "20c1d9f16432120bb3a890b05d3d85867d3f09ec381483d768beb036edef48c0"
-            },
-            {
-              "file": "game.js",
-              "sha256": "99e89f5ad6c7c5d36b2fae3a2a8aaeaf68b668de76d56e37ef3cbfca7cebacce"
-            }
-          ]
-        },
-        {
-          "source": "browser gameplay canvas",
-          "sha256": "df9711a854c3e837c3cb058eaaf1a52a762cd40fa3ff862fc16791f23d34290f",
-          "originalSha256": "fc94403fe5142f65208c12e1f7b02130809e9c55c3de0083eb4a419c80fc69ce",
-          "caption": "play progress",
-          "framebuffer": [
-            800,
-            600
-          ],
-          "crop": null,
-          "replay": "gallery-captures.json#worms-0ace38f831e6",
-          "replaySha256": "5c4ed2742ee0e50f2dbdc611885c2e4c40b1553c5ca5f61a7bd30eb88f3abc66",
-          "gameFiles": [
-            {
-              "file": "game.wasm",
-              "sha256": "20c1d9f16432120bb3a890b05d3d85867d3f09ec381483d768beb036edef48c0"
-            },
-            {
-              "file": "game.js",
-              "sha256": "99e89f5ad6c7c5d36b2fae3a2a8aaeaf68b668de76d56e37ef3cbfca7cebacce"
-            }
-          ]
-        },
-        {
-          "source": "browser gameplay canvas",
-          "sha256": "277710ca2f71675def4775ac3166c7dfe5c3f8d7a3ebf335acf887927813f59a",
-          "originalSha256": "453eb15fb8a1c09811676c6a6b20c72e5e520da3b82837f48c4e12b114d2ccb7",
-          "caption": "play continued",
-          "framebuffer": [
-            800,
-            600
-          ],
-          "crop": null,
-          "replay": "gallery-captures.json#worms-0ace38f831e6",
-          "replaySha256": "5c4ed2742ee0e50f2dbdc611885c2e4c40b1553c5ca5f61a7bd30eb88f3abc66",
-          "gameFiles": [
-            {
-              "file": "game.wasm",
-              "sha256": "20c1d9f16432120bb3a890b05d3d85867d3f09ec381483d768beb036edef48c0"
-            },
-            {
-              "file": "game.js",
-              "sha256": "99e89f5ad6c7c5d36b2fae3a2a8aaeaf68b668de76d56e37ef3cbfca7cebacce"
-            }
-          ]
-        }
-      ]
-    },
     "dab1d-getawaycar-a7df638127d0": {
       "name": "Getaway Car",
       "screenshots": [
@@ -6425,7 +6346,7 @@
           "source": "browser gameplay canvas",
           "sha256": "8df488fe1b696970bd078651a1b3645317d51d78b6bda3fd117a3285cc93f93b",
           "originalSha256": "541317f779ef2946d907ba66b174c301ecb97553eae3c88179464d78b7ad75a8",
-          "caption": "Balloons rise through the archer\u2019s field",
+          "caption": "Balloons rise through the archer’s field",
           "framebuffer": [
             1024,
             768
@@ -8817,7 +8738,7 @@
       ]
     },
     "source-169548b2d0b8": {
-      "name": "Pok\u00e9mon Run",
+      "name": "Pokémon Run",
       "screenshots": [
         "galleries/source-169548b2d0b8/running-field.webp",
         "galleries/source-169548b2d0b8/right-lane.webp",
@@ -8828,7 +8749,7 @@
           "source": "browser gameplay canvas",
           "sha256": "ace8e69bcd509fc89a247b9c98111409abcd0ab847841d66ec936e922acdcfab",
           "originalSha256": "54d8b1a694e5908b8ce6b5994831ab56c0a2c732a5a84daa911a5a1f62320713",
-          "caption": "The trainer runs through the original scrolling field of obstacles and Pok\u00e9 Balls.",
+          "caption": "The trainer runs through the original scrolling field of obstacles and Poké Balls.",
           "framebuffer": [
             800,
             600
@@ -10160,7 +10081,7 @@
       ]
     },
     "franpts2-whack-a-diglett-5422f1a1fcec": {
-      "name": "Whack\u2019a Diglett",
+      "name": "Whack’a Diglett",
       "screenshots": [
         "galleries/franpts2-whack-a-diglett-5422f1a1fcec/digletts.webp",
         "galleries/franpts2-whack-a-diglett-5422f1a1fcec/first-hit.webp",
@@ -10724,7 +10645,7 @@
           "source": "browser gameplay canvas",
           "sha256": "1d14ad57706fd22ddcab861ed068a3d4fbb9c1af20489e8345f867f4786b2e22",
           "originalSha256": "cc88a067a6708a182ccaba72eb098d213ed4ff81bf8056dc48166a50329df6c0",
-          "caption": "Explore the maze through the adventurer\u2019s field of view",
+          "caption": "Explore the maze through the adventurer’s field of view",
           "framebuffer": [
             1280,
             1024
@@ -10849,7 +10770,7 @@
           "source": "browser gameplay canvas",
           "sha256": "f5499fd418e9f563f4a14e7e88408860b650417448a2a1751ec0941e0387d45f",
           "originalSha256": "9719b0b66821d1b02c835dfef5dc14bea38b3dcdb3cd2ada4da4a20af7dab89e",
-          "caption": "Stand to reveal the dealer\u2019s hand and settle the round",
+          "caption": "Stand to reveal the dealer’s hand and settle the round",
           "framebuffer": [
             800,
             600
@@ -23643,7 +23564,7 @@
           "source": "browser gameplay canvas",
           "sha256": "f09ad5d09ea5ab14c3c138f7a3114567973e42071cd359af61c38ca1d327b681",
           "originalSha256": "ca2aa3a338e191b9d45c014256a9c56354944d70e145fc9599b16a91d63e1122",
-          "caption": "Restart keeps the original medium20\u00d716 board active.",
+          "caption": "Restart keeps the original medium20×16 board active.",
           "framebuffer": [
             800,
             600

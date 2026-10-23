@@ -1406,42 +1406,6 @@
       ],
       "slug": "acm-battleship"
     },
-    "worms-0ace38f831e6": {
-      "year": 2026,
-      "yearLabel": "2026",
-      "yearSource": {
-        "kind": "repository",
-        "url": "https://github.com/af0nsx/Worms",
-        "createdAt": "2026-07-12T17:13:28Z",
-        "detail": "GitHub repository creation timestamp, retrieved from the repository createdAt field."
-      },
-      "repository": "https://github.com/af0nsx/Worms",
-      "tags": [
-        "artillery",
-        "strategy",
-        "local-multiplayer",
-        "local-versus"
-      ],
-      "academicYear": "2025/26",
-      "academicYearSource": {
-        "kind": "game-history-inference",
-        "confidence": "inferred",
-        "url": "https://github.com/af0nsx/Worms/commit/353e03e3d1a42cba7e8b383034d0a9d280d7a184",
-        "date": "2026-06-05",
-        "detail": "Academic year inferred from the earliest pinned-ancestor commit for an original game logic C file (2026-06-05), with the school year beginning in September. This is an estimate, not an explicit course-year statement."
-      },
-      "slug": "lcombat-worms",
-      "authors": [
-        "Henrique Jorge Sobrado Pereira",
-        "Henrique Duarte Moreira Barbosa Magalhães de Oliveira",
-        "Afonso Magalhães Amaral Cabral"
-      ],
-      "creditsSource": {
-        "kind": "commit",
-        "detail": "No README or source header names the group; upstream commit authorship attributes this shared codebase to these three students.",
-        "url": "https://github.com/af0nsx/Worms"
-      }
-    },
     "dab1d-getawaycar-a7df638127d0": {
       "year": 2026,
       "yearLabel": "2026",
