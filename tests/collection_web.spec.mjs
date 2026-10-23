@@ -815,6 +815,49 @@ test('the repository icon waits for the first frame and shows no repository text
   await expect(repo).toHaveText('');
 });
 
+test('dismissing the modal keeps the library position and the modal shows the game year',async({page})=>{
+  const many=Array.from({length:240},(_,index)=>({...games[index%games.length],id:'tall-'+index,name:'Tall '+index,
+    featured:false,featuredPool:false,year:2020,yearLabel:'Updated 2020',academicYear:'2019/20',repository:undefined,
+    screenshots:['/shot-red.svg'],instructions:{sections:[{title:'Go',text:'Move.'}]}}));
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Tall fixture',games:many}}));
+  await page.setViewportSize({width:700,height:400});
+  await page.goto(base);
+  const tile=page.locator('#games a[data-id="tall-200"]');
+  const open=async()=>{
+    await tile.scrollIntoViewIfNeeded();
+    const box=await tile.boundingBox();
+    await page.mouse.click(box.x+box.width/2,box.y+box.height/2);
+    await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeEnabled();
+  };
+  const place=async()=>Math.round((await tile.boundingBox()).y);
+  await tile.scrollIntoViewIfNeeded();
+  const placed=await place();
+  expect(placed).toBeGreaterThan(20);
+  await open();
+  await expect(page.locator('#load-year')).toHaveText('2019/20');
+  await page.mouse.click(6,6);
+  await expect(page.locator('#loading')).toBeHidden();
+  await expect(page.locator('#library')).toBeVisible();
+  // The dialog fades out instead of snapping to display:none.
+  expect(await page.locator('#loading').evaluate(element=>element.hidden)).toBe(false);
+  await expect.poll(async()=>Math.abs(await place()-placed)).toBeLessThan(2);
+  // Leaving a running game restores the same viewport position too.
+  await open();
+  await page.getByRole('button',{name:'Start game',exact:true}).click();
+  await expect(page.locator('iframe')).toHaveCount(1);
+  await page.locator('#back').click();
+  await expect(page.locator('#library')).toBeVisible();
+  await expect.poll(async()=>Math.abs(await place()-placed)).toBeLessThan(2);
+});
+
+test('the game year is omitted when none is evidenced',async({page})=>{
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Year fixture',games:games.map((game,index)=>index?game:{...game,year:undefined,yearLabel:undefined,academicYear:null,instructions:{sections:[{title:'Go',text:'Move.'}]}})}}));
+  await page.goto(base);
+  await page.locator('#games a[data-id="game-0"]').click();
+  await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeEnabled();
+  await expect(page.locator('#load-year')).toBeHidden();
+});
+
 test('clicking outside the loading dialog dismisses it like the close button',async({page})=>{
   const instructions={sections:[{title:'Controls',controls:[{action:'Jump',bindings:[{keys:['Space']}]}]}]};
   await page.route('**/collection.json',route=>route.fulfill({json:{name:'Dismiss fixture',games:games.map((game,index)=>index?game:{...game,instructions})}}));

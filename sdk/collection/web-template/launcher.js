@@ -2,7 +2,7 @@ import {GameFilters} from './filters.js';
 import {renderGameTags} from './tags.js';
 import {Surroundings} from './surroundings.js';
 import {Mosaic} from './mosaic.js';
-import {Previews} from './previews.js';
+import {Previews, yearLabel} from './previews.js';
 import {GameSearch} from './search.js';
 import {Surprise} from './surprise.js';
 import {cue} from './audio.js';
@@ -20,7 +20,7 @@ const host = document.querySelector('#frame-host');
 const surroundings = new Surroundings(host, link => launch(link));
 const shared = sharedSlug();
 let catalog = [], selected = null, lastLink = null, surprise = null, gameSearch = null, filters = null, visibleCatalog = [], taxonomy = [];
-let playerLayout = null, shareMode = false;
+let playerLayout = null, shareMode = false, libraryScroll = 0, closeTimer = null;
 const previews = new Previews();
 const back=document.querySelector('#back');
 const help=document.querySelector('#player-help');
@@ -87,12 +87,23 @@ function showLoading() {
   if (!loading.open) loading.showModal();
 }
 function hideLoading() {
+  // Keep the element laid out so the dialog's exit transition can run.
   if (loading.open) loading.close();
-  loading.hidden = true;
+}
+function hideLibrary() {
+  if (library.hidden) return;
+  libraryScroll = window.scrollY;
+  library.hidden = true;
+}
+function showLibrary() {
+  if (!library.hidden) return;
+  library.hidden = false;
+  // The grid owns the window height again, so restore its position next frame.
+  requestAnimationFrame(() => window.scrollTo(0, libraryScroll));
 }
 function enterGame() {
   started = true;
-  library.hidden = true; play.classList.remove('starting'); hideLoading(); host.inert = false;
+  hideLibrary(); play.classList.remove('starting'); hideLoading(); host.inert = false;
   if (ready && !shareMode) surroundings.start(selected,catalog);
   const frame = host.querySelector('iframe');
   frame?.contentWindow.postMessage({type:'lcom-player-instructions',paused:false},location.origin);
@@ -159,7 +170,7 @@ function loadingState(state) {
     if (hasInstructions && (!started || loading.open)) {
       allowStart();
     } else {
-      library.hidden = true; play.classList.remove('starting'); hideLoading(); host.inert = false;
+      hideLibrary(); play.classList.remove('starting'); hideLoading(); host.inert = false;
       if (!shareMode) surroundings.start(selected,catalog);
       if (loadingHadFocus || !play.contains(document.activeElement)) host.querySelector('iframe')?.contentWindow.focus();
     }
@@ -179,7 +190,7 @@ function loadingState(state) {
 document.querySelector('#show-controls').onclick = () => {
   if (!running || ready || !document.querySelector('#load-error').hidden) return;
   // User chooses to interact early; only an actual draw completes readiness.
-  library.hidden = true; play.classList.remove('starting'); hideLoading(); host.inert = false;
+  hideLibrary(); play.classList.remove('starting'); hideLoading(); host.inert = false;
   const frame = host.querySelector('iframe');
   frame?.contentWindow.focus();
   frame?.contentDocument?.querySelector('#game')?.focus({preventScroll:true});
@@ -228,11 +239,17 @@ function releasePointer() {
 }
 function returnToLibrary() {
   if (play.hidden) return;
+  // Dismissing a modal over the visible library keeps that position even when
+  // the dialog's focus restoration scrolls the launching tile into view.
+  if (!library.hidden) libraryScroll = window.scrollY;
   releasePointer();
   cue('navigate',{direction:'back',emphasis:'subtle'});
   // A shared game has no library behind it; its clean address leads back home.
   if (shareMode) { location.assign(homeUrl()); return; }
-  location.hash = '';
+  // Emptying the fragment would scroll the window to the top. Replace the game
+  // hash in history instead, then route directly; back still reopens the game.
+  history.pushState(null, '', location.pathname + location.search);
+  route();
 }
 document.addEventListener('keydown', event => {
   if (!play.hidden) play.classList.add('keyboard-player');
@@ -310,13 +327,40 @@ function route(force = false) {
   runningControls.hidden = true; setCompactActions(true); consoleOutput.hidden = true; consoleOutput.textContent = ''; progress.hidden = false;
   loadFooter.hidden = false;
   loading.classList.remove('running'); loading.classList.remove('ready');
+  const wasOpen = loading.open;
   hideLoading(); host.inert = !!game;
-  library.hidden = !!game && !lastLink; play.hidden = !game;
-  play.classList.toggle('starting',!!game);
   document.body.style.overflow = game ? 'hidden' : '';
+  clearTimeout(closeTimer);
+  if (game) {
+    // A tile launch keeps the library behind the dialog; a direct share link
+    // hides it so one game opens on a plain background.
+    if (!lastLink) hideLibrary();
+    play.hidden = false;
+    play.classList.add('starting');
+    play.classList.remove('dismissing');
+  } else {
+    // Reveal the library while the dialog fades over it, then drop the player.
+    showLibrary();
+    play.classList.toggle('starting', wasOpen);
+    play.classList.toggle('dismissing', wasOpen);
+    if (wasOpen) {
+      closeTimer = setTimeout(() => {
+        if (selected) return;
+        play.hidden = true;
+        play.classList.remove('starting', 'dismissing');
+      }, 200);
+    } else {
+      play.hidden = true;
+      play.classList.remove('dismissing');
+    }
+    requestAnimationFrame(() => window.scrollTo(0, libraryScroll));
+  }
   if (game) {
     back.style.left='';back.style.top='';
     document.querySelector('#load-title').textContent = game.name;
+    const year = yearLabel(game);
+    document.querySelector('#load-year').textContent = year;
+    document.querySelector('#load-year').hidden = !year;
     document.querySelector('#load-description').textContent = game.description || '';
     renderGameTags(document.querySelector('#load-tags'),game,taxonomy);
     renderCredits(creditsSection,game);

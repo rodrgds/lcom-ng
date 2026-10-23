@@ -178,10 +178,10 @@ remain supported.
   school year.
 - Hover or keyboard focus expands a tile into screenshots, name, known year, and
   approximate first-load size. Touch opens a game directly.
-- The loading modal shows the description, category tags, and the game's
-  participants below any authored controls. A credited person becomes a link to
-  their published site or email. The upstream repository sits on the left of the
-  modal footer when the metadata has one.
+- The loading modal shows the known school year, description, category tags, and
+  the game's participants below any authored controls. A credited person becomes
+  a link to their published site or email. The upstream repository sits on the
+  left of the modal footer when the metadata has one.
 - **Ctrl+K**, **Command+K**, or **/** focuses search. Query and filters survive
   launches and reloads in the same tab. **Surprise me** chooses from current
   matches. Reduced motion keeps results still.

@@ -9,9 +9,12 @@ export function downloadSize(bytes) {
   return bytes < 1000000 ? `${Math.ceil(bytes / 1000)} KB` : `${(bytes / 1000000).toFixed(1)} MB`;
 }
 
+export function yearLabel(game) {
+  return 'academicYear' in game ? game.academicYear || '' : String(game.yearLabel || game.year || '').replace(/^Updated\s+/, '');
+}
+
 export function facts(game) {
-  const year = 'academicYear' in game ? game.academicYear || '' : String(game.yearLabel || game.year || '').replace(/^Updated\s+/, '');
-  return [year, downloadSize(game.downloadBytes)].filter(Boolean).join(' · ');
+  return [yearLabel(game), downloadSize(game.downloadBytes)].filter(Boolean).join(' · ');
 }
 
 export function repositoryIcon(url) {

@@ -19,8 +19,8 @@ Search filters the visible grid by name or tag and stays beside one filter panel
 for genres, player modes and
 academic school years. The query and tags persist within the tab; filtered results use
 regular tiles and keep their order while typing. Five random featured picks come from a curated pool. Year labels stay plain and unknowns are omitted.
-Loading opens a compact dismissible modal with the selected game's icon,
-description, category tags and measured progress. It also credits the original
+Loading opens a compact dismissible modal with the selected game's icon, known
+school year, description, category tags and measured progress. It also credits the original
 participants below the controls, with a personal link or published email when the
 project documents one. Once the first frame is ready, the footer's left side adds
 the upstream repository as an icon-only link; while loading it shows only progress.
