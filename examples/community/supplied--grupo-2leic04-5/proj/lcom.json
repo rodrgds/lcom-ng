@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "name": "Temporal Takedown",
+  "description": "Fight through four clockwork levels. Move, aim vertically, and shoot the advancing clocks.",
+  "icon": "icon.png",
+  "preview": "../../../../collections/arcade/previews/supplied-grupo-2leic04-5-99fe064aa474.png",
+  "instructions": {
+    "sections": [
+      {"title": "Get started", "text": "Press Enter on Play, then Enter again to begin the level. Stop the clocks before they reach the end of their path."},
+      {"title": "Keyboard", "controls": [
+        {"action": "Move", "bindings": [{"keys": ["Arrow keys"]}, {"keys": ["W"]}, {"keys": ["A"]}, {"keys": ["S"]}, {"keys": ["D"]}]},
+        {"action": "Choose menu item", "bindings": [{"keys": ["W"]}, {"keys": ["S"]}, {"keys": ["Up"]}, {"keys": ["Down"]}]},
+        {"action": "Select or continue", "bindings": [{"keys": ["Enter"]}]},
+        {"action": "Pause or return", "bindings": [{"keys": ["Esc"]}]}
+      ]},
+      {"title": "Mouse", "controls": [
+        {"action": "Aim up or down", "bindings": [{"label": "Move vertically"}]},
+        {"action": "Fire", "bindings": [{"label": "Hold left click"}]}
+      ]}
+    ]
+  },
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": ["ESC", "ENTER"],
+      "dpad": false,
+      "joystick": false,
+      "pads": [{"side": "left", "mode": "arrows", "style": "dpad"}],
+      "actions": [{"side": "right", "mouseButton": "left", "label": "Fire"}]
+    }
+  },
+  "build": {
+    "sources": [
+      "main.c", "game_state.c", "player.c", "renderer.c",
+      "enemy.c", "bullet.c", "level_config.c", "../lab1/rtc.c", "../lab2/timer.c",
+      "../lab3/kbc.c", "../lab4/mouse.c", "../lab5/video.c"
+    ],
+    "include": ["include"],
+    "assetRoot": "..",
+    "assets": []
+  }
+}

@@ -1,6 +1,11 @@
 {
   "version": 1,
   "games": {
+    "supplied-grupo-2leic04-5-99fe064aa474": [
+      "galleries/supplied-grupo-2leic04-5-99fe064aa474/level-start.webp",
+      "galleries/supplied-grupo-2leic04-5-99fe064aa474/moving.webp",
+      "galleries/supplied-grupo-2leic04-5-99fe064aa474/firing.webp"
+    ],
     "supplied-pvz-002c15167874": [
       "galleries/supplied-pvz-002c15167874/defenders-placed.webp",
       "galleries/supplied-pvz-002c15167874/wave-advancing.webp",

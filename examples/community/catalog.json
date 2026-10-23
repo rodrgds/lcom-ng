@@ -2,6 +2,15 @@
   "version": 1,
   "collection": "collections/arcade/lcom.collection.json",
   "verificationSummary": {
+    "latestImport": {
+      "date": "2026-10-23",
+      "id": "supplied-grupo-2leic04-5-99fe064aa474",
+      "source": "User-supplied proj.zip",
+      "originalFiles": 72,
+      "compatibilityAdapters": 10,
+      "webGameplay": "Menu, level start, movement, and firing verified in Chromium",
+      "androidGameplay": "Menu, level start, movement, and firing verified on the lcom-test emulator"
+    },
     "date": "2026-10-17",
     "status": "The web catalog has 306 entries, is deployed and its live UI is verified. Further game discovery and imports were stopped by the user on 2026-10-17.",
     "previousPublishedReview": {
@@ -362,6 +371,33 @@
     }
   },
   "games": [
+    {
+      "id": "supplied--grupo-2leic04-5",
+      "name": "Temporal Takedown",
+      "path": "examples/community/supplied--grupo-2leic04-5/proj",
+      "root": "examples/community/supplied--grupo-2leic04-5",
+      "source": "User-supplied proj.zip, GRUPO_2LEIC04_5, LCOM 2025/26",
+      "archiveSha256": "51a5c1b14fe3e31f39e3b2b964939af3dd267ee17f41b9a0ca42c29ce0b09243",
+      "sourcePatches": [],
+      "compatibilityAdapters": "The archive omitted lab1 through lab5. Small device and video adapters are tracked separately; original project files remain unchanged.",
+      "license": {"status": "not established", "files": []},
+      "verification": {
+        "web": {
+          "status": "passed",
+          "scope": "Chromium browser export: menu, level introduction, first level, movement, and firing rendered without page errors."
+        },
+        "android": {
+          "status": "passed",
+          "scope": "Arm64 standalone APK on the lcom-test emulator: menu, first-level introduction, movement, and visible firing."
+        }
+      },
+      "collectionId": "supplied-grupo-2leic04-5-99fe064aa474",
+      "config": "examples/community/supplied--grupo-2leic04-5/proj/lcom.json",
+      "icon": "examples/community/supplied--grupo-2leic04-5/proj/icon.png",
+      "description": "Fight through four clockwork levels. Move, aim vertically, and shoot the advancing clocks.",
+      "preview": "collections/arcade/previews/supplied-grupo-2leic04-5-99fe064aa474.png",
+      "provenance": "examples/community/supplied--grupo-2leic04-5/UPSTREAM.json"
+    },
     {
       "id": "supplied--pvz",
       "name": "Plants vs. Zombies",

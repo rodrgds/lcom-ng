@@ -3,6 +3,7 @@
   "name": "LCOM Arcade",
   "icon": "icon.png",
   "projects": [
+    "../../examples/community/supplied--grupo-2leic04-5/proj",
     "../../examples/community/supplied--pvz/proj",
     "../../examples/community/DSV8--FEUP-LCom/proj/src",
     "../../examples/community/josesereno--Bamboozlers/src",

@@ -1,6 +1,20 @@
 {
   "version": 1,
   "games": {
+    "supplied-grupo-2leic04-5-99fe064aa474": {
+      "yearSource": {
+        "kind": "unknown",
+        "detail": "The supplied archive has no public repository; repository creation year is omitted."
+      },
+      "tags": ["shooter", "single-player"],
+      "academicYear": "2025/26",
+      "academicYearSource": {
+        "kind": "supplied-course-statement",
+        "confidence": "explicit",
+        "detail": "The submitting group identified this as its LCOM project for the 2025/26 academic year."
+      },
+      "slug": "temporal-takedown"
+    },
     "supplied-pvz-002c15167874": {
       "yearSource": {
         "kind": "unknown",
