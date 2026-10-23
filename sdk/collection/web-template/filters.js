@@ -1,4 +1,5 @@
 import {cue} from './audio.js';
+import {track} from './analytics.js';
 
 export class GameFilters {
   constructor(catalog,taxonomy,change) {
@@ -40,7 +41,7 @@ export class GameFilters {
         button.type='button';button.setAttribute('aria-pressed','false');button.dataset.facet=facet;button.dataset.value=option.value;
         if(option.description)button.title=option.description;
         text.textContent=option.label;number.textContent=total;number.setAttribute('aria-hidden','true');button.append(text,number);
-        button.onclick=()=>{const values=this.selected[facet];if(values.has(option.value))values.delete(option.value);else values.add(option.value);this.apply();cue('select',{emphasis:'subtle'});};
+        button.onclick=()=>{const values=this.selected[facet],removing=values.has(option.value);if(removing)values.delete(option.value);else values.add(option.value);const results=this.apply();track('filter_changed',{facet,value:option.value,action:removing?'removed':'selected',results});cue('select',{emphasis:'subtle'});};
         grid.append(button);this.buttons.push(button);
       }
       if(grid.children.length)this.panel.querySelector('.filter-groups').append(fieldset);
@@ -78,9 +79,11 @@ export class GameFilters {
     try {sessionStorage.setItem(this.storageKey,JSON.stringify(Object.fromEntries(Object.entries(this.selected).map(([facet,values])=>[facet,[...values]]))));} catch { /* Optional persistence. */ }
     this.panel.querySelector('[role="status"]').textContent=`${matches.length} of ${this.catalog.length} games`;
     if(notify)this.change(matches);
+    return matches.length;
   }
   reset() {
-    for(const values of Object.values(this.selected))values.clear();this.apply();
+    for(const values of Object.values(this.selected))values.clear();
+    track('filters_cleared',{results:this.apply()});
   }
   position() {
     const button=this.toggle.getBoundingClientRect(),panel=this.panel.getBoundingClientRect();

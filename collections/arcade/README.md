@@ -76,8 +76,15 @@ payloads within the host's asset limit. Other files use static serving. The regu
 export stays directly usable on other static servers. The published `collection.json`
 contains browsing data; `collection-provenance.json` retains the complete delivery
 inventory and historical evidence without loading it on every visit. The hosted
-library also loads a cookieless Umami page-view script configured in
-[`web.json`](web.json); exported games never include it.
+library also loads a cookieless Umami script configured in
+[`web.json`](web.json); exported games never include it. In Umami's Events view,
+`game_played` counts games opened in the player, once per launch, with game name,
+stable ID, discovery source, and school year when known. The source distinguishes
+library, search, Surprise, suggestion, shared link, and direct link. A game that
+is dismissed while loading is not counted. `filter_changed` records facet,
+value, selection or removal, and remaining results; `filters_cleared` records
+resets. `games_shuffled` records the visible pool size, and `surprise_spun`
+records the pool size and chosen game. Search text is never sent.
 The launcher creates hover-preview markup only when opened. Check modules and game data with
 browser gzip encoding, plus large identity responses and cache revalidation,
 then test the live player:

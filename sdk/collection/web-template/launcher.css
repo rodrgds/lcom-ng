@@ -67,7 +67,7 @@ progress{display:block;appearance:none;width:100%;height:8px;border:0;border-rad
 #player-help{position:absolute;z-index:5;top:calc(max(10px,env(safe-area-inset-top)) + 104px);right:max(8px,env(safe-area-inset-right));display:grid;place-items:center;width:44px;height:44px;padding:10px;background:#222;color:#fff;border:1px solid #444;border-radius:5px}
 #player-help svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}#player-help:hover{background:#3a3549}
 /* Touch layouts keep the upper-right corner for the game's own controls. */
-@media(pointer:coarse){.player-share{display:none}#player-help{top:calc(max(10px,env(safe-area-inset-top)) + 52px)}}
+@media(pointer:coarse){.player-share{display:none}}
 #loading.with-instructions[open]{display:flex;flex-direction:column;width:min(560px,calc(100vw - 24px));max-height:min(680px,calc(100dvh - 24px));padding:20px 24px 0}
 .with-instructions .load-heading{flex:none;gap:12px}.with-instructions .load-logo{width:44px;height:44px;border-radius:8px}.with-instructions .load-heading h2{font-size:24px}.load-content{display:contents}
 .with-instructions .load-content{display:block;min-height:0;overflow:auto;overscroll-behavior:contain;margin:0 -24px;padding:0 24px;scrollbar-color:#656080 #1e1c32}
@@ -116,6 +116,7 @@ progress{display:block;appearance:none;width:100%;height:8px;border:0;border-rad
 @media(prefers-reduced-motion:reduce){#library-hint{animation:none}}
 
 .game-tags{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:10px 0 0;padding:0}.game-tags li{padding:5px 9px;border-radius:6px;background:#393147;color:#eee9ff;font-size:12px;font-weight:600;line-height:1.25}.surprise-info .game-tags{margin:0}#load-tags{margin:16px 0 0}
+.load-meta{display:flex;align-items:center;flex-wrap:wrap;gap:8px 16px;margin-top:16px}.load-meta[hidden]{display:none}.load-meta #load-tags{margin:0}.load-meta .load-year{margin:0 0 0 auto}.load-meta #load-tags[hidden]+.load-year{margin-left:0}.with-instructions .load-meta{margin-top:12px}
 
 .game-exit{position:fixed;z-index:1;pointer-events:none;border-radius:16px;overflow:hidden}.game-exit *{pointer-events:none!important}.game{transform-origin:top left}
 

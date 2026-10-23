@@ -858,6 +858,64 @@ test('the game year is omitted when none is evidenced',async({page})=>{
   await expect(page.locator('#load-year')).toBeHidden();
 });
 
+test('Arcade analytics records discovery and one actual play per launch',async({page},testInfo)=>{
+  const instructions={sections:[{title:'Go',text:'Press Start.'}]};
+  const taxonomy=[{id:'platformer',label:'Platformer',facet:'genre'},{id:'runner',label:'Runner',facet:'genre'},{id:'survival',label:'Survival',facet:'genre'},{id:'single-player',label:'Solo',facet:'players'}];
+  await page.addInitScript(()=>{
+    window.arcadeEvents=[];
+    window.umami={track:(name,data)=>window.arcadeEvents.push({name,data})};
+  });
+  await page.route('**/collection.json',route=>route.fulfill({json:{name:'Analytics fixture',taxonomy,games:games.map((game,index)=>index?game:{...game,academicYear:'2020/21',tags:taxonomy.map(tag=>tag.id),instructions})}}));
+  await page.route('**/games/**',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><title>Waiting for first frame</title>'}));
+  await page.emulateMedia({reducedMotion:'reduce'});
+  await page.goto(base);
+  const events=()=>page.evaluate(()=>window.arcadeEvents);
+  await page.getByRole('button',{name:'Filter games',exact:true}).click();
+  await page.locator('#browse-panel').getByRole('button',{name:'Platformer',exact:true}).click();
+  await expect.poll(events).toContainEqual({name:'filter_changed',data:{facet:'genre',value:'platformer',action:'selected',results:1}});
+  await page.keyboard.press('Escape');
+  await page.getByRole('button',{name:'Shuffle games'}).click();
+  await expect.poll(events).toContainEqual({name:'games_shuffled',data:{results:1}});
+  await page.locator('#games a[data-id="game-0"]').click();
+  await expect(page.locator('#loading')).toBeVisible();
+  const tagsBox=await page.locator('#load-tags').boundingBox(),yearBox=await page.locator('#load-year').boundingBox();
+  expect(Math.abs(tagsBox.y+tagsBox.height/2-yearBox.y-yearBox.height/2)).toBeLessThan(12);
+  await page.screenshot({path:testInfo.outputPath('game-metadata-row.png')});
+  await page.setViewportSize({width:390,height:844});
+  const phoneYear=await page.locator('#load-year').boundingBox(),phoneDialog=await page.locator('#loading').boundingBox();
+  expect(phoneYear.x+phoneYear.width).toBeLessThan(phoneDialog.x+phoneDialog.width);
+  await page.screenshot({path:testInfo.outputPath('game-metadata-phone.png')});
+  expect((await events()).filter(event=>event.name==='game_played')).toHaveLength(0);
+  const frame=page.frames().find(frame=>frame.url().includes('/games/'));
+  await frame.evaluate(()=>parent.postMessage({type:'lcom-player-loading',phase:'ready'},location.origin));
+  await expect(page.getByRole('button',{name:'Start game',exact:true})).toBeEnabled();
+  expect((await events()).filter(event=>event.name==='game_played')).toHaveLength(0);
+  await page.getByRole('button',{name:'Start game',exact:true}).click();
+  await expect.poll(events).toContainEqual({name:'game_played',data:{game:'Game 00',game_id:'game-0',source:'library',school_year:'2020/21'}});
+  await page.locator('#player-help').click();
+  await page.getByRole('button',{name:'Resume game',exact:true}).click();
+  expect((await events()).filter(event=>event.name==='game_played')).toHaveLength(1);
+  await page.locator('#back').click();
+  await page.getByRole('button',{name:'Surprise me',exact:true}).click();
+  await expect.poll(events).toContainEqual({name:'surprise_spun',data:{results:1,game:'Game 00'}});
+  await page.locator('#surprise-play').click();
+  await expect.poll(()=>page.frames().some(frame=>frame.url().includes('/games/'))).toBe(true);
+  await page.frames().find(frame=>frame.url().includes('/games/')).evaluate(()=>parent.postMessage({type:'lcom-player-loading',phase:'ready'},location.origin));
+  await page.getByRole('button',{name:'Start game',exact:true}).click();
+  await expect.poll(events).toContainEqual({name:'game_played',data:{game:'Game 00',game_id:'game-0',source:'surprise',school_year:'2020/21'}});
+  await page.locator('#back').click();
+  await page.getByRole('button',{name:'Filter games',exact:true}).click();
+  await page.locator('#browse-panel').getByRole('button',{name:'Clear filters',exact:true}).click();
+  await expect.poll(events).toContainEqual({name:'filters_cleared',data:{results:24}});
+  await page.keyboard.press('Escape');
+  await page.getByRole('button',{name:'Find a game',exact:true}).click();
+  await page.getByRole('searchbox').fill('Game 01');
+  await page.locator('#search-results a[data-id="game-1"]').click();
+  await expect.poll(()=>page.frames().some(frame=>frame.url().includes('/games/'))).toBe(true);
+  await page.frames().find(frame=>frame.url().includes('/games/')).evaluate(()=>parent.postMessage({type:'lcom-player-loading',phase:'ready'},location.origin));
+  await expect.poll(events).toContainEqual({name:'game_played',data:{game:'Game 01',game_id:'game-1',source:'search'}});
+});
+
 test('clicking outside the loading dialog dismisses it like the close button',async({page})=>{
   const instructions={sections:[{title:'Controls',controls:[{action:'Jump',bindings:[{keys:['Space']}]}]}]};
   await page.route('**/collection.json',route=>route.fulfill({json:{name:'Dismiss fixture',games:games.map((game,index)=>index?game:{...game,instructions})}}));

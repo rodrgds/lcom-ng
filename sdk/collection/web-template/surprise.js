@@ -1,6 +1,7 @@
 import {cue, unlockSound} from './audio.js';
 import {facts, repositoryIcon} from './previews.js';
 import {renderGameTags} from './tags.js';
+import {track} from './analytics.js';
 
 const duration = 8800;
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
@@ -83,6 +84,7 @@ export class Surprise {
   spin() {
     this.stop();
     this.winner = this.catalog[Math.floor(Math.random() * this.catalog.length)];
+    track('surprise_spun',{results:this.catalog.length,game:this.winner.name});
     this.winnerIndex = 44 + Math.floor(Math.random() * 9);
     // Keep a small inset from both edges. The marker always belongs to exactly
     // one game, including after resizing, rather than landing in a gap.

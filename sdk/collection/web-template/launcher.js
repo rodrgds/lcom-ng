@@ -11,6 +11,7 @@ import {loadFont} from './fonts.js';
 import {renderInstructions} from './instructions.js';
 import {renderCredits, renderRepository} from './credits.js';
 import {sharedSlug, homeUrl, shareUrl, copyText} from './share.js';
+import {track} from './analytics.js';
 
 const library = document.querySelector('#library');
 const play = document.querySelector('#play');
@@ -21,6 +22,7 @@ const surroundings = new Surroundings(host, link => launch(link));
 const shared = sharedSlug();
 let catalog = [], selected = null, lastLink = null, surprise = null, gameSearch = null, filters = null, visibleCatalog = [], taxonomy = [];
 let playerLayout = null, shareMode = false, libraryScroll = 0, closeTimer = null;
+let launchSource = null, playSource = null, playTracked = false;
 const previews = new Previews();
 const back=document.querySelector('#back');
 const help=document.querySelector('#player-help');
@@ -51,24 +53,32 @@ function placeReturn(layout) {
   const transform=r=>({x:bounds.x+r.x*sx,y:bounds.y+r.y*sy,width:r.width*sx,height:r.height*sy});
   const game=transform(layout.game), occupied=layout.occupied.map(transform);
   occupied.push(document.querySelector('#player-fullscreen').getBoundingClientRect());
-  for (const control of [document.querySelector('#player-share'), help]) if (!control.hidden && control.offsetWidth) occupied.push(control.getBoundingClientRect());
-  surroundings.update(game,occupied);
-  if(!back.offsetWidth) return;
-  const w=back.offsetWidth,h=back.offsetHeight;
+  const share=document.querySelector('#player-share');
+  if (!share.hidden && share.offsetWidth) occupied.push(share.getBoundingClientRect());
   const left=parseFloat(style.paddingLeft),top=parseFloat(style.paddingTop);
-  const right=innerWidth-parseFloat(style.paddingRight)-w,bottom=innerHeight-parseFloat(style.paddingBottom)-h;
   const overlap=(a,b,gap=0)=>Math.max(0,Math.min(a.x+a.width,b.x+b.width+gap)-Math.max(a.x,b.x-gap))*Math.max(0,Math.min(a.y+a.height,b.y+b.height+gap)-Math.max(a.y,b.y-gap));
-  const xs=[left,right,game.x-w-8,game.x+game.width+8,...occupied.flatMap(r=>[r.x-w-8,r.x+r.width+8])];
-  const ys=[top,bottom,game.y-h-8,game.y+game.height+8,...occupied.flatMap(r=>[r.y-h-8,r.y+r.height+8])];
-  let best=null;
-  for(const x0 of xs) for(const y0 of ys) {
-    const x=Math.max(left,Math.min(right,x0)),y=Math.max(top,Math.min(bottom,y0));
-    const candidate={x,y,width:w,height:h};
-    const collisions=occupied.reduce((sum,r)=>sum+overlap(candidate,r,4),0);
-    const score=[collisions,overlap(candidate,game),x-left+y-top];
-    if(!best || score.some((n,i)=>n<best.score[i] && score.slice(0,i).every((v,j)=>v===best.score[j]))) best={x,y,score};
+  const placeControl=(control,preferRight)=>{
+    const w=control.offsetWidth,h=control.offsetHeight;
+    if (!w || !h) return;
+    const right=innerWidth-parseFloat(style.paddingRight)-w,bottom=innerHeight-parseFloat(style.paddingBottom)-h;
+    const xs=[left,right,game.x-w-8,game.x+game.width+8,...occupied.flatMap(r=>[r.x-w-8,r.x+r.width+8])];
+    const ys=[top,bottom,game.y-h-8,game.y+game.height+8,...occupied.flatMap(r=>[r.y-h-8,r.y+r.height+8])];
+    let best=null;
+    for(const x0 of xs) for(const y0 of ys) {
+      const x=Math.max(left,Math.min(right,x0)),y=Math.max(top,Math.min(bottom,y0));
+      const candidate={x,y,width:w,height:h};
+      const collisions=occupied.reduce((sum,r)=>sum+overlap(candidate,r,4),0);
+      const score=[collisions,overlap(candidate,game),Math.abs(x-(preferRight?right:left))+y-top];
+      if(!best || score.some((n,i)=>n<best.score[i] && score.slice(0,i).every((v,j)=>v===best.score[j]))) best={x,y,score};
+    }
+    if(best) { control.style.left=`${best.x}px`;control.style.top=`${best.y}px`; }
+  };
+  if (!help.hidden && help.offsetWidth) {
+    if (matchMedia('(pointer:coarse)').matches) {help.style.right='auto';placeControl(help,true);}
+    occupied.push(help.getBoundingClientRect());
   }
-  if(best) { back.style.left=`${best.x}px`;back.style.top=`${best.y}px`; }
+  surroundings.update(game,occupied);
+  placeControl(back,false);
 }
 const loading = document.querySelector('#loading');
 const progress = loading.querySelector('progress');
@@ -103,12 +113,20 @@ function showLibrary() {
 }
 function enterGame() {
   started = true;
+  trackGamePlay();
   hideLibrary(); play.classList.remove('starting'); hideLoading(); host.inert = false;
   if (ready && !shareMode) surroundings.start(selected,catalog);
   const frame = host.querySelector('iframe');
   frame?.contentWindow.postMessage({type:'lcom-player-instructions',paused:false},location.origin);
   frame?.contentWindow.focus();
   frame?.contentDocument?.querySelector('#game')?.focus({preventScroll:true});
+}
+function trackGamePlay() {
+  if (!selected || playTracked) return;
+  playTracked = true;
+  const data = {game:selected.name,game_id:selected.id,source:playSource};
+  if (selected.academicYear) data.school_year = selected.academicYear;
+  track('game_played',data);
 }
 function showInstructions() {
   if (!hasInstructions || !started) return;
@@ -170,6 +188,7 @@ function loadingState(state) {
     if (hasInstructions && (!started || loading.open)) {
       allowStart();
     } else {
+      trackGamePlay();
       hideLibrary(); play.classList.remove('starting'); hideLoading(); host.inert = false;
       if (!shareMode) surroundings.start(selected,catalog);
       if (loadingHadFocus || !play.contains(document.activeElement)) host.querySelector('iframe')?.contentWindow.focus();
@@ -190,6 +209,7 @@ function loadingState(state) {
 document.querySelector('#show-controls').onclick = () => {
   if (!running || ready || !document.querySelector('#load-error').hidden) return;
   // User chooses to interact early; only an actual draw completes readiness.
+  trackGamePlay();
   hideLibrary(); play.classList.remove('starting'); hideLoading(); host.inert = false;
   const frame = host.querySelector('iframe');
   frame?.contentWindow.focus();
@@ -263,8 +283,9 @@ document.addEventListener('keydown', event => {
   }
 });
 
-function launch(link) {
+function launch(link, source = null) {
   lastLink = link.closest('.game-rail') ? games.querySelector('[data-id="'+link.dataset.id+'"]') || document.querySelector('#browse-toggle') : link;
+  launchSource = source || (link.closest('#search-panel') ? 'search' : link.closest('.game-rail') ? 'suggestion' : 'library');
   filters?.close(false);
   cue('navigate',{emphasis:'subtle'});
   if (matchMedia('(pointer:coarse)').matches) fullscreen();
@@ -284,12 +305,13 @@ function render(tags) {
   const mosaic = new Mosaic(document.querySelector('#grid'), games, tiles, () => previews.stop());
   document.querySelector('#shuffle').onclick = () => {
     mosaic.shuffle();
+    track('games_shuffled',{results:visibleCatalog.length});
     cue('select',{emphasis:'subtle'});
     count.textContent = `${visibleCatalog.length} games, shuffled`;
   };
   gameSearch = new GameSearch(catalog, launch, () => {filters.close(false);previews.stop();});
   surprise = new Surprise(catalog, game => {
-    launch(document.querySelector('#surprise'));
+    launch(document.querySelector('#surprise'),'surprise');
     location.hash = 'game=' + encodeURIComponent(game.id);
   },taxonomy);
   document.querySelector('#surprise').addEventListener('click', () => previews.stop());
@@ -303,6 +325,8 @@ function route(force = false) {
   const id = new URLSearchParams(location.hash.slice(1)).get('game');
   const game = catalog.find(game => game.id === id) || (shared ? catalog.find(game => game.slug === shared) : null);
   shareMode = !!game && !id;
+  playSource = launchSource || (shareMode ? 'share' : 'link');
+  launchSource = null;
   if (!game) {
     play.classList.remove('keyboard-player');
     // An unknown share address still lands on the library, not on a dead URL.
@@ -315,8 +339,9 @@ function route(force = false) {
   resetLibraryHint();
   clearTimeout(shareTimeout); shareStatus.hidden = true; shareStatus.textContent = '';
   playerLayout=null;
+  help.style.left='';help.style.top='';help.style.right='';
   releasePointer();
-  host.replaceChildren(); selected = game || null; ready = false; running = false; started = false; progressStep = -1;
+  host.replaceChildren(); selected = game || null; ready = false; running = false; started = false; playTracked = false; progressStep = -1;
   hasInstructions = renderInstructions(instructionContent, game?.instructions);
   help.hidden = !hasInstructions; startButton.hidden = !hasInstructions;
   loading.classList.toggle('with-instructions',hasInstructions);
@@ -363,6 +388,7 @@ function route(force = false) {
     document.querySelector('#load-year').hidden = !year;
     document.querySelector('#load-description').textContent = game.description || '';
     renderGameTags(document.querySelector('#load-tags'),game,taxonomy);
+    document.querySelector('.load-meta').hidden = !year && document.querySelector('#load-tags').hidden;
     renderCredits(creditsSection,game);
     renderRepository(repositoryLink,game);
     const icon = document.querySelector('.load-logo');

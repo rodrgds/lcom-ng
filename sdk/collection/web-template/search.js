@@ -82,7 +82,7 @@ export class GameSearch {
       const copy = document.createElement('span'), name = document.createElement('strong'), meta = document.createElement('span');
       name.textContent = game.name; meta.textContent = facts(game); copy.append(name, meta);
       link.append(icon, copy); item.append(link);
-      link.onclick = () => { this.dialog.close(); this.launch(link, game); };
+      link.onclick = () => { this.dialog.close(); this.launch(link); };
       this.items.set(game, item);
       return item;
     }));

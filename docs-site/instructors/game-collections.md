@@ -144,9 +144,10 @@ IDs from that catalog.
   establish a school year.
 - `repository` is a public HTTP URL that adds an icon link separate from the
   game. `favicon` is a PNG or SVG inside the collection folder.
-- `analytics` optionally adds a cookieless Umami page-view tracker to the
-  launcher shell with `{"src": "https://…/script.js", "websiteId": "…"}`. It is
-  off by default and never runs inside an exported game.
+- `analytics` optionally adds a cookieless Umami tracker to the launcher shell
+  with `{"src": "https://…/script.js", "websiteId": "…"}`. It records pageviews,
+  game plays, filter changes, shuffles, and Surprise spins. It is off by default
+  and never runs inside an exported game.
 - Gallery entries are arrays of up to 12 relative WebP paths. The exporter
   copies them under content hashes and loads them when a tile expands.
 - `authors` lists the participants, only when evidence supports them: a local
