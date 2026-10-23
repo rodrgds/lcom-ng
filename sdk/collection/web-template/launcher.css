@@ -40,7 +40,7 @@ progress{display:block;appearance:none;width:100%;height:8px;border:0;border-rad
 
 #library-hint{display:none;align-items:center;gap:6px;position:absolute;z-index:5;top:max(10px,env(safe-area-inset-top));left:max(8px,env(safe-area-inset-left));min-height:44px;margin:0;padding:8px 10px;border:1px solid #444;border-radius:5px;background:#222;color:#fff;font-size:12px;line-height:16px;user-select:none}#library-hint kbd{font:inherit}#library-hint svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}#library-hint:hover{background:#333}
 .player-fullscreen{position:absolute;z-index:5;top:max(10px,env(safe-area-inset-top));right:max(8px,env(safe-area-inset-right));display:grid;place-items:center;width:44px;height:44px;padding:8px 10px;background:#222;color:#fff;border:1px solid #444;border-radius:5px}
-.player-share{position:absolute;z-index:5;top:max(10px,env(safe-area-inset-top));right:calc(max(8px,env(safe-area-inset-right)) + 52px);display:grid;place-items:center;width:44px;height:44px;padding:8px 10px;background:#222;color:#fff;border:1px solid #444;border-radius:5px}
+.player-share{position:absolute;z-index:5;top:calc(max(10px,env(safe-area-inset-top)) + 52px);right:max(8px,env(safe-area-inset-right));display:grid;place-items:center;width:44px;height:44px;padding:8px 10px;background:#222;color:#fff;border:1px solid #444;border-radius:5px}
 .player-share svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.player-share:hover{filter:brightness(1.3)}
 #share-status{position:absolute;z-index:6;left:50%;bottom:max(16px,env(safe-area-inset-bottom));transform:translateX(-50%);max-width:min(620px,calc(100vw - 24px));margin:0;padding:10px 14px;border:1px solid #444;border-radius:8px;background:#222;color:#fff;font-size:13px;line-height:1.4;text-align:center;overflow-wrap:anywhere;user-select:text}
 
@@ -64,10 +64,10 @@ progress{display:block;appearance:none;width:100%;height:8px;border:0;border-rad
 #loading.running{display:flex;flex-direction:column}#loading.running .load-heading,#loading.running #load-tags{flex:none}#load-running{display:contents}#load-console{flex:0 1 120px;min-height:48px;max-height:120px;overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;margin:12px 0;padding:12px;border-radius:8px;background:#101021;color:#eee9ff;font:12px/1.5 ui-monospace,monospace}#show-controls{margin-left:auto;flex:none;min-height:44px;padding:10px 16px;border:0;border-radius:10px;font-weight:700;background:var(--accent);color:#101021}
 
 /* Author-written instructions share the download dialog and stay out of play. */
-#player-help{position:absolute;z-index:5;top:max(10px,env(safe-area-inset-top));right:calc(max(10px,env(safe-area-inset-right)) + 104px);display:grid;place-items:center;width:44px;height:44px;padding:10px;background:#222;color:#fff;border:1px solid #444;border-radius:5px}
+#player-help{position:absolute;z-index:5;top:calc(max(10px,env(safe-area-inset-top)) + 104px);right:max(8px,env(safe-area-inset-right));display:grid;place-items:center;width:44px;height:44px;padding:10px;background:#222;color:#fff;border:1px solid #444;border-radius:5px}
 #player-help svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}#player-help:hover{background:#3a3549}
 /* Touch layouts keep the upper-right corner for the game's own controls. */
-@media(pointer:coarse){.player-share{display:none}#player-help{right:calc(max(10px,env(safe-area-inset-right)) + 52px)}}
+@media(pointer:coarse){.player-share{display:none}#player-help{top:calc(max(10px,env(safe-area-inset-top)) + 52px)}}
 #loading.with-instructions{display:flex;flex-direction:column;width:min(560px,calc(100vw - 24px));max-height:min(680px,calc(100dvh - 24px));padding:20px 24px 0}
 .with-instructions .load-heading{flex:none;gap:12px}.with-instructions .load-logo{width:44px;height:44px;border-radius:8px}.with-instructions .load-heading h2{font-size:24px}.load-content{display:contents}
 .with-instructions .load-content{display:block;min-height:0;overflow:auto;overscroll-behavior:contain;margin:0 -24px;padding:0 24px;scrollbar-color:#656080 #1e1c32}
