@@ -1,0 +1,19 @@
+# Doxygen
+html/
+docs/
+latex/
+
+# macOS
+.DS_Store
+
+# VS Code local config
+.vscode/
+
+# Build files
+*.o
+*.d
+proj
+
+# Generated trace/output files
+trace.txt
+output.txt

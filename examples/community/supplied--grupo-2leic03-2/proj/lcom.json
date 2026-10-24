@@ -1,0 +1,130 @@
+{
+  "version": 1,
+  "name": "Space Defenix",
+  "description": "Pilot your spaceship through enemy waves, collect power-ups, and defeat the boss.",
+  "instructions": {
+    "sections": [
+      {
+        "title": "Get started",
+        "text": "Press Space or click Start. Survive enemy waves, collect power-ups, and defeat the boss."
+      },
+      {
+        "title": "Keyboard",
+        "controls": [
+          {
+            "action": "Move",
+            "bindings": [
+              {
+                "keys": [
+                  "Arrow keys"
+                ]
+              },
+              {
+                "label": "WASD"
+              }
+            ]
+          },
+          {
+            "action": "Start, shoot, or restart",
+            "bindings": [
+              {
+                "keys": [
+                  "Space"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Pause or resume",
+            "bindings": [
+              {
+                "keys": [
+                  "P"
+                ]
+              }
+            ]
+          },
+          {
+            "action": "Return to menu or quit",
+            "bindings": [
+              {
+                "keys": [
+                  "Esc"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "mobile": {
+    "orientation": "landscape",
+    "fullscreen": true,
+    "controls": {
+      "layout": "panel",
+      "pointer": "move",
+      "keyboard": false,
+      "mouseButtons": false,
+      "quickKeys": [
+        "ESC",
+        "P"
+      ],
+      "dpad": false,
+      "joystick": false,
+      "pads": [
+        {
+          "side": "left",
+          "mode": "arrows",
+          "style": "dpad"
+        }
+      ],
+      "actions": [
+        {
+          "side": "right",
+          "key": "SPACE",
+          "label": "Fire"
+        }
+      ]
+    }
+  },
+  "build": {
+    "sources": [
+      "src/devices/keyboard.c",
+      "src/devices/mouse.c",
+      "src/devices/rtc.c",
+      "src/devices/timer.c",
+      "src/game/asteroid.c",
+      "src/game/background.c",
+      "src/game/boss.c",
+      "src/game/bullet.c",
+      "src/game/collision.c",
+      "src/game/entity.c",
+      "src/game/explosion.c",
+      "src/game/game.c",
+      "src/game/menu.c",
+      "src/game/powerup.c",
+      "src/game/ship.c",
+      "src/game/state.c",
+      "src/graphics/font.c",
+      "src/graphics/graphics.c",
+      "src/graphics/sprite.c",
+      "src/graphics/ui.c",
+      "src/input/input.c",
+      "src/proj.c",
+      "src/utils/utils.c"
+    ],
+    "include": [
+      "src",
+      "src/devices",
+      "src/game",
+      "src/graphics",
+      "src/input",
+      "src/utils",
+      "src/assets"
+    ],
+    "assets": []
+  },
+  "icon": "icon.png",
+  "preview": "../../../../collections/arcade/previews/supplied-grupo-2leic03-2-e2d84c354475.png"
+}

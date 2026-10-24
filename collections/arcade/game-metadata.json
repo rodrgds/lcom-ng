@@ -1,6 +1,38 @@
 {
   "version": 1,
   "games": {
+    "supplied-grupo-2leic03-2-e2d84c354475": {
+      "yearSource": {
+        "kind": "unknown",
+        "detail": "User-supplied archive; repository creation timestamp is unavailable."
+      },
+      "tags": ["shooter", "single-player"],
+      "academicYear": "2025/26",
+      "academicYearSource": {
+        "kind": "readme",
+        "confidence": "explicit",
+        "detail": "Original README links the lcom-26 course repository and records the group declaration dated 2026-03-02."
+      },
+      "authors": [
+        {
+          "name": "Ana Sofia Ferreira",
+          "email": "up202403904@up.pt"
+        },
+        {
+          "name": "Irina Cardoso",
+          "email": "up202407047@up.pt"
+        },
+        {
+          "name": "Gonçalo Queirós",
+          "email": "up202407377@up.pt"
+        }
+      ],
+      "creditsSource": {
+        "kind": "readme",
+        "detail": "Original README and submitting author list all three group members."
+      },
+      "slug": "space-defenix"
+    },
     "supplied-grupo-2leic04-5-99fe064aa474": {
       "yearSource": {
         "kind": "unknown",

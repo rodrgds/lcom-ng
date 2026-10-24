@@ -372,6 +372,35 @@
   },
   "games": [
     {
+      "id": "supplied--grupo-2leic03-2",
+      "name": "Space Defenix",
+      "path": "examples/community/supplied--grupo-2leic03-2/proj",
+      "root": "examples/community/supplied--grupo-2leic03-2",
+      "source": "User-supplied grupo_2leic03_2-main.zip, Space Defenix, GRUPO_2LEIC03_2, LCOM 2025/26",
+      "archiveSha256": "164259df0fe9547c839551684509e5f3ec3ee72e40059902f660554cd094587e",
+      "sourcePatches": [],
+      "license": {
+        "status": "not established",
+        "files": []
+      },
+      "verification": {
+        "web": {
+          "status": "passed",
+          "scope": "Chromium browser export: menu, movement, firing, enemy kill, and pause/resume rendered without page errors."
+        },
+        "android": {
+          "status": "passed",
+          "scope": "Arm64 lcom-test emulator: touch movement, firing, enemy kill, and pause/resume verified. Published bundle downloaded through the catalog launcher and relaunched offline after a process restart."
+        }
+      },
+      "collectionId": "supplied-grupo-2leic03-2-e2d84c354475",
+      "config": "examples/community/supplied--grupo-2leic03-2/proj/lcom.json",
+      "icon": "examples/community/supplied--grupo-2leic03-2/proj/icon.png",
+      "description": "Pilot your spaceship through enemy waves, collect power-ups, and defeat the boss.",
+      "preview": "collections/arcade/previews/supplied-grupo-2leic03-2-e2d84c354475.png",
+      "provenance": "examples/community/supplied--grupo-2leic03-2/UPSTREAM.json"
+    },
+    {
       "id": "supplied--grupo-2leic04-5",
       "name": "Temporal Takedown",
       "path": "examples/community/supplied--grupo-2leic04-5/proj",

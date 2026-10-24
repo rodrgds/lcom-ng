@@ -1,0 +1,22 @@
+static xpm_row_t const shield_powerup_xpm[] = {
+"16 16 3",
+"  0",
+". 15",
+"b 3",
+"                ",
+"  ............  ",
+"  .bbbbbbbbbb.  ",
+"  .bbbbbbbbbb.  ",
+"  .bbbbbbbbbb.  ",
+"  .bbbbbbbbbb.  ",
+"  .bbbbbbbbbb.  ",
+"  .bbbbbbbbbb.  ",
+"   .bbbbbbbb.   ",
+"   .bbbbbbbb.   ",
+"    .bbbbbb.    ",
+"     .bbbb.     ",
+"      .bb.      ",
+"       ..       ",
+"                ",
+"                "
+};
